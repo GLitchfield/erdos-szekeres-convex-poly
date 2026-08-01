@@ -7,3 +7,4 @@ import ErdosSzekeres.StrongPolygon
 import ErdosSzekeres.CupCap
 import ErdosSzekeres.SmallCases
 import ErdosSzekeres.Composition
+import ErdosSzekeres.Extremal

@@ -115,17 +115,17 @@ extends the bridge to selected subsets.
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
 | D1 | cup--cap recurrence engine on ordered vertices | Compiles | Pincer induction, partition, and chain-splicing pigeonhole engine |
-| D2 | exact cup--cap number `binom(a+b-4,a-2)+1` | Upper half compiles; sharpness pending | Reproduce the 1935 theorem in the chosen API |
+| D2 | exact cup--cap number `binom(a+b-4,a-2)+1` | Compiles, including planar sharpness | Reproduce the 1935 theorem in the chosen API |
 | D3 | classical binomial upper bound for `ES(n)` | Compiles | End-to-end positive control of all bridges |
-| D4 | recursive `2^(n-2)` lower-bound construction | Known; pending | Formal sharpness for all `n` |
+| D4 | recursive `2^(n-2)` lower-bound construction | Pascal cup--cap family compiles; polygon invariant pending | Formal sharpness for all `n` |
 | D5 | exact cases `n = 3,4,5` | `n=3,4` compile; `n=5` pending | Small controls; `n=6` is a separate certificate project |
 
 ### Layer E: the modern structural frontier
 
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
-| E1 | composition/decomposition of sweep colorings | Binary deep composition and planar realization compile | Express the recursive extremal construction |
-| E2 | polygon-size recurrence under composition | Local crossing lemmas compile; global recurrence pending | Control decomposable configurations |
+| E1 | composition/decomposition of sweep colorings | Binary deep composition, planar realization, and component restriction compile | Express the recursive extremal construction |
+| E2 | polygon-size recurrence under composition | Global cup/cap recurrence compiles; strong-polygon recurrence pending | Control decomposable configurations |
 | E3 | exact formula for decomposable point sets | Published 2026; pending | Reproduce the strongest directly relevant structural theorem |
 | E4 | a minimal counterexample to the exact formula is indecomposable | Consequence of E3; pending | Isolate the genuine obstruction |
 
@@ -157,8 +157,12 @@ caps only for actual swept configurations, and transports monochromatic chains
 through `IsStrongPolygonOn` to geometric convex subsets. Consequently the
 public theorem `classical_binomial_upper` proves
 `ForcesConvexPolygon n (choose (2*n-4) (n-2) + 1)` for every `n ≥ 3`.
-The matching cup--cap construction is still required before D2 can be called
-exact.
+`ErdosSzekeres/Extremal.lean` supplies the matching construction. It realizes
+Pascal's recurrence by genuine planar deep compositions, proves exact
+preservation of both component colorings, and establishes global crossing
+bounds for cups and caps. The theorem `exact_cupCap` now packages the forcing
+threshold and a planar configuration at the preceding cardinality avoiding
+both requested chains.
 
 `ErdosSzekeres/SmallCases.lean` proves `ErdosSzekeresFormulaAt 3` and
 `ErdosSzekeresFormulaAt 4`. The four-point upper theorem is not obtained from
@@ -177,6 +181,10 @@ its right side. The file also discharges the realizability obligation: finite
 upper bounds choose horizontal and vertical translation parameters, the two
 mixed orientation inequalities are proved algebraically, arbitrary-index
 general position is recovered from ordered triples, and
-`exists_deepComposition` returns an actual planar configuration. D4 now needs
-the global recursive family and its cup/cap/polygon-size invariant on top of
-this binary operation.
+`exists_deepComposition` returns an actual planar configuration. The selected
+vertices on either side of a split are now enumerated as canonical initial and
+final subchains, so component chain bounds transfer through composition. The
+recursive family `exists_cupCapExtremal` has exactly `choose (p+q) p` planar
+points and the claimed cap/cup bounds. D4 now needs the multi-block
+strong-polygon invariant that converts these Pascal blocks into the classical
+`2^(n-2)` construction.

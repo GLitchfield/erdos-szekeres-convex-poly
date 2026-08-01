@@ -79,7 +79,8 @@ required by its original closure criteria. D1 and D3 now compile in
 `ErdosSzekeres/CupCap.lean`: the adapted pincer recurrence constructs a cap or
 cup at the binomial threshold, the realizability bridge upgrades consecutive
 chains to all triples, and the strong-polygon bridge yields the classical
-geometric upper bound. D2 still needs the matching sharpness construction.
+geometric upper bound. D2 now also compiles: `ErdosSzekeres/Extremal.lean`
+constructs the matching planar Pascal family and proves `exact_cupCap`.
 
 The 2026-08-01 Sol/Fable review was `partially_supported`. Both reviewers found
 no false intermediary theorem in the packet, but correctly objected that one
