@@ -672,6 +672,34 @@ theorem cap_chainSizeAtMost {m r a b : ℕ}
       omega
     exact hk.trans (Nat.le_max_right a (b + 1))
 
+/-- A deep split restricts to any increasing selected sequence. Its new cut
+is exactly the number of selected vertices lying before the old cut. -/
+theorem restrict (hsplit : HasDeepSplit χ cut) {k : ℕ}
+    (f : Fin k ↪o Fin n) :
+    HasDeepSplit (χ.restrict f) (leftCount f cut) := by
+  intro t
+  constructor
+  · intro hj hk
+    have hfj : (f t.j).val < cut :=
+      (lt_leftCount_iff f.strictMono cut t.j).1 hj
+    have hfk : cut ≤ (f t.k).val := by
+      by_contra hnot
+      have hbefore : (f t.k).val < cut := by omega
+      have := (lt_leftCount_iff f.strictMono cut t.k).2 hbefore
+      omega
+    exact hsplit.left_left_right (f.strictMono t.hij)
+      (f.strictMono t.hjk) hfj hfk
+  · intro hi hj
+    have hfi : (f t.i).val < cut :=
+      (lt_leftCount_iff f.strictMono cut t.i).1 hi
+    have hfj : cut ≤ (f t.j).val := by
+      by_contra hnot
+      have hbefore : (f t.j).val < cut := by omega
+      have := (lt_leftCount_iff f.strictMono cut t.j).2 hbefore
+      omega
+    exact hsplit.left_right_right (f.strictMono t.hij)
+      (f.strictMono t.hjk) hfi hfj
+
 end HasDeepSplit
 
 theorem IsStrongPolygon.left_triple_of_right_witness
@@ -695,6 +723,107 @@ theorem IsStrongPolygon.right_triple_of_left_witness
     hsplit (hij.trans hjk) hkl hi (by omega)
   rw [hright] at heq
   exact heq.symm
+
+/-- If a selected strong polygon crosses a deep split, all triples in its
+left portion form a cup. -/
+theorem IsStrongPolygonOn.leftPart_isCup_of_crosses
+    {n k cut : ℕ} {χ : TripleColoring n} (hsplit : HasDeepSplit χ cut)
+    (f : Fin k ↪o Fin n) (hstrong : IsStrongPolygonOn χ f)
+    (hright : 0 < k - leftCount f cut) :
+    IsCup χ (f ∘ leftIndexEmbedding f cut) := by
+  let e := leftIndexEmbedding f cut
+  have hsplit' : HasDeepSplit (χ.restrict f) (leftCount f cut) :=
+    hsplit.restrict f
+  have hcross : leftCount f cut < k := by
+    have := leftCount_le f cut
+    omega
+  let r : Fin k := ⟨leftCount f cut, hcross⟩
+  refine ⟨f.strictMono.comp e.strictMono, ?_⟩
+  intro i j l hij hjl
+  have hlr : e l < r := by
+    change l.val < leftCount f cut
+    exact l.isLt
+  exact IsStrongPolygon.left_triple_of_right_witness hsplit' hstrong
+    (e.strictMono hij) (e.strictMono hjl) hlr (by simp [e]) (by simp [r])
+
+/-- Dually, the right portion of a selected strong polygon crossing a deep
+split forms a cap. -/
+theorem IsStrongPolygonOn.rightPart_isCap_of_crosses
+    {n k cut : ℕ} {χ : TripleColoring n} (hsplit : HasDeepSplit χ cut)
+    (f : Fin k ↪o Fin n) (hstrong : IsStrongPolygonOn χ f)
+    (hleft : 0 < leftCount f cut) :
+    IsCap χ (f ∘ rightIndexEmbedding f cut) := by
+  let e := rightIndexEmbedding f cut
+  have hsplit' : HasDeepSplit (χ.restrict f) (leftCount f cut) :=
+    hsplit.restrict f
+  let i : Fin k := ⟨leftCount f cut - 1, by
+    have := leftCount_le f cut
+    omega⟩
+  refine ⟨f.strictMono.comp e.strictMono, ?_⟩
+  intro j l r hjl hlr
+  have hij : i < e j := by
+    change leftCount f cut - 1 < leftCount f cut + j.val
+    omega
+  exact IsStrongPolygon.right_triple_of_left_witness hsplit' hstrong
+    hij (e.strictMono hjl) (e.strictMono hlr) (by simp [i]; omega) (by simp [e])
+
+/-- Quantitative crossing invariant for a deep composition. If a selected
+strong polygon uses both components, its left cardinality is bounded by the
+left component's cup bound and its right cardinality by the right component's
+cap bound. -/
+theorem IsStrongPolygonOn.card_le_of_crosses_deepSplit
+    {m n k a b : ℕ} {χ : TripleColoring (m + n)}
+    {χleft : TripleColoring m} {χright : TripleColoring n}
+    (hsplit : HasDeepSplit χ m)
+    (hleftRestrict : χ.restrict (Fin.castAddOrderEmb n) = χleft)
+    (hrightRestrict : χ.restrict (Fin.natAddOrderEmb m) = χright)
+    (f : Fin k ↪o Fin (m + n)) (hstrong : IsStrongPolygonOn χ f)
+    (husesLeft : 0 < leftCount f m)
+    (husesRight : 0 < k - leftCount f m)
+    (hleftCup : ChainSizeAtMost χleft Turn.left a)
+    (hrightCap : ChainSizeAtMost χright Turn.right b) :
+    k ≤ a + b := by
+  have hcup := hstrong.leftPart_isCup_of_crosses hsplit f husesRight
+  have hcap := hstrong.rightPart_isCap_of_crosses hsplit f husesLeft
+  have hL' : leftCount (f ∘ leftIndexEmbedding f m) m ≤ a :=
+    leftCount_le_of_component_bound hleftRestrict hcup hleftCup
+  have hleftAll : ∀ i : Fin (leftCount f m),
+      ((f ∘ leftIndexEmbedding f m) i).val < m :=
+    leftIndexEmbedding_before f.strictMono m
+  have hleftCountEq : leftCount (f ∘ leftIndexEmbedding f m) m =
+      leftCount f m := by
+    have hle := leftCount_le (f ∘ leftIndexEmbedding f m) m
+    by_cases hzero : leftCount f m = 0
+    · omega
+    · have hpos : 0 < leftCount f m := Nat.pos_of_ne_zero hzero
+      let i : Fin (leftCount f m) := ⟨leftCount f m - 1, by omega⟩
+      have hmono : StrictMono (f ∘ leftIndexEmbedding f m) :=
+        f.strictMono.comp (leftIndexEmbedding f m).strictMono
+      have hi := (lt_leftCount_iff hmono m i).2 (hleftAll i)
+      change leftCount f m - 1 <
+        leftCount (f ∘ leftIndexEmbedding f m) m at hi
+      omega
+  have hL : leftCount f m ≤ a := by simpa [hleftCountEq] using hL'
+  have hR' : (k - leftCount f m) -
+      leftCount (f ∘ rightIndexEmbedding f m) m ≤ b :=
+    rightCount_le_of_component_bound hrightRestrict hcap hrightCap
+  have hrightNone : ∀ i : Fin (k - leftCount f m),
+      ¬ ((f ∘ rightIndexEmbedding f m) i).val < m := fun i hi =>
+    (not_lt_of_ge (rightIndexEmbedding_after f.strictMono m i)) hi
+  have hrightCountEq : leftCount (f ∘ rightIndexEmbedding f m) m = 0 := by
+    by_contra hzero
+    have hpos : 0 < leftCount (f ∘ rightIndexEmbedding f m) m :=
+      Nat.pos_of_ne_zero hzero
+    have hle := leftCount_le (f ∘ rightIndexEmbedding f m) m
+    let i : Fin (k - leftCount f m) := ⟨0, by omega⟩
+    have hmono : StrictMono (f ∘ rightIndexEmbedding f m) :=
+      f.strictMono.comp (rightIndexEmbedding f m).strictMono
+    have hi := (lt_leftCount_iff hmono m i).1 (by simp [i, hpos])
+    exact hrightNone i hi
+  have hR : k - leftCount f m ≤ b := by
+    simpa [hrightCountEq] using hR'
+  have hcount := leftCount_le f m
+  omega
 
 end
 
