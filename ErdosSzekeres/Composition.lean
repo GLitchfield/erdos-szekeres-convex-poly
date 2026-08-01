@@ -825,6 +825,77 @@ theorem IsStrongPolygonOn.card_le_of_crosses_deepSplit
   have hcount := leftCount_le f m
   omega
 
+/-- A strong polygon cannot use two vertices from an intermediate block of
+two nested, left-associated deep compositions while also using a vertex on
+each side. This is the `at most one from every middle block` invariant in the
+classical lower-bound construction. -/
+theorem IsStrongPolygonOn.middleBlock_card_le_one
+    {u v w k : ℕ} {χ : TripleColoring ((u + v) + w)}
+    {χprefix : TripleColoring (u + v)}
+    (houter : HasDeepSplit χ (u + v))
+    (hprefix : χ.restrict (Fin.castAddOrderEmb w) = χprefix)
+    (hinner : HasDeepSplit χprefix u)
+    (f : Fin k ↪o Fin ((u + v) + w)) (hstrong : IsStrongPolygonOn χ f)
+    (hbefore : 0 < leftCount f u)
+    (hmiddle : 2 ≤ leftCount f (u + v) - leftCount f u)
+    (hafter : 0 < k - leftCount f (u + v)) : False := by
+  let i : Fin k := ⟨leftCount f u - 1, by
+    have := leftCount_le f u
+    omega⟩
+  let j : Fin k := ⟨leftCount f u, by omega⟩
+  let l : Fin k := ⟨leftCount f u + 1, by omega⟩
+  let r : Fin k := ⟨leftCount f (u + v), by
+    have := leftCount_le f (u + v)
+    omega⟩
+  have hij : i < j := by simp [i, j]; omega
+  have hjl : j < l := by simp [j, l]
+  have hlr : l < r := by simp [l, r]; omega
+  have hi_u : (f i).val < u := by
+    rw [← lt_leftCount_iff f.strictMono u]
+    simp [i]
+    omega
+  have hj_u : u ≤ (f j).val := by
+    by_contra hnot
+    have hlt : (f j).val < u := by omega
+    have := (lt_leftCount_iff f.strictMono u j).2 hlt
+    simp [j] at this
+  have hl_prefix : (f l).val < u + v := by
+    rw [← lt_leftCount_iff f.strictMono (u + v)]
+    simp [l]
+    omega
+  have hj_prefix : (f j).val < u + v := by
+    exact lt_trans (f.strictMono hjl) hl_prefix
+  have hi_prefix : (f i).val < u + v := by omega
+  have hr_after : u + v ≤ (f r).val := by
+    by_contra hnot
+    have hlt : (f r).val < u + v := by omega
+    have := (lt_leftCount_iff f.strictMono (u + v) r).2 hlt
+    simp [r] at this
+  let i' : Fin (u + v) := ⟨(f i).val, hi_prefix⟩
+  let j' : Fin (u + v) := ⟨(f j).val, hj_prefix⟩
+  let l' : Fin (u + v) := ⟨(f l).val, hl_prefix⟩
+  have hi'j' : i' < j' := by change (f i).val < (f j).val; exact f.strictMono hij
+  have hj'l' : j' < l' := by change (f j).val < (f l).val; exact f.strictMono hjl
+  have hlocalRight :
+      χprefix ⟨i', j', l', hi'j', hj'l'⟩ = Turn.right :=
+    hinner.left_right_right hi'j' hj'l' hi_u hj_u
+  have hprefixEq := congrFun hprefix ⟨i', j', l', hi'j', hj'l'⟩
+  have hglobalRight :
+      χ ⟨f i, f j, f l, f.strictMono hij, f.strictMono hjl⟩ = Turn.right := by
+    exact hprefixEq.trans hlocalRight
+  have hglobalLeft :
+      χ ⟨f i, f j, f r, f.strictMono hij, f.strictMono (hjl.trans hlr)⟩ =
+        Turn.left :=
+    houter.left_left_right (f.strictMono hij)
+      (f.strictMono (hjl.trans hlr)) hj_prefix hr_after
+  have heq := (hstrong hij hjl hlr).1
+  simp only [TripleColoring.restrict_apply] at heq
+  change χ ⟨f i, f j, f l, f.strictMono hij, f.strictMono hjl⟩ =
+    χ ⟨f i, f j, f r, f.strictMono hij,
+      f.strictMono (hjl.trans hlr)⟩ at heq
+  rw [hglobalRight, hglobalLeft] at heq
+  simp at heq
+
 end
 
 end ErdosSzekeres

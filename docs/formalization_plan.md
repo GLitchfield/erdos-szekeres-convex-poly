@@ -125,7 +125,7 @@ extends the bridge to selected subsets.
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
 | E1 | composition/decomposition of sweep colorings | Binary deep composition, planar realization, and component restriction compile | Express the recursive extremal construction |
-| E2 | polygon-size recurrence under composition | Binary strong-polygon crossing invariant compiles; multi-block recurrence pending | Control decomposable configurations |
+| E2 | polygon-size recurrence under composition | First/last block bounds and middle-block-at-most-one compile; aggregate recurrence pending | Control decomposable configurations |
 | E3 | exact formula for decomposable point sets | Published 2026; pending | Reproduce the strongest directly relevant structural theorem |
 | E4 | a minimal counterexample to the exact formula is indecomposable | Consequence of E3; pending | Isolate the genuine obstruction |
 
@@ -189,4 +189,7 @@ points and the claimed cap/cup bounds. For a strong polygon crossing one split,
 the entire left part is now proved to be a cup, the entire right part a cap,
 and their cardinalities are bounded by the corresponding component
 invariants. D4 now needs the multi-block bookkeeping that controls intervening
-Pascal blocks and sums their cardinalities to `2^(n-2)`.
+Pascal blocks and sums their cardinalities to `2^(n-2)`. The key local
+bookkeeping lemma now compiles: under two nested left-associated splits, a
+strong polygon using vertices on both sides cannot take two vertices from the
+intermediate block.
