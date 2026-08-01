@@ -1,0 +1,11 @@
+name = "erdos_szekeres_convex_poly"
+version = "0.1.0"
+defaultTargets = ["ErdosSzekeres"]
+
+[[lean_lib]]
+name = "ErdosSzekeres"
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.29.1"
