@@ -118,7 +118,7 @@ extends the bridge to selected subsets.
 | D2 | exact cup--cap number `binom(a+b-4,a-2)+1` | Upper half compiles; sharpness pending | Reproduce the 1935 theorem in the chosen API |
 | D3 | classical binomial upper bound for `ES(n)` | Compiles | End-to-end positive control of all bridges |
 | D4 | recursive `2^(n-2)` lower-bound construction | Known; pending | Formal sharpness for all `n` |
-| D5 | exact cases `n = 3,4,5` | Known; pending | Small controls; `n=6` is a separate certificate project |
+| D5 | exact cases `n = 3,4,5` | `n=3,4` compile; `n=5` pending | Small controls; `n=6` is a separate certificate project |
 
 ### Layer E: the modern structural frontier
 
@@ -159,3 +159,11 @@ public theorem `classical_binomial_upper` proves
 `ForcesConvexPolygon n (choose (2*n-4) (n-2) + 1)` for every `n ≥ 3`.
 The matching cup--cap construction is still required before D2 can be called
 exact.
+
+`ErdosSzekeres/SmallCases.lean` proves `ErdosSzekeresFormulaAt 3` and
+`ErdosSzekeresFormulaAt 4`. The four-point upper theorem is not obtained from
+the much weaker binomial bound: it proves the one-change signotope law from
+real orientation inequalities and checks the five overlapping four-tuples of
+a five-point sweep. Explicit two- and four-point planar configurations supply
+the sharpness halves. The Bonnice/Lovász convex-layer argument or a comparably
+auditable finite certificate is still needed for the exact `n=5` case.
