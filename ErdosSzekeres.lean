@@ -4,3 +4,4 @@ import ErdosSzekeres.Chains
 import ErdosSzekeres.Presentation
 import ErdosSzekeres.Convexity
 import ErdosSzekeres.StrongPolygon
+import ErdosSzekeres.CupCap

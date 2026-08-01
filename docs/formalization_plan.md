@@ -108,17 +108,15 @@ convex exactly when every increasing four-tuple has one of the patterns
 `++++`, `++--`, `--++`, or `----`; equivalently, its two middle vertices form
 compatible upper/lower hull chains. The theorem is transported through the
 generic determinant-one shear to the original public point set, while B1
-extends the bridge to selected subsets. With B3 complete, D1 is the next
-recurrence-facing milestone: assign cup/cap ranks to sweep vertices and prove
-the injectivity or pigeonhole bound that drives the classical recurrence.
+extends the bridge to selected subsets.
 
 ### Layer D: classical controls
 
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
-| D1 | cup--cap rank assignment for each sweep vertex | Known; pending | Pigeonhole/recurrence engine |
-| D2 | exact cup--cap number `binom(a+b-4,a-2)+1` | Known; pending | Reproduce the 1935 theorem in the chosen API |
-| D3 | classical binomial upper bound for `ES(n)` | Known; pending | End-to-end positive control of all bridges |
+| D1 | cup--cap recurrence engine on ordered vertices | Compiles | Pincer induction, partition, and chain-splicing pigeonhole engine |
+| D2 | exact cup--cap number `binom(a+b-4,a-2)+1` | Upper half compiles; sharpness pending | Reproduce the 1935 theorem in the chosen API |
+| D3 | classical binomial upper bound for `ES(n)` | Compiles | End-to-end positive control of all bridges |
 | D4 | recursive `2^(n-2)` lower-bound construction | Known; pending | Formal sharpness for all `n` |
 | D5 | exact cases `n = 3,4,5` | Known; pending | Small controls; `n=6` is a separate certificate project |
 
@@ -147,6 +145,17 @@ combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at
 commit `a5ad53efefb36f8654b9227ce4dba2bf04a7ec3f` (retrieved 2026-08-01). It is
 Apache-2.0 licensed and pins Lean `v4.13.0-rc3`, while this project pins Lean
-and mathlib `v4.29.1`. No source has been copied. We will first stabilize our
-geometry bridge, then port small combinatorial APIs with attribution only when
-that is cheaper and clearer than reimplementation.
+and mathlib `v4.29.1`. After stabilizing the geometry bridge, D1 adapted and
+substantially rewrote the upstream cup--cap recurrence proof structure for this
+project's `Turn`, list-chain, realizability, and public convex-subset APIs. The
+source file carries a modification notice; `NOTICE` records the pinned source,
+and `LICENSE-APACHE-2.0` reproduces the upstream license.
+
+`ErdosSzekeres/CupCap.lean` now proves the recurrence threshold
+`choose (a+b) a + 1`, upgrades its consecutive chains to all-triples cups or
+caps only for actual swept configurations, and transports monochromatic chains
+through `IsStrongPolygonOn` to geometric convex subsets. Consequently the
+public theorem `classical_binomial_upper` proves
+`ForcesConvexPolygon n (choose (2*n-4) (n-2) + 1)` for every `n ≥ 3`.
+The matching cup--cap construction is still required before D2 can be called
+exact.

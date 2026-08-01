@@ -75,9 +75,11 @@ selected sequence. Named cup/cap equivalences are available for concrete
 swept configurations and for colorings carrying an `IsSweepRealizable`
 witness.
 The ticket remains open only for the bounded alternative-API comparison
-required by its original closure criteria. The next recurrence-facing bridge
-is D1: cup/cap rank assignment and the pigeonhole bound underlying the
-classical recurrence.
+required by its original closure criteria. D1 and D3 now compile in
+`ErdosSzekeres/CupCap.lean`: the adapted pincer recurrence constructs a cap or
+cup at the binomial threshold, the realizability bridge upgrades consecutive
+chains to all triples, and the strong-polygon bridge yields the classical
+geometric upper bound. D2 still needs the matching sharpness construction.
 
 The 2026-08-01 Sol/Fable review was `partially_supported`. Both reviewers found
 no false intermediary theorem in the packet, but correctly objected that one
@@ -98,6 +100,8 @@ those facts is a packet limitation rather than mathematical evidence.
   compiling two-layer pilot and increasing-restriction API
 - [`ErdosSzekeres.Chains`](../../../ErdosSzekeres/Chains.lean), the
   consecutive/all-triples cup-cap equivalence for realizable colorings
+- [`ErdosSzekeres.CupCap`](../../../ErdosSzekeres/CupCap.lean), the compiling
+  recurrence engine and classical binomial geometric upper bound
 - [`ErdosSzekeres.Presentation`](../../../ErdosSzekeres/Presentation.lean), the
   generic public-point-set-to-sweep bridge
 - [`ErdosSzekeres.Convexity`](../../../ErdosSzekeres/Convexity.lean), the

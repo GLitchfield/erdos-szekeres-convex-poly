@@ -19,3 +19,13 @@ Material adaptations in this template include:
 - numbered experiment notes and reproducibility/provenance requirements; and
 - a read-only dual-model adversarial-review gate for strategic Wayfinder
   selection, redirection, closure, and frontier promotion.
+
+The cup--cap recurrence in `ErdosSzekeres/CupCap.lean` adapts the proof
+structure of Jineon Baek's `jcpaik/erdos-tuza-valtr` Lean formalization:
+
+  https://github.com/jcpaik/erdos-tuza-valtr
+  commit a5ad53efefb36f8654b9227ce4dba2bf04a7ec3f
+
+That upstream work is licensed under the Apache License, Version 2.0.  The
+adapted file carries a prominent modification notice.  A copy of the Apache
+2.0 license is provided in `LICENSE-APACHE-2.0`.
