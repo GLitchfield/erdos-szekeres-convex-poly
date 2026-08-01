@@ -52,9 +52,14 @@ still to formalize, and genuinely new research.
 | A4 | `turn`, `OrderedTriple`, and `tripleColoring` | Compiles | Two-coloring of the ordered complete 3-uniform hypergraph |
 | A5 | determinant equals positive sweep differences times the consecutive-slope difference | Compiles | Algebraic bridge from orientation to the user's angles |
 | A6 | left iff slopes increase; right iff slopes decrease | Compiles | Verifies the exact left/right convention |
-| A7 | a generic sweep direction exists for every finite point set | Known; pending | Avoid equal projection coordinates |
-| A8 | an orientation-preserving affine coordinate change normalizes an arbitrary generic sweep to A2 | Known; pending | Removes the current coordinate normalization assumption |
-| A9 | sorting and indexing give an equivalence between a geometric `Finset` and `SweptConfiguration` | Known; pending | Connects the public theorem to the ordered layer |
+| A7 | `exists_injective_sweepCoordinate` | Compiles | Choose a shear parameter outside the finite forbidden set |
+| A8 | `shear_neg_shear` and `orientation_shear` | Compiles | Normalize the sweep by an invertible determinant-one map |
+| A9 | `SweptPresentation` and `exists_sweptPresentation` | Compiles | Sort and equivalently enumerate the public `Finset` as a `SweptConfiguration` |
+
+The presentation additionally proves that its induced left/right color is
+exactly the orientation sign of the corresponding original, unsheared triple.
+Thus the coordinate-order premise of Layers B--E is now discharged for every
+finite public input satisfying `InGeneralPosition`.
 
 ### Layer B: realizable triple colorings
 
