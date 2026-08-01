@@ -57,10 +57,16 @@ Commit `4aa66f09d4773f3e04ce5a471301dddda628cd8c` discharges C4: by
 Carathéodory's theorem and general position, a finite planar set is in convex
 position exactly when all of its four-point subsets are. Thus every local sign
 certificate can now be lifted to arbitrary finite sets.
+Commit `d701ef050c0c96ed9af688c65cb25ac74480efc0` discharges C5. It
+defines `IsStrongPolygon` by the two color consistencies on every increasing
+four-tuple and proves that this law is equivalent to convex position, first
+for the swept configuration and then for the original public point set. The
+latter transport uses a formal linear equivalence for the determinant-one
+shear and proves convex position invariant under invertible linear maps.
 The ticket remains open only for the bounded alternative-API comparison
-required by its original closure criteria. The next mathematical bridge is C5:
-identify the compatible cup/cap chain condition that is equivalent to the
-geometric convex-position target.
+required by its original closure criteria. The next interface bridge is B1:
+restriction and increasing relabeling, so convex subsets can be expressed as
+strong polygons inside a larger ordered coloring.
 
 The 2026-08-01 Sol/Fable review was `partially_supported`. Both reviewers found
 no false intermediary theorem in the packet, but correctly objected that one
@@ -83,6 +89,8 @@ those facts is a packet limitation rather than mathematical evidence.
   generic public-point-set-to-sweep bridge
 - [`ErdosSzekeres.Convexity`](../../../ErdosSzekeres/Convexity.lean), the
   triangle, four-point orientation-sign, and local-to-global convexity bridge
+- [`ErdosSzekeres.StrongPolygon`](../../../ErdosSzekeres/StrongPolygon.lean),
+  the exact combinatorial/geometric target-polygon bridge
 - [Intermediary lemma ladder](../../formalization_plan.md)
 - Baek's formalization: <https://github.com/jcpaik/erdos-tuza-valtr>
 - Advisory review of revision `2e34881d6f9f6adefe14d459def686fd90031964`:
