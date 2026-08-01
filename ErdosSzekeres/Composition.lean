@@ -271,12 +271,169 @@ def deepComposeSeparated {m n : ℕ} (A : SweptConfiguration m)
       translatePoint x y (B.point j) := by
   simp [deepCompose, deepComposePoint]
 
+/-- A deep composition preserves the complete triple coloring of its left
+component. -/
+theorem deepCompose_tripleColoring_left {m n : ℕ} (A : SweptConfiguration m)
+    (B : SweptConfiguration n) (x y : ℝ) (hx hgeneral) :
+    (A.deepCompose B x y hx hgeneral).tripleColoring.restrict
+        (Fin.castAddOrderEmb n) = A.tripleColoring := by
+  funext t
+  simp only [TripleColoring.restrict_apply]
+  change (A.deepCompose B x y hx hgeneral).turn
+      (Fin.castAdd n t.i) (Fin.castAdd n t.j) (Fin.castAdd n t.k) =
+    A.turn t.i t.j t.k
+  simp [SweptConfiguration.turn]
+
+/-- A deep composition preserves the complete triple coloring of its right
+component. Translation does not change orientation. -/
+theorem deepCompose_tripleColoring_right {m n : ℕ} (A : SweptConfiguration m)
+    (B : SweptConfiguration n) (x y : ℝ) (hx hgeneral) :
+    (A.deepCompose B x y hx hgeneral).tripleColoring.restrict
+        (Fin.natAddOrderEmb m) = B.tripleColoring := by
+  funext t
+  simp only [TripleColoring.restrict_apply]
+  change (A.deepCompose B x y hx hgeneral).turn
+      (Fin.natAdd m t.i) (Fin.natAdd m t.j) (Fin.natAdd m t.k) =
+    B.turn t.i t.j t.k
+  simp [SweptConfiguration.turn, orientation_translatePoint]
+
 end SweptConfiguration
 
 def HasDeepSplit {n : ℕ} (χ : TripleColoring n) (cut : ℕ) : Prop :=
   ∀ t : OrderedTriple n,
     (t.j.val < cut → cut ≤ t.k.val → χ t = Turn.left) ∧
     (t.i.val < cut → cut ≤ t.j.val → χ t = Turn.right)
+
+/-- Number of vertices of an increasing selected sequence lying before a
+split. Because the sequence is increasing, these vertices form an initial
+segment. -/
+def leftCount {n k : ℕ} (f : Fin k → Fin n) (cut : ℕ) : ℕ :=
+  (Finset.univ.filter fun i : Fin k => (f i).val < cut).card
+
+theorem lt_leftCount_iff {n k : ℕ} {f : Fin k → Fin n}
+    (hf : StrictMono f) (cut : ℕ) (i : Fin k) :
+    i.val < leftCount f cut ↔ (f i).val < cut := by
+  unfold leftCount
+  exact Fin.lt_card_filter_univ_iff_apply_of_imp
+    (fun i : Fin k => (f i).val < cut)
+    (fun i j hji hi => by
+      have hfji : (f j).val ≤ (f i).val := hf.monotone hji
+      omega)
+
+theorem leftCount_le {n k : ℕ} (f : Fin k → Fin n) (cut : ℕ) :
+    leftCount f cut ≤ k := by
+  unfold leftCount
+  simpa using Finset.card_filter_le (Finset.univ : Finset (Fin k))
+    (fun i => (f i).val < cut)
+
+/-- Increasing enumeration of the selected vertices before the split. -/
+def leftIndexEmbedding {n k : ℕ} (f : Fin k → Fin n) (cut : ℕ) :
+    Fin (leftCount f cut) ↪o Fin k :=
+  Fin.castLEOrderEmb (leftCount_le f cut)
+
+/-- Increasing enumeration of the selected vertices after the split. -/
+def rightIndexEmbedding {n k : ℕ} (f : Fin k → Fin n) (cut : ℕ) :
+    Fin (k - leftCount f cut) ↪o Fin k :=
+  OrderEmbedding.ofStrictMono
+    (fun i => (⟨leftCount f cut + i.val, by
+      have := leftCount_le f cut
+      omega⟩ : Fin k))
+    (by
+      intro i j hij
+      change leftCount f cut + i.val < leftCount f cut + j.val
+      omega)
+
+@[simp] theorem leftIndexEmbedding_val {n k : ℕ} (f : Fin k → Fin n)
+    (cut : ℕ) (i : Fin (leftCount f cut)) :
+    (leftIndexEmbedding f cut i).val = i.val := rfl
+
+@[simp] theorem rightIndexEmbedding_val {n k : ℕ} (f : Fin k → Fin n)
+    (cut : ℕ) (i : Fin (k - leftCount f cut)) :
+    (rightIndexEmbedding f cut i).val = leftCount f cut + i.val := rfl
+
+theorem leftIndexEmbedding_before {n k : ℕ} {f : Fin k → Fin n}
+    (hf : StrictMono f) (cut : ℕ) (i : Fin (leftCount f cut)) :
+    (f (leftIndexEmbedding f cut i)).val < cut := by
+  rw [← lt_leftCount_iff hf cut]
+  simp
+
+theorem rightIndexEmbedding_after {n k : ℕ} {f : Fin k → Fin n}
+    (hf : StrictMono f) (cut : ℕ) (i : Fin (k - leftCount f cut)) :
+    cut ≤ (f (rightIndexEmbedding f cut i)).val := by
+  by_contra h
+  have hbefore : (f (rightIndexEmbedding f cut i)).val < cut := by omega
+  have hindex := (lt_leftCount_iff hf cut
+    (rightIndexEmbedding f cut i)).2 hbefore
+  simp at hindex
+
+/-- Uniform upper bound on monochromatic chains of one color. -/
+def ChainSizeAtMost {n : ℕ} (χ : TripleColoring n) (c : Turn)
+    (bound : ℕ) : Prop :=
+  ∀ ⦃k : ℕ⦄ ⦃f : Fin k → Fin n⦄,
+    IsMonochromaticChain χ c f → k ≤ bound
+
+/-- The selected left part of a chain in a deep composition is a chain in
+the left component. -/
+theorem leftCount_le_of_component_bound {m n k bound : ℕ}
+    {χ : TripleColoring (m + n)} {ψ : TripleColoring m} {c : Turn}
+    (hrestrict : χ.restrict (Fin.castAddOrderEmb n) = ψ)
+    {f : Fin k → Fin (m + n)} (hchain : IsMonochromaticChain χ c f)
+    (hbound : ChainSizeAtMost ψ c bound) :
+    leftCount f m ≤ bound := by
+  rcases hchain with ⟨hf, hall⟩
+  let e := leftIndexEmbedding f m
+  let g : Fin (leftCount f m) → Fin m := fun i =>
+    ⟨(f (e i)).val, leftIndexEmbedding_before hf m i⟩
+  have hg : StrictMono g := by
+    intro i j hij
+    change (f (e i)).val < (f (e j)).val
+    exact hf (e.strictMono hij)
+  have hfactor : (Fin.castAddOrderEmb n : Fin m ↪o Fin (m + n)) ∘ g =
+      f ∘ e := by
+    funext i
+    ext
+    rfl
+  have hambient : IsMonochromaticChain χ c (f ∘ e) :=
+    IsMonochromaticChain.comp
+      (show IsMonochromaticChain χ c f from ⟨hf, hall⟩) e
+  rw [← hfactor] at hambient
+  exact hbound (IsMonochromaticChain.of_comp_of_restrict_eq
+    (Fin.castAddOrderEmb n) hrestrict hambient)
+
+/-- The selected right part of a chain in a deep composition is a chain in
+the right component. -/
+theorem rightCount_le_of_component_bound {m n k bound : ℕ}
+    {χ : TripleColoring (m + n)} {ψ : TripleColoring n} {c : Turn}
+    (hrestrict : χ.restrict (Fin.natAddOrderEmb m) = ψ)
+    {f : Fin k → Fin (m + n)} (hchain : IsMonochromaticChain χ c f)
+    (hbound : ChainSizeAtMost ψ c bound) :
+    k - leftCount f m ≤ bound := by
+  rcases hchain with ⟨hf, hall⟩
+  let e := rightIndexEmbedding f m
+  let g : Fin (k - leftCount f m) → Fin n := fun i =>
+    ⟨(f (e i)).val - m, by
+      have hafter := rightIndexEmbedding_after hf m i
+      have htop := (f (e i)).isLt
+      omega⟩
+  have hg : StrictMono g := by
+    intro i j hij
+    change (f (e i)).val - m < (f (e j)).val - m
+    have hi := rightIndexEmbedding_after hf m i
+    change m ≤ (f (e i)).val at hi
+    have hmono := hf (e.strictMono hij)
+    omega
+  have hfactor : (Fin.natAddOrderEmb m : Fin n ↪o Fin (m + n)) ∘ g =
+      f ∘ e := by
+    funext i
+    ext
+    change m + ((f (e i)).val - m) = (f (e i)).val
+    exact Nat.add_sub_of_le (rightIndexEmbedding_after hf m i)
+  have hambient : IsMonochromaticChain χ c (f ∘ e) :=
+    IsMonochromaticChain.comp
+      (show IsMonochromaticChain χ c f from ⟨hf, hall⟩) e
+  rw [← hfactor] at hambient
+  exact hbound (IsMonochromaticChain.of_comp_of_restrict_eq
+    (Fin.natAddOrderEmb m) hrestrict hambient)
 
 theorem SweptConfiguration.deepCompose_hasDeepSplit {m n : ℕ}
     (A : SweptConfiguration m) (B : SweptConfiguration n) (x y : ℝ)
@@ -334,6 +491,32 @@ theorem SweptConfiguration.deepComposeSeparated_hasDeepSplit {m n : ℕ}
   exact A.deepCompose_hasDeepSplit B x y hx
     (deepComposePoint_generalPosition A B x y hllr hlrr) hllr hlrr
 
+theorem SweptConfiguration.deepComposeSeparated_tripleColoring_left {m n : ℕ}
+    (A : SweptConfiguration m) (B : SweptConfiguration n) (x y : ℝ)
+    (hx : ∀ i j, A.point i 0 < translatePoint x y (B.point j) 0)
+    (hllr : ∀ (i j : Fin m) (k : Fin n), i < j →
+      0 < orientation (A.point i) (A.point j) (translatePoint x y (B.point k)))
+    (hlrr : ∀ (i : Fin m) (j k : Fin n), j < k →
+      orientation (A.point i) (translatePoint x y (B.point j))
+        (translatePoint x y (B.point k)) < 0) :
+    (A.deepComposeSeparated B x y hx hllr hlrr).tripleColoring.restrict
+        (Fin.castAddOrderEmb n) = A.tripleColoring :=
+  A.deepCompose_tripleColoring_left B x y hx
+    (deepComposePoint_generalPosition A B x y hllr hlrr)
+
+theorem SweptConfiguration.deepComposeSeparated_tripleColoring_right {m n : ℕ}
+    (A : SweptConfiguration m) (B : SweptConfiguration n) (x y : ℝ)
+    (hx : ∀ i j, A.point i 0 < translatePoint x y (B.point j) 0)
+    (hllr : ∀ (i j : Fin m) (k : Fin n), i < j →
+      0 < orientation (A.point i) (A.point j) (translatePoint x y (B.point k)))
+    (hlrr : ∀ (i : Fin m) (j k : Fin n), j < k →
+      orientation (A.point i) (translatePoint x y (B.point j))
+        (translatePoint x y (B.point k)) < 0) :
+    (A.deepComposeSeparated B x y hx hllr hlrr).tripleColoring.restrict
+        (Fin.natAddOrderEmb m) = B.tripleColoring :=
+  A.deepCompose_tripleColoring_right B x y hx
+    (deepComposePoint_generalPosition A B x y hllr hlrr)
+
 /-- Any two finite swept configurations have a genuine planar deep
 composition. The right block is translated; both internal order types are
 therefore retained. -/
@@ -350,6 +533,22 @@ theorem exists_deepComposition {m n : ℕ}
     simp [P, SweptConfiguration.deepComposeSeparated]
   · intro j
     simp [P, SweptConfiguration.deepComposeSeparated]
+
+/-- Coloring-level form of `exists_deepComposition`: both component order
+types are retained exactly, while every mixed triple obeys the deep-split
+rule. -/
+theorem exists_deepComposition_coloring {m n : ℕ}
+    (A : SweptConfiguration m) (B : SweptConfiguration n) :
+    ∃ P : SweptConfiguration (m + n),
+      HasDeepSplit P.tripleColoring m ∧
+      P.tripleColoring.restrict (Fin.castAddOrderEmb n) = A.tripleColoring ∧
+      P.tripleColoring.restrict (Fin.natAddOrderEmb m) = B.tripleColoring := by
+  obtain ⟨x, y, hx, hllr, hlrr⟩ := exists_deepSeparationParameters A B
+  let P := A.deepComposeSeparated B x y hx hllr hlrr
+  exact ⟨P,
+    A.deepComposeSeparated_hasDeepSplit B x y hx hllr hlrr,
+    A.deepComposeSeparated_tripleColoring_left B x y hx hllr hlrr,
+    A.deepComposeSeparated_tripleColoring_right B x y hx hllr hlrr⟩
 
 namespace HasDeepSplit
 
@@ -386,6 +585,92 @@ theorem cap_forbids_two_left (hχ : HasDeepSplit χ cut)
   have hleft := hχ.left_left_right (hf hij) (hf hjl) hj hl
   rw [hleft] at hright
   simp at hright
+
+/-- In a deep composition, a cup is either wholly in the right block or is
+a cup from the left block followed by at most one right vertex. -/
+theorem cup_chainSizeAtMost {m r a b : ℕ}
+    {χ : TripleColoring (m + r)} {χleft : TripleColoring m}
+    {χright : TripleColoring r}
+    (hsplit : HasDeepSplit χ m)
+    (hleftRestrict : χ.restrict (Fin.castAddOrderEmb r) = χleft)
+    (hrightRestrict : χ.restrict (Fin.natAddOrderEmb m) = χright)
+    (hleft : ChainSizeAtMost χleft Turn.left a)
+    (hright : ChainSizeAtMost χright Turn.left b) :
+    ChainSizeAtMost χ Turn.left (max b (a + 1)) := by
+  intro k f hcup
+  have hf : StrictMono f := hcup.choose
+  have hL : leftCount f m ≤ a :=
+    leftCount_le_of_component_bound hleftRestrict hcup hleft
+  have hR : k - leftCount f m ≤ b :=
+    rightCount_le_of_component_bound hrightRestrict hcup hright
+  by_cases hzero : leftCount f m = 0
+  · have hk : k ≤ b := by omega
+    exact hk.trans (Nat.le_max_left b (a + 1))
+  · have hpos : 0 < leftCount f m := Nat.pos_of_ne_zero hzero
+    have hRone : k - leftCount f m ≤ 1 := by
+      by_contra hnot
+      have htwo : 2 ≤ k - leftCount f m := by omega
+      let i : Fin (leftCount f m) := ⟨0, hpos⟩
+      let j : Fin (k - leftCount f m) := ⟨0, by omega⟩
+      let l : Fin (k - leftCount f m) := ⟨1, by omega⟩
+      apply hsplit.cup_forbids_two_right hcup
+        (i := leftIndexEmbedding f m i)
+        (j := rightIndexEmbedding f m j)
+        (l := rightIndexEmbedding f m l)
+      · change i.val < leftCount f m + j.val
+        simp [i, j]
+        exact hpos
+      · exact (rightIndexEmbedding f m).strictMono (by simp [j, l])
+      · exact leftIndexEmbedding_before hf m i
+      · exact rightIndexEmbedding_after hf m j
+    have hk : k ≤ a + 1 := by
+      have hcount := leftCount_le f m
+      omega
+    exact hk.trans (Nat.le_max_right b (a + 1))
+
+/-- Dually, a cap is either wholly in the left block or consists of at most
+one left vertex followed by a cap from the right block. -/
+theorem cap_chainSizeAtMost {m r a b : ℕ}
+    {χ : TripleColoring (m + r)} {χleft : TripleColoring m}
+    {χright : TripleColoring r}
+    (hsplit : HasDeepSplit χ m)
+    (hleftRestrict : χ.restrict (Fin.castAddOrderEmb r) = χleft)
+    (hrightRestrict : χ.restrict (Fin.natAddOrderEmb m) = χright)
+    (hleft : ChainSizeAtMost χleft Turn.right a)
+    (hright : ChainSizeAtMost χright Turn.right b) :
+    ChainSizeAtMost χ Turn.right (max a (b + 1)) := by
+  intro k f hcap
+  have hf : StrictMono f := hcap.choose
+  have hL : leftCount f m ≤ a :=
+    leftCount_le_of_component_bound hleftRestrict hcap hleft
+  have hR : k - leftCount f m ≤ b :=
+    rightCount_le_of_component_bound hrightRestrict hcap hright
+  by_cases hzero : k - leftCount f m = 0
+  · have hk : k ≤ a := by
+      have hcount := leftCount_le f m
+      omega
+    exact hk.trans (Nat.le_max_left a (b + 1))
+  · have hRpos : 0 < k - leftCount f m := Nat.pos_of_ne_zero hzero
+    have hLone : leftCount f m ≤ 1 := by
+      by_contra hnot
+      have htwo : 2 ≤ leftCount f m := by omega
+      let i : Fin (leftCount f m) := ⟨0, by omega⟩
+      let j : Fin (leftCount f m) := ⟨1, by omega⟩
+      let l : Fin (k - leftCount f m) := ⟨0, hRpos⟩
+      apply hsplit.cap_forbids_two_left hcap
+        (i := leftIndexEmbedding f m i)
+        (j := leftIndexEmbedding f m j)
+        (l := rightIndexEmbedding f m l)
+      · exact (leftIndexEmbedding f m).strictMono (by simp [i, j])
+      · change j.val < leftCount f m + l.val
+        simp [j, l]
+        omega
+      · exact leftIndexEmbedding_before hf m j
+      · exact rightIndexEmbedding_after hf m l
+    have hk : k ≤ b + 1 := by
+      have hcount := leftCount_le f m
+      omega
+    exact hk.trans (Nat.le_max_right a (b + 1))
 
 end HasDeepSplit
 

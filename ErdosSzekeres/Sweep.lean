@@ -242,6 +242,46 @@ abbrev IsCup {n k : ℕ} (χ : TripleColoring n) (f : Fin k → Fin n) : Prop :=
 abbrev IsCap {n k : ℕ} (χ : TripleColoring n) (f : Fin k → Fin n) : Prop :=
   IsMonochromaticChain χ Turn.right f
 
+/-- Passing to an increasing subsequence preserves a monochromatic chain. -/
+theorem IsMonochromaticChain.comp {n k l : ℕ} {χ : TripleColoring n}
+    {c : Turn} {f : Fin k → Fin n} (h : IsMonochromaticChain χ c f)
+    (e : Fin l ↪o Fin k) : IsMonochromaticChain χ c (f ∘ e) := by
+  rcases h with ⟨hf, hall⟩
+  refine ⟨hf.comp e.strictMono, ?_⟩
+  intro i j r hij hjr
+  exact hall (e.strictMono hij) (e.strictMono hjr)
+
+/-- A monochromatic chain in a restricted coloring maps to one in the
+ambient coloring. -/
+theorem IsMonochromaticChain.map_of_restrict_eq {n m k : ℕ}
+    {χ : TripleColoring n} {ψ : TripleColoring m} {c : Turn}
+    (e : Fin m ↪o Fin n) (hrestrict : χ.restrict e = ψ)
+    {f : Fin k → Fin m} (h : IsMonochromaticChain ψ c f) :
+    IsMonochromaticChain χ c (e ∘ f) := by
+  rcases h with ⟨hf, hall⟩
+  refine ⟨e.strictMono.comp hf, ?_⟩
+  intro i j r hij hjr
+  have hcolor := hall hij hjr
+  have heq := congrFun hrestrict ⟨f i, f j, f r, hf hij, hf hjr⟩
+  exact heq.trans hcolor
+
+/-- Conversely, a chain whose vertices factor through an increasing
+restriction is a chain in that restricted coloring. -/
+theorem IsMonochromaticChain.of_comp_of_restrict_eq {n m k : ℕ}
+    {χ : TripleColoring n} {ψ : TripleColoring m} {c : Turn}
+    (e : Fin m ↪o Fin n) (hrestrict : χ.restrict e = ψ)
+    {f : Fin k → Fin m} (h : IsMonochromaticChain χ c (e ∘ f)) :
+    IsMonochromaticChain ψ c f := by
+  rcases h with ⟨hef, hall⟩
+  have hf : StrictMono f := by
+    intro i j hij
+    exact e.lt_iff_lt.mp (hef hij)
+  refine ⟨hf, ?_⟩
+  intro i j r hij hjr
+  have hcolor := hall hij hjr
+  have heq := congrFun hrestrict ⟨f i, f j, f r, hf hij, hf hjr⟩
+  exact heq.symm.trans hcolor
+
 end
 
 end ErdosSzekeres
