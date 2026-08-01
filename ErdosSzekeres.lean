@@ -1,5 +1,6 @@
 import ErdosSzekeres.Basic
 import ErdosSzekeres.Sweep
+import ErdosSzekeres.Chains
 import ErdosSzekeres.Presentation
 import ErdosSzekeres.Convexity
 import ErdosSzekeres.StrongPolygon

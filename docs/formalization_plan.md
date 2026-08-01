@@ -68,7 +68,7 @@ finite public input satisfying `InGeneralPosition`.
 | B1 | `OrderedTriple.map`, `TripleColoring.restrict`, `SweptConfiguration.restrict` | Compiles | State induced subconfigurations cleanly |
 | B2 | `IsMonochromaticChain`, `IsCup`, and `IsCap` | Compiles | Common finite definition of cups and caps |
 | B2a | `IsSweepRealizable` and its canonical witness | Compiles | Keep realizability available in combinatorial theorem signatures |
-| B3 | all-triples and consecutive-triples definitions of a cup/cap are equivalent for a sweep coloring | Known; pending | Matches classical recurrence-friendly definitions |
+| B3 | `isCup_iff_isConsecutiveCup`, `isCap_iff_isConsecutiveCap` | Compiles | Matches classical recurrence-friendly definitions |
 | B4 | every swept coloring satisfies the necessary four-index consistency law | Known; pending | Record realizability information rather than allowing arbitrary colorings |
 | B5 | reflection exchanges cups and caps and preserves convexity | Known; pending | Symmetry control and proof reuse |
 
@@ -83,6 +83,11 @@ B1 also proves that restriction preserves sweep realizability. Combined with
 `SweptPresentation.containsConvexSubset_iff_exists_isStrongPolygonOn` now
 identifies the public `ContainsConvexSubset` predicate exactly with an
 increasing restriction that satisfies the strong-polygon law.
+
+B3 uses a four-point orientation propagation identity and strong induction on
+the outer index span. It is available both for a concrete
+`SweptConfiguration` and for an abstract coloring with an `IsSweepRealizable`
+witness; no corresponding claim is made for arbitrary triple colorings.
 
 ### Layer C: recognize convex position from signs
 
@@ -103,8 +108,9 @@ convex exactly when every increasing four-tuple has one of the patterns
 `++++`, `++--`, `--++`, or `----`; equivalently, its two middle vertices form
 compatible upper/lower hull chains. The theorem is transported through the
 generic determinant-one shear to the original public point set, while B1
-extends the bridge to selected subsets. B3 is the next recurrence-facing lemma:
-replace the all-triples cup/cap predicate with its consecutive-triples form.
+extends the bridge to selected subsets. With B3 complete, D1 is the next
+recurrence-facing milestone: assign cup/cap ranks to sweep vertices and prove
+the injectivity or pigeonhole bound that drives the classical recurrence.
 
 ### Layer D: classical controls
 

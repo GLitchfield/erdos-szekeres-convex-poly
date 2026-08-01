@@ -27,6 +27,9 @@ sets.
 - `ErdosSzekeres/Sweep.lean` formalizes the sweep ordering, ordered triple
   coloring, increasing restrictions, cups/caps, and the bridge from left/right
   turns to slope changes.
+- `ErdosSzekeres/Chains.lean` proves that, for sweep-realizable colorings,
+  checking consecutive triples is equivalent to the all-triples cup/cap
+  definition.
 - `ErdosSzekeres/Presentation.lean` constructs a generic determinant-one shear
   and sorted sweep presentation for every finite general-position point set.
 - `ErdosSzekeres/Convexity.lean` proves the orientation-sign triangle test, a
