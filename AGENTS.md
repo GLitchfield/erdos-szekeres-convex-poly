@@ -65,8 +65,9 @@ This repository is an AI-assisted formal mathematics project initialized from
 
 - Preserve user work and unrelated changes. Stage only intended files.
 - Run `make test` before each commit, then push when a remote is configured.
-- This checkout was initialized with an inaccessible placeholder `.git`
-  directory; repair or initialize Git before relying on commit-based provenance.
+- This managed checkout mounts `.git` read-only. Local metadata is in ignored
+  `.git-data`; use `git --git-dir=.git-data ...`. The GitHub repository and
+  normal clones use standard Git metadata.
 
 ## Current resource policy
 

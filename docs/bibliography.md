@@ -72,7 +72,9 @@ repository records.
     Combinatorics* 124 (2025), 104085. Primary; first new ETV case and Lean 4
     formalization. <https://doi.org/10.1016/j.ejc.2024.104085>
 18. **J. Baek**, `jcpaik/erdos-tuza-valtr`, Apache-2.0 Lean 4 source.
-    Primary/formal software. <https://github.com/jcpaik/erdos-tuza-valtr>
+    Primary/formal software. Read-only audit at commit
+    `a5ad53efefb36f8654b9227ce4dba2bf04a7ec3f` found Lean `v4.13.0-rc3`;
+    retrieved 2026-08-01. <https://github.com/jcpaik/erdos-tuza-valtr>
 19. **J. Baek and M. Balko**, “The Erdős--Szekeres conjecture revisited,”
     *Journal of Combinatorial Theory, Series A* 222 (2026), 106195. Primary;
     split polygons, decomposable sets, and new extremal constructions.

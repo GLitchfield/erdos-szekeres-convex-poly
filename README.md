@@ -24,6 +24,10 @@ sets.
 - `ErdosSzekeres/Basic.lean` defines orientation, planar general position,
   convex position via convex hull, the forcing predicate, and the classical
   conjecture as an unproved proposition.
+- `ErdosSzekeres/Sweep.lean` formalizes the sweep ordering, ordered triple
+  coloring, cups/caps, and the bridge from left/right turns to slope changes.
+- `docs/formalization_plan.md` records the intermediary lemma ladder from the
+  sweep model to the exact conjecture.
 - `docs/literature_review.md` records the initial research synthesis.
 - `docs/bibliography.md` is the living source ledger.
 - `docs/wayfinder/tickets/0001-choose-formal-model.md` is the first open
@@ -44,6 +48,7 @@ No theorem containing `sorry` or `admit` is accepted by the test gate.
 
 ```text
 ErdosSzekeres/              Lean source
+docs/formalization_plan.md intermediary lemma ladder and proof boundaries
 docs/literature_review.md  research synthesis and candidate directions
 docs/bibliography.md       primary-source ledger
 docs/wayfinder/            durable strategic map and tickets

@@ -3,7 +3,7 @@ title: Choose the canonical formal model
 type: research
 mode: HITL
 status: open
-claim: unclaimed
+claim: codex-sweep-orientation-2026-08-01
 blocked_by: none
 ---
 
