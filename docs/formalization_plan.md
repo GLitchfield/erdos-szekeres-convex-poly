@@ -124,8 +124,8 @@ extends the bridge to selected subsets.
 
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
-| E1 | composition/decomposition of sweep colorings | Known; pending | Express the recursive extremal construction |
-| E2 | polygon-size recurrence under composition | Known; pending | Control decomposable configurations |
+| E1 | composition/decomposition of sweep colorings | Deep-split signature compiles; realization pending | Express the recursive extremal construction |
+| E2 | polygon-size recurrence under composition | Local crossing lemmas compile; global recurrence pending | Control decomposable configurations |
 | E3 | exact formula for decomposable point sets | Published 2026; pending | Reproduce the strongest directly relevant structural theorem |
 | E4 | a minimal counterexample to the exact formula is indecomposable | Consequence of E3; pending | Isolate the genuine obstruction |
 
@@ -167,3 +167,11 @@ real orientation inequalities and checks the five overlapping four-tuples of
 a five-point sweep. Explicit two- and four-point planar configurations supply
 the sharpness halves. The Bonnice/Lovász convex-layer argument or a comparably
 auditable finite certificate is still needed for the exact `n=5` case.
+
+`ErdosSzekeres/Composition.lean` begins the construction-facing API. A
+`HasDeepSplit` records the two mixed-triple rules of a left block placed deep
+below a right block. Compiling lemmas show that a cup crossing the split cannot
+use two right vertices, a cap cannot use two left vertices, and a strong
+polygon crossing the split restricts to a cup on its left side and a cap on
+its right side. The next required bridge is geometric: construct such a split
+by sufficiently separated translations of two finite swept configurations.

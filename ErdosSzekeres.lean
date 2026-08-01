@@ -6,3 +6,4 @@ import ErdosSzekeres.Convexity
 import ErdosSzekeres.StrongPolygon
 import ErdosSzekeres.CupCap
 import ErdosSzekeres.SmallCases
+import ErdosSzekeres.Composition
