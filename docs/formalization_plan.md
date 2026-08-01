@@ -124,8 +124,8 @@ extends the bridge to selected subsets.
 
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
-| E1 | composition/decomposition of sweep colorings | Binary deep composition, planar realization, and component restriction compile | Express the recursive extremal construction |
-| E2 | polygon-size recurrence under composition | Pascal-row aggregate recurrence compiles | Control decomposable configurations |
+| E1 | composition/decomposition of sweep colorings | Arbitrary deep-below partitions, recursive decomposability, hereditary nonempty subsets, binary deep composition, and the coordinate-to-color bridge compile | Express the published recursive class, including interleaved sweep orders |
+| E2 | polygon-size recurrence under composition | Pascal-row aggregate recurrence and `cup_union_cap_isStrongPolygonSet` compile | Control decomposable configurations |
 | E3 | exact formula for decomposable point sets | Published 2026; pending | Reproduce the strongest directly relevant structural theorem |
 | E4 | a minimal counterexample to the exact formula is indecomposable | Consequence of E3; pending | Isolate the genuine obstruction |
 
@@ -136,6 +136,13 @@ realizable colorings. Plausible forms include a nontrivial decomposition after
 deleting few vertices, a sharper rank recurrence using the four-point laws, or
 an implication through the Erdős--Tuza--Valtr parameter lattice. None is
 currently claimed.
+
+The Layer E definitions deliberately distinguish the older contiguous-cut
+API `HasDeepSplit` from the published arbitrary deep-below partition.  The
+theorem `HasDeepSplit.toHasDeepBelowSplit` embeds the former into the latter,
+while `IsGeometricallyDeepBelow.toHasDeepBelowSplit` proves the general
+crossing-color law from determinant orientations.  Thus Horton-style
+interleaving is not silently excluded from E1.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

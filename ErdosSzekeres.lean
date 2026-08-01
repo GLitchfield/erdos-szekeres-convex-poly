@@ -8,4 +8,5 @@ import ErdosSzekeres.CupCap
 import ErdosSzekeres.SmallCases
 import ErdosSzekeres.Composition
 import ErdosSzekeres.Extremal
+import ErdosSzekeres.Decomposable
 import ErdosSzekeres.ES5Certificate

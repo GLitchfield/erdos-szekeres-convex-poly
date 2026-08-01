@@ -91,6 +91,21 @@ the committed pilot with `make test`; the reviewers did not receive
 `ErdosSzekeres/Basic.lean` or that build output, so their inability to verify
 those facts is a packet limitation rather than mathematical evidence.
 
+Layer E exposed and repaired a second representation boundary: the existing
+`HasDeepSplit` described only contiguous sweep-order blocks, whereas the
+Baek--Balko definition permits an arbitrary deep-below partition.  The new
+`ErdosSzekeres.Decomposable` layer uses finite lower/upper index sets, proves
+that every crossing triple is colored by membership of its middle sweep
+vertex, derives this law from the coordinate definition, proves hereditary
+closure, and proves that a lower cup union an upper cap is a strong polygon.
+A required bounded route review was attempted on clean revision `24c22b4`
+with packet SHA-256
+`af30daa494d3959223ce356eb9d1e96110bc8acfd189725b622f94fc46707e92`.
+Both provider calls failed at their execution boundary and an escalated retry
+stalled until manually terminated; no advisory conclusion was produced or
+used.  The failed run is retained locally under ignored
+`runs/reviews/layer-e-route/`.
+
 ## Evidence
 
 - [Initial literature review](../../literature_review.md)
@@ -109,6 +124,9 @@ those facts is a packet limitation rather than mathematical evidence.
   triangle, four-point orientation-sign, and local-to-global convexity bridge
 - [`ErdosSzekeres.StrongPolygon`](../../../ErdosSzekeres/StrongPolygon.lean),
   the exact combinatorial/geometric target-polygon and convex-subset bridge
+- [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean),
+  arbitrary deep-below partitions, recursive subset closure, and the
+  cup--cap-to-strong-polygon composition theorem
 - [Intermediary lemma ladder](../../formalization_plan.md)
 - Baek's formalization: <https://github.com/jcpaik/erdos-tuza-valtr>
 - Advisory review of revision `2e34881d6f9f6adefe14d459def686fd90031964`:

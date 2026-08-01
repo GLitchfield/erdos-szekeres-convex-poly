@@ -143,6 +143,14 @@ indecomposable remainder. Formalizing this theorem would create a precise Lean
 definition of that obstruction and is a strong candidate for an early major
 milestone.
 
+The first part of that milestone now compiles in
+`ErdosSzekeres.Decomposable`: arbitrary deep-below partitions (including
+parts interleaved in sweep order), recursive decomposability, hereditary
+closure under nonempty subsets, and the lemma combining a cup in the lower
+part with a cap in the upper part into a strong polygon.  The binomial-window
+cardinality induction proving the exact threshold remains E3; it is not yet
+claimed by the repository.
+
 ## Existing formal proof assets
 
 - **Isabelle/HOL, exact cases through six:** Marić's 2019 paper formalizes a
