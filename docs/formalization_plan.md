@@ -85,13 +85,15 @@ sufficient consistency hypothesis.
 | C1 | `mem_convexHull_triangle_iff_insideTriangleBySigns` | Compiles | Characterize triangle membership by four nonzero orientation signs |
 | C2 | `inConvexPosition_four_iff_no_mem_triangle` | Compiles | A four-point set is convex iff no point lies in the other triangle |
 | C3 | `inConvexPosition_four_iff_orientation_signs` | Compiles | Give a purely sign-based four-point convexity certificate |
-| C4 | a finite planar set is in convex position iff all four-point subsets are convex | Known; pending | Lift the local certificate to arbitrary size |
+| C4 | `inConvexPosition_iff_four_subsets` | Compiles | Lift the local certificate to arbitrary size using Carathéodory's theorem |
 | C5 | define a strong polygon as compatible upper/lower monochromatic chains and prove it equivalent to geometric convex position | Known; pending | Exact combinatorial form of the target polygon |
 
-C1--C3 now establish the local safety bridge. The C3 certificate is stated for
-arbitrary point order; cyclicity and sign reversal reduce it to the four colors
-of increasing triples in sweep order. C4--C5 remain necessary before reporting
-an arbitrary-size `TripleColoring` theorem as a planar convex-polygon theorem.
+C1--C4 establish the local-to-global safety bridge. The C3 certificate is
+stated for arbitrary point order; cyclicity and sign reversal reduce it to the
+four colors of increasing triples in sweep order. C4 uses Carathéodory's
+theorem and general position to show that every convex-hull obstruction is
+witnessed inside a four-point subset. C5 remains necessary before reporting an
+arbitrary-size `TripleColoring` theorem as a planar convex-polygon theorem.
 
 ### Layer D: classical controls
 

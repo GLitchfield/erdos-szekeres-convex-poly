@@ -1,5 +1,7 @@
 import ErdosSzekeres.Presentation
+import Mathlib.Analysis.Convex.Caratheodory
 import Mathlib.Analysis.Convex.Combination
+import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
 
 /-!
 # Convexity from orientation signs
@@ -299,6 +301,115 @@ theorem inConvexPosition_four_iff_orientation_signs (a b c d : Point 2)
       (gp (by simp) (by simp) (by simp) hab had hbd)
       (gp (by simp) (by simp) (by simp) hbc hbd hcd)
       (gp (by simp) (by simp) (by simp) hac.symm hcd had)]
+
+/-- Convex position is inherited by finite subsets. -/
+theorem InConvexPosition.mono {s t : Finset (Point 2)}
+    (hs : InConvexPosition s) (hts : t ⊆ s) : InConvexPosition t := by
+  intro p hp hphull
+  apply hs p (hts hp)
+  apply convexHull_mono _ hphull
+  intro q hq
+  simp only [Finset.mem_coe, Finset.mem_erase] at hq ⊢
+  exact ⟨hq.1, hts hq.2⟩
+
+/-- In general position, a point outside a finite set of at most two points is
+not in its convex hull. -/
+theorem not_mem_convexHull_of_card_le_two {s t : Finset (Point 2)} {p : Point 2}
+    (hgp : InGeneralPosition s) (hp : p ∈ s) (hts : t ⊆ s)
+    (hpt : p ∉ t) (htcard : t.card ≤ 2) :
+    p ∉ convexHull ℝ (↑t : Set (Point 2)) := by
+  classical
+  by_cases ht0 : t.card = 0
+  · have ht : t = ∅ := Finset.card_eq_zero.mp ht0
+    simp [ht]
+  by_cases ht1 : t.card = 1
+  · obtain ⟨q, rfl⟩ := Finset.card_eq_one.mp ht1
+    intro hpq
+    have : p = q := by simpa using hpq
+    apply hpt
+    simp [this]
+  have ht2 : t.card = 2 := by omega
+  obtain ⟨q, r, hqr, rfl⟩ := Finset.card_eq_two.mp ht2
+  simp only [Finset.coe_insert, Finset.coe_singleton]
+  rw [convexHull_pair]
+  rintro ⟨u, v, hu, hv, huv, hcombo⟩
+  have horientation : orientation q r p = 0 := by
+    rw [← hcombo, orientation_affine_combo_right q r q r u v huv]
+    simp
+  have hq : q ∈ s := hts (by simp)
+  have hr : r ∈ s := hts (by simp)
+  have hqp : q ≠ p := by
+    intro h
+    apply hpt
+    simp [h]
+  have hrp : r ≠ p := by
+    intro h
+    apply hpt
+    simp [h]
+  exact (hgp hq hr hp hqr hqp hrp) horientation
+
+/-- A finite planar set in general position is in convex position exactly when
+all of its four-point subsets are. -/
+theorem inConvexPosition_iff_four_subsets (s : Finset (Point 2))
+    (hgp : InGeneralPosition s) :
+    InConvexPosition s ↔
+      ∀ t : Finset (Point 2), t ⊆ s → t.card = 4 → InConvexPosition t := by
+  constructor
+  · intro hs t hts _
+    exact hs.mono hts
+  · intro hfour p hp hphull
+    rw [convexHull_eq_union] at hphull
+    simp only [Set.mem_iUnion, exists_prop] at hphull
+    obtain ⟨t, htsErase, htAffine, hpt⟩ := hphull
+    have htsErase' : t ⊆ s.erase p := by
+      intro x hx
+      exact htsErase (show x ∈ (↑t : Set (Point 2)) from hx)
+    have hpt_not_mem : p ∉ t := by
+      intro hpt_mem
+      exact (Finset.mem_erase.mp (htsErase' hpt_mem)).1 rfl
+    have htcard : t.card ≤ 3 := by
+      calc
+        t.card = Fintype.card t := by simp
+        _ ≤ Module.finrank ℝ (vectorSpan ℝ (Set.range ((↑) : t → Point 2))) + 1 :=
+          htAffine.card_le_finrank_succ
+        _ ≤ Module.finrank ℝ (Point 2) + 1 :=
+          Nat.add_le_add_right (Submodule.finrank_le _) 1
+        _ = 3 := by simp [Point]
+    by_cases hs4 : 4 ≤ s.card
+    · let u : Finset (Point 2) := insert p t
+      have hus : u ⊆ s := by
+        intro q hq
+        simp only [u, Finset.mem_insert] at hq
+        rcases hq with rfl | hq
+        · exact hp
+        · exact Finset.erase_subset p s (htsErase' hq)
+      have hucard : u.card ≤ 4 := by
+        calc
+          u.card ≤ t.card + 1 := Finset.card_insert_le p t
+          _ ≤ 4 := by omega
+      obtain ⟨q, huq, hqs, hqcard⟩ :=
+        Finset.exists_subsuperset_card_eq hus hucard hs4
+      have hqconvex := hfour q hqs hqcard
+      have hpq : p ∈ q := huq (by simp [u])
+      have htqErase : t ⊆ q.erase p := by
+        intro x hx
+        apply Finset.mem_erase.mpr
+        refine ⟨?_, huq (by simp [u, hx])⟩
+        intro hxp
+        subst x
+        exact hpt_not_mem hx
+      apply hqconvex p hpq
+      apply convexHull_mono ?_ hpt
+      intro x hx
+      exact htqErase hx
+    · have hsle3 : s.card ≤ 3 := by omega
+      have herasecard : (s.erase p).card ≤ 2 := by
+        rw [Finset.card_erase_of_mem hp]
+        omega
+      have htcard2 : t.card ≤ 2 :=
+        (Finset.card_le_card htsErase').trans herasecard
+      exact not_mem_convexHull_of_card_le_two hgp hp
+        (htsErase'.trans (Finset.erase_subset p s)) hpt_not_mem htcard2 hpt
 
 end
 
