@@ -33,6 +33,18 @@ def IsStrongPolygon {n : ℕ} (χ : TripleColoring n) : Prop :=
     χ ⟨i, j, k, hij, hjk⟩ = χ ⟨i, j, l, hij, hjk.trans hkl⟩ ∧
     χ ⟨i, k, l, hij.trans hjk, hkl⟩ = χ ⟨j, k, l, hjk, hkl⟩
 
+/-- A selected increasing subsequence is a strong polygon when the restricted
+coloring satisfies the strong-polygon law. -/
+def IsStrongPolygonOn {m n : ℕ} (χ : TripleColoring n) (f : Fin m ↪o Fin n) : Prop :=
+  IsStrongPolygon (χ.restrict f)
+
+/-- Every increasing restriction of a strong polygon is a strong polygon. -/
+theorem IsStrongPolygon.restrict {m n : ℕ} {χ : TripleColoring n}
+    (hχ : IsStrongPolygon χ) (f : Fin m ↪o Fin n) :
+    IsStrongPolygonOn χ f := by
+  intro i j k l hij hjk hkl
+  exact hχ (f.strictMono hij) (f.strictMono hjk) (f.strictMono hkl)
+
 /-- General position is inherited by finite subsets. -/
 theorem InGeneralPosition.mono {s t : Finset (Point 2)}
     (hs : InGeneralPosition s) (hts : t ⊆ s) : InGeneralPosition t := by
@@ -290,22 +302,24 @@ namespace SweptPresentation
 
 variable {s : Finset (Point 2)} (P : SweptPresentation s)
 
+/-- The original enumeration of a presentation has image exactly `s`. -/
+theorem enumeration_pointFinset :
+    Finset.univ.image (fun i => (P.enumeration i : Point 2)) = s := by
+  ext p
+  constructor
+  · simp only [Finset.mem_image, Finset.mem_univ, true_and]
+    rintro ⟨i, rfl⟩
+    exact (P.enumeration i).property
+  · intro hp
+    obtain ⟨i, hi⟩ := P.enumeration.surjective ⟨p, hp⟩
+    apply Finset.mem_image.mpr
+    refine ⟨i, Finset.mem_univ i, ?_⟩
+    exact congrArg Subtype.val hi
+
 /-- The swept configuration's point set is exactly the determinant-one shear
 of the original public point set. -/
 theorem configuration_pointFinset_eq_image_shear :
     P.configuration.pointFinset = s.image (shearLinearEquiv P.parameter) := by
-  have henum : Finset.univ.image
-      (fun i => (P.enumeration i : Point 2)) = s := by
-    ext p
-    constructor
-    · simp only [Finset.mem_image, Finset.mem_univ, true_and]
-      rintro ⟨i, rfl⟩
-      exact (P.enumeration i).property
-    · intro hp
-      obtain ⟨i, hi⟩ := P.enumeration.surjective ⟨p, hp⟩
-      apply Finset.mem_image.mpr
-      refine ⟨i, Finset.mem_univ i, ?_⟩
-      exact congrArg Subtype.val hi
   rw [SweptConfiguration.pointFinset]
   calc
     Finset.univ.image P.configuration.point =
@@ -318,7 +332,7 @@ theorem configuration_pointFinset_eq_image_shear :
           (shearLinearEquiv P.parameter) := by
       rw [Finset.image_image]
       rfl
-    _ = s.image (shearLinearEquiv P.parameter) := by rw [henum]
+    _ = s.image (shearLinearEquiv P.parameter) := by rw [P.enumeration_pointFinset]
 
 /-- The public version of the strong-polygon bridge.  For any swept
 presentation, the original finite point set is in convex position exactly
@@ -334,6 +348,113 @@ theorem inConvexPosition_iff_isStrongPolygon :
       rw [P.configuration_pointFinset_eq_image_shear]
     _ ↔ IsStrongPolygon P.configuration.tripleColoring :=
       P.configuration.inConvexPosition_pointFinset_iff_isStrongPolygon
+
+/-- The original points selected by an increasing embedding of presentation
+indices. -/
+def selectedPointFinset {k : ℕ} (f : Fin k ↪o Fin s.card) :
+    Finset (Point 2) :=
+  Finset.univ.image fun i => (P.enumeration (f i) : Point 2)
+
+theorem selectedPointFinset_subset {k : ℕ} (f : Fin k ↪o Fin s.card) :
+    P.selectedPointFinset f ⊆ s := by
+  intro p hp
+  simp only [selectedPointFinset, Finset.mem_image, Finset.mem_univ, true_and] at hp
+  obtain ⟨i, rfl⟩ := hp
+  exact P.enumeration_mem (f i)
+
+@[simp] theorem card_selectedPointFinset {k : ℕ} (f : Fin k ↪o Fin s.card) :
+    (P.selectedPointFinset f).card = k := by
+  have hinjective : Function.Injective
+      (fun i => (P.enumeration (f i) : Point 2)) := by
+    intro i j hij
+    apply f.injective
+    apply P.enumeration.injective
+    exact Subtype.ext hij
+  rw [selectedPointFinset, Finset.card_image_of_injective _ hinjective]
+  simp
+
+/-- The restricted swept configuration is the shear of exactly the selected
+original points. -/
+theorem restrict_pointFinset_eq_image_selectedPointFinset {k : ℕ}
+    (f : Fin k ↪o Fin s.card) :
+    (P.configuration.restrict f).pointFinset =
+      (P.selectedPointFinset f).image (shearLinearEquiv P.parameter) := by
+  rw [SweptConfiguration.pointFinset, selectedPointFinset]
+  calc
+    Finset.univ.image (P.configuration.restrict f).point =
+        Finset.univ.image
+          (fun i => shearLinearEquiv P.parameter
+            (P.enumeration (f i) : Point 2)) := by
+      apply Finset.image_congr
+      intro i _
+      simpa using P.point_eq_shear (f i)
+    _ = (Finset.univ.image
+          (fun i => (P.enumeration (f i) : Point 2))).image
+            (shearLinearEquiv P.parameter) := by
+      rw [Finset.image_image]
+      rfl
+
+/-- A selected subset of the original points is geometrically convex exactly
+when its increasingly restricted coloring is a strong polygon. -/
+theorem inConvexPosition_selectedPointFinset_iff_isStrongPolygonOn {k : ℕ}
+    (f : Fin k ↪o Fin s.card) :
+    InConvexPosition (P.selectedPointFinset f) ↔
+      IsStrongPolygonOn P.configuration.tripleColoring f := by
+  calc
+    InConvexPosition (P.selectedPointFinset f) ↔
+        InConvexPosition ((P.selectedPointFinset f).image
+          (shearLinearEquiv P.parameter)) :=
+      (inConvexPosition_image_linearEquiv_iff
+        (shearLinearEquiv P.parameter) (P.selectedPointFinset f)).symm
+    _ ↔ InConvexPosition (P.configuration.restrict f).pointFinset := by
+      rw [P.restrict_pointFinset_eq_image_selectedPointFinset f]
+    _ ↔ IsStrongPolygon (P.configuration.restrict f).tripleColoring :=
+      (P.configuration.restrict f).inConvexPosition_pointFinset_iff_isStrongPolygon
+    _ ↔ IsStrongPolygonOn P.configuration.tripleColoring f := by
+      rw [P.configuration.restrict_tripleColoring f]
+      rfl
+
+/-- The public convex-subset predicate is exactly existence of an increasing
+restriction whose coloring is a strong polygon. -/
+theorem containsConvexSubset_iff_exists_isStrongPolygonOn (k : ℕ) :
+    ContainsConvexSubset s k ↔
+      ∃ f : Fin k ↪o Fin s.card,
+        IsStrongPolygonOn P.configuration.tripleColoring f := by
+  classical
+  constructor
+  · rintro ⟨t, hts, htcard, htconvex⟩
+    have hts' : t ⊆ Finset.univ.image
+        (fun i => (P.enumeration i : Point 2)) := by
+      simpa [P.enumeration_pointFinset] using hts
+    obtain ⟨u, hu⟩ := Finset.subset_univ_image_iff.mp hts'
+    have hucard : u.card = k := by
+      have hinjective : Function.Injective
+          (fun i => (P.enumeration i : Point 2)) := by
+        intro i j hij
+        apply P.enumeration.injective
+        exact Subtype.ext hij
+      calc
+        u.card = (u.image (fun i => (P.enumeration i : Point 2))).card :=
+          (Finset.card_image_of_injective u hinjective).symm
+        _ = t.card := congrArg Finset.card hu
+        _ = k := htcard
+    let f : Fin k ↪o Fin s.card := u.orderEmbOfFin hucard
+    have hselected : P.selectedPointFinset f = t := by
+      calc
+        P.selectedPointFinset f =
+            (Finset.univ.image f).image
+              (fun i => (P.enumeration i : Point 2)) := by
+          rw [selectedPointFinset, Finset.image_image]
+          rfl
+        _ = u.image (fun i => (P.enumeration i : Point 2)) := by
+          rw [Finset.image_orderEmbOfFin_univ]
+        _ = t := hu
+    refine ⟨f, (P.inConvexPosition_selectedPointFinset_iff_isStrongPolygonOn f).mp ?_⟩
+    rwa [hselected]
+  · rintro ⟨f, hstrong⟩
+    exact ⟨P.selectedPointFinset f, P.selectedPointFinset_subset f,
+      P.card_selectedPointFinset f,
+      (P.inConvexPosition_selectedPointFinset_iff_isStrongPolygonOn f).mpr hstrong⟩
 
 end SweptPresentation
 

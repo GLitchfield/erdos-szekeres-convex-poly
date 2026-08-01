@@ -65,7 +65,7 @@ finite public input satisfying `InGeneralPosition`.
 
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
-| B1 | restriction and increasing relabeling of `TripleColoring` | Pending | State induced subconfigurations cleanly |
+| B1 | `OrderedTriple.map`, `TripleColoring.restrict`, `SweptConfiguration.restrict` | Compiles | State induced subconfigurations cleanly |
 | B2 | `IsMonochromaticChain`, `IsCup`, and `IsCap` | Compiles | Common finite definition of cups and caps |
 | B2a | `IsSweepRealizable` and its canonical witness | Compiles | Keep realizability available in combinatorial theorem signatures |
 | B3 | all-triples and consecutive-triples definitions of a cup/cap are equivalent for a sweep coloring | Known; pending | Matches classical recurrence-friendly definitions |
@@ -77,6 +77,12 @@ be nonrealizable, and overly broad ordered-hypergraph generalizations are known
 to fail. Any theorem not valid for arbitrary `TripleColoring`s must take a
 `SweptConfiguration`, an `IsSweepRealizable` witness, or a separately proved
 sufficient consistency hypothesis.
+
+B1 also proves that restriction preserves sweep realizability. Combined with
+`IsStrongPolygonOn`, the theorem
+`SweptPresentation.containsConvexSubset_iff_exists_isStrongPolygonOn` now
+identifies the public `ContainsConvexSubset` predicate exactly with an
+increasing restriction that satisfies the strong-polygon law.
 
 ### Layer C: recognize convex position from signs
 
@@ -96,9 +102,9 @@ witnessed inside a four-point subset. C5 proves that a sweep-ordered set is
 convex exactly when every increasing four-tuple has one of the patterns
 `++++`, `++--`, `--++`, or `----`; equivalently, its two middle vertices form
 compatible upper/lower hull chains. The theorem is transported through the
-generic determinant-one shear to the original public point set. B1 is now the
-next interface lemma needed to state convex subsets as restricted strong
-polygons inside a larger coloring.
+generic determinant-one shear to the original public point set, while B1
+extends the bridge to selected subsets. B3 is the next recurrence-facing lemma:
+replace the all-triples cup/cap predicate with its consecutive-triples form.
 
 ### Layer D: classical controls
 

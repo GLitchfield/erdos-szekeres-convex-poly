@@ -25,7 +25,8 @@ sets.
   convex position via convex hull, the forcing predicate, and the classical
   conjecture as an unproved proposition.
 - `ErdosSzekeres/Sweep.lean` formalizes the sweep ordering, ordered triple
-  coloring, cups/caps, and the bridge from left/right turns to slope changes.
+  coloring, increasing restrictions, cups/caps, and the bridge from left/right
+  turns to slope changes.
 - `ErdosSzekeres/Presentation.lean` constructs a generic determinant-one shear
   and sorted sweep presentation for every finite general-position point set.
 - `ErdosSzekeres/Convexity.lean` proves the orientation-sign triangle test, a
@@ -34,7 +35,7 @@ sets.
   subsets.
 - `ErdosSzekeres/StrongPolygon.lean` defines the four-index strong-polygon law
   and proves it equivalent to convex position for swept configurations and
-  for their original finite point sets.
+  for their original finite point sets, including selected convex subsets.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
   sweep model to the exact conjecture.
 - `docs/literature_review.md` records the initial research synthesis.

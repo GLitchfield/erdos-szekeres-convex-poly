@@ -32,6 +32,37 @@ structure OrderedTriple (n : ℕ) where
 /-- A two-coloring of all increasing triples. -/
 abbrev TripleColoring (n : ℕ) := OrderedTriple n → Turn
 
+namespace OrderedTriple
+
+/-- Relabel an ordered triple along an increasing embedding. -/
+def map {m n : ℕ} (f : Fin m ↪o Fin n) (t : OrderedTriple m) : OrderedTriple n :=
+  ⟨f t.i, f t.j, f t.k, f.strictMono t.hij, f.strictMono t.hjk⟩
+
+@[simp] theorem map_i {m n : ℕ} (f : Fin m ↪o Fin n) (t : OrderedTriple m) :
+    (t.map f).i = f t.i := rfl
+
+@[simp] theorem map_j {m n : ℕ} (f : Fin m ↪o Fin n) (t : OrderedTriple m) :
+    (t.map f).j = f t.j := rfl
+
+@[simp] theorem map_k {m n : ℕ} (f : Fin m ↪o Fin n) (t : OrderedTriple m) :
+    (t.map f).k = f t.k := rfl
+
+end OrderedTriple
+
+namespace TripleColoring
+
+/-- Restrict a triple coloring to an increasingly relabeled subset. -/
+def restrict {m n : ℕ} (χ : TripleColoring n) (f : Fin m ↪o Fin n) :
+    TripleColoring m :=
+  fun t => χ (t.map f)
+
+@[simp] theorem restrict_apply {m n : ℕ} (χ : TripleColoring n)
+    (f : Fin m ↪o Fin n) (t : OrderedTriple m) :
+    χ.restrict f t = χ (t.map f) :=
+  rfl
+
+end TripleColoring
+
 /-- A point configuration already indexed in the order encountered by a
 generic sweep.  After choosing the sweep direction as the first coordinate,
 genericity says that this coordinate is strictly increasing. -/
@@ -50,6 +81,19 @@ theorem point_injective : Function.Injective P.point := by
   intro i j hij
   exact P.sweep_strictMono.injective (congrFun hij 0)
 
+/-- Restrict a swept configuration along an increasing embedding of indices. -/
+def restrict {m : ℕ} (f : Fin m ↪o Fin n) : SweptConfiguration m where
+  point := P.point ∘ f
+  sweep_strictMono := P.sweep_strictMono.comp f.strictMono
+  generalPosition := by
+    intro i j k hij hik hjk
+    exact P.generalPosition (f.injective.ne hij) (f.injective.ne hik)
+      (f.injective.ne hjk)
+
+@[simp] theorem restrict_point {m : ℕ} (f : Fin m ↪o Fin n) (i : Fin m) :
+    (P.restrict f).point i = P.point (f i) :=
+  rfl
+
 /-- The turn made by any three indexed points.  General position makes the
 `otherwise` branch genuinely right for distinct indices. -/
 def turn (i j k : Fin n) : Turn :=
@@ -61,6 +105,18 @@ def turn (i j k : Fin n) : Turn :=
 /-- Forget the coordinates but retain the left/right label of every increasing
 triple. -/
 def tripleColoring : TripleColoring n := fun t => P.turn t.i t.j t.k
+
+/-- Restricting a swept configuration restricts its induced coloring by the
+same increasing relabeling. -/
+@[simp] theorem restrict_tripleColoring_apply {m : ℕ} (f : Fin m ↪o Fin n)
+    (t : OrderedTriple m) :
+    (P.restrict f).tripleColoring t = P.tripleColoring.restrict f t :=
+  rfl
+
+theorem restrict_tripleColoring {m : ℕ} (f : Fin m ↪o Fin n) :
+    (P.restrict f).tripleColoring = P.tripleColoring.restrict f := by
+  funext t
+  rfl
 
 @[simp] theorem turn_eq_left_iff (i j k : Fin n) :
     P.turn i j k = Turn.left ↔
@@ -161,6 +217,14 @@ def IsSweepRealizable {n : ℕ} (χ : TripleColoring n) : Prop :=
 theorem SweptConfiguration.tripleColoring_isSweepRealizable {n : ℕ}
     (P : SweptConfiguration n) : IsSweepRealizable P.tripleColoring := by
   exact ⟨P, rfl⟩
+
+/-- Increasing restrictions of sweep-realizable colorings remain
+sweep-realizable. -/
+theorem IsSweepRealizable.restrict {m n : ℕ} {χ : TripleColoring n}
+    (hχ : IsSweepRealizable χ) (f : Fin m ↪o Fin n) :
+    IsSweepRealizable (χ.restrict f) := by
+  obtain ⟨P, rfl⟩ := hχ
+  exact ⟨P.restrict f, P.restrict_tripleColoring f⟩
 
 /-- An increasing `k`-term sequence whose every triple has color `c`.  This is
 the common combinatorial core of cups (`left`) and caps (`right`). -/
