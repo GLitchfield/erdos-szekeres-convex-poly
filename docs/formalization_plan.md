@@ -126,8 +126,8 @@ extends the bridge to selected subsets.
 | --- | --- | --- | --- |
 | E1 | composition/decomposition of sweep colorings | Arbitrary deep-below partitions, recursive decomposability, hereditary nonempty subsets, binary deep composition, and the coordinate-to-color bridge compile | Express the published recursive class, including interleaved sweep orders |
 | E2 | polygon-size recurrence under composition | Pascal-row aggregate recurrence and `cup_union_cap_isStrongPolygonSet` compile | Control decomposable configurations |
-| E3 | exact formula for decomposable point sets | Published 2026; pending | Reproduce the strongest directly relevant structural theorem |
-| E4 | a minimal counterexample to the exact formula is indecomposable | Consequence of E3; pending | Isolate the genuine obstruction |
+| E3 | exact formula for decomposable point sets | Threshold, diagonal identity, localized cup--cap base case, split extractor, and a kernel-checked boundary regression compile; the upper theorem remains pending | Reproduce the strongest directly relevant structural theorem |
+| E4 | a minimal counterexample to the exact formula is indecomposable | The exact counterexample predicate and conditional consequence `IsExactFormulaCounterexample.not_isDecomposable` compile; discharge awaits E3 | Isolate the genuine obstruction without hiding its dependency |
 
 ### Layer F: new research required
 
@@ -143,6 +143,18 @@ theorem `HasDeepSplit.toHasDeepBelowSplit` embeds the former into the latter,
 while `IsGeometricallyDeepBelow.toHasDeepBelowSplit` proves the general
 crossing-color law from determinant orientations.  Thus Horton-style
 interleaving is not silently excluded from E1.
+
+The first attempted transcription of the 2026 E3 induction exposed a boundary
+case that must be resolved before the published upper theorem can be claimed.
+The proof selects auxiliary values `u'` and `a'` and, when
+`a' + u' <= k - 1`, absorbs two next binomial terms into disjoint intervals.
+At `(a,u,k,u',a') = (4,5,5,1,3)`, however, the first advertised interval is
+empty while its next binomial term is `choose 3 0 = 1`.  The resulting bound is
+eight, not the outer threshold seven.  Lean checks this closed calculation as
+`published_induction_boundary_regression`.  This does not refute the diagonal
+theorem, but it does rule out completing E3 by copying that induction step
+unchanged; a strengthened invariant or a separate boundary argument is
+required.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

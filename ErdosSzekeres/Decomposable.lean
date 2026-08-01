@@ -1,5 +1,7 @@
 import ErdosSzekeres.Extremal
+import ErdosSzekeres.CupCap
 import Mathlib.Data.Nat.Find
+import Mathlib.Data.Nat.Choose.Sum
 
 /-!
 # Decomposable point configurations
@@ -91,6 +93,35 @@ theorem IsStrongPolygonSet.isStrongPolygonOn_orderEmbOfFin
     (s.orderEmbOfFin_mem rfl i) (s.orderEmbOfFin_mem rfl j)
     (s.orderEmbOfFin_mem rfl k) (s.orderEmbOfFin_mem rfl l)
 
+theorem IsMonochromaticChain.isMonochromaticSet_image
+    {k : ℕ} {c : Turn} {f : Fin k ↪o Fin n}
+    (h : IsMonochromaticChain χ c f) :
+    ∀ t : OrderedTriple n, t.i ∈ Finset.univ.image f →
+      t.j ∈ Finset.univ.image f → t.k ∈ Finset.univ.image f → χ t = c := by
+  rcases h with ⟨hf, hall⟩
+  intro t hi hj hk
+  simp only [Finset.mem_image, Finset.mem_univ, true_and] at hi hj hk
+  obtain ⟨i, hi⟩ := hi
+  obtain ⟨j, hj⟩ := hj
+  obtain ⟨k, hk⟩ := hk
+  have hfij : f i < f j := by simpa [hi, hj] using t.hij
+  have hfjk : f j < f k := by simpa [hj, hk] using t.hjk
+  have hij : i < j := f.lt_iff_lt.mp hfij
+  have hjk : j < k := f.lt_iff_lt.mp hfjk
+  have ht : t = ⟨f i, f j, f k, f.strictMono hij, f.strictMono hjk⟩ := by
+    cases t
+    simp_all
+  rw [ht]
+  exact hall hij hjk
+
+theorem IsCup.image {k : ℕ} {f : Fin k ↪o Fin n} (h : IsCup χ f) :
+    IsCupSet χ (Finset.univ.image f) :=
+  IsMonochromaticChain.isMonochromaticSet_image h
+
+theorem IsCap.image {k : ℕ} {f : Fin k ↪o Fin n} (h : IsCap χ f) :
+    IsCapSet χ (Finset.univ.image f) :=
+  IsMonochromaticChain.isMonochromaticSet_image h
+
 theorem ContainsCupSet.mono (h : ContainsCupSet χ t u) (hts : t ⊆ s) :
     ContainsCupSet χ s u := by
   obtain ⟨cup, hcup, hcard, hmono⟩ := h
@@ -108,6 +139,93 @@ theorem ContainsStrongPolygonSet.mono
   exact ⟨polygon, hpolygon.trans hts, hcard, hstrong⟩
 
 end FinsetPolygon
+
+/-- Baek--Balko's three-parameter extremal threshold.  When the convex-polygon
+parameter is inactive this is the classical cup--cap binomial coefficient;
+otherwise it is the indicated window in row `k-2` of Pascal's triangle. -/
+def decomposableThreshold (a u k : ℕ) : ℕ :=
+  if a = 1 ∨ u = 1 then 0
+  else if a + u ≤ k + 3 then Nat.choose (a + u - 4) (a - 2)
+  else ∑ j ∈ Finset.Icc (k - a) (u - 2), Nat.choose (k - 2) j
+
+@[simp] theorem decomposableThreshold_one_left (u k : ℕ) :
+    decomposableThreshold 1 u k = 0 := by
+  simp [decomposableThreshold]
+
+@[simp] theorem decomposableThreshold_one_right (a k : ℕ) :
+    decomposableThreshold a 1 k = 0 := by
+  simp [decomposableThreshold]
+
+/-- On the diagonal, the threshold is the full binomial row. -/
+theorem decomposableThreshold_diagonal (k : ℕ) (hk : 3 ≤ k) :
+    decomposableThreshold k k k = 2 ^ (k - 2) := by
+  by_cases hk3 : k = 3
+  · subst k
+    norm_num [decomposableThreshold]
+  · have hk4 : 4 ≤ k := by omega
+    have hnotOne : ¬(k = 1 ∨ k = 1) := by omega
+    have hnotBase : ¬k + k ≤ k + 3 := by omega
+    rw [decomposableThreshold, if_neg hnotOne, if_neg hnotBase]
+    have hinterval : Finset.Icc (k - k) (k - 2) = Finset.range (k - 2 + 1) := by
+      ext j
+      simp only [Finset.mem_Icc, Finset.mem_range]
+      omega
+    rw [hinterval]
+    exact Nat.sum_range_choose (k - 2)
+
+/-- A kernel-checked boundary regression for the published three-parameter
+induction.  At `(a,u,k) = (4,5,5)`, taking the auxiliary parameters
+`u' = 1` and `a' = 3` satisfies `a' + u' <= k - 1`, but the two advertised
+cardinality contributions sum to eight rather than at most the threshold
+seven.  Any formal proof of the diagonal theorem must therefore strengthen
+the induction invariant or handle this boundary separately. -/
+theorem published_induction_boundary_regression :
+    decomposableThreshold 4 1 5 + Nat.choose 3 0 +
+        decomposableThreshold 3 5 5 + Nat.choose 3 2 = 8 ∧
+      decomposableThreshold 4 5 5 = 7 ∧
+      ¬decomposableThreshold 4 1 5 + Nat.choose 3 0 +
+          decomposableThreshold 3 5 5 + Nat.choose 3 2 ≤
+        decomposableThreshold 4 5 5 := by
+  norm_num [decomposableThreshold, Finset.sum_Icc_succ_top]
+
+/-- The ordinary cup--cap theorem, localized to an arbitrary finite set of
+indices in a sweep-realizable coloring. -/
+theorem containsCapSet_or_containsCupSet_of_choose_lt
+    {n a u : ℕ} {χ : TripleColoring n} (hχ : IsSweepRealizable χ)
+    (s : Finset (Fin n)) (ha : 2 ≤ a) (hu : 2 ≤ u)
+    (hcard : Nat.choose (a + u - 4) (a - 2) < s.card) :
+    ContainsCapSet χ s a ∨ ContainsCupSet χ s u := by
+  obtain ⟨P, rfl⟩ := hχ
+  let e : Fin s.card ↪o Fin n := s.orderEmbOfFin rfl
+  have hrestricted : Nat.choose (a + u - 4) (a - 2) <
+      Fintype.card (Fin s.card) := by simpa using hcard
+  rcases CupCap.SweptConfiguration.hasCap_or_hasCup
+      (P.restrict e) ha hu (by simpa using hrestricted) with
+      ⟨f, hcap⟩ | ⟨f, hcup⟩
+  · let g : Fin a ↪o Fin n := f.trans e
+    let cap := Finset.univ.image g
+    refine Or.inl ⟨cap, ?_, ?_, ?_⟩
+    · intro x hx
+      simp only [cap, Finset.mem_image, Finset.mem_univ, true_and] at hx
+      obtain ⟨i, rfl⟩ := hx
+      exact s.orderEmbOfFin_mem rfl (f i)
+    · exact (Finset.card_image_of_injective _ g.injective).trans (by simp)
+    · have hmap : IsCap P.tripleColoring g :=
+        IsMonochromaticChain.map_of_restrict_eq e
+          (P.restrict_tripleColoring e).symm hcap
+      exact FinsetPolygon.IsCap.image hmap
+  · let g : Fin u ↪o Fin n := f.trans e
+    let cup := Finset.univ.image g
+    refine Or.inr ⟨cup, ?_, ?_, ?_⟩
+    · intro x hx
+      simp only [cup, Finset.mem_image, Finset.mem_univ, true_and] at hx
+      obtain ⟨i, rfl⟩ := hx
+      exact s.orderEmbOfFin_mem rfl (f i)
+    · exact (Finset.card_image_of_injective _ g.injective).trans (by simp)
+    · have hmap : IsCup P.tripleColoring g :=
+        IsMonochromaticChain.map_of_restrict_eq e
+          (P.restrict_tripleColoring e).symm hcup
+      exact FinsetPolygon.IsCup.image hmap
 
 /-- Combinatorial orientation law of a deep-below partition.  For a crossing
 triple, the turn is left exactly when its middle vertex lies in the lower
@@ -264,6 +382,19 @@ theorem nonempty (h : IsDecomposableOn χ s) : s.Nonempty := by
   | split hlower hupper hdeep ihlower ihupper =>
       exact ihlower.mono (Finset.subset_union_left)
 
+/-- A decomposable set with at least two vertices exposes a genuine root
+split into two nonempty decomposable parts. -/
+theorem exists_split (h : IsDecomposableOn χ s) (hcard : 2 ≤ s.card) :
+    ∃ lower upper : Finset (Fin n),
+      lower.Nonempty ∧ upper.Nonempty ∧
+      IsDecomposableOn χ lower ∧ IsDecomposableOn χ upper ∧
+      HasDeepBelowSplit χ lower upper ∧ s = lower ∪ upper := by
+  cases h with
+  | singleton i => simp at hcard
+  | @split lower upper hlower hupper hdeep =>
+      exact ⟨lower, upper, hlower.nonempty, hupper.nonempty,
+        hlower, hupper, hdeep, rfl⟩
+
 /-- Every nonempty subset of a decomposable set is decomposable. -/
 theorem subset (h : IsDecomposableOn χ s) (hts : t ⊆ s)
     (ht : t.Nonempty) : IsDecomposableOn χ t := by
@@ -316,6 +447,35 @@ theorem subset (h : IsDecomposableOn χ s) (hts : t ⊆ s)
         exact ihupper Finset.inter_subset_right htupper
 
 end IsDecomposableOn
+
+/-- The upper half of the exact happy-ending formula, restricted to
+decomposable sweep-realizable colorings.  This packages the precise remaining
+E3 statement without adding it as an assumption. -/
+def DecomposableExactUpperAt (k : ℕ) : Prop :=
+  ∀ {n : ℕ} {χ : TripleColoring n}, IsSweepRealizable χ → IsDecomposable χ →
+    2 ^ (k - 2) < n → ContainsStrongPolygonSet χ Finset.univ k
+
+/-- A realizable coloring with more than `2^(k-2)` vertices and no strong
+`k`-gon is a combinatorial counterexample to the conjectured upper bound. -/
+def IsExactFormulaCounterexample {n : ℕ} (χ : TripleColoring n) (k : ℕ) : Prop :=
+  IsSweepRealizable χ ∧ 2 ^ (k - 2) < n ∧
+    ¬ContainsStrongPolygonSet χ Finset.univ k
+
+/-- E4, factored at its exact logical dependency: once E3 is proved at `k`,
+every realizable counterexample at `k` is indecomposable. -/
+theorem IsExactFormulaCounterexample.not_isDecomposable
+    {n k : ℕ} {χ : TripleColoring n} (hE3 : DecomposableExactUpperAt k)
+    (h : IsExactFormulaCounterexample χ k) : ¬IsDecomposable χ := by
+  intro hdecomp
+  exact h.2.2 (hE3 h.1 hdecomp h.2.1)
+
+/-- The lower-bound half is already unconditional: the classical recursive
+construction has `2^(k-2)` points and avoids a convex `k`-gon.  Thus proving
+`DecomposableExactUpperAt k` is exactly the missing upper half for the
+decomposable class. -/
+theorem decomposable_exact_lower (k : ℕ) (hk : 3 ≤ k) :
+    HasSharpnessExample k (2 ^ (k - 2) + 1) :=
+  classical_lower_sharpness k hk
 
 /-- Indices before a sweep cut. -/
 def indicesBefore (n cut : ℕ) : Finset (Fin n) :=

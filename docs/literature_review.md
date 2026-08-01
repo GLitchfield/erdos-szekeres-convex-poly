@@ -147,9 +147,20 @@ The first part of that milestone now compiles in
 `ErdosSzekeres.Decomposable`: arbitrary deep-below partitions (including
 parts interleaved in sweep order), recursive decomposability, hereditary
 closure under nonempty subsets, and the lemma combining a cup in the lower
-part with a cap in the upper part into a strong polygon.  The binomial-window
-cardinality induction proving the exact threshold remains E3; it is not yet
-claimed by the repository.
+part with a cap in the upper part into a strong polygon.  The exact
+counterexample predicate and the formal E4 implication from the decomposable
+upper theorem to indecomposability also compile.
+
+The binomial-window cardinality induction proving the exact threshold remains
+E3; it is not yet claimed by the repository.  A literal transcription of the
+new journal proof fails at the auxiliary boundary
+`(a,u,k,u',a') = (4,5,5,1,3)`: the two contributions total eight although the
+outer threshold is seven.  This finite arithmetic fact is checked in Lean by
+`published_induction_boundary_regression`.  It identifies a gap in that proof
+step, not a counterexample to the decomposable-set theorem itself.  The
+formalization therefore records the published threshold and its diagonal
+identity but requires a corrected invariant or boundary lemma before claiming
+E3.
 
 ## Existing formal proof assets
 
