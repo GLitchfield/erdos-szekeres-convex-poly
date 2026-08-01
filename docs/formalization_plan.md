@@ -82,14 +82,16 @@ sufficient consistency hypothesis.
 
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
-| C1 | orientation-sign characterization of a point inside a triangle | Known; pending | Reduce four-point convexity to triple signs |
-| C2 | a four-point subset is convex iff no point lies in the triangle of the other three | Known; pending | Small local convexity certificate |
-| C3 | explicit Boolean criterion for a convex ordered quadruple from its four triple colors | Known; pending | Make convexity purely combinatorial |
+| C1 | `mem_convexHull_triangle_iff_insideTriangleBySigns` | Compiles | Characterize triangle membership by four nonzero orientation signs |
+| C2 | `inConvexPosition_four_iff_no_mem_triangle` | Compiles | A four-point set is convex iff no point lies in the other triangle |
+| C3 | `inConvexPosition_four_iff_orientation_signs` | Compiles | Give a purely sign-based four-point convexity certificate |
 | C4 | a finite planar set is in convex position iff all four-point subsets are convex | Known; pending | Lift the local certificate to arbitrary size |
 | C5 | define a strong polygon as compatible upper/lower monochromatic chains and prove it equivalent to geometric convex position | Known; pending | Exact combinatorial form of the target polygon |
 
-C3--C5 are the crucial safety bridge. Until they compile, a theorem about
-`TripleColoring` is not reported as a theorem about planar convex polygons.
+C1--C3 now establish the local safety bridge. The C3 certificate is stated for
+arbitrary point order; cyclicity and sign reversal reduce it to the four colors
+of increasing triples in sweep order. C4--C5 remain necessary before reporting
+an arbitrary-size `TripleColoring` theorem as a planar convex-polygon theorem.
 
 ### Layer D: classical controls
 

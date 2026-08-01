@@ -28,6 +28,8 @@ sets.
   coloring, cups/caps, and the bridge from left/right turns to slope changes.
 - `ErdosSzekeres/Presentation.lean` constructs a generic determinant-one shear
   and sorted sweep presentation for every finite general-position point set.
+- `ErdosSzekeres/Convexity.lean` proves the orientation-sign triangle test and
+  a purely sign-based convexity certificate for four points.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
   sweep model to the exact conjecture.
 - `docs/literature_review.md` records the initial research synthesis.
