@@ -41,7 +41,21 @@ orientation configurations, or a two-layer architecture with a proved bridge?
 
 ## Resolution
 
-Open. Do not choose a representation from the literature survey alone.
+Open. The two-layer representation is the leading candidate, but it is not yet
+canonical. Commit `2e34881d6f9f6adefe14d459def686fd90031964` establishes a
+compiling sweep/orientation pilot. The next bounded architectural test is A7/A9:
+construct a `SweptConfiguration` presentation from an arbitrary finite planar
+point set using a generic projection and sorting. If that succeeds, C3 (the
+ordered-four-point convexity/sign criterion) is the immediate safety bridge.
+
+The 2026-08-01 Sol/Fable review was `partially_supported`. Both reviewers found
+no false intermediary theorem in the packet, but correctly objected that one
+candidate pilot is not the comparative evidence demanded above. We accept that
+process objection, the need to encode realizability in theorem signatures, and
+the priority of testing the public-to-sweep bridge. We independently verified
+the committed pilot with `make test`; the reviewers did not receive
+`ErdosSzekeres/Basic.lean` or that build output, so their inability to verify
+those facts is a packet limitation rather than mathematical evidence.
 
 ## Evidence
 
@@ -49,4 +63,12 @@ Open. Do not choose a representation from the literature survey alone.
 - [Living bibliography](../../bibliography.md)
 - [`ErdosSzekeres.Basic`](../../../ErdosSzekeres/Basic.lean), the provisional
   direct Euclidean statement layer
+- [`ErdosSzekeres.Sweep`](../../../ErdosSzekeres/Sweep.lean), the first
+  compiling two-layer pilot
+- [Intermediary lemma ladder](../../formalization_plan.md)
 - Baek's formalization: <https://github.com/jcpaik/erdos-tuza-valtr>
+- Advisory review of revision `2e34881d6f9f6adefe14d459def686fd90031964`:
+  evidence-packet SHA-256
+  `fc25f7bd8fa6d6793e387bf269bf14640cb5430e6ee4a7c1712dfaf309679ea9`;
+  Claude Fable 5 and Codex Sol, one reciprocal critique round. Raw run retained
+  locally under ignored `runs/reviews/0001-model-review/`.

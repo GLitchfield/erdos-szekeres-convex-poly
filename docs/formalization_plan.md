@@ -2,9 +2,13 @@
 
 Last updated: 2026-08-01.
 
-## Chosen mathematical interface
+## Leading mathematical interface
 
-The project will use two connected layers.
+The model-selection ticket remains open while the alternative APIs receive the
+same bounded comparison. The following two-layer interface is the working
+candidate justified by the first compiling pilot, not yet a canonical choice.
+
+The candidate uses two connected layers.
 
 1. **Geometric statement layer.** Finite point sets in `ℝ²`, general position,
    convex position, forcing, and sharpness remain the public statement of the
@@ -58,13 +62,16 @@ still to formalize, and genuinely new research.
 | --- | --- | --- | --- |
 | B1 | restriction and increasing relabeling of `TripleColoring` | Pending | State induced subconfigurations cleanly |
 | B2 | `IsMonochromaticChain`, `IsCup`, and `IsCap` | Compiles | Common finite definition of cups and caps |
+| B2a | `IsSweepRealizable` and its canonical witness | Compiles | Keep realizability available in combinatorial theorem signatures |
 | B3 | all-triples and consecutive-triples definitions of a cup/cap are equivalent for a sweep coloring | Known; pending | Matches classical recurrence-friendly definitions |
 | B4 | every swept coloring satisfies the necessary four-index consistency law | Known; pending | Record realizability information rather than allowing arbitrary colorings |
 | B5 | reflection exchanges cups and caps and preserves convexity | Known; pending | Symmetry control and proof reuse |
 
 We will not assert that B4 characterizes realizability. Rank-three sign data can
 be nonrealizable, and overly broad ordered-hypergraph generalizations are known
-to fail.
+to fail. Any theorem not valid for arbitrary `TripleColoring`s must take a
+`SweptConfiguration`, an `IsSweepRealizable` witness, or a separately proved
+sufficient consistency hypothesis.
 
 ### Layer C: recognize convex position from signs
 

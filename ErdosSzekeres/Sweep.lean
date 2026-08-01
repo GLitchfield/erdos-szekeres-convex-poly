@@ -4,9 +4,10 @@ import ErdosSzekeres.Basic
 # Sweeps and the left/right triple coloring
 
 We normalize the user's generic sweep direction to the first coordinate.  A
-future affine-invariance layer will justify this normalization for an arbitrary
-line.  The mathematical content below is already coordinate-independent at the
-level of the orientation sign.
+future public-to-sweep bridge will justify this normalization for an arbitrary
+finite point set.  For a fixed index order, the orientation-sign convention is
+preserved by orientation-preserving affine maps; the ordering itself is part of
+the normalized data here.
 -/
 
 namespace ErdosSzekeres
@@ -150,6 +151,16 @@ theorem tripleColoring_eq_left_iff_slope_lt (t : OrderedTriple n) :
   P.turn_eq_left_iff_slope_lt t.i t.j t.k t.hij t.hjk
 
 end SweptConfiguration
+
+/-- A triple coloring is sweep-realizable when it is induced by an actual
+planar configuration in general position.  Theorems that are not valid for
+arbitrary colorings must carry this predicate or retain the configuration. -/
+def IsSweepRealizable {n : ℕ} (χ : TripleColoring n) : Prop :=
+  ∃ P : SweptConfiguration n, P.tripleColoring = χ
+
+theorem SweptConfiguration.tripleColoring_isSweepRealizable {n : ℕ}
+    (P : SweptConfiguration n) : IsSweepRealizable P.tripleColoring := by
+  exact ⟨P, rfl⟩
 
 /-- An increasing `k`-term sequence whose every triple has color `c`.  This is
 the common combinatorial core of cups (`left`) and caps (`right`). -/
