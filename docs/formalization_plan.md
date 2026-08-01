@@ -118,7 +118,7 @@ extends the bridge to selected subsets.
 | D2 | exact cup--cap number `binom(a+b-4,a-2)+1` | Compiles, including planar sharpness | Reproduce the 1935 theorem in the chosen API |
 | D3 | classical binomial upper bound for `ES(n)` | Compiles | End-to-end positive control of all bridges |
 | D4 | recursive `2^(n-2)` lower-bound construction | Compiles as `classical_lower_sharpness` | Formal sharpness for all `n` |
-| D5 | exact cases `n = 3,4,5` | `n=3,4` compile; `n=5` sharpness compiles and upper certificate is pending | Small controls; `n=6` is a separate certificate project |
+| D5 | exact cases `n = 3,4,5` | Compiles, including a kernel-checked LRAT proof of the nine-point case | Small controls; `n=6` is a separate certificate project |
 
 ### Layer E: the modern structural frontier
 
@@ -169,9 +169,15 @@ both requested chains.
 the much weaker binomial bound: it proves the one-change signotope law from
 real orientation inequalities and checks the five overlapping four-tuples of
 a five-point sweep. Explicit two- and four-point planar configurations supply
-the first two sharpness halves. The general lower theorem now supplies the
-eight-point sharpness witness for `n=5`; an auditable proof or finite
-certificate for the nine-point upper theorem remains.
+the first two sharpness halves. `ErdosSzekeres/ES5Certificate.lean` proves
+`ErdosSzekeresFormulaAt 5`. Its upper half enumerates the 84 increasing triples
+on nine vertices, imposes all 1,008 forbidden one-change assignments, and
+forbids the eight strong patterns on each of the 126 five-subsets. Lean checks
+the resulting 2,016-clause UNSAT claim from the committed LRAT trace, and a
+generated semantic proof connects every clause to `TurnSequenceAllowed` or
+`IsStrongPolygonOn`; the external SAT solver is therefore outside the trusted
+base. The general lower theorem supplies the matching eight-point sharpness
+witness.
 
 `ErdosSzekeres/Composition.lean` provides the first construction-facing API. A
 `HasDeepSplit` records the two mixed-triple rules of a left block placed deep

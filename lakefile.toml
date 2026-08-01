@@ -4,6 +4,7 @@ defaultTargets = ["ErdosSzekeres"]
 
 [[lean_lib]]
 name = "ErdosSzekeres"
+weakLeanArgs = ["--tstack=65536"]
 
 [[require]]
 name = "mathlib"

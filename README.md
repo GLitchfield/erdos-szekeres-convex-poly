@@ -39,6 +39,11 @@ sets.
 - `ErdosSzekeres/StrongPolygon.lean` defines the four-index strong-polygon law
   and proves it equivalent to convex position for swept configurations and
   for their original finite point sets, including selected convex subsets.
+- `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
+  Its finite upper-bound certificate is checked from a committed LRAT trace,
+  with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.
+- `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
+  lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
   sweep model to the exact conjecture.
 - `docs/literature_review.md` records the initial research synthesis.
@@ -56,6 +61,15 @@ python3 scripts/wayfinder_status.py
 ```
 
 No theorem containing `sorry` or `admit` is accepted by the test gate.
+The `ES(5)` CNF and its generated Lean bridge can be reproduced with
+
+```console
+python3 scripts/generate_es5_sat.py certificates/es5-signotope.cnf \
+  --lean ErdosSzekeres/ES5CNFGenerated.lean
+```
+
+Regenerating the LRAT trace additionally requires a solver capable of emitting
+LRAT; the committed trace itself is checked during `lake build`.
 
 ## Layout
 
