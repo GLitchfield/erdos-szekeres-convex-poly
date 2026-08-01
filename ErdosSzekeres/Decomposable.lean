@@ -323,8 +323,206 @@ variable {n : ℕ} {χ : TripleColoring n}
   {lower upper : Finset (Fin n)}
 
 /-- Membership at one of the two sweep extremes of a finite index set. -/
+def IsLeftSweepEndpoint (s : Finset (Fin n)) (q : Fin n) : Prop :=
+  ∀ x ∈ s, q ≤ x
+
+/-- Membership at the right sweep extreme of a finite index set. -/
+def IsRightSweepEndpoint (s : Finset (Fin n)) (q : Fin n) : Prop :=
+  ∀ x ∈ s, x ≤ q
+
+/-- Being a sweep endpoint is the disjunction of the two directional states. -/
 def IsSweepEndpoint (s : Finset (Fin n)) (q : Fin n) : Prop :=
-  (∀ x ∈ s, q ≤ x) ∨ (∀ x ∈ s, x ≤ q)
+  IsLeftSweepEndpoint s q ∨ IsRightSweepEndpoint s q
+
+theorem isSweepEndpoint_iff (s : Finset (Fin n)) (q : Fin n) :
+    IsSweepEndpoint s q ↔
+      (∀ x ∈ s, q ≤ x) ∨ (∀ x ∈ s, x ≤ q) := by
+  rfl
+
+/-- A point outside a nonempty finite set cannot be both its left and its
+right sweep endpoint.  Thus the endpoint flag carried by a genuine crossing
+extension is a binary, not overlapping, state. -/
+theorem not_isLeft_and_isRightSweepEndpoint
+    {s : Finset (Fin n)} {q : Fin n} (hs : s.Nonempty) (hq : q ∉ s) :
+    ¬(IsLeftSweepEndpoint s q ∧ IsRightSweepEndpoint s q) := by
+  rintro ⟨hleft, hright⟩
+  obtain ⟨x, hx⟩ := hs
+  have hxq : x = q := le_antisymm (hright x hx) (hleft x hx)
+  exact hq (hxq ▸ hx)
+
+/-- Negating the endpoint state says exactly that the set has witnesses on
+both sides of the point. -/
+theorem not_isSweepEndpoint_iff_exists_lt_and_exists_gt
+    (s : Finset (Fin n)) (q : Fin n) :
+    ¬ IsSweepEndpoint s q ↔
+      (∃ x ∈ s, x < q) ∧ ∃ y ∈ s, q < y := by
+  simp [IsSweepEndpoint, IsLeftSweepEndpoint, IsRightSweepEndpoint,
+    not_or, not_le]
+
+/-- A vertex from the upper block extends a lower-block cup on its left. -/
+theorem insert_upper_isCupSet_of_isLeftSweepEndpoint
+    (h : HasDeepBelowSplit χ lower upper) {cup : Finset (Fin n)}
+    (hcupSub : cup ⊆ lower) (hcup : IsCupSet χ cup) {q : Fin n}
+    (hqUpper : q ∈ upper) (hqLeft : IsLeftSweepEndpoint cup q) :
+    IsCupSet χ (insert q cup) := by
+  intro t hi hj hk
+  rcases Finset.mem_insert.mp hi with hiq | hiCup
+  · have hjq : t.j ≠ q := by
+      intro hjq
+      exact (ne_of_lt t.hij) (hiq.trans hjq.symm)
+    have hkq : t.k ≠ q := by
+      intro hkq
+      exact (ne_of_lt (t.hij.trans t.hjk)) (hiq.trans hkq.symm)
+    have hjCup := (Finset.mem_insert.mp hj).resolve_left hjq
+    have hkCup := (Finset.mem_insert.mp hk).resolve_left hkq
+    have hiUpper : t.i ∈ upper := hiq ▸ hqUpper
+    have hjLower := hcupSub hjCup
+    have hkLower := hcupSub hkCup
+    have hdisj := Finset.disjoint_left.mp h.disjoint
+    have hiNotLower : t.i ∉ lower := fun hiLower => hdisj hiLower hiUpper
+    have hjNotUpper : t.j ∉ upper := fun hjUpper => hdisj hjLower hjUpper
+    have hkNotUpper : t.k ∉ upper := fun hkUpper => hdisj hkLower hkUpper
+    simpa [hiNotLower, hjLower] using h.crossing t
+      (Finset.mem_union_right _ hiUpper)
+      (Finset.mem_union_left _ hjLower)
+      (Finset.mem_union_left _ hkLower)
+      (by simp [hiNotLower]) (by simp [hjNotUpper, hkNotUpper])
+  · have hqle : q ≤ t.i := hqLeft t.i hiCup
+    have hjq : t.j ≠ q := by
+      intro hjq
+      have : t.j ≤ t.i := by simpa [hjq] using hqle
+      exact (not_le_of_gt t.hij) this
+    have hkq : t.k ≠ q := by
+      intro hkq
+      have : t.k ≤ t.i := by simpa [hkq] using hqle
+      exact (not_le_of_gt (t.hij.trans t.hjk)) this
+    have hjCup := (Finset.mem_insert.mp hj).resolve_left hjq
+    have hkCup := (Finset.mem_insert.mp hk).resolve_left hkq
+    exact hcup t hiCup hjCup hkCup
+
+/-- A vertex from the upper block extends a lower-block cup on its right. -/
+theorem insert_upper_isCupSet_of_isRightSweepEndpoint
+    (h : HasDeepBelowSplit χ lower upper) {cup : Finset (Fin n)}
+    (hcupSub : cup ⊆ lower) (hcup : IsCupSet χ cup) {q : Fin n}
+    (hqUpper : q ∈ upper) (hqRight : IsRightSweepEndpoint cup q) :
+    IsCupSet χ (insert q cup) := by
+  intro t hi hj hk
+  rcases Finset.mem_insert.mp hk with hkq | hkCup
+  · have hiq : t.i ≠ q := by
+      intro hiq
+      exact (ne_of_lt (t.hij.trans t.hjk)) (hiq.trans hkq.symm)
+    have hjq : t.j ≠ q := by
+      intro hjq
+      exact (ne_of_lt t.hjk) (hjq.trans hkq.symm)
+    have hiCup := (Finset.mem_insert.mp hi).resolve_left hiq
+    have hjCup := (Finset.mem_insert.mp hj).resolve_left hjq
+    have hiLower := hcupSub hiCup
+    have hjLower := hcupSub hjCup
+    have hkUpper : t.k ∈ upper := hkq ▸ hqUpper
+    have hdisj := Finset.disjoint_left.mp h.disjoint
+    have hiNotUpper : t.i ∉ upper := fun hiUpper => hdisj hiLower hiUpper
+    have hjNotUpper : t.j ∉ upper := fun hjUpper => hdisj hjLower hjUpper
+    have hkNotLower : t.k ∉ lower := fun hkLower => hdisj hkLower hkUpper
+    simpa [hjLower, hkNotLower] using h.crossing t
+      (Finset.mem_union_left _ hiLower)
+      (Finset.mem_union_left _ hjLower)
+      (Finset.mem_union_right _ hkUpper)
+      (by simp [hkNotLower]) (by simp [hiNotUpper, hjNotUpper])
+  · have hkle : t.k ≤ q := hqRight t.k hkCup
+    have hiq : t.i ≠ q := by
+      intro hiq
+      have : t.k ≤ t.i := by simpa [hiq] using hkle
+      exact (not_le_of_gt (t.hij.trans t.hjk)) this
+    have hjq : t.j ≠ q := by
+      intro hjq
+      have : t.k ≤ t.j := by simpa [hjq] using hkle
+      exact (not_le_of_gt t.hjk) this
+    have hiCup := (Finset.mem_insert.mp hi).resolve_left hiq
+    have hjCup := (Finset.mem_insert.mp hj).resolve_left hjq
+    exact hcup t hiCup hjCup hkCup
+
+/-- Dually, a vertex from the lower block extends an upper-block cap on its
+left. -/
+theorem insert_lower_isCapSet_of_isLeftSweepEndpoint
+    (h : HasDeepBelowSplit χ lower upper) {cap : Finset (Fin n)}
+    (hcapSub : cap ⊆ upper) (hcap : IsCapSet χ cap) {q : Fin n}
+    (hqLower : q ∈ lower) (hqLeft : IsLeftSweepEndpoint cap q) :
+    IsCapSet χ (insert q cap) := by
+  intro t hi hj hk
+  rcases Finset.mem_insert.mp hi with hiq | hiCap
+  · have hjq : t.j ≠ q := by
+      intro hjq
+      exact (ne_of_lt t.hij) (hiq.trans hjq.symm)
+    have hkq : t.k ≠ q := by
+      intro hkq
+      exact (ne_of_lt (t.hij.trans t.hjk)) (hiq.trans hkq.symm)
+    have hjCap := (Finset.mem_insert.mp hj).resolve_left hjq
+    have hkCap := (Finset.mem_insert.mp hk).resolve_left hkq
+    have hiLower : t.i ∈ lower := hiq ▸ hqLower
+    have hjUpper := hcapSub hjCap
+    have hkUpper := hcapSub hkCap
+    have hdisj := Finset.disjoint_left.mp h.disjoint
+    have hiNotUpper : t.i ∉ upper := fun hiUpper => hdisj hiLower hiUpper
+    have hjNotLower : t.j ∉ lower := fun hjLower => hdisj hjLower hjUpper
+    have hkNotLower : t.k ∉ lower := fun hkLower => hdisj hkLower hkUpper
+    simpa [hjNotLower] using h.crossing t
+      (Finset.mem_union_left _ hiLower)
+      (Finset.mem_union_right _ hjUpper)
+      (Finset.mem_union_right _ hkUpper)
+      (by simp [hjNotLower, hkNotLower]) (by simp [hiNotUpper])
+  · have hqle : q ≤ t.i := hqLeft t.i hiCap
+    have hjq : t.j ≠ q := by
+      intro hjq
+      have : t.j ≤ t.i := by simpa [hjq] using hqle
+      exact (not_le_of_gt t.hij) this
+    have hkq : t.k ≠ q := by
+      intro hkq
+      have : t.k ≤ t.i := by simpa [hkq] using hqle
+      exact (not_le_of_gt (t.hij.trans t.hjk)) this
+    have hjCap := (Finset.mem_insert.mp hj).resolve_left hjq
+    have hkCap := (Finset.mem_insert.mp hk).resolve_left hkq
+    exact hcap t hiCap hjCap hkCap
+
+/-- A vertex from the lower block extends an upper-block cap on its right. -/
+theorem insert_lower_isCapSet_of_isRightSweepEndpoint
+    (h : HasDeepBelowSplit χ lower upper) {cap : Finset (Fin n)}
+    (hcapSub : cap ⊆ upper) (hcap : IsCapSet χ cap) {q : Fin n}
+    (hqLower : q ∈ lower) (hqRight : IsRightSweepEndpoint cap q) :
+    IsCapSet χ (insert q cap) := by
+  intro t hi hj hk
+  rcases Finset.mem_insert.mp hk with hkq | hkCap
+  · have hiq : t.i ≠ q := by
+      intro hiq
+      exact (ne_of_lt (t.hij.trans t.hjk)) (hiq.trans hkq.symm)
+    have hjq : t.j ≠ q := by
+      intro hjq
+      exact (ne_of_lt t.hjk) (hjq.trans hkq.symm)
+    have hiCap := (Finset.mem_insert.mp hi).resolve_left hiq
+    have hjCap := (Finset.mem_insert.mp hj).resolve_left hjq
+    have hiUpper := hcapSub hiCap
+    have hjUpper := hcapSub hjCap
+    have hkLower : t.k ∈ lower := hkq ▸ hqLower
+    have hdisj := Finset.disjoint_left.mp h.disjoint
+    have hiNotLower : t.i ∉ lower := fun hiLower => hdisj hiLower hiUpper
+    have hjNotLower : t.j ∉ lower := fun hjLower => hdisj hjLower hjUpper
+    have hkNotUpper : t.k ∉ upper := fun hkUpper => hdisj hkLower hkUpper
+    simpa [hjNotLower] using h.crossing t
+      (Finset.mem_union_right _ hiUpper)
+      (Finset.mem_union_right _ hjUpper)
+      (Finset.mem_union_left _ hkLower)
+      (by simp [hiNotLower, hjNotLower]) (by simp [hkNotUpper])
+  · have hkle : t.k ≤ q := hqRight t.k hkCap
+    have hiq : t.i ≠ q := by
+      intro hiq
+      have : t.k ≤ t.i := by simpa [hiq] using hkle
+      exact (not_le_of_gt (t.hij.trans t.hjk)) this
+    have hjq : t.j ≠ q := by
+      intro hjq
+      have : t.k ≤ t.j := by simpa [hjq] using hkle
+      exact (not_le_of_gt t.hjk) this
+    have hiCap := (Finset.mem_insert.mp hi).resolve_left hiq
+    have hjCap := (Finset.mem_insert.mp hj).resolve_left hjq
+    exact hcap t hiCap hjCap hkCap
 
 /-- Restrict both sides of a deep-below split to smaller subsets. -/
 theorem mono (h : HasDeepBelowSplit χ lower upper)
@@ -469,7 +667,7 @@ theorem upper_mem_cup_isSweepEndpoint
     (hcupLower : (cup ∩ lower).Nonempty) {q : Fin n}
     (hqCup : q ∈ cup) (hqUpper : q ∈ upper) : IsSweepEndpoint cup q := by
   by_contra hnot
-  rw [IsSweepEndpoint, not_or] at hnot
+  rw [IsSweepEndpoint, IsLeftSweepEndpoint, IsRightSweepEndpoint, not_or] at hnot
   push Not at hnot
   obtain ⟨x, hxCup, hxq⟩ := hnot.1
   obtain ⟨y, hyCup, hqy⟩ := hnot.2
@@ -592,7 +790,7 @@ theorem lower_mem_cap_isSweepEndpoint
     (hcapUpper : (cap ∩ upper).Nonempty) {q : Fin n}
     (hqCap : q ∈ cap) (hqLower : q ∈ lower) : IsSweepEndpoint cap q := by
   by_contra hnot
-  rw [IsSweepEndpoint, not_or] at hnot
+  rw [IsSweepEndpoint, IsLeftSweepEndpoint, IsRightSweepEndpoint, not_or] at hnot
   push Not at hnot
   obtain ⟨x, hxCap, hxq⟩ := hnot.1
   obtain ⟨y, hyCap, hqy⟩ := hnot.2
@@ -630,6 +828,173 @@ theorem lower_mem_cap_isSweepEndpoint
     have hleft := left_of_middle_lower t hxCap hqCap hpCap hqLower
       (Or.inr (Or.inr hpUpper))
     exact Turn.noConfusion (hcap t hxCap hqCap hpCap ▸ hleft)
+
+/-- Exact one-vertex cup transition across a deep-below split.  For a
+nonempty cup in the lower block, an upper vertex can be adjoined precisely
+when it is to the left or right of the whole cup in sweep order. -/
+theorem insert_upper_isCupSet_iff_isSweepEndpoint
+    (h : HasDeepBelowSplit χ lower upper) {cup : Finset (Fin n)}
+    (hcupSub : cup ⊆ lower) (hcup : IsCupSet χ cup)
+    (hcupNonempty : cup.Nonempty) {q : Fin n} (hqUpper : q ∈ upper) :
+    IsCupSet χ (insert q cup) ↔ IsSweepEndpoint cup q := by
+  constructor
+  · intro hinsert
+    have hinsertSub : insert q cup ⊆ lower ∪ upper := by
+      intro x hx
+      rcases Finset.mem_insert.mp hx with rfl | hxCup
+      · exact Finset.mem_union_right _ hqUpper
+      · exact Finset.mem_union_left _ (hcupSub hxCup)
+    obtain ⟨p, hpCup⟩ := hcupNonempty
+    have hinsertLower : ((insert q cup) ∩ lower).Nonempty := by
+      exact ⟨p, Finset.mem_inter.mpr
+        ⟨Finset.mem_insert_of_mem hpCup, hcupSub hpCup⟩⟩
+    have hend := h.upper_mem_cup_isSweepEndpoint hinsertSub hinsert
+      hinsertLower (Finset.mem_insert_self q cup) hqUpper
+    rcases hend with hend | hend
+    · exact Or.inl (fun x hx => hend x (Finset.mem_insert_of_mem hx))
+    · exact Or.inr (fun x hx => hend x (Finset.mem_insert_of_mem hx))
+  · rintro (hqLeft | hqRight)
+    · exact h.insert_upper_isCupSet_of_isLeftSweepEndpoint
+        hcupSub hcup hqUpper hqLeft
+    · exact h.insert_upper_isCupSet_of_isRightSweepEndpoint
+        hcupSub hcup hqUpper hqRight
+
+/-- Exact dual transition: a lower vertex can be adjoined to a nonempty cap
+in the upper block precisely at one of its two sweep endpoints. -/
+theorem insert_lower_isCapSet_iff_isSweepEndpoint
+    (h : HasDeepBelowSplit χ lower upper) {cap : Finset (Fin n)}
+    (hcapSub : cap ⊆ upper) (hcap : IsCapSet χ cap)
+    (hcapNonempty : cap.Nonempty) {q : Fin n} (hqLower : q ∈ lower) :
+    IsCapSet χ (insert q cap) ↔ IsSweepEndpoint cap q := by
+  constructor
+  · intro hinsert
+    have hinsertSub : insert q cap ⊆ lower ∪ upper := by
+      intro x hx
+      rcases Finset.mem_insert.mp hx with rfl | hxCap
+      · exact Finset.mem_union_left _ hqLower
+      · exact Finset.mem_union_right _ (hcapSub hxCap)
+    obtain ⟨p, hpCap⟩ := hcapNonempty
+    have hinsertUpper : ((insert q cap) ∩ upper).Nonempty := by
+      exact ⟨p, Finset.mem_inter.mpr
+        ⟨Finset.mem_insert_of_mem hpCap, hcapSub hpCap⟩⟩
+    have hend := h.lower_mem_cap_isSweepEndpoint hinsertSub hinsert
+      hinsertUpper (Finset.mem_insert_self q cap) hqLower
+    rcases hend with hend | hend
+    · exact Or.inl (fun x hx => hend x (Finset.mem_insert_of_mem hx))
+    · exact Or.inr (fun x hx => hend x (Finset.mem_insert_of_mem hx))
+  · rintro (hqLeft | hqRight)
+    · exact h.insert_lower_isCapSet_of_isLeftSweepEndpoint
+        hcapSub hcap hqLower hqLeft
+    · exact h.insert_lower_isCapSet_of_isRightSweepEndpoint
+        hcapSub hcap hqLower hqRight
+
+/-- Cardinal recurrence supplied by an upper endpoint: an `r`-cup in the
+lower block becomes an `(r+1)`-cup in the union. -/
+theorem containsCupSet_succ_of_upper_endpoint
+    (h : HasDeepBelowSplit χ lower upper) {cup : Finset (Fin n)} {r : ℕ}
+    (hcupSub : cup ⊆ lower) (hcupCard : cup.card = r)
+    (hcup : IsCupSet χ cup) {q : Fin n} (hqUpper : q ∈ upper)
+    (hqEndpoint : IsSweepEndpoint cup q) :
+    ContainsCupSet χ (lower ∪ upper) (r + 1) := by
+  have hqNotCup : q ∉ cup := by
+    intro hqCup
+    exact (Finset.disjoint_left.mp h.disjoint) (hcupSub hqCup) hqUpper
+  refine ⟨insert q cup, ?_, ?_, ?_⟩
+  · intro x hx
+    rcases Finset.mem_insert.mp hx with rfl | hxCup
+    · exact Finset.mem_union_right _ hqUpper
+    · exact Finset.mem_union_left _ (hcupSub hxCup)
+  · rw [Finset.card_insert_of_notMem hqNotCup, hcupCard]
+  · rcases hqEndpoint with hqLeft | hqRight
+    · exact h.insert_upper_isCupSet_of_isLeftSweepEndpoint
+        hcupSub hcup hqUpper hqLeft
+    · exact h.insert_upper_isCupSet_of_isRightSweepEndpoint
+        hcupSub hcup hqUpper hqRight
+
+/-- Dual cardinal recurrence: a lower endpoint extends an `r`-cap in the
+upper block to an `(r+1)`-cap in the union. -/
+theorem containsCapSet_succ_of_lower_endpoint
+    (h : HasDeepBelowSplit χ lower upper) {cap : Finset (Fin n)} {r : ℕ}
+    (hcapSub : cap ⊆ upper) (hcapCard : cap.card = r)
+    (hcap : IsCapSet χ cap) {q : Fin n} (hqLower : q ∈ lower)
+    (hqEndpoint : IsSweepEndpoint cap q) :
+    ContainsCapSet χ (lower ∪ upper) (r + 1) := by
+  have hqNotCap : q ∉ cap := by
+    intro hqCap
+    exact (Finset.disjoint_left.mp h.disjoint) hqLower (hcapSub hqCap)
+  refine ⟨insert q cap, ?_, ?_, ?_⟩
+  · intro x hx
+    rcases Finset.mem_insert.mp hx with rfl | hxCap
+    · exact Finset.mem_union_left _ hqLower
+    · exact Finset.mem_union_right _ (hcapSub hxCap)
+  · rw [Finset.card_insert_of_notMem hqNotCap, hcapCard]
+  · rcases hqEndpoint with hqLeft | hqRight
+    · exact h.insert_lower_isCapSet_of_isLeftSweepEndpoint
+        hcapSub hcap hqLower hqLeft
+    · exact h.insert_lower_isCapSet_of_isRightSweepEndpoint
+        hcapSub hcap hqLower hqRight
+
+/-- In a coloring with no `(r+1)`-cup, every upper vertex is strictly
+straddled in sweep order by every lower `r`-cup.  This is the negative form of
+the endpoint transition and is the constraint needed at saturated boundary
+states. -/
+theorem cup_straddles_upper_of_not_containsCupSet_succ
+    (h : HasDeepBelowSplit χ lower upper) {cup : Finset (Fin n)} {r : ℕ}
+    (hcupSub : cup ⊆ lower) (hcupCard : cup.card = r)
+    (hcup : IsCupSet χ cup) {q : Fin n} (hqUpper : q ∈ upper)
+    (hno : ¬ContainsCupSet χ (lower ∪ upper) (r + 1)) :
+    (∃ x ∈ cup, x < q) ∧ ∃ y ∈ cup, q < y := by
+  rw [← not_isSweepEndpoint_iff_exists_lt_and_exists_gt]
+  intro hqEndpoint
+  exact hno (h.containsCupSet_succ_of_upper_endpoint
+    hcupSub hcupCard hcup hqUpper hqEndpoint)
+
+/-- Dual saturation constraint: without an `(r+1)`-cap, every lower vertex
+is strictly straddled by every upper `r`-cap. -/
+theorem cap_straddles_lower_of_not_containsCapSet_succ
+    (h : HasDeepBelowSplit χ lower upper) {cap : Finset (Fin n)} {r : ℕ}
+    (hcapSub : cap ⊆ upper) (hcapCard : cap.card = r)
+    (hcap : IsCapSet χ cap) {q : Fin n} (hqLower : q ∈ lower)
+    (hno : ¬ContainsCapSet χ (lower ∪ upper) (r + 1)) :
+    (∃ x ∈ cap, x < q) ∧ ∃ y ∈ cap, q < y := by
+  rw [← not_isSweepEndpoint_iff_exists_lt_and_exists_gt]
+  intro hqEndpoint
+  exact hno (h.containsCapSet_succ_of_lower_endpoint
+    hcapSub hcapCard hcap hqLower hqEndpoint)
+
+/-- A successful upper extension of a nonempty lower cup has exactly one
+directional endpoint state. -/
+theorem insert_upper_cup_endpointSide_unique
+    (h : HasDeepBelowSplit χ lower upper) {cup : Finset (Fin n)}
+    (hcupSub : cup ⊆ lower) (hcup : IsCupSet χ cup)
+    (hcupNonempty : cup.Nonempty) {q : Fin n} (hqUpper : q ∈ upper)
+    (hinsert : IsCupSet χ (insert q cup)) :
+    (IsLeftSweepEndpoint cup q ∨ IsRightSweepEndpoint cup q) ∧
+      ¬(IsLeftSweepEndpoint cup q ∧ IsRightSweepEndpoint cup q) := by
+  have hendpoint := (h.insert_upper_isCupSet_iff_isSweepEndpoint
+    hcupSub hcup hcupNonempty hqUpper).mp hinsert
+  have hqNotCup : q ∉ cup := by
+    intro hqCup
+    exact (Finset.disjoint_left.mp h.disjoint) (hcupSub hqCup) hqUpper
+  exact ⟨hendpoint,
+    not_isLeft_and_isRightSweepEndpoint hcupNonempty hqNotCup⟩
+
+/-- The dual successful lower extension of an upper cap likewise has a
+unique directional endpoint state. -/
+theorem insert_lower_cap_endpointSide_unique
+    (h : HasDeepBelowSplit χ lower upper) {cap : Finset (Fin n)}
+    (hcapSub : cap ⊆ upper) (hcap : IsCapSet χ cap)
+    (hcapNonempty : cap.Nonempty) {q : Fin n} (hqLower : q ∈ lower)
+    (hinsert : IsCapSet χ (insert q cap)) :
+    (IsLeftSweepEndpoint cap q ∨ IsRightSweepEndpoint cap q) ∧
+      ¬(IsLeftSweepEndpoint cap q ∧ IsRightSweepEndpoint cap q) := by
+  have hendpoint := (h.insert_lower_isCapSet_iff_isSweepEndpoint
+    hcapSub hcap hcapNonempty hqLower).mp hinsert
+  have hqNotCap : q ∉ cap := by
+    intro hqCap
+    exact (Finset.disjoint_left.mp h.disjoint) hqLower (hcapSub hqCap)
+  exact ⟨hendpoint,
+    not_isLeft_and_isRightSweepEndpoint hcapNonempty hqNotCap⟩
 
 /-- If a strong polygon crosses an arbitrary deep-below split, its vertices
 on the lower side form a cup. -/

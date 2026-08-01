@@ -126,7 +126,7 @@ extends the bridge to selected subsets.
 | --- | --- | --- | --- |
 | E1 | composition/decomposition of sweep colorings | Arbitrary deep-below partitions, recursive decomposability, hereditary nonempty subsets, binary deep composition, and the coordinate-to-color bridge compile | Express the published recursive class, including interleaved sweep orders |
 | E2 | polygon-size recurrence under composition | Pascal-row aggregate recurrence, both directions of the crossing cup/cap characterization, and the two-endpoint crossing-chain bounds compile | Control decomposable configurations |
-| E3 | exact formula for decomposable point sets | Threshold, diagonal identity, localized cup--cap base case, split extractor, the valid interior Pascal-window inequality, and a kernel-checked boundary regression compile; the endpoint-aware upper induction remains pending | Reproduce the strongest directly relevant structural theorem |
+| E3 | exact formula for decomposable point sets | Threshold, diagonal identity, localized cup--cap base case, split extractor, the valid interior Pascal-window inequality, a kernel-checked boundary regression, and exact left/right endpoint-extension transitions compile; the endpoint-profile counting induction remains pending | Reproduce the strongest directly relevant structural theorem |
 | E4 | a minimal counterexample to the exact formula is indecomposable | The exact counterexample predicate and conditional consequence `IsExactFormulaCounterexample.not_isDecomposable` compile; discharge awaits E3 | Isolate the genuine obstruction without hiding its dependency |
 
 ### Layer F: new research required
@@ -169,6 +169,19 @@ those vertices as actual extremes of the entire chain.  Meanwhile,
 `isStrongPolygonSet_iff_inter_cup_cap` gives the exact crossing-polygon
 characterization.  The corrected E3 invariant therefore has to retain these
 endpoint states; cardinality alone is insufficient.
+
+The next endpoint layer is now exact rather than merely necessary.  The
+directional predicates `IsLeftSweepEndpoint` and `IsRightSweepEndpoint` split
+the old endpoint flag into two disjoint states for a point outside a nonempty
+chain.  The theorems `insert_upper_isCupSet_iff_isSweepEndpoint` and
+`insert_lower_isCapSet_iff_isSweepEndpoint` prove that adjoining a vertex
+across a deep-below split preserves the relevant chain if and only if it is in
+one of those two states.  Their cardinal corollaries implement the resulting
+`r -> r+1` transitions.  Negating the transition gives the complementary
+saturation rule: if the larger cup or cap is forbidden, every opposite-block
+vertex is strictly straddled by the smaller chain.  What remains is to
+aggregate these binary endpoint/straddling states over the recursive
+decomposition without double-counting the boundary term exposed above.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

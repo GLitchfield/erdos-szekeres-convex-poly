@@ -171,6 +171,17 @@ vertices are proved pointwise to be actual extremes of the full chain.  These
 lemmas show why the scalar threshold induction loses information at the
 boundary and identify endpoint-aware chain profiles as the next invariant.
 
+The endpoint profile has now been refined to an exact one-vertex transition.
+For a nonempty cup contained in the lower block, Lean proves that inserting an
+upper-block vertex gives a cup if and only if the new vertex is to the left or
+right of the whole old cup in sweep order; the dual statement holds for caps.
+The two directional alternatives are disjoint for a vertex outside the chain,
+and cardinal corollaries turn either flag into a chain-size increment.  In the
+negative direction, forbidding that increment forces the opposite vertex to
+be strictly straddled by the chain.  This supplies the local state machine
+needed by a repaired E3 proof, but the global injection/count of endpoint
+profiles is not yet proved.
+
 ## Existing formal proof assets
 
 - **Isabelle/HOL, exact cases through six:** Marić's 2019 paper formalizes a
