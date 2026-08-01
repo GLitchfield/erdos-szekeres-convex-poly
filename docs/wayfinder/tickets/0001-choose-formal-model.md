@@ -68,10 +68,16 @@ defining increasing restrictions of ordered triples, colorings, and swept
 configurations. Restriction preserves sweep realizability, and the exact
 theorem `containsConvexSubset_iff_exists_isStrongPolygonOn` now translates the
 public convex-subset predicate into existence of a restricted strong polygon.
+Commit `6088939e351ec88a2e1dbb3635dc0adfe59a02a8` discharges B3. A
+four-point orientation propagation identity and strong induction prove that
+consecutive left or right turns force the same color on every triple of a
+selected sequence. Named cup/cap equivalences are available for concrete
+swept configurations and for colorings carrying an `IsSweepRealizable`
+witness.
 The ticket remains open only for the bounded alternative-API comparison
 required by its original closure criteria. The next recurrence-facing bridge
-is B3: equivalence between the all-triples and consecutive-triples cup/cap
-predicates for sweep colorings.
+is D1: cup/cap rank assignment and the pigeonhole bound underlying the
+classical recurrence.
 
 The 2026-08-01 Sol/Fable review was `partially_supported`. Both reviewers found
 no false intermediary theorem in the packet, but correctly objected that one
@@ -90,6 +96,8 @@ those facts is a packet limitation rather than mathematical evidence.
   direct Euclidean statement layer
 - [`ErdosSzekeres.Sweep`](../../../ErdosSzekeres/Sweep.lean), the first
   compiling two-layer pilot and increasing-restriction API
+- [`ErdosSzekeres.Chains`](../../../ErdosSzekeres/Chains.lean), the
+  consecutive/all-triples cup-cap equivalence for realizable colorings
 - [`ErdosSzekeres.Presentation`](../../../ErdosSzekeres/Presentation.lean), the
   generic public-point-set-to-sweep bridge
 - [`ErdosSzekeres.Convexity`](../../../ErdosSzekeres/Convexity.lean), the
