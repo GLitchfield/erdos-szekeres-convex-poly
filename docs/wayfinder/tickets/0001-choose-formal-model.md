@@ -43,10 +43,13 @@ orientation configurations, or a two-layer architecture with a proved bridge?
 
 Open. The two-layer representation is the leading candidate, but it is not yet
 canonical. Commit `2e34881d6f9f6adefe14d459def686fd90031964` establishes a
-compiling sweep/orientation pilot. The next bounded architectural test is A7/A9:
-construct a `SweptConfiguration` presentation from an arbitrary finite planar
-point set using a generic projection and sorting. If that succeeds, C3 (the
-ordered-four-point convexity/sign criterion) is the immediate safety bridge.
+compiling sweep/orientation pilot. Commit
+`37eb57cffbf277d152ab85952fcd343e6bb04e9c` discharges A7/A9: a finite forbidden
+set supplies a generic determinant-one shear, and sorting constructs a
+`SweptConfiguration` presentation of every finite general-position input while
+preserving its orientation values exactly. The mathlib geometry/API redirect
+condition therefore did not fire. C1/C3, the point-in-triangle and ordered
+four-point convexity/sign criteria, are now the immediate safety bridge.
 
 The 2026-08-01 Sol/Fable review was `partially_supported`. Both reviewers found
 no false intermediary theorem in the packet, but correctly objected that one
@@ -65,6 +68,8 @@ those facts is a packet limitation rather than mathematical evidence.
   direct Euclidean statement layer
 - [`ErdosSzekeres.Sweep`](../../../ErdosSzekeres/Sweep.lean), the first
   compiling two-layer pilot
+- [`ErdosSzekeres.Presentation`](../../../ErdosSzekeres/Presentation.lean), the
+  generic public-point-set-to-sweep bridge
 - [Intermediary lemma ladder](../../formalization_plan.md)
 - Baek's formalization: <https://github.com/jcpaik/erdos-tuza-valtr>
 - Advisory review of revision `2e34881d6f9f6adefe14d459def686fd90031964`:
