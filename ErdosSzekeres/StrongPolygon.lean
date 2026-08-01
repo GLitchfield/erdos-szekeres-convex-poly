@@ -45,6 +45,21 @@ theorem IsStrongPolygon.restrict {m n : ℕ} {χ : TripleColoring n}
   intro i j k l hij hjk hkl
   exact hχ (f.strictMono hij) (f.strictMono hjk) (f.strictMono hkl)
 
+/-- Transfer a selected strong polygon back through an ambient coloring
+restriction whose coloring is known exactly. -/
+theorem IsStrongPolygonOn.of_trans_of_restrict_eq {n m k : ℕ}
+    {χ : TripleColoring n} {ψ : TripleColoring m}
+    (e : Fin m ↪o Fin n) (hrestrict : χ.restrict e = ψ)
+    (f : Fin k ↪o Fin m) (h : IsStrongPolygonOn χ (f.trans e)) :
+    IsStrongPolygonOn ψ f := by
+  subst ψ
+  have hcolor : (χ.restrict e).restrict f = χ.restrict (f.trans e) := by
+    funext t
+    cases t
+    rfl
+  rw [IsStrongPolygonOn, hcolor]
+  exact h
+
 /-- General position is inherited by finite subsets. -/
 theorem InGeneralPosition.mono {s t : Finset (Point 2)}
     (hs : InGeneralPosition s) (hts : t ⊆ s) : InGeneralPosition t := by

@@ -117,15 +117,15 @@ extends the bridge to selected subsets.
 | D1 | cup--cap recurrence engine on ordered vertices | Compiles | Pincer induction, partition, and chain-splicing pigeonhole engine |
 | D2 | exact cup--cap number `binom(a+b-4,a-2)+1` | Compiles, including planar sharpness | Reproduce the 1935 theorem in the chosen API |
 | D3 | classical binomial upper bound for `ES(n)` | Compiles | End-to-end positive control of all bridges |
-| D4 | recursive `2^(n-2)` lower-bound construction | Pascal cup--cap family compiles; polygon invariant pending | Formal sharpness for all `n` |
-| D5 | exact cases `n = 3,4,5` | `n=3,4` compile; `n=5` pending | Small controls; `n=6` is a separate certificate project |
+| D4 | recursive `2^(n-2)` lower-bound construction | Compiles as `classical_lower_sharpness` | Formal sharpness for all `n` |
+| D5 | exact cases `n = 3,4,5` | `n=3,4` compile; `n=5` sharpness compiles and upper certificate is pending | Small controls; `n=6` is a separate certificate project |
 
 ### Layer E: the modern structural frontier
 
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
 | E1 | composition/decomposition of sweep colorings | Binary deep composition, planar realization, and component restriction compile | Express the recursive extremal construction |
-| E2 | polygon-size recurrence under composition | First/last block bounds and middle-block-at-most-one compile; aggregate recurrence pending | Control decomposable configurations |
+| E2 | polygon-size recurrence under composition | Pascal-row aggregate recurrence compiles | Control decomposable configurations |
 | E3 | exact formula for decomposable point sets | Published 2026; pending | Reproduce the strongest directly relevant structural theorem |
 | E4 | a minimal counterexample to the exact formula is indecomposable | Consequence of E3; pending | Isolate the genuine obstruction |
 
@@ -169,8 +169,9 @@ both requested chains.
 the much weaker binomial bound: it proves the one-change signotope law from
 real orientation inequalities and checks the five overlapping four-tuples of
 a five-point sweep. Explicit two- and four-point planar configurations supply
-the sharpness halves. The Bonnice/Lovász convex-layer argument or a comparably
-auditable finite certificate is still needed for the exact `n=5` case.
+the first two sharpness halves. The general lower theorem now supplies the
+eight-point sharpness witness for `n=5`; an auditable proof or finite
+certificate for the nine-point upper theorem remains.
 
 `ErdosSzekeres/Composition.lean` provides the first construction-facing API. A
 `HasDeepSplit` records the two mixed-triple rules of a left block placed deep
@@ -188,8 +189,13 @@ recursive family `exists_cupCapExtremal` has exactly `choose (p+q) p` planar
 points and the claimed cap/cup bounds. For a strong polygon crossing one split,
 the entire left part is now proved to be a cup, the entire right part a cap,
 and their cardinalities are bounded by the corresponding component
-invariants. D4 now needs the multi-block bookkeeping that controls intervening
-Pascal blocks and sums their cardinalities to `2^(n-2)`. The key local
-bookkeeping lemma now compiles: under two nested left-associated splits, a
-strong polygon using vertices on both sides cannot take two vertices from the
-intermediate block.
+invariants. The key local bookkeeping lemma also compiles: under two nested
+left-associated splits, a strong polygon using vertices on both sides cannot
+take two vertices from the intermediate block.
+
+`ErdosSzekeres/Extremal.lean` packages the full construction as left-associated
+Pascal-row prefixes. Prefix `t` has cup bound `t`, while every strong polygon
+has at most `d+1` vertices. Appending block `t` follows from the binary crossing
+theorem and that block's cap bound `d-t+1`. The full row has size `2^d` by
+`Nat.sum_range_choose`, and `classical_lower_sharpness` transports the result
+to `HasSharpnessExample n (2^(n-2)+1)` for every `n ≥ 3`.

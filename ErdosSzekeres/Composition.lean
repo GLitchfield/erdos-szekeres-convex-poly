@@ -372,6 +372,56 @@ def ChainSizeAtMost {n : ℕ} (χ : TripleColoring n) (c : Turn)
   ∀ ⦃k : ℕ⦄ ⦃f : Fin k → Fin n⦄,
     IsMonochromaticChain χ c f → k ≤ bound
 
+/-- Uniform upper bound on selected strong polygons. -/
+def StrongPolygonSizeAtMost {n : ℕ} (χ : TripleColoring n)
+    (bound : ℕ) : Prop :=
+  ∀ ⦃k : ℕ⦄ (f : Fin k ↪o Fin n), IsStrongPolygonOn χ f → k ≤ bound
+
+theorem strongPolygon_card_le_of_all_left {m n k bound : ℕ}
+    {χ : TripleColoring (m + n)} {ψ : TripleColoring m}
+    (hrestrict : χ.restrict (Fin.castAddOrderEmb n) = ψ)
+    (f : Fin k ↪o Fin (m + n)) (hstrong : IsStrongPolygonOn χ f)
+    (hall : ∀ i, (f i).val < m)
+    (hbound : StrongPolygonSizeAtMost ψ bound) : k ≤ bound := by
+  let g : Fin k ↪o Fin m := OrderEmbedding.ofStrictMono
+    (fun i => (⟨(f i).val, hall i⟩ : Fin m))
+    (by intro i j hij; exact f.strictMono hij)
+  have htrans : g.trans (Fin.castAddOrderEmb n) = f := by
+    apply DFunLike.ext _ _
+    intro i
+    ext
+    rfl
+  rw [← htrans] at hstrong
+  exact hbound g (IsStrongPolygonOn.of_trans_of_restrict_eq
+    (Fin.castAddOrderEmb n) hrestrict g hstrong)
+
+theorem strongPolygon_card_le_of_all_right {m n k bound : ℕ}
+    {χ : TripleColoring (m + n)} {ψ : TripleColoring n}
+    (hrestrict : χ.restrict (Fin.natAddOrderEmb m) = ψ)
+    (f : Fin k ↪o Fin (m + n)) (hstrong : IsStrongPolygonOn χ f)
+    (hall : ∀ i, m ≤ (f i).val)
+    (hbound : StrongPolygonSizeAtMost ψ bound) : k ≤ bound := by
+  let g : Fin k ↪o Fin n := OrderEmbedding.ofStrictMono
+    (fun i => (⟨(f i).val - m, by
+      have := (f i).isLt
+      have hi := hall i
+      omega⟩ : Fin n))
+    (by
+      intro i j hij
+      change (f i).val - m < (f j).val - m
+      have hi := hall i
+      have hfij := f.strictMono hij
+      omega)
+  have htrans : g.trans (Fin.natAddOrderEmb m) = f := by
+    apply DFunLike.ext _ _
+    intro i
+    ext
+    change m + ((f i).val - m) = (f i).val
+    exact Nat.add_sub_of_le (hall i)
+  rw [← htrans] at hstrong
+  exact hbound g (IsStrongPolygonOn.of_trans_of_restrict_eq
+    (Fin.natAddOrderEmb m) hrestrict g hstrong)
+
 /-- The selected left part of a chain in a deep composition is a chain in
 the left component. -/
 theorem leftCount_le_of_component_bound {m n k bound : ℕ}
