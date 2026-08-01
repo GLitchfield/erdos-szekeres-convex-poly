@@ -63,10 +63,15 @@ four-tuple and proves that this law is equivalent to convex position, first
 for the swept configuration and then for the original public point set. The
 latter transport uses a formal linear equivalence for the determinant-one
 shear and proves convex position invariant under invertible linear maps.
+Commit `a44624d0eb0f834100ac114591fa022cd11875de` discharges B1 by
+defining increasing restrictions of ordered triples, colorings, and swept
+configurations. Restriction preserves sweep realizability, and the exact
+theorem `containsConvexSubset_iff_exists_isStrongPolygonOn` now translates the
+public convex-subset predicate into existence of a restricted strong polygon.
 The ticket remains open only for the bounded alternative-API comparison
-required by its original closure criteria. The next interface bridge is B1:
-restriction and increasing relabeling, so convex subsets can be expressed as
-strong polygons inside a larger ordered coloring.
+required by its original closure criteria. The next recurrence-facing bridge
+is B3: equivalence between the all-triples and consecutive-triples cup/cap
+predicates for sweep colorings.
 
 The 2026-08-01 Sol/Fable review was `partially_supported`. Both reviewers found
 no false intermediary theorem in the packet, but correctly objected that one
@@ -84,13 +89,13 @@ those facts is a packet limitation rather than mathematical evidence.
 - [`ErdosSzekeres.Basic`](../../../ErdosSzekeres/Basic.lean), the provisional
   direct Euclidean statement layer
 - [`ErdosSzekeres.Sweep`](../../../ErdosSzekeres/Sweep.lean), the first
-  compiling two-layer pilot
+  compiling two-layer pilot and increasing-restriction API
 - [`ErdosSzekeres.Presentation`](../../../ErdosSzekeres/Presentation.lean), the
   generic public-point-set-to-sweep bridge
 - [`ErdosSzekeres.Convexity`](../../../ErdosSzekeres/Convexity.lean), the
   triangle, four-point orientation-sign, and local-to-global convexity bridge
 - [`ErdosSzekeres.StrongPolygon`](../../../ErdosSzekeres/StrongPolygon.lean),
-  the exact combinatorial/geometric target-polygon bridge
+  the exact combinatorial/geometric target-polygon and convex-subset bridge
 - [Intermediary lemma ladder](../../formalization_plan.md)
 - Baek's formalization: <https://github.com/jcpaik/erdos-tuza-valtr>
 - Advisory review of revision `2e34881d6f9f6adefe14d459def686fd90031964`:
