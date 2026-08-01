@@ -125,8 +125,8 @@ extends the bridge to selected subsets.
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
 | E1 | composition/decomposition of sweep colorings | Arbitrary deep-below partitions, recursive decomposability, hereditary nonempty subsets, binary deep composition, and the coordinate-to-color bridge compile | Express the published recursive class, including interleaved sweep orders |
-| E2 | polygon-size recurrence under composition | Pascal-row aggregate recurrence and `cup_union_cap_isStrongPolygonSet` compile | Control decomposable configurations |
-| E3 | exact formula for decomposable point sets | Threshold, diagonal identity, localized cup--cap base case, split extractor, and a kernel-checked boundary regression compile; the upper theorem remains pending | Reproduce the strongest directly relevant structural theorem |
+| E2 | polygon-size recurrence under composition | Pascal-row aggregate recurrence, both directions of the crossing cup/cap characterization, and the two-endpoint crossing-chain bounds compile | Control decomposable configurations |
+| E3 | exact formula for decomposable point sets | Threshold, diagonal identity, localized cup--cap base case, split extractor, the valid interior Pascal-window inequality, and a kernel-checked boundary regression compile; the endpoint-aware upper induction remains pending | Reproduce the strongest directly relevant structural theorem |
 | E4 | a minimal counterexample to the exact formula is indecomposable | The exact counterexample predicate and conditional consequence `IsExactFormulaCounterexample.not_isDecomposable` compile; discharge awaits E3 | Isolate the genuine obstruction without hiding its dependency |
 
 ### Layer F: new research required
@@ -155,6 +155,20 @@ eight, not the outer threshold seven.  Lean checks this closed calculation as
 theorem, but it does rule out completing E3 by copying that induction step
 unchanged; a strengthened invariant or a separate boundary argument is
 required.
+
+The boundary classification is now sharper than the single numerical
+regression.  In the interior, `decomposableBinomialWindow_pair_le` proves that
+the two auxiliary windows are disjoint subintervals of the outer Pascal-row
+window.  Failure occurs when an auxiliary chain lies below that window and
+its classical cup--cap contribution sits just outside it.  The geometry does
+constrain this overflow: `cup_inter_upper_card_le_two` and
+`cap_inter_lower_card_le_two` prove that a crossing cup or cap can use at most
+the two opposite-side sweep endpoints; the pointwise lemmas
+`upper_mem_cup_isSweepEndpoint` and `lower_mem_cap_isSweepEndpoint` identify
+those vertices as actual extremes of the entire chain.  Meanwhile,
+`isStrongPolygonSet_iff_inter_cup_cap` gives the exact crossing-polygon
+characterization.  The corrected E3 invariant therefore has to retain these
+endpoint states; cardinality alone is insufficient.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

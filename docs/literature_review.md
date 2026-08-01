@@ -162,6 +162,15 @@ formalization therefore records the published threshold and its diagonal
 identity but requires a corrected invariant or boundary lemma before claiming
 E3.
 
+The first correction layer now compiles.  Lean proves the published
+Pascal-window absorption in its valid interior range and proves the missing
+arbitrary-split geometry: a crossing strong polygon has exactly a cup on its
+lower side and a cap on its upper side, while a crossing cup (respectively,
+cap) uses at most two upper (respectively, lower) sweep endpoints.  These
+vertices are proved pointwise to be actual extremes of the full chain.  These
+lemmas show why the scalar threshold induction loses information at the
+boundary and identify endpoint-aware chain profiles as the next invariant.
+
 ## Existing formal proof assets
 
 - **Isabelle/HOL, exact cases through six:** Marić's 2019 paper formalizes a

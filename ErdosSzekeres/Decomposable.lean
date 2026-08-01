@@ -69,6 +69,24 @@ theorem IsStrongPolygonSet.mono (h : IsStrongPolygonSet χ s)
   intro i j k l hij hjk hkl hi hj hk hl
   exact h hij hjk hkl (hts hi) (hts hj) (hts hk) (hts hl)
 
+theorem IsCupSet.isStrongPolygonSet (h : IsCupSet χ s) :
+    IsStrongPolygonSet χ s := by
+  intro i j k l hij hjk hkl hi hj hk hl
+  constructor
+  · rw [h ⟨i, j, k, hij, hjk⟩ hi hj hk,
+      h ⟨i, j, l, hij, hjk.trans hkl⟩ hi hj hl]
+  · rw [h ⟨i, k, l, hij.trans hjk, hkl⟩ hi hk hl,
+      h ⟨j, k, l, hjk, hkl⟩ hj hk hl]
+
+theorem IsCapSet.isStrongPolygonSet (h : IsCapSet χ s) :
+    IsStrongPolygonSet χ s := by
+  intro i j k l hij hjk hkl hi hj hk hl
+  constructor
+  · rw [h ⟨i, j, k, hij, hjk⟩ hi hj hk,
+      h ⟨i, j, l, hij, hjk.trans hkl⟩ hi hj hl]
+  · rw [h ⟨i, k, l, hij.trans hjk, hkl⟩ hi hk hl,
+      h ⟨j, k, l, hjk, hkl⟩ hj hk hl]
+
 theorem IsCupSet.isCup_orderEmbOfFin (h : IsCupSet χ s) :
     IsCup χ (s.orderEmbOfFin rfl) := by
   refine ⟨(s.orderEmbOfFin rfl).strictMono, ?_⟩
@@ -138,7 +156,21 @@ theorem ContainsStrongPolygonSet.mono
   obtain ⟨polygon, hpolygon, hcard, hstrong⟩ := h
   exact ⟨polygon, hpolygon.trans hts, hcard, hstrong⟩
 
+theorem ContainsCupSet.toContainsStrongPolygonSet
+    (h : ContainsCupSet χ s k) : ContainsStrongPolygonSet χ s k := by
+  obtain ⟨cup, hcup, hcard, hmono⟩ := h
+  exact ⟨cup, hcup, hcard, IsCupSet.isStrongPolygonSet hmono⟩
+
+theorem ContainsCapSet.toContainsStrongPolygonSet
+    (h : ContainsCapSet χ s k) : ContainsStrongPolygonSet χ s k := by
+  obtain ⟨cap, hcap, hcard, hmono⟩ := h
+  exact ⟨cap, hcap, hcard, IsCapSet.isStrongPolygonSet hmono⟩
+
 end FinsetPolygon
+
+/-- The Pascal-row window occurring in the active three-parameter regime. -/
+def decomposableBinomialWindow (a u k : ℕ) : ℕ :=
+  ∑ j ∈ Finset.Icc (k - a) (u - 2), Nat.choose (k - 2) j
 
 /-- Baek--Balko's three-parameter extremal threshold.  When the convex-polygon
 parameter is inactive this is the classical cup--cap binomial coefficient;
@@ -146,7 +178,7 @@ otherwise it is the indicated window in row `k-2` of Pascal's triangle. -/
 def decomposableThreshold (a u k : ℕ) : ℕ :=
   if a = 1 ∨ u = 1 then 0
   else if a + u ≤ k + 3 then Nat.choose (a + u - 4) (a - 2)
-  else ∑ j ∈ Finset.Icc (k - a) (u - 2), Nat.choose (k - 2) j
+  else decomposableBinomialWindow a u k
 
 @[simp] theorem decomposableThreshold_one_left (u k : ℕ) :
     decomposableThreshold 1 u k = 0 := by
@@ -155,6 +187,16 @@ def decomposableThreshold (a u k : ℕ) : ℕ :=
 @[simp] theorem decomposableThreshold_one_right (a k : ℕ) :
     decomposableThreshold a 1 k = 0 := by
   simp [decomposableThreshold]
+
+theorem decomposableThreshold_eq_choose {a u k : ℕ}
+    (ha : 2 ≤ a) (hu : 2 ≤ u) (hbase : a + u ≤ k + 3) :
+    decomposableThreshold a u k = Nat.choose (a + u - 4) (a - 2) := by
+  rw [decomposableThreshold, if_neg (by omega), if_pos hbase]
+
+theorem decomposableThreshold_eq_window {a u k : ℕ}
+    (ha : 2 ≤ a) (hu : 2 ≤ u) (hactive : k + 4 ≤ a + u) :
+    decomposableThreshold a u k = decomposableBinomialWindow a u k := by
+  rw [decomposableThreshold, if_neg (by omega), if_neg (by omega)]
 
 /-- On the diagonal, the threshold is the full binomial row. -/
 theorem decomposableThreshold_diagonal (k : ℕ) (hk : 3 ≤ k) :
@@ -170,7 +212,7 @@ theorem decomposableThreshold_diagonal (k : ℕ) (hk : 3 ≤ k) :
       ext j
       simp only [Finset.mem_Icc, Finset.mem_range]
       omega
-    rw [hinterval]
+    rw [decomposableBinomialWindow, hinterval]
     exact Nat.sum_range_choose (k - 2)
 
 /-- A kernel-checked boundary regression for the published three-parameter
@@ -186,7 +228,42 @@ theorem published_induction_boundary_regression :
       ¬decomposableThreshold 4 1 5 + Nat.choose 3 0 +
           decomposableThreshold 3 5 5 + Nat.choose 3 2 ≤
         decomposableThreshold 4 5 5 := by
-  norm_num [decomposableThreshold, Finset.sum_Icc_succ_top]
+  norm_num [decomposableThreshold, decomposableBinomialWindow,
+    Finset.sum_Icc_succ_top]
+
+/-- In the interior range, the two Pascal windows from the published
+induction are disjoint subintervals of the outer window.  The hypothesis
+`k-a+1 <= u'` isolates the lower endpoint condition missing in the boundary
+regression above; the dual representation supplies its symmetric condition. -/
+theorem decomposableBinomialWindow_pair_le
+    {a u k a' u' : ℕ} (ha : a ≤ k) (hu : u ≤ k)
+    (ha' : a' < a) (hu' : u' < u) (hsum : a' + u' ≤ k - 1)
+    (hu'Lower : k - a + 1 ≤ u') :
+    decomposableBinomialWindow a (u' + 1) k +
+        decomposableBinomialWindow (a' + 1) u k ≤
+      decomposableBinomialWindow a u k := by
+  let first := Finset.Icc (k - a) (u' + 1 - 2)
+  let second := Finset.Icc (k - (a' + 1)) (u - 2)
+  let outer := Finset.Icc (k - a) (u - 2)
+  have hdisjoint : Disjoint first second := by
+    rw [Finset.disjoint_left]
+    intro j hjFirst hjSecond
+    simp only [first, second, Finset.mem_Icc] at hjFirst hjSecond
+    omega
+  have hsubset : first ∪ second ⊆ outer := by
+    intro j hj
+    rcases Finset.mem_union.mp hj with hjFirst | hjSecond
+    · simp only [first, Finset.mem_Icc] at hjFirst
+      simp only [outer, Finset.mem_Icc]
+      omega
+    · simp only [second, Finset.mem_Icc] at hjSecond
+      simp only [outer, Finset.mem_Icc]
+      omega
+  change (∑ j ∈ first, Nat.choose (k - 2) j) +
+      (∑ j ∈ second, Nat.choose (k - 2) j) ≤
+    ∑ j ∈ outer, Nat.choose (k - 2) j
+  rw [← Finset.sum_union hdisjoint]
+  exact Finset.sum_le_sum_of_subset hsubset
 
 /-- The ordinary cup--cap theorem, localized to an arbitrary finite set of
 indices in a sweep-realizable coloring. -/
@@ -244,6 +321,10 @@ namespace HasDeepBelowSplit
 
 variable {n : ℕ} {χ : TripleColoring n}
   {lower upper : Finset (Fin n)}
+
+/-- Membership at one of the two sweep extremes of a finite index set. -/
+def IsSweepEndpoint (s : Finset (Fin n)) (q : Fin n) : Prop :=
+  (∀ x ∈ s, q ≤ x) ∨ (∀ x ∈ s, x ≤ q)
 
 /-- Restrict both sides of a deep-below split to smaller subsets. -/
 theorem mono (h : HasDeepBelowSplit χ lower upper)
@@ -305,6 +386,386 @@ theorem mono (h : HasDeepBelowSplit χ lower upper)
       hdisj hjLower (hu hjUpper')
     simpa [hjLower', hjNotLower] using hcolor
 
+/-- A cup that meets the lower side of an arbitrary deep-below split can use
+at most the two sweep endpoints from the upper side.  Unlike a contiguous
+split, both an upper left endpoint and an upper right endpoint are possible. -/
+theorem cup_inter_upper_card_le_two
+    (h : HasDeepBelowSplit χ lower upper) {cup : Finset (Fin n)}
+    (hcupSub : cup ⊆ lower ∪ upper) (hcup : IsCupSet χ cup)
+    (hcupLower : (cup ∩ lower).Nonempty) : (cup ∩ upper).card ≤ 2 := by
+  by_contra hnot
+  have hthree : 3 ≤ (cup ∩ upper).card := by omega
+  obtain ⟨three, hthreeSub, hthreeCard⟩ :=
+    Finset.exists_subset_card_eq hthree
+  let e : Fin 3 ↪o Fin n := three.orderEmbOfFin hthreeCard
+  let a := e 0
+  let b := e 1
+  let c := e 2
+  have hab : a < b := e.strictMono (by decide)
+  have hbc : b < c := e.strictMono (by decide)
+  have ha : a ∈ cup ∩ upper := hthreeSub (three.orderEmbOfFin_mem hthreeCard 0)
+  have hb : b ∈ cup ∩ upper := hthreeSub (three.orderEmbOfFin_mem hthreeCard 1)
+  have hc : c ∈ cup ∩ upper := hthreeSub (three.orderEmbOfFin_mem hthreeCard 2)
+  have haCup : a ∈ cup := (Finset.mem_inter.mp ha).1
+  have hbCup : b ∈ cup := (Finset.mem_inter.mp hb).1
+  have hcCup : c ∈ cup := (Finset.mem_inter.mp hc).1
+  have haUpper : a ∈ upper := (Finset.mem_inter.mp ha).2
+  have hbUpper : b ∈ upper := (Finset.mem_inter.mp hb).2
+  have hcUpper : c ∈ upper := (Finset.mem_inter.mp hc).2
+  obtain ⟨p, hp⟩ := hcupLower
+  have hpCup : p ∈ cup := (Finset.mem_inter.mp hp).1
+  have hpLower : p ∈ lower := (Finset.mem_inter.mp hp).2
+  have hdisj := Finset.disjoint_left.mp h.disjoint
+  have right_of_middle_upper (t : OrderedTriple n)
+      (hti : t.i ∈ cup) (htj : t.j ∈ cup) (htk : t.k ∈ cup)
+      (htjUpper : t.j ∈ upper)
+      (hsomeLower : t.i ∈ lower ∨ t.j ∈ lower ∨ t.k ∈ lower) :
+      χ t = Turn.right := by
+    have hiUnion := hcupSub hti
+    have hjUnion := hcupSub htj
+    have hkUnion := hcupSub htk
+    have hjNotLower : t.j ∉ lower := fun hjLower => hdisj hjLower htjUpper
+    have hnotLower : ¬(t.i ∈ lower ∧ t.j ∈ lower ∧ t.k ∈ lower) := by
+      rintro ⟨_, hjLower, _⟩
+      exact hjNotLower hjLower
+    have hnotUpper : ¬(t.i ∈ upper ∧ t.j ∈ upper ∧ t.k ∈ upper) := by
+      rintro hallUpper
+      rcases hsomeLower with hiLower | hjLower | hkLower
+      · exact hdisj hiLower hallUpper.1
+      · exact hdisj hjLower hallUpper.2.1
+      · exact hdisj hkLower hallUpper.2.2
+    simpa [hjNotLower] using
+      h.crossing t hiUnion hjUnion hkUnion hnotLower hnotUpper
+  have hpa : p ≠ a := fun hpa => hdisj hpLower (hpa ▸ haUpper)
+  rcases lt_or_gt_of_ne hpa with hpa | hap
+  · let t : OrderedTriple n := ⟨p, a, b, hpa, hab⟩
+    have hright : χ t = Turn.right :=
+      right_of_middle_upper t hpCup haCup hbCup haUpper (Or.inl hpLower)
+    exact Turn.noConfusion (hcup t hpCup haCup hbCup ▸ hright)
+  · have hpb : p ≠ b := fun hpb => hdisj hpLower (hpb ▸ hbUpper)
+    rcases lt_or_gt_of_ne hpb with hpb | hbp
+    · let t : OrderedTriple n := ⟨p, b, c, hpb, hbc⟩
+      have hright : χ t = Turn.right :=
+        right_of_middle_upper t hpCup hbCup hcCup hbUpper (Or.inl hpLower)
+      exact Turn.noConfusion (hcup t hpCup hbCup hcCup ▸ hright)
+    · have hpc : p ≠ c := fun hpc => hdisj hpLower (hpc ▸ hcUpper)
+      rcases lt_or_gt_of_ne hpc with hpc | hcp
+      · let t : OrderedTriple n := ⟨a, b, p, hab, hbp⟩
+        have hright : χ t = Turn.right :=
+          right_of_middle_upper t haCup hbCup hpCup hbUpper
+            (Or.inr (Or.inr hpLower))
+        exact Turn.noConfusion (hcup t haCup hbCup hpCup ▸ hright)
+      · let t : OrderedTriple n := ⟨b, c, p, hbc, hcp⟩
+        have hright : χ t = Turn.right :=
+          right_of_middle_upper t hbCup hcCup hpCup hcUpper
+            (Or.inr (Or.inr hpLower))
+        exact Turn.noConfusion (hcup t hbCup hcCup hpCup ▸ hright)
+
+/-- Pointwise form of the preceding cardinal bound: every upper vertex of a
+cup crossing the split is one of the cup's two sweep endpoints. -/
+theorem upper_mem_cup_isSweepEndpoint
+    (h : HasDeepBelowSplit χ lower upper) {cup : Finset (Fin n)}
+    (hcupSub : cup ⊆ lower ∪ upper) (hcup : IsCupSet χ cup)
+    (hcupLower : (cup ∩ lower).Nonempty) {q : Fin n}
+    (hqCup : q ∈ cup) (hqUpper : q ∈ upper) : IsSweepEndpoint cup q := by
+  by_contra hnot
+  rw [IsSweepEndpoint, not_or] at hnot
+  push Not at hnot
+  obtain ⟨x, hxCup, hxq⟩ := hnot.1
+  obtain ⟨y, hyCup, hqy⟩ := hnot.2
+  have hxq' : x < q := hxq
+  have hqy' : q < y := hqy
+  obtain ⟨p, hp⟩ := hcupLower
+  have hpCup : p ∈ cup := (Finset.mem_inter.mp hp).1
+  have hpLower : p ∈ lower := (Finset.mem_inter.mp hp).2
+  have hdisj := Finset.disjoint_left.mp h.disjoint
+  have hpq : p ≠ q := fun hpq => hdisj hpLower (hpq ▸ hqUpper)
+  have right_of_middle_upper (t : OrderedTriple n)
+      (hti : t.i ∈ cup) (htj : t.j ∈ cup) (htk : t.k ∈ cup)
+      (htjUpper : t.j ∈ upper)
+      (hsomeLower : t.i ∈ lower ∨ t.j ∈ lower ∨ t.k ∈ lower) :
+      χ t = Turn.right := by
+    have hiUnion := hcupSub hti
+    have hjUnion := hcupSub htj
+    have hkUnion := hcupSub htk
+    have hjNotLower : t.j ∉ lower := fun hjLower => hdisj hjLower htjUpper
+    have hnotLower : ¬(t.i ∈ lower ∧ t.j ∈ lower ∧ t.k ∈ lower) := by
+      rintro ⟨_, hjLower, _⟩
+      exact hjNotLower hjLower
+    have hnotUpper : ¬(t.i ∈ upper ∧ t.j ∈ upper ∧ t.k ∈ upper) := by
+      rintro hallUpper
+      rcases hsomeLower with hiLower | hjLower | hkLower
+      · exact hdisj hiLower hallUpper.1
+      · exact hdisj hjLower hallUpper.2.1
+      · exact hdisj hkLower hallUpper.2.2
+    simpa [hjNotLower] using
+      h.crossing t hiUnion hjUnion hkUnion hnotLower hnotUpper
+  rcases lt_or_gt_of_ne hpq with hpq | hqp
+  · let t : OrderedTriple n := ⟨p, q, y, hpq, hqy'⟩
+    have hright := right_of_middle_upper t hpCup hqCup hyCup hqUpper
+      (Or.inl hpLower)
+    exact Turn.noConfusion (hcup t hpCup hqCup hyCup ▸ hright)
+  · let t : OrderedTriple n := ⟨x, q, p, hxq', hqp⟩
+    have hright := right_of_middle_upper t hxCup hqCup hpCup hqUpper
+      (Or.inr (Or.inr hpLower))
+    exact Turn.noConfusion (hcup t hxCup hqCup hpCup ▸ hright)
+
+/-- Dually, a cap that meets the upper side of an arbitrary deep-below split
+can use at most the two sweep endpoints from the lower side. -/
+theorem cap_inter_lower_card_le_two
+    (h : HasDeepBelowSplit χ lower upper) {cap : Finset (Fin n)}
+    (hcapSub : cap ⊆ lower ∪ upper) (hcap : IsCapSet χ cap)
+    (hcapUpper : (cap ∩ upper).Nonempty) : (cap ∩ lower).card ≤ 2 := by
+  by_contra hnot
+  have hthree : 3 ≤ (cap ∩ lower).card := by omega
+  obtain ⟨three, hthreeSub, hthreeCard⟩ :=
+    Finset.exists_subset_card_eq hthree
+  let e : Fin 3 ↪o Fin n := three.orderEmbOfFin hthreeCard
+  let a := e 0
+  let b := e 1
+  let c := e 2
+  have hab : a < b := e.strictMono (by decide)
+  have hbc : b < c := e.strictMono (by decide)
+  have ha : a ∈ cap ∩ lower := hthreeSub (three.orderEmbOfFin_mem hthreeCard 0)
+  have hb : b ∈ cap ∩ lower := hthreeSub (three.orderEmbOfFin_mem hthreeCard 1)
+  have hc : c ∈ cap ∩ lower := hthreeSub (three.orderEmbOfFin_mem hthreeCard 2)
+  have haCap : a ∈ cap := (Finset.mem_inter.mp ha).1
+  have hbCap : b ∈ cap := (Finset.mem_inter.mp hb).1
+  have hcCap : c ∈ cap := (Finset.mem_inter.mp hc).1
+  have haLower : a ∈ lower := (Finset.mem_inter.mp ha).2
+  have hbLower : b ∈ lower := (Finset.mem_inter.mp hb).2
+  have hcLower : c ∈ lower := (Finset.mem_inter.mp hc).2
+  obtain ⟨p, hp⟩ := hcapUpper
+  have hpCap : p ∈ cap := (Finset.mem_inter.mp hp).1
+  have hpUpper : p ∈ upper := (Finset.mem_inter.mp hp).2
+  have hdisj := Finset.disjoint_left.mp h.disjoint
+  have left_of_middle_lower (t : OrderedTriple n)
+      (hti : t.i ∈ cap) (htj : t.j ∈ cap) (htk : t.k ∈ cap)
+      (htjLower : t.j ∈ lower)
+      (hsomeUpper : t.i ∈ upper ∨ t.j ∈ upper ∨ t.k ∈ upper) :
+      χ t = Turn.left := by
+    have hiUnion := hcapSub hti
+    have hjUnion := hcapSub htj
+    have hkUnion := hcapSub htk
+    have hjNotUpper : t.j ∉ upper := fun hjUpper => hdisj htjLower hjUpper
+    have hnotLower : ¬(t.i ∈ lower ∧ t.j ∈ lower ∧ t.k ∈ lower) := by
+      rintro hallLower
+      rcases hsomeUpper with hiUpper | hjUpper | hkUpper
+      · exact hdisj hallLower.1 hiUpper
+      · exact hdisj hallLower.2.1 hjUpper
+      · exact hdisj hallLower.2.2 hkUpper
+    have hnotUpper : ¬(t.i ∈ upper ∧ t.j ∈ upper ∧ t.k ∈ upper) := by
+      rintro ⟨_, hjUpper, _⟩
+      exact hjNotUpper hjUpper
+    simpa [htjLower] using
+      h.crossing t hiUnion hjUnion hkUnion hnotLower hnotUpper
+  have hpa : p ≠ a := fun hpa => hdisj (hpa ▸ haLower) hpUpper
+  rcases lt_or_gt_of_ne hpa with hpa | hap
+  · let t : OrderedTriple n := ⟨p, a, b, hpa, hab⟩
+    have hleft : χ t = Turn.left :=
+      left_of_middle_lower t hpCap haCap hbCap haLower (Or.inl hpUpper)
+    exact Turn.noConfusion (hcap t hpCap haCap hbCap ▸ hleft)
+  · have hpb : p ≠ b := fun hpb => hdisj (hpb ▸ hbLower) hpUpper
+    rcases lt_or_gt_of_ne hpb with hpb | hbp
+    · let t : OrderedTriple n := ⟨p, b, c, hpb, hbc⟩
+      have hleft : χ t = Turn.left :=
+        left_of_middle_lower t hpCap hbCap hcCap hbLower (Or.inl hpUpper)
+      exact Turn.noConfusion (hcap t hpCap hbCap hcCap ▸ hleft)
+    · have hpc : p ≠ c := fun hpc => hdisj (hpc ▸ hcLower) hpUpper
+      rcases lt_or_gt_of_ne hpc with hpc | hcp
+      · let t : OrderedTriple n := ⟨a, b, p, hab, hbp⟩
+        have hleft : χ t = Turn.left :=
+          left_of_middle_lower t haCap hbCap hpCap hbLower
+            (Or.inr (Or.inr hpUpper))
+        exact Turn.noConfusion (hcap t haCap hbCap hpCap ▸ hleft)
+      · let t : OrderedTriple n := ⟨b, c, p, hbc, hcp⟩
+        have hleft : χ t = Turn.left :=
+          left_of_middle_lower t hbCap hcCap hpCap hcLower
+            (Or.inr (Or.inr hpUpper))
+        exact Turn.noConfusion (hcap t hbCap hcCap hpCap ▸ hleft)
+
+/-- Pointwise dual: every lower vertex of a cap crossing the split is one of
+the cap's two sweep endpoints. -/
+theorem lower_mem_cap_isSweepEndpoint
+    (h : HasDeepBelowSplit χ lower upper) {cap : Finset (Fin n)}
+    (hcapSub : cap ⊆ lower ∪ upper) (hcap : IsCapSet χ cap)
+    (hcapUpper : (cap ∩ upper).Nonempty) {q : Fin n}
+    (hqCap : q ∈ cap) (hqLower : q ∈ lower) : IsSweepEndpoint cap q := by
+  by_contra hnot
+  rw [IsSweepEndpoint, not_or] at hnot
+  push Not at hnot
+  obtain ⟨x, hxCap, hxq⟩ := hnot.1
+  obtain ⟨y, hyCap, hqy⟩ := hnot.2
+  obtain ⟨p, hp⟩ := hcapUpper
+  have hpCap : p ∈ cap := (Finset.mem_inter.mp hp).1
+  have hpUpper : p ∈ upper := (Finset.mem_inter.mp hp).2
+  have hdisj := Finset.disjoint_left.mp h.disjoint
+  have hpq : p ≠ q := fun hpq => hdisj (hpq ▸ hqLower) hpUpper
+  have left_of_middle_lower (t : OrderedTriple n)
+      (hti : t.i ∈ cap) (htj : t.j ∈ cap) (htk : t.k ∈ cap)
+      (htjLower : t.j ∈ lower)
+      (hsomeUpper : t.i ∈ upper ∨ t.j ∈ upper ∨ t.k ∈ upper) :
+      χ t = Turn.left := by
+    have hiUnion := hcapSub hti
+    have hjUnion := hcapSub htj
+    have hkUnion := hcapSub htk
+    have hjNotUpper : t.j ∉ upper := fun hjUpper => hdisj htjLower hjUpper
+    have hnotLower : ¬(t.i ∈ lower ∧ t.j ∈ lower ∧ t.k ∈ lower) := by
+      rintro hallLower
+      rcases hsomeUpper with hiUpper | hjUpper | hkUpper
+      · exact hdisj hallLower.1 hiUpper
+      · exact hdisj hallLower.2.1 hjUpper
+      · exact hdisj hallLower.2.2 hkUpper
+    have hnotUpper : ¬(t.i ∈ upper ∧ t.j ∈ upper ∧ t.k ∈ upper) := by
+      rintro ⟨_, hjUpper, _⟩
+      exact hjNotUpper hjUpper
+    simpa [htjLower] using
+      h.crossing t hiUnion hjUnion hkUnion hnotLower hnotUpper
+  rcases lt_or_gt_of_ne hpq with hpq | hqp
+  · let t : OrderedTriple n := ⟨p, q, y, hpq, hqy⟩
+    have hleft := left_of_middle_lower t hpCap hqCap hyCap hqLower
+      (Or.inl hpUpper)
+    exact Turn.noConfusion (hcap t hpCap hqCap hyCap ▸ hleft)
+  · let t : OrderedTriple n := ⟨x, q, p, hxq, hqp⟩
+    have hleft := left_of_middle_lower t hxCap hqCap hpCap hqLower
+      (Or.inr (Or.inr hpUpper))
+    exact Turn.noConfusion (hcap t hxCap hqCap hpCap ▸ hleft)
+
+/-- If a strong polygon crosses an arbitrary deep-below split, its vertices
+on the lower side form a cup. -/
+theorem strong_inter_lower_isCupSet
+    (h : HasDeepBelowSplit χ lower upper) {polygon : Finset (Fin n)}
+    (hpolygonSub : polygon ⊆ lower ∪ upper)
+    (hstrong : IsStrongPolygonSet χ polygon)
+    (hpolygonUpper : (polygon ∩ upper).Nonempty) :
+    IsCupSet χ (polygon ∩ lower) := by
+  obtain ⟨p, hp⟩ := hpolygonUpper
+  have hpPolygon : p ∈ polygon := (Finset.mem_inter.mp hp).1
+  have hpUpper : p ∈ upper := (Finset.mem_inter.mp hp).2
+  have hdisj := Finset.disjoint_left.mp h.disjoint
+  intro t hi hj hk
+  have hiPolygon : t.i ∈ polygon := (Finset.mem_inter.mp hi).1
+  have hjPolygon : t.j ∈ polygon := (Finset.mem_inter.mp hj).1
+  have hkPolygon : t.k ∈ polygon := (Finset.mem_inter.mp hk).1
+  have hiLower : t.i ∈ lower := (Finset.mem_inter.mp hi).2
+  have hjLower : t.j ∈ lower := (Finset.mem_inter.mp hj).2
+  have hkLower : t.k ∈ lower := (Finset.mem_inter.mp hk).2
+  have mixed_left (q : OrderedTriple n)
+      (hqi : q.i ∈ polygon) (hqj : q.j ∈ polygon) (hqk : q.k ∈ polygon)
+      (hqjLower : q.j ∈ lower)
+      (hsomeUpper : q.i ∈ upper ∨ q.j ∈ upper ∨ q.k ∈ upper) :
+      χ q = Turn.left := by
+    have hiUnion := hpolygonSub hqi
+    have hjUnion := hpolygonSub hqj
+    have hkUnion := hpolygonSub hqk
+    have hjNotUpper : q.j ∉ upper := fun hjUpper => hdisj hqjLower hjUpper
+    have hnotLower : ¬(q.i ∈ lower ∧ q.j ∈ lower ∧ q.k ∈ lower) := by
+      rintro hallLower
+      rcases hsomeUpper with hqiUpper | hqjUpper | hqkUpper
+      · exact hdisj hallLower.1 hqiUpper
+      · exact hdisj hallLower.2.1 hqjUpper
+      · exact hdisj hallLower.2.2 hqkUpper
+    have hnotUpper : ¬(q.i ∈ upper ∧ q.j ∈ upper ∧ q.k ∈ upper) := by
+      rintro ⟨_, hqjUpper, _⟩
+      exact hjNotUpper hqjUpper
+    simpa [hqjLower] using
+      h.crossing q hiUnion hjUnion hkUnion hnotLower hnotUpper
+  have hpi : p ≠ t.i := fun hpi => hdisj (hpi ▸ hiLower) hpUpper
+  rcases lt_or_gt_of_ne hpi with hpi | hip
+  · have hpj : p < t.j := hpi.trans t.hij
+    have hpk : p < t.k := hpj.trans t.hjk
+    have heq := (hstrong hpi t.hij t.hjk hpPolygon hiPolygon
+      hjPolygon hkPolygon).2
+    have hleft := mixed_left ⟨p, t.j, t.k, hpj, t.hjk⟩
+      hpPolygon hjPolygon hkPolygon hjLower (Or.inl hpUpper)
+    exact heq.symm.trans hleft
+  · have hpj : p ≠ t.j := fun hpj => hdisj (hpj ▸ hjLower) hpUpper
+    rcases lt_or_gt_of_ne hpj with hpj | hjp
+    · have heq := (hstrong hip hpj t.hjk hiPolygon hpPolygon
+        hjPolygon hkPolygon).2
+      have hleft := mixed_left ⟨p, t.j, t.k, hpj, t.hjk⟩
+        hpPolygon hjPolygon hkPolygon hjLower (Or.inl hpUpper)
+      exact heq.trans hleft
+    · have hpk : p ≠ t.k := fun hpk => hdisj (hpk ▸ hkLower) hpUpper
+      rcases lt_or_gt_of_ne hpk with hpk | hkp
+      · have heq := (hstrong t.hij hjp hpk hiPolygon hjPolygon
+          hpPolygon hkPolygon).1
+        have hleft := mixed_left ⟨t.i, t.j, p, t.hij, hjp⟩
+          hiPolygon hjPolygon hpPolygon hjLower (Or.inr (Or.inr hpUpper))
+        exact heq.symm.trans hleft
+      · have heq := (hstrong t.hij t.hjk hkp hiPolygon hjPolygon
+          hkPolygon hpPolygon).1
+        have hleft := mixed_left ⟨t.i, t.j, p, t.hij, t.hjk.trans hkp⟩
+          hiPolygon hjPolygon hpPolygon hjLower (Or.inr (Or.inr hpUpper))
+        exact heq.trans hleft
+
+/-- Dually, if a strong polygon crosses an arbitrary deep-below split, its
+vertices on the upper side form a cap. -/
+theorem strong_inter_upper_isCapSet
+    (h : HasDeepBelowSplit χ lower upper) {polygon : Finset (Fin n)}
+    (hpolygonSub : polygon ⊆ lower ∪ upper)
+    (hstrong : IsStrongPolygonSet χ polygon)
+    (hpolygonLower : (polygon ∩ lower).Nonempty) :
+    IsCapSet χ (polygon ∩ upper) := by
+  obtain ⟨p, hp⟩ := hpolygonLower
+  have hpPolygon : p ∈ polygon := (Finset.mem_inter.mp hp).1
+  have hpLower : p ∈ lower := (Finset.mem_inter.mp hp).2
+  have hdisj := Finset.disjoint_left.mp h.disjoint
+  intro t hi hj hk
+  have hiPolygon : t.i ∈ polygon := (Finset.mem_inter.mp hi).1
+  have hjPolygon : t.j ∈ polygon := (Finset.mem_inter.mp hj).1
+  have hkPolygon : t.k ∈ polygon := (Finset.mem_inter.mp hk).1
+  have hiUpper : t.i ∈ upper := (Finset.mem_inter.mp hi).2
+  have hjUpper : t.j ∈ upper := (Finset.mem_inter.mp hj).2
+  have hkUpper : t.k ∈ upper := (Finset.mem_inter.mp hk).2
+  have mixed_right (q : OrderedTriple n)
+      (hqi : q.i ∈ polygon) (hqj : q.j ∈ polygon) (hqk : q.k ∈ polygon)
+      (hqjUpper : q.j ∈ upper)
+      (hsomeLower : q.i ∈ lower ∨ q.j ∈ lower ∨ q.k ∈ lower) :
+      χ q = Turn.right := by
+    have hiUnion := hpolygonSub hqi
+    have hjUnion := hpolygonSub hqj
+    have hkUnion := hpolygonSub hqk
+    have hjNotLower : q.j ∉ lower := fun hjLower => hdisj hjLower hqjUpper
+    have hnotLower : ¬(q.i ∈ lower ∧ q.j ∈ lower ∧ q.k ∈ lower) := by
+      rintro ⟨_, hqjLower, _⟩
+      exact hjNotLower hqjLower
+    have hnotUpper : ¬(q.i ∈ upper ∧ q.j ∈ upper ∧ q.k ∈ upper) := by
+      rintro hallUpper
+      rcases hsomeLower with hqiLower | hqjLower | hqkLower
+      · exact hdisj hqiLower hallUpper.1
+      · exact hdisj hqjLower hallUpper.2.1
+      · exact hdisj hqkLower hallUpper.2.2
+    simpa [hjNotLower] using
+      h.crossing q hiUnion hjUnion hkUnion hnotLower hnotUpper
+  have hpi : p ≠ t.i := fun hpi => hdisj hpLower (hpi ▸ hiUpper)
+  rcases lt_or_gt_of_ne hpi with hpi | hip
+  · have hpj : p < t.j := hpi.trans t.hij
+    have heq := (hstrong hpi t.hij t.hjk hpPolygon hiPolygon
+      hjPolygon hkPolygon).2
+    have hright := mixed_right ⟨p, t.j, t.k, hpj, t.hjk⟩
+      hpPolygon hjPolygon hkPolygon hjUpper (Or.inl hpLower)
+    exact heq.symm.trans hright
+  · have hpj : p ≠ t.j := fun hpj => hdisj hpLower (hpj ▸ hjUpper)
+    rcases lt_or_gt_of_ne hpj with hpj | hjp
+    · have heq := (hstrong hip hpj t.hjk hiPolygon hpPolygon
+        hjPolygon hkPolygon).2
+      have hright := mixed_right ⟨p, t.j, t.k, hpj, t.hjk⟩
+        hpPolygon hjPolygon hkPolygon hjUpper (Or.inl hpLower)
+      exact heq.trans hright
+    · have hpk : p ≠ t.k := fun hpk => hdisj hpLower (hpk ▸ hkUpper)
+      rcases lt_or_gt_of_ne hpk with hpk | hkp
+      · have heq := (hstrong t.hij hjp hpk hiPolygon hjPolygon
+          hpPolygon hkPolygon).1
+        have hright := mixed_right ⟨t.i, t.j, p, t.hij, hjp⟩
+          hiPolygon hjPolygon hpPolygon hjUpper (Or.inr (Or.inr hpLower))
+        exact heq.symm.trans hright
+      · have heq := (hstrong t.hij t.hjk hkp hiPolygon hjPolygon
+          hkPolygon hpPolygon).1
+        have hright := mixed_right ⟨t.i, t.j, p, t.hij, t.hjk.trans hkp⟩
+          hiPolygon hjPolygon hpPolygon hjUpper (Or.inr (Or.inr hpLower))
+        exact heq.trans hright
+
 /-- A cup in the lower part together with a cap in the upper part is a
 strong polygon.  This is the geometric engine of the decomposable-set
 argument. -/
@@ -335,6 +796,36 @@ theorem cup_union_cap_isStrongPolygonSet
       color ⟨i, j, l, hij, hjk.trans hkl⟩ hi hj hl]
   · rw [color ⟨i, k, l, hij.trans hjk, hkl⟩ hi hk hl,
       color ⟨j, k, l, hjk, hkl⟩ hj hk hl]
+
+/-- Exact crossing characterization: a set meeting both sides of a deep-below
+split is a strong polygon exactly when its lower part is a cup and its upper
+part is a cap. -/
+theorem isStrongPolygonSet_iff_inter_cup_cap
+    (h : HasDeepBelowSplit χ lower upper) {polygon : Finset (Fin n)}
+    (hpolygonSub : polygon ⊆ lower ∪ upper)
+    (hpolygonLower : (polygon ∩ lower).Nonempty)
+    (hpolygonUpper : (polygon ∩ upper).Nonempty) :
+    IsStrongPolygonSet χ polygon ↔
+      IsCupSet χ (polygon ∩ lower) ∧ IsCapSet χ (polygon ∩ upper) := by
+  constructor
+  · intro hstrong
+    exact ⟨h.strong_inter_lower_isCupSet hpolygonSub hstrong hpolygonUpper,
+      h.strong_inter_upper_isCapSet hpolygonSub hstrong hpolygonLower⟩
+  · rintro ⟨hcup, hcap⟩
+    have hunion : (polygon ∩ lower) ∪ (polygon ∩ upper) = polygon := by
+      ext x
+      constructor
+      · intro hx
+        rcases Finset.mem_union.mp hx with hx | hx
+        · exact (Finset.mem_inter.mp hx).1
+        · exact (Finset.mem_inter.mp hx).1
+      · intro hx
+        rcases Finset.mem_union.mp (hpolygonSub hx) with hxLower | hxUpper
+        · exact Finset.mem_union_left _ (Finset.mem_inter.mpr ⟨hx, hxLower⟩)
+        · exact Finset.mem_union_right _ (Finset.mem_inter.mpr ⟨hx, hxUpper⟩)
+    rw [← hunion]
+    exact h.cup_union_cap_isStrongPolygonSet
+      Finset.inter_subset_right Finset.inter_subset_right hcup hcap
 
 /-- Cardinal form of `cup_union_cap_isStrongPolygonSet`: if the two chains
 have total size at least `k`, their union contains a strong `k`-gon. -/
@@ -460,6 +951,18 @@ def DecomposableExactUpperAt (k : ℕ) : Prop :=
 def IsExactFormulaCounterexample {n : ℕ} (χ : TripleColoring n) (k : ℕ) : Prop :=
   IsSweepRealizable χ ∧ 2 ^ (k - 2) < n ∧
     ¬ContainsStrongPolygonSet χ Finset.univ k
+
+theorem IsExactFormulaCounterexample.not_containsCupSet
+    {n k : ℕ} {χ : TripleColoring n} (h : IsExactFormulaCounterexample χ k) :
+    ¬ContainsCupSet χ Finset.univ k := by
+  intro hcup
+  exact h.2.2 (FinsetPolygon.ContainsCupSet.toContainsStrongPolygonSet hcup)
+
+theorem IsExactFormulaCounterexample.not_containsCapSet
+    {n k : ℕ} {χ : TripleColoring n} (h : IsExactFormulaCounterexample χ k) :
+    ¬ContainsCapSet χ Finset.univ k := by
+  intro hcap
+  exact h.2.2 (FinsetPolygon.ContainsCapSet.toContainsStrongPolygonSet hcap)
 
 /-- E4, factored at its exact logical dependency: once E3 is proved at `k`,
 every realizable counterexample at `k` is indecomposable. -/
