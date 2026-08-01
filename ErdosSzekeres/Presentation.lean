@@ -38,6 +38,29 @@ def shear (t : ℝ) (p : Point 2) : Point 2 :=
   funext i
   fin_cases i <;> simp [sweepCoordinate]
 
+/-- The determinant-one shear as an invertible linear map. -/
+def shearLinearEquiv (t : ℝ) : Point 2 ≃ₗ[ℝ] Point 2 where
+  toFun := shear t
+  invFun := shear (-t)
+  left_inv := shear_neg_shear t
+  right_inv p := by simpa using shear_neg_shear (-t) p
+  map_add' p q := by
+    funext i
+    fin_cases i
+    · simp [shear, sweepCoordinate]
+      ring
+    · simp [shear, sweepCoordinate]
+  map_smul' u p := by
+    funext i
+    fin_cases i
+    · simp [shear, sweepCoordinate]
+      ring
+    · simp [shear, sweepCoordinate]
+
+@[simp] theorem shearLinearEquiv_apply (t : ℝ) (p : Point 2) :
+    shearLinearEquiv t p = shear t p :=
+  rfl
+
 /-- A determinant-one shear preserves the signed orientation value, not just
 its sign. -/
 @[simp] theorem orientation_shear (t : ℝ) (a b c : Point 2) :

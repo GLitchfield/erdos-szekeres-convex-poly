@@ -411,6 +411,34 @@ theorem inConvexPosition_iff_four_subsets (s : Finset (Point 2))
       exact not_mem_convexHull_of_card_le_two hgp hp
         (htsErase'.trans (Finset.erase_subset p s)) hpt_not_mem htcard2 hpt
 
+private theorem inConvexPosition_of_image_linearEquiv
+    (e : Point 2 ≃ₗ[ℝ] Point 2) (s : Finset (Point 2))
+    (hs : InConvexPosition (s.image e)) : InConvexPosition s := by
+  intro p hp hphull
+  apply hs (e p) (Finset.mem_image.mpr ⟨p, hp, rfl⟩)
+  rw [← Finset.image_erase e.injective]
+  have hep : e p ∈ e '' convexHull ℝ (↑(s.erase p) : Set (Point 2)) :=
+    ⟨p, hphull, rfl⟩
+  change e.toLinearMap p ∈ e.toLinearMap '' convexHull ℝ
+    (↑(s.erase p) : Set (Point 2)) at hep
+  rw [LinearMap.image_convexHull] at hep
+  simpa using hep
+
+/-- An invertible linear change of coordinates preserves the project's
+convex-position predicate. -/
+theorem inConvexPosition_image_linearEquiv_iff
+    (e : Point 2 ≃ₗ[ℝ] Point 2) (s : Finset (Point 2)) :
+    InConvexPosition (s.image e) ↔ InConvexPosition s := by
+  constructor
+  · exact inConvexPosition_of_image_linearEquiv e s
+  · intro hs
+    apply inConvexPosition_of_image_linearEquiv e.symm (s.image e)
+    have himage : (s.image e).image e.symm = s := by
+      ext x
+      simp
+    rw [himage]
+    exact hs
+
 end
 
 end ErdosSzekeres

@@ -86,14 +86,19 @@ sufficient consistency hypothesis.
 | C2 | `inConvexPosition_four_iff_no_mem_triangle` | Compiles | A four-point set is convex iff no point lies in the other triangle |
 | C3 | `inConvexPosition_four_iff_orientation_signs` | Compiles | Give a purely sign-based four-point convexity certificate |
 | C4 | `inConvexPosition_iff_four_subsets` | Compiles | Lift the local certificate to arbitrary size using Carathéodory's theorem |
-| C5 | define a strong polygon as compatible upper/lower monochromatic chains and prove it equivalent to geometric convex position | Known; pending | Exact combinatorial form of the target polygon |
+| C5 | `IsStrongPolygon`, `SweptPresentation.inConvexPosition_iff_isStrongPolygon` | Compiles | Exact four-index combinatorial form of the geometric target polygon |
 
-C1--C4 establish the local-to-global safety bridge. The C3 certificate is
+C1--C5 establish the full combinatorial/geometric safety bridge. The C3 certificate is
 stated for arbitrary point order; cyclicity and sign reversal reduce it to the
 four colors of increasing triples in sweep order. C4 uses Carathéodory's
 theorem and general position to show that every convex-hull obstruction is
-witnessed inside a four-point subset. C5 remains necessary before reporting an
-arbitrary-size `TripleColoring` theorem as a planar convex-polygon theorem.
+witnessed inside a four-point subset. C5 proves that a sweep-ordered set is
+convex exactly when every increasing four-tuple has one of the patterns
+`++++`, `++--`, `--++`, or `----`; equivalently, its two middle vertices form
+compatible upper/lower hull chains. The theorem is transported through the
+generic determinant-one shear to the original public point set. B1 is now the
+next interface lemma needed to state convex subsets as restricted strong
+polygons inside a larger coloring.
 
 ### Layer D: classical controls
 

@@ -32,6 +32,9 @@ sets.
   purely sign-based convexity certificate for four points, and the
   local-to-global theorem reducing finite convex position to four-point
   subsets.
+- `ErdosSzekeres/StrongPolygon.lean` defines the four-index strong-polygon law
+  and proves it equivalent to convex position for swept configurations and
+  for their original finite point sets.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
   sweep model to the exact conjecture.
 - `docs/literature_review.md` records the initial research synthesis.
