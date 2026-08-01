@@ -49,7 +49,13 @@ set supplies a generic determinant-one shear, and sorting constructs a
 `SweptConfiguration` presentation of every finite general-position input while
 preserving its orientation values exactly. The mathlib geometry/API redirect
 condition therefore did not fire. C1/C3, the point-in-triangle and ordered
-four-point convexity/sign criteria, are now the immediate safety bridge.
+four-point convexity/sign criteria, were then discharged by commit
+`33633efdbf52ef9625cfccccb03d2540f6634e6a`. The two-layer candidate now has
+kernel-checked bridges in both directions: public points produce a realizable
+sweep coloring, and the local convexity target is recoverable from its signs.
+The ticket remains open only for the bounded alternative-API comparison
+required by its original closure criteria. The next mathematical bridge is C4:
+lift the four-point certificate to arbitrary finite convex-position subsets.
 
 The 2026-08-01 Sol/Fable review was `partially_supported`. Both reviewers found
 no false intermediary theorem in the packet, but correctly objected that one
@@ -70,6 +76,8 @@ those facts is a packet limitation rather than mathematical evidence.
   compiling two-layer pilot
 - [`ErdosSzekeres.Presentation`](../../../ErdosSzekeres/Presentation.lean), the
   generic public-point-set-to-sweep bridge
+- [`ErdosSzekeres.Convexity`](../../../ErdosSzekeres/Convexity.lean), the
+  triangle and four-point orientation-sign convexity bridge
 - [Intermediary lemma ladder](../../formalization_plan.md)
 - Baek's formalization: <https://github.com/jcpaik/erdos-tuza-valtr>
 - Advisory review of revision `2e34881d6f9f6adefe14d459def686fd90031964`:
