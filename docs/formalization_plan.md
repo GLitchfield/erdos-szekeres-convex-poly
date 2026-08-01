@@ -124,7 +124,7 @@ extends the bridge to selected subsets.
 
 | ID | Lemma or definition | Status | Purpose |
 | --- | --- | --- | --- |
-| E1 | composition/decomposition of sweep colorings | Deep-split signature compiles; realization pending | Express the recursive extremal construction |
+| E1 | composition/decomposition of sweep colorings | Binary deep composition and planar realization compile | Express the recursive extremal construction |
 | E2 | polygon-size recurrence under composition | Local crossing lemmas compile; global recurrence pending | Control decomposable configurations |
 | E3 | exact formula for decomposable point sets | Published 2026; pending | Reproduce the strongest directly relevant structural theorem |
 | E4 | a minimal counterexample to the exact formula is indecomposable | Consequence of E3; pending | Isolate the genuine obstruction |
@@ -168,10 +168,15 @@ a five-point sweep. Explicit two- and four-point planar configurations supply
 the sharpness halves. The Bonnice/Lovász convex-layer argument or a comparably
 auditable finite certificate is still needed for the exact `n=5` case.
 
-`ErdosSzekeres/Composition.lean` begins the construction-facing API. A
+`ErdosSzekeres/Composition.lean` provides the first construction-facing API. A
 `HasDeepSplit` records the two mixed-triple rules of a left block placed deep
 below a right block. Compiling lemmas show that a cup crossing the split cannot
 use two right vertices, a cap cannot use two left vertices, and a strong
 polygon crossing the split restricts to a cup on its left side and a cap on
-its right side. The next required bridge is geometric: construct such a split
-by sufficiently separated translations of two finite swept configurations.
+its right side. The file also discharges the realizability obligation: finite
+upper bounds choose horizontal and vertical translation parameters, the two
+mixed orientation inequalities are proved algebraically, arbitrary-index
+general position is recovered from ordered triples, and
+`exists_deepComposition` returns an actual planar configuration. D4 now needs
+the global recursive family and its cup/cap/polygon-size invariant on top of
+this binary operation.
