@@ -28,6 +28,9 @@ None. The destination was fixed by the user on 2026-08-01.
 - [Choose the canonical formal model](tickets/0001-choose-formal-model.md)
   before committing the proof architecture to Euclidean geometry, ordered
   configurations, or a verified two-layer representation.
+- [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
+  by pursuing proof invariants and exact counterexample search in parallel,
+  with separate checks for abstract decomposability and planar realizability.
 
 ## Not yet specified
 
