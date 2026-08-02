@@ -183,13 +183,20 @@ def main() -> None:
     strong_histogram: Counter[int] = Counter()
     cup_histogram: Counter[int] = Counter()
     cap_histogram: Counter[int] = Counter()
+    cap_strong_histogram: Counter[tuple[int, int]] = Counter()
+    cup_strong_histogram: Counter[tuple[int, int]] = Counter()
     signotope_count = 0
     for bits in colorings:
-        strong_histogram[maximum(n, lambda s: strong(bits, positions, s))] += 1
-        cup_histogram[maximum(
-            n, lambda s: monochromatic(bits, positions, s, True))] += 1
-        cap_histogram[maximum(
-            n, lambda s: monochromatic(bits, positions, s, False))] += 1
+        strong_maximum = maximum(n, lambda s: strong(bits, positions, s))
+        cup_maximum = maximum(
+            n, lambda s: monochromatic(bits, positions, s, True))
+        cap_maximum = maximum(
+            n, lambda s: monochromatic(bits, positions, s, False))
+        strong_histogram[strong_maximum] += 1
+        cup_histogram[cup_maximum] += 1
+        cap_histogram[cap_maximum] += 1
+        cap_strong_histogram[(cap_maximum, strong_maximum)] += 1
+        cup_strong_histogram[(cup_maximum, strong_maximum)] += 1
         signotope_count += int(signotope(bits, positions, n))
 
     witness = manifest["minimum_witness"]
@@ -211,6 +218,14 @@ def main() -> None:
             == manifest["cup_maximum_histogram"],
         "cap_maximum_histogram": normalized_histogram(cap_histogram)
             == manifest["cap_maximum_histogram"],
+        "cap_strong_joint_histogram": {
+            f"{cap},{strong}": count
+            for (cap, strong), count in sorted(cap_strong_histogram.items())
+        } == manifest["cap_strong_joint_histogram"],
+        "cup_strong_joint_histogram": {
+            f"{cup},{strong}": count
+            for (cup, strong), count in sorted(cup_strong_histogram.items())
+        } == manifest["cup_strong_joint_histogram"],
         "minimum_witness": witness_ok,
     }
     result = {

@@ -156,6 +156,8 @@ def main() -> None:
     strong_histogram: Counter[int] = Counter()
     cup_histogram: Counter[int] = Counter()
     cap_histogram: Counter[int] = Counter()
+    cap_strong_histogram: Counter[tuple[int, int]] = Counter()
+    cup_strong_histogram: Counter[tuple[int, int]] = Counter()
     signotope_count = 0
     minimizer_bits: int | None = None
     minimum_strong = args.n + 1
@@ -170,6 +172,8 @@ def main() -> None:
         strong_histogram[strong] += 1
         cup_histogram[cup] += 1
         cap_histogram[cap] += 1
+        cap_strong_histogram[(cap, strong)] += 1
+        cup_strong_histogram[(cup, strong)] += 1
         if is_signotope(bits, position, args.n):
             signotope_count += 1
         if strong < minimum_strong:
@@ -193,6 +197,14 @@ def main() -> None:
         "strong_maximum_histogram": dict(sorted(strong_histogram.items())),
         "cup_maximum_histogram": dict(sorted(cup_histogram.items())),
         "cap_maximum_histogram": dict(sorted(cap_histogram.items())),
+        "cap_strong_joint_histogram": {
+            f"{cap},{strong}": count
+            for (cap, strong), count in sorted(cap_strong_histogram.items())
+        },
+        "cup_strong_joint_histogram": {
+            f"{cup},{strong}": count
+            for (cup, strong), count in sorted(cup_strong_histogram.items())
+        },
         "minimum_witness": {
             "coloring_hex": f"{minimizer_bits:0{width}x}",
             "tree": tree_json(all_colorings[minimizer_bits]),

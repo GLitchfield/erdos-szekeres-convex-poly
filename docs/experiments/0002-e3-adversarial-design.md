@@ -67,3 +67,35 @@ Until an independent checker and coverage manifest exist, results from
 `scripts/decomposable_profile_search.py` are heuristics.  A completed bounded
 enumeration is an exact computation only within its declared finite bound.  E3
 is complete only with a kernel-checked Lean proof.
+
+## Exact enumeration results
+
+The dynamic-programming producer and a separately implemented checker agree
+through eight labeled leaves.  For `n <= 7` the checker explicitly enumerates
+every ordered labeled full binary tree; at `n = 8` it uses an independent
+subset recurrence after the explicit implementations were cross-checked at all
+smaller sizes.
+
+| leaves | ordered trees | distinct colorings | minimum strong maximum |
+|---:|---:|---:|---:|
+| 4 | 120 | 8 | 3 |
+| 5 | 1,680 | 62 | 4 |
+| 6 | 30,240 | 718 | 4 |
+| 7 | 665,280 | 10,596 | 4 |
+| 8 | 17,297,280 | 186,888 | 4 |
+
+All 198,272 distinct colorings across the five completed top layers satisfy
+the rank-three one-change law.  This supports, but does not prove, the proposed
+structural lemma that recursive deep-below colorings are signotopes.
+
+At eight leaves, exactly 2,862 colorings have no strong five-set.  Every one
+has cap maximum four and cup maximum four.  Thus the finite statement suggested
+by the blind Fable review--every eight-leaf decomposable coloring contains a
+four-cap or a strong five-set--survives exhaustive enumeration, as does its
+cup-dual.  This is exact finite evidence for a potential base lemma, not yet a
+Lean theorem and not evidence for the all-`k` induction.
+
+The committed tools are `scripts/enumerate_decomposable_colorings.py` and
+`scripts/check_decomposable_enumeration.py`.  Run manifests under `runs/` record
+the complete coloring hash, profile histograms, a minimizing tree witness, and
+all independent-check results; `runs/` is intentionally machine-local.
