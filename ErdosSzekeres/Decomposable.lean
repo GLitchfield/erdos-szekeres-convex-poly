@@ -1,5 +1,7 @@
 import ErdosSzekeres.Extremal
 import ErdosSzekeres.CupCap
+import ErdosSzekeres.SmallCases
+import ErdosSzekeres.ES5CNFGenerated
 import Mathlib.Data.Nat.Find
 import Mathlib.Data.Nat.Choose.Sum
 
@@ -110,6 +112,17 @@ theorem IsStrongPolygonSet.isStrongPolygonOn_orderEmbOfFin
     ((s.orderEmbOfFin rfl).strictMono hkl)
     (s.orderEmbOfFin_mem rfl i) (s.orderEmbOfFin_mem rfl j)
     (s.orderEmbOfFin_mem rfl k) (s.orderEmbOfFin_mem rfl l)
+
+theorem IsStrongPolygonOn.isStrongPolygonSet_image
+    {k : ℕ} {f : Fin k ↪o Fin n} (h : IsStrongPolygonOn χ f) :
+    IsStrongPolygonSet χ (Finset.univ.image f) := by
+  intro i j k l hij hjk hkl hi hj hk hl
+  simp only [Finset.mem_image, Finset.mem_univ, true_and] at hi hj hk hl
+  obtain ⟨a, rfl⟩ := hi
+  obtain ⟨b, rfl⟩ := hj
+  obtain ⟨c, rfl⟩ := hk
+  obtain ⟨d, rfl⟩ := hl
+  exact h (f.lt_iff_lt.mp hij) (f.lt_iff_lt.mp hjk) (f.lt_iff_lt.mp hkl)
 
 theorem IsMonochromaticChain.isMonochromaticSet_image
     {k : ℕ} {c : Turn} {f : Fin k ↪o Fin n}
@@ -335,6 +348,58 @@ namespace HasDeepBelowSplit
 
 variable {n : ℕ} {χ : TripleColoring n}
   {lower upper : Finset (Fin n)}
+
+set_option maxHeartbeats 1000000 in
+/-- A four-set crossing a deep-below split satisfies the rank-three
+one-change law.  This is the local combinatorial reason recursive deep-below
+colorings remain signotopes even without a geometric realizability witness. -/
+theorem turnSequenceAllowed_of_crossing_four
+    (h : HasDeepBelowSplit χ lower upper)
+    {i j k l : Fin n} (hij : i < j) (hjk : j < k) (hkl : k < l)
+    (hi : i ∈ lower ∪ upper) (hj : j ∈ lower ∪ upper)
+    (hk : k ∈ lower ∪ upper) (hl : l ∈ lower ∪ upper)
+    (hnotLower : ¬(i ∈ lower ∧ j ∈ lower ∧ k ∈ lower ∧ l ∈ lower))
+    (hnotUpper : ¬(i ∈ upper ∧ j ∈ upper ∧ k ∈ upper ∧ l ∈ upper)) :
+    TurnSequenceAllowed
+      (χ ⟨i, j, k, hij, hjk⟩)
+      (χ ⟨i, j, l, hij, hjk.trans hkl⟩)
+      (χ ⟨i, k, l, hij.trans hjk, hkl⟩)
+      (χ ⟨j, k, l, hjk, hkl⟩) := by
+  have hijk :
+      ¬(i ∈ lower ∧ j ∈ lower ∧ k ∈ lower) →
+      ¬(i ∈ upper ∧ j ∈ upper ∧ k ∈ upper) →
+      χ ⟨i, j, k, hij, hjk⟩ =
+        if j ∈ lower then Turn.left else Turn.right := by
+    exact fun hLower hUpper => h.crossing _ hi hj hk hLower hUpper
+  have hijl :
+      ¬(i ∈ lower ∧ j ∈ lower ∧ l ∈ lower) →
+      ¬(i ∈ upper ∧ j ∈ upper ∧ l ∈ upper) →
+      χ ⟨i, j, l, hij, hjk.trans hkl⟩ =
+        if j ∈ lower then Turn.left else Turn.right := by
+    exact fun hLower hUpper => h.crossing _ hi hj hl hLower hUpper
+  have hikl :
+      ¬(i ∈ lower ∧ k ∈ lower ∧ l ∈ lower) →
+      ¬(i ∈ upper ∧ k ∈ upper ∧ l ∈ upper) →
+      χ ⟨i, k, l, hij.trans hjk, hkl⟩ =
+        if k ∈ lower then Turn.left else Turn.right := by
+    exact fun hLower hUpper => h.crossing _ hi hk hl hLower hUpper
+  have hjkl :
+      ¬(j ∈ lower ∧ k ∈ lower ∧ l ∈ lower) →
+      ¬(j ∈ upper ∧ k ∈ upper ∧ l ∈ upper) →
+      χ ⟨j, k, l, hjk, hkl⟩ =
+        if k ∈ lower then Turn.left else Turn.right := by
+    exact fun hLower hUpper => h.crossing _ hj hk hl hLower hUpper
+  have hdisjoint := Finset.disjoint_left.mp h.disjoint
+  have hdisjoint' := Finset.disjoint_left.mp h.disjoint.symm
+  rcases Finset.mem_union.mp hi with hiLower | hiUpper <;>
+    rcases Finset.mem_union.mp hj with hjLower | hjUpper <;>
+      rcases Finset.mem_union.mp hk with hkLower | hkUpper <;>
+        rcases Finset.mem_union.mp hl with hlLower | hlUpper <;>
+          cases h₀ : χ ⟨i, j, k, hij, hjk⟩ <;>
+            cases h₁ : χ ⟨i, j, l, hij, hjk.trans hkl⟩ <;>
+              cases h₂ : χ ⟨i, k, l, hij.trans hjk, hkl⟩ <;>
+                cases h₃ : χ ⟨j, k, l, hjk, hkl⟩ <;>
+                  simp_all [TurnSequenceAllowed]
 
 /-- Membership at one of the two sweep extremes of a finite index set. -/
 def IsLeftSweepEndpoint (s : Finset (Fin n)) (q : Fin n) : Prop :=
@@ -1252,6 +1317,34 @@ theorem nonempty (h : IsDecomposableOn χ s) : s.Nonempty := by
   | split hlower hupper hdeep ihlower ihupper =>
       exact ihlower.mono (Finset.subset_union_left)
 
+/-- Recursive deep-below colorings satisfy the rank-three signotope law on
+every increasing four-set, without assuming sweep realizability. -/
+theorem turnSequenceAllowed (h : IsDecomposableOn χ s)
+    {i j k l : Fin n} (hij : i < j) (hjk : j < k) (hkl : k < l)
+    (hi : i ∈ s) (hj : j ∈ s) (hk : k ∈ s) (hl : l ∈ s) :
+    TurnSequenceAllowed
+      (χ ⟨i, j, k, hij, hjk⟩)
+      (χ ⟨i, j, l, hij, hjk.trans hkl⟩)
+      (χ ⟨i, k, l, hij.trans hjk, hkl⟩)
+      (χ ⟨j, k, l, hjk, hkl⟩) := by
+  induction h generalizing i j k l with
+  | singleton x =>
+      simp only [Finset.mem_singleton] at hi hj hk hl
+      subst i
+      subst j
+      exact (lt_irrefl x hij).elim
+  | @split lower upper hlower hupper hdeep ihlower ihupper =>
+      by_cases hallLower :
+          i ∈ lower ∧ j ∈ lower ∧ k ∈ lower ∧ l ∈ lower
+      · exact ihlower hij hjk hkl hallLower.1 hallLower.2.1
+          hallLower.2.2.1 hallLower.2.2.2
+      by_cases hallUpper :
+          i ∈ upper ∧ j ∈ upper ∧ k ∈ upper ∧ l ∈ upper
+      · exact ihupper hij hjk hkl hallUpper.1 hallUpper.2.1
+          hallUpper.2.2.1 hallUpper.2.2.2
+      exact hdeep.turnSequenceAllowed_of_crossing_four hij hjk hkl
+        hi hj hk hl hallLower hallUpper
+
 /-- A decomposable set with at least two vertices exposes a genuine root
 split into two nonempty decomposable parts. -/
 theorem exists_split (h : IsDecomposableOn χ s) (hcard : 2 ≤ s.card) :
@@ -1318,12 +1411,53 @@ theorem subset (h : IsDecomposableOn χ s) (hts : t ⊆ s)
 
 end IsDecomposableOn
 
+/-- The kernel-checked nine-point signotope certificate applies to the whole
+abstract decomposable class: recursive deep-below structure supplies the
+one-change hypotheses, so no sweep-realizability assumption is needed. -/
+theorem IsDecomposable.containsStrongPolygonSet_five_of_nine_le
+    {n : ℕ} {χ : TripleColoring n} (h : IsDecomposable χ) (hn : 9 ≤ n) :
+    ContainsStrongPolygonSet χ Finset.univ 5 := by
+  let e : Fin 9 ↪o Fin n := Finset.univ.orderEmbOfCardLe (by simpa using hn)
+  let ψ : TripleColoring 9 := χ.restrict e
+  have hallowed : ∀ (a b c d : Fin 9),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (ψ ⟨a, b, c, hab, hbc⟩)
+        (ψ ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (ψ ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (ψ ⟨b, c, d, hbc, hcd⟩) := by
+    intro a b c d hab hbc hcd
+    simpa [ψ, TripleColoring.restrict, OrderedTriple.map] using
+      h.turnSequenceAllowed (e.strictMono hab) (e.strictMono hbc)
+        (e.strictMono hcd) (by simp) (by simp) (by simp) (by simp)
+  by_contra hcontains
+  have hno : ∀ f : Fin 5 ↪o Fin 9, ¬IsStrongPolygonOn ψ f := by
+    intro f hf
+    apply hcontains
+    let g : Fin 5 ↪o Fin n := f.trans e
+    have hg : IsStrongPolygonOn χ g := by
+      intro i j k l hij hjk hkl
+      simpa [g, ψ, IsStrongPolygonOn, TripleColoring.restrict,
+        OrderedTriple.map] using hf hij hjk hkl
+    refine ⟨Finset.univ.image g, by simp, ?_,
+      FinsetPolygon.IsStrongPolygonOn.isStrongPolygonSet_image hg⟩
+    exact (Finset.card_image_of_injective _ g.injective).trans (by simp)
+  exact (es5CNF_unsat ψ) (es5CNF_of_signotope_noStrong ψ hallowed hno)
+
 /-- The upper half of the exact happy-ending formula, restricted to
 decomposable sweep-realizable colorings.  This packages the precise remaining
 E3 statement without adding it as an assumption. -/
 def DecomposableExactUpperAt (k : ℕ) : Prop :=
   ∀ {n : ℕ} {χ : TripleColoring n}, IsSweepRealizable χ → IsDecomposable χ →
     2 ^ (k - 2) < n → ContainsStrongPolygonSet χ Finset.univ k
+
+/-- E3 is completely discharged at five vertices, and in fact the proof does
+not use its sweep-realizability hypothesis. -/
+theorem decomposableExactUpperAt_five : DecomposableExactUpperAt 5 := by
+  intro n χ _ hdecomposable hcard
+  apply hdecomposable.containsStrongPolygonSet_five_of_nine_le
+  norm_num at hcard ⊢
+  omega
 
 /-- A realizable coloring with more than `2^(k-2)` vertices and no strong
 `k`-gon is a combinatorial counterexample to the conjectured upper bound. -/

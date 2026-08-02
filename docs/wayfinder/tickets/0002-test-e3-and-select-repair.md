@@ -71,10 +71,21 @@ is seven.  Local endpoint transitions compile, but no global profile count has
 yet been proved.  This ticket deliberately reopens the theorem's truth value
 instead of assuming that an endpoint repair must exist.
 
+The first falsification round is complete through eight leaves.  Independent
+implementations agree on 186,888 distinct eight-leaf colorings, none of which
+contradicts the proposed five-vertex base lemma.  All recursively decomposable
+colorings are now proved in Lean to satisfy the signotope law, and the existing
+nine-point LRAT certificate consequently proves
+`decomposableExactUpperAt_five`.  The all-`k` statement remains open; the
+reciprocal Sol/Fable route review and the general anchor-context transition are
+still pending.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)
-
+- [Exact coloring producer](../../../scripts/enumerate_decomposable_colorings.py)
+- [Independent enumeration checker](../../../scripts/check_decomposable_enumeration.py)
+- [Exact enumeration design and results](../../experiments/0002-e3-adversarial-design.md)

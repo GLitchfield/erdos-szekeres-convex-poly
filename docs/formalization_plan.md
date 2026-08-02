@@ -192,6 +192,25 @@ vertex is strictly straddled by the smaller chain.  What remains is to
 aggregate these binary endpoint/straddling states over the recursive
 decomposition without double-counting the boundary term exposed above.
 
+An adversarial truth-or-counterexample pass has added two independent checks
+on this direction.  Exact enumeration through eight labeled leaves covers
+17,297,280 ordered decomposition trees and 186,888 distinct eight-leaf
+colorings; an independent replay agrees on the complete coloring hash and all
+cup, cap, strong, and signotope profiles.  Every recursive coloring in the
+completed range is a signotope, and every one of the 2,862 eight-leaf
+colorings with no strong five-set has both a four-cup and a four-cap.  Lean now
+proves the all-size structural statement as
+`IsDecomposableOn.turnSequenceAllowed`: the recursive crossing law alone
+implies the rank-three one-change axiom, without realizability.  Applying the
+existing kernel-checked nine-point LRAT certificate then gives
+`IsDecomposable.containsStrongPolygonSet_five_of_nine_le` and closes the full
+abstract decomposable base case as `decomposableExactUpperAt_five`.
+
+This validates the signotope reduction and the five-vertex base, but not the
+general formula.  The remaining E3 research obligation is still an all-`k`
+counting invariant that charges stacked singleton-anchor straddling contexts;
+finite agreement through eight leaves cannot supply that induction.
+
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.
 
