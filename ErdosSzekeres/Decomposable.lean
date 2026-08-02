@@ -265,6 +265,20 @@ theorem decomposableBinomialWindow_pair_le
   rw [← Finset.sum_union hdisjoint]
   exact Finset.sum_le_sum_of_subset hsubset
 
+/-- The Pascal-window absorption used at the outer diagonal of E3 is valid.
+The boundary defect in `published_induction_boundary_regression` can only be
+encountered after descending to an off-diagonal induction state: on the
+diagonal the lower endpoint condition is automatic for every positive
+auxiliary cup parameter. -/
+theorem decomposableBinomialWindow_diagonal_pair_le
+    {k a' u' : ℕ} (ha' : a' < k) (hu' : u' < k)
+    (hsum : a' + u' ≤ k - 1) (hu'Pos : 1 ≤ u') :
+    decomposableBinomialWindow k (u' + 1) k +
+        decomposableBinomialWindow (a' + 1) k k ≤
+      decomposableBinomialWindow k k k := by
+  exact decomposableBinomialWindow_pair_le (a := k) (u := k)
+    (by rfl) (by rfl) ha' hu' hsum (by simpa using hu'Pos)
+
 /-- The ordinary cup--cap theorem, localized to an arbitrary finite set of
 indices in a sweep-realizable coloring. -/
 theorem containsCapSet_or_containsCupSet_of_choose_lt

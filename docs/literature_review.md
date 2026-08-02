@@ -162,6 +162,15 @@ formalization therefore records the published threshold and its diagonal
 identity but requires a corrected invariant or boundary lemma before claiming
 E3.
 
+The full journal text has now been inspected directly.  Its final two-sum
+calculation contains the same defect: when an auxiliary parameter falls below
+the active Pascal window, the proof retains the next classical cup--cap term
+but then treats it as if it belonged to an empty interval.  Lean separately
+checks `decomposableBinomialWindow_diagonal_pair_le`, showing that the outer
+diagonal split is sound and that the defect is introduced only by a recursive
+off-diagonal state.  No correction or replacement proof was found in the
+published sources as of 2026-08-01.
+
 The first correction layer now compiles.  Lean proves the published
 Pascal-window absorption in its valid interior range and proves the missing
 arbitrary-split geometry: a crossing strong polygon has exactly a cup on its
