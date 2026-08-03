@@ -138,17 +138,24 @@ rank/downset invariant or a different counting argument.
 ## Proposed Lean transition candidate
 
 First define, for general `k`, a `SweepGap n := Fin (n + 1)` and an
-`AnchoredMaxProfile k chi s g` containing the six clipped directional
-cup/cap maxima and the `ContainsStrongPolygonSet chi s k` flag.  The first
-unconditional Lean obligation is the restriction law
+`AnchoredMaxProfile k chi s g`, where `chi : TripleColoring n`, both `s` and
+all of its restrictions remain `Finset (Fin n)`, and `g` is a gap in that same
+fixed ambient `Fin n` order.  The definition contains the six clipped
+directional cup/cap maxima and the `ContainsStrongPolygonSet chi s k` flag.
+No increasing relabeling occurs in this first API, so subset restriction reuses
+the identical ambient gap.  The first unconditional Lean obligation is the
+restriction law
 
 ```text
+{chi : TripleColoring n} {t s : Finset (Fin n)} (g : SweepGap n) ->
 t subset s ->
 AnchoredMaxProfile k chi t g <= AnchoredMaxProfile k chi s g
 ```
 
-componentwise.  This removes the reviewer's previously undefined hereditary
-transport without assuming any composition theorem.
+componentwise.  It should be assembled from atomic same-witness lemmas for
+one directional cup, cap, and strong-polygon witness.  This removes the
+reviewer's previously undefined hereditary transport without assuming any
+composition theorem or hiding a gap-reindexing choice.
 
 The bounded evidence then supports challenging the following theorem shape,
 not claiming it:
