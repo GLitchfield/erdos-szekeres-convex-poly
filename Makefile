@@ -24,9 +24,11 @@ test: check lean
 		scripts/analyze_lrat_checkpoints.py \
 		scripts/check_e3_state455_aggregation.py \
 		scripts/check_e3_state566_aggregation.py \
+		scripts/check_decomposable_contexts.py \
 		scripts/check_decomposable_enumeration.py \
 		scripts/check_signotope_state_witness.py \
 		scripts/enumerate_decomposable_colorings.py \
+		scripts/enumerate_decomposable_contexts.py \
 		scripts/generate_e3_state455_lean.py \
 		scripts/generate_e3_state466_lean.py \
 		scripts/generate_e3_state566_lean.py \
