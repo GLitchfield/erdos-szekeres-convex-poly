@@ -239,16 +239,17 @@ whole hierarchy directly from the canonical DIMACS input.  The final Lean
 audit reports only `propext`, `Classical.choice`, and `Quot.sound` for
 `decomposableExactUpperAt_six`, with no `sorryAx` or project axiom.
 
-The post-six Sol/Fable review does not support defining the uniform endpoint
-profile yet.  Both reviewers instead selected the precise hereditary boundary
-diagnostic `DecomposableStateUpper 4 5 5`, whose threshold is seven.  Its
-eight-vertex signotope CNF has 56 variables and 1,134 clauses; CaDiCaL returned
-UNSAT, and Lean kernel-checked the 39,037-byte LRAT trace in a temporary probe.
-The next formal deliverable is the semantic bridge and theorem
-`decomposableStateUpper_455`.  It will establish that the published `8 > 7`
-regression is a proof-method failure, not supply the missing inductive
-transition.  An all-root directional context-profile experiment is the next
-gate before introducing a general context-carrying state.
+The post-six Sol/Fable review did not support defining the uniform endpoint
+profile immediately. Both reviewers instead selected the precise hereditary
+boundary diagnostic `DecomposableStateUpper 4 5 5`, whose threshold is seven.
+That diagnostic now compiles as `decomposableStateUpper_455`, together with
+its color dual `decomposableStateUpper_545`. Its eight-vertex signotope CNF has
+56 variables and 1,134 clauses; Lean kernel-checks the 39,037-byte LRAT trace,
+and eight generated semantic chunks connect every clause to the project
+predicates. This establishes that the published `8 > 7` regression is a
+proof-method failure, but it does not supply the missing inductive transition.
+An all-root directional context-profile experiment is the next gate before
+introducing a general context-carrying state.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

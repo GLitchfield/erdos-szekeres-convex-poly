@@ -162,13 +162,19 @@ with SHA-256
 `5401621fc275e55a42077cecd293b5b303969da341bd6a0dc25973eaf5287861`.
 The trace contains 593 additions and 523 deletions.  A temporary
 `Mathlib.Tactic.Sat.FromLRAT` probe was accepted by Lean's kernel in 4.4
-seconds and then removed.  These ignored experimental artifacts are evidence,
-not yet the completed `decomposableStateUpper_455` theorem: the committed
-semantic bridge from all CNF clauses to the repository predicates remains the
-next formal work item.
+seconds and then removed.
 
-After that theorem compiles, the next discriminator is an exact all-root
-context-profile replay through eight leaves.  It must record directional
+The formal work item is now complete. The canonical CNF and LRAT files are
+committed; eight generated Lean chunks prove the semantic meaning of all
+1,134 clauses; and an independent checker reconstructs every chunk and the
+root proposition directly from DIMACS without importing either generator.
+Lean proves the hereditary theorem
+`decomposableStateUpper_455 : DecomposableStateUpper 4 5 5` and its color-dual
+`decomposableStateUpper_545`. Their axiom audits report only `propext`,
+`Classical.choice`, and `Quot.sound`.
+
+The next discriminator is an exact all-root context-profile replay through
+eight leaves.  It must record directional
 endpoint and straddling obligations at every possible root, and an independent
 checker must test restriction and composition.  Only a stable profile with an
 explicit transition should be promoted to candidate B's Lean definition.

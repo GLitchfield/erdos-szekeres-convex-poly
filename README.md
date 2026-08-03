@@ -54,6 +54,12 @@ sets.
   This is the exact upper formula for the abstract recursively decomposable
   class at `n = 6`; it is not a proof of the unrestricted planar case or of
   the uniform all-`n` decomposable theorem.
+- `ErdosSzekeres/E3State455Certificate.lean` kernel-checks the eight-vertex
+  boundary state exposed by the failed published induction.
+  `decomposableStateUpper_455` and its color dual prove the hereditary
+  `(4,5,5)` and `(5,4,5)` bounds without a realizability assumption. This
+  confirms that the `8 > 7` regression is a proof-method defect, but does not
+  yet supply a uniform inductive transition.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

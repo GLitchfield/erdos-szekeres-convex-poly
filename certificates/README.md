@@ -36,14 +36,23 @@ strong.
 
 ## E3 finite-state certificates
 
-The E3 reduction at six vertices uses two one-change-coloring instances.  A
-state `(n,a,u,k)` excludes an `a`-cap, a `u`-cup, and a strong `k`-set on `n`
-ordered vertices.
+The E3 work uses one-change-coloring instances to close finite hereditary
+states. A state `(n,a,u,k)` excludes an `a`-cap, a `u`-cup, and a strong
+`k`-set on `n` ordered vertices.
 
 | state | variables | clauses | CNF SHA-256 |
 | --- | ---: | ---: | --- |
+| `(8,4,5,5)` | 56 | 1,134 | `56ea4a13b8f976fbb266ef58e8a8c7074de38e08a201fda0477b59642abc49c1` |
 | `(12,4,6,6)` | 220 | 20,163 | `c8b69888f91a0da669d43c249cd0962cc0db33fe3072a1e1bed4d9df1b4a8830` |
 | `(16,5,6,6)` | 560 | 155,064 | `d79d91b2f10ddb6321be3987067a135b9264256debaafa97cd97e38ffe8bb857` |
+
+The eight-vertex LRAT file has 593 additions, contains 39,037 bytes, and has
+SHA-256
+`5401621fc275e55a42077cecd293b5b303969da341bd6a0dc25973eaf5287861`.
+Eight generated semantic chunks connect all 1,134 clauses to the one-change,
+no-cap, no-cup, and no-strong-set predicates. The independent checker
+`scripts/check_e3_state455_aggregation.py` reconstructs the full hierarchy
+directly from DIMACS without importing either generator.
 
 The twelve-vertex LRAT file is committed directly and has SHA-256
 `765420d2a2adf0174d5199e5328608afb126484fd40f435a4db93909d9231e74`.
@@ -98,6 +107,20 @@ python3 scripts/split_lrat_checkpoints.py \
 python3 scripts/generate_e3_state566_lean.py ErdosSzekeres \
   --core-cnf certificates/e3-signotope-16-5-6-6.cnf --chunks 256
 python3 scripts/check_e3_state566_aggregation.py
+```
+
+Reproduce and check the eight-vertex boundary state with:
+
+```console
+python3 scripts/generate_signotope_state_sat.py \
+  --n 8 --cap 4 --cup 5 --strong 5 \
+  --output certificates/e3-signotope-8-4-5-5.cnf
+cadical --lrat --no-binary \
+  certificates/e3-signotope-8-4-5-5.cnf \
+  certificates/e3-signotope-8-4-5-5.lrat
+python3 scripts/generate_e3_state455_lean.py ErdosSzekeres
+python3 scripts/check_e3_state455_aggregation.py
+lake build ErdosSzekeres.E3FiniteReduction
 ```
 
 The bundle override changes only the organization of the segment-99 Lean

@@ -131,10 +131,18 @@ eight-vertex `(4,5,5)` signotope instance has 56 variables and 1,134 clauses
 `56ea4a13b8f976fbb266ef58e8a8c7074de38e08a201fda0477b59642abc49c1`).
 CaDiCaL 1.7.3 returned UNSAT with a 39,037-byte LRAT trace (SHA-256
 `5401621fc275e55a42077cecd293b5b303969da341bd6a0dc25973eaf5287861`),
-and a temporary Lean `FromLRAT` probe kernel-checked it in 4.4 seconds.  The
-remaining next work is the committed semantic bridge and hereditary lift.
-This result will certify that the `8 > 7` regression is a proof-method defect,
-but it is explicitly diagnostic rather than the missing uniform transition.
+and a temporary Lean `FromLRAT` probe kernel-checked it in 4.4 seconds.
+
+The selected theorem is now complete. The CNF and LRAT data are committed,
+eight generated semantic chunks connect all clauses to the repository
+predicates, and an independent checker reconstructs the aggregation directly
+from DIMACS without importing either generator. Lean proves
+`decomposableStateUpper_455 : DecomposableStateUpper 4 5 5` and its dual
+`decomposableStateUpper_545`; both have only `propext`, `Classical.choice`, and
+`Quot.sound` in their axiom audit. This certifies that the `8 > 7` regression
+is a proof-method defect, but it remains explicitly diagnostic rather than the
+missing uniform transition. The next discriminator is the all-root
+directional context-profile replay through eight leaves.
 
 ## Evidence
 

@@ -1,0 +1,21 @@
+{
+  "cap": 4,
+  "clause_counts": {
+    "no_cap": 70,
+    "no_cup": 56,
+    "no_strong": 448,
+    "signotope": 560
+  },
+  "clauses": 1134,
+  "cnf": "certificates/e3-signotope-8-4-5-5.cnf",
+  "cnf_sha256": "56ea4a13b8f976fbb266ef58e8a8c7074de38e08a201fda0477b59642abc49c1",
+  "cup": 5,
+  "generator": "scripts/generate_signotope_state_sat.py",
+  "n": 8,
+  "revision": "c324047adfcecf06ce59e96eb6f975a49868c43e",
+  "schema_version": 1,
+  "strong": 5,
+  "strong_pattern_count": 8,
+  "triple_order": "lexicographic combinations(range(n), 3); DIMACS variables are one-based",
+  "variables": 56
+}

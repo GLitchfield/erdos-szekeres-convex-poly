@@ -1,5 +1,6 @@
 module
 
+public import ErdosSzekeres.E3State455Certificate
 public import ErdosSzekeres.E3State466Certificate
 public import ErdosSzekeres.E3State566Certificate
 
@@ -170,6 +171,16 @@ theorem HasDeepBelowSplit.containsStrongPolygonSet_of_containsCupCap
   apply h.containsStrongPolygonSet_of_cup_cap hcupSub hcapSub hcupMono hcapMono
   simpa [hcupCard, hcapCard] using hcard
 
+@[simp] theorem decomposableThreshold_state455 :
+    decomposableThreshold 4 5 5 = 7 := by
+  norm_num [decomposableThreshold, decomposableBinomialWindow,
+    Finset.sum_Icc_succ_top, Nat.choose]
+
+@[simp] theorem decomposableThreshold_state545 :
+    decomposableThreshold 5 4 5 = 7 := by
+  norm_num [decomposableThreshold, decomposableBinomialWindow,
+    Finset.sum_Icc_succ_top, Nat.choose]
+
 @[simp] theorem decomposableThreshold_state466 :
     decomposableThreshold 4 6 6 = 11 := by
   norm_num [decomposableThreshold, decomposableBinomialWindow,
@@ -189,6 +200,67 @@ theorem HasDeepBelowSplit.containsStrongPolygonSet_of_containsCupCap
     decomposableThreshold 6 5 6 = 15 := by
   norm_num [decomposableThreshold, decomposableBinomialWindow,
     Finset.sum_Icc_succ_top, Nat.choose]
+
+/-- The kernel-checked eight-vertex certificate proves the hereditary
+`(4,5,5)` boundary state exposed by the failed published induction. -/
+theorem decomposableStateUpper_455 : DecomposableStateUpper 4 5 5 := by
+  intro n χ s hdecomposable hcard
+  rw [decomposableThreshold_state455] at hcard
+  obtain ⟨t, hts, htcard⟩ := Finset.exists_subset_card_eq (show 8 ≤ s.card by omega)
+  let e : Fin 8 ↪o Fin n := t.orderEmbOfFin htcard
+  let ψ : TripleColoring 8 := χ.restrict e
+  have he_mem (i : Fin 8) : e i ∈ s :=
+    hts (t.orderEmbOfFin_mem htcard i)
+  have hallowed : ∀ (a b c d : Fin 8),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (ψ ⟨a, b, c, hab, hbc⟩)
+        (ψ ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (ψ ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (ψ ⟨b, c, d, hbc, hcd⟩) := by
+    intro a b c d hab hbc hcd
+    simpa [ψ, TripleColoring.restrict, OrderedTriple.map] using
+      hdecomposable.turnSequenceAllowed (e.strictMono hab) (e.strictMono hbc)
+        (e.strictMono hcd) (he_mem a) (he_mem b) (he_mem c) (he_mem d)
+  rcases exists_cap_four_or_cup_five_or_strong_five ψ hallowed with
+      ⟨f, hcap⟩ | ⟨f, hcup⟩ | ⟨f, hstrong⟩
+  · let g : Fin 4 ↪o Fin n := f.trans e
+    let cap := Finset.univ.image g
+    refine Or.inl ⟨cap, ?_, ?_, ?_⟩
+    · intro x hx
+      simp only [cap, Finset.mem_image, Finset.mem_univ, true_and] at hx
+      obtain ⟨i, rfl⟩ := hx
+      exact he_mem (f i)
+    · exact (Finset.card_image_of_injective _ g.injective).trans (by simp)
+    · have hmap : IsCap χ g := by
+        simpa [g, ψ, Function.comp_def] using
+          IsMonochromaticChain.map_of_restrict_eq e rfl hcap
+      exact FinsetPolygon.IsCap.image hmap
+  · let g : Fin 5 ↪o Fin n := f.trans e
+    let cup := Finset.univ.image g
+    refine Or.inr (Or.inl ⟨cup, ?_, ?_, ?_⟩)
+    · intro x hx
+      simp only [cup, Finset.mem_image, Finset.mem_univ, true_and] at hx
+      obtain ⟨i, rfl⟩ := hx
+      exact he_mem (f i)
+    · exact (Finset.card_image_of_injective _ g.injective).trans (by simp)
+    · have hmap : IsCup χ g := by
+        simpa [g, ψ, Function.comp_def] using
+          IsMonochromaticChain.map_of_restrict_eq e rfl hcup
+      exact FinsetPolygon.IsCup.image hmap
+  · let g : Fin 5 ↪o Fin n := f.trans e
+    let polygon := Finset.univ.image g
+    refine Or.inr (Or.inr ⟨polygon, ?_, ?_, ?_⟩)
+    · intro x hx
+      simp only [polygon, Finset.mem_image, Finset.mem_univ, true_and] at hx
+      obtain ⟨i, rfl⟩ := hx
+      exact he_mem (f i)
+    · exact (Finset.card_image_of_injective _ g.injective).trans (by simp)
+    · have hmap : IsStrongPolygonOn χ g := by
+        intro i j k l hij hjk hkl
+        simpa [g, ψ, IsStrongPolygonOn, TripleColoring.restrict,
+          OrderedTriple.map] using hstrong hij hjk hkl
+      exact FinsetPolygon.IsStrongPolygonOn.isStrongPolygonSet_image hmap
 
 /-- The kernel-checked twelve-vertex certificate proves the hereditary
 `(4,6,6)` state required by the E3 induction. -/
@@ -250,6 +322,17 @@ theorem decomposableStateUpper_466 : DecomposableStateUpper 4 6 6 := by
         simpa [g, ψ, IsStrongPolygonOn, TripleColoring.restrict,
           OrderedTriple.map] using hstrong hij hjk hkl
       exact FinsetPolygon.IsStrongPolygonOn.isStrongPolygonSet_image hmap
+
+/-- The color-dual form of the certified `(4,5,5)` boundary state. -/
+theorem decomposableStateUpper_545 : DecomposableStateUpper 5 4 5 := by
+  intro n χ s hdecomposable hcard
+  rw [decomposableThreshold_state545] at hcard
+  have hcard' : decomposableThreshold 4 5 5 < s.card := by simpa using hcard
+  rcases decomposableStateUpper_455 hdecomposable.dual hcard' with
+      hcap | hcup | hstrong
+  · exact Or.inr (Or.inl (containsCapSet_dual_iff.mp hcap))
+  · exact Or.inl (containsCupSet_dual_iff.mp hcup)
+  · exact Or.inr (Or.inr (containsStrongPolygonSet_dual_iff.mp hstrong))
 
 /-- The color-dual form of the certified `(4,6,6)` state. -/
 theorem decomposableStateUpper_646 : DecomposableStateUpper 6 4 6 := by
