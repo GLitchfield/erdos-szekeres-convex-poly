@@ -91,6 +91,7 @@
     },
     "state": "ordered vertex-downset word"
   },
+  "generation_base_revision": "89ba0c94df76787fa1c98cbb14e4fbd2e8e32503",
   "pair_rank_collision": {
     "equal_child_state": [
       [
@@ -635,7 +636,7 @@
     ]
   },
   "producer": "scripts/analyze_decomposable_rank_profiles.py",
-  "revision": "59da51f5baee1ae57322514866d64a9113f1949f",
+  "producer_sha256": "4d701b6a449cf2ced9cd801709044bf17e93a5b10a59363490abb7e7011e4573",
   "schema_version": 1,
   "scope": {
     "crossing_bits_hex": "00000000000000000007f",

@@ -96,7 +96,8 @@ def contains_strong_six(bits: int) -> bool:
     return False
 
 
-def rank_states(bits: int, vertices: tuple[int, ...]) -> tuple[tuple[int, ...], tuple[tuple[int, int], ...]]:
+def rank_states(bits: int, vertices: tuple[int, ...],
+                clip: int = CLIP) -> tuple[tuple[int, ...], tuple[tuple[int, int], ...]]:
     """Return the downset word and consecutive-chain rank matrix.
 
     A pair rank is one less than the longest monochromatic consecutive chain
@@ -113,13 +114,13 @@ def rank_states(bits: int, vertices: tuple[int, ...]) -> tuple[tuple[int, ...], 
             for w in vertices[:u_index]:
                 old_cap, old_cup = ranks[(w, u)]
                 if turn(bits, w, u, v):
-                    cup = max(cup, min(CLIP, old_cup + 1))
+                    cup = max(cup, min(clip, old_cup + 1))
                 else:
-                    cap = max(cap, min(CLIP, old_cap + 1))
+                    cap = max(cap, min(clip, old_cap + 1))
             ranks[(u, v)] = cap, cup
             for a in range(cap):
                 for b in range(cup):
-                    downset |= 1 << (CLIP * a + b)
+                    downset |= 1 << (clip * a + b)
         downsets[v] = downset
     word = tuple(downsets[v] for v in vertices)
     matrix = tuple(ranks[pair] for pair in itertools.combinations(vertices, 2))
@@ -138,6 +139,10 @@ def git_revision(repo: Path) -> str:
         cwd=repo, check=True, text=True, stdout=subprocess.PIPE,
     )
     return completed.stdout.strip()
+
+
+def file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def digest_lines(lines) -> str:
@@ -263,10 +268,15 @@ def analyze() -> dict[str, object]:
         f"{bits:0{HEX_WIDTH}x}" for bits in sorted(upper_colorings)
     )
     edge_digest = digest_lines(f"{a},{b}" for a, b in sorted(edges))
+    producer_path = Path(__file__).resolve()
     return {
         "schema_version": 1,
         "producer": "scripts/analyze_decomposable_rank_profiles.py",
-        "revision": git_revision(repo),
+        # Generation necessarily precedes the commit containing the emitted
+        # certificate.  Name this as a base revision rather than implying that
+        # the generated file was already present at that commit.
+        "generation_base_revision": git_revision(repo),
+        "producer_sha256": file_sha256(producer_path),
         "scope": {
             "n": N, "k": K, "rank_clip": CLIP,
             "lower_mask_hex": f"{LOWER:x}", "upper_mask_hex": f"{UPPER:x}",

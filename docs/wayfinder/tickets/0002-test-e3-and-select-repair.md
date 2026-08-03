@@ -186,6 +186,19 @@ open; the witnesses have decomposition trees but no planar realization
 certificate. No replacement uniform route is selected pending bounded
 Sol/Fable review of this gate.
 
+The first Sol audit returned `partially_supported` and agreed with all three
+bounded rejections. It correctly identified two provenance/semantic gaps in
+the first packet: the certificate called its pre-generation commit simply
+`revision`, and both full implementations used the same rank recurrence. The
+certificate now calls that value `generation_base_revision`, binds the exact
+producer source by SHA-256, and the checker verifies it. A new direct-chain
+oracle exhaustively checks every triple coloring through five vertices at
+clips one through five against the dynamic ranks and downsets, with zero
+differences. The audit's remaining scope warnings agree with the ticket:
+abstract decomposability is not planar realizability, and the observed
+injectivity does not prove or refute the global counting theorem. A clean
+post-disposition review remains pending before selecting the next Lean package.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)

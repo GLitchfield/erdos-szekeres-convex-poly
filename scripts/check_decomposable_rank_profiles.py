@@ -214,6 +214,7 @@ def validate_collision(entry, state_kind: str, upper_vertices, n, clip,
 def replay(certificate: dict[str, object]) -> dict[str, object]:
     if certificate.get("schema_version") != 1:
         raise ValueError("unsupported schema")
+    producer = Path(__file__).resolve().parent / "analyze_decomposable_rank_profiles.py"
     scope = certificate["scope"]
     n, k, clip = scope["n"], scope["k"], scope["rank_clip"]
     if (n, k, clip) != (9, 6, 4):
@@ -260,6 +261,10 @@ def replay(certificate: dict[str, object]) -> dict[str, object]:
 
     summary = certificate["search_summary"]
     checks = {
+        "producer_identity": certificate["producer"] ==
+            "scripts/analyze_decomposable_rank_profiles.py",
+        "producer_sha256": certificate["producer_sha256"] ==
+            hashlib.sha256(producer.read_bytes()).hexdigest(),
         "root_partition": lower == 2 and lower | upper == (1 << n) - 1 and not lower & upper,
         "crossing_bits": int(scope["crossing_bits_hex"], 16) == fixed,
         "upper_coloring_count": summary["upper_coloring_count"] == len(colorings),

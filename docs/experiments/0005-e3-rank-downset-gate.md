@@ -51,6 +51,15 @@ uses an independent exact reduction: maximum clique in the 34-vertex graph is
 34 minus minimum vertex cover in its complement, and a bounded branching
 search finds the latter exactly.
 
+The certificate labels commit `89ba0c9` as its generation base rather than
+claiming that a not-yet-written output already existed at that revision. It
+also records the exact SHA-256 of its producer, which the checker verifies.
+The specification-first unit test independently enumerates every consecutive
+chain for every triple coloring through five vertices and clips one through
+five. Those direct maxima and rectangles agree with the producer's dynamic
+program in every case. This closes the shared-recursion semantic check without
+using signotope or realizability assumptions.
+
 The producer took 19.4 seconds and 353 MiB peak RSS. The independent replay
 took 21.4 seconds and 311 MiB peak RSS. Both are far below the declared
 30-minute, 16-GiB bound.
@@ -84,6 +93,8 @@ open rank rows:
   e74475e80ed8599e12dfc9f6af6812bb6063afca5b7b592e015dee92e285ae00
 compatibility edges:
   a4576a8818e0ec35dfde95a01310b7540ae484ae01a57ced114aaf6672ef13c0
+producer source:
+  4d701b6a449cf2ced9cd801709044bf17e93a5b10a59363490abb7e7011e4573
 ```
 
 ## Interpretation
