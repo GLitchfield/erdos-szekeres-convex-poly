@@ -229,3 +229,21 @@ python3 scripts/check_decomposable_context_collision.py \
 Rational-coordinate realizability is explicitly `not_attempted` in the
 manifest because these abstract recursive-coloring certificates carry no
 coordinates.  No geometric conclusion is inferred from the census.
+
+## Advisory review status
+
+A clean review packet at repository revision `48cb924` has SHA-256
+`5ba9b4a4b2ad34b02486a2593dfc03d0ac5383007e46c77951d60cb4928ab6d2`.
+Codex Sol returned `partially_supported`: it agrees that the explicit pair has
+the computational quantifier shape needed to reject maxima-only candidate B,
+supports the fixed-ambient atomic Lean layer, and recommends defining and
+falsifying a concrete singleton-root rank/downset transition before any new
+general Lean composition theorem.  It also emphasizes that the Python
+semantics and the explicit collision are not yet bridged to a kernel-checked
+Lean theorem, and that rational realizability remains untested.
+
+Claude Fable did not return a review: the provider repeatedly returned HTTP
+429 session-limit responses and moved the displayed reset from 4:30 PM to
+5:00 PM.  No reciprocal critiques were run.  This is therefore a partial Sol
+review, not Sol/Fable agreement.  The next route remains unselected pending a
+successful Fable retry and independent disposition of its objections.

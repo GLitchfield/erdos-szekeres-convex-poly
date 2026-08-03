@@ -162,6 +162,15 @@ The fixed-ambient definition layer has begun in Lean:
 the same directional chain witness under subset enlargement.  The maxima
 aggregation and collision theorem remain pending.
 
+The first clean advisory review attempt used packet SHA-256
+`5ba9b4a4b2ad34b02486a2593dfc03d0ac5383007e46c77951d60cb4928ab6d2`
+at revision `48cb924`. Sol returned `partially_supported`, agreed with rejecting
+maxima-only candidate B, and recommended a concrete singleton-root
+rank/downset falsification gate before a replacement Lean transition. Fable
+was unavailable because its provider returned repeated HTTP 429 session-limit
+responses; reciprocal critiques did not run. This is not reviewer consensus,
+and the replacement route remains unselected.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
