@@ -175,7 +175,9 @@ rejected before Lean composition work.
 
 ## Lean consequence and next definition layer
 
-First define, for general `k`, a `SweepGap n := Fin (n + 1)` and an
+Lean now defines, for general `k`, a `SweepGap n := Fin (n + 1)` and the
+fixed-ambient directional witness predicates in
+`ErdosSzekeres/ContextProfile.lean`.  For an eventual
 `AnchoredMaxProfile k chi s g`, where `chi : TripleColoring n`, both `s` and
 all of its restrictions remain `Finset (Fin n)`, and `g` is a gap in that same
 fixed ambient `Fin n` order.  The definition contains the six clipped
@@ -190,8 +192,8 @@ t subset s ->
 AnchoredMaxProfile k chi t g <= AnchoredMaxProfile k chi s g
 ```
 
-componentwise.  It should be assembled from atomic same-witness lemmas for
-one directional cup, cap, and strong-polygon witness.  This removes the
+componentwise.  The atomic same-witness monotonicity lemmas for directional
+cups and caps now compile.  This removes the
 reviewer's previously undefined hereditary transport without assuming any
 composition theorem or hiding a gap-reindexing choice.
 
@@ -206,12 +208,11 @@ and neither parent contains a strong k-set,
 then their parent profiles agree at every sweep gap.
 ```
 
-The strongest immediate Lean result would formalize the fixed-ambient profile
-and the committed pair, then prove a compiling counterexample theorem to this
-composition claim.  Until that definition is present, the certificate is
-explicitly bounded computational evidence.  Atomic restriction lemmas remain
-valid infrastructure, but proving the fixed-`k=5` composition instance is no
-longer a route priority.
+The next Lean result should define the clipped maxima aggregation, formalize
+the committed pair, and prove a compiling counterexample theorem to this
+composition claim.  Until that theorem is present, the certificate is
+explicitly bounded computational evidence.  Proving the fixed-`k=5`
+composition instance is no longer a route priority.
 
 ## Reproduction
 

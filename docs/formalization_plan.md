@@ -257,7 +257,9 @@ a compact targeted certificate at `k = 6`, `n = 9` gives two decomposable
 parents with identical child all-gap words, no strong six-set, and different
 parent profiles.  Thus maxima-only candidate B is not a valid uniform
 composition state.  The next formal result should define the fixed-ambient
-profile and kernel-check this explicit incompleteness witness, while the
+profile aggregation and kernel-check this explicit incompleteness witness,
+building on the compiling fixed-ambient directional-witness monotonicity
+lemmas in `ContextProfile.lean`, while the
 research route redirects to a correlation-preserving rank/downset state or a
 bounded transition congruence that separates the witness.
 

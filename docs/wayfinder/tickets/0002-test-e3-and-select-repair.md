@@ -157,6 +157,10 @@ predicate. Candidate B's maxima-only state is rejected. The live redirect is
 to a correlation-preserving rank/downset state or a bounded transition
 congruence that separates this pair; neither route is selected until bounded
 Sol/Fable review is disposed and its first transition is stated precisely.
+The fixed-ambient definition layer has begun in Lean:
+`ContainsCupSetAtGap.mono` and `ContainsCapSetAtGap.mono` compile and preserve
+the same directional chain witness under subset enlargement.  The maxima
+aggregation and collision theorem remain pending.
 
 ## Evidence
 

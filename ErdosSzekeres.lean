@@ -11,6 +11,7 @@ public import ErdosSzekeres.SmallCases
 public import ErdosSzekeres.Composition
 public import ErdosSzekeres.Extremal
 public import ErdosSzekeres.Decomposable
+public import ErdosSzekeres.ContextProfile
 public import ErdosSzekeres.E3State466Certificate
 public import ErdosSzekeres.E3FiniteReduction
 public import ErdosSzekeres.ES5Certificate

@@ -68,6 +68,11 @@ sets.
   profiles.  This is a bounded, independently checked redirect toward a
   correlation-preserving rank/downset state, not yet a Lean theorem or an
   all-`n` proof.
+- `ErdosSzekeres/ContextProfile.lean` defines fixed-ambient sweep gaps and the
+  three directional chain relations.  Its compiling monotonicity lemmas prove
+  that a directional cup or cap witness survives enlargement without any
+  hidden relabeling or gap transport.  The explicit profile-collision pair is
+  not yet kernel-checked in Lean.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
