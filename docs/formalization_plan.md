@@ -1,6 +1,6 @@
 # Sweep-orientation formalization plan
 
-Last updated: 2026-08-01.
+Last updated: 2026-08-03.
 
 ## Leading mathematical interface
 
@@ -126,8 +126,8 @@ extends the bridge to selected subsets.
 | --- | --- | --- | --- |
 | E1 | composition/decomposition of sweep colorings | Arbitrary deep-below partitions, recursive decomposability, hereditary nonempty subsets, binary deep composition, and the coordinate-to-color bridge compile | Express the published recursive class, including interleaved sweep orders |
 | E2 | polygon-size recurrence under composition | Pascal-row aggregate recurrence, both directions of the crossing cup/cap characterization, and the two-endpoint crossing-chain bounds compile | Control decomposable configurations |
-| E3 | exact formula for decomposable point sets | Threshold, diagonal identity, localized cup--cap base case, split extractor, the valid interior Pascal-window inequality, a kernel-checked boundary regression, and exact left/right endpoint-extension transitions compile; the endpoint-profile counting induction remains pending | Reproduce the strongest directly relevant structural theorem |
-| E4 | a minimal counterexample to the exact formula is indecomposable | The exact counterexample predicate and conditional consequence `IsExactFormulaCounterexample.not_isDecomposable` compile; discharge awaits E3 | Isolate the genuine obstruction without hiding its dependency |
+| E3 | exact formula for decomposable point sets | The exact upper formula compiles at `k = 5` and `k = 6`; the latter uses hereditary kernel-checked `(4,6,6)` and `(5,6,6)` state bounds. The uniform endpoint-profile counting induction remains pending | Reproduce the strongest directly relevant structural theorem |
+| E4 | a minimal counterexample to the exact formula is indecomposable | The exact counterexample predicate and conditional consequence `IsExactFormulaCounterexample.not_isDecomposable` compile; uniform discharge still awaits all-`k` E3 | Isolate the genuine obstruction without hiding its dependency |
 
 ### Layer F: new research required
 
@@ -210,6 +210,34 @@ This validates the signotope reduction and the five-vertex base, but not the
 general formula.  The remaining E3 research obligation is still an all-`k`
 counting invariant that charges stacked singleton-anchor straddling contexts;
 finite agreement through eight leaves cannot supply that induction.
+
+The first two proposed off-diagonal falsification states are now closed at the
+semantic level.  Theorems
+`exists_cap_four_or_cup_six_or_strong_six` and
+`IsDecomposable.exists_cap_four_or_cup_six_or_strong_six` are backed by a
+kernel-checked 20,163-clause LRAT certificate and prove the twelve-vertex
+`(4,6,6)` alternative.  The theorem `decomposableStateUpper_466` now lifts
+that exact-size result to every decomposable subset above the threshold eleven,
+which is the hereditary form required by an induction.  A checkpointed
+1,667,699-addition LRAT proof and generated semantic bridge likewise prove
+`exists_cap_five_or_cup_six_or_strong_six`; restriction lifts it to
+`decomposableStateUpper_566`.  The dual-state transport and audited finite
+reduction then yield
+`decomposableExactUpperAt_six : DecomposableExactUpperAt 6`.
+
+This closes the decomposable upper formula at six vertices, but it is a finite
+milestone rather than the missing uniform induction.  The all-`k` endpoint
+profile or context-carrying argument remains the E3 research obligation.
+
+The large `(5,6,6)` semantic bridge now has an independently checked bounded
+proof architecture.  Its 155,064 clauses are covered by 769 semantic chunks,
+4,096 raw aggregation modules, and 1,024 midpoint modules.  Named midpoint
+propositions keep the final elimination tree small, while a single compiling
+`rfl` theorem identifies that tree with the canonical checkpoint proposition.
+An independent Python checker imports neither generator and reconstructs the
+whole hierarchy directly from the canonical DIMACS input.  The final Lean
+audit reports only `propext`, `Classical.choice`, and `Quot.sound` for
+`decomposableExactUpperAt_six`, with no `sorryAx` or project axiom.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

@@ -1,5 +1,9 @@
-import ErdosSzekeres.Sweep
-import Mathlib.Data.Finset.Sort
+module
+
+public import ErdosSzekeres.Sweep
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # Presenting a finite point set in sweep order
@@ -218,3 +222,5 @@ theorem exists_sweptPresentation (s : Finset (Point 2))
 end
 
 end ErdosSzekeres
+
+end

@@ -1,4 +1,8 @@
-import ErdosSzekeres.SmallCases
+module
+
+public import ErdosSzekeres.SmallCases
+
+@[expose] public section
 
 /-!
 # Deep splits of sweep colorings
@@ -949,3 +953,5 @@ theorem IsStrongPolygonOn.middleBlock_card_le_one
 end
 
 end ErdosSzekeres
+
+end

@@ -7,6 +7,11 @@ name = "ErdosSzekeres"
 weakLeanArgs = ["--tstack=65536"]
 
 [[require]]
+name = "Hammer"
+git = "https://github.com/JOSHCLUNE/LeanHammer"
+rev = "6ea795e19edb540a55e16dd4fed1a263324909b8"
+
+[[require]]
 name = "mathlib"
 scope = "leanprover-community"
 rev = "v4.29.1"

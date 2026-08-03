@@ -1,9 +1,13 @@
-import ErdosSzekeres.Extremal
-import ErdosSzekeres.CupCap
-import ErdosSzekeres.SmallCases
-import ErdosSzekeres.ES5CNFGenerated
-import Mathlib.Data.Nat.Find
-import Mathlib.Data.Nat.Choose.Sum
+module
+
+public import ErdosSzekeres.Extremal
+public import ErdosSzekeres.CupCap
+public import ErdosSzekeres.SmallCases
+public import ErdosSzekeres.ES5CNFGenerated
+public import Mathlib.Data.Nat.Find
+public import Mathlib.Data.Nat.Choose.Sum
+
+@[expose] public section
 
 /-!
 # Decomposable point configurations
@@ -1615,3 +1619,5 @@ theorem IsGeometricallyDeepBelow.toHasDeepBelowSplit
 end
 
 end ErdosSzekeres
+
+end

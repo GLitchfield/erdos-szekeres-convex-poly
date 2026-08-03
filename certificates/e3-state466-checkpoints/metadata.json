@@ -1,0 +1,63 @@
+{
+  "cnf": "certificates/e3-signotope-12-4-6-6.cnf",
+  "cnf_sha256": "c8b69888f91a0da669d43c249cd0962cc0db33fe3072a1e1bed4d9df1b4a8830",
+  "lrat": "certificates/e3-signotope-12-4-6-6.lrat",
+  "lrat_sha256": "765420d2a2adf0174d5199e5328608afb126484fd40f435a4db93909d9231e74",
+  "segments": 4,
+  "original_clauses": 20163,
+  "bundle_size": 100000,
+  "learned_additions": 7669,
+  "final_empty_id": 27832,
+  "additions_by_segment": [
+    2296,
+    1754,
+    1828,
+    1791
+  ],
+  "deletions_by_segment": [
+    1048,
+    501,
+    518,
+    501
+  ],
+  "imports_by_segment": [
+    0,
+    725,
+    1193,
+    1427
+  ],
+  "exports_by_segment": [
+    856,
+    610,
+    514,
+    0
+  ],
+  "direct_imports_by_segment": [
+    [],
+    [
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      2
+    ]
+  ],
+  "segment_sha256": [
+    "d43cb3445d241214dc761ea4c919ebbbf35f2c821b741653c293afd4384b57e8",
+    "027d9003f6412a83b9c8cc715e4b8cd04bcd78640a3e06d92d967bf4948bc7d1",
+    "33610a91e01592d5f77a75401ea724dca2d8b6a764241a5603831ea3470bb3b7",
+    "a5b4c2f309381dc6e7bea51062a36be9dfaa7cd691ef2ca57afa2552dfe22012"
+  ],
+  "lean_modules": [
+    "ErdosSzekeres/E3State466CheckpointContext.lean",
+    "ErdosSzekeres/E3State466CheckpointSegment000.lean",
+    "ErdosSzekeres/E3State466CheckpointSegment001.lean",
+    "ErdosSzekeres/E3State466CheckpointSegment002.lean",
+    "ErdosSzekeres/E3State466CheckpointSegment003.lean"
+  ]
+}

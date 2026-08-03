@@ -1,5 +1,9 @@
-import ErdosSzekeres.Extremal
-import Mathlib.Tactic.Sat.FromLRAT
+module
+
+public import ErdosSzekeres.Extremal
+public import Mathlib.Tactic.Sat.FromLRAT
+
+@[expose] public section
 
 /-! Kernel-checked LRAT certificate underlying the nine-point case. -/
 
@@ -10,3 +14,5 @@ lrat_proof es5_signotope_unsat
   (include_str "../certificates/es5-signotope.lrat")
 
 end ErdosSzekeres
+
+end

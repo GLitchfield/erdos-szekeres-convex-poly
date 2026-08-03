@@ -1,4 +1,8 @@
-import ErdosSzekeres.Basic
+module
+
+public import ErdosSzekeres.Basic
+
+@[expose] public section
 
 /-!
 # Sweeps and the left/right triple coloring
@@ -285,3 +289,5 @@ theorem IsMonochromaticChain.of_comp_of_restrict_eq {n m k : ℕ}
 end
 
 end ErdosSzekeres
+
+end

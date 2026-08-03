@@ -42,6 +42,18 @@ sets.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.
+- `ErdosSzekeres/E3State466Certificate.lean` and
+  `ErdosSzekeres/E3State566Certificate.lean` kernel-check the two finite E3
+  states needed at six vertices. Every twelve-vertex one-change coloring has a
+  four-cap, a six-cup, or a strong six-set, and every sixteen-vertex
+  one-change coloring has a five-cap, a six-cup, or a strong six-set.
+  `E3FiniteReduction.lean` lifts these certificates to hereditary bounds and
+  proves `decomposableExactUpperAt_six : DecomposableExactUpperAt 6`.
+  The 155,064-clause state-566 bridge is split into bounded Lean modules and
+  replayed structurally by an independent whole-data checker.
+  This is the exact upper formula for the abstract recursively decomposable
+  class at `n = 6`; it is not a proof of the unrestricted planar case or of
+  the uniform all-`n` decomposable theorem.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
@@ -54,11 +66,16 @@ sets.
 ## Build
 
 ```console
-lake update
+make update
 lake build
 make test
 python3 scripts/wayfinder_status.py
 ```
+
+`make update` supplies a repository-local `unzip` compatibility command needed
+by LeanHammer's ATP setup on machines without the system utility. See
+[`docs/automation.md`](docs/automation.md) for the proof-search workflow and
+trust policy.
 
 No theorem containing `sorry` or `admit` is accepted by the test gate.
 The `ES(5)` CNF and its generated Lean bridge can be reproduced with

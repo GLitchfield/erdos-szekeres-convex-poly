@@ -1,7 +1,11 @@
-import ErdosSzekeres.Chains
-import ErdosSzekeres.StrongPolygon
-import Mathlib.Data.Finset.Sort
-import Mathlib.Data.Nat.Choose.Basic
+module
+
+public import ErdosSzekeres.Chains
+public import ErdosSzekeres.StrongPolygon
+public import Mathlib.Data.Finset.Sort
+public import Mathlib.Data.Nat.Choose.Basic
+
+@[expose] public section
 
 /-!
 # The cup--cap recurrence and classical upper bound
@@ -374,3 +378,5 @@ theorem classical_binomial_upper (k : ℕ) (hk : 3 ≤ k) :
 
 end CupCap
 end ErdosSzekeres
+
+end

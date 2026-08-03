@@ -80,9 +80,45 @@ nine-point LRAT certificate consequently proves
 reciprocal Sol/Fable route review and the general anchor-context transition are
 still pending.
 
+Both off-diagonal `k = 6` states are now closed in Lean.  Generated semantic
+bridges connect kernel-checked LRAT proofs to
+`exists_cap_four_or_cup_six_or_strong_six` on twelve vertices and
+`exists_cap_five_or_cup_six_or_strong_six` on sixteen vertices.  Restriction
+promotes them to the hereditary invariants `decomposableStateUpper_466` and
+`decomposableStateUpper_566`.  The audited dual-state reduction then proves
+`decomposableExactUpperAt_six : DecomposableExactUpperAt 6`.
+
+The large sixteen-vertex proof is represented by 256 kernel-checked
+checkpoints rather than one monolithic Lean declaration.  Its committed
+segments contain the complete 496,453,316-byte trimmed LRAT trace and compose
+to a proof of the empty clause.  This settles the finite `k = 6` milestone but
+not the ticket's all-`k` question; selecting and proving a uniform strengthened
+invariant remains open.
+
+The semantic side is also complete and independently checked.  Its 155,064
+canonical clauses are covered by 769 semantic chunks, 4,096 raw aggregation
+modules, and 1,024 midpoint modules.  Short named midpoint propositions form a
+compact root, and Lean accepts a single `rfl` bridge identifying that tree with
+the checkpoint's full clause proposition.  The independent checker in
+`scripts/check_e3_state566_aggregation.py` reparses the DIMACS source and
+verifies every range, proposition, import, alias, hypothesis, elimination
+leaf, and root association without importing either generator.
+
+A bounded reciprocal Sol/Fable review of the pre-redesign aggregation packet
+had SHA-256
+`1c50d5ec1789727a630e1f34579968d11389cc2af3d26cb9e8ee3dd300f9247a`.
+Both reviewers returned `partially_supported` at medium confidence and asked
+for the independent whole-data checker, the named-proposition proof shape, a
+successful root build, and an axiom audit.  All four checks are now complete.
+Lean reports only `propext`, `Classical.choice`, and `Quot.sound` for
+`decomposableExactUpperAt_six`; no project axiom or `sorryAx` occurs.  This
+disposes of the material aggregation objections but does not answer the open
+uniform all-`k` question.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
+- [`ErdosSzekeres.E3FiniteReduction`](../../../ErdosSzekeres/E3FiniteReduction.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

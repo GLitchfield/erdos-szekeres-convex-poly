@@ -1,12 +1,16 @@
-import ErdosSzekeres.Basic
-import ErdosSzekeres.Sweep
-import ErdosSzekeres.Chains
-import ErdosSzekeres.Presentation
-import ErdosSzekeres.Convexity
-import ErdosSzekeres.StrongPolygon
-import ErdosSzekeres.CupCap
-import ErdosSzekeres.SmallCases
-import ErdosSzekeres.Composition
-import ErdosSzekeres.Extremal
-import ErdosSzekeres.Decomposable
-import ErdosSzekeres.ES5Certificate
+module
+
+public import ErdosSzekeres.Basic
+public import ErdosSzekeres.Sweep
+public import ErdosSzekeres.Chains
+public import ErdosSzekeres.Presentation
+public import ErdosSzekeres.Convexity
+public import ErdosSzekeres.StrongPolygon
+public import ErdosSzekeres.CupCap
+public import ErdosSzekeres.SmallCases
+public import ErdosSzekeres.Composition
+public import ErdosSzekeres.Extremal
+public import ErdosSzekeres.Decomposable
+public import ErdosSzekeres.E3State466Certificate
+public import ErdosSzekeres.E3FiniteReduction
+public import ErdosSzekeres.ES5Certificate

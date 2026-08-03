@@ -1,4 +1,8 @@
-import ErdosSzekeres.ES5CNFGenerated
+module
+
+public import ErdosSzekeres.ES5CNFGenerated
+
+@[expose] public section
 
 /-!
 # Kernel-checked finite certificate for the nine-point case
@@ -54,3 +58,5 @@ theorem erdosSzekeresFormulaAt_five : ErdosSzekeresFormulaAt 5 := by
   exact ⟨forces_five, sharpness_five⟩
 
 end ErdosSzekeres
+
+end

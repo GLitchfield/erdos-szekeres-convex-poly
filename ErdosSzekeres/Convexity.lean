@@ -1,7 +1,11 @@
-import ErdosSzekeres.Presentation
-import Mathlib.Analysis.Convex.Caratheodory
-import Mathlib.Analysis.Convex.Combination
-import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+module
+
+public import ErdosSzekeres.Presentation
+public import Mathlib.Analysis.Convex.Caratheodory
+public import Mathlib.Analysis.Convex.Combination
+public import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+
+@[expose] public section
 
 /-!
 # Convexity from orientation signs
@@ -442,3 +446,5 @@ theorem inConvexPosition_image_linearEquiv_iff
 end
 
 end ErdosSzekeres
+
+end

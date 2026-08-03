@@ -390,7 +390,9 @@ def run_codex(
         "codex", "exec",
         "--ephemeral",
         "--ignore-user-config",
-        "--sandbox", "read-only",
+        # The repository is not mounted into this temporary directory.  Codex
+        # nevertheless needs to write --output-last-message beside the schema.
+        "--sandbox", "workspace-write",
         "--skip-git-repo-check",
         "--cd", str(scratch),
         "--model", model,

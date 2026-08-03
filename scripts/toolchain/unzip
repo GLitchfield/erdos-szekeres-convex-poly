@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+"""Minimal `unzip -d DIR ARCHIVE` used by lean-auto's Lake post-update hook."""
+
+from __future__ import annotations
+
+import sys
+import zipfile
+from pathlib import Path
+
+
+def main(argv: list[str]) -> int:
+    if len(argv) != 4 or argv[1] != "-d":
+        print("usage: unzip -d DIRECTORY ARCHIVE", file=sys.stderr)
+        return 2
+    destination = Path(argv[2])
+    archive = Path(argv[3])
+    destination.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(archive) as source:
+        source.extractall(destination)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv))

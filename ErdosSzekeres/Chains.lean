@@ -1,4 +1,8 @@
-import ErdosSzekeres.Sweep
+module
+
+public import ErdosSzekeres.Sweep
+
+@[expose] public section
 
 /-!
 # Consecutive and all-triples cup/cap chains
@@ -228,3 +232,5 @@ theorem IsSweepRealizable.isCap_iff_isConsecutiveCap
 end
 
 end ErdosSzekeres
+
+end

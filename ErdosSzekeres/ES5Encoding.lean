@@ -1,4 +1,8 @@
-import ErdosSzekeres.ES5Unsat
+module
+
+public import ErdosSzekeres.ES5Unsat
+
+@[expose] public section
 
 set_option maxHeartbeats 0
 set_option maxRecDepth 10000
@@ -112,3 +116,5 @@ theorem strongFive_mismatch {n : ℕ} (χ : TripleColoring n)
 end
 
 end ErdosSzekeres
+
+end

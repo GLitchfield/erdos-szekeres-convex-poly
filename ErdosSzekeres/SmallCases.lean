@@ -1,4 +1,8 @@
-import ErdosSzekeres.CupCap
+module
+
+public import ErdosSzekeres.CupCap
+
+@[expose] public section
 
 /-!
 # Exact small cases of the Erdős--Szekeres formula
@@ -273,3 +277,5 @@ theorem erdosSzekeresFormulaAt_four : ErdosSzekeresFormulaAt 4 := by
 end
 
 end ErdosSzekeres
+
+end

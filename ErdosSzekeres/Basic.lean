@@ -1,6 +1,10 @@
-import Mathlib.Analysis.Convex.Hull
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.Convex.Hull
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # Basic Erdős--Szekeres definitions
@@ -61,3 +65,5 @@ theorem orientation_swap (a b c : Point 2) :
   ring
 
 end ErdosSzekeres
+
+end

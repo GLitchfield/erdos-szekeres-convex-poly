@@ -210,34 +210,32 @@ namespace ErdosSzekeres
 
 '''
     definitions = (
-        "import ErdosSzekeres.ES5Encoding\n\n"
+        "module\n\npublic import ErdosSzekeres.ES5Encoding\n\n@[expose] public section\n\n"
         + header
         + bad_chunk_definitions
         + f"\n\ndef ES5Bad (χ : TripleColoring 9) : Prop :=\n    {bad_disjunction}"
         + "\n\ndef ES5CNF (χ : TripleColoring 9) : Prop := ¬ ES5Bad χ"
-        + "\n\nend ErdosSzekeres\n"
+        + "\n\nend ErdosSzekeres\n\nend\n"
     )
     output.with_name("ES5CNFDefs.lean").write_text(definitions, encoding="utf-8")
 
     # Four dependency chains bound peak memory while retaining parallel builds.
     for i, theorem_text in enumerate(chunk_theorems):
-        dependency = (
-            f"ErdosSzekeres.ES5CNFChunk{i - 4:02}"
-            if i >= 4
-            else "ErdosSzekeres.ES5CNFDefs"
-        )
+        imports = "module\n\npublic import ErdosSzekeres.ES5CNFDefs"
+        if i >= 4:
+            imports += f"\nimport ErdosSzekeres.ES5CNFChunk{i - 4:02}"
         source = (
-            f"import {dependency}\n\n"
+            imports + "\n\n@[expose] public section\n\n"
             + header
             + theorem_text
-            + "\n\nend ErdosSzekeres\n"
+            + "\n\nend ErdosSzekeres\n\nend\n"
         )
         output.with_name(f"ES5CNFChunk{i:02}.lean").write_text(
             source, encoding="utf-8"
         )
 
     chunk_imports = "\n".join(
-        f"import ErdosSzekeres.ES5CNFChunk{i:02}"
+        f"public import ErdosSzekeres.ES5CNFChunk{i:02}"
         for i in range(len(chunk_theorems))
     )
     arguments = " ".join(
@@ -254,7 +252,11 @@ namespace ErdosSzekeres
         ]
         + ["unfold ES5CNF ES5Bad", "tauto"]
     )
-    main_source = f'''{chunk_imports}
+    main_source = f'''module
+
+{chunk_imports}
+
+@[expose] public section
 
 {header}theorem es5CNF_unsat (χ : TripleColoring 9) : ¬ ES5CNF χ := by
   intro hcnf
@@ -268,6 +270,8 @@ theorem es5CNF_of_signotope_noStrong (χ : TripleColoring 9)
   {semantic_steps}
 
 end ErdosSzekeres
+
+end
 '''
     output.write_text(main_source, encoding="utf-8")
 

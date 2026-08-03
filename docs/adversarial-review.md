@@ -11,9 +11,11 @@ exhaustiveness certificate.
 The harness does not give either reviewer a writable repository. It combines
 only explicitly requested UTF-8 files into a packet with stable displayed line
 numbers and SHA-256 provenance. Claude runs in safe mode without tools, MCP
-servers, or session persistence. Codex runs ephemerally in a temporary
-directory with a read-only sandbox and no web search. Both are told to use only
-the packet, and citations outside the packet are rejected.
+servers, or session persistence. Codex runs ephemerally in a writable temporary
+scratch directory that does not contain the repository and has no web search.
+The scratch write access is needed only for Codex's structured result file.
+Both reviewers are told to use only the packet, and citations outside the
+packet are rejected.
 
 The vendor clients still contact their providers, and the packet is
 transmitted to those providers. Never include secrets, credentials, private

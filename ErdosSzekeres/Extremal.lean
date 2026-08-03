@@ -1,5 +1,9 @@
-import ErdosSzekeres.Composition
-import Mathlib.Data.Nat.Choose.Sum
+module
+
+public import ErdosSzekeres.Composition
+public import Mathlib.Data.Nat.Choose.Sum
+
+@[expose] public section
 
 /-!
 # Recursive cup--cap extremal configurations
@@ -364,3 +368,5 @@ theorem exact_cupCap (a b : ℕ) (ha : 2 ≤ a) (hb : 2 ≤ b) :
 end
 
 end ErdosSzekeres
+
+end

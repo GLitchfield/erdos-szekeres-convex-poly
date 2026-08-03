@@ -1,5 +1,9 @@
-import ErdosSzekeres.Convexity
-import Mathlib.Data.Finset.Sort
+module
+
+public import ErdosSzekeres.Convexity
+public import Mathlib.Data.Finset.Sort
+
+@[expose] public section
 
 /-!
 # Strong polygons in the sweep coloring
@@ -491,3 +495,5 @@ theorem inConvexPosition_iff_exists_strongPolygonPresentation
 end
 
 end ErdosSzekeres
+
+end
