@@ -115,6 +115,27 @@ Lean reports only `propext`, `Classical.choice`, and `Quot.sound` for
 disposes of the material aggregation objections but does not answer the open
 uniform all-`k` question.
 
+A fresh post-six reciprocal review now selects one narrower next obligation,
+not a uniform route.  Against packet SHA-256
+`09beb042e541117ef77f30f73353e91f5c0dae50968753eb216f2b347584ca55`,
+both final reviewers converged at `partially_supported`, medium confidence, on
+formalizing the hereditary diagnostic
+`decomposableStateUpper_455 : DecomposableStateUpper 4 5 5`.  They agree that
+the proposed context state is still undefined, minimal-counterexample descent
+is circular without such a rooted state, and a global endpoint injection lacks
+both completeness and injectivity.
+
+The review's finite gate has been independently discharged.  The canonical
+eight-vertex `(4,5,5)` signotope instance has 56 variables and 1,134 clauses
+(CNF SHA-256
+`56ea4a13b8f976fbb266ef58e8a8c7074de38e08a201fda0477b59642abc49c1`).
+CaDiCaL 1.7.3 returned UNSAT with a 39,037-byte LRAT trace (SHA-256
+`5401621fc275e55a42077cecd293b5b303969da341bd6a0dc25973eaf5287861`),
+and a temporary Lean `FromLRAT` probe kernel-checked it in 4.4 seconds.  The
+remaining next work is the committed semantic bridge and hereditary lift.
+This result will certify that the `8 > 7` regression is a proof-method defect,
+but it is explicitly diagnostic rather than the missing uniform transition.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -125,3 +146,4 @@ uniform all-`k` question.
 - [Exact coloring producer](../../../scripts/enumerate_decomposable_colorings.py)
 - [Independent enumeration checker](../../../scripts/check_decomposable_enumeration.py)
 - [Exact enumeration design and results](../../experiments/0002-e3-adversarial-design.md)
+- [Post-six route review and disposition](../../experiments/0003-e3-post-six-route-review.md)

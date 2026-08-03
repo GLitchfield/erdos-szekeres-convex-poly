@@ -121,3 +121,54 @@ as the main route:
 The default experiment bound remains 30 minutes, 8 CPU cores, 16 GiB RAM, and
 5 GiB under ignored `runs/`.  Reviewer agreement is advisory; the selected
 theorem counts as progress only after it compiles in Lean.
+
+## Review outcome and independent disposition
+
+The reciprocal review completed against Git revision `d6dfb9d` with evidence
+packet SHA-256
+`09beb042e541117ef77f30f73353e91f5c0dae50968753eb216f2b347584ca55`.
+Both final reviews returned `partially_supported` at medium confidence and
+converged on the same bounded next theorem:
+
+```lean
+decomposableStateUpper_455 : DecomposableStateUpper 4 5 5
+```
+
+Its threshold is seven, so the finite core has eight vertices.  Color duality
+then supplies the `(5,4,5)` state.  This is a hereditary boundary diagnostic
+and base fact, not a composition transition and not a selection of candidate
+B, C, or D.  It shows at the theorem level that the `8 > 7` calculation is a
+failure of the published proof method rather than a decomposable
+counterexample, but it does not identify the duplicated contribution.
+
+The reviewers' shared material objections are retained:
+
+- Candidate A's endpoint/straddling reading is already implied by the local
+  saturation lemmas, while its proposed counting reading was not stated.
+- Candidate B has no defined hereditary context, no restriction law for an
+  external anchor, and no proved root transition.
+- Candidate C is circular until descent lands in a separately defined rooted
+  state that is covered by the induction hypothesis.
+- Candidate D assumes the missing profile-completeness and injectivity
+  theorems and may accumulate unbounded tree-depth context.
+
+The proposed finite gate was independently reproduced immediately after the
+review.  The canonical `(n,a,u,k) = (8,4,5,5)` generator produced 56 variables
+and 1,134 clauses: 560 one-change clauses, 70 no-cap clauses, 56 no-cup
+clauses, and 448 no-strong-five clauses.  Its CNF SHA-256 is
+`56ea4a13b8f976fbb266ef58e8a8c7074de38e08a201fda0477b59642abc49c1`.
+CaDiCaL 1.7.3 returned UNSAT immediately and emitted a 39,037-byte LRAT trace
+with SHA-256
+`5401621fc275e55a42077cecd293b5b303969da341bd6a0dc25973eaf5287861`.
+The trace contains 593 additions and 523 deletions.  A temporary
+`Mathlib.Tactic.Sat.FromLRAT` probe was accepted by Lean's kernel in 4.4
+seconds and then removed.  These ignored experimental artifacts are evidence,
+not yet the completed `decomposableStateUpper_455` theorem: the committed
+semantic bridge from all CNF clauses to the repository predicates remains the
+next formal work item.
+
+After that theorem compiles, the next discriminator is an exact all-root
+context-profile replay through eight leaves.  It must record directional
+endpoint and straddling obligations at every possible root, and an independent
+checker must test restriction and composition.  Only a stable profile with an
+explicit transition should be promoted to candidate B's Lean definition.
