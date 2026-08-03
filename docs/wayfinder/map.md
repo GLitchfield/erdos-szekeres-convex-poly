@@ -34,7 +34,8 @@ None. The destination was fixed by the user on 2026-08-01.
   realizability-sensitive transition. The scalar recurrence, maxima-only
   contexts, deterministic downset words, complete child pair-rank matrices,
   and pairwise raw-downset counting shortcut are now refuted routes; abstract
-  decomposability and planar realizability remain separate checks.
+  decomposability and planar realizability are both kernel-checked for the
+  complete pair-rank collision, so realizability alone does not repair it.
 
 ## Not yet specified
 

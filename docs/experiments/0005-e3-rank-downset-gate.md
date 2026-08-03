@@ -9,11 +9,10 @@ downsets, serve as a deterministic state for adjoining a singleton lower root?
 
 The scope is fixed at `k = 6`, `n = 9`, lower child `{1}`, and upper child
 `{0,2,...,8}`. Every distinct recursively decomposable coloring of the upper
-child is enumerated. The resulting abstract triple colorings are signotopes,
-but this experiment does not provide point coordinates or a certificate of
-straight-line sweep realizability. Its negative conclusions therefore apply
-to the abstract decomposable transition under test, not to every conceivable
-transition that can exploit additional geometric information.
+child is enumerated. The original experiment did not test straight-line
+realizability. The later Lean certificate described below closes that gap for
+the complete pair-rank collision by giving exact rational coordinates for
+both witnesses.
 
 ## States under test
 
@@ -108,26 +107,34 @@ The raw downsets remain injective in every covered open parent, so this census
 does not refute the classical global injection itself. It does rule out the
 proposed pairwise counting shortcut: the observed compatibility graph already
 has a 27-clique, exceeding 16. A surviving rank route must therefore use a
-higher-order restriction, a different canonical label, or realizability data;
+higher-order restriction, a different canonical label, or geometric data
+strictly richer than realizability itself;
 it cannot use only the deterministic child states or pairwise raw-downset
 incompatibility tested here.
 
 No uniform replacement route is selected by this negative gate. Before more
 composition machinery is added in Lean, the next candidate must state exactly
-which correlations it retains, why its state count depends only on `k`, and
-whether its transition is claimed for abstract decomposable colorings or only
-for sweep-realizable ones.
+which correlations it retains and why its state count depends only on `k`.
+Sweep realizability alone cannot rescue the complete pair-rank transition.
 
 ## Lean consequence and advisory review
 
-`ErdosSzekeres/RankProfile.lean` now defines the specification directly in
-terms of `CupCap.IsTurnChain`, rather than importing the Python recurrence into
-the theorem statement. Its first compiling lemmas establish subset
-monotonicity, rank-threshold antitonicity, the base rank-one pair, and
-lower-rectangle closure. Their axiom audit contains only `propext` and
-`Quot.sound`. This semantic layer is unconditional for arbitrary triple
-colorings; the finite collision itself remains to be encoded and proved in
-Lean.
+`ErdosSzekeres/RankProfile.lean` defines the list-chain specification and a
+kernel-reducible predecessor recurrence. Compiling equivalence lemmas identify
+the Boolean computation with both its propositional recurrence and the
+original `CupCap.IsTurnChain` pair-rank predicate.
+`ErdosSzekeres/RankProfileCollision.lean` then proves the complete bounded
+collision: both colorings are decomposable, share the singleton root, have no
+strong six-set, have equal clipped child states, and have unequal parent
+states. Exact rational coordinates with `x_i=i` realize both colorings, with
+minimum absolute orientation determinant one. The combined theorem audits
+only to `propext`, `Classical.choice`, and `Quot.sound`.
+
+`scripts/check_rank_profile_realization.py` independently recomputes both
+84-bit colorings from exact fractions, checks their decomposition trees,
+openness, child and parent ranks, and the determinant margin. It obtains
+parent encodings `03c300c1a000000c1adff` and
+`03c700c1a000000c1adff`.
 
 The first Sol audit at packet SHA-256
 `04b7300160c56e5c0e06dc4617b2af96812eb03edf6d2f1cd402b8848b48da3c`
@@ -150,4 +157,5 @@ python3 scripts/analyze_decomposable_rank_profiles.py \
   data/derived/e3-rank-k6-n9-singleton.json
 python3 scripts/check_decomposable_rank_profiles.py \
   data/derived/e3-rank-k6-n9-singleton.json
+python3 scripts/check_rank_profile_realization.py
 ```

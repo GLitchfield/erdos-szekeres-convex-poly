@@ -182,8 +182,8 @@ parent downsets remain vertex-injective in every covered parent, but the exact
 target `2^(6-2) = 16`. Thus deterministic rank-state composition and the
 pairwise incompatibility counting shortcut are both rejected. Higher-order
 rank restrictions and realizability-sensitive transitions remain logically
-open; the witnesses have decomposition trees but no planar realization
-certificate. No replacement uniform route is selected pending bounded
+open; at this stage the witnesses had decomposition trees but no planar
+realization certificate. No replacement uniform route is selected pending bounded
 Sol/Fable review of this gate.
 
 The first Sol audit returned `partially_supported` and agreed with all three
@@ -215,7 +215,21 @@ rank-one, and lower-closure theorems require only an arbitrary triple coloring
 and audit to `propext` and `Quot.sound`. This removes the shared Python
 semantic obstruction without selecting a uniform route. The next formal gate
 is a kernel-checked bounded theorem exhibiting the `k = 6`, `n = 9` pair-rank
-non-congruence; realizability remains a separate later question.
+non-congruence; realizability was left as a separate question, now closed by
+the next paragraph.
+
+That bounded theorem is now complete in
+`ErdosSzekeres.RankProfileCollision`. A structural decomposition-tree coloring
+avoids treating the witnesses as opaque truth tables. Lean proves both trees
+are well formed and decomposable, checks the singleton root, proves absence of
+a strong six-set through an executable checker equivalent to
+`IsStrongPolygonSet`, and verifies equal complete child states but unequal
+parent states. Exact rational coordinates with `x_i=i` realize both colorings,
+with minimum absolute orientation determinant one. The combined theorem uses
+only `propext`, `Classical.choice`, and `Quot.sound`. Thus the complete
+pair-rank matrix is not a transition congruence even in the straight-line
+realizable subclass. Higher-order predecessor correlation remains the live
+rank-based direction, but no uniform state has yet been selected.
 
 ## Evidence
 
@@ -235,3 +249,5 @@ non-congruence; realizability remains a separate later question.
 - [Compact rank/downset certificate](../../../data/derived/e3-rank-k6-n9-singleton.json)
 - [Independent rank/downset checker](../../../scripts/check_decomposable_rank_profiles.py)
 - [Lean consecutive-rank/downset specification](../../../ErdosSzekeres/RankProfile.lean)
+- [Lean realizable pair-rank collision](../../../ErdosSzekeres/RankProfileCollision.lean)
+- [Independent rational-realization checker](../../../scripts/check_rank_profile_realization.py)

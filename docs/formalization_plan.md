@@ -270,11 +270,12 @@ ordered child downset words can produce unequal parent words, and even equal
 complete child pair-rank matrices can produce unequal parent matrices. The 34
 observed parent downsets remain vertex-injective, but their exact empirical
 compatibility graph has a 27-clique, ruling out any 16-state bound based only
-on pairwise incompatibility of those raw values. This is an abstract
-decomposable-coloring result, not a realizability certificate. A surviving
-rank strategy must retain higher-order predecessor correlations, use a
-different label, or exploit a precisely stated geometric constraint; none is
-yet selected as the uniform E3 route.
+on pairwise incompatibility of those raw values. The bounded pair-rank
+collision is now also a compiling Lean theorem for two explicit rational
+planar configurations. A surviving rank strategy must retain higher-order
+predecessor correlations, use a different label, or exploit geometric data
+strictly richer than realizability itself; none is yet selected as the
+uniform E3 route.
 
 The corresponding specification layer now compiles in
 `ErdosSzekeres/RankProfile.lean`. `HasPairRankAtLeast` is stated directly by an
@@ -284,8 +285,10 @@ Theorems prove monotonicity under enlargement of the fixed ambient subset,
 antitonicity in the requested rank threshold, the rank-one base case, and
 lower-rectangle closure. These facts hold for an arbitrary triple coloring;
 decomposability or sweep realizability belongs only in later transition or
-witness theorems. The next bounded formal target is the explicit `k = 6`,
-`n = 9` pair-rank non-congruence witness, not a uniform replacement induction.
+witness theorems. `RankProfileCollision.lean` completes the bounded `k = 6`,
+`n = 9` target with a kernel-checked realizable non-congruence witness. The
+next uniform work must formulate a genuinely higher-order state or a new
+decomposition-tree invariant.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

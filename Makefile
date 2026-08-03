@@ -23,6 +23,7 @@ test: check lean
 		data/derived/e3-context-k6-n9-singleton-collision.json >/dev/null
 	@python3 scripts/check_decomposable_rank_profiles.py \
 		data/derived/e3-rank-k6-n9-singleton.json >/dev/null
+	@python3 scripts/check_rank_profile_realization.py >/dev/null
 	@python3 scripts/wayfinder_status.py >/dev/null
 	@python3 -m py_compile scripts/adversarial_review.py \
 		scripts/analyze_decomposable_rank_profiles.py \
@@ -32,6 +33,7 @@ test: check lean
 		scripts/check_decomposable_contexts.py \
 		scripts/check_decomposable_context_collision.py \
 		scripts/check_decomposable_rank_profiles.py \
+		scripts/check_rank_profile_realization.py \
 		scripts/check_decomposable_enumeration.py \
 		scripts/check_signotope_state_witness.py \
 		scripts/enumerate_decomposable_colorings.py \

@@ -72,8 +72,10 @@ sets.
   deterministic parent states. Raw downsets stay vertex-injective in all
   85,797 covered open parents, but their observed compatibility graph has a
   27-clique, so pairwise incompatibility alone cannot yield the required
-  16-state bound. These conclusions concern abstract decomposable colorings;
-  sweep realizability of the witnesses is not certified.
+  16-state bound. `RankProfileCollision.lean` now kernel-checks the complete
+  pair-rank collision and proves both witnesses are induced by explicit
+  rational planar configurations. Straight-line sweep realizability therefore
+  does not repair this deterministic child-state transition.
 - `ErdosSzekeres/ContextProfile.lean` defines fixed-ambient sweep gaps and the
   three directional chain relations.  Its compiling monotonicity lemmas prove
   that a directional cup or cap witness survives enlargement without any
@@ -82,9 +84,11 @@ sets.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,
-  and lower-rectangle closure for arbitrary triple colorings. No signotope,
-  decomposition, or realizability assumption is hidden in this semantic
-  layer; the explicit bounded rank-state collisions are not yet Lean theorems.
+  and lower-rectangle closure for arbitrary triple colorings. Its executable
+  recurrence is proved equivalent to the original `CupCap.IsTurnChain`
+  pair-rank specification.
+  `RankProfileCollision.lean` proves the bounded realizable non-congruence,
+  including decomposability, openness, and exact rational realizations.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
