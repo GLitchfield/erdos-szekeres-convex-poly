@@ -141,8 +141,22 @@ from DIMACS without importing either generator. Lean proves
 `decomposableStateUpper_545`; both have only `propext`, `Classical.choice`, and
 `Quot.sound` in their axiom audit. This certifies that the `8 > 7` regression
 is a proof-method defect, but it remains explicitly diagnostic rather than the
-missing uniform transition. The next discriminator is the all-root
-directional context-profile replay through eight leaves.
+missing uniform transition.
+
+The all-root directional context-profile replay is complete through eight
+leaves. Two independent implementations agree on 243,102 compatible roots,
+1,896,168 anchor/four-chain records, 4,343,048 restriction comparisons, and
+all canonical hashes. Same-gap and cross-anchor summaries have open
+composition collisions. The complete all-gap word has no open `k = 5`
+collision in the covered range, but the generalization fails at the next
+nonvacuous probe: a targeted `k = 6`, `n = 9` singleton-root search finds
+2,055 collision observations among 85,797 open parents. A compact certificate
+contains two explicit decomposition trees with equal child words and unequal
+parent profiles, and a separate checker reconstructs every defining
+predicate. Candidate B's maxima-only state is rejected. The live redirect is
+to a correlation-preserving rank/downset state or a bounded transition
+congruence that separates this pair; neither route is selected until bounded
+Sol/Fable review is disposed and its first transition is stated precisely.
 
 ## Evidence
 
@@ -155,3 +169,6 @@ directional context-profile replay through eight leaves.
 - [Independent enumeration checker](../../../scripts/check_decomposable_enumeration.py)
 - [Exact enumeration design and results](../../experiments/0002-e3-adversarial-design.md)
 - [Post-six route review and disposition](../../experiments/0003-e3-post-six-route-review.md)
+- [All-root context replay and collision redirect](../../experiments/0004-e3-all-root-context-profile.md)
+- [Compact `k=6`, `n=9` collision certificate](../../../data/derived/e3-context-k6-n9-singleton-collision.json)
+- [Independent collision checker](../../../scripts/check_decomposable_context_collision.py)

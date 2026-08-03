@@ -173,8 +173,12 @@ Lean proves the hereditary theorem
 `decomposableStateUpper_545`. Their axiom audits report only `propext`,
 `Classical.choice`, and `Quot.sound`.
 
-The next discriminator is an exact all-root context-profile replay through
-eight leaves.  It must record directional
-endpoint and straddling obligations at every possible root, and an independent
-checker must test restriction and composition.  Only a stable profile with an
-explicit transition should be promoted to candidate B's Lean definition.
+The next discriminator was discharged by the exact all-root context-profile
+replay through eight leaves.  It recorded directional endpoint and straddling
+obligations at every possible root, and an independent checker reproduced all
+hashes, restriction checks, and composition collisions.  Same-gap and
+cross-anchor maxima profiles fail on open branches.  Although the complete
+all-gap word survived at `k = 5`, a targeted open `k = 6`, `n = 9`
+singleton-root certificate gives equal child words and unequal parent words.
+Candidate B's maxima-only composition state is therefore rejected; see
+`0004-e3-all-root-context-profile.md`.

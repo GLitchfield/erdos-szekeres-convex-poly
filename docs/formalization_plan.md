@@ -248,8 +248,18 @@ its color dual `decomposableStateUpper_545`. Its eight-vertex signotope CNF has
 and eight generated semantic chunks connect every clause to the project
 predicates. This establishes that the published `8 > 7` regression is a
 proof-method failure, but it does not supply the missing inductive transition.
-An all-root directional context-profile experiment is the next gate before
-introducing a general context-carrying state.
+The all-root directional context-profile gate is complete.  Independent
+programs agree through eight leaves on every compatible root, 1,896,168
+anchor/four-chain records, and all restriction and local endpoint checks.
+Same-gap and cross-anchor maxima summaries collide on open branches.  The
+complete all-gap word has no open `k = 5` collision through eight leaves, but
+a compact targeted certificate at `k = 6`, `n = 9` gives two decomposable
+parents with identical child all-gap words, no strong six-set, and different
+parent profiles.  Thus maxima-only candidate B is not a valid uniform
+composition state.  The next formal result should define the fixed-ambient
+profile and kernel-check this explicit incompleteness witness, while the
+research route redirects to a correlation-preserving rank/downset state or a
+bounded transition congruence that separates the witness.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

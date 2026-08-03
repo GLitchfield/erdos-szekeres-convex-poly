@@ -19,6 +19,8 @@ test: check lean
 	@python3 -m unittest discover -s scripts -p 'test_*.py'
 	@python3 scripts/check_e3_state455_aggregation.py
 	@python3 scripts/check_e3_state566_aggregation.py
+	@python3 scripts/check_decomposable_context_collision.py \
+		data/derived/e3-context-k6-n9-singleton-collision.json >/dev/null
 	@python3 scripts/wayfinder_status.py >/dev/null
 	@python3 -m py_compile scripts/adversarial_review.py \
 		scripts/analyze_lrat_checkpoints.py \

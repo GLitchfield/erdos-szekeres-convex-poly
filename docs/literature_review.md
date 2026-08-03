@@ -191,6 +191,17 @@ be strictly straddled by the chain.  This supplies the local state machine
 needed by a repaired E3 proof, but the global injection/count of endpoint
 profiles is not yet proved.
 
+An exact all-root census has now tested how far those local states compose.
+Through eight leaves, independent implementations agree on every compatible
+root, every fixed-ambient restriction, and every anchor/four-chain relation.
+Directional maxima at one gap, or even at all anchors supplied by the sibling,
+do not determine the parent profile.  A complete all-gap word survives only
+the `k = 5` boundary: at `k = 6`, `n = 9`, an independently checked pair of
+decomposition trees has identical child all-gap maxima profiles and different
+open parent profiles.  Hence a uniform proof must retain correlations between
+chains—such as predecessor/rank downsets—or prove a new bounded quotient; a
+maxima-only context recurrence is insufficient.
+
 ## Existing formal proof assets
 
 - **Isabelle/HOL, exact cases through six:** Marić's 2019 paper formalizes a
