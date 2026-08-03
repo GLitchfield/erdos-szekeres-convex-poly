@@ -276,6 +276,17 @@ rank strategy must retain higher-order predecessor correlations, use a
 different label, or exploit a precisely stated geometric constraint; none is
 yet selected as the uniform E3 route.
 
+The corresponding specification layer now compiles in
+`ErdosSzekeres/RankProfile.lean`. `HasPairRankAtLeast` is stated directly by an
+actual `CupCap.IsTurnChain` ending at the ordered pair, and
+`InVertexDownset` uses one incoming pair to witness both clipped coordinates.
+Theorems prove monotonicity under enlargement of the fixed ambient subset,
+antitonicity in the requested rank threshold, the rank-one base case, and
+lower-rectangle closure. These facts hold for an arbitrary triple coloring;
+decomposability or sweep realizability belongs only in later transition or
+witness theorems. The next bounded formal target is the explicit `k = 6`,
+`n = 9` pair-rank non-congruence witness, not a uniform replacement induction.
+
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.
 

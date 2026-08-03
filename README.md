@@ -79,6 +79,12 @@ sets.
   that a directional cup or cap witness survives enlargement without any
   hidden relabeling or gap transport.  The explicit profile-collision pair is
   not yet kernel-checked in Lean.
+- `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
+  consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
+  prove ambient-set monotonicity, threshold antitonicity, the rank-one base,
+  and lower-rectangle closure for arbitrary triple colorings. No signotope,
+  decomposition, or realizability assumption is hidden in this semantic
+  layer; the explicit bounded rank-state collisions are not yet Lean theorems.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

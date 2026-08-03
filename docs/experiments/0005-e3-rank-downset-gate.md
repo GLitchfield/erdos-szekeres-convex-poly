@@ -118,6 +118,31 @@ which correlations it retains, why its state count depends only on `k`, and
 whether its transition is claimed for abstract decomposable colorings or only
 for sweep-realizable ones.
 
+## Lean consequence and advisory review
+
+`ErdosSzekeres/RankProfile.lean` now defines the specification directly in
+terms of `CupCap.IsTurnChain`, rather than importing the Python recurrence into
+the theorem statement. Its first compiling lemmas establish subset
+monotonicity, rank-threshold antitonicity, the base rank-one pair, and
+lower-rectangle closure. Their axiom audit contains only `propext` and
+`Quot.sound`. This semantic layer is unconditional for arbitrary triple
+colorings; the finite collision itself remains to be encoded and proved in
+Lean.
+
+The first Sol audit at packet SHA-256
+`04b7300160c56e5c0e06dc4617b2af96812eb03edf6d2f1cd402b8848b48da3c`
+returned `partially_supported` and agreed with all three bounded rejections.
+Its two major objections were the misleading pre-generation revision label
+and the shared dynamic-programming semantics. Both were disposed by the
+source-bound certificate and exhaustive direct-chain test described above.
+
+A clean corrected packet at commit `bbafd69` has SHA-256
+`b52e93af2a71e4cb1da99de9429a52ff752a86d3871a1a2a3343994384042d8a`.
+The combined corrected review exhausted its 30-minute provider stage without
+writing a result, and a separate 15-minute Fable attempt also returned zero
+bytes. No process remained. This is provider unavailability, not reviewer
+agreement or disagreement; no Fable conclusion is claimed.
+
 ## Reproduction
 
 ```console

@@ -199,6 +199,24 @@ abstract decomposability is not planar realizability, and the observed
 injectivity does not prove or refute the global counting theorem. A clean
 post-disposition review remains pending before selecting the next Lean package.
 
+The clean corrected packet at revision `bbafd69` has SHA-256
+`b52e93af2a71e4cb1da99de9429a52ff752a86d3871a1a2a3343994384042d8a`.
+The combined provider stage exhausted its 30-minute limit without an answer;
+a standalone 15-minute Fable retry likewise produced zero bytes and left no
+live process. This is recorded as provider unavailability, not consensus. It
+does not reopen the independently replayed finite facts, but it prevents a
+claim of completed Sol/Fable review.
+
+The smallest assumption-safe Lean package recommended by the successful Sol
+audit now compiles as `ErdosSzekeres.RankProfile`. It specifies pair-rank
+thresholds using actual `CupCap.IsTurnChain` witnesses and defines clipped
+vertex downsets in the fixed ambient order. Its monotonicity, threshold,
+rank-one, and lower-closure theorems require only an arbitrary triple coloring
+and audit to `propext` and `Quot.sound`. This removes the shared Python
+semantic obstruction without selecting a uniform route. The next formal gate
+is a kernel-checked bounded theorem exhibiting the `k = 6`, `n = 9` pair-rank
+non-congruence; realizability remains a separate later question.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -216,3 +234,4 @@ post-disposition review remains pending before selecting the next Lean package.
 - [Rank/downset gate and interpretation](../../experiments/0005-e3-rank-downset-gate.md)
 - [Compact rank/downset certificate](../../../data/derived/e3-rank-k6-n9-singleton.json)
 - [Independent rank/downset checker](../../../scripts/check_decomposable_rank_profiles.py)
+- [Lean consecutive-rank/downset specification](../../../ErdosSzekeres/RankProfile.lean)
