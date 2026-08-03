@@ -263,6 +263,19 @@ lemmas in `ContextProfile.lean`, while the
 research route redirects to a correlation-preserving rank/downset state or a
 bounded transition congruence that separates the witness.
 
+The first rank/downset redirect has now passed through its own exact negative
+gate. At the `k = 6`, `n = 9` singleton root, independent programs enumerate
+all 186,888 decomposable upper-child colorings and 85,797 open parents. Equal
+ordered child downset words can produce unequal parent words, and even equal
+complete child pair-rank matrices can produce unequal parent matrices. The 34
+observed parent downsets remain vertex-injective, but their exact empirical
+compatibility graph has a 27-clique, ruling out any 16-state bound based only
+on pairwise incompatibility of those raw values. This is an abstract
+decomposable-coloring result, not a realizability certificate. A surviving
+rank strategy must retain higher-order predecessor correlations, use a
+different label, or exploit a precisely stated geometric constraint; none is
+yet selected as the uniform E3 route.
+
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.
 

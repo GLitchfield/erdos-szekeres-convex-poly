@@ -29,10 +29,11 @@ None. The destination was fixed by the user on 2026-08-01.
   before committing the proof architecture to Euclidean geometry, ordered
   configurations, or a verified two-layer representation.
 - [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
-  by pursuing correlation-preserving rank/downset invariants and exact
-  counterexample search in parallel.  The scalar recurrence and maxima-only
-  context profiles are now refuted routes; abstract decomposability and planar
-  realizability remain separate checks.
+  by designing a higher-order predecessor-correlation invariant or a precise
+  realizability-sensitive transition. The scalar recurrence, maxima-only
+  contexts, deterministic downset words, complete child pair-rank matrices,
+  and pairwise raw-downset counting shortcut are now refuted routes; abstract
+  decomposability and planar realizability remain separate checks.
 
 ## Not yet specified
 

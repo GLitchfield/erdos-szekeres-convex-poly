@@ -67,7 +67,13 @@ sets.
   all-gap maxima word: equal open child profiles can produce unequal parent
   profiles.  This is a bounded, independently checked redirect toward a
   correlation-preserving rank/downset state, not yet a Lean theorem or an
-  all-`n` proof.
+  all-`n` proof. The next exact singleton-root gate now also refutes both the
+  ordered vertex-downset word and the complete child pair-rank matrix as
+  deterministic parent states. Raw downsets stay vertex-injective in all
+  85,797 covered open parents, but their observed compatibility graph has a
+  27-clique, so pairwise incompatibility alone cannot yield the required
+  16-state bound. These conclusions concern abstract decomposable colorings;
+  sweep realizability of the witnesses is not certified.
 - `ErdosSzekeres/ContextProfile.lean` defines fixed-ambient sweep gaps and the
   three directional chain relations.  Its compiling monotonicity lemmas prove
   that a directional cup or cap witness survives enlargement without any

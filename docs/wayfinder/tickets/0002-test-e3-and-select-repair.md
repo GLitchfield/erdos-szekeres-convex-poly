@@ -171,6 +171,21 @@ was unavailable because its provider returned repeated HTTP 429 session-limit
 responses; reciprocal critiques did not run. This is not reviewer consensus,
 and the replacement route remains unselected.
 
+The requested rank/downset falsification gate is now complete at the first
+nonvacuous singleton-root target `k = 6`, `n = 9`. A deterministic producer
+and an independently written full replay agree on all 186,888 decomposable
+upper-child colorings and 85,797 open parents. The ordered child downset word
+has 9,535 collision observations, and even the complete child pair-rank matrix
+has 481: in each case equal child state produces unequal parent state. Raw
+parent downsets remain vertex-injective in every covered parent, but the exact
+34-vertex compatibility graph has a maximum clique of size 27, exceeding the
+target `2^(6-2) = 16`. Thus deterministic rank-state composition and the
+pairwise incompatibility counting shortcut are both rejected. Higher-order
+rank restrictions and realizability-sensitive transitions remain logically
+open; the witnesses have decomposition trees but no planar realization
+certificate. No replacement uniform route is selected pending bounded
+Sol/Fable review of this gate.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -185,3 +200,6 @@ and the replacement route remains unselected.
 - [All-root context replay and collision redirect](../../experiments/0004-e3-all-root-context-profile.md)
 - [Compact `k=6`, `n=9` collision certificate](../../../data/derived/e3-context-k6-n9-singleton-collision.json)
 - [Independent collision checker](../../../scripts/check_decomposable_context_collision.py)
+- [Rank/downset gate and interpretation](../../experiments/0005-e3-rank-downset-gate.md)
+- [Compact rank/downset certificate](../../../data/derived/e3-rank-k6-n9-singleton.json)
+- [Independent rank/downset checker](../../../scripts/check_decomposable_rank_profiles.py)

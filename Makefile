@@ -21,13 +21,17 @@ test: check lean
 	@python3 scripts/check_e3_state566_aggregation.py
 	@python3 scripts/check_decomposable_context_collision.py \
 		data/derived/e3-context-k6-n9-singleton-collision.json >/dev/null
+	@python3 scripts/check_decomposable_rank_profiles.py \
+		data/derived/e3-rank-k6-n9-singleton.json >/dev/null
 	@python3 scripts/wayfinder_status.py >/dev/null
 	@python3 -m py_compile scripts/adversarial_review.py \
+		scripts/analyze_decomposable_rank_profiles.py \
 		scripts/analyze_lrat_checkpoints.py \
 		scripts/check_e3_state455_aggregation.py \
 		scripts/check_e3_state566_aggregation.py \
 		scripts/check_decomposable_contexts.py \
 		scripts/check_decomposable_context_collision.py \
+		scripts/check_decomposable_rank_profiles.py \
 		scripts/check_decomposable_enumeration.py \
 		scripts/check_signotope_state_witness.py \
 		scripts/enumerate_decomposable_colorings.py \

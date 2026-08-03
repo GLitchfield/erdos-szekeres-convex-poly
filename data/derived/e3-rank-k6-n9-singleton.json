@@ -1,0 +1,660 @@
+{
+  "downset_collision": {
+    "equal_child_state": [
+      0,
+      1,
+      17,
+      3,
+      7,
+      15,
+      51,
+      273
+    ],
+    "first_difference": {
+      "index": 7,
+      "left": 307,
+      "right": 819
+    },
+    "left": {
+      "parent_coloring_hex": "0041304de0000004ce77f",
+      "parent_state": [
+        0,
+        1,
+        3,
+        19,
+        51,
+        119,
+        255,
+        307,
+        4371
+      ],
+      "upper_coloring_hex": "0041304de0000004ce700",
+      "upper_tree": {
+        "lower": 8,
+        "upper": {
+          "lower": {
+            "lower": {
+              "lower": {
+                "lower": {
+                  "lower": {
+                    "lower": 7,
+                    "upper": 0
+                  },
+                  "upper": 3
+                },
+                "upper": 2
+              },
+              "upper": 4
+            },
+            "upper": 5
+          },
+          "upper": 6
+        }
+      }
+    },
+    "right": {
+      "parent_coloring_hex": "0041304de0000005def7f",
+      "parent_state": [
+        0,
+        1,
+        3,
+        19,
+        51,
+        119,
+        255,
+        819,
+        4371
+      ],
+      "upper_coloring_hex": "0041304de0000005def00",
+      "upper_tree": {
+        "lower": 8,
+        "upper": {
+          "lower": {
+            "lower": {
+              "lower": 3,
+              "upper": {
+                "lower": {
+                  "lower": {
+                    "lower": 7,
+                    "upper": 2
+                  },
+                  "upper": 4
+                },
+                "upper": 0
+              }
+            },
+            "upper": 5
+          },
+          "upper": 6
+        }
+      }
+    },
+    "state": "ordered vertex-downset word"
+  },
+  "pair_rank_collision": {
+    "equal_child_state": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        1
+      ]
+    ],
+    "first_difference": {
+      "index": 32,
+      "left": [
+        4,
+        2
+      ],
+      "right": [
+        3,
+        2
+      ]
+    },
+    "left": {
+      "parent_coloring_hex": "03c300c1a000000c1adff",
+      "parent_state": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "upper_coloring_hex": "03c300c1a000000c1ad80",
+      "upper_tree": {
+        "lower": {
+          "lower": 8,
+          "upper": {
+            "lower": {
+              "lower": {
+                "lower": 5,
+                "upper": 0
+              },
+              "upper": 2
+            },
+            "upper": 3
+          }
+        },
+        "upper": {
+          "lower": {
+            "lower": 7,
+            "upper": 6
+          },
+          "upper": 4
+        }
+      }
+    },
+    "right": {
+      "parent_coloring_hex": "03c700c1a000000c1adff",
+      "parent_state": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "upper_coloring_hex": "03c700c1a000000c1ad80",
+      "upper_tree": {
+        "lower": {
+          "lower": {
+            "lower": {
+              "lower": 8,
+              "upper": 0
+            },
+            "upper": {
+              "lower": 5,
+              "upper": 2
+            }
+          },
+          "upper": 3
+        },
+        "upper": {
+          "lower": {
+            "lower": 7,
+            "upper": 6
+          },
+          "upper": 4
+        }
+      }
+    },
+    "state": "complete ordered pair-rank matrix"
+  },
+  "parent_downset_compatibility": {
+    "edge_count": 505,
+    "edges_sha256": "a4576a8818e0ec35dfde95a01310b7540ae484ae01a57ced114aaf6672ef13c0",
+    "maximum_clique": [
+      0,
+      1,
+      3,
+      19,
+      51,
+      119,
+      255,
+      275,
+      307,
+      375,
+      819,
+      887,
+      1023,
+      1911,
+      2047,
+      4095,
+      4371,
+      4403,
+      4471,
+      4915,
+      4983,
+      6007,
+      13107,
+      13175,
+      14199,
+      30583,
+      65535
+    ],
+    "maximum_clique_size": 27,
+    "vertex_count": 34,
+    "vertices": [
+      0,
+      1,
+      3,
+      19,
+      51,
+      119,
+      255,
+      275,
+      307,
+      375,
+      511,
+      819,
+      887,
+      1023,
+      1911,
+      2047,
+      4095,
+      4371,
+      4403,
+      4471,
+      4915,
+      4983,
+      6007,
+      8191,
+      13107,
+      13175,
+      13311,
+      14199,
+      14335,
+      16383,
+      30583,
+      30719,
+      32767,
+      65535
+    ]
+  },
+  "producer": "scripts/analyze_decomposable_rank_profiles.py",
+  "revision": "59da51f5baee1ae57322514866d64a9113f1949f",
+  "schema_version": 1,
+  "scope": {
+    "crossing_bits_hex": "00000000000000000007f",
+    "k": 6,
+    "lower_mask_hex": "2",
+    "model": "recursively decomposable triple colorings; realizability not certified",
+    "n": 9,
+    "rank_clip": 4,
+    "upper_mask_hex": "1fd"
+  },
+  "search_summary": {
+    "distinct_child_downset_words": 15216,
+    "distinct_child_pair_rank_matrices": 55537,
+    "downset_word_collision_observations": 9535,
+    "open_parent_count": 85797,
+    "open_rank_rows_sha256": "e74475e80ed8599e12dfc9f6af6812bb6063afca5b7b592e015dee92e285ae00",
+    "pair_rank_matrix_collision_observations": 481,
+    "parent_vertex_downset_injectivity_violations": 0,
+    "upper_coloring_count": 186888,
+    "upper_colorings_sha256": "f84248fec76c1636b1c5cb232cc6696adb2c7c9f9ca0a02227c9681e27da8e62"
+  }
+}
