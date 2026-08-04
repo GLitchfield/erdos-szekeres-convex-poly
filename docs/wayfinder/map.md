@@ -53,7 +53,8 @@ None. The destination was fixed by the user on 2026-08-01.
   open-only implication remains logically possible, but it no longer
   separates transition sufficiency from the target property. The
   deterministic quotient-refinement route is stopped. The next bounded route
-  decision is minimal-counterexample descent versus structural charging.
+  decision selects structural charging: first prove the certificate-free
+  seven-vertex upper-child gap trichotomy with a singleton external anchor.
 
 ## Not yet specified
 

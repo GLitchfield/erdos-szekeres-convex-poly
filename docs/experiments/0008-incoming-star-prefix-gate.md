@@ -173,9 +173,17 @@ equal child Ξ_d states + fixed open decomposable root
 ```
 
 is no longer the next theorem. It remains logically open but cannot repair the
-failed state interface by itself. A Fable review retry will advise the choice
-between minimal-counterexample descent and structural charging; it cannot
-override the kernel-checked rejection. The stop conditions that now apply are:
+failed state interface by itself.
+
+A clean blind review at revision `b90dd3f` used packet SHA-256
+`97f73c43b09f0c591ad43e6a7bed3f034b906c3196b6a7cc375cbf9a1a51c47a`.
+Claude Fable 5 returned `supported` at medium confidence and Codex Sol returned
+`supported` at high confidence. Both apply the declared stop and select
+structural charging over minimal-counterexample descent. Their exact next
+theorem is a certificate-free seven-vertex upper-child gap trichotomy with an
+external singleton anchor. The review is advisory; the collision theorems,
+not reviewer agreement, reject the route. The stop conditions that now apply
+are:
 
 - prefix-indexed state in place of global `Ξ_d`;
 - an ordered per-vertex star word or vertex identities;

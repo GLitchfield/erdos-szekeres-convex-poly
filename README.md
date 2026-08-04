@@ -121,6 +121,13 @@ sets.
   both parents are recursively decomposable. Both witnesses contain a strong
   six-set. The deterministic incoming-star quotient route is therefore
   stopped; no uniform incoming-star spectrum transition is claimed.
+- `ErdosSzekeres/StructuralCharging.lean` begins the selected replacement
+  route without introducing another state carrier. It proves an asymmetric
+  saturation incompatibility and reduces the reviewed seven-vertex
+  upper-child gap trichotomy to one explicit `3+4` consecutive-cup-block
+  lemma under the rank-three one-change law. It also proves that the
+  trichotomy yields the certificate-free singleton-root `(4,5,5)` cardinal
+  bound. The cup-block core remains open.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

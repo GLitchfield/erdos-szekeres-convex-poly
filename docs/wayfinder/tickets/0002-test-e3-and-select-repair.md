@@ -322,6 +322,18 @@ The deterministic quotient route is stopped by its declared incidence-
 refinement rule. The next bounded route decision is minimal-counterexample
 descent versus structural charging.
 
+That route decision is now complete. A clean blind Sol/Fable review at
+revision `b90dd3f` used packet SHA-256
+`97f73c43b09f0c591ad43e6a7bed3f034b906c3196b6a7cc375cbf9a1a51c47a`.
+Both reviewers returned `supported` and selected structural charging. The next
+theorem is the certificate-free upper-child gap trichotomy: seven decomposable
+upper vertices and an external singleton anchor force a five-cup, four-cap,
+strong five-set, or a three-cap for which the anchor is a sweep endpoint. The
+endpoint case extends across the root to a parent four-cap. Success requires a
+compiling proof without LRAT or coloring-space enumeration and a mechanical
+derivation of the singleton-root `(4,5,5)` bound. Failure of either condition
+stops this target.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -353,4 +365,6 @@ descent versus structural charging.
 - [Lean depth-three prefix collision](../../../ErdosSzekeres/IncomingStarPrefixCollision.lean)
 - [Lean crossing-pair transition](../../../ErdosSzekeres/IncomingStarTransition.lean)
 - [Lean incoming-star transition collision](../../../ErdosSzekeres/IncomingStarTransitionCollision.lean)
+- [Structural charging reduction](../../experiments/0009-structural-charging-gap.md)
+- [Lean structural charging machinery](../../../ErdosSzekeres/StructuralCharging.lean)
 - [Independent rational-realization checker](../../../scripts/check_rank_profile_realization.py)
