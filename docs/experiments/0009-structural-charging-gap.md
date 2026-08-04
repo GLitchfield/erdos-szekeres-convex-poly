@@ -3,10 +3,10 @@
 ## Status
 
 Selected by the clean Sol/Fable review after the incoming-star transition
-collision. The reduction to one seven-vertex cup-block lemma compiles in Lean,
-and its normalized ordered `3+4` core now has a certificate-free compiling
-proof. The remaining step is transport to arbitrary blocks and the mirrored
-`4+3` order.
+collision. The reduction, normalized ordered `3+4` core, arbitrary-set
+transport, and mirrored `4+3` case all compile in Lean. Consequently the
+reviewed seven-vertex gap trichotomy and certificate-free singleton-root
+cardinal bound are now proved.
 
 ## Route decision
 
@@ -62,18 +62,19 @@ five-cup, or strong five-set. Its finite `fin_cases` uses merely check triples
 or quadruples inside those fixed witnesses; it is not an enumeration of the
 35 turn variables or their colorings.
 
-The next proof obligation is deliberately separated from that combinatorial
-core: relabel an arbitrary ordered disjoint union by its increasing
-`Fin 7` embedding, identify the first and last blocks, map the normalized
-witness back, and prove the reversed `4+3` version. Only after this transport
-compiles does `CupBlocks34Force455` close.
+`StructuralChargingTransport.lean` discharges the deliberately separate
+transport obligation. It relabels an arbitrary ordered disjoint union by an
+increasing `Fin 7` embedding, identifies the first and last blocks, and maps
+the fixed witness back. An explicit reversal of ordered triples proves the
+`4+3` version while preserving both the one-change language and the three
+possible outcomes. This closes `CupBlocks34Force455` and the existing reduction
+then closes `UpperChildGapTrichotomyAtSeven`.
 
 ## Completion and stop rules
 
-Success requires a certificate-free compiling proof of the transported
-cup-block core, a clean axiom audit, and the already-formalized derivation of
-the singleton-root cardinal bound. The normalized seven-vertex statement has
-passed its stop rule: its proof is symbolic rather than LRAT or exhaustive
-coloring enumeration and exposes reusable witness propagation. The next stop
-test is whether the transported mechanism yields a meaningful charge at the
-first `k=6` boundary.
+The certificate-free transported cup-block core and mechanical derivation of
+the singleton-root cardinal bound now compile. The proof is symbolic rather
+than LRAT or exhaustive coloring enumeration and exposes reusable witness
+propagation. The next stop test is whether this mechanism yields a meaningful
+charge at the first `k=6` boundary; passing the seven-vertex lemma alone is not
+a uniform all-`n` recurrence.

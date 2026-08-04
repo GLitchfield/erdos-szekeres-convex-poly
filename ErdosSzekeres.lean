@@ -20,6 +20,7 @@ public import ErdosSzekeres.IncomingStarTransition
 public import ErdosSzekeres.IncomingStarTransitionCollision
 public import ErdosSzekeres.StructuralCharging
 public import ErdosSzekeres.StructuralChargingCore
+public import ErdosSzekeres.StructuralChargingTransport
 public import ErdosSzekeres.TurnLanguageCollision
 public import ErdosSzekeres.IncomingStarPositive
 public import ErdosSzekeres.IncomingStarPrefixCollision

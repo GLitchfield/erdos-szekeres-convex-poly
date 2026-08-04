@@ -130,9 +130,10 @@ sets.
   bound. `StructuralChargingCore.lean` proves the normalized ordered `3+4`
   core by seven symbolic turn branches and reusable one-change propagation;
   it imports no generated certificate and does not enumerate coloring space.
-  Transport from normalized `Fin 7` coordinates to arbitrary blocks, including
-  the mirrored `4+3` order, is the remaining obstruction to closing the stated
-  cup-block theorem.
+  `StructuralChargingTransport.lean` maps witnesses through sorted
+  restrictions, proves the mirrored `4+3` case by order reversal, closes
+  `CupBlocks34Force455`, and therefore proves the reviewed gap trichotomy and
+  certificate-free singleton-root cardinal bound seven.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

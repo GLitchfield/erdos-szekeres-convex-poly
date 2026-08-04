@@ -54,10 +54,12 @@ None. The destination was fixed by the user on 2026-08-01.
   separates transition sufficiency from the target property. The
   deterministic quotient-refinement route is stopped. The next bounded route
   decision selects structural charging. The normalized ordered `3+4`
-  seven-vertex cup-block core now compiles by a seven-branch symbolic proof.
-  The current obstruction is transporting it to arbitrary blocks, including
-  the mirrored `4+3` order; that transport closes the certificate-free
-  upper-child gap trichotomy with a singleton external anchor.
+  seven-vertex cup-block core now compiles by a seven-branch symbolic proof,
+  and order-embedding transport plus reversal closes both arbitrary `3+4` and
+  `4+3` blocks. The certificate-free upper-child gap trichotomy and resulting
+  singleton-root cardinal bound seven now compile. The next obstruction is to
+  extract its gap-side charge and test that invariant at the first `k=6`
+  boundary before proposing a uniform recurrence.
 
 ## Not yet specified
 

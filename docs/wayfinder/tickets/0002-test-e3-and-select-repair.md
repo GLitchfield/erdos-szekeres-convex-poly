@@ -339,9 +339,11 @@ The first structural core now compiles in
 a cup on `{0,1,2}`, a cup on `{3,4,5,6}`, and the one-change law force a
 four-cap, five-cup, or strong five-set. The proof has seven named turn branches
 and no generated certificate or coloring-space enumeration. The remaining
-ticket item is the order-embedding transport to arbitrary `3+4` blocks and its
-mirrored `4+3` case; once that compiles, the existing reduction yields the
-singleton-root `(4,5,5)` bound.
+ticket item was the order-embedding transport to arbitrary `3+4` blocks and
+its mirrored `4+3` case. `ErdosSzekeres.StructuralChargingTransport` now proves
+both, closes `CupBlocks34Force455`, and derives the certificate-free
+singleton-root `(4,5,5)` cardinal bound seven. The next gate is whether the
+exposed gap-side witness mechanism scales to the first `k=6` boundary.
 
 ## Evidence
 
@@ -377,4 +379,5 @@ singleton-root `(4,5,5)` bound.
 - [Structural charging reduction](../../experiments/0009-structural-charging-gap.md)
 - [Lean structural charging machinery](../../../ErdosSzekeres/StructuralCharging.lean)
 - [Lean normalized seven-vertex core](../../../ErdosSzekeres/StructuralChargingCore.lean)
+- [Lean arbitrary-set transport and closure](../../../ErdosSzekeres/StructuralChargingTransport.lean)
 - [Independent rational-realization checker](../../../scripts/check_rank_profile_realization.py)
