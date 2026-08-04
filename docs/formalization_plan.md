@@ -277,6 +277,20 @@ predecessor correlations, use a different label, or exploit geometric data
 strictly richer than realizability itself; none is yet selected as the
 uniform E3 route.
 
+The abstract-versus-planar boundary for recursive decomposability is now
+closed uniformly in `ErdosSzekeres/DecomposableRealization.lean`.  Lean proves
+a fixed-abscissa merge theorem for arbitrary interleaved `HasDeepBelowSplit`
+parts by choosing one finite bound on the required vertical shift.  Induction
+on `IsDecomposableOn` then constructs strict orientation signs on the whole set,
+and `IsDecomposable.isSweepRealizable` packages those points as a
+`SweptConfiguration` in general position.  Consequently a state-transition
+collision within the abstract decomposable class cannot be removed by adding
+mere straight-line realizability.  This is a model bridge, not the missing
+`2^(k-2)` count; the next uniform work still requires a concretely specified
+`k`-bounded higher-order state or a different structural invariant.  The
+bridge realizes the coloring and does not claim that its coordinates witness
+the same tree under the stronger `IsGeometricallyDeepBelow` predicate.
+
 The corresponding specification layer now compiles in
 `ErdosSzekeres/RankProfile.lean`. `HasPairRankAtLeast` is stated directly by an
 actual `CupCap.IsTurnChain` ending at the ordered pair, and

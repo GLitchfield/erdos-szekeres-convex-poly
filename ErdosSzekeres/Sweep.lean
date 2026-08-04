@@ -7,11 +7,11 @@ public import ErdosSzekeres.Basic
 /-!
 # Sweeps and the left/right triple coloring
 
-We normalize the user's generic sweep direction to the first coordinate.  A
-future public-to-sweep bridge will justify this normalization for an arbitrary
-finite point set.  For a fixed index order, the orientation-sign convention is
-preserved by orientation-preserving affine maps; the ordering itself is part of
-the normalized data here.
+We normalize the user's generic sweep direction to the first coordinate.  The
+public-to-sweep bridge in `Presentation` justifies this normalization for an
+arbitrary finite point set.  For a fixed index order, the orientation-sign
+convention is preserved by orientation-preserving affine maps; the ordering
+itself is part of the normalized data here.
 -/
 
 namespace ErdosSzekeres

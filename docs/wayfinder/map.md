@@ -35,7 +35,10 @@ None. The destination was fixed by the user on 2026-08-01.
   contexts, deterministic downset words, complete child pair-rank matrices,
   and pairwise raw-downset counting shortcut are now refuted routes; abstract
   decomposability and planar realizability are both kernel-checked for the
-  complete pair-rank collision, so realizability alone does not repair it.
+  complete pair-rank collision. In fact every abstract recursively
+  decomposable coloring is now proved sweep-realizable, so realizability
+  supplies no further restriction anywhere inside this class and cannot
+  repair the transition.
 
 ## Not yet specified
 

@@ -76,6 +76,16 @@ sets.
   pair-rank collision and proves both witnesses are induced by explicit
   rational planar configurations. Straight-line sweep realizability therefore
   does not repair this deterministic child-state transition.
+- `ErdosSzekeres/DecomposableRealization.lean` closes the abstraction boundary
+  for the entire recursive class. Its fixed-abscissa merge theorem vertically
+  shifts arbitrarily interleaved deep-below children while retaining both
+  internal colorings, and `IsDecomposable.isSweepRealizable` constructs a
+  genuine planar configuration in general position for every abstract
+  decomposable coloring. This strengthens the negative diagnosis: no extra
+  realizability restriction inside this class can repair the pair-rank state.
+  It realizes the induced coloring; it does not assert that the same tree
+  satisfies the stronger coordinate-level `IsGeometricallyDeepBelow`
+  predicate, nor supply the missing uniform `2^(n-2)` counting argument.
 - `ErdosSzekeres/ContextProfile.lean` defines fixed-ambient sweep gaps and the
   three directional chain relations.  Its compiling monotonicity lemmas prove
   that a directional cup or cap witness survives enlargement without any

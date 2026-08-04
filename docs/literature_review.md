@@ -151,6 +151,18 @@ part with a cap in the upper part into a strong polygon.  The exact
 counterexample predicate and the formal E4 implication from the decomposable
 upper theorem to indecomposability also compile.
 
+The converse realizability direction for this formal recursive model now
+compiles in `ErdosSzekeres.DecomposableRealization`.  Keeping each abscissa
+equal to its global sweep index, a finite vertical-shift argument merges two
+child ordinate realizations even when their index sets interleave.  Lean then
+proves `IsDecomposable.isSweepRealizable`: every abstract coloring in the
+repository's recursive class is induced by a planar point configuration in
+general position.  This is a theorem about the repository model, not a claim
+that every signotope or every ordered-hypergraph decomposition is realizable,
+and it does not prove that the same decomposition tree satisfies the stronger
+coordinate predicate `IsGeometricallyDeepBelow` or prove the Baek--Balko
+cardinality bound.
+
 The binomial-window cardinality induction proving the exact threshold remains
 E3; it is not yet claimed by the repository.  A literal transcription of the
 new journal proof fails at the auxiliary boundary

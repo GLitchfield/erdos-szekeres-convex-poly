@@ -231,6 +231,32 @@ pair-rank matrix is not a transition congruence even in the straight-line
 realizable subclass. Higher-order predecessor correlation remains the live
 rank-based direction, but no uniform state has yet been selected.
 
+The realizability boundary is now closed for the full recursive class, not
+only for the collision witnesses. `ErdosSzekeres.DecomposableRealization`
+proves a fixed-abscissa merge theorem for arbitrarily interleaved
+`HasDeepBelowSplit` parts: one finite vertical-shift parameter preserves
+both child colorings and enforces every crossing orientation. Induction gives
+`IsDecomposable.isSweepRealizable`, with strict general position and no
+external oracle. Therefore a realizability-sensitive repair cannot distinguish
+any abstract decomposable parent; the next rank-based candidate must instead
+retain genuinely higher-order predecessor correlation and pass a `k`-only
+state-count gate. The conclusion realizes the coloring; preservation of the
+same tree as coordinate-level `IsGeometricallyDeepBelow` witnesses is a
+strictly stronger statement and is not claimed.
+
+A bounded blind provider review of this bridge used packet SHA-256
+`98e8213b03d9aa12146c2690d7fad234d8e4a76da0cb65089df46fabd87fe706`.
+Claude Fable 5 and Codex Sol both returned `partially_supported`, at medium and
+high confidence respectively. Both supported the displayed theorem, manually
+rechecked the six crossing signs, and agreed with treating it as a negative
+model-boundary result. Their qualification was that the packet omitted the
+existing determinant/general-position helpers and build evidence; `make test`
+subsequently built 9,630 Lean jobs and passed all workflow checks, while the
+axiom audit found only `propext`, `Classical.choice`, and `Quot.sound`. The
+reviewers also required the now-explicit `IsGeometricallyDeepBelow` scope
+qualification and agreed that no higher-order route is selected until its
+finite carrier, transition, and `k`-only count are stated.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -250,4 +276,6 @@ rank-based direction, but no uniform state has yet been selected.
 - [Independent rank/downset checker](../../../scripts/check_decomposable_rank_profiles.py)
 - [Lean consecutive-rank/downset specification](../../../ErdosSzekeres/RankProfile.lean)
 - [Lean realizable pair-rank collision](../../../ErdosSzekeres/RankProfileCollision.lean)
+- [Lean realization of every decomposable coloring](../../../ErdosSzekeres/DecomposableRealization.lean)
+- [Realization bridge review and disposition](../../experiments/0006-decomposable-realization-review.md)
 - [Independent rational-realization checker](../../../scripts/check_rank_profile_realization.py)
