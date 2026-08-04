@@ -17,6 +17,10 @@ and both parents contain a strong six-set.
 namespace ErdosSzekeres
 namespace IncomingStarTransitionCollision
 
+-- These finite witness reductions elaborate close to the default heartbeat
+-- limit when a clean `lake build` is running other modules in parallel.
+set_option maxHeartbeats 800000
+
 open RankProfileCollision
 
 def lower : Finset (Fin 9) := {5}
@@ -40,7 +44,7 @@ def rightUpperTree : DecompositionTree 9 :=
       (.node (.leaf 2)
         (.node (.leaf 3)
           (.node (.leaf 4)
-            (.node (.leaf 7) (.node (.leaf 6) (.leaf 8))))))
+            (.node (.leaf 7) (.node (.leaf 6) (.leaf 8)))))))
 
 def rightParentTree : DecompositionTree 9 :=
   .node (.leaf 5) rightUpperTree
@@ -103,14 +107,17 @@ theorem left_not_decomposable : ¬IsDecomposable leftColor := by
   intro h
   have hallowed := h.turnSequenceAllowed (i := 4) (j := 6) (k := 7) (l := 8)
     (by decide) (by decide) (by decide) (by simp) (by simp) (by simp) (by simp)
-  norm_num [leftColor, colorWithSpecial, TurnSequenceAllowed] at hallowed
+  change TurnSequenceAllowed Turn.right Turn.right Turn.left Turn.right at hallowed
+  simp [TurnSequenceAllowed] at hallowed
 
 theorem right_tree_coloring : rightParentTree.coloring = rightColor := by
   funext t
   rcases t with ⟨i, j, k, hij, hjk⟩
-  fin_cases i <;> fin_cases j <;> fin_cases k <;>
-    simp_all [rightParentTree, rightUpperTree, rightColor, colorWithSpecial,
-      DecompositionTree.coloring, DecompositionTree.vertices]
+  fin_cases i <;> fin_cases j <;> fin_cases k
+  all_goals (try norm_num at hij)
+  all_goals (try norm_num at hjk)
+  all_goals simp [rightParentTree, rightUpperTree, rightColor, colorWithSpecial,
+    DecompositionTree.coloring, DecompositionTree.vertices]
 
 theorem right_decomposable : IsDecomposable rightColor := by
   have hwell : rightParentTree.WellFormed := by
@@ -210,14 +217,16 @@ theorem right_decomposable : IsDecomposable rightColor := by
 theorem left_root_split : HasDeepBelowSplit leftColor lower upper := by
   have h := DecompositionTree.node_split (.leaf 5) leftUpperTree (by
     simp [leftUpperTree, DecompositionTree.vertices])
-  simpa [leftTree, leftColor, lower, upper, leftUpperTree,
-    DecompositionTree.vertices] using h
+  have hupper : leftUpperTree.vertices = upper := by decide
+  rw [hupper] at h
+  simpa [leftTree, leftColor, lower] using h
 
 theorem right_root_split : HasDeepBelowSplit rightColor lower upper := by
   have h := DecompositionTree.node_split (.leaf 5) rightUpperTree (by
     simp [rightUpperTree, DecompositionTree.vertices])
-  simpa [rightTree, rightColor, lower, upper, rightUpperTree,
-    DecompositionTree.vertices] using h
+  have hupper : rightUpperTree.vertices = upper := by decide
+  rw [hupper] at h
+  simpa [rightTree, rightColor, lower] using h
 
 theorem child_spectra_equal :
     (TurnLanguage.incomingStarSpectrum leftColor lower 4 =

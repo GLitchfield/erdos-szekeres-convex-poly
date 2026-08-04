@@ -127,7 +127,12 @@ sets.
   upper-child gap trichotomy to one explicit `3+4` consecutive-cup-block
   lemma under the rank-three one-change law. It also proves that the
   trichotomy yields the certificate-free singleton-root `(4,5,5)` cardinal
-  bound. The cup-block core remains open.
+  bound. `StructuralChargingCore.lean` proves the normalized ordered `3+4`
+  core by seven symbolic turn branches and reusable one-change propagation;
+  it imports no generated certificate and does not enumerate coloring space.
+  Transport from normalized `Fin 7` coordinates to arbitrary blocks, including
+  the mirrored `4+3` order, is the remaining obstruction to closing the stated
+  cup-block theorem.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

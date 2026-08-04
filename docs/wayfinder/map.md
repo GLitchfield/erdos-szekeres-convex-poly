@@ -53,8 +53,11 @@ None. The destination was fixed by the user on 2026-08-01.
   open-only implication remains logically possible, but it no longer
   separates transition sufficiency from the target property. The
   deterministic quotient-refinement route is stopped. The next bounded route
-  decision selects structural charging: first prove the certificate-free
-  seven-vertex upper-child gap trichotomy with a singleton external anchor.
+  decision selects structural charging. The normalized ordered `3+4`
+  seven-vertex cup-block core now compiles by a seven-branch symbolic proof.
+  The current obstruction is transporting it to arbitrary blocks, including
+  the mirrored `4+3` order; that transport closes the certificate-free
+  upper-child gap trichotomy with a singleton external anchor.
 
 ## Not yet specified
 

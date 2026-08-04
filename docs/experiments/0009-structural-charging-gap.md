@@ -3,8 +3,10 @@
 ## Status
 
 Selected by the clean Sol/Fable review after the incoming-star transition
-collision. The reduction to one seven-vertex cup-block lemma compiles in Lean;
-that core lemma remains open.
+collision. The reduction to one seven-vertex cup-block lemma compiles in Lean,
+and its normalized ordered `3+4` core now has a certificate-free compiling
+proof. The remaining step is transport to arbitrary blocks and the mirrored
+`4+3` order.
 
 ## Route decision
 
@@ -51,12 +53,27 @@ and upper `s`-cap cannot both be strictly saturated when the corresponding
 `r+1` cup and `s+1` cap extensions are forbidden. This is reusable charging
 machinery but does not by itself close the `3+4` core.
 
+`StructuralChargingCore.lean` proves the normalized `Fin 7` statement. Three
+small propagation lemmas classify the useful consequences of the one-change
+law. Equal outer turns make all four turns equal; the two asymmetric forms
+propagate an equality from a witnessed change. The main proof then branches on
+only seven named triples. Each branch constructs an explicit four-cap,
+five-cup, or strong five-set. Its finite `fin_cases` uses merely check triples
+or quadruples inside those fixed witnesses; it is not an enumeration of the
+35 turn variables or their colorings.
+
+The next proof obligation is deliberately separated from that combinatorial
+core: relabel an arbitrary ordered disjoint union by its increasing
+`Fin 7` embedding, identify the first and last blocks, map the normalized
+witness back, and prove the reversed `4+3` version. Only after this transport
+compiles does `CupBlocks34Force455` close.
+
 ## Completion and stop rules
 
-Success requires a certificate-free compiling proof of the cup-block core, a
-clean axiom audit, and the already-formalized derivation of the singleton-root
-cardinal bound. Stop this target if the normalized seven-vertex statement is
-false, if its proof collapses to LRAT or exhaustive coloring enumeration, or
-if it does not expose a witness-level mechanism that can be tested at the
+Success requires a certificate-free compiling proof of the transported
+cup-block core, a clean axiom audit, and the already-formalized derivation of
+the singleton-root cardinal bound. The normalized seven-vertex statement has
+passed its stop rule: its proof is symbolic rather than LRAT or exhaustive
+coloring enumeration and exposes reusable witness propagation. The next stop
+test is whether the transported mechanism yields a meaningful charge at the
 first `k=6` boundary.
-
