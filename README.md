@@ -134,6 +134,11 @@ sets.
   restrictions, proves the mirrored `4+3` case by order reversal, closes
   `CupBlocks34Force455`, and therefore proves the reviewed gap trichotomy and
   certificate-free singleton-root cardinal bound seven.
+- `ErdosSzekeres/StructuralChargingBoundary.lean` extracts the general
+  endpoint-avoidance charge and tests its direct `k = 6` consequence. Combined
+  separately with the existing `(4,6,6)` state on the two gap sides, it proves
+  only the coarse singleton-root bound 23 versus the diagonal threshold 16.
+  This localizes the next obstruction to a coupled cross-gap charge.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

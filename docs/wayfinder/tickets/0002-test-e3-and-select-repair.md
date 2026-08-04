@@ -345,6 +345,15 @@ both, closes `CupBlocks34Force455`, and derives the certificate-free
 singleton-root `(4,5,5)` cardinal bound seven. The next gate is whether the
 exposed gap-side witness mechanism scales to the first `k=6` boundary.
 
+That first boundary calculation now compiles in
+`ErdosSzekeres.StructuralChargingBoundary`. Absence of an endpoint four-cap
+makes both sides of the singleton anchor four-cap-free. Applying the existing
+`(4,6,6)` theorem to each side independently proves only the coarse parent
+bound `1 + 11 + 11 = 23`, while the diagonal `k = 6` threshold is 16. The
+seven-vertex deficit is therefore specifically a missing cross-gap coupling,
+not a missing unary side bound. The next proposal must pass a bounded coupled
+gate before any uniform recurrence is claimed.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -380,4 +389,6 @@ exposed gap-side witness mechanism scales to the first `k=6` boundary.
 - [Lean structural charging machinery](../../../ErdosSzekeres/StructuralCharging.lean)
 - [Lean normalized seven-vertex core](../../../ErdosSzekeres/StructuralChargingCore.lean)
 - [Lean arbitrary-set transport and closure](../../../ErdosSzekeres/StructuralChargingTransport.lean)
+- [First `k=6` structural boundary](../../experiments/0010-structural-charging-k6-boundary.md)
+- [Lean endpoint charge and coarse bound](../../../ErdosSzekeres/StructuralChargingBoundary.lean)
 - [Independent rational-realization checker](../../../scripts/check_rank_profile_realization.py)

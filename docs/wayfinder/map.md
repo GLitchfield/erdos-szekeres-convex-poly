@@ -59,7 +59,11 @@ None. The destination was fixed by the user on 2026-08-01.
   `4+3` blocks. The certificate-free upper-child gap trichotomy and resulting
   singleton-root cardinal bound seven now compile. The next obstruction is to
   extract its gap-side charge and test that invariant at the first `k=6`
-  boundary before proposing a uniform recurrence.
+  boundary before proposing a uniform recurrence. The endpoint-avoidance
+  charge now compiles in arbitrary cardinality. Applied independently to the
+  two sides with the `(4,6,6)` theorem, it yields only 23 against the diagonal
+  threshold 16. The next bounded target must retain cross-gap correlation and
+  close this seven-vertex deficit.
 
 ## Not yet specified
 

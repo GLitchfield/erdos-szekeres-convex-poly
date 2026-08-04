@@ -26,4 +26,5 @@ public import ErdosSzekeres.IncomingStarPositive
 public import ErdosSzekeres.IncomingStarPrefixCollision
 public import ErdosSzekeres.E3State466Certificate
 public import ErdosSzekeres.E3FiniteReduction
+public import ErdosSzekeres.StructuralChargingBoundary
 public import ErdosSzekeres.ES5Certificate
