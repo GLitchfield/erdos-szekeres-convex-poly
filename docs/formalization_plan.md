@@ -301,8 +301,21 @@ lower-rectangle closure. These facts hold for an arbitrary triple coloring;
 decomposability or sweep realizability belongs only in later transition or
 witness theorems. `RankProfileCollision.lean` completes the bounded `k = 6`,
 `n = 9` target with a kernel-checked realizable non-congruence witness. The
-next uniform work must formulate a genuinely higher-order state or a new
-decomposition-tree invariant.
+next higher-order gate has now produced both reusable machinery and a sharper
+negative theorem. `TurnLanguage.lean` defines complete bounded consecutive
+turn languages, proves its executable predecessor recurrence equivalent to
+increasing-chain semantics, and isolates the constant-turn terminal-star
+update. `TurnLanguageCollision.lean` kernel-checks two open decomposable
+seven-vertex parents whose lower endpoint-forgetting spectra agree through
+depth four but whose parent spectra differ. The word `right,right,left` can
+reach `(5,6)` only when its prefix occurs at an edge ending specifically at
+vertex `5`; a decoy occurrence at another endpoint cannot compose. Thus more
+word depth and openness do not repair the quotient. The smallest surviving
+bounded candidate is the incoming-star spectrum, which groups language values
+by terminal endpoint before forgetting vertex identities. Before selection as
+a uniform E3 route, it must pass an independently checked all-root transition
+gate and a prefix-control test for arbitrarily interleaved deep splits; failure
+of that test redirects away from deterministic quotient refinement.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

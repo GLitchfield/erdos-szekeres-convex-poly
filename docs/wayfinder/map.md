@@ -38,7 +38,13 @@ None. The destination was fixed by the user on 2026-08-01.
   complete pair-rank collision. In fact every abstract recursively
   decomposable coloring is now proved sweep-realizable, so realizability
   supplies no further restriction anywhere inside this class and cannot
-  repair the transition.
+  repair the transition. The first higher-order repair, the endpoint-forgetting
+  pair turn-language spectrum, is now also refuted by a kernel-checked open
+  seven-vertex collision. Lean proves its chain semantics and predecessor
+  recurrence; the collision isolates terminal-endpoint incidence as the lost
+  datum. The next bounded discriminator is the incoming-star spectrum, with a
+  mandatory test of whether global star equality controls every root-relevant
+  prefix before it can be considered a uniform route.
 
 ## Not yet specified
 

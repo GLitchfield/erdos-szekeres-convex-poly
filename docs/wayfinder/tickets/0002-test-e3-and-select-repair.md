@@ -257,6 +257,31 @@ reviewers also required the now-explicit `IsGeometricallyDeepBelow` scope
 qualification and agreed that no higher-order route is selected until its
 finite carrier, transition, and `k`-only count are stated.
 
+The first higher-order candidate was the depth-bounded pair turn-language
+spectrum, which forgets pair endpoints after retaining every consecutive turn
+word. A bounded provider review at revision `2d07250` returned
+`partially_supported` from both Claude Fable 5 and Codex Sol. Both reviewers
+identified the missing `k = 6`, depth-four gate and endpoint incidence as the
+cheapest falsification targets. The targeted replay then found an open
+seven-vertex collision: equal lower spectra through depth four produce unequal
+parent spectra after adjoining vertex `6`. Full singleton replay at depth
+three also found 35,858 open collisions outside the originally tested extreme
+root positions. The plain spectrum is therefore rejected by its own stop rule.
+
+This negative result and its semantic explanation now compile in Lean.
+`TurnLanguage.lean` defines chronological pair languages from actual
+increasing chains, proves a kernel-reducible predecessor recurrence correct,
+and shows that a constant new turn composes exactly through incoming languages
+at the terminal endpoint. `TurnLanguageCollision.lean` proves both witness
+trees decomposable and open, checks equal lower spectra and unequal parent
+spectra, and isolates `right,right,left` at pair `(5,6)`. The incoming-star
+spectrum separates this collision and the older pair-rank witness in
+exploratory gates, but remains unselected: an arbitrary interleaved root needs
+prefix-indexed star information unless a new theorem shows that global open
+star types determine every relevant prefix. The next bounded decision is that
+prefix-control test, with failure redirecting away from deterministic quotient
+refinement rather than adding another color-refinement round.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -278,4 +303,7 @@ finite carrier, transition, and `k`-only count are stated.
 - [Lean realizable pair-rank collision](../../../ErdosSzekeres/RankProfileCollision.lean)
 - [Lean realization of every decomposable coloring](../../../ErdosSzekeres/DecomposableRealization.lean)
 - [Realization bridge review and disposition](../../experiments/0006-decomposable-realization-review.md)
+- [Turn-language spectrum rejection and Lean package](../../experiments/0007-turn-word-spectrum-design.md)
+- [Lean turn-language semantics](../../../ErdosSzekeres/TurnLanguage.lean)
+- [Lean open spectrum collision](../../../ErdosSzekeres/TurnLanguageCollision.lean)
 - [Independent rational-realization checker](../../../scripts/check_rank_profile_realization.py)

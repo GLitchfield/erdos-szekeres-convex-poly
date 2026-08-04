@@ -15,6 +15,8 @@ public import ErdosSzekeres.DecomposableRealization
 public import ErdosSzekeres.ContextProfile
 public import ErdosSzekeres.RankProfile
 public import ErdosSzekeres.RankProfileCollision
+public import ErdosSzekeres.TurnLanguage
+public import ErdosSzekeres.TurnLanguageCollision
 public import ErdosSzekeres.E3State466Certificate
 public import ErdosSzekeres.E3FiniteReduction
 public import ErdosSzekeres.ES5Certificate

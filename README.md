@@ -99,6 +99,15 @@ sets.
   pair-rank specification.
   `RankProfileCollision.lean` proves the bounded realizable non-congruence,
   including decomposability, openness, and exact rational realizations.
+- `ErdosSzekeres/TurnLanguage.lean` defines complete bounded consecutive-turn
+  languages at ordered endpoint pairs. Its executable predecessor recurrence
+  is proved equivalent to increasing-chain semantics, and its constant-turn
+  corollary identifies the incoming endpoint star needed when a new pair is
+  formed. `TurnLanguageCollision.lean` kernel-checks an open decomposable
+  seven-vertex collision: the two lower endpoint-forgetting spectra agree
+  through depth four, but the parent spectra differ by the word
+  `right,right,left` at `(5,6)`. Grouping languages by terminal endpoints
+  separates this witness, but no uniform incoming-star transition is claimed.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
