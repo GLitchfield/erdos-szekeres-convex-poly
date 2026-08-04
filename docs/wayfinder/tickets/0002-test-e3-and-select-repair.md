@@ -282,6 +282,46 @@ star types determine every relevant prefix. The next bounded decision is that
 prefix-control test, with failure redirecting away from deterministic quotient
 refinement rather than adding another color-refinement round.
 
+That prefix-control gate is complete through eight vertices at
+`(k,d)=(6,4)`. A deterministic recurrence producer and an independent
+direct-chain checker agree on 153,648 open root observations and 122,156
+fixed-root inputs, with zero collisions in root-relevant prefix queries,
+ordered child-star sequences, or parent incoming-star spectra. Lean proves
+cut causality and depth truncation for pair languages and incoming stars. A
+six-vertex positive theorem confirms that the quotient can identify distinct
+open decomposable colorings while preserving the covered transition data.
+These are finite facts and semantic infrastructure, not a uniform theorem or
+a state-count bound.
+
+The closest negative control is now also kernel-checked. Two open decomposable
+eight-vertex colorings have equal global depth-three incoming-star spectra but
+different prefix spectra at gap seven; depth four separates them. Thus no
+parameter-free spectrum argument can recover prefixes. The first Sol audit of
+the new gate returned `partially_supported` at high confidence and recommends
+testing conditional parent-transition sufficiency before attempting
+strong-six-open prefix recovery. A clean Fable retry is still pending, so the
+incoming-star route remains unselected.
+
+The conditional transition attempt first isolated and proved its crossing
+case. `IncomingStarTransition.lean` shows that every crossing pair language is
+the forced split turn appended to its first endpoint's parent incoming star,
+and proves the corresponding pair-language congruence. The remaining
+same-child case is now refuted rather than merely difficult.
+
+`IncomingStarTransitionCollision.lean` kernel-checks a fixed-root
+nine-vertex collision. Its smallest pair has equal complete upper-child pair
+languages, equal child spectra, and every equal root-relevant prefix, but the
+parent pair `(7,8)` gains different words and the parent spectra differ. A
+second structural pair proves the same failure with both parents recursively
+decomposable. Both of those parents contain a strong six-set. Consequently
+neither the split algebra nor decomposability/signotope structure makes the
+incoming-star state a transition congruence. Strong-six-openness is the only
+untested escape, but adding it to the sufficiency theorem collapses the
+planned separation and leaves no plausible route to a `2^(k-2)` state count.
+The deterministic quotient route is stopped by its declared incidence-
+refinement rule. The next bounded route decision is minimal-counterexample
+descent versus structural charging.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -306,4 +346,11 @@ refinement rather than adding another color-refinement round.
 - [Turn-language spectrum rejection and Lean package](../../experiments/0007-turn-word-spectrum-design.md)
 - [Lean turn-language semantics](../../../ErdosSzekeres/TurnLanguage.lean)
 - [Lean open spectrum collision](../../../ErdosSzekeres/TurnLanguageCollision.lean)
+- [Incoming-star prefix gate](../../experiments/0008-incoming-star-prefix-gate.md)
+- [Exact incoming-star manifest](../../../data/derived/e3-incoming-star-prefix-k6-n8.json)
+- [Independent incoming-star checker](../../../scripts/check_incoming_star_prefixes.py)
+- [Lean incoming-star positive regression](../../../ErdosSzekeres/IncomingStarPositive.lean)
+- [Lean depth-three prefix collision](../../../ErdosSzekeres/IncomingStarPrefixCollision.lean)
+- [Lean crossing-pair transition](../../../ErdosSzekeres/IncomingStarTransition.lean)
+- [Lean incoming-star transition collision](../../../ErdosSzekeres/IncomingStarTransitionCollision.lean)
 - [Independent rational-realization checker](../../../scripts/check_rank_profile_realization.py)

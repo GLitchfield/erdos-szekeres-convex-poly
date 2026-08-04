@@ -103,11 +103,24 @@ sets.
   languages at ordered endpoint pairs. Its executable predecessor recurrence
   is proved equivalent to increasing-chain semantics, and its constant-turn
   corollary identifies the incoming endpoint star needed when a new pair is
-  formed. `TurnLanguageCollision.lean` kernel-checks an open decomposable
+  formed. It now also defines incoming-star and prefix spectra and proves their
+  cut causality and depth-truncation laws. `TurnLanguageCollision.lean`
+  kernel-checks an open decomposable
   seven-vertex collision: the two lower endpoint-forgetting spectra agree
   through depth four, but the parent spectra differ by the word
   `right,right,left` at `(5,6)`. Grouping languages by terminal endpoints
-  separates this witness, but no uniform incoming-star transition is claimed.
+  separates this witness. An independently replayed `(k,d)=(6,4)` gate has no
+  incoming-star prefix or parent-transition collision through eight vertices.
+  `IncomingStarPositive.lean` supplies a nontrivial positive regression, while
+  `IncomingStarPrefixCollision.lean` proves that generic depth-three prefix
+  recovery is false. `IncomingStarTransition.lean` proves the uniform
+  crossing-pair transition and its congruence consequence; same-child pairs
+  in the enlarged parent ambient set are a genuine obstruction.
+  `IncomingStarTransitionCollision.lean` proves that equal child spectra and
+  every root-relevant prefix can yield unequal parent spectra, including when
+  both parents are recursively decomposable. Both witnesses contain a strong
+  six-set. The deterministic incoming-star quotient route is therefore
+  stopped; no uniform incoming-star spectrum transition is claimed.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

@@ -16,7 +16,11 @@ public import ErdosSzekeres.ContextProfile
 public import ErdosSzekeres.RankProfile
 public import ErdosSzekeres.RankProfileCollision
 public import ErdosSzekeres.TurnLanguage
+public import ErdosSzekeres.IncomingStarTransition
+public import ErdosSzekeres.IncomingStarTransitionCollision
 public import ErdosSzekeres.TurnLanguageCollision
+public import ErdosSzekeres.IncomingStarPositive
+public import ErdosSzekeres.IncomingStarPrefixCollision
 public import ErdosSzekeres.E3State466Certificate
 public import ErdosSzekeres.E3FiniteReduction
 public import ErdosSzekeres.ES5Certificate

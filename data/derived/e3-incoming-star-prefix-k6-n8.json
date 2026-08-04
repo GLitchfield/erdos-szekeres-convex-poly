@@ -1,0 +1,256 @@
+{
+  "experiment": "incoming-star-prefix-control",
+  "generation_base_revision": "f0468b7f6819dfea6d4469598ca4eb411370621a",
+  "layers": {
+    "1": {
+      "global_recovery": {
+        "coloring_count": 1,
+        "first_ordered_star_collision": null,
+        "incoming_star_spectrum_count": 1,
+        "ordered_star_collision_count": 0,
+        "sha256": "e01d7411e819d6d0b6959f5d38012d3ac7d0d11b9dbf489ec787925be41915f4"
+      },
+      "root_transition": null
+    },
+    "2": {
+      "global_recovery": {
+        "coloring_count": 1,
+        "first_ordered_star_collision": null,
+        "incoming_star_spectrum_count": 1,
+        "ordered_star_collision_count": 0,
+        "sha256": "6a11471391fb864752ca005ee14ceb5b284af04b0077986023dedf7ffcec315c"
+      },
+      "root_transition": {
+        "child_spectrum_alphabet_size": 1,
+        "distinct_fixed_root_input_count": 2,
+        "first_ordered_child_star_collision": null,
+        "first_parent_spectrum_collision": null,
+        "first_prefix_query_collision": null,
+        "maximum_input_fiber_size": 1,
+        "observation_sha256": "607c63bbf00f24c15f4379c9d188a957566037431e6dd9cce8dc59da2823542e",
+        "open_root_observation_count": 2,
+        "ordered_child_star_collision_count": 0,
+        "parent_spectrum_alphabet_size": 1,
+        "parent_spectrum_collision_count": 0,
+        "prefix_query_collision_count": 0,
+        "repeated_input_observation_count": 0
+      }
+    },
+    "3": {
+      "global_recovery": {
+        "coloring_count": 2,
+        "first_ordered_star_collision": null,
+        "incoming_star_spectrum_count": 2,
+        "ordered_star_collision_count": 0,
+        "sha256": "ccf3d72da02bbf399441d0adff65328da47b9c502bd8153b543c8daa370012e3"
+      },
+      "root_transition": {
+        "child_spectrum_alphabet_size": 2,
+        "distinct_fixed_root_input_count": 6,
+        "first_ordered_child_star_collision": null,
+        "first_parent_spectrum_collision": null,
+        "first_prefix_query_collision": null,
+        "maximum_input_fiber_size": 1,
+        "observation_sha256": "c7c1bd0efc889841d174c74bdea007d379d863a56bdfd34bb409ebce08cdbd7f",
+        "open_root_observation_count": 6,
+        "ordered_child_star_collision_count": 0,
+        "parent_spectrum_alphabet_size": 2,
+        "parent_spectrum_collision_count": 0,
+        "prefix_query_collision_count": 0,
+        "repeated_input_observation_count": 0
+      }
+    },
+    "4": {
+      "global_recovery": {
+        "coloring_count": 8,
+        "first_ordered_star_collision": null,
+        "incoming_star_spectrum_count": 8,
+        "ordered_star_collision_count": 0,
+        "sha256": "604bf7eb1fc950252ee69c879ed14a1be4aa0f3adf4148b61beba1b699335807"
+      },
+      "root_transition": {
+        "child_spectrum_alphabet_size": 4,
+        "distinct_fixed_root_input_count": 22,
+        "first_ordered_child_star_collision": null,
+        "first_parent_spectrum_collision": null,
+        "first_prefix_query_collision": null,
+        "maximum_input_fiber_size": 1,
+        "observation_sha256": "2674251e40ef5a3d7b7c44f58f732a45e6c94209690c3fbeee507bcf53e6b268",
+        "open_root_observation_count": 22,
+        "ordered_child_star_collision_count": 0,
+        "parent_spectrum_alphabet_size": 8,
+        "parent_spectrum_collision_count": 0,
+        "prefix_query_collision_count": 0,
+        "repeated_input_observation_count": 0
+      }
+    },
+    "5": {
+      "global_recovery": {
+        "coloring_count": 62,
+        "first_ordered_star_collision": null,
+        "incoming_star_spectrum_count": 60,
+        "ordered_star_collision_count": 0,
+        "sha256": "4e0ba167840ef5fa8c80ab453e5d33c5e5916ac86b910b3f537d4752351f729e"
+      },
+      "root_transition": {
+        "child_spectrum_alphabet_size": 12,
+        "distinct_fixed_root_input_count": 120,
+        "first_ordered_child_star_collision": null,
+        "first_parent_spectrum_collision": null,
+        "first_prefix_query_collision": null,
+        "maximum_input_fiber_size": 1,
+        "observation_sha256": "157fbb79c7afd04c21f6d0e85c5b5ef675ed698d66487bb926ed31793ef649c4",
+        "open_root_observation_count": 120,
+        "ordered_child_star_collision_count": 0,
+        "parent_spectrum_alphabet_size": 60,
+        "parent_spectrum_collision_count": 0,
+        "prefix_query_collision_count": 0,
+        "repeated_input_observation_count": 0
+      }
+    },
+    "6": {
+      "global_recovery": {
+        "coloring_count": 718,
+        "first_ordered_star_collision": null,
+        "incoming_star_spectrum_count": 638,
+        "ordered_star_collision_count": 0,
+        "sha256": "734cbbe9657f78ccfe3a3e1f7a633b0d7fe6c3480a514af02a5d2b29de03841a"
+      },
+      "root_transition": {
+        "child_spectrum_alphabet_size": 72,
+        "distinct_fixed_root_input_count": 978,
+        "first_ordered_child_star_collision": null,
+        "first_parent_spectrum_collision": null,
+        "first_prefix_query_collision": null,
+        "maximum_input_fiber_size": 2,
+        "observation_sha256": "fb0c976276154e025068d8262eae3cbd626506fedc537483c4ed185a8f4cd143",
+        "open_root_observation_count": 1002,
+        "ordered_child_star_collision_count": 0,
+        "parent_spectrum_alphabet_size": 622,
+        "parent_spectrum_collision_count": 0,
+        "prefix_query_collision_count": 0,
+        "repeated_input_observation_count": 24
+      }
+    },
+    "7": {
+      "global_recovery": {
+        "coloring_count": 10596,
+        "first_ordered_star_collision": null,
+        "incoming_star_spectrum_count": 8444,
+        "ordered_star_collision_count": 0,
+        "sha256": "a029be0f44ca829f0d0255bd1cd9f299247baa11b5029b72f7d8ccac33b92647"
+      },
+      "root_transition": {
+        "child_spectrum_alphabet_size": 710,
+        "distinct_fixed_root_input_count": 10038,
+        "first_ordered_child_star_collision": null,
+        "first_parent_spectrum_collision": null,
+        "first_prefix_query_collision": null,
+        "maximum_input_fiber_size": 4,
+        "observation_sha256": "1fdc1b0be352b55f1f7490bfca0941385f68fb6609d6240f5acd5b260ba0cdc5",
+        "open_root_observation_count": 11242,
+        "ordered_child_star_collision_count": 0,
+        "parent_spectrum_alphabet_size": 7232,
+        "parent_spectrum_collision_count": 0,
+        "prefix_query_collision_count": 0,
+        "repeated_input_observation_count": 1204
+      }
+    },
+    "8": {
+      "global_recovery": {
+        "coloring_count": 186888,
+        "first_ordered_star_collision": null,
+        "incoming_star_spectrum_count": 132280,
+        "ordered_star_collision_count": 0,
+        "sha256": "38fc62cc22f5c6fd358448bcb3a9eb5ebf7d3b0b34a6a374ddd9fe17aec69ac5"
+      },
+      "root_transition": {
+        "child_spectrum_alphabet_size": 9152,
+        "distinct_fixed_root_input_count": 110990,
+        "first_ordered_child_star_collision": null,
+        "first_parent_spectrum_collision": null,
+        "first_prefix_query_collision": null,
+        "maximum_input_fiber_size": 9,
+        "observation_sha256": "4e3678123f6674810557c3e5d4f1d5879b15b28c66f31112a0f47f7f286cab93",
+        "open_root_observation_count": 141254,
+        "ordered_child_star_collision_count": 0,
+        "parent_spectrum_alphabet_size": 85018,
+        "parent_spectrum_collision_count": 0,
+        "prefix_query_collision_count": 0,
+        "repeated_input_observation_count": 30264
+      }
+    }
+  },
+  "parameters": {
+    "maximum_n": 8,
+    "strong_size": 6,
+    "triple_order": "lexicographic combinations(range(8), 3); LSB first; 1=left",
+    "turn_encoding": "0=right, 1=left; heap-indexed words; bitset languages",
+    "turn_word_depth": 4
+  },
+  "positive_regression": {
+    "first": {
+      "lower_coloring_hex": "0",
+      "parent_coloring_hex": "1300c000000",
+      "parent_tree": {
+        "lower": 0,
+        "upper": {
+          "lower": 3,
+          "upper": {
+            "lower": 1,
+            "upper": {
+              "lower": 4,
+              "upper": {
+                "lower": 2,
+                "upper": 5
+              }
+            }
+          }
+        }
+      },
+      "upper_coloring_hex": "1300c000000"
+    },
+    "lower_mask_hex": "1",
+    "n": 6,
+    "second": {
+      "lower_coloring_hex": "0",
+      "parent_coloring_hex": "1304c000000",
+      "parent_tree": {
+        "lower": 0,
+        "upper": {
+          "lower": 3,
+          "upper": {
+            "lower": 4,
+            "upper": {
+              "lower": 1,
+              "upper": {
+                "lower": 2,
+                "upper": 5
+              }
+            }
+          }
+        }
+      },
+      "upper_coloring_hex": "1304c000000"
+    }
+  },
+  "schema_version": 1,
+  "scope": "Exact for recursively deep-below colorings on initial ordered sets through n=8; root transitions are restricted to parents avoiding a strong 6-set.",
+  "sources": {
+    "checker": {
+      "path": "scripts/check_incoming_star_prefixes.py",
+      "sha256": "5a17afc44072fd5bffde7fe61ea320673c8cf500630629ac72455b1c61632534"
+    },
+    "producer": {
+      "path": "scripts/enumerate_incoming_star_prefixes.py",
+      "sha256": "03f97fede691f1866974deb59f5f36fcb17ee2fe1edf39c702c9360d4dae4a3c"
+    }
+  },
+  "totals": {
+    "distinct_fixed_root_input_count": 122156,
+    "open_root_observation_count": 153648,
+    "ordered_child_star_collision_count": 0,
+    "parent_spectrum_collision_count": 0,
+    "prefix_query_collision_count": 0
+  }
+}

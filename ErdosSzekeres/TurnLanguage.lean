@@ -253,6 +253,102 @@ def incomingStarSpectrum {n : ℕ} (κ : TripleColoring n)
     (s : Finset (Fin n)) (d : ℕ) : Finset (Finset (Finset (List Turn))) :=
   s.image fun v ↦ incomingStar κ s d v
 
+/-- Incoming-star types whose terminal vertices occur strictly before a fixed
+sweep cut.  Each star is still computed in the full ambient child `s`. -/
+def prefixIncomingStarSpectrum {n : ℕ} (κ : TripleColoring n)
+    (s : Finset (Fin n)) (d : ℕ) (cut : Fin n) :
+    Finset (Finset (Finset (List Turn))) :=
+  (s.filter (· < cut)).image fun v ↦ incomingStar κ s d v
+
+/-- The two families of prefix queries that an interleaved root can make of
+its children. -/
+def RootRelevantPrefixEq {n : ℕ} (κ ψ : TripleColoring n)
+    (lower upper : Finset (Fin n)) (d : ℕ) : Prop :=
+  (∀ x ∈ upper,
+      prefixIncomingStarSpectrum κ lower d x =
+        prefixIncomingStarSpectrum ψ lower d x) ∧
+    ∀ x ∈ lower,
+      prefixIncomingStarSpectrum κ upper d x =
+        prefixIncomingStarSpectrum ψ upper d x
+
+theorem hasPairTurnWord_filter_lt_iff {n : ℕ} (κ : TripleColoring n)
+    (s : Finset (Fin n)) (u v cut : Fin n) (word : List Turn)
+    (hvc : v < cut) :
+    HasPairTurnWord (RankProfile.turnOfColoring κ) (s.filter (· < cut)) u v word ↔
+      HasPairTurnWord (RankProfile.turnOfColoring κ) s u v word := by
+  constructor
+  · rintro ⟨pre, hchain, hin, hword⟩
+    refine ⟨pre, hchain, ?_, hword⟩
+    intro x hx
+    exact (Finset.mem_filter.mp (hin x hx)).1
+  · rintro ⟨pre, hchain, hin, hword⟩
+    refine ⟨pre, hchain, ?_, hword⟩
+    intro x hx
+    have hleChain : (pre ++ [u, v]).IsChain (· ≤ ·) :=
+      hchain.imp fun _ _ h ↦ h.le
+    have hpairwise : (pre ++ [u, v]).Pairwise (· ≤ ·) :=
+      List.isChain_iff_pairwise.mp hleChain
+    have hxv : x ≤ v := by
+      have hlast := hpairwise.rel_getLast hx
+      simpa using hlast
+    exact Finset.mem_filter.mpr ⟨hin x hx, hxv.trans_lt hvc⟩
+
+/-- A language ending below `cut` is unchanged when vertices at or above the
+cut are removed from its ambient set. -/
+theorem pairTurnLanguage_filter_lt {n : ℕ} (κ : TripleColoring n)
+    (s : Finset (Fin n)) (d : ℕ) (u v cut : Fin n) (hvc : v < cut) :
+    pairTurnLanguage κ (s.filter (· < cut)) d u v =
+      pairTurnLanguage κ s d u v := by
+  ext word
+  simp [mem_pairTurnLanguage_iff, hasPairTurnWord_filter_lt_iff κ s u v cut word hvc]
+
+/-- An incoming star below `cut` is causal: deleting all later vertices does
+not change it. -/
+theorem incomingStar_filter_lt {n : ℕ} (κ : TripleColoring n)
+    (s : Finset (Fin n)) (d : ℕ) (v cut : Fin n) (hvc : v < cut) :
+    incomingStar κ (s.filter (· < cut)) d v = incomingStar κ s d v := by
+  classical
+  have hfilter : (s.filter (· < cut)).filter (· < v) = s.filter (· < v) := by
+    ext u
+    simp only [Finset.mem_filter]
+    constructor
+    · rintro ⟨⟨hu, _⟩, huv⟩
+      exact ⟨hu, huv⟩
+    · rintro ⟨hu, huv⟩
+      exact ⟨⟨hu, huv.trans hvc⟩, huv⟩
+  simp only [incomingStar]
+  rw [hfilter]
+  apply Finset.image_congr
+  intro u _
+  exact pairTurnLanguage_filter_lt κ s d u v cut hvc
+
+/-- Filtering a depth-`d` language to words of length at most `e ≤ d`
+recovers the depth-`e` language. -/
+theorem pairTurnLanguage_filter_depth {n : ℕ} (κ : TripleColoring n)
+    (s : Finset (Fin n)) {e d : ℕ} (hed : e ≤ d) (u v : Fin n) :
+    (pairTurnLanguage κ s d u v).filter (fun word ↦ word.length ≤ e) =
+      pairTurnLanguage κ s e u v := by
+  ext word
+  simp only [Finset.mem_filter, mem_pairTurnLanguage_iff]
+  constructor
+  · rintro ⟨⟨_, hword⟩, hlength⟩
+    exact ⟨hlength, hword⟩
+  · rintro ⟨hlength, hword⟩
+    exact ⟨⟨hlength.trans hed, hword⟩, hlength⟩
+
+/-- Applying depth truncation to every language in a depth-`d` incoming star
+recovers its depth-`e` incoming star. -/
+theorem incomingStar_image_filter_depth {n : ℕ} (κ : TripleColoring n)
+    (s : Finset (Fin n)) {e d : ℕ} (hed : e ≤ d) (v : Fin n) :
+    (incomingStar κ s d v).image
+        (fun language ↦ language.filter (fun word ↦ word.length ≤ e)) =
+      incomingStar κ s e v := by
+  classical
+  simp only [incomingStar, Finset.image_image]
+  apply Finset.image_congr
+  intro u _
+  exact pairTurnLanguage_filter_depth κ s hed u v
+
 end TurnLanguage
 end ErdosSzekeres
 
