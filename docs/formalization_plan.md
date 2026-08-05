@@ -543,6 +543,21 @@ opposite side.
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.
 
+The first invariant-design oracle is now complete at the `k = 6`, `8 -> 9`
+singleton boundary. Property-relative anchored profiles have 5,917 values on
+the 186,888 child colorings; closure under all 18 singleton contexts produces
+7,159 residual classes. The known all-gap collision is separated by an
+interior rooted cup-extension response, while the complete pair-rank collision
+remains equivalent. This is bounded evidence, not a Lean result. The next
+formal contract must replace the ambient-length response word by a finite
+critical rooted-chain footprint and prove its semantic transition before any
+counting claim is attempted.
+The bounded route review rejects freezing that footprint from prose alone.
+The next contract is specification-first: test whether each critical cut set
+is convex, define the domination quotient and retained endpoint incidence,
+then demand singleton observation and self-composition congruence. Only a
+surviving carrier earns the uniform singleton-extension iff lemma in Lean.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at

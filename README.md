@@ -91,6 +91,18 @@ sets.
   that a directional cup or cap witness survives enlargement without any
   hidden relabeling or gap transport.  The explicit profile-collision pair is
   not yet kernel-checked in Lean.
+- The singleton-context residual oracle exhausts all 186,888 eight-vertex
+  decomposable colorings and all 18 one-vertex root contexts at `k = 6`. An
+  independent implementation agrees that 5,917 immediate open profiles
+  refine to 7,159 residual classes. The oracle separates the known all-gap
+  collision but not the complete pair-rank collision. This identifies
+  interior near-threshold chain extension as the missing profile datum while
+  rejecting the full truth table as a uniform invariant. The next design gate
+  is a finite rooted-chain-footprint state with a `k`-only count and an
+  all-root transition; no such theorem is claimed yet. A bounded Sol/Fable
+  review agrees that this object should be specified and falsified next, but
+  rejects selecting it until interval convexity, domination, endpoint
+  incidence, and the `k`-only bound are made precise.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

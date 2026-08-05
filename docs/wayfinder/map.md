@@ -253,6 +253,20 @@ None. The destination was fixed by the user on 2026-08-01.
   it must pass the existing all-root transition tests before promotion.
   Bounded countermodels also rule out reducing the route to bare `5+5`,
   `6+4`, or `6+7` block data.
+  The first new-state oracle now exhausts all 186,888 decomposable
+  eight-vertex colorings under all 18 singleton root contexts at `k=6`.
+  Property-relative all-gap observations refine from 5,917 to 7,159 residual
+  classes and separate the committed all-gap collision, but the complete
+  pair-rank collision remains equivalent. Extreme insertions add no state;
+  the new splits come from interior near-threshold chain extensions. The full
+  residual truth table is not a candidate invariant. A bounded Sol/Fable
+  review at packet SHA-256
+  `4058cc55c5850b4630e70a9b413a8773bdbc0251ba00f87cbab7138e5ea7d304`
+  rejects freezing the rooted-footprint sketch before its critical-cut
+  container, domination order, endpoint incidence, and `k`-only bound are
+  defined. The active bounded task is specification and falsification: test
+  critical-cut convexity first, then singleton congruence, before any Lean
+  promotion or route selection.
 
 ## Not yet specified
 

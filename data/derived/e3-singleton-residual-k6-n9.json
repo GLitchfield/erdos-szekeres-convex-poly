@@ -1,0 +1,578 @@
+{
+  "contexts": [
+    {
+      "child_role": "lower",
+      "closed_count": 101091,
+      "lower_mask_hex": "1fe",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "42ba0833432ab569539c09d185788aefcc694f070b1a7d09d98667160084e9e6",
+      "root": 0
+    },
+    {
+      "child_role": "upper",
+      "closed_count": 101091,
+      "lower_mask_hex": "1",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "5ac7d864143993e5d1fc19259e913e7b4f9761f01a0efeb78ee337fd78e907a5",
+      "root": 0
+    },
+    {
+      "child_role": "lower",
+      "closed_count": 101091,
+      "lower_mask_hex": "1fd",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "c2ab611d1ea02f7e1ec7d463be9506b5a1133a2813d29dcd7d6f5b482f2a8bef",
+      "root": 1
+    },
+    {
+      "child_role": "upper",
+      "closed_count": 101091,
+      "lower_mask_hex": "2",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "5d30de35306161c230fb55e6fbf3c69012c9a3b6e89c1477cc9f133926f41b04",
+      "root": 1
+    },
+    {
+      "child_role": "lower",
+      "closed_count": 101091,
+      "lower_mask_hex": "1fb",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "546f0f9f9b4fdd0edab27ef6d8d84be49b8f38f7a02f6a403ce2a0fad23f2d48",
+      "root": 2
+    },
+    {
+      "child_role": "upper",
+      "closed_count": 101091,
+      "lower_mask_hex": "4",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "bb72e0d030fdde7cdd84b4a408e2a08cf47dc431585e8a6e2a3e7d84c090eeef",
+      "root": 2
+    },
+    {
+      "child_role": "lower",
+      "closed_count": 101091,
+      "lower_mask_hex": "1f7",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "508a587147777983c35780208ce930e0afdf4ce10a4e5455d5a2a98a5f6600ab",
+      "root": 3
+    },
+    {
+      "child_role": "upper",
+      "closed_count": 101091,
+      "lower_mask_hex": "8",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "424f900aec124d84845f9bb451d1920c772761a82237ec85508fb0f2463e0631",
+      "root": 3
+    },
+    {
+      "child_role": "lower",
+      "closed_count": 101091,
+      "lower_mask_hex": "1ef",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "c1f7193b08f69faffcecf00f06ae938a355ebbd46fcdecebc5f76be8f059d14d",
+      "root": 4
+    },
+    {
+      "child_role": "upper",
+      "closed_count": 101091,
+      "lower_mask_hex": "10",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "d7dda599a3fe52e3a7ebf60dd8e365d95b0adf95011d75ddef0d1100e02e6830",
+      "root": 4
+    },
+    {
+      "child_role": "lower",
+      "closed_count": 101091,
+      "lower_mask_hex": "1df",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "e11d0c4a8f5007f9b50731547a226affecaa67f0fe52d919ae4aadca8adfc21b",
+      "root": 5
+    },
+    {
+      "child_role": "upper",
+      "closed_count": 101091,
+      "lower_mask_hex": "20",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "76bb39262eecf9e3e3dc8fb6d4232a40994ad519d5da933a21fecf8a7e015863",
+      "root": 5
+    },
+    {
+      "child_role": "lower",
+      "closed_count": 101091,
+      "lower_mask_hex": "1bf",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "f50d105495fcb8d4dd548696dc3e7b0c8e480888b5bc70d1ac49c86290671482",
+      "root": 6
+    },
+    {
+      "child_role": "upper",
+      "closed_count": 101091,
+      "lower_mask_hex": "40",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "4fa323e4366dbd45686d55e5b2b09a257b3b203a4c9429e6c28170452a679280",
+      "root": 6
+    },
+    {
+      "child_role": "lower",
+      "closed_count": 101091,
+      "lower_mask_hex": "17f",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "6e65889c6c279036a2fcb0ef4433cb7217d812fe929d106d0b7ff2ffc95a1363",
+      "root": 7
+    },
+    {
+      "child_role": "upper",
+      "closed_count": 101091,
+      "lower_mask_hex": "80",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "ee29a9d770c26940069dc2ad8e7773705f1782a5a2f01e080bfb5512589396d7",
+      "root": 7
+    },
+    {
+      "child_role": "lower",
+      "closed_count": 101091,
+      "lower_mask_hex": "ff",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "75d2d928f6e759b2d93bd6c5201387bca7bbdcc4f55f9f118f8c969268c32fea",
+      "root": 8
+    },
+    {
+      "child_role": "upper",
+      "closed_count": 101091,
+      "lower_mask_hex": "100",
+      "open_count": 85797,
+      "record_count": 186888,
+      "record_size": 41,
+      "records_sha256": "97073908e818420c0e0c4d5d088e73be64e0ec2d5aedaca8c23080dd1c719019",
+      "root": 8
+    }
+  ],
+  "experiment": "singleton-context-residual-oracle",
+  "generation_base_revision": "d46d5638010185557365c472425fee910b45315f",
+  "parameters": {
+    "child_size": 8,
+    "closed_observation": "one terminal symbol",
+    "context_count": 18,
+    "open_observation": "all-gap clipped cup/cap maxima in anchor-left, anchor-right, and straddling classes",
+    "parent_size": 9,
+    "strong_size": 6
+  },
+  "schema_version": 1,
+  "scope": "Exact for every recursively deep-below coloring on 8 ordered vertices and all 18 one-vertex root contexts.",
+  "sources": {
+    "checker": {
+      "path": "scripts/check_singleton_residuals.py",
+      "sha256": "c9035e7abbc3c92f9414bc38d675503be9b58eab22c30cec04faefb4924afcb6"
+    },
+    "producer": {
+      "path": "scripts/enumerate_singleton_residuals.py",
+      "sha256": "0de81c1fe139e816847ef32cc1999cdefca1e3535ba767861716b6251aac8c30"
+    }
+  },
+  "summary": {
+    "child_observation_count": 5917,
+    "coloring_count": 186888,
+    "colorings_sha256": "26ad6d1da096ab8e091e0815516a26e41b070c7282d5deb568bd92f86d8df415",
+    "context_refinement": {
+      "greedy_context_sequence": [
+        {
+          "child_role": "lower",
+          "class_count": 6100,
+          "root": 2
+        },
+        {
+          "child_role": "lower",
+          "class_count": 6285,
+          "root": 6
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6461,
+          "root": 2
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6643,
+          "root": 6
+        },
+        {
+          "child_role": "lower",
+          "class_count": 6730,
+          "root": 1
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6817,
+          "root": 1
+        },
+        {
+          "child_role": "lower",
+          "class_count": 6904,
+          "root": 7
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6991,
+          "root": 7
+        },
+        {
+          "child_role": "lower",
+          "class_count": 7055,
+          "root": 4
+        },
+        {
+          "child_role": "upper",
+          "class_count": 7119,
+          "root": 4
+        },
+        {
+          "child_role": "lower",
+          "class_count": 7129,
+          "root": 3
+        },
+        {
+          "child_role": "upper",
+          "class_count": 7139,
+          "root": 3
+        },
+        {
+          "child_role": "lower",
+          "class_count": 7149,
+          "root": 5
+        },
+        {
+          "child_role": "upper",
+          "class_count": 7159,
+          "root": 5
+        }
+      ],
+      "individual_contexts": [
+        {
+          "child_role": "lower",
+          "class_count": 5917,
+          "root": 0
+        },
+        {
+          "child_role": "upper",
+          "class_count": 5917,
+          "root": 0
+        },
+        {
+          "child_role": "lower",
+          "class_count": 6098,
+          "root": 1
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6098,
+          "root": 1
+        },
+        {
+          "child_role": "lower",
+          "class_count": 6100,
+          "root": 2
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6100,
+          "root": 2
+        },
+        {
+          "child_role": "lower",
+          "class_count": 6049,
+          "root": 3
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6049,
+          "root": 3
+        },
+        {
+          "child_role": "lower",
+          "class_count": 6035,
+          "root": 4
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6035,
+          "root": 4
+        },
+        {
+          "child_role": "lower",
+          "class_count": 6049,
+          "root": 5
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6049,
+          "root": 5
+        },
+        {
+          "child_role": "lower",
+          "class_count": 6100,
+          "root": 6
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6100,
+          "root": 6
+        },
+        {
+          "child_role": "lower",
+          "class_count": 6098,
+          "root": 7
+        },
+        {
+          "child_role": "upper",
+          "class_count": 6098,
+          "root": 7
+        },
+        {
+          "child_role": "lower",
+          "class_count": 5917,
+          "root": 8
+        },
+        {
+          "child_role": "upper",
+          "class_count": 5917,
+          "root": 8
+        }
+      ],
+      "redundant_context_count_after_greedy": 4
+    },
+    "first_context_refinement": {
+      "first_difference": {
+        "child_role": "lower",
+        "fields": [
+          "cup_straddled"
+        ],
+        "gap": 6,
+        "kind": "singleton_context",
+        "left_closed": false,
+        "left_profile": [
+          2,
+          5,
+          4,
+          3,
+          3,
+          5
+        ],
+        "right_closed": false,
+        "right_profile": [
+          2,
+          5,
+          5,
+          3,
+          3,
+          5
+        ],
+        "root": 1
+      },
+      "left_coloring_hex": "100ce019ce",
+      "right_coloring_hex": "300ce019c4"
+    },
+    "first_nontrivial_residual_class": {
+      "class_id": 0,
+      "left_coloring_hex": "0",
+      "right_coloring_hex": "1"
+    },
+    "largest_residual_class_size": 63982,
+    "nontrivial_residual_class_count": 6237,
+    "regressions": {
+      "all_gap_collision": {
+        "equal_child_observation": true,
+        "equal_residual_state": false,
+        "first_difference": {
+          "child_role": "lower",
+          "fields": [
+            "cup_anchor_right"
+          ],
+          "gap": 6,
+          "kind": "singleton_context",
+          "left_closed": false,
+          "left_profile": [
+            2,
+            4,
+            5,
+            3,
+            4,
+            4
+          ],
+          "right_closed": false,
+          "right_profile": [
+            2,
+            3,
+            5,
+            3,
+            4,
+            4
+          ],
+          "root": 1
+        },
+        "left_coloring_hex": "1fff3d807b019",
+        "right_coloring_hex": "3cfe1c007b33f"
+      },
+      "pair_rank_collision": {
+        "equal_child_observation": true,
+        "equal_residual_state": true,
+        "first_difference": null,
+        "left_coloring_hex": "3c300c1a1835b",
+        "right_coloring_hex": "3c700c1a1835b"
+      }
+    },
+    "residual_class_count": 7159,
+    "residual_class_size_histogram": {
+      "1": 922,
+      "10": 174,
+      "100": 12,
+      "101": 4,
+      "105": 12,
+      "106": 20,
+      "108": 4,
+      "109": 4,
+      "11": 156,
+      "112": 4,
+      "115": 12,
+      "12": 240,
+      "123": 4,
+      "126": 4,
+      "128": 4,
+      "13": 276,
+      "130": 8,
+      "134": 4,
+      "135": 4,
+      "14": 96,
+      "141": 4,
+      "15": 148,
+      "151": 4,
+      "153": 4,
+      "158": 2,
+      "16": 80,
+      "160": 4,
+      "17": 194,
+      "177": 4,
+      "178": 4,
+      "18": 70,
+      "19": 88,
+      "191": 4,
+      "2": 528,
+      "20": 104,
+      "200": 4,
+      "205": 4,
+      "207": 4,
+      "21": 66,
+      "212": 8,
+      "215": 4,
+      "218": 4,
+      "22": 168,
+      "225": 4,
+      "229": 4,
+      "23": 68,
+      "24": 76,
+      "240": 2,
+      "25": 64,
+      "26": 86,
+      "27": 60,
+      "28": 24,
+      "29": 44,
+      "3": 640,
+      "30": 56,
+      "31": 40,
+      "32": 24,
+      "33": 36,
+      "34": 68,
+      "35": 70,
+      "36": 20,
+      "37": 16,
+      "38": 20,
+      "39": 8,
+      "4": 460,
+      "40": 16,
+      "41": 32,
+      "42": 36,
+      "428": 2,
+      "43": 16,
+      "44": 20,
+      "46": 8,
+      "47": 16,
+      "48": 16,
+      "49": 6,
+      "5": 252,
+      "50": 18,
+      "51": 4,
+      "52": 16,
+      "53": 16,
+      "54": 28,
+      "55": 24,
+      "56": 26,
+      "57": 12,
+      "58": 4,
+      "59": 2,
+      "6": 150,
+      "60": 4,
+      "61": 14,
+      "63": 8,
+      "63982": 1,
+      "65": 8,
+      "66": 4,
+      "67": 12,
+      "68": 24,
+      "69": 4,
+      "7": 352,
+      "70": 4,
+      "71": 4,
+      "72": 8,
+      "74": 4,
+      "76": 24,
+      "78": 8,
+      "8": 294,
+      "80": 8,
+      "81": 22,
+      "83": 16,
+      "84": 4,
+      "86": 4,
+      "89": 8,
+      "9": 214,
+      "90": 4,
+      "91": 4,
+      "92": 12,
+      "95": 4,
+      "98": 4
+    },
+    "state_records_sha256": "705aa8c5844b2bac213f51ea4971294ce2c9b56fe337d8ccf2b9e3d0dc89409a"
+  }
+}

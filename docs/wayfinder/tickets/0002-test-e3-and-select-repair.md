@@ -646,6 +646,23 @@ countermodel: explicit rational coordinates now give the compiling theorem
 are not promoted to Lean. Both modest repairs are retired, so the pre-vetted
 fallback is a new uniform E3 invariant with an all-root falsification gate.
 
+The first residual-state oracle under that fallback is complete. Two
+independent implementations exhaust all 186,888 decomposable eight-vertex
+colorings and all 18 singleton root contexts at `k=6`. The 5,917 immediate
+property-relative all-gap observations refine to 7,159 residual classes. The
+oracle separates the committed all-gap profile collision by an interior
+rooted cup-extension response, but it does not separate the complete pair-rank
+collision. The full residual word is therefore retained only as a discovery
+oracle. A bounded blind Sol/Fable review at packet SHA-256
+`4058cc55c5850b4630e70a9b413a8773bdbc0251ba00f87cbab7138e5ea7d304`
+returned `partially_supported` at high confidence from both reviewers. Both
+reject selecting an invariant before defining the critical-cut container,
+domination quotient, retained endpoint incidence, and `k`-only bound. The
+selected work item is only the bounded specification gate: test critical-cut
+convexity, then exact singleton observation and self-composition congruence,
+with a two-vertex interleaved-root gate required afterward. The candidate
+route itself remains unselected.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -712,3 +729,6 @@ fallback is a new uniform E3 invariant with an all-root falsification gate.
 - [First `k=7` cup-block frontier](../../experiments/0014-k7-cup-block-frontier.md)
 - [Lean normalized `5+6` reduction](../../../ErdosSzekeres/StructuralChargingCupBlocks56.lean)
 - [Independent rational-realization checker](../../../scripts/check_rank_profile_realization.py)
+- [Singleton residual oracle](../../experiments/0024-singleton-residual-oracle.md)
+- [Singleton residual manifest](../../../data/derived/e3-singleton-residual-k6-n9.json)
+- [Independent singleton residual checker](../../../scripts/check_singleton_residuals.py)
