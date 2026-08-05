@@ -515,7 +515,10 @@ endpoint branch and the balanced `11+11` branch. Endpoint failures further
 normalize to four internally referenced anomalies or a final-middle fan
 variation, with a proved fan-change propagation law. Normalized
 `5+5`, `6+4`, and `6+7` block shortcuts have validated SAT countermodels and
-must not be used.
+must not be used. The balanced `11+11` leaf now has a separate hereditary
+interface: unless an internal strong six redirects to the endpoint branch,
+each vertex activates a four-cap or strong-six witness through itself on the
+opposite side.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

@@ -140,6 +140,148 @@ theorem two_cap_free_sides_contains_internal_strongSix_or_eleven_eleven
           (FinsetPolygon.ContainsCupSet.mono hcup Finset.subset_union_right))))
   · exact Or.inr (Or.inr (by omega))
 
+/-- Adjoining one external vertex to an eleven-vertex four-cap-free side
+activates the checked twelve-vertex state.  With ambient six-cups excluded,
+the result is either a strong six or a four-cap that necessarily passes
+through the adjoined vertex. -/
+theorem adjoin_vertex_to_eleven_cap_free_side
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient side : Finset (Fin n)} {q : Fin n}
+    (hsideSub : side ⊆ ambient) (hqAmbient : q ∈ ambient)
+    (hqSide : q ∉ side) (hsideCard : side.card = 11)
+    (hsideCap : ¬ContainsCapSet χ side 4)
+    (hone : OneChangeOn χ ambient)
+    (hnoCup : ¬ContainsCupSet χ ambient 6) :
+    (∃ cap : Finset (Fin n), cap ⊆ insert q side ∧ cap.card = 4 ∧
+      IsCapSet χ cap ∧ q ∈ cap) ∨
+      ContainsStrongPolygonSet χ (insert q side) 6 := by
+  have hinsertSub : insert q side ⊆ ambient := by
+    intro x hx
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact hqAmbient
+    · exact hsideSub hx
+  have hinsertCard : (insert q side).card = 12 := by
+    rw [Finset.card_insert_of_notMem hqSide, hsideCard]
+  rcases containsCapFour_or_cupSix_or_strongSix_of_oneChange_card_ge_twelve
+      (hone.mono hinsertSub) (by omega) with hcap | hcup | hstrong
+  · obtain ⟨cap, hcapSub, hcapCard, hcapSet⟩ := hcap
+    have hqCap : q ∈ cap := by
+      by_contra hqCap
+      apply hsideCap
+      refine ⟨cap, ?_, hcapCard, hcapSet⟩
+      intro x hx
+      rcases Finset.mem_insert.mp (hcapSub hx) with hxq | hxSide
+      · exact (hqCap (hxq ▸ hx)).elim
+      · exact hxSide
+    exact Or.inl ⟨cap, hcapSub, hcapCard, hcapSet, hqCap⟩
+  · exact (hnoCup
+      (FinsetPolygon.ContainsCupSet.mono hcup hinsertSub)).elim
+  · exact Or.inr hstrong
+
+/-- Witness-refined form of the eleven-plus-one dichotomy.  A strong six from
+the adjoined set either already lies in the eleven-vertex side or uses the
+adjoined vertex. -/
+theorem adjoin_vertex_to_eleven_cap_free_side_refined
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient side : Finset (Fin n)} {q : Fin n}
+    (hsideSub : side ⊆ ambient) (hqAmbient : q ∈ ambient)
+    (hqSide : q ∉ side) (hsideCard : side.card = 11)
+    (hsideCap : ¬ContainsCapSet χ side 4)
+    (hone : OneChangeOn χ ambient)
+    (hnoCup : ¬ContainsCupSet χ ambient 6) :
+    (∃ cap : Finset (Fin n), cap ⊆ insert q side ∧ cap.card = 4 ∧
+      IsCapSet χ cap ∧ q ∈ cap) ∨
+    ContainsStrongPolygonSet χ side 6 ∨
+    (∃ polygon : Finset (Fin n), polygon ⊆ insert q side ∧
+      polygon.card = 6 ∧ IsStrongPolygonSet χ polygon ∧ q ∈ polygon) := by
+  rcases adjoin_vertex_to_eleven_cap_free_side hsideSub hqAmbient hqSide
+      hsideCard hsideCap hone hnoCup with hcap | hstrong
+  · exact Or.inl hcap
+  · obtain ⟨polygon, hpolygonSub, hpolygonCard, hpolygonStrong⟩ := hstrong
+    by_cases hqPolygon : q ∈ polygon
+    · exact Or.inr (Or.inr
+        ⟨polygon, hpolygonSub, hpolygonCard, hpolygonStrong, hqPolygon⟩)
+    · apply Or.inr (Or.inl ?_)
+      refine ⟨polygon, ?_, hpolygonCard, hpolygonStrong⟩
+      intro x hx
+      rcases Finset.mem_insert.mp (hpolygonSub hx) with hxq | hxSide
+      · exact (hqPolygon (hxq ▸ hx)).elim
+      · exact hxSide
+
+/-- In the balanced `11+11` branch, every vertex on either side participates
+in a crossing four-cap through the opposite side or activates a strong six in
+the opposite side plus that vertex. -/
+theorem eleven_eleven_vertex_dichotomies
+    {n : ℕ} {χ : TripleColoring n}
+    {left right : Finset (Fin n)}
+    (hdisjoint : Disjoint left right)
+    (hleftCard : left.card = 11) (hrightCard : right.card = 11)
+    (hleftCap : ¬ContainsCapSet χ left 4)
+    (hrightCap : ¬ContainsCapSet χ right 4)
+    (hone : OneChangeOn χ (left ∪ right))
+    (hnoCup : ¬ContainsCupSet χ (left ∪ right) 6) :
+    (∀ q ∈ right,
+      (∃ cap : Finset (Fin n), cap ⊆ insert q left ∧ cap.card = 4 ∧
+        IsCapSet χ cap ∧ q ∈ cap) ∨
+        ContainsStrongPolygonSet χ (insert q left) 6) ∧
+    (∀ q ∈ left,
+      (∃ cap : Finset (Fin n), cap ⊆ insert q right ∧ cap.card = 4 ∧
+        IsCapSet χ cap ∧ q ∈ cap) ∨
+        ContainsStrongPolygonSet χ (insert q right) 6) := by
+  constructor
+  · intro q hqRight
+    apply adjoin_vertex_to_eleven_cap_free_side
+      Finset.subset_union_left (Finset.mem_union_right left hqRight)
+      (fun hqLeft ↦ Finset.disjoint_left.mp hdisjoint hqLeft hqRight)
+      hleftCard hleftCap hone hnoCup
+  · intro q hqLeft
+    apply adjoin_vertex_to_eleven_cap_free_side
+      Finset.subset_union_right (Finset.mem_union_left right hqLeft)
+      (fun hqRight ↦ Finset.disjoint_left.mp hdisjoint hqLeft hqRight)
+      hrightCard hrightCap hone hnoCup
+
+/-- Every witness in an eleven-plus-one activation genuinely uses the
+adjoined vertex. -/
+def HasAdjoinedCapOrStrongSixThrough {n : ℕ} (χ : TripleColoring n)
+    (side : Finset (Fin n)) (q : Fin n) : Prop :=
+  (∃ cap : Finset (Fin n), cap ⊆ insert q side ∧ cap.card = 4 ∧
+    IsCapSet χ cap ∧ q ∈ cap) ∨
+  (∃ polygon : Finset (Fin n), polygon ⊆ insert q side ∧
+    polygon.card = 6 ∧ IsStrongPolygonSet χ polygon ∧ q ∈ polygon)
+
+/-- If neither eleven-vertex side already contains a strong six, every vertex
+activates a through-witness on the opposite side. -/
+theorem eleven_eleven_has_through_witnesses_of_no_internal_strongSix
+    {n : ℕ} {χ : TripleColoring n}
+    {left right : Finset (Fin n)}
+    (hdisjoint : Disjoint left right)
+    (hleftCard : left.card = 11) (hrightCard : right.card = 11)
+    (hleftCap : ¬ContainsCapSet χ left 4)
+    (hrightCap : ¬ContainsCapSet χ right 4)
+    (hone : OneChangeOn χ (left ∪ right))
+    (hnoCup : ¬ContainsCupSet χ (left ∪ right) 6)
+    (hnoLeftStrong : ¬ContainsStrongPolygonSet χ left 6)
+    (hnoRightStrong : ¬ContainsStrongPolygonSet χ right 6) :
+    (∀ q ∈ right, HasAdjoinedCapOrStrongSixThrough χ left q) ∧
+      (∀ q ∈ left, HasAdjoinedCapOrStrongSixThrough χ right q) := by
+  constructor
+  · intro q hqRight
+    rcases adjoin_vertex_to_eleven_cap_free_side_refined
+        Finset.subset_union_left (Finset.mem_union_right left hqRight)
+        (fun hqLeft ↦ Finset.disjoint_left.mp hdisjoint hqLeft hqRight)
+        hleftCard hleftCap hone hnoCup with hcap | hstrong | hthrough
+    · exact Or.inl hcap
+    · exact (hnoLeftStrong hstrong).elim
+    · exact Or.inr hthrough
+  · intro q hqLeft
+    rcases adjoin_vertex_to_eleven_cap_free_side_refined
+        Finset.subset_union_right (Finset.mem_union_left right hqLeft)
+        (fun hqRight ↦ Finset.disjoint_left.mp hdisjoint hqLeft hqRight)
+        hrightCard hrightCap hone hnoCup with hcap | hstrong | hthrough
+    · exact Or.inl hcap
+    · exact (hnoRightStrong hstrong).elim
+    · exact Or.inr hthrough
+
 /-- Exact fifteen-vertex deletion form: after deleting any designated three
 vertices, a no-six-cup/no-strong-six one-change set still contains a four-cap.
 Thus its family of four-caps has transversal number at least four. -/
@@ -551,6 +693,24 @@ def TwoCapFreeSidesElevenElevenBranch567 : Prop :=
         ContainsCupSet χ (left ∪ right) 6 ∨
         ContainsStrongPolygonSet χ (left ∪ right) 7
 
+/-- Refined balanced branch after internal strong-six witnesses have been
+redirected to the endpoint branch. Every remaining vertex carries a cap-four
+or strong-six witness through itself on the opposite eleven-point side. -/
+def TwoCapFreeSidesElevenElevenThroughBranch567 : Prop :=
+  ∀ {n : ℕ} {χ : TripleColoring n}
+      {left right : Finset (Fin n)},
+    Disjoint left right → (∀ x ∈ left, ∀ y ∈ right, x < y) →
+      left.card = 11 → right.card = 11 →
+      ¬ContainsCapSet χ left 4 → ¬ContainsCapSet χ right 4 →
+      OneChangeOn χ (left ∪ right) →
+      ¬ContainsStrongPolygonSet χ left 6 →
+      ¬ContainsStrongPolygonSet χ right 6 →
+      (∀ q ∈ right, HasAdjoinedCapOrStrongSixThrough χ left q) →
+      (∀ q ∈ left, HasAdjoinedCapOrStrongSixThrough χ right q) →
+      ContainsCapSet χ (left ∪ right) 5 ∨
+        ContainsCupSet χ (left ∪ right) 6 ∨
+        ContainsStrongPolygonSet χ (left ∪ right) 7
+
 /-- Sharp fixed-cardinality kernel for the no-strong-six branch. The two
 ordered cap-free sides have sizes seven and eight in either orientation. -/
 def TwoCapFreeSidesForce566AtFifteen : Prop :=
@@ -721,6 +881,57 @@ theorem twoCapFreeSidesBound567_of_endpointBranch_and_elevenEleven
     · exact hnoCap hcap
     · exact hnoCup hcup
     · exact hnoStrong hstrong
+
+/-- The opaque balanced branch follows from the endpoint branch plus the
+through-witness refinement. -/
+theorem twoCapFreeSidesElevenElevenBranch567_of_endpoint_and_through
+    (hendpoint : TwoCapFreeSidesEndpointObstructedStrongSixBranch567)
+    (hthrough : TwoCapFreeSidesElevenElevenThroughBranch567) :
+    TwoCapFreeSidesElevenElevenBranch567 := by
+  intro n χ left right hdisjoint horder hleftCard hrightCard
+    hleftCap hrightCap hone
+  by_cases hcap : ContainsCapSet χ (left ∪ right) 5
+  · exact Or.inl hcap
+  by_cases hcup : ContainsCupSet χ (left ∪ right) 6
+  · exact Or.inr (Or.inl hcup)
+  by_cases hstrongSeven : ContainsStrongPolygonSet χ (left ∪ right) 7
+  · exact Or.inr (Or.inr hstrongSeven)
+  by_cases hleftStrong : ContainsStrongPolygonSet χ left 6
+  · obtain ⟨polygon, hpolygonSub, hpolygonCard, hpolygonStrong⟩ := hleftStrong
+    have hfailures :=
+      right_side_has_rightEndpoint_failures_from_left_strongSix
+        hdisjoint horder hpolygonSub hpolygonCard hpolygonStrong hstrongSeven
+    have hbound := hendpoint hdisjoint horder hleftCap hrightCap hone
+      (by omega) (by omega) (by omega) (by omega)
+      hcap hcup hstrongSeven hpolygonCard hpolygonStrong
+      (Or.inl ⟨hpolygonSub, hfailures⟩)
+    omega
+  by_cases hrightStrong : ContainsStrongPolygonSet χ right 6
+  · obtain ⟨polygon, hpolygonSub, hpolygonCard, hpolygonStrong⟩ := hrightStrong
+    have hfailures :=
+      left_side_has_leftEndpoint_failures_from_right_strongSix
+        hdisjoint horder hpolygonSub hpolygonCard hpolygonStrong hstrongSeven
+    have hbound := hendpoint hdisjoint horder hleftCap hrightCap hone
+      (by omega) (by omega) (by omega) (by omega)
+      hcap hcup hstrongSeven hpolygonCard hpolygonStrong
+      (Or.inr ⟨hpolygonSub, hfailures⟩)
+    omega
+  have hwitnesses :=
+    eleven_eleven_has_through_witnesses_of_no_internal_strongSix
+      hdisjoint hleftCard hrightCard hleftCap hrightCap hone hcup
+      hleftStrong hrightStrong
+  exact hthrough hdisjoint horder hleftCard hrightCard hleftCap hrightCap
+    hone hleftStrong hrightStrong hwitnesses.1 hwitnesses.2
+
+/-- Final current reduction: proving the endpoint-obstructed branch and the
+balanced through-witness branch proves the complete local `(5,6,7)` bound. -/
+theorem twoCapFreeSidesBound567_of_endpointBranch_and_throughBranch
+    (hendpoint : TwoCapFreeSidesEndpointObstructedStrongSixBranch567)
+    (hthrough : TwoCapFreeSidesElevenElevenThroughBranch567) :
+    TwoCapFreeSidesBound567 :=
+  twoCapFreeSidesBound567_of_endpointBranch_and_elevenEleven hendpoint
+    (twoCapFreeSidesElevenElevenBranch567_of_endpoint_and_through
+      hendpoint hthrough)
 
 /-- Closing both witness branches closes the complete local two-side bound. -/
 theorem twoCapFreeSidesBound567_of_witnessBranches

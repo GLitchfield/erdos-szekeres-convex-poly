@@ -201,9 +201,13 @@ None. The destination was fixed by the user on 2026-08-01.
   now normalizes to an anomaly at one of those four internal middles or a
   final-middle fan variation; a fan change forces the earlier fan and bridge
   colors to equal the later polygon-middle color. The active targets are the
-  resulting five-class endpoint count and the balanced `11+11` branch.
-  Bounded countermodels rule out reducing either target to bare `5+5`, `6+4`,
-  or `6+7` block data.
+  resulting five-class endpoint count and the balanced `11+11` branch. The
+  balanced branch now has a hereditary per-vertex form: adjoining any vertex
+  to the opposite eleven-point side gives a four-cap or strong six through
+  that vertex, unless an internal strong six redirects to the endpoint branch.
+  Thus its remaining target couples 22 explicit through-witnesses. Bounded
+  countermodels rule out reducing either target to bare `5+5`, `6+4`, or
+  `6+7` block data.
 
 ## Not yet specified
 

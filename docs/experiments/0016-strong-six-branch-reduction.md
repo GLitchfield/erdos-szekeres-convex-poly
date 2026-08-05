@@ -64,6 +64,14 @@ fan color and the intervening bridge color to equal the later polygon-middle
 color. This is the first transition law coupling the five anomaly classes to
 the four-way polygon signature.
 
+The balanced branch is no longer opaque either. Adjoining any vertex from one
+11-point side to the opposite side activates the checked 12-vertex `(4,6,6)`
+state. Since six-cups are excluded, Lean obtains either a four-cap through the
+adjoined vertex or a strong six. A strong six not using the vertex already
+lies inside the opposite side and redirects to the endpoint branch. After
+excluding those internal witnesses, every one of the 22 vertices therefore
+carries a through-cap or through-strong-six witness on the opposite side.
+
 ## Countercontrols
 
 The tempting normalized shortcuts are false in the abstract one-change model.
@@ -85,5 +93,6 @@ The active proof target is the endpoint-obstructed branch with one of four
 internal middle signatures, alongside the exact balanced `11+11` branch.
 The next proof should bound repetitions of the four internal anomaly classes
 and the final-fan class along the opposite side, using the proved fan-change
-propagation and the additional vertices of the large cap-free side. A local
+propagation and the additional vertices of the large cap-free side. In the
+balanced branch it should instead couple the 22 through-witnesses. A local
 `6+7` block theorem is known false and must not be reproposed.

@@ -231,6 +231,8 @@ sets.
   split. `StructuralChargingStrongSixSignature.lean` proves that the internal
   strong six has exactly one right-colored middle position and normalizes
   opposite-side failures into four internal anomalies or one final-fan class.
+  The `11+11` exception is further reduced to a cap-four or strong-six witness
+  through every vertex on the opposite side.
 - `ErdosSzekeres/StructuralChargingSaturatedResource.lean` proves that the gate
   would bound the large child by 21 and eliminate the `(5,6,7,4,2)` child
   pairs `(2,24)`, `(3,23)`, `(4,22)` and their color duals. A sharp 21-point

@@ -546,6 +546,15 @@ the bridge between their polygon endpoints to equal the later endpoint's
 polygon-middle color. The next quantitative lemma must bound repetitions of
 these five anomaly classes; it may not discard the unused large-side vertices.
 
+The exact `11+11` exception is now refined by the same checked 12-vertex
+state. For every vertex on either side, adjoining it to the opposite side
+produces a four-cap through that vertex or a strong six. If that strong six
+does not use the adjoined vertex, it is internal and the endpoint branch
+applies. Consequently the only balanced leaf left after endpoint redirection
+has a through-cap or through-strong-six witness for each of all 22 vertices.
+Lean proves that the endpoint branch plus this through-witness branch implies
+`TwoCapFreeSidesBound567`.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
