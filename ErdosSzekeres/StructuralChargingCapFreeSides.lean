@@ -685,6 +685,173 @@ theorem capFour_forces_left_bridge_after_of_no_capFive
           (cap.orderEmbOfFin_mem hcapCard 3)
       · simpa [f, ce] using hlast
 
+/-- Every increasing five-chain in a one-change set avoiding five-caps has a
+left turn among its three consecutive triples. -/
+theorem finFive_has_left_consecutive_of_oneChange_no_capFive
+    {n : ℕ} {χ : TripleColoring n} {ambient : Finset (Fin n)}
+    (f : Fin 5 ↪o Fin n) (hfsub : Finset.univ.image f ⊆ ambient)
+    (hone : OneChangeOn χ ambient)
+    (hnoCap : ¬ContainsCapSet χ ambient 5) :
+    χ ⟨f 0, f 1, f 2, by simp, by simp⟩ = Turn.left ∨
+      χ ⟨f 1, f 2, f 3, by simp, by simp⟩ = Turn.left ∨
+      χ ⟨f 2, f 3, f 4, by simp, by simp⟩ = Turn.left := by
+  cases h012 : χ ⟨f 0, f 1, f 2, by simp, by simp⟩ with
+  | left => exact Or.inl rfl
+  | right =>
+    cases h123 : χ ⟨f 1, f 2, f 3, by simp, by simp⟩ with
+    | left => exact Or.inr (Or.inl rfl)
+    | right =>
+      cases h234 : χ ⟨f 2, f 3, f 4, by simp, by simp⟩ with
+      | left => exact Or.inr (Or.inr rfl)
+      | right =>
+        exfalso
+        apply hnoCap
+        refine ⟨Finset.univ.image f, hfsub, ?_, ?_⟩
+        · simpa using Finset.card_image_of_injective Finset.univ f.injective
+        · apply FinsetPolygon.IsCap.image
+          exact isMonochromaticChain_finFive_of_consecutive f
+            (hone.mono hfsub) h012 h123 h234
+
+/-- In the first interior gap of a four-cap, one of the two consecutive
+triples containing the inserted vertex must turn left. -/
+theorem capFour_gap_one_has_two_failure_signatures
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cap : Finset (Fin n)} {q : Fin n}
+    (hcapSub : cap ⊆ ambient) (hcapCard : cap.card = 4)
+    (hcap : IsCapSet χ cap) (hqAmbient : q ∈ ambient)
+    (hlower : cap.orderEmbOfFin hcapCard 0 < q)
+    (hupper : q < cap.orderEmbOfFin hcapCard 1)
+    (hone : OneChangeOn χ ambient)
+    (hnoCap : ¬ContainsCapSet χ ambient 5) :
+    χ ⟨cap.orderEmbOfFin hcapCard 0, q,
+        cap.orderEmbOfFin hcapCard 1, hlower, hupper⟩ = Turn.left ∨
+      χ ⟨q, cap.orderEmbOfFin hcapCard 1,
+        cap.orderEmbOfFin hcapCard 2, hupper,
+        (cap.orderEmbOfFin hcapCard).strictMono (by decide)⟩ = Turn.left := by
+  let ce : Fin 4 ↪o Fin n := cap.orderEmbOfFin hcapCard
+  have hq (j : Fin 4) (hj : (1 : Fin 4) ≤ j) : q < ce j :=
+    hupper.trans_le (ce.monotone hj)
+  let f : Fin 5 ↪o Fin n := OrderEmbedding.ofStrictMono
+    ![ce 0, q, ce 1, ce 2, ce 3] (by
+      intro i j hij
+      fin_cases i <;> fin_cases j
+      all_goals (try norm_num at hij)
+      all_goals first
+        | exact ce.strictMono (by decide)
+        | exact hlower
+        | exact hq _ (by decide))
+  have hfsub : Finset.univ.image f ⊆ ambient := by
+    intro x hx
+    simp only [Finset.mem_image, Finset.mem_univ, true_and] at hx
+    obtain ⟨i, rfl⟩ := hx
+    fin_cases i <;>
+      simp [f, ce, hqAmbient,
+        hcapSub (cap.orderEmbOfFin_mem hcapCard _)]
+  rcases finFive_has_left_consecutive_of_oneChange_no_capFive
+      f hfsub hone hnoCap with hfirst | hsecond | hthird
+  · exact Or.inl (by simpa [f, ce] using hfirst)
+  · exact Or.inr (by simpa [f, ce] using hsecond)
+  · have hright := hcap ⟨ce 1, ce 2, ce 3, by simp, by simp⟩
+      (cap.orderEmbOfFin_mem hcapCard 1)
+      (cap.orderEmbOfFin_mem hcapCard 2)
+      (cap.orderEmbOfFin_mem hcapCard 3)
+    rw [show χ ⟨ce 1, ce 2, ce 3, by simp, by simp⟩ = Turn.left by
+      simpa [f, ce] using hthird] at hright
+    exact Turn.noConfusion hright
+
+/-- In the middle gap of a four-cap, at least one of the three consecutive
+triples containing the inserted vertex must turn left. -/
+theorem capFour_gap_two_has_three_failure_signatures
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cap : Finset (Fin n)} {q : Fin n}
+    (hcapSub : cap ⊆ ambient) (hcapCard : cap.card = 4)
+    (hqAmbient : q ∈ ambient)
+    (hlower : cap.orderEmbOfFin hcapCard 1 < q)
+    (hupper : q < cap.orderEmbOfFin hcapCard 2)
+    (hone : OneChangeOn χ ambient)
+    (hnoCap : ¬ContainsCapSet χ ambient 5) :
+    χ ⟨cap.orderEmbOfFin hcapCard 0,
+        cap.orderEmbOfFin hcapCard 1, q,
+        (cap.orderEmbOfFin hcapCard).strictMono (by decide), hlower⟩ =
+      Turn.left ∨
+    χ ⟨cap.orderEmbOfFin hcapCard 1, q,
+        cap.orderEmbOfFin hcapCard 2, hlower, hupper⟩ = Turn.left ∨
+    χ ⟨q, cap.orderEmbOfFin hcapCard 2,
+        cap.orderEmbOfFin hcapCard 3, hupper,
+        (cap.orderEmbOfFin hcapCard).strictMono (by decide)⟩ = Turn.left := by
+  let ce : Fin 4 ↪o Fin n := cap.orderEmbOfFin hcapCard
+  have hcq (i : Fin 4) (hi : i ≤ (1 : Fin 4)) : ce i < q :=
+    (ce.monotone hi).trans_lt hlower
+  have hqc (j : Fin 4) (hj : (2 : Fin 4) ≤ j) : q < ce j :=
+    hupper.trans_le (ce.monotone hj)
+  let f : Fin 5 ↪o Fin n := OrderEmbedding.ofStrictMono
+    ![ce 0, ce 1, q, ce 2, ce 3] (by
+      intro i j hij
+      fin_cases i <;> fin_cases j
+      all_goals (try norm_num at hij)
+      all_goals first
+        | exact ce.strictMono (by decide)
+        | exact hcq _ (by decide)
+        | exact hqc _ (by decide))
+  have hfsub : Finset.univ.image f ⊆ ambient := by
+    intro x hx
+    simp only [Finset.mem_image, Finset.mem_univ, true_and] at hx
+    obtain ⟨i, rfl⟩ := hx
+    fin_cases i <;>
+      simp [f, ce, hqAmbient,
+        hcapSub (cap.orderEmbOfFin_mem hcapCard _)]
+  simpa [f, ce] using
+    (finFive_has_left_consecutive_of_oneChange_no_capFive
+      f hfsub hone hnoCap)
+
+/-- In the third interior gap of a four-cap, one of the two consecutive
+triples containing the inserted vertex must turn left. -/
+theorem capFour_gap_three_has_two_failure_signatures
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cap : Finset (Fin n)} {q : Fin n}
+    (hcapSub : cap ⊆ ambient) (hcapCard : cap.card = 4)
+    (hcap : IsCapSet χ cap) (hqAmbient : q ∈ ambient)
+    (hlower : cap.orderEmbOfFin hcapCard 2 < q)
+    (hupper : q < cap.orderEmbOfFin hcapCard 3)
+    (hone : OneChangeOn χ ambient)
+    (hnoCap : ¬ContainsCapSet χ ambient 5) :
+    χ ⟨cap.orderEmbOfFin hcapCard 1,
+        cap.orderEmbOfFin hcapCard 2, q,
+        (cap.orderEmbOfFin hcapCard).strictMono (by decide), hlower⟩ =
+      Turn.left ∨
+    χ ⟨cap.orderEmbOfFin hcapCard 2, q,
+        cap.orderEmbOfFin hcapCard 3, hlower, hupper⟩ = Turn.left := by
+  let ce : Fin 4 ↪o Fin n := cap.orderEmbOfFin hcapCard
+  have hcq (i : Fin 4) (hi : i ≤ (2 : Fin 4)) : ce i < q :=
+    (ce.monotone hi).trans_lt hlower
+  let f : Fin 5 ↪o Fin n := OrderEmbedding.ofStrictMono
+    ![ce 0, ce 1, ce 2, q, ce 3] (by
+      intro i j hij
+      fin_cases i <;> fin_cases j
+      all_goals (try norm_num at hij)
+      all_goals first
+        | exact ce.strictMono (by decide)
+        | exact hcq _ (by decide)
+        | exact hupper)
+  have hfsub : Finset.univ.image f ⊆ ambient := by
+    intro x hx
+    simp only [Finset.mem_image, Finset.mem_univ, true_and] at hx
+    obtain ⟨i, rfl⟩ := hx
+    fin_cases i <;>
+      simp [f, ce, hqAmbient,
+        hcapSub (cap.orderEmbOfFin_mem hcapCard _)]
+  rcases finFive_has_left_consecutive_of_oneChange_no_capFive
+      f hfsub hone hnoCap with hfirst | hsecond | hthird
+  · have hright := hcap ⟨ce 0, ce 1, ce 2, by simp, by simp⟩
+      (cap.orderEmbOfFin_mem hcapCard 0)
+      (cap.orderEmbOfFin_mem hcapCard 1)
+      (cap.orderEmbOfFin_mem hcapCard 2)
+    rw [show χ ⟨ce 0, ce 1, ce 2, by simp, by simp⟩ = Turn.left by
+      simpa [f, ce] using hfirst] at hright
+    exact Turn.noConfusion hright
+  · exact Or.inl (by simpa [f, ce] using hsecond)
+  · exact Or.inr (by simpa [f, ce] using hthird)
+
 /-- If a five-cup lies wholly to the left of an ambient vertex, the triple
 formed by its last two vertices and that vertex must turn right when ambient
 six-cups are forbidden. -/
@@ -916,6 +1083,70 @@ theorem cupFive_two_probe_trichotomy
             houter hinner))
     | right => exact Or.inr (Or.inl rfl)
 
+/-- If both probe colors change between two later vertices, the new outer
+probe color propagates through both extreme cup vertices, while the new inner
+probe color propagates through both inner cup vertices. -/
+theorem cupFive_probe_transitions_force_four_anchor_colors
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cup : Finset (Fin n)} {y z : Fin n}
+    (hcupSub : cup ⊆ ambient) (hcupCard : cup.card = 5)
+    (hyAmbient : y ∈ ambient) (hzAmbient : z ∈ ambient)
+    (horderY : ∀ x ∈ cup, x < y) (hyz : y < z)
+    (hone : OneChangeOn χ ambient)
+    (houter : χ ⟨cup.orderEmbOfFin hcupCard 0,
+        cup.orderEmbOfFin hcupCard 4, y,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 4)⟩ ≠
+      χ ⟨cup.orderEmbOfFin hcupCard 0,
+        cup.orderEmbOfFin hcupCard 4, z,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        (horderY _ (cup.orderEmbOfFin_mem hcupCard 4)).trans hyz⟩)
+    (hinner : χ ⟨cup.orderEmbOfFin hcupCard 2,
+        cup.orderEmbOfFin hcupCard 3, y,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 3)⟩ ≠
+      χ ⟨cup.orderEmbOfFin hcupCard 2,
+        cup.orderEmbOfFin hcupCard 3, z,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        (horderY _ (cup.orderEmbOfFin_mem hcupCard 3)).trans hyz⟩) :
+    (χ ⟨cup.orderEmbOfFin hcupCard 0, y, z,
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 0), hyz⟩ =
+        χ ⟨cup.orderEmbOfFin hcupCard 0,
+          cup.orderEmbOfFin hcupCard 4, z,
+          (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+          (horderY _ (cup.orderEmbOfFin_mem hcupCard 4)).trans hyz⟩ ∧
+      χ ⟨cup.orderEmbOfFin hcupCard 4, y, z,
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 4), hyz⟩ =
+        χ ⟨cup.orderEmbOfFin hcupCard 0,
+          cup.orderEmbOfFin hcupCard 4, z,
+          (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+          (horderY _ (cup.orderEmbOfFin_mem hcupCard 4)).trans hyz⟩) ∧
+    (χ ⟨cup.orderEmbOfFin hcupCard 2, y, z,
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 2), hyz⟩ =
+        χ ⟨cup.orderEmbOfFin hcupCard 2,
+          cup.orderEmbOfFin hcupCard 3, z,
+          (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+          (horderY _ (cup.orderEmbOfFin_mem hcupCard 3)).trans hyz⟩ ∧
+      χ ⟨cup.orderEmbOfFin hcupCard 3, y, z,
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 3), hyz⟩ =
+        χ ⟨cup.orderEmbOfFin hcupCard 2,
+          cup.orderEmbOfFin hcupCard 3, z,
+          (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+          (horderY _ (cup.orderEmbOfFin_mem hcupCard 3)).trans hyz⟩) := by
+  constructor
+  · exact hone.probe_transition_forces_pair_colors
+      ((cup.orderEmbOfFin hcupCard).strictMono (by decide))
+      (horderY _ (cup.orderEmbOfFin_mem hcupCard 4)) hyz
+      (hcupSub (cup.orderEmbOfFin_mem hcupCard 0))
+      (hcupSub (cup.orderEmbOfFin_mem hcupCard 4))
+      hyAmbient hzAmbient houter
+  · exact hone.probe_transition_forces_pair_colors
+      ((cup.orderEmbOfFin hcupCard).strictMono (by decide))
+      (horderY _ (cup.orderEmbOfFin_mem hcupCard 3)) hyz
+      (hcupSub (cup.orderEmbOfFin_mem hcupCard 2))
+      (hcupSub (cup.orderEmbOfFin_mem hcupCard 3))
+      hyAmbient hzAmbient hinner
+
 /-- Consequently, if the ambient set has no strong six-set, every later
 vertex has one of two explicit obstruction colors relative to the five-cup. -/
 theorem cupFive_outer_left_or_inner_right_of_no_strongSix
@@ -1102,6 +1333,57 @@ theorem cupFive_middle_pair_failure_of_no_strongSeven
         (FinsetPolygon.IsCupSet.isStrongPolygonSet hcup))
       hqAmbient hrAmbient hqCup hrCup hqr
   simpa using hnoStrong
+
+/-- When both probes change to different new colors, their propagated anchor
+colors give an explicit coupled middle disagreement at the earlier outside
+vertex. -/
+theorem cupFive_probe_transitions_give_coupled_middle_failure
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cup : Finset (Fin n)} {y z : Fin n}
+    (hcupSub : cup ⊆ ambient) (hcupCard : cup.card = 5)
+    (hyAmbient : y ∈ ambient) (hzAmbient : z ∈ ambient)
+    (horderY : ∀ x ∈ cup, x < y) (hyz : y < z)
+    (hone : OneChangeOn χ ambient)
+    (houter : χ ⟨cup.orderEmbOfFin hcupCard 0,
+        cup.orderEmbOfFin hcupCard 4, y,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 4)⟩ ≠
+      χ ⟨cup.orderEmbOfFin hcupCard 0,
+        cup.orderEmbOfFin hcupCard 4, z,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        (horderY _ (cup.orderEmbOfFin_mem hcupCard 4)).trans hyz⟩)
+    (hinner : χ ⟨cup.orderEmbOfFin hcupCard 2,
+        cup.orderEmbOfFin hcupCard 3, y,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 3)⟩ ≠
+      χ ⟨cup.orderEmbOfFin hcupCard 2,
+        cup.orderEmbOfFin hcupCard 3, z,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        (horderY _ (cup.orderEmbOfFin_mem hcupCard 3)).trans hyz⟩)
+    (hnew : χ ⟨cup.orderEmbOfFin hcupCard 0,
+        cup.orderEmbOfFin hcupCard 4, z,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        (horderY _ (cup.orderEmbOfFin_mem hcupCard 4)).trans hyz⟩ ≠
+      χ ⟨cup.orderEmbOfFin hcupCard 2,
+        cup.orderEmbOfFin hcupCard 3, z,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        (horderY _ (cup.orderEmbOfFin_mem hcupCard 3)).trans hyz⟩) :
+    HasCoupledMiddlePairFailure χ cup y z := by
+  have htrans := cupFive_probe_transitions_force_four_anchor_colors
+    hcupSub hcupCard hyAmbient hzAmbient horderY hyz hone houter hinner
+  have hneq : χ ⟨cup.orderEmbOfFin hcupCard 0, y, z,
+      horderY _ (cup.orderEmbOfFin_mem hcupCard 0), hyz⟩ ≠
+      χ ⟨cup.orderEmbOfFin hcupCard 2, y, z,
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 2), hyz⟩ := by
+    intro heq
+    exact hnew (htrans.1.1.symm.trans (heq.trans htrans.2.1))
+  refine ⟨cup.orderEmbOfFin hcupCard 0,
+    cup.orderEmbOfFin hcupCard 2, y, z, z,
+    horderY _ (cup.orderEmbOfFin_mem hcupCard 0),
+    horderY _ (cup.orderEmbOfFin_mem hcupCard 2), hyz, hyz,
+    ?_, ?_, ?_, ?_, ?_, ?_, ?_, hneq⟩
+  all_goals simp [MiddleComparisonUses,
+    cup.orderEmbOfFin_mem hcupCard]
 
 /-- Every ambient vertex outside a strong `k`-set has a local four-index
 obstruction when the ambient set contains no strong `(k+1)`-set. -/

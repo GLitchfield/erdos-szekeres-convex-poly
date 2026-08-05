@@ -173,8 +173,15 @@ None. The destination was fixed by the user on 2026-08-01.
   two-probe theorem compresses every later five-cup extension in the
   no-strong-six branch to an outer-left or inner-right obstruction. The active
   target is to bound the evolution and multiplicities of these two classes
-  along the opposite cap-free side; a decomposable-only refinement remains
-  the fallback.
+  along the opposite cap-free side. Probe changes now force both later-pair
+  anchor colors, and simultaneous changes to distinct new probe colors give
+  an explicit coupled middle disagreement. The unresolved transition cases
+  have an unchanged probe or equal new probe colors and must be coupled to the
+  crossing-cap failure signatures. Those signatures now compile in exact gap
+  form: one at each outer gap and two, three, and two across the interior
+  gaps. The active count must bound multiplicities across this
+  `1+2+3+2+1` family rather than merely count signature types; a
+  decomposable-only refinement remains the fallback.
 
 ## Not yet specified
 

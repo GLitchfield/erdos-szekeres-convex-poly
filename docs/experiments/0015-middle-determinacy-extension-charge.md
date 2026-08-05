@@ -41,6 +41,9 @@ The following now compile without placeholders:
   consecutive triples of the sorted five-set;
 - deterministic endpoint localization for a vertex strictly before or after
   a four-cap: the obstruction is the first or last consecutive triple;
+- exact localization in all three interior four-cap gaps: the possible
+  consecutive failures have cardinalities two, three, and two. Together with
+  the endpoint cases this gives the full `1+2+3+2+1` nine-signature geometry;
 - a five-cup bridge theorem forcing the last-pair turn through every later
   ambient vertex to be right;
 - nesting of those bridge colors under the one-change law;
@@ -48,7 +51,12 @@ The following now compile without placeholders:
   when both one-vertex extensions are separately middle-determined; and
 - a two-probe five-cup criterion: an outer right turn together with an inner
   left turn forces a strong six-set. Consequently, in the no-strong-six
-  branch every later vertex has one of two explicit obstruction colors.
+  branch every later vertex has one of two explicit obstruction colors;
+- a general probe-transition theorem: when a fixed-pair probe changes color,
+  both turns through the later vertex pair equal the new probe color; and
+- the resulting four-anchor propagation for the two five-cup probes. If both
+  probes change to different new colors, Lean constructs an explicit coupled
+  middle-disagreement witness at the earlier outside vertex.
 
 These are reusable formal results, not a proof of the cardinal bound 21.
 
@@ -110,3 +118,9 @@ collision/counting lemma combining:
 
 The `HasDeepBelowSplit` refinement remains the fallback if that global count
 cannot be closed abstractly.
+
+The transition theorem discharges the case in which both probes change to
+different new colors. The remaining local transition cases have at least one
+unchanged probe, or both probes change to the same new color; their
+multiplicities must be coupled to the now-explicit nine crossing-cap
+signatures rather than bounded from the probe word alone.

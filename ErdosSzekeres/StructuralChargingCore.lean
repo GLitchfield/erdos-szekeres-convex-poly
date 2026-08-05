@@ -33,6 +33,31 @@ theorem TurnSequenceAllowed.first_eq_second_of_second_ne_fourth
   cases a <;> cases b <;> cases c <;> cases d <;>
     simp_all [TurnSequenceAllowed]
 
+/-- Once the first two colors differ, the one-change law forces both
+remaining colors to equal the second. -/
+theorem TurnSequenceAllowed.tail_eq_of_first_ne_second {a b c d : Turn}
+    (h : TurnSequenceAllowed a b c d) (hab : a ≠ b) :
+    b = c ∧ c = d := by
+  cases a <;> cases b <;> cases c <;> cases d <;>
+    simp_all [TurnSequenceAllowed]
+
+/-- If the color through a fixed ordered pair changes between two later
+vertices, both turns through that later pair equal the new probe color. -/
+theorem OneChangeOn.probe_transition_forces_pair_colors
+    {n : ℕ} {χ : TripleColoring n} {s : Finset (Fin n)}
+    (hone : OneChangeOn χ s) {p q y z : Fin n}
+    (hpq : p < q) (hqy : q < y) (hyz : y < z)
+    (hp : p ∈ s) (hq : q ∈ s) (hy : y ∈ s) (hz : z ∈ s)
+    (hne : χ ⟨p, q, y, hpq, hqy⟩ ≠
+      χ ⟨p, q, z, hpq, hqy.trans hyz⟩) :
+    χ ⟨p, y, z, hpq.trans hqy, hyz⟩ =
+        χ ⟨p, q, z, hpq, hqy.trans hyz⟩ ∧
+      χ ⟨q, y, z, hqy, hyz⟩ =
+        χ ⟨p, q, z, hpq, hqy.trans hyz⟩ := by
+  have htail :=
+    (hone hpq hqy hyz hp hq hy hz).tail_eq_of_first_ne_second hne
+  exact ⟨htail.1.symm, htail.2.symm.trans htail.1.symm⟩
+
 def emb01234 : Fin 5 ↪o Fin 7 :=
   OrderEmbedding.ofStrictMono ![0, 1, 2, 3, 4] (by decide)
 
