@@ -32,6 +32,7 @@ test: check lean
 	@python3 scripts/check_agent_orchestration.py >/dev/null
 	@python3 scripts/wayfinder_status.py >/dev/null
 	@python3 -m py_compile scripts/adversarial_review.py \
+		scripts/analyze_cap_failure_charge_matching.py \
 		scripts/analyze_decomposable_rank_profiles.py \
 		scripts/analyze_lrat_checkpoints.py \
 		scripts/check_agent_orchestration.py \
@@ -56,6 +57,7 @@ test: check lean
 		scripts/enumerate_published_offwindow.py \
 		scripts/enumerate_incoming_star_prefixes.py \
 		scripts/find_decomposable_context_collision.py \
+		scripts/verify_cap_failure_charge_matching.py \
 		scripts/generate_e3_state455_lean.py \
 		scripts/generate_e3_state466_lean.py \
 		scripts/generate_e3_state566_lean.py \
