@@ -508,6 +508,36 @@ global count over five-cup bridges, consecutive cap failures, middle-color
 disagreements, and triples among outside vertices. The predeclared fallback
 preserves decomposability or root-relative cross-gap data.
 
+The sharp cap-charge selector has now failed its bounded gate. On each of the
+validated 21-point cuts 6, 10, and 11, no crossing four-cap admits even the
+permissive matching of outside vertices to nine capacity-two realized
+signatures: the best ranks are 15, 13, and 14. Independent replay validates
+the ambient assignments, maximum matchings, and Hall-deficient sets. The
+selector's desired `2*9-1=17` capacity is also logically circular at total 22,
+where a selected four-cap has 18 outside vertices.
+
+A bounded Sol/Fable review at evidence-packet SHA-256
+`52f4db63c5a7c2bd0c748a090ed8b6fba056b14cf0dff2335a6c5e468f5fb0f7`
+rejects that route and supports separating the strong-six and no-strong-six
+cases. `StructuralChargingWitnessBranches.lean` implements the reviewed
+replacement. Hereditary transport of the kernel-checked 16-vertex `(5,6,6)`
+certificate closes the no-strong-six branch outright, with bound 15. At the
+sharp boundary it also proves that every six-point deletion leaves a strong
+six-set, giving every designated strong six a disjoint partner and mutual
+middle-extension failures.
+
+The sole remaining strong-six work is now split more finely. Unless the cut
+is exactly `11+11`, one cap-free side has at least 12 vertices. The checked
+`(4,6,6)` state forces an internal strong six there, and order forces every
+opposite-side middle failure into the corresponding endpoint role. The new
+`StructuralChargingStrongSixSignature.lean` theorem proves that cap-four and
+cup-six avoidance leave exactly one right-colored internal middle position,
+so only four polygon signatures survive. The other branch is the fixed
+`11+11` obstruction. Deterministic SAT countercontrols refute bare two-five-cup,
+strong-six-plus-four-cup, and strong-six-plus-cap-free-seven block theorems;
+the full large-side and balanced-side structure is essential. These are route
+controls, not completed results.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -541,6 +571,7 @@ preserves decomposability or root-relative cross-gap data.
 - [Lean incoming-star transition collision](../../../ErdosSzekeres/IncomingStarTransitionCollision.lean)
 - [Structural charging reduction](../../experiments/0009-structural-charging-gap.md)
 - [Middle-determinacy extension charge](../../experiments/0015-middle-determinacy-extension-charge.md)
+- [Strong-six branch reduction](../../experiments/0016-strong-six-branch-reduction.md)
 - [Lean structural charging machinery](../../../ErdosSzekeres/StructuralCharging.lean)
 - [Lean normalized seven-vertex core](../../../ErdosSzekeres/StructuralChargingCore.lean)
 - [Lean arbitrary-set transport and closure](../../../ErdosSzekeres/StructuralChargingTransport.lean)

@@ -1475,6 +1475,215 @@ theorem fiveCupProbeState_admissible_of_no_strongSix
     cupFive_outer_left_or_inner_right_of_no_strongSix
       hcupSub hcupCard hcup hyAmbient horder hone hnoCup hnoStrong
 
+/-- One of the two same-middle triples uses a designated vertex. -/
+def MiddleComparisonUses {n : ℕ} (q i i' j k k' : Fin n) : Prop :=
+  i = q ∨ i' = q ∨ j = q ∨ k = q ∨ k' = q
+
+/-- A same-middle disagreement obtained by adjoining one vertex to a
+middle-determined set. The failed comparison explicitly uses that vertex. -/
+def HasMiddleExtensionFailure {n : ℕ} (χ : TripleColoring n)
+    (polygon : Finset (Fin n)) (q : Fin n) : Prop :=
+  ∃ (i i' j k k' : Fin n)
+      (hij : i < j) (hi'j : i' < j) (hjk : j < k) (hjk' : j < k'),
+    i ∈ insert q polygon ∧
+      i' ∈ insert q polygon ∧
+      j ∈ insert q polygon ∧
+      k ∈ insert q polygon ∧
+      k' ∈ insert q polygon ∧
+      MiddleComparisonUses q i i' j k k' ∧
+      χ ⟨i, j, k, hij, hjk⟩ ≠ χ ⟨i', j, k', hi'j, hjk'⟩
+
+/-- The three order-theoretic roles in which an adjoined vertex can occur in
+a failed same-middle comparison. -/
+inductive MiddleExtensionFailureRole where
+  | leftEndpoint
+  | middle
+  | rightEndpoint
+  deriving DecidableEq, Repr
+
+/-- A role records whether the fresh vertex is a left endpoint, the shared
+middle, or a right endpoint of the failed comparison. -/
+def MiddleExtensionFailureRole.Matches {n : ℕ}
+    (role : MiddleExtensionFailureRole) (q i i' j k k' : Fin n) : Prop :=
+  match role with
+  | .leftEndpoint => i = q ∨ i' = q
+  | .middle => j = q
+  | .rightEndpoint => k = q ∨ k' = q
+
+/-- Witness-level role refinement of `HasMiddleExtensionFailure`. -/
+def HasMiddleExtensionFailureWithRole {n : ℕ} (χ : TripleColoring n)
+    (polygon : Finset (Fin n)) (q : Fin n)
+    (role : MiddleExtensionFailureRole) : Prop :=
+  ∃ (i i' j k k' : Fin n)
+      (hij : i < j) (hi'j : i' < j) (hjk : j < k) (hjk' : j < k'),
+    i ∈ insert q polygon ∧
+      i' ∈ insert q polygon ∧
+      j ∈ insert q polygon ∧
+      k ∈ insert q polygon ∧
+      k' ∈ insert q polygon ∧
+      role.Matches q i i' j k k' ∧
+      χ ⟨i, j, k, hij, hjk⟩ ≠ χ ⟨i', j, k', hi'j, hjk'⟩
+
+/-- Every middle-extension failure occupies at least one of the three
+order-theoretic roles. -/
+theorem hasMiddleExtensionFailure_iff_exists_role
+    {n : ℕ} {χ : TripleColoring n}
+    {polygon : Finset (Fin n)} {q : Fin n} :
+    HasMiddleExtensionFailure χ polygon q ↔
+      ∃ role, HasMiddleExtensionFailureWithRole χ polygon q role := by
+  constructor
+  · rintro ⟨i, i', j, k, k', hij, hi'j, hjk, hjk',
+      hi, hi', hj, hk, hk', huses, hneq⟩
+    rcases huses with hiq | hiq | hjq | hkq | hk'q
+    · exact ⟨.leftEndpoint, i, i', j, k, k', hij, hi'j, hjk, hjk',
+        hi, hi', hj, hk, hk', Or.inl hiq, hneq⟩
+    · exact ⟨.leftEndpoint, i, i', j, k, k', hij, hi'j, hjk, hjk',
+        hi, hi', hj, hk, hk', Or.inr hiq, hneq⟩
+    · exact ⟨.middle, i, i', j, k, k', hij, hi'j, hjk, hjk',
+        hi, hi', hj, hk, hk', hjq, hneq⟩
+    · exact ⟨.rightEndpoint, i, i', j, k, k', hij, hi'j, hjk, hjk',
+        hi, hi', hj, hk, hk', Or.inl hkq, hneq⟩
+    · exact ⟨.rightEndpoint, i, i', j, k, k', hij, hi'j, hjk, hjk',
+        hi, hi', hj, hk, hk', Or.inr hk'q, hneq⟩
+  · rintro ⟨role, i, i', j, k, k', hij, hi'j, hjk, hjk',
+      hi, hi', hj, hk, hk', hrole, hneq⟩
+    refine ⟨i, i', j, k, k', hij, hi'j, hjk, hjk',
+      hi, hi', hj, hk, hk', ?_, hneq⟩
+    cases role with
+    | leftEndpoint =>
+        rcases hrole with hiq | hiq
+        · exact Or.inl hiq
+        · exact Or.inr (Or.inl hiq)
+    | middle => exact Or.inr (Or.inr (Or.inl hrole))
+    | rightEndpoint =>
+        rcases hrole with hkq | hkq
+        · exact Or.inr (Or.inr (Or.inr (Or.inl hkq)))
+        · exact Or.inr (Or.inr (Or.inr (Or.inr hkq)))
+
+/-- A fresh vertex before every polygon vertex can only participate as a left
+endpoint of a failed same-middle comparison. -/
+theorem middleExtensionFailure_role_left_of_before
+    {n : ℕ} {χ : TripleColoring n}
+    {polygon : Finset (Fin n)} {q : Fin n}
+    (hbefore : ∀ x ∈ polygon, q < x)
+    (hfailure : HasMiddleExtensionFailure χ polygon q) :
+    HasMiddleExtensionFailureWithRole χ polygon q .leftEndpoint := by
+  obtain ⟨i, i', j, k, k', hij, hi'j, hjk, hjk',
+    hi, hi', hj, hk, hk', huses, hneq⟩ := hfailure
+  have memPolygon {x : Fin n} (hx : x ∈ insert q polygon)
+      (hxq : x ≠ q) : x ∈ polygon := by
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact (hxq rfl).elim
+    · exact hx
+  have hleft : i = q ∨ i' = q := by
+    rcases huses with hiq | hiq | hjq | hkq | hk'q
+    · exact Or.inl hiq
+    · exact Or.inr hiq
+    · have hiq : i ≠ q := by omega
+      have hiPolygon := memPolygon hi hiq
+      have hqi := hbefore i hiPolygon
+      omega
+    · have hjq : j ≠ q := by omega
+      have hjPolygon := memPolygon hj hjq
+      have hqj := hbefore j hjPolygon
+      omega
+    · have hjq : j ≠ q := by omega
+      have hjPolygon := memPolygon hj hjq
+      have hqj := hbefore j hjPolygon
+      omega
+  exact ⟨i, i', j, k, k', hij, hi'j, hjk, hjk',
+    hi, hi', hj, hk, hk', hleft, hneq⟩
+
+/-- A fresh vertex after every polygon vertex can only participate as a right
+endpoint of a failed same-middle comparison. -/
+theorem middleExtensionFailure_role_right_of_after
+    {n : ℕ} {χ : TripleColoring n}
+    {polygon : Finset (Fin n)} {q : Fin n}
+    (hafter : ∀ x ∈ polygon, x < q)
+    (hfailure : HasMiddleExtensionFailure χ polygon q) :
+    HasMiddleExtensionFailureWithRole χ polygon q .rightEndpoint := by
+  obtain ⟨i, i', j, k, k', hij, hi'j, hjk, hjk',
+    hi, hi', hj, hk, hk', huses, hneq⟩ := hfailure
+  have memPolygon {x : Fin n} (hx : x ∈ insert q polygon)
+      (hxq : x ≠ q) : x ∈ polygon := by
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact (hxq rfl).elim
+    · exact hx
+  have hright : k = q ∨ k' = q := by
+    rcases huses with hiq | hiq | hjq | hkq | hk'q
+    · have hjq : j ≠ q := by omega
+      have hjPolygon := memPolygon hj hjq
+      have hjq' := hafter j hjPolygon
+      omega
+    · have hjq : j ≠ q := by omega
+      have hjPolygon := memPolygon hj hjq
+      have hjq' := hafter j hjPolygon
+      omega
+    · have hkq : k ≠ q := by omega
+      have hkPolygon := memPolygon hk hkq
+      have hkq' := hafter k hkPolygon
+      omega
+    · exact Or.inl hkq
+    · exact Or.inr hk'q
+  exact ⟨i, i', j, k, k', hij, hi'j, hjk, hjk',
+    hi, hi', hj, hk, hk', hright, hneq⟩
+
+/-- If a middle-determined `a`-set cannot absorb one fresh ambient vertex
+without creating a forbidden strong `(a+1)`-set, a failed same-middle
+comparison explicitly uses the fresh vertex. -/
+theorem middle_extension_failure_of_no_strong_succ
+    {n a : ℕ} {χ : TripleColoring n}
+    {ambient polygon : Finset (Fin n)} {q : Fin n}
+    (hpolygonSub : polygon ⊆ ambient) (hpolygonCard : polygon.card = a)
+    (hpolygon : IsMiddleDeterminedOn χ polygon)
+    (hqAmbient : q ∈ ambient) (hqPolygon : q ∉ polygon)
+    (hnoStrong : ¬ContainsStrongPolygonSet χ ambient (a + 1)) :
+    HasMiddleExtensionFailure χ polygon q := by
+  classical
+  by_contra hfailure
+  have mem_without_q {x : Fin n} (hx : x ∈ insert q polygon)
+      (hxq : x ≠ q) : x ∈ polygon := by
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact (hxq rfl).elim
+    · exact hx
+  have hmiddle : IsMiddleDeterminedOn χ (insert q polygon) := by
+    intro i i' j k k' hij hi'j hjk hjk' hi hi' hj hk hk'
+    by_cases hq : MiddleComparisonUses q i i' j k k'
+    · by_contra hneq
+      exact hfailure ⟨i, i', j, k, k', hij, hi'j, hjk, hjk',
+        hi, hi', hj, hk, hk', hq, hneq⟩
+    · simp only [MiddleComparisonUses, not_or] at hq
+      exact hpolygon hij hi'j hjk hjk'
+        (mem_without_q hi hq.1)
+        (mem_without_q hi' hq.2.1)
+        (mem_without_q hj hq.2.2.1)
+        (mem_without_q hk hq.2.2.2.1)
+        (mem_without_q hk' hq.2.2.2.2)
+  apply hnoStrong
+  refine ⟨insert q polygon, ?_, ?_,
+    FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn.mpr hmiddle⟩
+  · intro x hx
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact hqAmbient
+    · exact hpolygonSub hx
+  · rw [Finset.card_insert_of_notMem hqPolygon, hpolygonCard]
+
+/-- Every outside vertex of a strong six-set carries a same-middle extension
+failure when the ambient set avoids strong seven-sets. -/
+theorem strongSix_middle_extension_failure_of_no_strongSeven
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient polygon : Finset (Fin n)} {q : Fin n}
+    (hpolygonSub : polygon ⊆ ambient) (hpolygonCard : polygon.card = 6)
+    (hpolygon : IsStrongPolygonSet χ polygon)
+    (hqAmbient : q ∈ ambient) (hqPolygon : q ∉ polygon)
+    (hnoStrong : ¬ContainsStrongPolygonSet χ ambient 7) :
+    HasMiddleExtensionFailure χ polygon q := by
+  apply middle_extension_failure_of_no_strong_succ
+    hpolygonSub hpolygonCard
+    (FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn.mp hpolygon)
+    hqAmbient hqPolygon
+  simpa using hnoStrong
+
 /-- A same-middle color disagreement obtained by adjoining a pair of vertices
 to a middle-determined set.  At least one vertex in the two compared triples
 must lie outside the original set. -/
@@ -1528,10 +1737,6 @@ theorem middle_pair_extension_failure_of_no_strong_add_two
       simp [hqPolygon, hqr]
     rw [Finset.card_insert_of_notMem hqInsert,
       Finset.card_insert_of_notMem hrPolygon, hpolygonCard]
-
-/-- One of the two same-middle triples uses a designated vertex. -/
-def MiddleComparisonUses {n : ℕ} (q i i' j k k' : Fin n) : Prop :=
-  i = q ∨ i' = q ∨ j = q ∨ k = q ∨ k' = q
 
 /-- A same-middle disagreement that genuinely couples both newly adjoined
 vertices. -/

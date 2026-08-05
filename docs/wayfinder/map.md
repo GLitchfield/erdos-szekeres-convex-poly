@@ -183,18 +183,24 @@ None. The destination was fixed by the user on 2026-08-01.
   `1+2+3+2+1` family rather than merely count signature types; a
   decomposable-only refinement remains the fallback. Lean now packages the
   family as an exact nine-element signature type and constructs a realized
-  total charge for every outside vertex. Right-side vertices of a crossing
-  cap cannot use the outer `before` signature, and ordered right-side pairs
-  simultaneously carry their two cap signatures and the exhaustive
-  five-cup probe-transition partition. The sharp arithmetic is also closed:
-  fiber capacity two with one nonsaturated fiber leaves at most 17 vertices
-  outside the four-cap and therefore at most 21 total. The entire local gate
-  now follows from the single frozen proposition
-  `TwoCapFreeSidesSharpCapCharge567`. Its remaining content is genuinely
-  structural: select a four-cap whose nine realized charge fibers all have
-  multiplicity at most two and at least one has multiplicity at most one.
-  Proving that selection theorem, or refuting it and activating the
-  decomposable-only refinement, is the next consequential item.
+  total charge for every outside vertex. The proposed sharp selector is now
+  retired: independently checked Hall-deficient matchings on validated sharp
+  21-point models refute even its permissive capacity-two relaxation, and its
+  17-slot conclusion is circular for the 18 outside vertices of a 22-point
+  counterexample. A bounded Sol/Fable review at packet SHA-256
+  `52f4db63c5a7c2bd0c748a090ed8b6fba056b14cf0dff2335a6c5e468f5fb0f7`
+  agreed on a strong-six branch split. Lean now transports the checked
+  16-vertex `(5,6,6)` certificate and closes the entire no-strong-six branch
+  with ambient bound 15. At size 22 every six-vertex deletion leaves a strong
+  six, so designated witnesses have disjoint partners and mutual middle
+  failures. Except at the exact `11+11` split, the checked `(4,6,6)` state
+  produces a strong six wholly inside the larger cap-free side; every vertex
+  on the opposite ordered side then has a forced endpoint-role extension
+  failure. The internal polygon has exactly one right-colored middle
+  position, proved in Lean, leaving four signatures. The active targets are
+  the endpoint-obstructed internal-strong-six branch and the balanced
+  `11+11` branch. Bounded countermodels rule out reducing either target to
+  bare `5+5`, `6+4`, or `6+7` block data.
 
 ## Not yet specified
 

@@ -10,6 +10,9 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from check_two_cap_free_sides import validate_assignment
+from generate_signotope_state_sat import triples
+
 
 Signature = tuple[int, int]
 Slot = tuple[Signature, int]
@@ -53,6 +56,16 @@ def verify(model_path: Path, certificate_path: Path) -> None:
     if certificate.get("n") != n or certificate.get("cut") != cut:
         raise ValueError("certificate parameters do not match model")
     left_turns = {tuple(triple) for triple in model.get("left_triples", [])}
+    all_triples = triples(range(n))
+    variables = {triple: index + 1 for index, triple in enumerate(all_triples)}
+    try:
+        model_indices = {variables[triple] for triple in left_turns}
+    except KeyError as error:
+        raise ValueError(f"model contains an invalid triple {error.args[0]}") from error
+    residual_validation = validate_assignment(
+        n, cut, 4, 5, 6, 7, model_indices, variables, False)
+    if not residual_validation["valid"]:
+        raise ValueError(f"model fails residual validation: {residual_validation}")
     expected_caps = {
         cap for cap in itertools.combinations(range(n), 4)
         if min(cap) < cut <= max(cap)
@@ -114,6 +127,7 @@ def verify(model_path: Path, certificate_path: Path) -> None:
         "checked_caps": len(expected_caps),
         "matching_histogram": expected_histogram,
         "model_sha256": certificate["model_sha256"],
+        "residual_validation": residual_validation,
     }, sort_keys=True))
 
 

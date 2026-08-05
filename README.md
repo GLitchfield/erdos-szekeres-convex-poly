@@ -224,6 +224,12 @@ sets.
   one-vertex failure certificates, consecutive localization of cap failure,
   and forced nested bridge colors from a five-cup. `Decomposable.lean` proves
   that the strong-polygon law is exactly middle determinacy of triple colors.
+- `ErdosSzekeres/StructuralChargingWitnessBranches.lean` retires the false
+  sharp nine-signature selector and closes the complete no-strong-six branch
+  from the checked 16-vertex `(5,6,6)` state. It reduces the remaining work to
+  an endpoint-obstructed internal-strong-six branch and the exact `11+11`
+  split. `StructuralChargingStrongSixSignature.lean` proves that the internal
+  strong six has exactly one right-colored middle position.
 - `ErdosSzekeres/StructuralChargingSaturatedResource.lean` proves that the gate
   would bound the large child by 21 and eliminate the `(5,6,7,4,2)` child
   pairs `(2,24)`, `(3,23)`, `(4,22)` and their color duals. A sharp 21-point

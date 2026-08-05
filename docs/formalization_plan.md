@@ -501,6 +501,20 @@ identical witness-profile collision, so the remaining proof must count global
 middle-color and outside-vertex correlations. This is sharp computational
 evidence, not a proof or a reason to freeze the premise as a theorem.
 
+The proposed nine-signature cap selector has since been retired. Hall-deficient
+certificates on validated sharp 21-point models refute even its permissive
+capacity-two matching relaxation, and its 17-slot conclusion is circular at a
+22-point counterexample. The checked `(5,6,6)` state instead closes the whole
+no-strong-six branch at ambient size 15. At size 22 it makes the strong-six
+family avoid every prescribed six-set. The checked `(4,6,6)` state then gives
+an internal strong six on one side unless the cut is exactly `11+11`; all
+opposite-side vertices have a forced endpoint-role middle failure. Lean also
+classifies the internal strong-six middle word: cap-four and cup-six avoidance
+leave exactly one right position. The active targets are now the resulting
+four-signature endpoint branch and the balanced `11+11` branch. Normalized
+`5+5`, `6+4`, and `6+7` block shortcuts have validated SAT countermodels and
+must not be used.
+
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.
 

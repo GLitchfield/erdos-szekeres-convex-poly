@@ -43,6 +43,7 @@ test: check lean
 		scripts/check_decomposable_rank_profiles.py \
 		scripts/check_incoming_star_prefixes.py \
 		scripts/check_crossing_separated_caps.py \
+		scripts/check_strong_cup_blocks.py \
 		scripts/check_two_cap_free_sides.py \
 		scripts/check_two_cap_free_sides_middle.py \
 		scripts/check_two_cap_free_sides_witness.py \
