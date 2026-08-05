@@ -128,3 +128,11 @@ The compact manifest SHA-256 is
 
 Large parent tables remain under ignored `runs/`; the checker does not read
 them.
+
+## Subsequent status
+
+Experiment 0026 completes the uniform singleton transition bundle in Lean and
+independently replays all 762,912 parents in the smallest feasible two-vertex
+root gate, including 720,528 interleaved transitions. It finds zero footprint
+collisions. The pending obstruction is therefore the ambient-free dominance
+quotient and its `k`-only weight, not another undefined singleton refinement.

@@ -277,10 +277,17 @@ None. The destination was fixed by the user on 2026-08-01.
   observations are readable from the footprint, all singleton transitions are
   collision-free, and both committed profile collisions are separated. The
   raw carrier has 46,699 child classes and one entry per ambient endpoint pair,
-  so it is not the desired `k`-only invariant. The active formal target is the
-  uniform span-rank singleton transition. It must then pass the pre-vetted
-  two-vertex interleaved-root gate and a dominance-quotient/`k`-only counting
-  gate before route selection.
+  so it is not the desired `k`-only invariant. The complete uniform singleton
+  transition now compiles: exact span thresholds have endpoint-comparison
+  updates and erase/recover iff laws, the opposite-color mixed chain has size
+  at most three, and terminal strong-`k` creation has the expected child
+  strong-set or `(k-1)`-chain characterization. The pre-vetted two-vertex gate
+  also passes independently: all 762,912 `k=6`, `7+2 -> 9` parents, including
+  720,528 interleaved transitions, have zero footprint collisions. The active
+  obstruction is no longer singleton or smallest-root congruence but the
+  ambient endpoint identities. Define and falsify a dominance quotient with a
+  proved `k`-only carrier/weight before route selection; reserve the larger
+  `8+2 -> 10` census for a concrete quotient candidate.
 
 ## Not yet specified
 

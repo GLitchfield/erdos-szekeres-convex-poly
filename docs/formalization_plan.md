@@ -572,6 +572,19 @@ The next formal obligation is its uniform singleton transition, followed by
 the two-vertex interleaved-root falsification gate and a dominance quotient
 with a proved `k`-only weight.
 
+The uniform singleton obligation and the first interleaved-root gate now
+close. Lean defines exact sweep spans and cup/cap span-rank thresholds, proves
+their endpoint comparisons and rank updates, gives erase/recover iff laws,
+bounds the opposite-color singleton contribution by three, and characterizes
+terminal strong-`k` creation by a child strong set or `(k-1)` chain. The
+independently replayed `k = 6`, `7+2 -> 9` gate covers all 762,912 two-root
+parents and all 720,528 interleaved transitions with zero footprint
+collisions. No theorem removes ambient endpoint identities, so this does not
+yet provide a finite carrier depending only on `k`. The active design target
+is now the dominance quotient and its transition-preserving, `k`-only weight;
+the 16,819,920-parent `8+2 -> 10` census is reserved as a falsifier for a
+concrete quotient rather than run as unstructured depth.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at

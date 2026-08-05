@@ -22,3 +22,11 @@ ignored `runs/`.
   `scripts/check_span_rank_footprints.py`; the 119 MiB parent tables stay
   under ignored `runs/`. The manifest SHA-256 is
   `74a0d2bb8de0419d51921d2c2edcb4a30532e1fde4d8a210743b7a86c414d12a`.
+- `e3-two-root-span-k6-n9.json` records the next interleaved-root gate for the
+  endpoint-span footprint. It covers all 10,596 decomposable seven-vertex
+  children, all 72 placements and roles of a two-vertex root, and 762,912
+  parent transitions. Of those, 720,528 transitions use one of the 68
+  nontrivially interleaved contexts. The independent checker finds zero
+  observation-readout mismatches and zero footprint-transition collisions.
+  Its manifest SHA-256 is
+  `70d5f08c0bce7fb0ae7ef0748c59a19e81f0c1d002e077aa727877f4794b8a33`.

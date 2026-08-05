@@ -680,6 +680,21 @@ remains unselected. The next formal target is the uniform span-rank singleton
 transition, followed by the required two-vertex interleaved-root test and a
 dominance quotient with a proved `k`-only weight.
 
+That semantic and interleaved-root follow-up is now complete. Lean defines
+exact sweep spans and cup/cap span-rank thresholds and proves the full
+singleton decomposition: endpoint comparisons, left/right rank updates,
+erase/recover iff laws, the size-three opposite-color branch, and terminal
+strong-`k` creation from a child strong set or `(k-1)` chain. Independently
+implemented programs then exhaust all 10,596 decomposable seven-vertex
+children under all 72 two-vertex root contexts at `k=6`. All 762,912 parent
+transitions, including 720,528 in 68 interleaved contexts, have equal outputs
+for equal child footprints. This closes the smallest feasible two-root gate,
+not the uniform route. The footprint remains indexed by ambient endpoint
+pairs. The next bounded contract is to define a dominance quotient, its exact
+incidence-preserving equality, and a `k`-only weight, then replay both committed
+collisions and the existing singleton/two-root tables. Any ambient-cardinality
+dependence or transition collision rejects the quotient.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -753,3 +768,6 @@ dominance quotient with a proved `k`-only weight.
 - [Lean side-labelled critical-cut semantics](../../../ErdosSzekeres/RootedChainFootprint.lean)
 - [Endpoint-span rank manifest](../../../data/derived/e3-span-rank-footprint-k6-n9.json)
 - [Independent endpoint-span rank checker](../../../scripts/check_span_rank_footprints.py)
+- [Uniform singleton transition and two-root gate](../../experiments/0026-two-root-span-footprint-gate.md)
+- [Two-root endpoint-span manifest](../../../data/derived/e3-two-root-span-k6-n9.json)
+- [Independent two-root endpoint-span checker](../../../scripts/check_two_root_span_footprints.py)

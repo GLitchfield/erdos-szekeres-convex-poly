@@ -115,6 +115,15 @@ sets.
   classes), so the next obligations are a Lean transition theorem, the
   two-vertex interleaved-root gate, and a dominance quotient with a `k`-only
   bound; no uniform route is selected yet.
+- The same Lean file now supplies the complete uniform singleton transition
+  semantics for exact span ranks: active-color rank updates, erase/recover
+  iff laws, the rank-three opposite-color exception, and terminal strong-set
+  creation. An independent `k = 6`, `7+2 -> 9` census then checks all 762,912
+  two-vertex-root parents, including 720,528 interleaved transitions, with
+  zero observation mismatches and zero footprint collisions. This closes the
+  smallest pre-vetted interleaved-root gate. The ambient-quadratic endpoint
+  identities remain the active obstruction; the next candidate must be a
+  transition-preserving dominance quotient with a proved `k`-only bound.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,
