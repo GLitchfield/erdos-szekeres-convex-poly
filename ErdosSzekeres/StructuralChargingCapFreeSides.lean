@@ -579,6 +579,112 @@ theorem cap_extension_failure_has_consecutive_witness
         · simpa using h123
         · simpa using h234
 
+/-- A vertex strictly before a four-cap has a forced left-turn obstruction
+through the first two cap vertices when ambient five-caps are forbidden. -/
+theorem capFour_forces_left_bridge_before_of_no_capFive
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cap : Finset (Fin n)} {q : Fin n}
+    (hcapSub : cap ⊆ ambient) (hcapCard : cap.card = 4)
+    (hcap : IsCapSet χ cap) (hqAmbient : q ∈ ambient)
+    (horder : ∀ x ∈ cap, q < x) (hone : OneChangeOn χ ambient)
+    (hnoCap : ¬ContainsCapSet χ ambient 5) :
+    χ ⟨q, cap.orderEmbOfFin hcapCard 0, cap.orderEmbOfFin hcapCard 1,
+      horder _ (cap.orderEmbOfFin_mem hcapCard 0),
+      (cap.orderEmbOfFin hcapCard).strictMono (by decide)⟩ = Turn.left := by
+  let ce : Fin 4 ↪o Fin n := cap.orderEmbOfFin hcapCard
+  let f : Fin 5 ↪o Fin n := OrderEmbedding.ofStrictMono
+    ![q, ce 0, ce 1, ce 2, ce 3] (by
+      intro i j hij
+      fin_cases i <;> fin_cases j
+      all_goals (try norm_num at hij)
+      all_goals first
+        | exact ce.strictMono (by decide)
+        | exact horder _ (cap.orderEmbOfFin_mem hcapCard _))
+  have hfmem : ∀ i : Fin 5, f i ∈ ambient := by
+    intro i
+    fin_cases i <;>
+      simp [f, ce, hqAmbient,
+        hcapSub (cap.orderEmbOfFin_mem hcapCard _)]
+  have hfsub : Finset.univ.image f ⊆ ambient := by
+    intro x hx
+    simp only [Finset.mem_image, Finset.mem_univ, true_and] at hx
+    obtain ⟨i, rfl⟩ := hx
+    exact hfmem i
+  cases hfirst : χ ⟨q, cap.orderEmbOfFin hcapCard 0,
+      cap.orderEmbOfFin hcapCard 1,
+      horder _ (cap.orderEmbOfFin_mem hcapCard 0),
+      (cap.orderEmbOfFin hcapCard).strictMono (by decide)⟩ with
+  | left => rfl
+  | right =>
+    exfalso
+    apply hnoCap
+    refine ⟨Finset.univ.image f, hfsub, ?_, ?_⟩
+    · simpa using Finset.card_image_of_injective Finset.univ f.injective
+    · apply FinsetPolygon.IsCap.image
+      apply isMonochromaticChain_finFive_of_consecutive f (hone.mono hfsub)
+      · simpa [f, ce] using hfirst
+      · simpa [f, ce] using hcap _
+          (cap.orderEmbOfFin_mem hcapCard 0)
+          (cap.orderEmbOfFin_mem hcapCard 1)
+          (cap.orderEmbOfFin_mem hcapCard 2)
+      · simpa [f, ce] using hcap _
+          (cap.orderEmbOfFin_mem hcapCard 1)
+          (cap.orderEmbOfFin_mem hcapCard 2)
+          (cap.orderEmbOfFin_mem hcapCard 3)
+
+/-- A vertex strictly after a four-cap has a forced left-turn obstruction
+through the last two cap vertices when ambient five-caps are forbidden. -/
+theorem capFour_forces_left_bridge_after_of_no_capFive
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cap : Finset (Fin n)} {q : Fin n}
+    (hcapSub : cap ⊆ ambient) (hcapCard : cap.card = 4)
+    (hcap : IsCapSet χ cap) (hqAmbient : q ∈ ambient)
+    (horder : ∀ x ∈ cap, x < q) (hone : OneChangeOn χ ambient)
+    (hnoCap : ¬ContainsCapSet χ ambient 5) :
+    χ ⟨cap.orderEmbOfFin hcapCard 2, cap.orderEmbOfFin hcapCard 3, q,
+      (cap.orderEmbOfFin hcapCard).strictMono (by decide),
+      horder _ (cap.orderEmbOfFin_mem hcapCard 3)⟩ = Turn.left := by
+  let ce : Fin 4 ↪o Fin n := cap.orderEmbOfFin hcapCard
+  let f : Fin 5 ↪o Fin n := OrderEmbedding.ofStrictMono
+    ![ce 0, ce 1, ce 2, ce 3, q] (by
+      intro i j hij
+      fin_cases i <;> fin_cases j
+      all_goals (try norm_num at hij)
+      all_goals first
+        | exact ce.strictMono (by decide)
+        | exact horder _ (cap.orderEmbOfFin_mem hcapCard _))
+  have hfmem : ∀ i : Fin 5, f i ∈ ambient := by
+    intro i
+    fin_cases i <;>
+      simp [f, ce, hqAmbient,
+        hcapSub (cap.orderEmbOfFin_mem hcapCard _)]
+  have hfsub : Finset.univ.image f ⊆ ambient := by
+    intro x hx
+    simp only [Finset.mem_image, Finset.mem_univ, true_and] at hx
+    obtain ⟨i, rfl⟩ := hx
+    exact hfmem i
+  cases hlast : χ ⟨cap.orderEmbOfFin hcapCard 2,
+      cap.orderEmbOfFin hcapCard 3, q,
+      (cap.orderEmbOfFin hcapCard).strictMono (by decide),
+      horder _ (cap.orderEmbOfFin_mem hcapCard 3)⟩ with
+  | left => rfl
+  | right =>
+    exfalso
+    apply hnoCap
+    refine ⟨Finset.univ.image f, hfsub, ?_, ?_⟩
+    · simpa using Finset.card_image_of_injective Finset.univ f.injective
+    · apply FinsetPolygon.IsCap.image
+      apply isMonochromaticChain_finFive_of_consecutive f (hone.mono hfsub)
+      · simpa [f, ce] using hcap _
+          (cap.orderEmbOfFin_mem hcapCard 0)
+          (cap.orderEmbOfFin_mem hcapCard 1)
+          (cap.orderEmbOfFin_mem hcapCard 2)
+      · simpa [f, ce] using hcap _
+          (cap.orderEmbOfFin_mem hcapCard 1)
+          (cap.orderEmbOfFin_mem hcapCard 2)
+          (cap.orderEmbOfFin_mem hcapCard 3)
+      · simpa [f, ce] using hlast
+
 /-- If a five-cup lies wholly to the left of an ambient vertex, the triple
 formed by its last two vertices and that vertex must turn right when ambient
 six-cups are forbidden. -/
@@ -668,6 +774,334 @@ theorem cupFive_right_bridge_nesting
   | left => rfl
   | right =>
       simp [TurnSequenceAllowed, hbridgeY, hbridgeZ, hleft, hright] at hallowed
+
+/-- Two cross-turn probes suffice to promote a five-cup and a later vertex to
+a strong six-set.  The remaining cross turns are forced by the one-change
+law and the right bridge supplied by six-cup avoidance. -/
+theorem cupFive_containsStrongSix_of_outer_right_inner_left
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cup : Finset (Fin n)} {y : Fin n}
+    (hcupSub : cup ⊆ ambient) (hcupCard : cup.card = 5)
+    (hcup : IsCupSet χ cup) (hyAmbient : y ∈ ambient)
+    (horder : ∀ x ∈ cup, x < y) (hone : OneChangeOn χ ambient)
+    (hnoCup : ¬ContainsCupSet χ ambient 6)
+    (houter : χ ⟨cup.orderEmbOfFin hcupCard 0,
+      cup.orderEmbOfFin hcupCard 4, y,
+      (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+      horder _ (cup.orderEmbOfFin_mem hcupCard 4)⟩ = Turn.right)
+    (hinner : χ ⟨cup.orderEmbOfFin hcupCard 2,
+      cup.orderEmbOfFin hcupCard 3, y,
+      (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+      horder _ (cup.orderEmbOfFin_mem hcupCard 3)⟩ = Turn.left) :
+    ContainsStrongPolygonSet χ ambient 6 := by
+  let ce : Fin 5 ↪o Fin n := cup.orderEmbOfFin hcupCard
+  have cmem (i : Fin 5) : ce i ∈ cup :=
+    cup.orderEmbOfFin_mem hcupCard i
+  have hc (i j k : Fin 5) (hij : i < j) (hjk : j < k) :
+      χ ⟨ce i, ce j, ce k, ce.strictMono hij, ce.strictMono hjk⟩ =
+        Turn.left := hcup _ (cmem i) (cmem j) (cmem k)
+  have h023 : χ ⟨ce 0, ce 2, ce 3, by simp, by simp⟩ = Turn.left :=
+    hcup _ (cmem 0) (cmem 2) (cmem 3)
+  have h123 : χ ⟨ce 1, ce 2, ce 3, by simp, by simp⟩ = Turn.left :=
+    hcup _ (cmem 1) (cmem 2) (cmem 3)
+  have h012 : χ ⟨ce 0, ce 1, ce 2, by simp, by simp⟩ = Turn.left :=
+    hcup _ (cmem 0) (cmem 1) (cmem 2)
+  have hallow023 := hone
+    (ce.strictMono (show (0 : Fin 5) < 2 by decide))
+    (ce.strictMono (show (2 : Fin 5) < 3 by decide))
+    (horder _ (cmem 3)) (hcupSub (cmem 0)) (hcupSub (cmem 2))
+    (hcupSub (cmem 3)) hyAmbient
+  have heq023 := hallow023.all_eq_of_outer_eq (h023.trans hinner.symm)
+  have h02 : χ ⟨ce 0, ce 2, y, by simp,
+      horder _ (cmem 2)⟩ = Turn.left := heq023.1.symm.trans h023
+  have h03 : χ ⟨ce 0, ce 3, y, by simp,
+      horder _ (cmem 3)⟩ = Turn.left := heq023.2.1.symm.trans h02
+  have hallow123 := hone
+    (ce.strictMono (show (1 : Fin 5) < 2 by decide))
+    (ce.strictMono (show (2 : Fin 5) < 3 by decide))
+    (horder _ (cmem 3)) (hcupSub (cmem 1)) (hcupSub (cmem 2))
+    (hcupSub (cmem 3)) hyAmbient
+  have heq123 := hallow123.all_eq_of_outer_eq (h123.trans hinner.symm)
+  have h12 : χ ⟨ce 1, ce 2, y, by simp,
+      horder _ (cmem 2)⟩ = Turn.left := heq123.1.symm.trans h123
+  have h13 : χ ⟨ce 1, ce 3, y, by simp,
+      horder _ (cmem 3)⟩ = Turn.left := heq123.2.1.symm.trans h12
+  have hallow012 := hone
+    (ce.strictMono (show (0 : Fin 5) < 1 by decide))
+    (ce.strictMono (show (1 : Fin 5) < 2 by decide))
+    (horder _ (cmem 2)) (hcupSub (cmem 0)) (hcupSub (cmem 1))
+    (hcupSub (cmem 2)) hyAmbient
+  have heq012 := hallow012.all_eq_of_outer_eq (h012.trans h12.symm)
+  have h01 : χ ⟨ce 0, ce 1, y, by simp,
+      horder _ (cmem 1)⟩ = Turn.left := heq012.1.symm.trans h012
+  have hbridge := cupFive_forces_right_bridge_of_no_cupSix
+    hcupSub hcupCard hcup hyAmbient horder hone hnoCup
+  have hallow014 := hone
+    (ce.strictMono (show (0 : Fin 5) < 1 by decide))
+    (ce.strictMono (show (1 : Fin 5) < 4 by decide))
+    (horder _ (cmem 4)) (hcupSub (cmem 0)) (hcupSub (cmem 1))
+    (hcupSub (cmem 4)) hyAmbient
+  have h14 : χ ⟨ce 1, ce 4, y, by simp,
+      horder _ (cmem 4)⟩ = Turn.right := by
+    have hneq : χ ⟨ce 0, ce 1, ce 4, by simp, by simp⟩ ≠
+        χ ⟨ce 0, ce 4, y, by simp, horder _ (cmem 4)⟩ := by
+      rw [hc 0 1 4 (by decide) (by decide), houter]
+      exact Turn.noConfusion
+    exact (hallow014.third_eq_fourth_of_first_ne_third hneq).symm.trans
+      houter
+  have hallow024 := hone
+    (ce.strictMono (show (0 : Fin 5) < 2 by decide))
+    (ce.strictMono (show (2 : Fin 5) < 4 by decide))
+    (horder _ (cmem 4)) (hcupSub (cmem 0)) (hcupSub (cmem 2))
+    (hcupSub (cmem 4)) hyAmbient
+  have h24 : χ ⟨ce 2, ce 4, y, by simp,
+      horder _ (cmem 4)⟩ = Turn.right := by
+    have hneq : χ ⟨ce 0, ce 2, ce 4, by simp, by simp⟩ ≠
+        χ ⟨ce 0, ce 4, y, by simp, horder _ (cmem 4)⟩ := by
+      rw [hc 0 2 4 (by decide) (by decide), houter]
+      exact Turn.noConfusion
+    exact (hallow024.third_eq_fourth_of_first_ne_third hneq).symm.trans
+      houter
+  let f : Fin 6 ↪o Fin n := OrderEmbedding.ofStrictMono
+    ![ce 0, ce 1, ce 2, ce 3, ce 4, y] (by
+      intro i j hij
+      fin_cases i <;> fin_cases j
+      all_goals (try norm_num at hij)
+      all_goals first
+        | exact ce.strictMono (by decide)
+        | exact horder _ (cmem _))
+  have hfsub : Finset.univ.image f ⊆ ambient := by
+    intro x hx
+    simp only [Finset.mem_image, Finset.mem_univ, true_and] at hx
+    obtain ⟨i, rfl⟩ := hx
+    fin_cases i <;> simp [f, hyAmbient, hcupSub (cmem _)]
+  refine ⟨Finset.univ.image f, hfsub, ?_, ?_⟩
+  · simpa using Finset.card_image_of_injective Finset.univ f.injective
+  · apply FinsetPolygon.IsStrongPolygonOn.isStrongPolygonSet_image
+    rw [isStrongPolygonOn_finSix_iff]
+    simp only [StrongSixValues]
+    simp [f, ce, hc, h01, h02, h03, houter, h12, h13,
+      h14, hinner, h24, hbridge]
+
+/-- Every later vertex is classified by the two probe colors, unless it
+already extends the five-cup to a strong six-set. -/
+theorem cupFive_two_probe_trichotomy
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cup : Finset (Fin n)} {y : Fin n}
+    (hcupSub : cup ⊆ ambient) (hcupCard : cup.card = 5)
+    (hcup : IsCupSet χ cup) (hyAmbient : y ∈ ambient)
+    (horder : ∀ x ∈ cup, x < y) (hone : OneChangeOn χ ambient)
+    (hnoCup : ¬ContainsCupSet χ ambient 6) :
+    χ ⟨cup.orderEmbOfFin hcupCard 0, cup.orderEmbOfFin hcupCard 4, y,
+      (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+      horder _ (cup.orderEmbOfFin_mem hcupCard 4)⟩ = Turn.left ∨
+    χ ⟨cup.orderEmbOfFin hcupCard 2, cup.orderEmbOfFin hcupCard 3, y,
+      (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+      horder _ (cup.orderEmbOfFin_mem hcupCard 3)⟩ = Turn.right ∨
+    ContainsStrongPolygonSet χ ambient 6 := by
+  cases houter : χ ⟨cup.orderEmbOfFin hcupCard 0,
+      cup.orderEmbOfFin hcupCard 4, y,
+      (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+      horder _ (cup.orderEmbOfFin_mem hcupCard 4)⟩ with
+  | left => exact Or.inl rfl
+  | right =>
+    cases hinner : χ ⟨cup.orderEmbOfFin hcupCard 2,
+        cup.orderEmbOfFin hcupCard 3, y,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        horder _ (cup.orderEmbOfFin_mem hcupCard 3)⟩ with
+    | left =>
+        exact Or.inr (Or.inr
+          (cupFive_containsStrongSix_of_outer_right_inner_left
+            hcupSub hcupCard hcup hyAmbient horder hone hnoCup
+            houter hinner))
+    | right => exact Or.inr (Or.inl rfl)
+
+/-- Consequently, if the ambient set has no strong six-set, every later
+vertex has one of two explicit obstruction colors relative to the five-cup. -/
+theorem cupFive_outer_left_or_inner_right_of_no_strongSix
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cup : Finset (Fin n)} {y : Fin n}
+    (hcupSub : cup ⊆ ambient) (hcupCard : cup.card = 5)
+    (hcup : IsCupSet χ cup) (hyAmbient : y ∈ ambient)
+    (horder : ∀ x ∈ cup, x < y) (hone : OneChangeOn χ ambient)
+    (hnoCup : ¬ContainsCupSet χ ambient 6)
+    (hnoStrong : ¬ContainsStrongPolygonSet χ ambient 6) :
+    χ ⟨cup.orderEmbOfFin hcupCard 0, cup.orderEmbOfFin hcupCard 4, y,
+      (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+      horder _ (cup.orderEmbOfFin_mem hcupCard 4)⟩ = Turn.left ∨
+    χ ⟨cup.orderEmbOfFin hcupCard 2, cup.orderEmbOfFin hcupCard 3, y,
+      (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+      horder _ (cup.orderEmbOfFin_mem hcupCard 3)⟩ = Turn.right := by
+  cases houter : χ ⟨cup.orderEmbOfFin hcupCard 0,
+      cup.orderEmbOfFin hcupCard 4, y,
+      (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+      horder _ (cup.orderEmbOfFin_mem hcupCard 4)⟩ with
+  | left => exact Or.inl rfl
+  | right =>
+    cases hinner : χ ⟨cup.orderEmbOfFin hcupCard 2,
+        cup.orderEmbOfFin hcupCard 3, y,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        horder _ (cup.orderEmbOfFin_mem hcupCard 3)⟩ with
+    | left =>
+        exact (hnoStrong
+          (cupFive_containsStrongSix_of_outer_right_inner_left
+            hcupSub hcupCard hcup hyAmbient horder hone hnoCup
+            houter hinner)).elim
+    | right => exact Or.inr rfl
+
+/-- A same-middle color disagreement obtained by adjoining a pair of vertices
+to a middle-determined set.  At least one vertex in the two compared triples
+must lie outside the original set. -/
+def HasMiddlePairExtensionFailure {n : ℕ} (χ : TripleColoring n)
+    (polygon : Finset (Fin n)) (q r : Fin n) : Prop :=
+  ∃ (i i' j k k' : Fin n)
+      (hij : i < j) (hi'j : i' < j) (hjk : j < k) (hjk' : j < k'),
+    i ∈ insert q (insert r polygon) ∧
+      i' ∈ insert q (insert r polygon) ∧
+      j ∈ insert q (insert r polygon) ∧
+      k ∈ insert q (insert r polygon) ∧
+      k' ∈ insert q (insert r polygon) ∧
+      (i ∉ polygon ∨ i' ∉ polygon ∨ j ∉ polygon ∨
+        k ∉ polygon ∨ k' ∉ polygon) ∧
+      χ ⟨i, j, k, hij, hjk⟩ ≠ χ ⟨i', j, k', hi'j, hjk'⟩
+
+/-- If a middle-determined `a`-set does not extend to a strong `(a+2)`-set
+with two fresh ambient vertices, a same-middle disagreement uses at least one
+of the fresh vertices. -/
+theorem middle_pair_extension_failure_of_no_strong_add_two
+    {n a : ℕ} {χ : TripleColoring n}
+    {ambient polygon : Finset (Fin n)} {q r : Fin n}
+    (hpolygonSub : polygon ⊆ ambient) (hpolygonCard : polygon.card = a)
+    (hpolygon : IsMiddleDeterminedOn χ polygon)
+    (hqAmbient : q ∈ ambient) (hrAmbient : r ∈ ambient)
+    (hqPolygon : q ∉ polygon) (hrPolygon : r ∉ polygon) (hqr : q ≠ r)
+    (hnoStrong : ¬ContainsStrongPolygonSet χ ambient (a + 2)) :
+    HasMiddlePairExtensionFailure χ polygon q r := by
+  classical
+  by_contra hfailure
+  have hmiddle : IsMiddleDeterminedOn χ (insert q (insert r polygon)) := by
+    intro i i' j k k' hij hi'j hjk hjk' hi hi' hj hk hk'
+    by_cases hout : i ∉ polygon ∨ i' ∉ polygon ∨ j ∉ polygon ∨
+        k ∉ polygon ∨ k' ∉ polygon
+    · by_contra hneq
+      exact hfailure ⟨i, i', j, k, k', hij, hi'j, hjk, hjk',
+        hi, hi', hj, hk, hk', hout, hneq⟩
+    · push Not at hout
+      exact hpolygon hij hi'j hjk hjk'
+        hout.1 hout.2.1 hout.2.2.1 hout.2.2.2.1 hout.2.2.2.2
+  apply hnoStrong
+  refine ⟨insert q (insert r polygon), ?_, ?_,
+    FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn.mpr hmiddle⟩
+  · intro x hx
+    simp only [Finset.mem_insert] at hx
+    rcases hx with rfl | rfl | hx
+    · exact hqAmbient
+    · exact hrAmbient
+    · exact hpolygonSub hx
+  · have hqInsert : q ∉ insert r polygon := by
+      simp [hqPolygon, hqr]
+    rw [Finset.card_insert_of_notMem hqInsert,
+      Finset.card_insert_of_notMem hrPolygon, hpolygonCard]
+
+/-- One of the two same-middle triples uses a designated vertex. -/
+def MiddleComparisonUses {n : ℕ} (q i i' j k k' : Fin n) : Prop :=
+  i = q ∨ i' = q ∨ j = q ∨ k = q ∨ k' = q
+
+/-- A same-middle disagreement that genuinely couples both newly adjoined
+vertices. -/
+def HasCoupledMiddlePairFailure {n : ℕ} (χ : TripleColoring n)
+    (polygon : Finset (Fin n)) (q r : Fin n) : Prop :=
+  ∃ (i i' j k k' : Fin n)
+      (hij : i < j) (hi'j : i' < j) (hjk : j < k) (hjk' : j < k'),
+    i ∈ insert q (insert r polygon) ∧
+      i' ∈ insert q (insert r polygon) ∧
+      j ∈ insert q (insert r polygon) ∧
+      k ∈ insert q (insert r polygon) ∧
+      k' ∈ insert q (insert r polygon) ∧
+      MiddleComparisonUses q i i' j k k' ∧
+      MiddleComparisonUses r i i' j k k' ∧
+      χ ⟨i, j, k, hij, hjk⟩ ≠ χ ⟨i', j, k', hi'j, hjk'⟩
+
+/-- If two vertices separately preserve middle determinacy but cannot jointly
+extend to a strong polygon, some failed comparison must use both vertices. -/
+theorem coupled_middle_pair_failure_of_no_strong_add_two
+    {n a : ℕ} {χ : TripleColoring n}
+    {ambient polygon : Finset (Fin n)} {q r : Fin n}
+    (hpolygonSub : polygon ⊆ ambient) (hpolygonCard : polygon.card = a)
+    (hqAmbient : q ∈ ambient) (hrAmbient : r ∈ ambient)
+    (hqPolygon : q ∉ polygon) (hrPolygon : r ∉ polygon) (hqr : q ≠ r)
+    (hmiddleQ : IsMiddleDeterminedOn χ (insert q polygon))
+    (hmiddleR : IsMiddleDeterminedOn χ (insert r polygon))
+    (hnoStrong : ¬ContainsStrongPolygonSet χ ambient (a + 2)) :
+    HasCoupledMiddlePairFailure χ polygon q r := by
+  classical
+  by_contra hfailure
+  have mem_without_r {x : Fin n} (hx : x ∈ insert q (insert r polygon))
+      (hxr : x ≠ r) : x ∈ insert q polygon := by
+    simp only [Finset.mem_insert] at hx ⊢
+    rcases hx with rfl | rfl | hx
+    · exact Or.inl rfl
+    · exact (hxr rfl).elim
+    · exact Or.inr hx
+  have mem_without_q {x : Fin n} (hx : x ∈ insert q (insert r polygon))
+      (hxq : x ≠ q) : x ∈ insert r polygon := by
+    simp only [Finset.mem_insert] at hx ⊢
+    rcases hx with rfl | rfl | hx
+    · exact (hxq rfl).elim
+    · exact Or.inl rfl
+    · exact Or.inr hx
+  have hmiddle : IsMiddleDeterminedOn χ (insert q (insert r polygon)) := by
+    intro i i' j k k' hij hi'j hjk hjk' hi hi' hj hk hk'
+    by_cases hq : MiddleComparisonUses q i i' j k k'
+    · by_cases hr : MiddleComparisonUses r i i' j k k'
+      · by_contra hneq
+        exact hfailure ⟨i, i', j, k, k', hij, hi'j, hjk, hjk',
+          hi, hi', hj, hk, hk', hq, hr, hneq⟩
+      · simp only [MiddleComparisonUses, not_or] at hr
+        exact hmiddleQ hij hi'j hjk hjk'
+          (mem_without_r hi hr.1)
+          (mem_without_r hi' hr.2.1)
+          (mem_without_r hj hr.2.2.1)
+          (mem_without_r hk hr.2.2.2.1)
+          (mem_without_r hk' hr.2.2.2.2)
+    · simp only [MiddleComparisonUses, not_or] at hq
+      exact hmiddleR hij hi'j hjk hjk'
+        (mem_without_q hi hq.1)
+        (mem_without_q hi' hq.2.1)
+        (mem_without_q hj hq.2.2.1)
+        (mem_without_q hk hq.2.2.2.1)
+        (mem_without_q hk' hq.2.2.2.2)
+  apply hnoStrong
+  refine ⟨insert q (insert r polygon), ?_, ?_,
+    FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn.mpr hmiddle⟩
+  · intro x hx
+    simp only [Finset.mem_insert] at hx
+    rcases hx with rfl | rfl | hx
+    · exact hqAmbient
+    · exact hrAmbient
+    · exact hpolygonSub hx
+  · have hqInsert : q ∉ insert r polygon := by
+      simp [hqPolygon, hqr]
+    rw [Finset.card_insert_of_notMem hqInsert,
+      Finset.card_insert_of_notMem hrPolygon, hpolygonCard]
+
+/-- Every pair outside a five-cup carries a genuine pairwise middle-color
+obstruction when the ambient set avoids strong seven-sets. -/
+theorem cupFive_middle_pair_failure_of_no_strongSeven
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cup : Finset (Fin n)} {q r : Fin n}
+    (hcupSub : cup ⊆ ambient) (hcupCard : cup.card = 5)
+    (hcup : IsCupSet χ cup)
+    (hqAmbient : q ∈ ambient) (hrAmbient : r ∈ ambient)
+    (hqCup : q ∉ cup) (hrCup : r ∉ cup) (hqr : q ≠ r)
+    (hnoStrong : ¬ContainsStrongPolygonSet χ ambient 7) :
+    HasMiddlePairExtensionFailure χ cup q r := by
+  apply middle_pair_extension_failure_of_no_strong_add_two
+      hcupSub hcupCard
+      (FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn.mp
+        (FinsetPolygon.IsCupSet.isStrongPolygonSet hcup))
+      hqAmbient hrAmbient hqCup hrCup hqr
+  simpa using hnoStrong
 
 /-- Every ambient vertex outside a strong `k`-set has a local four-index
 obstruction when the ambient set contains no strong `(k+1)`-set. -/

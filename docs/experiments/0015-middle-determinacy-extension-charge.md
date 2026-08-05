@@ -39,9 +39,16 @@ The following now compile without placeholders:
   the bad triple or quadruple proved to contain the new vertex;
 - consecutive localization of a four-cap extension failure among the three
   consecutive triples of the sorted five-set;
+- deterministic endpoint localization for a vertex strictly before or after
+  a four-cap: the obstruction is the first or last consecutive triple;
 - a five-cup bridge theorem forcing the last-pair turn through every later
   ambient vertex to be right;
-- nesting of those bridge colors under the one-change law.
+- nesting of those bridge colors under the one-change law;
+- pair-extension middle-disagreement certificates, including a coupled form
+  when both one-vertex extensions are separately middle-determined; and
+- a two-probe five-cup criterion: an outer right turn together with an inner
+  left turn forces a strong six-set. Consequently, in the no-strong-six
+  branch every later vertex has one of two explicit obstruction colors.
 
 These are reusable formal results, not a proof of the cardinal bound 21.
 
@@ -89,13 +96,17 @@ statement to a theorem.
 Retain the abstract `TwoCapFreeSidesBound567` route: the balanced computation
 found no counterexample, and middle determinacy exposes substantially more
 structure than arbitrary strong-failure certificates.  Do not pursue a
-witness-only profile pigeonhole argument.  The next proof item is a genuine
-global collision/counting lemma combining:
+witness-only profile pigeonhole argument. The ten-color profile of a later
+vertex relative to a five-cup has now compressed to a two-probe obstruction
+in the no-strong-six branch. The next proof item is a genuine global
+collision/counting lemma combining:
 
 1. the forced bridge colors from a five-cup on the large side;
 2. consecutive cap-failure locations;
-3. middle-color disagreement forced on every seven-subset; and
-4. triples among the vertices outside the selected witness.
+3. the two probe classes and their one-change evolution along the opposite
+   side;
+4. middle-color disagreement forced on every seven-subset; and
+5. triples among the vertices outside the selected witness.
 
 The `HasDeepBelowSplit` refinement remains the fallback if that global count
 cannot be closed abstractly.

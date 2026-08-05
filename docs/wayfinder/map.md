@@ -168,7 +168,12 @@ None. The destination was fixed by the user on 2026-08-01.
   now supports the proposed bound computationally. No UNSAT certificate has
   been imported into Lean. The next proof item is a global counting lemma
   combining five-cup bridges, consecutive cap failures, and middle-color
-  disagreement on every seven-subset; a decomposable-only refinement remains
+  disagreement on every seven-subset. Endpoint cap failures are now
+  deterministic, pairwise middle-disagreement certificates compile, and a
+  two-probe theorem compresses every later five-cup extension in the
+  no-strong-six branch to an outer-left or inner-right obstruction. The active
+  target is to bound the evolution and multiplicities of these two classes
+  along the opposite cap-free side; a decomposable-only refinement remains
   the fallback.
 
 ## Not yet specified
