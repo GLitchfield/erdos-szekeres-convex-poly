@@ -181,7 +181,20 @@ None. The destination was fixed by the user on 2026-08-01.
   form: one at each outer gap and two, three, and two across the interior
   gaps. The active count must bound multiplicities across this
   `1+2+3+2+1` family rather than merely count signature types; a
-  decomposable-only refinement remains the fallback.
+  decomposable-only refinement remains the fallback. Lean now packages the
+  family as an exact nine-element signature type and constructs a realized
+  total charge for every outside vertex. Right-side vertices of a crossing
+  cap cannot use the outer `before` signature, and ordered right-side pairs
+  simultaneously carry their two cap signatures and the exhaustive
+  five-cup probe-transition partition. The sharp arithmetic is also closed:
+  fiber capacity two with one nonsaturated fiber leaves at most 17 vertices
+  outside the four-cap and therefore at most 21 total. The entire local gate
+  now follows from the single frozen proposition
+  `TwoCapFreeSidesSharpCapCharge567`. Its remaining content is genuinely
+  structural: select a four-cap whose nine realized charge fibers all have
+  multiplicity at most two and at least one has multiplicity at most one.
+  Proving that selection theorem, or refuting it and activating the
+  decomposable-only refinement, is the next consequential item.
 
 ## Not yet specified
 

@@ -852,6 +852,265 @@ theorem capFour_gap_three_has_two_failure_signatures
   · exact Or.inl (by simpa [f, ce] using hsecond)
   · exact Or.inr (by simpa [f, ce] using hthird)
 
+/-- The nine possible consecutive failure locations obtained by inserting a
+vertex into one of the five gaps around a sorted four-cap. -/
+inductive CapFourFailureSignature where
+  | before
+  | gapOneFirst
+  | gapOneSecond
+  | gapTwoFirst
+  | gapTwoMiddle
+  | gapTwoThird
+  | gapThreeFirst
+  | gapThreeSecond
+  | after
+  deriving DecidableEq, Fintype
+
+/-- A vertex realizes a named failure signature when it lies in the
+corresponding gap and the indicated consecutive triple turns left. -/
+def RealizesCapFourFailureSignature {n : ℕ} (χ : TripleColoring n)
+    (cap : Finset (Fin n)) (hcapCard : cap.card = 4) (q : Fin n) :
+    CapFourFailureSignature → Prop
+  | .before =>
+      ∃ hq0 : q < cap.orderEmbOfFin hcapCard 0,
+        χ ⟨q, cap.orderEmbOfFin hcapCard 0,
+          cap.orderEmbOfFin hcapCard 1, hq0,
+          (cap.orderEmbOfFin hcapCard).strictMono (by decide)⟩ = Turn.left
+  | .gapOneFirst =>
+      ∃ h0q : cap.orderEmbOfFin hcapCard 0 < q,
+        ∃ hq1 : q < cap.orderEmbOfFin hcapCard 1,
+          χ ⟨cap.orderEmbOfFin hcapCard 0, q,
+            cap.orderEmbOfFin hcapCard 1, h0q, hq1⟩ = Turn.left
+  | .gapOneSecond =>
+      ∃ h0q : cap.orderEmbOfFin hcapCard 0 < q,
+        ∃ hq1 : q < cap.orderEmbOfFin hcapCard 1,
+          χ ⟨q, cap.orderEmbOfFin hcapCard 1,
+            cap.orderEmbOfFin hcapCard 2, hq1,
+            (cap.orderEmbOfFin hcapCard).strictMono (by decide)⟩ = Turn.left
+  | .gapTwoFirst =>
+      ∃ h1q : cap.orderEmbOfFin hcapCard 1 < q,
+        ∃ hq2 : q < cap.orderEmbOfFin hcapCard 2,
+          χ ⟨cap.orderEmbOfFin hcapCard 0,
+            cap.orderEmbOfFin hcapCard 1, q,
+            (cap.orderEmbOfFin hcapCard).strictMono (by decide), h1q⟩ = Turn.left
+  | .gapTwoMiddle =>
+      ∃ h1q : cap.orderEmbOfFin hcapCard 1 < q,
+        ∃ hq2 : q < cap.orderEmbOfFin hcapCard 2,
+          χ ⟨cap.orderEmbOfFin hcapCard 1, q,
+            cap.orderEmbOfFin hcapCard 2, h1q, hq2⟩ = Turn.left
+  | .gapTwoThird =>
+      ∃ h1q : cap.orderEmbOfFin hcapCard 1 < q,
+        ∃ hq2 : q < cap.orderEmbOfFin hcapCard 2,
+          χ ⟨q, cap.orderEmbOfFin hcapCard 2,
+            cap.orderEmbOfFin hcapCard 3, hq2,
+            (cap.orderEmbOfFin hcapCard).strictMono (by decide)⟩ = Turn.left
+  | .gapThreeFirst =>
+      ∃ h2q : cap.orderEmbOfFin hcapCard 2 < q,
+        ∃ hq3 : q < cap.orderEmbOfFin hcapCard 3,
+          χ ⟨cap.orderEmbOfFin hcapCard 1,
+            cap.orderEmbOfFin hcapCard 2, q,
+            (cap.orderEmbOfFin hcapCard).strictMono (by decide), h2q⟩ = Turn.left
+  | .gapThreeSecond =>
+      ∃ h2q : cap.orderEmbOfFin hcapCard 2 < q,
+        ∃ hq3 : q < cap.orderEmbOfFin hcapCard 3,
+          χ ⟨cap.orderEmbOfFin hcapCard 2, q,
+            cap.orderEmbOfFin hcapCard 3, h2q, hq3⟩ = Turn.left
+  | .after =>
+      ∃ h3q : cap.orderEmbOfFin hcapCard 3 < q,
+        χ ⟨cap.orderEmbOfFin hcapCard 2,
+          cap.orderEmbOfFin hcapCard 3, q,
+          (cap.orderEmbOfFin hcapCard).strictMono (by decide), h3q⟩ = Turn.left
+
+/-- There are exactly nine named four-cap insertion signatures. -/
+theorem card_capFourFailureSignature :
+    Fintype.card CapFourFailureSignature = 9 := by
+  decide
+
+/-- Every vertex outside a four-cap realizes one of the nine exact failure
+signatures when the ambient set obeys the one-change law and has no five-cap. -/
+theorem capFour_realizes_some_failure_signature
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cap : Finset (Fin n)} {q : Fin n}
+    (hcapSub : cap ⊆ ambient) (hcapCard : cap.card = 4)
+    (hcap : IsCapSet χ cap) (hqAmbient : q ∈ ambient) (hqCap : q ∉ cap)
+    (hone : OneChangeOn χ ambient)
+    (hnoCap : ¬ContainsCapSet χ ambient 5) :
+    ∃ signature : CapFourFailureSignature,
+      RealizesCapFourFailureSignature χ cap hcapCard q signature := by
+  let ce : Fin 4 ↪o Fin n := cap.orderEmbOfFin hcapCard
+  have hqne (i : Fin 4) : q ≠ ce i := by
+    intro hqi
+    apply hqCap
+    rw [hqi]
+    exact cap.orderEmbOfFin_mem hcapCard i
+  by_cases hq0 : q < ce 0
+  · have hbefore : ∀ x ∈ cap, q < x := by
+      intro x hx
+      rw [← Finset.image_orderEmbOfFin_univ cap hcapCard] at hx
+      simp only [Finset.mem_image, Finset.mem_univ, true_and] at hx
+      obtain ⟨i, rfl⟩ := hx
+      exact hq0.trans_le (ce.monotone (Fin.zero_le i))
+    exact ⟨.before, hq0,
+      capFour_forces_left_bridge_before_of_no_capFive
+        hcapSub hcapCard hcap hqAmbient hbefore hone hnoCap⟩
+  have h0q : ce 0 < q :=
+    lt_of_le_of_ne (le_of_not_gt hq0) (Ne.symm (hqne 0))
+  by_cases hq1 : q < ce 1
+  · rcases capFour_gap_one_has_two_failure_signatures
+        hcapSub hcapCard hcap hqAmbient h0q hq1 hone hnoCap with hfirst | hsecond
+    · exact ⟨.gapOneFirst, h0q, hq1, hfirst⟩
+    · exact ⟨.gapOneSecond, h0q, hq1, hsecond⟩
+  have h1q : ce 1 < q :=
+    lt_of_le_of_ne (le_of_not_gt hq1) (Ne.symm (hqne 1))
+  by_cases hq2 : q < ce 2
+  · rcases capFour_gap_two_has_three_failure_signatures
+        hcapSub hcapCard hqAmbient h1q hq2 hone hnoCap with
+      hfirst | hmiddle | hthird
+    · exact ⟨.gapTwoFirst, h1q, hq2, hfirst⟩
+    · exact ⟨.gapTwoMiddle, h1q, hq2, hmiddle⟩
+    · exact ⟨.gapTwoThird, h1q, hq2, hthird⟩
+  have h2q : ce 2 < q :=
+    lt_of_le_of_ne (le_of_not_gt hq2) (Ne.symm (hqne 2))
+  by_cases hq3 : q < ce 3
+  · rcases capFour_gap_three_has_two_failure_signatures
+        hcapSub hcapCard hcap hqAmbient h2q hq3 hone hnoCap with hfirst | hsecond
+    · exact ⟨.gapThreeFirst, h2q, hq3, hfirst⟩
+    · exact ⟨.gapThreeSecond, h2q, hq3, hsecond⟩
+  have h3q : ce 3 < q :=
+    lt_of_le_of_ne (le_of_not_gt hq3) (Ne.symm (hqne 3))
+  have hafter : ∀ x ∈ cap, x < q := by
+    intro x hx
+    rw [← Finset.image_orderEmbOfFin_univ cap hcapCard] at hx
+    simp only [Finset.mem_image, Finset.mem_univ, true_and] at hx
+    obtain ⟨i, rfl⟩ := hx
+    exact (ce.monotone (Fin.le_last i)).trans_lt h3q
+  exact ⟨.after, h3q,
+    capFour_forces_left_bridge_after_of_no_capFive
+      hcapSub hcapCard hcap hqAmbient hafter hone hnoCap⟩
+
+/-- A total assignment of outside vertices to realized four-cap failure
+signatures. Only its values on `ambient \ cap` are constrained. -/
+def IsCapFourFailureCharge {n : ℕ} (χ : TripleColoring n)
+    (ambient cap : Finset (Fin n)) (hcapCard : cap.card = 4)
+    (charge : Fin n → CapFourFailureSignature) : Prop :=
+  ∀ q ∈ ambient, q ∉ cap →
+    RealizesCapFourFailureSignature χ cap hcapCard q (charge q)
+
+/-- The outside vertices assigned a specified four-cap failure signature. -/
+def capFourFailureFiber {n : ℕ} (ambient cap : Finset (Fin n))
+    (charge : Fin n → CapFourFailureSignature)
+    (signature : CapFourFailureSignature) : Finset (Fin n) :=
+  (ambient \ cap).filter fun q ↦ charge q = signature
+
+/-- The exact nine-signature localization admits a total failure charge. -/
+theorem exists_capFourFailureCharge
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cap : Finset (Fin n)}
+    (hcapSub : cap ⊆ ambient) (hcapCard : cap.card = 4)
+    (hcap : IsCapSet χ cap)
+    (hone : OneChangeOn χ ambient)
+    (hnoCap : ¬ContainsCapSet χ ambient 5) :
+    ∃ charge : Fin n → CapFourFailureSignature,
+      IsCapFourFailureCharge χ ambient cap hcapCard charge := by
+  classical
+  have hexists (q : Fin n) :
+      ∃ signature : CapFourFailureSignature,
+        q ∈ ambient → q ∉ cap →
+          RealizesCapFourFailureSignature χ cap hcapCard q signature := by
+    by_cases hqAmbient : q ∈ ambient
+    · by_cases hqCap : q ∈ cap
+      · exact ⟨.before, fun _ hqNotCap ↦ (hqNotCap hqCap).elim⟩
+      · obtain ⟨signature, hsignature⟩ :=
+          capFour_realizes_some_failure_signature hcapSub hcapCard hcap
+            hqAmbient hqCap hone hnoCap
+        exact ⟨signature, fun _ _ ↦ hsignature⟩
+    · exact ⟨.before, fun hq _ ↦ (hqAmbient hq).elim⟩
+  choose charge hcharge using hexists
+  exact ⟨charge, fun q hqAmbient hqCap ↦
+    hcharge q hqAmbient hqCap⟩
+
+/-- Nine fibers of capacity two, with one strict fiber, contain at most
+seventeen elements. -/
+theorem card_le_seventeen_of_capFourFailure_fibers
+    {n : ℕ} (outside : Finset (Fin n))
+    (charge : Fin n → CapFourFailureSignature)
+    (hcapacity : ∀ signature,
+      (outside.filter fun q ↦ charge q = signature).card ≤ 2)
+    (strictSignature : CapFourFailureSignature)
+    (hstrict : (outside.filter fun q ↦
+      charge q = strictSignature).card ≤ 1) :
+    outside.card ≤ 17 := by
+  have hpartition : outside.card =
+      ∑ signature : CapFourFailureSignature,
+        (outside.filter fun q ↦ charge q = signature).card := by
+    exact Finset.card_eq_sum_card_fiberwise
+      (t := Finset.univ) (fun _ _ ↦ Finset.mem_univ _)
+  have htarget :
+      (∑ signature : CapFourFailureSignature,
+        if signature = strictSignature then 1 else 2) = 17 := by
+    fin_cases strictSignature <;> decide
+  rw [hpartition]
+  calc
+    (∑ signature : CapFourFailureSignature,
+        (outside.filter fun q ↦ charge q = signature).card) ≤
+        ∑ signature : CapFourFailureSignature,
+          if signature = strictSignature then 1 else 2 := by
+      apply Finset.sum_le_sum
+      intro signature _
+      by_cases hsignature : signature = strictSignature
+      · subst signature
+        simpa using hstrict
+      · simpa [hsignature] using hcapacity signature
+    _ = 17 := htarget
+
+/-- A sharp nine-signature charge bounds the whole ambient set by 21 once
+the selected cap has four vertices. -/
+theorem ambient_card_le_twenty_one_of_sharp_capFourFailure_charge
+    {n : ℕ} {ambient cap : Finset (Fin n)}
+    (hcapSub : cap ⊆ ambient) (hcapCard : cap.card = 4)
+    (charge : Fin n → CapFourFailureSignature)
+    (hcapacity : ∀ signature,
+      (capFourFailureFiber ambient cap charge signature).card ≤ 2)
+    (strictSignature : CapFourFailureSignature)
+    (hstrict : (capFourFailureFiber ambient cap charge strictSignature).card ≤ 1) :
+    ambient.card ≤ 21 := by
+  have houtside : (ambient \ cap).card ≤ 17 :=
+    card_le_seventeen_of_capFourFailure_fibers
+      (ambient \ cap) charge hcapacity strictSignature hstrict
+  have hcard := Finset.card_sdiff_add_card_eq_card hcapSub
+  omega
+
+/-- If a four-cap meets the left side of an ordered cut, a vertex on the
+right side realizes one of the eight signatures other than `before`. -/
+theorem capFour_right_vertex_realizes_nonbefore_signature
+    {n : ℕ} {χ : TripleColoring n}
+    {left right cap : Finset (Fin n)} {q : Fin n}
+    (horder : ∀ x ∈ left, ∀ y ∈ right, x < y)
+    (hcapSub : cap ⊆ left ∪ right) (hcapCard : cap.card = 4)
+    (hcap : IsCapSet χ cap) (hcapLeft : (cap ∩ left).Nonempty)
+    (hqRight : q ∈ right) (hqCap : q ∉ cap)
+    (hone : OneChangeOn χ (left ∪ right))
+    (hnoCap : ¬ContainsCapSet χ (left ∪ right) 5) :
+    ∃ signature : CapFourFailureSignature,
+      signature ≠ .before ∧
+        RealizesCapFourFailureSignature χ cap hcapCard q signature := by
+  obtain ⟨signature, hsignature⟩ :=
+    capFour_realizes_some_failure_signature hcapSub hcapCard hcap
+      (Finset.mem_union_right left hqRight) hqCap hone hnoCap
+  refine ⟨signature, ?_, hsignature⟩
+  intro heq
+  subst signature
+  rcases hsignature with ⟨hqFirst, _⟩
+  obtain ⟨x, hx⟩ := hcapLeft
+  have hxCap := (Finset.mem_inter.mp hx).1
+  have hxLeft := (Finset.mem_inter.mp hx).2
+  have hfirstLe : cap.orderEmbOfFin hcapCard 0 ≤ x := by
+    rw [← Finset.image_orderEmbOfFin_univ cap hcapCard] at hxCap
+    simp only [Finset.mem_image, Finset.mem_univ, true_and] at hxCap
+    obtain ⟨i, rfl⟩ := hxCap
+    exact (cap.orderEmbOfFin hcapCard).monotone (Fin.zero_le i)
+  exact (hqFirst.trans_le hfirstLe).asymm (horder x hxLeft q hqRight)
+
 /-- If a five-cup lies wholly to the left of an ambient vertex, the triple
 formed by its last two vertices and that vertex must turn right when ambient
 six-cups are forbidden. -/
@@ -1050,6 +1309,26 @@ theorem cupFive_containsStrongSix_of_outer_right_inner_left
     simp [f, ce, hc, h01, h02, h03, houter, h12, h13,
       h14, hinner, h24, hbridge]
 
+/-- The two probe colors of a vertex lying strictly after a selected
+five-cup. -/
+structure FiveCupProbeState where
+  outer : Turn
+  inner : Turn
+  deriving DecidableEq, Repr
+
+/-- Package the outer and inner five-cup probe colors as a four-state value. -/
+def fiveCupProbeState {n : ℕ} (χ : TripleColoring n)
+    (cup : Finset (Fin n)) (hcupCard : cup.card = 5) (y : Fin n)
+    (horder : ∀ x ∈ cup, x < y) : FiveCupProbeState where
+  outer := χ ⟨cup.orderEmbOfFin hcupCard 0,
+    cup.orderEmbOfFin hcupCard 4, y,
+    (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+    horder _ (cup.orderEmbOfFin_mem hcupCard 4)⟩
+  inner := χ ⟨cup.orderEmbOfFin hcupCard 2,
+    cup.orderEmbOfFin hcupCard 3, y,
+    (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+    horder _ (cup.orderEmbOfFin_mem hcupCard 3)⟩
+
 /-- Every later vertex is classified by the two probe colors, unless it
 already extends the five-cup to a strong six-set. -/
 theorem cupFive_two_probe_trichotomy
@@ -1179,6 +1458,22 @@ theorem cupFive_outer_left_or_inner_right_of_no_strongSix
             hcupSub hcupCard hcup hyAmbient horder hone hnoCup
             houter hinner)).elim
     | right => exact Or.inr rfl
+
+/-- In the no-strong-six branch, only three of the four two-probe states can
+occur: outer-left or inner-right. -/
+theorem fiveCupProbeState_admissible_of_no_strongSix
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cup : Finset (Fin n)} {y : Fin n}
+    (hcupSub : cup ⊆ ambient) (hcupCard : cup.card = 5)
+    (hcup : IsCupSet χ cup) (hyAmbient : y ∈ ambient)
+    (horder : ∀ x ∈ cup, x < y) (hone : OneChangeOn χ ambient)
+    (hnoCup : ¬ContainsCupSet χ ambient 6)
+    (hnoStrong : ¬ContainsStrongPolygonSet χ ambient 6) :
+    (fiveCupProbeState χ cup hcupCard y horder).outer = Turn.left ∨
+      (fiveCupProbeState χ cup hcupCard y horder).inner = Turn.right := by
+  simpa [fiveCupProbeState] using
+    cupFive_outer_left_or_inner_right_of_no_strongSix
+      hcupSub hcupCard hcup hyAmbient horder hone hnoCup hnoStrong
 
 /-- A same-middle color disagreement obtained by adjoining a pair of vertices
 to a middle-determined set.  At least one vertex in the two compared triples
@@ -1385,6 +1680,100 @@ theorem cupFive_probe_transitions_give_coupled_middle_failure
   all_goals simp [MiddleComparisonUses,
     cup.orderEmbOfFin_mem hcupCard]
 
+/-- Every adjacent pair of five-cup probe states has an unchanged probe, has
+equal new probe colors, or produces an explicit coupled middle failure. This
+is the exhaustive transition split needed by the signature count. -/
+theorem fiveCupProbeState_transition_partition
+    {n : ℕ} {χ : TripleColoring n}
+    {ambient cup : Finset (Fin n)} {y z : Fin n}
+    (hcupSub : cup ⊆ ambient) (hcupCard : cup.card = 5)
+    (hyAmbient : y ∈ ambient) (hzAmbient : z ∈ ambient)
+    (horderY : ∀ x ∈ cup, x < y) (hyz : y < z)
+    (hone : OneChangeOn χ ambient) :
+    let stateY := fiveCupProbeState χ cup hcupCard y horderY
+    let stateZ := fiveCupProbeState χ cup hcupCard z
+      (fun x hx ↦ (horderY x hx).trans hyz)
+    stateY.outer = stateZ.outer ∨
+      stateY.inner = stateZ.inner ∨
+      stateZ.outer = stateZ.inner ∨
+      HasCoupledMiddlePairFailure χ cup y z := by
+  dsimp only [fiveCupProbeState]
+  by_cases houter :
+      χ ⟨cup.orderEmbOfFin hcupCard 0,
+        cup.orderEmbOfFin hcupCard 4, y,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 4)⟩ =
+      χ ⟨cup.orderEmbOfFin hcupCard 0,
+        cup.orderEmbOfFin hcupCard 4, z,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        (horderY _ (cup.orderEmbOfFin_mem hcupCard 4)).trans hyz⟩
+  · exact Or.inl houter
+  by_cases hinner :
+      χ ⟨cup.orderEmbOfFin hcupCard 2,
+        cup.orderEmbOfFin hcupCard 3, y,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        horderY _ (cup.orderEmbOfFin_mem hcupCard 3)⟩ =
+      χ ⟨cup.orderEmbOfFin hcupCard 2,
+        cup.orderEmbOfFin hcupCard 3, z,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        (horderY _ (cup.orderEmbOfFin_mem hcupCard 3)).trans hyz⟩
+  · exact Or.inr (Or.inl hinner)
+  by_cases hnew :
+      χ ⟨cup.orderEmbOfFin hcupCard 0,
+        cup.orderEmbOfFin hcupCard 4, z,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        (horderY _ (cup.orderEmbOfFin_mem hcupCard 4)).trans hyz⟩ =
+      χ ⟨cup.orderEmbOfFin hcupCard 2,
+        cup.orderEmbOfFin hcupCard 3, z,
+        (cup.orderEmbOfFin hcupCard).strictMono (by decide),
+        (horderY _ (cup.orderEmbOfFin_mem hcupCard 3)).trans hyz⟩
+  · exact Or.inr (Or.inr (Or.inl hnew))
+  · exact Or.inr (Or.inr (Or.inr
+      (cupFive_probe_transitions_give_coupled_middle_failure
+        hcupSub hcupCard hyAmbient hzAmbient horderY hyz hone
+        houter hinner hnew)))
+
+/-- On an ordered cut, two right-side vertices receive non-`before` cap
+signatures, while their five-cup probe states obey the exhaustive transition
+partition. This is the common local interface for the multiplicity count. -/
+theorem right_pair_has_cap_signatures_and_probe_transition
+    {n : ℕ} {χ : TripleColoring n}
+    {left right cup cap : Finset (Fin n)} {y z : Fin n}
+    (horder : ∀ x ∈ left, ∀ y ∈ right, x < y)
+    (hcupSub : cup ⊆ left) (hcupCard : cup.card = 5)
+    (hcapSub : cap ⊆ left ∪ right) (hcapCard : cap.card = 4)
+    (hcap : IsCapSet χ cap) (hcapLeft : (cap ∩ left).Nonempty)
+    (hyRight : y ∈ right) (hzRight : z ∈ right) (hyz : y < z)
+    (hyCap : y ∉ cap) (hzCap : z ∉ cap)
+    (hone : OneChangeOn χ (left ∪ right))
+    (hnoCap : ¬ContainsCapSet χ (left ∪ right) 5) :
+    ∃ signatureY signatureZ : CapFourFailureSignature,
+      signatureY ≠ .before ∧ signatureZ ≠ .before ∧
+      RealizesCapFourFailureSignature χ cap hcapCard y signatureY ∧
+      RealizesCapFourFailureSignature χ cap hcapCard z signatureZ ∧
+      (let horderY : ∀ x ∈ cup, x < y :=
+          fun x hx ↦ horder x (hcupSub hx) y hyRight
+        let stateY := fiveCupProbeState χ cup hcupCard y horderY
+        let stateZ := fiveCupProbeState χ cup hcupCard z
+          (fun x hx ↦ (horderY x hx).trans hyz)
+        stateY.outer = stateZ.outer ∨
+          stateY.inner = stateZ.inner ∨
+          stateZ.outer = stateZ.inner ∨
+          HasCoupledMiddlePairFailure χ cup y z) := by
+  obtain ⟨signatureY, hsignatureY, hrealizesY⟩ :=
+    capFour_right_vertex_realizes_nonbefore_signature horder hcapSub
+      hcapCard hcap hcapLeft hyRight hyCap hone hnoCap
+  obtain ⟨signatureZ, hsignatureZ, hrealizesZ⟩ :=
+    capFour_right_vertex_realizes_nonbefore_signature horder hcapSub
+      hcapCard hcap hcapLeft hzRight hzCap hone hnoCap
+  refine ⟨signatureY, signatureZ, hsignatureY, hsignatureZ,
+    hrealizesY, hrealizesZ, ?_⟩
+  exact fiveCupProbeState_transition_partition
+    (hcupSub.trans Finset.subset_union_left) hcupCard
+    (Finset.mem_union_right left hyRight)
+    (Finset.mem_union_right left hzRight)
+    (fun x hx ↦ horder x (hcupSub hx) y hyRight) hyz hone
+
 /-- Every ambient vertex outside a strong `k`-set has a local four-index
 obstruction when the ambient set contains no strong `(k+1)`-set. -/
 theorem strong_extension_failure_of_no_strong_succ
@@ -1487,6 +1876,51 @@ def TwoCapFreeSidesForce567AtTwentyTwo : Prop :=
         ContainsCupSet χ (left ∪ right) 6 ∨
         ContainsStrongPolygonSet χ (left ∪ right) 7
 
+/-- The remaining sharp charging contract. In every hypothetical 22-vertex
+counterexample, one can select a four-cap and a realized nine-signature charge
+whose fibers have capacity two, with at least one nonsaturated fiber. -/
+def TwoCapFreeSidesSharpCapCharge567 : Prop :=
+  ∀ {n : ℕ} {χ : TripleColoring n} {left right : Finset (Fin n)},
+    Disjoint left right → (∀ x ∈ left, ∀ y ∈ right, x < y) →
+      left.card + right.card = 22 →
+      ¬ContainsCapSet χ left 4 → ¬ContainsCapSet χ right 4 →
+      OneChangeOn χ (left ∪ right) →
+      ¬ContainsCapSet χ (left ∪ right) 5 →
+      ¬ContainsCupSet χ (left ∪ right) 6 →
+      ¬ContainsStrongPolygonSet χ (left ∪ right) 7 →
+      ∃ (cap : Finset (Fin n)) (hcapCard : cap.card = 4)
+          (charge : Fin n → CapFourFailureSignature)
+          (strictSignature : CapFourFailureSignature),
+        cap ⊆ left ∪ right ∧ IsCapSet χ cap ∧
+          IsCapFourFailureCharge χ (left ∪ right) cap hcapCard charge ∧
+          (∀ signature,
+            (capFourFailureFiber (left ∪ right) cap charge signature).card ≤ 2) ∧
+          (capFourFailureFiber (left ∪ right) cap charge strictSignature).card ≤ 1
+
+/-- The sharp charging contract closes the exact 22-vertex forcing theorem. -/
+theorem twoCapFreeSidesForce567AtTwentyTwo_of_sharpCapCharge
+    (hcharge : TwoCapFreeSidesSharpCapCharge567) :
+    TwoCapFreeSidesForce567AtTwentyTwo := by
+  intro n χ left right hdisjoint horder htotal hleftCap hrightCap hone
+  by_contra htarget
+  have hnoCap : ¬ContainsCapSet χ (left ∪ right) 5 :=
+    fun hcap ↦ htarget (Or.inl hcap)
+  have hnoCup : ¬ContainsCupSet χ (left ∪ right) 6 :=
+    fun hcup ↦ htarget (Or.inr (Or.inl hcup))
+  have hnoStrong : ¬ContainsStrongPolygonSet χ (left ∪ right) 7 :=
+    fun hstrong ↦ htarget (Or.inr (Or.inr hstrong))
+  obtain ⟨cap, hcapCard, charge, strictSignature, hcapSub, _hcap,
+      _hrealizes, hcapacity, hstrict⟩ :=
+    hcharge hdisjoint horder htotal hleftCap hrightCap hone
+      hnoCap hnoCup hnoStrong
+  have hbound : (left ∪ right).card ≤ 21 :=
+    ambient_card_le_twenty_one_of_sharp_capFourFailure_charge
+      hcapSub hcapCard charge hcapacity strictSignature hstrict
+  have hunionCard : (left ∪ right).card = 22 := by
+    rw [Finset.card_union_of_disjoint hdisjoint]
+    exact htotal
+  omega
+
 /-- The exact 22-vertex forcing statement implies the residual cardinality
 window theorem by hereditary restriction. -/
 theorem twoCapFreeSidesCore567_of_forceAtTwentyTwo
@@ -1543,5 +1977,13 @@ theorem twoCapFreeSidesBound567_of_forceAtTwentyTwo
     TwoCapFreeSidesBound567 :=
   twoCapFreeSidesBound567_of_core
     (twoCapFreeSidesCore567_of_forceAtTwentyTwo hforce)
+
+/-- The single sharp charging contract is sufficient for the complete local
+`(5,6,7)` two-side bound. -/
+theorem twoCapFreeSidesBound567_of_sharpCapCharge
+    (hcharge : TwoCapFreeSidesSharpCapCharge567) :
+    TwoCapFreeSidesBound567 :=
+  twoCapFreeSidesBound567_of_forceAtTwentyTwo
+    (twoCapFreeSidesForce567AtTwentyTwo_of_sharpCapCharge hcharge)
 
 end ErdosSzekeres

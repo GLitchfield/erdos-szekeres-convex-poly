@@ -56,7 +56,18 @@ The following now compile without placeholders:
   both turns through the later vertex pair equal the new probe color; and
 - the resulting four-anchor propagation for the two five-cup probes. If both
   probes change to different new colors, Lean constructs an explicit coupled
-  middle-disagreement witness at the earlier outside vertex.
+  middle-disagreement witness at the earlier outside vertex;
+- a nine-constructor `CapFourFailureSignature` type, its exact cardinality,
+  and a theorem assigning every vertex outside a four-cap at least one
+  realized signature;
+- a total `IsCapFourFailureCharge` assignment built from those local
+  signatures, together with finite signature fibers;
+- a packaged `FiveCupProbeState` and an exhaustive adjacent-transition
+  partition: one probe is unchanged, the two new probe colors agree, or the
+  pair carries a coupled middle disagreement; and
+- the exact sharp summation theorem: capacity two in all nine failure fibers,
+  with one fiber of capacity one, leaves at most 17 vertices outside the cap
+  and hence at most 21 vertices total.
 
 These are reusable formal results, not a proof of the cardinal bound 21.
 
@@ -124,3 +135,12 @@ different new colors. The remaining local transition cases have at least one
 unchanged probe, or both probes change to the same new color; their
 multiplicities must be coupled to the now-explicit nine crossing-cap
 signatures rather than bounded from the probe word alone.
+
+Lean now freezes that coupling as the single proposition
+`TwoCapFreeSidesSharpCapCharge567`. It asks for a selectable four-cap in every
+hypothetical 22-vertex counterexample, a realized signature charge with every
+fiber of size at most two, and one nonsaturated fiber of size at most one.
+Theorems compile showing that this proposition implies the exact 22-vertex
+forcing statement, `TwoCapFreeSidesBound567`, and all existing `(5,6,7)`
+application shells. The proposition itself remains unproved; this is the
+current mathematical obstruction rather than a completed cardinal bound.
