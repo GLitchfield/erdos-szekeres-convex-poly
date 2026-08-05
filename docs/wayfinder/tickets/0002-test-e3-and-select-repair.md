@@ -602,6 +602,23 @@ middle-split obstruction: each `2+4`, `3+3`, or `4+2` crossing strong six must
 force a target outcome or yield an extreme replacement. Only after that
 premise is discharged does the shared-pair agreement case become active.
 
+The symmetric `3+3` follow-up has now been audited and reduced. A bounded
+Sol/Fable review at evidence-packet SHA-256
+`3b1bc9f5737ee6c33e3566dce112466e2c1da93be961a0d13339a668e44ef53d`
+agreed that deletion-preserving extreme replacement has a quantifier gap.
+Lean settles the reviewers' disagreement about the local middle word: under
+cap-five and cup-six avoidance it has weight one or two, since three right
+positions form a cap five through the strong-six endpoints. A deterministic
+12-point SAT model, independently replayed, refutes the claim that two
+disjoint `3+3` crossing strong sixes force a target outcome. The surviving
+compiling transition deletes the first polygon and retains a disjoint partner,
+mutual middle obstruction in all twelve directed extensions, the partner's
+five-way crossing split, and weight-one-or-two words on both polygons. The
+crossing normalization is now also compiled: each directed failure has three
+side-aware states, with the extreme role's comparison core forced entirely
+onto the probe's side of the cut. The next target must combine these localized
+cores with the bounded middle words and crossing split types.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -639,6 +656,9 @@ premise is discharged does the shared-pair agreement case become active.
 - [Endpoint anomaly-class analyzer](../../../scripts/analyze_endpoint_anomaly_classes.py)
 - [Balanced residue transitions](../../experiments/0017-balanced-residue-transitions.md)
 - [Packed crossing splits](../../experiments/0018-packed-crossing-splits.md)
+- [Middle crossing split state](../../experiments/0019-middle-crossing-split-state.md)
+- [Middle-split pair falsifier](../../../scripts/check_middle_split_pair.py)
+- [Independent middle-split pair checker](../../../scripts/verify_middle_split_pair_model.py)
 - [Repeated-residue falsifier](../../../scripts/check_repeated_residue_fibers.py)
 - [Independent repeated-residue checker](../../../scripts/verify_repeated_residue_model.py)
 - [Lean structural charging machinery](../../../ErdosSzekeres/StructuralCharging.lean)

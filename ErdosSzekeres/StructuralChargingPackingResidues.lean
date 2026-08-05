@@ -51,6 +51,55 @@ theorem side_intersections_disjoint
     (Finset.mem_inter.mp hxLeft).2 (Finset.mem_inter.mp hxRight).2
 
 /-- In the balanced no-internal-strong-six branch, every packed witness left
+inside the ambient set has exactly one of the five proper crossing splits. -/
+theorem strongSix_has_proper_crossing_split
+    {n : ℕ} {χ : TripleColoring n} {left right polygon : Finset (Fin n)}
+    (hdisjoint : Disjoint left right)
+    (hpolygonSub : polygon ⊆ left ∪ right) (hpolygonCard : polygon.card = 6)
+    (hpolygonStrong : IsStrongPolygonSet χ polygon)
+    (hnoLeftStrong : ¬ContainsStrongPolygonSet χ left 6)
+    (hnoRightStrong : ¬ContainsStrongPolygonSet χ right 6) :
+    ((polygon ∩ left).card = 1 ∧ (polygon ∩ right).card = 5) ∨
+    ((polygon ∩ left).card = 2 ∧ (polygon ∩ right).card = 4) ∨
+    ((polygon ∩ left).card = 3 ∧ (polygon ∩ right).card = 3) ∨
+    ((polygon ∩ left).card = 4 ∧ (polygon ∩ right).card = 2) ∨
+    ((polygon ∩ left).card = 5 ∧ (polygon ∩ right).card = 1) := by
+  have hleftPos : 0 < (polygon ∩ left).card := by
+    by_contra hnot
+    have hzero : (polygon ∩ left).card = 0 := by omega
+    have hinterEmpty : polygon ∩ left = ∅ := Finset.card_eq_zero.mp hzero
+    have hpolygonRight : polygon ⊆ right := by
+      intro x hx
+      rcases Finset.mem_union.mp (hpolygonSub hx) with hxLeft | hxRight
+      · have hxInter : x ∈ polygon ∩ left := Finset.mem_inter.mpr ⟨hx, hxLeft⟩
+        rw [hinterEmpty] at hxInter
+        simp at hxInter
+      · exact hxRight
+    exact hnoRightStrong ⟨polygon, hpolygonRight, hpolygonCard, hpolygonStrong⟩
+  have hrightPos : 0 < (polygon ∩ right).card := by
+    by_contra hnot
+    have hzero : (polygon ∩ right).card = 0 := by omega
+    have hinterEmpty : polygon ∩ right = ∅ := Finset.card_eq_zero.mp hzero
+    have hpolygonLeft : polygon ⊆ left := by
+      intro x hx
+      rcases Finset.mem_union.mp (hpolygonSub hx) with hxLeft | hxRight
+      · exact hxLeft
+      · have hxInter : x ∈ polygon ∩ right := Finset.mem_inter.mpr ⟨hx, hxRight⟩
+        rw [hinterEmpty] at hxInter
+        simp at hxInter
+    exact hnoLeftStrong ⟨polygon, hpolygonLeft, hpolygonCard, hpolygonStrong⟩
+  have hcardSum : (polygon ∩ left).card + (polygon ∩ right).card = 6 := by
+    calc
+      (polygon ∩ left).card + (polygon ∩ right).card =
+          ((polygon ∩ left) ∪ (polygon ∩ right)).card :=
+        (Finset.card_union_of_disjoint
+          (side_intersections_disjoint hdisjoint)).symm
+      _ = polygon.card := congrArg Finset.card
+        (union_side_intersections_eq hpolygonSub)
+      _ = 6 := hpolygonCard
+  omega
+
+/-- In the balanced no-internal-strong-six branch, every packed witness left
 after a prescribed six-deletion has exactly one of the five proper crossing
 splits. -/
 theorem packedStrongSix_has_proper_crossing_split_avoiding
@@ -69,43 +118,10 @@ theorem packedStrongSix_has_proper_crossing_split_avoiding
        ((polygon ∩ left).card = 5 ∧ (polygon ∩ right).card = 1)) := by
   obtain ⟨polygon, hpolygonSub, hpolygonCard, hpolygonStrong⟩ :=
     hpacking deleted hdeletedSub hdeletedCard
-  have hpolygonAmbient : polygon ⊆ left ∪ right :=
-    hpolygonSub.trans Finset.sdiff_subset
-  have hleftPos : 0 < (polygon ∩ left).card := by
-    by_contra hnot
-    have hzero : (polygon ∩ left).card = 0 := by omega
-    have hinterEmpty : polygon ∩ left = ∅ := Finset.card_eq_zero.mp hzero
-    have hpolygonRight : polygon ⊆ right := by
-      intro x hx
-      rcases Finset.mem_union.mp (hpolygonAmbient hx) with hxLeft | hxRight
-      · have hxInter : x ∈ polygon ∩ left := Finset.mem_inter.mpr ⟨hx, hxLeft⟩
-        rw [hinterEmpty] at hxInter
-        simp at hxInter
-      · exact hxRight
-    exact hnoRightStrong ⟨polygon, hpolygonRight, hpolygonCard, hpolygonStrong⟩
-  have hrightPos : 0 < (polygon ∩ right).card := by
-    by_contra hnot
-    have hzero : (polygon ∩ right).card = 0 := by omega
-    have hinterEmpty : polygon ∩ right = ∅ := Finset.card_eq_zero.mp hzero
-    have hpolygonLeft : polygon ⊆ left := by
-      intro x hx
-      rcases Finset.mem_union.mp (hpolygonAmbient hx) with hxLeft | hxRight
-      · exact hxLeft
-      · have hxInter : x ∈ polygon ∩ right := Finset.mem_inter.mpr ⟨hx, hxRight⟩
-        rw [hinterEmpty] at hxInter
-        simp at hxInter
-    exact hnoLeftStrong ⟨polygon, hpolygonLeft, hpolygonCard, hpolygonStrong⟩
-  have hcardSum : (polygon ∩ left).card + (polygon ∩ right).card = 6 := by
-    calc
-      (polygon ∩ left).card + (polygon ∩ right).card =
-          ((polygon ∩ left) ∪ (polygon ∩ right)).card :=
-        (Finset.card_union_of_disjoint
-          (side_intersections_disjoint hdisjoint)).symm
-      _ = polygon.card := congrArg Finset.card
-        (union_side_intersections_eq hpolygonAmbient)
-      _ = 6 := hpolygonCard
-  refine ⟨polygon, hpolygonSub, hpolygonCard, hpolygonStrong, ?_⟩
-  omega
+  exact ⟨polygon, hpolygonSub, hpolygonCard, hpolygonStrong,
+    strongSix_has_proper_crossing_split hdisjoint
+      (hpolygonSub.trans Finset.sdiff_subset) hpolygonCard hpolygonStrong
+      hnoLeftStrong hnoRightStrong⟩
 
 /-- An explicit `1+5` strong six supplies a strong-five residue at its unique
 left vertex, which remains a member of the original polygon. -/

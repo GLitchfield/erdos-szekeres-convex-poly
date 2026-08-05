@@ -43,6 +43,7 @@ test: check lean
 		scripts/check_decomposable_rank_profiles.py \
 		scripts/check_incoming_star_prefixes.py \
 		scripts/check_crossing_separated_caps.py \
+		scripts/check_middle_split_pair.py \
 		scripts/check_strong_cup_blocks.py \
 		scripts/check_two_cap_free_sides.py \
 		scripts/check_two_cap_free_sides_middle.py \
@@ -66,7 +67,8 @@ test: check lean
 		scripts/generate_cup_blocks_state_sat.py \
 		scripts/generate_es5_sat.py scripts/generate_signotope_state_sat.py \
 		scripts/split_dimacs_units.py scripts/split_lrat_checkpoints.py \
-		scripts/toolchain/unzip scripts/verify_repeated_residue_model.py \
+		scripts/toolchain/unzip scripts/verify_middle_split_pair_model.py \
+		scripts/verify_repeated_residue_model.py \
 		scripts/wayfinder_status.py
 
 wayfinder:

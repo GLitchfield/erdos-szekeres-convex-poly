@@ -245,6 +245,13 @@ sets.
   exactly strong-five residue carriers. If the three middle splits are
   excluded, deletion packing forces at least seven carriers, hence three
   residues on one side with a pair overlap.
+  `StructuralChargingMiddleSplits.lean` proves that ambient cap-five and
+  cup-six avoidance restrict every strong-six middle word to weight one or
+  two. Deleting a middle-split witness now produces a disjoint mutually
+  obstructed partner with one of five splits and a bounded middle word. All
+  twelve directed failures also have a side-aware three-state form: an
+  interleaving endpoint or middle role, or an extreme role whose comparison
+  core is forced entirely onto the vertex's side of the cut.
 - `ErdosSzekeres/StructuralChargingSaturatedResource.lean` proves that the gate
   would bound the large child by 21 and eliminate the `(5,6,7,4,2)` child
   pairs `(2,24)`, `(3,23)`, `(4,22)` and their color duals. A sharp 21-point

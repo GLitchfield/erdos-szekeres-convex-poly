@@ -220,9 +220,19 @@ None. The destination was fixed by the user on 2026-08-01.
   seven extreme-split residue carriers, at least four on one side, and hence
   three residues with a pair overlap. The immediate obstruction is therefore
   to derive a target outcome or an extreme replacement from every middle
-  crossing split; after that, the shared-pair agreement case remains.
-  Bounded countermodels rule out reducing either target to bare `5+5`, `6+4`,
-  or `6+7` block data.
+  crossing split; after that, the shared-pair agreement case remains. The
+  naive local `3+3` replacement is false: an independently checked 12-point
+  model contains two disjoint `3+3` strong sixes while avoiding `(5,6,7)` and
+  side four-caps. Lean instead proves the honest transition obtained by
+  deleting one witness: a disjoint mutually middle-obstructed partner, one of
+  five crossing splits, and weight-one-or-two middle words on both polygons.
+  All twelve directed failures now have a compiling side-aware three-state
+  normalization. For a left-side probe, a right-endpoint failure has its three
+  earlier comparison vertices in the left side; the dual statement holds for
+  a right-side probe and a left-endpoint failure. The next target is to combine
+  those localized cores with the two bounded middle words and five split types
+  to derive an extreme replacement or a target outcome. Bounded countermodels
+  rule out reducing either target to bare `5+5`, `6+4`, or `6+7` block data.
 
 ## Not yet specified
 
