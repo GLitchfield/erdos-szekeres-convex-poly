@@ -66,8 +66,8 @@ refutation aid, not a Lean proof of a positive result.
 
 ## Next theorem
 
-This target is continued in experiment 0020. The localized cores have been
-combined with the bounded middle words and split types, and all raw roles now
-refine to indexed anomaly/fan classes. The active target is a common bridge
-certificate for those classes, followed by a checked two-probe compatibility
-lemma.
+This target is continued in [experiment 0020](0020-middle-failure-classes.md)
+and [experiment 0021](0021-middle-bridge-certificates.md). The localized cores
+now refine to indexed anomaly/fan classes and then to a common bridge
+certificate. The strongest surviving bare two-probe compatibility statement
+is proved in Lean; stronger gluing conclusions were exhaustively refuted.

@@ -256,6 +256,11 @@ sets.
   roles, indexes the resulting anomaly/fan states by a literal 19-element
   type, canonicalizes anomaly endpoints, and proves one-change bridge
   equalities for canonical, internal-fan, and fresh-middle-fan branches.
+  `StructuralChargingMiddleSplitBridges.lean` packages all 19 classes into one
+  four-vertex bridge certificate and lifts it through deletion packing. Two
+  probes anchored on the same three-polygon frame provably agree with the
+  frame color, while exhaustive five-vertex checking rules out stronger bare
+  gluing conclusions.
 - `ErdosSzekeres/StructuralChargingSaturatedResource.lean` proves that the gate
   would bound the large child by 21 and eliminate the `(5,6,7,4,2)` child
   pairs `(2,24)`, `(3,23)`, `(4,22)` and their color duals. A sharp 21-point

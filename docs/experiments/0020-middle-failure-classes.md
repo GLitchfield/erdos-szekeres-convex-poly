@@ -59,8 +59,7 @@ is falsification evidence, not a Lean proof of a universal claim.
 
 ## Next theorem
 
-State one common bridge-certificate predicate for all 19 classes, using the
-now-complete first/final boundary transitions. The next nonlocal compatibility
-target should compare two probes carrying the same indexed bridge certificate;
-it must be tested against the recorded `3+3` model before asserting a fiber
-bound.
+This target is completed in [experiment 0021](0021-middle-bridge-certificates.md).
+All 19 classes now supply one common bridge certificate, and the surviving
+two-probe agreement is proved in Lean. Exhaustive checking rejects any
+stronger bare-certificate conclusion involving a triple through both probes.

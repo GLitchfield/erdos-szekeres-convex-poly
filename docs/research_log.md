@@ -6,6 +6,4 @@ experiments.
 
 | Test | Question | Evidence level | Status | Artifacts |
 | --- | --- | --- | --- | --- |
-
-No designed computational experiments have been run. Repository and Lean build
-checks are infrastructure checks, not mathematical evidence.
+| 0021 | What do two probes with bridge certificates on one frame force? | Exhaustive `2^10` five-vertex audit; positive survivor proved in Lean | Complete | [Note](experiments/0021-middle-bridge-certificates.md), [analyzer](../scripts/analyze_two_probe_bridge_compatibility.py) |

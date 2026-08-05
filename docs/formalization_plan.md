@@ -508,17 +508,20 @@ capacity-two matching relaxation, and its 17-slot conclusion is circular at a
 no-strong-six branch at ambient size 15. At size 22 it makes the strong-six
 family avoid every prescribed six-set. The checked `(4,6,6)` state then gives
 an internal strong six on one side unless the cut is exactly `11+11`; all
-opposite-side vertices have a forced endpoint-role middle failure. Lean also
-classifies the internal strong-six middle word: cap-four and cup-six avoidance
-leave exactly one right position. The active targets are now the resulting
-endpoint branch and the balanced `11+11` branch. Endpoint failures further
-normalize to four internally referenced anomalies or a final-middle fan
-variation, with a proved fan-change propagation law. Normalized
-`5+5`, `6+4`, and `6+7` block shortcuts have validated SAT countermodels and
-must not be used. The balanced `11+11` leaf now has a separate hereditary
-interface: unless an internal strong six redirects to the endpoint branch,
-each vertex activates a four-cap or strong-six witness through itself on the
-opposite side.
+opposite-side vertices have a forced middle failure. Lean classifies each
+failure into one of 19 indexed classes and maps every class to a common
+four-vertex bridge certificate. Deletion packing supplies twelve such
+certificates. An interior certificate anchors the probe to a three-vertex
+polygon frame, and Lean proves equality for two probes anchored to the same
+frame. Exhaustive five-vertex checking shows that this equality does not
+extend to a triple containing both probes and does not force a strong five.
+The active target is to test whether the full class, split, and bounded-word
+data force three same-side probes to share an anchored frame; if not, the
+certificate must retain class-specific index data. Normalized `5+5`, `6+4`,
+and `6+7` block shortcuts have validated SAT countermodels and must not be
+used. The balanced `11+11` leaf also retains its hereditary interface: unless
+an internal strong six redirects to this branch, each vertex activates a
+four-cap or strong-six witness through itself on the opposite side.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.

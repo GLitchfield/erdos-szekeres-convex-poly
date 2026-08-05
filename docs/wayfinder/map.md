@@ -233,10 +233,15 @@ None. The destination was fixed by the user on 2026-08-01.
   a literal 19-class anomaly/fan state: internal positions are indexed, anomaly
   endpoints are canonical, and one-change forces explicit bridge equalities
   in the canonical, boundary-fan, internal-fan, and fresh-middle-fan branches.
-  The checked `3+3` model refutes capacity one even for indexed classes. The
-  next target is a common bridge certificate for all classes, followed by a
-  two-probe compatibility lemma. Bounded countermodels
-  rule out reducing the route to bare `5+5`, `6+4`, or `6+7` block data.
+  The 19 classes now map to one four-vertex bridge certificate, and deletion
+  packing supplies all twelve directed certificates. Interior certificates
+  anchor to their three-polygon frame, so two probes on one frame have equal
+  outer-pair colors. An exhaustive five-vertex audit proves this is the exact
+  bare-certificate limit: it forces neither a strong five nor any equality
+  involving a triple through both probes. The next target is to SAT-test
+  whether class, split, and bounded-word data force three probes on one side
+  to share an anchored frame. Bounded countermodels rule out reducing the
+  route to bare `5+5`, `6+4`, or `6+7` block data.
 
 ## Not yet specified
 

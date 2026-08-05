@@ -165,6 +165,29 @@ def validate_canonical_bridge_transitions(polygon, q, left_turns, positions):
     return checked
 
 
+def bridge_certificates(polygon, q, left_turns):
+    certificates = []
+    for frame in itertools.combinations(polygon, 3):
+        quad = tuple(sorted((*frame, q)))
+        sequence = [
+            color(left_turns, *triple)
+            for triple in itertools.combinations(quad, 3)
+        ]
+        position = quad.index(q)
+        for kind, realized in (
+            ("head", sequence[0] == sequence[1] == sequence[2]),
+            ("tail", sequence[1] == sequence[2] == sequence[3]),
+        ):
+            if realized:
+                certificates.append({
+                    "frame": frame,
+                    "kind": kind,
+                    "position": position,
+                    "anchored": position in (1, 2),
+                })
+    return certificates
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("model", type=Path)
@@ -177,12 +200,20 @@ def main() -> None:
         if index in true_variables
     }
     profiles = []
+    anchored_by_direction = {}
     for reference, probes in ((FIRST, SECOND), (SECOND, FIRST)):
         for q in probes:
             realized = classes(reference, q, left_turns)
             if not realized:
                 raise SystemExit(f"no normalized failure class for {reference=} {q=}")
             positions = internal_positions(reference, q, left_turns)
+            certificates = bridge_certificates(reference, q, left_turns)
+            anchored_frames = {
+                tuple(certificate["frame"])
+                for certificate in certificates
+                if certificate["anchored"]
+            }
+            anchored_by_direction[tuple(reference), q] = anchored_frames
             profiles.append({
                 "reference": reference,
                 "probe": q,
@@ -191,8 +222,29 @@ def main() -> None:
                 "bridge_checks": validate_canonical_bridge_transitions(
                     reference, q, left_turns, positions
                 ),
+                "bridge_certificate_count": len(certificates),
+                "anchored_frames": sorted(anchored_frames),
             })
-    print(json.dumps({"profiles": profiles}, sort_keys=True))
+    shared_anchored_pairs = []
+    for reference, probes in ((FIRST, SECOND), (SECOND, FIRST)):
+        for q0, q1 in itertools.combinations(probes, 2):
+            shared = sorted(
+                anchored_by_direction[tuple(reference), q0]
+                & anchored_by_direction[tuple(reference), q1]
+            )
+            for x, y, z in shared:
+                if color(left_turns, x, q0, z) != color(left_turns, x, q1, z):
+                    raise SystemExit("shared anchored frame color disagreement")
+            if shared:
+                shared_anchored_pairs.append({
+                    "reference": reference,
+                    "probes": (q0, q1),
+                    "frames": shared,
+                })
+    print(json.dumps({
+        "profiles": profiles,
+        "shared_anchored_pairs": shared_anchored_pairs,
+    }, sort_keys=True))
 
 
 if __name__ == "__main__":

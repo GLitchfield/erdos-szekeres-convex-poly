@@ -625,9 +625,14 @@ The nominal class type has 19 elements. Arbitrary anomaly endpoints either
 canonicalize or create a same-index fan, and one-change turns canonical,
 boundary-fan, internal-fan, and fresh-middle-fan classes into explicit bridge
 equalities. Replay on the checked `3+3` model rules out a capacity-one count on
-these indexed labels. The active target is now one common bridge-certificate
-predicate, then compatibility between two probes carrying the same indexed
-certificate.
+these indexed labels. All 19 classes now supply one common four-vertex bridge
+certificate, and deletion packing supplies all twelve directed certificates.
+Interior certificates anchor to the color of their three-polygon frame, so
+two probes on one frame have equal outer-pair colors. Exhaustive five-vertex
+checking refutes every stronger bare-certificate conclusion involving a
+triple through both probes and refutes a forced strong five. The active target
+is now to test whether the full class, split, and bounded-word data force three
+same-side probes to share an anchored frame.
 
 ## Evidence
 
@@ -668,7 +673,9 @@ certificate.
 - [Packed crossing splits](../../experiments/0018-packed-crossing-splits.md)
 - [Middle crossing split state](../../experiments/0019-middle-crossing-split-state.md)
 - [Finite middle-failure classes](../../experiments/0020-middle-failure-classes.md)
+- [Common middle-failure bridge certificates](../../experiments/0021-middle-bridge-certificates.md)
 - [Middle-failure class analyzer](../../../scripts/analyze_middle_split_failure_classes.py)
+- [Two-probe bridge compatibility analyzer](../../../scripts/analyze_two_probe_bridge_compatibility.py)
 - [Middle-split pair falsifier](../../../scripts/check_middle_split_pair.py)
 - [Independent middle-split pair checker](../../../scripts/verify_middle_split_pair_model.py)
 - [Repeated-residue falsifier](../../../scripts/check_repeated_residue_fibers.py)
