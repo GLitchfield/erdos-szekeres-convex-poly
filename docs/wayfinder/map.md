@@ -208,8 +208,17 @@ None. The destination was fixed by the user on 2026-08-01.
   balanced branch now has an exact incidence form: each of its 22 vertices
   supplies either a three-vertex cap residue or a five-vertex strong-six
   residue on the opposite side. The final local bound reduces directly to
-  this residue branch plus the endpoint branch. Bounded countermodels rule out
-  reducing either target to bare `5+5`, `6+4`, or `6+7` block data.
+  this residue branch plus the endpoint branch. Shared cap residues now have
+  one of four monotone external-pair words. Shared strong residues satisfy an
+  exact gluing obstruction: absence of a strong seven forces pair-profile
+  variation or an extension disagreement at the first residue middle. Fully
+  checked `11+2` and `11+3` controls show that neither repetition alone has a
+  small fiber bound. Lean now proves that among three strong five-residues in
+  an eleven-set, two share at least two vertices. The next balanced invariant
+  must connect the 22-point strong-six packing to enough strong-residue
+  witnesses to activate this overlap, then resolve the shared-pair agreement
+  case. Bounded countermodels rule out reducing either target to bare `5+5`,
+  `6+4`, or `6+7` block data.
 
 ## Not yet specified
 

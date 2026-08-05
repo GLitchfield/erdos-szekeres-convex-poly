@@ -235,6 +235,11 @@ sets.
   repetition bound on the five labels alone. The `11+11` exception is further
   reduced to exact three- or five-vertex residues on the opposite side whose
   reinsertion with the designated vertex gives a cap four or strong six.
+  `StructuralChargingResidueTransitions.lean` proves the first coupling laws:
+  shared cap residues give one of four monotone pair words, while shared
+  strong residues either vary across the external pair or disagree only at
+  their first base middle. It also proves that three strong five-residues in
+  an eleven-set force two residues to share a pair.
 - `ErdosSzekeres/StructuralChargingSaturatedResource.lean` proves that the gate
   would bound the large child by 21 and eliminate the `(5,6,7,4,2)` child
   pairs `(2,24)`, `(3,23)`, `(4,22)` and their color duals. A sharp 21-point

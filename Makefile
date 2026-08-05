@@ -51,6 +51,7 @@ test: check lean
 		scripts/check_published_offwindow.py \
 		scripts/check_structural_charging_countercontrols.py \
 		scripts/check_rank_profile_realization.py \
+		scripts/check_repeated_residue_fibers.py \
 		scripts/check_decomposable_enumeration.py \
 		scripts/check_signotope_state_witness.py \
 		scripts/enumerate_decomposable_colorings.py \
@@ -65,7 +66,8 @@ test: check lean
 		scripts/generate_cup_blocks_state_sat.py \
 		scripts/generate_es5_sat.py scripts/generate_signotope_state_sat.py \
 		scripts/split_dimacs_units.py scripts/split_lrat_checkpoints.py \
-		scripts/toolchain/unzip scripts/wayfinder_status.py
+		scripts/toolchain/unzip scripts/verify_repeated_residue_model.py \
+		scripts/wayfinder_status.py
 
 wayfinder:
 	@python3 scripts/wayfinder_status.py

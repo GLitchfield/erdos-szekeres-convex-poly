@@ -567,6 +567,28 @@ witness: a through-cap is exactly a three-subset residue and a through-strong
 six is exactly a five-subset residue of the opposite side. The final reduction
 accepts this incidence-normalized residue branch directly.
 
+The first residue-coupling layer now compiles. Two vertices sharing a cap
+three-residue have a monotone pair profile, hence one of the four exact words
+`LLL`, `LLR`, `LRR`, `RRR`. Two strong-six extensions over a common
+five-residue glue to a strong seven if their pair profile is constant and all
+base-middle extension colors agree. The latter agreement is automatic away
+from the first base vertex. A first-middle discrepancy forces a constant pair
+profile, so no-strong-seven leaves an exact dichotomy between pair variation
+without first disagreement and constant profile with first disagreement.
+Ordered-cut and mirror specializations expose these laws to the balanced
+branch. An all-right cap profile now explicitly completes a cap five.
+
+These transition laws do not supply a repetition bound. Independently checked
+SAT controls retain a full eleven-vertex cap-free, no-internal-strong-six side
+and find both shared cap and shared strong residues with two and three external
+vertices while avoiding `(5,6,7)`. Minimal controls allow ten vertices on one
+fixed cap residue and all eleven on one fixed strong residue. The next
+balanced target must therefore couple distinct overlapping residues. Lean now
+proves the first such incidence fact: among any three five-residues inside an
+eleven-set, two share at least two vertices. The pending bridge must force at
+least three strong-residue witnesses from the 22-point strong-six packing and
+then resolve the shared-pair agreement case.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -602,6 +624,9 @@ accepts this incidence-normalized residue branch directly.
 - [Middle-determinacy extension charge](../../experiments/0015-middle-determinacy-extension-charge.md)
 - [Strong-six branch reduction](../../experiments/0016-strong-six-branch-reduction.md)
 - [Endpoint anomaly-class analyzer](../../../scripts/analyze_endpoint_anomaly_classes.py)
+- [Balanced residue transitions](../../experiments/0017-balanced-residue-transitions.md)
+- [Repeated-residue falsifier](../../../scripts/check_repeated_residue_fibers.py)
+- [Independent repeated-residue checker](../../../scripts/verify_repeated_residue_model.py)
 - [Lean structural charging machinery](../../../ErdosSzekeres/StructuralCharging.lean)
 - [Lean normalized seven-vertex core](../../../ErdosSzekeres/StructuralChargingCore.lean)
 - [Lean arbitrary-set transport and closure](../../../ErdosSzekeres/StructuralChargingTransport.lean)

@@ -1081,7 +1081,7 @@ theorem twoCapFreeSidesBound567_of_endpointBranch_and_throughBranch
       hendpoint hthrough)
 
 /-- Incidence-normalized final reduction: the endpoint branch plus the exact
-three-/five-residue balanced branch proves the complete local bound. -/
+three- or five-residue balanced branch proves the complete local bound. -/
 theorem twoCapFreeSidesBound567_of_endpointBranch_and_residueBranch
     (hendpoint : TwoCapFreeSidesEndpointObstructedStrongSixBranch567)
     (hresidue : TwoCapFreeSidesElevenElevenResidueBranch567) :

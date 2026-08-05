@@ -208,8 +208,11 @@ def HasInternalRightEndpointAnomalyAt {n : ℕ} (χ : TripleColoring n)
   ∃ (i : Fin n) (hij : i < j) (hjq : j < q),
     i ∈ polygon ∧
       χ ⟨i, j, q, hij, hjq⟩ ≠
-        χ ⟨e 0, j, e 5, e.strictMono (by simp [strongSixInternalIndex]),
-          e.strictMono (by simp [strongSixInternalIndex])⟩
+        χ ⟨e 0, j, e 5, e.strictMono (by
+            change 0 < r.val + 1
+            omega), e.strictMono (by
+            change r.val + 1 < 5
+            omega)⟩
 
 /-- The five finite classes of normalized right-endpoint anomalies. -/
 inductive RightEndpointAnomalyClass where
