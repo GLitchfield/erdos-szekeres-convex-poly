@@ -242,9 +242,15 @@ None. The destination was fixed by the user on 2026-08-01.
   now retired by an independently replayed twelve-vertex SAT model. The model
   has two mutually obstructed `3+3` strong sixes and shared frames in both
   directions, yet avoids every target outcome and every extreme `1+5` or
-  `5+1` strong six. This is route-selection evidence, not a Lean theorem.
-  The next reviewed route must therefore use correlations among several
-  global packing deletions or add stronger geometric realizability data.
+  `5+1` strong six. The SAT properties remain route-selection evidence, but
+  Lean now proves that the exact coloring is sweep-realizable from explicit
+  rational coordinates. A bounded Sol/Fable review selected global packing
+  conditionally. Sharp-model censuses refute broad extremization, and an LRAT
+  dependency shrink for the exact no-internal `7+8` packing contradiction
+  still uses 704 deletion clauses across every split. Thus neither a modest
+  multi-deletion lemma nor stronger local realizability data survives its
+  gate. The pre-vetted fallback returns to designing a new uniform E3 state;
+  it must pass the existing all-root transition tests before promotion.
   Bounded countermodels also rule out reducing the route to bare `5+5`,
   `6+4`, or `6+7` block data.
 

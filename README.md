@@ -261,6 +261,13 @@ sets.
   probes anchored on the same three-polygon frame provably agree with the
   frame color, while exhaustive five-vertex checking rules out stronger bare
   gluing conclusions.
+  `StructuralChargingMiddleSplitRealization.lean` now gives explicit rational
+  coordinates for the decisive no-extreme coloring and proves in Lean that it
+  is sweep-realizable. Bounded packing gates also found no small replacement:
+  a reduced `7+8` proof core still uses 704 deletion obligations. Thus local
+  bridge refinement, modest packing extremization, and realizability as a
+  local repair are retired; the next strategic fallback is a new uniform E3
+  invariant with an all-root transition gate.
 - `ErdosSzekeres/StructuralChargingSaturatedResource.lean` proves that the gate
   would bound the large child by 21 and eliminate the `(5,6,7,4,2)` child
   pairs `(2,24)`, `(3,23)`, `(4,22)` and their color duals. A sharp 21-point

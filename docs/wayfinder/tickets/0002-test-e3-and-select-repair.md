@@ -637,9 +637,14 @@ shared frames in both directions has no extreme `1+5` or `5+1` strong six.
 The independent checker directly validates the local one-change, cap, cup,
 strong-seven, mutual-obstruction, and `3+3` split assumptions. This remains
 computational route-selection evidence rather than a Lean theorem. Local
-bridge-certificate refinement is retired as the main route. The next bounded
-review must choose between global multi-deletion packing correlations and
-stronger geometric realizability.
+bridge-certificate refinement is retired as the main route. The bounded review
+selected global packing conditionally, but its broad form is false on fully
+packed sharp models and a proof-core shrink of the no-internal `7+8` state
+still needs 704 deletion clauses. Stronger geometry does not remove the local
+countermodel: explicit rational coordinates now give the compiling theorem
+`middleSplitRealizationColor_isSweepRealizable`. The remaining SAT properties
+are not promoted to Lean. Both modest repairs are retired, so the pre-vetted
+fallback is a new uniform E3 invariant with an all-root falsification gate.
 
 ## Evidence
 

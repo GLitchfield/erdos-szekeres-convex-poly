@@ -522,6 +522,18 @@ local certificate state therefore cannot by itself create the residue carrier
 needed by packing. The next reviewed route must use correlations among
 several global packing deletions or restore stronger geometric realizability
 information.
+That review selected packing conditionally, but the bounded gates did not
+produce a theorem-sized core. All three sharp 21-point models satisfy full
+packing while thousands of deletions have only middle crossing witnesses;
+after excluding internal strong sixes, a `7+8` full-packing state is UNSAT,
+but even a proof-core shrink retains 704 packing deletions across every split.
+The modest multi-deletion extremization route is therefore retired. The
+geometry fallback is also closed for this local obstruction: explicit rational
+coordinates realize the decisive no-extreme coloring, and Lean proves
+`middleSplitRealizationColor_isSweepRealizable`. The full SAT avoidance bundle
+has not been promoted to Lean. The pre-vetted terminal fallback is to design a
+new uniform E3 invariant, subject to the existing transition falsification
+gates rather than another local refinement of this balanced leaf.
 Normalized `5+5`, `6+4`, and `6+7` block shortcuts also have validated SAT
 countermodels and must not be used. The balanced `11+11` leaf retains its
 hereditary interface: unless an internal strong six redirects to this branch,

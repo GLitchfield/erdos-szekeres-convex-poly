@@ -33,8 +33,11 @@ test: check lean
 	@python3 scripts/wayfinder_status.py >/dev/null
 	@python3 -m py_compile scripts/adversarial_review.py \
 		scripts/analyze_cap_failure_charge_matching.py \
+		scripts/analyze_packed_escape_sharp_models.py \
+		scripts/search_middle_bridge_realization.py \
 		scripts/analyze_decomposable_rank_profiles.py \
 		scripts/analyze_lrat_checkpoints.py \
+		scripts/analyze_packed_escape_lrat_core.py \
 		scripts/analyze_middle_split_failure_classes.py \
 		scripts/analyze_two_probe_bridge_compatibility.py \
 		scripts/check_agent_orchestration.py \
@@ -47,6 +50,7 @@ test: check lean
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \
 		scripts/check_middle_split_pair.py \
+		scripts/check_packed_middle_escape.py \
 		scripts/check_strong_cup_blocks.py \
 		scripts/check_two_cap_free_sides.py \
 		scripts/check_two_cap_free_sides_middle.py \
@@ -62,6 +66,7 @@ test: check lean
 		scripts/enumerate_decomposable_contexts.py \
 		scripts/enumerate_published_offwindow.py \
 		scripts/enumerate_incoming_star_prefixes.py \
+		scripts/extract_dimacs_clause_core.py \
 		scripts/find_decomposable_context_collision.py \
 		scripts/verify_cap_failure_charge_matching.py \
 		scripts/generate_e3_state455_lean.py \
@@ -72,6 +77,9 @@ test: check lean
 		scripts/split_dimacs_units.py scripts/split_lrat_checkpoints.py \
 		scripts/toolchain/unzip scripts/verify_middle_split_bridge_route_model.py \
 		scripts/verify_middle_split_pair_model.py \
+		scripts/verify_packed_escape_sharp_census.py \
+		scripts/verify_packed_middle_escape_model.py \
+		scripts/verify_middle_bridge_realization.py \
 		scripts/verify_repeated_residue_model.py \
 		scripts/wayfinder_status.py
 
