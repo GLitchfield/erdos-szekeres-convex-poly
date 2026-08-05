@@ -64,6 +64,10 @@ fan color and the intervening bridge color to equal the later polygon-middle
 color. This is the first transition law coupling the five anomaly classes to
 the four-way polygon signature.
 
+Lean now makes the five classes literal: the four internal positions are
+indexed by `Fin 4`, the final fan is a fifth constructor, and every forced
+right-endpoint failure realizes at least one class in this finite type.
+
 The balanced branch is no longer opaque either. Adjoining any vertex from one
 11-point side to the opposite side activates the checked 12-vertex `(4,6,6)`
 state. Since six-cups are excluded, Lean obtains either a four-cap through the
@@ -71,6 +75,33 @@ adjoined vertex or a strong six. A strong six not using the vertex already
 lies inside the opposite side and redirects to the endpoint branch. After
 excluding those internal witnesses, every one of the 22 vertices therefore
 carries a through-cap or through-strong-six witness on the opposite side.
+Removing the adjoined vertex now gives an exact incidence form in Lean: a
+through-cap has a three-vertex residue in the opposite side, while a
+through-strong-six has a five-vertex residue. The conversion is an
+equivalence, and the final local bound is reduced directly to the endpoint
+branch plus this residue branch.
+
+## Endpoint-class capacity falsification
+
+The deterministic analyzer
+`scripts/analyze_endpoint_anomaly_classes.py` enumerates every internal strong
+six in the independently checked sharp 21-point models and computes all five
+classes realized by every opposite-side vertex. Reversing the order is used
+only to put a right-side strong six into the already normalized orientation;
+class equality and strongness are invariant under that relabeling.
+
+The model SHA-256 values for cuts 6, 10, and 11 are respectively
+`0b29ecd05a9477852266b0de180e8ac260beda2b53ec461c36e4b5f522f57ead`,
+`a3c419cb4679ebd8cea4c11bb6a24273a7fc774cae7623a655985a8fff76e3c3`,
+and `7c60d6a38dcc7c3294a7e2baaa7cf9d9557d330c417cb6bccd6506530961aa1f`.
+The independent witness checker revalidated all three assignments.
+
+The direct repetition route fails sharply. On cut 10, one class can be
+realized by all ten opposite vertices. On cut 11, one class can be realized
+by all eleven, and some strong sixes do not even admit an assignment of their
+opposite vertices to the five classes with uniform capacity three; capacity
+four is necessary. Thus no useful class-capacity bound follows from the five
+labels alone. This is advisory counterevidence, not a Lean theorem.
 
 ## Countercontrols
 
@@ -89,10 +120,10 @@ none of these computations is recorded as a completed mathematical result.
 
 ## Next theorem
 
-The active proof target is the endpoint-obstructed branch with one of four
-internal middle signatures, alongside the exact balanced `11+11` branch.
-The next proof should bound repetitions of the four internal anomaly classes
-and the final-fan class along the opposite side, using the proved fan-change
-propagation and the additional vertices of the large cap-free side. In the
-balanced branch it should instead couple the 22 through-witnesses. A local
-`6+7` block theorem is known false and must not be reproposed.
+The active proof target remains the endpoint-obstructed branch alongside the
+exact balanced `11+11` branch, but bare repetition of the five endpoint labels
+is now retired. Any endpoint proof must use relations between successive
+vertices together with unused vertices of the large cap-free side. The
+balanced target is now the more explicit problem of coupling the 22 selected
+three- or five-vertex residues. A local `6+7` block theorem is known false and
+must not be reproposed.

@@ -543,8 +543,17 @@ relative to a left internal strong six either disagrees with one of the four
 internal middle reference colors or varies inside the final-middle fan. If
 two fan entries differ, the one-change law forces the earlier fan color and
 the bridge between their polygon endpoints to equal the later endpoint's
-polygon-middle color. The next quantitative lemma must bound repetitions of
-these five anomaly classes; it may not discard the unused large-side vertices.
+polygon-middle color. Lean now indexes the internal cases by `Fin 4`, adds the
+final fan as a fifth constructor, and proves that every forced endpoint
+failure realizes one of these five classes.
+
+The direct quantitative follow-up is false. The deterministic endpoint-class
+analyzer, run on independently replayed sharp 21-point models at cuts 6, 10,
+and 11, finds a class realized by all ten opposite vertices at cut 10 and a
+class realized by all eleven at cut 11. Some cut-11 strong sixes require
+uniform assignment capacity four across the five labels. The route may still
+use the proved fan transition, but it must couple successive opposite vertices
+to unused large-side vertices rather than bound label repetitions alone.
 
 The exact `11+11` exception is now refined by the same checked 12-vertex
 state. For every vertex on either side, adjoining it to the opposite side
@@ -553,7 +562,10 @@ does not use the adjoined vertex, it is internal and the endpoint branch
 applies. Consequently the only balanced leaf left after endpoint redirection
 has a through-cap or through-strong-six witness for each of all 22 vertices.
 Lean proves that the endpoint branch plus this through-witness branch implies
-`TwoCapFreeSidesBound567`.
+`TwoCapFreeSidesBound567`. It now also removes the adjoined vertex from each
+witness: a through-cap is exactly a three-subset residue and a through-strong
+six is exactly a five-subset residue of the opposite side. The final reduction
+accepts this incidence-normalized residue branch directly.
 
 ## Evidence
 
@@ -589,6 +601,7 @@ Lean proves that the endpoint branch plus this through-witness branch implies
 - [Structural charging reduction](../../experiments/0009-structural-charging-gap.md)
 - [Middle-determinacy extension charge](../../experiments/0015-middle-determinacy-extension-charge.md)
 - [Strong-six branch reduction](../../experiments/0016-strong-six-branch-reduction.md)
+- [Endpoint anomaly-class analyzer](../../../scripts/analyze_endpoint_anomaly_classes.py)
 - [Lean structural charging machinery](../../../ErdosSzekeres/StructuralCharging.lean)
 - [Lean normalized seven-vertex core](../../../ErdosSzekeres/StructuralChargingCore.lean)
 - [Lean arbitrary-set transport and closure](../../../ErdosSzekeres/StructuralChargingTransport.lean)

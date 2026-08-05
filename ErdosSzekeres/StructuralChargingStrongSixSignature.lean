@@ -195,6 +195,73 @@ def HasFinalMiddleFanVariation {n : ℕ} (χ : TripleColoring n)
       χ ⟨i, e 5, q, hi, hlastq⟩ ≠
         χ ⟨i', e 5, q, hi', hlastq⟩
 
+/-- The `r`th internal vertex of an ordered six-set, numbered from zero. -/
+def strongSixInternalIndex (r : Fin 4) : Fin 6 :=
+  ⟨r + 1, by omega⟩
+
+/-- An internal right-endpoint anomaly at one specified internal position. -/
+def HasInternalRightEndpointAnomalyAt {n : ℕ} (χ : TripleColoring n)
+    (polygon : Finset (Fin n)) (hcard : polygon.card = 6) (q : Fin n)
+    (r : Fin 4) : Prop :=
+  let e := polygon.orderEmbOfFin hcard
+  let j := e (strongSixInternalIndex r)
+  ∃ (i : Fin n) (hij : i < j) (hjq : j < q),
+    i ∈ polygon ∧
+      χ ⟨i, j, q, hij, hjq⟩ ≠
+        χ ⟨e 0, j, e 5, e.strictMono (by simp [strongSixInternalIndex]),
+          e.strictMono (by simp [strongSixInternalIndex])⟩
+
+/-- The five finite classes of normalized right-endpoint anomalies. -/
+inductive RightEndpointAnomalyClass where
+  | internal (r : Fin 4)
+  | finalFan
+  deriving DecidableEq, Fintype
+
+/-- There are exactly four internal anomaly positions and one final-fan
+class. -/
+theorem rightEndpointAnomalyClass_card :
+    Fintype.card RightEndpointAnomalyClass = 5 := by
+  decide
+
+/-- A vertex realizes a specified one of the five normalized anomaly
+classes. -/
+def RealizesRightEndpointAnomalyClass {n : ℕ} (χ : TripleColoring n)
+    (polygon : Finset (Fin n)) (hcard : polygon.card = 6) (q : Fin n) :
+    RightEndpointAnomalyClass → Prop
+  | .internal r => HasInternalRightEndpointAnomalyAt χ polygon hcard q r
+  | .finalFan => HasFinalMiddleFanVariation χ polygon hcard q
+
+/-- Every internally referenced anomaly occurs at one of the four explicitly
+indexed internal vertices. -/
+theorem internalRightEndpointMiddleAnomaly_has_index
+    {n : ℕ} {χ : TripleColoring n} {polygon : Finset (Fin n)}
+    {q : Fin n} (hcard : polygon.card = 6)
+    (hanomaly : HasInternalRightEndpointMiddleAnomaly χ polygon hcard q) :
+    ∃ r : Fin 4,
+      HasInternalRightEndpointAnomalyAt χ polygon hcard q r := by
+  let e : Fin 6 ↪o Fin n := polygon.orderEmbOfFin hcard
+  have heImage : Finset.univ.image e = polygon :=
+    Finset.image_orderEmbOfFin_univ polygon hcard
+  obtain ⟨i, j, hij, hjq, hfirst, hlast, hi, hj, hneq⟩ := hanomaly
+  have hjImage : j ∈ Finset.univ.image e := by simpa [heImage] using hj
+  obtain ⟨r, -, hr⟩ := Finset.mem_image.mp hjImage
+  subst j
+  fin_cases r
+  · exact (lt_irrefl _ hfirst).elim
+  · refine ⟨0, i, hij, hjq, hi, ?_⟩
+    simpa [HasInternalRightEndpointAnomalyAt, strongSixInternalIndex, e]
+      using hneq
+  · refine ⟨1, i, hij, hjq, hi, ?_⟩
+    simpa [HasInternalRightEndpointAnomalyAt, strongSixInternalIndex, e]
+      using hneq
+  · refine ⟨2, i, hij, hjq, hi, ?_⟩
+    simpa [HasInternalRightEndpointAnomalyAt, strongSixInternalIndex, e]
+      using hneq
+  · refine ⟨3, i, hij, hjq, hi, ?_⟩
+    simpa [HasInternalRightEndpointAnomalyAt, strongSixInternalIndex, e]
+      using hneq
+  · exact (lt_irrefl _ hlast).elim
+
 /-- A forced right-endpoint failure relative to a strong six-set normalizes
 to one of four internally referenced middle anomalies or to a variation in
 the final-middle fan. -/
@@ -298,6 +365,24 @@ theorem rightEndpoint_failure_internal_or_final
           intro heq
           apply hneq
           simpa [hk'q] using hpolygonEq.trans heq.symm⟩
+
+/-- The qualitative endpoint normalization has a literal five-element
+codomain: four internal positions and the final-middle fan. -/
+theorem rightEndpoint_failure_has_finite_class
+    {n : ℕ} {χ : TripleColoring n} {polygon : Finset (Fin n)}
+    {q : Fin n} (hcard : polygon.card = 6)
+    (hstrong : IsStrongPolygonSet χ polygon)
+    (hafter : ∀ x ∈ polygon, x < q)
+    (hfailure : HasMiddleExtensionFailureWithRole χ polygon q
+      .rightEndpoint) :
+    ∃ c : RightEndpointAnomalyClass,
+      RealizesRightEndpointAnomalyClass χ polygon hcard q c := by
+  rcases rightEndpoint_failure_internal_or_final hcard hstrong hafter
+      hfailure with hinternal | hfinal
+  · obtain ⟨r, hr⟩ :=
+      internalRightEndpointMiddleAnomaly_has_index hcard hinternal
+    exact ⟨.internal r, hr⟩
+  · exact ⟨.finalFan, hfinal⟩
 
 /-- A change in the final-middle fan between two polygon vertices forces both
 the earlier fan color and the intervening bridge color to equal the strong

@@ -198,16 +198,18 @@ None. The destination was fixed by the user on 2026-08-01.
   on the opposite ordered side then has a forced endpoint-role extension
   failure. The internal polygon has exactly one right-colored middle
   position, proved in Lean, leaving four signatures. Every endpoint failure
-  now normalizes to an anomaly at one of those four internal middles or a
-  final-middle fan variation; a fan change forces the earlier fan and bridge
-  colors to equal the later polygon-middle color. The active targets are the
-  resulting five-class endpoint count and the balanced `11+11` branch. The
-  balanced branch now has a hereditary per-vertex form: adjoining any vertex
-  to the opposite eleven-point side gives a four-cap or strong six through
-  that vertex, unless an internal strong six redirects to the endpoint branch.
-  Thus its remaining target couples 22 explicit through-witnesses. Bounded
-  countermodels rule out reducing either target to bare `5+5`, `6+4`, or
-  `6+7` block data.
+  now realizes a member of a literal five-element Lean type: one of four
+  indexed internal anomalies or a final-middle fan variation. A fan change
+  forces the earlier fan and bridge colors to equal the later polygon-middle
+  color. Independently replayed sharp 21-point models refute a useful capacity
+  bound on these five labels alone: one class may cover every opposite vertex,
+  and cut 11 can require uniform assignment capacity four. The endpoint route
+  must therefore couple transitions to unused large-side vertices. The
+  balanced branch now has an exact incidence form: each of its 22 vertices
+  supplies either a three-vertex cap residue or a five-vertex strong-six
+  residue on the opposite side. The final local bound reduces directly to
+  this residue branch plus the endpoint branch. Bounded countermodels rule out
+  reducing either target to bare `5+5`, `6+4`, or `6+7` block data.
 
 ## Not yet specified
 

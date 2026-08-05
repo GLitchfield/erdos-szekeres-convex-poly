@@ -249,6 +249,62 @@ def HasAdjoinedCapOrStrongSixThrough {n : ℕ} (χ : TripleColoring n)
   (∃ polygon : Finset (Fin n), polygon ⊆ insert q side ∧
     polygon.card = 6 ∧ IsStrongPolygonSet χ polygon ∧ q ∈ polygon)
 
+/-- The three side vertices left after removing the adjoined vertex from a
+through four-cap. -/
+def HasAdjoinedCapResidue {n : ℕ} (χ : TripleColoring n)
+    (side : Finset (Fin n)) (q : Fin n) : Prop :=
+  ∃ base : Finset (Fin n), base ⊆ side ∧ base.card = 3 ∧
+    IsCapSet χ (insert q base)
+
+/-- The five side vertices left after removing the adjoined vertex from a
+through strong six-set. -/
+def HasAdjoinedStrongSixResidue {n : ℕ} (χ : TripleColoring n)
+    (side : Finset (Fin n)) (q : Fin n) : Prop :=
+  ∃ base : Finset (Fin n), base ⊆ side ∧ base.card = 5 ∧
+    IsStrongPolygonSet χ (insert q base)
+
+/-- When the adjoined vertex is external to the side, through-witnesses are
+equivalent to exact three- or five-vertex residues contained in that side. -/
+theorem hasAdjoinedCapOrStrongSixThrough_iff_residue
+    {n : ℕ} {χ : TripleColoring n} {side : Finset (Fin n)} {q : Fin n}
+    (hqSide : q ∉ side) :
+    HasAdjoinedCapOrStrongSixThrough χ side q ↔
+      HasAdjoinedCapResidue χ side q ∨
+        HasAdjoinedStrongSixResidue χ side q := by
+  constructor
+  · rintro (⟨cap, hcapSub, hcapCard, hcapSet, hqCap⟩ |
+      ⟨polygon, hpolygonSub, hpolygonCard, hpolygonSet, hqPolygon⟩)
+    · apply Or.inl
+      refine ⟨cap.erase q, ?_, ?_, ?_⟩
+      · intro x hx
+        rcases Finset.mem_insert.mp
+            (hcapSub (Finset.mem_of_mem_erase hx)) with rfl | hxSide
+        · exact (Finset.ne_of_mem_erase hx rfl).elim
+        · exact hxSide
+      · rw [Finset.card_erase_of_mem hqCap, hcapCard]
+      · simpa [Finset.insert_erase hqCap] using hcapSet
+    · apply Or.inr
+      refine ⟨polygon.erase q, ?_, ?_, ?_⟩
+      · intro x hx
+        rcases Finset.mem_insert.mp
+            (hpolygonSub (Finset.mem_of_mem_erase hx)) with rfl | hxSide
+        · exact (Finset.ne_of_mem_erase hx rfl).elim
+        · exact hxSide
+      · rw [Finset.card_erase_of_mem hqPolygon, hpolygonCard]
+      · simpa [Finset.insert_erase hqPolygon] using hpolygonSet
+  · rintro (⟨base, hbaseSub, hbaseCard, hcapSet⟩ |
+      ⟨base, hbaseSub, hbaseCard, hpolygonSet⟩)
+    · apply Or.inl
+      have hqBase : q ∉ base := fun hqBase ↦ hqSide (hbaseSub hqBase)
+      exact ⟨insert q base, Finset.insert_subset_insert q hbaseSub,
+        by simp [Finset.card_insert_of_notMem hqBase, hbaseCard],
+        hcapSet, Finset.mem_insert_self q base⟩
+    · apply Or.inr
+      have hqBase : q ∉ base := fun hqBase ↦ hqSide (hbaseSub hqBase)
+      exact ⟨insert q base, Finset.insert_subset_insert q hbaseSub,
+        by simp [Finset.card_insert_of_notMem hqBase, hbaseCard],
+        hpolygonSet, Finset.mem_insert_self q base⟩
+
 /-- If neither eleven-vertex side already contains a strong six, every vertex
 activates a through-witness on the opposite side. -/
 theorem eleven_eleven_has_through_witnesses_of_no_internal_strongSix
@@ -281,6 +337,38 @@ theorem eleven_eleven_has_through_witnesses_of_no_internal_strongSix
     · exact Or.inl hcap
     · exact (hnoRightStrong hstrong).elim
     · exact Or.inr hthrough
+
+/-- Residue form of the balanced activation theorem: every vertex selects
+either three or five vertices on the opposite side which, after reinserting
+it, form the required cap or strong polygon. -/
+theorem eleven_eleven_has_residue_witnesses_of_no_internal_strongSix
+    {n : ℕ} {χ : TripleColoring n}
+    {left right : Finset (Fin n)}
+    (hdisjoint : Disjoint left right)
+    (hleftCard : left.card = 11) (hrightCard : right.card = 11)
+    (hleftCap : ¬ContainsCapSet χ left 4)
+    (hrightCap : ¬ContainsCapSet χ right 4)
+    (hone : OneChangeOn χ (left ∪ right))
+    (hnoCup : ¬ContainsCupSet χ (left ∪ right) 6)
+    (hnoLeftStrong : ¬ContainsStrongPolygonSet χ left 6)
+    (hnoRightStrong : ¬ContainsStrongPolygonSet χ right 6) :
+    (∀ q ∈ right, HasAdjoinedCapResidue χ left q ∨
+      HasAdjoinedStrongSixResidue χ left q) ∧
+    (∀ q ∈ left, HasAdjoinedCapResidue χ right q ∨
+      HasAdjoinedStrongSixResidue χ right q) := by
+  have hthrough :=
+    eleven_eleven_has_through_witnesses_of_no_internal_strongSix
+      hdisjoint hleftCard hrightCard hleftCap hrightCap hone hnoCup
+      hnoLeftStrong hnoRightStrong
+  constructor
+  · intro q hqRight
+    exact (hasAdjoinedCapOrStrongSixThrough_iff_residue
+      (fun hqLeft ↦ Finset.disjoint_left.mp hdisjoint hqLeft hqRight)).mp
+      (hthrough.1 q hqRight)
+  · intro q hqLeft
+    exact (hasAdjoinedCapOrStrongSixThrough_iff_residue
+      (fun hqRight ↦ Finset.disjoint_left.mp hdisjoint hqLeft hqRight)).mp
+      (hthrough.2 q hqLeft)
 
 /-- Exact fifteen-vertex deletion form: after deleting any designated three
 vertices, a no-six-cup/no-strong-six one-change set still contains a four-cap.
@@ -532,6 +620,26 @@ theorem right_side_has_internal_or_final_anomalies_from_left_strongSix
     (fun x hx ↦ horder x (hpolygonSub hx) q hqRight)
     (hfailures q hqRight)
 
+/-- Finite-codomain form of the right-side obstruction: each opposite vertex
+realizes at least one of the five explicitly indexed anomaly classes. -/
+theorem right_side_has_finite_anomaly_classes_from_left_strongSix
+    {n : ℕ} {χ : TripleColoring n}
+    {left right polygon : Finset (Fin n)}
+    (hdisjoint : Disjoint left right)
+    (horder : ∀ x ∈ left, ∀ y ∈ right, x < y)
+    (hpolygonSub : polygon ⊆ left) (hpolygonCard : polygon.card = 6)
+    (hpolygonStrong : IsStrongPolygonSet χ polygon)
+    (hnoStrong : ¬ContainsStrongPolygonSet χ (left ∪ right) 7) :
+    ∀ q ∈ right, ∃ c : RightEndpointAnomalyClass,
+      RealizesRightEndpointAnomalyClass χ polygon hpolygonCard q c := by
+  have hfailures :=
+    right_side_has_rightEndpoint_failures_from_left_strongSix
+      hdisjoint horder hpolygonSub hpolygonCard hpolygonStrong hnoStrong
+  intro q hqRight
+  exact rightEndpoint_failure_has_finite_class hpolygonCard hpolygonStrong
+    (fun x hx ↦ horder x (hpolygonSub hx) q hqRight)
+    (hfailures q hqRight)
+
 /-- Symmetrically, if a strong six lies in the right side, every left-side
 vertex has a left-endpoint middle failure relative to it. -/
 theorem left_side_has_leftEndpoint_failures_from_right_strongSix
@@ -710,6 +818,45 @@ def TwoCapFreeSidesElevenElevenThroughBranch567 : Prop :=
       ContainsCapSet χ (left ∪ right) 5 ∨
         ContainsCupSet χ (left ∪ right) 6 ∨
         ContainsStrongPolygonSet χ (left ∪ right) 7
+
+/-- Incidence-normalized balanced branch. Each through-cap contributes a
+three-subset of the opposite side, and each through-strong-six contributes a
+five-subset. -/
+def TwoCapFreeSidesElevenElevenResidueBranch567 : Prop :=
+  ∀ {n : ℕ} {χ : TripleColoring n}
+      {left right : Finset (Fin n)},
+    Disjoint left right → (∀ x ∈ left, ∀ y ∈ right, x < y) →
+      left.card = 11 → right.card = 11 →
+      ¬ContainsCapSet χ left 4 → ¬ContainsCapSet χ right 4 →
+      OneChangeOn χ (left ∪ right) →
+      ¬ContainsStrongPolygonSet χ left 6 →
+      ¬ContainsStrongPolygonSet χ right 6 →
+      (∀ q ∈ right, HasAdjoinedCapResidue χ left q ∨
+        HasAdjoinedStrongSixResidue χ left q) →
+      (∀ q ∈ left, HasAdjoinedCapResidue χ right q ∨
+        HasAdjoinedStrongSixResidue χ right q) →
+      ContainsCapSet χ (left ∪ right) 5 ∨
+        ContainsCupSet χ (left ∪ right) 6 ∨
+        ContainsStrongPolygonSet χ (left ∪ right) 7
+
+/-- The exact residue-incidence branch proves the earlier through-witness
+branch. -/
+theorem twoCapFreeSidesElevenElevenThroughBranch567_of_residueBranch
+    (hresidue : TwoCapFreeSidesElevenElevenResidueBranch567) :
+    TwoCapFreeSidesElevenElevenThroughBranch567 := by
+  intro n χ left right hdisjoint horder hleftCard hrightCard
+    hleftCap hrightCap hone hnoLeftStrong hnoRightStrong
+    hleftThrough hrightThrough
+  apply hresidue hdisjoint horder hleftCard hrightCard hleftCap hrightCap
+    hone hnoLeftStrong hnoRightStrong
+  · intro q hqRight
+    exact (hasAdjoinedCapOrStrongSixThrough_iff_residue
+      (fun hqLeft ↦ Finset.disjoint_left.mp hdisjoint hqLeft hqRight)).mp
+      (hleftThrough q hqRight)
+  · intro q hqLeft
+    exact (hasAdjoinedCapOrStrongSixThrough_iff_residue
+      (fun hqRight ↦ Finset.disjoint_left.mp hdisjoint hqLeft hqRight)).mp
+      (hrightThrough q hqLeft)
 
 /-- Sharp fixed-cardinality kernel for the no-strong-six branch. The two
 ordered cap-free sides have sizes seven and eight in either orientation. -/
@@ -932,6 +1079,15 @@ theorem twoCapFreeSidesBound567_of_endpointBranch_and_throughBranch
   twoCapFreeSidesBound567_of_endpointBranch_and_elevenEleven hendpoint
     (twoCapFreeSidesElevenElevenBranch567_of_endpoint_and_through
       hendpoint hthrough)
+
+/-- Incidence-normalized final reduction: the endpoint branch plus the exact
+three-/five-residue balanced branch proves the complete local bound. -/
+theorem twoCapFreeSidesBound567_of_endpointBranch_and_residueBranch
+    (hendpoint : TwoCapFreeSidesEndpointObstructedStrongSixBranch567)
+    (hresidue : TwoCapFreeSidesElevenElevenResidueBranch567) :
+    TwoCapFreeSidesBound567 :=
+  twoCapFreeSidesBound567_of_endpointBranch_and_throughBranch hendpoint
+    (twoCapFreeSidesElevenElevenThroughBranch567_of_residueBranch hresidue)
 
 /-- Closing both witness branches closes the complete local two-side bound. -/
 theorem twoCapFreeSidesBound567_of_witnessBranches
