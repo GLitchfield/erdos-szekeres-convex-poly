@@ -27,6 +27,8 @@ test: check lean
 		data/derived/e3-incoming-star-prefix-k6-n8.json >/dev/null
 	@python3 scripts/check_singleton_residuals.py \
 		data/derived/e3-singleton-residual-k6-n9.json --workers 8 >/dev/null
+	@python3 scripts/check_span_rank_footprints.py \
+		data/derived/e3-span-rank-footprint-k6-n9.json --workers 8 >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -50,6 +52,7 @@ test: check lean
 		scripts/check_decomposable_rank_profiles.py \
 		scripts/check_incoming_star_prefixes.py \
 		scripts/check_singleton_residuals.py \
+		scripts/check_span_rank_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \
 		scripts/check_middle_split_pair.py \
@@ -70,6 +73,7 @@ test: check lean
 		scripts/enumerate_published_offwindow.py \
 		scripts/enumerate_incoming_star_prefixes.py \
 		scripts/enumerate_singleton_residuals.py \
+		scripts/enumerate_span_rank_footprints.py \
 		scripts/extract_dimacs_clause_core.py \
 		scripts/find_decomposable_context_collision.py \
 		scripts/verify_cap_failure_charge_matching.py \

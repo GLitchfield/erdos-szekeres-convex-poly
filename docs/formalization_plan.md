@@ -558,6 +558,20 @@ is convex, define the domination quotient and retained endpoint incidence,
 then demand singleton observation and self-composition congruence. Only a
 surviving carrier earns the uniform singleton-extension iff lemma in Lean.
 
+That first specification gate is now resolved, with one correction. The
+unlabelled successful-cut set is not convex: it is the union of a left and a
+right endpoint ray. `RootedChainFootprint.lean` proves the side-labelled ray
+closure, external disjointness, exact extension iff, and an explicit unsplit
+counterexample. Retaining exact total endpoints yields the span-rank footprint.
+Two independent implementations exhaust all 186,888 children and 3,363,984
+singleton extensions at `k = 6`, finding zero observation-readout mismatches
+and zero transition collisions and separating both prior regressions. This
+surviving carrier is still ambient-quadratic and has 46,699 child classes, so
+it is a semantic transition candidate rather than the desired finite count.
+The next formal obligation is its uniform singleton transition, followed by
+the two-vertex interleaved-root falsification gate and a dominance quotient
+with a proved `k`-only weight.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at

@@ -103,6 +103,18 @@ sets.
   review agrees that this object should be specified and falsified next, but
   rejects selecting it until interval convexity, domination, endpoint
   incidence, and the `k`-only bound are made precise.
+- `ErdosSzekeres/RootedChainFootprint.lean` corrects the first footprint
+  premise: successful singleton cuts are generally two rays rather than one
+  interval. It proves downward/upward closure after labelling the active
+  endpoint side, disjointness for an external singleton, the exact cup/cap
+  extension iff, and a concrete counterexample to unsplit convexity. The
+  independently replayed endpoint-span rank gate then covers all 3,363,984
+  `k = 6`, `8 -> 9` singleton extensions with zero observation-readout
+  mismatches and zero transition collisions, separating both earlier profile
+  regressions. The raw state is still ambient-quadratic (46,699 observed child
+  classes), so the next obligations are a Lean transition theorem, the
+  two-vertex interleaved-root gate, and a dominance quotient with a `k`-only
+  bound; no uniform route is selected yet.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

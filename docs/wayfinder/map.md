@@ -267,6 +267,20 @@ None. The destination was fixed by the user on 2026-08-01.
   defined. The active bounded task is specification and falsification: test
   critical-cut convexity first, then singleton congruence, before any Lean
   promotion or route selection.
+  That specification gate now passes after correcting its premise. Successful
+  singleton cuts are not one convex interval but two side-labelled endpoint
+  rays; Lean proves their closure, external disjointness, exact extension iff,
+  and an explicit counterexample to unsplit convexity. The resulting exact
+  endpoint-span rank footprint retains the two endpoint gaps of every
+  near-threshold cup and cap. Independent programs exhaust all 186,888
+  children and 3,363,984 `k=6`, `8 -> 9` singleton extensions: all direct
+  observations are readable from the footprint, all singleton transitions are
+  collision-free, and both committed profile collisions are separated. The
+  raw carrier has 46,699 child classes and one entry per ambient endpoint pair,
+  so it is not the desired `k`-only invariant. The active formal target is the
+  uniform span-rank singleton transition. It must then pass the pre-vetted
+  two-vertex interleaved-root gate and a dominance-quotient/`k`-only counting
+  gate before route selection.
 
 ## Not yet specified
 

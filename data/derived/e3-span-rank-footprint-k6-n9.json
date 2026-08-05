@@ -1,0 +1,319 @@
+{
+  "contexts": [
+    {
+      "child_role": "lower",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "1fe",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 29144,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "0b2b28779d61e86f583e1b2609b3a2181968584fce736c604928ba4e22eabcde",
+      "root": 0,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "upper",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "1",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 29144,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "107c2fd2aa0ddb53903f96ab4ef6a9c3daf1d06e3fa794768a2adbd086e5e33a",
+      "root": 0,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "lower",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "1fd",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 23563,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "b604dac445a0c6c7fd897c5379438cc4f37266fac9d4c7dbdd8e68d5181eda0f",
+      "root": 1,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "upper",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "2",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 23563,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "78915106be7b79906984bd4cddd13920a3b6ee52c439be93516d69aec6c97fc6",
+      "root": 1,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "lower",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "1fb",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 20591,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "d7260755fd47d4fb8549b5d3b7e5582348624e79bc07b3f233cbcac03ae9ae0d",
+      "root": 2,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "upper",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "4",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 20591,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "17fd4c4340e2f6621d2d6dbda2352513102bd3776d6ca0eac4af2c2ed8de4528",
+      "root": 2,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "lower",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "1f7",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 18918,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "227660edadef6a65f13957210d3bb7c87fcc3444a609b3d98687fb52392ceff8",
+      "root": 3,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "upper",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "8",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 18918,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "cd7f12babb507c9c88f042d3921f347b38ea96f17a730a07c8286b60a622f049",
+      "root": 3,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "lower",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "1ef",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 18365,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "cb5e05d3257ff1e769896de03b71ffeef13fd95be40df34c6478bca7fa50a3f7",
+      "root": 4,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "upper",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "10",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 18365,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "67a35a58d93e0f3f9d11c050a37a27a9091eb97066ff122555c761605e3be6cd",
+      "root": 4,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "lower",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "1df",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 18918,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "b1af3399b31fb27daee04789028d9cbcfe0925c11f9dcf852a851398d5e286f8",
+      "root": 5,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "upper",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "20",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 18918,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "65778befc77960f10b1462c5e1469d4142c69f9b399d9fc8170636f3266826e8",
+      "root": 5,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "lower",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "1bf",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 20591,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "3b9bb7234bc5c7c326110f6f1d93959d9694f2588d59c669e682041c99a58777",
+      "root": 6,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "upper",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "40",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 20591,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "9d3845880df4ebc049917b699c6f752c56bd664914cf300a14bffe7aa544fcd5",
+      "root": 6,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "lower",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "17f",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 23563,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "cfd4d11131e4a8675b866c69062fbc0a0262c41aac7987462ee3c61bc7b32361",
+      "root": 7,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "upper",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "80",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 23563,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "13776090264ed536d1a950ed249abb405282fa7d9b4bf80e91f46d8fdf60e51e",
+      "root": 7,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "lower",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "ff",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 29144,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "f8bd3889cbcffe52241e62578f037b05692aaba5bc3a7f3da6957e758b281e50",
+      "root": 8,
+      "transition_collision_count": 0
+    },
+    {
+      "child_role": "upper",
+      "child_state_count": 46699,
+      "first_transition_collision": null,
+      "lower_mask_hex": "100",
+      "observation_readout_mismatch_count": 0,
+      "parent_state_count": 29144,
+      "record_count": 186888,
+      "record_size": 37,
+      "records_sha256": "95383ba0c227f7945ca8743e2375d404f061a1f852ae1caa7ffba3d28e8009c6",
+      "root": 8,
+      "transition_collision_count": 0
+    }
+  ],
+  "experiment": "span-rank-singleton-congruence",
+  "generation_base_revision": "9eff540b3faf260805cf27dee357e0297ac49d86",
+  "parameters": {
+    "child_size": 8,
+    "closed_state": "one terminal symbol",
+    "context_count": 18,
+    "open_state": "lexicographic endpoint pairs; one byte per pair; low nibble is maximum cup size and high nibble is maximum cap size",
+    "parent_size": 9,
+    "strong_size": 6
+  },
+  "schema_version": 1,
+  "scope": "Exact for all decomposable 8-vertex colorings and all 18 singleton root contexts at k=6.",
+  "sources": {
+    "checker": {
+      "path": "scripts/check_span_rank_footprints.py",
+      "sha256": "c87a5c50aaff316455ab2814cdc6bdf8aa39e1f5b71e58c0fd358bcc2d31634d"
+    },
+    "producer": {
+      "path": "scripts/enumerate_span_rank_footprints.py",
+      "sha256": "9ca1bbe361244cef4fe71a05a2b29159f5f706ddfac27832a7a6c678d43b2866"
+    },
+    "producer_dependency": {
+      "path": "scripts/enumerate_singleton_residuals.py",
+      "sha256": "0de81c1fe139e816847ef32cc1999cdefca1e3535ba767861716b6251aac8c30"
+    }
+  },
+  "summary": {
+    "child_footprint_count": 46699,
+    "child_footprint_size_histogram": {
+      "1": 22658,
+      "10": 284,
+      "11": 168,
+      "12": 252,
+      "13": 96,
+      "14": 100,
+      "15": 32,
+      "16": 92,
+      "17": 36,
+      "18": 16,
+      "19": 24,
+      "2": 6256,
+      "22": 16,
+      "23": 24,
+      "24": 8,
+      "25": 12,
+      "26": 28,
+      "27": 12,
+      "3": 7356,
+      "4": 4704,
+      "5": 1264,
+      "6": 644,
+      "63982": 1,
+      "7": 948,
+      "8": 1096,
+      "9": 572
+    },
+    "child_observation_readout_mismatch_count": 0,
+    "child_state_records_sha256": "a7c58c0c44cea49fcc8f21d22b1480efa6ce92474ebdd57701110cccbd323dfb",
+    "coloring_count": 186888,
+    "first_nontrivial_child_footprint": {
+      "class_id": 0,
+      "left_coloring_hex": "0",
+      "right_coloring_hex": "1"
+    },
+    "largest_child_footprint_size": 63982,
+    "nontrivial_child_footprint_count": 24041,
+    "regressions": {
+      "all_gap_collision": {
+        "equal_child_footprint": false,
+        "left_coloring_hex": "1fff3d807b019",
+        "right_coloring_hex": "3cfe1c007b33f"
+      },
+      "pair_rank_collision": {
+        "equal_child_footprint": false,
+        "left_coloring_hex": "3c300c1a1835b",
+        "right_coloring_hex": "3c700c1a1835b"
+      }
+    },
+    "total_observation_readout_mismatch_count": 0,
+    "total_transition_collision_count": 0
+  }
+}

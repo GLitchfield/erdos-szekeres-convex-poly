@@ -14,6 +14,7 @@ public import ErdosSzekeres.Decomposable
 public import ErdosSzekeres.DecomposableRealization
 public import ErdosSzekeres.Duality
 public import ErdosSzekeres.ContextProfile
+public import ErdosSzekeres.RootedChainFootprint
 public import ErdosSzekeres.RankProfile
 public import ErdosSzekeres.RankProfileCollision
 public import ErdosSzekeres.TurnLanguage

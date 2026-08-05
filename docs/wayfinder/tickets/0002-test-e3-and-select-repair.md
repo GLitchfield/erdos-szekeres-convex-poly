@@ -663,6 +663,23 @@ convexity, then exact singleton observation and self-composition congruence,
 with a two-vertex interleaved-root gate required afterward. The candidate
 route itself remains unselected.
 
+The bounded specification gate is now complete, with a necessary correction
+to the reviewed sketch. The unlabelled critical-cut set is generally the union
+of two rays and is not convex. Lean makes the endpoint side explicit, proves
+the two ray-closure laws and their disjointness for an external singleton,
+recovers the exact existing cup/cap singleton-extension iff, and supplies a
+concrete counterexample to unsplit convexity. The corrected structured carrier
+stores maximum cup and cap length at each exact total endpoint span. Two
+independent implementations exhaust all 186,888 decomposable children and all
+3,363,984 singleton extensions at `k=6`: the footprint reconstructs every
+direct observation, its singleton transition has no collision, and it
+separates both the all-gap and consecutive pair-rank regressions. This passes
+the singleton semantic and self-composition gates, but the raw 46,699-class,
+ambient-quadratic carrier has no `k`-only count. The candidate route therefore
+remains unselected. The next formal target is the uniform span-rank singleton
+transition, followed by the required two-vertex interleaved-root test and a
+dominance quotient with a proved `k`-only weight.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -732,3 +749,7 @@ route itself remains unselected.
 - [Singleton residual oracle](../../experiments/0024-singleton-residual-oracle.md)
 - [Singleton residual manifest](../../../data/derived/e3-singleton-residual-k6-n9.json)
 - [Independent singleton residual checker](../../../scripts/check_singleton_residuals.py)
+- [Endpoint-span rank footprint gate](../../experiments/0025-span-rank-footprint-gate.md)
+- [Lean side-labelled critical-cut semantics](../../../ErdosSzekeres/RootedChainFootprint.lean)
+- [Endpoint-span rank manifest](../../../data/derived/e3-span-rank-footprint-k6-n9.json)
+- [Independent endpoint-span rank checker](../../../scripts/check_span_rank_footprints.py)
