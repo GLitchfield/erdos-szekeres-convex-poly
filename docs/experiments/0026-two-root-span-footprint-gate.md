@@ -114,14 +114,20 @@ captures the missing chain correlation. It still does not select the raw
 footprint as the uniform E3 invariant. The record has one rank pair for every
 ambient endpoint pair, and its carrier therefore grows with `n`.
 
-The next task is the previously required dominance quotient: forget endpoint
-identities only after preserving the incidence needed by the transition, then
-test quotient congruence on both committed collisions and these singleton and
-two-root tables. A quotient is rejected immediately if its carrier or weight
-still depends on ambient cardinality, if it merges either committed
-regression, or if it produces a transition collision. Only a surviving
-quotient with a proved `k`-only bound can promote this direction to a selected
-uniform route.
+The first dominance subobligation now compiles in
+`ErdosSzekeres/SpanDominance.lean`: at a fixed far endpoint, a no-smaller rank
+with a near endpoint farther toward the singleton supplies every extension of
+the dominated span. This proves directional Pareto pruning sound for cups and
+caps. It does not forget the far endpoint or prove a `k`-only bound.
+
+The next task remains the previously required dominance quotient: forget
+endpoint identities only after preserving the incidence needed by the
+transition, then test quotient congruence on both committed collisions and
+these singleton and two-root tables. A quotient is rejected immediately if
+its carrier or weight still depends on ambient cardinality, if it merges
+either committed regression, or if it produces a transition collision. Only
+a surviving quotient with a proved `k`-only bound can promote this direction
+to a selected uniform route.
 
 The larger `k = 6`, `8 + 2 -> 10` census would contain 16,819,920 direct
 parent transitions and is not claimed by this artifact. It should be run only

@@ -124,6 +124,13 @@ sets.
   smallest pre-vetted interleaved-root gate. The ambient-quadratic endpoint
   identities remain the active obstruction; the next candidate must be a
   transition-preserving dominance quotient with a proved `k`-only bound.
+- `ErdosSzekeres/SpanDominance.lean` proves the first safe quotient operation.
+  For either active chain color and either extension direction, a no-smaller
+  span rank at a more favorable near endpoint dominates every singleton
+  response of the weaker state, while rank thresholds may be lowered without
+  losing the witness. This licenses directional Pareto pruning at each fixed
+  far endpoint. It does not yet identify those far endpoints, preserve their
+  shared incidence under quotienting, or yield a `k`-only carrier bound.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

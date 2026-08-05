@@ -695,10 +695,24 @@ incidence-preserving equality, and a `k`-only weight, then replay both committed
 collisions and the existing singleton/two-root tables. Any ambient-cardinality
 dependence or transition collision rejects the quotient.
 
+The first formal subobligation of that contract now compiles in
+`SpanDominance.lean`. Rank thresholds are antitone, and four sidewise theorems
+prove that, at a fixed far endpoint, a span with no smaller rank and a near
+endpoint farther toward the singleton supplies every extension supplied by
+the dominated endpoint/rank pair. Thus directional Pareto pruning is
+semantically sound for both cup and cap singleton transitions. This is not yet
+the promised quotient: the retained frontiers remain indexed by ambient far
+endpoints, and no theorem yet preserves shared-endpoint incidence after
+identification or bounds the carrier solely in terms of `k`. The next bounded
+item is to define that concrete incidence carrier and falsify it against the
+committed collisions and existing transition tables before attempting its
+`k`-only counting theorem.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
 - [`ErdosSzekeres.E3FiniteReduction`](../../../ErdosSzekeres/E3FiniteReduction.lean)
+- [Lean span-dominance pruning](../../../ErdosSzekeres/SpanDominance.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

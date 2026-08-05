@@ -285,9 +285,14 @@ None. The destination was fixed by the user on 2026-08-01.
   also passes independently: all 762,912 `k=6`, `7+2 -> 9` parents, including
   720,528 interleaved transitions, have zero footprint collisions. The active
   obstruction is no longer singleton or smallest-root congruence but the
-  ambient endpoint identities. Define and falsify a dominance quotient with a
-  proved `k`-only carrier/weight before route selection; reserve the larger
-  `8+2 -> 10` census for a concrete quotient candidate.
+  ambient endpoint identities. Lean now proves the first sound dominance
+  operation: at a fixed far endpoint, a no-smaller rank whose near endpoint is
+  farther toward the singleton supplies every left or right extension of the
+  dominated span, for cups and caps. This licenses directional Pareto pruning,
+  but it neither forgets the far endpoint nor preserves incidence between
+  quotient classes and therefore gives no `k`-only count. Define and falsify
+  that incidence-preserving quotient before route selection; reserve the
+  larger `8+2 -> 10` census for a concrete quotient candidate.
 
 ## Not yet specified
 
