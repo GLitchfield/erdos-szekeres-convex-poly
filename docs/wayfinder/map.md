@@ -238,10 +238,15 @@ None. The destination was fixed by the user on 2026-08-01.
   anchor to their three-polygon frame, so two probes on one frame have equal
   outer-pair colors. An exhaustive five-vertex audit proves this is the exact
   bare-certificate limit: it forces neither a strong five nor any equality
-  involving a triple through both probes. The next target is to SAT-test
-  whether class, split, and bounded-word data force three probes on one side
-  to share an anchored frame. Bounded countermodels rule out reducing the
-  route to bare `5+5`, `6+4`, or `6+7` block data.
+  involving a triple through both probes. The proposed three-probe repair is
+  now retired by an independently replayed twelve-vertex SAT model. The model
+  has two mutually obstructed `3+3` strong sixes and shared frames in both
+  directions, yet avoids every target outcome and every extreme `1+5` or
+  `5+1` strong six. This is route-selection evidence, not a Lean theorem.
+  The next reviewed route must therefore use correlations among several
+  global packing deletions or add stronger geometric realizability data.
+  Bounded countermodels also rule out reducing the route to bare `5+5`,
+  `6+4`, or `6+7` block data.
 
 ## Not yet specified
 

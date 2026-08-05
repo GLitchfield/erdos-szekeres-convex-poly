@@ -630,9 +630,16 @@ certificate, and deletion packing supplies all twelve directed certificates.
 Interior certificates anchor to the color of their three-polygon frame, so
 two probes on one frame have equal outer-pair colors. Exhaustive five-vertex
 checking refutes every stronger bare-certificate conclusion involving a
-triple through both probes and refutes a forced strong five. The active target
-is now to test whether the full class, split, and bounded-word data force three
-same-side probes to share an anchored frame.
+triple through both probes and refutes a forced strong five. The attempted
+three-probe repair is also false. Independently replayed SAT models can avoid
+a shared frame in either or both directions. More decisively, a model with
+shared frames in both directions has no extreme `1+5` or `5+1` strong six.
+The independent checker directly validates the local one-change, cap, cup,
+strong-seven, mutual-obstruction, and `3+3` split assumptions. This remains
+computational route-selection evidence rather than a Lean theorem. Local
+bridge-certificate refinement is retired as the main route. The next bounded
+review must choose between global multi-deletion packing correlations and
+stronger geometric realizability.
 
 ## Evidence
 
@@ -674,8 +681,11 @@ same-side probes to share an anchored frame.
 - [Middle crossing split state](../../experiments/0019-middle-crossing-split-state.md)
 - [Finite middle-failure classes](../../experiments/0020-middle-failure-classes.md)
 - [Common middle-failure bridge certificates](../../experiments/0021-middle-bridge-certificates.md)
+- [Middle-bridge route counterexample](../../experiments/0022-middle-bridge-route-counterexample.md)
 - [Middle-failure class analyzer](../../../scripts/analyze_middle_split_failure_classes.py)
 - [Two-probe bridge compatibility analyzer](../../../scripts/analyze_two_probe_bridge_compatibility.py)
+- [Middle-bridge route SAT generator](../../../scripts/check_middle_split_bridge_routes.py)
+- [Independent middle-bridge route checker](../../../scripts/verify_middle_split_bridge_route_model.py)
 - [Middle-split pair falsifier](../../../scripts/check_middle_split_pair.py)
 - [Independent middle-split pair checker](../../../scripts/verify_middle_split_pair_model.py)
 - [Repeated-residue falsifier](../../../scripts/check_repeated_residue_fibers.py)

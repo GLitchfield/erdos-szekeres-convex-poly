@@ -51,9 +51,9 @@ proofs. The positive shared-frame agreement is separately proved in Lean.
 
 ## Next theorem
 
-The raw two-probe bridge route is exhausted. The next bounded question is
-whether the class, split, and weight-one-or-two constraints force three probes
-on one side to contain a shared anchored frame. This incidence claim should be
-SAT-falsified before formalization. If it fails, the bridge certificate must
-retain an additional class-specific endpoint or middle index rather than only
-its three-vertex frame.
+This question is resolved negatively in
+[experiment 0022](0022-middle-bridge-route-counterexample.md). Neither
+direction is forced to have a common three-probe frame. More decisively, an
+independently replayed SAT model has shared frames in both directions but no
+extreme strong six. This retires the local route as computational evidence;
+it is not promoted as a Lean theorem.

@@ -515,13 +515,18 @@ certificates. An interior certificate anchors the probe to a three-vertex
 polygon frame, and Lean proves equality for two probes anchored to the same
 frame. Exhaustive five-vertex checking shows that this equality does not
 extend to a triple containing both probes and does not force a strong five.
-The active target is to test whether the full class, split, and bounded-word
-data force three same-side probes to share an anchored frame; if not, the
-certificate must retain class-specific index data. Normalized `5+5`, `6+4`,
-and `6+7` block shortcuts have validated SAT countermodels and must not be
-used. The balanced `11+11` leaf also retains its hereditary interface: unless
-an internal strong six redirects to this branch, each vertex activates a
-four-cap or strong-six witness through itself on the opposite side.
+The three-probe repair is false as well: an independently replayed local SAT
+model has shared frames in both directions but no extreme `1+5` or `5+1`
+strong six. This is route-selection evidence rather than a Lean theorem. The
+local certificate state therefore cannot by itself create the residue carrier
+needed by packing. The next reviewed route must use correlations among
+several global packing deletions or restore stronger geometric realizability
+information.
+Normalized `5+5`, `6+4`, and `6+7` block shortcuts also have validated SAT
+countermodels and must not be used. The balanced `11+11` leaf retains its
+hereditary interface: unless an internal strong six redirects to this branch,
+each vertex activates a four-cap or strong-six witness through itself on the
+opposite side.
 
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.
