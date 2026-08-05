@@ -354,6 +354,160 @@ seven-vertex deficit is therefore specifically a missing cross-gap coupling,
 not a missing unary side bound. The next proposal must pass a bounded coupled
 gate before any uniform recurrence is claimed.
 
+The separated-cap, common-cut, endpoint-port, and explicit-tree allocation
+round is now complete. Lean proves local capacity two, summed lower incidence,
+and unique lowest separating-node allocation inside a fixed tree. Exact
+enumeration through eight vertices refutes both the immediate crossing-cap
+outcome and its disjoint repair, while 1,295,559 ordered crossing-cap chains
+show the coefficient-two bound is sharp.
+
+A blind Sol/Fable review of the proposed weighted overflow-token route
+completed at packet SHA-256
+`1a879cf0be9c3bceec4d9ec5e514b4f73a0a9650bfb85435b93e9c79a08899ae`.
+Both reviewers returned `not_supported` with high confidence: the semantic
+owner and resource identity of an overflow unit are undefined. Their suggested
+follow-ups were stale. The singleton `(4,5,5)` boundary is already closed
+locally by `singleton_root_card_le_seven`, and the recorded kernel-checked
+nine-vertex collision already stops deterministic incoming-star refinement.
+
+A corrected audit used question SHA-256
+`116946c9457e8592da499dadaed8cd028562e85ee109429c49b06c90be2ceb80`.
+Sol returned `partially_supported` with high confidence: no finite
+classification is yet well-posed because the combinatorial family counted by
+the child summands has not been defined. The next single work item is semantic
+specification recovery: define `ChildContribution` using the coloring, a fixed
+tree and address, child state, side, and a concrete resource; establish that
+its finite family has the advertised child-summand cardinality; and formulate
+restriction/composition and stable ancestor-identity obligations. A later
+bounded census may test extraction and reuse only after those meanings are
+independent of the desired conclusion. The corrected Fable run hit an external
+session quota without returning a valid review, so no corrected consensus is
+claimed. The Sol review is advisory route evidence, not a proof.
+
+The missing source semantics have since been recovered and kernel-checked.
+`PublishedInductionSemantics.lean` defines the maximal child parameter,
+constructs its actual retained vertex subset, and proves the exact
+complement-plus-core inequality. It proves for every `2 ≤ a ≤ k` that
+auxiliary index one forces the whole nonempty child to be a singleton. The
+specific `(4,5,5,1,3)` branch then composes with
+`singleton_root_card_le_seven`, yielding the sharp parent bound seven without
+a finite certificate. This disposes of the corrected Sol audit's semantic
+blocker rather than inventing a token type. The next single route-selection
+item is a bounded classification of the remaining positive auxiliary indices
+below the active Pascal-window endpoint, followed by a fresh Sol/Fable review
+of one exact structural transition contract.
+
+That bounded classification is now complete through `k = 20`, with a
+deterministic certificate and an independently implemented replay. Among
+7,752 feasible scalar failures, removing the index-one singleton cases leaves
+6,120 states; every one has one saturated auxiliary parameter and the other
+strictly below the dual active-window endpoint. The first state is
+`(4,6,6,3,2)`, with complementary child sizes `(2,10)` or `(3,9)` and scalar
+defect five. Lean now proves those exact arithmetic and cardinality facts, the
+general semantic bridge saying that complementary child sizes force the two
+adjacent thresholds to exceed the outer threshold, and the all-parameter
+saturation classification. Its proof allocates nonsaturated child thresholds
+to disjoint prefix and suffix regions of the outer Pascal row. The geometric
+transition remains open. A fresh Sol/Fable review must now freeze a uniform
+saturated-boundary contract and test it first at this smallest state; no
+consensus is claimed while Fable's provider quota remains unavailable.
+
+The first cross-split resource at that state is also kernel-checked and
+certificate-free. `first_saturated_boundary_has_covering_upper_three_cap`
+uses the ordinary `(3,6)` cup--cap theorem to extract an upper three-cap; if
+the parent avoids four-caps, the deep-below endpoint transition forces that
+single cap interval to cover every lower-child vertex. The underlying theorem
+is uniform in the cap size and arbitrary, potentially interleaved lower
+children. This does not yet close the saturated branch: the review must specify
+how the covering-cap resource is consumed or transported in the induction.
+
+A preliminary high-confidence Sol audit (`partially_supported`, packet
+SHA-256 `5ea929b9570f6240368833758b05f82e215814abc783ceb03e42a73b9142a88a`)
+supports the saturation proof but identified two verification gaps that are
+now disposed: the independent checker directly replays the greatest-index
+definition at every feasible interval endpoint, and Lean explicitly proves
+the two saturation alternatives mutually exclusive. Its remaining concern is
+the real route question: no definition yet links a covering cap to retained
+core/remainder demand, irreversible consumption, or nonreuse at comparable
+tree addresses. Fable returned no review because its provider quota remained
+exhausted, so this is not Sol/Fable consensus and no transport contract is yet
+selected.
+
+The first saturated gate has since closed by a simpler certificate-free
+argument. `upper_card_le_eight_of_nonempty_lower_open_466` proves that an open
+`(4,6,6)` parent with nonempty lower child and decomposable upper child has at
+most eight upper vertices. It chooses one lower vertex, proves its two upper
+gap sides are cups (an endpoint upper three-cap would extend to a parent
+four-cap), and invokes the symbolic `4+5/5+4` cup-block theorem. Therefore the
+feasible `(2,10)` and `(3,9)` child pairs are impossible without state-466 or
+state-566 certificate consequences. The parameterized theorem
+`gap_sides_avoid_cap_of_no_parent_succ_cap` identifies the candidate uniform
+kernel for the next review: both gap sides are `r`-cap-free when the parent
+avoids an `(r+1)`-cap. The cup--cap duality layer is now independent of the
+finite-state modules, and `lower_card_le_eight_of_nonempty_upper_open_646`
+eliminates the reversed `(10,2)` and `(9,3)` child pairs as well. A missing
+Fable response remains a recorded review gap, not a blocker for further Lean
+lemmas or bounded counterexample work.
+
+The next `k = 7` arithmetic layer has now been replayed and partially closed.
+The certificate-free theorem
+`upper_card_lt_twice_cup_parameter_of_nonempty_lower_open_four` eliminates
+the `(4,7,7,3,2)` child pairs `(2,15)` and `(3,14)`, and duality eliminates
+their reversals. The sharper `2*(u-1)` count also eliminates the 13-vertex
+alternative at `(4,7,7,3,3)`. For upper sizes 11 and 12, the exact
+`5+6/6+5` cup-block contract, reversal, transport, quantitative payoff, and
+actual application shell compile. The normalized proof has been reduced to
+two explicit residual leaves, `CupBlocks56ResidualA` and
+`CupBlocks56ResidualC`. Residual A now compiles in full through explicit cup,
+cap, and strong-seven witnesses; only residual C remains open. External UNSAT
+evidence supports the complete normalized proposition but is not a proof.
+Sol's transport-shell objection has been discharged and its seven-chain/fan
+proposal implemented; Fable returned no answer because of provider quota.
+
+The residual frontier has since closed completely in Lean. Residual C uses
+forced bridge turns, an explicit seven-cup branch, and a two-six-cup
+strong-seven branch. The normalized eleven-vertex theorem, both arbitrary
+block orientations, the upper-child bound ten, every `(4,7,7,3,3)` child
+pair, and all color-dual pairs now compile without importing a SAT
+certificate.
+
+The active state is `(5,6,7,4,2)`. A bounded blind review at packet SHA-256
+`39ac2acb7aae73c84889f20e0006569b42e630166a1253665ec2d9a2509fa9bc`
+returned `partially_supported` from both Sol and Fable: the proposed
+two-four-cap-free-sides bound is a sufficient application contract, but its
+truth was unsupported. That exact dependency now compiles as
+`TwoCapFreeSidesBound567`, together with its conditional upper bound 21,
+elimination of child pairs `(2,24)`, `(3,23)`, `(4,22)`, and color-dual shell.
+The first conceptual reduction also compiles: the ordinary `(4,6)` cup--cap
+recurrence is promoted from consecutive chains using `OneChangeOn`, bounding
+each side by 15. Any counterexample to 21 therefore has both side sizes in
+the residual interval `[7,15]`, formalized as `TwoCapFreeSidesCore567`.
+Lean also proves that such a residual pair contains four-cups on both sides
+and a five-cup on at least one side. The completed `4+5/5+4` theorem turns
+those witnesses into either a four-cap meeting both sides or a strong six-set.
+The one-vertex extension layer now compiles as explicit cap and strong failure
+certificates. A cap failure localizes to a consecutive triple; five-cups force
+right bridge colors to the opposite side, with a proved nesting law. Strong
+polygons now have the kernel-checked equivalent formulation that every triple
+color is determined by its middle vertex.
+
+A second bounded Sol/Fable packet at SHA-256
+`d7611ab3099cfc0088afed4463db4628c3f93067ffea722002350e9bdf6f1a69`
+returned `partially_supported` from both reviewers. Small independently
+validated SAT models refute the unconditional identical witness-profile
+collision proposed as the first counting lemma. A new eager encoding based on
+the middle-determinacy equivalence nevertheless resolves the previously open
+22-point cuts: cut 10 is UNSAT in 277.550 seconds and cut 11 in 289.393
+seconds, each with one blocker for every seven-subset. Together with the
+earlier cuts and the validated sharp 21-point model, the full abstract local
+contract now has bounded computational support. These UNSAT runs have no
+checked proof certificate and imply no Lean theorem.
+
+The live proof target remains a conceptual proof of the 21 bound, now using a
+global count over five-cup bridges, consecutive cap failures, middle-color
+disagreements, and triples among outside vertices. The predeclared fallback
+preserves decomposability or root-relative cross-gap data.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -386,9 +540,21 @@ gate before any uniform recurrence is claimed.
 - [Lean crossing-pair transition](../../../ErdosSzekeres/IncomingStarTransition.lean)
 - [Lean incoming-star transition collision](../../../ErdosSzekeres/IncomingStarTransitionCollision.lean)
 - [Structural charging reduction](../../experiments/0009-structural-charging-gap.md)
+- [Middle-determinacy extension charge](../../experiments/0015-middle-determinacy-extension-charge.md)
 - [Lean structural charging machinery](../../../ErdosSzekeres/StructuralCharging.lean)
 - [Lean normalized seven-vertex core](../../../ErdosSzekeres/StructuralChargingCore.lean)
 - [Lean arbitrary-set transport and closure](../../../ErdosSzekeres/StructuralChargingTransport.lean)
 - [First `k=6` structural boundary](../../experiments/0010-structural-charging-k6-boundary.md)
 - [Lean endpoint charge and coarse bound](../../../ErdosSzekeres/StructuralChargingBoundary.lean)
+- [Separated-cap descent, port census, and overflow-route disposition](../../experiments/0011-separated-cap-descent.md)
+- [Lean endpoint-port capacity](../../../ErdosSzekeres/StructuralChargingPortCapacity.lean)
+- [Lean explicit-tree allocation and local coupling](../../../ErdosSzekeres/StructuralChargingTreeAllocation.lean)
+- [Published child-slice semantics and first remaining boundary](../../../ErdosSzekeres/PublishedInductionSemantics.lean)
+- [Published off-window classification](../../experiments/0012-published-offwindow-classification.md)
+- [Independent off-window replay](../../../scripts/check_published_offwindow.py)
+- [First saturated-boundary closure](../../experiments/0013-first-saturated-boundary-closure.md)
+- [Lean sourced resource and gap-side closure](../../../ErdosSzekeres/StructuralChargingSaturatedResource.lean)
+- [Certificate-free cup--cap duality](../../../ErdosSzekeres/Duality.lean)
+- [First `k=7` cup-block frontier](../../experiments/0014-k7-cup-block-frontier.md)
+- [Lean normalized `5+6` reduction](../../../ErdosSzekeres/StructuralChargingCupBlocks56.lean)
 - [Independent rational-realization checker](../../../scripts/check_rank_profile_realization.py)

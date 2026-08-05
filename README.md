@@ -139,12 +139,105 @@ sets.
   separately with the existing `(4,6,6)` state on the two gap sides, it proves
   only the coarse singleton-root bound 23 versus the diagonal threshold 16.
   This localizes the next obstruction to a coupled cross-gap charge.
+- `ErdosSzekeres/StructuralChargingIntervals.lean` proves finite interval
+  Helly for cap-witness spans, extracts weakly separated witnesses, and tracks
+  the sharp one-boundary-vertex overlap. Two separated four-caps reserve seven
+  vertices. The exact remaining target is an eight-vertex exterior charge;
+  Lean proves that target would recover the diagonal cardinal bound 16.
+- `ErdosSzekeres/StructuralChargingCupBlocks45.lean` proves the normalized
+  nine-vertex `4+5` cup-block gate by eight symbolic turn tests and nine fixed
+  witnesses, proves the reversed `5+4` case, and transports both orientations
+  to arbitrary ordered blocks. The resulting unconditional charge bounds two
+  outcome-free cup blocks by eight vertices in total.
+- `ErdosSzekeres/StructuralChargingSingletonRoot.lean` freezes the exact
+  certificate-free cross-gap target at `k = 6` and proves something stronger:
+  two weakly separated upper four-caps at a singleton deep-below root force a
+  parent five-cap. Thus the separated-witness branch is impossible in an open
+  `(5,6,6)` parent, and the conditional cardinal consequence reaches 16
+  without the state-566 certificate. The remaining structural obstruction is
+  the common-cut branch. A parameterized Lean theorem now proves that, for
+  every positive `a`, absence of a parent `(a+1)`-cap makes the singleton root
+  a common sweep cut for every upper `a`-cap. Its arbitrary-lower-child form
+  proves that each upper `a`-cap interval covers every lower vertex. At the
+  first saturated `(4,6,6,3,2)` boundary, the classical `(3,6)` theorem
+  supplies such a covering upper three-cap without a finite certificate.
+- `ErdosSzekeres/StructuralChargingFirstSplit.lean` proves that every
+  two-or-more-vertex witness set inside a decomposable set is separated by
+  some recursive deep-below split contained in the original set. It does not
+  claim a canonical or minimal-depth split; those notions would require an
+  explicit decomposition-tree occurrence relation.
+- `scripts/check_crossing_separated_caps.py` exhaustively refutes the proposed
+  next force-outcome gate through the complete eight-vertex range. Two weakly
+  separated four-caps can both cross the same open decomposable root, even
+  when the caps are disjoint. The smallest witnesses occur at seven vertices
+  with a shared lower boundary and at eight vertices in the disjoint case.
+  This is checked computational evidence, not a Lean theorem; it redirects the
+  route from immediate outcomes to quantitative endpoint-port charging.
+- `ErdosSzekeres/StructuralChargingPortCapacity.lean` proves that an ordered
+  family of crossing caps uses any lower-child vertex at most twice, with the
+  two possible uses forced into right-then-left endpoint directions. Its
+  summation corollary bounds total lower incidence by twice the lower-child
+  cardinality. This is the local amortized invariant replacing the refuted
+  immediate-outcome gate.
+- `ErdosSzekeres/StructuralChargingTreeAllocation.lean` reifies a
+  proposition-level decomposition as an explicit tree, addresses internal
+  nodes by Boolean paths, and proves existence and uniqueness of the lowest
+  node separating any witness of cardinality at least two. This supplies the
+  node identity needed to sum local charges without choosing the same
+  occurrence twice. Allocated ordered four-cap families are now coupled to
+  local port capacity, giving at most two caps per lower-child vertex. This is
+  deliberately stated as a witness-count bound, not as a Pascal contribution.
+- `ErdosSzekeres/PublishedInductionSemantics.lean` formalizes the actual
+  maximal child-index and retained-subset construction used in the published
+  induction. The retained contribution is a concrete subset of vertices, and
+  its complement satisfies the exact next-threshold inequality. Uniformly,
+  auxiliary index one forces the whole nonempty child to be a singleton. The
+  `(4,5,5,1,3)` branch therefore reduces to the existing certificate-free
+  singleton-root theorem and now compiles with the sharp bound seven. It also
+  isolates the first remaining boundary `(4,6,6,3,2)`: Lean checks its exact
+  arithmetic and its only child-cardinality pairs `(2,10)` and `(3,9)`.
+- `docs/experiments/0012-published-offwindow-classification.md` records an
+  independently replayed census through `k = 20`. Every feasible non-index-one
+  scalar failure in that range has one saturated auxiliary parameter. Lean now
+  proves that saturation classification for all admissible parameters using
+  disjoint prefix/suffix allocations of the outer Pascal window; the bounded
+  census remains an independent regression and identifies the first gate.
+- `ErdosSzekeres/StructuralChargingSaturatedResource.lean` closes that first
+  gate without a finite certificate. Any open `(4,6,6)` split with nonempty
+  lower child and decomposable upper child has at most eight upper vertices,
+  excluding both `(2,10)` and `(3,9)`; its color-dual theorem excludes
+  `(10,2)` and `(9,3)`. It also proves the uniform gap-side kernel: absence of
+  a parent `(r+1)`-cap makes both upper gap sides around every lower vertex
+  `r`-cap-free.
+- `ErdosSzekeres/Duality.lean` isolates the certificate-free symmetry that
+  exchanges cups with caps and reverses a deep-below split.
+- `ErdosSzekeres/StructuralChargingCupBlocks56.lean` advances to the first
+  `k = 7` cup-block boundary. The first `(3,2)` auxiliary state and its dual
+  are closed in Lean. Both residual leaves at the `(3,3)` state now compile,
+  so the normalized `5+6` theorem, reversal/transport, cardinal payoff, and
+  actual `(4,7,7,3,3)` application close upper sizes 11--13 and all color-dual
+  child pairs without a finite certificate.
+- `ErdosSzekeres/StructuralChargingCapFreeSides.lean` freezes the next exact
+  open dependency, `TwoCapFreeSidesBound567`, and proves the ordinary
+  cup--cap reduction: each side has at most 15 vertices, so a counterexample
+  must have both side sizes in `[7,15]`. It now also proves generalized
+  one-vertex failure certificates, consecutive localization of cap failure,
+  and forced nested bridge colors from a five-cup. `Decomposable.lean` proves
+  that the strong-polygon law is exactly middle determinacy of triple colors.
+- `ErdosSzekeres/StructuralChargingSaturatedResource.lean` proves that the gate
+  would bound the large child by 21 and eliminate the `(5,6,7,4,2)` child
+  pairs `(2,24)`, `(3,23)`, `(4,22)` and their color duals. A sharp 21-point
+  SAT control and middle-determinacy UNSAT runs for every 22-point cut are
+  evidence only; the local bound is not yet proved in Lean.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
   sweep model to the exact conjecture.
 - `docs/literature_review.md` records the initial research synthesis.
 - `docs/bibliography.md` is the living source ledger.
+- `docs/agents/README.md` defines the repository's bounded multi-agent
+  orchestration protocol, durable specialist profiles, and task/result
+  evidence contracts. The Wayfinder remains the sole strategic tracker.
 - `docs/wayfinder/tickets/0001-choose-formal-model.md` is the first open
   strategic decision.
 
@@ -180,6 +273,7 @@ ErdosSzekeres/              Lean source
 docs/formalization_plan.md intermediary lemma ladder and proof boundaries
 docs/literature_review.md  research synthesis and candidate directions
 docs/bibliography.md       primary-source ledger
+docs/agents/               agent profiles and orchestration contracts
 docs/wayfinder/            durable strategic map and tickets
 docs/experiments/          designed computational experiments
 data/reference/            metadata for authenticated external inputs

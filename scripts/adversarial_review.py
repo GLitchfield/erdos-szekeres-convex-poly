@@ -136,9 +136,16 @@ def command_bytes(command: list[str], cwd: Path) -> bytes:
     return completed.stdout
 
 
+def repository_git_command(repo: Path, *args: str) -> list[str]:
+    """Use the managed checkout's writable metadata when it is present."""
+    if (repo / ".git-data").is_dir():
+        return ["git", "--git-dir=.git-data", "--work-tree=.", *args]
+    return ["git", *args]
+
+
 def repository_metadata(repo: Path) -> dict[str, Any]:
-    revision = command_output(["git", "rev-parse", "HEAD"], repo)
-    status = command_output(["git", "status", "--porcelain=v1"], repo)
+    revision = command_output(repository_git_command(repo, "rev-parse", "HEAD"), repo)
+    status = command_output(repository_git_command(repo, "status", "--porcelain=v1"), repo)
     metadata: dict[str, Any] = {
         "root": str(repo),
         "revision": revision,
@@ -147,9 +154,11 @@ def repository_metadata(repo: Path) -> dict[str, Any]:
     }
     if status:
         tracked_diff = command_bytes(
-            ["git", "diff", "--binary", "--no-ext-diff", "HEAD"], repo)
+            repository_git_command(repo, "diff", "--binary", "--no-ext-diff", "HEAD"), repo)
         untracked_raw = command_bytes(
-            ["git", "ls-files", "--others", "--exclude-standard", "-z"], repo)
+            repository_git_command(repo, "ls-files", "--others", "--exclude-standard", "-z"),
+            repo,
+        )
         untracked: list[dict[str, Any]] = []
         for raw_name in untracked_raw.split(b"\0"):
             if not raw_name:

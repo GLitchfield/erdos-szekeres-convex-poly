@@ -62,8 +62,114 @@ None. The destination was fixed by the user on 2026-08-01.
   boundary before proposing a uniform recurrence. The endpoint-avoidance
   charge now compiles in arbitrary cardinality. Applied independently to the
   two sides with the `(4,6,6)` theorem, it yields only 23 against the diagonal
-  threshold 16. The next bounded target must retain cross-gap correlation and
-  close this seven-vertex deficit.
+  threshold 16. Finite interval Helly and its cap-witness specialization now
+  compile, as does the sharp fact that two separated four-caps reserve seven
+  vertices. A checked eight-vertex countercontrol shows that separation alone
+  forces no target outcome. The normalized `4+5` cup-block gate now compiles
+  by a nine-witness symbolic proof; reversal and sorted restriction transport
+  close both arbitrary orientations and give an unconditional eight-vertex
+  cup-block charge. The exact eight-vertex exterior bound remains open and
+  isolates the missing cross-gap bridge. The root-aware target
+  `SingletonRootSeparatedCapChargeAtSix` now compiles outright: the endpoint
+  transition proves that two weakly separated upper four-caps force a parent
+  five-cap. Hence an open singleton-root parent lies entirely in the common-cut
+  branch, with every upper four-cap straddling the root. The next structural
+  target is to descend that common-cut family to its first separating
+  decomposition node and extract coupled Pascal/cup contributions, without
+  invoking the state-566 certificate or an equivalent finite upper theorem.
+  The common-cut statement itself now compiles uniformly: for every positive
+  `a`, absence of a parent `(a+1)`-cap makes the singleton root a common cut
+  for all upper `a`-cap witnesses. A separate structural-descent theorem now
+  extracts some recursive split separating any witness set of cardinality at least two,
+  while deliberately making no unformalized canonical-firstness claim.
+  The next candidate statement, that two separated four-caps crossing this
+  split force a `(5,6,6)` outcome, is refuted by an independently replayed
+  complete census through eight vertices. The disjoint-cap strengthening also
+  fails. The surviving root information is the at-most-two lower endpoint
+  ports of each crossing cap; the next lemma must charge those ports
+  quantitatively rather than demand an immediate outcome.
+  That local endpoint-port lemma now compiles: in any weakly ordered family of
+  crossing caps, each lower-child vertex has multiplicity at most two, and the
+  total lower incidence is at most twice the lower-child cardinality. The next
+  obstruction is global allocation: the proof must assign each witness to one
+  decomposition-tree occurrence so local charges can be summed without
+  duplication.
+  Explicit decomposition trees and Boolean node addresses now compile, as do
+  the specification and uniqueness of the lowest separating-node allocation
+  inside a chosen tree. The active target is to define the `k = 6` endpoint
+  demand attached to that address and prove that its Pascal contribution is
+  bounded by the local two-port capacity.
+  The intervening allocation-to-port theorem also compiles: an ordered family
+  of four-caps assigned to one address has at most twice as many members as
+  lower-child vertices. This sharp local count does not imply the 16-point
+  bound. An initial blind Sol/Fable review rejects selecting a weighted
+  overflow-token route before its semantic source is defined, but its proposed
+  follow-ups were stale: the singleton boundary is already closed locally and
+  deterministic incoming-star refinement is already stopped. In the corrected
+  audit, Sol finds that even the proposed finite classification is not yet
+  well-posed from the packet it received. Direct recovery from the journal
+  proof now resolves that objection: the child contribution is an actual
+  retained vertex subset chosen at a maximal threshold index, and the adjacent
+  term bounds its actual complement. This selection, its exact cardinal
+  inequality, and the uniform fact that index one forces a singleton child now
+  compile. The `(4,5,5,1,3)` branch consequently reduces to
+  `singleton_root_card_le_seven` and is closed in Lean. The next route-selection
+  item is to classify the remaining positive auxiliary indices below the
+  active Pascal window and freeze the smallest structural transition covering
+  them. The corrected Fable run exhausted its provider session quota, so the
+  new source-based contract still needs a fresh bounded review.
+  An independently replayed arithmetic census through `k = 20` now performs
+  that classification. After removing index-one singleton branches, all 6,120
+  feasible scalar failures have one saturated auxiliary parameter and one
+  parameter below the dual active-window endpoint. The smallest state is
+  `(4,6,6,3,2)`, with child sizes `(2,10)` or `(3,9)` and scalar defect five.
+  The saturation pattern now compiles uniformly in Lean: nonsaturated child
+  thresholds occupy disjoint prefix/suffix allocations of the outer Pascal
+  window and cannot realize complementary child cardinalities. The pending
+  route decision is therefore the structural one. Lean now extracts the first
+  shared resource at `(4,6,6,3,2)` without a finite certificate: an upper
+  three-cap whose sweep interval contains every lower-child vertex. The next
+  invariant must consume or transport that covering-cap resource uniformly,
+  with the two/three-vertex lower-child state as its first falsification gate.
+  That first gate now closes by a stronger certificate-free theorem: every
+  open `(4,6,6)` split with nonempty lower child and decomposable upper child
+  has at most eight upper vertices. Hence both `(2,10)` and `(3,9)` are
+  impossible. The proof turns the upper gap sides around any lower vertex into
+  ordered cup blocks and applies the symbolic `4+5/5+4` theorem. Certificate-free
+  color duality also eliminates the reversed `(10,2)` and `(9,3)` pairs. Its
+  uniform kernel says that no parent `(r+1)`-cap makes each gap side
+  `r`-cap-free. A corrected bounded review should decide whether higher
+  cap-free gap-side bounds are the next uniform state before this route is
+  promoted; unavailable Fable quota does not pause Lean implementation or
+  falsification work.
+  The first `k = 7` state `(4,7,7,3,2)` and its dual now close by an
+  elementary two-gap cardinal theorem. At `(4,7,7,3,3)`, the 13-vertex child
+  also closes. Both residual leaves of the normalized `5+6/6+5` theorem now
+  compile by explicit cup/cap/strong witnesses. Reversal, sorted restriction
+  transport, and the application shell therefore close sizes 11 and 12 and
+  every color-dual child pair without importing a SAT certificate. The active
+  boundary is `(5,6,7,4,2)`. A bounded Sol/Fable review judged its proposed
+  two-four-cap-free-sides bound logically sufficient but unproved. Lean now
+  freezes that exact dependency as `TwoCapFreeSidesBound567` and proves its
+  full conditional application and dual shells. The ordinary `(4,6)`
+  cup--cap recurrence now compiles under `OneChangeOn` and bounds each side by
+  15; hence the unresolved core has both side sizes in `[7,15]`. The `(4,4)`
+  and `(4,5)` recurrences give two four-cups and a five-cup, and the completed
+  cup-block theorem converts them into either a four-cap crossing the cut or a
+  strong six-set. A second bounded Sol/Fable review accepted the exact
+  one-vertex failure certificates but rejected them as quantitative
+  invariants. Lean now proves those certificates, consecutive localization
+  for cap extension failure, forced and nested bridge colors from a five-cup,
+  and the equivalence between strong polygons and middle-determined triple
+  colors. Small validated SAT controls refute an unconditional identical
+  witness-profile collision lemma. The middle-determinacy encoding resolves
+  the previously open 22-point cuts 10 and 11 as UNSAT in 278 and 289 seconds;
+  together with cuts 1--9 and the sharp validated 21-point model, every split
+  now supports the proposed bound computationally. No UNSAT certificate has
+  been imported into Lean. The next proof item is a global counting lemma
+  combining five-cup bridges, consecutive cap failures, and middle-color
+  disagreement on every seven-subset; a decomposable-only refinement remains
+  the fallback.
 
 ## Not yet specified
 

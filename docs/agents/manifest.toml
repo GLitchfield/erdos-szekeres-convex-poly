@@ -1,0 +1,107 @@
+schema_version = 1
+orchestrator = "principal_orchestrator"
+wayfinder_map = "docs/wayfinder/map.md"
+wayfinder_status = ["python3", "scripts/wayfinder_status.py"]
+file_proof_gate = ["lake", "env", "lean"]
+project_proof_gate = ["lake", "build"]
+repository_gate = ["make", "test"]
+
+[policy]
+max_parallel_workers = 3
+max_parallel_specialists = 3
+max_parallel_builders = 1
+max_delegation_depth = 1
+default_wall_minutes = 30
+default_cpu_cores = 8
+default_memory_gib = 16
+default_output_gib = 5
+runtime_root = "runs/agents"
+task_packets_immutable_after_dispatch = true
+orchestrator_owned = [
+  "AGENTS.md",
+  "ErdosSzekeres.lean",
+  "Makefile",
+  "README.md",
+  "docs/agents/**",
+  "docs/wayfinder/**",
+  "docs/formalization_plan.md",
+  "docs/literature_review.md",
+]
+claim_levels = [
+  "proposal",
+  "computational_evidence",
+  "file_compiles",
+  "project_builds",
+  "repository_tests_pass",
+  "kernel_checked_counterexample",
+]
+result_statuses = [
+  "completed",
+  "refuted",
+  "blocked",
+  "inconclusive",
+  "superseded",
+]
+
+[[profiles]]
+id = "principal_orchestrator"
+display_name = "Principal Research Orchestrator"
+kind = "orchestrator"
+path = "docs/agents/profiles/principal-orchestrator.md"
+default_mode = "orchestrator"
+allowed_claims = [
+  "proposal",
+  "computational_evidence",
+  "file_compiles",
+  "project_builds",
+  "repository_tests_pass",
+  "kernel_checked_counterexample",
+]
+
+[[profiles]]
+id = "adversarial_math_copilot"
+display_name = "Laplace"
+kind = "specialist"
+path = "docs/agents/profiles/adversarial-math-copilot.md"
+default_mode = "read_only"
+allowed_claims = ["proposal"]
+
+[[profiles]]
+id = "structural_proof_architect"
+display_name = "Structural Proof Architect"
+kind = "specialist"
+path = "docs/agents/profiles/structural-proof-architect.md"
+default_mode = "read_only"
+allowed_claims = ["proposal"]
+
+[[profiles]]
+id = "mathematical_innovation_scout"
+display_name = "Mathematical Innovation Scout"
+kind = "specialist"
+path = "docs/agents/profiles/mathematical-innovation-scout.md"
+default_mode = "read_only"
+allowed_claims = ["proposal"]
+
+[[profiles]]
+id = "lean_kernel_engineer"
+display_name = "Lean Kernel Engineer"
+kind = "builder"
+path = "docs/agents/profiles/lean-kernel-engineer.md"
+default_mode = "owned_files"
+allowed_claims = ["proposal", "file_compiles", "kernel_checked_counterexample"]
+
+[[profiles]]
+id = "finite_model_experimentalist"
+display_name = "Finite-Model Experimentalist"
+kind = "builder"
+path = "docs/agents/profiles/finite-model-experimentalist.md"
+default_mode = "owned_files"
+allowed_claims = ["proposal", "computational_evidence"]
+
+[[profiles]]
+id = "formal_proof_reviewer"
+display_name = "Formal Proof Reviewer"
+kind = "reviewer"
+path = "docs/agents/profiles/formal-proof-reviewer.md"
+default_mode = "read_only"
+allowed_claims = ["proposal"]

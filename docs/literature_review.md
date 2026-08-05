@@ -174,6 +174,16 @@ formalization therefore records the published threshold and its diagonal
 identity but requires a corrected invariant or boundary lemma before claiming
 E3.
 
+The source semantics of that auxiliary choice are now formalized in
+`PublishedInductionSemantics.lean`. The parameter is chosen maximally from the
+actual child cardinality, and the proof retains an actual subset of child
+vertices. Lean proves the associated complement inequality and the uniform
+fact that auxiliary index one forces the entire child to be a singleton. The
+specific `(4,5,5,1,3)` branch therefore reduces to the existing
+certificate-free singleton-root theorem and now has a compiling sharp bound
+of seven. Other off-window auxiliary indices remain unresolved, so this closes
+the first regression rather than E3.
+
 The full journal text has now been inspected directly.  Its final two-sum
 calculation contains the same defect: when an auxiliary parameter falls below
 the active Pascal window, the proof retains the next classical cup--cap term

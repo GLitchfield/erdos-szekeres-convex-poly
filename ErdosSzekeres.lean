@@ -12,6 +12,7 @@ public import ErdosSzekeres.Composition
 public import ErdosSzekeres.Extremal
 public import ErdosSzekeres.Decomposable
 public import ErdosSzekeres.DecomposableRealization
+public import ErdosSzekeres.Duality
 public import ErdosSzekeres.ContextProfile
 public import ErdosSzekeres.RankProfile
 public import ErdosSzekeres.RankProfileCollision
@@ -27,4 +28,14 @@ public import ErdosSzekeres.IncomingStarPrefixCollision
 public import ErdosSzekeres.E3State466Certificate
 public import ErdosSzekeres.E3FiniteReduction
 public import ErdosSzekeres.StructuralChargingBoundary
+public import ErdosSzekeres.StructuralChargingIntervals
+public import ErdosSzekeres.StructuralChargingCupBlocks45
+public import ErdosSzekeres.StructuralChargingCupBlocks56
+public import ErdosSzekeres.StructuralChargingCapFreeSides
+public import ErdosSzekeres.StructuralChargingSingletonRoot
+public import ErdosSzekeres.StructuralChargingFirstSplit
+public import ErdosSzekeres.StructuralChargingPortCapacity
+public import ErdosSzekeres.StructuralChargingTreeAllocation
+public import ErdosSzekeres.PublishedInductionSemantics
+public import ErdosSzekeres.StructuralChargingSaturatedResource
 public import ErdosSzekeres.ES5Certificate

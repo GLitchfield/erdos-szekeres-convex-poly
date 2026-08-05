@@ -317,6 +317,190 @@ a uniform E3 route, it must pass an independently checked all-root transition
 gate and a prefix-control test for arbitrarily interleaved deep splits; failure
 of that test redirects away from deterministic quotient refinement.
 
+The structural-charging interval layer now compiles in
+`ErdosSzekeres/StructuralChargingIntervals.lean`. Finite interval Helly turns
+failure of a common cap-witness cut into two weakly separated witnesses, whose
+intersection has at most one vertex. Two four-caps therefore reserve seven
+ambient vertices. A deterministic eight-point countercontrol shows this is
+sharp and that separation alone forces no target outcome. The normalized
+`4+5` cup-block statement now compiles by a nine-witness symbolic proof;
+reversal and sorted restriction transport close both arbitrary orientations.
+The resulting unconditional cup-block charge is eight. The separated-cap
+exterior bound remains open, and its compiling conditional consequence would
+recover the diagonal bound 16.
+
+The stronger root-local contract now compiles outright in
+`ErdosSzekeres/StructuralChargingSingletonRoot.lean`. The endpoint-straddling
+law proves that two weakly separated upper four-caps at a singleton deep-below
+root force a parent five-cap. Consequently the separated-cap charge holds, and
+its compiling cardinal consequence reaches 16 without the state-566
+certificate. More importantly, an open singleton-root parent cannot enter the
+separated-witness branch: every upper four-cap straddles the root, so the
+remaining structural work is the common-cut branch. A certificate-free proof
+must recursively expose its first separating decomposition node and recover
+the coupled Pascal contribution there. The first uniform lemma now compiles:
+for arbitrary positive `a`, absence of a parent `(a+1)`-cap makes the
+singleton root's sweep index a common cut for every upper `a`-cap. Thus the
+next proof obligation begins at the decomposition-tree descent, not at interval
+Helly or root-cut existence. `StructuralChargingFirstSplit.lean` now supplies
+the honest existential descent interface: a witness set with at least two
+vertices is separated by some recursive split contained in the original
+decomposable set. It does not encode a canonical or minimal-depth node.
+
+The first force-outcome proposal at such a split is false. A deterministic
+complete census through eight vertices finds 185 violating root/cap-pairs at
+seven vertices and 13,266 at eight vertices. Requiring the two caps to be
+disjoint still leaves 74 eight-vertex violations. The smallest shared-boundary
+and disjoint witnesses are independently replayed with explicit decomposition
+trees. Consequently the next structural invariant must count the one or two
+lower-child endpoint ports used by each crossing cap; another binary
+force-outcome case split has no support.
+
+`StructuralChargingPortCapacity.lean` now proves this local invariant for an
+arbitrary finite weakly ordered family. A common vertex of two family members
+is forced to be the earlier member's right sweep endpoint and the later
+member's left sweep endpoint. Three uses would make the middle member have at
+most one vertex, so each lower-child vertex has capacity two. Double counting
+then gives
+`∑ i, ((caps i) ∩ lower).card ≤ 2 * lower.card`.
+
+The remaining obstruction is no longer local endpoint geometry. The
+existential split theorem forgets the occurrence of a split in a decomposition
+tree, so it cannot yet assign each witness or Pascal overflow to a unique node.
+The next layer must reify decomposition trees and prove a minimal-separating
+node allocation, or prove a choice-independent no-double-charge theorem.
+
+`StructuralChargingTreeAllocation.lean` completes the reified-tree option. It
+bridges ordinary decomposability to a data-carrying tree, looks up nodes by
+Boolean paths, computes the lowest separating address, proves that the
+address resolves to a genuine separating split, and proves uniqueness within
+the chosen tree. The next contract must define the `k = 6` Pascal overflow
+assigned to such an address and connect its demand to the compiling local
+two-port capacity theorem.
+
+The allocation-to-capacity coupling now compiles as well. Every cap assigned
+to one address crosses the resolved split, and an ordered family of four-caps
+at that address has at most `2 * node.lower.card` members. This statement is
+sharp on the seven-vertex counterexample and is only a cap-witness count. It
+does not bound the Pascal window, extract the ordered `4+5` cup blocks, or
+prevent a vertex from supplying ports at several ancestor addresses. A sound
+future charging layer may require weighted tokens, but it cannot define them
+before recovering the semantic family counted by the published child
+summands.
+
+A bounded blind Sol/Fable review at packet SHA-256
+`1a879cf0be9c3bceec4d9ec5e514b4f73a0a9650bfb85435b93e9c79a08899ae`
+rejects selecting that token route in its current form. Its proposed follow-up
+items were subsequently disposed: the singleton `(4,5,5)` boundary is already
+closed by `singleton_root_card_le_seven`, while deterministic incoming-star
+refinement is stopped by the recorded nine-vertex collision.
+
+A corrected audit with question SHA-256
+`116946c9457e8592da499dadaed8cd028562e85ee109429c49b06c90be2ceb80`
+finds that the proposed one-unit classification is itself undefined. Sol's
+high-confidence `partially_supported` result identifies the smallest
+non-circular work item as specification recovery: define a decidable semantic
+`ChildContribution` relation from a coloring, fixed explicit tree, node
+address, child state, and concrete resource; prove that the finite resource
+family has the cardinality of the relevant published child summand; and prove
+restriction/composition and stable ancestor-identity properties. Membership
+must not mention overflow, the desired bound, or successful extraction. Only
+then is a bounded extraction/reuse census well-posed. The corrected Fable run
+generated no valid review because it hit an external session quota, so there
+was no corrected Sol/Fable consensus. This was route evidence, not a proof.
+
+Direct recovery of the missing source semantics has now superseded the audit's
+information gap. `PublishedInductionSemantics.lean` defines the published
+maximal child index, constructs the actual retained vertex subset of size
+`decomposableThreshold a index k + 1`, and proves the exact complement-plus-core
+inequality at the next threshold. It also proves uniformly that auxiliary
+index one forces the entire nonempty child to be a singleton whenever
+`2 ≤ a ≤ k`. Therefore the `(4,5,5,1,3)` source branch is transported into
+`singleton_root_card_le_seven` by
+`published_455_index_one_boundary_card_le_seven`; the precise caveat noted by
+the corrected Sol audit is closed with only `propext`, `Classical.choice`, and
+`Quot.sound`. This does not repair all off-diagonal states: the next bounded
+route-selection problem is to classify positive indices strictly below
+`k - a + 1` (and the dual range) after removing index one, then state the
+smallest non-scalar transition that covers those remaining cases.
+
+The bounded classification in
+`docs/experiments/0012-published-offwindow-classification.md` now sharpens that
+problem. Independent implementations agree through `k = 20` on 7,752 feasible
+scalar failures and 3,670,056 child-cardinality splits. Once index-one branches
+are removed, every remaining state has `a' = a - 1` with
+`u' < k - a + 1`, or its color dual. The first case is
+`(a,u,k,a',u') = (4,6,6,3,2)`, where the children have cardinalities `(2,10)`
+or `(3,9)`. The saturation statement is no longer only computational:
+`published_feasible_auxiliary_saturation` proves it for all admissible
+parameters by allocating nonsaturated child thresholds to disjoint outer-row
+prefix and suffix intervals. The bounded census still supplies the first
+structural gate. A fresh route review must freeze a certificate-free uniform
+saturated-boundary contract and test it at this two/three-anchor state; using
+the existing state-466 certificate as the gate would be circular.
+
+The first structural bridge at that gate now compiles independently of the
+certificate. The upper child has more than five vertices, so the ordinary
+`(3,6)` cup--cap theorem supplies a three-cap unless a forbidden parent
+six-cup already exists. If the parent has no four-cap, the deep-below endpoint
+transition forces that cap's sweep interval to contain every lower-child
+vertex. `first_saturated_boundary_has_covering_upper_three_cap` packages this
+resource. It is not yet the saturated transition: the next theorem must state
+how this common covering cap is consumed or transported through recursive
+decomposition.
+
+That first transition is now closed by a simpler structural argument in
+`StructuralChargingSaturatedResource.lean`. Around any lower-child vertex,
+absence of a parent four-cap makes both upper gap sides three-cap-free, hence
+cups. Upper-child decomposability supplies the one-change law, and the
+certificate-free `4+5/5+4` cup-block theorem bounds their union by eight.
+Thus `upper_card_le_eight_of_nonempty_lower_open_466` eliminates both feasible
+child pairs `(2,10)` and `(3,9)`. The parameterized surviving kernel says that
+absence of a parent `(r+1)`-cap makes both gap sides `r`-cap-free. Generalizing
+the cup-block bound to these higher cap-free side states is the next proposed
+uniform transition, pending corrected reciprocal route review. The elementary
+duality facts have been separated into `Duality.lean`; the derived theorem
+`lower_card_le_eight_of_nonempty_upper_open_646` also rules out the reversed
+child pairs `(10,2)` and `(9,3)` without a certificate dependency.
+
+The next `k = 7` pass now distinguishes two layers. The uniform elementary
+two-gap bound closes `(4,7,7,3,2)` and its color dual, and its sharper
+`2*(u-1)` form separately excludes the 13-vertex child at
+`(4,7,7,3,3)`. For the remaining sizes 11 and 12,
+`StructuralChargingCupBlocks56.lean` freezes the normalized `5+6/6+5`
+contract and proves its complete transport and application shell. A new
+seven-chain lemma, five immediate fan cups, a bridge seven-cup, and three cap
+leaves reduce the normalized target to `CupBlocks56ResidualA` and
+`CupBlocks56ResidualC`. Both residuals now compile. Residual C uses the
+one-change law to force turns `459`, `346`, and `467`; a left `4510` gives an
+explicit seven-cup, while a right `4510` combines a tail six-cup, a skip
+six-cup, and a forced right fan into the strong seven-set
+`{4,5,6,7,8,9,10}`. Consequently the normalized theorem and arbitrary
+`5+6/6+5` transport close all `(4,7,7,3,3)` child pairs and their duals. The
+bounded SAT traces were used only for proof discovery.
+
+The active state is now `(5,6,7,4,2)`. The exact proposed local dependency is
+`TwoCapFreeSidesBound567`: two ordered sides, each four-cap-free, have total
+cardinality at most 21 when their union obeys `OneChangeOn` and avoids a
+five-cap, six-cup, and strong seven-set. Lean now proves the elementary first
+layer: the ordinary `(4,6)` cup--cap recurrence plus `OneChangeOn` bounds each
+side by 15, so every counterexample has both side cardinalities in `[7,15]`.
+The `(4,4)` and `(4,5)` recurrences then supply a four-cup on each side and a
+five-cup on at least one side. Applying the completed `4+5/5+4` theorem proves
+that the residual window contains either a four-cap meeting both sides or a
+strong six-set. Lean now extracts a local nonextension certificate for every
+unused vertex. Four-cap failure can be localized to a consecutive triple;
+five-cups force nested right-bridge colors; and a strong set is proved
+equivalent to middle determinacy of all its triple colors.
+Lean also proves the complete conditional application and color-dual shells,
+eliminating `(2,24)`, `(3,23)`, and `(4,22)` if the residual local bound is
+supplied. Bounded SAT falsification found a validated 21-point witness.
+The middle-determinacy encoding now also finds cuts 10 and 11 UNSAT, completing
+all 22-point cuts computationally. Separate small SAT models refute a naive
+identical witness-profile collision, so the remaining proof must count global
+middle-color and outside-vertex correlations. This is sharp computational
+evidence, not a proof or a reason to freeze the premise as a theorem.
+
 The proof is complete only when that new structural input and Layers A--E
 combine into the already-defined `ErdosSzekeresConjecture` with no placeholders.
 

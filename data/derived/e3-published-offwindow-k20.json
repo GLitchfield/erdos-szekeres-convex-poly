@@ -1,0 +1,45 @@
+{
+  "by_k": [
+    {"feasible_child_splits": 2, "feasible_failure_states": 2, "k": 5, "non_index_one_states": 0, "saturation_violations": 0, "scalar_failure_states": 4},
+    {"feasible_child_splits": 10, "feasible_failure_states": 8, "k": 6, "non_index_one_states": 2, "saturation_violations": 0, "scalar_failure_states": 14},
+    {"feasible_child_splits": 34, "feasible_failure_states": 20, "k": 7, "non_index_one_states": 8, "saturation_violations": 0, "scalar_failure_states": 36},
+    {"feasible_child_splits": 98, "feasible_failure_states": 40, "k": 8, "non_index_one_states": 20, "saturation_violations": 0, "scalar_failure_states": 68},
+    {"feasible_child_splits": 258, "feasible_failure_states": 70, "k": 9, "non_index_one_states": 40, "saturation_violations": 0, "scalar_failure_states": 116},
+    {"feasible_child_splits": 642, "feasible_failure_states": 112, "k": 10, "non_index_one_states": 70, "saturation_violations": 0, "scalar_failure_states": 192},
+    {"feasible_child_splits": 1538, "feasible_failure_states": 168, "k": 11, "non_index_one_states": 112, "saturation_violations": 0, "scalar_failure_states": 286},
+    {"feasible_child_splits": 3586, "feasible_failure_states": 240, "k": 12, "non_index_one_states": 168, "saturation_violations": 0, "scalar_failure_states": 412},
+    {"feasible_child_splits": 8194, "feasible_failure_states": 330, "k": 13, "non_index_one_states": 240, "saturation_violations": 0, "scalar_failure_states": 566},
+    {"feasible_child_splits": 18434, "feasible_failure_states": 440, "k": 14, "non_index_one_states": 330, "saturation_violations": 0, "scalar_failure_states": 778},
+    {"feasible_child_splits": 40962, "feasible_failure_states": 572, "k": 15, "non_index_one_states": 440, "saturation_violations": 0, "scalar_failure_states": 996},
+    {"feasible_child_splits": 90114, "feasible_failure_states": 728, "k": 16, "non_index_one_states": 572, "saturation_violations": 0, "scalar_failure_states": 1310},
+    {"feasible_child_splits": 196610, "feasible_failure_states": 910, "k": 17, "non_index_one_states": 728, "saturation_violations": 0, "scalar_failure_states": 1666},
+    {"feasible_child_splits": 425986, "feasible_failure_states": 1120, "k": 18, "non_index_one_states": 910, "saturation_violations": 0, "scalar_failure_states": 2072},
+    {"feasible_child_splits": 917506, "feasible_failure_states": 1360, "k": 19, "non_index_one_states": 1120, "saturation_violations": 0, "scalar_failure_states": 2574},
+    {"feasible_child_splits": 1966082, "feasible_failure_states": 1632, "k": 20, "non_index_one_states": 1360, "saturation_violations": 0, "scalar_failure_states": 3130}
+  ],
+  "conventions": {
+    "active_parent": "4 <= a,u <= k and k+4 <= a+u",
+    "auxiliary": "1 <= a'<a, 1 <= u'<u, and a'+u' <= k-1",
+    "feasible": "positive child sizes sum to threshold(a,u,k)+1 and realize both maximal indices",
+    "resolved_index_one": "a'=1 or u'=1; PublishedInductionSemantics proves that child is a singleton"
+  },
+  "observed_claim": "Every feasible non-index-one scalar failure has a'=a-1 with u'<k-a+1 or u'=u-1 with a'<k-u+1.",
+  "range": {"max_k": 20, "min_k": 5},
+  "schema": "erdos-szekeres-published-offwindow-v1",
+  "smallest_non_index_one": {
+    "active_lower_endpoint": 3,
+    "child_cardinality_pairs": [[2, 10], [3, 9]],
+    "defect": 5,
+    "lower_child_cardinalities": [2, 3],
+    "outer_threshold": 11,
+    "scalar_contribution": 16,
+    "state": {"a": 4, "a_prime": 3, "k": 6, "u": 6, "u_prime": 2}
+  },
+  "totals": {
+    "feasible_child_splits": 3670056,
+    "feasible_failure_states": 7752,
+    "non_index_one_states": 6120,
+    "saturation_violations": 0,
+    "scalar_failure_states": 14220
+  }
+}

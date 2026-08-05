@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "task_id": "unique-bounded-task-id",
+  "status": "completed",
+  "claim_level": "file_compiles",
+  "summary": "The frozen theorem contract compiles in its owned file.",
+  "supports": ["The stated local intermediary lemma is kernel checked."],
+  "does_not_support": ["The full project build or the general conjecture is complete."],
+  "changes": ["ErdosSzekeres/Example.lean"],
+  "checks": [
+    {
+      "command": "lake env lean ErdosSzekeres/Example.lean",
+      "outcome": "passed"
+    }
+  ],
+  "evidence": ["Compiler exited with status 0."],
+  "limitations": ["The orchestrator has not yet run lake build or make test."],
+  "blocked_by": null
+}

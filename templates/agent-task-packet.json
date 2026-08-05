@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "run_id": "YYYYMMDD-short-description",
+  "task_id": "unique-bounded-task-id",
+  "wayfinder_ticket": "docs/wayfinder/tickets/NNNN-example.md",
+  "profile": "lean_kernel_engineer",
+  "base_revision": "git-revision-or-NO-COMMIT",
+  "workspace_fingerprint": "sha256-of-declared-input-state",
+  "objective": "Prove one frozen intermediary lemma serving the named ticket.",
+  "theorem_contract": {
+    "name": "ErdosSzekeres.exampleLemma",
+    "statement": "theorem exampleLemma : True",
+    "statement_may_change": false
+  },
+  "inputs": [
+    {
+      "path": "ErdosSzekeres/Example.lean",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "ownership": {
+    "read_paths": ["ErdosSzekeres/Prerequisite.lean"],
+    "write_paths": ["ErdosSzekeres/Example.lean"]
+  },
+  "budget": {
+    "wall_minutes": 30,
+    "cpu_cores": 8,
+    "memory_gib": 16,
+    "output_gib": 5
+  },
+  "required_checks": ["lake env lean ErdosSzekeres/Example.lean"],
+  "success": ["The frozen declaration compiles without sorry or admit."],
+  "stop": ["The theorem contract is false or needs different hypotheses.", "The resource budget is exhausted."],
+  "deliverables": ["Owned-file patch", "Structured agent result"],
+  "claims_allowed": ["proposal", "file_compiles"]
+}

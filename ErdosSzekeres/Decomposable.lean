@@ -40,6 +40,16 @@ def IsStrongPolygonSet {n : ℕ} (χ : TripleColoring n)
       χ ⟨i, k, l, hij.trans hjk, hkl⟩ =
         χ ⟨j, k, l, hjk, hkl⟩
 
+/-- On a middle-determined set, changing either endpoint of a triple while
+keeping its middle vertex fixed does not change its color. -/
+def IsMiddleDeterminedOn {n : ℕ} (χ : TripleColoring n)
+    (s : Finset (Fin n)) : Prop :=
+  ∀ ⦃i i' j k k' : Fin n⦄,
+    (hij : i < j) → (hi'j : i' < j) →
+    (hjk : j < k) → (hjk' : j < k') →
+    i ∈ s → i' ∈ s → j ∈ s → k ∈ s → k' ∈ s →
+    χ ⟨i, j, k, hij, hjk⟩ = χ ⟨i', j, k', hi'j, hjk'⟩
+
 /-- A cup of prescribed cardinality contained in `s`. -/
 def ContainsCupSet {n : ℕ} (χ : TripleColoring n)
     (s : Finset (Fin n)) (u : ℕ) : Prop :=
@@ -74,6 +84,46 @@ theorem IsStrongPolygonSet.mono (h : IsStrongPolygonSet χ s)
     (hts : t ⊆ s) : IsStrongPolygonSet χ t := by
   intro i j k l hij hjk hkl hi hj hk hl
   exact h hij hjk hkl (hts hi) (hts hj) (hts hk) (hts hl)
+
+/-- The four-index strong-polygon law is exactly middle determinacy. -/
+theorem isStrongPolygonSet_iff_isMiddleDeterminedOn :
+    IsStrongPolygonSet χ s ↔ IsMiddleDeterminedOn χ s := by
+  constructor
+  · intro hstrong i i' j k k' hij hi'j hjk hjk' hi hi' hj hk hk'
+    have hleft :
+        χ ⟨i, j, k, hij, hjk⟩ = χ ⟨i', j, k, hi'j, hjk⟩ := by
+      rcases lt_trichotomy i i' with hii' | rfl | hi'i
+      · exact (hstrong hii' hi'j hjk hi hi' hj hk).2
+      · rfl
+      · exact (hstrong hi'i hij hjk hi' hi hj hk).2.symm
+    have hright :
+        χ ⟨i', j, k, hi'j, hjk⟩ =
+          χ ⟨i', j, k', hi'j, hjk'⟩ := by
+      rcases lt_trichotomy k k' with hkk' | rfl | hk'k
+      · exact (hstrong hi'j hjk hkk' hi' hj hk hk').1
+      · rfl
+      · exact (hstrong hi'j hjk' hk'k hi' hj hk' hk).1.symm
+    exact hleft.trans hright
+  · intro hmiddle i j k l hij hjk hkl hi hj hk hl
+    constructor
+    · exact hmiddle hij hij hjk (hjk.trans hkl) hi hi hj hk hl
+    · exact hmiddle (hij.trans hjk) hjk hkl hkl hi hj hk hl hl
+
+/-- Avoiding a strong `k`-set is equivalently the failure of middle
+determinacy on every `k`-subset. This is the logical form used by the compact
+balanced-cut falsification encoding. -/
+theorem not_containsStrongPolygonSet_iff_all_not_middleDetermined {k : ℕ} :
+    ¬ContainsStrongPolygonSet χ s k ↔
+      ∀ polygon : Finset (Fin n), polygon ⊆ s → polygon.card = k →
+        ¬IsMiddleDeterminedOn χ polygon := by
+  constructor
+  · intro hno polygon hsub hcard hmiddle
+    exact hno ⟨polygon, hsub, hcard,
+      isStrongPolygonSet_iff_isMiddleDeterminedOn.mpr hmiddle⟩
+  · intro hno hstrong
+    obtain ⟨polygon, hsub, hcard, hpolygon⟩ := hstrong
+    exact hno polygon hsub hcard
+      (isStrongPolygonSet_iff_isMiddleDeterminedOn.mp hpolygon)
 
 theorem IsCupSet.isStrongPolygonSet (h : IsCupSet χ s) :
     IsStrongPolygonSet χ s := by

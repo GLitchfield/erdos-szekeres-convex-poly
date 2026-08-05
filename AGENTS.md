@@ -61,6 +61,28 @@ This repository is an AI-assisted formal mathematics project initialized from
   Sol/Fable review before selecting or changing the main route.
 - Keep the map, README, survey, and Lean statement aligned when scope changes.
 
+## Multi-agent orchestration
+
+- The canonical role manifest and execution protocol are
+  `docs/agents/manifest.toml` and `docs/agents/README.md`.
+- Keep durable persona profiles separate from immutable task packets. Every
+  delegated assignment must freeze its objective, inputs, ownership, budget,
+  evidence gate, success condition, and stop conditions before dispatch.
+- The top-level orchestrator owns integration files and serializes shared-file
+  edits, project builds, repository tests, commits, and Wayfinder changes.
+  Specialists are read-only unless a task packet grants exact, non-overlapping
+  write paths.
+- Treat agent output as an untrusted proposal. Record the precise evidence
+  level; consensus, prose, and computation do not become Lean proofs through
+  review or repetition.
+- Store transient task packets, transcripts, and results under ignored
+  `runs/agents/`. Promote durable conclusions into existing Wayfinder tickets,
+  experiments, source documents, or Lean theorems rather than creating a
+  second strategic tracker.
+- Use bounded Sol/Fable review for route selection or route changes. Ordinary
+  implementation of a vetted frozen theorem contract does not require another
+  strategic review.
+
 ## Git discipline
 
 - Preserve user work and unrelated changes. Stage only intended files.

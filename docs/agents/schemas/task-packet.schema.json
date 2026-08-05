@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/agent-task-packet.schema.json",
+  "title": "Erdos-Szekeres agent task packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "task_id",
+    "wayfinder_ticket",
+    "profile",
+    "base_revision",
+    "workspace_fingerprint",
+    "objective",
+    "theorem_contract",
+    "inputs",
+    "ownership",
+    "budget",
+    "required_checks",
+    "success",
+    "stop",
+    "deliverables",
+    "claims_allowed"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "wayfinder_ticket": {"type": ["string", "null"]},
+    "profile": {"type": "string", "minLength": 1},
+    "base_revision": {"type": "string", "minLength": 1},
+    "workspace_fingerprint": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "theorem_contract": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "statement", "statement_may_change"],
+          "properties": {
+            "name": {"type": "string", "minLength": 1},
+            "statement": {"type": "string", "minLength": 1},
+            "statement_may_change": {"const": false}
+          }
+        }
+      ]
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["read_paths", "write_paths"],
+      "properties": {
+        "read_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "write_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wall_minutes", "cpu_cores", "memory_gib", "output_gib"],
+      "properties": {
+        "wall_minutes": {"type": "integer", "minimum": 1},
+        "cpu_cores": {"type": "integer", "minimum": 1},
+        "memory_gib": {"type": "integer", "minimum": 1},
+        "output_gib": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "required_checks": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "success": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "stop": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "deliverables": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "claims_allowed": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "proposal",
+          "computational_evidence",
+          "file_compiles",
+          "project_builds",
+          "repository_tests_pass",
+          "kernel_checked_counterexample"
+        ]
+      }
+    }
+  }
+}

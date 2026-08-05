@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/agent-result.schema.json",
+  "title": "Erdos-Szekeres agent result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "status",
+    "claim_level",
+    "summary",
+    "supports",
+    "does_not_support",
+    "changes",
+    "checks",
+    "evidence",
+    "limitations",
+    "blocked_by"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["completed", "refuted", "blocked", "inconclusive", "superseded"]},
+    "claim_level": {
+      "enum": [
+        "proposal",
+        "computational_evidence",
+        "file_compiles",
+        "project_builds",
+        "repository_tests_pass",
+        "kernel_checked_counterexample"
+      ]
+    },
+    "summary": {"type": "string", "minLength": 1},
+    "supports": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "does_not_support": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "changes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["command", "outcome"],
+        "properties": {
+          "command": {"type": "string", "minLength": 1},
+          "outcome": {"enum": ["passed", "failed", "not_run"]}
+        }
+      }
+    },
+    "evidence": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "blocked_by": {"type": ["string", "null"]}
+  }
+}
