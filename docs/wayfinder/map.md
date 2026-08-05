@@ -229,10 +229,14 @@ None. The destination was fixed by the user on 2026-08-01.
   All twelve directed failures now have a compiling side-aware three-state
   normalization. For a left-side probe, a right-endpoint failure has its three
   earlier comparison vertices in the left side; the dual statement holds for
-  a right-side probe and a left-endpoint failure. The next target is to combine
-  those localized cores with the two bounded middle words and five split types
-  to derive an extreme replacement or a target outcome. Bounded countermodels
-  rule out reducing either target to bare `5+5`, `6+4`, or `6+7` block data.
+  a right-side probe and a left-endpoint failure. This has now been refined to
+  a literal 19-class anomaly/fan state: internal positions are indexed, anomaly
+  endpoints are canonical, and one-change forces explicit bridge equalities
+  in the canonical, boundary-fan, internal-fan, and fresh-middle-fan branches.
+  The checked `3+3` model refutes capacity one even for indexed classes. The
+  next target is a common bridge certificate for all classes, followed by a
+  two-probe compatibility lemma. Bounded countermodels
+  rule out reducing the route to bare `5+5`, `6+4`, or `6+7` block data.
 
 ## Not yet specified
 

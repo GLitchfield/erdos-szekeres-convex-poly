@@ -252,6 +252,10 @@ sets.
   twelve directed failures also have a side-aware three-state form: an
   interleaving endpoint or middle role, or an extreme role whose comparison
   core is forced entirely onto the vertex's side of the cut.
+  `StructuralChargingMiddleSplitClasses.lean` eliminates the remaining raw
+  roles, indexes the resulting anomaly/fan states by a literal 19-element
+  type, canonicalizes anomaly endpoints, and proves one-change bridge
+  equalities for canonical, internal-fan, and fresh-middle-fan branches.
 - `ErdosSzekeres/StructuralChargingSaturatedResource.lean` proves that the gate
   would bound the large child by 21 and eliminate the `(5,6,7,4,2)` child
   pairs `(2,24)`, `(3,23)`, `(4,22)` and their color duals. A sharp 21-point

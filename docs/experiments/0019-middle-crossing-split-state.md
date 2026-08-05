@@ -66,10 +66,8 @@ refutation aid, not a Lean proof of a positive result.
 
 ## Next theorem
 
-Use the localized comparison cores rather than bare role labels. The next
-bounded target should combine one of those cores with the two
-weight-one-or-two middle words and the pair's crossing split types, then prove
-either an extreme `1+5` or `5+1` replacement after the relevant deletion, or
-one of cap five, cup six, and strong seven. Any proposed multiplicity or
-compatibility premise should first be checked against the recorded 12-point
-model.
+This target is continued in experiment 0020. The localized cores have been
+combined with the bounded middle words and split types, and all raw roles now
+refine to indexed anomaly/fan classes. The active target is a common bridge
+certificate for those classes, followed by a checked two-probe compatibility
+lemma.

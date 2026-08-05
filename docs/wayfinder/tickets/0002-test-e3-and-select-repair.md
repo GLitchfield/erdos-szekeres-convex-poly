@@ -619,6 +619,16 @@ side-aware states, with the extreme role's comparison core forced entirely
 onto the probe's side of the cut. The next target must combine these localized
 cores with the bounded middle words and crossing split types.
 
+That combination is now a compiling local state. Raw roles normalize to
+indexed middle anomalies, boundary fans, internal fans, or fresh-middle fans.
+The nominal class type has 19 elements. Arbitrary anomaly endpoints either
+canonicalize or create a same-index fan, and one-change turns canonical,
+boundary-fan, internal-fan, and fresh-middle-fan classes into explicit bridge
+equalities. Replay on the checked `3+3` model rules out a capacity-one count on
+these indexed labels. The active target is now one common bridge-certificate
+predicate, then compatibility between two probes carrying the same indexed
+certificate.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -657,6 +667,8 @@ cores with the bounded middle words and crossing split types.
 - [Balanced residue transitions](../../experiments/0017-balanced-residue-transitions.md)
 - [Packed crossing splits](../../experiments/0018-packed-crossing-splits.md)
 - [Middle crossing split state](../../experiments/0019-middle-crossing-split-state.md)
+- [Finite middle-failure classes](../../experiments/0020-middle-failure-classes.md)
+- [Middle-failure class analyzer](../../../scripts/analyze_middle_split_failure_classes.py)
 - [Middle-split pair falsifier](../../../scripts/check_middle_split_pair.py)
 - [Independent middle-split pair checker](../../../scripts/verify_middle_split_pair_model.py)
 - [Repeated-residue falsifier](../../../scripts/check_repeated_residue_fibers.py)

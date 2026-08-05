@@ -35,6 +35,7 @@ test: check lean
 		scripts/analyze_cap_failure_charge_matching.py \
 		scripts/analyze_decomposable_rank_profiles.py \
 		scripts/analyze_lrat_checkpoints.py \
+		scripts/analyze_middle_split_failure_classes.py \
 		scripts/check_agent_orchestration.py \
 		scripts/check_e3_state455_aggregation.py \
 		scripts/check_e3_state566_aggregation.py \
