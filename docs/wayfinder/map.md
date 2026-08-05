@@ -215,10 +215,14 @@ None. The destination was fixed by the user on 2026-08-01.
   checked `11+2` and `11+3` controls show that neither repetition alone has a
   small fiber bound. Lean now proves that among three strong five-residues in
   an eleven-set, two share at least two vertices. The next balanced invariant
-  must connect the 22-point strong-six packing to enough strong-residue
-  witnesses to activate this overlap, then resolve the shared-pair agreement
-  case. Bounded countermodels rule out reducing either target to bare `5+5`,
-  `6+4`, or `6+7` block data.
+  is now connected conditionally to this overlap: if crossing strong sixes of
+  types `2+4`, `3+3`, and `4+2` are absent, deletion packing forces at least
+  seven extreme-split residue carriers, at least four on one side, and hence
+  three residues with a pair overlap. The immediate obstruction is therefore
+  to derive a target outcome or an extreme replacement from every middle
+  crossing split; after that, the shared-pair agreement case remains.
+  Bounded countermodels rule out reducing either target to bare `5+5`, `6+4`,
+  or `6+7` block data.
 
 ## Not yet specified
 

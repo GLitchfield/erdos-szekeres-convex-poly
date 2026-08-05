@@ -589,6 +589,19 @@ eleven-set, two share at least two vertices. The pending bridge must force at
 least three strong-residue witnesses from the 22-point strong-six packing and
 then resolve the shared-pair agreement case.
 
+The packing-to-residue bridge is now isolated exactly. Every strong six left
+after a prescribed six-vertex deletion crosses the balanced cut in one of the
+five splits `1+5`, `2+4`, `3+3`, `4+2`, or `5+1`. The extreme splits are
+equivalent to strong-five residue carriers. If all three middle splits are
+excluded, any six purported carriers can be deleted at once; packing then
+produces a fresh extreme carrier. Lean therefore proves at least seven total
+carriers, at least four on one side, and three ordered strong-five residues
+whose bases contain an overlapping pair. Thus the missing packing bridge is
+no longer a vague multiplicity question. Its exact remaining premise is a
+middle-split obstruction: each `2+4`, `3+3`, or `4+2` crossing strong six must
+force a target outcome or yield an extreme replacement. Only after that
+premise is discharged does the shared-pair agreement case become active.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -625,6 +638,7 @@ then resolve the shared-pair agreement case.
 - [Strong-six branch reduction](../../experiments/0016-strong-six-branch-reduction.md)
 - [Endpoint anomaly-class analyzer](../../../scripts/analyze_endpoint_anomaly_classes.py)
 - [Balanced residue transitions](../../experiments/0017-balanced-residue-transitions.md)
+- [Packed crossing splits](../../experiments/0018-packed-crossing-splits.md)
 - [Repeated-residue falsifier](../../../scripts/check_repeated_residue_fibers.py)
 - [Independent repeated-residue checker](../../../scripts/verify_repeated_residue_model.py)
 - [Lean structural charging machinery](../../../ErdosSzekeres/StructuralCharging.lean)
