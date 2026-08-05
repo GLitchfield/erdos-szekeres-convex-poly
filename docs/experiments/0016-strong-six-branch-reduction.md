@@ -57,6 +57,12 @@ This reduces the local bound to:
 `StructuralChargingStrongSixSignature.lean` further proves that an internal
 strong six in a four-cap-free, six-cup-free side has exactly one right-colored
 internal middle position, leaving four signatures rather than ten.
+Right-endpoint failures are now normalized again: each is either an anomaly
+against one of those four internal reference colors or a nonconstant fan at
+the polygon's final vertex. A change in that final fan forces both the earlier
+fan color and the intervening bridge color to equal the later polygon-middle
+color. This is the first transition law coupling the five anomaly classes to
+the four-way polygon signature.
 
 ## Countercontrols
 
@@ -77,6 +83,7 @@ none of these computations is recorded as a completed mathematical result.
 
 The active proof target is the endpoint-obstructed branch with one of four
 internal middle signatures, alongside the exact balanced `11+11` branch.
-The first proof should couple the six forced endpoint-role failures to the
-additional vertices of the large cap-free side; a local `6+7` block theorem is
-known false and must not be reproposed.
+The next proof should bound repetitions of the four internal anomaly classes
+and the final-fan class along the opposite side, using the proved fan-change
+propagation and the additional vertices of the large cap-free side. A local
+`6+7` block theorem is known false and must not be reproposed.

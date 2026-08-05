@@ -175,6 +175,181 @@ theorem strongSix_exactly_one_right_middle
   generalize hc4 : χ ⟨e 0, e 4, e 5, by simp, by simp⟩ = c4 at *
   cases c1 <;> cases c2 <;> cases c3 <;> cases c4 <;> simp_all
 
+/-- A right-endpoint extension anomaly at a nonfinal polygon middle. -/
+def HasInternalRightEndpointMiddleAnomaly {n : ℕ} (χ : TripleColoring n)
+    (polygon : Finset (Fin n)) (hcard : polygon.card = 6) (q : Fin n) : Prop :=
+  let e := polygon.orderEmbOfFin hcard
+  ∃ (i j : Fin n) (hij : i < j) (hjq : j < q)
+      (hfirst : e 0 < j) (hlast : j < e 5),
+    i ∈ polygon ∧ j ∈ polygon ∧
+      χ ⟨i, j, q, hij, hjq⟩ ≠ χ ⟨e 0, j, e 5, hfirst, hlast⟩
+
+/-- The exceptional right-endpoint anomaly whose shared middle is the final
+polygon vertex. -/
+def HasFinalMiddleFanVariation {n : ℕ} (χ : TripleColoring n)
+    (polygon : Finset (Fin n)) (hcard : polygon.card = 6) (q : Fin n) : Prop :=
+  let e := polygon.orderEmbOfFin hcard
+  ∃ (i i' : Fin n) (hi : i < e 5) (hi' : i' < e 5)
+      (hlastq : e 5 < q),
+    i ∈ polygon ∧ i' ∈ polygon ∧
+      χ ⟨i, e 5, q, hi, hlastq⟩ ≠
+        χ ⟨i', e 5, q, hi', hlastq⟩
+
+/-- A forced right-endpoint failure relative to a strong six-set normalizes
+to one of four internally referenced middle anomalies or to a variation in
+the final-middle fan. -/
+theorem rightEndpoint_failure_internal_or_final
+    {n : ℕ} {χ : TripleColoring n} {polygon : Finset (Fin n)}
+    {q : Fin n} (hcard : polygon.card = 6)
+    (hstrong : IsStrongPolygonSet χ polygon)
+    (hafter : ∀ x ∈ polygon, x < q)
+    (hfailure : HasMiddleExtensionFailureWithRole χ polygon q
+      .rightEndpoint) :
+    HasInternalRightEndpointMiddleAnomaly χ polygon hcard q ∨
+      HasFinalMiddleFanVariation χ polygon hcard q := by
+  let e : Fin 6 ↪o Fin n := polygon.orderEmbOfFin hcard
+  have heMem (r : Fin 6) : e r ∈ polygon :=
+    polygon.orderEmbOfFin_mem hcard r
+  have heImage : Finset.univ.image e = polygon :=
+    Finset.image_orderEmbOfFin_univ polygon hcard
+  have indexOfMem {x : Fin n} (hx : x ∈ polygon) : ∃ r : Fin 6, e r = x := by
+    have hxImage : x ∈ Finset.univ.image e := by simpa [heImage] using hx
+    simpa only [Finset.mem_image, Finset.mem_univ, true_and] using hxImage
+  have leLast {x : Fin n} (hx : x ∈ polygon) : x ≤ e 5 := by
+    obtain ⟨r, rfl⟩ := indexOfMem hx
+    exact e.monotone (Fin.le_last r)
+  have firstLe {x : Fin n} (hx : x ∈ polygon) : e 0 ≤ x := by
+    obtain ⟨r, rfl⟩ := indexOfMem hx
+    exact e.monotone (Fin.zero_le r)
+  have memberLeQ {x : Fin n} (hx : x ∈ insert q polygon) : x ≤ q := by
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact le_rfl
+    · exact (hafter x hx).le
+  have memPolygonOfLt {x : Fin n} (hx : x ∈ insert q polygon)
+      (hxq : x < q) : x ∈ polygon := by
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact (lt_irrefl _ hxq).elim
+    · exact hx
+  obtain ⟨i, i', j, k, k', hij, hi'j, hjk, hjk',
+    hi, hi', hj, hk, hk', hrole, hneq⟩ := hfailure
+  have hjq : j < q := hjk.trans_le (memberLeQ hk)
+  have hiq : i < q := hij.trans hjq
+  have hi'q : i' < q := hi'j.trans hjq
+  have hiPolygon := memPolygonOfLt hi hiq
+  have hi'Polygon := memPolygonOfLt hi' hi'q
+  have hjPolygon := memPolygonOfLt hj hjq
+  have hfirst : e 0 < j := (firstLe hiPolygon).trans_lt hij
+  have hlastLe : j ≤ e 5 := leLast hjPolygon
+  by_cases hjLast : j = e 5
+  · have hkq : k = q := by
+      rcases Finset.mem_insert.mp hk with rfl | hkPolygon
+      · rfl
+      · have := leLast hkPolygon
+        omega
+    have hk'q : k' = q := by
+      rcases Finset.mem_insert.mp hk' with rfl | hkPolygon
+      · rfl
+      · have := leLast hkPolygon
+        omega
+    exact Or.inr ⟨i, i', by simpa [hjLast] using hij,
+      by simpa [hjLast] using hi'j, by simpa [hjLast] using hjq,
+      hiPolygon, hi'Polygon, by simpa [hjLast, hkq, hk'q] using hneq⟩
+  · have hlast : j < e 5 := lt_of_le_of_ne hlastLe hjLast
+    have hmiddle : IsMiddleDeterminedOn χ polygon :=
+      FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn.mp hstrong
+    by_cases hkq : k = q
+    · by_cases hk'q : k' = q
+      · by_cases hfirstDiff :
+          χ ⟨i, j, q, hij, hjq⟩ ≠ χ ⟨e 0, j, e 5, hfirst, hlast⟩
+        · exact Or.inl ⟨i, j, hij, hjq, hfirst, hlast,
+            hiPolygon, hjPolygon, hfirstDiff⟩
+        · have hsecondDiff :
+            χ ⟨i', j, q, hi'j, hjq⟩ ≠
+              χ ⟨e 0, j, e 5, hfirst, hlast⟩ := by
+            intro heq
+            apply hneq
+            simpa [hkq, hk'q] using
+              (not_ne_iff.mp hfirstDiff).trans heq.symm
+          exact Or.inl ⟨i', j, hi'j, hjq, hfirst, hlast,
+            hi'Polygon, hjPolygon, hsecondDiff⟩
+      · have hk'Polygon : k' ∈ polygon := by
+          rcases Finset.mem_insert.mp hk' with hk'q'' | hk'Polygon
+          · exact (hk'q hk'q'').elim
+          · exact hk'Polygon
+        have hpolygonEq :
+            χ ⟨i', j, k', hi'j, hjk'⟩ =
+              χ ⟨e 0, j, e 5, hfirst, hlast⟩ :=
+          hmiddle hi'j hfirst hjk' hlast hi'Polygon (heMem 0)
+            hjPolygon hk'Polygon (heMem 5)
+        exact Or.inl ⟨i, j, hij, hjq, hfirst, hlast,
+          hiPolygon, hjPolygon, by simpa [hkq, hpolygonEq] using hneq⟩
+    · have hk'q : k' = q := hrole.resolve_left hkq
+      have hkPolygon : k ∈ polygon := by
+        rcases Finset.mem_insert.mp hk with hkq' | hkPolygon
+        · exact (hkq hkq').elim
+        · exact hkPolygon
+      have hpolygonEq :
+          χ ⟨i, j, k, hij, hjk⟩ =
+            χ ⟨e 0, j, e 5, hfirst, hlast⟩ :=
+        hmiddle hij hfirst hjk hlast hiPolygon (heMem 0)
+          hjPolygon hkPolygon (heMem 5)
+      exact Or.inl ⟨i', j, hi'j, hjq, hfirst, hlast,
+        hi'Polygon, hjPolygon, by
+          intro heq
+          apply hneq
+          simpa [hk'q] using hpolygonEq.trans heq.symm⟩
+
+/-- A change in the final-middle fan between two polygon vertices forces both
+the earlier fan color and the intervening bridge color to equal the strong
+polygon's reference color at the later middle vertex. -/
+theorem finalMiddleFan_variation_forces_later_middle_color
+    {n : ℕ} {χ : TripleColoring n} {ambient polygon : Finset (Fin n)}
+    {q : Fin n} (hcard : polygon.card = 6)
+    (hpolygonSub : polygon ⊆ ambient)
+    (hstrong : IsStrongPolygonSet χ polygon)
+    (hqAmbient : q ∈ ambient) (hafter : ∀ x ∈ polygon, x < q)
+    (hone : OneChangeOn χ ambient)
+    {a b : Fin 6} (hab : a < b) (hb5 : b < (5 : Fin 6))
+    (hvariation :
+      χ ⟨polygon.orderEmbOfFin hcard a, polygon.orderEmbOfFin hcard 5, q,
+        (polygon.orderEmbOfFin hcard).strictMono (hab.trans hb5),
+        hafter _ (polygon.orderEmbOfFin_mem hcard 5)⟩ ≠
+      χ ⟨polygon.orderEmbOfFin hcard b, polygon.orderEmbOfFin hcard 5, q,
+        (polygon.orderEmbOfFin hcard).strictMono hb5,
+        hafter _ (polygon.orderEmbOfFin_mem hcard 5)⟩) :
+    let e := polygon.orderEmbOfFin hcard
+    χ ⟨e a, e 5, q, e.strictMono (hab.trans hb5),
+        hafter _ (polygon.orderEmbOfFin_mem hcard 5)⟩ =
+      χ ⟨e 0, e b, e 5, e.strictMono (by omega),
+        e.strictMono hb5⟩ ∧
+    χ ⟨e a, e b, q, e.strictMono hab,
+        (e.strictMono hb5).trans
+          (hafter _ (polygon.orderEmbOfFin_mem hcard 5))⟩ =
+      χ ⟨e 0, e b, e 5, e.strictMono (by omega),
+        e.strictMono hb5⟩ := by
+  dsimp only
+  let e : Fin 6 ↪o Fin n := polygon.orderEmbOfFin hcard
+  have heMem (r : Fin 6) : e r ∈ polygon :=
+    polygon.orderEmbOfFin_mem hcard r
+  have hallowed := hone (e.strictMono hab) (e.strictMono hb5)
+    (hafter _ (heMem 5))
+    (hpolygonSub (heMem a)) (hpolygonSub (heMem b))
+    (hpolygonSub (heMem 5)) hqAmbient
+  have hhead := hallowed.head_eq_of_third_ne_fourth (by
+    simpa [e] using hvariation)
+  have hmiddle : IsMiddleDeterminedOn χ polygon :=
+    FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn.mp hstrong
+  have hb0 : (0 : Fin 6) < b := by omega
+  have hreference :
+      χ ⟨e a, e b, e 5, e.strictMono hab, e.strictMono hb5⟩ =
+        χ ⟨e 0, e b, e 5, e.strictMono hb0,
+          e.strictMono hb5⟩ :=
+    hmiddle (e.strictMono hab) (e.strictMono hb0)
+      (e.strictMono hb5) (e.strictMono hb5)
+      (heMem a) (heMem 0) (heMem b) (heMem 5) (heMem 5)
+  exact ⟨hhead.2.symm.trans (hhead.1.symm.trans hreference),
+    hhead.1.symm.trans hreference⟩
+
 end ErdosSzekeres
 
 end

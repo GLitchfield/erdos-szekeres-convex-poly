@@ -511,7 +511,9 @@ an internal strong six on one side unless the cut is exactly `11+11`; all
 opposite-side vertices have a forced endpoint-role middle failure. Lean also
 classifies the internal strong-six middle word: cap-four and cup-six avoidance
 leave exactly one right position. The active targets are now the resulting
-four-signature endpoint branch and the balanced `11+11` branch. Normalized
+endpoint branch and the balanced `11+11` branch. Endpoint failures further
+normalize to four internally referenced anomalies or a final-middle fan
+variation, with a proved fan-change propagation law. Normalized
 `5+5`, `6+4`, and `6+7` block shortcuts have validated SAT countermodels and
 must not be used.
 

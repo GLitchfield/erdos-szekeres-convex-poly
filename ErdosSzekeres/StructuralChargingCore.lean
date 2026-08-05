@@ -33,6 +33,14 @@ theorem TurnSequenceAllowed.first_eq_second_of_second_ne_fourth
   cases a <;> cases b <;> cases c <;> cases d <;>
     simp_all [TurnSequenceAllowed]
 
+/-- If the final two colors differ, the one-change law forces the first three
+colors to agree. -/
+theorem TurnSequenceAllowed.head_eq_of_third_ne_fourth
+    {a b c d : Turn} (h : TurnSequenceAllowed a b c d) (hcd : c ≠ d) :
+    a = b ∧ b = c := by
+  cases a <;> cases b <;> cases c <;> cases d <;>
+    simp_all [TurnSequenceAllowed]
+
 /-- Once the first two colors differ, the one-change law forces both
 remaining colors to equal the second. -/
 theorem TurnSequenceAllowed.tail_eq_of_first_ne_second {a b c d : Turn}

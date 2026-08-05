@@ -538,6 +538,14 @@ strong-six-plus-four-cup, and strong-six-plus-cap-free-seven block theorems;
 the full large-side and balanced-side structure is essential. These are route
 controls, not completed results.
 
+Endpoint-failure normalization now compiles as well. A right-side failure
+relative to a left internal strong six either disagrees with one of the four
+internal middle reference colors or varies inside the final-middle fan. If
+two fan entries differ, the one-change law forces the earlier fan color and
+the bridge between their polygon endpoints to equal the later endpoint's
+polygon-middle color. The next quantitative lemma must bound repetitions of
+these five anomaly classes; it may not discard the unused large-side vertices.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)

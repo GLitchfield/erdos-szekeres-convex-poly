@@ -369,6 +369,27 @@ theorem right_side_has_rightEndpoint_failures_from_left_strongSix
       hpolygonAmbient hpolygonCard hpolygonStrong hqAmbient hqPolygon
       hnoStrong
 
+/-- The forced endpoint failures on the right normalize to four internally
+referenced middle anomalies and one exceptional final-middle fan class. -/
+theorem right_side_has_internal_or_final_anomalies_from_left_strongSix
+    {n : ℕ} {χ : TripleColoring n}
+    {left right polygon : Finset (Fin n)}
+    (hdisjoint : Disjoint left right)
+    (horder : ∀ x ∈ left, ∀ y ∈ right, x < y)
+    (hpolygonSub : polygon ⊆ left) (hpolygonCard : polygon.card = 6)
+    (hpolygonStrong : IsStrongPolygonSet χ polygon)
+    (hnoStrong : ¬ContainsStrongPolygonSet χ (left ∪ right) 7) :
+    ∀ q ∈ right,
+      HasInternalRightEndpointMiddleAnomaly χ polygon hpolygonCard q ∨
+        HasFinalMiddleFanVariation χ polygon hpolygonCard q := by
+  have hfailures :=
+    right_side_has_rightEndpoint_failures_from_left_strongSix
+      hdisjoint horder hpolygonSub hpolygonCard hpolygonStrong hnoStrong
+  intro q hqRight
+  exact rightEndpoint_failure_internal_or_final hpolygonCard hpolygonStrong
+    (fun x hx ↦ horder x (hpolygonSub hx) q hqRight)
+    (hfailures q hqRight)
+
 /-- Symmetrically, if a strong six lies in the right side, every left-side
 vertex has a left-endpoint middle failure relative to it. -/
 theorem left_side_has_leftEndpoint_failures_from_right_strongSix

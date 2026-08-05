@@ -197,10 +197,13 @@ None. The destination was fixed by the user on 2026-08-01.
   produces a strong six wholly inside the larger cap-free side; every vertex
   on the opposite ordered side then has a forced endpoint-role extension
   failure. The internal polygon has exactly one right-colored middle
-  position, proved in Lean, leaving four signatures. The active targets are
-  the endpoint-obstructed internal-strong-six branch and the balanced
-  `11+11` branch. Bounded countermodels rule out reducing either target to
-  bare `5+5`, `6+4`, or `6+7` block data.
+  position, proved in Lean, leaving four signatures. Every endpoint failure
+  now normalizes to an anomaly at one of those four internal middles or a
+  final-middle fan variation; a fan change forces the earlier fan and bridge
+  colors to equal the later polygon-middle color. The active targets are the
+  resulting five-class endpoint count and the balanced `11+11` branch.
+  Bounded countermodels rule out reducing either target to bare `5+5`, `6+4`,
+  or `6+7` block data.
 
 ## Not yet specified
 
