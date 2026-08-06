@@ -305,6 +305,88 @@ def pascalTransitionInterval {Ideal : Type*} [Fintype Ideal]
     (first second : Ideal) : Finset Ideal :=
   Finset.univ.filter fun state ↦ first ⊓ second ≤ state ∧ state ≤ first ⊔ second
 
+theorem pascalTransitionInterval_first_mem {Ideal : Type*} [Fintype Ideal]
+    [DecidableEq Ideal] [Lattice Ideal] [DecidableLE Ideal]
+    (first second : Ideal) :
+    first ∈ pascalTransitionInterval first second := by
+  rw [pascalTransitionInterval, Finset.mem_filter]
+  exact ⟨Finset.mem_univ _, inf_le_left, le_sup_left⟩
+
+theorem pascalTransitionInterval_second_mem {Ideal : Type*} [Fintype Ideal]
+    [DecidableEq Ideal] [Lattice Ideal] [DecidableLE Ideal]
+    (first second : Ideal) :
+    second ∈ pascalTransitionInterval first second := by
+  rw [pascalTransitionInterval, Finset.mem_filter]
+  exact ⟨Finset.mem_univ _, inf_le_right, le_sup_right⟩
+
+/-- A transition interval is a singleton exactly when its endpoints are that
+same lattice state. -/
+theorem pascalTransitionInterval_eq_singleton_iff
+    {Ideal : Type*} [Fintype Ideal] [DecidableEq Ideal]
+    [Lattice Ideal] [DecidableLE Ideal] {first second state : Ideal} :
+    pascalTransitionInterval first second = {state} ↔
+      first = state ∧ second = state := by
+  constructor
+  · intro hsingleton
+    have hfirst := pascalTransitionInterval_first_mem first second
+    have hsecond := pascalTransitionInterval_second_mem first second
+    rw [hsingleton] at hfirst hsecond
+    exact ⟨by simpa using hfirst, by simpa using hsecond⟩
+  · rintro ⟨rfl, rfl⟩
+    ext candidate
+    simp only [pascalTransitionInterval, Finset.mem_filter, Finset.mem_univ,
+      true_and, Finset.mem_singleton, inf_idem, sup_idem]
+    exact ⟨fun h ↦ le_antisymm h.2 h.1, fun h ↦ h ▸ ⟨le_rfl, le_rfl⟩⟩
+
+/-- Two nonempty finite candidate sets expand to at least two states exactly
+when they are not the same singleton. -/
+theorem Finset.two_le_card_union_iff_not_common_singleton
+    {α : Type*} [DecidableEq α] {first second : Finset α}
+    (hfirst : first.Nonempty) (hsecond : second.Nonempty) :
+    2 ≤ (first ∪ second).card ↔
+      ¬∃ state, first = {state} ∧ second = {state} := by
+  constructor
+  · intro hcard
+    rintro ⟨state, rfl, rfl⟩
+    simp at hcard
+  · intro hnot
+    by_contra hcard
+    have hle : (first ∪ second).card ≤ 1 := by omega
+    have hunionNonempty : (first ∪ second).Nonempty :=
+      hfirst.mono Finset.subset_union_left
+    have heq : (first ∪ second).card = 1 := by
+      have hpos := Finset.card_pos.mpr hunionNonempty
+      omega
+    obtain ⟨state, hunion⟩ := Finset.card_eq_one.mp heq
+    apply hnot
+    refine ⟨state, ?_, ?_⟩
+    · apply Finset.Subset.antisymm
+      · intro candidate hcandidate
+        have : candidate ∈ first ∪ second :=
+          Finset.mem_union_left second hcandidate
+        rw [hunion] at this
+        exact this
+      · rw [Finset.singleton_subset_iff]
+        obtain ⟨candidate, hcandidate⟩ := hfirst
+        have hcandidateState : candidate ∈ ({state} : Finset α) := by
+          rw [← hunion]
+          exact Finset.mem_union_left second hcandidate
+        simp only [Finset.mem_singleton] at hcandidateState
+        exact hcandidateState ▸ hcandidate
+    · apply Finset.Subset.antisymm
+      · intro candidate hcandidate
+        have : candidate ∈ first ∪ second :=
+          Finset.mem_union_right first hcandidate
+        rw [hunion] at this
+        exact this
+      · rw [Finset.singleton_subset_iff]
+        obtain ⟨candidate, hcandidate⟩ := hsecond
+        have hcandidateState : candidate ∈ ({state} : Finset α) := by
+          rw [← hunion]
+          exact Finset.mem_union_right first hcandidate
+        simp only [Finset.mem_singleton] at hcandidateState
+        exact hcandidateState ▸ hcandidate
+
 /-- Past and future endpoint profiles, together with an encoding of all
 profile states into the correct Pascal layer. -/
 structure AllocatedEndpointTransitionProfiles {n : ℕ}
@@ -342,6 +424,140 @@ def allocatedEndpointTransitionCandidates {n : ℕ} {Ideal : Type*}
     pascalTransitionInterval (profiles.past span.1.right)
       (profiles.future span.1.right)
 
+theorem allocatedEndpointTransitionCandidates_nonempty
+    {n : ℕ} {Ideal : Type*} [Fintype Ideal] [DecidableEq Ideal]
+    [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    (allocatedEndpointTransitionCandidates profiles span).Nonempty := by
+  refine ⟨profiles.past span.1.left, ?_⟩
+  rw [allocatedEndpointTransitionCandidates, Finset.mem_union]
+  exact Or.inl (pascalTransitionInterval_first_mem _ _)
+
+/-- A rigid span has the same past and future state at both endpoints. -/
+def AllocatedEndpointTransitionRigidAt {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank})
+    (state : Ideal) : Prop :=
+  profiles.past span.1.left = state ∧
+    profiles.future span.1.left = state ∧
+    profiles.past span.1.right = state ∧
+    profiles.future span.1.right = state
+
+/-- A span has one available state exactly when all four endpoint labels are
+that state. -/
+theorem allocatedEndpointTransitionCandidates_eq_singleton_iff
+    {n : ℕ} {Ideal : Type*} [Fintype Ideal] [DecidableEq Ideal]
+    [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank})
+    (state : Ideal) :
+    allocatedEndpointTransitionCandidates profiles span = {state} ↔
+      AllocatedEndpointTransitionRigidAt profiles span state := by
+  constructor
+  · intro hsingleton
+    have hpastLeft :
+        profiles.past span.1.left ∈
+          allocatedEndpointTransitionCandidates profiles span := by
+      rw [allocatedEndpointTransitionCandidates, Finset.mem_union]
+      exact Or.inl (pascalTransitionInterval_first_mem _ _)
+    have hfutureLeft :
+        profiles.future span.1.left ∈
+          allocatedEndpointTransitionCandidates profiles span := by
+      rw [allocatedEndpointTransitionCandidates, Finset.mem_union]
+      exact Or.inl (pascalTransitionInterval_second_mem _ _)
+    have hpastRight :
+        profiles.past span.1.right ∈
+          allocatedEndpointTransitionCandidates profiles span := by
+      rw [allocatedEndpointTransitionCandidates, Finset.mem_union]
+      exact Or.inr (pascalTransitionInterval_first_mem _ _)
+    have hfutureRight :
+        profiles.future span.1.right ∈
+          allocatedEndpointTransitionCandidates profiles span := by
+      rw [allocatedEndpointTransitionCandidates, Finset.mem_union]
+      exact Or.inr (pascalTransitionInterval_second_mem _ _)
+    rw [hsingleton] at hpastLeft hfutureLeft hpastRight hfutureRight
+    exact ⟨by simpa using hpastLeft, by simpa using hfutureLeft,
+      by simpa using hpastRight, by simpa using hfutureRight⟩
+  · rintro ⟨hpastLeft, hfutureLeft, hpastRight, hfutureRight⟩
+    rw [allocatedEndpointTransitionCandidates,
+      (pascalTransitionInterval_eq_singleton_iff.mpr
+        ⟨hpastLeft, hfutureLeft⟩),
+      (pascalTransitionInterval_eq_singleton_iff.mpr
+        ⟨hpastRight, hfutureRight⟩), Finset.union_self]
+
+/-- The size-two part of Hall expansion. -/
+def AllocatedEndpointTransitionPairExpansion {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal) : Prop :=
+  ∀ first second : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank},
+    first ≠ second →
+      2 ≤ (allocatedEndpointTransitionCandidates profiles first ∪
+        allocatedEndpointTransitionCandidates profiles second).card
+
+/-- Rigid endpoint labels identify at most one retained span. -/
+def AllocatedEndpointTransitionRigidLabelInjective
+    {n : ℕ} {Ideal : Type*} [Fintype Ideal] [DecidableEq Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal) : Prop :=
+  ∀ first second : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank},
+    ∀ state,
+      AllocatedEndpointTransitionRigidAt profiles first state →
+      AllocatedEndpointTransitionRigidAt profiles second state →
+      first = second
+
+/-- The two-span Hall obstruction is exactly a collision between rigid spans,
+not an arbitrary overlap of transition intervals. -/
+theorem allocatedEndpointTransitionPairExpansion_iff_rigidLabelInjective
+    {n : ℕ} {Ideal : Type*} [Fintype Ideal] [DecidableEq Ideal]
+    [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal) :
+    AllocatedEndpointTransitionPairExpansion profiles ↔
+      AllocatedEndpointTransitionRigidLabelInjective profiles := by
+  constructor
+  · intro hexpansion first second state hfirst hsecond
+    by_contra hne
+    have hcard := hexpansion first second hne
+    rw [(allocatedEndpointTransitionCandidates_eq_singleton_iff
+      profiles first state).mpr hfirst,
+      (allocatedEndpointTransitionCandidates_eq_singleton_iff
+        profiles second state).mpr hsecond] at hcard
+    simp at hcard
+  · intro hinjective first second hne
+    rw [Finset.two_le_card_union_iff_not_common_singleton
+      (allocatedEndpointTransitionCandidates_nonempty profiles first)
+      (allocatedEndpointTransitionCandidates_nonempty profiles second)]
+    rintro ⟨state, hfirst, hsecond⟩
+    apply hne
+    exact hinjective first second state
+      ((allocatedEndpointTransitionCandidates_eq_singleton_iff
+        profiles first state).mp hfirst)
+      ((allocatedEndpointTransitionCandidates_eq_singleton_iff
+        profiles second state).mp hsecond)
+
 /-- Hall's condition for the two-way endpoint transition intervals. -/
 def AllocatedEndpointTransitionHall {n : ℕ} {Ideal : Type*}
     [Fintype Ideal] [DecidableEq Ideal] [PartialOrder Ideal] [Lattice Ideal]
@@ -354,6 +570,20 @@ def AllocatedEndpointTransitionHall {n : ℕ} {Ideal : Type*}
       allocatedExactRankFrontier chi lower upper color rank},
     spans.card ≤
       (spans.biUnion (allocatedEndpointTransitionCandidates profiles)).card
+
+/-- Full Hall expansion contains the previously isolated two-span test. -/
+theorem allocatedEndpointTransitionHall_implies_pairExpansion
+    {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal]
+    [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    {profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal}
+    (hhall : AllocatedEndpointTransitionHall profiles) :
+    AllocatedEndpointTransitionPairExpansion profiles := by
+  intro first second hne
+  simpa [hne] using hhall {first, second}
 
 /-- The transition-interval Hall condition constructs the exact slotting
 needed by the local Pascal bound. -/
