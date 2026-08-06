@@ -140,6 +140,11 @@ contains an event absent from the support of `(4,6)`.  If that support
 difference is empty, every such skew selection is impossible and this redirect
 must stop before a larger census or Lean engineering.
 
+Experiment 0032 performs both this pair gate and the proposed full-frontier
+follow-up.  The pair gate passes, but the exact direction/chain/mark event key
+is refuted at the fifth frozen span by four pairwise-disjoint earlier present
+sets against absent capacity three.
+
 ## Reproduction
 
     python3 scripts/check_active_reflected_representative.py \

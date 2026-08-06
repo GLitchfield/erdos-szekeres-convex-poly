@@ -644,6 +644,29 @@ After a local block theorem and general Hall come the global slot injection
 and the final `allocatedSpanPascalDemand_le_window` return to the published
 child-slice induction.
 
+The first actual-event contract has now failed its frozen gate.  It keys an
+event by normalized ray direction, the complete child witness chain, and one
+marked chain vertex.  The adjacent active-interval collision does have a
+nonempty actual-event support difference, but the full six-span frontier is
+decisive: the first four unique present sets are pairwise disjoint, and the
+fifth span can place at most `k-rank-1 = 3` events in its absent set.  Two
+independent implementations certify the resulting `4 > 3` obstruction.  This
+is computational route-selection evidence, not a Lean theorem and not a
+refutation of every ray-event quotient.  The pending decision compares a
+semantic coarsening of events, incidence-matrix accounting, and direct use of
+both reflected endpoint intervals.
+
+The preferred semantic coarsening is now independently refuted as well. Its
+24 keys retain normalized direction, ordinal chain role, and clipped
+complementary one-sided rank inside the active child. On the frozen adjacent
+pair `(2,5)`, `(4,6)`, both spans have exactly the keys `(past,0,0)` and
+`(past,1,2)`. Because absence is correctly defined fiberwise, neither key can
+belong to the later absent set; the required skew intersection is impossible
+under every tie-breaking rule. Forgetting direction preserves the collision,
+while restoring chain identity returns toward the fine-key capacity failure.
+The pending route review must now choose between exact reflected endpoint-row
+independence and two-lane lattice uncrossing.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at

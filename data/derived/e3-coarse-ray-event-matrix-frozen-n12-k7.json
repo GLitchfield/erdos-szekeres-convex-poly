@@ -1,0 +1,518 @@
+{
+  "contract": {
+    "absence": "fiberwise nonincidence in the complete coarse support",
+    "claim_boundary": "bounded frozen-root gate only",
+    "fixed_absent": "first k-rank-1 absent keys ordered by direction match, role, depth",
+    "key": "normalized active direction, ordinal role in an exact-size active chain, and clipped complementary one-sided ray depth",
+    "present": "roles in the minimum binary-code active witness chain"
+  },
+  "experiment": "frozen-coarse-ray-event-incidence-matrix-gate",
+  "frozen_n12_k7": {
+    "active_chains": [
+      [
+        [
+          0,
+          3
+        ]
+      ],
+      [
+        [
+          3,
+          5
+        ]
+      ],
+      [
+        [
+          5,
+          6
+        ]
+      ],
+      [
+        [
+          5,
+          6
+        ]
+      ],
+      [
+        [
+          6,
+          9
+        ]
+      ],
+      [
+        [
+          9,
+          11
+        ]
+      ]
+    ],
+    "coloring_hex": "c9f7fdfe93f000dfe107f9e80053009e8005300efeff083fd37ffff",
+    "deterministic_present_sets": [
+      [
+        [
+          "future",
+          0,
+          2
+        ],
+        [
+          "future",
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          "past",
+          0,
+          0
+        ],
+        [
+          "past",
+          1,
+          2
+        ]
+      ],
+      [
+        [
+          "past",
+          0,
+          0
+        ],
+        [
+          "past",
+          1,
+          2
+        ]
+      ],
+      [
+        [
+          "future",
+          0,
+          2
+        ],
+        [
+          "future",
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          "future",
+          0,
+          2
+        ],
+        [
+          "future",
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          "past",
+          0,
+          0
+        ],
+        [
+          "past",
+          1,
+          2
+        ]
+      ]
+    ],
+    "direction_forgetting_diagnostic": {
+      "absent_cards": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "first_fixed_failure": [
+        1,
+        2
+      ],
+      "fixed_selection_skew": false,
+      "key_count": 12,
+      "present_cards": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "first_fixed_failure": {
+      "earlier_index": 0,
+      "intersection": [],
+      "later_index": 1
+    },
+    "fixed_absent_sets": [
+      [
+        [
+          "future",
+          0,
+          0
+        ],
+        [
+          "future",
+          0,
+          1
+        ],
+        [
+          "future",
+          0,
+          3
+        ]
+      ],
+      [
+        [
+          "past",
+          0,
+          1
+        ],
+        [
+          "past",
+          0,
+          2
+        ],
+        [
+          "past",
+          0,
+          3
+        ]
+      ],
+      [
+        [
+          "past",
+          0,
+          1
+        ],
+        [
+          "past",
+          0,
+          2
+        ],
+        [
+          "past",
+          0,
+          3
+        ]
+      ],
+      [
+        [
+          "future",
+          0,
+          0
+        ],
+        [
+          "future",
+          0,
+          1
+        ],
+        [
+          "future",
+          0,
+          3
+        ]
+      ],
+      [
+        [
+          "future",
+          0,
+          0
+        ],
+        [
+          "future",
+          0,
+          1
+        ],
+        [
+          "future",
+          0,
+          3
+        ]
+      ],
+      [
+        [
+          "past",
+          0,
+          1
+        ],
+        [
+          "past",
+          0,
+          2
+        ],
+        [
+          "past",
+          0,
+          3
+        ]
+      ]
+    ],
+    "fixed_selection_skew": false,
+    "frontier": [
+      [
+        0,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        10
+      ],
+      [
+        8,
+        11
+      ]
+    ],
+    "incidence_supports": [
+      [
+        [
+          "future",
+          0,
+          2
+        ],
+        [
+          "future",
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          "past",
+          0,
+          0
+        ],
+        [
+          "past",
+          1,
+          2
+        ]
+      ],
+      [
+        [
+          "past",
+          0,
+          0
+        ],
+        [
+          "past",
+          1,
+          2
+        ]
+      ],
+      [
+        [
+          "future",
+          0,
+          2
+        ],
+        [
+          "future",
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          "future",
+          0,
+          2
+        ],
+        [
+          "future",
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          "past",
+          0,
+          0
+        ],
+        [
+          "past",
+          1,
+          2
+        ]
+      ]
+    ],
+    "key_count": 24,
+    "lower_mask_hex": "596",
+    "maximum_n": 12,
+    "minimum_hitting_rows": [
+      {
+        "absent_card": 3,
+        "later_index": 0,
+        "later_span": [
+          0,
+          4
+        ],
+        "minimum_zero_column_hitting_size": 0
+      },
+      {
+        "absent_card": 3,
+        "later_index": 1,
+        "later_span": [
+          2,
+          5
+        ],
+        "minimum_zero_column_hitting_size": 1
+      },
+      {
+        "absent_card": 3,
+        "later_index": 2,
+        "later_span": [
+          4,
+          6
+        ],
+        "minimum_zero_column_hitting_size": null
+      },
+      {
+        "absent_card": 3,
+        "later_index": 3,
+        "later_span": [
+          5,
+          7
+        ],
+        "minimum_zero_column_hitting_size": null
+      },
+      {
+        "absent_card": 3,
+        "later_index": 4,
+        "later_span": [
+          6,
+          10
+        ],
+        "minimum_zero_column_hitting_size": null
+      },
+      {
+        "absent_card": 3,
+        "later_index": 5,
+        "later_span": [
+          8,
+          11
+        ],
+        "minimum_zero_column_hitting_size": null
+      }
+    ],
+    "ordered_pair_intersections": [
+      {
+        "earlier_index": 0,
+        "intersection": [],
+        "later_index": 1
+      },
+      {
+        "earlier_index": 0,
+        "intersection": [],
+        "later_index": 2
+      },
+      {
+        "earlier_index": 1,
+        "intersection": [],
+        "later_index": 2
+      },
+      {
+        "earlier_index": 0,
+        "intersection": [],
+        "later_index": 3
+      },
+      {
+        "earlier_index": 1,
+        "intersection": [],
+        "later_index": 3
+      },
+      {
+        "earlier_index": 2,
+        "intersection": [],
+        "later_index": 3
+      },
+      {
+        "earlier_index": 0,
+        "intersection": [],
+        "later_index": 4
+      },
+      {
+        "earlier_index": 1,
+        "intersection": [],
+        "later_index": 4
+      },
+      {
+        "earlier_index": 2,
+        "intersection": [],
+        "later_index": 4
+      },
+      {
+        "earlier_index": 3,
+        "intersection": [],
+        "later_index": 4
+      },
+      {
+        "earlier_index": 0,
+        "intersection": [],
+        "later_index": 5
+      },
+      {
+        "earlier_index": 1,
+        "intersection": [],
+        "later_index": 5
+      },
+      {
+        "earlier_index": 2,
+        "intersection": [],
+        "later_index": 5
+      },
+      {
+        "earlier_index": 3,
+        "intersection": [],
+        "later_index": 5
+      },
+      {
+        "earlier_index": 4,
+        "intersection": [],
+        "later_index": 5
+      }
+    ],
+    "rank": 3,
+    "strong_size": 7,
+    "support_mask_hex": "fff"
+  },
+  "generation_base_revision": "936d7cb602f76417a9c52de46f28dc01d439d6e6",
+  "schema_version": 1,
+  "sources": {
+    "base_checker": {
+      "path": "scripts/check_allocated_span_pascal_demand.py",
+      "sha256": "1962a01c479c5d44d2858d7bf9d62e8bf66dd8a6a87c77bd1c4fab347854f018"
+    },
+    "base_producer": {
+      "path": "scripts/enumerate_allocated_span_pascal_demand.py",
+      "sha256": "54ed1a0b33549ea12564a7fdc5c79f502fede0d4da58f3ef051658c412df28bd"
+    },
+    "checker": {
+      "path": "scripts/replay_coarse_ray_event_matrix.py",
+      "sha256": "581c51ce74590e5f830bbf3de6b4b07a84f6211baead2371c8a68564d8a7029f"
+    },
+    "producer": {
+      "path": "scripts/check_coarse_ray_event_matrix.py",
+      "sha256": "de3564ae3cef8e8b15deee9fd3a3fb7084cc094da0b6e39bc2f43fd5e6ccf077"
+    }
+  }
+}

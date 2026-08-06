@@ -879,6 +879,30 @@ incidence support of `(2,5)` has any event absent from that of `(4,6)`. An empty
 difference stops the event route before any selection search. This remains a
 proposal until the event semantics and bounded gate are implemented.
 
+The exact proposed event semantics is now implemented and refuted on the
+frozen root. The adjacent support-difference gate passes: `(2,5)` has the
+left-ray chain `(3,5)`, and its two marked events are absent at `(4,6)`. Across
+the full frontier, however, the first four unique present sets are pairwise
+disjoint because direction and complete chain identity are part of the key.
+All are nonincident at the fifth span `(6,10)`, so a later absent set must use
+at least four events, exceeding its exact capacity `7-3-1 = 3`. Independent
+tuple and chain-mask implementations reproduce this certificate. This retires
+the marked-chain key, not all actual-ray encodings. A new Innovation Scout
+packet compares a semantic event quotient, incidence-matrix accounting, and
+direct use of both reflected endpoint intervals before the next route is
+selected.
+
+The preferred semantic quotient has now failed its independently replayed
+frozen gate. Its 24 directed keys retain ordinal chain role and clipped
+complementary ray depth computed inside the active child. The adjacent spans
+`(2,5)` and `(4,6)` both have coarse present/support keys `(past,0,0)` and
+`(past,1,2)`. Fiberwise absence at the later span therefore excludes the whole
+earlier present set, so no absent selection can satisfy skew cross-incidence.
+The direction-forgetting diagnostic has the same collision. This retires the
+two concrete event encodings. Before selecting another main route, the next
+bounded Sol/Fable review must compare exact reflected endpoint-incidence row
+rank with two-lane meet/join uncrossing.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -907,6 +931,10 @@ proposal until the event semantics and bounded gate are implemented.
 - [Lean active-interval block counterexample](../../../ErdosSzekeres/StructuralChargingTransitionHallReflectionCollision.lean)
 - [Active-representative counterexample manifest](../../../data/derived/e3-active-reflected-representative-counterexample-k6-n8.json)
 - [Active-interval block counterexample manifest](../../../data/derived/e3-active-reflected-transition-hall-k6-n8.json)
+- [Actual child-ray event-pair gate](../../experiments/0032-actual-ray-event-pair-gate.md)
+- [Actual child-ray event-pair manifest](../../../data/derived/e3-actual-ray-event-pair-frozen-n12-k7.json)
+- [Coarse ray-event incidence-matrix gate](../../experiments/0033-coarse-ray-event-matrix-gate.md)
+- [Coarse ray-event matrix manifest](../../../data/derived/e3-coarse-ray-event-matrix-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

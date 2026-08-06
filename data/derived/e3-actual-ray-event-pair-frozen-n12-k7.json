@@ -1,0 +1,413 @@
+{
+  "contract": {
+    "absent": "k-rank-1 actual events not incident to the same span, chosen to meet every earlier present set",
+    "claim_boundary": "bounded refutation of this exact event key only; not a refutation of coarser ray events or full reflected candidates",
+    "event_key": "normalized ray direction, complete exact-size active child chain, and one marked chain vertex",
+    "present": "all marked events of one incident rank-1 child chain"
+  },
+  "experiment": "frozen-actual-ray-event-pair-gate",
+  "frozen_n12_k7": {
+    "active_supports": [
+      [
+        [
+          "right",
+          [
+            0,
+            3
+          ],
+          0
+        ],
+        [
+          "right",
+          [
+            0,
+            3
+          ],
+          3
+        ]
+      ],
+      [
+        [
+          "left",
+          [
+            3,
+            5
+          ],
+          3
+        ],
+        [
+          "left",
+          [
+            3,
+            5
+          ],
+          5
+        ]
+      ],
+      [
+        [
+          "left",
+          [
+            5,
+            6
+          ],
+          5
+        ],
+        [
+          "left",
+          [
+            5,
+            6
+          ],
+          6
+        ]
+      ],
+      [
+        [
+          "right",
+          [
+            5,
+            6
+          ],
+          5
+        ],
+        [
+          "right",
+          [
+            5,
+            6
+          ],
+          6
+        ]
+      ],
+      [
+        [
+          "right",
+          [
+            6,
+            9
+          ],
+          6
+        ],
+        [
+          "right",
+          [
+            6,
+            9
+          ],
+          9
+        ]
+      ],
+      [
+        [
+          "left",
+          [
+            9,
+            11
+          ],
+          9
+        ],
+        [
+          "left",
+          [
+            9,
+            11
+          ],
+          11
+        ]
+      ]
+    ],
+    "adjacent_pair": {
+      "earlier": [
+        2,
+        5
+      ],
+      "later": [
+        4,
+        6
+      ],
+      "passes": true,
+      "support_difference": [
+        [
+          "left",
+          [
+            3,
+            5
+          ],
+          3
+        ],
+        [
+          "left",
+          [
+            3,
+            5
+          ],
+          5
+        ]
+      ]
+    },
+    "coloring_hex": "c9f7fdfe93f000dfe107f9e80053009e8005300efeff083fd37ffff",
+    "exact_size_skew_selection_exists": false,
+    "first_obstruction": {
+      "absent_card": 3,
+      "all_prior_events_nonincident_later": true,
+      "later_index": 4,
+      "later_span": [
+        6,
+        10
+      ],
+      "missing_prior_indices": [],
+      "prior_indices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "prior_present_sets": [
+        [
+          [
+            "right",
+            [
+              0,
+              3
+            ],
+            0
+          ],
+          [
+            "right",
+            [
+              0,
+              3
+            ],
+            3
+          ]
+        ],
+        [
+          [
+            "left",
+            [
+              3,
+              5
+            ],
+            3
+          ],
+          [
+            "left",
+            [
+              3,
+              5
+            ],
+            5
+          ]
+        ],
+        [
+          [
+            "left",
+            [
+              5,
+              6
+            ],
+            5
+          ],
+          [
+            "left",
+            [
+              5,
+              6
+            ],
+            6
+          ]
+        ],
+        [
+          [
+            "right",
+            [
+              5,
+              6
+            ],
+            5
+          ],
+          [
+            "right",
+            [
+              5,
+              6
+            ],
+            6
+          ]
+        ]
+      ],
+      "prior_present_sets_pairwise_disjoint": true,
+      "required_hits": 4
+    },
+    "frontier": [
+      [
+        0,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        10
+      ],
+      [
+        8,
+        11
+      ]
+    ],
+    "lower_mask_hex": "596",
+    "maximum_n": 12,
+    "rank": 3,
+    "strong_size": 7,
+    "support_mask_hex": "fff",
+    "unique_present_sets": [
+      [
+        [
+          "right",
+          [
+            0,
+            3
+          ],
+          0
+        ],
+        [
+          "right",
+          [
+            0,
+            3
+          ],
+          3
+        ]
+      ],
+      [
+        [
+          "left",
+          [
+            3,
+            5
+          ],
+          3
+        ],
+        [
+          "left",
+          [
+            3,
+            5
+          ],
+          5
+        ]
+      ],
+      [
+        [
+          "left",
+          [
+            5,
+            6
+          ],
+          5
+        ],
+        [
+          "left",
+          [
+            5,
+            6
+          ],
+          6
+        ]
+      ],
+      [
+        [
+          "right",
+          [
+            5,
+            6
+          ],
+          5
+        ],
+        [
+          "right",
+          [
+            5,
+            6
+          ],
+          6
+        ]
+      ],
+      [
+        [
+          "right",
+          [
+            6,
+            9
+          ],
+          6
+        ],
+        [
+          "right",
+          [
+            6,
+            9
+          ],
+          9
+        ]
+      ],
+      [
+        [
+          "left",
+          [
+            9,
+            11
+          ],
+          9
+        ],
+        [
+          "left",
+          [
+            9,
+            11
+          ],
+          11
+        ]
+      ]
+    ],
+    "upper_vertices": [
+      0,
+      3,
+      5,
+      6,
+      9,
+      11
+    ]
+  },
+  "generation_base_revision": "936d7cb602f76417a9c52de46f28dc01d439d6e6",
+  "schema_version": 1,
+  "sources": {
+    "base_checker": {
+      "path": "scripts/check_allocated_span_pascal_demand.py",
+      "sha256": "1962a01c479c5d44d2858d7bf9d62e8bf66dd8a6a87c77bd1c4fab347854f018"
+    },
+    "base_producer": {
+      "path": "scripts/enumerate_allocated_span_pascal_demand.py",
+      "sha256": "54ed1a0b33549ea12564a7fdc5c79f502fede0d4da58f3ef051658c412df28bd"
+    },
+    "checker": {
+      "path": "scripts/replay_actual_ray_event_pairs.py",
+      "sha256": "86793c88349fe55f1c7c1430fbf7a29386758b8453a6e99f3ca19ff3ebc4cac5"
+    },
+    "producer": {
+      "path": "scripts/check_actual_ray_event_pairs.py",
+      "sha256": "fc1af35ece536c6880a62919e3524553ecdb5968fea4f94f68174dc277d375d0"
+    }
+  }
+}

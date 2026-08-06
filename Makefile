@@ -45,6 +45,10 @@ test: check lean
 		data/derived/e3-active-reflected-representative-counterexample-k6-n8.json >/dev/null
 	@python3 scripts/check_active_reflected_transition_hall.py \
 		data/derived/e3-active-reflected-transition-hall-k6-n8.json >/dev/null
+	@python3 scripts/replay_actual_ray_event_pairs.py \
+		data/derived/e3-actual-ray-event-pair-frozen-n12-k7.json >/dev/null
+	@python3 scripts/replay_coarse_ray_event_matrix.py \
+		data/derived/e3-coarse-ray-event-matrix-frozen-n12-k7.json >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -78,6 +82,10 @@ test: check lean
 		scripts/replay_active_reflected_representative.py \
 		scripts/enumerate_active_reflected_transition_hall.py \
 		scripts/check_active_reflected_transition_hall.py \
+		scripts/check_actual_ray_event_pairs.py \
+		scripts/replay_actual_ray_event_pairs.py \
+		scripts/check_coarse_ray_event_matrix.py \
+		scripts/replay_coarse_ray_event_matrix.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \

@@ -372,8 +372,18 @@ None. The destination was fixed by the user on 2026-08-01.
   before attempting Lean. The contrarian contract uses locally constructed
   incident/nonincident event sets of sizes `rank-1` and `k-rank-1`, with
   `earlier.present ∩ later.absent` nonempty; the first gate asks whether
-  `(2,5)` has any actual incident event missing at `(4,6)`. General Hall and
-  the global injection into
+  `(2,5)` has any actual incident event missing at `(4,6)`. That pair gate
+  passes, but the complete frozen frontier refutes the exact proposed event
+  key: direction/chain/mark makes the first four present sets pairwise
+  disjoint, so the fifth span needs four hits in an absent set of size three.
+  The active bounded decision now compares a semantic event quotient, exact
+  incidence-matrix accounting, and a proof retaining both reflected endpoint
+  intervals. The preferred direction/role/complementary-depth quotient also
+  fails the frozen adjacent pair: `(2,5)` and `(4,6)` have identical coarse
+  incidence keys, so no fiberwise-absent later set can meet the earlier
+  present set. The event proposals are stopped. A bounded Sol/Fable review must
+  now choose between exact reflected endpoint-row independence and two-lane
+  interval uncrossing. General Hall and the global injection into
   `decomposableBinomialWindow` remain downstream.
 
 ## Not yet specified

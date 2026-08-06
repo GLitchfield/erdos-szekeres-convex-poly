@@ -184,8 +184,17 @@ sets.
   `StructuralChargingTransitionHallReflectionCollision.lean`, whose theorem
   `activeBlockExpansion_fails` formally refutes active single-endpoint interval
   block expansion. The full reflected two-endpoint family remains unrefuted.
-  The active redirect is a skew-Bollobas encoding of actual child-ray events;
-  general Hall and the global outer-window injection remain subsequent.
+  The first skew-Bollobas redirect is also boundedly refuted: when an actual
+  event records direction, its complete child chain, and a marked chain
+  vertex, four disjoint earlier present sets must fit into an absent set of
+  size three at the fifth frozen span. The next route decision compares a
+  semantic event quotient, incidence-matrix accounting, and a proof retaining
+  both endpoint intervals. The proposed direction/role/complementary-depth
+  quotient is now independently refuted too: `(2,5)` and `(4,6)` have identical
+  coarse incidence keys, so fiberwise absence cannot cross-hit them. The next
+  bounded review therefore chooses between exact endpoint-incidence matrix rank
+  and two-lane interval uncrossing. General Hall and the global outer-window
+  injection remain subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,
