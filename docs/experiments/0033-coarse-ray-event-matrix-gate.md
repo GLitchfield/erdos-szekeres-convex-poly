@@ -81,8 +81,14 @@ mechanisms:
    rows; and
 2. two-lane meet/join uncrossing inside the existing untagged ideal lattice.
 
-A bounded Sol/Fable review must choose the next falsification gate before
-either mechanism is promoted to Lean.
+A bounded review packet at SHA-256
+`097dd1be3b15cc54a41d4157a5ac196ef8660e4860e43483ae84870a27559788`
+selected exact rational row rank as the sharper falsifier. Codex Sol returned
+`partially_supported` at high confidence; Claude Fable returned a zero-token
+provider connection error, so no Sol/Fable consensus or reciprocal review is
+claimed. Experiment 0034 implements the selected bounded falsifier and refutes
+the proposed row independence. Experiment 0035 therefore freezes the first
+precise local two-lane exchange gate.
 
 ## Reproduction
 

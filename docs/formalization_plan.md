@@ -664,8 +664,28 @@ pair `(2,5)`, `(4,6)`, both spans have exactly the keys `(past,0,0)` and
 belong to the later absent set; the required skew intersection is impossible
 under every tie-breaking rule. Forgetting direction preserves the collision,
 while restoring chain identity returns toward the fine-key capacity failure.
-The pending route review must now choose between exact reflected endpoint-row
-independence and two-lane lattice uncrossing.
+The route review selected exact reflected endpoint-row independence only as
+the sharper falsifier. Sol returned `partially_supported` at high confidence;
+Fable returned a zero-token provider connection error, so there was no model
+consensus. The exact frozen matrices refute independence: the cap/rank-three
+matrix has rank five on six rows with circuit coefficients `(2,-1,-2)` on
+spans `(0,4)`, `(4,6)`, `(6,10)`, and the cup/rank-four matrix has rank three
+on four rows with coefficients `(2,1,-1,-2)`. Reflected Hall still passes,
+showing that this linearization was strictly stronger than the needed claim.
+
+The two-lane alternative now has one precise positive local gate. The rigid
+rule assigning meet to the earlier span and join to the later span fails at
+the full/empty adjacent pair `(4,6)`, `(5,7)`. Allowing whichever of the two
+assignments preserves both untagged candidate unions succeeds for all 738
+frozen adjacent ideal pairs in two independent representations. This does not
+give Hall. Lean now proves the abstract failure directly: three identical
+two-element transition intervals satisfy flexible uncrossing and every
+two-family expansion test but admit no system of distinct representatives.
+The open structural target is therefore a geometry-specific, well-founded
+hole-moving invariant that turns local choices into an augmenting sequence
+without consulting a known matching. Its move relation must use certified lane
+switches and adjacent meet/join exchanges, and a non-fillable one-hole state
+must strictly decrease a locally defined measure.
 
 ## External Lean baseline
 

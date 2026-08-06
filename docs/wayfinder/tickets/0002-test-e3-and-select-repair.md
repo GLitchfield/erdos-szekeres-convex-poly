@@ -899,9 +899,53 @@ complementary ray depth computed inside the active child. The adjacent spans
 `(past,1,2)`. Fiberwise absence at the later span therefore excludes the whole
 earlier present set, so no absent selection can satisfy skew cross-incidence.
 The direction-forgetting diagnostic has the same collision. This retires the
-two concrete event encodings. Before selecting another main route, the next
-bounded Sol/Fable review must compare exact reflected endpoint-incidence row
-rank with two-lane meet/join uncrossing.
+two concrete event encodings.
+
+A bounded comparison packet at SHA-256
+`097dd1be3b15cc54a41d4157a5ac196ef8660e4860e43483ae84870a27559788`
+then compared exact reflected endpoint-incidence row rank with two-lane
+meet/join uncrossing. Sol returned `partially_supported` at high confidence
+and selected exact rational rank as the sharper first falsifier; its result
+SHA-256 is
+`053b0a0b8b76d2ef762ede1421acae22c1cb63f7207d3df3a0c1fab050bc30c4`.
+Fable returned a zero-token `ENOTIMP` provider connection error, so no Fable
+judgment, reciprocal review, or Sol/Fable consensus is claimed. This provider
+failure did not justify route promotion; it left the already frozen bounded
+falsifier available to run.
+
+That matrix gate is decisive. For each span and untagged ideal, the row entry
+counts membership in the two orientation-reflected endpoint intervals, giving
+a fixed coefficient in `{0,1,2}`. The cap/rank-three matrix has exact rank five
+on six rows, with primitive circuit
+
+    2 row(0,4) - row(4,6) - 2 row(6,10) = 0.
+
+The cup/rank-four matrix has exact rank three on four rows, with primitive
+coefficients `(2,1,-1,-2)`. Rational row reduction over cell-mask ideals and
+integer-minor/cofactor replay over row-height ideals agree. Both underlying
+candidate systems still pass reflected Hall. This retires only the fixed
+endpoint-multiplicity independence mechanism.
+
+The first exact two-lane local rule is now frozen as well. Assigning meet to
+the earlier span and join to the later span is false at the adjacent full/empty
+pair `(4,6)`, `(5,7)`. Allowing either assignment when it preserves the two
+untagged candidate unions passes all 738 frozen adjacent ideal pairs in two
+independent representations. This is not yet an augmentation theorem. The
+generic implication is now formally refuted:
+`StructuralChargingTransitionHallUncrossing.lean` constructs three identical
+two-element transition-interval families, proves flexible meet/join and every
+two-family expansion test, and proves that no injective representative exists.
+The axiom audit uses only `propext`, `Classical.choice`, and `Quot.sound`.
+
+The active structural target is therefore a genuinely geometry-specific
+well-founded hole-progress invariant. A state injectively represents every
+span of a block except one hole. If no unused ideal directly fills the hole, a
+certified lane switch or adjacent meet/join move must strictly decrease a
+fixed `Nat × Nat` measure derived from local endpoint/lane data. The move and
+measure must be frozen before examining successful matchings; graph distance
+to a terminal state is permitted only as a falsifier, not as the proof
+measure. A later bounded gate should reject any nonterminal state with no
+decreasing move or any terminal-free closed component.
 
 ## Evidence
 
@@ -935,6 +979,11 @@ rank with two-lane meet/join uncrossing.
 - [Actual child-ray event-pair manifest](../../../data/derived/e3-actual-ray-event-pair-frozen-n12-k7.json)
 - [Coarse ray-event incidence-matrix gate](../../experiments/0033-coarse-ray-event-matrix-gate.md)
 - [Coarse ray-event matrix manifest](../../../data/derived/e3-coarse-ray-event-matrix-frozen-n12-k7.json)
+- [Reflected endpoint-incidence matrix gate](../../experiments/0034-reflected-endpoint-incidence-matrix.md)
+- [Reflected endpoint-incidence matrix manifest](../../../data/derived/e3-reflected-endpoint-incidence-matrix-frozen-n12-k7.json)
+- [Two-lane adjacent uncrossing gate](../../experiments/0035-two-lane-adjacent-uncrossing.md)
+- [Two-lane adjacent uncrossing manifest](../../../data/derived/e3-two-lane-adjacent-uncrossing-frozen-n12-k7.json)
+- [Lean limit of pairwise uncrossing](../../../ErdosSzekeres/StructuralChargingTransitionHallUncrossing.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

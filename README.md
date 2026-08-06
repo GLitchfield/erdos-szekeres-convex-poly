@@ -187,14 +187,22 @@ sets.
   The first skew-Bollobas redirect is also boundedly refuted: when an actual
   event records direction, its complete child chain, and a marked chain
   vertex, four disjoint earlier present sets must fit into an absent set of
-  size three at the fifth frozen span. The next route decision compares a
-  semantic event quotient, incidence-matrix accounting, and a proof retaining
-  both endpoint intervals. The proposed direction/role/complementary-depth
-  quotient is now independently refuted too: `(2,5)` and `(4,6)` have identical
-  coarse incidence keys, so fiberwise absence cannot cross-hit them. The next
-  bounded review therefore chooses between exact endpoint-incidence matrix rank
-  and two-lane interval uncrossing. General Hall and the global outer-window
-  injection remain subsequent.
+  size three at the fifth frozen span. The proposed
+  direction/role/complementary-depth quotient is independently refuted too:
+  `(2,5)` and `(4,6)` have identical coarse incidence keys, so fiberwise
+  absence cannot cross-hit them. A bounded Sol audit then selected exact
+  reflected endpoint-incidence rank as the sharpest falsifier; Fable returned
+  no judgment because of a provider connection error. The exact `0/1/2`
+  matrices are already refuted on the frozen root by rank defects `5 < 6` and
+  `3 < 4`. The remaining two-lane route has passed its first local gate: a
+  fixed meet/join orientation is false, but allowing either locally valid
+  assignment preserves both candidate families for all 738 frozen adjacent
+  ideal pairs. `StructuralChargingTransitionHallUncrossing.lean` then proves
+  that this flexible rule plus every two-family expansion test still does not
+  imply distinct representatives: three identical two-element transition
+  intervals are a kernel-checked obstruction. A well-founded, geometry-specific
+  hole-progress invariant is still missing.
+  General Hall and the global outer-window injection remain subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

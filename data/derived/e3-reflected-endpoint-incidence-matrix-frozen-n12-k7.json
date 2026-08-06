@@ -1,0 +1,803 @@
+{
+  "contract": {
+    "claim_boundary": "bounded frozen-root computation, not a Lean theorem",
+    "columns": "existing untagged rectangular lower ideals",
+    "entry": "number in {0,1,2} of the two orientation-reflected endpoint intervals containing the ideal",
+    "failure": "any exact rational row-rank defect refutes this linear-independence mechanism only",
+    "rows": "retained exact-rank frontier spans in endpoint order"
+  },
+  "experiment": "frozen-reflected-endpoint-incidence-matrix-gate",
+  "frozen_n12_k7": {
+    "all_groups_full_row_rank": false,
+    "coloring_hex": "c9f7fdfe93f000dfe107f9e80053009e8005300efeff083fd37ffff",
+    "first_rank_deficient_group": 0,
+    "groups": [
+      {
+        "color": "cap",
+        "frontier": [
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "full_row_rank": false,
+        "grid_columns": 3,
+        "grid_rows": 2,
+        "ideal_columns_hex": [
+          "0",
+          "1",
+          "3",
+          "7",
+          "9",
+          "b",
+          "f",
+          "1b",
+          "1f",
+          "3f"
+        ],
+        "incidence_matrix": [
+          [
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1
+          ]
+        ],
+        "oriented_endpoint_intervals_hex": [
+          {
+            "left": [
+              "0",
+              "1",
+              "3",
+              "7",
+              "9",
+              "b",
+              "f",
+              "1b",
+              "1f",
+              "3f"
+            ],
+            "right": [
+              "0"
+            ]
+          },
+          {
+            "left": [
+              "3",
+              "7",
+              "b",
+              "f",
+              "1b",
+              "1f",
+              "3f"
+            ],
+            "right": [
+              "3f"
+            ]
+          },
+          {
+            "left": [
+              "3f"
+            ],
+            "right": [
+              "3f"
+            ]
+          },
+          {
+            "left": [
+              "0"
+            ],
+            "right": [
+              "0"
+            ]
+          },
+          {
+            "left": [
+              "0"
+            ],
+            "right": [
+              "0",
+              "1",
+              "3",
+              "7",
+              "9",
+              "b",
+              "f",
+              "1b",
+              "1f"
+            ]
+          },
+          {
+            "left": [
+              "1b"
+            ],
+            "right": [
+              "0",
+              "1",
+              "3",
+              "7",
+              "9",
+              "b",
+              "f",
+              "1b",
+              "1f",
+              "3f"
+            ]
+          }
+        ],
+        "rank": 3,
+        "rational_row_rank": 5,
+        "row_circuits": [
+          {
+            "coefficients": [
+              2,
+              -1,
+              -2
+            ],
+            "row_indices": [
+              0,
+              2,
+              4
+            ],
+            "spans": [
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                6
+              ],
+              [
+                6,
+                10
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "color": "cap",
+        "frontier": [
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            7
+          ]
+        ],
+        "full_row_rank": true,
+        "grid_columns": 2,
+        "grid_rows": 3,
+        "ideal_columns_hex": [
+          "0",
+          "1",
+          "3",
+          "5",
+          "7",
+          "f",
+          "15",
+          "17",
+          "1f",
+          "3f"
+        ],
+        "incidence_matrix": [
+          [
+            0,
+            0,
+            1,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "oriented_endpoint_intervals_hex": [
+          {
+            "left": [
+              "3",
+              "7",
+              "f",
+              "17",
+              "1f",
+              "3f"
+            ],
+            "right": [
+              "f",
+              "1f",
+              "3f"
+            ]
+          },
+          {
+            "left": [
+              "0",
+              "1",
+              "3",
+              "5",
+              "7",
+              "f"
+            ],
+            "right": [
+              "0",
+              "1",
+              "3"
+            ]
+          }
+        ],
+        "rank": 4,
+        "rational_row_rank": 2,
+        "row_circuits": []
+      },
+      {
+        "color": "cup",
+        "frontier": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            11
+          ]
+        ],
+        "full_row_rank": true,
+        "grid_columns": 3,
+        "grid_rows": 2,
+        "ideal_columns_hex": [
+          "0",
+          "1",
+          "3",
+          "7",
+          "9",
+          "b",
+          "f",
+          "1b",
+          "1f",
+          "3f"
+        ],
+        "incidence_matrix": [
+          [
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            1,
+            2,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            1,
+            0,
+            2,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            2,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            2,
+            1,
+            1
+          ]
+        ],
+        "oriented_endpoint_intervals_hex": [
+          {
+            "left": [
+              "0",
+              "1",
+              "3",
+              "7",
+              "9",
+              "b",
+              "f",
+              "1b",
+              "1f",
+              "3f"
+            ],
+            "right": [
+              "0",
+              "1",
+              "3",
+              "9",
+              "b",
+              "1b"
+            ]
+          },
+          {
+            "left": [
+              "1",
+              "3",
+              "7",
+              "9",
+              "b",
+              "f",
+              "1b",
+              "1f",
+              "3f"
+            ],
+            "right": [
+              "9",
+              "b",
+              "f",
+              "1b",
+              "1f",
+              "3f"
+            ]
+          },
+          {
+            "left": [
+              "9",
+              "b",
+              "f",
+              "1b",
+              "1f",
+              "3f"
+            ],
+            "right": [
+              "1b"
+            ]
+          },
+          {
+            "left": [
+              "0",
+              "1",
+              "3",
+              "9",
+              "b",
+              "1b"
+            ],
+            "right": [
+              "0",
+              "1",
+              "9"
+            ]
+          },
+          {
+            "left": [
+              "0",
+              "1",
+              "9"
+            ],
+            "right": [
+              "0",
+              "1",
+              "9"
+            ]
+          },
+          {
+            "left": [
+              "1b",
+              "1f",
+              "3f"
+            ],
+            "right": [
+              "9",
+              "b",
+              "f",
+              "1b",
+              "1f",
+              "3f"
+            ]
+          },
+          {
+            "left": [
+              "1b",
+              "1f",
+              "3f"
+            ],
+            "right": [
+              "0",
+              "1",
+              "3",
+              "9",
+              "b",
+              "1b"
+            ]
+          }
+        ],
+        "rank": 3,
+        "rational_row_rank": 7,
+        "row_circuits": []
+      },
+      {
+        "color": "cup",
+        "frontier": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            7,
+            11
+          ]
+        ],
+        "full_row_rank": false,
+        "grid_columns": 2,
+        "grid_rows": 3,
+        "ideal_columns_hex": [
+          "0",
+          "1",
+          "3",
+          "5",
+          "7",
+          "f",
+          "15",
+          "17",
+          "1f",
+          "3f"
+        ],
+        "incidence_matrix": [
+          [
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ]
+        ],
+        "oriented_endpoint_intervals_hex": [
+          {
+            "left": [
+              "0",
+              "1",
+              "3",
+              "5",
+              "7",
+              "f",
+              "15",
+              "17",
+              "1f",
+              "3f"
+            ],
+            "right": [
+              "0"
+            ]
+          },
+          {
+            "left": [
+              "1",
+              "3",
+              "5",
+              "7",
+              "f",
+              "15",
+              "17",
+              "1f",
+              "3f"
+            ],
+            "right": [
+              "3f"
+            ]
+          },
+          {
+            "left": [
+              "0"
+            ],
+            "right": [
+              "0",
+              "1",
+              "3",
+              "5",
+              "7",
+              "f",
+              "15",
+              "17",
+              "1f"
+            ]
+          },
+          {
+            "left": [
+              "3f"
+            ],
+            "right": [
+              "0",
+              "1",
+              "3",
+              "5",
+              "7",
+              "f",
+              "15",
+              "17",
+              "1f",
+              "3f"
+            ]
+          }
+        ],
+        "rank": 4,
+        "rational_row_rank": 3,
+        "row_circuits": [
+          {
+            "coefficients": [
+              2,
+              1,
+              -1,
+              -2
+            ],
+            "row_indices": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "spans": [
+              [
+                0,
+                4
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                6,
+                10
+              ],
+              [
+                7,
+                11
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "lower_mask_hex": "596",
+    "maximum_n": 12,
+    "rank_group_checks": 4,
+    "strong_size": 7,
+    "support_mask_hex": "fff"
+  },
+  "generation_base_revision": "80693365883afcb59d1a058df5f4f4c14d9ca176",
+  "schema_version": 1,
+  "sources": {
+    "base_checker": {
+      "path": "scripts/check_allocated_span_pascal_demand.py",
+      "sha256": "1962a01c479c5d44d2858d7bf9d62e8bf66dd8a6a87c77bd1c4fab347854f018"
+    },
+    "base_producer": {
+      "path": "scripts/enumerate_allocated_span_pascal_demand.py",
+      "sha256": "54ed1a0b33549ea12564a7fdc5c79f502fede0d4da58f3ef051658c412df28bd"
+    },
+    "checker": {
+      "path": "scripts/replay_reflected_endpoint_incidence_matrix.py",
+      "sha256": "683872c02625e6e7ed7c1f4d8708d723fb8bf8be131525149dffdfa39549ee3c"
+    },
+    "producer": {
+      "path": "scripts/check_reflected_endpoint_incidence_matrix.py",
+      "sha256": "609053ff898ca371a342e1c4b4e8dc3d7be2c3a8e01aab211a621b9a4c439a7d"
+    }
+  }
+}

@@ -49,6 +49,10 @@ test: check lean
 		data/derived/e3-actual-ray-event-pair-frozen-n12-k7.json >/dev/null
 	@python3 scripts/replay_coarse_ray_event_matrix.py \
 		data/derived/e3-coarse-ray-event-matrix-frozen-n12-k7.json >/dev/null
+	@python3 scripts/replay_reflected_endpoint_incidence_matrix.py \
+		data/derived/e3-reflected-endpoint-incidence-matrix-frozen-n12-k7.json >/dev/null
+	@python3 scripts/replay_two_lane_adjacent_uncrossing.py \
+		data/derived/e3-two-lane-adjacent-uncrossing-frozen-n12-k7.json >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -86,6 +90,10 @@ test: check lean
 		scripts/replay_actual_ray_event_pairs.py \
 		scripts/check_coarse_ray_event_matrix.py \
 		scripts/replay_coarse_ray_event_matrix.py \
+		scripts/check_reflected_endpoint_incidence_matrix.py \
+		scripts/replay_reflected_endpoint_incidence_matrix.py \
+		scripts/check_two_lane_adjacent_uncrossing.py \
+		scripts/replay_two_lane_adjacent_uncrossing.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \

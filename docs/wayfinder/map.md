@@ -381,10 +381,21 @@ None. The destination was fixed by the user on 2026-08-01.
   intervals. The preferred direction/role/complementary-depth quotient also
   fails the frozen adjacent pair: `(2,5)` and `(4,6)` have identical coarse
   incidence keys, so no fiberwise-absent later set can meet the earlier
-  present set. The event proposals are stopped. A bounded Sol/Fable review must
-  now choose between exact reflected endpoint-row independence and two-lane
-  interval uncrossing. General Hall and the global injection into
-  `decomposableBinomialWindow` remain downstream.
+  present set. The event proposals are stopped. A bounded route audit selected
+  exact reflected endpoint-row independence as the sharpest falsifier; Sol
+  returned a high-confidence `partially_supported` review, while Fable
+  returned a zero-token connection error and no consensus is claimed. The
+  exact matrices refute that mechanism on the same root: ranks are `5 < 6`
+  for cap/rank three and `3 < 4` for cup/rank four. The remaining two-lane
+  proposal now has a precise local boundary. Fixed meet-earlier/join-later is
+  false, while either locally valid assignment passes all 738 frozen adjacent
+  ideal pairs. Lean proves that the flexible rule plus every two-family
+  expansion test is abstractly insufficient: three identical two-element
+  transition intervals have no SDR. The active target is a geometry-specific
+  well-founded one-hole augmentation invariant, with moves and measure frozen
+  independently of any successful matching.
+  General Hall and the global injection into `decomposableBinomialWindow`
+  remain downstream.
 
 ## Not yet specified
 
