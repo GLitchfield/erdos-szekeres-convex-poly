@@ -335,10 +335,19 @@ None. The destination was fixed by the user on 2026-08-01.
   all 631,474 groups, while left-only, right-only, and fixed-label negative
   controls fail. Lean proves that its rectangular lower ideals inject into the
   exact Pascal layer and that the full Hall condition constructs the required
-  slotting and capacity bound. The geometry-specific Hall condition remains
-  open. The next formal target is its two-span expansion case, followed by
-  consecutive-block and all-subfamily Hall expansion. Only after that local
-  theorem may the route attempt the global injection into
+  slotting and capacity bound. The geometry-specific Hall condition is false
+  for these endpoint profiles: a kernel-checked decomposable `n=12`, `k=7`,
+  rank-three coloring has two distinct allocated spans whose four endpoint
+  ideals are all the full `2 x 3` ideal, so their candidate sets are the same
+  singleton and even pair expansion fails. This does not violate the frontier
+  cardinal bound. A bounded blind Sol/Fable review selects only a falsification
+  gate, not a repaired route: rotate-complement one crossing orientation while
+  permuting the same untagged Pascal-slot carrier. The gate must first prove
+  the involution and encoding laws in Lean, then pass the complete frozen
+  frontier and all 631,474 existing `k=6` groups, while targeting
+  same-orientation rigid pairs, reflection-fixed ideals, and triple-rigid
+  collisions. Any failure stops this repair; only a complete pass permits a
+  structural child-ray-incidence lemma and then the global injection into
   `decomposableBinomialWindow`.
 
 ## Not yet specified

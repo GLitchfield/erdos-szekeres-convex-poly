@@ -793,10 +793,45 @@ boundary-path encoding into the exact adjacent Pascal layer, defines the
 concrete past/future rank ideals and full all-subfamily Hall condition, and
 proves that Hall supplies `AllocatedExactRankSlotting` and therefore the local
 capacity inequality. These are completed Lean reductions. The bounded census
-does not prove the geometry-specific Hall premise. Its two-span expansion
-case is the next formal target, followed by consecutive blocks and a general
-uncrossing argument. The original `allocatedSpanPascalDemand_le_window`
-remains the subsequent global injection theorem.
+does not prove the geometry-specific Hall premise.
+
+That premise, including its proposed two-span expansion base case, is now
+formally refuted for the endpoint profiles as defined. The kernel-checked
+counterexample has `n=12`, `k=7`, and rank three. Its recursively decomposable
+coloring has a deep root split and no strong seven-point cap or cup, but the
+distinct allocated spans `(4,6)` and `(5,7)` have all four endpoint profiles
+equal to the full `2 x 3` lower ideal. Both candidate sets are therefore the
+same singleton. Lean proves failure of rigid-label injectivity, pair
+expansion, and the full Hall condition. The generic surviving API proves that
+an interval candidate is a singleton exactly when its two endpoint ideals
+agree, characterizes pair expansion by injectivity of these rigid labels, and
+shows that Hall implies pair expansion. The example does not refute the
+frontier cardinal bound: this two-span frontier is below Pascal capacity ten.
+
+A zero-round blind Sol/Fable review at revision
+`b7f794018df9006efe48c518040a5995f774e291` used evidence-packet SHA-256
+`cf05f9eb2123531ab4e7dea44f1aa65d5ae79d5f50e87096ac382e5c4870bc89`.
+Its advisory report SHA-256 is
+`009b7c59d0a674f046b094dbef115475bd372f4d49eb98cc9d79d977a1b26416`.
+Both reviewers rated the proposed repair only partially supported. The next
+bounded contract is to define the rotate-complement involution on rectangular
+lower ideals and its induced reversal of the *same untagged* allocated Pascal
+slots, prove the involution/encoding laws in Lean, and place the
+orientation-dependent permutation inside the Hall candidate system. An
+orientation coproduct or doubled carrier is forbidden because it would
+silently double capacity.
+
+Before any structural proof investment, the repaired candidates must pass
+full Hall on the entire frozen `n=12` frontier and on all 631,474 existing
+`k=6` frontier groups with independent representations/checkers. Targeted
+negative searches must cover same-orientation rigid pairs,
+reflection-fixed ideals, and three rigid spans sharing one ideal; pairwise
+success alone is insufficient. The first failure stops this repair. Only a
+complete gate pass permits the next theorem: derive the orientation choice and
+reflected candidate membership from predecessor-ray incidence at the unique
+lowest separating node. The original
+`allocatedSpanPascalDemand_le_window` remains the subsequent global injection
+theorem.
 
 ## Evidence
 
@@ -814,6 +849,8 @@ remains the subsequent global injection theorem.
 - [Lean Pascal demand and lowest-node span allocation](../../../ErdosSzekeres/StructuralChargingPascalDemand.lean)
 - [Lean exact span frontier and slotting reduction](../../../ErdosSzekeres/StructuralChargingSpanFrontier.lean)
 - [Lean endpoint-transition Hall reduction](../../../ErdosSzekeres/StructuralChargingTransitionHall.lean)
+- [Lean endpoint-transition Hall counterexample data](../../../ErdosSzekeres/StructuralChargingTransitionHallCollisionData.lean)
+- [Lean endpoint-transition Hall counterexample](../../../ErdosSzekeres/StructuralChargingTransitionHallCollision.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)
