@@ -395,9 +395,13 @@ None. The destination was fixed by the user on 2026-08-01.
   all 5,208 frozen cap/rank-three states: every blocked singleton-family hole
   reaches a 7-, 9-, or 10-candidate hole after one ownership transfer and is
   then fillable. Lean proves generic completion, transfer preservation,
-  cardinality exit, and well-founded descent-to-SDR theorems. The active target
-  is the geometry-specific small-to-large transfer lemma for arbitrary
-  reflected frontier blocks, not a graph-distance measure.
+  cardinality exit, well-founded descent-to-SDR, and the reviewed
+  singleton-or-block-large implication. That profile fails on the frozen
+  seven-span cup/rank-three group, whose intermediate family sizes are
+  `6,6,3,6`. The unchanged priority then fails on its complete 78,236-state
+  graph: 72 states reach 36 two-cycles. The active target is a locally frozen
+  cycle-breaking ownership or collision-free uncrossing escape, tested first
+  on those cycles and never defined by graph distance.
   General Hall and the global injection into `decomposableBinomialWindow`
   remain downstream.
 

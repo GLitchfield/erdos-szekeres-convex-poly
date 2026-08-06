@@ -953,9 +953,22 @@ with only five occupied ideals it is immediately fillable. Independent
 cell-mask and row-height programs reproduce the one-step termination and the
 absence of cycles. Lean now proves the generic completion, ownership-transfer,
 cardinality-exit, well-founded descent-to-SDR, and block-cardinality lemmas.
-The active structural target is to replace the frozen family-size observation
-by a geometry-specific small-to-large transfer theorem for arbitrary reflected
-frontier blocks. No graph-distance measure is promoted.
+The bounded route review then sharpened this observation into a
+singleton-or-block-large owner profile. Fable selected the profile-only gate;
+Sol initially selected the full remaining state census, then revised to the
+same profile gate after reciprocal critique. Fable's reciprocal call hit its
+usage limit, so no complete reciprocal consensus is claimed. The corresponding
+Lean one-transfer theorem and Hall corollary now compile.
+
+The profile is not uniform. The frozen cup/rank-three group has block size
+seven and family sizes `[10,9,6,6,3,6,8]`, violating H1 at four spans. The
+reviewed targeted fallback enumerates its 78,236 one-hole states. Exactly 72
+states reach 36 terminal-free two-cycles under the unchanged boundary priority.
+The first alternates the hole between `(3,7)` and `(6,8)` by stealing ideal
+`0` back and forth. Independent cell-mask and row-height implementations agree.
+The active target is therefore an exact local cycle breaker—another ownership
+priority or collision-free meet/join escape—frozen and tested first on all 36
+cycles. No graph-distance measure is promoted.
 
 ## Evidence
 
@@ -997,6 +1010,10 @@ frontier blocks. No graph-distance measure is promoted.
 - [Stable-ownership one-hole descent gate](../../experiments/0036-stable-ownership-hole-descent.md)
 - [Stable-ownership one-hole descent manifest](../../../data/derived/e3-stable-ownership-hole-descent-frozen-n12-k7.json)
 - [Lean one-hole descent machinery](../../../ErdosSzekeres/StructuralChargingTransitionHallHoleDescent.lean)
+- [Singleton-or-block-large profile gate](../../experiments/0037-singleton-large-owner-profile.md)
+- [Singleton-or-block-large profile manifest](../../../data/derived/e3-singleton-large-owner-profile-frozen-n12-k7.json)
+- [Cup/rank-three ownership-cycle gate](../../experiments/0038-stable-ownership-cup-rank3-cycle.md)
+- [Cup/rank-three ownership-cycle manifest](../../../data/derived/e3-stable-ownership-cup-rank3-cycle-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

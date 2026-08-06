@@ -207,9 +207,14 @@ sets.
   is immediately fillable with only five occupied ideals. Independent
   cell-mask and row-height implementations agree. The generic completion,
   ownership-transfer, cardinality-exit, and well-founded-descent implications
-  now compile in `StructuralChargingTransitionHallHoleDescent.lean`. The open
-  geometry-specific target is to force an analogous small-to-large transfer
-  on arbitrary reflected frontier blocks.
+  now compile in `StructuralChargingTransitionHallHoleDescent.lean`, together
+  with a reviewed singleton-or-block-large one-transfer theorem. That profile
+  is not uniform: the frozen seven-span cup/rank-three group has intermediate
+  family sizes `6,6,3,6`. On its 78,236 one-hole states, the unchanged
+  boundary priority has 36 terminal-free two-cycles. The first repeatedly
+  steals ideal `0` between spans `(3,7)` and `(6,8)`. Thus the next exact
+  target is a locally defined cycle-breaking ownership or uncrossing move,
+  not the retired fixed priority or an assumed graph-distance measure.
   General Hall and the global outer-window injection remain subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas

@@ -53,6 +53,26 @@ def FiniteCandidateHasDistinctRepresentativesOn
     Set.InjOn representative block ∧
       ∀ span ∈ block, representative span ∈ candidates span
 
+/-- Every candidate family in the block is a singleton or has at least as
+many members as the block. -/
+def SingletonOrBlockLarge
+    {Span Ideal : Type*} [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal) : Prop :=
+  ∀ span ∈ block,
+    (candidates span).card = 1 ∨
+      block.card ≤ (candidates span).card
+
+/-- Any other block member that can own the ideal of a singleton candidate
+family has a candidate family at least as large as the block. -/
+def SingletonCandidateOwnersBlockLarge
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal) : Prop :=
+  ∀ singleton ∈ block, ∀ ideal,
+    candidates singleton = {ideal} →
+      ∀ owner ∈ block.erase singleton,
+        ideal ∈ candidates owner →
+          block.card ≤ (candidates owner).card
+
 /-- More candidates for the hole than occupied representatives force an
 unused candidate.  This is the elementary cardinality exit from a descent. -/
 theorem FiniteCandidateHoleState.canFill_of_erase_card_lt_candidates_card
@@ -188,6 +208,65 @@ theorem FiniteCandidateHoleState.hasDistinctRepresentatives_of_canFill
         Finset.mem_erase.mpr ⟨hspanHole, hspan⟩
       simpa [completed, Function.update, hspanHole] using
         state.representative_mem span hspanErase
+
+/-- Under the singleton-or-block-large profile, every one-hole state fills
+directly or after one ownership transfer.  No candidate priority, matching,
+or multi-step descent measure is needed. -/
+theorem FiniteCandidateHoleState.hasDistinctRepresentatives_of_singletonOrBlockLarge
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (hprofile : SingletonOrBlockLarge block candidates)
+    (howners : SingletonCandidateOwnersBlockLarge block candidates)
+    (state : FiniteCandidateHoleState block candidates) :
+    FiniteCandidateHasDistinctRepresentativesOn block candidates := by
+  by_cases hfill : state.CanFill
+  · exact state.hasDistinctRepresentatives_of_canFill hfill
+  · have hblockPositive : 0 < block.card :=
+      Finset.card_pos.mpr ⟨state.hole, state.hole_mem⟩
+    have heraseLt : (block.erase state.hole).card < block.card := by
+      rw [Finset.card_erase_of_mem state.hole_mem]
+      omega
+    rcases hprofile state.hole state.hole_mem with hsingleton | hlarge
+    · obtain ⟨ideal, hfamily⟩ := Finset.card_eq_one.mp hsingleton
+      have hideal : ideal ∈ candidates state.hole := by
+        simp [hfamily]
+      have hused : ∃ owner ∈ block.erase state.hole,
+          state.representative owner = ideal := by
+        by_contra hnone
+        push Not at hnone
+        exact hfill ⟨ideal, hideal, fun owner howner ↦
+          (hnone owner howner).symm⟩
+      obtain ⟨owner, howner, howned⟩ := hused
+      have hownerLarge : block.card ≤ (candidates owner).card :=
+        howners state.hole state.hole_mem ideal hfamily owner howner
+          (howned ▸ state.representative_mem owner howner)
+      have hownerEraseLt : (block.erase owner).card <
+          (candidates owner).card := by
+        have hownerMem : owner ∈ block := Finset.mem_of_mem_erase howner
+        rw [Finset.card_erase_of_mem hownerMem]
+        omega
+      let next :=
+        state.transferOwnedCandidate ideal hideal owner howner howned
+      exact next.hasDistinctRepresentatives_of_canFill
+        (state.transferOwnedCandidate_canFill_of_card_lt
+          ideal hideal owner howner howned hownerEraseLt)
+    · have : state.CanFill :=
+        state.canFill_of_erase_card_lt_candidates_card (by omega)
+      exact False.elim (hfill this)
+
+/-- The reviewed one-transfer profile implies the block Hall inequality. -/
+theorem FiniteCandidateHoleState.card_le_biUnion_of_singletonOrBlockLarge
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (hprofile : SingletonOrBlockLarge block candidates)
+    (howners : SingletonCandidateOwnersBlockLarge block candidates)
+    (state : FiniteCandidateHoleState block candidates) :
+    block.card ≤ (block.biUnion candidates).card := by
+  obtain ⟨representative, hinjective, hmem⟩ :=
+    state.hasDistinctRepresentatives_of_singletonOrBlockLarge
+      hprofile howners
+  exact Finset.card_le_biUnion_card_of_injective_mem block candidates
+    representative hmem hinjective
 
 /-- Every unfillable state has an allowed successor with strictly smaller
 measure.  The relation on measures is kept explicit rather than fixed to

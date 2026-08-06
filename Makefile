@@ -55,6 +55,10 @@ test: check lean
 		data/derived/e3-two-lane-adjacent-uncrossing-frozen-n12-k7.json >/dev/null
 	@python3 scripts/replay_stable_ownership_hole_descent.py \
 		data/derived/e3-stable-ownership-hole-descent-frozen-n12-k7.json >/dev/null
+	@python3 scripts/replay_singleton_large_owner_profile.py \
+		data/derived/e3-singleton-large-owner-profile-frozen-n12-k7.json >/dev/null
+	@python3 scripts/replay_stable_ownership_cup_rank3_cycle.py \
+		data/derived/e3-stable-ownership-cup-rank3-cycle-frozen-n12-k7.json >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -98,6 +102,10 @@ test: check lean
 		scripts/replay_two_lane_adjacent_uncrossing.py \
 		scripts/check_stable_ownership_hole_descent.py \
 		scripts/replay_stable_ownership_hole_descent.py \
+		scripts/check_singleton_large_owner_profile.py \
+		scripts/replay_singleton_large_owner_profile.py \
+		scripts/check_stable_ownership_cup_rank3_cycle.py \
+		scripts/replay_stable_ownership_cup_rank3_cycle.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \

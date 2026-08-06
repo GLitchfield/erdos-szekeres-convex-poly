@@ -58,6 +58,8 @@ mathematics behind this gate:
 - transferring an owned candidate to the hole preserves membership and
   injectivity;
 - a transfer into a sufficiently large family is immediately fillable; and
+- the singleton-or-block-large owner profile makes every state fill directly
+  or after one transfer; and
 - any well-founded strict progress relation from every unfillable state yields
   an SDR and the corresponding Hall inequality.
 

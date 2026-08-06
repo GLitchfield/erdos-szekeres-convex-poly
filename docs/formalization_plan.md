@@ -703,6 +703,16 @@ locally certified ownership/uncrossing move from a small family to a larger
 one. The frozen candidate cardinalities are still computational evidence until
 their structural analogue is proved in Lean.
 
+The reviewed singleton-or-block-large theorem now compiles, but its uniform
+profile gate fails. The four frozen family-size profiles are
+`[10,7,1,1,9,10]`, `[6,6]`, `[10,9,6,6,3,6,8]`, and `[10,9,9,10]`; the
+seven-span cup/rank-three group has four intermediate-size families. A targeted
+78,236-state census then refutes the unchanged ascending boundary priority:
+72 states reach 36 two-cycles. The first alternates the hole between `(3,7)`
+and `(6,8)` by stealing ideal `0` back and forth. The next contract must
+therefore freeze a local cycle-breaking priority or collision-free uncrossing
+escape and test it on all 36 cycles before any arbitrary-block promotion.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at
