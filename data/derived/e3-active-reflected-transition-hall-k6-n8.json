@@ -1,0 +1,148 @@
+{
+  "contract": {
+    "active_endpoint": "use the left endpoint interval exactly when color is cup iff the span's left endpoint lies in the lower child; otherwise use the right endpoint interval",
+    "block_test": "for every ordered frontier interval, compare its number of spans directly with the union of its active candidates",
+    "claim_boundary": "bounded computational evidence only",
+    "order": "check the frozen n=12, k=7 root first, then all k=6 groups through maximum_n; stop on the first block-expansion failure",
+    "orientation": "leave the active interval unchanged iff the left endpoint is lower; otherwise rotate-complement every ideal"
+  },
+  "experiment": "active-reflected-transition-hall-gate",
+  "frozen_n12_k7": {
+    "coloring_hex": "c9f7fdfe93f000dfe107f9e80053009e8005300efeff083fd37ffff",
+    "consecutive_block_expansion": false,
+    "first_block_failure": {
+      "active_reflected_candidates_hex": [
+        [
+          "0",
+          "1",
+          "3",
+          "7",
+          "9",
+          "b",
+          "f",
+          "1b",
+          "1f",
+          "3f"
+        ],
+        [
+          "3f"
+        ],
+        [
+          "3f"
+        ],
+        [
+          "0"
+        ],
+        [
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "3",
+          "7",
+          "9",
+          "b",
+          "f",
+          "1b",
+          "1f",
+          "3f"
+        ]
+      ],
+      "candidate_union_card": 10,
+      "color": "cap",
+      "coloring_hex": "c9f7fdfe93f000dfe107f9e80053009e8005300efeff083fd37ffff",
+      "consecutive_block_expansion": false,
+      "first_consecutive_block_defect": {
+        "block_card": 2,
+        "candidate_families_hex": [
+          [
+            "3f"
+          ],
+          [
+            "3f"
+          ]
+        ],
+        "candidate_union_card": 1,
+        "candidate_union_hex": [
+          "3f"
+        ],
+        "first_index": 1,
+        "last_index": 2,
+        "spans": [
+          [
+            2,
+            5
+          ],
+          [
+            4,
+            6
+          ]
+        ]
+      },
+      "frontier": [
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          6,
+          10
+        ],
+        [
+          8,
+          11
+        ]
+      ],
+      "frontier_card": 6,
+      "full_frontier_matching": false,
+      "lower_mask_hex": "596",
+      "rank": 3,
+      "support_mask_hex": "fff"
+    },
+    "lower_mask_hex": "596",
+    "rank_group_checks": 4,
+    "support_mask_hex": "fff"
+  },
+  "generation_base_revision": "4869a0130f66b06743b030a74f4bd8ea78f1eb84",
+  "k6_census": null,
+  "schema_version": 1,
+  "sources": {
+    "base_checker": {
+      "path": "scripts/check_allocated_span_pascal_demand.py",
+      "sha256": "1962a01c479c5d44d2858d7bf9d62e8bf66dd8a6a87c77bd1c4fab347854f018"
+    },
+    "base_producer": {
+      "path": "scripts/enumerate_allocated_span_pascal_demand.py",
+      "sha256": "54ed1a0b33549ea12564a7fdc5c79f502fede0d4da58f3ef051658c412df28bd"
+    },
+    "checker": {
+      "path": "scripts/check_active_reflected_transition_hall.py",
+      "sha256": "1e264e1c9bf27512b83d0c57cce16524a4b7b6bb8281d322b686515d03b8be5f"
+    },
+    "producer": {
+      "path": "scripts/enumerate_active_reflected_transition_hall.py",
+      "sha256": "d0e54eaf48906a59783e36582770c564be5df3515cb25ff5f4d2092f6441da20"
+    },
+    "reflection_checker": {
+      "path": "scripts/check_reflected_transition_hall.py",
+      "sha256": "f073292b319835bae6421d56417baf9ccfc1ef5f7e380495c9cd18045130595f"
+    },
+    "reflection_producer": {
+      "path": "scripts/enumerate_reflected_transition_hall.py",
+      "sha256": "2efe416dcf0ab326ff4009d96092a414a3b0a02985a22564467803fe564fa044"
+    }
+  }
+}

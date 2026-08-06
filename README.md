@@ -175,8 +175,17 @@ sets.
   the structural child-ray bridge: at the unique lowest separating node, the
   exact parent span exposes the forced predecessor/successor child ray, and
   its incident endpoint profile belongs to the orientation-reflected candidate
-  family. The next target is consecutive-block Hall expansion; general Hall
-  and the global outer-window injection remain subsequent.
+  family. `StructuralChargingTransitionHallBlocks.lean` now proves the exact
+  ordered-block API and equivalence with intrinsic consecutive subfamilies.
+  Two independently replayed controls retire the most direct proofs: on a
+  five-span `k=6` block the single active profiles are `0,f,0,f,0`, and on the
+  frozen `n=12`, `k=7` root the adjacent spans `(2,5)` and `(4,6)` both have
+  singleton active interval `{3f}`. The latter defect is kernel-checked in
+  `StructuralChargingTransitionHallReflectionCollision.lean`, whose theorem
+  `activeBlockExpansion_fails` formally refutes active single-endpoint interval
+  block expansion. The full reflected two-endpoint family remains unrefuted.
+  The active redirect is a skew-Bollobas encoding of actual child-ray events;
+  general Hall and the global outer-window injection remain subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

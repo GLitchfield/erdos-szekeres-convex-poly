@@ -354,11 +354,27 @@ None. The destination was fixed by the user on 2026-08-01.
   predecessor/successor child rays; the endpoint profile incident to that ray
   is a member of the deterministically orientation-reflected candidate family.
   This removes post-hoc orientation choice but does not prove injectivity or
-  Hall. The active formal target is consecutive-block Hall expansion along the
-  ordered exact-rank frontier, followed by all-subfamily Hall and the global
-  injection into `decomposableBinomialWindow`. Failure of block expansion
-  redirects to the predeclared skew Bollobás set-pair encoding of actual ray
-  events.
+  Hall. Lean now formalizes closed blocks of the ordered exact-rank frontier,
+  proves their left/right endpoint descriptions agree, and identifies them
+  with nonempty intrinsic consecutive subfamilies. The direct active-profile
+  proof is refuted by an independently replayed five-span `k=6` block whose
+  representatives are `0,f,0,f,0`. The innovation proposal to retain the
+  whole active endpoint interval also fails the predeclared block gate: in the
+  frozen `n=12`, `k=7` root, adjacent cap/rank-three spans `(2,5)` and `(4,6)`
+  both have singleton reflected active interval `{3f}`, giving union size one
+  for a two-span block. Lean kernel-checks their exact ranks, frontier
+  adjacency, candidate equalities, and `activeBlockExpansion_fails`. This does
+  not refute the full reflected two-endpoint block target, but it shows that
+  the inactive endpoint cannot simply be discarded. The active bounded task
+  is now the predeclared skew Bollobás
+  set-pair encoding of actual ray events: freeze its noncircular cross-incidence
+  hypothesis and exact Pascal accounting, then falsify it on the frozen root
+  before attempting Lean. The contrarian contract uses locally constructed
+  incident/nonincident event sets of sizes `rank-1` and `k-rank-1`, with
+  `earlier.present ∩ later.absent` nonempty; the first gate asks whether
+  `(2,5)` has any actual incident event missing at `(4,6)`. General Hall and
+  the global injection into
+  `decomposableBinomialWindow` remain downstream.
 
 ## Not yet specified
 

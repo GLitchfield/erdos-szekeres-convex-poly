@@ -627,10 +627,22 @@ reflected Hall failure on the complete frozen root frontier or any of the
 from actual predecessor/successor child rays at the unique lowest separating
 node and proves that the incident endpoint profile belongs to the reflected
 candidate family. This is an incidence bridge, not an injectivity theorem.
-The next theorem is consecutive-block Hall expansion, followed by general
-Hall expansion; after that comes the global slot injection and the final
-`allocatedSpanPascalDemand_le_window` return to the published child-slice
-induction.
+Lean now also defines closed endpoint blocks of the ordered frontier, proves
+their left/right order equivalence and their equivalence with nonempty
+intrinsically consecutive subfamilies, and freezes reflected block expansion.
+The deterministic active-profile shortcut is computationally false on a
+five-span `k=6` block. Keeping the whole active endpoint interval is still too
+strong: in the frozen `n=12`, `k=7` root, adjacent spans `(2,5)` and `(4,6)`
+both have singleton reflected active interval `{3f}`, so their two-span block
+has union size one. Lean kernel-checks the exact ranks, frontier membership,
+adjacency, singleton active candidate sets, and the resulting failure of active
+block expansion; independent cell-mask and row-height replays agree. This does
+not refute the full reflected two-endpoint block target, but it retires proofs
+that discard the inactive endpoint. The predeclared next design target is
+therefore a skew-Bollobas set-pair encoding of actual child-ray events.
+After a local block theorem and general Hall come the global slot injection
+and the final `allocatedSpanPascalDemand_le_window` return to the published
+child-slice induction.
 
 ## External Lean baseline
 

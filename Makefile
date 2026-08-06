@@ -41,6 +41,10 @@ test: check lean
 		data/derived/e3-allocated-span-pascal-demand-k6-n8.json --source-only >/dev/null
 	@python3 scripts/check_reflected_transition_hall.py \
 		data/derived/e3-reflected-transition-hall-k6-n8.json --source-only >/dev/null
+	@python3 scripts/replay_active_reflected_representative.py \
+		data/derived/e3-active-reflected-representative-counterexample-k6-n8.json >/dev/null
+	@python3 scripts/check_active_reflected_transition_hall.py \
+		data/derived/e3-active-reflected-transition-hall-k6-n8.json >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -70,6 +74,10 @@ test: check lean
 		scripts/check_rooted_span_interfaces.py \
 		scripts/check_allocated_span_pascal_demand.py \
 		scripts/check_reflected_transition_hall.py \
+		scripts/check_active_reflected_representative.py \
+		scripts/replay_active_reflected_representative.py \
+		scripts/enumerate_active_reflected_transition_hall.py \
+		scripts/check_active_reflected_transition_hall.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \

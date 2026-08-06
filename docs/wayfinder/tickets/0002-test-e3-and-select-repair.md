@@ -848,6 +848,37 @@ skew-Bollobás set-pair encoding of actual ray events. The original
 `allocatedSpanPascalDemand_le_window` remains the subsequent global injection
 theorem.
 
+The consecutive-block gate is now resolved negatively for both natural
+single-endpoint strengthenings. `StructuralChargingTransitionHallBlocks.lean`
+defines endpoint blocks, proves the left/right frontier orders agree, proves
+every block intrinsically consecutive, and shows every nonempty intrinsic
+consecutive subfamily is a block. The single active profile is not injective:
+an independently replayed `k=6` five-span block selects `0,f,0,f,0`. Retaining
+the whole endpoint interval incident to the active ray also fails. In the
+frozen `n=12`, `k=7` cap/rank-three group, adjacent spans `(2,5)` and `(4,6)`
+both have the reflected active singleton `{3f}`; hence their two-span block has
+candidate-union cardinality one. Independent cell-mask and row-height
+implementations reproduce the exact defect, and Lean proves the exact-rank
+frontier membership, adjacency, candidate equalities, and
+`activeBlockExpansion_fails`. The full reflected two-endpoint family is not
+refuted by either witness. The predeclared redirect is therefore active: the
+next bounded contract must encode actual child-ray events as a skew Bollobás
+set-pair system, preserve the coefficient
+`choose (k-2) (rank-1)` without tags, and pass the frozen root before Lean
+promotion.
+
+Laplace's read-only audit confirms the claim boundary and proposes the first
+noncircular contract. An actual-ray event is a normalized direction, concrete
+child chain, and marked chain vertex. Each span must locally construct a
+present incident set of size `rank-1` and an actual nonincident set of size
+`k-rank-1`; every earlier/later pair in a block must have nonempty
+`earlier.present ∩ later.absent`. Self-disjointness is then definitional, and
+the skew-Bollobas coefficient is exactly `choose (k-2) (rank-1)`. The cheapest
+falsifier is the frozen adjacent pair: first test whether the full actual-ray
+incidence support of `(2,5)` has any event absent from that of `(4,6)`. An empty
+difference stops the event route before any selection search. This remains a
+proposal until the event semantics and bounded gate are implemented.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -871,6 +902,11 @@ theorem.
 - [Lean reflected transition-Hall machinery](../../../ErdosSzekeres/StructuralChargingTransitionHallReflection.lean)
 - [Lean reflected separation of the frozen pair](../../../ErdosSzekeres/StructuralChargingTransitionHallReflectionCollision.lean)
 - [Lean child-ray/reflected-candidate bridge](../../../ErdosSzekeres/StructuralChargingTransitionHallRayBridge.lean)
+- [Consecutive-block Hall gate](../../experiments/0031-consecutive-block-hall-gate.md)
+- [Lean consecutive-block and active-interval reductions](../../../ErdosSzekeres/StructuralChargingTransitionHallBlocks.lean)
+- [Lean active-interval block counterexample](../../../ErdosSzekeres/StructuralChargingTransitionHallReflectionCollision.lean)
+- [Active-representative counterexample manifest](../../../data/derived/e3-active-reflected-representative-counterexample-k6-n8.json)
+- [Active-interval block counterexample manifest](../../../data/derived/e3-active-reflected-transition-hall-k6-n8.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

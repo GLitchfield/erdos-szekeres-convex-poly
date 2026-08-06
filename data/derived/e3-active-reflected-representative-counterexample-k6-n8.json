@@ -1,0 +1,138 @@
+{
+  "contract": {
+    "claim_boundary": "bounded computational counterexample to active representative injectivity only; not a counterexample to block expansion",
+    "decision": "refute the shortcut when the active representatives collide while the complete reflected candidate family still passes Hall",
+    "target": "injectivity of the deterministic active-ray representative on every consecutive exact-rank frontier block"
+  },
+  "counterexample": {
+    "active_representative_injective": false,
+    "active_representatives_hex": [
+      "0",
+      "f",
+      "0",
+      "f",
+      "0"
+    ],
+    "collision_classes": [
+      [
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          7
+        ]
+      ],
+      [
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          6
+        ]
+      ]
+    ],
+    "color": "cap",
+    "coloring_hex": "3218f2140c78bf",
+    "frontier": [
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        7
+      ]
+    ],
+    "frontier_card": 5,
+    "lower_mask_hex": "aa",
+    "maximum_n": 8,
+    "rank": 3,
+    "reflected_active_candidate_union_card": 6,
+    "reflected_active_candidate_union_hex": [
+      "0",
+      "1",
+      "3",
+      "5",
+      "7",
+      "f"
+    ],
+    "reflected_active_candidates_hex": [
+      [
+        "0",
+        "1",
+        "3",
+        "5",
+        "7",
+        "f"
+      ],
+      [
+        "f"
+      ],
+      [
+        "0",
+        "1",
+        "3"
+      ],
+      [
+        "1",
+        "3",
+        "5",
+        "7",
+        "f"
+      ],
+      [
+        "0"
+      ]
+    ],
+    "reflected_active_hall": true,
+    "reflected_candidate_union_card": 6,
+    "reflected_candidate_union_hex": [
+      "0",
+      "1",
+      "3",
+      "5",
+      "7",
+      "f"
+    ],
+    "reflected_hall": true,
+    "strong_size": 6,
+    "support_mask_hex": "ff"
+  },
+  "experiment": "active-reflected-representative-counterexample",
+  "generation_base_revision": "4869a0130f66b06743b030a74f4bd8ea78f1eb84",
+  "schema_version": 1,
+  "sources": {
+    "checker": {
+      "path": "scripts/replay_active_reflected_representative.py",
+      "sha256": "42debb053c41fd72f0a234a236637c0bb104ec5148f37ca9db513ff35c3308d9"
+    },
+    "parent_manifest": {
+      "path": "data/derived/e3-allocated-span-pascal-demand-k6-n8.json",
+      "sha256": "1a05fa2b145e1619f146ed3e679ee117373180f5f524a6712b90fbb8eea3d7ce"
+    },
+    "producer": {
+      "path": "scripts/check_active_reflected_representative.py",
+      "sha256": "f7ca1e82b949a92c0b6813bf2309b4bf4f8227b90fbd74a69c6223f92d18b7f9"
+    }
+  }
+}

@@ -121,6 +121,62 @@ theorem allocatedActiveEndpointRankTransitionCandidate_mem
   · rw [allocatedEndpointTransitionCandidates, Finset.mem_union]
     exact Or.inr (pascalTransitionInterval_first_mem _ _)
 
+/-- Keep the whole endpoint interval incident to the active child ray.  This
+is the smallest interval already present in the two-endpoint candidate family
+that contains the distinguished active profile. -/
+def allocatedActiveEndpointRankTransitionCandidates
+    {n : ℕ} {Ideal : Type*} [Fintype Ideal] [DecidableEq Ideal]
+    [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) : Finset Ideal :=
+  if color = .left ↔ span.1.left ∈ lower then
+    pascalTransitionInterval (profiles.past span.1.left)
+      (profiles.future span.1.left)
+  else
+    pascalTransitionInterval (profiles.past span.1.right)
+      (profiles.future span.1.right)
+
+/-- The distinguished active profile lies in its active endpoint interval. -/
+theorem allocatedActiveEndpointRankTransitionCandidate_mem_activeCandidates
+    {n : ℕ} {Ideal : Type*} [Fintype Ideal] [DecidableEq Ideal]
+    [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    allocatedActiveEndpointRankTransitionCandidate profiles span ∈
+      allocatedActiveEndpointRankTransitionCandidates profiles span := by
+  rw [allocatedActiveEndpointRankTransitionCandidate,
+    allocatedActiveEndpointRankTransitionCandidates]
+  split
+  · exact pascalTransitionInterval_second_mem _ _
+  · exact pascalTransitionInterval_first_mem _ _
+
+/-- The active endpoint interval is a subfamily of the original two-endpoint
+transition candidates. -/
+theorem allocatedActiveEndpointRankTransitionCandidates_subset
+    {n : ℕ} {Ideal : Type*} [Fintype Ideal] [DecidableEq Ideal]
+    [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    allocatedActiveEndpointRankTransitionCandidates profiles span ⊆
+      allocatedEndpointTransitionCandidates profiles span := by
+  rw [allocatedActiveEndpointRankTransitionCandidates,
+    allocatedEndpointTransitionCandidates]
+  split
+  · exact Finset.subset_union_left
+  · exact Finset.subset_union_right
+
 /-- Apply the split-orientation reflection to the active endpoint profile. -/
 def allocatedReflectedActiveEndpointRankTransitionCandidate
     {n rank k : ℕ} (chi : TripleColoring n)
@@ -135,6 +191,85 @@ def allocatedReflectedActiveEndpointRankTransitionCandidate
     allocatedActiveEndpointRankTransitionCandidate profiles span
   if span.1.left ∈ lower then candidate
   else PascalGridIdeal.reflectedComplement candidate
+
+/-- Apply the split-orientation reflection to every ideal in the active
+endpoint interval. -/
+def allocatedReflectedActiveEndpointRankTransitionCandidates
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    Finset (PascalGridIdeal (rank - 1) (k - rank - 1)) :=
+  let profiles := allocatedEndpointRankTransitionProfiles
+    chi lower upper color hrank hrankTop
+  let candidates :=
+    allocatedActiveEndpointRankTransitionCandidates profiles span
+  if span.1.left ∈ lower then candidates
+  else candidates.map
+    (PascalGridIdeal.reflectedComplementEquiv
+      (rank - 1) (k - rank - 1)).toEmbedding
+
+/-- The reflected distinguished profile lies in the reflected active endpoint
+interval. -/
+theorem allocatedReflectedActiveEndpointRankTransitionCandidate_mem_activeCandidates
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    allocatedReflectedActiveEndpointRankTransitionCandidate
+        chi lower upper color hrank hrankTop span ∈
+      allocatedReflectedActiveEndpointRankTransitionCandidates
+        chi lower upper color hrank hrankTop span := by
+  classical
+  let profiles := allocatedEndpointRankTransitionProfiles
+    chi lower upper color hrank hrankTop
+  have hcandidate :
+      allocatedActiveEndpointRankTransitionCandidate profiles span ∈
+        allocatedActiveEndpointRankTransitionCandidates profiles span :=
+    allocatedActiveEndpointRankTransitionCandidate_mem_activeCandidates
+      profiles span
+  by_cases hleft : span.1.left ∈ lower
+  · simpa [allocatedReflectedActiveEndpointRankTransitionCandidate,
+      allocatedReflectedActiveEndpointRankTransitionCandidates, profiles,
+      hleft] using hcandidate
+  · rw [allocatedReflectedActiveEndpointRankTransitionCandidate,
+      allocatedReflectedActiveEndpointRankTransitionCandidates]
+    simp only [hleft, ↓reduceIte, Finset.mem_map, Equiv.toEmbedding_apply]
+    exact ⟨allocatedActiveEndpointRankTransitionCandidate profiles span,
+      hcandidate, rfl⟩
+
+/-- Reflection preserves the inclusion of the active endpoint interval in the
+full two-endpoint candidate family. -/
+theorem allocatedReflectedActiveEndpointRankTransitionCandidates_subset
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    allocatedReflectedActiveEndpointRankTransitionCandidates
+        chi lower upper color hrank hrankTop span ⊆
+      allocatedReflectedEndpointRankTransitionCandidates
+        chi lower upper color hrank hrankTop span := by
+  classical
+  let profiles := allocatedEndpointRankTransitionProfiles
+    chi lower upper color hrank hrankTop
+  have hsubset :
+      allocatedActiveEndpointRankTransitionCandidates profiles span ⊆
+        allocatedEndpointTransitionCandidates profiles span :=
+    allocatedActiveEndpointRankTransitionCandidates_subset profiles span
+  by_cases hleft : span.1.left ∈ lower
+  · simpa [allocatedReflectedActiveEndpointRankTransitionCandidates,
+      allocatedReflectedEndpointRankTransitionCandidates, profiles, hleft]
+      using hsubset
+  · rw [allocatedReflectedActiveEndpointRankTransitionCandidates,
+      allocatedReflectedEndpointRankTransitionCandidates]
+    simp only [hleft, ↓reduceIte]
+    intro ideal hideal
+    rw [Finset.mem_map] at hideal ⊢
+    obtain ⟨source, hsource, rfl⟩ := hideal
+    exact ⟨source, hsubset hsource, rfl⟩
 
 /-- The reflected active endpoint profile belongs to the reflected candidate
 set. -/
