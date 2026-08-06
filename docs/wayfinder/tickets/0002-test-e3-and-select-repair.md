@@ -777,9 +777,26 @@ The independently replayed census also refutes the simplest proposed
 construction. Projecting to left endpoints fails in 1,208 color/rank groups,
 as does projecting to right endpoints; 996 rank-three groups fail both. Thus
 the slotting must use child-ray incidence rather than raw endpoint cup--cap.
-Constructing it is the next formal target. The original
-`allocatedSpanPascalDemand_le_window` remains the subsequent global injection
-theorem.
+
+The first incidence-sensitive construction survives the bounded gate. At
+each endpoint it records the past and future same/opposite rank pairs as lower
+ideals of the truncated `(rank-1) × (k-rank-1)` Pascal rectangle. A span may
+use any ideal in the past/future lattice interval at either endpoint. All
+631,474 exact-rank frontier groups admit distinct representatives from these
+two-interval unions. By contrast, either endpoint alone fails 494 groups
+across both colors and ranks, and using only the fixed past/future labels fails
+376 rank-three groups. The producer uses cell masks and augmenting paths; the
+independent replay uses row-height ideals and backtracking matching.
+
+`StructuralChargingTransitionHall.lean` now proves the lower-ideal and
+boundary-path encoding into the exact adjacent Pascal layer, defines the
+concrete past/future rank ideals and full all-subfamily Hall condition, and
+proves that Hall supplies `AllocatedExactRankSlotting` and therefore the local
+capacity inequality. These are completed Lean reductions. The bounded census
+does not prove the geometry-specific Hall premise. Its two-span expansion
+case is the next formal target, followed by consecutive blocks and a general
+uncrossing argument. The original `allocatedSpanPascalDemand_le_window`
+remains the subsequent global injection theorem.
 
 ## Evidence
 
@@ -796,6 +813,7 @@ theorem.
 - [Allocated span Pascal-demand manifest](../../../data/derived/e3-allocated-span-pascal-demand-k6-n8.json)
 - [Lean Pascal demand and lowest-node span allocation](../../../ErdosSzekeres/StructuralChargingPascalDemand.lean)
 - [Lean exact span frontier and slotting reduction](../../../ErdosSzekeres/StructuralChargingSpanFrontier.lean)
+- [Lean endpoint-transition Hall reduction](../../../ErdosSzekeres/StructuralChargingTransitionHall.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

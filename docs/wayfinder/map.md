@@ -331,9 +331,15 @@ None. The destination was fixed by the user on 2026-08-01.
   `AllocatedExactRankSlotting` and proves that such a slot injection implies
   the Pascal bound. The exhaustive gate separately refutes direct cup--cap on
   either endpoint projection, including 996 rank-three groups where both
-  projections fail. The next formal target is to construct the slotting from
-  ray incidence. Only after that local theorem may the route attempt the
-  global injection into `decomposableBinomialWindow`.
+  projections fail. A two-endpoint transition-ideal construction now survives
+  all 631,474 groups, while left-only, right-only, and fixed-label negative
+  controls fail. Lean proves that its rectangular lower ideals inject into the
+  exact Pascal layer and that the full Hall condition constructs the required
+  slotting and capacity bound. The geometry-specific Hall condition remains
+  open. The next formal target is its two-span expansion case, followed by
+  consecutive-block and all-subfamily Hall expansion. Only after that local
+  theorem may the route attempt the global injection into
+  `decomposableBinomialWindow`.
 
 ## Not yet specified
 

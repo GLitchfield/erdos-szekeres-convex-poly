@@ -159,9 +159,14 @@ sets.
   ranks, the allocated antichain, exact child-ray normal forms, and the
   complementary crossing-rank bound. It reduces the local capacity theorem to
   an explicit `AllocatedExactRankSlotting` injection. The same exhaustive gate
-  refutes constructing it by cup--cap on either raw endpoint projection, so
-  the next target uses ray incidence. That construction and the global
-  injection into the outer binomial window remain open Lean targets.
+  refutes constructing it by cup--cap on either raw endpoint projection. A
+  refined two-endpoint transition-ideal candidate survives all 631,474 groups,
+  while one-endpoint and fixed-label negative controls fail.
+  `StructuralChargingTransitionHall.lean` proves the rectangular-ideal
+  boundary encoding into the adjacent Pascal layer and the Hall-to-slotting
+  reduction. The geometry-specific all-subfamily Hall expansion remains open;
+  its two-span case is the next Lean target. The global injection into the
+  outer binomial window remains subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

@@ -18,6 +18,7 @@ public import ErdosSzekeres.RootedChainFootprint
 public import ErdosSzekeres.SpanDominance
 public import ErdosSzekeres.StructuralChargingPascalDemand
 public import ErdosSzekeres.StructuralChargingSpanFrontier
+public import ErdosSzekeres.StructuralChargingTransitionHall
 public import ErdosSzekeres.RankProfile
 public import ErdosSzekeres.RankProfileCollision
 public import ErdosSzekeres.TurnLanguage

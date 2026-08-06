@@ -196,6 +196,133 @@ def endpoint_projection_supports_pascal_shortcut(
     )
 
 
+def endpoint_rank_ideal(
+    local: dict[tuple[int, int, int], int],
+    vertices: tuple[int, ...],
+    endpoint: int,
+    color: int,
+    rank: int,
+    strong_size: int,
+    incoming: bool,
+) -> int:
+    """Encode the truncated same/opposite pair-rank lower ideal."""
+    rows = rank - 1
+    columns = strong_size - rank - 1
+    answer = 0
+    for row in range(rows):
+        for column in range(columns):
+            same_threshold = row + 2
+            opposite_threshold = column + 2
+            witnessed = any(
+                (
+                    vertex < endpoint
+                    and local[color, vertex, endpoint] >= same_threshold
+                    and local[1 - color, vertex, endpoint] >= opposite_threshold
+                )
+                if incoming
+                else (
+                    endpoint < vertex
+                    and local[color, endpoint, vertex] >= same_threshold
+                    and local[1 - color, endpoint, vertex] >= opposite_threshold
+                )
+                for vertex in vertices
+            )
+            if witnessed:
+                answer |= 1 << (row * columns + column)
+    return answer
+
+
+def rectangular_lower_ideals(rows: int, columns: int) -> tuple[int, ...]:
+    """Enumerate all lower ideals independently of binomial arithmetic."""
+    answer = []
+    for mask in range(1 << (rows * columns)):
+        valid = True
+        for row in range(rows):
+            for column in range(columns):
+                position = row * columns + column
+                if not mask & (1 << position):
+                    continue
+                if row and not mask & (1 << (position - columns)):
+                    valid = False
+                if column and not mask & (1 << (position - 1)):
+                    valid = False
+        if valid:
+            answer.append(mask)
+    return tuple(answer)
+
+
+def ideal_interval(
+    ideals: tuple[int, ...], first: int, second: int
+) -> tuple[int, ...]:
+    """The lattice interval from meet to join of two ideals."""
+    lower = first & second
+    upper = first | second
+    return tuple(
+        ideal
+        for ideal in ideals
+        if ideal & lower == lower and ideal | upper == upper
+    )
+
+
+def has_distinct_representatives(
+    candidates: tuple[tuple[int, ...], ...]
+) -> bool:
+    """Bipartite augmenting-path test for Hall representatives."""
+    matched: dict[int, int] = {}
+
+    def augment(span: int, seen: set[int]) -> bool:
+        for ideal in candidates[span]:
+            if ideal in seen:
+                continue
+            seen.add(ideal)
+            if ideal not in matched or augment(matched[ideal], seen):
+                matched[ideal] = span
+                return True
+        return False
+
+    return all(augment(span, set()) for span in range(len(candidates)))
+
+
+def endpoint_transition_candidates(
+    local: dict[tuple[int, int, int], int],
+    vertices: tuple[int, ...],
+    frontier: tuple[tuple[int, int], ...],
+    color: int,
+    rank: int,
+    strong_size: int,
+) -> tuple[
+    tuple[tuple[int, ...], ...],
+    tuple[tuple[int, ...], ...],
+    tuple[tuple[int, ...], ...],
+    tuple[tuple[int, ...], ...],
+]:
+    """Return two-way, left-only, right-only, and fixed-four candidates."""
+    ideals = rectangular_lower_ideals(rank - 1, strong_size - rank - 1)
+    two_way = []
+    left_only = []
+    right_only = []
+    fixed_four = []
+    for left, right in frontier:
+        endpoint_intervals = []
+        fixed = set()
+        for endpoint in (left, right):
+            past = endpoint_rank_ideal(
+                local, vertices, endpoint, color, rank, strong_size, True
+            )
+            future = endpoint_rank_ideal(
+                local, vertices, endpoint, color, rank, strong_size, False
+            )
+            endpoint_intervals.append(ideal_interval(ideals, past, future))
+            fixed.update((past, future))
+        left_only.append(endpoint_intervals[0])
+        right_only.append(endpoint_intervals[1])
+        two_way.append(
+            tuple(sorted(set(endpoint_intervals[0]) | set(endpoint_intervals[1])))
+        )
+        fixed_four.append(tuple(sorted(fixed)))
+    return tuple(two_way), tuple(left_only), tuple(right_only), tuple(fixed_four)
+
+
 def digest_context(
     digest,
     support: int,
@@ -246,7 +373,10 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
     by_size: dict[str, Counter[str]] = {}
     rank_rows: dict[tuple[int, int], Counter[str]] = {}
     projection_rows: dict[tuple[int, int], Counter[str]] = {}
+    transition_rows: dict[tuple[int, int], Counter[str]] = {}
     projection_examples: dict[tuple[int, int], dict[str, object]] = {}
+    transition_failure = None
+    fixed_failure_examples: dict[tuple[int, int], dict[str, object]] = {}
     saturation_examples: dict[tuple[int, int], dict[str, object]] = {}
     violation = None
     digest = hashlib.sha256()
@@ -256,6 +386,11 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
         for support in range(1, 1 << maximum_n):
             if support.bit_count() != size:
                 continue
+            vertices = tuple(
+                vertex
+                for vertex in range(maximum_n)
+                if support & (1 << vertex)
+            )
             for lower in nonempty_proper_submasks(support):
                 upper = support ^ lower
                 fixed = colorings.crossing_bits(support, lower)
@@ -326,6 +461,55 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
                                         "right_endpoints": list(right_endpoints),
                                     },
                                 )
+                            transition_row = transition_rows.setdefault(
+                                key, Counter()
+                            )
+                            transition_row["group_count"] += 1
+                            (
+                                two_way,
+                                left_intervals,
+                                right_intervals,
+                                fixed_four,
+                            ) = endpoint_transition_candidates(
+                                local,
+                                vertices,
+                                frontier,
+                                color,
+                                rank,
+                                strong_size,
+                            )
+                            if not has_distinct_representatives(left_intervals):
+                                transition_row["left_only_failures"] += 1
+                            if not has_distinct_representatives(right_intervals):
+                                transition_row["right_only_failures"] += 1
+                            if not has_distinct_representatives(fixed_four):
+                                transition_row["fixed_four_failures"] += 1
+                                fixed_failure_examples.setdefault(
+                                    key,
+                                    {
+                                        **example(
+                                            support, lower, bits, frontier
+                                        ),
+                                        "candidate_ideals_hex": [
+                                            [f"{ideal:x}" for ideal in candidates]
+                                            for candidates in fixed_four
+                                        ],
+                                    },
+                                )
+                            if not has_distinct_representatives(two_way):
+                                transition_row["two_way_failures"] += 1
+                                if transition_failure is None:
+                                    transition_failure = {
+                                        **example(
+                                            support, lower, bits, frontier
+                                        ),
+                                        "color": "cup" if color else "cap",
+                                        "rank": rank,
+                                        "candidate_ideals_hex": [
+                                            [f"{ideal:x}" for ideal in candidates]
+                                            for candidates in two_way
+                                        ],
+                                    }
         by_size[str(size)] = row
         totals.update(row)
 
@@ -350,6 +534,14 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
     projection_failure_examples = {
         f"{'cup' if color else 'cap'},{rank}": value
         for (color, rank), value in sorted(projection_examples.items())
+    }
+    transition_census = {
+        f"{'cup' if color else 'cap'},{rank}": dict(sorted(row.items()))
+        for (color, rank), row in sorted(transition_rows.items())
+    }
+    fixed_transition_failure_examples = {
+        f"{'cup' if color else 'cap'},{rank}": value
+        for (color, rank), value in sorted(fixed_failure_examples.items())
     }
     return {
         "schema_version": 1,
@@ -378,6 +570,14 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
                 "candidate interval"
             ),
             "capacity": "Nat.choose (k - 2) (rank - 1)",
+            "endpoint_transition_hall": (
+                "for each retained span and each endpoint, encode the past "
+                "and future predecessor/successor rank incidences as lower "
+                "ideals of the truncated (rank-1)-by-(k-rank-1) Pascal grid; "
+                "the span may use any ideal between meet and join at either "
+                "endpoint, and the tested claim is that all spans admit "
+                "distinct representatives from those two interval unions"
+            ),
             "endpoint_projection_shortcut": (
                 "the left or right endpoint set would support the direct "
                 "classical cup--cap reduction only if it avoids a color-rank+1 "
@@ -400,12 +600,18 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
             "census": projection_census,
             "first_both_failure_examples": projection_failure_examples,
         },
+        "endpoint_transition_hall_gate": {
+            "census": transition_census,
+            "first_fixed_four_failure_examples": fixed_transition_failure_examples,
+            "first_two_way_failure": transition_failure,
+        },
         "first_saturation_examples": examples,
         "first_violation": violation,
         "canonical_context_sha256": digest.hexdigest(),
         "observed_claim": (
             "Every tested exact-rank two-sided interval frontier fits its "
-            "adjacent Pascal demand."
+            "adjacent Pascal demand and admits distinct representatives from "
+            "the two-endpoint transition-ideal candidate sets."
         ),
         "sources": {
             "producer": {

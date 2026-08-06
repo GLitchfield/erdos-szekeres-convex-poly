@@ -213,6 +213,146 @@ def endpoint_projection_passes(
     return not target and not opposite
 
 
+def endpoint_rank_heights(
+    local: dict[tuple[int, int, int], int],
+    vertices: tuple[int, ...],
+    endpoint: int,
+    color: int,
+    rank: int,
+    strong_size: int,
+    incoming: bool,
+) -> tuple[int, ...]:
+    """Reconstruct an ideal by its nonincreasing row lengths."""
+    columns = strong_size - rank - 1
+    heights = []
+    for row in range(rank - 1):
+        same_threshold = row + 2
+        height = 0
+        for vertex in vertices:
+            if incoming:
+                if vertex >= endpoint:
+                    continue
+                same_rank = local[color, vertex, endpoint]
+                opposite_rank = local[1 - color, vertex, endpoint]
+            else:
+                if vertex <= endpoint:
+                    continue
+                same_rank = local[color, endpoint, vertex]
+                opposite_rank = local[1 - color, endpoint, vertex]
+            if same_rank >= same_threshold:
+                height = max(height, min(columns, max(0, opposite_rank - 1)))
+        heights.append(height)
+    if any(heights[index] < heights[index + 1]
+           for index in range(len(heights) - 1)):
+        raise AssertionError("rank heights are not a lower ideal")
+    return tuple(heights)
+
+
+def height_ideals(rows: int, columns: int) -> tuple[tuple[int, ...], ...]:
+    """Enumerate ideals as weakly decreasing bounded height words."""
+    return tuple(
+        heights
+        for heights in itertools.product(range(columns + 1), repeat=rows)
+        if all(
+            heights[index] >= heights[index + 1]
+            for index in range(rows - 1)
+        )
+    )
+
+
+def height_interval(
+    ideals: tuple[tuple[int, ...], ...],
+    first: tuple[int, ...],
+    second: tuple[int, ...],
+) -> tuple[tuple[int, ...], ...]:
+    lower = tuple(min(a, b) for a, b in zip(first, second, strict=True))
+    upper = tuple(max(a, b) for a, b in zip(first, second, strict=True))
+    return tuple(
+        ideal
+        for ideal in ideals
+        if all(a <= value <= b
+               for a, value, b in zip(lower, ideal, upper, strict=True))
+    )
+
+
+def height_mask_hex(ideal: tuple[int, ...], columns: int) -> str:
+    mask = 0
+    for row, height in enumerate(ideal):
+        for column in range(height):
+            mask |= 1 << (row * columns + column)
+    return f"{mask:x}"
+
+
+def replay_distinct_representatives(
+    candidates: tuple[tuple[tuple[int, ...], ...], ...]
+) -> bool:
+    """Backtrack on the smallest remaining candidate family."""
+    remaining = set(range(len(candidates)))
+
+    def search(used: set[tuple[int, ...]]) -> bool:
+        if not remaining:
+            return True
+        span = min(
+            remaining,
+            key=lambda index: sum(
+                ideal not in used for ideal in candidates[index]
+            ),
+        )
+        choices = [ideal for ideal in candidates[span] if ideal not in used]
+        if not choices:
+            return False
+        remaining.remove(span)
+        try:
+            return any(search(used | {ideal}) for ideal in choices)
+        finally:
+            remaining.add(span)
+
+    return search(set())
+
+
+def replay_transition_candidates(
+    local: dict[tuple[int, int, int], int],
+    vertices: tuple[int, ...],
+    frontier: tuple[tuple[int, int], ...],
+    color: int,
+    rank: int,
+    strong_size: int,
+) -> tuple[
+    tuple[tuple[tuple[int, ...], ...], ...],
+    tuple[tuple[tuple[int, ...], ...], ...],
+    tuple[tuple[tuple[int, ...], ...], ...],
+    tuple[tuple[tuple[int, ...], ...], ...],
+]:
+    columns = strong_size - rank - 1
+    ideals = height_ideals(rank - 1, columns)
+    ideal_key = lambda ideal: int(height_mask_hex(ideal, columns), 16)
+    two_way = []
+    left_only = []
+    right_only = []
+    fixed_four = []
+    for left, right in frontier:
+        intervals = []
+        fixed = set()
+        for endpoint in (left, right):
+            past = endpoint_rank_heights(
+                local, vertices, endpoint, color, rank, strong_size, True
+            )
+            future = endpoint_rank_heights(
+                local, vertices, endpoint, color, rank, strong_size, False
+            )
+            intervals.append(
+                tuple(sorted(height_interval(ideals, past, future), key=ideal_key))
+            )
+            fixed.update((past, future))
+        left_only.append(intervals[0])
+        right_only.append(intervals[1])
+        two_way.append(
+            tuple(sorted(set(intervals[0]) | set(intervals[1]), key=ideal_key))
+        )
+        fixed_four.append(tuple(sorted(fixed, key=ideal_key)))
+    return tuple(two_way), tuple(left_only), tuple(right_only), tuple(fixed_four)
+
+
 def update_digest(
     digest,
     support: int,
@@ -259,7 +399,10 @@ def replay(maximum_n: int, strong_size: int) -> dict[str, object]:
     by_size: dict[str, Counter[str]] = {}
     rank_rows: dict[tuple[int, int], Counter[str]] = {}
     projection_rows: dict[tuple[int, int], Counter[str]] = {}
+    transition_rows: dict[tuple[int, int], Counter[str]] = {}
     projection_examples: dict[tuple[int, int], dict[str, object]] = {}
+    transition_failure = None
+    fixed_failure_examples: dict[tuple[int, int], dict[str, object]] = {}
     examples: dict[tuple[int, int], dict[str, object]] = {}
     first_violation = None
     digest = hashlib.sha256()
@@ -269,6 +412,11 @@ def replay(maximum_n: int, strong_size: int) -> dict[str, object]:
         for support in range(1, full + 1):
             if support.bit_count() != size:
                 continue
+            vertices = tuple(
+                vertex
+                for vertex in range(maximum_n)
+                if support & (1 << vertex)
+            )
             for lower in proper_parts(support):
                 upper = support ^ lower
                 fixed = machine.crossing(support, lower)
@@ -342,6 +490,67 @@ def replay(maximum_n: int, strong_size: int) -> dict[str, object]:
                                         "right_endpoints": list(right_endpoints),
                                     },
                                 )
+                            transition_row = transition_rows.setdefault(
+                                key, Counter()
+                            )
+                            transition_row["group_count"] += 1
+                            (
+                                two_way,
+                                left_intervals,
+                                right_intervals,
+                                fixed_four,
+                            ) = replay_transition_candidates(
+                                local,
+                                vertices,
+                                frontier,
+                                color,
+                                rank,
+                                strong_size,
+                            )
+                            if not replay_distinct_representatives(left_intervals):
+                                transition_row["left_only_failures"] += 1
+                            if not replay_distinct_representatives(right_intervals):
+                                transition_row["right_only_failures"] += 1
+                            if not replay_distinct_representatives(fixed_four):
+                                transition_row["fixed_four_failures"] += 1
+                                fixed_failure_examples.setdefault(
+                                    key,
+                                    {
+                                        **make_example(
+                                            support, lower, bits, frontier
+                                        ),
+                                        "candidate_ideals_hex": [
+                                            [
+                                                height_mask_hex(
+                                                    ideal,
+                                                    strong_size - rank - 1,
+                                                )
+                                                for ideal in candidates
+                                            ]
+                                            for candidates in fixed_four
+                                        ],
+                                    },
+                                )
+                            if not replay_distinct_representatives(two_way):
+                                transition_row["two_way_failures"] += 1
+                                if transition_failure is None:
+                                    transition_failure = {
+                                        **make_example(
+                                            support, lower, bits, frontier
+                                        ),
+                                        "color": "cup" if color else "cap",
+                                        "rank": rank,
+                                        "candidate_ideals_hex": [
+                                            [
+                                                height_mask_hex(
+                                                    ideal,
+                                                    strong_size - rank - 1,
+                                                )
+                                                for ideal in candidates
+                                            ]
+                                            for candidates in two_way
+                                        ],
+                                    }
         by_size[str(size)] = row
         totals.update(row)
 
@@ -367,6 +576,14 @@ def replay(maximum_n: int, strong_size: int) -> dict[str, object]:
         f"{'cup' if color else 'cap'},{rank}": value
         for (color, rank), value in sorted(projection_examples.items())
     }
+    transition_census = {
+        f"{'cup' if color else 'cap'},{rank}": dict(sorted(row.items()))
+        for (color, rank), row in sorted(transition_rows.items())
+    }
+    fixed_transition_failure_examples = {
+        f"{'cup' if color else 'cap'},{rank}": value
+        for (color, rank), value in sorted(fixed_failure_examples.items())
+    }
     return {
         "statistics": {
             "totals": dict(sorted(totals.items())),
@@ -379,6 +596,11 @@ def replay(maximum_n: int, strong_size: int) -> dict[str, object]:
         "endpoint_projection_falsifier": {
             "census": projection_census,
             "first_both_failure_examples": projection_failure_examples,
+        },
+        "endpoint_transition_hall_gate": {
+            "census": transition_census,
+            "first_fixed_four_failure_examples": fixed_transition_failure_examples,
+            "first_two_way_failure": transition_failure,
         },
         "first_saturation_examples": saturation_examples,
         "first_violation": first_violation,
@@ -412,6 +634,10 @@ def main() -> None:
                 "endpoint_projection_falsifier": (
                     actual["endpoint_projection_falsifier"]
                     == manifest["endpoint_projection_falsifier"]
+                ),
+                "endpoint_transition_hall_gate": (
+                    actual["endpoint_transition_hall_gate"]
+                    == manifest["endpoint_transition_hall_gate"]
                 ),
                 "saturation_examples": (
                     actual["first_saturation_examples"]

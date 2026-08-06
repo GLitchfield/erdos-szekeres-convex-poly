@@ -82,21 +82,64 @@ in the manifest. Consequently, the next proof must use the exact child-ray
 incidence of a crossing span; ordinary left- or right-endpoint cup--cap
 projection loses essential information.
 
+## Two-endpoint transition-Hall candidate
+
+The failed projection suggested retaining rank incidence rather than just the
+endpoint labels.  For an exact rank `r` span in a strong-`k`-free context, put
+the following two lower ideals at every endpoint:
+
+- the past ideal records which same-color/opposite-color rank thresholds are
+  witnessed by a predecessor pair ending at the endpoint;
+- the future ideal records the corresponding successor pairs starting there;
+- both ideals live in the truncated rectangle
+  `(r - 1) × (k - r - 1)`, whose cells represent same-color thresholds
+  `2,...,r` and opposite-color thresholds `2,...,k-r`.
+
+The boundary path injects these lower ideals into the `(r - 1)`-subsets of
+`Fin (k - 2)`, giving at most `choose(k - 2, r - 1)` possible slots.  A
+retained span may choose any ideal between the meet and join of the
+past/future ideals at its left endpoint, or any ideal in the analogous
+interval at its right endpoint.  The new gate asks
+whether these two-interval candidate sets have a system of distinct
+representatives.  Equivalently, it checks the full Hall condition, including
+every subfamily of spans.
+
+The exact census found no failure among all 631,474 frontier groups.
+
+| color/rank | groups | two-endpoint failures | left-only failures | right-only failures | fixed-label failures |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| cap 3 | 156,927 | 0 | 238 | 238 | 188 |
+| cup 3 | 156,927 | 0 | 238 | 238 | 188 |
+| cap 4 | 121,408 | 0 | 9 | 9 | 0 |
+| cup 4 | 121,408 | 0 | 9 | 9 | 0 |
+| cap 5 | 37,402 | 0 | 0 | 0 | 0 |
+| cup 5 | 37,402 | 0 | 0 | 0 | 0 |
+
+The negative controls matter: using either endpoint alone, or only the four
+fixed past/future labels instead of their lattice intervals, really does fail
+in the same exhaustive universe.  Thus the surviving result is not a vacuous
+restatement of the earlier capacity observation.  It is still bounded
+computational evidence, not a proof of Hall expansion for arbitrary `k` and
+support size.
+
 ## Independent replay
 
 The producer and checker share only the manifest contract.
 
 - The producer uses the existing bottom-up decomposable-coloring engine,
   direct subset masks for exact chain ranks, math.comb, and explicit
-  pairwise domination.
+  pairwise domination.  It encodes ideals as cell bitmasks and finds distinct
+  representatives by augmenting paths.
 - The checker imports no producer code. It rebuilds colorings through a
   recursive cache, enumerates middle-vertex subsets directly, computes
   capacities from a Pascal table, and finds the frontier by a
-  descending-left skyline scan.
+  descending-left skyline scan.  It encodes ideals as antitone row-height
+  words and uses a direct backtracking representative search.
 
 The checker reproduced the support-size counts, rank census, saturation
 examples, absence of a capacity violation, both projection-failure censuses,
-their first witnesses, and canonical context digest
+the complete transition-Hall and negative-control censuses, their first
+witnesses, and canonical context digest
 
     056ad8113dff790c5dba41779f51d5dc944d9bc46996b2acf1b4b7b2e60c46ee
 
@@ -124,10 +167,27 @@ the frontier into the `(rank - 1)`-subsets of `Fin (k - 2)`, and proves
 
 from any such slotting. These are completed Lean reductions, but the slotting
 construction itself and therefore the unconditional frontier-capacity
-inequality remain open. The next Lean target is to construct that slotting from
-the child-ray normal forms and complementary-rank constraint. Only after the
-local construction is complete may the project attempt the global injection
-into `decomposableBinomialWindow`.
+inequality remain open.
+
+StructuralChargingTransitionHall.lean now formalizes the surviving
+construction.  It proves that rectangular lower ideals form a finite
+distributive lattice, that antitone row lengths determine an ideal, and that
+the ideal's boundary path gives an injection into the exact adjacent Pascal
+layer.  It defines the actual past/future rank ideals, their two endpoint
+lattice-interval candidates, and the all-subfamily proposition
+`AllocatedEndpointRankTransitionHall`.  Mathlib's finite Hall theorem then
+constructs `AllocatedExactRankSlotting`, yielding the compiling reduction
+
+    allocatedExactRankFrontier_card_le_spanPascalDemand_of_endpointRankHall.
+
+This completes the grid encoding and Hall-to-capacity machinery without
+`sorry`; it does **not** prove the geometry-specific Hall premise.  The next
+formal target is the first nontrivial expansion case: prove that any two
+distinct retained spans have at least two candidate ideals from the actual
+rank incidence.  If that succeeds, extend it to consecutive frontier blocks
+and then all subfamilies, likely via uncrossing.  Only after the local Hall
+theorem is complete may the project attempt the global injection into
+`decomposableBinomialWindow`.
 
 ## Reproduction
 

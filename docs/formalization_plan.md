@@ -609,10 +609,18 @@ applying cup--cap directly to either endpoint projection: each projection fails
 in 1,208 group instances, with 996 rank-three groups failing both.
 `AllocatedExactRankSlotting` is therefore the precise remaining local
 contract. Lean proves that any such injection into the `(rank - 1)`-subsets of
-`Fin (k - 2)` gives the desired Pascal bound. Constructing it from the ray
-incidence is the next theorem; after that comes the global slot injection and
-the final `allocatedSpanPascalDemand_le_window` return to the published
-child-slice induction.
+`Fin (k - 2)` gives the desired Pascal bound. The first ray-incidence
+construction now survives the exact gate: encode past/future rank pairs at
+both endpoints as lower ideals of the truncated Pascal rectangle and allow
+each span either endpoint's lattice interval. All 631,474 frontier groups have
+distinct representatives; one-endpoint and fixed-label controls fail. Lean
+proves the ideal boundary encoding into the exact Pascal layer and that the
+full all-subfamily Hall condition constructs the slotting. The
+geometry-specific Hall premise remains open. Its two-span expansion case is
+the next theorem, followed by consecutive-block and general uncrossing steps;
+after that comes the global slot injection and the final
+`allocatedSpanPascalDemand_le_window` return to the published child-slice
+induction.
 
 ## External Lean baseline
 

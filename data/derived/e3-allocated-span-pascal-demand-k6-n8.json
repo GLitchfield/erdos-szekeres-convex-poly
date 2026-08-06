@@ -6,6 +6,7 @@
     "claim_boundary": "The census is bounded evidence only; it neither proves the general frontier bound nor supplies a global injective charge.",
     "contexts": "every recursively deep-below coloring on every labeled support and every compatible nontrivial root split",
     "endpoint_projection_shortcut": "the left or right endpoint set would support the direct classical cup--cap reduction only if it avoids a color-rank+1 chain and an opposite-color-(k+1-rank) chain",
+    "endpoint_transition_hall": "for each retained span and each endpoint, encode the past and future predecessor/successor rank incidences as lower ideals of the truncated (rank-1)-by-(k-rank-1) Pascal grid; the span may use any ideal between meet and join at either endpoint, and the tested claim is that all spans admit distinct representatives from those two interval unions",
     "frontier": "fixed-color fixed-exact-rank intervals containing no distinct candidate interval",
     "rank": "maximum local monochromatic cup/cap chain size with the exact ordered endpoint pair; terminal strong-k contexts are skipped"
   },
@@ -113,6 +114,134 @@
       }
     }
   },
+  "endpoint_transition_hall_gate": {
+    "census": {
+      "cap,3": {
+        "fixed_four_failures": 188,
+        "group_count": 156927,
+        "left_only_failures": 238,
+        "right_only_failures": 238
+      },
+      "cap,4": {
+        "group_count": 121408,
+        "left_only_failures": 9,
+        "right_only_failures": 9
+      },
+      "cap,5": {
+        "group_count": 37402
+      },
+      "cup,3": {
+        "fixed_four_failures": 188,
+        "group_count": 156927,
+        "left_only_failures": 238,
+        "right_only_failures": 238
+      },
+      "cup,4": {
+        "group_count": 121408,
+        "left_only_failures": 9,
+        "right_only_failures": 9
+      },
+      "cup,5": {
+        "group_count": 37402
+      }
+    },
+    "first_fixed_four_failure_examples": {
+      "cap,3": {
+        "candidate_ideals_hex": [
+          [
+            "0",
+            "f"
+          ],
+          [
+            "1",
+            "f"
+          ],
+          [
+            "3",
+            "5",
+            "f"
+          ],
+          [
+            "1",
+            "f"
+          ],
+          [
+            "0",
+            "f"
+          ]
+        ],
+        "coloring_hex": "3218f2140c78bf",
+        "frontier": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            7
+          ]
+        ],
+        "lower_mask_hex": "aa",
+        "support_mask_hex": "ff"
+      },
+      "cup,3": {
+        "candidate_ideals_hex": [
+          [
+            "0",
+            "5",
+            "f"
+          ],
+          [
+            "5",
+            "f"
+          ],
+          [
+            "5",
+            "f"
+          ],
+          [
+            "0",
+            "5",
+            "f"
+          ]
+        ],
+        "coloring_hex": "c867f04800900f",
+        "frontier": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "lower_mask_hex": "db",
+        "support_mask_hex": "ff"
+      }
+    },
+    "first_two_way_failure": null
+  },
   "experiment": "allocated-span-pascal-demand-frontier",
   "first_saturation_examples": {
     "cap,5": {
@@ -139,8 +268,8 @@
     }
   },
   "first_violation": null,
-  "generation_base_revision": "9eecb3ef76ca524b7aff75c418d4b88197f280b5",
-  "observed_claim": "Every tested exact-rank two-sided interval frontier fits its adjacent Pascal demand.",
+  "generation_base_revision": "9659af5920f141e08d68358313110d7131eddf8a",
+  "observed_claim": "Every tested exact-rank two-sided interval frontier fits its adjacent Pascal demand and admits distinct representatives from the two-endpoint transition-ideal candidate sets.",
   "parameters": {
     "maximum_n": 8,
     "minimum_recorded_rank": 3,
@@ -194,11 +323,11 @@
   "sources": {
     "checker": {
       "path": "scripts/check_allocated_span_pascal_demand.py",
-      "sha256": "05eec5b76f8fa73b67ddf74c7f126fbaddb6b27dcf48bba2ee3d0fa94fd1ef45"
+      "sha256": "1962a01c479c5d44d2858d7bf9d62e8bf66dd8a6a87c77bd1c4fab347854f018"
     },
     "producer": {
       "path": "scripts/enumerate_allocated_span_pascal_demand.py",
-      "sha256": "1ecebd725e46ea569390b006a9b58168fef880ec3f365dada2a86af2b1a0de96"
+      "sha256": "54ed1a0b33549ea12564a7fdc5c79f502fede0d4da58f3ef051658c412df28bd"
     }
   },
   "statistics": {
