@@ -399,9 +399,18 @@ None. The destination was fixed by the user on 2026-08-01.
   singleton-or-block-large implication. That profile fails on the frozen
   seven-span cup/rank-three group, whose intermediate family sizes are
   `6,6,3,6`. The unchanged priority then fails on its complete 78,236-state
-  graph: 72 states reach 36 two-cycles. The active target is a locally frozen
-  cycle-breaking ownership or collision-free uncrossing escape, tested first
-  on those cycles and never defined by graph distance.
+  graph: 72 states reach 36 two-cycles. A direct length-two augmentation
+  bypasses the cycles: all 4,888 blocked states in the four full groups, and
+  all 5,977 blocked states in their 62 nonempty consecutive subblocks, have an
+  exit in independent cell-mask and row-height checks. Lean proves that an
+  explicit exit completes the SDR and yields block Hall. A clean bounded Sol
+  audit selected the universal direct-or-two-step disjunction as the next
+  target and isolated the missing ingredient as an
+  overlap-to-slack/no-closed-saturated-star theorem for genuine reflected
+  families. Fable returned no judgment because its provider quota was
+  exhausted, so no model consensus is claimed. The active task is to prove
+  that structural escape without importing Hall, a complete matching, or
+  finite enumeration.
   General Hall and the global injection into `decomposableBinomialWindow`
   remain downstream.
 

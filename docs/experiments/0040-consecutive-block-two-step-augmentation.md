@@ -39,11 +39,21 @@ supports asking for a structural proof of
     state.CanFill ∨ state.HasTwoStepAugmentingExit
 
 on a genuine arbitrary reflected consecutive block.  It remains finite
-computational evidence at one frozen root, not a proof of that sentence.  A
-bounded Sol/Fable review must assess the proposed promotion before the
-Wayfinder selects it.  If the structural argument needs the desired Hall
-inequality, an existing full matching, or exhaustive state enumeration, the
-route is circular and must be rejected.
+computational evidence at one frozen root, not a proof of that sentence.
+
+A zero-round blind route review used clean revision
+`89277094588987ce86f5dbe2d61e5cb8aab7685c` and evidence-packet SHA-256
+`2ff3e016f4c17f174aec9f3b1427a7e2d8a0ec2005562bc3a370fe7522fdcebf`.
+Sol returned high-confidence `partially_supported` and selected the
+disjunction as the next exact target.  It isolated the missing geometry as an
+overlap-to-slack or no-closed-saturated-star principle: in a blocked state,
+some owner reached through the hole family must have a candidate outside the
+whole used set.  Its result SHA-256 is
+`1540002485803a54b804114718aa90c35f4b53a4039f0005085132845c57a0aa`.
+Fable returned no mathematical answer because the provider reported exhausted
+Fable 5 quota; no Sol/Fable consensus is claimed.  If the structural argument
+needs the desired Hall inequality, an existing full matching, or exhaustive
+state enumeration, the route is circular and must be rejected.
 
 ## Reproduction
 

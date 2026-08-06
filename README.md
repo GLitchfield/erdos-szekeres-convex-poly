@@ -212,9 +212,15 @@ sets.
   is not uniform: the frozen seven-span cup/rank-three group has intermediate
   family sizes `6,6,3,6`. On its 78,236 one-hole states, the unchanged
   boundary priority has 36 terminal-free two-cycles. The first repeatedly
-  steals ideal `0` between spans `(3,7)` and `(6,8)`. Thus the next exact
-  target is a locally defined cycle-breaking ownership or uncrossing move,
-  not the retired fixed priority or an assumed graph-distance measure.
+  steals ideal `0` between spans `(3,7)` and `(6,8)`. A priority-free
+  length-two augmentation bypasses every cycle: all 4,888 blocked states in
+  the four full frozen groups, and all 5,977 blocked states across their 62
+  consecutive subblocks, have an occupied hole candidate whose owner has a
+  fresh candidate. Independent representations agree, and Lean proves that
+  this certificate completes the SDR and implies block Hall. The next exact
+  target is the reviewed overlap-to-slack/no-closed-saturated-star theorem
+  forcing such an exit in every genuine reflected block. It may not assume
+  Hall, an existing complete matching, or finite enumeration.
   General Hall and the global outer-window injection remain subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas

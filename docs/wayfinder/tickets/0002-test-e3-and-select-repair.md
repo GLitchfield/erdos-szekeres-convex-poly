@@ -970,6 +970,33 @@ The active target is therefore an exact local cycle breaker—another ownership
 priority or collision-free meet/join escape—frozen and tested first on all 36
 cycles. No graph-distance measure is promoted.
 
+The priority-free two-step augmentation passes that cycle-breaking gate and a
+stronger coverage check. Among all 85,920 one-hole states in the four frozen
+frontier groups, 81,032 fill directly and every one of the 4,888 blocked states
+has an occupied hole candidate whose unique owner has a fresh candidate.
+Restricting independently to all 62 nonempty consecutive subblocks gives
+134,236 states; 128,259 fill directly and all 5,977 blocked states have the
+same two-step exit. Cell-mask and row-height implementations independently
+reconstruct and replay both results. Lean proves that the explicit certificate
+completes the representative system and implies the block Hall inequality
+using only the two local updates.
+
+A zero-round blind route review at clean revision
+`89277094588987ce86f5dbe2d61e5cb8aab7685c` used packet SHA-256
+`2ff3e016f4c17f174aec9f3b1427a7e2d8a0ec2005562bc3a370fe7522fdcebf`.
+Sol returned high-confidence `partially_supported` and selected the universal
+direct-or-two-step disjunction as the next exact target. Its result SHA-256 is
+`1540002485803a54b804114718aa90c35f4b53a4039f0005085132845c57a0aa`.
+The missing geometry is a no-closed-saturated-star or overlap-to-slack
+principle: in a blocked genuine reflected state, at least one owner reached
+from the hole family has a candidate outside the original used set. The
+two-span abstract system with identical singleton families shows this is false
+for arbitrary candidate systems. Fable returned no mathematical answer because
+its Fable 5 provider quota was exhausted; no Sol/Fable consensus is claimed.
+The selected work target is to prove the structural escape from genuine
+reflected endpoint data without Hall, an existing full matching, or finite
+enumeration.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -1014,6 +1041,10 @@ cycles. No graph-distance measure is promoted.
 - [Singleton-or-block-large profile manifest](../../../data/derived/e3-singleton-large-owner-profile-frozen-n12-k7.json)
 - [Cup/rank-three ownership-cycle gate](../../experiments/0038-stable-ownership-cup-rank3-cycle.md)
 - [Cup/rank-three ownership-cycle manifest](../../../data/derived/e3-stable-ownership-cup-rank3-cycle-frozen-n12-k7.json)
+- [Two-step ownership-augmentation gate](../../experiments/0039-two-step-ownership-augmentation.md)
+- [Two-step ownership-augmentation manifest](../../../data/derived/e3-two-step-ownership-augmentation-frozen-n12-k7.json)
+- [Consecutive-block two-step augmentation gate](../../experiments/0040-consecutive-block-two-step-augmentation.md)
+- [Consecutive-block two-step augmentation manifest](../../../data/derived/e3-consecutive-block-two-step-augmentation-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

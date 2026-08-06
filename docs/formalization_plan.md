@@ -709,9 +709,25 @@ profile gate fails. The four frozen family-size profiles are
 seven-span cup/rank-three group has four intermediate-size families. A targeted
 78,236-state census then refutes the unchanged ascending boundary priority:
 72 states reach 36 two-cycles. The first alternates the hole between `(3,7)`
-and `(6,8)` by stealing ideal `0` back and forth. The next contract must
-therefore freeze a local cycle-breaking priority or collision-free uncrossing
-escape and test it on all 36 cycles before any arbitrary-block promotion.
+and `(6,8)` by stealing ideal `0` back and forth.
+
+The cycles do not obstruct a priority-free length-two augmenting certificate.
+Across the four full frozen groups, all 4,888 blocked states have an occupied
+hole candidate whose owner has a candidate unused by the original partial
+representative system. The property remains true for all 5,977 blocked states
+on all 62 nonempty consecutive subblocks. Cell-mask production and row-height
+replay agree. Lean defines `HasTwoStepAugmentingExit` and proves constructively
+that it gives an SDR and block Hall inequality.
+
+The route audit selected the universal direct-or-two-step disjunction as the
+next exact target, while retaining the bounded claim boundary. Its missing
+structural lemma is an overlap-to-slack or no-closed-saturated-star principle:
+if every hole candidate is used, at least one reached owner family is not
+contained in the used representatives. This statement must be derived from
+genuine reflected endpoint geometry. It may not invoke Hall, a completed SDR,
+or enumeration. Sol returned high-confidence `partially_supported`; Fable was
+unavailable because its provider quota was exhausted, so no consensus is
+claimed.
 
 ## External Lean baseline
 
