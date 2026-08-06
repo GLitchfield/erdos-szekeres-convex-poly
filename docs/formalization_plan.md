@@ -623,10 +623,12 @@ Lean proves reflection is an involution, induces reversal on the unchanged
 Pascal-slot carrier, preserves the Hall-to-capacity reduction, and separates
 the frozen pair as full versus empty. Independent implementations find no
 reflected Hall failure on the complete frozen root frontier or any of the
-631,474 existing `k=6` groups. The next theorem must derive this orientation
-normalization from actual predecessor/successor child rays at the unique
-lowest separating node. It is followed by consecutive-block and general Hall
-expansion; after that comes the global slot injection and the final
+631,474 existing `k=6` groups. Lean now derives the orientation normalization
+from actual predecessor/successor child rays at the unique lowest separating
+node and proves that the incident endpoint profile belongs to the reflected
+candidate family. This is an incidence bridge, not an injectivity theorem.
+The next theorem is consecutive-block Hall expansion, followed by general
+Hall expansion; after that comes the global slot injection and the final
 `allocatedSpanPascalDemand_le_window` return to the published child-slice
 induction.
 

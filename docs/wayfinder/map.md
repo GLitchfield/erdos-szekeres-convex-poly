@@ -349,12 +349,16 @@ None. The destination was fixed by the user on 2026-08-01.
   `n=12` root frontier or any of the 631,474 existing `k=6` groups, and no
   same-orientation rigid pair, reflection-fixed opposite pair, or triple-rigid
   collision. This is the first positive bounded support for the repair, not a
-  general theorem. The active formal target is now a structural lemma deriving
-  the orientation-normalized candidate from actual predecessor/successor rays
-  at the unique lowest separating node. Only that bridge permits
-  consecutive-block Hall expansion and then the global injection into
-  `decomposableBinomialWindow`; failure redirects to the predeclared skew
-  Bollobás set-pair encoding of actual ray events.
+  general theorem. The structural bridge now compiles. At the unique lowest
+  separating node, an exact parent span exposes the forced one of four
+  predecessor/successor child rays; the endpoint profile incident to that ray
+  is a member of the deterministically orientation-reflected candidate family.
+  This removes post-hoc orientation choice but does not prove injectivity or
+  Hall. The active formal target is consecutive-block Hall expansion along the
+  ordered exact-rank frontier, followed by all-subfamily Hall and the global
+  injection into `decomposableBinomialWindow`. Failure of block expansion
+  redirects to the predeclared skew Bollobás set-pair encoding of actual ray
+  events.
 
 ## Not yet specified
 

@@ -171,9 +171,12 @@ sets.
   proves that this merely reverses the same untagged Pascal slots. The full
   frozen root frontier and all 631,474 `k=6` groups pass independent reflected
   Hall replays, and Lean proves the former pair is separated as full versus
-  empty ideals. The next target is the structural child-ray bridge forcing
-  this orientation normalization; general Hall and the global outer-window
-  injection remain subsequent.
+  empty ideals. `StructuralChargingTransitionHallRayBridge.lean` now proves
+  the structural child-ray bridge: at the unique lowest separating node, the
+  exact parent span exposes the forced predecessor/successor child ray, and
+  its incident endpoint profile belongs to the orientation-reflected candidate
+  family. The next target is consecutive-block Hall expansion; general Hall
+  and the global outer-window injection remain subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

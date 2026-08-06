@@ -835,15 +835,18 @@ triple-rigid collision. The compact manifest SHA-256 is
 This is bounded computational evidence, not reflected Hall for arbitrary
 parameters.
 
-The next theorem is therefore the structural bridge authorized by the review:
-derive the forced orientation and reflected candidate membership from an
-actual predecessor/successor child-ray occurrence at the unique lowest
-separating node. The orientation may not be selected post hoc to avoid a
-collision. A successful bridge permits consecutive-block expansion and then
-all-subfamily Hall. Failure retires per-span endpoint-candidate repairs and
-redirects to the Innovation Scout's skew-Bollobás set-pair encoding of actual
-ray events. The original `allocatedSpanPascalDemand_le_window` remains the
-subsequent global injection theorem.
+The structural bridge authorized by the review now compiles. Lean proves that
+an exact parent span at its unique lowest separating node exposes the forced
+one of four predecessor/successor child rays. It selects the endpoint profile
+incident to that ray and proves that its deterministic orientation reflection
+belongs to the span's reflected candidate family. Thus orientation cannot be
+selected post hoc to avoid a collision. This is not an injectivity or Hall
+theorem: the active target is consecutive-block expansion and then
+all-subfamily Hall. Failure of block expansion retires the current per-span
+endpoint-candidate repair and redirects to the Innovation Scout's
+skew-Bollobás set-pair encoding of actual ray events. The original
+`allocatedSpanPascalDemand_le_window` remains the subsequent global injection
+theorem.
 
 ## Evidence
 
@@ -867,6 +870,7 @@ subsequent global injection theorem.
 - [Reflected transition-Hall manifest](../../../data/derived/e3-reflected-transition-hall-k6-n8.json)
 - [Lean reflected transition-Hall machinery](../../../ErdosSzekeres/StructuralChargingTransitionHallReflection.lean)
 - [Lean reflected separation of the frozen pair](../../../ErdosSzekeres/StructuralChargingTransitionHallReflectionCollision.lean)
+- [Lean child-ray/reflected-candidate bridge](../../../ErdosSzekeres/StructuralChargingTransitionHallRayBridge.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)
