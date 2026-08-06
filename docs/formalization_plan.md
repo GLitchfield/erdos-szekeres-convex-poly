@@ -615,10 +615,18 @@ both endpoints as lower ideals of the truncated Pascal rectangle and allow
 each span either endpoint's lattice interval. All 631,474 frontier groups have
 distinct representatives; one-endpoint and fixed-label controls fail. Lean
 proves the ideal boundary encoding into the exact Pascal layer and that the
-full all-subfamily Hall condition constructs the slotting. The
-geometry-specific Hall premise remains open. Its two-span expansion case is
-the next theorem, followed by consecutive-block and general uncrossing steps;
-after that comes the global slot injection and the final
+full all-subfamily Hall condition constructs the slotting. The unreflected
+geometry-specific Hall premise is formally false: a kernel-checked `n=12`,
+`k=7` coloring has two opposite-orientation rigid spans with the same full
+ideal. The reviewed rotate-complement repair now passes its bounded gate.
+Lean proves reflection is an involution, induces reversal on the unchanged
+Pascal-slot carrier, preserves the Hall-to-capacity reduction, and separates
+the frozen pair as full versus empty. Independent implementations find no
+reflected Hall failure on the complete frozen root frontier or any of the
+631,474 existing `k=6` groups. The next theorem must derive this orientation
+normalization from actual predecessor/successor child rays at the unique
+lowest separating node. It is followed by consecutive-block and general Hall
+expansion; after that comes the global slot injection and the final
 `allocatedSpanPascalDemand_le_window` return to the published child-slice
 induction.
 

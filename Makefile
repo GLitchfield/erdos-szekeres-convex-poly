@@ -39,6 +39,8 @@ test: check lean
 		data/derived/e3-rooted-span-interface-k6-n10.json --source-only >/dev/null
 	@python3 scripts/check_allocated_span_pascal_demand.py \
 		data/derived/e3-allocated-span-pascal-demand-k6-n8.json --source-only >/dev/null
+	@python3 scripts/check_reflected_transition_hall.py \
+		data/derived/e3-reflected-transition-hall-k6-n8.json --source-only >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -67,6 +69,7 @@ test: check lean
 		scripts/check_large_span_dominance_quotient.py \
 		scripts/check_rooted_span_interfaces.py \
 		scripts/check_allocated_span_pascal_demand.py \
+		scripts/check_reflected_transition_hall.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \
@@ -93,6 +96,7 @@ test: check lean
 		scripts/enumerate_large_span_dominance_quotient.py \
 		scripts/enumerate_rooted_span_interfaces.py \
 		scripts/enumerate_allocated_span_pascal_demand.py \
+		scripts/enumerate_reflected_transition_hall.py \
 		scripts/enumerate_two_root_span_footprints.py \
 		scripts/span_dominance_quotient.py \
 		scripts/extract_dimacs_clause_core.py \
@@ -123,6 +127,8 @@ test-exhaustive: test
 		data/derived/e3-two-root-span-k6-n10.json --workers 8 >/dev/null
 	@python3 scripts/check_allocated_span_pascal_demand.py \
 		data/derived/e3-allocated-span-pascal-demand-k6-n8.json >/dev/null
+	@python3 scripts/check_reflected_transition_hall.py \
+		data/derived/e3-reflected-transition-hall-k6-n8.json >/dev/null
 
 wayfinder:
 	@python3 scripts/wayfinder_status.py

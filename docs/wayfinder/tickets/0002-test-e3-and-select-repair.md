@@ -821,17 +821,29 @@ orientation-dependent permutation inside the Hall candidate system. An
 orientation coproduct or doubled carrier is forbidden because it would
 silently double capacity.
 
-Before any structural proof investment, the repaired candidates must pass
-full Hall on the entire frozen `n=12` frontier and on all 631,474 existing
-`k=6` frontier groups with independent representations/checkers. Targeted
-negative searches must cover same-orientation rigid pairs,
-reflection-fixed ideals, and three rigid spans sharing one ideal; pairwise
-success alone is insufficient. The first failure stops this repair. Only a
-complete gate pass permits the next theorem: derive the orientation choice and
-reflected candidate membership from predecessor-ray incidence at the unique
-lowest separating node. The original
-`allocatedSpanPascalDemand_le_window` remains the subsequent global injection
-theorem.
+That complete gate now passes. Lean proves rotate-complement is an involution,
+that boundary encoding intertwines it with reversal of the same untagged
+Pascal slots, and that reflected Hall still implies the original local demand
+bound. It also proves that the frozen rigid pair is separated as singleton
+full and empty ideals. The producer checks the whole frozen `n=12` root
+frontier and all 631,474 existing `k=6` frontier groups with cell masks and
+augmenting paths. The independent checker reproduces the same result with
+row-height ideals and backtracking. Neither implementation finds a Hall
+failure, same-orientation rigid pair, reflection-fixed opposite pair, or
+triple-rigid collision. The compact manifest SHA-256 is
+`f65c400c9b99f944eb755f5ea3d38e47adf94f9a25737e56401fec1af263c267`.
+This is bounded computational evidence, not reflected Hall for arbitrary
+parameters.
+
+The next theorem is therefore the structural bridge authorized by the review:
+derive the forced orientation and reflected candidate membership from an
+actual predecessor/successor child-ray occurrence at the unique lowest
+separating node. The orientation may not be selected post hoc to avoid a
+collision. A successful bridge permits consecutive-block expansion and then
+all-subfamily Hall. Failure retires per-span endpoint-candidate repairs and
+redirects to the Innovation Scout's skew-Bollobás set-pair encoding of actual
+ray events. The original `allocatedSpanPascalDemand_le_window` remains the
+subsequent global injection theorem.
 
 ## Evidence
 
@@ -851,6 +863,10 @@ theorem.
 - [Lean endpoint-transition Hall reduction](../../../ErdosSzekeres/StructuralChargingTransitionHall.lean)
 - [Lean endpoint-transition Hall counterexample data](../../../ErdosSzekeres/StructuralChargingTransitionHallCollisionData.lean)
 - [Lean endpoint-transition Hall counterexample](../../../ErdosSzekeres/StructuralChargingTransitionHallCollision.lean)
+- [Reflected transition-Hall gate](../../experiments/0030-reflected-transition-hall-gate.md)
+- [Reflected transition-Hall manifest](../../../data/derived/e3-reflected-transition-hall-k6-n8.json)
+- [Lean reflected transition-Hall machinery](../../../ErdosSzekeres/StructuralChargingTransitionHallReflection.lean)
+- [Lean reflected separation of the frozen pair](../../../ErdosSzekeres/StructuralChargingTransitionHallReflectionCollision.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

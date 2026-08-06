@@ -1,0 +1,119 @@
+{
+  "contract": {
+    "carrier": "the same untagged rectangular ideals and hence the same AllocatedPascalSlot carrier",
+    "claim_boundary": "bounded computational evidence only, not a general Hall proof",
+    "order": "check the complete frozen n=12 root frontier first, then all k=6 groups through maximum_n; stop on the first Hall failure",
+    "orientation": "leave a span unchanged iff its left endpoint belongs to the lower child; otherwise rotate-complement every candidate"
+  },
+  "experiment": "orientation-reflected-transition-hall-gate",
+  "frozen_n12_k7": {
+    "coloring_hex": "c9f7fdfe93f000dfe107f9e80053009e8005300efeff083fd37ffff",
+    "first_hall_failure": null,
+    "full_frontier_hall": true,
+    "lower_mask_hex": "596",
+    "rank_group_checks": 4,
+    "support_mask_hex": "fff",
+    "target_pair": {
+      "first": [
+        4,
+        6
+      ],
+      "first_oriented_hex": [
+        "3f"
+      ],
+      "first_original_hex": [
+        "3f"
+      ],
+      "pair_separated": true,
+      "second": [
+        5,
+        7
+      ],
+      "second_oriented_hex": [
+        "0"
+      ],
+      "second_original_hex": [
+        "3f"
+      ]
+    }
+  },
+  "generation_base_revision": "214aa4e30ccfcc57d9d7070680abf013f75656b6",
+  "k6_census": {
+    "checked_prefix_sha256": "ec2589569ad25402540813c5b2739dc1f495756a86a5b56a74d6f33ceb3492f8",
+    "complete": true,
+    "first_hall_failure": null,
+    "first_targeted_obstructions": {},
+    "maximum_n": 8,
+    "statistics": {
+      "analyzed_local_states": 295932,
+      "by_support_size": {
+        "2": {
+          "open_contexts": 56,
+          "root_contexts": 56
+        },
+        "3": {
+          "open_contexts": 336,
+          "rank_group_checks": 224,
+          "root_contexts": 336
+        },
+        "4": {
+          "open_contexts": 1540,
+          "rank_group_checks": 2100,
+          "root_contexts": 1540
+        },
+        "5": {
+          "open_contexts": 6720,
+          "rank_group_checks": 12208,
+          "root_contexts": 6720
+        },
+        "6": {
+          "open_contexts": 28056,
+          "rank_group_checks": 59416,
+          "root_contexts": 29792,
+          "terminal_contexts": 1736
+        },
+        "7": {
+          "open_contexts": 89936,
+          "rank_group_checks": 208560,
+          "root_contexts": 110208,
+          "terminal_contexts": 20272
+        },
+        "8": {
+          "open_contexts": 141254,
+          "rank_group_checks": 348966,
+          "root_contexts": 228112,
+          "terminal_contexts": 86858
+        }
+      },
+      "totals": {
+        "open_contexts": 267898,
+        "rank_group_checks": 631474,
+        "root_contexts": 376764,
+        "terminal_contexts": 108866
+      }
+    },
+    "stop_on_failure": true,
+    "stopped_early": false,
+    "strong_size": 6
+  },
+  "observed_claim": "The orientation-reflected candidate repair passes every completed bounded gate exactly when both recorded failure fields are null.",
+  "schema_version": 1,
+  "sources": {
+    "base_checker": {
+      "path": "scripts/check_allocated_span_pascal_demand.py",
+      "sha256": "1962a01c479c5d44d2858d7bf9d62e8bf66dd8a6a87c77bd1c4fab347854f018"
+    },
+    "base_producer": {
+      "path": "scripts/enumerate_allocated_span_pascal_demand.py",
+      "sha256": "54ed1a0b33549ea12564a7fdc5c79f502fede0d4da58f3ef051658c412df28bd"
+    },
+    "checker": {
+      "path": "scripts/check_reflected_transition_hall.py",
+      "sha256": "f073292b319835bae6421d56417baf9ccfc1ef5f7e380495c9cd18045130595f"
+    },
+    "producer": {
+      "path": "scripts/enumerate_reflected_transition_hall.py",
+      "sha256": "2efe416dcf0ab326ff4009d96092a414a3b0a02985a22564467803fe564fa044"
+    }
+  }
+}

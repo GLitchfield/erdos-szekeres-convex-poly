@@ -26,8 +26,15 @@ and collaborative in explaining why a route is being pursued or retired.
   promoting a claim.
 - Prefer reusable intermediary lemmas that remove a named obstruction.
 - Preserve negative results and the strongest true repair of a false claim.
-- Use the Innovation Scout periodically to widen a stalled frontier, then send
-  its leading proposal through adversarial review before allocating build work.
+- At admission of every user-approved mathematical work item or batch, record
+  whether to dispatch the Innovation Scout, reuse a current scout result, or
+  skip it with a concrete reason. Dispatch is the default for new invariants,
+  route changes, recent counterexamples, multi-item research batches, and
+  substantial open-ended work; skip only mechanical frozen-theorem work or
+  repository maintenance.
+- Run the Innovation Scout as a bounded read-only sidecar alongside the main
+  stream, review it at the next cycle boundary, and send any leading route
+  proposal through adversarial review before allocating build work.
 - Serialize integration, shared-file edits, full builds, tests, and Git work.
 - Explain route choices in terms of the Wayfinder, not agent popularity.
 

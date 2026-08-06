@@ -41,3 +41,14 @@ ignored `runs/`.
   proof, not a proof of the general inequality or of a global Pascal-window
   injection. Its manifest SHA-256 is
   `6bd8341ee26511daf73d2c38a8634086ba2fdca037988a4bb83083aec95d0313`.
+- `e3-reflected-transition-hall-k6-n8.json` records the first bounded gate for
+  orientation-reflected endpoint-transition candidates. Rotate-complement is
+  applied exactly when a span's left endpoint belongs to the upper child, and
+  both orientations still use the same untagged Pascal carrier. The frozen
+  `n = 12`, `k = 7` root frontier passes, with the former rigid pair separated
+  as full versus empty ideals. Both independent representations then find no
+  Hall failure among all 631,474 `k = 6` groups through eight vertices and no
+  same-orientation rigid pair, reflection-fixed opposite pair, or triple-rigid
+  collision. This is bounded evidence only, not a general Hall theorem.
+  Its manifest SHA-256 is
+  `f65c400c9b99f944eb755f5ea3d38e47adf94f9a25737e56401fec1af263c267`.

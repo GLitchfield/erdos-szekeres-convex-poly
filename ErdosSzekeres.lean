@@ -20,6 +20,8 @@ public import ErdosSzekeres.StructuralChargingPascalDemand
 public import ErdosSzekeres.StructuralChargingSpanFrontier
 public import ErdosSzekeres.StructuralChargingTransitionHall
 public import ErdosSzekeres.StructuralChargingTransitionHallCollision
+public import ErdosSzekeres.StructuralChargingTransitionHallReflection
+public import ErdosSzekeres.StructuralChargingTransitionHallReflectionCollision
 public import ErdosSzekeres.RankProfile
 public import ErdosSzekeres.RankProfileCollision
 public import ErdosSzekeres.TurnLanguage

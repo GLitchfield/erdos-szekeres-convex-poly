@@ -340,15 +340,21 @@ None. The destination was fixed by the user on 2026-08-01.
   rank-three coloring has two distinct allocated spans whose four endpoint
   ideals are all the full `2 x 3` ideal, so their candidate sets are the same
   singleton and even pair expansion fails. This does not violate the frontier
-  cardinal bound. A bounded blind Sol/Fable review selects only a falsification
-  gate, not a repaired route: rotate-complement one crossing orientation while
-  permuting the same untagged Pascal-slot carrier. The gate must first prove
-  the involution and encoding laws in Lean, then pass the complete frozen
-  frontier and all 631,474 existing `k=6` groups, while targeting
-  same-orientation rigid pairs, reflection-fixed ideals, and triple-rigid
-  collisions. Any failure stops this repair; only a complete pass permits a
-  structural child-ray-incidence lemma and then the global injection into
-  `decomposableBinomialWindow`.
+  cardinal bound. A bounded blind Sol/Fable review selected a falsification
+  gate: rotate-complement one crossing orientation while permuting the same
+  untagged Pascal-slot carrier. That gate now passes. Lean proves the
+  involution, exact boundary-slot reversal, unchanged Hall-to-capacity bridge,
+  and full-versus-empty separation of the frozen pair. Independent cell-mask
+  and row-height implementations find no Hall failure on the complete frozen
+  `n=12` root frontier or any of the 631,474 existing `k=6` groups, and no
+  same-orientation rigid pair, reflection-fixed opposite pair, or triple-rigid
+  collision. This is the first positive bounded support for the repair, not a
+  general theorem. The active formal target is now a structural lemma deriving
+  the orientation-normalized candidate from actual predecessor/successor rays
+  at the unique lowest separating node. Only that bridge permits
+  consecutive-block Hall expansion and then the global injection into
+  `decomposableBinomialWindow`; failure redirects to the predeclared skew
+  Bollobás set-pair encoding of actual ray events.
 
 ## Not yet specified
 
