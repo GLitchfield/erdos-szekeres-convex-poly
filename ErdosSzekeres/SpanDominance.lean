@@ -36,6 +36,24 @@ def RightExtensionDominates {n : ℕ}
     (dominatedRight : Fin n) (dominatedRank : ℕ) : Prop :=
   dominantRight ≤ dominatedRight ∧ dominatedRank ≤ dominantRank
 
+/-- A crossing port dominates another on both extension sides when its left
+endpoint is nearer from the left, its right endpoint is nearer from the right,
+and its certified rank is no smaller. -/
+def TwoSidedExtensionDominates {leftSize rightSize : ℕ}
+    (dominantLeft : Fin leftSize) (dominantRight : Fin rightSize) (dominantRank : ℕ)
+    (dominatedLeft : Fin leftSize) (dominatedRight : Fin rightSize) (dominatedRank : ℕ) :
+    Prop :=
+  dominatedLeft ≤ dominantLeft ∧ dominantRight ≤ dominatedRight ∧
+    dominatedRank ≤ dominantRank
+
+/-- Equal-rank diagonal crossing ports dominate one another only when they are
+the same port. Since `m` is arbitrary, two-sided dominance alone admits
+arbitrarily large antichains and cannot give an ambient-independent frontier
+bound. -/
+theorem twoSidedExtensionDominates_diagonal_iff {m : ℕ} (i j : Fin m) (rank : ℕ) :
+    TwoSidedExtensionDominates i i rank j j rank ↔ i = j := by
+  grind [TwoSidedExtensionDominates]
+
 /-- Lowering a requested cup-rank threshold preserves a span witness. -/
 theorem HasCupSpanRankAtLeast.anti_rank {n : ℕ} {chi : TripleColoring n}
     {s : Finset (Fin n)} {a b : Fin n} {dominantRank dominatedRank : ℕ}

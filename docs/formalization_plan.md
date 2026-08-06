@@ -585,6 +585,21 @@ is now the dominance quotient and its transition-preserving, `k`-only weight;
 the 16,819,920-parent `8+2 -> 10` census is reserved as a falsifier for a
 concrete quotient rather than run as unstructured depth.
 
+The dominance and rooted-interface gates are now complete. Lean proves the
+four sound one-sided dominance rules, but the first finite `k`-only quotient
+has 320 independently replayed collisions at the reserved `8+2 -> 10` gate.
+A reviewed cut-relative repair retains exact recursive side states and clips
+crossing-port distances. Depth three is noninjective but fails a rooted
+transition; depth four is already injective on all 46,699 raw classes at the
+decisive middle cut. Lean's
+`twoSidedExtensionDominates_diagonal_iff` additionally proves that the exact
+two-sided dominance frontier can have arbitrarily large equal-rank
+antichains. The uniform finite-state route is therefore stopped. The next E3
+contract uses the raw footprint only locally: define the Pascal demand of an
+exact near-threshold span, allocate it to its unique lowest separating tree
+node, and prove `allocatedSpanPascalDemand_le_window` before returning to the
+published child-slice induction.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at

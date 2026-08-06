@@ -729,6 +729,36 @@ bounded route review must now decide whether to make the root cut an explicit
 finite interface, prove or refute finite-depth boundary stabilization, or use
 the raw footprint only as local machinery in a structural count.
 
+The fresh review was completed at packet SHA-256
+`593e6f8cc88c4c7d7c26175f5d1a864472af90f80e179aa0c83ab783d5cc8aa6`.
+Fable and Sol both selected a final Rooted Interface Definition Contract gate
+and required redirection to structural counting on a collision or injectivity.
+The frozen candidate stores exact recursive left/right side footprints and a
+finite multiset of crossing exact-rank ports whose distances from the cut are
+clipped at depth `d`. A complete eight-vertex class census shows that depth
+three is noninjective at every cut, including 1,710 merged fibers at the
+middle cut. It nevertheless fails the rooted `8+2 -> 10` transition: lower
+roots `[0,5]`, with the second root distinguished, give equal child signatures
+and unequal open parent signatures. The independent checker reconstructs the
+witness from coloring bits. Depth four is injective on all 46,699 raw classes
+at that same cut and therefore fails the review's nonvacuity condition.
+
+The obvious ordered-frontier repair also lacks its required counting theorem.
+Lean's `twoSidedExtensionDominates_diagonal_iff` exhibits an equal-rank
+antichain of every finite size, so the existing dominance relation cannot
+bound the number of retained ordered ports solely in terms of `k`. This does
+not refute a stronger structural use of endpoint incidence; it stops the
+global finite-interface route selected by the review.
+
+The pre-vetted structural redirect is now active. Its first frozen named
+contract is `allocatedSpanPascalDemand_le_window`: allocate every exact
+near-threshold span to the unique lowest decomposition-tree node separating
+its endpoints and charge the adjacent Pascal coefficient determined by its
+published child index and exact rank into the outer
+`decomposableBinomialWindow`. The allocation map, demand definition, and
+window inequality must survive the committed `k=6` falsification boundary
+before the statement is promoted to Lean.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -738,6 +768,8 @@ the raw footprint only as local machinery in a structural count.
 - [Small dominance-quotient manifest](../../../data/derived/e3-span-dominance-quotient-k6-n9.json)
 - [Large raw two-root manifest](../../../data/derived/e3-two-root-span-k6-n10.json)
 - [Large dominance-quotient refutation](../../../data/derived/e3-span-dominance-quotient-k6-n10.json)
+- [Rooted-interface gate and route redirect](../../experiments/0028-rooted-span-interface-gate.md)
+- [Rooted-interface refutation manifest](../../../data/derived/e3-rooted-span-interface-k6-n10.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

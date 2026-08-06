@@ -1,0 +1,327 @@
+{
+  "class_census": [
+    {
+      "cuts": [
+        {
+          "class_count": 46277,
+          "cut": 1,
+          "largest_fiber": 2,
+          "merged_fiber_count": 422
+        },
+        {
+          "class_count": 40475,
+          "cut": 2,
+          "largest_fiber": 5,
+          "merged_fiber_count": 5258
+        },
+        {
+          "class_count": 35877,
+          "cut": 3,
+          "largest_fiber": 8,
+          "merged_fiber_count": 7838
+        },
+        {
+          "class_count": 32481,
+          "cut": 4,
+          "largest_fiber": 12,
+          "merged_fiber_count": 9576
+        },
+        {
+          "class_count": 35877,
+          "cut": 5,
+          "largest_fiber": 8,
+          "merged_fiber_count": 7838
+        },
+        {
+          "class_count": 40475,
+          "cut": 6,
+          "largest_fiber": 5,
+          "merged_fiber_count": 5258
+        },
+        {
+          "class_count": 46277,
+          "cut": 7,
+          "largest_fiber": 2,
+          "merged_fiber_count": 422
+        }
+      ],
+      "depth": 1
+    },
+    {
+      "cuts": [
+        {
+          "class_count": 46277,
+          "cut": 1,
+          "largest_fiber": 2,
+          "merged_fiber_count": 422
+        },
+        {
+          "class_count": 46201,
+          "cut": 2,
+          "largest_fiber": 2,
+          "merged_fiber_count": 498
+        },
+        {
+          "class_count": 42375,
+          "cut": 3,
+          "largest_fiber": 5,
+          "merged_fiber_count": 3944
+        },
+        {
+          "class_count": 40479,
+          "cut": 4,
+          "largest_fiber": 6,
+          "merged_fiber_count": 5340
+        },
+        {
+          "class_count": 42375,
+          "cut": 5,
+          "largest_fiber": 5,
+          "merged_fiber_count": 3944
+        },
+        {
+          "class_count": 46201,
+          "cut": 6,
+          "largest_fiber": 2,
+          "merged_fiber_count": 498
+        },
+        {
+          "class_count": 46277,
+          "cut": 7,
+          "largest_fiber": 2,
+          "merged_fiber_count": 422
+        }
+      ],
+      "depth": 2
+    },
+    {
+      "cuts": [
+        {
+          "class_count": 46281,
+          "cut": 1,
+          "largest_fiber": 2,
+          "merged_fiber_count": 418
+        },
+        {
+          "class_count": 46231,
+          "cut": 2,
+          "largest_fiber": 2,
+          "merged_fiber_count": 468
+        },
+        {
+          "class_count": 46287,
+          "cut": 3,
+          "largest_fiber": 2,
+          "merged_fiber_count": 412
+        },
+        {
+          "class_count": 44965,
+          "cut": 4,
+          "largest_fiber": 3,
+          "merged_fiber_count": 1710
+        },
+        {
+          "class_count": 46287,
+          "cut": 5,
+          "largest_fiber": 2,
+          "merged_fiber_count": 412
+        },
+        {
+          "class_count": 46231,
+          "cut": 6,
+          "largest_fiber": 2,
+          "merged_fiber_count": 468
+        },
+        {
+          "class_count": 46281,
+          "cut": 7,
+          "largest_fiber": 2,
+          "merged_fiber_count": 418
+        }
+      ],
+      "depth": 3
+    },
+    {
+      "cuts": [
+        {
+          "class_count": 46311,
+          "cut": 1,
+          "largest_fiber": 2,
+          "merged_fiber_count": 388
+        },
+        {
+          "class_count": 46287,
+          "cut": 2,
+          "largest_fiber": 2,
+          "merged_fiber_count": 412
+        },
+        {
+          "class_count": 46457,
+          "cut": 3,
+          "largest_fiber": 2,
+          "merged_fiber_count": 242
+        },
+        {
+          "class_count": 46699,
+          "cut": 4,
+          "largest_fiber": 1,
+          "merged_fiber_count": 0
+        },
+        {
+          "class_count": 46457,
+          "cut": 5,
+          "largest_fiber": 2,
+          "merged_fiber_count": 242
+        },
+        {
+          "class_count": 46287,
+          "cut": 6,
+          "largest_fiber": 2,
+          "merged_fiber_count": 412
+        },
+        {
+          "class_count": 46311,
+          "cut": 7,
+          "largest_fiber": 2,
+          "merged_fiber_count": 388
+        }
+      ],
+      "depth": 4
+    }
+  ],
+  "contract": {
+    "claim_boundary": "Only the crossing interface is finite in k and fixed depth; the exact side states recurse.",
+    "crossing_port": "(min(depth, cut-a), min(depth, b-cut+1), exact rank code)",
+    "multiplicity_clip": 6,
+    "recursive_state": "exact left raw state, exact right raw state, crossing interface",
+    "terminal_state": "one distinguished strong-six symbol"
+  },
+  "experiment": "rooted-capped-distance-span-interface",
+  "gate": {
+    "child_cut": 4,
+    "colliding_signature_fiber_count": 6,
+    "depth": 3,
+    "designated_root_index": 1,
+    "first_collision": {
+      "child_coloring_hex": [
+        "17cf47ffe5a350",
+        "17cf4fffe5a340"
+      ],
+      "child_raw_differences": [
+        {
+          "first_code_hex": "24",
+          "pair": [
+            0,
+            6
+          ],
+          "second_code_hex": "34"
+        },
+        {
+          "first_code_hex": "34",
+          "pair": [
+            1,
+            7
+          ],
+          "second_code_hex": "24"
+        }
+      ],
+      "child_raw_footprint_hex": [
+        "0022323332332432222323242534223233243322232433222332223222",
+        "0022323332333432222323242524223233243322232433222332223222"
+      ],
+      "child_signature_sha256": "dc13f54e2c9c23b15e0d4fa26f51af3970e7d25683f7956b61cccc864b949628",
+      "parent_raw_differences": [
+        {
+          "first_code_hex": "33",
+          "pair": [
+            0,
+            8
+          ],
+          "second_code_hex": "43"
+        },
+        {
+          "first_code_hex": "24",
+          "pair": [
+            1,
+            8
+          ],
+          "second_code_hex": "34"
+        },
+        {
+          "first_code_hex": "34",
+          "pair": [
+            2,
+            9
+          ],
+          "second_code_hex": "24"
+        }
+      ],
+      "parent_raw_footprint_hex": [
+        "00223242425243433343223233423333243322233223242534223233332433222323243322323242222332223222",
+        "00223242425243434343223233423333343322233223242524223233332433222323243322323242222332223222"
+      ],
+      "parent_signature_sha256": [
+        "8c1aa29e4fb392e4145f466856c13e6b32974fafe204ce779de22b3c7b7964bf",
+        "593faf84553ff9aa13951b83c9b7bf224aee83b16c6bed0ba3116d14d6304285"
+      ]
+    },
+    "output_orientation": "before",
+    "parent_cut": 5,
+    "raw_representative_count": 46699,
+    "root_positions": [
+      0,
+      5
+    ],
+    "root_role": "lower"
+  },
+  "generation_base_revision": "b9a94e02c8cba656708afb05433ac227a4980ae0",
+  "machine_input": {
+    "path": "runs/e3-two-root-span-k6-n10/roots-00-05-lower.bin",
+    "record_count": 186888,
+    "record_size": 46,
+    "sha256": "c77efd4ab55bd695f2ac1bdc16b159dd1d95128cbc53d836a45b56fc74b985f8"
+  },
+  "parameters": {
+    "census_depths": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "child_size": 8,
+    "parent_size": 10,
+    "root_size": 2,
+    "strong_size": 6,
+    "tested_depth": 3
+  },
+  "raw_child_footprint_count": 46699,
+  "review": {
+    "disposition": "reject on collision or injectivity; then redirect to structural counting",
+    "evidence_packet_sha256": "593e6f8cc88c4c7d7c26175f5d1a864472af90f80e179aa0c83ab783d5cc8aa6",
+    "fable_result_sha256": "b8b72934ab1648102e5191b6ab04ff47f4c98407690763b3e1191822a5040129",
+    "git_revision": "b9a94e02c8cba656708afb05433ac227a4980ae0",
+    "sol_result_sha256": "86587728a787968b5e19386490a0df67c6a43b552aba05d7df7673c246ae23ed"
+  },
+  "schema_version": 1,
+  "scope": "Exact class census for the 46,699 raw k=6 eight-vertex footprint classes at depths one through four, plus one exact rooted 8+2 -> 10 transition refutation.",
+  "sources": {
+    "checker": {
+      "path": "scripts/check_rooted_span_interfaces.py",
+      "sha256": "d480559d94c2de560417dc3b0793025f1a139fb7667980df58c663cf49c1b34e"
+    },
+    "producer": {
+      "path": "scripts/enumerate_rooted_span_interfaces.py",
+      "sha256": "72ad7838820791825f3d7e49d6596294fe1eef1107e4bb8bcbb0bb2ed71f0e79"
+    },
+    "raw_manifest": {
+      "path": "data/derived/e3-two-root-span-k6-n10.json",
+      "sha256": "ea220e58d6b31692929889ef0c3da0aaa376fddd16d100d2d0a923d718b9af1a"
+    }
+  },
+  "stop_condition": {
+    "candidate_rejected": true,
+    "depth_four_middle_cut_injective": true,
+    "depth_three_transition_collision": true,
+    "next_route": "structural counting using the raw footprint only as local machinery"
+  }
+}

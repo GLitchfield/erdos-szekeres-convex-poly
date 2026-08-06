@@ -306,6 +306,23 @@ None. The destination was fixed by the user on 2026-08-01.
   pending bounded route review must choose between a rooted-interface state,
   a proof that finite boundary depth stabilizes, or returning the raw
   footprint to a structural counting argument.
+  That review ran at evidence-packet SHA-256
+  `593e6f8cc88c4c7d7c26175f5d1a864472af90f80e179aa0c83ab783d5cc8aa6`;
+  both reviewers selected one final rooted-interface definition and gate,
+  with a mandatory structural-count redirect on collision or injectivity.
+  The cut-relative candidate retains exact recursive side states and clips the
+  distances of crossing rank ports. At depth three it remains noninjective at
+  every eight-vertex cut, but an independently replayed lower-root context at
+  `[0,5]` gives equal child states and unequal rooted parent states. Depth four
+  is already injective on all 46,699 raw classes at the decisive middle cut.
+  Lean additionally proves that two-sided dominance has arbitrarily large
+  equal-rank diagonal antichains, so retaining the full ordered frontier has
+  no dominance-derived `k`-only bound. The finite-interface route is stopped.
+  The active redirect is the named structural contract
+  `allocatedSpanPascalDemand_le_window`: allocate exact near-threshold spans
+  to their unique lowest separating tree nodes and charge their adjacent
+  Pascal demand into the outer binomial window. Define and falsify that demand
+  at the committed `k=6` boundary before Lean theorem promotion.
 
 ## Not yet specified
 

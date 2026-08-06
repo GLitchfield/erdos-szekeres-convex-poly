@@ -129,8 +129,9 @@ sets.
   span rank at a more favorable near endpoint dominates every singleton
   response of the weaker state, while rank thresholds may be lowered without
   losing the witness. This licenses directional Pareto pruning at each fixed
-  far endpoint. It does not yet identify those far endpoints, preserve their
-  shared incidence under quotienting, or yield a `k`-only carrier bound.
+  far endpoint. It also proves a sharp obstruction to using this order alone:
+  equal-rank diagonal two-sided ports form arbitrarily large antichains, so an
+  ordered crossing frontier need not have a `k`-only cardinal bound.
 - The first finite dominance quotient retains clipped exact-rank histograms,
   directional frontier tags, and coarse endpoint-incidence types. It merges 80
   raw classes and passes all singleton and small two-root gates, but the
@@ -139,6 +140,14 @@ sets.
   parents. Exact boundary-rank repairs tested so far remove the collisions
   only by becoming injective on the observed raw states, so no uniform route
   is selected from this candidate.
+- The reviewed rooted-interface repair is also retired. A recursive state with
+  exact side footprints and crossing ports at capped cut-relative depth three
+  merges 1,710 fibers at the middle eight-vertex cut, but an independently
+  checked `8+2 -> 10` witness gives unequal rooted parent states. Depth four
+  becomes injective on all 46,699 raw classes at that cut. The pre-vetted route
+  now returns the raw footprint to structural counting; the next contract is
+  an allocated Pascal-demand inequality at lowest separating tree nodes, not
+  another global finite quotient.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,
