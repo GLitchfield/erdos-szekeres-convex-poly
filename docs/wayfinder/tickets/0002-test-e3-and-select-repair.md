@@ -708,11 +708,36 @@ item is to define that concrete incidence carrier and falsify it against the
 committed collisions and existing transition tables before attempting its
 `k`-only counting theorem.
 
+That concrete gate is now complete and rejects the first quotient. The
+candidate stores clipped global exact-rank histograms, the proved directional
+frontier tags, and the clipped multiset of coarse endpoint-incidence types. Its
+carrier is finite in `k`; at the eight-vertex boundary it merges 80 of 46,699
+raw footprint classes, separates both regressions, and has zero collisions in
+all singleton contexts. The small two-root gate also passes, although the
+candidate is injective on its seven-vertex raw states. The reserved raw
+`8+2 -> 10` census then covers all 16,819,920 parents and has zero raw
+footprint collisions or observation mismatches, independently replayed.
+
+The quotient fails that same large gate: 320 cross-fiber transition
+collisions are reproduced independently from only 14,400 representative
+parents. The first swaps exact ranks three and four between `(0,7)` and
+`(1,7)` and is distinguished after roots occupy `[1,2]`. Every failure touches
+the first or last internal gap. Exploratory exact-boundary repairs reduce the
+failures, but any tested clipped boundary rank count strong enough to remove
+them is injective on all 46,699 raw classes. The quotient is retired. A fresh
+bounded route review must now decide whether to make the root cut an explicit
+finite interface, prove or refute finite-depth boundary stabilization, or use
+the raw footprint only as local machinery in a structural count.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
 - [`ErdosSzekeres.E3FiniteReduction`](../../../ErdosSzekeres/E3FiniteReduction.lean)
 - [Lean span-dominance pruning](../../../ErdosSzekeres/SpanDominance.lean)
+- [Dominance-quotient gate and refutation](../../experiments/0027-span-dominance-quotient-gate.md)
+- [Small dominance-quotient manifest](../../../data/derived/e3-span-dominance-quotient-k6-n9.json)
+- [Large raw two-root manifest](../../../data/derived/e3-two-root-span-k6-n10.json)
+- [Large dominance-quotient refutation](../../../data/derived/e3-span-dominance-quotient-k6-n10.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

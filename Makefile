@@ -1,7 +1,7 @@
 PROJECT_TOOL_BIN := $(CURDIR)/scripts/toolchain
 export PATH := $(PROJECT_TOOL_BIN):$(PATH)
 
-.PHONY: check update lean test wayfinder review-doctor
+.PHONY: check update lean test test-exhaustive wayfinder review-doctor
 
 check:
 	@python3 --version
@@ -31,6 +31,10 @@ test: check lean
 		data/derived/e3-span-rank-footprint-k6-n9.json --workers 8 >/dev/null
 	@python3 scripts/check_two_root_span_footprints.py \
 		data/derived/e3-two-root-span-k6-n9.json --workers 8 >/dev/null
+	@python3 scripts/check_span_dominance_quotients.py \
+		data/derived/e3-span-dominance-quotient-k6-n9.json --source-only >/dev/null
+	@python3 scripts/check_large_span_dominance_quotient.py \
+		data/derived/e3-span-dominance-quotient-k6-n10.json --source-only >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -55,6 +59,8 @@ test: check lean
 		scripts/check_incoming_star_prefixes.py \
 		scripts/check_singleton_residuals.py \
 		scripts/check_span_rank_footprints.py \
+		scripts/check_span_dominance_quotients.py \
+		scripts/check_large_span_dominance_quotient.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \
@@ -77,7 +83,10 @@ test: check lean
 		scripts/enumerate_incoming_star_prefixes.py \
 		scripts/enumerate_singleton_residuals.py \
 		scripts/enumerate_span_rank_footprints.py \
+		scripts/enumerate_span_dominance_quotients.py \
+		scripts/enumerate_large_span_dominance_quotient.py \
 		scripts/enumerate_two_root_span_footprints.py \
+		scripts/span_dominance_quotient.py \
 		scripts/extract_dimacs_clause_core.py \
 		scripts/find_decomposable_context_collision.py \
 		scripts/verify_cap_failure_charge_matching.py \
@@ -94,6 +103,14 @@ test: check lean
 		scripts/verify_middle_bridge_realization.py \
 		scripts/verify_repeated_residue_model.py \
 		scripts/wayfinder_status.py
+
+test-exhaustive: test
+	@python3 scripts/check_span_dominance_quotients.py \
+		data/derived/e3-span-dominance-quotient-k6-n9.json --workers 8 >/dev/null
+	@python3 scripts/check_large_span_dominance_quotient.py \
+		data/derived/e3-span-dominance-quotient-k6-n10.json >/dev/null
+	@python3 scripts/check_two_root_span_footprints.py \
+		data/derived/e3-two-root-span-k6-n10.json --workers 8 >/dev/null
 
 wayfinder:
 	@python3 scripts/wayfinder_status.py

@@ -292,7 +292,20 @@ None. The destination was fixed by the user on 2026-08-01.
   but it neither forgets the far endpoint nor preserves incidence between
   quotient classes and therefore gives no `k`-only count. Define and falsify
   that incidence-preserving quotient before route selection; reserve the
-  larger `8+2 -> 10` census for a concrete quotient candidate.
+  larger `8+2 -> 10` census for a concrete quotient candidate. The first
+  concrete candidate retains clipped exact-rank histograms, directional
+  frontier tags, and coarse endpoint-local incidence types. It is a finite
+  `k`-only carrier, merges 80 of the 46,699 raw classes, separates both
+  regressions, and passes all 3,363,984 singleton plus 762,912 small two-root
+  transitions. The reserved larger gate is decisive: the raw footprint itself
+  has zero collisions across all 16,819,920 `8+2 -> 10` parents, but the
+  quotient has 320 independently replayed collisions across its 80 nontrivial
+  fibers. The first swaps exact ranks three and four between two spans sharing
+  a far endpoint. Boundary exact-rank repairs eliminate the failures only by
+  becoming injective on every observed raw class. Reject this quotient. The
+  pending bounded route review must choose between a rooted-interface state,
+  a proof that finite boundary depth stabilizes, or returning the raw
+  footprint to a structural counting argument.
 
 ## Not yet specified
 

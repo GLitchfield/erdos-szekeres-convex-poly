@@ -1,0 +1,880 @@
+{
+  "experiment": "large-span-dominance-incidence-quotient",
+  "gate": {
+    "context_count": 90,
+    "contexts": [
+      {
+        "interleaved": false,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          1
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": false,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          1
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          2
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          2
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          3
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          3
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          4
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          4
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          5
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          5
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          6
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          6
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          7
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          7
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          8
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          8
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          9
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          0,
+          9
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 11,
+        "root_positions": [
+          1,
+          2
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 11,
+        "root_positions": [
+          1,
+          2
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 6,
+        "root_positions": [
+          1,
+          3
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 6,
+        "root_positions": [
+          1,
+          3
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 12,
+        "root_positions": [
+          1,
+          4
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 12,
+        "root_positions": [
+          1,
+          4
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 12,
+        "root_positions": [
+          1,
+          5
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 12,
+        "root_positions": [
+          1,
+          5
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 13,
+        "root_positions": [
+          1,
+          6
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 13,
+        "root_positions": [
+          1,
+          6
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 13,
+        "root_positions": [
+          1,
+          7
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 13,
+        "root_positions": [
+          1,
+          7
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 26,
+        "root_positions": [
+          1,
+          8
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 26,
+        "root_positions": [
+          1,
+          8
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          1,
+          9
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          1,
+          9
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          3
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          3
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          4
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          4
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          5
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          5
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          6
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          6
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          7
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          7
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 13,
+        "root_positions": [
+          2,
+          8
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 13,
+        "root_positions": [
+          2,
+          8
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          9
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          2,
+          9
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          3,
+          4
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          3,
+          4
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          3,
+          5
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          3,
+          5
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          3,
+          6
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          3,
+          6
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          3,
+          7
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          3,
+          7
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 13,
+        "root_positions": [
+          3,
+          8
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 13,
+        "root_positions": [
+          3,
+          8
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          3,
+          9
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          3,
+          9
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          4,
+          5
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          4,
+          5
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          4,
+          6
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          4,
+          6
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          4,
+          7
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          4,
+          7
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 12,
+        "root_positions": [
+          4,
+          8
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 12,
+        "root_positions": [
+          4,
+          8
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          4,
+          9
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          4,
+          9
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          5,
+          6
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          5,
+          6
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          5,
+          7
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          5,
+          7
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 12,
+        "root_positions": [
+          5,
+          8
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 12,
+        "root_positions": [
+          5,
+          8
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          5,
+          9
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          5,
+          9
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          6,
+          7
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          6,
+          7
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 6,
+        "root_positions": [
+          6,
+          8
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 6,
+        "root_positions": [
+          6,
+          8
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          6,
+          9
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          6,
+          9
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 11,
+        "root_positions": [
+          7,
+          8
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 11,
+        "root_positions": [
+          7,
+          8
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          7,
+          9
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": true,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          7,
+          9
+        ],
+        "root_role": "upper"
+      },
+      {
+        "interleaved": false,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          8,
+          9
+        ],
+        "root_role": "lower"
+      },
+      {
+        "interleaved": false,
+        "merged_fiber_collision_count": 0,
+        "root_positions": [
+          8,
+          9
+        ],
+        "root_role": "upper"
+      }
+    ],
+    "first_merged_fiber_transition_collision": {
+      "child_coloring_hex": [
+        "329ff2bd0ffa3d",
+        "329ff7fd057a11"
+      ],
+      "quotient_class_id": 12993,
+      "root_positions": [
+        1,
+        2
+      ],
+      "root_role": "lower"
+    },
+    "first_merged_raw_fiber": {
+      "class_id": 2928,
+      "coloring_hex": [
+        "1ffe1f807f019",
+        "1ffe3d8039001"
+      ],
+      "raw_footprint_count": 2
+    },
+    "interleaved_context_count": 86,
+    "largest_merged_raw_fiber": 2,
+    "merged_fiber_transition_collision_count": 320,
+    "merged_quotient_fiber_count": 80,
+    "merged_raw_footprint_count": 160,
+    "parent_representative_evaluation_count": 14400,
+    "quotient_state_count": 46619,
+    "raw_child_footprint_count": 46699,
+    "raw_interleaved_parent_transition_count": 16072368,
+    "raw_parent_transition_count": 16819920,
+    "representative_parent_records_sha256": "0850dd0cb5d64d7ce611ef33bbec445e77aedb5fbabc05a1fe5c330d9d6a349b"
+  },
+  "generation_base_revision": "24fddff987d1c69ead3e998dd4b72a423c39bf26",
+  "parameters": {
+    "child_size": 8,
+    "parent_size": 10,
+    "root_size": 2,
+    "strong_size": 6
+  },
+  "schema_version": 1,
+  "scope": "Exact quotient compatibility across every nontrivial raw-footprint fiber, under every two-root placement and role, conditional on the independently replayed raw 8+2 -> 10 footprint congruence census.",
+  "sources": {
+    "checker": {
+      "path": "scripts/check_large_span_dominance_quotient.py",
+      "sha256": "35d44c6a20a36124580ba43153ba14c351d9d7e7bec427e681d1ba6c777506f1"
+    },
+    "independent_quotient": {
+      "path": "scripts/check_span_dominance_quotients.py",
+      "sha256": "d96b96777f22ffe8e41695a03770f28baedb336c3b0142d37571bd4862882b6c"
+    },
+    "producer": {
+      "path": "scripts/enumerate_large_span_dominance_quotient.py",
+      "sha256": "d42d741beb8d18e575855c37a0eb323d6a7cb05a23a8034428862c6ca4d7d9c9"
+    },
+    "quotient": {
+      "path": "scripts/span_dominance_quotient.py",
+      "sha256": "e8da33254e9007807dc4ca5c02bf481b41b843662f539b347fab2cc8551c10a5"
+    },
+    "raw_manifest": {
+      "path": "data/derived/e3-two-root-span-k6-n10.json",
+      "sha256": "ea220e58d6b31692929889ef0c3da0aaa376fddd16d100d2d0a923d718b9af1a"
+    }
+  }
+}

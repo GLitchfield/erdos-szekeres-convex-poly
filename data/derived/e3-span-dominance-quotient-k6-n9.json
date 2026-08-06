@@ -1,0 +1,1299 @@
+{
+  "experiment": "span-dominance-incidence-quotient",
+  "generation_base_revision": "24fddff987d1c69ead3e998dd4b72a423c39bf26",
+  "parameters": {
+    "coarse_incidence_threshold": 3,
+    "endpoint_multiplicity_clip": 6,
+    "rank_histogram_clip": 6,
+    "singleton_child_size": 8,
+    "strong_size": 6,
+    "two_root_child_size": 7
+  },
+  "regressions": {
+    "all_gap_collision": {
+      "equal_quotient": false,
+      "left_coloring_hex": "1fff3d807b019",
+      "right_coloring_hex": "3cfe1c007b33f"
+    },
+    "pair_rank_collision": {
+      "equal_quotient": false,
+      "left_coloring_hex": "3c300c1a1835b",
+      "right_coloring_hex": "3c700c1a1835b"
+    }
+  },
+  "schema_version": 1,
+  "scope": "Exact for every decomposable eight-vertex child and all singleton contexts, and every decomposable seven-vertex child and all two-root contexts, at k=6.",
+  "singleton_gate": {
+    "contexts": [
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 29068,
+        "quotient_records_sha256": "4496869f1e792b7439a14c09d79f8907d662563ae9e11614b83bdb8dff59f704",
+        "root": 0,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 29068,
+        "quotient_records_sha256": "ed79fd82dce6125a5c67cc7c7b078f069deba8b952c213809f6ca28aa1d53a81",
+        "root": 0,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 23385,
+        "quotient_records_sha256": "3125566df2fe5eb9929bfeaa47f07e10c8cbeaba323518c6f8502480779b8414",
+        "root": 1,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 23385,
+        "quotient_records_sha256": "52a0706cc6de7175696794ef7bd5d79adf38f22c277203eb0556ca0cf18c84ae",
+        "root": 1,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 20325,
+        "quotient_records_sha256": "125f16fc19d415c9da918fb1326263322c995e07ab5af32e2894ce371d880aaf",
+        "root": 2,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 20325,
+        "quotient_records_sha256": "4bc674f2d05fbfc74a0625127bccbd650032a6e7132a6368399e6261b64157c4",
+        "root": 2,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 18562,
+        "quotient_records_sha256": "3a95faa83f527102a0b056abd7cb083db37866cbac435a718a5ab9f464c77615",
+        "root": 3,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 18562,
+        "quotient_records_sha256": "361c791c1ebef74967e4c320dd9d8ac54cdcb2a055182d463e92c58491f7865f",
+        "root": 3,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 17956,
+        "quotient_records_sha256": "cc2c29d42722b3e6edab6ae1e07316039048a51df9d0c0e77ab27b8b42281045",
+        "root": 4,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 17956,
+        "quotient_records_sha256": "f2f3082a8267ea76f8fadf11a67cc94f7ae8c82e151b78ae94183599c29ea796",
+        "root": 4,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 18562,
+        "quotient_records_sha256": "11953278febb03bedd4a99d4af8c4042c3a1f809b0f41dddc92a870042afd4a0",
+        "root": 5,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 18562,
+        "quotient_records_sha256": "2356e86950d4f093cd453bd44f2225e45507422f05137a47987578abf2113065",
+        "root": 5,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 20325,
+        "quotient_records_sha256": "295da5db57861c15bd30e741a5d5e42d07e7ea8ba90fdb237cd0f3958553695f",
+        "root": 6,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 20325,
+        "quotient_records_sha256": "4eb9723e279dca8668f2c3f4e26d82efdcd06651aeff25b3f55cd09d61329abd",
+        "root": 6,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 23385,
+        "quotient_records_sha256": "cad169019f56e45e428a366af55abae86730e6fe5a39eaf14587a14a7d758e50",
+        "root": 7,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 23385,
+        "quotient_records_sha256": "9595ed0397a89889e989e221027458de820fe7a15dfc2b304a401df8102b9d7e",
+        "root": 7,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 29068,
+        "quotient_records_sha256": "2bad1578c2e4690e1344ddf7c2528147ba7bb1e7be4888685b17b32469d46f68",
+        "root": 8,
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 46619,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "parent_quotient_state_count": 29068,
+        "quotient_records_sha256": "05d49aa4ec9c7fb9faa8c58d85490d51474ec42ce0eaa51c2fa96d8bf8274ab4",
+        "root": 8,
+        "transition_collision_count": 0
+      }
+    ],
+    "summary": {
+      "coloring_count": 186888,
+      "context_count": 18,
+      "first_merged_raw_footprint": {
+        "class_id": 2928,
+        "first_coloring_hex": "1ffe1f807f019",
+        "first_index": 12801,
+        "second_coloring_hex": "1ffe3d8039001",
+        "second_index": 12819
+      },
+      "largest_quotient_class_size": 63982,
+      "merged_raw_quotient_class_count": 80,
+      "parent_transition_count": 3363984,
+      "quotient_class_size_histogram": {
+        "1": 22614,
+        "10": 284,
+        "11": 168,
+        "12": 248,
+        "13": 96,
+        "14": 104,
+        "15": 32,
+        "16": 100,
+        "17": 36,
+        "18": 28,
+        "19": 24,
+        "2": 6260,
+        "22": 16,
+        "23": 24,
+        "24": 8,
+        "25": 12,
+        "26": 28,
+        "27": 12,
+        "3": 7328,
+        "4": 4704,
+        "5": 1268,
+        "6": 644,
+        "63982": 1,
+        "7": 912,
+        "8": 1096,
+        "9": 572
+      },
+      "quotient_state_count": 46619,
+      "quotient_state_records_sha256": "180ee00a9ba66a4bbc0d5890a5e4e3170b4eaa66eb11b59eaad0377dbe46a2f3",
+      "raw_footprint_count": 46699,
+      "total_transition_collision_count": 0
+    }
+  },
+  "sources": {
+    "checker": {
+      "path": "scripts/check_span_dominance_quotients.py",
+      "sha256": "d96b96777f22ffe8e41695a03770f28baedb336c3b0142d37571bd4862882b6c"
+    },
+    "producer": {
+      "path": "scripts/enumerate_span_dominance_quotients.py",
+      "sha256": "557818d6683b758ff517cf3f0adc77ef9ec3a930c55f0421ea00fac1049a66e1"
+    },
+    "quotient": {
+      "path": "scripts/span_dominance_quotient.py",
+      "sha256": "e8da33254e9007807dc4ca5c02bf481b41b843662f539b347fab2cc8551c10a5"
+    },
+    "singleton_manifest": {
+      "path": "data/derived/e3-span-rank-footprint-k6-n9.json",
+      "sha256": "74a0d2bb8de0419d51921d2c2edcb4a30532e1fde4d8a210743b7a86c414d12a"
+    },
+    "two_root_manifest": {
+      "path": "data/derived/e3-two-root-span-k6-n9.json",
+      "sha256": "70d5f08c0bce7fb0ae7ef0748c59a19e81f0c1d002e077aa727877f4794b8a33"
+    }
+  },
+  "two_root_gate": {
+    "contexts": [
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": false,
+        "parent_quotient_state_count": 707,
+        "quotient_records_sha256": "c173ed0378050bdd9ffd6c28338dd1497bd5d9c23c6c43b7d3e0b3c11ce925eb",
+        "root_positions": [
+          0,
+          1
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": false,
+        "parent_quotient_state_count": 707,
+        "quotient_records_sha256": "b63f91a2bc6112d43a6f716b6930f76bffd1ac48561f38acd54a723380bd9a84",
+        "root_positions": [
+          0,
+          1
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 560,
+        "quotient_records_sha256": "47e8a76c78ebda9553f469457aa436af28b58fc6c9511f6d42e8ff02f5f6f6dc",
+        "root_positions": [
+          0,
+          2
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 560,
+        "quotient_records_sha256": "e92bfbda7830aca9ffd77046b40524e620031e7d6bae978d451836896debeebc",
+        "root_positions": [
+          0,
+          2
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 497,
+        "quotient_records_sha256": "5064a402cfd5a532fcd145070a116db6b96afc12109d094e455320030e92bba2",
+        "root_positions": [
+          0,
+          3
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 497,
+        "quotient_records_sha256": "11403f7c1b81c00874987534481d096bdb5e0d3d910d3344dbf9131e78d71983",
+        "root_positions": [
+          0,
+          3
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 471,
+        "quotient_records_sha256": "2a90e2b41970fd12e9b32df5934f94fc2a3fd0039777938c3e425d253a5386cf",
+        "root_positions": [
+          0,
+          4
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 471,
+        "quotient_records_sha256": "73146bfc9c1e9e6f665637d9d53771d74996d674d1b9eb1e8cdcfbd396dc6f4e",
+        "root_positions": [
+          0,
+          4
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 471,
+        "quotient_records_sha256": "03b036450ffcd5522e09b5b4d434b4e5d19318a90e3eaad2e016e6843f547bb9",
+        "root_positions": [
+          0,
+          5
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 471,
+        "quotient_records_sha256": "a11714985d8f721a9b14e3bf8e7e1a3cfef6186a5325f187256453827de925da",
+        "root_positions": [
+          0,
+          5
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 497,
+        "quotient_records_sha256": "f32710a7e73c1c3aa6494838044e361bee0df0f3c72cf90382b16c9466ef4c4c",
+        "root_positions": [
+          0,
+          6
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 497,
+        "quotient_records_sha256": "6ead3b5e71edd238512b8b73392932dbc25a88beecda822c5e1fce930ece7007",
+        "root_positions": [
+          0,
+          6
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 560,
+        "quotient_records_sha256": "38ba06101672b147cfd44b7a01f845ec4e143b551064d8d7e73ea8b00200431c",
+        "root_positions": [
+          0,
+          7
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 560,
+        "quotient_records_sha256": "3e4c5c6ea037bbda7c7c6e5adbee393de1ad876245cde4b0fcdf6e3aeb28e1a5",
+        "root_positions": [
+          0,
+          7
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 707,
+        "quotient_records_sha256": "e56221d261021360acda7cd4243b3d61a7ba1d1f348b0d232fe65b1752705eb8",
+        "root_positions": [
+          0,
+          8
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 707,
+        "quotient_records_sha256": "29b9b5a99fa7612994a684fc7c8d0c3bf079f33dbdd5a69e66d84dce54709b66",
+        "root_positions": [
+          0,
+          8
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 442,
+        "quotient_records_sha256": "6d0413958f41683d294b410f56dea0498751c9f9db6c914eaa5ea28e85b767c7",
+        "root_positions": [
+          1,
+          2
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 442,
+        "quotient_records_sha256": "98ffd529942baf41898a167000f10a174d48fd3f2a4771375121d70d554f89b2",
+        "root_positions": [
+          1,
+          2
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 380,
+        "quotient_records_sha256": "47609b14d9c54e591e34821bd671d4a3f0e192244839ac1250ec5538a890c623",
+        "root_positions": [
+          1,
+          3
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 380,
+        "quotient_records_sha256": "eac3e65f86d823a7070a3239e413cc64f1c764d946ffb19c03c57c4cefe0fce8",
+        "root_positions": [
+          1,
+          3
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 354,
+        "quotient_records_sha256": "17b3a2a02d5da509b71c5c51fdba8431ac552505ef3d08da369db2594fbf45c9",
+        "root_positions": [
+          1,
+          4
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 354,
+        "quotient_records_sha256": "890f7ca711271a951992deb4a8c9b2b7548c23b3374d82980b572e67af242d9e",
+        "root_positions": [
+          1,
+          4
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 347,
+        "quotient_records_sha256": "d592cdcaf6e5a97a8f13e78b73525fc3410e612d11769d84c6c376e15670b0bb",
+        "root_positions": [
+          1,
+          5
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 347,
+        "quotient_records_sha256": "622b2bbec52443babf917da6f0435bd23b67dfa9f6b71bf7d989172d1480206e",
+        "root_positions": [
+          1,
+          5
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 362,
+        "quotient_records_sha256": "ed2ddb0869466d89b511c1cf064375e0c4cb928613e9435a8a2bbebbe4b6f429",
+        "root_positions": [
+          1,
+          6
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 362,
+        "quotient_records_sha256": "674138f9c1d683baa9a2d6706b18bf923111dc39e902bdf866ad702de014cab4",
+        "root_positions": [
+          1,
+          6
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 413,
+        "quotient_records_sha256": "ec827ac06d3840263296000ea806e641a444affb04872df2c0af42c64bfcd235",
+        "root_positions": [
+          1,
+          7
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 413,
+        "quotient_records_sha256": "5a5951ec0920966811a86f1e98fe9d455edcdf7b7d5fbbfa3cdf8e8974f6f754",
+        "root_positions": [
+          1,
+          7
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 560,
+        "quotient_records_sha256": "123f15513b287ae4b22ed762e87b98ba079b9479cdb8da435ba03f2d93de2983",
+        "root_positions": [
+          1,
+          8
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 560,
+        "quotient_records_sha256": "ba9efc38afb59bd637d6f12f2e32e1861e30d4a963cb5bda2d174c8466db1610",
+        "root_positions": [
+          1,
+          8
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 340,
+        "quotient_records_sha256": "1b93867435f67f4d1e9a57dad2f6ec9b1797f013ed5a064fce33c0366cdce954",
+        "root_positions": [
+          2,
+          3
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 340,
+        "quotient_records_sha256": "ce094dc56a202cf2a87c7c1e6bc329436c55b12a0bc3a2b4296aee0687c9f8f3",
+        "root_positions": [
+          2,
+          3
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 303,
+        "quotient_records_sha256": "deeea310ee6036ac957f7a3c419a79d9e23bcf1827dec25c2d6d9a57c356be84",
+        "root_positions": [
+          2,
+          4
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 303,
+        "quotient_records_sha256": "167c9f74b9aa0affa14e309893496a2867adf05f768af0107cc81eae93eb3d19",
+        "root_positions": [
+          2,
+          4
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 294,
+        "quotient_records_sha256": "8a795a043a02ec0f06a5f8eeec541b5240dcdafc4a6dac1810cb4b1657bfbddd",
+        "root_positions": [
+          2,
+          5
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 294,
+        "quotient_records_sha256": "8197687710a477abfc44976adaeb17d04a8eafe66ae4d0c9466ba8d65f022ac1",
+        "root_positions": [
+          2,
+          5
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 309,
+        "quotient_records_sha256": "1fc6a5d85a6f50bbfd98490be111006bd3e48e56c0b66ad722aba68a0db0446c",
+        "root_positions": [
+          2,
+          6
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 309,
+        "quotient_records_sha256": "b6bb829316f443f00dbce94c5e2d6f6c40b49be3fc0caa8bc53fbd10b10956b4",
+        "root_positions": [
+          2,
+          6
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 362,
+        "quotient_records_sha256": "62f3969c2a32ce8f3ee70163724c654ffd5372ca0ab0e42bab7184a1654e16fa",
+        "root_positions": [
+          2,
+          7
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 362,
+        "quotient_records_sha256": "a5f8d44f121fd33a0980bd65f654c35981658d041b63a5e521dbc76f4d13558d",
+        "root_positions": [
+          2,
+          7
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 497,
+        "quotient_records_sha256": "ef0800a320938e326a332161b82b79246d2ec8b1b734e0c2ed16be9b23cb4eae",
+        "root_positions": [
+          2,
+          8
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 497,
+        "quotient_records_sha256": "1702508425ffc7b1ea095d9d57af119db1994a2790d4390f6b2d432efdb00614",
+        "root_positions": [
+          2,
+          8
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 290,
+        "quotient_records_sha256": "f7f063865b8692e339791e7e2f749ba8135e5798acc7922df61ae63af3f404be",
+        "root_positions": [
+          3,
+          4
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 290,
+        "quotient_records_sha256": "63c828a4d3215d0346b635f15be1c44b3849773dc2868a51d758a057280b0244",
+        "root_positions": [
+          3,
+          4
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 270,
+        "quotient_records_sha256": "b6a8c4cf86e6327e8748f18ab8e6ff725e3101eccb4bba58249d7dbba62fa809",
+        "root_positions": [
+          3,
+          5
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 270,
+        "quotient_records_sha256": "0b47cebbe928e2e01d62d085b54da79733bbe089423660a535f361f3a3925550",
+        "root_positions": [
+          3,
+          5
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 294,
+        "quotient_records_sha256": "c20b1d6e1aadd652c20d20f0f1446ee5359a6691283cdc3e9b31027fdb2d8cf8",
+        "root_positions": [
+          3,
+          6
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 294,
+        "quotient_records_sha256": "51f3df3f040b30ef682ef764cba8431fbb2c06f5da653692fed7a17c3984efc9",
+        "root_positions": [
+          3,
+          6
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 347,
+        "quotient_records_sha256": "3da3beb2b418d4987b8c9c57f19d7f7c05d13015c22a2ce6ab0252cf77213dc0",
+        "root_positions": [
+          3,
+          7
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 347,
+        "quotient_records_sha256": "56c020f46955124503c9dbd25c0515988d0785b932d779d7427cc02445961fee",
+        "root_positions": [
+          3,
+          7
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 471,
+        "quotient_records_sha256": "cc782501901142215504515946ce08368c0a39a9f34077a7f1ebf63fb41c2b6f",
+        "root_positions": [
+          3,
+          8
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 471,
+        "quotient_records_sha256": "374af96d44db485fbdf569f16df453b5aab31389dc7ad283752f27c80a9445f8",
+        "root_positions": [
+          3,
+          8
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 290,
+        "quotient_records_sha256": "3088d1648f806fb0c54abdf897e1773aed6b8561f49d2bba0036aadeb39f6b96",
+        "root_positions": [
+          4,
+          5
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 290,
+        "quotient_records_sha256": "9eaa95c39a6ca59336554505888dad671e756a920014e8d9329a7bc150a2a34c",
+        "root_positions": [
+          4,
+          5
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 303,
+        "quotient_records_sha256": "077583b5e3547926dc13dbf3be8bcc8b30b3f70ca8f18eb3f5102bfd6261307c",
+        "root_positions": [
+          4,
+          6
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 303,
+        "quotient_records_sha256": "b52ae8b9143a3de89d0876a1bd5a55f92caade92beccf1df8f5d3c018e6b8682",
+        "root_positions": [
+          4,
+          6
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 354,
+        "quotient_records_sha256": "99637ad9edd334081e19b29d1ed886371a9223780aabc7f179c3fc85044bc2fc",
+        "root_positions": [
+          4,
+          7
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 354,
+        "quotient_records_sha256": "5137ce349bae7d1e8f02a5defce2e8831d38972c133d7bdd8075e361eedb9abd",
+        "root_positions": [
+          4,
+          7
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 471,
+        "quotient_records_sha256": "3c1f646e46ab18db4dd2fb73294be16ce3e5a13b1dcf9188415e78e0c8b6e045",
+        "root_positions": [
+          4,
+          8
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 471,
+        "quotient_records_sha256": "6e4c17a0e8dea443e46702cd4b986c382e3cddbdf5b2d32b134812a82893651b",
+        "root_positions": [
+          4,
+          8
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 340,
+        "quotient_records_sha256": "641d6a43f36e23e0a2b58741bc42ca6676bf573015fdd049307c7d6e192a95e0",
+        "root_positions": [
+          5,
+          6
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 340,
+        "quotient_records_sha256": "6d0e6bb5f2c8f41c4a556cdcb69bb01e45077bc456a6b149f117a5e484c7293b",
+        "root_positions": [
+          5,
+          6
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 380,
+        "quotient_records_sha256": "a58c53f629875da60b9038736e57be240c681a9af74fb68922e400a2ad829c56",
+        "root_positions": [
+          5,
+          7
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 380,
+        "quotient_records_sha256": "d278470c78661e2a3183d3841937ba22b1e1fda98796eef0207967c98f451457",
+        "root_positions": [
+          5,
+          7
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 497,
+        "quotient_records_sha256": "d680b29a73a72121dbe102e348b7d6aab769d695de2491575dd900afe8376cf9",
+        "root_positions": [
+          5,
+          8
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 497,
+        "quotient_records_sha256": "21fa2e341dfec7a5883e281d4334cc37f9eb039cd5149bf42be5136f0a7eb133",
+        "root_positions": [
+          5,
+          8
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 442,
+        "quotient_records_sha256": "7c8dcb9d0e3fc6ef8a214ab64e2c7d64922da5b3290f8d1c9c9072e2a0d864d5",
+        "root_positions": [
+          6,
+          7
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 442,
+        "quotient_records_sha256": "327d791d7bce9aded4191dcf6c51d864402c7e2e63d91037869124e5715f45f7",
+        "root_positions": [
+          6,
+          7
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 560,
+        "quotient_records_sha256": "719b409b3d8ae913f6aa053d1d751b09785afc3b426f7ba23a9ccf83a34a7ed6",
+        "root_positions": [
+          6,
+          8
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": true,
+        "parent_quotient_state_count": 560,
+        "quotient_records_sha256": "5ef6216ac4c04355fcb403040231eadf5d116a383243dcb9123ca9cb1abe8e50",
+        "root_positions": [
+          6,
+          8
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "upper",
+        "first_transition_collision": null,
+        "interleaved": false,
+        "parent_quotient_state_count": 707,
+        "quotient_records_sha256": "06a76dc9e161898b26e65ce1db5f680602e8be19011b2cb7ce44bc615ecfd76a",
+        "root_positions": [
+          7,
+          8
+        ],
+        "root_role": "lower",
+        "transition_collision_count": 0
+      },
+      {
+        "child_quotient_state_count": 4737,
+        "child_role": "lower",
+        "first_transition_collision": null,
+        "interleaved": false,
+        "parent_quotient_state_count": 707,
+        "quotient_records_sha256": "44a49c217994147cc6e87dac82fe74956ccad4098422b52a3f8b82afa803a22d",
+        "root_positions": [
+          7,
+          8
+        ],
+        "root_role": "upper",
+        "transition_collision_count": 0
+      }
+    ],
+    "summary": {
+      "coloring_count": 10596,
+      "context_count": 72,
+      "first_merged_raw_footprint": null,
+      "interleaved_context_count": 68,
+      "interleaved_transition_collision_count": 0,
+      "largest_quotient_class_size": 1442,
+      "merged_raw_quotient_class_count": 0,
+      "parent_transition_count": 762912,
+      "quotient_class_size_histogram": {
+        "1": 2780,
+        "1442": 1,
+        "16": 4,
+        "2": 660,
+        "3": 792,
+        "4": 288,
+        "5": 42,
+        "6": 46,
+        "7": 38,
+        "8": 64,
+        "9": 22
+      },
+      "quotient_state_count": 4737,
+      "quotient_state_records_sha256": "1632a7c7d6f1ceefb51c7f03d015e1921122e21bf77814f3f4d325ffe073c11a",
+      "raw_footprint_count": 4737,
+      "total_transition_collision_count": 0
+    }
+  }
+}

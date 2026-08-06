@@ -131,6 +131,14 @@ sets.
   losing the witness. This licenses directional Pareto pruning at each fixed
   far endpoint. It does not yet identify those far endpoints, preserve their
   shared incidence under quotienting, or yield a `k`-only carrier bound.
+- The first finite dominance quotient retains clipped exact-rank histograms,
+  directional frontier tags, and coarse endpoint-incidence types. It merges 80
+  raw classes and passes all singleton and small two-root gates, but the
+  independently checked `8+2 -> 10` gate refutes it with 320 collisions. The
+  raw span footprint itself remains collision-free across all 16,819,920 large
+  parents. Exact boundary-rank repairs tested so far remove the collisions
+  only by becoming injective on the observed raw states, so no uniform route
+  is selected from this candidate.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,
