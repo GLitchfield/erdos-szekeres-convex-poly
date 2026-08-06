@@ -11,6 +11,10 @@ class AllocatedSpanPascalDemandTest(unittest.TestCase):
         self.assertEqual(actual["statistics"], manifest["statistics"])
         self.assertEqual(actual["rank_census"], manifest["rank_census"])
         self.assertEqual(
+            actual["endpoint_projection_falsifier"],
+            manifest["endpoint_projection_falsifier"],
+        )
+        self.assertEqual(
             actual["first_saturation_examples"],
             manifest["first_saturation_examples"],
         )

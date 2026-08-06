@@ -5,8 +5,113 @@
     "capacity": "Nat.choose (k - 2) (rank - 1)",
     "claim_boundary": "The census is bounded evidence only; it neither proves the general frontier bound nor supplies a global injective charge.",
     "contexts": "every recursively deep-below coloring on every labeled support and every compatible nontrivial root split",
+    "endpoint_projection_shortcut": "the left or right endpoint set would support the direct classical cup--cap reduction only if it avoids a color-rank+1 chain and an opposite-color-(k+1-rank) chain",
     "frontier": "fixed-color fixed-exact-rank intervals containing no distinct candidate interval",
     "rank": "maximum local monochromatic cup/cap chain size with the exact ordered endpoint pair; terminal strong-k contexts are skipped"
+  },
+  "endpoint_projection_falsifier": {
+    "census": {
+      "cap,3": {
+        "both_failures": 498,
+        "group_count": 156927,
+        "left_failures": 515,
+        "right_failures": 515
+      },
+      "cap,4": {
+        "group_count": 121408,
+        "left_failures": 89,
+        "right_failures": 89
+      },
+      "cap,5": {
+        "group_count": 37402
+      },
+      "cup,3": {
+        "both_failures": 498,
+        "group_count": 156927,
+        "left_failures": 515,
+        "right_failures": 515
+      },
+      "cup,4": {
+        "group_count": 121408,
+        "left_failures": 89,
+        "right_failures": 89
+      },
+      "cup,5": {
+        "group_count": 37402
+      }
+    },
+    "first_both_failure_examples": {
+      "cap,3": {
+        "coloring_hex": "700c00389f",
+        "frontier": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "left_endpoints": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "lower_mask_hex": "4a",
+        "right_endpoints": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "support_mask_hex": "7f"
+      },
+      "cup,3": {
+        "coloring_hex": "c10040a183df",
+        "frontier": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "left_endpoints": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "lower_mask_hex": "56",
+        "right_endpoints": [
+          2,
+          3,
+          5,
+          6
+        ],
+        "support_mask_hex": "7f"
+      }
+    }
   },
   "experiment": "allocated-span-pascal-demand-frontier",
   "first_saturation_examples": {
@@ -34,7 +139,7 @@
     }
   },
   "first_violation": null,
-  "generation_base_revision": "349385c0fcbf897badc4b4752cb4f0783e5551b6",
+  "generation_base_revision": "9eecb3ef76ca524b7aff75c418d4b88197f280b5",
   "observed_claim": "Every tested exact-rank two-sided interval frontier fits its adjacent Pascal demand.",
   "parameters": {
     "maximum_n": 8,
@@ -89,11 +194,11 @@
   "sources": {
     "checker": {
       "path": "scripts/check_allocated_span_pascal_demand.py",
-      "sha256": "eb442e435c8e82dee7fb7a551798f130f40fb42145cf22b7776bcbeea9126aeb"
+      "sha256": "05eec5b76f8fa73b67ddf74c7f126fbaddb6b27dcf48bba2ee3d0fa94fd1ef45"
     },
     "producer": {
       "path": "scripts/enumerate_allocated_span_pascal_demand.py",
-      "sha256": "2fea8d8500a4ae49e2884d84718f3b165ca2c6166107c27903b1360b5f18d12d"
+      "sha256": "1ecebd725e46ea569390b006a9b58168fef880ec3f365dada2a86af2b1a0de96"
     }
   },
   "statistics": {

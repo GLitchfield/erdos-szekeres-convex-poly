@@ -34,6 +34,12 @@ falsification gate, not a proof of the all-parameter statement.
 The gate checks a local slot count. It does not yet construct a global
 injection from these slots into one outer binomial window.
 
+The same exhaustive pass also tests the first natural construction of those
+slots: project every retained span to its left endpoints, or to its right
+endpoints, and ask whether the projected coloring itself supplies the required
+rank chain. This is a falsification test for that construction, not part of
+the capacity conjecture.
+
 ## Exhaustive result
 
 The producer enumerated 376,764 compatible root contexts:
@@ -60,6 +66,22 @@ retain one slot of slack through eight vertices. This does not justify
 strengthening the conjectured bound by one: the slack may disappear at larger
 supports.
 
+## Endpoint-projection shortcut is refuted
+
+The capacity observation survives, but neither raw endpoint projection proves
+it. Across both colors, the left projection and the right projection each fail
+in 1,208 group instances. Of the rank-three groups, 996 fail both projections.
+For example, the first cup/rank-three counterexample has support mask `7f`,
+lower-child mask `56`, coloring `c10040a183df`, and frontier
+
+    [(0,2), (1,3), (2,5), (3,6)].
+
+Neither `[0,1,2,3]` nor `[2,3,5,6]` contains the projected monochromatic
+chain that the shortcut requires. The color-dual cap counterexample is stored
+in the manifest. Consequently, the next proof must use the exact child-ray
+incidence of a crossing span; ordinary left- or right-endpoint cup--cap
+projection loses essential information.
+
 ## Independent replay
 
 The producer and checker share only the manifest contract.
@@ -73,13 +95,14 @@ The producer and checker share only the manifest contract.
   descending-left skyline scan.
 
 The checker reproduced the support-size counts, rank census, saturation
-examples, absence of a violation, and canonical context digest
+examples, absence of a capacity violation, both projection-failure censuses,
+their first witnesses, and canonical context digest
 
     056ad8113dff790c5dba41779f51d5dc944d9bc46996b2acf1b4b7b2e60c46ee
 
 ## Lean promotion
 
-StructuralChargingPascalDemand.lean now supplies two formal components:
+StructuralChargingPascalDemand.lean supplies two formal components:
 
 1. publishedSpanPascalDemand k rank = choose (k - 2) (rank - 1) and
    sorry-free uniform bounds for both one-step published threshold jumps;
@@ -87,15 +110,24 @@ StructuralChargingPascalDemand.lean now supplies two formal components:
    theorem for distinct retained endpoints and a theorem that their allocated
    node places them in opposite children.
 
-These are completed Lean results. The observed frontier-capacity inequality
-remains computational evidence. The next Lean target is the general local
-theorem
+StructuralChargingSpanFrontier.lean now adds completed, compiling definitions
+and lemmas for exact endpoint-span ranks, allocated inclusion-minimal
+frontiers, and all four exact parent-rank/child-ray-rank equivalences. Under a
+no-strong-`k` hypothesis it proves that a span has rank below `k`, proves the
+opposite cup/cap ranks at the same crossing pair sum to at most `k + 1`, and
+proves that frontier endpoints are injective and occur in the same order.
 
-    allocatedExactRankFrontier_card_le_spanPascalDemand
+The file also freezes `AllocatedExactRankSlotting`, an explicit injection of
+the frontier into the `(rank - 1)`-subsets of `Fin (k - 2)`, and proves
 
-under an explicit no-strong-k hypothesis. Only after that theorem is proved
-may the project attempt the global injection of local slots into
-decomposableBinomialWindow.
+    allocatedExactRankFrontier_card_le_spanPascalDemand_of_slotting
+
+from any such slotting. These are completed Lean reductions, but the slotting
+construction itself and therefore the unconditional frontier-capacity
+inequality remain open. The next Lean target is to construct that slotting from
+the child-ray normal forms and complementary-rank constraint. Only after the
+local construction is complete may the project attempt the global injection
+into `decomposableBinomialWindow`.
 
 ## Reproduction
 

@@ -173,6 +173,46 @@ def groups(
     )
 
 
+def projected_endpoint_has_chain(
+    machine: Replay,
+    bits: int,
+    vertices: tuple[int, ...],
+    color: int,
+    size: int,
+) -> bool:
+    """Direct subset replay for a projected endpoint cup or cap."""
+    for selected in itertools.combinations(vertices, size):
+        uniform = True
+        for triple in itertools.combinations(selected, 3):
+            if machine.color(bits, *triple) != bool(color):
+                uniform = False
+                break
+        if uniform:
+            return True
+    return False
+
+
+def endpoint_projection_passes(
+    machine: Replay,
+    bits: int,
+    vertices: tuple[int, ...],
+    color: int,
+    rank: int,
+) -> bool:
+    """Replay the two avoidances needed by the direct cup--cap shortcut."""
+    target = projected_endpoint_has_chain(
+        machine, bits, vertices, color, rank + 1
+    )
+    opposite = projected_endpoint_has_chain(
+        machine,
+        bits,
+        vertices,
+        1 - color,
+        machine.strong_size + 1 - rank,
+    )
+    return not target and not opposite
+
+
 def update_digest(
     digest,
     support: int,
@@ -218,6 +258,8 @@ def replay(maximum_n: int, strong_size: int) -> dict[str, object]:
     totals: Counter[str] = Counter()
     by_size: dict[str, Counter[str]] = {}
     rank_rows: dict[tuple[int, int], Counter[str]] = {}
+    projection_rows: dict[tuple[int, int], Counter[str]] = {}
+    projection_examples: dict[tuple[int, int], dict[str, object]] = {}
     examples: dict[tuple[int, int], dict[str, object]] = {}
     first_violation = None
     digest = hashlib.sha256()
@@ -272,6 +314,34 @@ def replay(maximum_n: int, strong_size: int) -> dict[str, object]:
                                         "rank": rank,
                                         "capacity": capacity,
                                     }
+                            projection_row = projection_rows.setdefault(
+                                key, Counter()
+                            )
+                            projection_row["group_count"] += 1
+                            left_endpoints = tuple(left for left, _ in frontier)
+                            right_endpoints = tuple(right for _, right in frontier)
+                            left_ok = endpoint_projection_passes(
+                                machine, bits, left_endpoints, color, rank
+                            )
+                            right_ok = endpoint_projection_passes(
+                                machine, bits, right_endpoints, color, rank
+                            )
+                            if not left_ok:
+                                projection_row["left_failures"] += 1
+                            if not right_ok:
+                                projection_row["right_failures"] += 1
+                            if not left_ok and not right_ok:
+                                projection_row["both_failures"] += 1
+                                projection_examples.setdefault(
+                                    key,
+                                    {
+                                        **make_example(
+                                            support, lower, bits, frontier
+                                        ),
+                                        "left_endpoints": list(left_endpoints),
+                                        "right_endpoints": list(right_endpoints),
+                                    },
+                                )
         by_size[str(size)] = row
         totals.update(row)
 
@@ -289,6 +359,14 @@ def replay(maximum_n: int, strong_size: int) -> dict[str, object]:
         f"{'cup' if color else 'cap'},{rank}": value
         for (color, rank), value in sorted(examples.items())
     }
+    projection_census = {
+        f"{'cup' if color else 'cap'},{rank}": dict(sorted(row.items()))
+        for (color, rank), row in sorted(projection_rows.items())
+    }
+    projection_failure_examples = {
+        f"{'cup' if color else 'cap'},{rank}": value
+        for (color, rank), value in sorted(projection_examples.items())
+    }
     return {
         "statistics": {
             "totals": dict(sorted(totals.items())),
@@ -298,6 +376,10 @@ def replay(maximum_n: int, strong_size: int) -> dict[str, object]:
             "analyzed_local_states": len(machine.analysis_cache),
         },
         "rank_census": rank_census,
+        "endpoint_projection_falsifier": {
+            "census": projection_census,
+            "first_both_failure_examples": projection_failure_examples,
+        },
         "first_saturation_examples": saturation_examples,
         "first_violation": first_violation,
         "canonical_context_sha256": digest.hexdigest(),
@@ -327,6 +409,10 @@ def main() -> None:
             {
                 "statistics": actual["statistics"] == manifest["statistics"],
                 "rank_census": actual["rank_census"] == manifest["rank_census"],
+                "endpoint_projection_falsifier": (
+                    actual["endpoint_projection_falsifier"]
+                    == manifest["endpoint_projection_falsifier"]
+                ),
                 "saturation_examples": (
                     actual["first_saturation_examples"]
                     == manifest["first_saturation_examples"]

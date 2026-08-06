@@ -600,11 +600,19 @@ passes: Lean defines the exact-rank Pascal demand, proves both uniform
 one-step threshold bounds, and constructs the unique lowest-node endpoint
 allocation. Independent programs check every compatible root through eight
 vertices at `k = 6`; all 631,474 open exact-rank frontiers fit their adjacent
-coefficient. The next theorem is
-`allocatedExactRankFrontier_card_le_spanPascalDemand` for arbitrary open
-decomposable nodes. It must be proved in Lean before building the global
-slot injection and the final `allocatedSpanPascalDemand_le_window` return to
-the published child-slice induction.
+coefficient. Lean now also defines those exact spans and their
+inclusion-minimal frontier, proves its endpoint antichain and ordering laws,
+and identifies every exact crossing rank with an exact predecessor ray rank
+in either child. Under no strong `k`-set, opposite cup/cap ranks at a crossing
+pair sum to at most `k + 1`. The bounded gate refutes the tempting shortcut of
+applying cup--cap directly to either endpoint projection: each projection fails
+in 1,208 group instances, with 996 rank-three groups failing both.
+`AllocatedExactRankSlotting` is therefore the precise remaining local
+contract. Lean proves that any such injection into the `(rank - 1)`-subsets of
+`Fin (k - 2)` gives the desired Pascal bound. Constructing it from the ray
+incidence is the next theorem; after that comes the global slot injection and
+the final `allocatedSpanPascalDemand_le_window` return to the published
+child-slice induction.
 
 ## External Lean baseline
 

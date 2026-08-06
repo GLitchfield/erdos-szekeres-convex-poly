@@ -34,8 +34,10 @@ ignored `runs/`.
   decomposition root on every labeled support through eight vertices at
   `k = 6`. Across 631,474 open exact-rank frontier groups, no two-sided
   interval frontier exceeds `choose(4, rank - 1)`. The independent checker
-  reproduces every count, sharp rank-five example, and canonical digest.
-  This is bounded evidence for a local capacity lemma, not a proof of the
-  general inequality or of a global Pascal-window injection. Its manifest
-  SHA-256 is
-  `a8f0608d7de4d30d89f6495d9c113461489fb4ac05fe638f29309a59c35573c0`.
+  reproduces every count, sharp rank-five example, canonical digest, and the
+  falsification of direct cup--cap on either endpoint projection. Each
+  projection fails in 1,208 groups, and 996 rank-three groups fail both. This
+  is bounded evidence for a local capacity lemma and against one proposed
+  proof, not a proof of the general inequality or of a global Pascal-window
+  injection. Its manifest SHA-256 is
+  `6bd8341ee26511daf73d2c38a8634086ba2fdca037988a4bb83083aec95d0313`.

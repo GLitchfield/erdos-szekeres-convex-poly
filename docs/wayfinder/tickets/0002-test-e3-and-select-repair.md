@@ -762,11 +762,24 @@ deep-below coloring on every labeled support through eight vertices and every
 compatible root: 376,764 roots and 631,474 open exact-rank frontier groups.
 No frontier exceeds its Pascal demand. Rank five saturates capacity one;
 ranks three and four have observed maxima five and three against capacities
-six and four. This is bounded evidence, not the general theorem. The next
-formal target is
-`allocatedExactRankFrontier_card_le_spanPascalDemand`; the original
-`allocatedSpanPascalDemand_le_window` remains the subsequent global
-injection theorem.
+six and four. This is bounded evidence, not the general theorem.
+
+Lean now freezes exact span ranks, allocated frontiers, their endpoint
+antichain and common-order properties, and the four equivalences between an
+exact crossing rank and the corresponding exact predecessor ray rank in a
+child. Under a no-strong-`k` hypothesis it also proves the crossing-pair
+cup/cap rank sum is at most `k + 1`. `AllocatedExactRankSlotting` states the
+remaining local injection precisely, and
+`allocatedExactRankFrontier_card_le_spanPascalDemand_of_slotting` proves that
+it yields the desired capacity.
+
+The independently replayed census also refutes the simplest proposed
+construction. Projecting to left endpoints fails in 1,208 color/rank groups,
+as does projecting to right endpoints; 996 rank-three groups fail both. Thus
+the slotting must use child-ray incidence rather than raw endpoint cup--cap.
+Constructing it is the next formal target. The original
+`allocatedSpanPascalDemand_le_window` remains the subsequent global injection
+theorem.
 
 ## Evidence
 
@@ -782,6 +795,7 @@ injection theorem.
 - [Allocated span Pascal-demand gate](../../experiments/0029-allocated-span-pascal-demand.md)
 - [Allocated span Pascal-demand manifest](../../../data/derived/e3-allocated-span-pascal-demand-k6-n8.json)
 - [Lean Pascal demand and lowest-node span allocation](../../../ErdosSzekeres/StructuralChargingPascalDemand.lean)
+- [Lean exact span frontier and slotting reduction](../../../ErdosSzekeres/StructuralChargingSpanFrontier.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

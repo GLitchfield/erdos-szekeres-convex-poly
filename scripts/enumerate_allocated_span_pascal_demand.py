@@ -158,6 +158,44 @@ def context_groups(
     )
 
 
+def contains_monochromatic_subset(
+    analyzer: LocalSpanAnalysis,
+    bits: int,
+    vertices: tuple[int, ...],
+    color: int,
+    size: int,
+) -> bool:
+    """Test one cup--cap outcome directly on a projected endpoint set."""
+    if size > len(vertices):
+        return False
+    return any(
+        all(
+            analyzer.color(bits, triple) == bool(color)
+            for triple in itertools.combinations(chosen, 3)
+        )
+        for chosen in itertools.combinations(vertices, size)
+    )
+
+
+def endpoint_projection_supports_pascal_shortcut(
+    analyzer: LocalSpanAnalysis,
+    bits: int,
+    vertices: tuple[int, ...],
+    color: int,
+    rank: int,
+) -> bool:
+    """Whether the classical cup--cap theorem applies to this projection."""
+    return not contains_monochromatic_subset(
+        analyzer, bits, vertices, color, rank + 1
+    ) and not contains_monochromatic_subset(
+        analyzer,
+        bits,
+        vertices,
+        1 - color,
+        analyzer.strong_size + 1 - rank,
+    )
+
+
 def digest_context(
     digest,
     support: int,
@@ -207,6 +245,8 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
     totals: Counter[str] = Counter()
     by_size: dict[str, Counter[str]] = {}
     rank_rows: dict[tuple[int, int], Counter[str]] = {}
+    projection_rows: dict[tuple[int, int], Counter[str]] = {}
+    projection_examples: dict[tuple[int, int], dict[str, object]] = {}
     saturation_examples: dict[tuple[int, int], dict[str, object]] = {}
     violation = None
     digest = hashlib.sha256()
@@ -260,6 +300,32 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
                                         "rank": rank,
                                         "capacity": capacity,
                                     }
+                            projection_row = projection_rows.setdefault(
+                                key, Counter()
+                            )
+                            projection_row["group_count"] += 1
+                            left_endpoints = tuple(left for left, _ in frontier)
+                            right_endpoints = tuple(right for _, right in frontier)
+                            left_ok = endpoint_projection_supports_pascal_shortcut(
+                                analyzer, bits, left_endpoints, color, rank
+                            )
+                            right_ok = endpoint_projection_supports_pascal_shortcut(
+                                analyzer, bits, right_endpoints, color, rank
+                            )
+                            if not left_ok:
+                                projection_row["left_failures"] += 1
+                            if not right_ok:
+                                projection_row["right_failures"] += 1
+                            if not left_ok and not right_ok:
+                                projection_row["both_failures"] += 1
+                                projection_examples.setdefault(
+                                    key,
+                                    {
+                                        **example(support, lower, bits, frontier),
+                                        "left_endpoints": list(left_endpoints),
+                                        "right_endpoints": list(right_endpoints),
+                                    },
+                                )
         by_size[str(size)] = row
         totals.update(row)
 
@@ -276,6 +342,14 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
     examples = {
         f"{'cup' if color else 'cap'},{rank}": value
         for (color, rank), value in sorted(saturation_examples.items())
+    }
+    projection_census = {
+        f"{'cup' if color else 'cap'},{rank}": dict(sorted(row.items()))
+        for (color, rank), row in sorted(projection_rows.items())
+    }
+    projection_failure_examples = {
+        f"{'cup' if color else 'cap'},{rank}": value
+        for (color, rank), value in sorted(projection_examples.items())
     }
     return {
         "schema_version": 1,
@@ -304,6 +378,11 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
                 "candidate interval"
             ),
             "capacity": "Nat.choose (k - 2) (rank - 1)",
+            "endpoint_projection_shortcut": (
+                "the left or right endpoint set would support the direct "
+                "classical cup--cap reduction only if it avoids a color-rank+1 "
+                "chain and an opposite-color-(k+1-rank) chain"
+            ),
             "claim_boundary": (
                 "The census is bounded evidence only; it neither proves the "
                 "general frontier bound nor supplies a global injective charge."
@@ -317,6 +396,10 @@ def produce(maximum_n: int, strong_size: int) -> dict[str, object]:
             "analyzed_local_states": len(analyzer.cache),
         },
         "rank_census": rank_census,
+        "endpoint_projection_falsifier": {
+            "census": projection_census,
+            "first_both_failure_examples": projection_failure_examples,
+        },
         "first_saturation_examples": examples,
         "first_violation": violation,
         "canonical_context_sha256": digest.hexdigest(),

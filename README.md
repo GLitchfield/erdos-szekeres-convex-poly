@@ -155,8 +155,13 @@ sets.
   span endpoints and proves that the allocated node separates them between
   its two children. An independently replayed all-root census through eight
   vertices at `k=6` checks 631,474 open exact-rank frontiers with no Pascal
-  capacity violation. The general frontier bound and its global injection
-  into the outer binomial window remain open Lean targets.
+  capacity violation. `StructuralChargingSpanFrontier.lean` formalizes exact
+  ranks, the allocated antichain, exact child-ray normal forms, and the
+  complementary crossing-rank bound. It reduces the local capacity theorem to
+  an explicit `AllocatedExactRankSlotting` injection. The same exhaustive gate
+  refutes constructing it by cup--cap on either raw endpoint projection, so
+  the next target uses ray incidence. That construction and the global
+  injection into the outer binomial window remain open Lean targets.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

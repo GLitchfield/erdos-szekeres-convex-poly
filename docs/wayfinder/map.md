@@ -324,10 +324,16 @@ None. The destination was fixed by the user on 2026-08-01.
   lowest-separating-node allocation for distinct endpoints with an
   opposite-child theorem. Independent programs exhaust all 376,764 compatible
   roots through eight vertices at `k=6`; none of 631,474 exact-rank frontier
-  groups exceeds its demand. The next formal target is
-  `allocatedExactRankFrontier_card_le_spanPascalDemand` under a no-strong-`k`
-  hypothesis. Only after that local theorem may the route attempt the global
-  injection into `decomposableBinomialWindow`.
+  groups exceeds its demand. Lean now defines the exact allocated frontier,
+  proves its endpoint antichain and ordering laws, reduces exact parent ranks
+  to exact child-ray ranks, and derives the crossing-pair complementary-rank
+  bound under no strong `k`-set. It packages the missing combinatorics as
+  `AllocatedExactRankSlotting` and proves that such a slot injection implies
+  the Pascal bound. The exhaustive gate separately refutes direct cup--cap on
+  either endpoint projection, including 996 rank-three groups where both
+  projections fail. The next formal target is to construct the slotting from
+  ray incidence. Only after that local theorem may the route attempt the
+  global injection into `decomposableBinomialWindow`.
 
 ## Not yet specified
 
