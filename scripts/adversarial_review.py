@@ -338,11 +338,16 @@ def run_process(
     prompt: str,
     cwd: Path,
     timeout_seconds: int,
+    environment: dict[str, str] | None = None,
 ) -> subprocess.CompletedProcess[str]:
+    process_environment = os.environ.copy()
+    if environment is not None:
+        process_environment.update(environment)
     try:
         return subprocess.run(
             command,
             cwd=cwd,
+            env=process_environment,
             input=prompt,
             text=True,
             stdout=subprocess.PIPE,
@@ -392,6 +397,17 @@ def run_codex(
     stem: str,
     timeout_seconds: int,
 ) -> dict[str, Any]:
+    # Current Codex clients initialize an in-process app-server under
+    # CODEX_HOME even for --ephemeral --ignore-user-config runs.  The user's
+    # normal CODEX_HOME is deliberately read-only inside the reviewer sandbox,
+    # so give the client a private disposable home containing only its auth.
+    source_home = Path(os.environ.get("CODEX_HOME", Path.home() / ".codex"))
+    auth_path = source_home / "auth.json"
+    if not auth_path.is_file():
+        raise ReviewError(f"Codex authentication is missing: {auth_path}")
+    codex_home = scratch / "codex-home"
+    codex_home.mkdir()
+    shutil.copy2(auth_path, codex_home / "auth.json")
     schema_path = scratch / "review-schema.json"
     result_path = scratch / f"{stem}-result.json"
     write_json(schema_path, REVIEW_SCHEMA)
@@ -410,7 +426,13 @@ def run_codex(
         "--json",
         "-",
     ]
-    completed = run_process(command, prompt, scratch, timeout_seconds)
+    completed = run_process(
+        command,
+        prompt,
+        scratch,
+        timeout_seconds,
+        {"CODEX_HOME": str(codex_home)},
+    )
     (raw_dir / f"{stem}.stdout.jsonl").write_text(completed.stdout)
     (raw_dir / f"{stem}.stderr").write_text(completed.stderr)
     if completed.returncode != 0:
