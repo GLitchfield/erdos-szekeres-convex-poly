@@ -45,6 +45,20 @@ def FiniteCandidateHoleState.CanFill
     ∀ span ∈ block.erase state.hole,
       ideal ≠ state.representative span
 
+/-- A two-step augmenting exit first transfers an occupied candidate to the
+hole, then fills the displaced owner's hole with an ideal unused by the
+original partial representative system. -/
+def FiniteCandidateHoleState.HasTwoStepAugmentingExit
+    {Span Ideal : Type*} [DecidableEq Span]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates) : Prop :=
+  ∃ ideal ∈ candidates state.hole,
+    ∃ owner ∈ block.erase state.hole,
+      state.representative owner = ideal ∧
+        ∃ fresh ∈ candidates owner,
+          ∀ span ∈ block.erase state.hole,
+            fresh ≠ state.representative span
+
 /-- A system of distinct representatives restricted to one finite block. -/
 def FiniteCandidateHasDistinctRepresentativesOn
     {Span Ideal : Type*} (block : Finset Span)
@@ -169,6 +183,33 @@ theorem FiniteCandidateHoleState.transferOwnedCandidate_canFill_of_card_lt
   exact FiniteCandidateHoleState.canFill_of_erase_card_lt_candidates_card
     (state.transferOwnedCandidate ideal hideal owner howner howned) hcard
 
+/-- A fresh candidate of the displaced owner fills the transferred state.
+This is the constructive kernel of a length-two augmenting path. -/
+theorem FiniteCandidateHoleState.transferOwnedCandidate_canFill_of_fresh
+    {Span Ideal : Type*} [DecidableEq Span]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (ideal : Ideal) (hideal : ideal ∈ candidates state.hole)
+    (owner : Span) (howner : owner ∈ block.erase state.hole)
+    (howned : state.representative owner = ideal)
+    (fresh : Ideal) (hfresh : fresh ∈ candidates owner)
+    (hunused : ∀ span ∈ block.erase state.hole,
+      fresh ≠ state.representative span) :
+    (state.transferOwnedCandidate ideal hideal owner howner howned).CanFill := by
+  refine ⟨fresh, hfresh, ?_⟩
+  intro span hspan
+  have hspanBlock : span ∈ block := Finset.mem_of_mem_erase hspan
+  by_cases hspanHole : span = state.hole
+  · subst span
+    have hfreshIdeal : fresh ≠ ideal := by
+      simpa [howned] using hunused owner howner
+    simpa [FiniteCandidateHoleState.transferOwnedCandidate,
+      Function.update] using hfreshIdeal
+  · have hspanOld : span ∈ block.erase state.hole :=
+      Finset.mem_erase.mpr ⟨hspanHole, hspanBlock⟩
+    simpa [FiniteCandidateHoleState.transferOwnedCandidate,
+      Function.update, hspanHole] using hunused span hspanOld
+
 /-- A fillable one-hole state gives an SDR on the whole block. -/
 theorem FiniteCandidateHoleState.hasDistinctRepresentatives_of_canFill
     {Span Ideal : Type*} [DecidableEq Span]
@@ -208,6 +249,34 @@ theorem FiniteCandidateHoleState.hasDistinctRepresentatives_of_canFill
         Finset.mem_erase.mpr ⟨hspanHole, hspan⟩
       simpa [completed, Function.update, hspanHole] using
         state.representative_mem span hspanErase
+
+/-- A two-step augmenting exit supplies an SDR without any global matching,
+Hall premise, or well-founded multi-step measure. -/
+theorem FiniteCandidateHoleState.hasDistinctRepresentatives_of_twoStepAugmentingExit
+    {Span Ideal : Type*} [DecidableEq Span]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hexit : state.HasTwoStepAugmentingExit) :
+    FiniteCandidateHasDistinctRepresentativesOn block candidates := by
+  obtain ⟨ideal, hideal, owner, howner, howned, fresh, hfresh, hunused⟩ := hexit
+  let next :=
+    state.transferOwnedCandidate ideal hideal owner howner howned
+  exact next.hasDistinctRepresentatives_of_canFill
+    (state.transferOwnedCandidate_canFill_of_fresh
+      ideal hideal owner howner howned fresh hfresh hunused)
+
+/-- The same two-step augmenting certificate proves the block Hall
+inequality. -/
+theorem FiniteCandidateHoleState.card_le_biUnion_of_twoStepAugmentingExit
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hexit : state.HasTwoStepAugmentingExit) :
+    block.card ≤ (block.biUnion candidates).card := by
+  obtain ⟨representative, hinjective, hmem⟩ :=
+    state.hasDistinctRepresentatives_of_twoStepAugmentingExit hexit
+  exact Finset.card_le_biUnion_card_of_injective_mem block candidates
+    representative hmem hinjective
 
 /-- Under the singleton-or-block-large profile, every one-hole state fills
 directly or after one ownership transfer.  No candidate priority, matching,
