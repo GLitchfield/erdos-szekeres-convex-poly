@@ -750,14 +750,23 @@ bound the number of retained ordered ports solely in terms of `k`. This does
 not refute a stronger structural use of endpoint incidence; it stops the
 global finite-interface route selected by the review.
 
-The pre-vetted structural redirect is now active. Its first frozen named
-contract is `allocatedSpanPascalDemand_le_window`: allocate every exact
-near-threshold span to the unique lowest decomposition-tree node separating
-its endpoints and charge the adjacent Pascal coefficient determined by its
-published child index and exact rank into the outer
-`decomposableBinomialWindow`. The allocation map, demand definition, and
-window inequality must survive the committed `k=6` falsification boundary
-before the statement is promoted to Lean.
+The pre-vetted structural redirect has passed its first local gate. Lean's
+`publishedSpanPascalDemand` is the adjacent coefficient
+`choose (k-2) (rank-1)`; compiling theorems bound both color-dual one-step
+threshold jumps by it. `LowestSeparatedSpanAllocation` now packages the
+unique lowest-node allocation of distinct endpoints and proves they occupy
+opposite children there.
+
+The independently replayed `k=6` census covers every recursively
+deep-below coloring on every labeled support through eight vertices and every
+compatible root: 376,764 roots and 631,474 open exact-rank frontier groups.
+No frontier exceeds its Pascal demand. Rank five saturates capacity one;
+ranks three and four have observed maxima five and three against capacities
+six and four. This is bounded evidence, not the general theorem. The next
+formal target is
+`allocatedExactRankFrontier_card_le_spanPascalDemand`; the original
+`allocatedSpanPascalDemand_le_window` remains the subsequent global
+injection theorem.
 
 ## Evidence
 
@@ -770,6 +779,9 @@ before the statement is promoted to Lean.
 - [Large dominance-quotient refutation](../../../data/derived/e3-span-dominance-quotient-k6-n10.json)
 - [Rooted-interface gate and route redirect](../../experiments/0028-rooted-span-interface-gate.md)
 - [Rooted-interface refutation manifest](../../../data/derived/e3-rooted-span-interface-k6-n10.json)
+- [Allocated span Pascal-demand gate](../../experiments/0029-allocated-span-pascal-demand.md)
+- [Allocated span Pascal-demand manifest](../../../data/derived/e3-allocated-span-pascal-demand-k6-n8.json)
+- [Lean Pascal demand and lowest-node span allocation](../../../ErdosSzekeres/StructuralChargingPascalDemand.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

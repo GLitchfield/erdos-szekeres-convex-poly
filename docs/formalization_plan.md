@@ -595,10 +595,16 @@ decisive middle cut. Lean's
 `twoSidedExtensionDominates_diagonal_iff` additionally proves that the exact
 two-sided dominance frontier can have arbitrarily large equal-rank
 antichains. The uniform finite-state route is therefore stopped. The next E3
-contract uses the raw footprint only locally: define the Pascal demand of an
-exact near-threshold span, allocate it to its unique lowest separating tree
-node, and prove `allocatedSpanPascalDemand_le_window` before returning to the
-published child-slice induction.
+contract uses the raw footprint only locally. Its first bounded gate now
+passes: Lean defines the exact-rank Pascal demand, proves both uniform
+one-step threshold bounds, and constructs the unique lowest-node endpoint
+allocation. Independent programs check every compatible root through eight
+vertices at `k = 6`; all 631,474 open exact-rank frontiers fit their adjacent
+coefficient. The next theorem is
+`allocatedExactRankFrontier_card_le_spanPascalDemand` for arbitrary open
+decomposable nodes. It must be proved in Lean before building the global
+slot injection and the final `allocatedSpanPascalDemand_le_window` return to
+the published child-slice induction.
 
 ## External Lean baseline
 

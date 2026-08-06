@@ -148,6 +148,15 @@ sets.
   now returns the raw footprint to structural counting; the next contract is
   an allocated Pascal-demand inequality at lowest separating tree nodes, not
   another global finite quotient.
+- `ErdosSzekeres/StructuralChargingPascalDemand.lean` now proves the
+  arithmetic half of that redirect: the adjacent coefficient
+  `choose (k-2) (rank-1)` bounds either color's one-step published threshold
+  increase. It also packages the unique lowest-node allocation of distinct
+  span endpoints and proves that the allocated node separates them between
+  its two children. An independently replayed all-root census through eight
+  vertices at `k=6` checks 631,474 open exact-rank frontiers with no Pascal
+  capacity violation. The general frontier bound and its global injection
+  into the outer binomial window remain open Lean targets.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

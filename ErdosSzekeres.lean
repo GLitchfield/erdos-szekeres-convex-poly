@@ -16,6 +16,7 @@ public import ErdosSzekeres.Duality
 public import ErdosSzekeres.ContextProfile
 public import ErdosSzekeres.RootedChainFootprint
 public import ErdosSzekeres.SpanDominance
+public import ErdosSzekeres.StructuralChargingPascalDemand
 public import ErdosSzekeres.RankProfile
 public import ErdosSzekeres.RankProfileCollision
 public import ErdosSzekeres.TurnLanguage

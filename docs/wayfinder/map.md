@@ -318,11 +318,16 @@ None. The destination was fixed by the user on 2026-08-01.
   Lean additionally proves that two-sided dominance has arbitrarily large
   equal-rank diagonal antichains, so retaining the full ordered frontier has
   no dominance-derived `k`-only bound. The finite-interface route is stopped.
-  The active redirect is the named structural contract
-  `allocatedSpanPascalDemand_le_window`: allocate exact near-threshold spans
-  to their unique lowest separating tree nodes and charge their adjacent
-  Pascal demand into the outer binomial window. Define and falsify that demand
-  at the committed `k=6` boundary before Lean theorem promotion.
+  The named structural redirect has passed its first bounded gate. Lean now
+  defines the adjacent demand `choose (k-2) (rank-1)`, proves that it bounds
+  both one-step published threshold jumps, and packages a unique
+  lowest-separating-node allocation for distinct endpoints with an
+  opposite-child theorem. Independent programs exhaust all 376,764 compatible
+  roots through eight vertices at `k=6`; none of 631,474 exact-rank frontier
+  groups exceeds its demand. The next formal target is
+  `allocatedExactRankFrontier_card_le_spanPascalDemand` under a no-strong-`k`
+  hypothesis. Only after that local theorem may the route attempt the global
+  injection into `decomposableBinomialWindow`.
 
 ## Not yet specified
 

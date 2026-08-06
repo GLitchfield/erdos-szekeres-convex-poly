@@ -30,3 +30,12 @@ ignored `runs/`.
   observation-readout mismatches and zero footprint-transition collisions.
   Its manifest SHA-256 is
   `70d5f08c0bce7fb0ae7ef0748c59a19e81f0c1d002e077aa727877f4794b8a33`.
+- `e3-allocated-span-pascal-demand-k6-n8.json` records every compatible
+  decomposition root on every labeled support through eight vertices at
+  `k = 6`. Across 631,474 open exact-rank frontier groups, no two-sided
+  interval frontier exceeds `choose(4, rank - 1)`. The independent checker
+  reproduces every count, sharp rank-five example, and canonical digest.
+  This is bounded evidence for a local capacity lemma, not a proof of the
+  general inequality or of a global Pascal-window injection. Its manifest
+  SHA-256 is
+  `a8f0608d7de4d30d89f6495d9c113461489fb4ac05fe638f29309a59c35573c0`.

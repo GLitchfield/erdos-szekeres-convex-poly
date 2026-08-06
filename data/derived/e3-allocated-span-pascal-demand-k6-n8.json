@@ -1,0 +1,147 @@
+{
+  "canonical_context_sha256": "056ad8113dff790c5dba41779f51d5dc944d9bc46996b2acf1b4b7b2e60c46ee",
+  "contract": {
+    "allocation": "a crossing endpoint pair is allocated to the current root, representing its unique lowest separating node",
+    "capacity": "Nat.choose (k - 2) (rank - 1)",
+    "claim_boundary": "The census is bounded evidence only; it neither proves the general frontier bound nor supplies a global injective charge.",
+    "contexts": "every recursively deep-below coloring on every labeled support and every compatible nontrivial root split",
+    "frontier": "fixed-color fixed-exact-rank intervals containing no distinct candidate interval",
+    "rank": "maximum local monochromatic cup/cap chain size with the exact ordered endpoint pair; terminal strong-k contexts are skipped"
+  },
+  "experiment": "allocated-span-pascal-demand-frontier",
+  "first_saturation_examples": {
+    "cap,5": {
+      "coloring_hex": "0",
+      "frontier": [
+        [
+          0,
+          4
+        ]
+      ],
+      "lower_mask_hex": "10",
+      "support_mask_hex": "1f"
+    },
+    "cup,5": {
+      "coloring_hex": "10046008c7",
+      "frontier": [
+        [
+          0,
+          4
+        ]
+      ],
+      "lower_mask_hex": "1e",
+      "support_mask_hex": "1f"
+    }
+  },
+  "first_violation": null,
+  "generation_base_revision": "349385c0fcbf897badc4b4752cb4f0783e5551b6",
+  "observed_claim": "Every tested exact-rank two-sided interval frontier fits its adjacent Pascal demand.",
+  "parameters": {
+    "maximum_n": 8,
+    "minimum_recorded_rank": 3,
+    "strong_size": 6
+  },
+  "rank_census": {
+    "cap,3": {
+      "capacity": 6,
+      "group_count": 156927,
+      "max_frontier": 5,
+      "minimum_observed_slack": 1,
+      "saturation_count": 0
+    },
+    "cap,4": {
+      "capacity": 4,
+      "group_count": 121408,
+      "max_frontier": 3,
+      "minimum_observed_slack": 1,
+      "saturation_count": 0
+    },
+    "cap,5": {
+      "capacity": 1,
+      "group_count": 37402,
+      "max_frontier": 1,
+      "minimum_observed_slack": 0,
+      "saturation_count": 37402
+    },
+    "cup,3": {
+      "capacity": 6,
+      "group_count": 156927,
+      "max_frontier": 5,
+      "minimum_observed_slack": 1,
+      "saturation_count": 0
+    },
+    "cup,4": {
+      "capacity": 4,
+      "group_count": 121408,
+      "max_frontier": 3,
+      "minimum_observed_slack": 1,
+      "saturation_count": 0
+    },
+    "cup,5": {
+      "capacity": 1,
+      "group_count": 37402,
+      "max_frontier": 1,
+      "minimum_observed_slack": 0,
+      "saturation_count": 37402
+    }
+  },
+  "schema_version": 1,
+  "sources": {
+    "checker": {
+      "path": "scripts/check_allocated_span_pascal_demand.py",
+      "sha256": "eb442e435c8e82dee7fb7a551798f130f40fb42145cf22b7776bcbeea9126aeb"
+    },
+    "producer": {
+      "path": "scripts/enumerate_allocated_span_pascal_demand.py",
+      "sha256": "2fea8d8500a4ae49e2884d84718f3b165ca2c6166107c27903b1360b5f18d12d"
+    }
+  },
+  "statistics": {
+    "analyzed_local_states": 295932,
+    "by_support_size": {
+      "2": {
+        "open_contexts": 56,
+        "root_contexts": 56
+      },
+      "3": {
+        "open_contexts": 336,
+        "rank_group_checks": 224,
+        "root_contexts": 336
+      },
+      "4": {
+        "open_contexts": 1540,
+        "rank_group_checks": 2100,
+        "root_contexts": 1540
+      },
+      "5": {
+        "open_contexts": 6720,
+        "rank_group_checks": 12208,
+        "root_contexts": 6720
+      },
+      "6": {
+        "open_contexts": 28056,
+        "rank_group_checks": 59416,
+        "root_contexts": 29792,
+        "terminal_contexts": 1736
+      },
+      "7": {
+        "open_contexts": 89936,
+        "rank_group_checks": 208560,
+        "root_contexts": 110208,
+        "terminal_contexts": 20272
+      },
+      "8": {
+        "open_contexts": 141254,
+        "rank_group_checks": 348966,
+        "root_contexts": 228112,
+        "terminal_contexts": 86858
+      }
+    },
+    "totals": {
+      "open_contexts": 267898,
+      "rank_group_checks": 631474,
+      "root_contexts": 376764,
+      "terminal_contexts": 108866
+    }
+  }
+}
