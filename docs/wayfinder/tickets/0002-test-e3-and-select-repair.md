@@ -937,15 +937,25 @@ two-element transition-interval families, proves flexible meet/join and every
 two-family expansion test, and proves that no injective representative exists.
 The axiom audit uses only `propext`, `Classical.choice`, and `Quot.sound`.
 
-The active structural target is therefore a genuinely geometry-specific
-well-founded hole-progress invariant. A state injectively represents every
-span of a block except one hole. If no unused ideal directly fills the hole, a
-certified lane switch or adjacent meet/join move must strictly decrease a
-fixed `Nat × Nat` measure derived from local endpoint/lane data. The move and
-measure must be frozen before examining successful matchings; graph distance
-to a terminal state is permitted only as a falsifier, not as the proof
-measure. A later bounded gate should reject any nonterminal state with no
-decreasing move or any terminal-free closed component.
+The first candidate strict measure was rejected before execution. Its
+discrete-convex boundary energy had no deterministic hole proxy or local
+envelope; linear cardinality energy is invariant under meet/join, convex
+cardinality energy increases on incomparable ideals, and a local replacement
+can collide with a third representative. The stable-ownership replacement has
+an exact move: the hole takes a boundary-priority candidate and passes the hole
+to that ideal's unique owner.
+
+That rule passes the complete 5,208-state cap/rank-three frozen gate. Exactly
+3,612 states fill directly. Every one of the 1,596 blocked states has hole
+index 2 or 3, the singleton full/empty families. One ownership transfer moves
+the hole to index 0, 1, 4, or 5, whose family has 10, 7, 9, or 10 candidates;
+with only five occupied ideals it is immediately fillable. Independent
+cell-mask and row-height programs reproduce the one-step termination and the
+absence of cycles. Lean now proves the generic completion, ownership-transfer,
+cardinality-exit, well-founded descent-to-SDR, and block-cardinality lemmas.
+The active structural target is to replace the frozen family-size observation
+by a geometry-specific small-to-large transfer theorem for arbitrary reflected
+frontier blocks. No graph-distance measure is promoted.
 
 ## Evidence
 
@@ -984,6 +994,9 @@ decreasing move or any terminal-free closed component.
 - [Two-lane adjacent uncrossing gate](../../experiments/0035-two-lane-adjacent-uncrossing.md)
 - [Two-lane adjacent uncrossing manifest](../../../data/derived/e3-two-lane-adjacent-uncrossing-frozen-n12-k7.json)
 - [Lean limit of pairwise uncrossing](../../../ErdosSzekeres/StructuralChargingTransitionHallUncrossing.lean)
+- [Stable-ownership one-hole descent gate](../../experiments/0036-stable-ownership-hole-descent.md)
+- [Stable-ownership one-hole descent manifest](../../../data/derived/e3-stable-ownership-hole-descent-frozen-n12-k7.json)
+- [Lean one-hole descent machinery](../../../ErdosSzekeres/StructuralChargingTransitionHallHoleDescent.lean)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

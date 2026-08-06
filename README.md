@@ -200,8 +200,16 @@ sets.
   ideal pairs. `StructuralChargingTransitionHallUncrossing.lean` then proves
   that this flexible rule plus every two-family expansion test still does not
   imply distinct representatives: three identical two-element transition
-  intervals are a kernel-checked obstruction. A well-founded, geometry-specific
-  hole-progress invariant is still missing.
+  intervals are a kernel-checked obstruction. The first exact hole-moving gate
+  now succeeds. On all 5,208 one-hole states of the frozen cap/rank-three
+  frontier, every blocked state lies at one of the two singleton families; one
+  ownership transfer moves the hole to a family of size at least seven, so it
+  is immediately fillable with only five occupied ideals. Independent
+  cell-mask and row-height implementations agree. The generic completion,
+  ownership-transfer, cardinality-exit, and well-founded-descent implications
+  now compile in `StructuralChargingTransitionHallHoleDescent.lean`. The open
+  geometry-specific target is to force an analogous small-to-large transfer
+  on arbitrary reflected frontier blocks.
   General Hall and the global outer-window injection remain subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas

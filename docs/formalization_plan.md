@@ -681,11 +681,27 @@ frozen adjacent ideal pairs in two independent representations. This does not
 give Hall. Lean now proves the abstract failure directly: three identical
 two-element transition intervals satisfy flexible uncrossing and every
 two-family expansion test but admit no system of distinct representatives.
-The open structural target is therefore a geometry-specific, well-founded
-hole-moving invariant that turns local choices into an augmenting sequence
-without consulting a known matching. Its move relation must use certified lane
-switches and adjacent meet/join exchanges, and a non-fillable one-hole state
-must strictly decrease a locally defined measure.
+The first proposed boundary-energy invariant fails adversarial audit: its
+canonical hole proxy and local envelope were not executable, linear
+cardinality energy is invariant under meet/join, convex cardinality energy
+moves in the wrong direction on incomparable ideals, and third-representative
+collisions are uncontrolled. The replacement stable-ownership gate is exact
+and positive. Among all 5,208 one-hole states of the frozen cap/rank-three
+frontier, every one of the 1,596 blocked states has its hole at one of the two
+singleton candidate families. Taking that singleton from its unique owner
+moves the hole to a family of size 7, 9, or 10, which must be fillable because
+only five ideals remain occupied. Independent implementations show termination
+after at most one transfer and no directed cycles.
+
+`StructuralChargingTransitionHallHoleDescent.lean` now proves the generic
+completion lemma, the cardinality exit, preservation of membership and
+injectivity under ownership transfer, and the implication from any
+well-founded strict hole progress relation to an SDR and block Hall inequality.
+The open structural target is no longer an unspecified energy: prove that an
+arbitrary reflected frontier block either has a large-family hole or admits a
+locally certified ownership/uncrossing move from a small family to a larger
+one. The frozen candidate cardinalities are still computational evidence until
+their structural analogue is proved in Lean.
 
 ## External Lean baseline
 

@@ -391,9 +391,13 @@ None. The destination was fixed by the user on 2026-08-01.
   false, while either locally valid assignment passes all 738 frozen adjacent
   ideal pairs. Lean proves that the flexible rule plus every two-family
   expansion test is abstractly insufficient: three identical two-element
-  transition intervals have no SDR. The active target is a geometry-specific
-  well-founded one-hole augmentation invariant, with moves and measure frozen
-  independently of any successful matching.
+  transition intervals have no SDR. The first exact one-hole rule now passes
+  all 5,208 frozen cap/rank-three states: every blocked singleton-family hole
+  reaches a 7-, 9-, or 10-candidate hole after one ownership transfer and is
+  then fillable. Lean proves generic completion, transfer preservation,
+  cardinality exit, and well-founded descent-to-SDR theorems. The active target
+  is the geometry-specific small-to-large transfer lemma for arbitrary
+  reflected frontier blocks, not a graph-distance measure.
   General Hall and the global injection into `decomposableBinomialWindow`
   remain downstream.
 
