@@ -1,0 +1,262 @@
+{
+  "contract": {
+    "claim_boundary": "bounded k=6 computational evidence only; no arbitrary genuine-frontier profile, Hall theorem, or exact-formula conclusion",
+    "domain": "every recursively decomposable root with support size in the recorded interval, every reflected exact-rank consecutive frontier block, every hole, and every injective membership-feasible owner map",
+    "matching_reduction": "the minimum possible maximum reached-owner family size is the least family-size threshold whose eligible owners admit a matching of the entire hole family",
+    "success": "every feasible owner map reaches an owner whose complete candidate family is at least as large as the block"
+  },
+  "experiment": "all-root-block-large-reached-owner-gate",
+  "generation_base_revision": "a8f8a04df918b486bdb660e8c18189148687b3d6",
+  "k6_census": {
+    "all_feasible_maps_reach_block_large_owner": true,
+    "checked_prefix_sha256": "54a95152cdafcee575f0779f4b22bad1a1cfae4a7ebc248d2c641efec08e029b",
+    "complete": true,
+    "first_profile_failure": null,
+    "maximum_n": 8,
+    "maximum_support_size": 8,
+    "minimum_support_size": 2,
+    "statistics": {
+      "analyzed_local_states": 295932,
+      "anchor_endpoint_shape_counts": {
+        "endpoint_only": 3656,
+        "uses_nonendpoint": 136
+      },
+      "anchor_whole_hole_counts": {
+        "no": 3792
+      },
+      "by_support_size": {
+        "2": {
+          "open_contexts": 56,
+          "root_contexts": 56
+        },
+        "3": {
+          "consecutive_block_checks": 224,
+          "group_checks": 224,
+          "hole_checks": 224,
+          "maximum_frontier_size": 1,
+          "open_contexts": 336,
+          "root_contexts": 336,
+          "vacuous_holes": 224
+        },
+        "4": {
+          "consecutive_block_checks": 2380,
+          "group_checks": 2100,
+          "hole_checks": 2520,
+          "maximum_frontier_size": 2,
+          "open_contexts": 1540,
+          "root_contexts": 1540,
+          "vacuous_holes": 2520
+        },
+        "5": {
+          "consecutive_block_checks": 18256,
+          "group_checks": 12208,
+          "hole_checks": 21280,
+          "maximum_frontier_size": 2,
+          "open_contexts": 6720,
+          "root_contexts": 6720,
+          "vacuous_holes": 21280
+        },
+        "6": {
+          "consecutive_block_checks": 100296,
+          "group_checks": 59416,
+          "hole_checks": 124096,
+          "maximum_frontier_size": 3,
+          "open_contexts": 28056,
+          "root_contexts": 29792,
+          "terminal_contexts": 1736,
+          "vacuous_holes": 124096
+        },
+        "7": {
+          "consecutive_block_checks": 368864,
+          "group_checks": 208560,
+          "hole_checks": 469472,
+          "maximum_frontier_size": 4,
+          "nonvacuous_holes": 448,
+          "open_contexts": 89936,
+          "root_contexts": 110208,
+          "terminal_contexts": 20272,
+          "vacuous_holes": 469024
+        },
+        "8": {
+          "consecutive_block_checks": 636114,
+          "group_checks": 348966,
+          "hole_checks": 820872,
+          "maximum_frontier_size": 5,
+          "nonvacuous_holes": 3344,
+          "open_contexts": 141254,
+          "root_contexts": 228112,
+          "terminal_contexts": 86858,
+          "vacuous_holes": 817528
+        }
+      },
+      "by_support_size_anchor_statistics": {
+        "2": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "small_owner_deficiency_histogram": {}
+        },
+        "3": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "small_owner_deficiency_histogram": {}
+        },
+        "4": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "small_owner_deficiency_histogram": {}
+        },
+        "5": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "small_owner_deficiency_histogram": {}
+        },
+        "6": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "small_owner_deficiency_histogram": {}
+        },
+        "7": {
+          "anchor_endpoint_shape_counts": {
+            "endpoint_only": 448
+          },
+          "anchor_whole_hole_counts": {
+            "no": 448
+          },
+          "endpoint_singleton_deficiency_counts": {
+            "yes": 448
+          },
+          "first_forced_endpoint_role_histogram": {
+            "left_past": 448
+          },
+          "forced_endpoint_role_pattern_histogram": {
+            "left_past|left_future|right_past|right_future": 448
+          },
+          "minimum_deficient_anchor_size_histogram": {
+            "1": 448
+          },
+          "small_owner_deficiency_histogram": {
+            "1": 448
+          }
+        },
+        "8": {
+          "anchor_endpoint_shape_counts": {
+            "endpoint_only": 3208,
+            "uses_nonendpoint": 136
+          },
+          "anchor_whole_hole_counts": {
+            "no": 3344
+          },
+          "endpoint_singleton_deficiency_counts": {
+            "yes": 3344
+          },
+          "first_forced_endpoint_role_histogram": {
+            "left_future": 160,
+            "left_past": 3184
+          },
+          "forced_endpoint_role_pattern_histogram": {
+            "left_future|right_past|right_future": 160,
+            "left_past|left_future|right_past": 160,
+            "left_past|left_future|right_past|right_future": 3024
+          },
+          "minimum_deficient_anchor_size_histogram": {
+            "1": 3344
+          },
+          "small_owner_deficiency_histogram": {
+            "1": 3344
+          }
+        }
+      },
+      "by_support_size_slack_histogram": {
+        "2": {},
+        "3": {},
+        "4": {},
+        "5": {},
+        "6": {},
+        "7": {
+          "3": 448
+        },
+        "8": {
+          "1": 424,
+          "2": 2132,
+          "3": 788
+        }
+      },
+      "endpoint_singleton_deficiency_counts": {
+        "yes": 3792
+      },
+      "first_forced_endpoint_role_histogram": {
+        "left_future": 160,
+        "left_past": 3632
+      },
+      "forced_endpoint_role_pattern_histogram": {
+        "left_future|right_past|right_future": 160,
+        "left_past|left_future|right_past": 160,
+        "left_past|left_future|right_past|right_future": 3472
+      },
+      "minimum_bottleneck_slack_histogram": {
+        "1": 424,
+        "2": 2132,
+        "3": 1236
+      },
+      "minimum_deficient_anchor_size_histogram": {
+        "1": 3792
+      },
+      "small_owner_deficiency_histogram": {
+        "1": 3792
+      },
+      "totals": {
+        "consecutive_block_checks": 1126134,
+        "group_checks": 631474,
+        "hole_checks": 1438464,
+        "maximum_frontier_size": 5,
+        "nonvacuous_holes": 3792,
+        "open_contexts": 267898,
+        "root_contexts": 376764,
+        "terminal_contexts": 108866,
+        "vacuous_holes": 1434672
+      }
+    },
+    "stop_on_failure": true,
+    "stopped_early": false,
+    "strong_size": 6
+  },
+  "schema_version": 1,
+  "sources": {
+    "checker": {
+      "path": "scripts/check_block_large_reached_owner_all_roots.py",
+      "sha256": "7049cd5a64959c42d41a543d0f316ac5aca8fee6a998008c5ca867799ecaad2d"
+    },
+    "height_base": {
+      "path": "scripts/check_allocated_span_pascal_demand.py",
+      "sha256": "1962a01c479c5d44d2858d7bf9d62e8bf66dd8a6a87c77bd1c4fab347854f018"
+    },
+    "mask_base": {
+      "path": "scripts/enumerate_allocated_span_pascal_demand.py",
+      "sha256": "54ed1a0b33549ea12564a7fdc5c79f502fede0d4da58f3ef051658c412df28bd"
+    },
+    "producer": {
+      "path": "scripts/enumerate_block_large_reached_owner_all_roots.py",
+      "sha256": "14aae6ca3856cefb7c8dc2fb2349a2b66ca56b59e5a452797c86c35043f2425c"
+    }
+  }
+}

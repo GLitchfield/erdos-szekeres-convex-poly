@@ -419,8 +419,20 @@ None. The destination was fixed by the user on 2026-08-01.
   deterministic facing-lane gap charge as the cheapest falsifier; Fable was
   unavailable at its usage limit. Experiment 0043 refutes that rule on the
   tight cap witness because the second charge faces the rigid singleton lane
-  `{3f}`. The active task is the pre-vetted fallback: prove the arbitrary
-  genuine block-large reached-owner profile from exact-rank two-lane incidence,
+  `{3f}`. Experiment 0044 passes the active block-large profile on all 631,474
+  decomposable `k = 6` reflected frontier groups through eight vertices. Its
+  3,792 nonvacuous block/hole checks have minimum bottleneck slack `+1`, and
+  Lean proves that profile failure is exactly a feasible injective map into
+  block-small owners. All 3,792 also have a normalized endpoint-extreme ideal
+  with no compatible block-small owner; Lean proves that this forced-extreme
+  contract implies the active profile. Experiment 0045 refutes maximum single-lane cell spread
+  as the missing bridge: the tight cap owner has seven candidates but spread
+  bound `5 < 6`. The active task is still to prove the arbitrary genuine
+  block-large reached-owner profile from exact-rank two-lane incidence.
+  Experiment 0046 refutes the forced-extreme strengthening on four frozen
+  `k = 7` cup holes; the first instead has a two-ideal anchor `{f,1f}` with one
+  block-small neighbor. The active local contract is therefore the compiled
+  small-owner deficiency, which permits a multi-ideal anchor,
   followed by the separate induction constructing one-hole states. Neither
   open premise may import Hall, a complete matching, or finite enumeration.
   General Hall and the global injection into `decomposableBinomialWindow`

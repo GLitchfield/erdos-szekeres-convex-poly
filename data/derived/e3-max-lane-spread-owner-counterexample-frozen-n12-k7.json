@@ -1,0 +1,136 @@
+{
+  "contract": {
+    "claim_boundary": "one frozen genuine counterexample refutes only the single-lane spread bridge, not block-large reached ownership",
+    "proposed_claim": "every feasible owner map reaches an owner whose maximum raw endpoint-lane cell spread plus one is at least the block size",
+    "spread": "the number of cells in the symmetric difference of one endpoint lane's past and future Pascal-grid ideals"
+  },
+  "counterexample": {
+    "all_reached_lane_spreads_too_small": true,
+    "block_frontier": [
+      [
+        0,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        10
+      ],
+      [
+        8,
+        11
+      ]
+    ],
+    "block_index": 5,
+    "block_size": 6,
+    "block_start_index": 0,
+    "block_stop_index": 6,
+    "color": "cap",
+    "group_index": 0,
+    "hole_family_hex": [
+      "3f"
+    ],
+    "hole_index": 2,
+    "hole_span": [
+      4,
+      6
+    ],
+    "maximum_reached_lane_spread_add_one": 5,
+    "owner_map": [
+      {
+        "geometry": {
+          "left_lane": {
+            "endpoint": 2,
+            "future": {
+              "boundary_slot": [
+                0,
+                1
+              ],
+              "ideal_hex": "3f"
+            },
+            "past": {
+              "boundary_slot": [
+                1,
+                4
+              ],
+              "ideal_hex": "3"
+            },
+            "raw_interval_hex": [
+              "3",
+              "7",
+              "b",
+              "f",
+              "1b",
+              "1f",
+              "3f"
+            ]
+          },
+          "reflected": false,
+          "right_lane": {
+            "endpoint": 5,
+            "future": {
+              "boundary_slot": [
+                0,
+                1
+              ],
+              "ideal_hex": "3f"
+            },
+            "past": {
+              "boundary_slot": [
+                0,
+                1
+              ],
+              "ideal_hex": "3f"
+            },
+            "raw_interval_hex": [
+              "3f"
+            ]
+          },
+          "span": [
+            2,
+            5
+          ]
+        },
+        "ideal_hex": "3f",
+        "left_lane_spread": 4,
+        "maximum_lane_spread": 4,
+        "owner_family_size": 7,
+        "owner_index": 1,
+        "owner_span": [
+          2,
+          5
+        ],
+        "right_lane_spread": 0
+      }
+    ],
+    "rank": 3
+  },
+  "experiment": "frozen-max-lane-spread-owner-counterexample",
+  "generation_base_revision": "a8f8a04df918b486bdb660e8c18189148687b3d6",
+  "schema_version": 1,
+  "sources": {
+    "block_large_manifest": {
+      "path": "data/derived/e3-block-large-reached-owner-frozen-n12-k7.json",
+      "sha256": "b3f75fb27142b11023db09ab8ed28ba9bed67ab4b23da10fca3d169f5a644ac9"
+    },
+    "checker": {
+      "path": "scripts/replay_max_lane_spread_owner.py",
+      "sha256": "563d588a0d5ad0a8c5a286aa6657483d747ace4aa7696bf34142ffb4141133aa"
+    },
+    "producer": {
+      "path": "scripts/check_max_lane_spread_owner.py",
+      "sha256": "c9a5846fa0965e13e6de6886de7ba13830ed0409c2e3cc986c09abbd8c82224d"
+    }
+  }
+}

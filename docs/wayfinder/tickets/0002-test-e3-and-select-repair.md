@@ -1084,6 +1084,44 @@ so the missing lemma must expose a genuine rank-witness reason that at least
 one owner family dominates the containing block. The one-hole-state induction
 remains a separate open premise.
 
+Experiment 0044 tests the active profile on the complete decomposable `k = 6`
+census through eight vertices. A bottleneck matching reduction replaces owner-
+map enumeration: profile failure is exactly an injection of the hole family
+into compatible owners whose families are all smaller than the block. Lean
+proves this logical equivalence. Cell-mask production and independent row-
+height replay agree on all 631,474 groups, 1,126,134 consecutive blocks, and
+1,438,464 holes. There are 3,792 nonvacuous holes, all with bottleneck slack at
+least `+1`; no profile failure occurs. This remains bounded evidence, not the
+arbitrary theorem.
+
+The gate also extracts a minimum small-owner deficiency. Every nonvacuous hole
+has a singleton deficient anchor with deficiency one, and in every case some
+such singleton is one of the hole's four normalized past/future endpoint
+extremes. Thus one genuine endpoint extreme has no compatible block-small
+owner. Lean now defines the normalized extreme family, proves it lies inside
+the reflected candidate family, and proves that this forced-extreme contract
+implies the active block-large reached-owner profile. The open geometry target
+has therefore narrowed to proving that one of those four extremes is forced
+for an arbitrary exact-rank consecutive block.
+
+Experiment 0046 falsifies that last singleton strengthening on the frozen
+`k = 7` root. Of 29 nonvacuous holes, four cup/rank-three holes force no
+endpoint extreme. In the first full seven-span block, hole `(2,5)` has endpoint
+labels `9`, `3f`, and `1b`, each supported by at least one block-small owner.
+Nevertheless the two-ideal anchor `{f,1f}` has only one block-small neighbor.
+Across the frozen root, 26 minimum anchors have size one and three have size
+two, always with deficiency one. The active local target is consequently the
+compiled `AllocatedReflectedEndpointRankTransitionSmallOwnerDeficiency`, not
+the refuted forced-extreme strengthening.
+
+Experiment 0045 rejects the first lane-level bridge proposed after that pass.
+On the tight cap witness, singleton hole `{3f}` maps to owner `(2,5)`, whose
+candidate family has size seven. Its left lane changes by four grid cells and
+its right lane by zero, so maximum single-lane spread plus one is `5 < 6`, the
+block size. Independent cell-mask and boundary-slot calculations agree. The
+active proof must therefore retain lattice branching, combine both lanes, or
+derive a strict deficiency in the incidence graph of block-small owners.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -1137,6 +1175,10 @@ remains a separate open premise.
 - [Block-large reached-owner gate](../../experiments/0042-block-large-reached-owner.md)
 - [Block-large reached-owner manifest](../../../data/derived/e3-block-large-reached-owner-frozen-n12-k7.json)
 - [Facing-lane gap-witness refutation](../../experiments/0043-reflected-facing-lane-gap-witness.md)
+- [All-root block-large reached-owner gate](../../experiments/0044-all-root-block-large-reached-owner.md)
+- [All-root block-large reached-owner manifest](../../../data/derived/e3-block-large-reached-owner-all-roots-k6-n8.json)
+- [Maximum single-lane spread refutation](../../experiments/0045-max-lane-spread-owner-counterexample.md)
+- [Forced endpoint-extreme refutation](../../experiments/0046-forced-endpoint-extreme-counterexample.md)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)

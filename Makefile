@@ -69,6 +69,13 @@ test: check lean
 		data/derived/e3-block-large-reached-owner-frozen-n12-k7.json >/dev/null
 	@python3 scripts/replay_reflected_facing_lane_gap_witness.py \
 		data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json >/dev/null
+	@python3 scripts/check_block_large_reached_owner_all_roots.py \
+		data/derived/e3-block-large-reached-owner-all-roots-k6-n8.json \
+		--source-only >/dev/null
+	@python3 scripts/replay_max_lane_spread_owner.py \
+		data/derived/e3-max-lane-spread-owner-counterexample-frozen-n12-k7.json >/dev/null
+	@python3 scripts/replay_forced_endpoint_extreme.py \
+		data/derived/e3-forced-endpoint-extreme-frozen-n12-k7.json >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -126,6 +133,12 @@ test: check lean
 		scripts/replay_block_large_reached_owner.py \
 		scripts/check_reflected_facing_lane_gap_witness.py \
 		scripts/replay_reflected_facing_lane_gap_witness.py \
+		scripts/enumerate_block_large_reached_owner_all_roots.py \
+		scripts/check_block_large_reached_owner_all_roots.py \
+		scripts/check_max_lane_spread_owner.py \
+		scripts/replay_max_lane_spread_owner.py \
+		scripts/check_forced_endpoint_extreme.py \
+		scripts/replay_forced_endpoint_extreme.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \

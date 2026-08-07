@@ -762,6 +762,34 @@ one-hole-state premise must still be constructed uniformly, normally by
 induction over smaller consecutive blocks. Neither obligation may invoke Hall,
 a completed SDR, or finite enumeration.
 
+Experiment 0044 widens the bounded evidence to every decomposable `k = 6` root
+through eight vertices. A matching threshold computes the exact minimum, over
+feasible owner maps, of the maximum reached-owner family size. Independent
+cell-mask and row-height implementations pass all 631,474 frontier groups and
+all 3,792 nonvacuous holes with minimum slack `+1`. Lean now proves the matching
+logic abstractly: block-large reached ownership is equivalent to the absence
+of a feasible injective map into only block-small owners. In fact, every
+nonvacuous bounded hole has a singleton deficient anchor chosen from its four
+normalized endpoint extremes. Lean defines those extremes, proves they belong
+to the reflected candidate family, and proves that the resulting forced-
+extreme contract implies block-large reached ownership.
+
+Experiment 0046 shows that this singleton strengthening is not the arbitrary
+geometry lemma. Four nonvacuous frozen `k = 7` cup holes force no endpoint
+extreme at all. In the first, anchor `{f,1f}` has one block-small neighbor and
+therefore gives the required strict deficiency. Of the 29 nonvacuous frozen
+holes, 26 have a singleton minimum anchor and three require two ideals; every
+deficiency is one. Lean now packages the surviving exact target as
+`AllocatedReflectedEndpointRankTransitionSmallOwnerDeficiency` and proves it
+implies block-large reached ownership.
+
+The first geometric refinement does not survive its frozen gate. Experiment
+0045 shows that the tight cap owner has a seven-element family but maximum
+single-lane cell spread plus one only `5 < 6`. The missing bridge must exploit
+branching inside a Pascal lattice interval, the union of both endpoint lanes,
+or a strict small-owner neighborhood deficiency. A proof based only on the
+length of one lane interval is retired.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at

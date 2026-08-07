@@ -424,6 +424,56 @@ def allocatedEndpointTransitionCandidates {n : ℕ} {Ideal : Type*}
     pascalTransitionInterval (profiles.past span.1.right)
       (profiles.future span.1.right)
 
+/-- The four past/future endpoint labels that generate a span's two transition
+intervals. -/
+def allocatedEndpointTransitionExtremes {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) : Finset Ideal :=
+  {
+    profiles.past span.1.left,
+    profiles.future span.1.left,
+    profiles.past span.1.right,
+    profiles.future span.1.right
+  }
+
+/-- Every endpoint extreme belongs to the complete two-interval candidate
+family it generates. -/
+theorem allocatedEndpointTransitionExtremes_subset {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    allocatedEndpointTransitionExtremes profiles span ⊆
+      allocatedEndpointTransitionCandidates profiles span := by
+  intro ideal hideal
+  simp only [allocatedEndpointTransitionExtremes, Finset.mem_insert,
+    Finset.mem_singleton] at hideal
+  rcases hideal with rfl | rfl | rfl | rfl
+  · rw [allocatedEndpointTransitionCandidates]
+    exact Finset.mem_union_left _
+      (pascalTransitionInterval_first_mem
+        (profiles.past span.1.left) (profiles.future span.1.left))
+  · rw [allocatedEndpointTransitionCandidates]
+    exact Finset.mem_union_left _
+      (pascalTransitionInterval_second_mem
+        (profiles.past span.1.left) (profiles.future span.1.left))
+  · rw [allocatedEndpointTransitionCandidates]
+    exact Finset.mem_union_right _
+      (pascalTransitionInterval_first_mem
+        (profiles.past span.1.right) (profiles.future span.1.right))
+  · rw [allocatedEndpointTransitionCandidates]
+    exact Finset.mem_union_right _
+      (pascalTransitionInterval_second_mem
+        (profiles.past span.1.right) (profiles.future span.1.right))
+
 theorem allocatedEndpointTransitionCandidates_nonempty
     {n : ℕ} {Ideal : Type*} [Fintype Ideal] [DecidableEq Ideal]
     [Lattice Ideal] [DecidableLE Ideal]

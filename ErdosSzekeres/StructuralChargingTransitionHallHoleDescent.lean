@@ -123,6 +123,117 @@ def FiniteCandidateFeasibleOwnerHasBlockLargeFamily
         ∃ ideal ∈ candidates hole,
           block.card ≤ (candidates (owner ideal)).card
 
+/-- A small-owner obstruction is a feasible injective owner map whose entire
+image consists of families smaller than the containing block. -/
+def FiniteCandidateFeasibleSmallOwnerObstruction
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal) : Prop :=
+  ∃ hole ∈ block, ∃ owner : Ideal → Span,
+    Set.InjOn owner (candidates hole) ∧
+      (∀ ideal ∈ candidates hole,
+        owner ideal ∈ block.erase hole ∧
+          ideal ∈ candidates (owner ideal)) ∧
+        ∀ ideal ∈ candidates hole,
+          (candidates (owner ideal)).card < block.card
+
+/-- The block-large reached-owner property fails exactly when the hole family
+can be injected into candidate-compatible owners that are all block-small.
+This is the matching reduction used by the bounded all-root gate. -/
+theorem finiteCandidateFeasibleOwnerHasBlockLargeFamily_iff_no_smallOwnerObstruction
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal} :
+    FiniteCandidateFeasibleOwnerHasBlockLargeFamily block candidates ↔
+      ¬ FiniteCandidateFeasibleSmallOwnerObstruction block candidates := by
+  constructor
+  · intro hprofile
+    rintro ⟨hole, hhole, owner, hinjective, hfeasible, hsmall⟩
+    obtain ⟨ideal, hideal, hlarge⟩ :=
+      hprofile hole hhole owner hinjective hfeasible
+    exact (Nat.not_le_of_lt (hsmall ideal hideal)) hlarge
+  · intro hnoObstruction hole hhole owner hinjective hfeasible
+    by_contra hnoLarge
+    apply hnoObstruction
+    refine ⟨hole, hhole, owner, hinjective, hfeasible, ?_⟩
+    intro ideal hideal
+    exact Nat.lt_of_not_ge fun hlarge ↦
+      hnoLarge ⟨ideal, hideal, hlarge⟩
+
+/-- The block-small non-hole spans whose candidate families meet a chosen set
+of hole anchors. -/
+def finiteCandidateSmallOwnerNeighbors
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal)
+    (hole : Span) (anchors : Finset Ideal) : Finset Span :=
+  (block.erase hole).filter fun span ↦
+    (candidates span).card < block.card ∧
+      (candidates span ∩ anchors).Nonempty
+
+/-- Every hole has an anchor subset that cannot be injected into the spans
+whose candidate families are both compatible with an anchor and block-small. -/
+def FiniteCandidateSmallOwnerDeficiency
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal) : Prop :=
+  ∀ hole ∈ block, ∃ anchors : Finset Ideal,
+    anchors ⊆ candidates hole ∧
+      (finiteCandidateSmallOwnerNeighbors
+        block candidates hole anchors).card < anchors.card
+
+/-- A strict small-owner neighborhood deficiency prevents every feasible
+owner map from using only block-small families, so some reached family is
+block-large. -/
+theorem finiteCandidateFeasibleOwnerHasBlockLargeFamily_of_smallOwnerDeficiency
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (hdeficiency : FiniteCandidateSmallOwnerDeficiency block candidates) :
+    FiniteCandidateFeasibleOwnerHasBlockLargeFamily block candidates := by
+  intro hole hhole owner hinjective hfeasible
+  obtain ⟨anchors, hanchors, hdeficient⟩ := hdeficiency hole hhole
+  by_contra hnoLarge
+  have hsmall : ∀ ideal ∈ candidates hole,
+      (candidates (owner ideal)).card < block.card := by
+    intro ideal hideal
+    exact Nat.lt_of_not_ge fun hlarge ↦
+      hnoLarge ⟨ideal, hideal, hlarge⟩
+  have himage : anchors.image owner ⊆
+      finiteCandidateSmallOwnerNeighbors block candidates hole anchors := by
+    intro span hspan
+    rw [Finset.mem_image] at hspan
+    obtain ⟨ideal, hideal, rfl⟩ := hspan
+    obtain ⟨howner, hcandidate⟩ := hfeasible ideal (hanchors hideal)
+    rw [finiteCandidateSmallOwnerNeighbors, Finset.mem_filter]
+    exact ⟨howner, hsmall ideal (hanchors hideal),
+      ⟨ideal, Finset.mem_inter.mpr ⟨hcandidate, hideal⟩⟩⟩
+  have hcardImage : (anchors.image owner).card = anchors.card :=
+    Finset.card_image_iff.mpr (hinjective.mono hanchors)
+  have hcard : anchors.card ≤
+      (finiteCandidateSmallOwnerNeighbors block candidates hole anchors).card := by
+    rw [← hcardImage]
+    exact Finset.card_le_card himage
+  exact (Nat.not_le_of_lt hdeficient) hcard
+
+/-- Every hole contains a forced ideal: any compatible non-hole owner of that
+ideal already has a candidate family at least as large as the block. -/
+def FiniteCandidateHasBlockLargeForcedIdeal
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal) : Prop :=
+  ∀ hole ∈ block, ∃ ideal ∈ candidates hole,
+    ∀ owner ∈ block.erase hole,
+      ideal ∈ candidates owner →
+        block.card ≤ (candidates owner).card
+
+/-- A forced ideal immediately selects a block-large reached owner in every
+feasible owner map. Injectivity of the rest of the map is not needed. -/
+theorem finiteCandidateFeasibleOwnerHasBlockLargeFamily_of_forcedIdeal
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (hforced : FiniteCandidateHasBlockLargeForcedIdeal block candidates) :
+    FiniteCandidateFeasibleOwnerHasBlockLargeFamily block candidates := by
+  intro hole hhole owner _ hfeasible
+  obtain ⟨ideal, hideal, hlarge⟩ := hforced hole hhole
+  refine ⟨ideal, hideal, ?_⟩
+  obtain ⟨howner, hcandidate⟩ := hfeasible ideal hideal
+  exact hlarge (owner ideal) howner hcandidate
+
 /-- A block-large mapped owner is contained in the corresponding owner star,
 so the stronger feasible-owner profile implies feasible-owner-star expansion. -/
 theorem finiteCandidateFeasibleOwnerStarExpansion_of_blockLargeFamily
@@ -680,6 +791,125 @@ def AllocatedReflectedEndpointRankTransitionFeasibleOwnerHasBlockLargeFamily
       (allocatedExactRankFrontierBlock first last)
       (allocatedReflectedEndpointRankTransitionCandidates
         chi lower upper color hrank hrankTop)
+
+/-- The active small-owner formulation on genuine reflected endpoint blocks:
+every hole has a candidate anchor set with too few compatible block-small
+owners. -/
+def AllocatedReflectedEndpointRankTransitionSmallOwnerDeficiency
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k) : Prop :=
+  ∀ first last : AllocatedExactRankFrontierSpan
+      chi lower upper color rank,
+    FiniteCandidateSmallOwnerDeficiency
+      (allocatedExactRankFrontierBlock first last)
+      (allocatedReflectedEndpointRankTransitionCandidates
+        chi lower upper color hrank hrankTop)
+
+/-- A small-owner deficiency on every genuine reflected block supplies the
+block-large reached-owner profile. -/
+theorem
+    allocatedReflectedEndpointRankTransitionFeasibleOwnerHasBlockLargeFamily_of_smallOwnerDeficiency
+    {n rank k : ℕ} {chi : TripleColoring n}
+    {lower upper : Finset (Fin n)} {color : Turn}
+    {hrank : 1 ≤ rank} {hrankTop : rank < k}
+    (hdeficiency :
+      AllocatedReflectedEndpointRankTransitionSmallOwnerDeficiency
+        chi lower upper color hrank hrankTop) :
+    AllocatedReflectedEndpointRankTransitionFeasibleOwnerHasBlockLargeFamily
+      chi lower upper color hrank hrankTop := by
+  intro first last
+  exact finiteCandidateFeasibleOwnerHasBlockLargeFamily_of_smallOwnerDeficiency
+    (hdeficiency first last)
+
+/-- The four past/future endpoint ideals of a frontier span after the same
+orientation normalization used for its complete reflected candidate family. -/
+noncomputable def allocatedReflectedEndpointRankTransitionExtremes
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (span : AllocatedExactRankFrontierSpan
+      chi lower upper color rank) :
+    Finset (PascalGridIdeal (rank - 1) (k - rank - 1)) :=
+  let profiles := allocatedEndpointRankTransitionProfiles
+    chi lower upper color hrank hrankTop
+  let extremes := allocatedEndpointTransitionExtremes profiles span
+  if span.1.left ∈ lower then extremes
+  else extremes.map
+    (PascalGridIdeal.reflectedComplementEquiv
+      (rank - 1) (k - rank - 1)).toEmbedding
+
+/-- Orientation normalization preserves inclusion of all four endpoint
+extremes in the complete reflected two-lane candidate family. -/
+theorem allocatedReflectedEndpointRankTransitionExtremes_subset
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (span : AllocatedExactRankFrontierSpan
+      chi lower upper color rank) :
+    allocatedReflectedEndpointRankTransitionExtremes
+        chi lower upper color hrank hrankTop span ⊆
+      allocatedReflectedEndpointRankTransitionCandidates
+        chi lower upper color hrank hrankTop span := by
+  classical
+  let profiles := allocatedEndpointRankTransitionProfiles
+    chi lower upper color hrank hrankTop
+  have hsubset :
+      allocatedEndpointTransitionExtremes profiles span ⊆
+        allocatedEndpointTransitionCandidates profiles span :=
+    allocatedEndpointTransitionExtremes_subset profiles span
+  by_cases hleft : span.1.left ∈ lower
+  · simpa [allocatedReflectedEndpointRankTransitionExtremes,
+      allocatedReflectedEndpointRankTransitionCandidates, profiles, hleft]
+      using hsubset
+  · rw [allocatedReflectedEndpointRankTransitionExtremes,
+      allocatedReflectedEndpointRankTransitionCandidates]
+    simp only [hleft, ↓reduceIte]
+    intro ideal hideal
+    rw [Finset.mem_map] at hideal ⊢
+    obtain ⟨source, hsource, rfl⟩ := hideal
+    exact ⟨source, hsubset hsource, rfl⟩
+
+/-- A sufficient genuine-geometry strengthening suggested by the all-root
+`k = 6` gate: every block hole has a normalized endpoint extreme that no
+block-small compatible owner can contain. Experiment 0046 refutes this as an
+arbitrary-`k` target, but the implication below remains reusable. -/
+def AllocatedReflectedEndpointRankTransitionHasBlockLargeForcedExtreme
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k) : Prop :=
+  ∀ first last : AllocatedExactRankFrontierSpan
+      chi lower upper color rank,
+    let block := allocatedExactRankFrontierBlock first last
+    ∀ hole ∈ block,
+      ∃ ideal ∈ allocatedReflectedEndpointRankTransitionExtremes
+          chi lower upper color hrank hrankTop hole,
+        ∀ owner ∈ block.erase hole,
+          ideal ∈ allocatedReflectedEndpointRankTransitionCandidates
+              chi lower upper color hrank hrankTop owner →
+            block.card ≤
+              (allocatedReflectedEndpointRankTransitionCandidates
+                chi lower upper color hrank hrankTop owner).card
+
+/-- A forced normalized endpoint extreme supplies the block-large reached-
+owner profile. -/
+theorem
+    allocatedReflectedEndpointRankTransitionFeasibleOwnerHasBlockLargeFamily_of_forcedExtreme
+    {n rank k : ℕ} {chi : TripleColoring n}
+    {lower upper : Finset (Fin n)} {color : Turn}
+    {hrank : 1 ≤ rank} {hrankTop : rank < k}
+    (hforced :
+      AllocatedReflectedEndpointRankTransitionHasBlockLargeForcedExtreme
+        chi lower upper color hrank hrankTop) :
+    AllocatedReflectedEndpointRankTransitionFeasibleOwnerHasBlockLargeFamily
+      chi lower upper color hrank hrankTop := by
+  intro first last hole hhole owner _ hfeasible
+  obtain ⟨ideal, hidealExtreme, hlarge⟩ := hforced first last hole hhole
+  have hideal := allocatedReflectedEndpointRankTransitionExtremes_subset
+    chi lower upper color hrank hrankTop hole hidealExtreme
+  refine ⟨ideal, hideal, ?_⟩
+  obtain ⟨howner, hcandidate⟩ := hfeasible ideal hideal
+  exact hlarge (owner ideal) howner hcandidate
 
 /-- The state-free owner-map expansion profile specialized to every genuine
 reflected endpoint block.  Experiment 0041 tests this exact shape at the

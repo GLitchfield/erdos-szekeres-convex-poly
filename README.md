@@ -238,11 +238,25 @@ sets.
   review selected a deterministic facing-lane gap charge as the next
   falsifier; Fable hit its usage limit, so no consensus is claimed. Experiment
   0043 refutes that rule on the tight cap witness when the second charge faces
-  the rigid singleton lane `{3f}`. The active exact target is therefore the
-  pre-vetted fallback: prove the arbitrary genuine block-large reached-owner
-  profile from exact-rank two-lane incidence. Constructing one-hole states
-  uniformly remains a separate induction obligation; neither premise may
-  assume Hall, an existing complete matching, or finite enumeration.
+  the rigid singleton lane `{3f}`. Experiment 0044 then passes the block-large
+  reached-owner profile on every decomposable `k = 6` root through eight
+  vertices: 631,474 frontier groups, 1,126,134 consecutive blocks, and
+  1,438,464 holes, with all 3,792 nonvacuous holes having bottleneck slack at
+  least `+1`. Every nonvacuous hole has a normalized endpoint-extreme ideal
+  with no compatible block-small owner. Lean proves the exact reduction to
+  excluding an injective map into only block-small owners, formalizes this
+  forced-extreme strengthening, and proves it implies the active profile.
+  Experiment 0045 refutes the first proposed
+  geometric strengthening: maximum single-lane cell spread plus one is only
+  `5 < 6` on the tight cap witness even though the reached owner family has
+  seven candidates. Experiment 0046 then refutes the forced-extreme
+  strengthening on four frozen `k = 7` cup holes. The first needs the two-ideal
+  anchor `{f,1f}`, which has only one compatible block-small owner. The active
+  exact target remains the pre-vetted fallback, now in its compiled small-owner
+  deficiency form: every hole needs some anchor set with too few compatible
+  block-small owners. Constructing one-hole states uniformly remains a
+  separate induction obligation; neither premise may assume Hall, an existing
+  complete matching, or finite enumeration.
   General Hall and the global outer-window injection remain subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
