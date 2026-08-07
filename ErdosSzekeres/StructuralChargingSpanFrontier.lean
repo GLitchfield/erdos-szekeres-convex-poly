@@ -75,6 +75,51 @@ def HasExactSpanRank {n : ℕ} (color : Turn) (chi : TripleColoring n)
   HasSpanRankAtLeast color chi s span rank ∧
     ¬HasSpanRankAtLeast color chi s span (rank + 1)
 
+/-- Every sweep span contains its two distinct recorded endpoints. -/
+theorem HasSweepSpan.two_le_card {n : ℕ}
+    {chain : Finset (Fin n)} {a b : Fin n}
+    (hspan : HasSweepSpan chain a b) : 2 ≤ chain.card := by
+  have hsubset : ({a, b} : Finset (Fin n)) ⊆ chain := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl
+    · exact hspan.left_mem
+    · exact hspan.right_mem
+  have hcard : ({a, b} : Finset (Fin n)).card = 2 := by
+    simp [hspan.lt.ne]
+  rw [← hcard]
+  exact Finset.card_le_card hsubset
+
+/-- Any span-rank witness already supplies rank two through its endpoints. -/
+theorem HasSpanRankAtLeast.rank_two {n rank : ℕ} {color : Turn}
+    {chi : TripleColoring n} {s : Finset (Fin n)}
+    {span : SweepSpanEndpoints n}
+    (hspan : HasSpanRankAtLeast color chi s span rank) :
+    HasSpanRankAtLeast color chi s span 2 := by
+  cases color with
+  | left =>
+      obtain ⟨cup, hcupSub, _, hcup, hsweep⟩ := hspan
+      exact ⟨cup, hcupSub, hsweep.two_le_card, hcup, hsweep⟩
+  | right =>
+      obtain ⟨cap, hcapSub, _, hcap, hsweep⟩ := hspan
+      exact ⟨cap, hcapSub, hsweep.two_le_card, hcap, hsweep⟩
+
+/-- Exact endpoint-span ranks below two are impossible. -/
+theorem HasExactSpanRank.two_le {n rank : ℕ} {color : Turn}
+    {chi : TripleColoring n} {s : Finset (Fin n)}
+    {span : SweepSpanEndpoints n}
+    (hexact : HasExactSpanRank color chi s span rank) : 2 ≤ rank := by
+  by_contra hnot
+  apply hexact.2
+  have htwo := hexact.1.rank_two
+  cases color with
+  | left =>
+      obtain ⟨cup, hcupSub, hcard, hcup, hsweep⟩ := htwo
+      exact ⟨cup, hcupSub, by omega, hcup, hsweep⟩
+  | right =>
+      obtain ⟨cap, hcapSub, hcard, hcap, hsweep⟩ := htwo
+      exact ⟨cap, hcapSub, by omega, hcap, hsweep⟩
+
 /-- A lower-child cup of the requested rank starts at `a` and ends before the
 upper endpoint `q`. -/
 def HasCupRightRayRankAtLeast {n : ℕ} (chi : TripleColoring n)
@@ -661,6 +706,17 @@ def allocatedExactRankSpans {n : ℕ} (chi : TripleColoring n)
         HasExactSpanRank color chi (lower ∪ upper) span rank := by
   simp [allocatedExactRankSpans]
 
+/-- There are no allocated exact-rank spans below rank two. -/
+theorem allocatedExactRankSpans_eq_empty_of_rank_lt_two
+    {n rank : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn) (hrank : rank < 2) :
+    allocatedExactRankSpans chi lower upper color rank = ∅ := by
+  apply Finset.not_nonempty_iff_eq_empty.mp
+  intro hne
+  obtain ⟨span, hspan⟩ := hne
+  have hexact := (mem_allocatedExactRankSpans.mp hspan).2
+  exact (not_lt_of_ge hexact.two_le) hrank
+
 /-- Candidate cup spans have a complete two-direction child-ray normal form. -/
 theorem mem_allocatedExactRankSpans_left_iff_rays
     {n rank : ℕ} {chi : TripleColoring n} {lower upper : Finset (Fin n)}
@@ -764,6 +820,19 @@ def allocatedExactRankFrontier {n : ℕ} (chi : TripleColoring n)
         ∀ other ∈ allocatedExactRankSpans chi lower upper color rank,
           span.Contains other → other = span := by
   simp [allocatedExactRankFrontier]
+
+/-- The retained exact-rank frontier is empty below rank two. -/
+theorem allocatedExactRankFrontier_eq_empty_of_rank_lt_two
+    {n rank : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn) (hrank : rank < 2) :
+    allocatedExactRankFrontier chi lower upper color rank = ∅ := by
+  apply Finset.not_nonempty_iff_eq_empty.mp
+  intro hne
+  obtain ⟨span, hspan⟩ := hne
+  have hspans := (mem_allocatedExactRankFrontier.mp hspan).1
+  rw [allocatedExactRankSpans_eq_empty_of_rank_lt_two
+    chi lower upper color hrank] at hspans
+  simp at hspans
 
 /-- Two retained spans cannot properly contain one another. -/
 theorem allocatedExactRankFrontier_eq_of_contains {n rank : ℕ}

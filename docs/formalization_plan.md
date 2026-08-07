@@ -818,6 +818,28 @@ decomposable children, a genuine deep-below split, and the no-strong-`k`
 hypothesis. Ranks one and two require separate base cases because the existing
 active-ray normal form begins at rank three.
 
+Experiment 0050 closes a mismatch between that contract and experiments
+0048--0049. The earlier anchor-shape statistics covered only 3,056 holes with
+a feasible owner map, whereas the Lean path contract quantifies over every
+hole. Independent cell-mask and row-height implementations now search all
+2,422,116 bounded `k = 7` holes. Every hole has a reflected lane-path
+certificate. The search finds 2,418,432 length-zero paths, 3,170 one-gap
+paths, and 514 two-gap paths. An exact singleton-neighborhood trace also exists
+for every hole, although the deterministic first path is trace-inexact in all
+514 two-gap cases; the choice of witness is therefore genuinely existential.
+
+Lean now exposes that sharpened landing point. The local-neighborhood
+constructor needs only distinct common owners on consecutive anchor gaps and
+pointwise containment of every singleton small-owner neighborhood in the
+listed owners. The exact-trace constructor specializes this to equality with
+the incident path-edge owners. The reflected
+`LaneSingletonNeighborhoodTraces` contract implies the existing path
+contract, with no deficiency, Hall, or SDR premise. Separately, Lean proves
+that every exact endpoint-span rank is at least two, so rank one has an empty
+frontier and its path obligation is vacuous. The active geometry target is now
+the exact singleton-trace contract at rank two and at ranks at least three;
+only the latter may use the current active-ray normal form.
+
 The first geometric refinement does not survive its frozen gate. Experiment
 0045 shows that the tight cap owner has a seven-element family but maximum
 single-lane cell spread plus one only `5 < 6`. The missing bridge must exploit

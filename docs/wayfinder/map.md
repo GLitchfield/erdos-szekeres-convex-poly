@@ -432,24 +432,23 @@ None. The destination was fixed by the user on 2026-08-01.
   Experiment 0046 refutes the forced-extreme strengthening on four frozen
   `k = 7` cup holes; the first instead has a two-ideal anchor `{f,1f}` with one
   block-small neighbor. The active local contract is therefore the compiled
-  small-owner deficiency, which permits a multi-ideal anchor,
-  and experiments 0047--0048 identify its surviving shape. Every frozen hole,
-  and every one of the 3,056 nonvacuous holes over all decomposable `k = 7`
-  roots through eight vertices, selects a minimum deficient anchor that is a
-  complete lattice-chain interval in one normalized endpoint lane. Exactly
-  1,180 of the all-root holes require a two-ideal cover pair. Lean proves the
-  abstract minimal-anchor calculus and that the corresponding lane-chain
-  contract implies small-owner deficiency. Experiment 0049 passes the complete
-  `k = 8` gate through eight vertices: all 2,096 nonvacuous holes have
-  singleton minima and slack at least `+3`, so no longer path is tested there.
-  The active construction is now explicit in Lean. An owner-labelled path of
-  `m + 1` strictly ordered lane ideals and `m` distinct small owners, one per
-  adjacent gap and exhausting the path neighborhood, is proved to be an
-  inclusion-minimal deficient chain interval. The reflected path-certificate
-  contract implies the existing lane-chain contract. The active geometry
-  target is to construct such certificates from recursively decomposable
-  children, a deep-below split, and no strong `k`-set, with direct low-rank
-  base cases, followed by the separate induction constructing one-hole states.
+  small-owner deficiency, which permits a multi-ideal anchor. Experiments
+  0047--0048 identify its surviving shape on all 3,056 nonvacuous holes over
+  decomposable `k = 7` roots through eight vertices, but that census did not
+  test the certificate obligation on the other 2,419,060 holes. Experiment
+  0050 closes that bounded evidence gap: independent exact implementations
+  replay all 2,422,116 holes and find a lane-path certificate for every one.
+  The census includes 514 genuine two-gap paths, and every hole admits the
+  stronger exact singleton-neighborhood trace, although the first
+  deterministic certificate is inexact in those 514 cases. Lean proves that
+  such a trace constructs the path certificate and states the corresponding
+  reflected geometry contract; it also proves rank-one endpoint spans
+  impossible, so that base case is vacuous. Experiment 0049 separately passes
+  the complete `k = 8` gate through eight vertices, but only with singleton
+  minima. The active geometry target is now to derive exact singleton traces
+  at rank two and at ranks at least three from recursively decomposable
+  children, a deep-below split, and no strong `k`-set, followed by the separate
+  induction constructing one-hole states.
   Neither
   open premise may import Hall, a complete matching, or finite enumeration.
   General Hall and the global injection into `decomposableBinomialWindow`

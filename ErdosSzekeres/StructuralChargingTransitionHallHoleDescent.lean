@@ -335,6 +335,117 @@ structure FiniteCandidateLanePathCertificate
         (Finset.univ.map anchor) ⊆
       Finset.univ.map owner
 
+/-- Membership in a singleton small-owner neighborhood is exactly block
+membership, block-smallness, and candidate incidence. -/
+theorem finiteCandidateSmallOwnerNeighbors_singleton_mem_iff
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    {hole owner : Span} {ideal : Ideal} :
+    owner ∈ finiteCandidateSmallOwnerNeighbors
+        block candidates hole {ideal} ↔
+      owner ∈ block.erase hole ∧
+        (candidates owner).card < block.card ∧
+          ideal ∈ candidates owner := by
+  rw [finiteCandidateSmallOwnerNeighbors, Finset.mem_filter]
+  constructor
+  · rintro ⟨hblock, hsmall, hinter⟩
+    obtain ⟨witness, hwitness⟩ := Finset.nonempty_def.mp hinter
+    rw [Finset.mem_inter, Finset.mem_singleton] at hwitness
+    exact ⟨hblock, hsmall, hwitness.2 ▸ hwitness.1⟩
+  · rintro ⟨hblock, hsmall, hideal⟩
+    exact ⟨hblock, hsmall, Finset.nonempty_def.mpr ⟨ideal,
+      Finset.mem_inter.mpr ⟨hideal, Finset.mem_singleton_self ideal⟩⟩⟩
+
+/-- Pointwise neighborhood containment and common owners on adjacent gaps
+construct the global path certificate. Unlike exact incident-owner equality,
+this permits one owner to meet nonadjacent path anchors. -/
+def finiteCandidateLanePathCertificate_of_localNeighborhoods
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    {hole : Span} {m : ℕ}
+    (anchor : Fin (m + 1) ↪ Ideal) (owner : Fin m ↪ Span)
+    (hanchor : ∀ index, anchor index ∈ candidates hole)
+    (hgap : ∀ index,
+      owner index ∈ finiteCandidateSmallOwnerNeighbors
+          block candidates hole {anchor index.castSucc} ∧
+        owner index ∈ finiteCandidateSmallOwnerNeighbors
+          block candidates hole {anchor index.succ})
+    (hexhaust : ∀ index,
+      finiteCandidateSmallOwnerNeighbors
+          block candidates hole {anchor index} ⊆
+        Finset.univ.map owner) :
+    FiniteCandidateLanePathCertificate block candidates hole := by
+  refine {
+    length := m
+    anchor := anchor
+    owner := owner
+    anchor_mem := hanchor
+    owner_small := ?_
+    owner_contains_gap := ?_
+    neighbors_subset_owners := ?_
+  }
+  · intro index
+    have hmem :=
+      (finiteCandidateSmallOwnerNeighbors_singleton_mem_iff.mp
+        (hgap index).1)
+    exact ⟨hmem.1, hmem.2.1⟩
+  · intro index
+    exact ⟨
+      (finiteCandidateSmallOwnerNeighbors_singleton_mem_iff.mp
+        (hgap index).1).2.2,
+      (finiteCandidateSmallOwnerNeighbors_singleton_mem_iff.mp
+        (hgap index).2).2.2⟩
+  · intro other hother
+    rw [finiteCandidateSmallOwnerNeighbors, Finset.mem_filter] at hother
+    obtain ⟨hblock, hsmall, hinter⟩ := hother
+    obtain ⟨ideal, hideal⟩ := Finset.nonempty_def.mp hinter
+    rw [Finset.mem_inter] at hideal
+    rw [Finset.mem_map] at hideal
+    obtain ⟨index, _, rfl⟩ := hideal.2
+    apply hexhaust index
+    exact finiteCandidateSmallOwnerNeighbors_singleton_mem_iff.mpr
+      ⟨hblock, hsmall, hideal.1⟩
+
+/-- The owners on the path edges incident to one indexed anchor. -/
+def finiteCandidateIncidentPathOwners
+    {Span : Type*} [DecidableEq Span] {m : ℕ}
+    (owner : Fin m ↪ Span) (index : Fin (m + 1)) : Finset Span :=
+  (Finset.univ.filter fun edge : Fin m ↦
+    edge.castSucc = index ∨ edge.succ = index).map owner
+
+/-- Exact singleton-neighborhood traces construct a path certificate. This is
+stronger than the local-containment constructor above, but its hypotheses are
+still purely incidence statements rather than deficiency or Hall. -/
+def finiteCandidateLanePathCertificate_of_singletonNeighborhoodTrace
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    {hole : Span} {m : ℕ}
+    (anchor : Fin (m + 1) ↪ Ideal) (owner : Fin m ↪ Span)
+    (hanchor : ∀ index, anchor index ∈ candidates hole)
+    (htrace : ∀ index,
+      finiteCandidateSmallOwnerNeighbors
+          block candidates hole {anchor index} =
+        finiteCandidateIncidentPathOwners owner index) :
+    FiniteCandidateLanePathCertificate block candidates hole :=
+  finiteCandidateLanePathCertificate_of_localNeighborhoods
+    anchor owner hanchor (by
+      intro edge
+      constructor
+      · rw [htrace edge.castSucc, finiteCandidateIncidentPathOwners,
+          Finset.mem_map]
+        exact ⟨edge, Finset.mem_filter.mpr ⟨Finset.mem_univ _, Or.inl rfl⟩,
+          rfl⟩
+      · rw [htrace edge.succ, finiteCandidateIncidentPathOwners,
+          Finset.mem_map]
+        exact ⟨edge, Finset.mem_filter.mpr ⟨Finset.mem_univ _, Or.inr rfl⟩,
+          rfl⟩) (by
+      intro index other hother
+      rw [htrace index, finiteCandidateIncidentPathOwners,
+        Finset.mem_map] at hother
+      obtain ⟨edge, _, rfl⟩ := hother
+      rw [Finset.mem_map]
+      exact ⟨edge, Finset.mem_univ _, rfl⟩)
+
 /-- A path certificate constructs an inclusion-minimal deficient anchor. The
 proper-subset clause is the path-incidence inequality above, not an assumed
 Hall or deficiency statement. -/
@@ -1499,6 +1610,71 @@ def AllocatedReflectedEndpointRankTransitionLanePathCertificates
           Finset.univ.map certificate.anchor ⊆
             allocatedReflectedEndpointRankTransitionLane
               chi lower upper color hrank hrankTop hole side
+
+/-- The geometry-facing local trace contract. Every singleton anchor sees
+exactly the listed owners on its incident path edges. This is stronger than
+the path certificate but does not assume deficiency, Hall, or an SDR. -/
+def AllocatedReflectedEndpointRankTransitionLaneSingletonNeighborhoodTraces
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k) : Prop :=
+  ∀ first last : AllocatedExactRankFrontierSpan
+      chi lower upper color rank,
+    let block := allocatedExactRankFrontierBlock first last
+    let candidates := allocatedReflectedEndpointRankTransitionCandidates
+      chi lower upper color hrank hrankTop
+    ∀ hole ∈ block, ∃ side : SweepEndpointSide,
+      ∃ m : ℕ, ∃ anchor :
+          Fin (m + 1) ↪ PascalGridIdeal (rank - 1) (k - rank - 1),
+        ∃ owner : Fin m ↪ AllocatedExactRankFrontierSpan
+            chi lower upper color rank,
+          (∀ index, anchor index ∈ candidates hole) ∧
+            StrictMono anchor ∧
+            Finset.univ.map anchor =
+              pascalTransitionInterval (anchor 0) (anchor (Fin.last m)) ∧
+            Finset.univ.map anchor ⊆
+              allocatedReflectedEndpointRankTransitionLane
+                chi lower upper color hrank hrankTop hole side ∧
+            ∀ index,
+              finiteCandidateSmallOwnerNeighbors
+                  block candidates hole {anchor index} =
+                finiteCandidateIncidentPathOwners owner index
+
+/-- Exact local singleton traces supply the explicit reflected lane-path
+certificate contract. -/
+theorem
+    allocatedReflectedEndpointRankTransitionLanePathCertificates_of_singletonNeighborhoodTraces
+    {n rank k : ℕ} {chi : TripleColoring n}
+    {lower upper : Finset (Fin n)} {color : Turn}
+    {hrank : 1 ≤ rank} {hrankTop : rank < k}
+    (htraces :
+      AllocatedReflectedEndpointRankTransitionLaneSingletonNeighborhoodTraces
+        chi lower upper color hrank hrankTop) :
+    AllocatedReflectedEndpointRankTransitionLanePathCertificates
+      chi lower upper color hrank hrankTop := by
+  intro first last
+  dsimp only
+  intro hole hhole
+  obtain ⟨side, m, anchor, owner, hanchor, hstrict, hinterval, hlane,
+      htrace⟩ :=
+    htraces first last hole hhole
+  refine ⟨side,
+    finiteCandidateLanePathCertificate_of_singletonNeighborhoodTrace
+      anchor owner hanchor htrace, hstrict, hinterval, hlane⟩
+
+/-- Rank one has no exact spans, so its universal lane-path obligation is
+vacuous. Rank two remains a separate nontrivial base case. -/
+theorem allocatedReflectedEndpointRankTransitionLanePathCertificates_rank_one
+    {n k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrankTop : 1 < k) :
+    AllocatedReflectedEndpointRankTransitionLanePathCertificates
+      (rank := 1) chi lower upper color (by omega) hrankTop := by
+  intro first
+  have hspans := (mem_allocatedExactRankFrontier.mp first.2).1
+  have hexact := (mem_allocatedExactRankSpans.mp hspans).2
+  have := hexact.two_le
+  omega
 
 /-- Explicit owner-labelled lane paths supply the lane-chain minimal anchors
 required by the active small-owner-deficiency reduction. -/

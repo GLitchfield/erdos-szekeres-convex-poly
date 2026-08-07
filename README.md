@@ -263,16 +263,19 @@ sets.
   pair alternative is essential. Experiment 0049 passes the first `k = 8`
   all-root gate through eight vertices: all 2,096 nonvacuous holes have
   singleton minima and bottleneck slack at least `+3`, so that support range
-  does not yet exercise longer anchors. Lean proves the general
-  minimal-deficiency calculus, the singleton and cover-pair constructors, and
-  a scalable owner-labelled lane-path theorem: `m + 1` ordered anchors with
-  `m` distinct adjacent-gap owners form an inclusion-minimal deficient anchor
-  when those owners exhaust its block-small neighborhood. The reflected
-  path-certificate contract implies the lane-chain contract and hence the
-  active small-owner deficiency. Constructing those explicit paths from
-  recursively decomposable children, deep-split incidence, and the absence of
-  a strong `k`-set is the current local theorem. Constructing one-hole states
-  uniformly remains a
+  does not yet exercise longer anchors. Experiment 0050 then audits the exact
+  path contract over all 2,422,116 bounded `k = 7` holes, including 2,419,060
+  cases omitted from the prior shape statistics because they have no feasible
+  owner map. Every hole has a path and an exact singleton-trace certificate;
+  514 require two gaps, the first evidence beyond the abstract pair case.
+  Lean proves the general minimal-deficiency calculus, a scalable
+  owner-labelled lane-path theorem, local-neighborhood and exact-trace
+  constructors, and the vacuity of rank one. The reflected path contract
+  implies the lane-chain contract and hence active small-owner deficiency.
+  Constructing an exact singleton trace from recursively decomposable
+  children, deep-split incidence, and the absence of a strong `k`-set is the
+  current local theorem, with rank two direct and active rays available from
+  rank three. Constructing one-hole states uniformly remains a
   separate induction obligation; neither premise may assume Hall, an existing
   complete matching, or finite enumeration.
   General Hall and the global outer-window injection remain subsequent.

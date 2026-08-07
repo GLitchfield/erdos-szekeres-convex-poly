@@ -1162,6 +1162,40 @@ geometry; assuming deficiency, Hall, or an SDR would be circular. Ranks one
 and two must be discharged separately because the available active-ray normal
 form starts at rank three.
 
+An adversarial audit then found an evidence mismatch: Experiment 0048 checked
+the lane shape only on the 3,056 nonvacuous holes, whereas the reflected Lean
+path contract quantifies over all 2,422,116 holes. Experiment 0050 removes that
+bounded gap. Independent cell-mask production and row-height replay agree on
+947,452 frontier groups, 1,830,286 blocks, and all 2,422,116 holes. Every hole
+has a lane-path certificate. The length distribution is 2,418,432 empty paths,
+3,170 one-gap paths, and 514 genuine two-gap paths. The first deterministic
+certificate has an inexact neighborhood trace in precisely those 514 cases,
+but an explicit search finds an alternative exact singleton-neighborhood trace
+for every one of them. The manifest SHA-256 is
+`acf09031049232967e8ad4b7f45ad6b8319c0543773f1c2419cde1ca4a438362` and
+the independent checked-prefix digest is
+`0b7f9c79c190c40766f21c72aef75e82499e0351842e204d7084e5fa118a6f26`.
+
+Lean now constructs a path certificate from local singleton neighborhoods in
+`finiteCandidateLanePathCertificate_of_localNeighborhoods`, specializes this
+to exact adjacent-gap traces in
+`finiteCandidateLanePathCertificate_of_singletonNeighborhoodTrace`, and proves
+that the reflected exact-trace contract implies the existing reflected path
+contract. Separately, `HasSweepSpan.two_le_card` proves that a genuine endpoint
+span contains at least its two distinct endpoints, so exact rank one is
+impossible and the rank-one path obligation is discharged without geometry.
+The next theorem contract is therefore exact singleton-neighborhood trace
+construction at rank two, followed by the rank-at-least-three active-ray
+bridge. This remains a boundedly supported target, not an arbitrary-rank proof.
+
+A bounded route review froze evidence packet SHA-256
+`fbc83f02526a8be8dcfd15e90ffeb323f8164427a07cca03ceaf574019fcffe2`.
+Sol rated the proposed route `partially_supported` with high confidence and
+selected falsification of the first multi-gap cases before further abstraction;
+Experiment 0050 performs that gate and strengthens the surviving target to the
+exact trace. Fable returned zero tokens with a provider usage-limit error, so
+no Fable judgment, reciprocal review, or Sol/Fable consensus is claimed.
+
 Experiment 0045 rejects the first lane-level bridge proposed after that pass.
 On the tight cap witness, singleton hole `{3f}` maps to owner `(2,5)`, whose
 candidate family has size seven. Its left lane changes by four grid cells and
@@ -1233,6 +1267,8 @@ derive a strict deficiency in the incidence graph of block-small owners.
 - [All-root `k = 7` block-large manifest](../../../data/derived/e3-block-large-reached-owner-all-roots-k7-n8.json)
 - [All-root `k = 8` block-large and anchor-shape gate](../../experiments/0049-all-root-k8-block-large-and-anchor-shape.md)
 - [All-root `k = 8` block-large manifest](../../../data/derived/e3-block-large-reached-owner-all-roots-k8-n8.json)
+- [All-hole `k = 7` lane-path certificate gate](../../experiments/0050-all-hole-k7-lane-path-certificates.md)
+- [All-hole `k = 7` lane-path manifest](../../../data/derived/e3-lane-path-certificates-all-roots-k7-n8.json)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
