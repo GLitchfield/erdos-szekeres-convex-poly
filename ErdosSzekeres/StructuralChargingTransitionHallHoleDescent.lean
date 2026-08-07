@@ -109,6 +109,38 @@ def FiniteCandidateFeasibleOwnerStarExpansion
           (candidates hole ∪
             ((candidates hole).image owner).biUnion candidates).card
 
+/-- Every feasible owner map reaches at least one individual owner family as
+large as the block.  This is a stronger, state-free sufficient profile for
+owner-star expansion. -/
+def FiniteCandidateFeasibleOwnerHasBlockLargeFamily
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal) : Prop :=
+  ∀ hole ∈ block, ∀ owner : Ideal → Span,
+    Set.InjOn owner (candidates hole) →
+      (∀ ideal ∈ candidates hole,
+        owner ideal ∈ block.erase hole ∧
+          ideal ∈ candidates (owner ideal)) →
+        ∃ ideal ∈ candidates hole,
+          block.card ≤ (candidates (owner ideal)).card
+
+/-- A block-large mapped owner is contained in the corresponding owner star,
+so the stronger feasible-owner profile implies feasible-owner-star expansion. -/
+theorem finiteCandidateFeasibleOwnerStarExpansion_of_blockLargeFamily
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (hprofile :
+      FiniteCandidateFeasibleOwnerHasBlockLargeFamily block candidates) :
+    FiniteCandidateFeasibleOwnerStarExpansion block candidates := by
+  intro hole hhole owner hinjective hfeasible
+  obtain ⟨ideal, hideal, hlarge⟩ :=
+    hprofile hole hhole owner hinjective hfeasible
+  apply hlarge.trans
+  apply Finset.card_le_card
+  intro candidate hcandidate
+  rw [Finset.mem_union, Finset.mem_biUnion]
+  exact Or.inr ⟨owner ideal, Finset.mem_image.mpr ⟨ideal, hideal, rfl⟩,
+    hcandidate⟩
+
 /-- The positive closed-star predicate exactly characterizes simultaneous
 failure of the direct and length-two exits. -/
 theorem FiniteCandidateHoleState.hasClosedSaturatedOwnerStar_iff

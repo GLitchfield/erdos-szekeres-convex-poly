@@ -65,6 +65,8 @@ test: check lean
 		data/derived/e3-consecutive-block-two-step-augmentation-frozen-n12-k7.json >/dev/null
 	@python3 scripts/replay_owner_star_expansion.py \
 		data/derived/e3-owner-star-expansion-frozen-n12-k7.json >/dev/null
+	@python3 scripts/replay_block_large_reached_owner.py \
+		data/derived/e3-block-large-reached-owner-frozen-n12-k7.json >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -118,6 +120,8 @@ test: check lean
 		scripts/replay_consecutive_block_two_step_augmentation.py \
 		scripts/check_owner_star_expansion.py \
 		scripts/replay_owner_star_expansion.py \
+		scripts/check_block_large_reached_owner.py \
+		scripts/replay_block_large_reached_owner.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \
