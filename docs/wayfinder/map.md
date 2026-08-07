@@ -403,14 +403,18 @@ None. The destination was fixed by the user on 2026-08-01.
   bypasses the cycles: all 4,888 blocked states in the four full groups, and
   all 5,977 blocked states in their 62 nonempty consecutive subblocks, have an
   exit in independent cell-mask and row-height checks. Lean proves that an
-  explicit exit completes the SDR and yields block Hall. A clean bounded Sol
-  audit selected the universal direct-or-two-step disjunction as the next
-  target and isolated the missing ingredient as an
-  overlap-to-slack/no-closed-saturated-star theorem for genuine reflected
-  families. Fable returned no judgment because its provider quota was
-  exhausted, so no model consensus is claimed. The active task is to prove
-  that structural escape without importing Hall, a complete matching, or
-  finite enumeration.
+  explicit exit completes the SDR and yields block Hall. Lean now identifies
+  the obstruction exactly: a closed saturated actual-owner star is equivalent
+  to a blocked state with no two-step exit. A block-large actual star forces an
+  exit, while the stronger state-free feasible-owner-star profile implies that
+  actual-star bound. With a separately supplied one-hole state on each
+  nonempty block, the profile proves consecutive-block expansion; reflected
+  endpoint families are formally nonempty. Experiment 0041 passes that
+  state-free profile for all 247 feasible owner maps on the 62 frozen blocks,
+  with minimum slack `+1`. The active task is a uniform boundary-slot
+  telescoping proof of genuine feasible-owner-star expansion, followed by the
+  separate induction that constructs the one-hole states. Neither open premise
+  may import Hall, a complete matching, or finite enumeration.
   General Hall and the global injection into `decomposableBinomialWindow`
   remain downstream.
 

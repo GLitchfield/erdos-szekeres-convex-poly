@@ -719,15 +719,30 @@ on all 62 nonempty consecutive subblocks. Cell-mask production and row-height
 replay agree. Lean defines `HasTwoStepAugmentingExit` and proves constructively
 that it gives an SDR and block Hall inequality.
 
-The route audit selected the universal direct-or-two-step disjunction as the
-next exact target, while retaining the bounded claim boundary. Its missing
-structural lemma is an overlap-to-slack or no-closed-saturated-star principle:
-if every hole candidate is used, at least one reached owner family is not
-contained in the used representatives. This statement must be derived from
-genuine reflected endpoint geometry. It may not invoke Hall, a completed SDR,
-or enumeration. Sol returned high-confidence `partially_supported`; Fable was
-unavailable because its provider quota was exhausted, so no consensus is
-claimed.
+The universal direct-or-two-step disjunction now has an exact compiling normal
+form. `HasClosedSaturatedOwnerStar` says that every hole candidate is owned and
+that every candidate of every actual reached owner is already used. Lean proves
+that this is equivalent to being blocked with no two-step exit. It also proves
+that a block-large canonical owner star forces an exit and that the stronger
+state-free `FiniteCandidateFeasibleOwnerStarExpansion` profile forces the
+canonical star to be block-large. This distinction is essential: an arbitrary
+membership-feasible owner need not be the actual owner in a partial injection.
+The reflected wrapper now separates the remaining obligations precisely:
+feasible-owner-star expansion plus a one-hole state for every nonempty block
+implies consecutive-block expansion. Reflection itself preserves candidate
+nonemptiness, ruling out the empty-family obstruction.
+
+Experiment 0041 independently reconstructs all 247 injective membership-
+feasible owner maps across the 62 frozen consecutive blocks. Every resulting
+owner-star union is block-large, with minimum slack `+1`. This is bounded
+evidence for the stronger state-free profile, not a proof for arbitrary
+reflected frontiers. The active structural target is a boundary-slot
+telescoping theorem proving that profile from genuine reflected endpoint
+geometry. The one-hole-state premise must then be constructed uniformly,
+normally by induction over smaller consecutive blocks. Neither obligation may
+invoke Hall, a completed SDR, or finite enumeration. The route review supplied
+ranked mechanisms and adversarial repairs, but model agreement is not evidence
+for either open theorem.
 
 ## External Lean baseline
 

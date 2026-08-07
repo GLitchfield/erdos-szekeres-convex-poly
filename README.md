@@ -217,10 +217,21 @@ sets.
   the four full frozen groups, and all 5,977 blocked states across their 62
   consecutive subblocks, have an occupied hole candidate whose owner has a
   fresh candidate. Independent representations agree, and Lean proves that
-  this certificate completes the SDR and implies block Hall. The next exact
-  target is the reviewed overlap-to-slack/no-closed-saturated-star theorem
-  forcing such an exit in every genuine reflected block. It may not assume
-  Hall, an existing complete matching, or finite enumeration.
+  this certificate completes the SDR and implies block Hall. Lean now also
+  gives the reviewed overlap-to-slack statement an exact normal form: a closed
+  saturated owner star is equivalent to being blocked with no two-step exit.
+  The canonical star follows the actual owners in the partial injection, and
+  a state-free feasible-owner-star expansion profile implies that this actual
+  star is block-large, hence supplies the exit and an SDR. Together with a
+  separately supplied one-hole state for each nonempty block, the profile
+  implies reflected consecutive-block expansion. Reflection preserves
+  nonemptiness of every genuine candidate family. Experiment 0041 checks the
+  stronger state-free profile for all 247 feasible owner maps on the 62 frozen
+  blocks, with minimum slack `+1`; this is bounded evidence, not the arbitrary
+  theorem. The next exact target is to prove genuine feasible-owner-star
+  expansion by a boundary-slot telescoping argument. Constructing the one-hole
+  states uniformly remains a separate induction obligation; neither premise
+  may assume Hall, an existing complete matching, or finite enumeration.
   General Hall and the global outer-window injection remain subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas

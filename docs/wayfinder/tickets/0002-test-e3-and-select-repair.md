@@ -997,6 +997,41 @@ The selected work target is to prove the structural escape from genuine
 reflected endpoint data without Hall, an existing full matching, or finite
 enumeration.
 
+That obstruction has now been normalized in Lean. A
+`HasClosedSaturatedOwnerStar` state has every hole candidate currently owned
+and every candidate of each actual reached owner already used; Lean proves
+this is equivalent to the conjunction of being blocked and having no two-step
+exit. The word "actual" is material. A reviewed counterexample shows that a
+membership-feasible but fictitious owner can have a large family even when the
+owner selected by the partial injection has no fresh candidate. The canonical
+`reachedOwners` and `ownerStar` definitions therefore follow the partial
+injection. Lean proves that a block-large canonical star forces a two-step exit
+and hence an SDR.
+
+For a state-free structural premise, Lean defines
+`FiniteCandidateFeasibleOwnerStarExpansion`: for every hole and every
+injective membership-feasible assignment of its candidates to other spans,
+the union of the hole family and the assigned owners' families has at least the
+block cardinality. This stronger profile implies the canonical actual-owner
+bound for every blocked one-hole state. Its reflected wrapper, together with a
+separately supplied one-hole state for every nonempty consecutive block,
+implies the desired reflected block expansion. The separate theorem that
+reflection preserves nonempty candidate families rules out the empty-family
+base obstruction but does not construct those one-hole states.
+
+Experiment 0041 tests the state-free premise, not merely states produced by one
+ownership rule. Independent cell-mask production and row-height replay cover
+all 247 injective membership-feasible owner maps on all 62 frozen consecutive
+blocks. Every owner-star union is block-large; the minimum slack is `+1`. The
+manifest SHA-256 is
+`ac49dbc95b02951a3bc3482963473c412d1a3684a421fe3f1abed720422a4fe0`.
+This bounded pass does not prove the arbitrary reflected theorem. The active
+mathematical target is to derive feasible-owner-star expansion from the
+ordered reflected boundary slots, with telescoping slack as the leading
+mechanism. After that, a uniform induction must supply the one-hole states.
+These are explicit separate obligations, and neither may assume Hall, an SDR,
+or enumeration.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -1045,6 +1080,8 @@ enumeration.
 - [Two-step ownership-augmentation manifest](../../../data/derived/e3-two-step-ownership-augmentation-frozen-n12-k7.json)
 - [Consecutive-block two-step augmentation gate](../../experiments/0040-consecutive-block-two-step-augmentation.md)
 - [Consecutive-block two-step augmentation manifest](../../../data/derived/e3-consecutive-block-two-step-augmentation-frozen-n12-k7.json)
+- [Owner-star expansion gate](../../experiments/0041-owner-star-expansion.md)
+- [Owner-star expansion manifest](../../../data/derived/e3-owner-star-expansion-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

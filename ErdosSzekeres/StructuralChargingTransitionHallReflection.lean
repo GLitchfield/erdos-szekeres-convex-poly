@@ -173,6 +173,32 @@ def allocatedReflectedEndpointRankTransitionCandidates
     (PascalGridIdeal.reflectedComplementEquiv
       (rank - 1) (k - rank - 1)).toEmbedding
 
+/-- Reflection preserves nonemptiness of every genuine endpoint-transition
+candidate family.  This rules out the empty-family closed-star obstruction
+before any expansion argument. -/
+theorem allocatedReflectedEndpointRankTransitionCandidates_nonempty
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    (allocatedReflectedEndpointRankTransitionCandidates
+      chi lower upper color hrank hrankTop span).Nonempty := by
+  classical
+  let profiles := allocatedEndpointRankTransitionProfiles
+    chi lower upper color hrank hrankTop
+  have hnonempty :
+      (allocatedEndpointTransitionCandidates profiles span).Nonempty :=
+    allocatedEndpointTransitionCandidates_nonempty profiles span
+  by_cases hleft : span.1.left ∈ lower
+  · simpa [allocatedReflectedEndpointRankTransitionCandidates, profiles,
+      hleft] using hnonempty
+  · obtain ⟨candidate, hcandidate⟩ := hnonempty
+    refine ⟨PascalGridIdeal.reflectedComplement candidate, ?_⟩
+    rw [allocatedReflectedEndpointRankTransitionCandidates]
+    simp only [hleft, ↓reduceIte, Finset.mem_map, Equiv.toEmbedding_apply]
+    exact ⟨candidate, hcandidate, rfl⟩
+
 /-- Full Hall expansion after orientation-normalizing candidate ideals. -/
 def AllocatedReflectedEndpointRankTransitionHall
     {n rank k : ℕ} (chi : TripleColoring n)

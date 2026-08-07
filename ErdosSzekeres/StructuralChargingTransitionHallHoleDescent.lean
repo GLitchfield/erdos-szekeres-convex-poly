@@ -59,6 +59,224 @@ def FiniteCandidateHoleState.HasTwoStepAugmentingExit
           ∀ span ∈ block.erase state.hole,
             fresh ≠ state.representative span
 
+/-- A closed saturated owner-star is the exact local obstruction to both a
+direct fill and a two-step augmentation.  Every hole candidate is currently
+owned, and every candidate of every reachable owner is currently used. -/
+def FiniteCandidateHoleState.HasClosedSaturatedOwnerStar
+    {Span Ideal : Type*} [DecidableEq Span]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates) : Prop :=
+  (∀ ideal ∈ candidates state.hole,
+      ∃ owner ∈ block.erase state.hole,
+        state.representative owner = ideal) ∧
+    ∀ ideal ∈ candidates state.hole,
+      ∀ owner ∈ block.erase state.hole,
+        state.representative owner = ideal →
+          ∀ fresh ∈ candidates owner,
+            ∃ span ∈ block.erase state.hole,
+              state.representative span = fresh
+
+/-- The spans whose current representatives belong to the hole's candidate
+family.  In a blocked state these are precisely the unique current owners of
+the hole candidates. -/
+def FiniteCandidateHoleState.reachedOwners
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates) : Finset Span :=
+  (block.erase state.hole).filter fun owner ↦
+    state.representative owner ∈ candidates state.hole
+
+/-- The hole family together with every candidate family reached through an
+actual current owner. -/
+def FiniteCandidateHoleState.ownerStar
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates) : Finset Ideal :=
+  candidates state.hole ∪ state.reachedOwners.biUnion candidates
+
+/-- Every injective membership-feasible assignment of a hole family's ideals
+to distinct non-hole spans has a block-large owner star.  This profile depends
+only on the candidate system, not on a partial representative state. -/
+def FiniteCandidateFeasibleOwnerStarExpansion
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal) : Prop :=
+  ∀ hole ∈ block, ∀ owner : Ideal → Span,
+    Set.InjOn owner (candidates hole) →
+      (∀ ideal ∈ candidates hole,
+        owner ideal ∈ block.erase hole ∧
+          ideal ∈ candidates (owner ideal)) →
+        block.card ≤
+          (candidates hole ∪
+            ((candidates hole).image owner).biUnion candidates).card
+
+/-- The positive closed-star predicate exactly characterizes simultaneous
+failure of the direct and length-two exits. -/
+theorem FiniteCandidateHoleState.hasClosedSaturatedOwnerStar_iff
+    {Span Ideal : Type*} [DecidableEq Span]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates) :
+    state.HasClosedSaturatedOwnerStar ↔
+      ¬ state.CanFill ∧ ¬ state.HasTwoStepAugmentingExit := by
+  constructor
+  · rintro ⟨howned, hsaturated⟩
+    constructor
+    · rintro ⟨ideal, hideal, hunused⟩
+      obtain ⟨owner, howner, hvalue⟩ := howned ideal hideal
+      exact hunused owner howner hvalue.symm
+    · rintro ⟨ideal, hideal, owner, howner, hvalue,
+        fresh, hfresh, hunused⟩
+      obtain ⟨span, hspan, hspanvalue⟩ :=
+        hsaturated ideal hideal owner howner hvalue fresh hfresh
+      exact hunused span hspan hspanvalue.symm
+  · rintro ⟨hnotFill, hnotExit⟩
+    constructor
+    · intro ideal hideal
+      by_contra hnone
+      apply hnotFill
+      refine ⟨ideal, hideal, ?_⟩
+      intro owner howner heq
+      apply hnone
+      exact ⟨owner, howner, heq.symm⟩
+    · intro ideal hideal owner howner hvalue fresh hfresh
+      by_contra hnone
+      apply hnotExit
+      refine ⟨ideal, hideal, owner, howner, hvalue, fresh, hfresh, ?_⟩
+      intro span hspan heq
+      apply hnone
+      exact ⟨span, hspan, heq.symm⟩
+
+/-- Excluding a closed saturated owner-star is exactly enough to obtain one of
+the two constructive exits. -/
+theorem FiniteCandidateHoleState.canFill_or_hasTwoStepAugmentingExit_of_not_closedStar
+    {Span Ideal : Type*} [DecidableEq Span]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hnotClosed : ¬ state.HasClosedSaturatedOwnerStar) :
+    state.CanFill ∨ state.HasTwoStepAugmentingExit := by
+  by_cases hfill : state.CanFill
+  · exact Or.inl hfill
+  · right
+    by_contra hexit
+    exact hnotClosed
+      (state.hasClosedSaturatedOwnerStar_iff.mpr ⟨hfill, hexit⟩)
+
+/-- Expansion of the canonical current-owner star forces a two-step exit from
+any blocked state.  This is a state-dependent local inequality, not a Hall
+premise on arbitrary span subfamilies. -/
+theorem FiniteCandidateHoleState.hasTwoStepAugmentingExit_of_ownerStarExpansion
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hblocked : ¬ state.CanFill)
+    (hexpand : block.card ≤ state.ownerStar.card) :
+    state.HasTwoStepAugmentingExit := by
+  have hnotClosed : ¬ state.HasClosedSaturatedOwnerStar := by
+    intro hclosed
+    let used := (block.erase state.hole).image state.representative
+    have hstarSubset : state.ownerStar ⊆ used := by
+      intro ideal hideal
+      rw [FiniteCandidateHoleState.ownerStar, Finset.mem_union] at hideal
+      rcases hideal with hideal | hideal
+      · obtain ⟨owner, howner, hvalue⟩ := hclosed.1 ideal hideal
+        rw [Finset.mem_image]
+        exact ⟨owner, howner, hvalue⟩
+      · rw [Finset.mem_biUnion] at hideal
+        obtain ⟨owner, howner, hidealOwner⟩ := hideal
+        rw [FiniteCandidateHoleState.reachedOwners,
+          Finset.mem_filter] at howner
+        obtain ⟨span, hspan, hvalue⟩ := hclosed.2
+          (state.representative owner) howner.2 owner howner.1 rfl
+          ideal hidealOwner
+        rw [Finset.mem_image]
+        exact ⟨span, hspan, hvalue⟩
+    have hstarCard : state.ownerStar.card ≤ used.card :=
+      Finset.card_le_card hstarSubset
+    have husedCard : used.card = (block.erase state.hole).card :=
+      Finset.card_image_iff.mpr state.representative_injective
+    rw [husedCard, Finset.card_erase_of_mem state.hole_mem] at hstarCard
+    have hblockPositive : 0 < block.card :=
+      Finset.card_pos.mpr ⟨state.hole, state.hole_mem⟩
+    omega
+  exact (state.canFill_or_hasTwoStepAugmentingExit_of_not_closedStar
+    hnotClosed).resolve_left hblocked
+
+/-- A blocked state turns its uniquely represented hole candidates into one
+of the feasible owner maps quantified by the state-free expansion profile. -/
+theorem FiniteCandidateHoleState.ownerStarExpansion_of_feasibleOwnerStarExpansion
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hprofile : FiniteCandidateFeasibleOwnerStarExpansion block candidates)
+    (hblocked : ¬ state.CanFill) :
+    block.card ≤ state.ownerStar.card := by
+  classical
+  have howned : ∀ ideal ∈ candidates state.hole,
+      ∃ owner ∈ block.erase state.hole,
+        state.representative owner = ideal := by
+    intro ideal hideal
+    by_contra hnone
+    apply hblocked
+    refine ⟨ideal, hideal, ?_⟩
+    intro owner howner heq
+    apply hnone
+    exact ⟨owner, howner, heq.symm⟩
+  let owner : Ideal → Span := fun ideal ↦
+    if hideal : ideal ∈ candidates state.hole then
+      Classical.choose (howned ideal hideal)
+    else state.hole
+  have hownerSpec (ideal : Ideal) (hideal : ideal ∈ candidates state.hole) :
+      owner ideal ∈ block.erase state.hole ∧
+        state.representative (owner ideal) = ideal := by
+    simp only [owner, dif_pos hideal]
+    exact Classical.choose_spec (howned ideal hideal)
+  have hownerInjective : Set.InjOn owner (candidates state.hole) := by
+    intro first hfirst second hsecond heq
+    have hfirstSpec := hownerSpec first hfirst
+    have hsecondSpec := hownerSpec second hsecond
+    calc
+      first = state.representative (owner first) := hfirstSpec.2.symm
+      _ = state.representative (owner second) := congrArg state.representative heq
+      _ = second := hsecondSpec.2
+  have hownerFeasible : ∀ ideal ∈ candidates state.hole,
+      owner ideal ∈ block.erase state.hole ∧
+        ideal ∈ candidates (owner ideal) := by
+    intro ideal hideal
+    have hspec := hownerSpec ideal hideal
+    refine ⟨hspec.1, ?_⟩
+    simpa [hspec.2] using
+      state.representative_mem (owner ideal) hspec.1
+  have hmappedExpansion := hprofile state.hole state.hole_mem owner
+    hownerInjective hownerFeasible
+  apply hmappedExpansion.trans
+  apply Finset.card_le_card
+  intro ideal hideal
+  rw [FiniteCandidateHoleState.ownerStar, Finset.mem_union]
+  rw [Finset.mem_union] at hideal
+  rcases hideal with hideal | hideal
+  · exact Or.inl hideal
+  · right
+    rw [Finset.mem_biUnion] at hideal ⊢
+    obtain ⟨ownerSpan, hownerSpan, hidealOwner⟩ := hideal
+    rw [Finset.mem_image] at hownerSpan
+    obtain ⟨source, hsource, rfl⟩ := hownerSpan
+    have hspec := hownerSpec source hsource
+    refine ⟨owner source, ?_, hidealOwner⟩
+    rw [FiniteCandidateHoleState.reachedOwners, Finset.mem_filter]
+    exact ⟨hspec.1, by simpa [hspec.2] using hsource⟩
+
+/-- The state-free feasible-owner profile therefore forces the exact two-step
+exit from every blocked one-hole state. -/
+theorem FiniteCandidateHoleState.hasTwoStepAugmentingExit_of_feasibleOwnerStarExpansion
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hprofile : FiniteCandidateFeasibleOwnerStarExpansion block candidates)
+    (hblocked : ¬ state.CanFill) :
+    state.HasTwoStepAugmentingExit := by
+  exact state.hasTwoStepAugmentingExit_of_ownerStarExpansion hblocked
+    (state.ownerStarExpansion_of_feasibleOwnerStarExpansion
+      hprofile hblocked)
+
 /-- A system of distinct representatives restricted to one finite block. -/
 def FiniteCandidateHasDistinctRepresentativesOn
     {Span Ideal : Type*} (block : Finset Span)
@@ -278,6 +496,86 @@ theorem FiniteCandidateHoleState.card_le_biUnion_of_twoStepAugmentingExit
   exact Finset.card_le_biUnion_card_of_injective_mem block candidates
     representative hmem hinjective
 
+/-- Owner-star expansion completes every one-hole state, directly when
+possible and otherwise through the forced two-step exit. -/
+theorem FiniteCandidateHoleState.hasDistinctRepresentatives_of_ownerStarExpansion
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hexpand : block.card ≤ state.ownerStar.card) :
+    FiniteCandidateHasDistinctRepresentativesOn block candidates := by
+  by_cases hfill : state.CanFill
+  · exact state.hasDistinctRepresentatives_of_canFill hfill
+  · exact state.hasDistinctRepresentatives_of_twoStepAugmentingExit
+      (state.hasTwoStepAugmentingExit_of_ownerStarExpansion hfill hexpand)
+
+/-- Owner-star expansion implies the block Hall inequality for the current
+one-hole state. -/
+theorem FiniteCandidateHoleState.card_le_biUnion_of_ownerStarExpansion
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hexpand : block.card ≤ state.ownerStar.card) :
+    block.card ≤ (block.biUnion candidates).card := by
+  obtain ⟨representative, hinjective, hmem⟩ :=
+    state.hasDistinctRepresentatives_of_ownerStarExpansion hexpand
+  exact Finset.card_le_biUnion_card_of_injective_mem block candidates
+    representative hmem hinjective
+
+/-- The state-free feasible-owner expansion profile completes every one-hole
+state on the candidate system. -/
+theorem FiniteCandidateHoleState.hasDistinctRepresentatives_of_feasibleOwnerStarExpansion
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hprofile : FiniteCandidateFeasibleOwnerStarExpansion block candidates) :
+    FiniteCandidateHasDistinctRepresentativesOn block candidates := by
+  by_cases hfill : state.CanFill
+  · exact state.hasDistinctRepresentatives_of_canFill hfill
+  · exact state.hasDistinctRepresentatives_of_twoStepAugmentingExit
+      (state.hasTwoStepAugmentingExit_of_feasibleOwnerStarExpansion
+        hprofile hfill)
+
+/-- The same feasible-owner profile implies the block Hall inequality once a
+one-hole state is supplied. -/
+theorem FiniteCandidateHoleState.card_le_biUnion_of_feasibleOwnerStarExpansion
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hprofile : FiniteCandidateFeasibleOwnerStarExpansion block candidates) :
+    block.card ≤ (block.biUnion candidates).card := by
+  obtain ⟨representative, hinjective, hmem⟩ :=
+    state.hasDistinctRepresentatives_of_feasibleOwnerStarExpansion hprofile
+  exact Finset.card_le_biUnion_card_of_injective_mem block candidates
+    representative hmem hinjective
+
+/-- A proof that the local owner-star cannot close supplies an SDR on the
+whole block.  The remaining open work is to derive this premise from genuine
+reflected frontier geometry. -/
+theorem FiniteCandidateHoleState.hasDistinctRepresentatives_of_not_closedStar
+    {Span Ideal : Type*} [DecidableEq Span]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hnotClosed : ¬ state.HasClosedSaturatedOwnerStar) :
+    FiniteCandidateHasDistinctRepresentativesOn block candidates := by
+  rcases state.canFill_or_hasTwoStepAugmentingExit_of_not_closedStar hnotClosed with
+    hfill | hexit
+  · exact state.hasDistinctRepresentatives_of_canFill hfill
+  · exact state.hasDistinctRepresentatives_of_twoStepAugmentingExit hexit
+
+/-- Excluding the local closed-star obstruction implies the block Hall
+inequality. -/
+theorem FiniteCandidateHoleState.card_le_biUnion_of_not_closedStar
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    (state : FiniteCandidateHoleState block candidates)
+    (hnotClosed : ¬ state.HasClosedSaturatedOwnerStar) :
+    block.card ≤ (block.biUnion candidates).card := by
+  obtain ⟨representative, hinjective, hmem⟩ :=
+    state.hasDistinctRepresentatives_of_not_closedStar hnotClosed
+  exact Finset.card_le_biUnion_card_of_injective_mem block candidates
+    representative hmem hinjective
+
 /-- Under the singleton-or-block-large profile, every one-hole state fills
 directly or after one ownership transfer.  No candidate priority, matching,
 or multi-step descent measure is needed. -/
@@ -336,6 +634,60 @@ theorem FiniteCandidateHoleState.card_le_biUnion_of_singletonOrBlockLarge
       hprofile howners
   exact Finset.card_le_biUnion_card_of_injective_mem block candidates
     representative hmem hinjective
+
+/-- The state-free owner-map expansion profile specialized to every genuine
+reflected endpoint block.  Experiment 0041 tests this exact shape at the
+frozen `n = 12`, `k = 7` root; the arbitrary theorem remains open. -/
+def AllocatedReflectedEndpointRankTransitionFeasibleOwnerStarExpansion
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k) : Prop :=
+  ∀ first last : AllocatedExactRankFrontierSpan
+      chi lower upper color rank,
+    FiniteCandidateFeasibleOwnerStarExpansion
+      (allocatedExactRankFrontierBlock first last)
+      (allocatedReflectedEndpointRankTransitionCandidates
+        chi lower upper color hrank hrankTop)
+
+/-- The separate induction input needed downstream: every nonempty endpoint
+block already has a partial injection with one hole.  This is not supplied by
+owner-star expansion itself. -/
+def AllocatedReflectedEndpointRankTransitionOneHoleStateExists
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k) : Prop :=
+  ∀ first last : AllocatedExactRankFrontierSpan
+      chi lower upper color rank,
+    let spans := allocatedExactRankFrontierBlock first last
+    spans.Nonempty →
+      Nonempty (FiniteCandidateHoleState spans
+        (allocatedReflectedEndpointRankTransitionCandidates
+          chi lower upper color hrank hrankTop))
+
+/-- Feasible-owner-star expansion proves consecutive-block expansion once the
+inductively supplied one-hole states are available.  The two premises expose
+the geometric escape and induction-construction obligations separately. -/
+theorem allocatedReflectedEndpointRankTransitionBlockExpansion_of_feasibleOwnerStar
+    {n rank k : ℕ} {chi : TripleColoring n}
+    {lower upper : Finset (Fin n)} {color : Turn}
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (hstar : AllocatedReflectedEndpointRankTransitionFeasibleOwnerStarExpansion
+      chi lower upper color hrank hrankTop)
+    (hstates : AllocatedReflectedEndpointRankTransitionOneHoleStateExists
+      chi lower upper color hrank hrankTop) :
+    AllocatedReflectedEndpointRankTransitionBlockExpansion
+      chi lower upper color hrank hrankTop := by
+  intro first last
+  let spans := allocatedExactRankFrontierBlock first last
+  change spans.card ≤
+    (spans.biUnion (allocatedReflectedEndpointRankTransitionCandidates
+      chi lower upper color hrank hrankTop)).card
+  by_cases hne : spans.Nonempty
+  · let state := Classical.choice (hstates first last hne)
+    exact state.card_le_biUnion_of_feasibleOwnerStarExpansion
+      (hstar first last)
+  · rw [Finset.not_nonempty_iff_eq_empty.mp hne]
+    simp
 
 /-- Every unfillable state has an allowed successor with strictly smaller
 measure.  The relation on measures is kept explicit rather than fixed to
