@@ -798,6 +798,26 @@ contract. The next theorem must construct this lane-chain anchor uniformly
 from exact-rank reflected endpoint incidence. The one-hole-state induction is
 still a separate downstream premise.
 
+Experiment 0049 moves the bounded parameter to `k = 8` through eight
+vertices. Independent implementations agree on 992,028 frontier groups and
+2,096 nonvacuous holes. The block-large profile again passes, now with minimum
+slack `+3`, but every minimum deficient anchor is a singleton. Thus the gate
+supports the constructor while leaving the first genuinely longer chain
+untested.
+
+The scalable Lean reduction is now explicit. A
+`FiniteCandidateLanePathCertificate` consists of `m + 1` ordered anchors,
+`m` distinct small owners containing consecutive anchor pairs, and an
+exhaustion of all small owners meeting the path. Lean proves, by injecting any
+proper vertex subset into its incident path edges, that the full path is an
+inclusion-minimal deficient anchor. Adding strict ideal order, exact Pascal-
+interval image, and containment in one reflected endpoint lane supplies the
+lane-chain contract. The open geometry lemma is no longer merely “find a
+deficient subset”: it must construct this owner-labelled path from recursively
+decomposable children, a genuine deep-below split, and the no-strong-`k`
+hypothesis. Ranks one and two require separate base cases because the existing
+active-ray normal form begins at rank three.
+
 The first geometric refinement does not survive its frozen gate. Experiment
 0045 shows that the tight cap owner has a seven-element family but maximum
 single-lane cell spread plus one only `5 < 6`. The missing bridge must exploit

@@ -260,11 +260,19 @@ sets.
   decomposable `k = 7` root through eight vertices: all 3,056 nonvacuous holes
   have a selected minimum anchor of size one or two that is a complete
   one-lane lattice interval. Endpoint singletons fail in 1,180 cases, so the
-  pair alternative is essential. Lean proves the general minimal-deficiency
-  calculus, defines the lane-chain contract, and proves it implies the active
-  small-owner deficiency. Constructing that shaped anchor from arbitrary
-  exact-rank geometry is the current local theorem. Constructing one-hole
-  states uniformly remains a
+  pair alternative is essential. Experiment 0049 passes the first `k = 8`
+  all-root gate through eight vertices: all 2,096 nonvacuous holes have
+  singleton minima and bottleneck slack at least `+3`, so that support range
+  does not yet exercise longer anchors. Lean proves the general
+  minimal-deficiency calculus, the singleton and cover-pair constructors, and
+  a scalable owner-labelled lane-path theorem: `m + 1` ordered anchors with
+  `m` distinct adjacent-gap owners form an inclusion-minimal deficient anchor
+  when those owners exhaust its block-small neighborhood. The reflected
+  path-certificate contract implies the lane-chain contract and hence the
+  active small-owner deficiency. Constructing those explicit paths from
+  recursively decomposable children, deep-split incidence, and the absence of
+  a strong `k`-set is the current local theorem. Constructing one-hole states
+  uniformly remains a
   separate induction obligation; neither premise may assume Hall, an existing
   complete matching, or finite enumeration.
   General Hall and the global outer-window injection remain subsequent.

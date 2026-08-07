@@ -442,6 +442,61 @@ def allocatedEndpointTransitionLane {n : ℕ} {Ideal : Type*}
       pascalTransitionInterval (profiles.past span.1.right)
         (profiles.future span.1.right)
 
+/-- The complete endpoint-transition family is exactly the union of its two
+endpoint lanes. -/
+theorem allocatedEndpointTransitionCandidates_eq_union_lanes
+    {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    allocatedEndpointTransitionCandidates profiles span =
+      allocatedEndpointTransitionLane profiles span .left ∪
+        allocatedEndpointTransitionLane profiles span .right := by
+  rfl
+
+/-- Every endpoint lane is nonempty because it contains both interval
+endpoints. -/
+theorem allocatedEndpointTransitionLane_nonempty
+    {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank})
+    (side : SweepEndpointSide) :
+    (allocatedEndpointTransitionLane profiles span side).Nonempty := by
+  cases side with
+  | left =>
+      exact ⟨profiles.past span.1.left,
+        pascalTransitionInterval_first_mem _ _⟩
+  | right =>
+      exact ⟨profiles.past span.1.right,
+        pascalTransitionInterval_first_mem _ _⟩
+
+/-- Either endpoint lane is contained in the complete two-lane family. -/
+theorem allocatedEndpointTransitionLane_subset_candidates
+    {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank})
+    (side : SweepEndpointSide) :
+    allocatedEndpointTransitionLane profiles span side ⊆
+      allocatedEndpointTransitionCandidates profiles span := by
+  rw [allocatedEndpointTransitionCandidates_eq_union_lanes]
+  cases side with
+  | left => exact Finset.subset_union_left
+  | right => exact Finset.subset_union_right
+
 /-- A finite family is a lattice chain interval when it is a complete
 transition interval and all of its members are pairwise comparable. -/
 def PascalGridIdeal.IsChainInterval {rows columns : ℕ}

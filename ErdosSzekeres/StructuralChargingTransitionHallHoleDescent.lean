@@ -253,6 +253,209 @@ theorem finiteCandidateSmallOwnerNeighbors_union
           Finset.mem_inter.mpr ⟨hcandidates,
             Finset.mem_union_right _ hsecond⟩⟩⟩
 
+/-- Every proper subset of the vertices of a finite path is incident to at
+least as many path edges as it has vertices. Choose a missing pivot and send
+selected vertices on its left to their right edge, and selected vertices on
+its right to their left edge. -/
+theorem Finset.card_le_incidentPathEdges {m : ℕ}
+    (vertices : Finset (Fin (m + 1)))
+    (hproper : vertices ⊂ Finset.univ) :
+    vertices.card ≤
+      (Finset.univ.filter fun edge : Fin m ↦
+        edge.castSucc ∈ vertices ∨ edge.succ ∈ vertices).card := by
+  obtain ⟨pivot, _, hpivot⟩ := Finset.exists_of_ssubset hproper
+  by_cases hm : m = 0
+  · subst m
+    have hempty : vertices = ∅ := by
+      apply Finset.not_nonempty_iff_eq_empty.mp
+      intro hnonempty
+      obtain ⟨index, hindex⟩ := hnonempty
+      have hindexPivot : index = pivot := Fin.ext (by omega)
+      exact hpivot (hindexPivot ▸ hindex)
+    simp [hempty]
+  · let edgeOfVertex : Fin (m + 1) → Fin m := fun index ↦
+      if hleft : index < pivot then
+        ⟨index.val, by omega⟩
+      else
+        ⟨index.val - 1, by omega⟩
+    have hedgeInjective : Set.InjOn edgeOfVertex vertices := by
+      intro first hfirst second hsecond heq
+      have hfirstNe : first ≠ pivot := fun h ↦ hpivot (h ▸ hfirst)
+      have hsecondNe : second ≠ pivot := fun h ↦ hpivot (h ▸ hsecond)
+      simp only [edgeOfVertex] at heq
+      split_ifs at heq with hfirstLeft hsecondLeft
+      all_goals apply Fin.ext
+      all_goals simp only [Fin.mk.injEq] at heq ⊢
+      all_goals omega
+    have himage :
+        vertices.image edgeOfVertex ⊆
+          Finset.univ.filter fun edge : Fin m ↦
+            edge.castSucc ∈ vertices ∨ edge.succ ∈ vertices := by
+      intro edge hedge
+      rw [Finset.mem_image] at hedge
+      obtain ⟨index, hindex, rfl⟩ := hedge
+      rw [Finset.mem_filter]
+      refine ⟨Finset.mem_univ _, ?_⟩
+      have hindexNe : index ≠ pivot := fun h ↦ hpivot (h ▸ hindex)
+      by_cases hleft : index < pivot
+      · left
+        have heq : (edgeOfVertex index).castSucc = index := by
+          apply Fin.ext
+          simp [edgeOfVertex, hleft]
+        simpa only [heq] using hindex
+      · right
+        have heq : (edgeOfVertex index).succ = index := by
+          apply Fin.ext
+          simp [edgeOfVertex, hleft]
+          omega
+        simpa only [heq] using hindex
+    calc
+      vertices.card = (vertices.image edgeOfVertex).card :=
+        (Finset.card_image_iff.mpr hedgeInjective).symm
+      _ ≤ _ := Finset.card_le_card himage
+
+/-- An explicit path-shaped small-owner certificate. There is one more anchor
+than gap owner; every gap owner contains both adjacent anchors; and the listed
+owners exhaust all block-small neighbors of the full anchor path. -/
+structure FiniteCandidateLanePathCertificate
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal) (hole : Span) where
+  length : ℕ
+  anchor : Fin (length + 1) ↪ Ideal
+  owner : Fin length ↪ Span
+  anchor_mem : ∀ index, anchor index ∈ candidates hole
+  owner_small : ∀ index,
+    owner index ∈ block.erase hole ∧
+      (candidates (owner index)).card < block.card
+  owner_contains_gap : ∀ index,
+    anchor index.castSucc ∈ candidates (owner index) ∧
+      anchor index.succ ∈ candidates (owner index)
+  neighbors_subset_owners :
+    finiteCandidateSmallOwnerNeighbors block candidates hole
+        (Finset.univ.map anchor) ⊆
+      Finset.univ.map owner
+
+/-- A path certificate constructs an inclusion-minimal deficient anchor. The
+proper-subset clause is the path-incidence inequality above, not an assumed
+Hall or deficiency statement. -/
+theorem FiniteCandidateLanePathCertificate.minimalDeficientAnchor
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal} {hole : Span}
+    (certificate : FiniteCandidateLanePathCertificate
+      block candidates hole) :
+    FiniteCandidateMinimalDeficientAnchor block candidates hole
+      (Finset.univ.map certificate.anchor) := by
+  let anchors := Finset.univ.map certificate.anchor
+  let owners := Finset.univ.map certificate.owner
+  have hanchorsSubset : anchors ⊆ candidates hole := by
+    intro ideal hideal
+    rw [Finset.mem_map] at hideal
+    obtain ⟨index, _, rfl⟩ := hideal
+    exact certificate.anchor_mem index
+  have hownersSubset : owners ⊆
+      finiteCandidateSmallOwnerNeighbors block candidates hole anchors := by
+    intro owner howner
+    rw [Finset.mem_map] at howner
+    obtain ⟨index, _, rfl⟩ := howner
+    rw [finiteCandidateSmallOwnerNeighbors, Finset.mem_filter]
+    refine ⟨(certificate.owner_small index).1,
+      (certificate.owner_small index).2, Finset.nonempty_def.mpr ?_⟩
+    refine ⟨certificate.anchor index.castSucc, Finset.mem_inter.mpr ⟨
+      (certificate.owner_contains_gap index).1, ?_⟩⟩
+    rw [Finset.mem_map]
+    exact ⟨index.castSucc, Finset.mem_univ _, rfl⟩
+  have hneighbors :
+      finiteCandidateSmallOwnerNeighbors block candidates hole anchors = owners :=
+    Finset.Subset.antisymm certificate.neighbors_subset_owners hownersSubset
+  refine ⟨hanchorsSubset, ?_, ?_⟩
+  · rw [hneighbors]
+    simp [owners]
+  · intro smaller hproper
+    let selected := Finset.univ.filter fun index ↦
+      certificate.anchor index ∈ smaller
+    have hselectedMap : selected.map certificate.anchor = smaller := by
+      ext ideal
+      constructor
+      · intro hideal
+        rw [Finset.mem_map] at hideal
+        obtain ⟨index, hindex, rfl⟩ := hideal
+        exact (Finset.mem_filter.mp hindex).2
+      · intro hideal
+        have hanchor : ideal ∈ anchors := hproper.1 hideal
+        rw [Finset.mem_map] at hanchor
+        obtain ⟨index, _, rfl⟩ := hanchor
+        rw [Finset.mem_map]
+        exact ⟨index, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hideal⟩, rfl⟩
+    have hselectedProper : selected ⊂ Finset.univ := by
+      apply (Finset.ssubset_iff_of_subset (Finset.filter_subset _ _)).2
+      obtain ⟨missing, hmissingAnchor, hmissingSmaller⟩ :=
+        Finset.exists_of_ssubset hproper
+      rw [Finset.mem_map] at hmissingAnchor
+      obtain ⟨index, _, hindex⟩ := hmissingAnchor
+      refine ⟨index, Finset.mem_univ _, ?_⟩
+      rw [Finset.mem_filter]
+      simp only [Finset.mem_univ, true_and]
+      intro hindexSmaller
+      exact hmissingSmaller (hindex ▸ hindexSmaller)
+    let edges := Finset.univ.filter fun edge : Fin certificate.length ↦
+      edge.castSucc ∈ selected ∨ edge.succ ∈ selected
+    have hedgesOwnersSubset : edges.map certificate.owner ⊆
+        finiteCandidateSmallOwnerNeighbors block candidates hole smaller := by
+      intro owner howner
+      rw [Finset.mem_map] at howner
+      obtain ⟨edge, hedge, rfl⟩ := howner
+      have hedgeSelected := (Finset.mem_filter.mp hedge).2
+      rw [finiteCandidateSmallOwnerNeighbors, Finset.mem_filter]
+      refine ⟨(certificate.owner_small edge).1,
+        (certificate.owner_small edge).2, Finset.nonempty_def.mpr ?_⟩
+      rcases hedgeSelected with hleft | hright
+      · refine ⟨certificate.anchor edge.castSucc, Finset.mem_inter.mpr ⟨
+          (certificate.owner_contains_gap edge).1, ?_⟩⟩
+        exact (Finset.mem_filter.mp hleft).2
+      · refine ⟨certificate.anchor edge.succ, Finset.mem_inter.mpr ⟨
+          (certificate.owner_contains_gap edge).2, ?_⟩⟩
+        exact (Finset.mem_filter.mp hright).2
+    calc
+      smaller.card = (selected.map certificate.anchor).card :=
+        congrArg Finset.card hselectedMap.symm
+      _ = selected.card := Finset.card_map _
+      _ ≤ edges.card := Finset.card_le_incidentPathEdges selected hselectedProper
+      _ = (edges.map certificate.owner).card := (Finset.card_map _).symm
+      _ ≤ (finiteCandidateSmallOwnerNeighbors
+          block candidates hole smaller).card :=
+        Finset.card_le_card hedgesOwnersSubset
+
+/-- A strictly increasing path certificate whose image is a complete Pascal
+interval and lies in one lane supplies the full structured anchor contract. -/
+theorem FiniteCandidateLanePathCertificate.laneChainMinimalDeficiency
+    {Span : Type*} [DecidableEq Span]
+    {rows columns : ℕ}
+    {block : Finset Span}
+    {candidates : Span → Finset (PascalGridIdeal rows columns)}
+    {hole : Span} {lane : Finset (PascalGridIdeal rows columns)}
+    (certificate : FiniteCandidateLanePathCertificate
+      block candidates hole)
+    (hstrict : StrictMono certificate.anchor)
+    (hinterval : Finset.univ.map certificate.anchor =
+      pascalTransitionInterval (certificate.anchor 0)
+        (certificate.anchor (Fin.last certificate.length)))
+    (hlane : Finset.univ.map certificate.anchor ⊆ lane) :
+    FiniteCandidateMinimalDeficientAnchor block candidates hole
+        (Finset.univ.map certificate.anchor) ∧
+      PascalGridIdeal.IsChainInterval
+        (Finset.univ.map certificate.anchor) ∧
+      Finset.univ.map certificate.anchor ⊆ lane := by
+  refine ⟨certificate.minimalDeficientAnchor, ?_, hlane⟩
+  refine ⟨certificate.anchor 0, by simp,
+    certificate.anchor (Fin.last certificate.length), by simp, hinterval, ?_⟩
+  intro first hfirst second hsecond
+  rw [Finset.mem_map] at hfirst hsecond
+  obtain ⟨firstIndex, _, rfl⟩ := hfirst
+  obtain ⟨secondIndex, _, rfl⟩ := hsecond
+  rcases le_total firstIndex secondIndex with hle | hge
+  · exact Or.inl (hstrict.monotone hle)
+  · exact Or.inr (hstrict.monotone hge)
+
 /-- An inclusion-minimal deficient anchor has deficiency exactly one. Erasing
 any one of its anchors leaves the same block-small neighborhood. -/
 theorem FiniteCandidateMinimalDeficientAnchor.classification
@@ -504,6 +707,124 @@ theorem finiteCandidate_pair_minimalDeficientAnchor_iff
       rcases hideal with rfl | rfl
       · simp [hfirstNeighbors]
       · simp [hsecondNeighbors]
+
+/-- A lane ideal with no block-small owner is the structured singleton branch
+of the deficient-anchor construction. -/
+theorem finiteCandidate_singleton_laneChainMinimalDeficiency_of_no_small_owner
+    {Span : Type*} [DecidableEq Span]
+    {rows columns : ℕ}
+    {block : Finset Span}
+    {candidates : Span → Finset (PascalGridIdeal rows columns)}
+    {hole : Span} {ideal : PascalGridIdeal rows columns}
+    {lane : Finset (PascalGridIdeal rows columns)}
+    (hideal : ideal ∈ candidates hole)
+    (hneighbors : finiteCandidateSmallOwnerNeighbors
+      block candidates hole {ideal} = ∅)
+    (hlane : ideal ∈ lane) :
+    FiniteCandidateMinimalDeficientAnchor
+        block candidates hole {ideal} ∧
+      PascalGridIdeal.IsChainInterval {ideal} ∧
+      ({ideal} : Finset (PascalGridIdeal rows columns)) ⊆ lane := by
+  have hminimal : FiniteCandidateMinimalDeficientAnchor
+      block candidates hole {ideal} :=
+    (finiteCandidate_singleton_minimalDeficientAnchor_iff hideal).2 (by
+      intro owner howner hcandidates
+      by_contra hnotLarge
+      have hsmall : (candidates owner).card < block.card :=
+        Nat.lt_of_not_ge hnotLarge
+      have hmem : owner ∈ finiteCandidateSmallOwnerNeighbors
+          block candidates hole {ideal} := by
+        rw [finiteCandidateSmallOwnerNeighbors, Finset.mem_filter]
+        exact ⟨howner, hsmall, Finset.nonempty_def.mpr ⟨ideal,
+          Finset.mem_inter.mpr ⟨hcandidates, Finset.mem_singleton_self ideal⟩⟩⟩
+      rw [hneighbors] at hmem
+      simp at hmem)
+  refine ⟨hminimal, ?_, Finset.singleton_subset_iff.mpr hlane⟩
+  refine ⟨ideal, by simp, ideal, by simp, ?_, ?_⟩
+  · exact (pascalTransitionInterval_eq_singleton_iff.mpr ⟨rfl, rfl⟩).symm
+  · intro first hfirst second hsecond
+    simp only [Finset.mem_singleton] at hfirst hsecond
+    subst first
+    subst second
+    exact Or.inl le_rfl
+
+/-- Two comparable lane ideals with the same unique block-small owner form
+the structured two-anchor witness observed in the `k = 7` gate. The geometry
+still has to construct the ideals and prove their neighborhood equations. -/
+theorem finiteCandidate_pair_laneChainMinimalDeficiency_of_same_singleton_neighbor
+    {Span : Type*} [DecidableEq Span]
+    {rows columns : ℕ}
+    {block : Finset Span}
+    {candidates : Span → Finset (PascalGridIdeal rows columns)}
+    {hole owner : Span}
+    {first second : PascalGridIdeal rows columns}
+    {lane : Finset (PascalGridIdeal rows columns)}
+    (hne : first ≠ second)
+    (hfirst : first ∈ candidates hole)
+    (hsecond : second ∈ candidates hole)
+    (hfirstNeighbors :
+      finiteCandidateSmallOwnerNeighbors
+          block candidates hole {first} = {owner})
+    (hsecondNeighbors :
+      finiteCandidateSmallOwnerNeighbors
+          block candidates hole {second} = {owner})
+    (hinterval : pascalTransitionInterval first second = {first, second})
+    (hcomparable : first ≤ second ∨ second ≤ first)
+    (hlane : ({first, second} : Finset (PascalGridIdeal rows columns)) ⊆ lane) :
+    FiniteCandidateMinimalDeficientAnchor
+        block candidates hole {first, second} ∧
+      PascalGridIdeal.IsChainInterval {first, second} ∧
+      ({first, second} : Finset (PascalGridIdeal rows columns)) ⊆ lane := by
+  refine ⟨(finiteCandidate_pair_minimalDeficientAnchor_iff
+    hne hfirst hsecond).2 ⟨owner, hfirstNeighbors, hsecondNeighbors⟩, ?_, hlane⟩
+  refine ⟨first, by simp, second, by simp, hinterval.symm, ?_⟩
+  intro ideal hideal other hother
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hideal hother
+  rcases hideal with rfl | rfl <;> rcases hother with rfl | rfl
+  · exact Or.inl le_rfl
+  · exact hcomparable
+  · exact hcomparable.elim Or.inr Or.inl
+  · exact Or.inl le_rfl
+
+/-- A zero-neighbor lane ideal or a cover pair with the same unique neighbor
+constructs a lane-chain minimal deficient anchor. This packages the two
+branches tested by the next bounded falsifier without asserting that either
+branch always exists. -/
+theorem finiteCandidate_exists_laneChainMinimalDeficientAnchor_of_singleton_or_pair
+    {Span : Type*} [DecidableEq Span]
+    {rows columns : ℕ}
+    {block : Finset Span}
+    {candidates : Span → Finset (PascalGridIdeal rows columns)}
+    {hole : Span} {lane : Finset (PascalGridIdeal rows columns)}
+    (hlaneCandidates : lane ⊆ candidates hole)
+    (hwitness :
+      (∃ ideal ∈ lane,
+        finiteCandidateSmallOwnerNeighbors
+          block candidates hole {ideal} = ∅) ∨
+      ∃ first ∈ lane, ∃ second ∈ lane, ∃ owner,
+        first ≠ second ∧
+          finiteCandidateSmallOwnerNeighbors
+              block candidates hole {first} = {owner} ∧
+          finiteCandidateSmallOwnerNeighbors
+              block candidates hole {second} = {owner} ∧
+          pascalTransitionInterval first second = {first, second} ∧
+          (first ≤ second ∨ second ≤ first)) :
+    ∃ anchors : Finset (PascalGridIdeal rows columns),
+      FiniteCandidateMinimalDeficientAnchor
+          block candidates hole anchors ∧
+        PascalGridIdeal.IsChainInterval anchors ∧ anchors ⊆ lane := by
+  rcases hwitness with ⟨ideal, hidealLane, hneighbors⟩ |
+      ⟨first, hfirstLane, second, hsecondLane, owner, hne,
+        hfirstNeighbors, hsecondNeighbors, hinterval, hcomparable⟩
+  · refine ⟨{ideal}, ?_⟩
+    exact finiteCandidate_singleton_laneChainMinimalDeficiency_of_no_small_owner
+      (hlaneCandidates hidealLane) hneighbors hidealLane
+  · refine ⟨{first, second}, ?_⟩
+    exact finiteCandidate_pair_laneChainMinimalDeficiency_of_same_singleton_neighbor
+      hne (hlaneCandidates hfirstLane) (hlaneCandidates hsecondLane)
+      hfirstNeighbors hsecondNeighbors hinterval hcomparable (by
+        simp only [Finset.insert_subset_iff, Finset.singleton_subset_iff]
+        exact ⟨hfirstLane, hsecondLane⟩)
 
 /-- A strict small-owner neighborhood deficiency prevents every feasible
 owner map from using only block-small families, so some reached family is
@@ -1154,6 +1475,51 @@ def AllocatedReflectedEndpointRankTransitionLaneChainMinimalDeficiency
         ∃ side : SweepEndpointSide,
           anchors ⊆ allocatedReflectedEndpointRankTransitionLane
             chi lower upper color hrank hrankTop hole side
+
+/-- The explicit path-certificate refinement of the active geometry contract.
+It records one distinct block-small owner for each adjacent anchor gap and an
+exhaustion of every small owner meeting the path. Constructing these
+certificates from decomposable geometry is the remaining open bridge. -/
+def AllocatedReflectedEndpointRankTransitionLanePathCertificates
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k) : Prop :=
+  ∀ first last : AllocatedExactRankFrontierSpan
+      chi lower upper color rank,
+    let block := allocatedExactRankFrontierBlock first last
+    let candidates := allocatedReflectedEndpointRankTransitionCandidates
+      chi lower upper color hrank hrankTop
+    ∀ hole ∈ block, ∃ side : SweepEndpointSide,
+      ∃ certificate : FiniteCandidateLanePathCertificate
+          block candidates hole,
+        StrictMono certificate.anchor ∧
+          Finset.univ.map certificate.anchor =
+            pascalTransitionInterval (certificate.anchor 0)
+              (certificate.anchor (Fin.last certificate.length)) ∧
+          Finset.univ.map certificate.anchor ⊆
+            allocatedReflectedEndpointRankTransitionLane
+              chi lower upper color hrank hrankTop hole side
+
+/-- Explicit owner-labelled lane paths supply the lane-chain minimal anchors
+required by the active small-owner-deficiency reduction. -/
+theorem
+    allocatedReflectedEndpointRankTransitionLaneChainMinimalDeficiency_of_pathCertificates
+    {n rank k : ℕ} {chi : TripleColoring n}
+    {lower upper : Finset (Fin n)} {color : Turn}
+    {hrank : 1 ≤ rank} {hrankTop : rank < k}
+    (hpaths : AllocatedReflectedEndpointRankTransitionLanePathCertificates
+      chi lower upper color hrank hrankTop) :
+    AllocatedReflectedEndpointRankTransitionLaneChainMinimalDeficiency
+      chi lower upper color hrank hrankTop := by
+  intro first last
+  dsimp only
+  intro hole hhole
+  obtain ⟨side, certificate, hstrict, hinterval, hlane⟩ :=
+    hpaths first last hole hhole
+  refine ⟨Finset.univ.map certificate.anchor, ?_⟩
+  obtain ⟨hminimal, hchain, hlaneSubset⟩ :=
+    certificate.laneChainMinimalDeficiency hstrict hinterval hlane
+  exact ⟨hminimal, hchain, side, hlaneSubset⟩
 
 /-- The lane-chain minimal-anchor contract supplies the active small-owner
 deficiency; its additional geometry is retained for the eventual construction

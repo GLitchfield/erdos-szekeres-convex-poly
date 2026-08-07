@@ -439,10 +439,18 @@ None. The destination was fixed by the user on 2026-08-01.
   complete lattice-chain interval in one normalized endpoint lane. Exactly
   1,180 of the all-root holes require a two-ideal cover pair. Lean proves the
   abstract minimal-anchor calculus and that the corresponding lane-chain
-  contract implies small-owner deficiency. The active geometry target is to
-  construct such a lane-chain minimal anchor for an arbitrary genuine
-  exact-rank block, followed by the separate induction constructing one-hole
-  states. Neither
+  contract implies small-owner deficiency. Experiment 0049 passes the complete
+  `k = 8` gate through eight vertices: all 2,096 nonvacuous holes have
+  singleton minima and slack at least `+3`, so no longer path is tested there.
+  The active construction is now explicit in Lean. An owner-labelled path of
+  `m + 1` strictly ordered lane ideals and `m` distinct small owners, one per
+  adjacent gap and exhausting the path neighborhood, is proved to be an
+  inclusion-minimal deficient chain interval. The reflected path-certificate
+  contract implies the existing lane-chain contract. The active geometry
+  target is to construct such certificates from recursively decomposable
+  children, a deep-below split, and no strong `k`-set, with direct low-rank
+  base cases, followed by the separate induction constructing one-hole states.
+  Neither
   open premise may import Hall, a complete matching, or finite enumeration.
   General Hall and the global injection into `decomposableBinomialWindow`
   remain downstream.

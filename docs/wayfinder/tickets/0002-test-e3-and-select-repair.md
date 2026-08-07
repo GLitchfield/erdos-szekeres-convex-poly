@@ -1135,6 +1135,33 @@ geometry lemma is now to construct this shaped anchor for an arbitrary genuine
 exact-rank consecutive block. This bounded census is evidence for that lemma,
 not its proof.
 
+Experiment 0049 performs the first parameter extension, `k = 8` through eight
+vertices. Cell-mask production and row-height replay agree on all 992,028
+frontier groups, 1,953,566 blocks, and 2,606,420 holes. There are 2,096
+nonvacuous holes, no profile failure, and minimum bottleneck slack `+3`. Every
+minimum deficient anchor is a singleton. The singleton-or-cover-pair
+strengthening therefore survives, but this support range does not test the
+first path with more than one adjacent gap.
+
+The innovation, adversarial, and architecture audits converged on an explicit
+owner-labelled lane path rather than an unsupported all-`k` size-two claim.
+Lean now proves the generic finite path-incidence inequality and packages it as
+`FiniteCandidateLanePathCertificate.minimalDeficientAnchor`: `m + 1` anchors
+and `m` injectively labelled adjacent-gap owners give an inclusion-minimal
+deficient anchor when those owners exhaust its block-small neighborhood. The
+theorem `laneChainMinimalDeficiency` adds strict order, a complete Pascal
+interval, and one-lane containment. The reflected contract
+`AllocatedReflectedEndpointRankTransitionLanePathCertificates` implies the
+previous lane-chain contract and therefore all existing downstream
+small-owner and block-large reductions.
+
+The central open bridge is now the construction of those certificates from
+`IsDecomposableOn` for both children, `HasDeepBelowSplit`, and the absence of a
+strong `k`-set. It must derive the neighbor-exhaustion clause from exact-ray
+geometry; assuming deficiency, Hall, or an SDR would be circular. Ranks one
+and two must be discharged separately because the available active-ray normal
+form starts at rank three.
+
 Experiment 0045 rejects the first lane-level bridge proposed after that pass.
 On the tight cap witness, singleton hole `{3f}` maps to owner `(2,5)`, whose
 candidate family has size seven. Its left lane changes by four grid cells and
@@ -1204,6 +1231,8 @@ derive a strict deficiency in the incidence graph of block-small owners.
 - [All-root `k = 7` block-large and anchor-shape gate](../../experiments/0048-all-root-k7-block-large-and-anchor-shape.md)
 - [Frozen minimum-anchor manifest](../../../data/derived/e3-frozen-small-owner-anchor-structure-n12-k7.json)
 - [All-root `k = 7` block-large manifest](../../../data/derived/e3-block-large-reached-owner-all-roots-k7-n8.json)
+- [All-root `k = 8` block-large and anchor-shape gate](../../experiments/0049-all-root-k8-block-large-and-anchor-shape.md)
+- [All-root `k = 8` block-large manifest](../../../data/derived/e3-block-large-reached-owner-all-roots-k8-n8.json)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)

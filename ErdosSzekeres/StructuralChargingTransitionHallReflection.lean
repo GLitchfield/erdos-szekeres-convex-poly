@@ -245,6 +245,70 @@ def allocatedReflectedEndpointRankTransitionLane
     (PascalGridIdeal.reflectedComplementEquiv
       (rank - 1) (k - rank - 1)).toEmbedding
 
+/-- The normalized candidate family is still exactly the union of its two
+normalized endpoint lanes. -/
+theorem allocatedReflectedEndpointRankTransitionCandidates_eq_union_lanes
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    allocatedReflectedEndpointRankTransitionCandidates
+        chi lower upper color hrank hrankTop span =
+      allocatedReflectedEndpointRankTransitionLane
+          chi lower upper color hrank hrankTop span .left ∪
+        allocatedReflectedEndpointRankTransitionLane
+          chi lower upper color hrank hrankTop span .right := by
+  classical
+  by_cases hleft : span.1.left ∈ lower
+  · simp [allocatedReflectedEndpointRankTransitionCandidates,
+      allocatedReflectedEndpointRankTransitionLane, hleft,
+      allocatedEndpointTransitionCandidates_eq_union_lanes]
+  · simp [allocatedReflectedEndpointRankTransitionCandidates,
+      allocatedReflectedEndpointRankTransitionLane, hleft,
+      allocatedEndpointTransitionCandidates_eq_union_lanes, Finset.map_union]
+
+/-- Reflection preserves nonemptiness of each individual endpoint lane. -/
+theorem allocatedReflectedEndpointRankTransitionLane_nonempty
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank})
+    (side : SweepEndpointSide) :
+    (allocatedReflectedEndpointRankTransitionLane
+      chi lower upper color hrank hrankTop span side).Nonempty := by
+  classical
+  let profiles := allocatedEndpointRankTransitionProfiles
+    chi lower upper color hrank hrankTop
+  have hnonempty := allocatedEndpointTransitionLane_nonempty profiles span side
+  by_cases hleft : span.1.left ∈ lower
+  · simpa [allocatedReflectedEndpointRankTransitionLane, profiles, hleft]
+      using hnonempty
+  · obtain ⟨ideal, hideal⟩ := hnonempty
+    refine ⟨PascalGridIdeal.reflectedComplement ideal, ?_⟩
+    simp only [allocatedReflectedEndpointRankTransitionLane, hleft,
+      ↓reduceIte, Finset.mem_map, Equiv.toEmbedding_apply]
+    exact ⟨ideal, hideal, rfl⟩
+
+/-- Each normalized endpoint lane is contained in the complete normalized
+candidate family. -/
+theorem allocatedReflectedEndpointRankTransitionLane_subset_candidates
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank})
+    (side : SweepEndpointSide) :
+    allocatedReflectedEndpointRankTransitionLane
+        chi lower upper color hrank hrankTop span side ⊆
+      allocatedReflectedEndpointRankTransitionCandidates
+        chi lower upper color hrank hrankTop span := by
+  rw [allocatedReflectedEndpointRankTransitionCandidates_eq_union_lanes]
+  cases side with
+  | left => exact Finset.subset_union_left
+  | right => exact Finset.subset_union_right
+
 /-- Reflection preserves nonemptiness of every genuine endpoint-transition
 candidate family.  This rules out the empty-family closed-star obstruction
 before any expansion argument. -/
