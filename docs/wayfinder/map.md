@@ -481,12 +481,24 @@ None. The destination was fixed by the user on 2026-08-01.
   corollary identifies the residual rank-two cardinality as the opposite-color
   hidden count plus one. `AdjustedHigherRankDemand` now combines fixed-rank
   crossing and promoted carriers; Lean proves common exact-rank semantics,
-  incident endpoint-profile corners, and that adjusted Hall implies the
-  published Pascal capacity. The next Lean target is adjusted Hall expansion,
-  followed by a rank-two residual bound and two-color recurrence composition.
-  A bounded Sol review rates the direction `partially_supported`; Fable
-  returned zero tokens at its usage limit, so no dual-model consensus is
-  claimed.
+  incident endpoint-profile corners, and that adjusted Hall would imply the
+  published Pascal capacity. Experiment 0053 now refutes that exact target.
+  An explicit open decomposable alternating ten-point root has seven crossing
+  and four promoted cap/rank-three demands, so Lean proves `11 > 10`, negates
+  adjusted Hall, and makes the proposed slotting type empty. The independent
+  certificate also computes 36 raw adjusted obligations across both colors
+  and all ranks against 31 nonempty slots in one untagged Pascal window, so
+  additive cross-rank aggregation is retired as well. The hidden-gap genealogy
+  remains valid local machinery. A bounded Sol review rates that conclusion
+  `partially_supported`; Fable returned zero tokens at its usage limit. The
+  next bounded route gate tested an exclusive-choice conservation model on the
+  exact ten-point witness: each hidden source and canonical transition became
+  one charge with alternative representations in the single untagged
+  32-element carrier. It also fails. The 27-charge graph has maximum matching
+  20, with a compact Hall witness of 20 demands and 13 neighbors. The next
+  strategic action is a bounded review comparing combined containment
+  minimality, cross-color proof reuse on common endpoint spans, and conserved
+  tree-global charges. No new Hall or recurrence theorem is selected.
 
 ## Not yet specified
 

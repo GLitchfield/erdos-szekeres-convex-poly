@@ -1268,6 +1268,41 @@ rank-two residual bound and the two-color recurrence composition. The bounded
 Sol review rates the direction `partially_supported`; Fable supplied no
 judgment because its usage limit returned zero tokens.
 
+That theorem target is now formally retired. Experiment 0053 tests the first
+unenumerated alternating root at ten vertices. The explicit reverse-comb
+children form an open recursively decomposable `k = 7` context. Lean proves
+that seven crossing cap spans and four promoted hidden lower gaps all have
+exact ambient rank three. Hence `AdjustedHigherRankDemand` has at least eleven
+members while `publishedSpanPascalDemand 7 3 = 10`; the exact adjusted Hall
+contract is false and the proposed slotting type is empty.
+
+The same independently replayed certificate executes the nearest reviewed
+aggregate. Its adjusted group cardinalities across both colors and all ranks
+are `5,11,5,11,3,1`, totaling 36. One untagged nonempty Pascal window has 31
+slots. A separate color-tagged window would obscure this failure only by
+doubling the resource and losing the target exponent. Thus raw additive
+cross-rank/color aggregation is also stopped. The canonical hidden-gap
+genealogy, color bridges, and exact ambient promotions remain proved and may
+be reused, but they are constraints or alternative representations rather
+than independent demands.
+
+The bounded review packet SHA-256 is
+`dbda4bbe1a4f89dadcdd587631a02f3c5deec9bf077821df8d9c4917b6f668a9`.
+Sol returned `partially_supported` with medium confidence and agreed that the
+fixed-rank Hall contract is decisively false; Fable returned zero tokens at
+its provider limit, so no consensus is claimed. The next single bounded task
+was the ten-point exclusive-choice conservation gate. It treated each hidden
+source and canonical entering transition as one charge with alternative
+representations, merged the initial obligations with the empty sentinel, and
+retained the higher-rank crossing demands. That exact 27-charge graph also
+fails: its maximum matching has size 20, and an explicit 20-demand subfamily
+has only 13 candidate slots. The deficiency contains all fourteen cap/cup
+rank-three crossing obligations, so rank-two/promotion choices alone do not
+repair cross-color competition. Structural endpoint slotting is demoted from
+the main route. A new route will not be selected until bounded review compares
+containment-minimal proof reuse, common-span cross-color quotients, and
+conserved tree-global charges against this Hall witness.
+
 Experiment 0045 rejects the first lane-level bridge proposed after that pass.
 On the tight cap witness, singleton hole `{3f}` maps to owner `(2,5)`, whose
 candidate family has size seven. Its left lane changes by four grid cells and
@@ -1349,6 +1384,9 @@ derive a strict deficiency in the incidence graph of block-small owners.
 - [Rank-two gap-promotion gate](../../experiments/0052-rank-two-gap-promotion.md)
 - [Rank-two gap-promotion manifest](../../../data/derived/e3-rank-two-gap-promotion-k7-n8.json)
 - [Lean hidden-gap promotion bridge](../../../ErdosSzekeres/StructuralChargingRankTwoGenealogy.lean)
+- [Adjusted-promotion counterexample](../../experiments/0053-adjusted-promotion-counterexample.md)
+- [Adjusted-promotion counterexample manifest](../../../data/derived/e3-adjusted-promotion-counterexample-k7-n10.json)
+- [Lean adjusted-promotion counterexample](../../../ErdosSzekeres/StructuralChargingAdjustedCounterexample.lean)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)

@@ -303,9 +303,18 @@ sets.
   image leaves exactly the opposite-color hidden sources plus one at rank two,
   by cardinality. The fixed-rank adjusted carrier combines the old crossing
   frontier with the promoted noncrossing sources; its endpoint incidence is
-  nontrivial, and adjusted Hall expansion implies the published Pascal-layer
-  capacity. Proving that Hall expansion, bounding the rank-two residual, and
-  composing the two colors into the recurrence remain open.
+  nontrivial, and adjusted Hall expansion would imply the published
+  Pascal-layer capacity. Experiment 0053 now refutes that target at the first
+  tested alternating ten-point root. Lean proves seven crossing plus four
+  promoted cap/rank-three demands against ten slots, then derives failure of
+  adjusted Hall and emptiness of the slotting type. Raw aggregation is also
+  too large: both colors and all ranks total 36 obligations against the 31
+  nonempty slots of one untagged Pascal window. The compiled genealogy remains
+  valid. The first exclusive-choice repair also fails: after pairing every
+  hidden source with its complementary residual transition, the 27-charge
+  graph has maximum matching 20 and an explicit 20-demand/13-neighbor Hall
+  witness. Progress now requires a sound cross-color proof-reuse or conserved
+  global invariant rather than additive per-rank accounting.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

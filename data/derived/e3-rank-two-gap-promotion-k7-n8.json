@@ -119,7 +119,7 @@
   "sources": {
     "checker": {
       "path": "scripts/check_rank_two_gap_promotion_k7.py",
-      "sha256": "a37c5ba17f01a5661e39b48c22a2a94c43b851cf4fdb0d145f049edc4abe81b4"
+      "sha256": "daff9af4eb8a52edc6ac703765a4bef6244caeb2a20574a7003e15c5671d020f"
     },
     "height_base": {
       "path": "scripts/check_allocated_span_pascal_demand.py",

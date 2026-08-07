@@ -63,7 +63,7 @@ rank-two layer: color-compatible hidden gaps are moved to actual higher-rank
 spans. The complete checked-prefix digest is
 `39f6694e56fb7af5a7d852269b1783eb54a795cd0a4f4d21e997a1033231ad9b`.
 The manifest SHA-256 is
-`2f352e1c06600ba6f7d778299379cd587dc178327b7c161c91ac525dcc627f43`.
+`ead7bd889aace34e993ade0e18b25eb7278c7332a611e2edd6e0fe9fdc8266a8`.
 
 ## Lean promotion
 
@@ -118,6 +118,16 @@ for the combined crossing/promoted family, without assuming Hall or capacity.
 A separate uniform bound on the rank-two residual and a two-color composition
 theorem must then connect these local layers to the published recurrence; the
 bounded pass alone does not supply either theorem.
+
+## Post-audit invalidation beyond the gate
+
+Experiment 0053 tests the first unenumerated alternating root at support size
+ten. Lean proves that its cap/rank-three adjusted carrier has eleven members
+against ten Pascal slots, and derives both failure of adjusted Hall and
+emptiness of the proposed slotting type. Thus the bounded `n ≤ 8` pass above
+was accurate evidence over its stated domain but did not extrapolate. The
+hidden-gap genealogy remains proved; the additive fixed-rank carrier and its
+Hall target are retired.
 
 ## Reproduction
 

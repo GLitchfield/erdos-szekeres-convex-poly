@@ -34,6 +34,23 @@ def git_revision(repo: Path) -> str:
     return completed.stdout.strip()
 
 
+def is_ancestor(repo: Path, ancestor: str, descendant: str) -> bool:
+    completed = subprocess.run(
+        [
+            "git",
+            "--git-dir=.git-data",
+            "--work-tree=.",
+            "merge-base",
+            "--is-ancestor",
+            ancestor,
+            descendant,
+        ],
+        cwd=repo,
+        check=False,
+    )
+    return completed.returncode == 0
+
+
 def direct_promoted_groups(
     local: dict[tuple[int, int, int], int],
     support: int,
@@ -310,8 +327,10 @@ def main() -> None:
     repo = Path(__file__).resolve().parent.parent
     manifest = json.loads(args.manifest.read_text())
     validate_sources(repo, manifest)
-    if manifest["generation_base_revision"] != git_revision(repo):
-        raise SystemExit("generation base revision does not match HEAD")
+    if not is_ancestor(
+        repo, manifest["generation_base_revision"], git_revision(repo)
+    ):
+        raise SystemExit("generation base revision is not an ancestor of HEAD")
     if args.source_only:
         print("source digests and base revision verified")
         return

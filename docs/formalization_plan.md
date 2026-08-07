@@ -891,12 +891,24 @@ candidates are compiling and nonempty without Hall or capacity. The canonical
 bijection identifies hidden sources with all noninitial crossings and proves
 the exact `hidden + 1 = crossing` cardinal identity on the explicit carriers.
 For a fixed color, the residual rank-two carrier has cardinality equal to the
-opposite-color hidden carrier plus one. Fixed-rank promoted sources now combine
+opposite-color hidden carrier plus one. Fixed-rank promoted sources combine
 with the crossing frontier in `AdjustedHigherRankDemand`; exact promoted spans
 place the same-color corner in both incident endpoint profiles, and adjusted
-Hall expansion is proved sufficient for the published Pascal capacity. The
-next structural theorem is adjusted Hall itself. A separate rank-two residual
-bound and two-color recurrence composition are still required.
+Hall expansion would imply the published Pascal capacity.
+
+Experiment 0053 proves that this additive target is false. An explicit open
+decomposable ten-point root has eleven cap/rank-three adjusted obligations
+against ten slots. Lean proves the strict inequality, negates adjusted Hall,
+and shows the slotting type is empty. Across both colors and all ranks the raw
+adjusted total is 36 against 31 nonempty slots in the one untagged Pascal
+window, so simple aggregation is not the replacement recurrence. The next
+bounded gate was an exclusive-choice conservation model on this witness: a
+hidden gap and its canonical transition became one charge with alternative
+representations. It fails as well. The 27-charge endpoint-candidate graph has
+maximum matching 20 and a 20-demand/13-neighbor Hall witness. Structural
+slotting is demoted from the main route. The next route-selection review must
+compare semantic proof reuse across colors and containments with a conserved
+tree-global charge; no replacement theorem contract is active yet.
 
 The first geometric refinement does not survive its frozen gate. Experiment
 0045 shows that the tight cap owner has a seven-element family but maximum

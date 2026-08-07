@@ -1,0 +1,217 @@
+{
+  "certificate": {
+    "adjusted_cardinality": 11,
+    "adjusted_groups": [
+      {
+        "cardinality": 5,
+        "color": "cap",
+        "rank": 2,
+        "spans": [[0, 1], [2, 3], [4, 5], [6, 7], [8, 9]]
+      },
+      {
+        "cardinality": 11,
+        "color": "cap",
+        "rank": 3,
+        "spans": [
+          [0, 2], [0, 3], [1, 4], [2, 4], [2, 5], [3, 6],
+          [4, 6], [4, 7], [5, 8], [6, 8], [6, 9]
+        ]
+      },
+      {
+        "cardinality": 5,
+        "color": "cup",
+        "rank": 2,
+        "spans": [[0, 1], [1, 2], [3, 4], [5, 6], [7, 8]]
+      },
+      {
+        "cardinality": 11,
+        "color": "cup",
+        "rank": 3,
+        "spans": [
+          [0, 3], [1, 3], [1, 4], [2, 5], [3, 5], [3, 6],
+          [4, 7], [5, 7], [5, 8], [6, 9], [7, 9]
+        ]
+      },
+      {
+        "cardinality": 3,
+        "color": "cup",
+        "rank": 4,
+        "spans": [[0, 5], [1, 6], [2, 7]]
+      },
+      {
+        "cardinality": 1,
+        "color": "cup",
+        "rank": 5,
+        "spans": [[0, 7]]
+      }
+    ],
+    "adjusted_spans": [
+      [0, 2],
+      [0, 3],
+      [1, 4],
+      [2, 4],
+      [2, 5],
+      [3, 6],
+      [4, 6],
+      [4, 7],
+      [5, 8],
+      [6, 8],
+      [6, 9]
+    ],
+    "capacity_holds": false,
+    "color": "cap",
+    "coloring_hex": "cde50debf387c0debf57f9c3e07f00",
+    "crossing_spans": [
+      [0, 3],
+      [1, 4],
+      [2, 5],
+      [3, 6],
+      [4, 7],
+      [5, 8],
+      [6, 9]
+    ],
+    "exclusive_choice_gate": {
+      "charge_count": 27,
+      "charges": [
+        {"alternative_transition": [1, 2], "candidate_slot_mask_hex": "0116177c", "color": "cap", "kind": "hidden-source-exclusive-choice", "span": [0, 2]},
+        {"alternative_transition": [2, 3], "candidate_slot_mask_hex": "00141554", "color": "cup", "kind": "hidden-source-exclusive-choice", "span": [1, 3]},
+        {"alternative_transition": [3, 4], "candidate_slot_mask_hex": "0000167c", "color": "cap", "kind": "hidden-source-exclusive-choice", "span": [2, 4]},
+        {"alternative_transition": [4, 5], "candidate_slot_mask_hex": "00000054", "color": "cup", "kind": "hidden-source-exclusive-choice", "span": [3, 5]},
+        {"alternative_transition": [5, 6], "candidate_slot_mask_hex": "0000007c", "color": "cap", "kind": "hidden-source-exclusive-choice", "span": [4, 6]},
+        {"alternative_transition": [6, 7], "candidate_slot_mask_hex": "00001456", "color": "cup", "kind": "hidden-source-exclusive-choice", "span": [5, 7]},
+        {"alternative_transition": [7, 8], "candidate_slot_mask_hex": "0016177c", "color": "cap", "kind": "hidden-source-exclusive-choice", "span": [6, 8]},
+        {"alternative_transition": [8, 9], "candidate_slot_mask_hex": "01151556", "color": "cup", "kind": "hidden-source-exclusive-choice", "span": [7, 9]},
+        {"candidate_slot_mask_hex": "00010117", "kind": "initial-crossing-with-sentinel", "span": [0, 1]},
+        {"candidate_slot_mask_hex": "01161668", "color": "cap", "kind": "higher-rank-crossing", "rank": 3, "span": [0, 3]},
+        {"candidate_slot_mask_hex": "00161668", "color": "cap", "kind": "higher-rank-crossing", "rank": 3, "span": [1, 4]},
+        {"candidate_slot_mask_hex": "00001668", "color": "cap", "kind": "higher-rank-crossing", "rank": 3, "span": [2, 5]},
+        {"candidate_slot_mask_hex": "00000068", "color": "cap", "kind": "higher-rank-crossing", "rank": 3, "span": [3, 6]},
+        {"candidate_slot_mask_hex": "00060668", "color": "cap", "kind": "higher-rank-crossing", "rank": 3, "span": [4, 7]},
+        {"candidate_slot_mask_hex": "00161668", "color": "cap", "kind": "higher-rank-crossing", "rank": 3, "span": [5, 8]},
+        {"candidate_slot_mask_hex": "01161668", "color": "cap", "kind": "higher-rank-crossing", "rank": 3, "span": [6, 9]},
+        {"candidate_slot_mask_hex": "01161668", "color": "cup", "kind": "higher-rank-crossing", "rank": 3, "span": [0, 3]},
+        {"candidate_slot_mask_hex": "00141468", "color": "cup", "kind": "higher-rank-crossing", "rank": 3, "span": [1, 4]},
+        {"candidate_slot_mask_hex": "00060668", "color": "cup", "kind": "higher-rank-crossing", "rank": 3, "span": [2, 5]},
+        {"candidate_slot_mask_hex": "00000068", "color": "cup", "kind": "higher-rank-crossing", "rank": 3, "span": [3, 6]},
+        {"candidate_slot_mask_hex": "00001468", "color": "cup", "kind": "higher-rank-crossing", "rank": 3, "span": [4, 7]},
+        {"candidate_slot_mask_hex": "00161668", "color": "cup", "kind": "higher-rank-crossing", "rank": 3, "span": [5, 8]},
+        {"candidate_slot_mask_hex": "01141468", "color": "cup", "kind": "higher-rank-crossing", "rank": 3, "span": [6, 9]},
+        {"candidate_slot_mask_hex": "16686880", "color": "cup", "kind": "higher-rank-crossing", "rank": 4, "span": [0, 5]},
+        {"candidate_slot_mask_hex": "06686880", "color": "cup", "kind": "higher-rank-crossing", "rank": 4, "span": [1, 6]},
+        {"candidate_slot_mask_hex": "02686880", "color": "cup", "kind": "higher-rank-crossing", "rank": 4, "span": [2, 7]},
+        {"candidate_slot_mask_hex": "68808000", "color": "cup", "kind": "higher-rank-crossing", "rank": 5, "span": [0, 7]}
+      ],
+      "hall_witness_demand_cardinality": 20,
+      "hall_witness_demand_indices": [
+        0, 1, 2, 3, 4, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
+      ],
+      "hall_witness_neighbor_cardinality": 13,
+      "hall_witness_neighbor_slot_mask_hex": "0116177c",
+      "matching_exists": false,
+      "maximum_matching_cardinality": 20
+    },
+    "lower_mask_hex": "155",
+    "lower_tree": [[[[8, 4], 6], 2], 0],
+    "maximum_n": 10,
+    "open": true,
+    "pascal_capacity": 10,
+    "promoted_spans": [[0, 2], [2, 4], [4, 6], [6, 8]],
+    "promotions": [
+      {
+        "color": 0,
+        "exact_ambient_rank": 3,
+        "hidden_gap": [0, 2],
+        "intervening_run": [1],
+        "matched_transition": [1, 2]
+      },
+      {
+        "color": 1,
+        "exact_ambient_rank": 3,
+        "hidden_gap": [1, 3],
+        "intervening_run": [2],
+        "matched_transition": [2, 3]
+      },
+      {
+        "color": 0,
+        "exact_ambient_rank": 3,
+        "hidden_gap": [2, 4],
+        "intervening_run": [3],
+        "matched_transition": [3, 4]
+      },
+      {
+        "color": 1,
+        "exact_ambient_rank": 3,
+        "hidden_gap": [3, 5],
+        "intervening_run": [4],
+        "matched_transition": [4, 5]
+      },
+      {
+        "color": 0,
+        "exact_ambient_rank": 3,
+        "hidden_gap": [4, 6],
+        "intervening_run": [5],
+        "matched_transition": [5, 6]
+      },
+      {
+        "color": 1,
+        "exact_ambient_rank": 3,
+        "hidden_gap": [5, 7],
+        "intervening_run": [6],
+        "matched_transition": [6, 7]
+      },
+      {
+        "color": 0,
+        "exact_ambient_rank": 3,
+        "hidden_gap": [6, 8],
+        "intervening_run": [7],
+        "matched_transition": [7, 8]
+      },
+      {
+        "color": 1,
+        "exact_ambient_rank": 3,
+        "hidden_gap": [7, 9],
+        "intervening_run": [8],
+        "matched_transition": [8, 9]
+      }
+    ],
+    "rank": 3,
+    "strong_size": 7,
+    "support_mask_hex": "3ff",
+    "total_adjusted_cardinality": 36,
+    "untagged_aggregate_capacity_holds": false,
+    "untagged_pascal_window": 31,
+    "upper_mask_hex": "2aa",
+    "upper_tree": [[[[9, 7], 5], 3], 1]
+  },
+  "contract": {
+    "claim_boundary": "counterexample certificate only; it refutes the proposed fixed-rank capacity and hence its adjusted Hall premise",
+    "domain": "the explicit recursively decomposable alternating ten-point root encoded by the two recorded reverse-comb children",
+    "resource_limit": "30 minutes, 8 CPU cores, 16 GiB RAM, 5 GiB output",
+    "success": "an open context whose adjusted cap/rank-three demand has cardinality greater than choose(5,2)"
+  },
+  "experiment": "adjusted-promotion-capacity-counterexample-k7-n10",
+  "generation_base_revision": "cbe2884021d8186d2ce74c4c690a75f495215458",
+  "schema_version": 1,
+  "sources": {
+    "checker": {
+      "path": "scripts/check_adjusted_promotion_counterexample_k7_n10.py",
+      "sha256": "f5d90ce46fd4870e908c49bcc407f53761cb5e6439308812cc05e5aa479d1a81"
+    },
+    "direct_promotion_base": {
+      "path": "scripts/check_rank_two_gap_promotion_k7.py",
+      "sha256": "daff9af4eb8a52edc6ac703765a4bef6244caeb2a20574a7003e15c5671d020f"
+    },
+    "independent_rank_base": {
+      "path": "scripts/check_allocated_span_pascal_demand.py",
+      "sha256": "1962a01c479c5d44d2858d7bf9d62e8bf66dd8a6a87c77bd1c4fab347854f018"
+    },
+    "producer": {
+      "path": "scripts/produce_adjusted_promotion_counterexample_k7_n10.py",
+      "sha256": "ee5a6f510e0e8a01829898fbcfdc6e749fb80218d3f7f88637e8cba3a6a98fc0"
+    },
+    "producer_rank_base": {
+      "path": "scripts/enumerate_allocated_span_pascal_demand.py",
+      "sha256": "54ed1a0b33549ea12564a7fdc5c79f502fede0d4da58f3ef051658c412df28bd"
+    }
+  }
+}
