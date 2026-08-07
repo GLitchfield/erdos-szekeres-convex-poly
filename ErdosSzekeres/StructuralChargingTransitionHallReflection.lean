@@ -227,6 +227,24 @@ def allocatedReflectedEndpointRankTransitionCandidates
     (PascalGridIdeal.reflectedComplementEquiv
       (rank - 1) (k - rank - 1)).toEmbedding
 
+/-- One reflected endpoint lane, normalized by the same orientation rule as
+the complete candidate family. -/
+def allocatedReflectedEndpointRankTransitionLane
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank})
+    (side : SweepEndpointSide) :
+    Finset (PascalGridIdeal (rank - 1) (k - rank - 1)) :=
+  let profiles := allocatedEndpointRankTransitionProfiles
+    chi lower upper color hrank hrankTop
+  let lane := allocatedEndpointTransitionLane profiles span side
+  if span.1.left ∈ lower then lane
+  else lane.map
+    (PascalGridIdeal.reflectedComplementEquiv
+      (rank - 1) (k - rank - 1)).toEmbedding
+
 /-- Reflection preserves nonemptiness of every genuine endpoint-transition
 candidate family.  This rules out the empty-family closed-star obstruction
 before any expansion argument. -/

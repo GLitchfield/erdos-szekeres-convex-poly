@@ -783,6 +783,21 @@ deficiency is one. Lean now packages the surviving exact target as
 `AllocatedReflectedEndpointRankTransitionSmallOwnerDeficiency` and proves it
 implies block-large reached ownership.
 
+Experiments 0047 and 0048 sharpen the surviving target without restoring the
+false singleton claim. The frozen exhaustive classification finds, for every
+hole, some minimum deficient anchor that is a saturated lattice-chain interval
+inside one normalized endpoint lane. The complete all-root `k = 7`, `n <= 8`
+gate confirms the same property for the deterministically selected minimum
+anchor in all 3,056 nonvacuous holes. Of these, 1,180 genuinely require a pair
+of adjacent ideals. Lean proves that every inclusion-minimal deficient anchor
+has deficiency exactly one and an unchanged neighborhood after deleting any
+member; it also characterizes singleton and pair minima. The new
+`AllocatedReflectedEndpointRankTransitionLaneChainMinimalDeficiency` contract
+records the observed geometry and implies the active small-owner-deficiency
+contract. The next theorem must construct this lane-chain anchor uniformly
+from exact-rank reflected endpoint incidence. The one-hole-state induction is
+still a separate downstream premise.
+
 The first geometric refinement does not survive its frozen gate. Experiment
 0045 shows that the tight cap owner has a seven-element family but maximum
 single-lane cell spread plus one only `5 < 6`. The missing bridge must exploit

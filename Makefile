@@ -76,6 +76,11 @@ test: check lean
 		data/derived/e3-max-lane-spread-owner-counterexample-frozen-n12-k7.json >/dev/null
 	@python3 scripts/replay_forced_endpoint_extreme.py \
 		data/derived/e3-forced-endpoint-extreme-frozen-n12-k7.json >/dev/null
+	@python3 scripts/replay_frozen_small_owner_anchor_structure.py \
+		data/derived/e3-frozen-small-owner-anchor-structure-n12-k7.json >/dev/null
+	@python3 scripts/check_block_large_reached_owner_all_roots_k7.py \
+		data/derived/e3-block-large-reached-owner-all-roots-k7-n8.json \
+		--source-only >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -139,6 +144,10 @@ test: check lean
 		scripts/replay_max_lane_spread_owner.py \
 		scripts/check_forced_endpoint_extreme.py \
 		scripts/replay_forced_endpoint_extreme.py \
+		scripts/analyze_frozen_small_owner_anchor_structure.py \
+		scripts/replay_frozen_small_owner_anchor_structure.py \
+		scripts/enumerate_block_large_reached_owner_all_roots_k7.py \
+		scripts/check_block_large_reached_owner_all_roots_k7.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \

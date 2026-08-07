@@ -433,7 +433,16 @@ None. The destination was fixed by the user on 2026-08-01.
   `k = 7` cup holes; the first instead has a two-ideal anchor `{f,1f}` with one
   block-small neighbor. The active local contract is therefore the compiled
   small-owner deficiency, which permits a multi-ideal anchor,
-  followed by the separate induction constructing one-hole states. Neither
+  and experiments 0047--0048 identify its surviving shape. Every frozen hole,
+  and every one of the 3,056 nonvacuous holes over all decomposable `k = 7`
+  roots through eight vertices, selects a minimum deficient anchor that is a
+  complete lattice-chain interval in one normalized endpoint lane. Exactly
+  1,180 of the all-root holes require a two-ideal cover pair. Lean proves the
+  abstract minimal-anchor calculus and that the corresponding lane-chain
+  contract implies small-owner deficiency. The active geometry target is to
+  construct such a lane-chain minimal anchor for an arbitrary genuine
+  exact-rank block, followed by the separate induction constructing one-hole
+  states. Neither
   open premise may import Hall, a complete matching, or finite enumeration.
   General Hall and the global injection into `decomposableBinomialWindow`
   remain downstream.

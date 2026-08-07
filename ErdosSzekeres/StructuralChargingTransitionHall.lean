@@ -424,6 +424,33 @@ def allocatedEndpointTransitionCandidates {n : ℕ} {Ideal : Type*}
     pascalTransitionInterval (profiles.past span.1.right)
       (profiles.future span.1.right)
 
+/-- One of the two endpoint transition lanes before orientation
+normalization. Their union is the complete candidate family above. -/
+def allocatedEndpointTransitionLane {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal] [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : {span // span ∈
+      allocatedExactRankFrontier chi lower upper color rank}) :
+    SweepEndpointSide → Finset Ideal
+  | .left =>
+      pascalTransitionInterval (profiles.past span.1.left)
+        (profiles.future span.1.left)
+  | .right =>
+      pascalTransitionInterval (profiles.past span.1.right)
+        (profiles.future span.1.right)
+
+/-- A finite family is a lattice chain interval when it is a complete
+transition interval and all of its members are pairwise comparable. -/
+def PascalGridIdeal.IsChainInterval {rows columns : ℕ}
+    (anchors : Finset (PascalGridIdeal rows columns)) : Prop :=
+  ∃ first ∈ anchors, ∃ second ∈ anchors,
+    anchors = pascalTransitionInterval first second ∧
+      ∀ ideal ∈ anchors, ∀ other ∈ anchors,
+        ideal ≤ other ∨ other ≤ ideal
+
 /-- The four past/future endpoint labels that generate a span's two transition
 intervals. -/
 def allocatedEndpointTransitionExtremes {n : ℕ} {Ideal : Type*}

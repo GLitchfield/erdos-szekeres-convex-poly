@@ -254,7 +254,17 @@ sets.
   anchor `{f,1f}`, which has only one compatible block-small owner. The active
   exact target remains the pre-vetted fallback, now in its compiled small-owner
   deficiency form: every hole needs some anchor set with too few compatible
-  block-small owners. Constructing one-hole states uniformly remains a
+  block-small owners. Experiment 0047 classifies every minimum deficient
+  anchor in the frozen root and finds a one-lane saturated chain interval for
+  each hole. Experiment 0048 extends the existential shape to every
+  decomposable `k = 7` root through eight vertices: all 3,056 nonvacuous holes
+  have a selected minimum anchor of size one or two that is a complete
+  one-lane lattice interval. Endpoint singletons fail in 1,180 cases, so the
+  pair alternative is essential. Lean proves the general minimal-deficiency
+  calculus, defines the lane-chain contract, and proves it implies the active
+  small-owner deficiency. Constructing that shaped anchor from arbitrary
+  exact-rank geometry is the current local theorem. Constructing one-hole
+  states uniformly remains a
   separate induction obligation; neither premise may assume Hall, an existing
   complete matching, or finite enumeration.
   General Hall and the global outer-window injection remain subsequent.

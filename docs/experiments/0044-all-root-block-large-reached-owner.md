@@ -47,7 +47,7 @@ all aggregate counts, bottleneck histograms, deterministic owner witnesses,
 and the checked-prefix digest
 `54a95152cdafcee575f0779f4b22bad1a1cfae4a7ebc248d2c641efec08e029b`.
 The manifest SHA-256 is
-`7cd47914f9f6596d67b2dc89d0a2a1afdebf48ffecdcb4386f390b38dad8a4a1`.
+`be7b0c5ed8a8c5399d26dae3d1f70b376a971086042f4679566b7cf51a53e642`.
 
 The same replay mines the least small-owner neighborhood deficiency. Every one
 of the 3,792 nonvacuous holes has a one-ideal deficient anchor with deficiency

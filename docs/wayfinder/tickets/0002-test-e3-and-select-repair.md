@@ -1114,6 +1114,27 @@ two, always with deficiency one. The active local target is consequently the
 compiled `AllocatedReflectedEndpointRankTransitionSmallOwnerDeficiency`, not
 the refuted forced-extreme strengthening.
 
+Experiment 0047 exhaustively classifies every minimum deficient anchor in that
+frozen root. Although two holes also admit a skipped chain pair, every hole has
+some minimum anchor that is a complete saturated lattice interval contained in
+one normalized endpoint lane. Lean proves the abstract explanation for the
+unit deficiency: an inclusion-minimal deficient anchor is nonempty, has one
+more anchor than neighbor, and retains the same neighbor set after any member
+is deleted. It also characterizes singleton and two-anchor minima exactly.
+
+Experiment 0048 tests the sharpened existential shape over all 376,764
+decomposable `k = 7` roots through eight vertices. Independent cell-mask and
+row-height implementations agree on 947,452 frontier groups, 2,422,116 holes,
+and all 3,056 nonvacuous cases, with no block-large profile failure. A
+normalized endpoint singleton works in 1,876 holes; the remaining 1,180 select
+a two-ideal cover pair. Every selected minimum anchor is a complete chain
+interval in one normalized endpoint lane. Lean packages that observation as
+`AllocatedReflectedEndpointRankTransitionLaneChainMinimalDeficiency` and proves
+it implies the active small-owner-deficiency contract. The consequential open
+geometry lemma is now to construct this shaped anchor for an arbitrary genuine
+exact-rank consecutive block. This bounded census is evidence for that lemma,
+not its proof.
+
 Experiment 0045 rejects the first lane-level bridge proposed after that pass.
 On the tight cap witness, singleton hole `{3f}` maps to owner `(2,5)`, whose
 candidate family has size seven. Its left lane changes by four grid cells and
@@ -1179,6 +1200,10 @@ derive a strict deficiency in the incidence graph of block-small owners.
 - [All-root block-large reached-owner manifest](../../../data/derived/e3-block-large-reached-owner-all-roots-k6-n8.json)
 - [Maximum single-lane spread refutation](../../experiments/0045-max-lane-spread-owner-counterexample.md)
 - [Forced endpoint-extreme refutation](../../experiments/0046-forced-endpoint-extreme-counterexample.md)
+- [Frozen minimum-anchor classification](../../experiments/0047-frozen-small-owner-anchor-structure.md)
+- [All-root `k = 7` block-large and anchor-shape gate](../../experiments/0048-all-root-k7-block-large-and-anchor-shape.md)
+- [Frozen minimum-anchor manifest](../../../data/derived/e3-frozen-small-owner-anchor-structure-n12-k7.json)
+- [All-root `k = 7` block-large manifest](../../../data/derived/e3-block-large-reached-owner-all-roots-k7-n8.json)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)

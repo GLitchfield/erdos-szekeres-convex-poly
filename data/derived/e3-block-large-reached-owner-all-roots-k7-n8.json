@@ -1,0 +1,367 @@
+{
+  "contract": {
+    "claim_boundary": "bounded k=7 computational evidence only; no arbitrary genuine-frontier profile, Hall theorem, or exact-formula conclusion",
+    "domain": "every recursively decomposable k=7 root through the recorded support size, every reflected exact-rank consecutive frontier block, every hole, and every injective membership-feasible owner map",
+    "success": "every feasible owner map reaches an owner whose complete candidate family is at least as large as the block"
+  },
+  "experiment": "all-root-block-large-reached-owner-k7-gate",
+  "generation_base_revision": "207d4f99b9aa14387e315ab847e13f7e2a6d2484",
+  "k7_census": {
+    "all_feasible_maps_reach_block_large_owner": true,
+    "checked_prefix_sha256": "ac7c3acf82b3a2e4d62191f803153c29c47a8cad433f2b6df85fff6f093423b3",
+    "complete": true,
+    "first_profile_failure": null,
+    "maximum_n": 8,
+    "maximum_support_size": 8,
+    "minimum_support_size": 2,
+    "statistics": {
+      "analyzed_local_states": 295932,
+      "anchor_endpoint_shape_counts": {
+        "endpoint_only": 2036,
+        "uses_nonendpoint": 1020
+      },
+      "anchor_whole_hole_counts": {
+        "no": 3056
+      },
+      "by_support_size": {
+        "2": {
+          "open_contexts": 56,
+          "root_contexts": 56
+        },
+        "3": {
+          "consecutive_block_checks": 224,
+          "group_checks": 224,
+          "hole_checks": 224,
+          "maximum_frontier_size": 1,
+          "open_contexts": 336,
+          "root_contexts": 336,
+          "vacuous_holes": 224
+        },
+        "4": {
+          "consecutive_block_checks": 2380,
+          "group_checks": 2100,
+          "hole_checks": 2520,
+          "maximum_frontier_size": 2,
+          "open_contexts": 1540,
+          "root_contexts": 1540,
+          "vacuous_holes": 2520
+        },
+        "5": {
+          "consecutive_block_checks": 18256,
+          "group_checks": 12208,
+          "hole_checks": 21280,
+          "maximum_frontier_size": 2,
+          "open_contexts": 6720,
+          "root_contexts": 6720,
+          "vacuous_holes": 21280
+        },
+        "6": {
+          "consecutive_block_checks": 112728,
+          "group_checks": 65352,
+          "hole_checks": 140448,
+          "maximum_frontier_size": 3,
+          "open_contexts": 29792,
+          "root_contexts": 29792,
+          "vacuous_holes": 140448
+        },
+        "7": {
+          "consecutive_block_checks": 510864,
+          "group_checks": 272592,
+          "hole_checks": 665056,
+          "maximum_frontier_size": 4,
+          "nonvacuous_holes": 224,
+          "open_contexts": 109200,
+          "root_contexts": 110208,
+          "terminal_contexts": 1008,
+          "vacuous_holes": 664832
+        },
+        "8": {
+          "consecutive_block_checks": 1185834,
+          "group_checks": 594976,
+          "hole_checks": 1592588,
+          "maximum_frontier_size": 5,
+          "nonvacuous_holes": 2832,
+          "open_contexts": 218442,
+          "root_contexts": 228112,
+          "terminal_contexts": 9670,
+          "vacuous_holes": 1589756
+        }
+      },
+      "by_support_size_anchor_statistics": {
+        "2": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_existence_counts": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "selected_anchor_shape_counts": {
+            "chain": {},
+            "contained_in_one_lane": {},
+            "lattice_interval": {},
+            "one_lane_saturated_interval": {},
+            "saturated_chain": {}
+          },
+          "small_owner_deficiency_histogram": {}
+        },
+        "3": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_existence_counts": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "selected_anchor_shape_counts": {
+            "chain": {},
+            "contained_in_one_lane": {},
+            "lattice_interval": {},
+            "one_lane_saturated_interval": {},
+            "saturated_chain": {}
+          },
+          "small_owner_deficiency_histogram": {}
+        },
+        "4": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_existence_counts": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "selected_anchor_shape_counts": {
+            "chain": {},
+            "contained_in_one_lane": {},
+            "lattice_interval": {},
+            "one_lane_saturated_interval": {},
+            "saturated_chain": {}
+          },
+          "small_owner_deficiency_histogram": {}
+        },
+        "5": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_existence_counts": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "selected_anchor_shape_counts": {
+            "chain": {},
+            "contained_in_one_lane": {},
+            "lattice_interval": {},
+            "one_lane_saturated_interval": {},
+            "saturated_chain": {}
+          },
+          "small_owner_deficiency_histogram": {}
+        },
+        "6": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_existence_counts": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "selected_anchor_shape_counts": {
+            "chain": {},
+            "contained_in_one_lane": {},
+            "lattice_interval": {},
+            "one_lane_saturated_interval": {},
+            "saturated_chain": {}
+          },
+          "small_owner_deficiency_histogram": {}
+        },
+        "7": {
+          "anchor_endpoint_shape_counts": {
+            "endpoint_only": 224
+          },
+          "anchor_whole_hole_counts": {
+            "no": 224
+          },
+          "endpoint_singleton_deficiency_counts": {
+            "yes": 224
+          },
+          "first_forced_endpoint_role_histogram": {
+            "left_past": 224
+          },
+          "forced_endpoint_existence_counts": {
+            "yes": 224
+          },
+          "forced_endpoint_role_pattern_histogram": {
+            "left_past|left_future|right_past|right_future": 224
+          },
+          "minimum_deficient_anchor_size_histogram": {
+            "1": 224
+          },
+          "selected_anchor_shape_counts": {
+            "chain": {
+              "yes": 224
+            },
+            "contained_in_one_lane": {
+              "yes": 224
+            },
+            "lattice_interval": {
+              "yes": 224
+            },
+            "one_lane_saturated_interval": {
+              "yes": 224
+            },
+            "saturated_chain": {
+              "yes": 224
+            }
+          },
+          "small_owner_deficiency_histogram": {
+            "1": 224
+          }
+        },
+        "8": {
+          "anchor_endpoint_shape_counts": {
+            "endpoint_only": 1812,
+            "uses_nonendpoint": 1020
+          },
+          "anchor_whole_hole_counts": {
+            "no": 2832
+          },
+          "endpoint_singleton_deficiency_counts": {
+            "no": 1180,
+            "yes": 1652
+          },
+          "first_forced_endpoint_role_histogram": {
+            "left_past": 1652
+          },
+          "forced_endpoint_existence_counts": {
+            "no": 1180,
+            "yes": 1652
+          },
+          "forced_endpoint_role_pattern_histogram": {
+            "left_past|left_future|right_past|right_future": 1652
+          },
+          "minimum_deficient_anchor_size_histogram": {
+            "1": 1652,
+            "2": 1180
+          },
+          "selected_anchor_shape_counts": {
+            "chain": {
+              "yes": 2832
+            },
+            "contained_in_one_lane": {
+              "yes": 2832
+            },
+            "lattice_interval": {
+              "yes": 2832
+            },
+            "one_lane_saturated_interval": {
+              "yes": 2832
+            },
+            "saturated_chain": {
+              "yes": 2832
+            }
+          },
+          "small_owner_deficiency_histogram": {
+            "1": 2832
+          }
+        }
+      },
+      "by_support_size_slack_histogram": {
+        "2": {},
+        "3": {},
+        "4": {},
+        "5": {},
+        "6": {},
+        "7": {
+          "3": 160,
+          "6": 64
+        },
+        "8": {
+          "2": 248,
+          "3": 464,
+          "4": 104,
+          "5": 160,
+          "6": 1820,
+          "7": 36
+        }
+      },
+      "endpoint_singleton_deficiency_counts": {
+        "no": 1180,
+        "yes": 1876
+      },
+      "first_forced_endpoint_role_histogram": {
+        "left_past": 1876
+      },
+      "forced_endpoint_existence_counts": {
+        "no": 1180,
+        "yes": 1876
+      },
+      "forced_endpoint_role_pattern_histogram": {
+        "left_past|left_future|right_past|right_future": 1876
+      },
+      "minimum_bottleneck_slack_histogram": {
+        "2": 248,
+        "3": 624,
+        "4": 104,
+        "5": 160,
+        "6": 1884,
+        "7": 36
+      },
+      "minimum_deficient_anchor_size_histogram": {
+        "1": 1876,
+        "2": 1180
+      },
+      "selected_anchor_shape_counts": {
+        "chain": {
+          "yes": 3056
+        },
+        "contained_in_one_lane": {
+          "yes": 3056
+        },
+        "lattice_interval": {
+          "yes": 3056
+        },
+        "one_lane_saturated_interval": {
+          "yes": 3056
+        },
+        "saturated_chain": {
+          "yes": 3056
+        }
+      },
+      "small_owner_deficiency_histogram": {
+        "1": 3056
+      },
+      "totals": {
+        "consecutive_block_checks": 1830286,
+        "group_checks": 947452,
+        "hole_checks": 2422116,
+        "maximum_frontier_size": 5,
+        "nonvacuous_holes": 3056,
+        "open_contexts": 366086,
+        "root_contexts": 376764,
+        "terminal_contexts": 10678,
+        "vacuous_holes": 2419060
+      }
+    },
+    "stop_on_failure": true,
+    "stopped_early": false,
+    "strong_size": 7
+  },
+  "schema_version": 1,
+  "sources": {
+    "checker": {
+      "path": "scripts/check_block_large_reached_owner_all_roots_k7.py",
+      "sha256": "4f307f1f99c72833b0d9971d3207a84dcec7b4dc9d967328d32598b2ee462fc0"
+    },
+    "height_base": {
+      "path": "scripts/check_block_large_reached_owner_all_roots.py",
+      "sha256": "acc682551e71d3734d9d16fc46bd8d5fb98a3935b7542c5a43890969637d121d"
+    },
+    "mask_base": {
+      "path": "scripts/enumerate_block_large_reached_owner_all_roots.py",
+      "sha256": "66c944be03b92059205bdb52b536ce0d117193ffe57ad520bdf80072e32ab465"
+    },
+    "producer": {
+      "path": "scripts/enumerate_block_large_reached_owner_all_roots_k7.py",
+      "sha256": "94a04828297b068a0fa367cbaa59736ebfef8e7a34b0d4e093036b46f7c1e68c"
+    }
+  }
+}

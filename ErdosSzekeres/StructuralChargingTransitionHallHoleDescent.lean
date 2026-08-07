@@ -178,6 +178,333 @@ def FiniteCandidateSmallOwnerDeficiency
       (finiteCandidateSmallOwnerNeighbors
         block candidates hole anchors).card < anchors.card
 
+/-- An inclusion-minimal deficient anchor for one hole. Every proper anchor
+subset has enough block-small neighbors, even though the anchor itself does
+not. -/
+def FiniteCandidateMinimalDeficientAnchor
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal)
+    (hole : Span) (anchors : Finset Ideal) : Prop :=
+  anchors ⊆ candidates hole ∧
+    (finiteCandidateSmallOwnerNeighbors
+      block candidates hole anchors).card < anchors.card ∧
+    ∀ smaller : Finset Ideal, smaller ⊂ anchors →
+      smaller.card ≤
+        (finiteCandidateSmallOwnerNeighbors
+          block candidates hole smaller).card
+
+/-- Adding anchors can only add compatible block-small owners. -/
+theorem finiteCandidateSmallOwnerNeighbors_mono
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    {hole : Span} {first second : Finset Ideal}
+    (hsubset : first ⊆ second) :
+    finiteCandidateSmallOwnerNeighbors block candidates hole first ⊆
+      finiteCandidateSmallOwnerNeighbors block candidates hole second := by
+  intro owner howner
+  rw [finiteCandidateSmallOwnerNeighbors, Finset.mem_filter] at howner ⊢
+  obtain ⟨hblock, hsmall, hinter⟩ := howner
+  obtain ⟨ideal, hideal⟩ := Finset.nonempty_def.mp hinter
+  rw [Finset.mem_inter] at hideal
+  obtain ⟨hcandidates, hfirst⟩ := hideal
+  exact ⟨hblock, hsmall,
+    Finset.nonempty_def.mpr ⟨ideal,
+      Finset.mem_inter.mpr ⟨hcandidates, hsubset hfirst⟩⟩⟩
+
+/-- The block-small neighborhood of an anchor union is the union of the two
+neighborhoods. -/
+theorem finiteCandidateSmallOwnerNeighbors_union
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    (block : Finset Span) (candidates : Span → Finset Ideal)
+    (hole : Span) (first second : Finset Ideal) :
+    finiteCandidateSmallOwnerNeighbors
+        block candidates hole (first ∪ second) =
+      finiteCandidateSmallOwnerNeighbors block candidates hole first ∪
+        finiteCandidateSmallOwnerNeighbors block candidates hole second := by
+  ext owner
+  rw [finiteCandidateSmallOwnerNeighbors,
+    finiteCandidateSmallOwnerNeighbors,
+    finiteCandidateSmallOwnerNeighbors]
+  simp only [Finset.mem_filter, Finset.mem_union]
+  constructor
+  · rintro ⟨hblock, hsmall, hinter⟩
+    obtain ⟨ideal, hideal⟩ := Finset.nonempty_def.mp hinter
+    rw [Finset.mem_inter, Finset.mem_union] at hideal
+    obtain ⟨hcandidates, hfirst | hsecond⟩ := hideal
+    · exact Or.inl ⟨hblock, hsmall,
+        Finset.nonempty_def.mpr ⟨ideal,
+          Finset.mem_inter.mpr ⟨hcandidates, hfirst⟩⟩⟩
+    · exact Or.inr ⟨hblock, hsmall,
+        Finset.nonempty_def.mpr ⟨ideal,
+          Finset.mem_inter.mpr ⟨hcandidates, hsecond⟩⟩⟩
+  · rintro (⟨hblock, hsmall, hinter⟩ | ⟨hblock, hsmall, hinter⟩)
+    · obtain ⟨ideal, hideal⟩ := Finset.nonempty_def.mp hinter
+      rw [Finset.mem_inter] at hideal
+      obtain ⟨hcandidates, hfirst⟩ := hideal
+      exact ⟨hblock, hsmall,
+        Finset.nonempty_def.mpr ⟨ideal,
+          Finset.mem_inter.mpr ⟨hcandidates,
+            Finset.mem_union_left _ hfirst⟩⟩⟩
+    · obtain ⟨ideal, hideal⟩ := Finset.nonempty_def.mp hinter
+      rw [Finset.mem_inter] at hideal
+      obtain ⟨hcandidates, hsecond⟩ := hideal
+      exact ⟨hblock, hsmall,
+        Finset.nonempty_def.mpr ⟨ideal,
+          Finset.mem_inter.mpr ⟨hcandidates,
+            Finset.mem_union_right _ hsecond⟩⟩⟩
+
+/-- An inclusion-minimal deficient anchor has deficiency exactly one. Erasing
+any one of its anchors leaves the same block-small neighborhood. -/
+theorem FiniteCandidateMinimalDeficientAnchor.classification
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    {hole : Span} {anchors : Finset Ideal}
+    (hminimal : FiniteCandidateMinimalDeficientAnchor
+      block candidates hole anchors) :
+    anchors.Nonempty ∧
+      (finiteCandidateSmallOwnerNeighbors
+          block candidates hole anchors).card + 1 = anchors.card ∧
+      ∀ ideal ∈ anchors,
+        finiteCandidateSmallOwnerNeighbors
+            block candidates hole (anchors.erase ideal) =
+          finiteCandidateSmallOwnerNeighbors
+            block candidates hole anchors := by
+  obtain ⟨_, hdeficient, hproper⟩ := hminimal
+  have hnonempty : anchors.Nonempty :=
+    Finset.card_pos.mp (Nat.zero_lt_of_lt hdeficient)
+  obtain ⟨pivot, hpivot⟩ := hnonempty
+  have heraseLe : (anchors.erase pivot).card ≤
+      (finiteCandidateSmallOwnerNeighbors
+        block candidates hole (anchors.erase pivot)).card :=
+    hproper (anchors.erase pivot) (Finset.erase_ssubset hpivot)
+  have hneighborsMono :
+      finiteCandidateSmallOwnerNeighbors
+          block candidates hole (anchors.erase pivot) ⊆
+        finiteCandidateSmallOwnerNeighbors
+          block candidates hole anchors :=
+    finiteCandidateSmallOwnerNeighbors_mono (Finset.erase_subset _ _)
+  have hreverse : anchors.card ≤
+      (finiteCandidateSmallOwnerNeighbors
+        block candidates hole anchors).card + 1 := by
+    rw [← Finset.card_erase_add_one hpivot]
+    exact Nat.add_le_add_right
+      (heraseLe.trans (Finset.card_le_card hneighborsMono)) 1
+  have hcard :
+      (finiteCandidateSmallOwnerNeighbors
+          block candidates hole anchors).card + 1 = anchors.card :=
+    Nat.le_antisymm (Nat.lt_iff_add_one_le.mp hdeficient) hreverse
+  refine ⟨Finset.card_pos.mp (Nat.zero_lt_of_lt hdeficient), hcard, ?_⟩
+  intro ideal hideal
+  have hsubset :
+      finiteCandidateSmallOwnerNeighbors
+          block candidates hole (anchors.erase ideal) ⊆
+        finiteCandidateSmallOwnerNeighbors
+          block candidates hole anchors :=
+    finiteCandidateSmallOwnerNeighbors_mono (Finset.erase_subset _ _)
+  apply Finset.eq_of_subset_of_card_le hsubset
+  have heraseCard : (anchors.erase ideal).card =
+      (finiteCandidateSmallOwnerNeighbors
+        block candidates hole anchors).card := by
+    have := Finset.card_erase_add_one hideal
+    omega
+  rw [← heraseCard]
+  exact hproper (anchors.erase ideal) (Finset.erase_ssubset hideal)
+
+/-- Every finite deficient anchor contains an inclusion-minimal deficient
+subanchor. -/
+theorem finiteCandidate_exists_minimalDeficientAnchor_of_deficient
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    {hole : Span} {anchors : Finset Ideal}
+    (hanchors : anchors ⊆ candidates hole)
+    (hdeficient : (finiteCandidateSmallOwnerNeighbors
+      block candidates hole anchors).card < anchors.card) :
+    ∃ minimal : Finset Ideal, minimal ⊆ anchors ∧
+      FiniteCandidateMinimalDeficientAnchor
+        block candidates hole minimal := by
+  induction anchors using Finset.strongInductionOn with
+  | _ current ih =>
+      by_cases hsmaller : ∃ smaller : Finset Ideal,
+          smaller ⊂ current ∧
+            (finiteCandidateSmallOwnerNeighbors
+              block candidates hole smaller).card < smaller.card
+      · obtain ⟨smaller, hproper, hsmallDeficient⟩ := hsmaller
+        obtain ⟨minimal, hminimalSubset, hminimal⟩ :=
+          ih smaller hproper (hproper.1.trans hanchors) hsmallDeficient
+        exact ⟨minimal, hminimalSubset.trans hproper.1, hminimal⟩
+      · refine ⟨current, Finset.Subset.rfl, hanchors, hdeficient, ?_⟩
+        intro smaller hproper
+        exact Nat.le_of_not_gt fun hlt ↦
+          hsmaller ⟨smaller, hproper, hlt⟩
+
+/-- Small-owner deficiency is equivalently witnessed at every hole by an
+inclusion-minimal deficient anchor. -/
+theorem finiteCandidateSmallOwnerDeficiency_iff_exists_minimalDeficientAnchor
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal} :
+    FiniteCandidateSmallOwnerDeficiency block candidates ↔
+      ∀ hole ∈ block, ∃ anchors : Finset Ideal,
+        FiniteCandidateMinimalDeficientAnchor
+          block candidates hole anchors := by
+  constructor
+  · intro hdeficiency hole hhole
+    obtain ⟨anchors, hanchors, hdeficient⟩ := hdeficiency hole hhole
+    obtain ⟨minimal, _, hminimal⟩ :=
+      finiteCandidate_exists_minimalDeficientAnchor_of_deficient
+        hanchors hdeficient
+    exact ⟨minimal, hminimal⟩
+  · intro hminimal hole hhole
+    obtain ⟨anchors, hanchors, hdeficient, _⟩ := hminimal hole hhole
+    exact ⟨anchors, hanchors, hdeficient⟩
+
+/-- A singleton is a minimal deficient anchor exactly when it occurs in no
+block-small compatible owner. This recovers the forced-ideal criterion as the
+size-one case of small-owner deficiency. -/
+theorem finiteCandidate_singleton_minimalDeficientAnchor_iff
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    {hole : Span} {ideal : Ideal} (hideal : ideal ∈ candidates hole) :
+    FiniteCandidateMinimalDeficientAnchor
+        block candidates hole {ideal} ↔
+      ∀ owner ∈ block.erase hole,
+        ideal ∈ candidates owner →
+          block.card ≤ (candidates owner).card := by
+  constructor
+  · intro hminimal owner howner hcandidates
+    obtain ⟨_, hdeficient, _⟩ := hminimal
+    by_contra hnotLarge
+    have hsmall : (candidates owner).card < block.card :=
+      Nat.lt_of_not_ge hnotLarge
+    have hmem : owner ∈ finiteCandidateSmallOwnerNeighbors
+        block candidates hole {ideal} := by
+      rw [finiteCandidateSmallOwnerNeighbors, Finset.mem_filter]
+      refine ⟨howner, hsmall, Finset.nonempty_def.mpr ⟨ideal, ?_⟩⟩
+      exact Finset.mem_inter.mpr ⟨hcandidates, Finset.mem_singleton_self ideal⟩
+    have hempty : finiteCandidateSmallOwnerNeighbors
+        block candidates hole {ideal} = ∅ := by
+      simpa using hdeficient
+    rw [hempty] at hmem
+    simp at hmem
+  · intro hforced
+    refine ⟨Finset.singleton_subset_iff.mpr hideal, ?_, ?_⟩
+    · have hempty : finiteCandidateSmallOwnerNeighbors
+          block candidates hole {ideal} = ∅ := by
+        apply Finset.card_eq_zero.mp
+        by_contra hcard
+        have hpositive : 0 < (finiteCandidateSmallOwnerNeighbors
+            block candidates hole {ideal}).card := Nat.pos_of_ne_zero hcard
+        obtain ⟨owner, howner⟩ := Finset.card_pos.mp hpositive
+        rw [finiteCandidateSmallOwnerNeighbors, Finset.mem_filter] at howner
+        obtain ⟨hblock, hsmall, hinter⟩ := howner
+        obtain ⟨member, hmember⟩ := Finset.nonempty_def.mp hinter
+        rw [Finset.mem_inter, Finset.mem_singleton] at hmember
+        obtain ⟨hcandidates, rfl⟩ := hmember
+        exact (Nat.not_le_of_lt hsmall) (hforced owner hblock hcandidates)
+      simp [hempty]
+    · intro smaller hproper
+      have hcard := Finset.card_lt_card hproper
+      simp only [Finset.card_singleton] at hcard
+      have : smaller.card = 0 := by omega
+      omega
+
+/-- A two-element minimal deficient anchor consists exactly of two ideals
+whose block-small neighborhoods are the same singleton owner. -/
+theorem finiteCandidate_pair_minimalDeficientAnchor_iff
+    {Span Ideal : Type*} [DecidableEq Span] [DecidableEq Ideal]
+    {block : Finset Span} {candidates : Span → Finset Ideal}
+    {hole : Span} {first second : Ideal}
+    (hne : first ≠ second)
+    (hfirst : first ∈ candidates hole)
+    (hsecond : second ∈ candidates hole) :
+    FiniteCandidateMinimalDeficientAnchor
+        block candidates hole {first, second} ↔
+      ∃ owner,
+        finiteCandidateSmallOwnerNeighbors
+            block candidates hole {first} = {owner} ∧
+          finiteCandidateSmallOwnerNeighbors
+            block candidates hole {second} = {owner} := by
+  constructor
+  · intro hminimal
+    obtain ⟨_, hcard, herase⟩ := hminimal.classification
+    have hneighborCard : (finiteCandidateSmallOwnerNeighbors
+        block candidates hole {first, second}).card = 1 := by
+      have hpairCard : ({first, second} : Finset Ideal).card = 2 := by
+        simp [hne]
+      omega
+    obtain ⟨owner, howner⟩ := Finset.card_eq_one.mp hneighborCard
+    have heraseSecond : ({first, second} : Finset Ideal).erase second =
+        {first} := by
+      ext ideal
+      simp only [Finset.mem_erase, Finset.mem_insert, Finset.mem_singleton]
+      constructor
+      · rintro ⟨_, rfl | rfl⟩
+        · rfl
+        · contradiction
+      · rintro rfl
+        exact ⟨hne, Or.inl rfl⟩
+    have heraseFirst : ({first, second} : Finset Ideal).erase first =
+        {second} := by
+      ext ideal
+      simp only [Finset.mem_erase, Finset.mem_insert, Finset.mem_singleton]
+      constructor
+      · rintro ⟨_, rfl | rfl⟩
+        · contradiction
+        · rfl
+      · rintro rfl
+        exact ⟨Ne.symm hne, Or.inr rfl⟩
+    refine ⟨owner, ?_, ?_⟩
+    · calc
+        finiteCandidateSmallOwnerNeighbors
+            block candidates hole {first} =
+          finiteCandidateSmallOwnerNeighbors block candidates hole
+            (({first, second} : Finset Ideal).erase second) := by
+              rw [heraseSecond]
+        _ = finiteCandidateSmallOwnerNeighbors
+              block candidates hole {first, second} :=
+          herase second (by simp)
+        _ = {owner} := howner
+    · calc
+        finiteCandidateSmallOwnerNeighbors
+            block candidates hole {second} =
+          finiteCandidateSmallOwnerNeighbors block candidates hole
+            (({first, second} : Finset Ideal).erase first) := by
+              rw [heraseFirst]
+        _ = finiteCandidateSmallOwnerNeighbors
+              block candidates hole {first, second} :=
+          herase first (by simp)
+        _ = {owner} := howner
+  · rintro ⟨owner, hfirstNeighbors, hsecondNeighbors⟩
+    have hpairUnion : ({first, second} : Finset Ideal) =
+        {first} ∪ {second} := by
+      ext ideal
+      simp
+    refine ⟨?_, ?_, ?_⟩
+    · intro ideal hideal
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hideal
+      rcases hideal with rfl | rfl
+      · exact hfirst
+      · exact hsecond
+    · rw [hpairUnion, finiteCandidateSmallOwnerNeighbors_union,
+        hfirstNeighbors, hsecondNeighbors]
+      simp [hne]
+    · intro smaller hproper
+      by_cases hempty : smaller = ∅
+      · simp [hempty]
+      have hpositive : 0 < smaller.card :=
+        Finset.card_pos.mpr (Finset.nonempty_iff_ne_empty.mpr hempty)
+      have hlt := Finset.card_lt_card hproper
+      have hcard : smaller.card = 1 := by
+        have hpairCard : ({first, second} : Finset Ideal).card = 2 := by
+          simp [hne]
+        omega
+      obtain ⟨ideal, rfl⟩ := Finset.card_eq_one.mp hcard
+      have hideal : ideal = first ∨ ideal = second := by
+        have := hproper.1 (Finset.mem_singleton_self ideal)
+        simpa using this
+      rcases hideal with rfl | rfl
+      · simp [hfirstNeighbors]
+      · simp [hsecondNeighbors]
+
 /-- A strict small-owner neighborhood deficiency prevents every feasible
 owner map from using only block-small families, so some reached family is
 block-large. -/
@@ -805,6 +1132,47 @@ def AllocatedReflectedEndpointRankTransitionSmallOwnerDeficiency
       (allocatedExactRankFrontierBlock first last)
       (allocatedReflectedEndpointRankTransitionCandidates
         chi lower upper color hrank hrankTop)
+
+/-- The refined geometry contract suggested by the all-root `k = 7` gate:
+each hole has an inclusion-minimal deficient anchor which is a complete chain
+interval inside one normalized endpoint lane. This is strictly stronger than
+small-owner deficiency; its arbitrary genuine-frontier proof remains open. -/
+def AllocatedReflectedEndpointRankTransitionLaneChainMinimalDeficiency
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k) : Prop :=
+  ∀ first last : AllocatedExactRankFrontierSpan
+      chi lower upper color rank,
+    let block := allocatedExactRankFrontierBlock first last
+    let candidates := allocatedReflectedEndpointRankTransitionCandidates
+      chi lower upper color hrank hrankTop
+    ∀ hole ∈ block, ∃ anchors :
+        Finset (PascalGridIdeal (rank - 1) (k - rank - 1)),
+      FiniteCandidateMinimalDeficientAnchor
+          block candidates hole anchors ∧
+        PascalGridIdeal.IsChainInterval anchors ∧
+        ∃ side : SweepEndpointSide,
+          anchors ⊆ allocatedReflectedEndpointRankTransitionLane
+            chi lower upper color hrank hrankTop hole side
+
+/-- The lane-chain minimal-anchor contract supplies the active small-owner
+deficiency; its additional geometry is retained for the eventual construction
+of the witnesses. -/
+theorem
+    allocatedReflectedEndpointRankTransitionSmallOwnerDeficiency_of_laneChainMinimal
+    {n rank k : ℕ} {chi : TripleColoring n}
+    {lower upper : Finset (Fin n)} {color : Turn}
+    {hrank : 1 ≤ rank} {hrankTop : rank < k}
+    (hchain :
+      AllocatedReflectedEndpointRankTransitionLaneChainMinimalDeficiency
+        chi lower upper color hrank hrankTop) :
+    AllocatedReflectedEndpointRankTransitionSmallOwnerDeficiency
+      chi lower upper color hrank hrankTop := by
+  intro first last
+  rw [finiteCandidateSmallOwnerDeficiency_iff_exists_minimalDeficientAnchor]
+  intro hole hhole
+  obtain ⟨anchors, hminimal, _, _⟩ := hchain first last hole hhole
+  exact ⟨anchors, hminimal⟩
 
 /-- A small-owner deficiency on every genuine reflected block supplies the
 block-large reached-owner profile. -/

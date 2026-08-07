@@ -15,6 +15,8 @@ from check_allocated_span_pascal_demand import (
     endpoint_rank_heights,
     file_sha256,
     groups,
+    height_ideals,
+    height_interval,
     height_mask_hex,
     proper_parts,
     replay_transition_candidates,
@@ -209,6 +211,59 @@ def normalized_endpoint_roles(
     return tuple(answer)
 
 
+def normalized_endpoint_lanes(
+    geometry: dict[str, object], rows: int, columns: int
+) -> tuple[frozenset[int], frozenset[int]]:
+    answer = []
+    for lane in ("left_lane", "right_lane"):
+        ideals = tuple(
+            int(encoded, 16) for encoded in geometry[lane]["raw_interval_hex"]
+        )
+        if geometry["reflected"]:
+            ideals = tuple(
+                reflected_mask(ideal, rows, columns) for ideal in ideals
+            )
+        answer.append(frozenset(ideals))
+    return tuple(answer)
+
+
+def selected_anchor_shape(
+    anchors: tuple[Ideal, ...],
+    geometry: dict[str, object],
+    rows: int,
+    columns: int,
+) -> dict[str, bool]:
+    anchor_masks = tuple(ideal_key(ideal, columns) for ideal in anchors)
+    ordered = tuple(
+        sorted(anchor_masks, key=lambda ideal: (ideal.bit_count(), ideal))
+    )
+    chain = all(
+        first & second in (first, second)
+        for first, second in itertools.combinations(ordered, 2)
+    )
+    saturated = chain and all(
+        first & second == first
+        and second.bit_count() - first.bit_count() == 1
+        for first, second in zip(ordered, ordered[1:])
+    )
+    lower = tuple(min(values) for values in zip(*anchors, strict=True))
+    upper = tuple(max(values) for values in zip(*anchors, strict=True))
+    interval_masks = {
+        ideal_key(ideal, columns)
+        for ideal in height_interval(height_ideals(rows, columns), lower, upper)
+    }
+    lattice_interval = interval_masks == set(anchor_masks)
+    lanes = normalized_endpoint_lanes(geometry, rows, columns)
+    one_lane = any(set(anchor_masks) <= lane for lane in lanes)
+    return {
+        "chain": chain,
+        "saturated_chain": saturated,
+        "lattice_interval": lattice_interval,
+        "contained_in_one_lane": one_lane,
+        "one_lane_saturated_interval": one_lane and saturated and lattice_interval,
+    }
+
+
 def base_example(
     support: int,
     lower: int,
@@ -329,6 +384,10 @@ def analyze_group(
                     anchor_stats[
                         f"deficiency,{len(anchors) - len(neighbors)}"
                     ] += 1
+                    for label, holds in selected_anchor_shape(
+                        anchors, geometry[start + hole], rows, columns
+                    ).items():
+                        anchor_stats[f"selected_{label},{'yes' if holds else 'no'}"] += 1
                     endpoints = normalized_endpoint_extremes(
                         geometry[start + hole], rows, columns
                     )
@@ -370,12 +429,14 @@ def analyze_group(
                             for owner in small_owners
                         )
                     )
-                    if not forced_roles:
-                        raise AssertionError("endpoint singleton witness disappeared")
-                    anchor_stats[f"first_forced_role,{forced_roles[0]}"] += 1
-                    anchor_stats[
-                        f"forced_role_pattern,{'|'.join(forced_roles)}"
-                    ] += 1
+                    if forced_roles:
+                        anchor_stats["forced_endpoint,yes"] += 1
+                        anchor_stats[f"first_forced_role,{forced_roles[0]}"] += 1
+                        anchor_stats[
+                            f"forced_role_pattern,{'|'.join(forced_roles)}"
+                        ] += 1
+                    else:
+                        anchor_stats["forced_endpoint,no"] += 1
                     anchor_stats[
                         "whole_hole,yes"
                         if len(anchors) == len(hole_family)
@@ -432,8 +493,8 @@ def census(
     minimum_support_size: int,
     maximum_support_size: int,
     stop_on_failure: bool,
+    strong_size: int = 6,
 ) -> dict[str, object]:
-    strong_size = 6
     machine = Replay(maximum_n, strong_size)
     full = (1 << maximum_n) - 1
     machine.colorings(full)
@@ -614,6 +675,19 @@ def census(
             "forced_endpoint_role_pattern_histogram": labeled_histogram(
                 total_anchor_stats, "forced_role_pattern"
             ),
+            "forced_endpoint_existence_counts": labeled_histogram(
+                total_anchor_stats, "forced_endpoint"
+            ),
+            "selected_anchor_shape_counts": {
+                label: labeled_histogram(total_anchor_stats, f"selected_{label}")
+                for label in (
+                    "chain",
+                    "saturated_chain",
+                    "lattice_interval",
+                    "contained_in_one_lane",
+                    "one_lane_saturated_interval",
+                )
+            },
             "by_support_size_anchor_statistics": {
                 key: {
                     "minimum_deficient_anchor_size_histogram": labeled_histogram(
@@ -637,6 +711,19 @@ def census(
                     "forced_endpoint_role_pattern_histogram": labeled_histogram(
                         row, "forced_role_pattern"
                     ),
+                    "forced_endpoint_existence_counts": labeled_histogram(
+                        row, "forced_endpoint"
+                    ),
+                    "selected_anchor_shape_counts": {
+                        label: labeled_histogram(row, f"selected_{label}")
+                        for label in (
+                            "chain",
+                            "saturated_chain",
+                            "lattice_interval",
+                            "contained_in_one_lane",
+                            "one_lane_saturated_interval",
+                        )
+                    },
                 }
                 for key, row in by_size_anchor_stats.items()
             },
