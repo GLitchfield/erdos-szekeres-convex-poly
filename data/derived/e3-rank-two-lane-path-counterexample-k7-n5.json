@@ -1,0 +1,412 @@
+{
+  "contract": {
+    "claim_boundary": "bounded computational evidence only; no arbitrary rank-two trace, Hall, geometric bridge, or exact-formula theorem",
+    "domain": "every recursively decomposable k=7 root through the recorded support size, every reflected exact-rank-two consecutive block, and every hole",
+    "success": "some complete saturated interval in one normalized hole lane has an exact singleton-neighborhood trace"
+  },
+  "experiment": "all-root-rank-two-reflected-lane-path-k7-gate",
+  "generation_base_revision": "e7651cabe800748a6d85b4a163e2eaddfc5cda21",
+  "k7_rank_two_all_hole_census": {
+    "all_holes_have_lane_path_certificate": false,
+    "checked_prefix_sha256": "f18181bd2867e480642baf5ed8f5efd1d3d2c75337b6c8a6d3ad9a4fcdcf5837",
+    "complete": false,
+    "first_lane_path_failure": {
+      "block_candidate_families_hex": [
+        [
+          "0",
+          "1",
+          "3"
+        ],
+        [
+          "3",
+          "7"
+        ],
+        [
+          "1",
+          "3"
+        ],
+        [
+          "3",
+          "7",
+          "f"
+        ]
+      ],
+      "block_frontier": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "block_size": 4,
+      "color": "cap",
+      "coloring_hex": "c8",
+      "first_deficient_anchor": null,
+      "frontier": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "hole_frontier_index": 1,
+      "hole_geometry": {
+        "left_lane": {
+          "endpoint": 1,
+          "future": {
+            "boundary_slot": [
+              2
+            ],
+            "ideal_hex": "3"
+          },
+          "past": {
+            "boundary_slot": [
+              3
+            ],
+            "ideal_hex": "1"
+          },
+          "raw_interval_hex": [
+            "1",
+            "3"
+          ]
+        },
+        "reflected": true,
+        "right_lane": {
+          "endpoint": 2,
+          "future": {
+            "boundary_slot": [
+              3
+            ],
+            "ideal_hex": "1"
+          },
+          "past": {
+            "boundary_slot": [
+              3
+            ],
+            "ideal_hex": "1"
+          },
+          "raw_interval_hex": [
+            "1"
+          ]
+        },
+        "span": [
+          1,
+          2
+        ]
+      },
+      "hole_index": 1,
+      "lower_mask_hex": "15",
+      "owner_map_feasible": true,
+      "rank": 2,
+      "reason": "no_reflected_lane_path_certificate",
+      "start_index": 0,
+      "stop_index": 4,
+      "support_mask_hex": "1f"
+    },
+    "maximum_n": 5,
+    "maximum_support_size": 5,
+    "minimum_support_size": 2,
+    "statistics": {
+      "analyzed_local_states": 105,
+      "anchor_endpoint_shape_counts": {
+        "endpoint_only": 7
+      },
+      "anchor_whole_hole_counts": {
+        "no": 7
+      },
+      "by_support_size": {
+        "2": {
+          "consecutive_block_checks": 40,
+          "group_checks": 40,
+          "hole_checks": 40,
+          "lane_path_certificates": 40,
+          "lane_path_exact_trace_certificate_exists": 40,
+          "lane_path_hole_checks": 40,
+          "lane_path_length_0": 40,
+          "lane_path_singleton_trace_exact": 40,
+          "lane_path_zero_feasible_owner_map_holes": 40,
+          "maximum_frontier_size": 1,
+          "open_contexts": 20,
+          "root_contexts": 20,
+          "vacuous_holes": 40
+        },
+        "3": {
+          "consecutive_block_checks": 200,
+          "group_checks": 120,
+          "hole_checks": 240,
+          "lane_path_certificates": 240,
+          "lane_path_exact_trace_certificate_exists": 240,
+          "lane_path_hole_checks": 240,
+          "lane_path_length_0": 240,
+          "lane_path_singleton_trace_exact": 240,
+          "lane_path_zero_feasible_owner_map_holes": 240,
+          "maximum_frontier_size": 2,
+          "open_contexts": 60,
+          "root_contexts": 60,
+          "vacuous_holes": 240
+        },
+        "4": {
+          "consecutive_block_checks": 520,
+          "group_checks": 220,
+          "hole_checks": 700,
+          "lane_path_certificates": 700,
+          "lane_path_exact_trace_certificate_exists": 700,
+          "lane_path_hole_checks": 700,
+          "lane_path_length_0": 700,
+          "lane_path_singleton_trace_exact": 700,
+          "lane_path_zero_feasible_owner_map_holes": 700,
+          "maximum_frontier_size": 3,
+          "open_contexts": 110,
+          "root_contexts": 110,
+          "vacuous_holes": 700
+        },
+        "5": {
+          "consecutive_block_checks": 238,
+          "group_checks": 85,
+          "hole_checks": 332,
+          "lane_path_certificate_failures": 2,
+          "lane_path_certificates": 330,
+          "lane_path_exact_trace_certificate_exists": 330,
+          "lane_path_feasible_owner_map_holes": 9,
+          "lane_path_hole_checks": 332,
+          "lane_path_length_0": 329,
+          "lane_path_length_2": 1,
+          "lane_path_singleton_trace_exact": 330,
+          "lane_path_zero_feasible_owner_map_holes": 323,
+          "maximum_frontier_size": 4,
+          "nonvacuous_holes": 9,
+          "open_contexts": 43,
+          "profile_failures": 2,
+          "root_contexts": 43,
+          "vacuous_holes": 323
+        }
+      },
+      "by_support_size_anchor_statistics": {
+        "2": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_existence_counts": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "selected_anchor_shape_counts": {
+            "chain": {},
+            "contained_in_one_lane": {},
+            "lattice_interval": {},
+            "one_lane_saturated_interval": {},
+            "saturated_chain": {}
+          },
+          "small_owner_deficiency_histogram": {}
+        },
+        "3": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_existence_counts": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "selected_anchor_shape_counts": {
+            "chain": {},
+            "contained_in_one_lane": {},
+            "lattice_interval": {},
+            "one_lane_saturated_interval": {},
+            "saturated_chain": {}
+          },
+          "small_owner_deficiency_histogram": {}
+        },
+        "4": {
+          "anchor_endpoint_shape_counts": {},
+          "anchor_whole_hole_counts": {},
+          "endpoint_singleton_deficiency_counts": {},
+          "first_forced_endpoint_role_histogram": {},
+          "forced_endpoint_existence_counts": {},
+          "forced_endpoint_role_pattern_histogram": {},
+          "minimum_deficient_anchor_size_histogram": {},
+          "selected_anchor_shape_counts": {
+            "chain": {},
+            "contained_in_one_lane": {},
+            "lattice_interval": {},
+            "one_lane_saturated_interval": {},
+            "saturated_chain": {}
+          },
+          "small_owner_deficiency_histogram": {}
+        },
+        "5": {
+          "anchor_endpoint_shape_counts": {
+            "endpoint_only": 7
+          },
+          "anchor_whole_hole_counts": {
+            "no": 7
+          },
+          "endpoint_singleton_deficiency_counts": {
+            "yes": 7
+          },
+          "first_forced_endpoint_role_histogram": {
+            "left_past": 5,
+            "right_future": 2
+          },
+          "forced_endpoint_existence_counts": {
+            "yes": 7
+          },
+          "forced_endpoint_role_pattern_histogram": {
+            "left_past": 1,
+            "left_past|left_future|right_future": 3,
+            "left_past|right_past|right_future": 1,
+            "right_future": 2
+          },
+          "minimum_deficient_anchor_size_histogram": {
+            "1": 7
+          },
+          "selected_anchor_shape_counts": {
+            "chain": {
+              "yes": 7
+            },
+            "contained_in_one_lane": {
+              "yes": 7
+            },
+            "lattice_interval": {
+              "yes": 7
+            },
+            "one_lane_saturated_interval": {
+              "yes": 7
+            },
+            "saturated_chain": {
+              "yes": 7
+            }
+          },
+          "small_owner_deficiency_histogram": {
+            "1": 7
+          }
+        }
+      },
+      "by_support_size_slack_histogram": {
+        "2": {},
+        "3": {},
+        "4": {},
+        "5": {
+          "-1": 2,
+          "0": 5,
+          "1": 2
+        }
+      },
+      "endpoint_singleton_deficiency_counts": {
+        "yes": 7
+      },
+      "first_forced_endpoint_role_histogram": {
+        "left_past": 5,
+        "right_future": 2
+      },
+      "forced_endpoint_existence_counts": {
+        "yes": 7
+      },
+      "forced_endpoint_role_pattern_histogram": {
+        "left_past": 1,
+        "left_past|left_future|right_future": 3,
+        "left_past|right_past|right_future": 1,
+        "right_future": 2
+      },
+      "minimum_bottleneck_slack_histogram": {
+        "-1": 2,
+        "0": 5,
+        "1": 2
+      },
+      "minimum_deficient_anchor_size_histogram": {
+        "1": 7
+      },
+      "selected_anchor_shape_counts": {
+        "chain": {
+          "yes": 7
+        },
+        "contained_in_one_lane": {
+          "yes": 7
+        },
+        "lattice_interval": {
+          "yes": 7
+        },
+        "one_lane_saturated_interval": {
+          "yes": 7
+        },
+        "saturated_chain": {
+          "yes": 7
+        }
+      },
+      "small_owner_deficiency_histogram": {
+        "1": 7
+      },
+      "totals": {
+        "consecutive_block_checks": 998,
+        "group_checks": 465,
+        "hole_checks": 1312,
+        "lane_path_certificate_failures": 2,
+        "lane_path_certificates": 1310,
+        "lane_path_exact_trace_certificate_exists": 1310,
+        "lane_path_feasible_owner_map_holes": 9,
+        "lane_path_hole_checks": 1312,
+        "lane_path_length_0": 1309,
+        "lane_path_length_2": 1,
+        "lane_path_singleton_trace_exact": 1310,
+        "lane_path_zero_feasible_owner_map_holes": 1303,
+        "maximum_frontier_size": 4,
+        "nonvacuous_holes": 9,
+        "open_contexts": 233,
+        "profile_failures": 2,
+        "root_contexts": 233,
+        "vacuous_holes": 1303
+      }
+    },
+    "stop_on_failure": true,
+    "stopped_early": true,
+    "strong_size": 7
+  },
+  "schema_version": 1,
+  "sources": {
+    "checker": {
+      "path": "scripts/check_rank_two_lane_path_certificates_all_roots_k7.py",
+      "sha256": "923709c393ce0daa5a88a8664228aab990f2e8d5591dd014dc96d9a5e8c8f683"
+    },
+    "height_base": {
+      "path": "scripts/check_block_large_reached_owner_all_roots.py",
+      "sha256": "acc682551e71d3734d9d16fc46bd8d5fb98a3935b7542c5a43890969637d121d"
+    },
+    "mask_base": {
+      "path": "scripts/enumerate_block_large_reached_owner_all_roots.py",
+      "sha256": "66c944be03b92059205bdb52b536ce0d117193ffe57ad520bdf80072e32ab465"
+    },
+    "path_checker": {
+      "path": "scripts/check_lane_path_certificates_all_roots_k7.py",
+      "sha256": "4a4c5d5b564893762c09bf2e0c558b58d0de669fe2ea093da1a544f830056001"
+    },
+    "path_producer": {
+      "path": "scripts/enumerate_lane_path_certificates_all_roots_k7.py",
+      "sha256": "fb35935a478150e38141f6454e4e836a3e60c3dc14a2486011c7115fd8069866"
+    },
+    "producer": {
+      "path": "scripts/enumerate_rank_two_lane_path_certificates_all_roots_k7.py",
+      "sha256": "57ed94c8ba31cf0cb136749b53dc152a1f47e1154c1db8c278f17455b5ec64c3"
+    }
+  }
+}

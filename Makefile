@@ -87,6 +87,15 @@ test: check lean
 	@python3 scripts/check_lane_path_certificates_all_roots_k7.py \
 		data/derived/e3-lane-path-certificates-all-roots-k7-n8.json \
 		--source-only >/dev/null
+	@python3 scripts/check_rank_two_lane_path_certificates_all_roots_k7.py \
+		data/derived/e3-rank-two-lane-path-counterexample-k7-n5.json \
+		--source-only >/dev/null
+	@python3 scripts/check_rank_two_reflected_endpoint_hall_all_roots_k7.py \
+		data/derived/e3-rank-two-reflected-endpoint-hall-k7-n8.json \
+		--source-only >/dev/null
+	@python3 scripts/check_rank_two_gap_promotion_k7.py \
+		data/derived/e3-rank-two-gap-promotion-k7-n8.json \
+		--source-only >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
@@ -158,6 +167,12 @@ test: check lean
 		scripts/check_block_large_reached_owner_all_roots_k8.py \
 		scripts/enumerate_lane_path_certificates_all_roots_k7.py \
 		scripts/check_lane_path_certificates_all_roots_k7.py \
+		scripts/enumerate_rank_two_lane_path_certificates_all_roots_k7.py \
+		scripts/check_rank_two_lane_path_certificates_all_roots_k7.py \
+		scripts/enumerate_rank_two_reflected_endpoint_hall_all_roots_k7.py \
+		scripts/check_rank_two_reflected_endpoint_hall_all_roots_k7.py \
+		scripts/enumerate_rank_two_gap_promotion_k7.py \
+		scripts/check_rank_two_gap_promotion_k7.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
 		scripts/check_middle_split_bridge_routes.py \

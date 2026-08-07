@@ -436,23 +436,57 @@ None. The destination was fixed by the user on 2026-08-01.
   0047--0048 identify its surviving shape on all 3,056 nonvacuous holes over
   decomposable `k = 7` roots through eight vertices, but that census did not
   test the certificate obligation on the other 2,419,060 holes. Experiment
-  0050 closes that bounded evidence gap: independent exact implementations
-  replay all 2,422,116 holes and find a lane-path certificate for every one.
-  The census includes 514 genuine two-gap paths, and every hole admits the
-  stronger exact singleton-neighborhood trace, although the first
-  deterministic certificate is inexact in those 514 cases. Lean proves that
-  such a trace constructs the path certificate and states the corresponding
-  reflected geometry contract; it also proves rank-one endpoint spans
-  impossible, so that base case is vacuous. Experiment 0049 separately passes
-  the complete `k = 8` gate through eight vertices, but only with singleton
-  minima. The active geometry target is now to derive exact singleton traces
-  at rank two and at ranks at least three from recursively decomposable
-  children, a deep-below split, and no strong `k`-set, followed by the separate
-  induction constructing one-hole states.
-  Neither
-  open premise may import Hall, a complete matching, or finite enumeration.
-  General Hall and the global injection into `decomposableBinomialWindow`
-  remain downstream.
+  0050 appeared to close that bounded evidence gap, but a post-audit found its
+  shared group generator explicitly required `rank >= 3`. Its 2,422,116 holes
+  and 514 genuine two-gap paths therefore support only the active-ray range.
+  Dedicated Experiment 0051 changes the route. A rank-two lane path fails at
+  support size five, reflected Hall fails at size six, and a complete
+  independent census through size eight finds 2,896 direct Pascal-capacity
+  violations among 732,172 rank-two groups. Lean now proves the conceptual
+  normal form: exact rank-two spans exclude active-child interior vertices,
+  and the retained frontier is exactly the adjacent child changes in sweep
+  order. A kernel-checked open decomposable seven-vertex example has six such
+  spans against `publishedSpanPascalDemand 7 2 = 5`, so its
+  `AllocatedExactRankSlotting` type is empty. The individual-frontier Pascal
+  allocation is therefore retired at rank two, not merely missing a proof.
+  The rank-at-least-three trace/Hall subroute remains unrefuted, but it cannot
+  by itself yield the advertised all-rank local recurrence. The active route
+  decision must either group rank-two alternations into at most `k - 2`
+  charged objects or replace the per-rank frontier recurrence with a coupled
+  accounting that pays for rank two elsewhere. Neither replacement may assume
+  Hall, slotting, the disputed capacity bound, or finite enumeration. The
+  first reviewed replacement—sum local rank-two adjacencies at their unique
+  lowest separating nodes and bound them by the global `support.card - 1`
+  gaps—is also retired. Lean checks a three-vertex interleaved tree whose root
+  contributes `(0,1),(1,2)` and whose child contributes `(0,2)`, giving three
+  distinct local charges against two global gaps. The route now needs a
+  quotient or coupled arithmetic contract that survives both this example
+  and the seven-vertex alternating `6 > 5` obstruction.
+  Experiment 0052 supplies the first replacement that survives those gates.
+  In the binary merge word, all but the first crossing transition are paired
+  with hidden child gaps. Hidden lower gaps give cap spans of ambient rank at
+  least three and hidden upper gaps give cup spans; Lean proves both color
+  bridges and the run-count identity. A complete independent `k = 7` census
+  through size eight makes 392,562 color-compatible promotions and finds no
+  capacity or endpoint-candidate failure in 1,913,894 adjusted groups. The
+  promoted gaps are noncrossing, however, so they lie outside the existing
+  allocated-frontier carrier. The active theorem-design target is an explicit
+  ambient promoted carrier and canonical run-gap matching, followed by a
+  noncrossing rank-ideal incidence bridge and a coupled recurrence theorem.
+  The carrier is now compiled: every compatible hidden gap receives an exact
+  parent-support rank, a nonempty endpoint-ideal family, and nonempty encoded
+  Pascal-slot candidates without assuming crossing or Hall. The canonical
+  run-gap matching is also compiled as an exact equivalence between hidden
+  sources plus one initial transition and all parent crossings. Its fixed-color
+  corollary identifies the residual rank-two cardinality as the opposite-color
+  hidden count plus one. `AdjustedHigherRankDemand` now combines fixed-rank
+  crossing and promoted carriers; Lean proves common exact-rank semantics,
+  incident endpoint-profile corners, and that adjusted Hall implies the
+  published Pascal capacity. The next Lean target is adjusted Hall expansion,
+  followed by a rank-two residual bound and two-color recurrence composition.
+  A bounded Sol review rates the direction `partially_supported`; Fable
+  returned zero tokens at its usage limit, so no dual-model consensus is
+  claimed.
 
 ## Not yet specified
 

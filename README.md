@@ -263,22 +263,49 @@ sets.
   pair alternative is essential. Experiment 0049 passes the first `k = 8`
   all-root gate through eight vertices: all 2,096 nonvacuous holes have
   singleton minima and bottleneck slack at least `+3`, so that support range
-  does not yet exercise longer anchors. Experiment 0050 then audits the exact
-  path contract over all 2,422,116 bounded `k = 7` holes, including 2,419,060
-  cases omitted from the prior shape statistics because they have no feasible
-  owner map. Every hole has a path and an exact singleton-trace certificate;
-  514 require two gaps, the first evidence beyond the abstract pair case.
+  does not yet exercise longer anchors. Experiment 0050 audits the exact path
+  contract over 2,422,116 bounded `k = 7` holes, including 2,419,060 cases
+  omitted from the prior shape statistics because they have no feasible owner
+  map. Every included hole has a path and an exact singleton-trace certificate;
+  514 require two gaps. A post-audit found that the shared generator included
+  only ranks at least three, however, so this was never evidence for rank two.
   Lean proves the general minimal-deficiency calculus, a scalable
   owner-labelled lane-path theorem, local-neighborhood and exact-trace
   constructors, and the vacuity of rank one. The reflected path contract
   implies the lane-chain contract and hence active small-owner deficiency.
-  Constructing an exact singleton trace from recursively decomposable
-  children, deep-split incidence, and the absence of a strong `k`-set is the
-  current local theorem, with rank two direct and active rays available from
-  rank three. Constructing one-hole states uniformly remains a
-  separate induction obligation; neither premise may assume Hall, an existing
-  complete matching, or finite enumeration.
-  General Hall and the global outer-window injection remain subsequent.
+  Experiment 0051 tests rank two directly and refutes the route: lane paths
+  fail at five vertices, reflected Hall at six, and an alternating
+  seven-vertex split has six exact-rank-two frontier spans against five Pascal
+  slots. Lean proves both the adjacent-crossing normal form and an explicit
+  open decomposable counterexample, including emptiness of the proposed
+  slotting type. The rank-at-least-three trace route remains unrefuted, but a
+  replacement recurrence must group rank-two alternations or couple their
+  cost to other ranks before general Hall or the global outer-window injection
+  can be pursued. The first suggested repair—charge every local adjacency at
+  its unique lowest separating node and use the global `support.card - 1`
+  gap count—also fails. A three-vertex interleaved decomposition has three
+  distinct local rank-two spans but only two global gaps; Lean checks this
+  second obstruction. Unique lowest-node ownership is sound bookkeeping, not
+  the missing linear bound. Experiment 0052 tests the first cross-rank repair:
+  later merge transitions are paired with color-compatible hidden child gaps
+  and promoted to those gaps' exact ambient ranks. Independent implementations
+  find no capacity or endpoint-candidate failure in 1,913,894 adjusted groups
+  over every open decomposable `k = 7` root through eight vertices. Lean proves
+  the binary run-count identity and that hidden lower/upper gaps give genuine
+  rank-three cap/cup spans. This is a surviving direction, not a proof: the
+  promoted spans are noncrossing, so their ambient carrier, rank-ideal bridge,
+  and connection to the published recurrence must be treated separately from
+  the old crossing frontier. The ambient carrier now compiles: every hidden
+  source gap receives an exact parent-support rank and nonempty endpoint-ideal
+  and Pascal-slot candidate families. Lean now also proves the exact canonical
+  equivalence between all hidden child gaps plus one initial crossing and all
+  parent crossing transitions. For either fixed color, removing its compatible
+  image leaves exactly the opposite-color hidden sources plus one at rank two,
+  by cardinality. The fixed-rank adjusted carrier combines the old crossing
+  frontier with the promoted noncrossing sources; its endpoint incidence is
+  nontrivial, and adjusted Hall expansion implies the published Pascal-layer
+  capacity. Proving that Hall expansion, bounding the rank-two residual, and
+  composing the two colors into the recurrence remain open.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

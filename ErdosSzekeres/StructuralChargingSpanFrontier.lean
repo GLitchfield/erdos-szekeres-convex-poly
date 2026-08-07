@@ -104,6 +104,57 @@ theorem HasSpanRankAtLeast.rank_two {n rank : ℕ} {color : Turn}
       obtain ⟨cap, hcapSub, _, hcap, hsweep⟩ := hspan
       exact ⟨cap, hcapSub, hsweep.two_le_card, hcap, hsweep⟩
 
+/-- Every color-uniform span witness records ordered endpoints belonging to
+its ambient support. -/
+theorem HasSpanRankAtLeast.ordered_endpoints_mem
+    {n rank : ℕ} {color : Turn} {chi : TripleColoring n}
+    {s : Finset (Fin n)} {span : SweepSpanEndpoints n}
+    (hspan : HasSpanRankAtLeast color chi s span rank) :
+    span.left < span.right ∧ span.left ∈ s ∧ span.right ∈ s := by
+  cases color with
+  | left =>
+      obtain ⟨cup, hcupSub, _, _, hsweep⟩ := hspan
+      exact ⟨hsweep.lt, hcupSub hsweep.left_mem, hcupSub hsweep.right_mem⟩
+  | right =>
+      obtain ⟨cap, hcapSub, _, _, hsweep⟩ := hspan
+      exact ⟨hsweep.lt, hcapSub hsweep.left_mem, hcapSub hsweep.right_mem⟩
+
+/-- A witnessed endpoint-span rank cannot exceed the ambient support
+cardinality. -/
+theorem HasSpanRankAtLeast.rank_le_card {n rank : ℕ} {color : Turn}
+    {chi : TripleColoring n} {s : Finset (Fin n)}
+    {span : SweepSpanEndpoints n}
+    (hspan : HasSpanRankAtLeast color chi s span rank) : rank ≤ s.card := by
+  cases color with
+  | left =>
+      obtain ⟨cup, hcupSub, hcard, _, _⟩ := hspan
+      exact hcard.trans (Finset.card_le_card hcupSub)
+  | right =>
+      obtain ⟨cap, hcapSub, hcard, _, _⟩ := hspan
+      exact hcard.trans (Finset.card_le_card hcapSub)
+
+/-- Every lower-bound span witness extends to a maximal, hence exact, ambient
+endpoint-span rank. -/
+theorem HasSpanRankAtLeast.exists_exact_rank_at_least
+    {n minimumRank : ℕ} {color : Turn} {chi : TripleColoring n}
+    {s : Finset (Fin n)} {span : SweepSpanEndpoints n}
+    (hspan : HasSpanRankAtLeast color chi s span minimumRank) :
+    ∃ rank, minimumRank ≤ rank ∧ HasExactSpanRank color chi s span rank := by
+  classical
+  let predicate := fun candidate =>
+    HasSpanRankAtLeast color chi s span candidate
+  let rank := Nat.findGreatest predicate s.card
+  have hminimumBound : minimumRank ≤ s.card := hspan.rank_le_card
+  have hcurrent : HasSpanRankAtLeast color chi s span rank := by
+    exact Nat.findGreatest_spec hminimumBound hspan
+  have hminimum : minimumRank ≤ rank := by
+    exact Nat.le_findGreatest hminimumBound hspan
+  refine ⟨rank, hminimum, hcurrent, ?_⟩
+  intro hnext
+  have hnextBound : rank + 1 ≤ s.card := hnext.rank_le_card
+  exact Nat.findGreatest_is_greatest (P := predicate)
+    (Nat.lt_succ_self rank) hnextBound hnext
+
 /-- Exact endpoint-span ranks below two are impossible. -/
 theorem HasExactSpanRank.two_le {n rank : ℕ} {color : Turn}
     {chi : TripleColoring n} {s : Finset (Fin n)}
@@ -119,6 +170,79 @@ theorem HasExactSpanRank.two_le {n rank : ℕ} {color : Turn}
   | right =>
       obtain ⟨cap, hcapSub, hcard, hcap, hsweep⟩ := htwo
       exact ⟨cap, hcapSub, by omega, hcap, hsweep⟩
+
+/-- A two-point set is a cup, vacuously: it contains no ordered triple. -/
+theorem isCupSet_pair {n : ℕ} (chi : TripleColoring n) {a b : Fin n}
+    (hab : a < b) : IsCupSet chi {a, b} := by
+  intro t hi hj hk
+  have hsub : ({t.i, t.j, t.k} : Finset (Fin n)) ⊆ {a, b} := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx ⊢
+    rcases hx with rfl | rfl | rfl
+    · simpa only [Finset.mem_insert, Finset.mem_singleton] using hi
+    · simpa only [Finset.mem_insert, Finset.mem_singleton] using hj
+    · simpa only [Finset.mem_insert, Finset.mem_singleton] using hk
+  have hcard := Finset.card_le_card hsub
+  have hijk : t.i ≠ t.k := ne_of_lt (t.hij.trans t.hjk)
+  simp [t.hij.ne, t.hjk.ne, hijk, hab.ne] at hcard
+
+/-- A two-point set is also a cap, vacuously. -/
+theorem isCapSet_pair {n : ℕ} (chi : TripleColoring n) {a b : Fin n}
+    (hab : a < b) : IsCapSet chi {a, b} := by
+  intro t hi hj hk
+  have hsub : ({t.i, t.j, t.k} : Finset (Fin n)) ⊆ {a, b} := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx ⊢
+    rcases hx with rfl | rfl | rfl
+    · simpa only [Finset.mem_insert, Finset.mem_singleton] using hi
+    · simpa only [Finset.mem_insert, Finset.mem_singleton] using hj
+    · simpa only [Finset.mem_insert, Finset.mem_singleton] using hk
+  have hcard := Finset.card_le_card hsub
+  have hijk : t.i ≠ t.k := ne_of_lt (t.hij.trans t.hjk)
+  simp [t.hij.ne, t.hjk.ne, hijk, hab.ne] at hcard
+
+/-- The ordered pair itself realizes a sweep span with those endpoints. -/
+theorem HasSweepSpan.pair {n : ℕ} {a b : Fin n} (hab : a < b) :
+    HasSweepSpan {a, b} a b := by
+  refine ⟨hab, by simp, by simp, ?_, ?_⟩
+  · intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl <;> omega
+  · intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl <;> omega
+
+/-- Two ordered endpoints in an ambient carrier realize rank two in either
+color. -/
+theorem HasSpanRankAtLeast.two_of_lt_mem {n : ℕ} {color : Turn}
+    {chi : TripleColoring n} {s : Finset (Fin n)}
+    {span : SweepSpanEndpoints n} (hlt : span.left < span.right)
+    (hleft : span.left ∈ s) (hright : span.right ∈ s) :
+    HasSpanRankAtLeast color chi s span 2 := by
+  cases color with
+  | left =>
+      exact ⟨{span.left, span.right}, by
+          intro x hx
+          simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+          rcases hx with rfl | rfl
+          · exact hleft
+          · exact hright,
+        by simp [hlt.ne], isCupSet_pair chi hlt, HasSweepSpan.pair hlt⟩
+  | right =>
+      exact ⟨{span.left, span.right}, by
+          intro x hx
+          simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+          rcases hx with rfl | rfl
+          · exact hleft
+          · exact hright,
+        by simp [hlt.ne], isCapSet_pair chi hlt, HasSweepSpan.pair hlt⟩
+
+/-- The child whose vertices can extend a crossing rank-two span to rank
+three in the stated color. -/
+def rankTwoActiveChild {n : ℕ} (lower upper : Finset (Fin n)) :
+    Turn → Finset (Fin n)
+  | .left => lower
+  | .right => upper
 
 /-- A lower-child cup of the requested rank starts at `a` and ends before the
 upper endpoint `q`. -/
@@ -717,6 +841,91 @@ theorem allocatedExactRankSpans_eq_empty_of_rank_lt_two
   have hexact := (mem_allocatedExactRankSpans.mp hspan).2
   exact (not_lt_of_ge hexact.two_le) hrank
 
+/-- At the boundary rank two, exactness has a direct order-theoretic normal
+form.  A crossing cup span is exact precisely when no lower-child vertex lies
+strictly inside it; dually, a crossing cap span excludes upper-child interior
+vertices. -/
+theorem mem_allocatedExactRankSpans_two_iff_no_active_interior
+    {n : ℕ} {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {span : SweepSpanEndpoints n}
+    (hdeep : HasDeepBelowSplit chi lower upper) :
+    span ∈ allocatedExactRankSpans chi lower upper color 2 ↔
+      span.CrossesSplit lower upper ∧
+        ∀ q ∈ rankTwoActiveChild lower upper color,
+          ¬(span.left < q ∧ q < span.right) := by
+  rw [mem_allocatedExactRankSpans]
+  constructor
+  · rintro ⟨hcross, hexact⟩
+    refine ⟨hcross, ?_⟩
+    cases color with
+    | left =>
+        intro q hq hinside
+        change q ∈ lower at hq
+        apply hexact.2
+        rcases hcross.2 with hsides | hsides
+        · apply (hdeep.hasCupSpanRankAtLeast_succ_iff_rightRay
+            hsides.1 hsides.2 hcross.1 (rank := 2) (by omega)).mpr
+          exact ⟨q, hq, hinside.2,
+            HasSpanRankAtLeast.two_of_lt_mem (color := .left)
+              (span := ⟨span.left, q⟩) hinside.1 hsides.1 hq⟩
+        · apply (hdeep.hasCupSpanRankAtLeast_succ_iff_leftRay
+            hsides.1 hsides.2 hcross.1 (rank := 2) (by omega)).mpr
+          exact ⟨q, hq, hinside.1,
+            HasSpanRankAtLeast.two_of_lt_mem (color := .left)
+              (span := ⟨q, span.right⟩) hinside.2 hq hsides.2⟩
+    | right =>
+        intro q hq hinside
+        change q ∈ upper at hq
+        apply hexact.2
+        rcases hcross.2 with hsides | hsides
+        · apply (hdeep.hasCapSpanRankAtLeast_succ_iff_leftRay
+            hsides.1 hsides.2 hcross.1 (rank := 2) (by omega)).mpr
+          exact ⟨q, hq, hinside.1,
+            HasSpanRankAtLeast.two_of_lt_mem (color := .right)
+              (span := ⟨q, span.right⟩) hinside.2 hq hsides.2⟩
+        · apply (hdeep.hasCapSpanRankAtLeast_succ_iff_rightRay
+            hsides.1 hsides.2 hcross.1 (rank := 2) (by omega)).mpr
+          exact ⟨q, hq, hinside.2,
+            HasSpanRankAtLeast.two_of_lt_mem (color := .right)
+              (span := ⟨span.left, q⟩) hinside.1 hsides.1 hq⟩
+  · rintro ⟨hcross, hnoInterior⟩
+    have hleft : span.left ∈ lower ∪ upper := by
+      rcases hcross.2 with hsides | hsides
+      · exact Finset.mem_union_left upper hsides.1
+      · exact Finset.mem_union_right lower hsides.1
+    have hright : span.right ∈ lower ∪ upper := by
+      rcases hcross.2 with hsides | hsides
+      · exact Finset.mem_union_right lower hsides.2
+      · exact Finset.mem_union_left upper hsides.2
+    refine ⟨hcross, HasSpanRankAtLeast.two_of_lt_mem
+      (span := span) hcross.1 hleft hright, ?_⟩
+    intro hthree
+    cases color with
+    | left =>
+        rcases hcross.2 with hsides | hsides
+        · obtain ⟨q, hq, hqr, hchild⟩ :=
+            (hdeep.hasCupSpanRankAtLeast_succ_iff_rightRay
+              hsides.1 hsides.2 hcross.1 (rank := 2) (by omega)).mp hthree
+          obtain ⟨chain, _, _, _, hsweep⟩ := hchild
+          exact hnoInterior q hq ⟨hsweep.lt, hqr⟩
+        · obtain ⟨q, hq, hlq, hchild⟩ :=
+            (hdeep.hasCupSpanRankAtLeast_succ_iff_leftRay
+              hsides.1 hsides.2 hcross.1 (rank := 2) (by omega)).mp hthree
+          obtain ⟨chain, _, _, _, hsweep⟩ := hchild
+          exact hnoInterior q hq ⟨hlq, hsweep.lt⟩
+    | right =>
+        rcases hcross.2 with hsides | hsides
+        · obtain ⟨q, hq, hlq, hchild⟩ :=
+            (hdeep.hasCapSpanRankAtLeast_succ_iff_leftRay
+              hsides.1 hsides.2 hcross.1 (rank := 2) (by omega)).mp hthree
+          obtain ⟨chain, _, _, _, hsweep⟩ := hchild
+          exact hnoInterior q hq ⟨hlq, hsweep.lt⟩
+        · obtain ⟨q, hq, hqr, hchild⟩ :=
+            (hdeep.hasCapSpanRankAtLeast_succ_iff_rightRay
+              hsides.1 hsides.2 hcross.1 (rank := 2) (by omega)).mp hthree
+          obtain ⟨chain, _, _, _, hsweep⟩ := hchild
+          exact hnoInterior q hq ⟨hsweep.lt, hqr⟩
+
 /-- Candidate cup spans have a complete two-direction child-ray normal form. -/
 theorem mem_allocatedExactRankSpans_left_iff_rays
     {n rank : ℕ} {chi : TripleColoring n} {lower upper : Finset (Fin n)}
@@ -820,6 +1029,126 @@ def allocatedExactRankFrontier {n : ℕ} (chi : TripleColoring n)
         ∀ other ∈ allocatedExactRankSpans chi lower upper color rank,
           span.Contains other → other = span := by
   simp [allocatedExactRankFrontier]
+
+/-- The rank-two frontier is exactly the list of adjacent child changes in
+the ambient sweep order.  In particular, this theorem exposes why the
+rank-two frontier can be much larger than one fixed Pascal layer: its size is
+the number of alternations in the split-membership word. -/
+theorem mem_allocatedExactRankFrontier_two_iff_adjacent_crossing
+    {n : ℕ} {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {span : SweepSpanEndpoints n}
+    (hdeep : HasDeepBelowSplit chi lower upper) :
+    span ∈ allocatedExactRankFrontier chi lower upper color 2 ↔
+      span.CrossesSplit lower upper ∧
+        ∀ q ∈ lower ∪ upper, ¬(span.left < q ∧ q < span.right) := by
+  rw [mem_allocatedExactRankFrontier]
+  constructor
+  · rintro ⟨hspan, hminimal⟩
+    have hnormal :=
+      (mem_allocatedExactRankSpans_two_iff_no_active_interior hdeep).mp hspan
+    refine ⟨hnormal.1, ?_⟩
+    intro q hq hinside
+    cases color with
+    | left =>
+        rcases Finset.mem_union.mp hq with hqLower | hqUpper
+        · exact hnormal.2 q hqLower hinside
+        · rcases hnormal.1.2 with hsides | hsides
+          · let inner : SweepSpanEndpoints n := ⟨span.left, q⟩
+            have hinnerCross : inner.CrossesSplit lower upper :=
+              ⟨hinside.1, Or.inl ⟨hsides.1, hqUpper⟩⟩
+            have hinnerNo : ∀ x ∈ rankTwoActiveChild lower upper .left,
+                ¬(inner.left < x ∧ x < inner.right) := by
+              intro x hx hxin
+              change x ∈ lower at hx
+              exact hnormal.2 x hx ⟨hxin.1, hxin.2.trans hinside.2⟩
+            have hinner :=
+              (mem_allocatedExactRankSpans_two_iff_no_active_interior hdeep).mpr
+                ⟨hinnerCross, hinnerNo⟩
+            have heq := hminimal inner hinner ⟨le_rfl, hinside.2.le⟩
+            exact (ne_of_lt hinside.2) (congrArg SweepSpanEndpoints.right heq)
+          · let inner : SweepSpanEndpoints n := ⟨q, span.right⟩
+            have hinnerCross : inner.CrossesSplit lower upper :=
+              ⟨hinside.2, Or.inr ⟨hqUpper, hsides.2⟩⟩
+            have hinnerNo : ∀ x ∈ rankTwoActiveChild lower upper .left,
+                ¬(inner.left < x ∧ x < inner.right) := by
+              intro x hx hxin
+              change x ∈ lower at hx
+              exact hnormal.2 x hx ⟨hinside.1.trans hxin.1, hxin.2⟩
+            have hinner :=
+              (mem_allocatedExactRankSpans_two_iff_no_active_interior hdeep).mpr
+                ⟨hinnerCross, hinnerNo⟩
+            have heq := hminimal inner hinner ⟨hinside.1.le, le_rfl⟩
+            exact (ne_of_lt hinside.1) (congrArg SweepSpanEndpoints.left heq).symm
+    | right =>
+        rcases Finset.mem_union.mp hq with hqLower | hqUpper
+        · rcases hnormal.1.2 with hsides | hsides
+          · let inner : SweepSpanEndpoints n := ⟨q, span.right⟩
+            have hinnerCross : inner.CrossesSplit lower upper :=
+              ⟨hinside.2, Or.inl ⟨hqLower, hsides.2⟩⟩
+            have hinnerNo : ∀ x ∈ rankTwoActiveChild lower upper .right,
+                ¬(inner.left < x ∧ x < inner.right) := by
+              intro x hx hxin
+              change x ∈ upper at hx
+              exact hnormal.2 x hx ⟨hinside.1.trans hxin.1, hxin.2⟩
+            have hinner :=
+              (mem_allocatedExactRankSpans_two_iff_no_active_interior hdeep).mpr
+                ⟨hinnerCross, hinnerNo⟩
+            have heq := hminimal inner hinner ⟨hinside.1.le, le_rfl⟩
+            exact (ne_of_lt hinside.1) (congrArg SweepSpanEndpoints.left heq).symm
+          · let inner : SweepSpanEndpoints n := ⟨span.left, q⟩
+            have hinnerCross : inner.CrossesSplit lower upper :=
+              ⟨hinside.1, Or.inr ⟨hsides.1, hqLower⟩⟩
+            have hinnerNo : ∀ x ∈ rankTwoActiveChild lower upper .right,
+                ¬(inner.left < x ∧ x < inner.right) := by
+              intro x hx hxin
+              change x ∈ upper at hx
+              exact hnormal.2 x hx ⟨hxin.1, hxin.2.trans hinside.2⟩
+            have hinner :=
+              (mem_allocatedExactRankSpans_two_iff_no_active_interior hdeep).mpr
+                ⟨hinnerCross, hinnerNo⟩
+            have heq := hminimal inner hinner ⟨le_rfl, hinside.2.le⟩
+            exact (ne_of_lt hinside.2) (congrArg SweepSpanEndpoints.right heq)
+        · exact hnormal.2 q hqUpper hinside
+  · rintro ⟨hcross, hadjacent⟩
+    have hactive : ∀ q ∈ rankTwoActiveChild lower upper color,
+        ¬(span.left < q ∧ q < span.right) := by
+      intro q hq
+      apply hadjacent q
+      cases color with
+      | left =>
+          change q ∈ lower at hq
+          exact Finset.mem_union_left upper hq
+      | right =>
+          change q ∈ upper at hq
+          exact Finset.mem_union_right lower hq
+    have hspan :=
+      (mem_allocatedExactRankSpans_two_iff_no_active_interior hdeep).mpr
+        ⟨hcross, hactive⟩
+    refine ⟨hspan, ?_⟩
+    intro other hother hcontains
+    have hotherCross :=
+      (mem_allocatedExactRankSpans.mp hother).1
+    have hotherLeft : other.left ∈ lower ∪ upper := by
+      rcases hotherCross.2 with hsides | hsides
+      · exact Finset.mem_union_left upper hsides.1
+      · exact Finset.mem_union_right lower hsides.1
+    have hotherRight : other.right ∈ lower ∪ upper := by
+      rcases hotherCross.2 with hsides | hsides
+      · exact Finset.mem_union_right lower hsides.2
+      · exact Finset.mem_union_left upper hsides.2
+    have hleftEq : other.left = span.left := by
+      by_contra hne
+      apply hadjacent other.left hotherLeft
+      exact ⟨lt_of_le_of_ne hcontains.1 (fun h ↦ hne h.symm),
+        hotherCross.1.trans_le hcontains.2⟩
+    have hrightEq : other.right = span.right := by
+      by_contra hne
+      apply hadjacent other.right hotherRight
+      exact ⟨hcontains.1.trans_lt hotherCross.1,
+        lt_of_le_of_ne hcontains.2 hne⟩
+    cases span
+    cases other
+    simp_all
 
 /-- The retained exact-rank frontier is empty below rank two. -/
 theorem allocatedExactRankFrontier_eq_empty_of_rank_lt_two

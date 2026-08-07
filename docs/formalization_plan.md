@@ -818,15 +818,14 @@ decomposable children, a genuine deep-below split, and the no-strong-`k`
 hypothesis. Ranks one and two require separate base cases because the existing
 active-ray normal form begins at rank three.
 
-Experiment 0050 closes a mismatch between that contract and experiments
-0048--0049. The earlier anchor-shape statistics covered only 3,056 holes with
-a feasible owner map, whereas the Lean path contract quantifies over every
-hole. Independent cell-mask and row-height implementations now search all
-2,422,116 bounded `k = 7` holes. Every hole has a reflected lane-path
-certificate. The search finds 2,418,432 length-zero paths, 3,170 one-gap
-paths, and 514 two-gap paths. An exact singleton-neighborhood trace also exists
-for every hole, although the deterministic first path is trace-inexact in all
-514 two-gap cases; the choice of witness is therefore genuinely existential.
+Experiment 0050 closes that mismatch only in the rank-at-least-three range.
+The earlier anchor-shape statistics covered only 3,056 holes with a feasible
+owner map, whereas the Lean path contract quantifies over every hole. Its
+independent implementations searched 2,422,116 bounded `k = 7` holes and found
+2,418,432 length-zero paths, 3,170 one-gap paths, and 514 two-gap paths, with an
+exact singleton-neighborhood trace for each included hole. A post-audit found
+that the shared group generator explicitly retained only `rank >= 3`; these
+counts say nothing about rank two.
 
 Lean now exposes that sharpened landing point. The local-neighborhood
 constructor needs only distinct common owners on consecutive anchor gaps and
@@ -836,9 +835,68 @@ the incident path-edge owners. The reflected
 `LaneSingletonNeighborhoodTraces` contract implies the existing path
 contract, with no deficiency, Hall, or SDR premise. Separately, Lean proves
 that every exact endpoint-span rank is at least two, so rank one has an empty
-frontier and its path obligation is vacuous. The active geometry target is now
-the exact singleton-trace contract at rank two and at ranks at least three;
-only the latter may use the current active-ray normal form.
+frontier and its path obligation is vacuous.
+
+Experiment 0051 retires the former rank-two base target. A dedicated stopped
+gate finds a genuine rank-two lane-path failure at support size five; a full
+independent census through size eight finds 20,254 reflected-Hall failures and
+2,896 direct violations of `choose (k - 2) 1`. Lean proves why: exact rank-two
+frontiers are precisely adjacent changes in the split-membership word. An
+explicit open decomposable seven-vertex context has six adjacent cap spans but
+only five proposed Pascal slots, and Lean proves that no
+`AllocatedExactRankSlotting` exists. The rank-at-least-three exact-trace route
+remains a possible component, but the all-rank recurrence now requires a new
+rank-two quotient/grouping or a globally coupled accounting invariant. The
+next contract must be chosen and falsified at that architectural level before
+more trace machinery is promoted.
+
+The first such architectural proposal does not survive its minimal gate.
+Charging each local rank-two adjacency at its unique lowest separating node
+does assign every endpoint pair exactly once, but local adjacency need not be
+global adjacency. Lean checks the interleaved three-vertex tree with root
+split `{0,2}|{1}`: its root contributes `(0,1),(1,2)` and its lower child
+contributes `(0,2)`, so local mass is three while `support.card - 1 = 2`.
+The true injection into all unordered endpoint pairs is only quadratic, and
+the seven-vertex alternating obstruction consists entirely of global gaps
+anyway. Lowest-node ownership therefore remains infrastructure but is not the
+replacement recurrence.
+
+The next bounded gate finds a concrete cross-rank replacement direction.
+Experiment 0052 matches every crossing transition after the first with the
+hidden child gap created by the intervening opposite-child run. For caps it
+promotes only hidden lower gaps; for cups it promotes only hidden upper gaps,
+placing each at its exact ambient span rank. Independent implementations check
+all 366,086 open decomposable `k = 7` roots through size eight and find no
+capacity or endpoint-ideal matching failure among 1,913,894 adjusted groups.
+Lean proves the binary run-count identity and both rank-at-least-three color
+bridges. This changes the immediate target from inventing a quotient to
+formalizing the new ambient-support carrier and its canonical matching. That
+matching is now complete: for nonempty disjoint children, Lean constructs an
+equivalence between all hidden child gaps plus one unit and all parent
+crossing transitions.
+
+There is a strict interface boundary: promoted gaps have both endpoints in
+one child, so they are noncrossing at the parent and are not existing
+`allocatedExactRankFrontier` members. Before any Hall result is reused, Lean
+must prove a rank-ideal semantics theorem for these promoted spans. Before the
+outer recurrence is claimed, a color-aware arithmetic theorem must show that
+the adjusted carrier actually replaces the relevant published rank-two jump.
+
+The reviewed interface package is now substantially complete.
+`AmbientPromotedGap`
+records the compatible hidden source, an exact rank at least three in the
+parent support, and no false crossing field. Every source gap lifts to this
+carrier. Its generalized endpoint-rank candidates and encoded Pascal-slot
+candidates are compiling and nonempty without Hall or capacity. The canonical
+bijection identifies hidden sources with all noninitial crossings and proves
+the exact `hidden + 1 = crossing` cardinal identity on the explicit carriers.
+For a fixed color, the residual rank-two carrier has cardinality equal to the
+opposite-color hidden carrier plus one. Fixed-rank promoted sources now combine
+with the crossing frontier in `AdjustedHigherRankDemand`; exact promoted spans
+place the same-color corner in both incident endpoint profiles, and adjusted
+Hall expansion is proved sufficient for the published Pascal capacity. The
+next structural theorem is adjusted Hall itself. A separate rank-two residual
+bound and two-color recurrence composition are still required.
 
 The first geometric refinement does not survive its frozen gate. Experiment
 0045 shows that the tight cap owner has a seven-element family but maximum

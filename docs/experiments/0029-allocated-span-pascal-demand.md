@@ -52,6 +52,14 @@ The producer enumerated 376,764 compatible root contexts:
 
 No frontier exceeded its adjacent Pascal capacity.
 
+This result is now explicitly qualified: the shared group generator retained
+only exact ranks at least three. It supplied no rank-two evidence. Dedicated
+Experiment 0051 later found 2,896 rank-two capacity violations for `k = 7`
+through support size eight and promoted a six-spans-versus-five-slots
+counterexample to Lean. Consequently, the capacity observation below survives
+only as bounded evidence for ranks at least three; the original all-rank
+capacity conjecture is false.
+
 | color/rank | groups | maximum frontier | capacity | minimum slack |
 | --- | ---: | ---: | ---: | ---: |
 | cap 3 | 156,927 | 5 | 6 | 1 |
@@ -61,15 +69,17 @@ No frontier exceeded its adjacent Pascal capacity.
 | cap 5 | 37,402 | 1 | 1 | 0 |
 | cup 5 | 37,402 | 1 | 1 | 0 |
 
-Thus rank five is genuinely sharp in the tested range. Ranks three and four
+Thus rank five is genuinely sharp in the tested rank-at-least-three range.
+Ranks three and four
 retain one slot of slack through eight vertices. This does not justify
 strengthening the conjectured bound by one: the slack may disappear at larger
 supports.
 
 ## Endpoint-projection shortcut is refuted
 
-The capacity observation survives, but neither raw endpoint projection proves
-it. Across both colors, the left projection and the right projection each fail
+The rank-at-least-three capacity observation survives this shortcut test, but
+neither raw endpoint projection proves it. Across both colors, the left
+projection and the right projection each fail
 in 1,208 group instances. Of the rank-three groups, 996 fail both projections.
 For example, the first cup/rank-three counterexample has support mask `7f`,
 lower-child mask `56`, coloring `c10040a183df`, and frontier
@@ -104,7 +114,9 @@ whether these two-interval candidate sets have a system of distinct
 representatives.  Equivalently, it checks the full Hall condition, including
 every subfamily of spans.
 
-The exact census found no failure among all 631,474 frontier groups.
+The exact census found no failure among all 631,474 rank-at-least-three
+frontier groups. It did not test rank two, where Experiment 0051 refutes both
+Hall and capacity.
 
 | color/rank | groups | two-endpoint failures | left-only failures | right-only failures | fixed-label failures |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -180,14 +192,12 @@ constructs `AllocatedExactRankSlotting`, yielding the compiling reduction
 
     allocatedExactRankFrontier_card_le_spanPascalDemand_of_endpointRankHall.
 
-This completes the grid encoding and Hall-to-capacity machinery without
-`sorry`; it does **not** prove the geometry-specific Hall premise.  The next
-formal target is the first nontrivial expansion case: prove that any two
-distinct retained spans have at least two candidate ideals from the actual
-rank incidence.  If that succeeds, extend it to consecutive frontier blocks
-and then all subfamilies, likely via uncrossing.  Only after the local Hall
-theorem is complete may the project attempt the global injection into
-`decomposableBinomialWindow`.
+This completes the grid encoding and Hall-to-capacity implication without
+`sorry`; it does **not** prove the geometry-specific Hall premise. Experiment
+0051 shows that premise and even its capacity consequence are false at rank
+two. The later trace/Hall machinery therefore remains only a possible
+rank-at-least-three component. Any all-rank use now depends on a separately
+proved quotient or coupled recurrence for rank two.
 
 ## Reproduction
 

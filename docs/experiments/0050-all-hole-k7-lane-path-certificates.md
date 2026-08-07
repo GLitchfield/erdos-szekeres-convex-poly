@@ -23,6 +23,11 @@ equal exactly the owners of its incident path edges.
 
 Both implementations pass the complete gate.
 
+Post-audit qualification: the shared group generator for this experiment
+contains the guard `rank >= 3`. The counts below cover ranks three through
+six, not rank two. Experiment 0051 tests rank two separately and refutes both
+the lane-path target and the underlying per-frontier Pascal capacity there.
+
 | Quantity | Count |
 | --- | ---: |
 | Exact-rank frontier groups | 947,452 |
@@ -57,14 +62,14 @@ before direct geometry, with exact singleton traces as a conditional local
 constructor. Fable returned no mathematical answer because its provider usage
 limit was exhausted. No Sol/Fable consensus is claimed.
 
-This remains bounded computational evidence for `k = 7` through support size
-eight. It does not prove the arbitrary decomposable geometry contract, Hall,
-an SDR, or the exact Erdős--Szekeres formula. Lean separately proves that
+This remains bounded computational evidence for `k = 7`, ranks at least
+three, through support size eight. It does not prove the arbitrary decomposable
+geometry contract, Hall, an SDR, or the exact Erdős--Szekeres formula. Lean separately proves that
 local neighborhood containment constructs a path certificate, that exact
 singleton traces are a sufficient strengthening, and that rank one is
-vacuous. The open theorem is to derive an exact trace witness from
-decomposable deep-split geometry, with rank two handled directly and the
-active-ray argument beginning at rank three.
+vacuous. The former proposal to handle rank two directly is false by
+Experiment 0051; only the rank-at-least-three active-ray subroute remains
+unrefuted by this audit.
 
 ## Reproduction
 

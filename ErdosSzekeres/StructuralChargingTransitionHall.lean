@@ -409,6 +409,72 @@ def allocatedEndpointRankTransitionProfiles {n rank k : ℕ}
   future := endpointFutureRankIdeal chi (lower ∪ upper) color rank k
   encode := PascalGridIdeal.rankIdealSlotEmbedding hrank hrankTop
 
+/-- The two-endpoint transition family makes sense for any ambient span. The
+allocated-frontier wrapper below is a restriction of this definition, not the
+source of its endpoint-rank semantics. -/
+def endpointTransitionCandidatesForSpan {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal]
+    [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : SweepSpanEndpoints n) : Finset Ideal :=
+  pascalTransitionInterval (profiles.past span.left)
+      (profiles.future span.left) ∪
+    pascalTransitionInterval (profiles.past span.right)
+      (profiles.future span.right)
+
+/-- Ambient endpoint candidates are always nonempty; in particular, this does
+not require the span to cross the current split. -/
+theorem endpointTransitionCandidatesForSpan_nonempty
+    {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal]
+    [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : SweepSpanEndpoints n) :
+    (endpointTransitionCandidatesForSpan profiles span).Nonempty := by
+  refine ⟨profiles.past span.left, ?_⟩
+  rw [endpointTransitionCandidatesForSpan, Finset.mem_union]
+  left
+  rw [pascalTransitionInterval, Finset.mem_filter]
+  exact ⟨Finset.mem_univ _, inf_le_left, le_sup_left⟩
+
+/-- The future profile at the left endpoint is an actual candidate for any
+ambient span. -/
+theorem endpointTransitionCandidatesForSpan_future_left_mem
+    {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal]
+    [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : SweepSpanEndpoints n) :
+    profiles.future span.left ∈
+      endpointTransitionCandidatesForSpan profiles span := by
+  rw [endpointTransitionCandidatesForSpan, Finset.mem_union]
+  exact Or.inl (pascalTransitionInterval_second_mem _ _)
+
+/-- The past profile at the right endpoint is an actual candidate for any
+ambient span. -/
+theorem endpointTransitionCandidatesForSpan_past_right_mem
+    {n : ℕ} {Ideal : Type*}
+    [Fintype Ideal] [DecidableEq Ideal] [Lattice Ideal]
+    [DecidableLE Ideal]
+    {chi : TripleColoring n} {lower upper : Finset (Fin n)}
+    {color : Turn} {rank k : ℕ}
+    (profiles : AllocatedEndpointTransitionProfiles
+      chi lower upper color rank k Ideal)
+    (span : SweepSpanEndpoints n) :
+    profiles.past span.right ∈
+      endpointTransitionCandidatesForSpan profiles span := by
+  rw [endpointTransitionCandidatesForSpan, Finset.mem_union]
+  exact Or.inr (pascalTransitionInterval_first_mem _ _)
+
 /-- A span may use a transition state at either of its two endpoints. -/
 def allocatedEndpointTransitionCandidates {n : ℕ} {Ideal : Type*}
     [Fintype Ideal] [DecidableEq Ideal] [PartialOrder Ideal] [Lattice Ideal]

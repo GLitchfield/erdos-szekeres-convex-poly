@@ -1196,6 +1196,78 @@ Experiment 0050 performs that gate and strengthens the surviving target to the
 exact trace. Fable returned zero tokens with a provider usage-limit error, so
 no Fable judgment, reciprocal review, or Sol/Fable consensus is claimed.
 
+That rank-two target is now formally retired. A source audit found that the
+Experiment 0050 group generator explicitly filtered to `rank >= 3`; its
+successful 2,422,116-hole census never exercised rank two. Dedicated
+Experiment 0051 finds a rank-two lane-path failure at support size five and a
+reflected-Hall failure at size six. Its complete independently replayed census
+through size eight checks 732,172 rank-two groups and finds 20,254 Hall
+failures plus 2,896 direct Pascal-capacity violations.
+
+Lean promotes the decisive part beyond computational evidence.
+`mem_allocatedExactRankSpans_two_iff_no_active_interior` proves the exact
+active-child normal form, and
+`mem_allocatedExactRankFrontier_two_iff_adjacent_crossing` identifies the
+frontier with adjacent child changes in sweep order. The explicit
+`StructuralChargingRankTwoCounterexample` is recursively decomposable, has a
+deep-below alternating root, and has no strong seven-set. Its six cap/rank-two
+spans exceed `publishedSpanPascalDemand 7 2 = 5`; Lean consequently proves
+`no_rank_two_slotting`. Thus neither a different Hall proof nor more elaborate
+lane paths can establish the old individual-span capacity statement at rank
+two. The next route decision must instead group/quotient rank-two transitions
+or replace the per-rank allocation with a coupled recurrence. The
+rank-at-least-three active-ray subroute remains available as a component, not
+as a complete local theorem.
+
+A bounded replacement review then considered summing local rank-two
+adjacencies at their unique lowest separating nodes and bounding the result by
+the global gap count `support.card - 1`. Sol regarded the route as only
+partially supported; Fable returned zero tokens because its provider quota was
+exhausted, so no consensus is claimed. The proposal is false independently of
+that incomplete review. Lean checks the minimal interleaved tree with root
+split `{0,2}|{1}`: the root contributes `(0,1),(1,2)` and the `{0,2}` child
+contributes `(0,2)`, for three distinct locally adjacent endpoint pairs but
+only two global gaps. Unique lowest-node ownership prevents duplicate endpoint
+pairs; it does not make adjacency in a node support global. The next contract
+must survive this three-vertex obstruction and the seven-vertex alternating
+`6 > 5` obstruction before implementation.
+
+Experiment 0052 identifies such a surviving direction. In an alternating-run
+decomposition of the root membership word, every transition after the first
+is canonically paired with a hidden child gap. A hidden lower gap supports a
+cap span of ambient rank at least three; a hidden upper gap supports a cup
+span. The producer and independent direct-child-gap checker agree on all
+366,086 open `k = 7` roots through support size eight: 392,562 promotions and
+1,913,894 adjusted color/rank groups produce no capacity or endpoint-candidate
+failure. Lean proves the numerical run identity and both hidden-gap color
+bridges.
+
+This evidence selects a theorem-design direction but does not close the
+ticket. Promoted gaps are noncrossing at the parent and therefore do not fit
+the existing allocated crossing frontier. The next exact contract must define
+an ambient promoted carrier, prove its canonical matching to the appropriate
+rank-two transitions, and then justify rank-ideal candidates for noncrossing
+spans. A color-coupled arithmetic bridge to the published two-child recurrence
+is still required before capacity or the outer window can be claimed.
+
+The first of those contracts now compiles. `AmbientPromotedGap` stores the
+color-compatible hidden source and its exact parent-support rank at least
+three; every source gap has such a promotion. The endpoint-rank construction
+has been generalized to arbitrary ambient spans, and each promoted object has
+a nonempty ideal family and nonempty encoded Pascal-slot family without a
+crossing, Hall, or capacity hypothesis. The canonical run-gap contract now
+also compiles: hidden sources are equivalent to the noninitial parent
+crossings, and all hidden sources plus one unit are equivalent to all parent
+crossings. Fixed-color removal leaves the opposite-color hidden-source count
+plus one at rank two. The finite `AdjustedHigherRankDemand` then combines the
+old crossing frontier and exact-rank promoted sources. Lean proves common
+exact-rank semantics, a same-color corner in both incident endpoint profiles,
+and the conditional theorem that adjusted Hall yields the published Pascal
+capacity. The next exact contract is adjusted Hall expansion, followed by a
+rank-two residual bound and the two-color recurrence composition. The bounded
+Sol review rates the direction `partially_supported`; Fable supplied no
+judgment because its usage limit returned zero tokens.
+
 Experiment 0045 rejects the first lane-level bridge proposed after that pass.
 On the tight cap witness, singleton hole `{3f}` maps to owner `(2,5)`, whose
 candidate family has size seven. Its left lane changes by four grid cells and
@@ -1269,6 +1341,14 @@ derive a strict deficiency in the incidence graph of block-small owners.
 - [All-root `k = 8` block-large manifest](../../../data/derived/e3-block-large-reached-owner-all-roots-k8-n8.json)
 - [All-hole `k = 7` lane-path certificate gate](../../experiments/0050-all-hole-k7-lane-path-certificates.md)
 - [All-hole `k = 7` lane-path manifest](../../../data/derived/e3-lane-path-certificates-all-roots-k7-n8.json)
+- [Rank-two frontier obstruction](../../experiments/0051-rank-two-frontier-obstruction.md)
+- [Rank-two lane-path counterexample manifest](../../../data/derived/e3-rank-two-lane-path-counterexample-k7-n5.json)
+- [Complete rank-two Hall/capacity manifest](../../../data/derived/e3-rank-two-reflected-endpoint-hall-k7-n8.json)
+- [Lean rank-two normal form](../../../ErdosSzekeres/StructuralChargingSpanFrontier.lean)
+- [Lean rank-two capacity counterexample](../../../ErdosSzekeres/StructuralChargingRankTwoCounterexample.lean)
+- [Rank-two gap-promotion gate](../../experiments/0052-rank-two-gap-promotion.md)
+- [Rank-two gap-promotion manifest](../../../data/derived/e3-rank-two-gap-promotion-k7-n8.json)
+- [Lean hidden-gap promotion bridge](../../../ErdosSzekeres/StructuralChargingRankTwoGenealogy.lean)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)

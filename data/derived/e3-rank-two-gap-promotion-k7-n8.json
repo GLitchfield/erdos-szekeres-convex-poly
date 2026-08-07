@@ -1,0 +1,137 @@
+{
+  "census": {
+    "checked_prefix_sha256": "39f6694e56fb7af5a7d852269b1783eb54a795cd0a4f4d21e997a1033231ad9b",
+    "complete": true,
+    "first_candidate_failure": null,
+    "first_capacity_failure": null,
+    "maximum_n": 8,
+    "statistics": {
+      "analyzed_local_states": 295932,
+      "by_color_rank": {
+        "cap-2": {
+          "group_count": 366086,
+          "maximum_size": 4
+        },
+        "cap-3": {
+          "group_count": 327331,
+          "maximum_size": 8
+        },
+        "cap-4": {
+          "group_count": 183967,
+          "maximum_size": 5
+        },
+        "cap-5": {
+          "group_count": 70873,
+          "maximum_size": 3
+        },
+        "cap-6": {
+          "group_count": 8690,
+          "maximum_size": 1
+        },
+        "cup-2": {
+          "group_count": 366086,
+          "maximum_size": 4
+        },
+        "cup-3": {
+          "group_count": 327331,
+          "maximum_size": 8
+        },
+        "cup-4": {
+          "group_count": 183967,
+          "maximum_size": 5
+        },
+        "cup-5": {
+          "group_count": 70873,
+          "maximum_size": 3
+        },
+        "cup-6": {
+          "group_count": 8690,
+          "maximum_size": 1
+        }
+      },
+      "by_support_size": {
+        "2": {
+          "adjusted_group_checks": 112,
+          "open_contexts": 56,
+          "promotion_records": 0,
+          "root_contexts": 56
+        },
+        "3": {
+          "adjusted_group_checks": 1008,
+          "open_contexts": 336,
+          "promotion_records": 112,
+          "root_contexts": 336
+        },
+        "4": {
+          "adjusted_group_checks": 5880,
+          "open_contexts": 1540,
+          "promotion_records": 980,
+          "root_contexts": 1540
+        },
+        "5": {
+          "adjusted_group_checks": 29232,
+          "open_contexts": 6720,
+          "promotion_records": 5824,
+          "root_contexts": 6720
+        },
+        "6": {
+          "adjusted_group_checks": 142352,
+          "open_contexts": 29792,
+          "promotion_records": 29568,
+          "root_contexts": 29792
+        },
+        "7": {
+          "adjusted_group_checks": 559216,
+          "open_contexts": 109200,
+          "promotion_records": 115824,
+          "root_contexts": 110208,
+          "terminal_contexts": 1008
+        },
+        "8": {
+          "adjusted_group_checks": 1176094,
+          "open_contexts": 218442,
+          "promotion_records": 240254,
+          "root_contexts": 228112,
+          "terminal_contexts": 9670
+        }
+      },
+      "totals": {
+        "adjusted_group_checks": 1913894,
+        "open_contexts": 366086,
+        "promotion_records": 392562,
+        "root_contexts": 376764,
+        "terminal_contexts": 10678
+      }
+    },
+    "stop_on_failure": true,
+    "stopped_early": false,
+    "strong_size": 7
+  },
+  "contract": {
+    "claim_boundary": "bounded falsification only; the endpoint-ideal relation is not proved valid for noncrossing promoted gaps",
+    "domain": "every open recursively decomposable k=7 root through the recorded support size",
+    "promotion": "all but the first transition are matched by runs; only hidden lower gaps promote cap requests and hidden upper gaps promote cup requests, at exact ambient span rank",
+    "success": "for every color/rank adjusted group, raw cardinality fits the Pascal layer and the explicit endpoint-ideal candidate families admit distinct representatives"
+  },
+  "experiment": "rank-two-root-gap-cross-rank-promotion-k7-gate",
+  "generation_base_revision": "e7651cabe800748a6d85b4a163e2eaddfc5cda21",
+  "schema_version": 1,
+  "sources": {
+    "checker": {
+      "path": "scripts/check_rank_two_gap_promotion_k7.py",
+      "sha256": "a37c5ba17f01a5661e39b48c22a2a94c43b851cf4fdb0d145f049edc4abe81b4"
+    },
+    "height_base": {
+      "path": "scripts/check_allocated_span_pascal_demand.py",
+      "sha256": "1962a01c479c5d44d2858d7bf9d62e8bf66dd8a6a87c77bd1c4fab347854f018"
+    },
+    "mask_base": {
+      "path": "scripts/enumerate_allocated_span_pascal_demand.py",
+      "sha256": "54ed1a0b33549ea12564a7fdc5c79f502fede0d4da58f3ef051658c412df28bd"
+    },
+    "producer": {
+      "path": "scripts/enumerate_rank_two_gap_promotion_k7.py",
+      "sha256": "2c9c8cd6999c5f60152760503b46ef96b8d1ddf96d85c65c9ebd55c306d1e2e9"
+    }
+  }
+}
