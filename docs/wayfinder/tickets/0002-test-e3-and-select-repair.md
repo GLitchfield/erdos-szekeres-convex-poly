@@ -1032,6 +1032,58 @@ mechanism. After that, a uniform induction must supply the one-hole states.
 These are explicit separate obligations, and neither may assume Hall, an SDR,
 or enumeration.
 
+Reflection normalization is now explicit in Lean. Rotate-complement is
+antitone on rectangular ideals, exchanges meet and join, and carries membership
+in a transition interval exactly to membership in the interval between the
+reflected endpoints. This removes an algebraic ambiguity but supplies no
+cross-span expansion by itself.
+
+The adversarial fallback strengthens owner-star expansion in a different
+direction. `FiniteCandidateFeasibleOwnerHasBlockLargeFamily` requires every
+injective membership-feasible owner map to reach at least one individual owner
+whose candidate family has cardinality at least the block. Lean proves that
+the selected owner family lies in the owner star, hence this stronger profile
+implies `FiniteCandidateFeasibleOwnerStarExpansion`. The genuine reflected
+wrapper and its implication to block expansion, conditional on the separate
+one-hole-state premise, also compile.
+
+Experiment 0042 independently tests that stronger profile on the same 62
+blocks and 247 maps. Cell-mask production and row-height replay agree; the
+minimum maximum-owner-family slack is `+1`. The certificate retains raw left
+and right endpoint intervals, their past/future ideals and boundary slots, and
+the reflection bit. Its manifest SHA-256 is
+`b3f75fb27142b11023db09ab8ed28ba9bed67ab4b23da10fca3d169f5a644ac9`.
+This remains bounded evidence at one root, and two color/rank groups are
+vacuous.
+
+A zero-round route audit at clean revision
+`326dc216fd7b840a96d7071c1396a074f86974be` used packet SHA-256
+`5bbdafccfb2158d0a475aefe546ec219c42023fc600922282b12691667980d61`.
+Sol returned medium-confidence `partially_supported` and selected the
+deterministic reflected frontier-gap rule only as a falsification target. Its
+structured result SHA-256 is
+`40bf8a82148f1434e9d0fdaabed9291e5f6976c3a354ae4ce1507b7bc8002d4a`.
+Fable returned zero tokens because its Fable 5 usage limit was exhausted, so
+no Sol/Fable consensus or reciprocal review is claimed.
+
+Experiment 0043 implements Sol's exact cheapest gate: process unmapped block
+positions in order, choose the nearest mapped owner, use its endpoint lane
+facing the gap, and greedily take the first normalized boundary-slot ideal
+outside the hole family and prior charges. The rule fails on the tight cap
+`+1` witness before a broader scan. Hole `{3f}` maps to owner `(2,5)`; after
+one left-lane charge, the second gap faces that owner's right lane, which is
+exactly `{3f}`, so no fresh charge exists. Independent implementations agree.
+The failure manifest SHA-256 is
+`cd376724314ee6ea44849e86922f12c4ea003fcfa102a6cbad16dc978c9441d6`.
+
+This retires only the nearest-owner facing-lane rule, not arbitrary gap
+witnesses. Sol's pre-vetted fallback is now active: prove the arbitrary genuine
+block-large reached-owner profile from exact-rank two-lane endpoint incidence.
+Generic lattice intervals, consecutive order, and reflection are insufficient,
+so the missing lemma must expose a genuine rank-witness reason that at least
+one owner family dominates the containing block. The one-hole-state induction
+remains a separate open premise.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -1082,6 +1134,10 @@ or enumeration.
 - [Consecutive-block two-step augmentation manifest](../../../data/derived/e3-consecutive-block-two-step-augmentation-frozen-n12-k7.json)
 - [Owner-star expansion gate](../../experiments/0041-owner-star-expansion.md)
 - [Owner-star expansion manifest](../../../data/derived/e3-owner-star-expansion-frozen-n12-k7.json)
+- [Block-large reached-owner gate](../../experiments/0042-block-large-reached-owner.md)
+- [Block-large reached-owner manifest](../../../data/derived/e3-block-large-reached-owner-frozen-n12-k7.json)
+- [Facing-lane gap-witness refutation](../../experiments/0043-reflected-facing-lane-gap-witness.md)
+- [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
 - [Profile-search prototype](../../../scripts/decomposable_profile_search.py)

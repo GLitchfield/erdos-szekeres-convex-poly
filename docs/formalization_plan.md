@@ -736,13 +736,31 @@ Experiment 0041 independently reconstructs all 247 injective membership-
 feasible owner maps across the 62 frozen consecutive blocks. Every resulting
 owner-star union is block-large, with minimum slack `+1`. This is bounded
 evidence for the stronger state-free profile, not a proof for arbitrary
-reflected frontiers. The active structural target is a boundary-slot
-telescoping theorem proving that profile from genuine reflected endpoint
-geometry. The one-hole-state premise must then be constructed uniformly,
-normally by induction over smaller consecutive blocks. Neither obligation may
-invoke Hall, a completed SDR, or finite enumeration. The route review supplied
-ranked mechanisms and adversarial repairs, but model agreement is not evidence
-for either open theorem.
+reflected frontiers. Reflection normalization has now moved one algebraic edge
+into Lean: rotate-complement reverses ideal inclusion, exchanges meet and join,
+and preserves transition-interval membership after reflecting both endpoints.
+
+The first boundary-slot route review produced two concrete descendants. The
+stronger `FiniteCandidateFeasibleOwnerHasBlockLargeFamily` profile requires
+every feasible owner map to reach one individual owner family as large as the
+block. Lean proves that this profile implies feasible-owner-star expansion and
+packages the implication for genuine reflected blocks. Experiment 0042
+independently passes the stronger profile on all 247 frozen maps with minimum
+slack `+1`, retaining the underlying endpoint lanes, boundary slots, and
+reflection bits.
+
+A zero-round Sol audit at clean revision `326dc21` returned
+`partially_supported` and selected a deterministic nearest-owner, facing-lane
+gap charge as the cheapest falsifier; Fable returned no answer because its
+usage limit was exhausted, so no consensus is claimed. Experiment 0043 stops
+that rule on the tight cap witness: after one left-lane charge, the second gap
+faces a right lane equal to the singleton hole family `{3f}`. This refutes only
+that deterministic rule. The active fallback is now the arbitrary genuine
+block-large reached-owner profile. Its missing proof must use exact-rank
+two-endpoint incidence rather than generic interval convexity. The separate
+one-hole-state premise must still be constructed uniformly, normally by
+induction over smaller consecutive blocks. Neither obligation may invoke Hall,
+a completed SDR, or finite enumeration.
 
 ## External Lean baseline
 

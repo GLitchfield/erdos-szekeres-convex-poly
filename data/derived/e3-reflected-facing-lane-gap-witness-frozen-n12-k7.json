@@ -1,0 +1,140 @@
+{
+  "contract": {
+    "claim_boundary": "negative control for this deterministic facing-lane rule only; no refutation of arbitrary gap witnesses or owner-star expansion",
+    "rule": "charge each unmapped position to its nearest mapped owner, use the endpoint lane facing the gap, and greedily choose the first fresh normalized boundary-slot ideal",
+    "success": "the rule supplies one distinct owner-star ideal per gap"
+  },
+  "experiment": "frozen-reflected-facing-lane-gap-witness",
+  "frozen_cap_minimum": {
+    "algorithm": {
+      "gap_order": "increasing block index",
+      "ideal_choice": "lexicographically first normalized boundary slot outside the hole family and prior charges",
+      "lane_choice": "left when gap is left of owner, otherwise right",
+      "owner_choice": "nearest mapped owner, then smaller owner index"
+    },
+    "block": [
+      [
+        0,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        10
+      ],
+      [
+        8,
+        11
+      ]
+    ],
+    "color": "cap",
+    "first_failure": {
+      "charged_owner_index": 1,
+      "gap_index": 2,
+      "reason": "no_fresh_facing_lane_candidate"
+    },
+    "hole_family_hex": [
+      "3f"
+    ],
+    "hole_index": 2,
+    "owner_map": [
+      {
+        "ideal_hex": "3f",
+        "owner_index": 1
+      }
+    ],
+    "passes": false,
+    "rank": 3,
+    "steps": [
+      {
+        "charged_owner_index": 1,
+        "charged_owner_span": [
+          2,
+          5
+        ],
+        "eligible_hex": [
+          "1f",
+          "f",
+          "7",
+          "1b",
+          "b",
+          "3"
+        ],
+        "facing_lane": "left",
+        "gap_index": 0,
+        "gap_span": [
+          0,
+          4
+        ],
+        "normalized_lane_hex": [
+          "3f",
+          "1f",
+          "f",
+          "7",
+          "1b",
+          "b",
+          "3"
+        ],
+        "owner_reflected": false,
+        "selected_hex": "1f"
+      },
+      {
+        "charged_owner_index": 1,
+        "charged_owner_span": [
+          2,
+          5
+        ],
+        "eligible_hex": [],
+        "facing_lane": "right",
+        "gap_index": 2,
+        "gap_span": [
+          4,
+          6
+        ],
+        "normalized_lane_hex": [
+          "3f"
+        ],
+        "owner_reflected": false,
+        "selected_hex": null
+      }
+    ],
+    "unmapped_positions": [
+      0,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "generation_base_revision": "326dc216fd7b840a96d7071c1396a074f86974be",
+  "schema_version": 1,
+  "sources": {
+    "checker": {
+      "path": "scripts/replay_reflected_facing_lane_gap_witness.py",
+      "sha256": "345ac8f45ea1f8a88fb2180471f1eebf1c00e0cbf5aa4e725cf0747917ef53db"
+    },
+    "height_geometry": {
+      "path": "scripts/replay_block_large_reached_owner.py",
+      "sha256": "5ed9e6c0cd2db2a18e647efd03f4f7dd64e7839e00d98d37a31897d976a8244c"
+    },
+    "mask_geometry": {
+      "path": "scripts/check_block_large_reached_owner.py",
+      "sha256": "253c7363af5800ffbb02cb60e9de594faa3c8a93d0d0039564506fc97de7c74d"
+    },
+    "producer": {
+      "path": "scripts/check_reflected_facing_lane_gap_witness.py",
+      "sha256": "4393c250e743dd47143be17842c47cdde83c3e693f921840703d3fdfd72974e1"
+    }
+  }
+}

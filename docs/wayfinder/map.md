@@ -411,10 +411,18 @@ None. The destination was fixed by the user on 2026-08-01.
   nonempty block, the profile proves consecutive-block expansion; reflected
   endpoint families are formally nonempty. Experiment 0041 passes that
   state-free profile for all 247 feasible owner maps on the 62 frozen blocks,
-  with minimum slack `+1`. The active task is a uniform boundary-slot
-  telescoping proof of genuine feasible-owner-star expansion, followed by the
-  separate induction that constructs the one-hole states. Neither open premise
-  may import Hall, a complete matching, or finite enumeration.
+  with minimum slack `+1`. Reflection is now normalized in Lean as an
+  order-reversing lattice involution preserving transition intervals.
+  Experiment 0042 passes the stronger block-large reached-owner profile on all
+  247 maps, again with minimum slack `+1`, and Lean proves that this profile
+  implies owner-star expansion. A clean zero-round Sol review selected a
+  deterministic facing-lane gap charge as the cheapest falsifier; Fable was
+  unavailable at its usage limit. Experiment 0043 refutes that rule on the
+  tight cap witness because the second charge faces the rigid singleton lane
+  `{3f}`. The active task is the pre-vetted fallback: prove the arbitrary
+  genuine block-large reached-owner profile from exact-rank two-lane incidence,
+  followed by the separate induction constructing one-hole states. Neither
+  open premise may import Hall, a complete matching, or finite enumeration.
   General Hall and the global injection into `decomposableBinomialWindow`
   remain downstream.
 

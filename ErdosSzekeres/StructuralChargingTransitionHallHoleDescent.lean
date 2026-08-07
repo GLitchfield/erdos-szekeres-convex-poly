@@ -667,6 +667,20 @@ theorem FiniteCandidateHoleState.card_le_biUnion_of_singletonOrBlockLarge
   exact Finset.card_le_biUnion_card_of_injective_mem block candidates
     representative hmem hinjective
 
+/-- The stronger block-large reached-owner profile specialized to every
+genuine reflected endpoint block. Experiment 0042 tests this exact shape at
+the frozen `n = 12`, `k = 7` root; the arbitrary theorem remains open. -/
+def AllocatedReflectedEndpointRankTransitionFeasibleOwnerHasBlockLargeFamily
+    {n rank k : ℕ} (chi : TripleColoring n)
+    (lower upper : Finset (Fin n)) (color : Turn)
+    (hrank : 1 ≤ rank) (hrankTop : rank < k) : Prop :=
+  ∀ first last : AllocatedExactRankFrontierSpan
+      chi lower upper color rank,
+    FiniteCandidateFeasibleOwnerHasBlockLargeFamily
+      (allocatedExactRankFrontierBlock first last)
+      (allocatedReflectedEndpointRankTransitionCandidates
+        chi lower upper color hrank hrankTop)
+
 /-- The state-free owner-map expansion profile specialized to every genuine
 reflected endpoint block.  Experiment 0041 tests this exact shape at the
 frozen `n = 12`, `k = 7` root; the arbitrary theorem remains open. -/
@@ -680,6 +694,22 @@ def AllocatedReflectedEndpointRankTransitionFeasibleOwnerStarExpansion
       (allocatedExactRankFrontierBlock first last)
       (allocatedReflectedEndpointRankTransitionCandidates
         chi lower upper color hrank hrankTop)
+
+/-- A block-large reached owner in every genuine reflected block supplies the
+corresponding owner-star expansion profile. -/
+theorem
+    allocatedReflectedEndpointRankTransitionFeasibleOwnerStarExpansion_of_blockLargeFamily
+    {n rank k : ℕ} {chi : TripleColoring n}
+    {lower upper : Finset (Fin n)} {color : Turn}
+    {hrank : 1 ≤ rank} {hrankTop : rank < k}
+    (hlarge :
+      AllocatedReflectedEndpointRankTransitionFeasibleOwnerHasBlockLargeFamily
+        chi lower upper color hrank hrankTop) :
+    AllocatedReflectedEndpointRankTransitionFeasibleOwnerStarExpansion
+      chi lower upper color hrank hrankTop := by
+  intro first last
+  exact finiteCandidateFeasibleOwnerStarExpansion_of_blockLargeFamily
+    (hlarge first last)
 
 /-- The separate induction input needed downstream: every nonempty endpoint
 block already has a partial injection with one hole.  This is not supplied by
@@ -720,6 +750,25 @@ theorem allocatedReflectedEndpointRankTransitionBlockExpansion_of_feasibleOwnerS
       (hstar first last)
   · rw [Finset.not_nonempty_iff_eq_empty.mp hne]
     simp
+
+/-- The stronger block-large reached-owner profile proves block expansion once
+the separate one-hole-state induction premise is available. -/
+theorem allocatedReflectedEndpointRankTransitionBlockExpansion_of_blockLargeFamily
+    {n rank k : ℕ} {chi : TripleColoring n}
+    {lower upper : Finset (Fin n)} {color : Turn}
+    (hrank : 1 ≤ rank) (hrankTop : rank < k)
+    (hlarge :
+      AllocatedReflectedEndpointRankTransitionFeasibleOwnerHasBlockLargeFamily
+        chi lower upper color hrank hrankTop)
+    (hstates : AllocatedReflectedEndpointRankTransitionOneHoleStateExists
+      chi lower upper color hrank hrankTop) :
+    AllocatedReflectedEndpointRankTransitionBlockExpansion
+      chi lower upper color hrank hrankTop :=
+  allocatedReflectedEndpointRankTransitionBlockExpansion_of_feasibleOwnerStar
+    hrank hrankTop
+    (allocatedReflectedEndpointRankTransitionFeasibleOwnerStarExpansion_of_blockLargeFamily
+      hlarge)
+    hstates
 
 /-- Every unfillable state has an allowed successor with strictly smaller
 measure.  The relation on measures is kept explicit rather than fixed to

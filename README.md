@@ -228,10 +228,21 @@ sets.
   nonemptiness of every genuine candidate family. Experiment 0041 checks the
   stronger state-free profile for all 247 feasible owner maps on the 62 frozen
   blocks, with minimum slack `+1`; this is bounded evidence, not the arbitrary
-  theorem. The next exact target is to prove genuine feasible-owner-star
-  expansion by a boundary-slot telescoping argument. Constructing the one-hole
-  states uniformly remains a separate induction obligation; neither premise
-  may assume Hall, an existing complete matching, or finite enumeration.
+  theorem. Rotate-complement is now formally antitone, swaps meet and join, and
+  transports whole transition intervals to their reflected intervals. A
+  stronger fallback also compiles: if every feasible owner map reaches one
+  owner family at least as large as the block, then owner-star expansion and,
+  with the separate one-hole premise, block expansion follow. Experiment 0042
+  checks this block-large-owner profile for the same 247 maps with minimum
+  slack `+1`, retaining raw endpoint lanes and reflection data. A bounded Sol
+  review selected a deterministic facing-lane gap charge as the next
+  falsifier; Fable hit its usage limit, so no consensus is claimed. Experiment
+  0043 refutes that rule on the tight cap witness when the second charge faces
+  the rigid singleton lane `{3f}`. The active exact target is therefore the
+  pre-vetted fallback: prove the arbitrary genuine block-large reached-owner
+  profile from exact-rank two-lane incidence. Constructing one-hole states
+  uniformly remains a separate induction obligation; neither premise may
+  assume Hall, an existing complete matching, or finite enumeration.
   General Hall and the global outer-window injection remain subsequent.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
