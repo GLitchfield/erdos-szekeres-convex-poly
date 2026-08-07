@@ -510,7 +510,28 @@ None. The destination was fixed by the user on 2026-08-01.
   dominance theorem. The next theorem-design target is a branch-indexed,
   tree-global conserved charge with an owned retained object and an explicit
   nonreuse law; it must pass both the three-vertex local/global-gap obstruction
-  and the ten-point witness before any new Hall theorem is selected.
+  and the ten-point witness before any new Hall theorem is selected. That
+  conservation target now compiles. Gap-or-sentinel tokens are equivalent to
+  actual support vertices, merge owner-preservingly across disjoint splits,
+  agree with the hidden-gap genealogy, and fold over an explicit decomposition
+  tree with leaf-address nonreuse. Exact three- and ten-point regressions pass.
+  Lean also selects the unique saturated published branch and its actual core.
+  A bounded Sol review at packet SHA-256
+  `fbdd71e0ca938691364140abbf35412390107762248744033d25690758808b12`
+  rated the bridge only `partially_supported`; Fable returned zero tokens at
+  its usage limit, so no consensus is claimed. Sol's cheapest owner-membership
+  gate is now formally refuted at the first `(4,6,6,3,2)` scalar boundary: a
+  hidden lower gap keeps its right-endpoint owner in the lower child although
+  the unique saturated branch is upper. The corrected active object is the
+  entering-crossing pivot. Lean proves that these pivots lie in the selected
+  opposite child, are injective over hidden sources, and can all be placed in
+  one published core conditional on the exact core-capacity inequality. Pure
+  source-child counting cannot prove that inequality: the feasible
+  `(4,8,8,3,4)`, `10+13` scalar gate permits nine source adjacencies against an
+  eight-vertex upper core. The active theorem-design target is therefore a
+  geometry-sensitive pivot-capacity theorem for open saturated splits, with
+  that `k = 8` gate as its first falsifier. No new Hall theorem or Boolean-code
+  injection is selected.
 
 ## Not yet specified
 

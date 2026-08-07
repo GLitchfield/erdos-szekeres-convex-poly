@@ -503,6 +503,21 @@ sets.
   pairs `(2,24)`, `(3,23)`, `(4,22)` and their color duals. A sharp 21-point
   SAT control and middle-determinacy UNSAT runs for every 22-point cut are
   evidence only; the local bound is not yet proved in Lean.
+- The rank-two replacement now has a compiling conservation carrier.
+  `StructuralChargingGapTokenConservation.lean` identifies adjacency gaps plus
+  one sentinel with actual support vertices and merges child carriers into the
+  parent without changing owners. `StructuralChargingTreeTokenConservation.lean`
+  folds this across explicit decomposition trees with leaf-address nonreuse,
+  and exact three- and ten-point regressions compile. The unique saturated
+  published branch does not necessarily contain the conserved endpoint owner;
+  `StructuralChargingSelectedBranchOwnerCounterexample.lean` refutes that
+  premise at `(4,6,6,3,2)`. The corrected actual object is the intervening
+  entering-crossing pivot. `StructuralChargingSelectedBranchPivot.lean` proves
+  selected-child membership and pivot injectivity, and reduces simultaneous
+  retained-core ownership to an explicit capacity inequality. The active gate
+  is geometry-sensitive: pure source-child counting already permits nine
+  pivots against an eight-vertex selected core at the feasible
+  `(4,8,8,3,4)`, `10+13` scalar state.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

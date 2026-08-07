@@ -25,13 +25,13 @@ noncomputable section
 abbrev SweepAdjacency {n : ℕ} (support : Finset (Fin n)) :=
   {span : SweepSpanEndpoints n // span.IsAdjacentIn support}
 
+noncomputable instance sweepAdjacencyFintype {n : ℕ}
+    (support : Finset (Fin n)) : Fintype (SweepAdjacency support) :=
+  Fintype.ofFinite _
+
 /-- One token for every adjacency, together with a sentinel for the minimum. -/
 abbrev SweepGapToken {n : ℕ} (support : Finset (Fin n)) :=
   SweepAdjacency support ⊕ Unit
-
-noncomputable instance sweepGapTokenFintype {n : ℕ}
-    (support : Finset (Fin n)) : Fintype (SweepGapToken support) :=
-  Fintype.ofFinite _
 
 /-- An actual support vertex regarded as the owner of a conserved token. -/
 abbrev RetainedVertexOwner {n : ℕ} (support : Finset (Fin n)) :=
@@ -131,6 +131,16 @@ theorem sweepGapToken_card {n : ℕ} {support : Finset (Fin n)}
     (hsupport : support.Nonempty) :
     Fintype.card (SweepGapToken support) = support.card := by
   simpa using Fintype.card_congr (sweepGapTokenOwnerEquiv hsupport)
+
+/-- A nonempty support has exactly one fewer adjacency than vertices. -/
+theorem sweepAdjacency_card {n : ℕ} {support : Finset (Fin n)}
+    (hsupport : support.Nonempty) :
+    Fintype.card (SweepAdjacency support) = support.card - 1 := by
+  have htoken := sweepGapToken_card hsupport
+  change Fintype.card (SweepAdjacency support ⊕ Unit) =
+    support.card at htoken
+  rw [Fintype.card_sum, Fintype.card_unit] at htoken
+  omega
 
 /-- Include a child-owned vertex in the union support. -/
 def retainedVertexOwnerOfChild {n : ℕ}

@@ -1324,6 +1324,35 @@ owner, prove address nonreuse, and survive both the compiled three-vertex
 local/global-gap counterexample and the ten-point obstruction before a new
 Hall or recurrence theorem is selected.
 
+Experiment 0055 completes that conservation contract without claiming a
+recurrence. Gap-or-sentinel tokens are equivalent to actual support vertices;
+their child-to-parent merge preserves owners and agrees with the hidden-gap
+genealogy. The fold over an explicit decomposition tree proves leaf-owner and
+Boolean-address nonreuse. The three-point overcount is repaired by transport,
+and the ten-point split remains exactly ten owner tokens. Lean separately
+proves unique selection of the saturated published branch and its actual
+retained core.
+
+The bounded review packet SHA-256 was
+`fbdd71e0ca938691364140abbf35412390107762248744033d25690758808b12`.
+Sol returned `partially_supported` at high confidence and proposed testing
+whether a live hidden-gap owner belongs to the unique saturated child. Fable
+returned zero tokens at its usage limit, so no two-reviewer consensus is
+claimed. Lean now refutes that proposed membership at the first
+`(4,6,6,3,2)`, `2+10` scalar boundary. The conserved right endpoint stays in
+the lower child while the unique saturated branch is upper.
+
+The corrected branch-local object is the canonical entering-crossing pivot,
+not the immutable endpoint owner. Lean proves that these pivots lie in the
+selected opposite child and are injective over hidden sources. A single
+published slice can retain all pivots conditional on the exact core-capacity
+inequality. Pure source-child counting does not establish it: the feasible
+`(4,8,8,3,4)`, `10+13` scalar state permits nine source adjacencies against an
+eight-vertex selected upper core. The selected next theorem-design gate is
+therefore geometric pivot capacity in an open saturated split: excess pivots
+must force a forbidden cup, cap, or strong polygon. No Hall or Boolean-code
+theorem is selected before that gate passes.
+
 Experiment 0045 rejects the first lane-level bridge proposed after that pass.
 On the tight cap witness, singleton hole `{3f}` maps to owner `(2,5)`, whose
 candidate family has size seven. Its left lane changes by four grid cells and
@@ -1411,6 +1440,11 @@ derive a strict deficiency in the incidence graph of block-small owners.
 - [Cross-color common-span gate](../../experiments/0054-cross-color-common-span-gate.md)
 - [Cross-color common-span manifest](../../../data/derived/e3-cross-color-common-span-gate-k7-n10.json)
 - [Lean cross-color reuse counterexample](../../../ErdosSzekeres/StructuralChargingCrossColorReuseCounterexample.lean)
+- [Conserved gap-token and pivot gate](../../experiments/0055-conserved-gap-token-carrier.md)
+- [Lean gap-token conservation](../../../ErdosSzekeres/StructuralChargingGapTokenConservation.lean)
+- [Lean tree-global token nonreuse](../../../ErdosSzekeres/StructuralChargingTreeTokenConservation.lean)
+- [Lean selected-owner counterexample](../../../ErdosSzekeres/StructuralChargingSelectedBranchOwnerCounterexample.lean)
+- [Lean selected-branch pivot repair](../../../ErdosSzekeres/StructuralChargingSelectedBranchPivot.lean)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
