@@ -1299,9 +1299,30 @@ fails: its maximum matching has size 20, and an explicit 20-demand subfamily
 has only 13 candidate slots. The deficiency contains all fourteen cap/cup
 rank-three crossing obligations, so rank-two/promotion choices alone do not
 repair cross-color competition. Structural endpoint slotting is demoted from
-the main route. A new route will not be selected until bounded review compares
-containment-minimal proof reuse, common-span cross-color quotients, and
-conserved tree-global charges against this Hall witness.
+the main route.
+
+The ensuing bounded route review froze packet SHA-256
+`9d017fc6059f3c4caaf6ec59b8bf4739eb76928904589163363c587127b7321c`.
+Sol returned `partially_supported` with high confidence and selected the
+common-span cross-color quotient as the sharpest next falsifier. Fable again
+returned zero tokens at its provider usage limit, so no Fable judgment or
+consensus is claimed. Experiment 0054 now closes that falsifier. Merging the
+seven identical-endpoint cap/cup rank-three pairs and intersecting their
+candidate families repairs the finite graph: all 20 resulting charges have a
+perfect matching. But the required semantic payoff is false. Lean proves the
+seven spans are genuine frontiers in both colors; their cup rays use the lower
+child and their cap rays use the disjoint upper child, so no nonempty retained
+subset belongs to both published cores. Independently, the proposed shared
+coefficient inequality specializes to `32 <= 22` at `k = 7`, rank three.
+
+Common endpoints alone are therefore retired as a proof-reuse rule, not merely
+left without a proof. A stronger nonadditive invariant is not refuted.
+Containment-minimal pruning remains parked because span containment has no
+proved semantic payment relation. The next exact design contract is a
+branch-indexed tree-global conserved charge: it must name an actual retained
+owner, prove address nonreuse, and survive both the compiled three-vertex
+local/global-gap counterexample and the ten-point obstruction before a new
+Hall or recurrence theorem is selected.
 
 Experiment 0045 rejects the first lane-level bridge proposed after that pass.
 On the tight cap witness, singleton hole `{3f}` maps to owner `(2,5)`, whose
@@ -1387,6 +1408,9 @@ derive a strict deficiency in the incidence graph of block-small owners.
 - [Adjusted-promotion counterexample](../../experiments/0053-adjusted-promotion-counterexample.md)
 - [Adjusted-promotion counterexample manifest](../../../data/derived/e3-adjusted-promotion-counterexample-k7-n10.json)
 - [Lean adjusted-promotion counterexample](../../../ErdosSzekeres/StructuralChargingAdjustedCounterexample.lean)
+- [Cross-color common-span gate](../../experiments/0054-cross-color-common-span-gate.md)
+- [Cross-color common-span manifest](../../../data/derived/e3-cross-color-common-span-gate-k7-n10.json)
+- [Lean cross-color reuse counterexample](../../../ErdosSzekeres/StructuralChargingCrossColorReuseCounterexample.lean)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)

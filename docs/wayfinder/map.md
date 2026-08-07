@@ -495,10 +495,22 @@ None. The destination was fixed by the user on 2026-08-01.
   exact ten-point witness: each hidden source and canonical transition became
   one charge with alternative representations in the single untagged
   32-element carrier. It also fails. The 27-charge graph has maximum matching
-  20, with a compact Hall witness of 20 demands and 13 neighbors. The next
-  strategic action is a bounded review comparing combined containment
-  minimality, cross-color proof reuse on common endpoint spans, and conserved
-  tree-global charges. No new Hall or recurrence theorem is selected.
+  20, with a compact Hall witness of 20 demands and 13 neighbors. A bounded
+  review then selected common-span cross-color reuse as the sharpest next
+  falsifier. Experiment 0054 merges the seven identical-endpoint cap/cup
+  rank-three pairs and intersects their candidate families; the resulting
+  20-charge graph has a perfect matching. The apparent repair has no published
+  semantics. Lean proves that all seven pairs are genuine common frontiers,
+  that their cup and cap rays live in disjoint lower and upper retained cores,
+  and that no nonempty retained subset lies in both. It also proves the exact
+  arithmetic obstruction: the two `k = 7`, rank-three successor thresholds
+  total 32, whereas the two bases plus one shared ten-element coefficient
+  total 22. Common endpoints alone are therefore retired as a proof-reuse
+  rule. Containment-minimal frontiers remain parked without a semantic
+  dominance theorem. The next theorem-design target is a branch-indexed,
+  tree-global conserved charge with an owned retained object and an explicit
+  nonreuse law; it must pass both the three-vertex local/global-gap obstruction
+  and the ten-point witness before any new Hall theorem is selected.
 
 ## Not yet specified
 

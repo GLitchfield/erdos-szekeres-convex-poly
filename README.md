@@ -313,8 +313,14 @@ sets.
   valid. The first exclusive-choice repair also fails: after pairing every
   hidden source with its complementary residual transition, the 27-charge
   graph has maximum matching 20 and an explicit 20-demand/13-neighbor Hall
-  witness. Progress now requires a sound cross-color proof-reuse or conserved
-  global invariant rather than additive per-rank accounting.
+  witness. Experiment 0054 tests the most promising reviewed repair: merge the
+  seven cap/cup rank-three requests with identical endpoint spans. Their
+  intersected candidate families do admit a perfect 20/20 matching, but Lean
+  proves the semantic repair false. Cup and cap rays live in disjoint retained
+  child cores, and the proposed one-coefficient threshold bound is `32 <= 22`.
+  Common endpoints alone are therefore retired. Progress now requires a
+  genuinely conserved branch-indexed tree charge, with an actual retained
+  owner and a proved nonreuse law, rather than additive per-rank accounting.
 - `ErdosSzekeres/RankProfile.lean` gives a specification-first interface for
   consecutive pair ranks and clipped vertex downsets. Its compiling lemmas
   prove ambient-set monotonicity, threshold antitonicity, the rank-one base,

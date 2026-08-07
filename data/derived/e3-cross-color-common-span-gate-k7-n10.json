@@ -1,0 +1,422 @@
+{
+  "certificate": {
+    "active_child_intersection_mask_hex": "0",
+    "coloring_hex": "cde50debf387c0debf57f9c3e07f00",
+    "common_rank_three_spans": [
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        6,
+        9
+      ]
+    ],
+    "common_span_count": 7,
+    "lower_mask_hex": "155",
+    "maximum_matching_cardinality": 20,
+    "maximum_n": 10,
+    "open": true,
+    "perfect_matching": [
+      [
+        0,
+        17
+      ],
+      [
+        1,
+        20
+      ],
+      [
+        2,
+        12
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        16
+      ],
+      [
+        8,
+        0
+      ],
+      [
+        9,
+        24
+      ],
+      [
+        10,
+        18
+      ],
+      [
+        11,
+        9
+      ],
+      [
+        12,
+        6
+      ],
+      [
+        13,
+        10
+      ],
+      [
+        14,
+        5
+      ],
+      [
+        15,
+        3
+      ],
+      [
+        16,
+        13
+      ],
+      [
+        17,
+        11
+      ],
+      [
+        18,
+        7
+      ],
+      [
+        19,
+        15
+      ]
+    ],
+    "published_arithmetic": {
+      "base_threshold_total": 12,
+      "deficit": 10,
+      "single_demand_suffices": false,
+      "single_demand_total": 22,
+      "single_pascal_demand": 10,
+      "successor_threshold_total": 32
+    },
+    "quotient_charge_count": 20,
+    "quotient_charges": [
+      {
+        "alternative_transition": [
+          1,
+          2
+        ],
+        "candidate_slot_mask_hex": "0116177c",
+        "color": "cap",
+        "kind": "hidden-source-exclusive-choice",
+        "span": [
+          0,
+          2
+        ]
+      },
+      {
+        "alternative_transition": [
+          2,
+          3
+        ],
+        "candidate_slot_mask_hex": "00141554",
+        "color": "cup",
+        "kind": "hidden-source-exclusive-choice",
+        "span": [
+          1,
+          3
+        ]
+      },
+      {
+        "alternative_transition": [
+          3,
+          4
+        ],
+        "candidate_slot_mask_hex": "0000167c",
+        "color": "cap",
+        "kind": "hidden-source-exclusive-choice",
+        "span": [
+          2,
+          4
+        ]
+      },
+      {
+        "alternative_transition": [
+          4,
+          5
+        ],
+        "candidate_slot_mask_hex": "00000054",
+        "color": "cup",
+        "kind": "hidden-source-exclusive-choice",
+        "span": [
+          3,
+          5
+        ]
+      },
+      {
+        "alternative_transition": [
+          5,
+          6
+        ],
+        "candidate_slot_mask_hex": "0000007c",
+        "color": "cap",
+        "kind": "hidden-source-exclusive-choice",
+        "span": [
+          4,
+          6
+        ]
+      },
+      {
+        "alternative_transition": [
+          6,
+          7
+        ],
+        "candidate_slot_mask_hex": "00001456",
+        "color": "cup",
+        "kind": "hidden-source-exclusive-choice",
+        "span": [
+          5,
+          7
+        ]
+      },
+      {
+        "alternative_transition": [
+          7,
+          8
+        ],
+        "candidate_slot_mask_hex": "0016177c",
+        "color": "cap",
+        "kind": "hidden-source-exclusive-choice",
+        "span": [
+          6,
+          8
+        ]
+      },
+      {
+        "alternative_transition": [
+          8,
+          9
+        ],
+        "candidate_slot_mask_hex": "01151556",
+        "color": "cup",
+        "kind": "hidden-source-exclusive-choice",
+        "span": [
+          7,
+          9
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "00010117",
+        "kind": "initial-crossing-with-sentinel",
+        "span": [
+          0,
+          1
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "01161668",
+        "cap_active_child": "upper",
+        "cap_candidate_slot_mask_hex": "01161668",
+        "cap_ray_direction": "left",
+        "cup_active_child": "lower",
+        "cup_candidate_slot_mask_hex": "01161668",
+        "cup_ray_direction": "right",
+        "kind": "cross-color-common-span",
+        "rank": 3,
+        "span": [
+          0,
+          3
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "00141468",
+        "cap_active_child": "upper",
+        "cap_candidate_slot_mask_hex": "00161668",
+        "cap_ray_direction": "right",
+        "cup_active_child": "lower",
+        "cup_candidate_slot_mask_hex": "00141468",
+        "cup_ray_direction": "left",
+        "kind": "cross-color-common-span",
+        "rank": 3,
+        "span": [
+          1,
+          4
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "00000668",
+        "cap_active_child": "upper",
+        "cap_candidate_slot_mask_hex": "00001668",
+        "cap_ray_direction": "left",
+        "cup_active_child": "lower",
+        "cup_candidate_slot_mask_hex": "00060668",
+        "cup_ray_direction": "right",
+        "kind": "cross-color-common-span",
+        "rank": 3,
+        "span": [
+          2,
+          5
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "00000068",
+        "cap_active_child": "upper",
+        "cap_candidate_slot_mask_hex": "00000068",
+        "cap_ray_direction": "right",
+        "cup_active_child": "lower",
+        "cup_candidate_slot_mask_hex": "00000068",
+        "cup_ray_direction": "left",
+        "kind": "cross-color-common-span",
+        "rank": 3,
+        "span": [
+          3,
+          6
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "00000468",
+        "cap_active_child": "upper",
+        "cap_candidate_slot_mask_hex": "00060668",
+        "cap_ray_direction": "left",
+        "cup_active_child": "lower",
+        "cup_candidate_slot_mask_hex": "00001468",
+        "cup_ray_direction": "right",
+        "kind": "cross-color-common-span",
+        "rank": 3,
+        "span": [
+          4,
+          7
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "00161668",
+        "cap_active_child": "upper",
+        "cap_candidate_slot_mask_hex": "00161668",
+        "cap_ray_direction": "right",
+        "cup_active_child": "lower",
+        "cup_candidate_slot_mask_hex": "00161668",
+        "cup_ray_direction": "left",
+        "kind": "cross-color-common-span",
+        "rank": 3,
+        "span": [
+          5,
+          8
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "01141468",
+        "cap_active_child": "upper",
+        "cap_candidate_slot_mask_hex": "01161668",
+        "cap_ray_direction": "left",
+        "cup_active_child": "lower",
+        "cup_candidate_slot_mask_hex": "01141468",
+        "cup_ray_direction": "right",
+        "kind": "cross-color-common-span",
+        "rank": 3,
+        "span": [
+          6,
+          9
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "16686880",
+        "color": "cup",
+        "kind": "higher-rank-crossing",
+        "rank": 4,
+        "span": [
+          0,
+          5
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "06686880",
+        "color": "cup",
+        "kind": "higher-rank-crossing",
+        "rank": 4,
+        "span": [
+          1,
+          6
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "02686880",
+        "color": "cup",
+        "kind": "higher-rank-crossing",
+        "rank": 4,
+        "span": [
+          2,
+          7
+        ]
+      },
+      {
+        "candidate_slot_mask_hex": "68808000",
+        "color": "cup",
+        "kind": "higher-rank-crossing",
+        "rank": 5,
+        "span": [
+          0,
+          7
+        ]
+      }
+    ],
+    "strong_size": 7,
+    "support_mask_hex": "3ff",
+    "upper_mask_hex": "2aa"
+  },
+  "contract": {
+    "claim_boundary": "this retires common endpoints as a standalone proof-reuse rule; it does not refute stronger nonadditive geometric invariants",
+    "domain": "the explicit open alternating ten-point decomposable root, with only identical-endpoint cap/cup rank-three charges merged",
+    "outcome": "the matching passes, but disjoint active children and 32 > 22 refute retained-subset and single-coefficient semantics",
+    "resource_limit": "30 minutes, 8 CPU cores, 16 GiB RAM, 5 GiB output",
+    "success": "a perfect matching plus a sound one-coefficient semantic payoff"
+  },
+  "experiment": "cross-color-common-span-gate-k7-n10",
+  "generation_base_revision": "3e41e0aedc7443da5c04deff442fd48c756c0422",
+  "schema_version": 1,
+  "sources": {
+    "checker": {
+      "path": "scripts/check_cross_color_common_span_gate_k7_n10.py",
+      "sha256": "b1259f3c379ef823a531eff110b05dc83f69aed5d72a68dac7f8ee20e9056526"
+    },
+    "independent_rank_base": {
+      "path": "scripts/check_allocated_span_pascal_demand.py",
+      "sha256": "1962a01c479c5d44d2858d7bf9d62e8bf66dd8a6a87c77bd1c4fab347854f018"
+    },
+    "producer": {
+      "path": "scripts/produce_cross_color_common_span_gate_k7_n10.py",
+      "sha256": "9ab770bad0b1fffb60ae256d19a5a3e566c273b47898dc0016243f99c5e37128"
+    },
+    "producer_rank_base": {
+      "path": "scripts/enumerate_allocated_span_pascal_demand.py",
+      "sha256": "54ed1a0b33549ea12564a7fdc5c79f502fede0d4da58f3ef051658c412df28bd"
+    }
+  }
+}
