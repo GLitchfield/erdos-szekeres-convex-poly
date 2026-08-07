@@ -53,6 +53,60 @@ def reflectedComplement {rows columns : ℕ}
   ext cell
   simp only [mem_reflectedComplement, Fin.rev_rev, not_not]
 
+/-- Rotate-complement reverses inclusion of rectangular ideals. -/
+theorem reflectedComplement_antitone {rows columns : ℕ} :
+    Antitone (@reflectedComplement rows columns) := by
+  intro first second hfirstSecond
+  change (reflectedComplement second).cells ⊆
+    (reflectedComplement first).cells
+  intro cell hcell
+  rw [mem_reflectedComplement] at hcell ⊢
+  intro hfirst
+  exact hcell (hfirstSecond hfirst)
+
+@[simp] theorem reflectedComplement_inf {rows columns : ℕ}
+    (first second : PascalGridIdeal rows columns) :
+    reflectedComplement (first ⊓ second) =
+      reflectedComplement first ⊔ reflectedComplement second := by
+  classical
+  ext cell
+  simp only [mem_reflectedComplement]
+  change (cell.1.rev, cell.2.rev) ∉ first.cells ∩ second.cells ↔
+    cell ∈ (reflectedComplement first).cells ∪
+      (reflectedComplement second).cells
+  by_cases hfirst : (cell.1.rev, cell.2.rev) ∈ first.cells <;>
+    simp [hfirst]
+
+@[simp] theorem reflectedComplement_sup {rows columns : ℕ}
+    (first second : PascalGridIdeal rows columns) :
+    reflectedComplement (first ⊔ second) =
+      reflectedComplement first ⊓ reflectedComplement second := by
+  ext cell
+  simp only [mem_reflectedComplement]
+  change (cell.1.rev, cell.2.rev) ∉ first.cells ∪ second.cells ↔
+    cell ∈ (reflectedComplement first).cells ∩
+      (reflectedComplement second).cells
+  simp
+
+/-- Rotate-complement carries a lattice interval to the interval between the
+reflected endpoints. -/
+@[simp] theorem reflectedComplement_mem_pascalTransitionInterval_iff
+    {rows columns : ℕ} {first second state : PascalGridIdeal rows columns} :
+    reflectedComplement state ∈
+        pascalTransitionInterval (reflectedComplement first)
+          (reflectedComplement second) ↔
+      state ∈ pascalTransitionInterval first second := by
+  simp only [pascalTransitionInterval, Finset.mem_filter, Finset.mem_univ,
+    true_and, ← reflectedComplement_sup, ← reflectedComplement_inf]
+  constructor
+  · rintro ⟨hlower, hupper⟩
+    constructor
+    · simpa using reflectedComplement_antitone hupper
+    · simpa using reflectedComplement_antitone hlower
+  · rintro ⟨hlower, hupper⟩
+    exact ⟨reflectedComplement_antitone hupper,
+      reflectedComplement_antitone hlower⟩
+
 /-- Rotate-complement as a same-carrier equivalence. -/
 def reflectedComplementEquiv (rows columns : ℕ) :
     PascalGridIdeal rows columns ≃ PascalGridIdeal rows columns where
