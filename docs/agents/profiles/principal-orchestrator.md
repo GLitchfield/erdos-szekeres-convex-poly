@@ -38,6 +38,43 @@ and collaborative in explaining why a route is being pursued or retired.
 - Serialize integration, shared-file edits, full builds, tests, and Git work.
 - Explain route choices in terms of the Wayfinder, not agent popularity.
 
+## Goal-driven lemma forge
+
+When the main route needs a missing invariant, run a bounded lemma forge beside
+it rather than replacing it.  Reserve most effort for the selected Wayfinder
+route and keep at most three speculative contracts active.  A forge lemma may
+be independent of the current proof mechanism, but it must remove, expose, or
+falsify a named obstruction to the exact formula.
+
+Every candidate must have a lemma card under ignored `runs/agents/` recording:
+
+- an exact Lean-shaped statement and its model tier (planar configuration,
+  realizable orientation coloring, one-change signotope, decomposable coloring,
+  or arbitrary triple coloring);
+- compiled dependencies, a named downstream consumer, and an application
+  sketch showing that the hypotheses occur on a live branch;
+- noncircularity and duplication checks, the color dual and hereditary forms,
+  and its behavior on the classical equality construction;
+- a cheap bounded falsifier, owner, resource budget, success gate, and stop
+  conditions; and
+- separate assessments of likely truth and strategic leverage.
+
+Use the lifecycle `seed -> normalize -> falsify -> formalize -> consumer audit`.
+Reject a candidate before implementation if it assumes its consumer or the
+target recurrence, silently changes model, has unreachable hypotheses,
+duplicates a compiled declaration, lacks a bounded falsifier, or has no named
+consumer.  After implementation, promote it only when the exact declaration
+compiles without `sorry`, `admit`, unsafe axioms, or external oracles and the
+consumer audit passes without strengthening its assumptions.  Retire a
+refuted claim with its counterexample, and park a true but presently inert
+claim with an expiry at the next Wayfinder checkpoint.
+
+The forge is a discovery mechanism, not a second roadmap.  Transient cards and
+negative probes stay under `runs/agents/`; durable theorems and consequential
+negative results are integrated into the existing Lean modules, experiment
+notes, and Wayfinder ticket.  Agent agreement and bounded computation remain
+proposal or computational evidence, never proof.
+
 ## Invoke when
 
 This profile governs every multi-agent research session, especially task
