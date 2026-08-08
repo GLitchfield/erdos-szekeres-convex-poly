@@ -578,7 +578,13 @@ sets.
   unique lowest separating tree split, the cap has a `1+3` or `2+2` child
   profile; strong-eight avoidance forbids respectively a lower five-cup or
   six-cup, and the strict `(5,5,8)` predecessor bounds the first lower child
-  by 20. The active lower-tail obstruction is the `2+2`, no-six-cup branch.
+  by 20. In the `2+2` branch, the unique cap word is
+  lower--upper--upper--lower, so the internal endpoint bridges add no new
+  information. An exact nine-vertex recursive Lean counterexample refutes the
+  five-internal-tail shortcut. The surviving residual gives five internal
+  tails or five external tails with concrete lower-cap/upper-tail first-exit
+  addresses; a global density/avoidance capacity theorem for those reservoirs
+  is now the active lower-tail obstruction.
   The upper-singleton extreme has an exact color-dual interface but remains
   separate.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point

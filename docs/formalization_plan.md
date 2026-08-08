@@ -1015,9 +1015,16 @@ cardinality at most 21; after removing the cap endpoints at least nine outer
 tail vertices remain, all in the two endpoint bridge classes. The cap's unique
 lowest separating node has child profile `1+3` with no lower five-cup or
 `2+2` with no lower six-cup. The strict `(5,5,8)` predecessor bounds the first
-lower child by 20. The active proof obligation is the second branch coupled to
-the terminal outer tails. The upper-singleton extreme has a color-dual lower
-interface but still requires a separate proof.
+lower child by 20. In the second branch, Lean proves the sorted cap word is
+lower--upper--upper--lower and hence that internal endpoint bridges are forced
+by the split law. The exact five-internal-tail force statement is false by a
+kernel-checked nine-vertex recursive counterexample. The repaired invariant
+partitions the nine tails: five remain internal, or five are external and each
+has a concrete first-exit tree address with the cap in the lower child and the
+tail in the upper child. The active proof obligation is a global
+density/avoidance capacity theorem for these internal or exit-sibling
+reservoirs. The upper-singleton extreme has a color-dual lower interface but
+still requires a separate proof.
 
 A bounded goal-driven lemma-forge preflight runs separately from that main
 route.  It rejected four-point localization as already compiled, parked

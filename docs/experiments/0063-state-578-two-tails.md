@@ -123,6 +123,10 @@ cardinality at most 20. The immediate unresolved branch is therefore the
 lowest-split `2+2` profile with no lower six-cup, coupled to the nine terminal
 outer-tail bridges. No closure of the singleton-lower gate is claimed.
 
+Experiment 0064 audits this branch. It proves the `2+2` child word, refutes
+the five-internal-tail shortcut in Lean, and replaces it by an exact
+inside-or-first-exit-address residual.
+
 The upper-singleton `41+1` tail now has an exact compiled color-dual interface,
 but remains a separate open obligation.
 
@@ -136,6 +140,8 @@ lake build ErdosSzekeres.StructuralChargingNextState578Threshold
 lake build ErdosSzekeres.StructuralChargingNextState578SpanCounterexample
 lake build ErdosSzekeres.StructuralChargingNextState578OpenSpan
 lake build ErdosSzekeres.StructuralChargingNextState578Dual
+lake build ErdosSzekeres.StructuralChargingNextState578TwoTwo
+lake build ErdosSzekeres.StructuralChargingNextState578TwoTwoCounterexample
 python3 scripts/generate_rooted_cup_blocks_state_sat.py \
   --left 5 --right 5 --cap 5 --cup 7 --strong 8 \
   --output runs/state-578/rooted-cup-blocks-55.cnf

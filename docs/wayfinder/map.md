@@ -616,9 +616,16 @@ None. The destination was fixed by the user on 2026-08-01.
   only the before/after endpoint bridge failures. At the cap's unique lowest
   separating tree split, strong-eight avoidance forces either a `1+3` profile
   with no lower five-cup or a `2+2` profile with no lower six-cup. The strict
-  `(5,5,8)` predecessor further bounds the first lower child by 20. The active
-  lower-tail obstruction is the `2+2`, no-lower-six-cup branch coupled to the
-  terminal cap's nine outer-tail bridges; neither singleton tail is closed.
+  `(5,5,8)` predecessor further bounds the first lower child by 20. In the
+  `2+2` branch the cap word is necessarily lower--upper--upper--lower, making
+  every internal endpoint bridge automatic. A nine-vertex recursive Lean
+  counterexample refutes the resulting five-internal-tail force gate. The
+  surviving exact residual has either five internal tails or five external
+  tails; every external tail has a concrete first-exit address where the cap
+  is wholly in the lower child and the tail is in the upper child. The active
+  obstruction is a global density/avoidance capacity theorem for these two
+  alternatives; first-exit direction alone supplies no fiber bound. Neither
+  singleton tail is closed.
   The `41+1` tail has a compiled exact color-dual lower-gate interface and
   remains separate.
 

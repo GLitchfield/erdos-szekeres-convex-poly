@@ -1437,8 +1437,15 @@ All nine carry one of the two endpoint bridge failures. At the cap's unique
 lowest separating node, its child profile is `1+3` or `2+2`; strong-eight
 avoidance forbids respectively a lower five-cup or lower six-cup. The strict
 predecessor `(5,5,8)` bounds the lower child by 20 in the `1+3` branch. The
-next lower-tail theorem must consume the remaining `2+2`, no-six-cup branch
-together with the terminal cap's two outer-tail bridge classes. The exact
+`2+2` child word is forced to be lower--upper--upper--lower, so endpoint
+bridges of tails still in that node are automatic. A kernel-checked
+nine-vertex recursive counterexample refutes the exact five-internal-tail
+force gate. Lean now partitions the nine tails into five internal tails or
+five external tails and assigns every external tail a concrete first-exit
+node with the whole cap below and the tail above. The next lower-tail theorem
+must use the global `32/23` density and avoidance reservoirs to bound the
+internal side or aggregate these exit-address fibers; direction alone is
+insufficient. The exact
 `41+1` upper-singleton gate remains separate, with a compiled color-dual
 lower-gate equivalence.
 
