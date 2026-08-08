@@ -528,10 +528,17 @@ None. The destination was fixed by the user on 2026-08-01.
   one published core conditional on the exact core-capacity inequality. Pure
   source-child counting cannot prove that inequality: the feasible
   `(4,8,8,3,4)`, `10+13` scalar gate permits nine source adjacencies against an
-  eight-vertex upper core. The active theorem-design target is therefore a
-  geometry-sensitive pivot-capacity theorem for open saturated splits, with
-  that `k = 8` gate as its first falsifier. No new Hall theorem or Boolean-code
-  injection is selected.
+  eight-vertex upper core. The first geometry-sensitive theorem now closes
+  that leak. The minimum lower vertex is a common left cone point for every
+  canonical hidden-lower pivot. No parent four-cap makes the complete pivot
+  seed a cup, so no parent `u`-cup bounds it by `u-1`; Lean proves the
+  color-dual result as well. At `(4,8,8,3,4)`, `10+13`, the source count is at
+  most seven and all pivots fit in one actual eight-vertex published upper
+  core. The active theorem-design target is the higher-index cone bridge:
+  combine the induced `(a-1)`-cap avoidance with inherited
+  decomposable/one-change structure and a general cup--cap bound, then match
+  that bound to the selected published threshold. No new Hall theorem or
+  Boolean-code injection is selected.
 
 ## Not yet specified
 

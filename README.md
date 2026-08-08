@@ -514,10 +514,16 @@ sets.
   premise at `(4,6,6,3,2)`. The corrected actual object is the intervening
   entering-crossing pivot. `StructuralChargingSelectedBranchPivot.lean` proves
   selected-child membership and pivot injectivity, and reduces simultaneous
-  retained-core ownership to an explicit capacity inequality. The active gate
-  is geometry-sensitive: pure source-child counting already permits nine
-  pivots against an eight-vertex selected core at the feasible
-  `(4,8,8,3,4)`, `10+13` scalar state.
+  retained-core ownership to an explicit capacity inequality. The first
+  geometry-sensitive gate now passes. `StructuralChargingPivotOverflow.lean`
+  proves that the minimum lower vertex cones any upper three-cap of canonical
+  pivots into a forbidden parent four-cap. Thus no parent four-cap and no
+  parent `u`-cup force fewer than `u` hidden-lower pivots, with a color-dual
+  theorem for hidden upper gaps. This rules out the apparent nine-pivot versus
+  eight-core leak at `(4,8,8,3,4)`, `10+13`, and constructs one actual
+  published upper slice retaining every pivot. The next gate is the
+  higher-index cone/cup--cap bridge needed when the selected child index is
+  greater than three.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

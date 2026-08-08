@@ -67,5 +67,6 @@ public import ErdosSzekeres.PublishedInductionSemantics
 public import ErdosSzekeres.StructuralChargingConservedBranch
 public import ErdosSzekeres.StructuralChargingSelectedBranchOwnerCounterexample
 public import ErdosSzekeres.StructuralChargingSelectedBranchPivot
+public import ErdosSzekeres.StructuralChargingPivotOverflow
 public import ErdosSzekeres.StructuralChargingSaturatedResource
 public import ErdosSzekeres.ES5Certificate

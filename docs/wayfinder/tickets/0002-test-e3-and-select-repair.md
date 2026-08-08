@@ -1348,10 +1348,25 @@ selected opposite child and are injective over hidden sources. A single
 published slice can retain all pivots conditional on the exact core-capacity
 inequality. Pure source-child counting does not establish it: the feasible
 `(4,8,8,3,4)`, `10+13` scalar state permits nine source adjacencies against an
-eight-vertex selected upper core. The selected next theorem-design gate is
-therefore geometric pivot capacity in an open saturated split: excess pivots
-must force a forbidden cup, cap, or strong polygon. No Hall or Boolean-code
-theorem is selected before that gate passes.
+eight-vertex selected upper core.
+
+Experiment 0056 closes this first geometric gate in Lean. The minimum lower
+vertex lies strictly left of every canonical hidden-lower pivot. Any upper
+three-cap among those pivots would extend through that common endpoint to a
+parent four-cap, so no parent four-cap makes the full pivot seed a cup. No
+parent `u`-cup therefore gives fewer than `u` hidden-lower sources. The
+color-dual theorem bounds hidden upper sources under no parent four-cup. This
+matches every published index-three core exactly and, at the normalized
+`(4,8,8)`, `10+13` split, gives at most seven pivots for an eight-vertex core.
+Lean constructs one published upper slice retaining all of them; the
+no-strong-eight hypothesis is unnecessary.
+
+The next theorem-design gate is the higher-index cone bridge. For `a > 4`,
+the anchor should force `(a-1)`-cap avoidance on the pivot seed, but the proof
+must still convert inherited decomposable/one-change structure into the
+general cup--cap cardinal bound and identify that binomial with the selected
+published threshold. No Hall or Boolean-code theorem is selected before that
+gate passes.
 
 Experiment 0045 rejects the first lane-level bridge proposed after that pass.
 On the tight cap witness, singleton hole `{3f}` maps to owner `(2,5)`, whose
@@ -1445,6 +1460,8 @@ derive a strict deficiency in the incidence graph of block-small owners.
 - [Lean tree-global token nonreuse](../../../ErdosSzekeres/StructuralChargingTreeTokenConservation.lean)
 - [Lean selected-owner counterexample](../../../ErdosSzekeres/StructuralChargingSelectedBranchOwnerCounterexample.lean)
 - [Lean selected-branch pivot repair](../../../ErdosSzekeres/StructuralChargingSelectedBranchPivot.lean)
+- [Pivot-cone capacity gate](../../experiments/0056-pivot-cone-capacity.md)
+- [Lean pivot-overflow closure](../../../ErdosSzekeres/StructuralChargingPivotOverflow.lean)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
