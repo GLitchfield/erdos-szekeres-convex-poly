@@ -534,9 +534,18 @@ sets.
   exact successor equality, strict descent in `a + u`, and the local parent
   avoidance needed to select a pivot-containing core using only a strictly
   smaller state. A single dispatcher chooses the unique valid branch. This is
-  conditional induction machinery, not the outer E3 transition: the next gate
-  is a tree-global payment/nonreuse theorem linking conserved gap tokens to
-  active pivots retained in selected cores.
+  conditional induction machinery, not the outer E3 transition.
+  `StructuralChargingRootTransition.lean` now proves that, at every positive
+  threshold, the full hereditary state is equivalent to one root-local
+  transition whose two children already satisfy the outer bound. It also
+  extracts an exact threshold-plus-one subsplit and turns simultaneous pivot
+  retention into a source-count bound. The latter is not enough by itself:
+  the scalar `10+13` boundary at `(4,8,8)` remains arithmetically consistent.
+  `StructuralChargingTreePivotCounterexample.lean` additionally shows that
+  canonical pivot values can collide across nested set-level split data, so
+  untagged all-node pivot injectivity is unavailable. The active gate is now a
+  root-local run-length or excess theorem at one split; the tree-global ledger
+  is parked unless that local proof genuinely needs descendant aggregation.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

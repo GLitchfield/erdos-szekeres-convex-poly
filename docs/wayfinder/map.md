@@ -548,12 +548,28 @@ None. The destination was fixed by the user on 2026-08-01.
   single dispatcher first chooses the unique valid saturated branch. An
   independent frozen-diff review accepted the equality directions,
   predecessor uses, compilation, and axiom profile. The result is still
-  conditional machinery, not the outer state. The active target is now a
-  tree-global pivot-payment compatibility law: link immutable conserved gap
-  tokens or leaf owners to the entering pivots retained by selected cores, and
-  prove nonreuse across ancestor and descendant nodes so local capacity can
-  close the outer transition. No new Hall theorem or Boolean-code injection is
-  selected. A bounded independent lemma-forge pilot rejected duplicate
+  conditional machinery, not the outer state. The outer recursion has now
+  been isolated exactly: at every positive threshold, the hereditary
+  `DecomposableStateUpper` is equivalent to a single root-local transition for
+  two already-bounded children. Lean also extracts a nonempty decomposable
+  threshold-plus-one subsplit from any larger root, and turns simultaneous
+  root-pivot retention into a source-cardinality bound by the selected core.
+  That scalar bound does not close the transition: the `(4,8,8)`, `10+13`
+  boundary remains consistent with eight sources paid by an eight-vertex
+  predecessor core. Moreover, nested set-level split data can reuse the same
+  canonical pivot at distinct candidate addresses; this is not yet a realized
+  colored decomposition-tree counterexample, but it blocks untagged all-node
+  injectivity as a general set-theoretic lemma. Bounded route review at evidence
+  packet SHA-256
+  `bf8dfc26718600f2874fb8530fef8e097c3db89f3bd1197cea9882b9579e16cd`
+  returned Fable `GO` and Sol `MODIFY`; both prioritized the root-local route
+  and treated the interface as architectural rather than the missing
+  combinatorics. The active target is a one-split run-length or excess theorem
+  coupling current-root hidden pivots, retained-core capacity, and the two
+  child sizes strongly enough to exclude the exact boundary. The tree-global
+  ledger is parked unless this local proof forces descendant aggregation. No
+  new Hall theorem or Boolean-code injection is selected. A bounded independent
+  lemma-forge pilot rejected duplicate
   four-point localization, parked insertion-signature and universal
   binary-fingerprint proposals, and retained only planar rooted-triangle
   circuit elimination for a sharper consumer audit.

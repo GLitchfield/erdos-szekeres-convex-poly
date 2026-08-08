@@ -937,13 +937,36 @@ saturated branch and a single strong-induction hypothesis over `a + u`; it
 never assumes the outer state. Core reselection preserves the deterministic
 published index and cardinality, not core identity.
 
-The remaining transition obligation is tree-global payment compatibility.
-The conserved token development proves immutable leaf-owner nonreuse, while
-the selected-branch development proves local injectivity of entering pivots
-and their simultaneous retention in one selected core. The next theorem must
-connect those layers across ancestor and descendant nodes, or replace them by
-an equivalent globally owned pivot charge, so that local core capacity can be
-summed without reuse and yield the outer `DecomposableStateUpper a u k`.
+`StructuralChargingRootTransition.lean` sharpens the remaining obligation.
+For every positive threshold, `DecomposableStateUpper a u k` is equivalent to
+one root-local transition: if the two children of a deep decomposable split
+already satisfy the outer threshold and the parent avoids the target cap, cup,
+and strong polygon, then their union satisfies that threshold. Structural
+induction lifts this transition without adding payments from different call
+frames. Any larger root split also contains a restricted decomposable split of
+exactly threshold plus one vertices with both children nonempty, so this exact
+boundary loses no generality.
+
+The saturated-predecessor dispatcher now returns a selected root core together
+with both simultaneous pivot retention and the induced bound from root hidden
+sources into that core. That count alone is insufficient: Lean checks that the
+`(4,8,8)` boundary data `10+13=23`, an eight-source bound, and an eight-vertex
+predecessor core satisfy every displayed scalar inequality. A new set-level
+counterexample also gives a root hidden gap and a hidden gap in its nested
+upper support with the same canonical entering pivot. It does not construct a
+coloring or a `DecompositionTree`, but it refutes any direct inference from
+fixed-split pivot injectivity to untagged injectivity over arbitrary nested
+split data.
+
+The active transition obligation is therefore root-local. The next theorem
+must use the order of the root merge word, its hidden/nonhidden runs, or an
+equivalent excess statistic to show that a saturated pivot-containing core
+pays enough of the two-child excess to rule out the exact boundary split. It
+may use the strict predecessor state and current-root avoidance already exposed
+by the dispatcher, but it must not assume the outer state. The existing
+tree-global token carrier remains compiled supporting infrastructure and will
+return to the critical path only if this one-split proof necessarily aggregates
+charges from descendant nodes.
 
 A bounded goal-driven lemma-forge preflight runs separately from that main
 route.  It rejected four-point localization as already compiled, parked
