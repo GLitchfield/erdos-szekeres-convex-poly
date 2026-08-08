@@ -59,6 +59,10 @@ This repository is an AI-assisted formal mathematics project initialized from
   `python3 scripts/wayfinder_status.py`.
 - Resolve one consequential ticket per session. Use the repository's bounded
   Sol/Fable review before selecting or changing the main route.
+- Launch provider reviews directly with the exact prefix
+  `python3 scripts/adversarial_review.py run`. Request out-of-sandbox execution
+  for that command; the trusted project rule authorizes this one prefix without
+  a repeated prompt after session startup. Do not add a shell wrapper.
 - Keep the map, README, survey, and Lean statement aligned when scope changes.
 
 ## Multi-agent orchestration

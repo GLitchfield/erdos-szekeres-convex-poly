@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import tempfile
 import unittest
@@ -15,6 +16,8 @@ from adversarial_review import (
     parse_claude_result,
     repository_metadata,
     resolve_evidence,
+    resolve_repository_file,
+    resolve_review_output,
     sha256_bytes,
     validate_citations,
     validate_review,
@@ -44,6 +47,40 @@ def sample_review(verdict: str = "unclear") -> dict[str, object]:
 
 
 class AdversarialReviewTest(unittest.TestCase):
+    @unittest.skipUnless(shutil.which("codex"), "Codex CLI is not installed")
+    def test_project_rule_allows_only_review_run_prefix(self) -> None:
+        repo = Path(__file__).resolve().parents[1]
+        rule = repo / ".codex" / "rules" / "adversarial-review.rules"
+        base = [
+            "codex", "execpolicy", "check", "--rules", str(rule), "--",
+            "python3", "scripts/adversarial_review.py",
+        ]
+        allowed = subprocess.run(
+            [
+                *base, "run",
+                "--question-file", "runs/reviews/question.txt",
+                "--evidence", "docs/wayfinder/map.md",
+                "--codex-model", "gpt-5.6-sol",
+                "--output", "runs/reviews/example",
+            ],
+            cwd=repo,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+        denied = subprocess.run(
+            [*base, "doctor"],
+            cwd=repo,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+        )
+
+        self.assertEqual(json.loads(allowed.stdout)["decision"], "allow")
+        self.assertEqual(json.loads(denied.stdout)["matchedRules"], [])
+
     def test_evidence_packet_has_hashes_and_stable_line_numbers(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             repo = Path(temporary)
@@ -74,6 +111,39 @@ class AdversarialReviewTest(unittest.TestCase):
             outside.write_text("secret")
             with self.assertRaisesRegex(ReviewError, "escapes"):
                 resolve_evidence(repo, ["../outside.md"])
+
+    def test_rejects_question_file_outside_repository(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            parent = Path(temporary)
+            repo = parent / "repo"
+            repo.mkdir()
+            inside = repo / "runs" / "reviews" / "question.txt"
+            inside.parent.mkdir(parents=True)
+            inside.write_text("question")
+            outside = parent / "outside.txt"
+            outside.write_text("not reviewable")
+
+            self.assertEqual(
+                resolve_repository_file(
+                    repo, "runs/reviews/question.txt", "question file"),
+                inside,
+            )
+            with self.assertRaisesRegex(ReviewError, "escapes"):
+                resolve_repository_file(repo, "../outside.txt", "question file")
+
+    def test_review_output_stays_under_ignored_review_root(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            repo = Path(temporary) / "repo"
+            repo.mkdir()
+
+            self.assertEqual(
+                resolve_review_output(repo, "runs/reviews/route-a"),
+                repo / "runs" / "reviews" / "route-a",
+            )
+            with self.assertRaisesRegex(ReviewError, "must be under"):
+                resolve_review_output(repo, "docs/review-output")
+            with self.assertRaisesRegex(ReviewError, "child directory"):
+                resolve_review_output(repo, "runs/reviews")
 
     def test_dirty_repository_metadata_fingerprints_contents(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

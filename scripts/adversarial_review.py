@@ -201,6 +201,33 @@ def resolve_evidence(repo: Path, requested: list[str]) -> list[Path]:
     return result
 
 
+def resolve_repository_file(repo: Path, requested: str, label: str) -> Path:
+    """Resolve one regular file while keeping it inside the repository."""
+    root = repo.resolve()
+    path = (root / requested).resolve()
+    try:
+        path.relative_to(root)
+    except ValueError as exc:
+        raise ReviewError(f"{label} path escapes the repository: {requested}") from exc
+    if not path.is_file():
+        raise ReviewError(f"{label} path is not a regular file: {requested}")
+    return path
+
+
+def resolve_review_output(repo: Path, requested: str) -> Path:
+    """Keep provider output under the repository's ignored review directory."""
+    review_root = (repo.resolve() / "runs" / "reviews").resolve()
+    output = (repo.resolve() / requested).resolve()
+    try:
+        relative = output.relative_to(review_root)
+    except ValueError as exc:
+        raise ReviewError(
+            f"output path must be under runs/reviews: {requested}") from exc
+    if relative == Path("."):
+        raise ReviewError("output path must name a child directory under runs/reviews")
+    return output
+
+
 def numbered_text(payload: str) -> str:
     return "\n".join(f"{index:06d}: {line}" for index, line in
                      enumerate(payload.splitlines(), start=1))
@@ -582,16 +609,15 @@ def run_review(args: argparse.Namespace, repo: Path) -> int:
     if metadata["dirty"] and not args.allow_dirty:
         raise ReviewError(
             "repository has uncommitted changes; commit them or pass --allow-dirty explicitly")
-    question_path = Path(args.question_file).resolve()
-    if not question_path.is_file():
-        raise ReviewError(f"question file does not exist: {args.question_file}")
+    question_path = resolve_repository_file(
+        repo, args.question_file, "question file")
     question = question_path.read_text()
     evidence = resolve_evidence(repo, args.evidence)
     packet, evidence_records = build_evidence_packet(
         repo, question, evidence, metadata, args.max_evidence_bytes)
     packet_hash = sha256_bytes(packet.encode())
 
-    output_dir = Path(args.output).resolve()
+    output_dir = resolve_review_output(repo, args.output)
     manifest_path = output_dir / "manifest.json"
     requested = {
         "schema_version": SCHEMA_VERSION,

@@ -1,0 +1,16 @@
+# The review harness needs provider network access, which is intentionally
+# outside the normal workspace sandbox.  Its Python entry point constrains all
+# packet inputs to the repository and all outputs to ignored runs/reviews/.
+prefix_rule(
+    pattern = ["python3", "scripts/adversarial_review.py", "run"],
+    decision = "allow",
+    justification = "Run the bounded read-only Sol/Fable provider review harness",
+    match = [
+        "python3 scripts/adversarial_review.py run --question-file runs/reviews/question.txt --evidence docs/wayfinder/map.md --codex-model gpt-5.6-sol --output runs/reviews/example",
+        "python3 scripts/adversarial_review.py run --question-file runs/reviews/question.txt --evidence docs/wayfinder/map.md --codex-model gpt-5.6-sol --output runs/reviews/example --rounds 0",
+    ],
+    not_match = [
+        "python3 scripts/adversarial_review.py doctor",
+        "python3 scripts/wayfinder_status.py",
+    ],
+)

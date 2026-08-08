@@ -22,6 +22,16 @@ transmitted to those providers. Never include secrets, credentials, private
 correspondence, unpublished restricted material, or anything not permitted to
 leave the machine.
 
+The outer Codex workspace sandbox deliberately has no provider network access.
+The project-local rule in `.codex/rules/adversarial-review.rules` permits only
+the exact `python3 scripts/adversarial_review.py run` prefix to cross that
+boundary without a repeated prompt. Codex loads project rules only for a
+trusted checkout and only at session startup. The harness correspondingly
+rejects question files outside the repository and output paths outside the
+ignored `runs/reviews/` tree. Do not wrap the command in `bash`, `nohup`, an
+environment assignment, or another launcher, because that would no longer
+match the narrow rule.
+
 Check installed clients and Claude subscription authentication without
 displaying account identifiers:
 
