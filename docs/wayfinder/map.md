@@ -574,9 +574,17 @@ None. The destination was fixed by the user on 2026-08-01.
   every such `6+7` or `7+6` one-change configuration contains a four-cap, an
   eight-cup, or a strong eight-set. Arbitrary-set transport therefore gives
   `upper.card ≤ 12`, eliminates `10+13`, and narrows an exact 23-vertex root to
-  `11 ≤ lower.card` and `upper.card ≤ 12`. The active target is to classify
-  and eliminate this residual oriented window. The tree-global ledger is
-  parked unless a residual case forces descendant aggregation. No new Hall
+  `11 ≤ lower.card` and `upper.card ≤ 12`. That entire residual window now
+  closes by an elementary three-regime staircase: the children contain
+  crossing cup/cap pairs `(5,3)`, `(6,2)`, or `(7,1)`, each of which glues to
+  a forbidden strong eight-set. Lean proves both
+  `criticalRootImpossible_488` and the unconditional hereditary theorem
+  `decomposableStateUpper_488`; an independent frozen-file review accepted the
+  proof and reported only the standard Lean axioms. Four proposed smaller
+  cup-block shortcuts are separately SAT-refuted. The next bottom-up fixed-`k=8`
+  obstruction is the extreme branch of `(5,7,8)`, before the `(5,8,8)` state
+  that consumes `(4,8,8)` through the higher cone. The tree-global ledger stays
+  parked unless that branch forces descendant aggregation. No new Hall
   theorem or Boolean-code injection is selected. A bounded independent
   lemma-forge pilot rejected duplicate
   four-point localization, parked insertion-signature and universal

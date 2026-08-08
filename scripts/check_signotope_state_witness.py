@@ -62,11 +62,19 @@ def main() -> None:
         if strong:
             strong_sets.append(vertices)
 
+    forced_blocks = manifest.get("forced_blocks", [])
+    bad_forced_blocks = [
+        tuple(vertices)
+        for vertices in forced_blocks
+        if not all(left(triple) for triple in itertools.combinations(vertices, 3))
+    ]
+
     checks = {
         "one_change": not bad_quadruples,
         "no_cap": not caps,
         "no_cup": not cups,
         "no_strong": not strong_sets,
+        "forced_cup_blocks": not bad_forced_blocks,
     }
     result = {
         "schema_version": 1,

@@ -80,5 +80,6 @@ public import ErdosSzekeres.StructuralChargingCentralCut488
 public import ErdosSzekeres.StructuralChargingCapExtremaReserve
 public import ErdosSzekeres.StructuralChargingCupBlocks67
 public import ErdosSzekeres.StructuralChargingCupBlocks67Symbolic
+public import ErdosSzekeres.StructuralChargingResidualWindow488
 public import ErdosSzekeres.StructuralChargingSaturatedResource
 public import ErdosSzekeres.ES5Certificate

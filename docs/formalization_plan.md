@@ -979,13 +979,22 @@ not an external SAT oracle.  Arbitrary-set transport yields
 rules out `10+13`.  At exact total size 23, Lean records the remaining oriented
 window `11 ≤ lower.card` and `upper.card ≤ 12`.
 
-The next transition obligation remains root-local but is narrower: classify
-that residual critical window and select the smallest structural theorem that
-excludes its feasible child-size splits.  A proposed invariant must respect
-the cap/cup asymmetry and be falsified on this exact window before promotion.
-The existing tree-global token carrier remains compiled supporting
-infrastructure and returns to the critical path only if a residual case
-necessarily aggregates charges from descendant nodes.
+`StructuralChargingResidualWindow488.lean` now eliminates the full window.
+For upper sizes `8..12`, `2..7`, and `1`, ordinary cup--cap thresholds provide
+crossing cup/cap pairs `(5,3)`, `(6,2)`, and `(7,1)`.  Each pair has total size
+eight and therefore glues across the root to a forbidden strong eight-set.
+The resulting `criticalRootImpossible_488` and
+`decomposableStateUpper_488` theorems are unconditional; they do not assume
+the strict predecessor pool, sweep realizability, or color duality.  An
+independent frozen-file review reproduced the proof gate and axiom audit.
+
+The next transition obligation remains root-local but advances one level in
+the fixed-`k=8` predecessor order.  The `(5,8,8)` higher-cone consumer needs
+the sum-twelve predecessor layer; `(5,7,8)`, threshold 41, is the smallest new
+structural state.  Elementary index/cup--cap arguments close its nonextreme
+critical splits, leaving the `41+1` singleton-child branch as the next theorem-
+design gate.  The existing tree-global token carrier returns to the critical
+path only if that branch necessarily aggregates descendant charges.
 
 A bounded goal-driven lemma-forge preflight runs separately from that main
 route.  It rejected four-point localization as already compiled, parked

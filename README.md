@@ -552,9 +552,14 @@ sets.
   shows that ordered cup blocks of sizes `6+7` or `7+6` force a four-cap,
   eight-cup, or strong eight-set. Consequently every open upper child has at
   most twelve vertices, `10+13` is impossible, and an exact 23-vertex root is
-  narrowed to `11 ≤ lower.card` and `upper.card ≤ 12`. The active gate is to
-  classify and eliminate that residual oriented window; the tree-global
-  ledger remains parked unless a residual case needs descendant aggregation.
+  narrowed to `11 ≤ lower.card` and `upper.card ≤ 12`.
+  `StructuralChargingResidualWindow488.lean` closes every remaining split by
+  crossing cup/cap pairs `(5,3)`, `(6,2)`, or `(7,1)`, and proves the
+  unconditional hereditary theorem `decomposableStateUpper_488`. The proof is
+  elementary rather than enumerative and passed an independent frozen-file
+  audit. The next bottom-up fixed-`k=8` target is the extreme branch of
+  `(5,7,8)`, before the `(5,8,8)` higher-cone consumer; the tree-global ledger
+  remains parked unless that branch needs descendant aggregation.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

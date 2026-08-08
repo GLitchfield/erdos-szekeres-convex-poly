@@ -1386,9 +1386,20 @@ and seven.  A direct symbolic Lean proof of `CupBlocks67Force488`, including
 reversal and arbitrary-set transport, proves that those blocks force a
 four-cap, eight-cup, or strong eight-set.  Lean consequently proves
 `upper.card ≤ 12`, excludes `10+13`, and records the residual exact-root window
-`11 ≤ lower.card`, `upper.card ≤ 12`.  This ticket remains open: the next
-bounded route decision must classify and eliminate that residual window, not
-mistake closure of one boundary for the full E3 transition.
+`11 ≤ lower.card`, `upper.card ≤ 12`.
+
+Experiment 0062 closes that residual window without the strict predecessor
+pool.  Four smaller normalized cup-block gates are independently SAT-refuted.
+The successful proof instead divides the positive upper sizes into `8..12`,
+`2..7`, and `1`.  Elementary cup--cap thresholds give crossing witnesses
+`(5,3)`, `(6,2)`, and `(7,1)` respectively, so every branch contains a strong
+eight-set.  Lean proves `criticalRootImpossible_488` and lifts it to the
+unconditional hereditary theorem `decomposableStateUpper_488`.  A frozen
+read-only review independently reproduced the build, axiom audit, and branch
+arithmetic.  This ticket remains open because one off-diagonal decomposable
+state is not the uniform E3 transition.  The next bottom-up state is
+`(5,7,8)`: its extreme `41+1` critical split is the first new structural
+obstruction before the `(5,8,8)` higher-cone consumer.
 
 ## Evidence
 
@@ -1478,6 +1489,8 @@ mistake closure of one boundary for the full E3 transition.
 - [Lean pivot-overflow closure](../../../ErdosSzekeres/StructuralChargingPivotOverflow.lean)
 - [Central-cut and ordered `6+7` gate](../../experiments/0061-central-cut-cup-blocks67.md)
 - [Lean symbolic `6+7` proof](../../../ErdosSzekeres/StructuralChargingCupBlocks67Symbolic.lean)
+- [Residual `(4,8,8)` closure](../../experiments/0062-residual-488-cup-cap-staircase.md)
+- [Lean residual closure](../../../ErdosSzekeres/StructuralChargingResidualWindow488.lean)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)
