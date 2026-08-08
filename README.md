@@ -521,9 +521,17 @@ sets.
   parent `u`-cup force fewer than `u` hidden-lower pivots, with a color-dual
   theorem for hidden upper gaps. This rules out the apparent nine-pivot versus
   eight-core leak at `(4,8,8,3,4)`, `10+13`, and constructs one actual
-  published upper slice retaining every pivot. The next gate is the
-  higher-index cone/cup--cap bridge needed when the selected child index is
-  greater than three.
+  published upper slice retaining every pivot.
+  `StructuralChargingHigherCone.lean` now proves the all-parameter cone: no
+  parent `(a+1)`-cap makes the complete hidden-lower pivot seed avoid an
+  `a`-cap, with the color-dual cup theorem. Inherited decomposability plus the
+  strictly smaller `DecomposableStateUpper a u k` sharpens the seed bound to
+  `decomposableThreshold a u k` and constructs one actual selected published
+  slice retaining every pivot. At `(5,8,8)`, this replaces the unusable
+  ordinary bound 28 by 22 against a 23-vertex core. The next gate is to embed
+  this conditional bridge in a well-founded all-parameter state induction and
+  derive the predecessor state and selected-index equations on every saturated
+  branch.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

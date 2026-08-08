@@ -534,11 +534,20 @@ None. The destination was fixed by the user on 2026-08-01.
   seed a cup, so no parent `u`-cup bounds it by `u-1`; Lean proves the
   color-dual result as well. At `(4,8,8,3,4)`, `10+13`, the source count is at
   most seven and all pivots fit in one actual eight-vertex published upper
-  core. The active theorem-design target is the higher-index cone bridge:
-  combine the induced `(a-1)`-cap avoidance with inherited
-  decomposable/one-change structure and a general cup--cap bound, then match
-  that bound to the selected published threshold. No new Hall theorem or
-  Boolean-code injection is selected.
+  core. The higher-index cone bridge now compiles. No parent `(a+1)`-cap makes
+  the complete hidden-lower pivot seed avoid an `a`-cap, with a color-dual cup
+  theorem. Ordinary cup--cap counting is insufficient—at `(5,8,8)` it gives
+  28 against a 23-vertex core—but inherited decomposability and the strictly
+  smaller `DecomposableStateUpper 4 8 8` bound the seed by 22. Uniformly, a
+  predecessor state at the selected index constructs one actual published
+  slice retaining every pivot. The active theorem-design target is now the
+  well-founded state-transition shell: prove that every saturated branch
+  exposes the required strictly smaller predecessor state, the exact selected
+  index, and the corresponding local parent avoidance. No new Hall theorem or
+  Boolean-code injection is selected. A bounded independent lemma-forge pilot
+  rejected duplicate four-point localization, parked insertion-signature and
+  universal binary-fingerprint proposals, and retained only planar
+  rooted-triangle circuit elimination for a sharper consumer audit.
 
 ## Not yet specified
 

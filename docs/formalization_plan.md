@@ -917,6 +917,26 @@ branching inside a Pascal lattice interval, the union of both endpoint lanes,
 or a strict small-owner neighborhood deficiency. A proof based only on the
 length of one lane interval is retired.
 
+The later entering-pivot correction now has a uniform cone bridge.
+`StructuralChargingHigherCone.lean` proves that no parent `(a+1)`-cap makes
+the complete hidden-lower pivot seed avoid an `a`-cap, with the color-dual
+cup statement.  A nonempty seed inherits decomposability from its opposite
+child, so a strictly smaller `DecomposableStateUpper a u k` hypothesis bounds
+the seed by `decomposableThreshold a u k` and constructs an actual published
+slice retaining every pivot.  This is the needed refinement over ordinary
+cup--cap counting: at `(5,8,8)` the respective bounds are 28 and 22, while the
+selected core has 23 vertices.  The next formal obligation is a well-founded
+all-parameter state-transition shell that supplies the predecessor state,
+selected-index equality, and local parent avoidance without assuming E3 at the
+same state.
+
+A bounded goal-driven lemma-forge preflight runs separately from that main
+route.  It rejected four-point localization as already compiled, parked
+insertion-signature and universal binary-fingerprint proposals after their
+consumer audits, and retained only planar rooted-triangle circuit elimination
+for a sharper statement and minimal-counterexample consumer.  This is proposal
+evidence only; no circuit-elimination result is yet claimed.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at
