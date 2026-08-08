@@ -601,7 +601,26 @@ None. The destination was fixed by the user on 2026-08-01.
   lemma-forge pilot rejected duplicate
   four-point localization, parked insertion-signature and universal
   binary-fingerprint proposals, and retained only planar rooted-triangle
-  circuit elimination for a sharper consumer audit.
+  circuit elimination for a sharper consumer audit. A bounded Sol/Fable
+  review then rejected a nine-vertex cap transversal: density forces every
+  transversal to have at least ten vertices, and Lean proves that the proposed
+  nine-transversal gate is equivalent to the full singleton-lower gate.
+  Common-root straddling also makes the existing weakly ordered cap-family
+  capacity theorem vacuous beyond one cap. Threshold-frontier extraction and
+  minimum-span selection compile, but the avoidance-free strict-span
+  recurrence is now refuted in Lean by an exact recursively decomposable
+  `32/23` dense common-cut construction. The construction contains a compiled
+  seven-cup and therefore is not an open `(5,7,8)` counterexample. The
+  surviving open-state reduction chooses a terminal cap: its open span has at
+  most 21 vertices, leaving at least nine genuine outer-tail vertices with
+  only the before/after endpoint bridge failures. At the cap's unique lowest
+  separating tree split, strong-eight avoidance forces either a `1+3` profile
+  with no lower five-cup or a `2+2` profile with no lower six-cup. The strict
+  `(5,5,8)` predecessor further bounds the first lower child by 20. The active
+  lower-tail obstruction is the `2+2`, no-lower-six-cup branch coupled to the
+  terminal cap's nine outer-tail bridges; neither singleton tail is closed.
+  The `41+1` tail has a compiled exact color-dual lower-gate interface and
+  remains separate.
 
 ## Not yet specified
 

@@ -568,8 +568,19 @@ sets.
   23-vertex upper restriction contains a four-cap, every such cap straddles
   the root, and three can be selected disjointly. A checked 13-vertex model
   shows those three caps alone are insufficient, so the lower-tail route must
-  retain the full density and decomposition-tree ownership. The
-  upper-singleton extreme remains separate.
+  retain the full density and decomposition-tree ownership. A nine-vertex
+  transversal and avoidance-free strict span descent are now formally
+  retired: the former is equivalent to the full gate, and an exact
+  recursively decomposable `32/23` common-cut construction refutes the latter
+  in Lean while explicitly containing a seven-cup. The surviving terminal-cap
+  reduction compiles. Its open span has at most 21 vertices, leaving at least
+  nine outer-tail vertices with only the two endpoint bridge failures. At its
+  unique lowest separating tree split, the cap has a `1+3` or `2+2` child
+  profile; strong-eight avoidance forbids respectively a lower five-cup or
+  six-cup, and the strict `(5,5,8)` predecessor bounds the first lower child
+  by 20. The active lower-tail obstruction is the `2+2`, no-six-cup branch.
+  The upper-singleton extreme has an exact color-dual interface but remains
+  separate.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

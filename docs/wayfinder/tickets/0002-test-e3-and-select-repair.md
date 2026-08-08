@@ -1415,6 +1415,33 @@ An independently checked 13-vertex signotope model refutes using only those
 three selected caps. The active theorem-design gate must use the full cap
 density together with decomposition-tree ownership.
 
+A bounded Sol/Fable review rejected the first tree-transversal target. Lean
+now proves the exact obstruction: every cap transversal has cardinality at
+least ten, while the universal nine-transversal gate is equivalent to the
+full singleton-lower gate. Since every upper four-cap straddles the singleton
+root, no two can be weakly ordered, so the existing ordered-family port bound
+does not aggregate this reservoir.
+
+Threshold-frontier extraction now compiles, as did the proposed strict-span
+minimum consumer. The corresponding universal recurrence is false. An exact
+Lean construction on 32 support vertices proves four-cap density in every
+23-subset and a common omitted cut for every four-cap, then refutes strict
+descent by finite minimum span. The same file proves that the construction has
+a seven-cup, so it does not satisfy the actual open-state hypotheses.
+
+The corrected positive reduction is terminal and tree-local rather than a
+new universal descent axiom. Lean chooses a terminal four-cap, proves its open
+endpoint window has at most 21 vertices under inherited seven-cup avoidance,
+and obtains at least nine genuine vertices strictly before or after the cap.
+All nine carry one of the two endpoint bridge failures. At the cap's unique
+lowest separating node, its child profile is `1+3` or `2+2`; strong-eight
+avoidance forbids respectively a lower five-cup or lower six-cup. The strict
+predecessor `(5,5,8)` bounds the lower child by 20 in the `1+3` branch. The
+next lower-tail theorem must consume the remaining `2+2`, no-six-cup branch
+together with the terminal cap's two outer-tail bridge classes. The exact
+`41+1` upper-singleton gate remains separate, with a compiled color-dual
+lower-gate equivalence.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)

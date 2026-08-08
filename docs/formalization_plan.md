@@ -1005,9 +1005,19 @@ selected cups. The first such statement now compiles: `(4,8,8)` makes every
 23-vertex upper restriction contain a four-cap; all upper four-caps straddle
 the root, and three can be selected disjointly. A 13-vertex SAT model shows
 that the selected triple alone is insufficient, so the open step is a
-density-plus-tree-ownership theorem. The upper-singleton extreme requires a
-separate lemma. The tree-global token carrier returns to the critical path if
-the reservoir charge must aggregate across descendants.
+density-plus-tree-ownership theorem. The nine-transversal shortcut is now
+proved equivalent to the full singleton-lower gate. Threshold-frontier
+extraction compiles, but an exact Lean `32/23` decomposable common-cut model
+refutes avoidance-free strict span descent; the model contains a seven-cup and
+therefore is not an open-state counterexample. The surviving reduction selects
+a terminal cap. Its open span is four-cap-free and seven-cup-free, hence has
+cardinality at most 21; after removing the cap endpoints at least nine outer
+tail vertices remain, all in the two endpoint bridge classes. The cap's unique
+lowest separating node has child profile `1+3` with no lower five-cup or
+`2+2` with no lower six-cup. The strict `(5,5,8)` predecessor bounds the first
+lower child by 20. The active proof obligation is the second branch coupled to
+the terminal outer tails. The upper-singleton extreme has a color-dual lower
+interface but still requires a separate proof.
 
 A bounded goal-driven lemma-forge preflight runs separately from that main
 route.  It rejected four-point localization as already compiled, parked

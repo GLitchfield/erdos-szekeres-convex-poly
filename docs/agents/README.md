@@ -79,6 +79,13 @@ The bounded Sol/Fable review remains the strategic gate for selecting or
 changing the main route.  It is not required for ordinary implementation of an
 already-vetted theorem contract.
 
+The project approval rule for the provider harness is
+`.codex/rules/adversarial-review.rules`. Codex loads project rules when a
+session starts; adding or changing this file does not alter permissions in an
+already-running session. `codex execpolicy check` can validate the command
+match immediately, but the operational fix is verified only after a restarted
+session completes a real provider run without an approval prompt.
+
 ## Authority and concurrency
 
 - The orchestrator is the sole integrator and owns every path listed in

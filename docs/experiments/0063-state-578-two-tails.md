@@ -86,11 +86,56 @@ computational counterevidence so far; no Lean refutation of the full tail is
 claimed. Route selection should compare reservoir-aware promotion with a
 minimal-critical-root descent before freezing the next theorem contract.
 
+## Tree and terminal-span audit
+
+The subsequent bounded Sol/Fable review rejected a nine-vertex cap
+transversal: density proves that every cap transversal has at least ten
+vertices, and Lean proves that the proposed universal nine-transversal gate is
+equivalent to the full singleton-lower gate.  Common-root straddling also makes
+the existing weakly ordered cap-family capacity theorem vacuous beyond one
+cap.  Explicit tree ownership and the unique lowest separating address still
+compile, but neither is itself a vertex transversal.
+
+The review's first strict-span descent proposal is false at the exact `32/23`
+constants. `StructuralChargingNextState578SpanCounterexample.lean` constructs
+a 32-vertex recursively decomposable coloring in three blocks of sizes
+`11,11,10`. Lean proves that every 23-subset contains a four-cap, every
+four-cap span contains the same omitted cut, and universal strict span descent
+is impossible. This is a kernel-checked counterexample to the proposed
+recurrence, not to the open `(5,7,8)` state: its 21-vertex lower child is
+cup-colored, and Lean explicitly extracts a seven-cup.
+
+`StructuralChargingNextState578OpenSpan.lean` records the surviving reduction.
+Choose a four-cap of minimum sweep-span width. Its open endpoint window is
+four-cap-free by minimality and seven-cup-free by inheritance, so the compiled
+`(4,7)` one-change theorem bounds that window by 21. At least eleven of the 32
+upper vertices therefore lie outside the open window; after removing the two
+cap endpoints, at least nine genuine tail vertices remain. Every such vertex
+lies strictly before or after the cap and realizes the corresponding endpoint
+bridge failure, reducing the previous nine failure signatures to two.
+
+Allocating the terminal cap to its unique lowest separating tree split gives a
+second compiled invariant. The cap meets the lower and upper children in
+either a `1+3` or `2+2` profile. Strong-eight avoidance forbids a lower-child
+five-cup in the first case and a lower-child six-cup in the second. Under the
+already required strict predecessor state `(5,5,8)`, the first lower child has
+cardinality at most 20. The immediate unresolved branch is therefore the
+lowest-split `2+2` profile with no lower six-cup, coupled to the nine terminal
+outer-tail bridges. No closure of the singleton-lower gate is claimed.
+
+The upper-singleton `41+1` tail now has an exact compiled color-dual interface,
+but remains a separate open obligation.
+
 ## Reproduction
 
 ```bash
 lake build ErdosSzekeres.StructuralChargingNextState578
 lake build ErdosSzekeres.StructuralChargingNextState578Counterexample
+lake build ErdosSzekeres.StructuralChargingNextState578Reservoir
+lake build ErdosSzekeres.StructuralChargingNextState578Threshold
+lake build ErdosSzekeres.StructuralChargingNextState578SpanCounterexample
+lake build ErdosSzekeres.StructuralChargingNextState578OpenSpan
+lake build ErdosSzekeres.StructuralChargingNextState578Dual
 python3 scripts/generate_rooted_cup_blocks_state_sat.py \
   --left 5 --right 5 --cap 5 --cup 7 --strong 8 \
   --output runs/state-578/rooted-cup-blocks-55.cnf
