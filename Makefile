@@ -217,6 +217,8 @@ test: check lean
 		scripts/generate_e3_state466_lean.py \
 		scripts/generate_e3_state566_lean.py \
 		scripts/generate_cup_blocks_state_sat.py \
+		scripts/generate_rooted_forced_sets_state_sat.py \
+		scripts/generate_rooted_cup_blocks_state_sat.py \
 		scripts/generate_es5_sat.py scripts/generate_signotope_state_sat.py \
 		scripts/split_dimacs_units.py scripts/split_lrat_checkpoints.py \
 		scripts/toolchain/unzip scripts/verify_middle_split_bridge_route_model.py \

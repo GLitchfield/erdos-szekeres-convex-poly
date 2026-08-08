@@ -557,9 +557,19 @@ sets.
   crossing cup/cap pairs `(5,3)`, `(6,2)`, or `(7,1)`, and proves the
   unconditional hereditary theorem `decomposableStateUpper_488`. The proof is
   elementary rather than enumerative and passed an independent frozen-file
-  audit. The next bottom-up fixed-`k=8` target is the extreme branch of
-  `(5,7,8)`, before the `(5,8,8)` higher-cone consumer; the tree-global ledger
-  remains parked unless that branch needs descendant aggregation.
+  audit. The next bottom-up fixed-`k=8` target is `(5,7,8)`, before the
+  `(5,8,8)` higher-cone consumer. Its exact critical root has two residual
+  tails: lower sizes `1..10` against upper sizes `41..32`, and the oriented
+  `41+1` extreme. Lean reduces the first family to a singleton-lower `1+32`
+  gate and proves that its two upper sweep sides have sizes `11..21` and each
+  contains a five-cup. The tempting extracted `5+q+5` gate is false: an
+  explicit recursively decomposable 11-vertex counterexample is now proved in
+  Lean. The replacement cap-reservoir invariant now compiles: every
+  23-vertex upper restriction contains a four-cap, every such cap straddles
+  the root, and three can be selected disjointly. A checked 13-vertex model
+  shows those three caps alone are insufficient, so the lower-tail route must
+  retain the full density and decomposition-tree ownership. The
+  upper-singleton extreme remains separate.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

@@ -991,10 +991,23 @@ independent frozen-file review reproduced the proof gate and axiom audit.
 The next transition obligation remains root-local but advances one level in
 the fixed-`k=8` predecessor order.  The `(5,8,8)` higher-cone consumer needs
 the sum-twelve predecessor layer; `(5,7,8)`, threshold 41, is the smallest new
-structural state.  Elementary index/cup--cap arguments close its nonextreme
-critical splits, leaving the `41+1` singleton-child branch as the next theorem-
-design gate.  The existing tree-global token carrier returns to the critical
-path only if that branch necessarily aggregates descendant charges.
+structural state.  Exact index arithmetic closes lower-child sizes `11..40`.
+It leaves two oriented tails: lower sizes `1..10` with upper sizes `41..32`,
+and the extreme `41+1` split.  These are not color-dual within the same state.
+Restricting the first family to one lower and thirty-two upper vertices gives
+the first bounded structural gate. Lean further splits those upper vertices
+into two four-cap-free sweep sides of sizes `11..21`, each containing a
+five-cup. The constant-size `5+q+5` conclusion is nevertheless false:
+`StructuralChargingNextState578Counterexample.lean` proves a recursively
+decomposable 11-vertex counterexample. The next lower-tail statement must keep
+the unused side reservoirs and their recursive ownership rather than only two
+selected cups. The first such statement now compiles: `(4,8,8)` makes every
+23-vertex upper restriction contain a four-cap; all upper four-caps straddle
+the root, and three can be selected disjointly. A 13-vertex SAT model shows
+that the selected triple alone is insufficient, so the open step is a
+density-plus-tree-ownership theorem. The upper-singleton extreme requires a
+separate lemma. The tree-global token carrier returns to the critical path if
+the reservoir charge must aggregate across descendants.
 
 A bounded goal-driven lemma-forge preflight runs separately from that main
 route.  It rejected four-point localization as already compiled, parked

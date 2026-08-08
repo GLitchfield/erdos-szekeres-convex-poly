@@ -68,6 +68,26 @@ def main() -> None:
         for vertices in forced_blocks
         if not all(left(triple) for triple in itertools.combinations(vertices, 3))
     ]
+    forced_cap_blocks = manifest.get("forced_cap_blocks", [])
+    bad_forced_cap_blocks = [
+        tuple(vertices)
+        for vertices in forced_cap_blocks
+        if not all(not left(triple) for triple in itertools.combinations(vertices, 3))
+    ]
+
+    forced_split = manifest.get("forced_singleton_lower_split")
+    bad_root_crossings = []
+    if forced_split is not None:
+        root = forced_split["root"]
+        upper = set(forced_split["upper"])
+        if upper | {root} != set(range(n)) or root in upper:
+            parser.error("forced singleton split does not partition the vertices")
+        for triple in itertools.combinations(range(n), 3):
+            if root not in triple:
+                continue
+            expected = triple[1] == root
+            if left(triple) != expected:
+                bad_root_crossings.append(triple)
 
     checks = {
         "one_change": not bad_quadruples,
@@ -75,6 +95,8 @@ def main() -> None:
         "no_cup": not cups,
         "no_strong": not strong_sets,
         "forced_cup_blocks": not bad_forced_blocks,
+        "forced_cap_blocks": not bad_forced_cap_blocks,
+        "forced_singleton_lower_split": not bad_root_crossings,
     }
     result = {
         "schema_version": 1,

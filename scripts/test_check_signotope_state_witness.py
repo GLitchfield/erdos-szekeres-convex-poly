@@ -48,6 +48,77 @@ class SignotopeStateWitnessCheckerTest(unittest.TestCase):
         self.assertFalse(report["checks"]["forced_cup_blocks"])
         self.assertFalse(report["ok"])
 
+    def run_root_checker(self, literal: int) -> subprocess.CompletedProcess[str]:
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            manifest = directory / "manifest.json"
+            solution = directory / "solution.txt"
+            manifest.write_text(json.dumps({
+                "n": 3,
+                "cap": 4,
+                "cup": 4,
+                "strong": 4,
+                "forced_singleton_lower_split": {
+                    "root": 1,
+                    "upper": [0, 2],
+                },
+            }))
+            solution.write_text(f"s SATISFIABLE\nv {literal} 0\n")
+            return subprocess.run(
+                [sys.executable, str(CHECKER), str(manifest), str(solution)],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+
+    def test_accepts_centered_singleton_lower_crossing(self) -> None:
+        result = self.run_root_checker(1)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads(result.stdout)
+        self.assertTrue(report["checks"]["forced_singleton_lower_split"])
+        self.assertTrue(report["ok"])
+
+    def test_rejects_wrong_centered_singleton_lower_crossing(self) -> None:
+        result = self.run_root_checker(-1)
+        self.assertEqual(result.returncode, 1)
+        report = json.loads(result.stdout)
+        self.assertFalse(report["checks"]["forced_singleton_lower_split"])
+        self.assertFalse(report["ok"])
+
+    def run_cap_checker(self, literal: int) -> subprocess.CompletedProcess[str]:
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            manifest = directory / "manifest.json"
+            solution = directory / "solution.txt"
+            manifest.write_text(json.dumps({
+                "n": 3,
+                "cap": 4,
+                "cup": 4,
+                "strong": 4,
+                "forced_cap_blocks": [[0, 1, 2]],
+            }))
+            solution.write_text(f"s SATISFIABLE\nv {literal} 0\n")
+            return subprocess.run(
+                [sys.executable, str(CHECKER), str(manifest), str(solution)],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+
+    def test_accepts_forced_cap_block(self) -> None:
+        result = self.run_cap_checker(-1)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads(result.stdout)
+        self.assertTrue(report["checks"]["forced_cap_blocks"])
+        self.assertTrue(report["ok"])
+
+    def test_rejects_non_cap_forced_block(self) -> None:
+        result = self.run_cap_checker(1)
+        self.assertEqual(result.returncode, 1)
+        report = json.loads(result.stdout)
+        self.assertFalse(report["checks"]["forced_cap_blocks"])
+        self.assertFalse(report["ok"])
+
 
 if __name__ == "__main__":
     unittest.main()

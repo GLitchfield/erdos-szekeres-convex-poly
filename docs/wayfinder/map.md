@@ -582,9 +582,21 @@ None. The destination was fixed by the user on 2026-08-01.
   `decomposableStateUpper_488`; an independent frozen-file review accepted the
   proof and reported only the standard Lean axioms. Four proposed smaller
   cup-block shortcuts are separately SAT-refuted. The next bottom-up fixed-`k=8`
-  obstruction is the extreme branch of `(5,7,8)`, before the `(5,8,8)` state
-  that consumes `(4,8,8)` through the higher cone. The tree-global ledger stays
-  parked unless that branch forces descendant aggregation. No new Hall
+  state is `(5,7,8)`, before the `(5,8,8)` state that consumes `(4,8,8)`
+  through the higher cone. Exact index arithmetic excludes lower sizes
+  `11..40` but leaves two oriented tails: `1..10` against `41..32`, and
+  `41+1`. Color duality does not identify them inside the asymmetric state.
+  The first bounded gate restricts the small-lower tail to `1+32`. Its two
+  upper sweep sides are four-cap-free, have sizes `11..21`, and each contain a
+  five-cup, but the extracted `5+q+5` force statement is false by an explicit
+  kernel-checked recursively decomposable counterexample. The active lower
+  route now has a compiled cap-reservoir invariant: every 23-vertex upper
+  restriction contains a four-cap, all such caps straddle the root, and three
+  can be selected disjointly. A checked 13-vertex model shows that those three
+  caps alone are insufficient, so the next gate must retain the full density
+  and decomposition-tree ownership. The upper-singleton extreme remains
+  separate. The tree-global ledger returns only if a reservoir charge
+  forces descendant aggregation. No new Hall
   theorem or Boolean-code injection is selected. A bounded independent
   lemma-forge pilot rejected duplicate
   four-point localization, parked insertion-signature and universal

@@ -1398,8 +1398,22 @@ unconditional hereditary theorem `decomposableStateUpper_488`.  A frozen
 read-only review independently reproduced the build, axiom audit, and branch
 arithmetic.  This ticket remains open because one off-diagonal decomposable
 state is not the uniform E3 transition.  The next bottom-up state is
-`(5,7,8)`: its extreme `41+1` critical split is the first new structural
-obstruction before the `(5,8,8)` higher-cone consumer.
+`(5,7,8)`.  Exact published-index arithmetic removes lower sizes `11..40` but
+leaves the small-lower family `1..10` against upper sizes `41..32` as well as
+the extreme `41+1` split.  The two tails are not color-dual within this state.
+Restriction gives a singleton-lower `1+32` gate. Its two upper sweep sides are
+four-cap-free, have sizes `11..21`, and contain five-cups. The extracted
+`5+q+5` local force statement is false: Experiment 0063 supplies both an
+independently checked SAT witness and a Lean proof from an explicit recursive
+decomposition tree. This does not refute the full `1+32` tail. The next
+lower-tail contract must retain the unused side reservoirs; the
+upper-singleton extreme remains a separate obligation before the `(5,8,8)`
+higher-cone consumer. Lean now proves the first reservoir layer: every
+23-vertex upper restriction contains a four-cap by `(4,8,8)`, all such caps
+straddle the singleton root, and three pairwise-disjoint caps can be selected.
+An independently checked 13-vertex signotope model refutes using only those
+three selected caps. The active theorem-design gate must use the full cap
+density together with decomposition-tree ownership.
 
 ## Evidence
 

@@ -104,7 +104,12 @@ formula and not an unrestricted planar upper bound.
 The next consumer named by the higher-cone machinery is `(5,8,8)`, whose
 threshold is 42.  Bottom-up dependency analysis exposes `(5,7,8)`, threshold
 41, as the smallest new fixed-`k=8` predecessor requiring structural work.
-The ordinary cup--cap staircase closes every exact `(5,7,8)` root split except
-the extreme `41+1` branch (and its oriented small-side counterparts require a
-separate audit).  The next frozen theorem-design gate should therefore isolate
-that singleton-child obstruction before claiming the `(5,8,8)` consumer.
+Exact index arithmetic closes lower-child sizes `11..40`, but two oriented
+tails remain: lower sizes `1..10` against upper sizes `41..32`, and the extreme
+`41+1` split.  Color duality swaps the state to `(7,5,8)` and therefore cannot
+merge these obligations.  Restriction reduces the first tail to a
+singleton-lower `1+32` gate; the upper-singleton extreme needs a separate
+lemma. Experiment 0063 proves the exact two-tail reduction and kernel-checks a
+counterexample to the first extracted `5+q+5` shortcut. The full `1+32` route
+therefore has to retain its unused side reservoirs before claiming the
+`(5,8,8)` consumer.
