@@ -1,0 +1,2 @@
+id,estimated_at,started_at,finished_at,category,description,forecast_low_minutes,forecast_high_minutes,actual_wall_minutes,paused_minutes,status,outcome,error_ratio,notes
+2026-08-07-root-local-overnight,2026-08-07T23:21:16-04:00,2026-08-08T08:14:03-04:00,2026-08-08T10:35:25-04:00,mixed-research,Eight-item root-local run/excess overnight batch,330,480,141,63,completed,proved,0.193,Uncalibrated forecast was much too long; a 923-second certificate-encoding build was an outlier and the direct symbolic proof displaced the heavier fallback

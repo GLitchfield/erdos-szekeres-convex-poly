@@ -37,6 +37,10 @@ and collaborative in explaining why a route is being pursued or retired.
   proposal through adversarial review before allocating build work.
 - Serialize integration, shared-file edits, full builds, tests, and Git work.
 - Explain route choices in terms of the Wayfinder, not agent popularity.
+- Record every substantial time forecast and its actual in
+  `docs/agents/time-estimates.csv`, following `time-estimation.md`. Distinguish
+  elapsed critical-path time from summed task effort, and calibrate future
+  estimates from completed comparable rows rather than intuition.
 
 ## Goal-driven lemma forge
 

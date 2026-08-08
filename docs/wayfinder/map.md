@@ -564,11 +564,20 @@ None. The destination was fixed by the user on 2026-08-01.
   `bf8dfc26718600f2874fb8530fef8e097c3db89f3bd1197cea9882b9579e16cd`
   returned Fable `GO` and Sol `MODIFY`; both prioritized the root-local route
   and treated the interface as architectural rather than the missing
-  combinatorics. The active target is a one-split run-length or excess theorem
-  coupling current-root hidden pivots, retained-core capacity, and the two
-  child sizes strongly enough to exclude the exact boundary. The tree-global
-  ledger is parked unless this local proof forces descendant aggregation. No
-  new Hall theorem or Boolean-code injection is selected. A bounded independent
+  combinatorics. The ensuing exact accounting compiles: visible and hidden
+  child adjacencies partition the source gaps, and residual payment is
+  equivalent to a visible-core bound. The central-cut theorem refutes that
+  payment at `(4,8,8)`, `10+13`: there is at most one hidden lower gap and at
+  least eight visible adjacencies. A two-extrema core reserve is valid but too
+  weak. The cut instead produces ordered upper cup blocks of sizes six and
+  seven. `StructuralChargingCupBlocks67Symbolic.lean` proves directly that
+  every such `6+7` or `7+6` one-change configuration contains a four-cap, an
+  eight-cup, or a strong eight-set. Arbitrary-set transport therefore gives
+  `upper.card ≤ 12`, eliminates `10+13`, and narrows an exact 23-vertex root to
+  `11 ≤ lower.card` and `upper.card ≤ 12`. The active target is to classify
+  and eliminate this residual oriented window. The tree-global ledger is
+  parked unless a residual case forces descendant aggregation. No new Hall
+  theorem or Boolean-code injection is selected. A bounded independent
   lemma-forge pilot rejected duplicate
   four-point localization, parked insertion-signature and universal
   binary-fingerprint proposals, and retained only planar rooted-triangle

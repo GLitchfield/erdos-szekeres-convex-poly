@@ -958,15 +958,34 @@ coloring or a `DecompositionTree`, but it refutes any direct inference from
 fixed-split pivot injectivity to untagged injectivity over arbitrary nested
 split data.
 
-The active transition obligation is therefore root-local. The next theorem
-must use the order of the root merge word, its hidden/nonhidden runs, or an
-equivalent excess statistic to show that a saturated pivot-containing core
-pays enough of the two-child excess to rule out the exact boundary split. It
-may use the strict predecessor state and current-root avoidance already exposed
-by the dispatcher, but it must not assume the outer state. The existing
-tree-global token carrier remains compiled supporting infrastructure and will
-return to the critical path only if this one-split proof necessarily aggregates
-charges from descendant nodes.
+The root-local audit has now advanced beyond that scalar obstruction.
+`StructuralChargingVisibleAdjacency.lean` and
+`StructuralChargingResidualBudget.lean` prove that hidden-pivot payment is
+equivalent to a visible-adjacency bound.  At the `10+13` boundary,
+`StructuralChargingCentralCut488.lean` proves the opposite: the central cut
+allows at most one hidden lower adjacency and forces at least eight visible
+ones, so the three-vertex lower residual cannot be paid.  A valid two-extrema
+reserve in `StructuralChargingCapExtremaReserve.lean` improves only to a
+six-pivot bound and is also insufficient.
+
+The same cut supplies the successful replacement.  It partitions the thirteen
+upper vertices into two ordered cup blocks of sizes six and seven.
+`StructuralChargingCupBlocks67Symbolic.lean` proves directly, from the
+one-change law, that ordered `6+7` or `7+6` cup blocks force a four-cap, an
+eight-cup, or a strong eight-set.  The proof uses consecutive-chain extension,
+two explicit strong-eight configurations, and five terminal cup cases; it is
+not an external SAT oracle.  Arbitrary-set transport yields
+`upper.card ≤ 12` at every open `(4,8,8)` root with nonempty lower child, hence
+rules out `10+13`.  At exact total size 23, Lean records the remaining oriented
+window `11 ≤ lower.card` and `upper.card ≤ 12`.
+
+The next transition obligation remains root-local but is narrower: classify
+that residual critical window and select the smallest structural theorem that
+excludes its feasible child-size splits.  A proposed invariant must respect
+the cap/cup asymmetry and be falsified on this exact window before promotion.
+The existing tree-global token carrier remains compiled supporting
+infrastructure and returns to the critical path only if a residual case
+necessarily aggregates charges from descendant nodes.
 
 A bounded goal-driven lemma-forge preflight runs separately from that main
 route.  It rejected four-point localization as already compiled, parked

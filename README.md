@@ -539,13 +539,22 @@ sets.
   threshold, the full hereditary state is equivalent to one root-local
   transition whose two children already satisfy the outer bound. It also
   extracts an exact threshold-plus-one subsplit and turns simultaneous pivot
-  retention into a source-count bound. The latter is not enough by itself:
-  the scalar `10+13` boundary at `(4,8,8)` remains arithmetically consistent.
+  retention into a source-count bound. The latter is not enough by itself.
   `StructuralChargingTreePivotCounterexample.lean` additionally shows that
   canonical pivot values can collide across nested set-level split data, so
-  untagged all-node pivot injectivity is unavailable. The active gate is now a
-  root-local run-length or excess theorem at one split; the tree-global ledger
-  is parked unless that local proof genuinely needs descendant aggregation.
+  untagged all-node pivot injectivity is unavailable.
+  `StructuralChargingVisibleAdjacency.lean` through
+  `StructuralChargingCapExtremaReserve.lean` make the proposed one-split
+  payment exact and then refute it at the `(4,8,8)`, `10+13` boundary: the
+  central cut leaves at most one hidden lower gap and at least eight visible
+  lower adjacencies. The successful replacement is
+  `StructuralChargingCupBlocks67Symbolic.lean`. Its direct symbolic Lean proof
+  shows that ordered cup blocks of sizes `6+7` or `7+6` force a four-cap,
+  eight-cup, or strong eight-set. Consequently every open upper child has at
+  most twelve vertices, `10+13` is impossible, and an exact 23-vertex root is
+  narrowed to `11 ≤ lower.card` and `upper.card ≤ 12`. The active gate is to
+  classify and eliminate that residual oriented window; the tree-global
+  ledger remains parked unless a residual case needs descendant aggregation.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

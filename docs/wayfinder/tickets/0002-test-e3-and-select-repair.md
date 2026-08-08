@@ -1376,6 +1376,20 @@ block size. Independent cell-mask and boundary-slot calculations agree. The
 active proof must therefore retain lattice branching, combine both lanes, or
 derive a strict deficiency in the incidence graph of block-small owners.
 
+Experiment 0061 resolves the first root-local boundary without reviving the
+tree-global ledger.  Exact visible/hidden accounting shows that the proposed
+residual payment is false at `(4,8,8)`, `10+13`: the central cut permits at most
+one hidden lower adjacency and forces at least eight visible ones.  Two
+nonpivot cap extrema give a valid but insufficient reserve.  The same cut
+partitions the thirteen upper vertices into ordered cup blocks of sizes six
+and seven.  A direct symbolic Lean proof of `CupBlocks67Force488`, including
+reversal and arbitrary-set transport, proves that those blocks force a
+four-cap, eight-cup, or strong eight-set.  Lean consequently proves
+`upper.card ≤ 12`, excludes `10+13`, and records the residual exact-root window
+`11 ≤ lower.card`, `upper.card ≤ 12`.  This ticket remains open: the next
+bounded route decision must classify and eliminate that residual window, not
+mistake closure of one boundary for the full E3 transition.
+
 ## Evidence
 
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
@@ -1462,6 +1476,8 @@ derive a strict deficiency in the incidence graph of block-small owners.
 - [Lean selected-branch pivot repair](../../../ErdosSzekeres/StructuralChargingSelectedBranchPivot.lean)
 - [Pivot-cone capacity gate](../../experiments/0056-pivot-cone-capacity.md)
 - [Lean pivot-overflow closure](../../../ErdosSzekeres/StructuralChargingPivotOverflow.lean)
+- [Central-cut and ordered `6+7` gate](../../experiments/0061-central-cut-cup-blocks67.md)
+- [Lean symbolic `6+7` proof](../../../ErdosSzekeres/StructuralChargingCupBlocks67Symbolic.lean)
 - [Facing-lane gap-witness manifest](../../../data/derived/e3-reflected-facing-lane-gap-witness-frozen-n12-k7.json)
 - [Formalization plan](../../formalization_plan.md)
 - [Literature review](../../literature_review.md)

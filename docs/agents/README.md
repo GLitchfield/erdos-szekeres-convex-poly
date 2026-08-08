@@ -66,6 +66,15 @@ substitutes for either artifact.
 9. **Record.** Promote durable conclusions into the canonical project artifact.
    Retain negative results when they rule out a documented route.
 
+## Estimate calibration
+
+Every work item forecast at fifteen minutes or more must be entered in
+`time-estimates.csv` before execution and closed with its actual wall time and
+outcome. Follow `time-estimation.md`. Multi-agent task effort is not elapsed
+time: overlapping work is counted by its critical path, and an unused stop
+budget is not reported as time consumed. Plans without three comparable
+completed rows must be labeled uncalibrated.
+
 The bounded Sol/Fable review remains the strategic gate for selecting or
 changing the main route.  It is not required for ordinary implementation of an
 already-vetted theorem contract.
