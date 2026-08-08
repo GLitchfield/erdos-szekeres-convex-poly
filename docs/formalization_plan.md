@@ -925,10 +925,25 @@ child, so a strictly smaller `DecomposableStateUpper a u k` hypothesis bounds
 the seed by `decomposableThreshold a u k` and constructs an actual published
 slice retaining every pivot.  This is the needed refinement over ordinary
 cup--cap counting: at `(5,8,8)` the respective bounds are 28 and 22, while the
-selected core has 23 vertices.  The next formal obligation is a well-founded
-all-parameter state-transition shell that supplies the predecessor state,
-selected-index equality, and local parent avoidance without assuming E3 at the
-same state.
+selected core has 23 vertices.
+
+`StructuralChargingSaturatedPredecessor.lean` discharges the local
+well-founded-shell obligation. The saturated-branch validity equations imply
+strict selected-index descent and strict decrease of `a + u`. On each branch
+they rewrite outer cap or cup avoidance into the exact successor hypothesis of
+the higher cone and select a pivot-containing published core from only the
+corresponding strict predecessor state. A combined theorem uses the unique
+saturated branch and a single strong-induction hypothesis over `a + u`; it
+never assumes the outer state. Core reselection preserves the deterministic
+published index and cardinality, not core identity.
+
+The remaining transition obligation is tree-global payment compatibility.
+The conserved token development proves immutable leaf-owner nonreuse, while
+the selected-branch development proves local injectivity of entering pivots
+and their simultaneous retention in one selected core. The next theorem must
+connect those layers across ancestor and descendant nodes, or replace them by
+an equivalent globally owned pivot charge, so that local core capacity can be
+summed without reuse and yield the outer `DecomposableStateUpper a u k`.
 
 A bounded goal-driven lemma-forge preflight runs separately from that main
 route.  It rejected four-point localization as already compiled, parked

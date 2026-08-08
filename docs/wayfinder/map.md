@@ -540,14 +540,23 @@ None. The destination was fixed by the user on 2026-08-01.
   28 against a 23-vertex core—but inherited decomposability and the strictly
   smaller `DecomposableStateUpper 4 8 8` bound the seed by 22. Uniformly, a
   predecessor state at the selected index constructs one actual published
-  slice retaining every pivot. The active theorem-design target is now the
-  well-founded state-transition shell: prove that every saturated branch
-  exposes the required strictly smaller predecessor state, the exact selected
-  index, and the corresponding local parent avoidance. No new Hall theorem or
-  Boolean-code injection is selected. A bounded independent lemma-forge pilot
-  rejected duplicate four-point localization, parked insertion-signature and
-  universal binary-fingerprint proposals, and retained only planar
-  rooted-triangle circuit elimination for a sharper consumer audit.
+  slice retaining every pivot. The well-founded state-transition shell now
+  compiles: validity of either saturated branch gives the exact successor
+  equality, strict descent of the joint measure `a + u`, and the corresponding
+  local parent avoidance. Using only a strictly smaller predecessor state,
+  Lean selects an actual published core containing every canonical pivot; a
+  single dispatcher first chooses the unique valid saturated branch. An
+  independent frozen-diff review accepted the equality directions,
+  predecessor uses, compilation, and axiom profile. The result is still
+  conditional machinery, not the outer state. The active target is now a
+  tree-global pivot-payment compatibility law: link immutable conserved gap
+  tokens or leaf owners to the entering pivots retained by selected cores, and
+  prove nonreuse across ancestor and descendant nodes so local capacity can
+  close the outer transition. No new Hall theorem or Boolean-code injection is
+  selected. A bounded independent lemma-forge pilot rejected duplicate
+  four-point localization, parked insertion-signature and universal
+  binary-fingerprint proposals, and retained only planar rooted-triangle
+  circuit elimination for a sharper consumer audit.
 
 ## Not yet specified
 

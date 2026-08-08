@@ -528,10 +528,15 @@ sets.
   strictly smaller `DecomposableStateUpper a u k` sharpens the seed bound to
   `decomposableThreshold a u k` and constructs one actual selected published
   slice retaining every pivot. At `(5,8,8)`, this replaces the unusable
-  ordinary bound 28 by 22 against a 23-vertex core. The next gate is to embed
-  this conditional bridge in a well-founded all-parameter state induction and
-  derive the predecessor state and selected-index equations on every saturated
-  branch.
+  ordinary bound 28 by 22 against a 23-vertex core.
+  `StructuralChargingSaturatedPredecessor.lean` now embeds this bridge in the
+  required well-founded shell. Validity of either saturated branch gives the
+  exact successor equality, strict descent in `a + u`, and the local parent
+  avoidance needed to select a pivot-containing core using only a strictly
+  smaller state. A single dispatcher chooses the unique valid branch. This is
+  conditional induction machinery, not the outer E3 transition: the next gate
+  is a tree-global payment/nonreuse theorem linking conserved gap tokens to
+  active pivots retained in selected cores.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
