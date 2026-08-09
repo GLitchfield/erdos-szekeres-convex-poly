@@ -602,6 +602,15 @@ sets.
   The pre-vetted overflow has therefore moved to the upper-singleton extreme:
   Lean reduces its `41+1` color-dual tail to an exact 32-vertex swapped gate
   and proves four-cup density in every decomposable 23-vertex restriction.
+  Conditional on the strict `(4,5,8)` predecessor, that reservoir now has a
+  compiling global packing of three disjoint four-cups and three further
+  disjoint four-caps. Pairwise lowest joint splits, dual endpoint laws, and a
+  six-witness common-split defense compile. A target-free reverse-separated
+  pair formally expires address equality alone. Regenerating a cap inside the
+  12 cup vertices leaves the precise next obstruction: it misses one cup or
+  meets the three in profile `2+1+1`. The active theorem must use recursive
+  decomposability to eliminate those branches; a signotope-only version is
+  refuted by bounded computation.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

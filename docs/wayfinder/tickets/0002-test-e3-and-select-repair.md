@@ -1485,6 +1485,20 @@ exact 32-vertex color-dual `(7,5,8)` lower gate, whose every decomposable
 23-subset contains a four-cup. Reviewer agreement is advisory; the positive
 and negative mathematical claims above are separate compiling Lean theorems.
 
+Experiment 0067 converts that density into a global witness supply. Assuming
+the strict `(4,5,8)` predecessor, Lean extracts three disjoint four-cups and,
+from the residual sizes `20`, `16`, and `12`, three further disjoint
+four-caps. Pairwise lowest joint splits and their endpoint patterns compile,
+as does a six-witness common-split defense. A kernel-checked eight-vertex
+reverse-separated pair expires synchronization by address equality alone.
+Regenerating a cap inside the 12 cup vertices leaves one exact alternative:
+it misses a selected cup or meets the three cups in profile `2+1+1`. A
+target-free signotope realizes the latter but is not decomposable; 50,000
+bounded decomposable samples found no witness. The batch is Outcome 2, a
+reusable structural advance, not closure of the singleton tail. The active
+contract must use recursive decomposability essentially to eliminate both
+regeneration branches or derive a named child-capacity violation.
+
 ## Evidence
 
 - [Terminal-tail capacity and private caps](../../experiments/0065-state-578-terminal-tail-capacity.md)
@@ -1495,6 +1509,9 @@ and negative mathematical claims above are separate compiling Lean theorems.
 - [Whole-private-cap traces and route expiry](../../experiments/0066-state-578-private-cap-traces.md)
 - [Lean whole-private-cap traces](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTrace.lean)
 - [Lean true-peel/later-false-owner counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTraceCounterexample.lean)
+- [Dual packing and regeneration](../../experiments/0067-state-578-dual-packing.md)
+- [Lean dual packing](../../../ErdosSzekeres/StructuralChargingNextState578DualPacking.lean)
+- [Lean reverse-separated pair](../../../ErdosSzekeres/StructuralChargingNextState578DualPackingCounterexample.lean)
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
 - [`ErdosSzekeres.E3FiniteReduction`](../../../ErdosSzekeres/E3FiniteReduction.lean)
 - [Lean span-dominance pruning](../../../ErdosSzekeres/SpanDominance.lean)

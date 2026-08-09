@@ -1037,9 +1037,17 @@ vertices misses some residual cap, but does not control overlap among the six
 chosen private caps. Following the recorded fallback order, the active branch
 is now the `41+1` extreme. It reduces by restriction and color duality to an
 exact 32-vertex singleton-lower `(7,5,8)` gate; every decomposable 23-subset of
-that reservoir contains a four-cup. The next missing bridge is a consumer of
-this dense cup reservoir that respects the singleton orientation; no common
-straddling-cut property has been proved.
+that reservoir contains a four-cup. Conditional on the strict `(4,5,8)`
+predecessor, Lean now turns this into three disjoint four-cups and three
+further disjoint four-caps. Pairwise lowest joint splits, dual endpoint laws,
+and a six-witness common-split defense compile, but a target-free reverse
+separation counterexample expires address equality as a closure mechanism.
+Regenerating a cap inside the 12 cup vertices gives the exact next residual:
+the cap misses one cup or has intersection profile `2+1+1`. A target-free
+signotope realizes the latter without being recursively decomposable, while a
+bounded 50,000-tree decomposable sample found no witness. The next missing
+bridge must therefore use recursive decomposability essentially to eliminate
+both regeneration branches or derive a named child-capacity violation.
 
 A bounded goal-driven lemma-forge preflight runs separately from that main
 route.  It rejected four-point localization as already compiled, parked

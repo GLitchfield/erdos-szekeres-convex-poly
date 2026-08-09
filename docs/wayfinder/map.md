@@ -648,7 +648,18 @@ None. The destination was fixed by the user on 2026-08-01.
   cap, but cannot bound overlap among the six chosen caps. The active overflow
   is therefore the `41+1` tail. It now reduces to an exact 32-vertex
   color-dual `(7,5,8)` singleton-lower gate, and every decomposable 23-subset
-  of that reservoir contains a four-cup. Neither singleton tail is closed.
+  of that reservoir contains a four-cup. Conditional on the strict `(4,5,8)`
+  predecessor, that density now yields three disjoint four-cups and three
+  further disjoint four-caps. Their first joint splits obey exact endpoint
+  classifiers, and any common split carries a three-vertex defense on one
+  color. Pairwise address synchronization is nevertheless expired: Lean
+  certifies a target-free reverse-separated cup--cap pair. Regenerating a cap
+  inside the 12 cup vertices leaves the precise disjoint-cup or `2+1+1`
+  incidence alternative. A target-free signotope realizes the latter but is
+  not recursively decomposable, while a bounded 50,000-tree decomposable
+  sample found no witness. The active theorem must therefore use recursive
+  decomposability essentially to eliminate those two regeneration branches;
+  neither singleton tail is closed.
 
 ## Not yet specified
 
