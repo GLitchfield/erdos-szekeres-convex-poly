@@ -719,8 +719,18 @@ None. The destination was fixed by the user on 2026-08-01.
   in the unused eight vertices and must meet the selected six-cap support.
   This supplies a genuine crossing row of the full matrix. The next target is
   to consume that row at the common-minimum node using full-matrix cap
-  localization and the at-most-eight child theorem. This is Outcome 1 for the
-  selected local theorem and Outcome 2 for the still-open state-578 route.
+  localization and the at-most-eight child theorem. The full-family
+  localization and complementary-child boundary now compile. In a localized
+  branch each residual row is wholly inside the large child or stays at the
+  minimum in all six columns, with the exact endpoint/reverse-separation
+  profile retained at every base cell. A kernel-checked relaxed 32-vertex
+  model proves that crossing the selected `24+8` support split need not meet
+  the small decomposition child; an all-base address model also satisfies the
+  bare prefix contracts. Thus address-only closure is expired. The pending
+  bounded route decision compares a 24-row cap-vertex-deletion ledger,
+  boundary swaps exposing private blockers, and cap-path first-exit charging.
+  This is Outcome 1 for the selected local theorem and Outcome 2 for the
+  still-open state-578 route.
 
 ## Not yet specified
 

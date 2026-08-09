@@ -343,6 +343,18 @@ theorem rootLowerSingleton_fourCupFamily_has_threeTransversal_or_cupFive
 
 /-! ## Witness-carrying address classification -/
 
+/-- Every indexed cap block lies in the union of all six saturated blocks. -/
+theorem SixCapSaturation578.capAt_subset_capSupport
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    (saturation : SixCapSaturation578 χ support) (j : Fin 6) :
+    saturation.capAt j ⊆ saturation.capSupport := by
+  intro x hx
+  fin_cases j <;>
+    simp [SixCapSaturation578.capAt, SixCapSaturation578.capSupport,
+      SevenWitnessRegenerationPacking578.fourCapSupport,
+      ThreeDisjointCupCapFourPacking578.capSupport] at hx ⊢ <;>
+    simp_all
+
 /-- The indexed cap family really covers the entire six-cap support. -/
 theorem SixCapSaturation578.capSupport_subset_of_all_capAt_subset
     {n : ℕ} {χ : TripleColoring n} {support target : Finset (Fin n)}
@@ -747,6 +759,37 @@ theorem FullResidualCupSixCapAddressMatrix578.commonMinimum_nonempty
     matrix.row_paths_comparable matrix.column_paths_comparable
   exact ⟨{ row := row, column := column, minimal := hminimal }⟩
 
+/-- Strict descent from the full residual-family minimum localizes the
+associated residual cup and cap block in the lower child. -/
+theorem FullResidualCupSixCapCommonMinimum578.cell_union_subset_lower_of_extends
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    {joint : PrivateCupStarSixCapState578 χ support}
+    {tree : DecompositionTree χ support}
+    {matrix : FullResidualCupSixCapAddressMatrix578 joint tree}
+    (minimum : FullResidualCupSixCapCommonMinimum578 matrix)
+    {cup : joint.ResidualCupIndex} {j : Fin 6} {tail : List Bool}
+    (hextends : (matrix.cell cup j).path =
+      (matrix.cell minimum.row minimum.column).path ++ false :: tail) :
+    cup.1 ∪ joint.saturation.capAt j ⊆
+      (matrix.cell minimum.row minimum.column).node.lower :=
+  (matrix.cell cup j).allocated.subset_lower_of_path_eq_append_false
+    (matrix.cell minimum.row minimum.column).lookup hextends
+
+/-- The upper-child counterpart of full residual-family localization. -/
+theorem FullResidualCupSixCapCommonMinimum578.cell_union_subset_upper_of_extends
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    {joint : PrivateCupStarSixCapState578 χ support}
+    {tree : DecompositionTree χ support}
+    {matrix : FullResidualCupSixCapAddressMatrix578 joint tree}
+    (minimum : FullResidualCupSixCapCommonMinimum578 matrix)
+    {cup : joint.ResidualCupIndex} {j : Fin 6} {tail : List Bool}
+    (hextends : (matrix.cell cup j).path =
+      (matrix.cell minimum.row minimum.column).path ++ true :: tail) :
+    cup.1 ∪ joint.saturation.capAt j ⊆
+      (matrix.cell minimum.row minimum.column).node.upper :=
+  (matrix.cell cup j).allocated.subset_upper_of_path_eq_append_true
+    (matrix.cell minimum.row minimum.column).lookup hextends
+
 /-- If strict cells occur in both directions below the full-family minimum,
 every cell of the distinguished spine row remains at that minimum. -/
 theorem FullResidualCupSixCapCommonMinimum578.spineRow_eq_base_of_oppositeExtensions
@@ -839,6 +882,229 @@ theorem FullResidualCupSixCapCommonMinimum578.oneSided_or_spinePlateau
     · cases direction with
       | false => exact (hfalse ⟨cup, j, tail, by simpa [base] using hstep⟩).elim
       | true => exact Or.inr ⟨tail, hstep⟩
+
+/-- The full-family collective output.  A one-sided matrix either places all
+six cap blocks in one child or leaves one complete cap column at the common
+minimum.  Mixed directions retain the already-proved distinguished spine-row
+plateau. -/
+theorem FullResidualCupSixCapCommonMinimum578.localizedCaps_or_minimumColumn_or_spinePlateau
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    {joint : PrivateCupStarSixCapState578 χ support}
+    {tree : DecompositionTree χ support}
+    {matrix : FullResidualCupSixCapAddressMatrix578 joint tree}
+    (minimum : FullResidualCupSixCapCommonMinimum578 matrix)
+    (hone : (joint.saturation.state.packing.fullCupSpines
+      joint.ledger.transversal).card = 1) :
+    (joint.saturation.capSupport ⊆
+        (matrix.cell minimum.row minimum.column).node.lower ∧
+      24 ≤ (matrix.cell minimum.row minimum.column).node.lower.card) ∨
+    (joint.saturation.capSupport ⊆
+        (matrix.cell minimum.row minimum.column).node.upper ∧
+      24 ≤ (matrix.cell minimum.row minimum.column).node.upper.card) ∨
+    (∃ j, ∀ cup, (matrix.cell cup j).path =
+      (matrix.cell minimum.row minimum.column).path) ∨
+    (∀ j, (matrix.cell joint.spineResidualIndex j).path =
+      (matrix.cell minimum.row minimum.column).path) := by
+  classical
+  rcases minimum.oneSided_or_spinePlateau hone with
+    hright | hleft | hspine
+  · by_cases hall : ∀ j, ∃ cup tail,
+        (matrix.cell cup j).path =
+          (matrix.cell minimum.row minimum.column).path ++ true :: tail
+    · right
+      left
+      have hsub : joint.saturation.capSupport ⊆
+          (matrix.cell minimum.row minimum.column).node.upper := by
+        apply joint.saturation.capSupport_subset_of_all_capAt_subset
+        intro j
+        obtain ⟨cup, tail, hstrict⟩ := hall j
+        exact Finset.subset_union_right.trans
+          (minimum.cell_union_subset_upper_of_extends hstrict)
+      exact ⟨hsub, by
+        have hcard := Finset.card_le_card hsub
+        rw [joint.saturation.capSupport_card] at hcard
+        exact hcard⟩
+    · push Not at hall
+      right
+      right
+      left
+      obtain ⟨j, hj⟩ := hall
+      refine ⟨j, fun cup ↦ ?_⟩
+      rcases hright cup j with heq | ⟨tail, hstrict⟩
+      · exact heq
+      · exact (hj cup tail hstrict).elim
+  · by_cases hall : ∀ j, ∃ cup tail,
+        (matrix.cell cup j).path =
+          (matrix.cell minimum.row minimum.column).path ++ false :: tail
+    · left
+      have hsub : joint.saturation.capSupport ⊆
+          (matrix.cell minimum.row minimum.column).node.lower := by
+        apply joint.saturation.capSupport_subset_of_all_capAt_subset
+        intro j
+        obtain ⟨cup, tail, hstrict⟩ := hall j
+        exact Finset.subset_union_right.trans
+          (minimum.cell_union_subset_lower_of_extends hstrict)
+      exact ⟨hsub, by
+        have hcard := Finset.card_le_card hsub
+        rw [joint.saturation.capSupport_card] at hcard
+        exact hcard⟩
+    · push Not at hall
+      right
+      right
+      left
+      obtain ⟨j, hj⟩ := hall
+      refine ⟨j, fun cup ↦ ?_⟩
+      rcases hleft cup j with heq | ⟨tail, hstrict⟩
+      · exact heq
+      · exact (hj cup tail hstrict).elim
+  · exact Or.inr (Or.inr (Or.inr hspine))
+
+/-- At a node of a 32-vertex decomposition tree, a lower child of size at
+least 24 leaves at most eight vertices in the upper child. -/
+theorem DecompositionTree.upper_card_le_eight_of_twentyFour_le_lower_at_32
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    (tree : DecompositionTree χ support) {path : List Bool}
+    {node : DecompositionSplit χ}
+    (hlookup : tree.splitAtPath path = some node)
+    (hcard : support.card = 32) (hlower : 24 ≤ node.lower.card) :
+    node.upper.card ≤ 8 := by
+  have hnodeCard := Finset.card_le_card
+    (tree.splitAtPath_support_subset hlookup)
+  rw [Finset.card_union_of_disjoint node.deep.disjoint, hcard] at hnodeCard
+  omega
+
+/-- The symmetric complementary-child capacity bound. -/
+theorem DecompositionTree.lower_card_le_eight_of_twentyFour_le_upper_at_32
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    (tree : DecompositionTree χ support) {path : List Bool}
+    {node : DecompositionSplit χ}
+    (hlookup : tree.splitAtPath path = some node)
+    (hcard : support.card = 32) (hupper : 24 ≤ node.upper.card) :
+    node.lower.card ≤ 8 := by
+  have hnodeCard := Finset.card_le_card
+    (tree.splitAtPath_support_subset hlookup)
+  rw [Finset.card_union_of_disjoint node.deep.disjoint, hcard] at hnodeCard
+  omega
+
+/-- If all six cap blocks lie in the lower child, a residual row is either
+wholly local to that child or every one of its cells is exactly the common
+minimum.  Merely meeting the global cap support does not select the second
+alternative. -/
+theorem FullResidualCupSixCapCommonMinimum578.cup_subset_lower_or_rowPlateau_of_capSupport_subset_lower
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    {joint : PrivateCupStarSixCapState578 χ support}
+    {tree : DecompositionTree χ support}
+    {matrix : FullResidualCupSixCapAddressMatrix578 joint tree}
+    (minimum : FullResidualCupSixCapCommonMinimum578 matrix)
+    (hcaps : joint.saturation.capSupport ⊆
+      (matrix.cell minimum.row minimum.column).node.lower)
+    (cup : joint.ResidualCupIndex) :
+    cup.1 ⊆ (matrix.cell minimum.row minimum.column).node.lower ∨
+      ∀ j, (matrix.cell cup j).path =
+        (matrix.cell minimum.row minimum.column).path := by
+  by_cases hcupLower :
+      cup.1 ⊆ (matrix.cell minimum.row minimum.column).node.lower
+  · exact Or.inl hcupLower
+  · right
+    intro j
+    rcases list_eq_or_exists_firstStep_of_prefix
+        (minimum.minimal cup j) with heq | ⟨direction, tail, hstep⟩
+    · exact heq
+    · cases direction with
+      | false =>
+          have hlocal := minimum.cell_union_subset_lower_of_extends hstep
+          exact (hcupLower (Finset.subset_union_left.trans hlocal)).elim
+      | true =>
+          have hcapLower : joint.saturation.capAt j ⊆
+              (matrix.cell minimum.row minimum.column).node.lower :=
+            (joint.saturation.capAt_subset_capSupport j).trans hcaps
+          have hcapUpper : joint.saturation.capAt j ⊆
+              (matrix.cell minimum.row minimum.column).node.upper :=
+            Finset.subset_union_right.trans
+              (minimum.cell_union_subset_upper_of_extends hstep)
+          have hcapData := mem_capWitnesses.mp
+            (joint.saturation.capAt_mem j)
+          have hcapNonempty : (joint.saturation.capAt j).Nonempty :=
+            Finset.card_pos.mp (by rw [hcapData.2.1]; decide)
+          obtain ⟨x, hxCap⟩ := hcapNonempty
+          exact ((Finset.disjoint_left.mp
+            (matrix.cell minimum.row minimum.column).node.deep.disjoint)
+              (hcapLower hxCap) (hcapUpper hxCap)).elim
+
+/-- The symmetric large-upper-child or complete-row-plateau theorem. -/
+theorem FullResidualCupSixCapCommonMinimum578.cup_subset_upper_or_rowPlateau_of_capSupport_subset_upper
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    {joint : PrivateCupStarSixCapState578 χ support}
+    {tree : DecompositionTree χ support}
+    {matrix : FullResidualCupSixCapAddressMatrix578 joint tree}
+    (minimum : FullResidualCupSixCapCommonMinimum578 matrix)
+    (hcaps : joint.saturation.capSupport ⊆
+      (matrix.cell minimum.row minimum.column).node.upper)
+    (cup : joint.ResidualCupIndex) :
+    cup.1 ⊆ (matrix.cell minimum.row minimum.column).node.upper ∨
+      ∀ j, (matrix.cell cup j).path =
+        (matrix.cell minimum.row minimum.column).path := by
+  by_cases hcupUpper :
+      cup.1 ⊆ (matrix.cell minimum.row minimum.column).node.upper
+  · exact Or.inl hcupUpper
+  · right
+    intro j
+    rcases list_eq_or_exists_firstStep_of_prefix
+        (minimum.minimal cup j) with heq | ⟨direction, tail, hstep⟩
+    · exact heq
+    · cases direction with
+      | false =>
+          have hcapLower : joint.saturation.capAt j ⊆
+              (matrix.cell minimum.row minimum.column).node.lower :=
+            Finset.subset_union_right.trans
+              (minimum.cell_union_subset_lower_of_extends hstep)
+          have hcapUpper : joint.saturation.capAt j ⊆
+              (matrix.cell minimum.row minimum.column).node.upper :=
+            (joint.saturation.capAt_subset_capSupport j).trans hcaps
+          have hcapData := mem_capWitnesses.mp
+            (joint.saturation.capAt_mem j)
+          have hcapNonempty : (joint.saturation.capAt j).Nonempty :=
+            Finset.card_pos.mp (by rw [hcapData.2.1]; decide)
+          obtain ⟨x, hxCap⟩ := hcapNonempty
+          exact ((Finset.disjoint_left.mp
+            (matrix.cell minimum.row minimum.column).node.deep.disjoint)
+              (hcapLower hxCap) (hcapUpper hxCap)).elim
+      | true =>
+          have hlocal := minimum.cell_union_subset_upper_of_extends hstep
+          exact (hcupUpper (Finset.subset_union_left.trans hlocal)).elim
+
+/-- A base-address cell retains the exact endpoint/reverse-separation
+trichotomy of its genuine first joint split. -/
+theorem FullResidualCupSixCapCommonMinimum578.endpointShapes_or_reverseSeparated_of_cell_eq_base
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    {joint : PrivateCupStarSixCapState578 χ support}
+    {tree : DecompositionTree χ support}
+    {matrix : FullResidualCupSixCapAddressMatrix578 joint tree}
+    (minimum : FullResidualCupSixCapCommonMinimum578 matrix)
+    (cup : joint.ResidualCupIndex) (j : Fin 6)
+    (hbase : (matrix.cell cup j).path =
+      (matrix.cell minimum.row minimum.column).path) :
+    (¬cup.1 ⊆ (matrix.cell minimum.row minimum.column).node.upper ∧
+      CupFourLowerEndpointShape578 cup.1
+        (matrix.cell minimum.row minimum.column).node.lower
+        (matrix.cell minimum.row minimum.column).node.upper) ∨
+    (¬joint.saturation.capAt j ⊆
+        (matrix.cell minimum.row minimum.column).node.lower ∧
+      CapFourUpperEndpointShape578 (joint.saturation.capAt j)
+        (matrix.cell minimum.row minimum.column).node.lower
+        (matrix.cell minimum.row minimum.column).node.upper) ∨
+    (cup.1 ⊆ (matrix.cell minimum.row minimum.column).node.upper ∧
+      joint.saturation.capAt j ⊆
+        (matrix.cell minimum.row minimum.column).node.lower) := by
+  have hnode : (matrix.cell cup j).node =
+      (matrix.cell minimum.row minimum.column).node := by
+    have hlookup := (matrix.cell cup j).lookup
+    rw [hbase, (matrix.cell minimum.row minimum.column).lookup] at hlookup
+    exact (Option.some.inj hlookup).symm
+  have hshapes := (matrix.cell cup j).endpointShapes_or_reverseSeparated
+    (joint.ledger.mem_residualCupFamily.mp cup.2).1
+    (joint.saturation.capAt_mem j)
+  rwa [hnode] at hshapes
 
 /-! ## Reconnection to the exact 32-vertex gate -/
 

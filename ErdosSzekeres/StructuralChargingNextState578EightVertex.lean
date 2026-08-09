@@ -1260,6 +1260,131 @@ theorem atMostEight_decomposable_fourCupFamily_has_threeTransversal_or_cupFive
       hdecomp height
   · exact atMostSeven_fourCupFamily_has_threeTransversal_or_cupFive (by omega)
 
+/-- A 24-vertex lower child at a full residual-family minimum leaves an
+at-most-eight upper child, whose local four-cups have a three-boundary under
+global five-cup avoidance. -/
+theorem FullResidualCupSixCapCommonMinimum578.upper_exists_threeBoundary_of_twentyFour_le_lower_at_32
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    {joint : PrivateCupStarSixCapState578 χ support}
+    {tree : DecompositionTree χ support}
+    {matrix : FullResidualCupSixCapAddressMatrix578 joint tree}
+    (minimum : FullResidualCupSixCapCommonMinimum578 matrix)
+    (hcard : support.card = 32)
+    (hlower : 24 ≤ (matrix.cell minimum.row minimum.column).node.lower.card)
+    (hnoCup : ¬ContainsCupSet χ support 5) :
+    ∃ boundary : Finset (Fin n),
+      boundary ⊆ (matrix.cell minimum.row minimum.column).node.upper ∧
+      boundary.card ≤ 3 ∧
+      IsCupWitnessTransversal578 χ
+        (matrix.cell minimum.row minimum.column).node.upper boundary 4 := by
+  let cell := matrix.cell minimum.row minimum.column
+  have hupperCard : cell.node.upper.card ≤ 8 :=
+    tree.upper_card_le_eight_of_twentyFour_le_lower_at_32
+      cell.lookup hcard hlower
+  have hupperNonempty : cell.node.upper.Nonempty := by
+    obtain ⟨x, hxUnion, hxNotLower⟩ :=
+      Finset.not_subset.mp cell.not_all_lower
+    rcases Finset.mem_union.mp (cell.union_local hxUnion) with
+      hxLower | hxUpper
+    · exact (hxNotLower hxLower).elim
+    · exact ⟨x, hxUpper⟩
+  have hnodeDecomp :
+      IsDecomposableOn χ (cell.node.lower ∪ cell.node.upper) :=
+    tree.splitAtPath_isDecomposableOn cell.lookup
+  have hupperDecomp : IsDecomposableOn χ cell.node.upper :=
+    hnodeDecomp.subset Finset.subset_union_right hupperNonempty
+  rcases atMostEight_decomposable_fourCupFamily_has_threeTransversal_or_cupFive
+      hupperDecomp hupperCard with hcup | hboundary
+  · exact (hnoCup (FinsetPolygon.ContainsCupSet.mono hcup
+      (Finset.subset_union_right.trans
+        (tree.splitAtPath_support_subset cell.lookup)))).elim
+  · exact hboundary
+
+/-- The symmetric local-boundary consequence for a 24-vertex upper child. -/
+theorem FullResidualCupSixCapCommonMinimum578.lower_exists_threeBoundary_of_twentyFour_le_upper_at_32
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    {joint : PrivateCupStarSixCapState578 χ support}
+    {tree : DecompositionTree χ support}
+    {matrix : FullResidualCupSixCapAddressMatrix578 joint tree}
+    (minimum : FullResidualCupSixCapCommonMinimum578 matrix)
+    (hcard : support.card = 32)
+    (hupper : 24 ≤ (matrix.cell minimum.row minimum.column).node.upper.card)
+    (hnoCup : ¬ContainsCupSet χ support 5) :
+    ∃ boundary : Finset (Fin n),
+      boundary ⊆ (matrix.cell minimum.row minimum.column).node.lower ∧
+      boundary.card ≤ 3 ∧
+      IsCupWitnessTransversal578 χ
+        (matrix.cell minimum.row minimum.column).node.lower boundary 4 := by
+  let cell := matrix.cell minimum.row minimum.column
+  have hlowerCard : cell.node.lower.card ≤ 8 :=
+    tree.lower_card_le_eight_of_twentyFour_le_upper_at_32
+      cell.lookup hcard hupper
+  have hlowerNonempty : cell.node.lower.Nonempty := by
+    obtain ⟨x, hxUnion, hxNotUpper⟩ :=
+      Finset.not_subset.mp cell.not_all_upper
+    rcases Finset.mem_union.mp (cell.union_local hxUnion) with
+      hxLower | hxUpper
+    · exact ⟨x, hxLower⟩
+    · exact (hxNotUpper hxUpper).elim
+  have hnodeDecomp :
+      IsDecomposableOn χ (cell.node.lower ∪ cell.node.upper) :=
+    tree.splitAtPath_isDecomposableOn cell.lookup
+  have hlowerDecomp : IsDecomposableOn χ cell.node.lower :=
+    hnodeDecomp.subset Finset.subset_union_left hlowerNonempty
+  rcases atMostEight_decomposable_fourCupFamily_has_threeTransversal_or_cupFive
+      hlowerDecomp hlowerCard with hcup | hboundary
+  · exact (hnoCup (FinsetPolygon.ContainsCupSet.mono hcup
+      (Finset.subset_union_left.trans
+        (tree.splitAtPath_support_subset cell.lookup)))).elim
+  · exact hboundary
+
+/-- The full-matrix localization theorem with its exact `24+8` local-boundary
+consumer attached.  The two remaining alternatives are now precisely the
+minimum-column and distinguished-spine-row plateaus. -/
+theorem FullResidualCupSixCapCommonMinimum578.localizedCapsWithBoundary_or_minimumColumn_or_spinePlateau_at_32
+    {n : ℕ} {χ : TripleColoring n} {support : Finset (Fin n)}
+    {joint : PrivateCupStarSixCapState578 χ support}
+    {tree : DecompositionTree χ support}
+    {matrix : FullResidualCupSixCapAddressMatrix578 joint tree}
+    (minimum : FullResidualCupSixCapCommonMinimum578 matrix)
+    (hone : (joint.saturation.state.packing.fullCupSpines
+      joint.ledger.transversal).card = 1)
+    (hcard : support.card = 32)
+    (hnoCup : ¬ContainsCupSet χ support 5) :
+    (joint.saturation.capSupport ⊆
+        (matrix.cell minimum.row minimum.column).node.lower ∧
+      24 ≤ (matrix.cell minimum.row minimum.column).node.lower.card ∧
+      ∃ boundary : Finset (Fin n),
+        boundary ⊆ (matrix.cell minimum.row minimum.column).node.upper ∧
+        boundary.card ≤ 3 ∧
+        IsCupWitnessTransversal578 χ
+          (matrix.cell minimum.row minimum.column).node.upper boundary 4) ∨
+    (joint.saturation.capSupport ⊆
+        (matrix.cell minimum.row minimum.column).node.upper ∧
+      24 ≤ (matrix.cell minimum.row minimum.column).node.upper.card ∧
+      ∃ boundary : Finset (Fin n),
+        boundary ⊆ (matrix.cell minimum.row minimum.column).node.lower ∧
+        boundary.card ≤ 3 ∧
+        IsCupWitnessTransversal578 χ
+          (matrix.cell minimum.row minimum.column).node.lower boundary 4) ∨
+    (∃ j, ∀ cup, (matrix.cell cup j).path =
+      (matrix.cell minimum.row minimum.column).path) ∨
+    (∀ j, (matrix.cell joint.spineResidualIndex j).path =
+      (matrix.cell minimum.row minimum.column).path) := by
+  rcases minimum.localizedCaps_or_minimumColumn_or_spinePlateau hone with
+    ⟨hsub, hlower⟩ | ⟨hsub, hupper⟩ | hcolumn | hspine
+  · left
+    exact ⟨hsub, hlower,
+      minimum.upper_exists_threeBoundary_of_twentyFour_le_lower_at_32
+        hcard hlower hnoCup⟩
+  · right
+    left
+    exact ⟨hsub, hupper,
+      minimum.lower_exists_threeBoundary_of_twentyFour_le_upper_at_32
+        hcard hupper hnoCup⟩
+  · exact Or.inr (Or.inr (Or.inl hcolumn))
+  · exact Or.inr (Or.inr (Or.inr hspine))
+
 /-- Exact state-578 consumer for any eight-vertex remainder of a decomposable
 reservoir: global five-cup avoidance turns the local dichotomy into a genuine
 three-vertex four-cup boundary. -/
