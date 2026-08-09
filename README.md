@@ -651,7 +651,11 @@ sets.
   one-cup/five-cap packages all carry such a boundary. The active theorem is
   now the crossing-to-remainder bridge: residual cups may cross the selected
   24 vertices, so the unused boundary does not yet complete the global
-  exchange.
+  exchange. Lean has taken the first exact step: in the tight one-spine branch
+  density produces a residual cup disjoint from the unused boundary which
+  necessarily meets the selected six-cap support, so it is a genuine crossing
+  row of the full address matrix. The next theorem must consume that row at
+  the common-minimum node through child capacity and endpoint data.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

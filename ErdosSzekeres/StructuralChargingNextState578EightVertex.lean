@@ -1245,6 +1245,21 @@ theorem eightVertex_decomposable_fourCupFamily_has_threeTransversal_or_cupFive
       (eightVertex_decomposable_denseFourCups_force_cupFive
         hdecomp hcard hdense)
 
+/-- The exact eight-vertex result and the previous at-most-seven theorem give
+the uniform local consumer needed at a small decomposition child. -/
+theorem atMostEight_decomposable_fourCupFamily_has_threeTransversal_or_cupFive
+    {n : ℕ} {χ : TripleColoring n} {carrier : Finset (Fin n)}
+    (hdecomp : IsDecomposableOn χ carrier)
+    (hcard : carrier.card ≤ 8) :
+    ContainsCupSet χ carrier 5 ∨
+      ∃ boundary : Finset (Fin n),
+        boundary ⊆ carrier ∧ boundary.card ≤ 3 ∧
+          IsCupWitnessTransversal578 χ carrier boundary 4 := by
+  by_cases height : carrier.card = 8
+  · exact eightVertex_decomposable_fourCupFamily_has_threeTransversal_or_cupFive
+      hdecomp height
+  · exact atMostSeven_fourCupFamily_has_threeTransversal_or_cupFive (by omega)
+
 /-- Exact state-578 consumer for any eight-vertex remainder of a decomposable
 reservoir: global five-cup avoidance turns the local dichotomy into a genuine
 three-vertex four-cup boundary. -/
@@ -1309,5 +1324,61 @@ theorem ProtectedCupFiveCapPacking578.unusedSupport_exists_threeTransversal
   exact exists_threeTransversal_on_decomposable_eightSubset_of_no_cupFive
     hsupport Finset.sdiff_subset (packing.unusedSupport_card_at_32 hcard)
     hnoCup
+
+/-- In the tight one-spine branch, the new unused three-boundary does not
+magically hit the full residual family.  Instead density produces the exact
+next witness: a residual cup disjoint from that boundary which necessarily
+crosses from the unused eight vertices into the selected six-cap support.
+Because the full address matrix indexes every residual cup, this witness is a
+genuine new matrix row rather than an incidence-only proposal. -/
+theorem PrivateCupStarSixCapState578.exists_unusedBoundary_and_crossingResidualCup_at_32
+    {n : ℕ} {χ : TripleColoring n} {q : Fin n}
+    {reservoir : Finset (Fin n)}
+    (joint : PrivateCupStarSixCapState578 χ reservoir)
+    (hreservoir : IsDecomposableOn χ reservoir)
+    (hcard : reservoir.card = 32)
+    (hnoCup : ¬ContainsCupSet χ reservoir 5)
+    (hnoCap : ¬ContainsCapSet χ ({q} ∪ reservoir) 7)
+    (hnoStrong : ¬ContainsStrongPolygonSet χ ({q} ∪ reservoir) 8)
+    (hone : (joint.saturation.state.packing.fullCupSpines
+      joint.ledger.transversal).card = 1) :
+    ∃ boundary : Finset (Fin n),
+      boundary ⊆ reservoir \ joint.saturation.capSupport ∧
+      boundary.card ≤ 3 ∧
+      IsCupWitnessTransversal578 χ
+        (reservoir \ joint.saturation.capSupport) boundary 4 ∧
+      ∃ cup,
+        cup ∈ joint.ledger.residualCupFamily
+          (joint.saturation.state.packing.fullCupProtected
+            joint.ledger.transversal) ∧
+        Disjoint cup boundary ∧
+        ¬cup ⊆ reservoir \ joint.saturation.capSupport ∧
+        (cup ∩ joint.saturation.capSupport).Nonempty := by
+  obtain ⟨boundary, hboundarySub, hboundaryCard, hboundaryHits⟩ :=
+    joint.saturation.unusedSupport_exists_threeTransversal
+      hreservoir hcard hnoCup
+  have hlocalHits : ∀ cup,
+      cup ∈ capWitnesses χ.dual reservoir 4 →
+      cup ⊆ reservoir \ joint.saturation.capSupport →
+      ¬Disjoint cup boundary := by
+    intro cup hcup hcupSub
+    have hcupData := mem_capWitnesses.mp hcup
+    exact hboundaryHits.2 cup
+      (mem_capWitnesses.mpr ⟨hcupSub, hcupData.2⟩)
+  obtain ⟨cup, hcupResidual, hcupBoundary, hcupNotUnused⟩ :=
+    exists_escapingResidualCup578_of_localBoundary joint
+      hreservoir hcard hnoCap hnoStrong hone Finset.sdiff_subset
+      hboundarySub hboundaryCard hlocalHits
+  have hcupAmbient :=
+    (joint.ledger.mem_residualCupFamily.mp hcupResidual).1
+  have hcrosses : (cup ∩ joint.saturation.capSupport).Nonempty := by
+    obtain ⟨x, hxCup, hxNotUnused⟩ := Finset.not_subset.mp hcupNotUnused
+    have hxCapSupport : x ∈ joint.saturation.capSupport := by
+      by_contra hxNotCapSupport
+      exact hxNotUnused (Finset.mem_sdiff.mpr
+        ⟨(mem_capWitnesses.mp hcupAmbient).1 hxCup, hxNotCapSupport⟩)
+    exact ⟨x, Finset.mem_inter.mpr ⟨hxCup, hxCapSupport⟩⟩
+  exact ⟨boundary, hboundarySub, hboundaryCard, hboundaryHits,
+    cup, hcupResidual, hcupBoundary, hcupNotUnused, hcrosses⟩
 
 end ErdosSzekeres

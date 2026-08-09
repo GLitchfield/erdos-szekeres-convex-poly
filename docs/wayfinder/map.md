@@ -712,8 +712,15 @@ None. The destination was fixed by the user on 2026-08-01.
   remains open because residual cups may cross the selected 24 vertices. The
   next target is a crossing-to-remainder bridge coupling such a residual cup
   to the unused boundary or to a forbidden outcome through the six-cap
-  matrix. This is Outcome 1 for the selected local theorem and Outcome 2 for
-  the still-open state-578 route.
+  matrix. A post-result blind Sol/Fable review rejected direct boundary hits
+  and selected witness packaging first. Lean now proves the exact repaired
+  statement in the tight one-spine branch: a residual cup evades both the six
+  unprotected owner vertices and the unused three-boundary, hence cannot lie
+  in the unused eight vertices and must meet the selected six-cap support.
+  This supplies a genuine crossing row of the full matrix. The next target is
+  to consume that row at the common-minimum node using full-matrix cap
+  localization and the at-most-eight child theorem. This is Outcome 1 for the
+  selected local theorem and Outcome 2 for the still-open state-578 route.
 
 ## Not yet specified
 

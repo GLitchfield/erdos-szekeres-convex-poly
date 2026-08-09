@@ -1630,6 +1630,21 @@ four-cup trace inside the unused remainder, or force a named target outcome
 through one of the six cap columns. A theorem that only repeats local
 eight-vertex coverage is now obsolete.
 
+The post-result blind Sol/Fable review at revision `a0d6b72` and packet
+SHA-256 `4a724387fcf82672d6950223437ae832ed965f9e7e2fe25092f70d46e35c4cc4`
+returned `MODIFY` from both reviewers. The direct-hit interpretation is too
+strong: the compiled density escape deliberately produces residual cups
+disjoint from every budget-three local boundary. Lean now implements the
+reviewed repair. In the tight one-spine branch, the unused three-boundary and
+the six unprotected owner vertices form a candidate of size at most nine;
+density supplies a residual cup disjoint from both. Local coverage proves
+that this cup is not contained in the unused eight vertices, so it meets the
+selected six-cap support and becomes a genuine crossing row of the full
+matrix. The next exact target is to consume that row at the common-minimum
+node using full-matrix cap localization and the new at-most-eight child
+consumer. The cheap stop gate is a relaxed model in which the missed crossing
+row remains at the base address in all six columns.
+
 ## Evidence
 
 - [Terminal-tail capacity and private caps](../../experiments/0065-state-578-terminal-tail-capacity.md)
