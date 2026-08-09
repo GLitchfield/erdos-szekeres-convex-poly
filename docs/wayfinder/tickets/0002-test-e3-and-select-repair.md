@@ -1578,6 +1578,39 @@ escape theorem; the explicit density-and-cardinality proof compiles.  This is
 Outcome 2: the next theorem must couple repeated carrier expansion to the
 second matrix or six-cap child capacity, not merely repeat local covers.
 
+Experiment 0072 shows that four sampled rows are still too weak and promotes
+the complete residual family.  The earlier sampled mixed classification had
+a vacuous cross-corner branch because its four indices could all equal the
+minimum.  Lean now retains explicit opposite strict cells, proves the two
+cross cells equal the minimum, and localizes all six caps in a child or on a
+minimum column.  An owner-incidence selector gives either an injective
+fixed-point-free owner map or at most three spine owners hitting all four
+sampled residual cups; each target-owner carrier has at most seven vertices
+and hence a local three-boundary under five-cup avoidance.  Relaxed incidence
+models show that neither conclusion alone yields the global boundary.
+
+The compiling replacement indexes every residual four-cup against all six
+cap blocks.  Every row and column is a prefix chain, so the full matrix has a
+global minimum.  Any residual cup meets the unique full spine.  Therefore two
+cup rows cannot leave the common minimum in opposite directions, and mixed
+strict directions force all six cells of the distinguished spine row to stay
+at the minimum.  The exact 32-vertex theorem now returns this full matrix and
+common minimum.  The remaining matrix alternatives are one-sided extension
+or the full spine anchor plateau.
+
+The local plateau was reduced independently.  On exactly eight vertices,
+Lean proves that a three-vertex four-cup transversal exists iff some
+five-subset contains no four-cup.  It also closes the first decomposable root
+case: a singleton lower child forces every four-cup into the at-most-seven
+upper child.  Two independent bounded enumerators checked all 186,888
+decomposable eight-vertex colorings and found a three-transversal in all
+121,577 five-cup-free instances.  A nondecomposable semantic coloring shows
+that the decomposition assumption is essential.  Autoprove did not establish
+the remaining structural lemma, so this evidence is not promoted to a result.
+The batch is Outcome 2.  The next exact target is a decomposition-sensitive
+anchor-plateau breaker, either the eight-vertex dense-four-cup lemma or a
+global `24+8` child-capacity contradiction.
+
 ## Evidence
 
 - [Terminal-tail capacity and private caps](../../experiments/0065-state-578-terminal-tail-capacity.md)
@@ -1590,6 +1623,8 @@ second matrix or six-cap child capacity, not merely repeat local covers.
 - [Lean common-tail private-star counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCupStarCounterexample.lean)
 - [Boundary-exchange wave](../../experiments/0071-state-578-boundary-exchange-wave.md)
 - [Lean full-spine exchange and residual matrices](../../../ErdosSzekeres/StructuralChargingNextState578BoundaryExchange.lean)
+- [Full-residual anchor plateau](../../experiments/0072-state-578-full-residual-anchor.md)
+- [Lean full-residual carrier matrix](../../../ErdosSzekeres/StructuralChargingNextState578CarrierMatrix.lean)
 - [Whole-private-cap traces and route expiry](../../experiments/0066-state-578-private-cap-traces.md)
 - [Lean whole-private-cap traces](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTrace.lean)
 - [Lean true-peel/later-false-owner counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTraceCounterexample.lean)

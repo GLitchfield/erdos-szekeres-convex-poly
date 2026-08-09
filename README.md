@@ -635,10 +635,17 @@ sets.
   meets a full spine and has a vertex outside its old carrier, yielding a
   compiling expanding-carrier invariant. In the tight one-spine branch, four
   owner-indexed partial exchanges cannot all reuse one cup and form a second
-  `4 × 6` residual-cup/six-cap matrix. Both matrices have a global minimum,
-  an exact one-sided/cross-corner trichotomy, and strict-child localization.
-  The active theorem is to couple repeated carrier expansion to this matrix
-  or the six-cap child capacity; pairwise classifications are insufficient.
+  `4 × 6` residual-cup/six-cap matrix. Lean now repairs the sampled mixed
+  classification and expands the second matrix to every residual four-cup.
+  Its rows and columns are prefix chains with a global minimum. Opposite
+  strict directions force all six cells of the distinguished spine row to
+  stay at that minimum, leaving an exact one-sided-or-anchor-plateau
+  classification. This full matrix reconnects to the 32-vertex gate. On
+  eight vertices, Lean further identifies a three-boundary with a five-set
+  containing no four-cup and closes the singleton-lower decomposable split;
+  bounded exhaustive evidence supports, but does not prove, the remaining
+  decomposable eight-vertex lemma. The active theorem is an anchor-plateau
+  breaker using decomposability and the `24+8` child capacity.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

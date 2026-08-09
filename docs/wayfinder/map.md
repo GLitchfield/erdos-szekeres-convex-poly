@@ -689,13 +689,24 @@ None. The destination was fixed by the user on 2026-08-01.
   expanding seven-vertex carrier: the new cup meets a full spine but contains
   a vertex outside that spine's old carrier. In the tight one-spine branch,
   four owner-indexed partial exchanges cannot all reuse one cup and form a
-  second `4 × 6` residual-cup/six-cap address matrix. Both matrices now have a
-  global minimum, an exact one-sided-versus-cross-corner trichotomy, and
-  strict-child localization. The active theorem is to couple repeated carrier
-  expansion to that address/child-capacity data, either exhausting the
-  32-vertex reservoir or completing the global `3r` boundary. Pairwise
-  classifications remain insufficient. This is Outcome 2; neither singleton
-  tail is closed.
+  second `4 × 6` residual-cup/six-cap address matrix. Experiment 0072 repairs
+  a vacuous mixed branch in the sampled classification by retaining explicit
+  opposite strict cells and their cross-minimum witnesses. More importantly,
+  Lean now indexes every residual four-cup against all six caps. The complete
+  matrix has prefix-chain rows and columns and a global minimum. Intersecting
+  cup rows cannot strictly leave that minimum in opposite directions, so
+  mixed strict directions force every cell of the distinguished four-owner
+  spine row to remain at the minimum. The route is therefore reduced to a
+  one-sided matrix or this exact anchor plateau and reconnects to the actual
+  32-vertex gate. On an eight-vertex carrier, Lean also proves that a
+  three-vertex four-cup transversal is equivalent to a five-subset with no
+  four-cup, and closes the decomposable singleton-lower root case. Two
+  independent bounded enumerators found the transversal in all 121,577
+  five-cup-free decomposable colorings on eight vertices, but autoprove did
+  not establish the remaining decomposition-sensitive theorem. The active
+  target is an anchor-plateau breaker using decomposability and the `24+8`
+  capacity, or the local eight-vertex dense-four-cup lemma. This is Outcome 2;
+  neither singleton tail is closed.
 
 ## Not yet specified
 
