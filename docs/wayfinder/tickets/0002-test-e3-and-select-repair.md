@@ -1442,15 +1442,49 @@ bridges of tails still in that node are automatic. A kernel-checked
 nine-vertex recursive counterexample refutes the exact five-internal-tail
 force gate. Lean now partitions the nine tails into five internal tails or
 five external tails and assigns every external tail a concrete first-exit
-node with the whole cap below and the tail above. The next lower-tail theorem
-must use the global `32/23` density and avoidance reservoirs to bound the
-internal side or aggregate these exit-address fibers; direction alone is
-insufficient. The exact
+node with the whole cap below and the tail above.
+
+Experiment 0065 carries the global density into this residual. Lower-sibling
+supports along one path are pairwise disjoint and ordered, and a four-cap
+fully covered by singleton bucket fibers is impossible. Every residual cap
+disjoint from the terminal cap meets the outer-tail set; any such transversal
+has size at least six by deleting it together with the fixed cap and applying
+the `32/23` density theorem. Lean chooses a minimum transversal, gives every
+selected tail a private residual cap, proves those caps are injectively
+indexed, and routes every owner internally or to a lower first exit. The
+actual state-578 theorem now returns this complete package.
+
+Two natural numerical conclusions are false. A 17-vertex target-free Lean
+model with a terminal cap and nine tails has a secondary cap using only one
+tail. A separate target-free recursively decomposable nine-vertex model has
+six distinct private caps all sharing one three-vertex core; it does not have
+the terminal or `32/23` hypotheses and therefore isolates the failed packing
+inference. The surviving structural theorem says that any four-cap not wholly
+in a lower deep-split child has both middle sweep vertices in the upper child
+and lower vertices only at its endpoints. The next lower-tail theorem must
+use terminality and global density to obtain whole-cap path coverage or bound
+the resulting same-bucket/shared-core collision; owner distinctness and
+direction alone are insufficient. A post-result bounded Sol/Fable review
+(evidence packet SHA-256
+`9b98a3e1aa0151eb04dd5684d6fae7872c4b9b58bb4c795e8c81bf3a9c01be52`)
+selects the whole-cap path trace as primary and a density-aware shared-core
+gate as the only reserve. Its exact first interface now compiles: when a
+private cap owner has a lower first exit, the cap has either an uncovered
+non-owner vertex or a two-vertex lower-sibling-bucket collision. The route gets
+one further milestone, a finite endpoint-law classification of the uncovered
+branch; a bounded full-hypothesis countermodel or failure to extract a new
+color/capacity constraint expires the route to infrastructure. This reviewer
+agreement is advisory, not proof. The exact
 `41+1` upper-singleton gate remains separate, with a compiled color-dual
 lower-gate equivalence.
 
 ## Evidence
 
+- [Terminal-tail capacity and private caps](../../experiments/0065-state-578-terminal-tail-capacity.md)
+- [Lean terminal-tail capacity](../../../ErdosSzekeres/StructuralChargingNextState578Capacity.lean)
+- [Lean two-tail multiplicity counterexample](../../../ErdosSzekeres/StructuralChargingNextState578CapacityCounterexample.lean)
+- [Lean private-cap consumers](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCaps.lean)
+- [Lean shared-core private-cap counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapsCounterexample.lean)
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
 - [`ErdosSzekeres.E3FiniteReduction`](../../../ErdosSzekeres/E3FiniteReduction.lean)
 - [Lean span-dominance pruning](../../../ErdosSzekeres/SpanDominance.lean)

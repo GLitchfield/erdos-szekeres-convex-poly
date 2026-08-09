@@ -622,10 +622,24 @@ None. The destination was fixed by the user on 2026-08-01.
   counterexample refutes the resulting five-internal-tail force gate. The
   surviving exact residual has either five internal tails or five external
   tails; every external tail has a concrete first-exit address where the cap
-  is wholly in the lower child and the tail is in the upper child. The active
-  obstruction is a global density/avoidance capacity theorem for these two
-  alternatives; first-exit direction alone supplies no fiber bound. Neither
-  singleton tail is closed.
+  is wholly in the lower child and the tail is in the upper child. The
+  lower-sibling supports along that path are pairwise disjoint and ordered;
+  any four-cap fully covered by them must have a two-vertex bucket collision.
+  Global `32/23` density now yields a minimum residual-cap transversal of at
+  least six terminal tails. Each selected tail owns a distinct private
+  four-cap and is routed internally or to a lower first exit, so the actual
+  state has three private owners of one route class. This does not yet give
+  additive cap charges: a 17-vertex Lean counterexample refutes forcing two
+  tails in every secondary cap, while a separate nine-vertex target-free
+  decomposable example has six distinct private caps sharing one three-point
+  core. Lean nevertheless proves the general mixed-cap word law: both middle
+  sweep vertices are upper and lower vertices are confined to endpoints. The
+  post-result Sol/Fable review selects a single owner-aware interface: an
+  external private cap either has a non-owner vertex uncovered by all path
+  buckets or has a two-vertex bucket collision. That theorem now compiles.
+  The next selected milestone is one finite classification of the uncovered
+  branch using the endpoint law; failure triggers the recorded expiry rule
+  rather than another owner-only lemma. Neither singleton tail is closed.
   The `41+1` tail has a compiled exact color-dual lower-gate interface and
   remains separate.
 

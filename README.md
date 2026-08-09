@@ -581,10 +581,19 @@ sets.
   by 20. In the `2+2` branch, the unique cap word is
   lower--upper--upper--lower, so the internal endpoint bridges add no new
   information. An exact nine-vertex recursive Lean counterexample refutes the
-  five-internal-tail shortcut. The surviving residual gives five internal
-  tails or five external tails with concrete lower-cap/upper-tail first-exit
-  addresses; a global density/avoidance capacity theorem for those reservoirs
-  is now the active lower-tail obstruction.
+  five-internal-tail shortcut. Lower-sibling supports along a cap path are now
+  proved pairwise disjoint and ordered, and a four-cap fully covered with
+  singleton fibers in those buckets is impossible. Global `32/23` density
+  supplies a minimum terminal-tail transversal of size at least six; every
+  selected tail owns a distinct private four-cap and is internal or has a
+  concrete lower-cap/upper-tail first-exit address. This package is threaded
+  into the actual state-578 obstruction. Two shortcuts are kernel-refuted:
+  a secondary cap need not consume two tails, and six distinct target-free
+  private caps may share one three-vertex core. A general deep-split word law
+  confines the lower vertices of every mixed four-cap to its sweep endpoints.
+  The active lower-tail obstruction is now a whole-cap theorem: use
+  terminality and global density to route the other private-cap vertices or
+  bound the forced same-bucket/shared-core collision.
   The upper-singleton extreme has an exact color-dual interface but remains
   separate.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
