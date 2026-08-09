@@ -25,6 +25,10 @@ sharpness construction of size `2^(n-2)`.
   exact Lean counterexamples refute address-only, one-column endpoint, and
   two-middle-pair consumers; the surviving bracket theorem redirects the
   route to a genuinely collective six-cap synchronization problem.
+- [The state-578 local upper-bracket route reduces to an exterior fan](tickets/0004-force-state-578-upper-bracket.md):
+  Lean proves a nine-source one-sided fan, while exact nine- and 13-vertex
+  target-free models refute two-column brackets and every three-column
+  fan-only consumer; the next invariant must use full residual density.
 
 ## Open frontier
 
@@ -742,10 +746,15 @@ sharpness construction of size `2^(n-2)`.
   without a target. The surviving theorem turns this obstruction around:
   every lower set strictly bracketed by two upper vertices is cap-colored
   under five-cup avoidance, so at most six such vertices exist when seven-caps
-  are forbidden. Ticket 0003 therefore closes with Outcome 3. The active
-  route is [ticket 0004](tickets/0004-force-state-578-upper-bracket.md): use
-  the six cap columns and global density essentially to force a common upper
-  bracket of seven lower vertices, or refute that synchronization exactly.
+  are forbidden. Ticket 0003 therefore closes with Outcome 3. Ticket 0004
+  now closes with Outcome 2: a cardinality-minimal nine-vertex model refutes
+  two-column closure, while the exact global replacement gives a
+  `24 → 18 → 9` exterior fan using at least three cap columns. An exact
+  13-vertex decomposable, sweep-realizable model realizes that complete local
+  fan without any target. The active route is
+  [ticket 0005](tickets/0005-couple-state-578-exterior-fan-density.md): use
+  all six cap columns and global `32/23` density essentially to construct a
+  forbidden small transversal or an equivalent global collision.
 
 ## Not yet specified
 

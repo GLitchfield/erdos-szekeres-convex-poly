@@ -665,9 +665,17 @@ sets.
   target. Thus address-only, one-column deletion, and two-middle-pair closure
   are expired. The surviving bracket theorem proves that, under five-cup and
   seven-cap avoidance, two upper vertices can strictly bracket at most six
-  lower vertices. The active target is now collective: force a common bracket
-  of seven lower vertices using the six cap columns and global `32/23`
-  density, or refute that synchronization exactly.
+  lower vertices. The direct common-bracket target is now retired: an exact
+  cardinality-minimal nine-vertex Lean model realizes two full deletion
+  columns with only one upper endpoint per row. The surviving global theorem
+  gives a `24 → 18 → 9` exterior fan: nine saturated cap sources lie on one
+  side of the upper span, every corresponding deletion row has exactly one
+  upper endpoint, and those sources occupy at least three cap columns. An
+  exact 13-vertex decomposable and sweep-realizable Lean model realizes that
+  three-column fan while avoiding five-cups, seven-caps, and strong
+  eight-sets. The active target must therefore use all six columns or the
+  exact `32/23` residual density essentially, for example by constructing a
+  forbidden four-cup transversal of size at most nine.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

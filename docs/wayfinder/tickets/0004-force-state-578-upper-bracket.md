@@ -2,7 +2,7 @@
 title: Force or refute a collective state-578 upper bracket
 type: research
 mode: AFK
-status: open
+status: closed
 claim: codex-state-578-upper-bracket-2026-08-09
 blocked_by: none
 ---
@@ -52,10 +52,22 @@ bracket theorem produces a forbidden seven-cap?
 
 ## Resolution
 
-Open.  Experiment 0075 proves the generic bracket capacity theorem but does
-not derive a common bracket from the six cap columns.  The first candidate
-must identify the bracket endpoints and seven lower vertices using genuinely
-cross-column information.
+Outcome 2. Experiment 0076 proves the exact `24 → 18 → 9` replacement: at a
+lower-localized common minimum, at least nine saturated cap sources lie on one
+exterior side of the upper span, all their deletion rows have exactly one
+upper endpoint, and those sources cannot lie in only two cap columns.
+
+The seven-vertex common bracket is not forced by the current endpoint data.
+A cardinality-minimal nine-vertex Lean counterexample refutes two-column
+closure. A second exact 13-vertex decomposable, sweep-realizable Lean model
+realizes the nine-source fan across three disjoint cap columns while avoiding
+five-cups, seven-caps, and strong eight-sets. It does not retain the six-cap,
+32-vertex, or `32/23` density package, so the full exact implication is not
+refuted.
+
+The bracket route is expired as a standalone local invariant. Ticket 0005
+retains the compiling exterior fan but requires a consumer which uses the
+full residual-density package essentially.
 
 ## Evidence
 
@@ -63,3 +75,8 @@ cross-column information.
 - `ErdosSzekeres/StructuralChargingNextState578RestrictedMiddlePairs.lean`
 - `ErdosSzekeres/StructuralChargingNextState578Bracket.lean`
 - `docs/experiments/0075-state-578-deletion-middle-bracket.md`
+- `ErdosSzekeres/StructuralChargingNextState578UpperBracket.lean`
+- `ErdosSzekeres/StructuralChargingNextState578UpperBracketLedger.lean`
+- `ErdosSzekeres/StructuralChargingNextState578UpperBracketCounterexample.lean`
+- `ErdosSzekeres/StructuralChargingNextState578UpperBracketFanCounterexample.lean`
+- `docs/experiments/0076-state-578-upper-bracket-fan.md`
