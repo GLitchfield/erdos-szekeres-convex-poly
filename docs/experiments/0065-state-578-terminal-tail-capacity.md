@@ -113,6 +113,10 @@ configuration that yields a forbidden target.
 
 ## Route review and selected next interface
 
+This section records the selection made at the end of experiment 0065. The
+bounded trace milestone has since been completed and formally expired as a
+standalone closure route; see experiment 0066.
+
 A bounded post-result review used evidence packet SHA-256
 `9b98a3e1aa0151eb04dd5684d6fae7872c4b9b58bb4c795e8c81bf3a9c01be52`.
 Codex Sol returned `supported` at high confidence and Claude Fable 5 returned

@@ -1461,22 +1461,29 @@ six distinct private caps all sharing one three-vertex core; it does not have
 the terminal or `32/23` hypotheses and therefore isolates the failed packing
 inference. The surviving structural theorem says that any four-cap not wholly
 in a lower deep-split child has both middle sweep vertices in the upper child
-and lower vertices only at its endpoints. The next lower-tail theorem must
-use terminality and global density to obtain whole-cap path coverage or bound
-the resulting same-bucket/shared-core collision; owner distinctness and
-direction alone are insufficient. A post-result bounded Sol/Fable review
+and lower vertices only at its endpoints. A post-result bounded Sol/Fable review
 (evidence packet SHA-256
 `9b98a3e1aa0151eb04dd5684d6fae7872c4b9b58bb4c795e8c81bf3a9c01be52`)
 selects the whole-cap path trace as primary and a density-aware shared-core
-gate as the only reserve. Its exact first interface now compiles: when a
-private cap owner has a lower first exit, the cap has either an uncovered
-non-owner vertex or a two-vertex lower-sibling-bucket collision. The route gets
-one further milestone, a finite endpoint-law classification of the uncovered
-branch; a bounded full-hypothesis countermodel or failure to extract a new
-color/capacity constraint expires the route to infrastructure. This reviewer
-agreement is advisory, not proof. The exact
-`41+1` upper-singleton gate remains separate, with a compiled color-dual
-lower-gate equivalence.
+gate as the only reserve. Its exact first interface compiled: when a private
+cap owner has a lower first exit, the cap has either an uncovered non-owner
+vertex or a two-vertex lower-sibling-bucket collision.
+
+Experiment 0066 resolves that bounded milestone. Lean classifies every
+uncovered non-owner as internal or true-exiting and defines the shallowest
+escape of the whole cap. A shallowest false step forces the cap's two middle
+vertices into one sibling bucket. Thus every external private cap either
+first peels at a true step or has the desired collision, and the actual state
+returns three owners with this residual. An eight-vertex terminal,
+decomposable, target-free Lean counterexample realizes the collision-free true
+peel followed by a false owner exit. This triggers the recorded formal expiry
+of independent cap-by-cap tracing. The one density-aware reserve proves that
+every set of at most five vertices misses some residual cap, but does not
+control overlap among the six chosen private caps. Following the pre-vetted
+fallback order, the active overflow is the `41+1` branch. It now reduces to an
+exact 32-vertex color-dual `(7,5,8)` lower gate, whose every decomposable
+23-subset contains a four-cup. Reviewer agreement is advisory; the positive
+and negative mathematical claims above are separate compiling Lean theorems.
 
 ## Evidence
 
@@ -1485,6 +1492,9 @@ lower-gate equivalence.
 - [Lean two-tail multiplicity counterexample](../../../ErdosSzekeres/StructuralChargingNextState578CapacityCounterexample.lean)
 - [Lean private-cap consumers](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCaps.lean)
 - [Lean shared-core private-cap counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapsCounterexample.lean)
+- [Whole-private-cap traces and route expiry](../../experiments/0066-state-578-private-cap-traces.md)
+- [Lean whole-private-cap traces](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTrace.lean)
+- [Lean true-peel/later-false-owner counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTraceCounterexample.lean)
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
 - [`ErdosSzekeres.E3FiniteReduction`](../../../ErdosSzekeres/E3FiniteReduction.lean)
 - [Lean span-dominance pruning](../../../ErdosSzekeres/SpanDominance.lean)

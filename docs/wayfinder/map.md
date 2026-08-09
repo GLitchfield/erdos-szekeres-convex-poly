@@ -637,11 +637,18 @@ None. The destination was fixed by the user on 2026-08-01.
   post-result Sol/Fable review selects a single owner-aware interface: an
   external private cap either has a non-owner vertex uncovered by all path
   buckets or has a two-vertex bucket collision. That theorem now compiles.
-  The next selected milestone is one finite classification of the uncovered
-  branch using the endpoint law; failure triggers the recorded expiry rule
-  rather than another owner-only lemma. Neither singleton tail is closed.
-  The `41+1` tail has a compiled exact color-dual lower-gate interface and
-  remains separate.
+  The finite whole-cap trace milestone is now complete. A cap's shallowest
+  false step forces its two middle vertices into one sibling bucket, so an
+  external private cap either first peels at a true step or has a certified
+  collision. The actual state supplies three owners with this residual. An
+  exact eight-vertex terminal, decomposable, target-free Lean example realizes
+  a true peel followed by the owner's false exit with no collision. This
+  triggers the recorded formal expiry of cap-by-cap tracing. The one density
+  reserve proves that every set of at most five vertices misses a residual
+  cap, but cannot bound overlap among the six chosen caps. The active overflow
+  is therefore the `41+1` tail. It now reduces to an exact 32-vertex
+  color-dual `(7,5,8)` singleton-lower gate, and every decomposable 23-subset
+  of that reservoir contains a four-cup. Neither singleton tail is closed.
 
 ## Not yet specified
 

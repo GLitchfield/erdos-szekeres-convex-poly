@@ -591,11 +591,17 @@ sets.
   a secondary cap need not consume two tails, and six distinct target-free
   private caps may share one three-vertex core. A general deep-split word law
   confines the lower vertices of every mixed four-cap to its sweep endpoints.
-  The active lower-tail obstruction is now a whole-cap theorem: use
-  terminality and global density to route the other private-cap vertices or
-  bound the forced same-bucket/shared-core collision.
-  The upper-singleton extreme has an exact color-dual interface but remains
-  separate.
+  The selected whole-cap trace layer is complete: the shallowest escape of a
+  private cap is either a true-directed endpoint peel or a certified
+  two-vertex lower-sibling collision, and the actual state returns three
+  owners with this residual. An exact eight-vertex terminal, decomposable,
+  target-free Lean example realizes the collision-free true-peel/later-false-
+  owner branch. This formally expires independent cap-by-cap tracing. Density
+  proves that no shared core of at most five vertices hits the entire residual
+  cap family, but does not bound overlap among the six chosen private caps.
+  The pre-vetted overflow has therefore moved to the upper-singleton extreme:
+  Lean reduces its `41+1` color-dual tail to an exact 32-vertex swapped gate
+  and proves four-cup density in every decomposable 23-vertex restriction.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

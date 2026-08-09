@@ -1021,10 +1021,25 @@ by the split law. The exact five-internal-tail force statement is false by a
 kernel-checked nine-vertex recursive counterexample. The repaired invariant
 partitions the nine tails: five remain internal, or five are external and each
 has a concrete first-exit tree address with the cap in the lower child and the
-tail in the upper child. The active proof obligation is a global
-density/avoidance capacity theorem for these internal or exit-sibling
-reservoirs. The upper-singleton extreme has a color-dual lower interface but
-still requires a separate proof.
+tail in the upper child.
+
+The one permitted whole-cap trace layer is now resolved. Lean defines the
+shallowest set escape along a terminal path and proves that a false-directed
+first escape of a four-cap puts its two sweep-middle vertices in one
+lower-sibling bucket. Hence every private cap with a later false-exiting owner
+either first peels at a true step or has a two-vertex bucket collision. The
+actual state-578 package supplies three owners with this residual. A separate
+eight-vertex recursively decomposable Lean construction is terminal and
+target-free, realizes the true-peel/later-false-owner branch, and has no bucket
+collision. Independent single-cap tracing is therefore formally expired as a
+closure route. The density-only reserve proves that every set of at most five
+vertices misses some residual cap, but does not control overlap among the six
+chosen private caps. Following the recorded fallback order, the active branch
+is now the `41+1` extreme. It reduces by restriction and color duality to an
+exact 32-vertex singleton-lower `(7,5,8)` gate; every decomposable 23-subset of
+that reservoir contains a four-cup. The next missing bridge is a consumer of
+this dense cup reservoir that respects the singleton orientation; no common
+straddling-cut property has been proved.
 
 A bounded goal-driven lemma-forge preflight runs separately from that main
 route.  It rejected four-point localization as already compiled, parked
