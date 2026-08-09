@@ -1553,6 +1553,31 @@ then gives `False`. The batch is Outcome 2. The next theorem must construct
 this collective exchange from the mixed matrix and exact 32-vertex state;
 independent pair classifications or repeated addresses do not suffice.
 
+Experiment 0071 advances the terminal consumer without assuming that exactly
+one selected cup is full.  If `r` selected cups lie wholly in the owner
+transversal, Lean proves their protected union has cardinality `4r`, the
+transversal has cardinality at most `9+r`, and each full spine together with
+one private cup is an exact seven-vertex carrier.  With no five-cup, each such
+carrier has a local four-cup transversal of size at most three.  The union of
+all local boundaries therefore respects the `3r` exchange budget, but global
+density forces a residual cup missed by that union.  This cup escapes every
+old carrier, meets one full spine, and has a vertex outside that spine's old
+spine/private-cup carrier; `ExpandingFullSpineCarrier578` records the complete
+compiled contract.
+
+The `4 × 6` address route also gains a collective theorem.  Row and column
+prefix chains force a global minimum; opposite strict directions collapse the
+two cross-corners to that minimum, while a strict step localizes the whole
+cup--cap pair in the corresponding child.  Four owner-indexed partial
+exchanges in the tight one-spine branch cannot all collapse to one cup and
+form a second residual-cup/six-cap matrix with the same trichotomy.  A bounded
+normalized census found at least eight minimum cells whenever both directions
+occur, but that numerical strengthening remains computational evidence
+because no current consumer uses it.  Autoprove did not close the residual
+escape theorem; the explicit density-and-cardinality proof compiles.  This is
+Outcome 2: the next theorem must couple repeated carrier expansion to the
+second matrix or six-cap child capacity, not merely repeat local covers.
+
 ## Evidence
 
 - [Terminal-tail capacity and private caps](../../experiments/0065-state-578-terminal-tail-capacity.md)
@@ -1563,6 +1588,8 @@ independent pair classifications or repeated addresses do not suffice.
 - [Private-cup star and mixed address matrix](../../experiments/0070-state-578-private-cup-star.md)
 - [Lean private-star and boundary-exchange machinery](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCupStar.lean)
 - [Lean common-tail private-star counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCupStarCounterexample.lean)
+- [Boundary-exchange wave](../../experiments/0071-state-578-boundary-exchange-wave.md)
+- [Lean full-spine exchange and residual matrices](../../../ErdosSzekeres/StructuralChargingNextState578BoundaryExchange.lean)
 - [Whole-private-cap traces and route expiry](../../experiments/0066-state-578-private-cap-traces.md)
 - [Lean whole-private-cap traces](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTrace.lean)
 - [Lean true-peel/later-false-owner counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTraceCounterexample.lean)

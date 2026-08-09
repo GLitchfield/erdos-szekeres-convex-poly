@@ -628,9 +628,17 @@ sets.
   seven-vertex common-tail example formally expires star-only tail nonreuse.
   The remaining boundary-exchange contract also compiles: replacing `4r`
   protected owners by at most `3r` boundary vertices while preserving all cup
-  hits produces a forbidden transversal of size at most nine. The active
-  theorem is to construct that collective exchange from the mixed matrix;
-  pairwise address classifications are insufficient.
+  hits produces a forbidden transversal of size at most nine. Lean now builds
+  a seven-vertex spine/private-cup carrier and local three-vertex boundary for
+  every full selected cup. Their total boundary respects the `3r` budget, so
+  density forces a residual cup which escapes every old carrier. That cup
+  meets a full spine and has a vertex outside its old carrier, yielding a
+  compiling expanding-carrier invariant. In the tight one-spine branch, four
+  owner-indexed partial exchanges cannot all reuse one cup and form a second
+  `4 × 6` residual-cup/six-cap matrix. Both matrices have a global minimum,
+  an exact one-sided/cross-corner trichotomy, and strict-child localization.
+  The active theorem is to couple repeated carrier expansion to this matrix
+  or the six-cap child capacity; pairwise classifications are insufficient.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

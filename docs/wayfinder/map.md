@@ -681,9 +681,21 @@ None. The destination was fixed by the user on 2026-08-01.
   tail nonreuse. Lean also proves the exact terminal contract: an exchange
   replacing `4r` protected owners by at most `3r` boundary vertices while
   preserving cup hits constructs the impossible nine-vertex transversal.
-  The active theorem is to build that collective boundary exchange from the
-  mixed matrix. Pairwise address classifications are insufficient. This is
-  Outcome 2; neither singleton tail is closed.
+  Experiment 0071 now treats all full selected cups simultaneously. Their
+  protected union has exact size `4r`, while local seven-vertex
+  spine/private-cup carriers each admit a three-vertex cup transversal. The
+  union of these local boundaries has size at most `3r`; density forces a
+  residual cup outside every old carrier. Lean packages the result as an
+  expanding seven-vertex carrier: the new cup meets a full spine but contains
+  a vertex outside that spine's old carrier. In the tight one-spine branch,
+  four owner-indexed partial exchanges cannot all reuse one cup and form a
+  second `4 × 6` residual-cup/six-cap address matrix. Both matrices now have a
+  global minimum, an exact one-sided-versus-cross-corner trichotomy, and
+  strict-child localization. The active theorem is to couple repeated carrier
+  expansion to that address/child-capacity data, either exhausting the
+  32-vertex reservoir or completing the global `3r` boundary. Pairwise
+  classifications remain insufficient. This is Outcome 2; neither singleton
+  tail is closed.
 
 ## Not yet specified
 
