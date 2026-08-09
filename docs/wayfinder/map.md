@@ -654,12 +654,18 @@ None. The destination was fixed by the user on 2026-08-01.
   classifiers, and any common split carries a three-vertex defense on one
   color. Pairwise address synchronization is nevertheless expired: Lean
   certifies a target-free reverse-separated cup--cap pair. Regenerating a cap
-  inside the 12 cup vertices leaves the precise disjoint-cup or `2+1+1`
-  incidence alternative. A target-free signotope realizes the latter but is
-  not recursively decomposable, while a bounded 50,000-tree decomposable
-  sample found no witness. The active theorem must therefore use recursive
-  decomposability essentially to eliminate those two regeneration branches;
-  neither singleton tail is closed.
+  inside the 12 cup vertices has the exhaustive `2+2+0` or `2+1+1` incidence
+  split, but both branches are now formally expired. A minimal 12-vertex
+  recursive tree realizes both profiles while avoiding a five-cap, five-cup,
+  seven-cap, and strong eight-set; Lean also transports it to an actual swept
+  planar configuration. Thus decomposability, realizability, local root
+  profiles, and incidence alone cannot close the gate. The full 32-vertex
+  state retains information absent from that counterexample: three external
+  caps make four pairwise-disjoint caps with the regenerated cap, the original
+  `3+3` packing occupies exactly 24 vertices, and exactly eight reservoir
+  vertices remain unused. The active consumer must use that global
+  seven-witness/remainder package, the singleton root, or `32/23` density
+  essentially; neither singleton tail is closed.
 
 ## Not yet specified
 

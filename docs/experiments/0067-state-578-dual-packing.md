@@ -100,6 +100,11 @@ interleaved cups.  It must eliminate both the disjoint-cup branch and the
 Signotope laws, pairwise address repetition, and independent pair classifiers
 are insufficient hypotheses.
 
+Follow-up Experiment 0068 kernel-checks a decomposable, sweep-realizable
+12-vertex model realizing both regeneration branches target-free. It therefore
+expires this local continuation while retaining the full external `3+3`
+packing as the next global interface.
+
 ## Evidence
 
 - [Lean dual packing](../../ErdosSzekeres/StructuralChargingNextState578DualPacking.lean)

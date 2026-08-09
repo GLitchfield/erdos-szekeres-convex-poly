@@ -607,10 +607,16 @@ sets.
   disjoint four-caps. Pairwise lowest joint splits, dual endpoint laws, and a
   six-witness common-split defense compile. A target-free reverse-separated
   pair formally expires address equality alone. Regenerating a cap inside the
-  12 cup vertices leaves the precise next obstruction: it misses one cup or
-  meets the three in profile `2+1+1`. The active theorem must use recursive
-  decomposability to eliminate those branches; a signotope-only version is
-  refuted by bounded computation.
+  12 cup vertices has the exact `2+2+0` or `2+1+1` incidence split. Both
+  branches are now formally refuted as local closing routes: one minimal
+  12-vertex recursively decomposable, sweep-realizable Lean model realizes
+  both while avoiding five-caps, five-cups, seven-caps, and strong eight-sets.
+  The exact 32-vertex gate remains open because it additionally supplies three
+  external caps. Lean now retains that full seven-witness package: the
+  regenerated cap and external caps are pairwise disjoint, the `3+3` packing
+  occupies 24 vertices, and eight reservoir vertices remain. The next
+  consumer must use that global package, singleton root, or `32/23` density
+  essentially.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

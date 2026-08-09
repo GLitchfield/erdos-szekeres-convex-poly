@@ -1494,10 +1494,22 @@ reverse-separated pair expires synchronization by address equality alone.
 Regenerating a cap inside the 12 cup vertices leaves one exact alternative:
 it misses a selected cup or meets the three cups in profile `2+1+1`. A
 target-free signotope realizes the latter but is not decomposable; 50,000
-bounded decomposable samples found no witness. The batch is Outcome 2, a
-reusable structural advance, not closure of the singleton tail. The active
-contract must use recursive decomposability essentially to eliminate both
-regeneration branches or derive a named child-capacity violation.
+bounded decomposable samples found no witness. That batch was Outcome 2, a
+reusable structural advance, not closure of the singleton tail.
+
+Experiment 0068 resolves the local regeneration contract negatively. Lean
+proves the exact `2+2+0` versus `2+1+1` incidence split and aggregate root
+profiles, then kernel-checks a minimal recursively decomposable 12-vertex
+coloring realizing both profiles with no five-cap, five-cup, seven-cap, or
+strong eight-set. The general realization theorem makes the same coloring a
+genuine swept planar configuration. This is Outcome 3 for the local route:
+decomposability and profile-sensitive descent inside the cup union are
+insufficient. The full gate is not refuted. Lean now retains its distinguishing
+global data as `SevenWitnessRegenerationPacking578`: the regenerated cap and
+three external caps are pairwise disjoint, the original `3+3` packing uses 24
+vertices, and eight of the 32 reservoir vertices remain. The next contract
+must consume this seven-witness/remainder package, singleton-root information,
+or global `32/23` density essentially.
 
 ## Evidence
 
@@ -1512,6 +1524,9 @@ regeneration branches or derive a named child-capacity violation.
 - [Dual packing and regeneration](../../experiments/0067-state-578-dual-packing.md)
 - [Lean dual packing](../../../ErdosSzekeres/StructuralChargingNextState578DualPacking.lean)
 - [Lean reverse-separated pair](../../../ErdosSzekeres/StructuralChargingNextState578DualPackingCounterexample.lean)
+- [Three-cup regeneration and route expiry](../../experiments/0068-state-578-three-cup-regeneration.md)
+- [Lean regeneration machinery](../../../ErdosSzekeres/StructuralChargingNextState578Regeneration.lean)
+- [Lean minimal regeneration counterexample](../../../ErdosSzekeres/StructuralChargingNextState578RegenerationCounterexample.lean)
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
 - [`ErdosSzekeres.E3FiniteReduction`](../../../ErdosSzekeres/E3FiniteReduction.lean)
 - [Lean span-dominance pruning](../../../ErdosSzekeres/SpanDominance.lean)
