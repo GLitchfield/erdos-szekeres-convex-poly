@@ -621,9 +621,16 @@ sets.
   transversal has at least ten vertices and refines the original cup support
   to either a fourth disjoint cup or an injective ledger of 10--12 private
   cups with exterior vertices. A checked relaxed incidence model expires
-  counting-only and raw-deletion-ledger closure. The active target is a
-  decomposition-tree/orientation argument coupling those private cups across
-  owners; producing a transversal of size at most nine would close the gate.
+  counting-only and raw-deletion-ledger closure. One selected cup now lies
+  wholly in the owner transversal, producing a four-owner private-cup star.
+  Lean couples this star to the six cap blocks as a full `4 × 6`
+  first-joint-split matrix; every row and column is a prefix chain. An exact
+  seven-vertex common-tail example formally expires star-only tail nonreuse.
+  The remaining boundary-exchange contract also compiles: replacing `4r`
+  protected owners by at most `3r` boundary vertices while preserving all cup
+  hits produces a forbidden transversal of size at most nine. The active
+  theorem is to construct that collective exchange from the mixed matrix;
+  pairwise address classifications are insufficient.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

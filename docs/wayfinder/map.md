@@ -673,11 +673,17 @@ None. The destination was fixed by the user on 2026-08-01.
   chosen private cups, each using a vertex outside the original cup support.
   A checked relaxed 32-vertex incidence model realizes all of these counts and
   collapses the raw deletion ledger to two cups, so incidence/cardinality and
-  shared-middle arguments alone are expired. The active consumer must couple
-  those private cups through genuine decomposition-tree addresses or
-  orientation and prove cross-owner nonreuse, or construct an impossible
-  four-cup transversal of size at most nine. This is Outcome 2; neither
-  singleton tail is closed.
+  shared-middle arguments alone are expired. One selected cup is now proved
+  wholly inside the owner transversal and supplies a four-owner private-cup
+  star. Its 24 pairings with the six cap blocks form a compiling `4 × 6`
+  first-joint-split matrix whose rows and columns are prefix chains. A
+  seven-vertex sweep-realizable common-tail example formally expires star-only
+  tail nonreuse. Lean also proves the exact terminal contract: an exchange
+  replacing `4r` protected owners by at most `3r` boundary vertices while
+  preserving cup hits constructs the impossible nine-vertex transversal.
+  The active theorem is to build that collective boundary exchange from the
+  mixed matrix. Pairwise address classifications are insufficient. This is
+  Outcome 2; neither singleton tail is closed.
 
 ## Not yet specified
 

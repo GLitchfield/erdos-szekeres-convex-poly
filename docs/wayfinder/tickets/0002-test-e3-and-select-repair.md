@@ -1532,6 +1532,27 @@ expired. This batch is Outcome 2: the active theorem must use genuine tree or
 orientation data to prevent cross-owner reuse, or produce a four-cup
 transversal of size at most nine and contradict density.
 
+Experiment 0070 makes that tree-sensitive target exact. A ten-vertex owner
+transversal inside three disjoint four-cups must contain one whole selected
+cup. Its four owners index four distinct private cups, each consisting of its
+owner plus a three-vertex tail outside the transversal. Lean joins this
+private-cup star to the six-cap saturation package and builds all 24
+private-cup/cap first-joint-split cells. Every matrix row and column is a chain
+under path prefix. This is the first compiling collective address invariant
+for the full private ledger.
+
+The star alone does not close the state. Lean kernel-checks a seven-vertex
+sweep-realizable target-free coloring whose four private cups share exactly
+one common three-vertex tail. This expires tail disjointness and multiplicity
+claims. The terminal consumer is now a named Lean structure:
+`PrivateCupBoundaryExchange578`. Any tree argument which replaces `4r`
+protected owner vertices by at most `3r` boundary vertices, preserves every
+four-cup hit, and supplies the corresponding cardinal slack produces a
+four-cup transversal of size at most nine; the compiled density lower bound
+then gives `False`. The batch is Outcome 2. The next theorem must construct
+this collective exchange from the mixed matrix and exact 32-vertex state;
+independent pair classifications or repeated addresses do not suffice.
+
 ## Evidence
 
 - [Terminal-tail capacity and private caps](../../experiments/0065-state-578-terminal-tail-capacity.md)
@@ -1539,6 +1560,9 @@ transversal of size at most nine and contradict density.
 - [Lean two-tail multiplicity counterexample](../../../ErdosSzekeres/StructuralChargingNextState578CapacityCounterexample.lean)
 - [Lean private-cap consumers](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCaps.lean)
 - [Lean shared-core private-cap counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapsCounterexample.lean)
+- [Private-cup star and mixed address matrix](../../experiments/0070-state-578-private-cup-star.md)
+- [Lean private-star and boundary-exchange machinery](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCupStar.lean)
+- [Lean common-tail private-star counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCupStarCounterexample.lean)
 - [Whole-private-cap traces and route expiry](../../experiments/0066-state-578-private-cap-traces.md)
 - [Lean whole-private-cap traces](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTrace.lean)
 - [Lean true-peel/later-false-owner counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTraceCounterexample.lean)
