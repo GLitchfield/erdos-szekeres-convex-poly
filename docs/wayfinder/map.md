@@ -702,11 +702,18 @@ None. The destination was fixed by the user on 2026-08-01.
   three-vertex four-cup transversal is equivalent to a five-subset with no
   four-cup, and closes the decomposable singleton-lower root case. Two
   independent bounded enumerators found the transversal in all 121,577
-  five-cup-free decomposable colorings on eight vertices, but autoprove did
-  not establish the remaining decomposition-sensitive theorem. The active
-  target is an anchor-plateau breaker using decomposability and the `24+8`
-  capacity, or the local eight-vertex dense-four-cup lemma. This is Outcome 2;
-  neither singleton tail is closed.
+  five-cup-free decomposable colorings on eight vertices. Lean now proves the
+  stronger root-only density theorem by explicit arguments for all seven
+  nonempty split profiles and derives a five-cup-or-three-boundary dichotomy
+  on every decomposable eight-vertex carrier. This closes the local plateau.
+  Applied to the exact `24+8` packages, the unused eight vertices outside the
+  six-cap, original `3+3`, and protected one-cup/five-cap supports each carry
+  a three-boundary under global five-cup avoidance. The full anchor plateau
+  remains open because residual cups may cross the selected 24 vertices. The
+  next target is a crossing-to-remainder bridge coupling such a residual cup
+  to the unused boundary or to a forbidden outcome through the six-cap
+  matrix. This is Outcome 1 for the selected local theorem and Outcome 2 for
+  the still-open state-578 route.
 
 ## Not yet specified
 

@@ -642,10 +642,16 @@ sets.
   stay at that minimum, leaving an exact one-sided-or-anchor-plateau
   classification. This full matrix reconnects to the 32-vertex gate. On
   eight vertices, Lean further identifies a three-boundary with a five-set
-  containing no four-cup and closes the singleton-lower decomposable split;
-  bounded exhaustive evidence supports, but does not prove, the remaining
-  decomposable eight-vertex lemma. The active theorem is an anchor-plateau
-  breaker using decomposability and the `24+8` child capacity.
+  containing no four-cup and now proves the complete decomposable
+  eight-vertex lemma by seven certificate-free root-profile arguments. The
+  stronger root-only theorem needs no recursive child hypotheses. Hence every
+  decomposable eight-vertex carrier has either a five-cup or a three-vertex
+  four-cup transversal. Under global five-cup avoidance, the exact unused
+  eight-vertex remainders of the six-cap, original `3+3`, and protected
+  one-cup/five-cap packages all carry such a boundary. The active theorem is
+  now the crossing-to-remainder bridge: residual cups may cross the selected
+  24 vertices, so the unused boundary does not yet complete the global
+  exchange.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

@@ -1611,6 +1611,25 @@ The batch is Outcome 2.  The next exact target is a decomposition-sensitive
 anchor-plateau breaker, either the eight-vertex dense-four-cup lemma or a
 global `24+8` child-capacity contradiction.
 
+Experiment 0073 closes the selected local target in Lean. In fact the
+eight-vertex density contradiction needs only one nonempty deep split, not
+recursive child decomposability. The seven root profiles have explicit
+certificate-free proofs, and Lean now derives the operational dichotomy that
+every decomposable eight-vertex carrier has either a five-cup or a
+three-vertex four-cup transversal. The theorem reconnects to all three exact
+`24+8` packages: under global five-cup avoidance, the unused eight vertices
+outside the six-cap saturation, the original `3+3` packing, and the protected
+one-cup/five-cap packing each carry a three-boundary.
+
+This is Outcome 1 for the local target but does not yet close state 578. Those
+boundaries hit cups wholly contained in the unused remainder, whereas the
+private-star residual family may cross the selected 24 vertices. The next
+exact target is therefore a crossing-to-remainder bridge: a residual cup on
+the anchor plateau must either be hit by the unused three-boundary, leave a
+four-cup trace inside the unused remainder, or force a named target outcome
+through one of the six cap columns. A theorem that only repeats local
+eight-vertex coverage is now obsolete.
+
 ## Evidence
 
 - [Terminal-tail capacity and private caps](../../experiments/0065-state-578-terminal-tail-capacity.md)
@@ -1625,6 +1644,8 @@ global `24+8` child-capacity contradiction.
 - [Lean full-spine exchange and residual matrices](../../../ErdosSzekeres/StructuralChargingNextState578BoundaryExchange.lean)
 - [Full-residual anchor plateau](../../experiments/0072-state-578-full-residual-anchor.md)
 - [Lean full-residual carrier matrix](../../../ErdosSzekeres/StructuralChargingNextState578CarrierMatrix.lean)
+- [Eight-vertex plateau closure](../../experiments/0073-state-578-eight-vertex-plateau.md)
+- [Lean eight-vertex plateau and `24+8` consumers](../../../ErdosSzekeres/StructuralChargingNextState578EightVertex.lean)
 - [Whole-private-cap traces and route expiry](../../experiments/0066-state-578-private-cap-traces.md)
 - [Lean whole-private-cap traces](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTrace.lean)
 - [Lean true-peel/later-false-owner counterexample](../../../ErdosSzekeres/StructuralChargingNextState578PrivateCapTraceCounterexample.lean)
