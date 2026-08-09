@@ -654,8 +654,20 @@ sets.
   exchange. Lean has taken the first exact step: in the tight one-spine branch
   density produces a residual cup disjoint from the unused boundary which
   necessarily meets the selected six-cap support, so it is a genuine crossing
-  row of the full address matrix. The next theorem must consume that row at
-  the common-minimum node through child capacity and endpoint data.
+  row of the full address matrix. Full-family localization and the exact
+  complementary-child boundary now compile, but a relaxed 32-vertex model
+  refutes the identification of the selected/unused support cut with the
+  common-minimum split. The reviewed 24-row cap-vertex-deletion ledger also
+  compiles. Exact decomposable, sweep-realizable Lean counterexamples show
+  that one cap column may reuse a common three-vertex cup core with identical
+  endpoint shapes, and that two residual cups may have disjoint lower
+  sweep-middle pairs below two shared upper endpoints while avoiding every
+  target. Thus address-only, one-column deletion, and two-middle-pair closure
+  are expired. The surviving bracket theorem proves that, under five-cup and
+  seven-cap avoidance, two upper vertices can strictly bracket at most six
+  lower vertices. The active target is now collective: force a common bracket
+  of seven lower vertices using the six cap columns and global `32/23`
+  density, or refute that synchronization exactly.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

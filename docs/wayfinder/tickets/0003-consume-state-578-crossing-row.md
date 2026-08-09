@@ -2,7 +2,7 @@
 title: Consume the state-578 crossing residual row
 type: research
 mode: AFK
-status: open
+status: closed
 claim: codex-state-578-crossing-row-2026-08-09
 blocked_by: none
 ---
@@ -50,20 +50,38 @@ the tight one-spine branch of the color-dual `(7,5,8)` singleton-root gate?
 
 ## Resolution
 
-Open.  Experiment 0073 proves the local at-most-eight theorem and packages a
-residual cup which evades the unused boundary and meets the selected six-cap
-support.  The full matrix already has prefix-chain rows and columns, a global
-minimum, and a one-sided-or-spine-plateau classification.  It does not yet
-turn the crossing row into a child boundary or forbidden configuration.
+Closed with **Outcome 3**.  The full-family cap localization and exact
+complementary-child boundary compile.  A residual row in a localized branch
+is wholly inside the large child or stays at the minimum in all six columns.
+A kernel-checked relaxed 32-vertex model proves that crossing the global
+selected/unused partition does not force the row to meet the small
+decomposition child.  Address-only closure is therefore expired.
 
-The full-family cap-localization and exact complementary-child boundary now
-compile. A residual row in a localized branch is wholly inside the large
-child or stays at the minimum in all six columns. A kernel-checked relaxed
-32-vertex model proves that crossing the global selected/unused partition does
-not force the row to meet the small decomposition child. Address-only closure
-is therefore expired. A bounded route review is selecting among a cap-vertex
-deletion ledger, boundary swaps with private blockers, and cap-path first-exit
-charging.
+The reviewed replacement, a 24-row cap-vertex-deletion ledger, now exists in
+Lean at the exact 32-vertex gate.  In each cap column it supplies a row
+disjoint from that cap or four distinct rows, and base cells retain exact
+endpoint shapes.  Two kernel-checked obstructions show why this still does
+not close the state: a relaxed 32-vertex ledger may have 24 distinct,
+pairwise-intersecting rows all at the base address, and an eight-vertex
+decomposable, sweep-realizable, target-free coloring realizes four distinct
+deletion rows with one common three-vertex core and the same endpoint shape.
+
+The global density hypothesis does yield new reusable structure.  After
+blocking one four-cap, every transversal of the remaining four-cups has at
+least six vertices.  Covering the sweep-middle pairs with two vertices would
+contradict this bound, so Lean extracts two residual cups with disjoint
+middle pairs.  A cardinality-minimal ten-vertex decomposable,
+sweep-realizable, target-free Lean model realizes exactly that conclusion,
+with both middle pairs in the lower child and two shared upper endpoints.
+Thus one-column deletion, address, endpoint-shape, and two-middle-pair
+consumers are all insufficient.
+
+The strongest surviving theorem is an upper-bracket invariant: under
+five-cup avoidance, every lower set strictly between two upper vertices is
+cap-colored; if seven-caps are also absent, that bracket contains at most six
+lower vertices.  No current theorem forces such a bracket from the six cap
+blocks.  Ticket 0004 therefore makes that genuinely cross-column implication
+the next falsification gate.
 
 ## Evidence
 
@@ -78,3 +96,6 @@ charging.
 - `docs/experiments/0074-state-578-crossing-row-consumer.md` records the
   full-family localization, child boundary, strict-row repair, and relaxed
   negative control.
+- `docs/experiments/0075-state-578-deletion-middle-bracket.md` records the
+  deletion ledger, exact endpoint and middle-pair counterexamples, surviving
+  bracket theorem, bounded review, and route expiry.

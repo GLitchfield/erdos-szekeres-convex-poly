@@ -21,7 +21,10 @@ sharpness construction of size `2^(n-2)`.
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
 
-None. The destination was fixed by the user on 2026-08-01.
+- [The state-578 crossing-row address/deletion route is expired](tickets/0003-consume-state-578-crossing-row.md):
+  exact Lean counterexamples refute address-only, one-column endpoint, and
+  two-middle-pair consumers; the surviving bracket theorem redirects the
+  route to a genuinely collective six-cap synchronization problem.
 
 ## Open frontier
 
@@ -726,11 +729,23 @@ None. The destination was fixed by the user on 2026-08-01.
   profile retained at every base cell. A kernel-checked relaxed 32-vertex
   model proves that crossing the selected `24+8` support split need not meet
   the small decomposition child; an all-base address model also satisfies the
-  bare prefix contracts. Thus address-only closure is expired. The pending
-  bounded route decision compares a 24-row cap-vertex-deletion ledger,
-  boundary swaps exposing private blockers, and cap-path first-exit charging.
-  This is Outcome 1 for the selected local theorem and Outcome 2 for the
-  still-open state-578 route.
+  bare prefix contracts. Thus address-only closure is expired. The reviewed
+  replacement, a 24-row cap-vertex-deletion ledger, now compiles, including
+  its exact per-column distinctness and endpoint alternatives. Exact Lean
+  counterexamples show that all four rows of one cap column may share a
+  three-vertex core, a common root address, and the same endpoint shape while
+  avoiding every target. Density nevertheless proves a six-vertex lower
+  bound for transversals after blocking one cap and hence extracts two
+  residual cups with disjoint sweep-middle pairs. A cardinality-minimal
+  ten-vertex decomposable, sweep-realizable Lean model shows that even two
+  such pairs may lie in the lower child beneath two shared upper endpoints
+  without a target. The surviving theorem turns this obstruction around:
+  every lower set strictly bracketed by two upper vertices is cap-colored
+  under five-cup avoidance, so at most six such vertices exist when seven-caps
+  are forbidden. Ticket 0003 therefore closes with Outcome 3. The active
+  route is [ticket 0004](tickets/0004-force-state-578-upper-bracket.md): use
+  the six cap columns and global density essentially to force a common upper
+  bracket of seven lower vertices, or refute that synchronization exactly.
 
 ## Not yet specified
 
