@@ -1,0 +1,38 @@
+{
+  "description": "Relaxed 32-vertex incidence countermodel for state-578 counting consumers",
+  "evidence_level": "finite incidence model only; not a triple coloring, signotope, decomposable coloring, or Lean proof",
+  "universe_size": 32,
+  "caps": [
+    [0, 1, 2, 3],
+    [4, 5, 6, 7],
+    [8, 9, 10, 11],
+    [12, 13, 14, 15],
+    [16, 17, 18, 19],
+    [20, 21, 22, 23]
+  ],
+  "regenerated_cap_index": 0,
+  "external_cap_indices": [1, 2, 3],
+  "selected_cups": [
+    [0, 1, 16, 17],
+    [2, 20, 21, 24],
+    [3, 25, 26, 27]
+  ],
+  "complete_four_cup_core": [0, 1, 4, 8, 12, 16, 17, 20, 21, 24, 25, 26, 27],
+  "private_transversal": [0, 1, 16, 17, 20, 21, 24, 25, 26, 27],
+  "private_cups": {
+    "0": [0, 4, 8, 12],
+    "1": [1, 4, 8, 12],
+    "16": [4, 8, 12, 16],
+    "17": [4, 8, 12, 17],
+    "20": [4, 8, 12, 20],
+    "21": [4, 8, 12, 21],
+    "24": [4, 8, 12, 24],
+    "25": [4, 8, 12, 25],
+    "26": [4, 8, 12, 26],
+    "27": [4, 8, 12, 27]
+  },
+  "collapsed_deletion_cups": {
+    "first": [0, 16, 20, 24],
+    "second": [1, 17, 21, 25]
+  }
+}

@@ -1511,6 +1511,27 @@ vertices, and eight of the 32 reservoir vertices remain. The next contract
 must consume this seven-witness/remainder package, singleton-root information,
 or global `32/23` density essentially.
 
+Experiment 0069 consumes all of that package. Two further predecessor uses
+turn the four existing caps into six pairwise-disjoint four-caps occupying 24
+vertices and leaving eight. The `2+2+0` branch protects its missed selected
+cup and extracts one more residual cap, yielding a disjoint one-cup/five-cap
+package on 24 vertices; the `2+1+1` branch remains as an explicit all-hit
+state. Shared-middle incompatibility and the six-cap lower-incidence bound
+compile but do not close either branch.
+
+The surviving reduction comes from the global density. Lean proves every
+four-cup transversal has cardinality at least ten. Applied to the original
+12 cup vertices, this yields either a fourth disjoint cup or a minimum
+10--12-owner transversal with injectively indexed private cups. Each private
+cup meets the transversal only at its owner and has an exterior vertex. An
+independently checked relaxed incidence certificate has the full `24+8`
+packing, density, transversal number ten, ten private cups, and the all-hit
+profile while its raw deletion ledger uses only two cups. Thus counting,
+incidence, shared-middle, common-address, and weak-ordering shortcuts are
+expired. This batch is Outcome 2: the active theorem must use genuine tree or
+orientation data to prevent cross-owner reuse, or produce a four-cup
+transversal of size at most nine and contradict density.
+
 ## Evidence
 
 - [Terminal-tail capacity and private caps](../../experiments/0065-state-578-terminal-tail-capacity.md)
@@ -1527,6 +1548,10 @@ or global `32/23` density essentially.
 - [Three-cup regeneration and route expiry](../../experiments/0068-state-578-three-cup-regeneration.md)
 - [Lean regeneration machinery](../../../ErdosSzekeres/StructuralChargingNextState578Regeneration.lean)
 - [Lean minimal regeneration counterexample](../../../ErdosSzekeres/StructuralChargingNextState578RegenerationCounterexample.lean)
+- [Seven-witness saturation and private-cup ledger](../../experiments/0069-state-578-seven-witness-saturation.md)
+- [Lean seven-witness saturation](../../../ErdosSzekeres/StructuralChargingNextState578SevenWitness.lean)
+- [Relaxed private-cup incidence certificate](../../../data/derived/state578-private-cup-incidence-countermodel.json)
+- [Independent incidence checker](../../../scripts/verify_state578_private_cup_incidence_model.py)
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean)
 - [`ErdosSzekeres.E3FiniteReduction`](../../../ErdosSzekeres/E3FiniteReduction.lean)
 - [Lean span-dominance pruning](../../../ErdosSzekeres/SpanDominance.lean)

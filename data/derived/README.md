@@ -4,6 +4,15 @@ Store compact committed results and independently checkable certificates here.
 Large checkpoints, incomplete runs, caches, and machine-local logs belong under
 ignored `runs/`.
 
+- `state578-private-cup-incidence-countermodel.json` is a relaxed 32-vertex
+  finite-incidence countermodel for cardinality-only consumers of the
+  state-578 seven-witness gate. It has six disjoint four-caps, a `24+8`
+  support split, `32/23` four-cup density, transversal number ten, ten
+  injectively owner-indexed private cups, and a raw deletion ledger using only
+  two cups. It is not a coloring or a formal counterexample to any
+  orientation-sensitive theorem. The independent checker is
+  `scripts/verify_state578_private_cup_incidence_model.py`.
+
 - `e3-context-k6-n9-singleton-collision.json` is the compact all-gap profile
   incompleteness witness produced by
   `scripts/find_decomposable_context_collision.py` at source revision

@@ -102,6 +102,8 @@ test: check lean
 		data/derived/e3-cross-color-common-span-gate-k7-n10.json >/dev/null
 	@python3 scripts/check_structural_charging_countercontrols.py >/dev/null
 	@python3 scripts/check_crossing_separated_caps.py >/dev/null
+	@python3 scripts/verify_state578_private_cup_incidence_model.py \
+		data/derived/state578-private-cup-incidence-countermodel.json >/dev/null
 	@python3 scripts/check_published_offwindow.py >/dev/null
 	@python3 scripts/check_rank_profile_realization.py >/dev/null
 	@python3 scripts/check_agent_orchestration.py >/dev/null
@@ -183,6 +185,7 @@ test: check lean
 		scripts/check_cross_color_common_span_gate_k7_n10.py \
 		scripts/check_two_root_span_footprints.py \
 		scripts/check_crossing_separated_caps.py \
+		scripts/verify_state578_private_cup_incidence_model.py \
 		scripts/check_middle_split_bridge_routes.py \
 		scripts/check_middle_split_pair.py \
 		scripts/check_packed_middle_escape.py \

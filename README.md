@@ -614,9 +614,16 @@ sets.
   The exact 32-vertex gate remains open because it additionally supplies three
   external caps. Lean now retains that full seven-witness package: the
   regenerated cap and external caps are pairwise disjoint, the `3+3` packing
-  occupies 24 vertices, and eight reservoir vertices remain. The next
-  consumer must use that global package, singleton root, or `32/23` density
-  essentially.
+  occupies 24 vertices, and eight reservoir vertices remain. Lean now
+  saturates this to six disjoint four-caps on 24 vertices. The `2+2+0` branch
+  yields a protected disjoint one-cup/five-cap packing; the all-hit `2+1+1`
+  branch remains explicit. Global `32/23` density proves every four-cup
+  transversal has at least ten vertices and refines the original cup support
+  to either a fourth disjoint cup or an injective ledger of 10--12 private
+  cups with exterior vertices. A checked relaxed incidence model expires
+  counting-only and raw-deletion-ledger closure. The active target is a
+  decomposition-tree/orientation argument coupling those private cups across
+  owners; producing a transversal of size at most nine would close the gate.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

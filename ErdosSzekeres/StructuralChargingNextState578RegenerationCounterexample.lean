@@ -315,6 +315,22 @@ theorem cap₂₁₁_incidence :
     TwoOneOneCupIncidence578 cap₂₁₁ cup₁ cup₂ cup₃ := by
   simp [TwoOneOneCupIncidence578, cap₂₁₁, cup₁, cup₂, cup₃]
 
+/-- The exact target-free `2+1+1` model even contains a vertex which is a
+sweep-middle vertex of both the third cup and the regenerated cap.  The local
+shared-middle theorem is nevertheless satisfied because that cup is wholly
+in the root's upper child. -/
+theorem cap₂₁₁_shared_middle_has_safe_whole_upper :
+    let q : Fin 12 := 5
+    q ∈ cup₃ ∩ cap₂₁₁ ∧
+      ¬HasDeepBelowSplit.IsSweepEndpoint cup₃ q ∧
+      ¬HasDeepBelowSplit.IsSweepEndpoint cap₂₁₁ q ∧
+      cup₃ ⊆ treeVertices cupThreeTree := by
+  norm_num [cup₃, cap₂₁₁, cupThreeTree, treeVertices,
+    HasDeepBelowSplit.IsSweepEndpoint,
+    HasDeepBelowSplit.IsLeftSweepEndpoint,
+    HasDeepBelowSplit.IsRightSweepEndpoint]
+  all_goals omega
+
 theorem no_cup_five_bool :
     ∀ s : Finset (Fin 12), s.card = 5 → turnSetBool s .left = false := by
   native_decide

@@ -663,9 +663,21 @@ None. The destination was fixed by the user on 2026-08-01.
   state retains information absent from that counterexample: three external
   caps make four pairwise-disjoint caps with the regenerated cap, the original
   `3+3` packing occupies exactly 24 vertices, and exactly eight reservoir
-  vertices remain unused. The active consumer must use that global
-  seven-witness/remainder package, the singleton root, or `32/23` density
-  essentially; neither singleton tail is closed.
+  vertices remain unused. That global package now yields six pairwise-disjoint
+  four-caps with a `24+8` split. In the `2+2+0` branch, protecting the missed
+  cup yields a disjoint one-cup/five-cap 24-vertex package; the other branch is
+  retained explicitly as an all-hit `2+1+1` state. More importantly, the
+  `32/23` density proves that every four-cup transversal has at least ten
+  vertices. The original 12 cup vertices therefore either miss a fourth cup
+  entirely or contain a minimum 10--12-owner transversal with injectively
+  chosen private cups, each using a vertex outside the original cup support.
+  A checked relaxed 32-vertex incidence model realizes all of these counts and
+  collapses the raw deletion ledger to two cups, so incidence/cardinality and
+  shared-middle arguments alone are expired. The active consumer must couple
+  those private cups through genuine decomposition-tree addresses or
+  orientation and prove cross-owner nonreuse, or construct an impossible
+  four-cup transversal of size at most nine. This is Outcome 2; neither
+  singleton tail is closed.
 
 ## Not yet specified
 
