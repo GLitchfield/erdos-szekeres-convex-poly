@@ -38,7 +38,15 @@ substitutes for either artifact.
    the base revision, workspace fingerprint, objective, exact theorem contract
    when applicable, inputs and hashes, ownership, budget, checks, success
    condition, stop conditions, deliverables, and permitted claim levels.
-3. **Innovation check.** At the start of every user-approved mathematical work
+3. **Inventory approvals.** For every plan expected to take at least two hours,
+   identify all foreseeable provider calls, out-of-sandbox commands, installs,
+   resource increases, process termination, destructive actions, and external
+   mutations before asking the user to approve the plan. State which actions
+   are already authorized, which need new approval, and which remain
+   conditional because their exact target is not yet known. After approval,
+   trigger all foreseeable platform prompts at the beginning of the block. An
+   unforeseen later prompt pauses only its dependent branch.
+4. **Innovation check.** At the start of every user-approved mathematical work
    item or batch, record one of `dispatch now`, `reuse current result`, or
    `skip`, with a concrete reason. Dispatching the Mathematical Innovation
    Scout is the default for a new invariant, a route selection or redirect, a
@@ -47,23 +55,23 @@ substitutes for either artifact.
    already frozen theorem contract or repository maintenance. The scout is a
    read-only sidecar: it runs alongside the main stream and is reviewed at the
    next cycle boundary rather than blocking implementation.
-4. **Falsify or design.** Before expensive implementation, consult Laplace for
+5. **Falsify or design.** Before expensive implementation, consult Laplace for
    a questionable statement or the Structural Proof Architect for a missing
    conceptual route.  When the frontier stalls or a route is retired, consult
    the Mathematical Innovation Scout for a bounded portfolio of alternatives.
    This stage is read-only.
-5. **Dispatch.** Give a builder concrete, non-overlapping write paths.  Shared
+6. **Dispatch.** Give a builder concrete, non-overlapping write paths.  Shared
    integration files remain orchestrator-owned.  A worker may not silently
    weaken or replace a frozen theorem statement.
-6. **Gate locally.** A Lean worker first checks the owned file.  An experimental
+7. **Gate locally.** A Lean worker first checks the owned file.  An experimental
    worker runs its independent checker.  The worker returns a structured result
    with an evidence level and explicit limitations.
-7. **Review independently.** A read-only reviewer checks statement preservation,
+8. **Review independently.** A read-only reviewer checks statement preservation,
    assumptions, trust boundaries, and whether the reported gate actually ran.
-8. **Integrate serially.** The orchestrator inspects the diff, resolves conflicts,
+9. **Integrate serially.** The orchestrator inspects the diff, resolves conflicts,
    updates shared imports and documentation, and runs the project/repository
    gates.  Workers do not concurrently build, commit, or edit Wayfinder files.
-9. **Record.** Promote durable conclusions into the canonical project artifact.
+10. **Record.** Promote durable conclusions into the canonical project artifact.
    Retain negative results when they rule out a documented route.
 
 ## Estimate calibration

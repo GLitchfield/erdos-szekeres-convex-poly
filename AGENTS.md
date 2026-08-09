@@ -87,6 +87,26 @@ This repository is an AI-assisted formal mathematics project initialized from
   implementation of a vetted frozen theorem contract does not require another
   strategic review.
 
+## Multi-hour plan approvals
+
+- Before presenting any plan expected to take two hours or more, inventory all
+  reasonably foreseeable actions that need user or platform approval. Include
+  external provider or network calls, out-of-sandbox commands, software
+  installation, resource-limit increases, process termination, destructive
+  operations, and external repository or review mutations.
+- Resolve exact commands, targets, resource ceilings, and reusable approval
+  prefixes before requesting approval whenever the plan already determines
+  them. Present one consolidated approval request with the plan, distinguishing
+  actions already authorized, actions needing new approval, and conditional
+  actions that cannot yet be made exact.
+- Plan approval does not bypass a platform approval prompt. Trigger every
+  foreseeable prompt at the beginning of the approved work block rather than
+  waiting until the dependent item is reached.
+- If an unanticipated approval becomes necessary later, pause only the
+  dependent branch, continue any safe independent work, and ask for the narrow
+  additional authority. Never broaden the approved mathematical or operational
+  scope merely to avoid another prompt.
+
 ## Git discipline
 
 - Preserve user work and unrelated changes. Stage only intended files.
