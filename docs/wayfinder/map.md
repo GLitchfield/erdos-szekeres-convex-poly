@@ -58,19 +58,30 @@ sharpness construction of size `2^(n-2)`.
 
 - [Consume the state-578 plateau or localized residual escape](tickets/0010-consume-state-578-plateau-or-localized-escape.md)
   with genuinely global six-column/deletion-density data. Exact-small proposal
-  models expire the plateau-plus-two-foreign-caps local consumer, but omit the
-  full 32-point premises and do not refute state 578.
+  models expire the plateau-plus-two-foreign-caps local consumer. A compiling
+  seven-carrier-cover consumer would close the density contradiction, but
+  every individual residual seed now provably has an escaping cup and carrier
+  replacement is nonmonotone. The exact global coverage/acyclicity law remains
+  open; the controls omit the full 32-point premises and do not refute state
+  578.
 
 - [Choose the canonical formal model](tickets/0001-choose-formal-model.md)
   before committing the unrestricted bridge. Deletion-minimal
-  decomposition-prime supports now compile; the next Layer-F gate is a
-  realizable one-or-two deletion theorem with an exact-threshold consumer.
+  decomposition-prime supports compile, but an exact realizable seven-point
+  Lean counterexample now stops one-or-two deletion descent. The surviving
+  Layer-F proposal is a target-free realizable mutation normalization feeding
+  the compiling target-reflecting exact-threshold consumer; one exact
+  geometric mutation into the decomposable class now compiles as its positive
+  control.
 - [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
   now focuses on the uniform `PascalTailTwoSideBound`; its first open instance
   is exactly the state-567 two-cap-free-sides theorem. The diagonal `a=4`
   cup-block interface and all cases through `k=8` now compile, isolating
-  `k=9` (`7+8/8+7`) as the first new uniform test. State 567 now reduces to
-  two exact 22-point packing obligations. The historical route
+  `k=9` (`7+8/8+7`) as the first new uniform test. Both `k=9`
+  orientations and all nondual 22-point state-567 cuts are UNSAT in fresh
+  bounded audits, but no checked UNSAT certificate was produced. State 567
+  therefore remains formally reduced to two exact 22-point packing
+  obligations. The historical route
   record follows. The scalar recurrence, maxima-only
   contexts, deterministic downset words, complete child pair-rank matrices,
   and pairwise raw-downset counting shortcut are now refuted routes; abstract

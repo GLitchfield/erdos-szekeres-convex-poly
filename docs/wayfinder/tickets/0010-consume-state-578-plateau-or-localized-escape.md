@@ -57,9 +57,24 @@ consumer must use global information absent from those controls, such as all
 six columns, the 24 deletion rows, full residual density, or a collective star
 law. The `hone` qualification and multi-spine carrier branch remain explicit.
 
+The subsequent global-carrier audit still reaches none of Outcomes 1--3, but
+it sharpens the obstruction with compiling theorems. The tight six-column
+package and expanding carrier can now be chosen on one common private-star
+witness. A hypothetical `FullSpineSevenCarrierCover578` is terminal: local
+three-boundaries combine into the forbidden global residual boundary.
+However, `exists_escape_from_any_residualSeed_at_32` proves that every single
+residual seed has an escaping cup outside its seven-carrier, and carrier
+replacement cannot be monotone inclusion growth. None of the four current
+tight branches constructs the global cover. The next candidate must therefore
+quantify over the complete residual family and establish a color-sensitive
+coverage or acyclicity law, rather than select another individual row. See
+Experiment 0090.
+
 ## Evidence
 
 - `docs/experiments/0085-state-578-plateau-two-foreign-caps.md`
 - `ErdosSzekeres/StructuralChargingNextState578PlateauForeignCaps.lean`
 - `ErdosSzekeres/StructuralChargingNextState578LocalizedColumn.lean`
 - `docs/experiments/0087-state-578-plateau-consumer-audit.md`
+- `ErdosSzekeres/StructuralChargingNextState578Global.lean`
+- `docs/experiments/0090-state-578-global-carrier-cover.md`

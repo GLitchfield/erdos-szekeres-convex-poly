@@ -111,11 +111,23 @@ outside the decomposable class. `DecompositionPrime.lean` proves that every
 nonempty indecomposable finite support contains a deletion-minimal
 indecomposable subset and that this subset has no proper deep-below split.
 This does not close the model ticket or the unrestricted upper bound: a bounded
-prime core alone cannot invoke E3 at the exact threshold. The modified route
-tests a realizable one-or-two deletion theorem plus local binary pin coding;
-all reported small signotope and rational controls remain proposal-level until
-they receive deterministic certificates and independent checking. See
-Experiment 0088.
+prime core alone cannot invoke E3 at the exact threshold.
+
+The proposed realizable one-or-two-deletion repair is now formally stopped.
+`PrimeTwoDeletionCounterexample.lean` kernel-checks an integer-coordinate
+seven-point swept configuration which is decomposition-prime and has no
+strong six-set, while every restriction obtained by deleting one or two
+vertices is non-prime. `DecompositionPrimeNormalization.lean` instead records
+the exact load-bearing interface: a target-reflecting normalization to a
+decomposable coloring on the same ground set promotes the decomposable exact
+upper theorem to all sweep-realizable colorings. The surviving construction
+proposal is target-free realizable single-triple mutation. Its path-to-
+normalization consumer and one exact geometric edge from the prime
+counterexample to a target-free decomposable coloring now compile; bounded
+abstract connectivity remains computational proposal evidence.
+Crossing deep splits supply a compiling strong-four fallback, but an exact
+rational control shows they do not force a strong six without additional
+capacity. See Experiments 0088 and 0089.
 
 ## Evidence
 
@@ -140,6 +152,12 @@ Experiment 0088.
   cup--cap-to-strong-polygon composition theorem
 - [`ErdosSzekeres.DecompositionPrime`](../../../ErdosSzekeres/DecompositionPrime.lean),
   deletion-minimal indecomposable supports and their prime-split theorem
+- [`ErdosSzekeres.PrimeTwoDeletionCounterexample`](../../../ErdosSzekeres/PrimeTwoDeletionCounterexample.lean),
+  the realizable seven-point obstruction to one-or-two deletion descent
+- [`ErdosSzekeres.DecompositionPrimeNormalization`](../../../ErdosSzekeres/DecompositionPrimeNormalization.lean),
+  the exact target-reflecting Layer-F consumer
+- [`ErdosSzekeres.PrimeMutationPositiveControl`](../../../ErdosSzekeres/PrimeMutationPositiveControl.lean),
+  one exact realizable target-free mutation into the decomposable class
 - [Intermediary lemma ladder](../../formalization_plan.md)
 - Baek's formalization: <https://github.com/jcpaik/erdos-tuza-valtr>
 - Advisory review of revision `2e34881d6f9f6adefe14d459def686fd90031964`:

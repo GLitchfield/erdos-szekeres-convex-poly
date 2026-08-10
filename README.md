@@ -719,8 +719,12 @@ sets.
   certificates. A new diagonal interface proves the reservoir identity
   `2k-3`, consumes a parameterized `(k-2)+(k-1)` cup-block theorem, and
   unifies every `(4,k,k)` singleton gate through `k=8`, including the omitted
-  `(4,7,7)` control. Its first new case is `k=9`. State 567 separately reduces
-  to two exact 22-point deletion-packing obligations. In the parallel
+  `(4,7,7)` control. Its first new case is `k=9`; both normalized orientations
+  are UNSAT in a fresh independently regenerated audit, but remain formally
+  open without a checked certificate. State 567 separately reduces to two
+  exact 22-point deletion-packing obligations. Every nondual 22-point split is
+  likewise UNSAT computationally, but neither obligation has a Lean proof. In
+  the parallel
   state-578 branch, all four private deletion
   owners force one full six-column plateau cup which misses two foreign cap
   blocks. This is a sharper Outcome-2 obstruction, not closure of state 578.
@@ -728,9 +732,17 @@ sets.
   its two foreign caps; the full six-column/32-point route and multi-spine
   branch remain open. `DecompositionPrime.lean` begins the unrestricted
   Layer-F replacement by proving that every finite indecomposable support
-  contains a deletion-minimal prime support. This infrastructure has no exact
-  threshold consumer yet; the next falsifier is a realizable one-or-two
-  deletion theorem with local binary coding.
+  contains a deletion-minimal prime support. The realizable one-or-two
+  deletion proposal is now kernel-refuted by a seven-point integer-coordinate
+  prime coloring with no strong six-set and no prime remainder after any one
+  or two deletions. The exact target-reflecting normalization consumer now
+  compiles; target-free realizable single-triple mutation is the surviving
+  construction proposal, with one kernel-checked geometric mutation into the
+  decomposable class as a positive control. The global state-578 follow-up
+  also compiles a terminal seven-carrier-cover consumer, but every individual
+  residual seed
+  has an escaping cup and carrier replacement is nonmonotone. This is a
+  sharper no-outcome diagnosis, not a proof or refutation of state 578.
   The independent rooted-circuit branch stops: a seven-point rational Lean
   counterexample refutes preservation of two signed triangle anchors.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point

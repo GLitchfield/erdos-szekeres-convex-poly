@@ -137,6 +137,19 @@ deleting few vertices, a sharper rank recurrence using the four-point laws, or
 an implication through the Erdős--Tuza--Valtr parameter lattice. None is
 currently claimed.
 
+The first few-deletion proposal has now been decisively falsified in Lean.
+`PrimeTwoDeletionCounterexample.lean` realizes a seven-point integer
+configuration whose coloring is decomposition-prime and strong-six-free but
+whose every one- or two-vertex deletion is non-prime. The exact replacement
+interface is `TargetReflectingDecomposableNormalizationAt`: if a target-free
+sweep-realizable coloring can be normalized on the same ground set to a
+decomposable realizable coloring while reflecting any target back, the
+decomposable exact theorem proves the unrestricted upper bound. A target-free
+realizable single-triple mutation normalization is the surviving proposal for
+constructing this interface. Its generic mutation-path consumer and one exact
+geometric positive-control edge into the decomposable class now compile;
+bounded connectivity remains computational evidence only.
+
 The Layer E definitions deliberately distinguish the older contiguous-cut
 API `HasDeepSplit` from the published arbitrary deep-below partition.  The
 theorem `HasDeepSplit.toHasDeepBelowSplit` embeds the former into the latter,
@@ -1099,6 +1112,15 @@ common-minimum address. That four-cup misses two distinct foreign cap blocks.
 The resulting plateau/two-foreign-cap theorem compiles, but address-only
 models show that another color-sensitive consumer is still required. Ticket
 0010 owns that continuation; `DecomposableStateUpper 5 7 8` remains open.
+
+The next state-578 global audit does not obtain another ticket outcome, but it
+isolates a terminal consumer. A cover of the complete residual four-cup family
+by one at-most-seven carrier per full spine would combine local
+three-boundaries into the forbidden global density boundary. Conversely,
+Lean proves that every single residual seed has an escaping cup outside its
+seven-carrier and that carrier replacement cannot be monotone inclusion
+growth. The missing theorem is therefore global and color-sensitive: it must
+cover or rank the complete residual family, not choose another selected row.
 
 ## External Lean baseline
 
