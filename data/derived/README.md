@@ -4,6 +4,15 @@ Store compact committed results and independently checkable certificates here.
 Large checkpoints, incomplete runs, caches, and machine-local logs belong under
 ignored `runs/`.
 
+- `state578-exterior-density-relaxed-countermodel.json` retains the exact
+  32/23 incidence scale, six disjoint four-cap columns, transversal number
+  ten, 24 source-indexed deletion rows, a nine-source one-upper fan spanning
+  all six columns, and genuine two-level common-minimum addresses, but its
+  residual four-cup transversal number is exactly four.  It therefore refutes
+  a direct three-boundary consumer at the finite-incidence/address level.  It
+  is not a coloring or a geometric counterexample.  The independent checker
+  is `scripts/check_state578_exterior_density_relaxed_countermodel.py`.
+
 - `state578-private-cup-incidence-countermodel.json` is a relaxed 32-vertex
   finite-incidence countermodel for cardinality-only consumers of the
   state-578 seven-witness gate. It has six disjoint four-caps, a `24+8`

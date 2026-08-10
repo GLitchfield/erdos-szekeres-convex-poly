@@ -673,9 +673,18 @@ sets.
   upper endpoint, and those sources occupy at least three cap columns. An
   exact 13-vertex decomposable and sweep-realizable Lean model realizes that
   three-column fan while avoiding five-cups, seven-caps, and strong
-  eight-sets. The active target must therefore use all six columns or the
-  exact `32/23` residual density essentially, for example by constructing a
-  forbidden four-cup transversal of size at most nine.
+  eight-sets. Lean now uses all six columns essentially: every one-upper fan
+  row misses at least three cap blocks, so one column is missed by at least
+  five source-indexed rows. Exact `32/23` density independently supplies two
+  cups avoiding that blocker with disjoint sweep-middle pairs. A total
+  deletion-branch theorem exposes source-disjoint and lower-local rows instead
+  of hiding the fan constructor's premises. The direct three-boundary repair
+  is refuted by an independently checked relaxed 32-vertex incidence/address
+  model, and an exact 13-vertex target-free Lean model proves that five local
+  deficit rows alone need not have a two-cover of their middle pairs. The
+  active target is therefore the precise full-family synchronization: retain
+  another cap column or the complete residual matrix while coupling the five
+  selected fan rows to the arbitrary blocker-avoiding density witnesses.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

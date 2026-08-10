@@ -29,8 +29,18 @@ sharpness construction of size `2^(n-2)`.
   Lean proves a nine-source one-sided fan, while exact nine- and 13-vertex
   target-free models refute two-column brackets and every three-column
   fan-only consumer; the next invariant must use full residual density.
+- [The state-578 exterior fan yields a six-column deficit, not a boundary](tickets/0005-couple-state-578-exterior-fan-density.md):
+  Lean concentrates five one-upper rows away from one cap column and couples
+  that blocker to two density cups, while relaxed 32-vertex and exact local
+  countermodels refute direct three-boundary and post-selection two-cover
+  consumers.
 
 ## Open frontier
+
+- [Synchronize the state-578 deficit column with full residual density](tickets/0006-synchronize-state-578-deficit-density.md)
+  by eliminating source-disjoint/lower-local deletion escapes or coupling the
+  five selected fan entries to every blocker-avoiding residual cup while
+  retaining another cap column or the full residual matrix.
 
 - [Choose the canonical formal model](tickets/0001-choose-formal-model.md)
   before committing the proof architecture to Euclidean geometry, ordered

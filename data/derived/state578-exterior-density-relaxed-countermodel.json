@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "title": "Relaxed state-578 exterior-density boundary countermodel",
+  "evidence_level": "finite ordered-incidence/address model; not a TripleColoring",
+  "vertices": 32,
+  "lower": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+  "upper": [24, 25, 26, 27, 28, 29, 30, 31],
+  "cap_columns": [
+    [0, 1, 2, 3],
+    [4, 5, 6, 7],
+    [8, 9, 10, 11],
+    [12, 13, 14, 15],
+    [16, 17, 18, 19],
+    [20, 21, 22, 23]
+  ],
+  "protected_spine": [0, 4, 8, 12],
+  "unprotected_transversal": [26, 27, 28, 29, 30, 31],
+  "ambient_edge_rule": "all four-sets meeting protected_spine union unprotected_transversal, except the six cap columns",
+  "residual_edge_rule": "ambient edges disjoint from unprotected_transversal",
+  "pairwise_disjoint_residual_edges": [
+    [0, 1, 2, 16],
+    [4, 5, 6, 17],
+    [8, 9, 10, 18],
+    [12, 13, 14, 19]
+  ],
+  "row_auxiliary_protected": [4, 8, 12, 0, 0, 0],
+  "row_auxiliary_lower": [8, 12, 0, 4, 4, 4],
+  "common_upper_endpoint": 24,
+  "fan_sources": [0, 1, 2, 3, 4, 8, 12, 16, 20],
+  "base_path": [],
+  "lower_path": [false],
+  "limitations": [
+    "No TripleColoring or rank-three signotope realizes the declared hyperedges.",
+    "No decomposable coloring, sweep realization, planar realization, or target avoidance is claimed.",
+    "The certificate refutes only consumers inherited by the retained incidence, order, and two-level address data."
+  ]
+}
