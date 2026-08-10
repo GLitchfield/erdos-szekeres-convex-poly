@@ -106,6 +106,17 @@ stalled until manually terminated; no advisory conclusion was produced or
 used.  The failed run is retained locally under ignored
 `runs/reviews/layer-e-route/`.
 
+The 2026-08-10 Layer-F replacement audit now has a minimal compiling object
+outside the decomposable class. `DecompositionPrime.lean` proves that every
+nonempty indecomposable finite support contains a deletion-minimal
+indecomposable subset and that this subset has no proper deep-below split.
+This does not close the model ticket or the unrestricted upper bound: a bounded
+prime core alone cannot invoke E3 at the exact threshold. The modified route
+tests a realizable one-or-two deletion theorem plus local binary pin coding;
+all reported small signotope and rational controls remain proposal-level until
+they receive deterministic certificates and independent checking. See
+Experiment 0088.
+
 ## Evidence
 
 - [Initial literature review](../../literature_review.md)
@@ -127,6 +138,8 @@ used.  The failed run is retained locally under ignored
 - [`ErdosSzekeres.Decomposable`](../../../ErdosSzekeres/Decomposable.lean),
   arbitrary deep-below partitions, recursive subset closure, and the
   cup--cap-to-strong-polygon composition theorem
+- [`ErdosSzekeres.DecompositionPrime`](../../../ErdosSzekeres/DecompositionPrime.lean),
+  deletion-minimal indecomposable supports and their prime-split theorem
 - [Intermediary lemma ladder](../../formalization_plan.md)
 - Baek's formalization: <https://github.com/jcpaik/erdos-tuza-valtr>
 - Advisory review of revision `2e34881d6f9f6adefe14d459def686fd90031964`:

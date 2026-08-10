@@ -47,10 +47,19 @@ residual cups, to produce a forbidden target or a named strict predecessor?
 
 ## Resolution
 
-Open.
+Open. A read-only exact-small audit expires the proposed local consumer using
+only the plateau cup, its source cap, and two foreign caps: deterministic
+15-vertex decomposable models reportedly realize every plateau placement
+profile without a target. This is proposal-level computation, not a Lean
+counterexample, and the models omit the full six-column/32-point density
+premises. Therefore none of Outcomes 1--3 is reached. The next positive
+consumer must use global information absent from those controls, such as all
+six columns, the 24 deletion rows, full residual density, or a collective star
+law. The `hone` qualification and multi-spine carrier branch remain explicit.
 
 ## Evidence
 
 - `docs/experiments/0085-state-578-plateau-two-foreign-caps.md`
 - `ErdosSzekeres/StructuralChargingNextState578PlateauForeignCaps.lean`
 - `ErdosSzekeres/StructuralChargingNextState578LocalizedColumn.lean`
+- `docs/experiments/0087-state-578-plateau-consumer-audit.md`

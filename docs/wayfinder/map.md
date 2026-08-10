@@ -57,15 +57,20 @@ sharpness construction of size `2^(n-2)`.
 ## Open frontier
 
 - [Consume the state-578 plateau or localized residual escape](tickets/0010-consume-state-578-plateau-or-localized-escape.md)
-  by using the plateau cup's two foreign cap blocks, or an escaping residual
-  cup across all six columns, to obtain a target or named strict predecessor.
+  with genuinely global six-column/deletion-density data. Exact-small proposal
+  models expire the plateau-plus-two-foreign-caps local consumer, but omit the
+  full 32-point premises and do not refute state 578.
 
 - [Choose the canonical formal model](tickets/0001-choose-formal-model.md)
-  before committing the proof architecture to Euclidean geometry, ordered
-  configurations, or a verified two-layer representation.
+  before committing the unrestricted bridge. Deletion-minimal
+  decomposition-prime supports now compile; the next Layer-F gate is a
+  realizable one-or-two deletion theorem with an exact-threshold consumer.
 - [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
   now focuses on the uniform `PascalTailTwoSideBound`; its first open instance
-  is exactly the state-567 two-cap-free-sides theorem. The historical route
+  is exactly the state-567 two-cap-free-sides theorem. The diagonal `a=4`
+  cup-block interface and all cases through `k=8` now compile, isolating
+  `k=9` (`7+8/8+7`) as the first new uniform test. State 567 now reduces to
+  two exact 22-point packing obligations. The historical route
   record follows. The scalar recurrence, maxima-only
   contexts, deterministic downset words, complete child pair-rank matrices,
   and pairwise raw-downset counting shortcut are now refuted routes; abstract

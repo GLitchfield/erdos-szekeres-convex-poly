@@ -1904,3 +1904,22 @@ rational configuration in general position kernel-refutes preservation of two
 untouched anchors across rooted-triangle elimination. The weaker one-anchor
 form has no identified bounded-fiber or recurrence consumer and is not
 promoted. See Experiments 0083 and 0084.
+
+## 2026-08-10 diagonal and exact-packed refinement
+
+The diagonal `a=4` staircase now has one compiling all-parameter interface.
+`DiagonalCupBlocksForce4kk k` implies the exact two-side Pascal bound and the
+singleton lower-tail gate because Lean proves the reservoir identity
+`lowerPascalTailReservoir 4 k k = 2*k-3`. The existing ordered block theorems
+instantiate this interface for every `5 ≤ k ≤ 8`; this adds the previously
+omitted compiling `(4,7,7)` singleton gate. The first genuinely new diagonal
+case is `k=9`, with `7+8/8+7` cup blocks. This does not settle the uniform
+contract or the open `a=5` state 567.
+
+The state-567 historical residue refinements meet their stop condition. Their
+surviving exact reduction now retains the 22-point total and
+`StrongSixAvoidsEverySix` instead of discarding them before the hard leaves.
+Lean proves that an exact internal-strong-six impossibility plus a balanced
+`11+11` packing-to-internal-strong-six theorem implies
+`TwoCapFreeSidesBound567`. Both sharper obligations remain open. See
+Experiment 0086.

@@ -11,6 +11,7 @@ public import ErdosSzekeres.SmallCases
 public import ErdosSzekeres.Composition
 public import ErdosSzekeres.Extremal
 public import ErdosSzekeres.Decomposable
+public import ErdosSzekeres.DecompositionPrime
 public import ErdosSzekeres.DecomposableRealization
 public import ErdosSzekeres.Duality
 public import ErdosSzekeres.ContextProfile
@@ -53,6 +54,7 @@ public import ErdosSzekeres.StructuralChargingCupBlocks56
 public import ErdosSzekeres.StructuralChargingCapFreeSides
 public import ErdosSzekeres.StructuralChargingStrongSixSignature
 public import ErdosSzekeres.StructuralChargingWitnessBranches
+public import ErdosSzekeres.StructuralChargingWitnessBranchesPacked
 public import ErdosSzekeres.StructuralChargingResidueTransitions
 public import ErdosSzekeres.StructuralChargingPackingResidues
 public import ErdosSzekeres.StructuralChargingMiddleSplits
@@ -128,6 +130,7 @@ public import ErdosSzekeres.StructuralChargingSaturatedResource
 public import ErdosSzekeres.StructuralChargingPascalTails
 public import ErdosSzekeres.StructuralChargingPascalTails578
 public import ErdosSzekeres.StructuralChargingPascalTailGates
+public import ErdosSzekeres.StructuralChargingPascalCupBlocks
 public import ErdosSzekeres.RootedTriangleCircuitCounterexample
 public import ErdosSzekeres.DecomposableStateDuality
 public import ErdosSzekeres.ES5Certificate
