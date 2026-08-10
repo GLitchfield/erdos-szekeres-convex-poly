@@ -2,7 +2,7 @@
 title: Consume the state-578 localized-cap or minimum-column trichotomy
 type: research
 mode: AFK
-status: open
+status: closed
 claim: codex-state-578-localized-cap-column-consumer-2026-08-10
 blocked_by: none
 ---
@@ -46,12 +46,19 @@ the upper child, or one complete cap column at the common-minimum address?
 
 ## Resolution
 
-Open. The mixed rectangle is gone. Projected one-sided descent and all-base
-minimum-column claims are already falsified; the next statement must use the
-full state package essentially.
+Outcome 2. The no-opposite-extensions argument now applies to the full
+residual matrix, eliminating the distinguished-spine plateau and leaving
+only lower localization, upper localization, or a universal minimum column.
+Both localized branches carry a compiling complementary three-boundary and
+an escaping residual cup. The column branch splits into a disjoint residual
+cup or a four-owner private residual star with exact singleton intersections.
+No branch yet yields a target or strict parameter predecessor. Ticket 0009
+owns this exact four-way obstruction.
 
 ## Evidence
 
 - `docs/experiments/0079-state-578-blocker-consumer.md`
 - `ErdosSzekeres/StructuralChargingNextState578BlockerConsumer.lean`
 - `ErdosSzekeres/StructuralChargingNextState578DeficitDensity.lean`
+- `ErdosSzekeres/StructuralChargingNextState578LocalizedColumn.lean`
+- `docs/experiments/0082-state-578-localized-column.md`

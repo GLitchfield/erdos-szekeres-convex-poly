@@ -44,13 +44,18 @@ sharpness construction of size `2^(n-2)`.
   true-extension cap above it, producing a forbidden strong eight-set; the
   surviving one-sided localization and minimum-column alternatives remain
   open and exact-small models refute their projected forms.
+- [The full state-578 matrix reduces to four exact residual obstructions](tickets/0008-consume-state-578-localized-cap-or-minimum-column.md):
+  opposite directions are impossible in the full residual matrix; localized
+  branches now retain a complementary three-boundary and escaping residual
+  cup, while a universal column yields either a disjoint cup or a four-owner
+  private residual star.
 
 ## Open frontier
 
-- [Consume the state-578 localized-cap or minimum-column trichotomy](tickets/0008-consume-state-578-localized-cap-or-minimum-column.md)
-  by using the full 32-vertex private-star/density package to turn one-sided
-  `24+8` localization or a universal minimum column into a cover, target, or
-  named strict predecessor.
+- [Consume the state-578 localized escapes or minimum-column private star](tickets/0009-consume-state-578-localized-escape-or-private-star.md)
+  by using the escaping residual cup across all six cap columns, or all four
+  singleton-owned deletion witnesses, to obtain a target or named strict
+  predecessor.
 
 - [Choose the canonical formal model](tickets/0001-choose-formal-model.md)
   before committing the proof architecture to Euclidean geometry, ordered

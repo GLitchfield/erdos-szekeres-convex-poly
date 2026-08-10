@@ -1861,3 +1861,30 @@ endpoint-indexed predecessor fibers for an injective Boolean shelling. No new
 main route is selected. The next route-level action is to freeze the smallest
 noncircular shelling specification and falsify it on existing exact colorings
 and collision witnesses before any Lean theorem is attempted.
+
+## 2026-08-10 three-thread route decision
+
+The frozen symmetric predecessor-fiber candidate is false.  The first failure
+already occurs for the all-right decomposable coloring on four vertices at
+`k = 5`: the pairs `(1,2)` and `(2,3)` force opposite values for the same bit
+of vertex `2`.  This is stronger than a failure of injectivity, because no
+shell-coherent label exists.  The counterexample and its noncircular rank
+semantics are now kernel-checked in
+`PredecessorFiberShellingCounterexample.lean`; the deterministic producer and
+independent checker remain computational evidence for how the witness was
+found.  This expires only the tested rule, not all endpoint-indexed shellings.
+
+The all-parameter Pascal-tail branch survives and is promoted as the current
+generic arithmetic infrastructure.  Lean now proves that every published
+critical root slice lies in one of two binomial-width tails, and supplies a
+generic reducer from the two parameterized geometric tail gates to the
+critical-root contradiction.  The former state-578 `32/41` split is proved to
+be exactly this general construction at `(a,u,k) = (5,7,8)`.  Consequently the
+state-specific middle-window enumeration is no longer a strategic
+obstruction; the missing uniform consumer is the pair of geometric Pascal-tail
+gate families.
+
+This is a route selection, not a proof of E3 or of the exact happy-ending
+formula.  State 578 remains a useful fixed-state diagnostic in parallel, while
+the main all-`k` question is whether the new generic tail gates can be proved
+from decomposition geometry without rebuilding a state-by-state dispatcher.

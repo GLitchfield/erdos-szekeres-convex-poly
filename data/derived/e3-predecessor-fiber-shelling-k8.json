@@ -1,0 +1,215 @@
+{
+  "claim_level": "computational_evidence",
+  "coverage_before_stop": {
+    "colorings_visited": {
+      "k=5,n=1": 1,
+      "k=5,n=2": 1,
+      "k=5,n=3": 2,
+      "k=5,n=4": 1
+    },
+    "signotopes_among_target_free": 5,
+    "target_free_colorings_tested": 5
+  },
+  "failure": {
+    "allowed_labels": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        2,
+        3,
+        6,
+        7
+      ],
+      [],
+      [
+        0,
+        1
+      ]
+    ],
+    "clip": 3,
+    "coloring_hex": "0",
+    "fixed_coordinates": [
+      {},
+      {
+        "1": 1
+      },
+      {
+        "1": -1,
+        "2": 1
+      },
+      {
+        "1": 0,
+        "2": 0
+      }
+    ],
+    "hall_defect": 1,
+    "hall_neighbor_labels": [],
+    "hall_vertices": [
+      2
+    ],
+    "k": 5,
+    "n": 4,
+    "pair_ranks": [
+      {
+        "left": 1,
+        "right": 1,
+        "u": 0,
+        "v": 1
+      },
+      {
+        "left": 1,
+        "right": 1,
+        "u": 0,
+        "v": 2
+      },
+      {
+        "left": 1,
+        "right": 1,
+        "u": 0,
+        "v": 3
+      },
+      {
+        "left": 1,
+        "right": 2,
+        "u": 1,
+        "v": 2
+      },
+      {
+        "left": 1,
+        "right": 2,
+        "u": 1,
+        "v": 3
+      },
+      {
+        "left": 1,
+        "right": 3,
+        "u": 2,
+        "v": 3
+      }
+    ],
+    "relevant_forcing_events": {
+      "2": [
+        {
+          "coordinate": 1,
+          "exclusive_color": "right",
+          "forced_value": 0,
+          "forced_vertex": 2,
+          "left_rank": 1,
+          "pair": [
+            1,
+            2
+          ],
+          "right_rank": 2
+        },
+        {
+          "coordinate": 1,
+          "exclusive_color": "right",
+          "forced_value": 1,
+          "forced_vertex": 2,
+          "left_rank": 1,
+          "pair": [
+            2,
+            3
+          ],
+          "right_rank": 3
+        },
+        {
+          "coordinate": 2,
+          "exclusive_color": "right",
+          "forced_value": 1,
+          "forced_vertex": 2,
+          "left_rank": 1,
+          "pair": [
+            2,
+            3
+          ],
+          "right_rank": 3
+        }
+      ]
+    },
+    "tree": {
+      "lower": {
+        "lower": 3,
+        "upper": 0
+      },
+      "upper": {
+        "lower": 2,
+        "upper": 1
+      }
+    },
+    "triple_order": "lexicographic combinations(range(n),3); LSB first; 1=left"
+  },
+  "frozen_inputs": {
+    "ErdosSzekeres/RankProfile.lean": "e11868a7779e78b7bb2c58dadb9dddf53dd128e47f4a5c4b507a43ae44656f05",
+    "docs/experiments/0079-state-578-blocker-consumer.md": "8f871cb08ffedfa308acfb94bf9ad1f07b80f9e6b65807921930e868b395eb0c",
+    "scripts/check_decomposable_enumeration.py": "2b16e231d388c33aefca396c3c49ef4991c2a662fc7a67e9961fe63a15107405",
+    "scripts/enumerate_decomposable_colorings.py": "25edc9925ef9f79c1ed1c0dd3e03c419df418a1cda3da1dbeac7fa080f1a1f1f"
+  },
+  "frozen_specification": {
+    "coordinate_count": "d = k - 2",
+    "exclusive_left": "force label(u)[r]=0 and label(v)[r]=1",
+    "exclusive_right": "force label(u)[r]=1 and label(v)[r]=0",
+    "fiber": "F_c(v,r) contains u<v iff the c-colored consecutive pair rank at (u,v) is at least r+1",
+    "noncircularity": "coherence does not mention injectivity, cardinality, a power of two, or a target conclusion",
+    "separate_test": "existence of an injective coherent labeling",
+    "tie": "both or neither imposes no constraint"
+  },
+  "generation_base_revision": "a02b121856132021caf0fc46c81577eda5400449",
+  "next_lean_target": "A kernel-reducible finite theorem for the displayed coloring: the exclusive fiber constraints imply the recorded Hall defect.",
+  "pascal_layers": {
+    "0": {
+      "boolean_lattice_capacity": 1,
+      "hall_neighbor_count_in_layer": 0
+    },
+    "1": {
+      "boolean_lattice_capacity": 3,
+      "hall_neighbor_count_in_layer": 0
+    },
+    "2": {
+      "boolean_lattice_capacity": 3,
+      "hall_neighbor_count_in_layer": 0
+    },
+    "3": {
+      "boolean_lattice_capacity": 1,
+      "hall_neighbor_count_in_layer": 0
+    }
+  },
+  "producer": "scripts/produce_predecessor_fiber_shelling.py",
+  "producer_sha256": "828b60d9a02f01aadc4347f58341a19c1479d586d033cba9b6128f8375fb1438",
+  "runtime": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+    "resource_ceiling": {
+      "cpu_cores": 4,
+      "memory_gib": 6,
+      "output_gib": 1.5,
+      "wall_minutes_per_computation": 30
+    }
+  },
+  "schema_version": 1,
+  "scope": {
+    "arbitrary_coloring": false,
+    "search_order": "k=5..8, then n=1..8, then coloring integer",
+    "signotope": true,
+    "signotope_check": "direct one-change computation",
+    "swept_realization": true,
+    "swept_realization_basis": "external compiling theorem IsDecomposable.isSweepRealizable; not geometrically replayed by this certificate",
+    "target_free": true,
+    "tested_object_class": "recursively decomposable triple coloring"
+  },
+  "status": "refuted",
+  "supported_claim": "the frozen predecessor-fiber shell-coherence candidate has an exact target-free decomposable counterexample",
+  "unsupported_claims": [
+    "the exact Erdos--Szekeres formula is false",
+    "all endpoint-indexed Boolean labelings are impossible",
+    "state 578 is false"
+  ]
+}

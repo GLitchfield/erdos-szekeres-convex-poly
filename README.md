@@ -699,9 +699,20 @@ sets.
   strict cells put a four-cup below and a four-cap above one deep split,
   forcing a strong eight-set. The compiling reduced trichotomy leaves
   one-sided localization of the 24-vertex cap support or a universal minimum
-  column. Exact-small decomposable models refute projected consumers of those
-  branches but omit the full 32-vertex state package. State `(5,7,8)`
-  therefore remains open, neither proved nor refuted.
+  column. The full residual-family version now compiles, including local
+  three-boundaries on both one-sided branches. A universal minimum column
+  yields either a residual cup disjoint from that cap or a four-owner private
+  residual-cup star with exact singleton intersections. Thus ticket 0008
+  lands as Outcome 2: the mixed branch is eliminated, while four named
+  residual obstructions pass to ticket 0009. Exact-small decomposable models
+  refute projected consumers of those branches but omit the full 32-vertex
+  state package. State `(5,7,8)` therefore remains open, neither proved nor
+  refuted. In parallel, the proposed symmetric predecessor-fiber shelling is
+  kernel-refuted on four vertices. The uniform Pascal branch succeeds: Lean
+  replaces the state-specific middle-window arithmetic by two generic
+  binomial-width tail gates, and recovers the state-578 `32/41` split as an
+  exact instance. Those geometric tail-gate families are now the principal
+  all-parameter E3 frontier.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
@@ -711,8 +722,9 @@ sets.
 - `docs/agents/README.md` defines the repository's bounded multi-agent
   orchestration protocol, durable specialist profiles, and task/result
   evidence contracts. The Wayfinder remains the sole strategic tracker.
-- `docs/wayfinder/tickets/0001-choose-formal-model.md` is the first open
-  strategic decision.
+- `docs/wayfinder/map.md` is the canonical strategic index. Ticket 0002 owns
+  the generic E3 route selection, while claimed ticket 0009 owns the exact
+  state-578 side branch.
 
 ## Build
 
