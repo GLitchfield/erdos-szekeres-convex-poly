@@ -1835,3 +1835,29 @@ row remains at the base address in all six columns.
 - [Uniform singleton transition and two-root gate](../../experiments/0026-two-root-span-footprint-gate.md)
 - [Two-root endpoint-span manifest](../../../data/derived/e3-two-root-span-k6-n9.json)
 - [Independent two-root endpoint-span checker](../../../scripts/check_two_root_span_footprints.py)
+
+## 2026-08-10 load-bearing audit and generic duality
+
+A bounded Sol/Fable review and an independent dependency audit agree that
+`DecomposableStateUpper 5 7 8` is load-bearing only for the current
+fixed-state structural-charging dispatcher. It is needed before the present
+`(5,8,8)` higher-cone consumer, but is not logically necessary for a uniform
+or direct-diagonal proof. The reviews do not establish that the state is true;
+all known countermodels refute intermediary consumers rather than the full
+state.
+
+Lean now proves generic `(a,u)` color duality for the truncated threshold,
+hereditary states, root-local transitions, and exact critical-root
+obstructions in `DecomposableStateDuality.lean`. At fixed `k=8`, completing
+state 578 would still leave seven symmetry-unique active states before the
+diagonal result. Serial state closure therefore remains useful diagnostic work
+but is not accepted as the missing all-`k` invariant.
+
+The provider recommendations diverged. One favors uniformizing the
+all-parameter Pascal staircase and tail classification; the other finds the
+documented rooted-triangle circuit-elimination lead more independent but not
+yet specified. A separate innovation audit proposes testing full
+endpoint-indexed predecessor fibers for an injective Boolean shelling. No new
+main route is selected. The next route-level action is to freeze the smallest
+noncircular shelling specification and falsify it on existing exact colorings
+and collision witnesses before any Lean theorem is attempted.

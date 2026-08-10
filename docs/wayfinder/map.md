@@ -39,13 +39,18 @@ sharpness construction of size `2^(n-2)`.
   deletion escapes into a two-blocker cup or strict six-cell lower descent,
   and reconnects the result to the exact gate; a relaxed full-matrix model
   isolates the missing color-sensitive intersection anchor.
+- [The state-578 mixed blocker rectangle is impossible](tickets/0007-consume-state-578-blocker-matrix.md):
+  Lean glues a false-extension cup below the common minimum to a
+  true-extension cap above it, producing a forbidden strong eight-set; the
+  surviving one-sided localization and minimum-column alternatives remain
+  open and exact-small models refute their projected forms.
 
 ## Open frontier
 
-- [Consume the state-578 blocker-family mixed rectangle](tickets/0007-consume-state-578-blocker-matrix.md)
-  by using exact color/decomposition laws to cover every crossing
-  blocker-avoiding middle pair with two vertices or to extract a named
-  smaller predecessor from the strict six-cell lower descent.
+- [Consume the state-578 localized-cap or minimum-column trichotomy](tickets/0008-consume-state-578-localized-cap-or-minimum-column.md)
+  by using the full 32-vertex private-star/density package to turn one-sided
+  `24+8` localization or a universal minimum column into a cover, target, or
+  named strict predecessor.
 
 - [Choose the canonical formal model](tickets/0001-choose-formal-model.md)
   before committing the proof architecture to Euclidean geometry, ordered

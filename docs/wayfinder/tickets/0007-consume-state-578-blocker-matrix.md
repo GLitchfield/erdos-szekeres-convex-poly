@@ -2,7 +2,7 @@
 title: Consume the state-578 blocker-family mixed rectangle
 type: research
 mode: AFK
-status: open
+status: closed
 claim: codex-state-578-blocker-matrix-consumer-2026-08-09
 blocked_by: none
 ---
@@ -54,9 +54,19 @@ smaller predecessor state?
 
 ## Resolution
 
-Open. Experiment 0078 supplies the complete address matrix and sharp total
-reduction. The exact missing datum is either a full crossing-family cover or a
-valid predecessor extracted from strict lower descent.
+Outcome 2. `StructuralChargingNextState578BlockerConsumer.lean` proves that
+opposite strict extensions from the common minimum are impossible under
+strong-eight avoidance: the false extension localizes a four-cup in the lower
+child, the true extension localizes a four-cap in the upper child, and the
+deep-split gluing theorem gives a forbidden strong eight-set. The mixed
+rectangle is therefore removed from the full blocker-family classification.
+
+The remaining alternatives are one-sided localization of the complete
+24-vertex cap support in one child, or a universal minimum column. Exact-small
+decomposable target-free models show that neither projected alternative alone
+forces a two-cover or a strict predecessor. They do not instantiate the full
+32-vertex private-star/density package, so state `(5,7,8)` remains open rather
+than refuted. Ticket 0008 owns the residual trichotomy.
 
 ## Evidence
 
@@ -64,3 +74,5 @@ valid predecessor extracted from strict lower descent.
 - `ErdosSzekeres/StructuralChargingNextState578DeficitDensity.lean`
 - `data/derived/state578-exterior-density-relaxed-countermodel.json`
 - `scripts/check_state578_exterior_density_relaxed_countermodel.py`
+- `docs/experiments/0079-state-578-blocker-consumer.md`
+- `ErdosSzekeres/StructuralChargingNextState578BlockerConsumer.lean`

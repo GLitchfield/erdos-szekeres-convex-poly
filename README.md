@@ -695,10 +695,13 @@ sets.
   trichotomy reconnects to the exact 32-vertex color-dual gate. A checked
   relaxed full-matrix model shows that these address/incidence facts alone do
   not force a five-boundary; exact restricted transversal numbers are
-  `9,9,9,9,10,10`. The next target is color-sensitive: cover the complete
-  crossing middle-pair family with two vertices or extract a named smaller
-  predecessor state from the strict descent. No proof of state `(5,7,8)` is
-  claimed yet.
+  `9,9,9,9,10,10`. The color-sensitive mixed branch now closes: opposite
+  strict cells put a four-cup below and a four-cap above one deep split,
+  forcing a strong eight-set. The compiling reduced trichotomy leaves
+  one-sided localization of the 24-vertex cap support or a universal minimum
+  column. Exact-small decomposable models refute projected consumers of those
+  branches but omit the full 32-vertex state package. State `(5,7,8)`
+  therefore remains open, neither proved nor refuted.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the

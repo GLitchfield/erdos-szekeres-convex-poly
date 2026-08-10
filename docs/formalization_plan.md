@@ -1056,6 +1056,26 @@ consumer audits, and retained only planar rooted-triangle circuit elimination
 for a sharper statement and minimal-counterexample consumer.  This is proposal
 evidence only; no circuit-elimination result is yet claimed.
 
+The complete blocker-family matrix now has its first genuinely color-sensitive
+consumer. `StructuralChargingNextState578BlockerConsumer.lean` proves that
+opposite strict extensions from the common minimum put a four-cup below and a
+four-cap above the same deep split, hence force a strong eight-set. The mixed
+rectangle is eliminated, leaving one-sided `24+8` localization or a universal
+minimum column. Exact-small decomposable models refute the projected versions
+of both remaining consumers but do not retain the full 32-vertex
+private-star/density package. This is Outcome 2; state `(5,7,8)` remains open.
+
+A route-level audit confirms that state 578 is a conditional fixed-`k=8`
+milestone, not a uniform E3 theorem. Seven symmetry-unique active `k=8` states
+remain after it, and uniform E3 would still only reduce the unrestricted
+conjecture to the indecomposable Layer-F obstruction. The new generic module
+`DecomposableStateDuality.lean` kernel-checks symmetry of the threshold,
+hereditary state, root transition, and critical-root obstruction, removing
+duplicated off-diagonal obligations without claiming a new state. A bounded
+endpoint-indexed predecessor-fiber shelling is retained only as a proposed
+direct-diagonal falsification experiment; it is not selected as the main
+route before its specification and noncircularity gates pass.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at
