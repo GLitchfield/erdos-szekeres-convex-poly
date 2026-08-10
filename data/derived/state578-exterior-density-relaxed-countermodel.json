@@ -29,9 +29,12 @@
   "fan_sources": [0, 1, 2, 3, 4, 8, 12, 16, 20],
   "base_path": [],
   "lower_path": [false],
+  "full_blocker_avoiding_matrix_rule": "for every blocker-avoiding ambient edge and every cap column: root address if the edge meets upper, otherwise lower_path; every cap column straddles the even/odd lower split",
+  "blocker_avoiding_transversal_numbers": [9, 9, 9, 9, 10, 10],
   "limitations": [
     "No TripleColoring or rank-three signotope realizes the declared hyperedges.",
     "No decomposable coloring, sweep realization, planar realization, or target avoidance is claimed.",
-    "The certificate refutes only consumers inherited by the retained incidence, order, and two-level address data."
+    "The certificate refutes only consumers inherited by the retained incidence, order, and two-level address data.",
+    "All six full blocker-avoiding matrices exist in the model, so the matrix interface alone cannot force a restricted transversal of cardinality at most five."
   ]
 }

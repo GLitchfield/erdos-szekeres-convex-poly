@@ -2,7 +2,7 @@
 title: Synchronize the state-578 deficit column with full residual density
 type: research
 mode: AFK
-status: open
+status: closed
 claim: codex-state-578-deficit-density-sync-2026-08-09
 blocked_by: none
 ---
@@ -57,13 +57,34 @@ nine?
 
 ## Resolution
 
-Open. Experiment 0077 proves the six-column deficit concentration and the
-exact total deletion-branch reconnect. It also proves that the first local
-two-cover bridge is false. The active target must couple selected fan rows to
-the full residual family without discarding the other five cap columns.
+Outcome 2. Experiment 0078 constructs the complete blocker-avoiding
+cup/six-cap matrix, proves its prefix chains, global minimum, strict-child
+localization, and exhaustive one-sided/minimum-column/mixed-rectangle
+classification. Canonical lowest-separating paths embed every selected
+deletion row and every arbitrary blocker-avoiding density cup into that same
+address system.
+
+Retaining the positive fan's source-membership proof yields a sharp
+multiplicity bound: one one-upper cup carries at most three indexed sources,
+so five deficit entries represent at least two distinct cups. The total exact
+reconnect replaces the raw source-disjoint branch by a cup avoiding two
+distinct cap columns and replaces the raw lower-local branch by strict
+false-direction descent of all six cells. This package reconnects to the
+exact 32-vertex color-dual gate.
+
+No target or nine-vertex transversal follows. The strengthened relaxed
+32-vertex checker constructs all six complete blocker matrices and has exact
+restricted transversal numbers `9,9,9,9,10,10`, refuting every consumer based
+only on the retained incidence/address data. The bounded Sol/Fable review
+identified the precise exact obstruction: unlike the residual family, the
+blocker family has no universal-intersection spine anchor, so a mixed
+rectangle cannot be collapsed to one distinguished row. Ticket 0007 records
+the required color-sensitive cover or recursive-predecessor consumer.
 
 ## Evidence
 
 - `docs/experiments/0077-state-578-exterior-density-coupling.md`
 - `ErdosSzekeres/StructuralChargingNextState578ExteriorDensity.lean`
 - `ErdosSzekeres/StructuralChargingNextState578ExteriorDensityCounterexample.lean`
+- `ErdosSzekeres/StructuralChargingNextState578DeficitDensity.lean`
+- `docs/experiments/0078-state-578-deficit-density-synchronization.md`

@@ -19,7 +19,7 @@ def pairwise_disjoint(sets: list[frozenset[int]]) -> bool:
     return all(not left & right for left, right in itertools.combinations(sets, 2))
 
 
-def replay(certificate: dict[str, object]) -> dict[str, int | bool]:
+def replay(certificate: dict[str, object]) -> dict[str, int | bool | list[int]]:
     if certificate.get("schema_version") != 1:
         raise ValueError("unsupported certificate schema")
 
@@ -50,6 +50,26 @@ def replay(certificate: dict[str, object]) -> dict[str, int | bool]:
     all_four_sets = [frozenset(edge) for edge in itertools.combinations(vertices, 4)]
     ambient_edges = [edge for edge in all_four_sets if ambient(edge)]
     residual_edges = [edge for edge in ambient_edges if residual(edge)]
+
+    # The proposed next interface indexes every ambient cup avoiding one
+    # blocker, not merely the old residual family.  In this relaxed model the
+    # exact restricted transversal is T \ blocker: it has size nine for the
+    # first four columns and ten for the last two.  Any smaller boundary
+    # misses some t in T \ blocker; at least C(18,3) triples remain available,
+    # while at most the five other cap columns are exceptional.
+    blocker_avoiding_transversal_numbers: list[int] = []
+    blocker_avoiding_edges: list[list[frozenset[int]]] = []
+    for blocker in caps:
+        restricted = [edge for edge in ambient_edges if edge.isdisjoint(blocker)]
+        boundary = transversal - blocker
+        assert all(edge & boundary for edge in restricted)
+        assert math.comb(18, 3) > len(caps) - 1
+        blocker_avoiding_edges.append(restricted)
+        blocker_avoiding_transversal_numbers.append(len(boundary))
+    assert blocker_avoiding_transversal_numbers == [9, 9, 9, 9, 10, 10]
+    assert blocker_avoiding_transversal_numbers == list(
+        certificate["blocker_avoiding_transversal_numbers"]
+    )
 
     # Exact 32/23 density and ambient transversal number ten follow from the
     # checked cardinal certificates below.  For a 23-set choose t in its
@@ -95,6 +115,23 @@ def replay(certificate: dict[str, object]) -> dict[str, int | bool]:
             rows[(column, source)] = row
     assert len(rows) == 24
 
+    # Every full blocker-avoiding row has a genuine address against every cap
+    # column in the declared two-level tree.  A row touching the upper child
+    # separates at the root.  A lower-only row descends once, where every cap
+    # column straddles the even/odd split.
+    assert all(any(x % 2 == 0 for x in cap) and any(x % 2 == 1 for x in cap)
+               for cap in caps)
+    for restricted in blocker_avoiding_edges:
+        for edge in restricted:
+            expected_path = () if edge & upper else (False,)
+            for cap in caps:
+                if expected_path == ():
+                    assert (edge | cap) & lower and (edge | cap) & upper
+                else:
+                    assert (edge | cap) <= lower
+                    assert any(x % 2 == 0 for x in edge | cap)
+                    assert any(x % 2 == 1 for x in edge | cap)
+
     fan_sources = frozenset(certificate["fan_sources"])
     assert len(fan_sources) == 9
     assert fan_sources <= lower
@@ -106,12 +143,33 @@ def replay(certificate: dict[str, object]) -> dict[str, int | bool]:
         for source in cap & fan_sources
     )
 
+    fan_entries = [
+        (column, source, rows[(column, source)])
+        for column, cap in enumerate(caps)
+        for source in cap & fan_sources
+    ]
+    assert len(fan_entries) == 9
+    deficits_by_column = [
+        [entry for entry in fan_entries if entry[2].isdisjoint(blocker)]
+        for blocker in caps
+    ]
+    assert max(len(entries) for entries in deficits_by_column) >= 5
+    assert all(
+        max(sum(1 for _, source, row in fan_entries if row == fixed_row), 0) <= 3
+        for _, _, fixed_row in fan_entries
+    )
+    max_deficit = max(deficits_by_column, key=len)
+    assert len({row for _, _, row in max_deficit}) >= 2
+
     return {
         "vertices": n,
         "ambient_edges": len(ambient_edges),
         "residual_edges": len(residual_edges),
         "ambient_transversal_number": 10,
         "residual_transversal_number": 4,
+        "blocker_avoiding_transversal_numbers":
+            blocker_avoiding_transversal_numbers,
+        "full_blocker_avoiding_matrices": len(caps),
         "deletion_rows": len(rows),
         "fan_sources": len(fan_sources),
         "all_checks_passed": True,

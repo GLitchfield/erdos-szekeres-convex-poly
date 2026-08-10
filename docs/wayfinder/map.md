@@ -34,13 +34,18 @@ sharpness construction of size `2^(n-2)`.
   that blocker to two density cups, while relaxed 32-vertex and exact local
   countermodels refute direct three-boundary and post-selection two-cover
   consumers.
+- [The state-578 deficit rows now share the complete blocker-family matrix](tickets/0006-synchronize-state-578-deficit-density.md):
+  Lean proves five deficits contain two distinct cups, converts the two raw
+  deletion escapes into a two-blocker cup or strict six-cell lower descent,
+  and reconnects the result to the exact gate; a relaxed full-matrix model
+  isolates the missing color-sensitive intersection anchor.
 
 ## Open frontier
 
-- [Synchronize the state-578 deficit column with full residual density](tickets/0006-synchronize-state-578-deficit-density.md)
-  by eliminating source-disjoint/lower-local deletion escapes or coupling the
-  five selected fan entries to every blocker-avoiding residual cup while
-  retaining another cap column or the full residual matrix.
+- [Consume the state-578 blocker-family mixed rectangle](tickets/0007-consume-state-578-blocker-matrix.md)
+  by using exact color/decomposition laws to cover every crossing
+  blocker-avoiding middle pair with two vertices or to extract a named
+  smaller predecessor from the strict six-cell lower descent.
 
 - [Choose the canonical formal model](tickets/0001-choose-formal-model.md)
   before committing the proof architecture to Euclidean geometry, ordered

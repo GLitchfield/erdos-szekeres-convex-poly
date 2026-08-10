@@ -682,9 +682,23 @@ sets.
   is refuted by an independently checked relaxed 32-vertex incidence/address
   model, and an exact 13-vertex target-free Lean model proves that five local
   deficit rows alone need not have a two-cover of their middle pairs. The
-  active target is therefore the precise full-family synchronization: retain
+  next target was the precise full-family synchronization: retain
   another cap column or the complete residual matrix while coupling the five
-  selected fan rows to the arbitrary blocker-avoiding density witnesses.
+  selected fan rows to the arbitrary blocker-avoiding density witnesses. That
+  synchronization now compiles. Lean indexes every four-cup avoiding the
+  selected blocker, pairs it with all six caps, and proves a common-minimum
+  one-sided/minimum-column/mixed-rectangle classification. Five deficit
+  entries represent at least two distinct cups because a one-upper row carries
+  at most three indexed sources. The raw escape branches also sharpen: a
+  source-disjoint row avoids a second cap column, while a lower-local row has
+  all six cells strictly descend into the lower subtree. The strengthened
+  trichotomy reconnects to the exact 32-vertex color-dual gate. A checked
+  relaxed full-matrix model shows that these address/incidence facts alone do
+  not force a five-boundary; exact restricted transversal numbers are
+  `9,9,9,9,10,10`. The next target is color-sensitive: cover the complete
+  crossing middle-pair family with two vertices or extract a named smaller
+  predecessor state from the strict descent. No proof of state `(5,7,8)` is
+  claimed yet.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
