@@ -1076,6 +1076,30 @@ endpoint-indexed predecessor-fiber shelling is retained only as a proposed
 direct-diagonal falsification experiment; it is not selected as the main
 route before its specification and noncircularity gates pass.
 
+## 2026-08-10 geometric-tail and independent-route outcomes
+
+The geometric Pascal interface now compiles. Exact retained-child tail gates
+feed the generic critical-root reducer, and one ordered predicate,
+`PascalTailTwoSideBound`, supplies the singleton lower gate and its color dual.
+The first three positive controls `(4,5,5)`, `(4,6,6)`, and `(4,8,8)` close
+without finite certificates. The first open uniform instance is `(5,6,7)`:
+Lean proves it equivalent to the existing `TwoCapFreeSidesBound567`. Thus the
+uniform route has an exact earlier obstruction, rather than state 578 being
+its first truth test.
+
+The independent Layer-F rooted-circuit lead is stopped. A kernel-checked
+seven-point rational configuration refutes the first strengthening with a
+plausible deletion-chain consumer: two rooted triangles cannot in general be
+eliminated while preserving both untouched anchors. One-anchor convex-hull
+substitution remains plausible but has no bounded-fiber recurrence consumer.
+
+The fixed state-578 branch obtains Outcome 2. Four singleton-owned deletion
+rows and the six-column one-sided matrix force one entire row to remain at the
+common-minimum address. That four-cup misses two distinct foreign cap blocks.
+The resulting plateau/two-foreign-cap theorem compiles, but address-only
+models show that another color-sensitive consumer is still required. Ticket
+0010 owns that continuation; `DecomposableStateUpper 5 7 8` remains open.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at

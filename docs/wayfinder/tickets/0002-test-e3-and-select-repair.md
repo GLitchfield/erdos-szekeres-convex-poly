@@ -1888,3 +1888,19 @@ This is a route selection, not a proof of E3 or of the exact happy-ending
 formula.  State 578 remains a useful fixed-state diagnostic in parallel, while
 the main all-`k` question is whether the new generic tail gates can be proved
 from decomposition geometry without rebuilding a state-by-state dispatcher.
+
+## 2026-08-10 geometric-tail gate and Layer-F audit
+
+The geometric Pascal interface now compiles. The exact retained-child gates
+are sufficient for the generic critical-root theorem, and one parameterized
+ordered statement, `PascalTailTwoSideBound`, supplies the singleton lower gate
+and its color dual. Positive controls `(4,5,5)`, `(4,6,6)`, and `(4,8,8)`
+compile without finite certificates. The first open instance is `(5,6,7)`,
+proved in Lean to be equivalent to the existing `TwoCapFreeSidesBound567`.
+This is the current all-parameter obstruction; it is a reduction, not E3.
+
+The independent rooted-triangle circuit route is stopped. A seven-point
+rational configuration in general position kernel-refutes preservation of two
+untouched anchors across rooted-triangle elimination. The weaker one-anchor
+form has no identified bounded-fiber or recurrence consumer and is not
+promoted. See Experiments 0083 and 0084.

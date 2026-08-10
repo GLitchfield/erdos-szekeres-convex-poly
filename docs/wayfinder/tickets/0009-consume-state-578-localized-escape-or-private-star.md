@@ -2,7 +2,7 @@
 title: Consume the exact state-578 localized escapes or minimum-column private star
 type: research
 mode: AFK
-status: open
+status: closed
 claim: codex-state-578-localized-escape-private-star-2026-08-10
 blocked_by: none
 ---
@@ -47,9 +47,29 @@ minimum-column cap, or a four-owner private residual star at that column?
 
 ## Resolution
 
-Open.
+Outcome 2. The universal-column private-star branch now contains a full
+six-column plateau deletion row and two distinct foreign cap blocks disjoint
+from that row. Lean proves this in
+`StructuralChargingNextState578PlateauForeignCaps.lean` by combining all four
+singleton owners, the no-opposite-extensions law, exact lowest-split
+nonlocality, and all six disjoint cap columns.
+
+This does not close state `(5,7,8)`. The localized escape branches and the
+disjoint universal-column cup remain, while the raw private-star alternative
+is replaced by one named plateau/two-foreign-cap obstruction. Address-only
+plateau consumers remain refuted by the existing relaxed full-matrix model.
+Ticket 0010 owns the next color-sensitive consumer.
+
+The result remains conditional on the existing `hone` hypothesis used to
+construct the one-spine 32-point package. It does not discharge `hone` or
+cover a multi-spine branch. The bounded pre-implementation review identified
+this qualification and rejected any inference from ledger injectivity to
+pairwise-disjoint witness cups; the compiling plateau theorem uses neither
+inference.
 
 ## Evidence
 
 - `docs/experiments/0082-state-578-localized-column.md`
 - `ErdosSzekeres/StructuralChargingNextState578LocalizedColumn.lean`
+- `ErdosSzekeres/StructuralChargingNextState578PlateauForeignCaps.lean`
+- `docs/experiments/0085-state-578-plateau-two-foreign-caps.md`

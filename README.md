@@ -712,7 +712,15 @@ sets.
   replaces the state-specific middle-window arithmetic by two generic
   binomial-width tail gates, and recovers the state-578 `32/41` split as an
   exact instance. Those geometric tail-gate families are now the principal
-  all-parameter E3 frontier.
+  all-parameter E3 frontier. The next uniform layer now compiles as one
+  ordered two-side consumer in both color orientations. Its first unresolved
+  instance is exactly the earlier `(5,6,7)` two-cap-free-sides bound, while
+  the `(4,5,5)`, `(4,6,6)`, and `(4,8,8)` controls compile without finite
+  certificates. In the parallel state-578 branch, all four private deletion
+  owners force one full six-column plateau cup which misses two foreign cap
+  blocks. This is a sharper Outcome-2 obstruction, not closure of state 578.
+  The independent rooted-circuit branch stops: a seven-point rational Lean
+  counterexample refutes preservation of two signed triangle anchors.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
@@ -723,7 +731,7 @@ sets.
   orchestration protocol, durable specialist profiles, and task/result
   evidence contracts. The Wayfinder remains the sole strategic tracker.
 - `docs/wayfinder/map.md` is the canonical strategic index. Ticket 0002 owns
-  the generic E3 route selection, while claimed ticket 0009 owns the exact
+  the generic E3 route selection, while claimed ticket 0010 owns the exact
   state-578 side branch.
 
 ## Build

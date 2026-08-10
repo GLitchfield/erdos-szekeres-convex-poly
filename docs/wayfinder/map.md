@@ -49,21 +49,24 @@ sharpness construction of size `2^(n-2)`.
   branches now retain a complementary three-boundary and escaping residual
   cup, while a universal column yields either a disjoint cup or a four-owner
   private residual star.
+- [The state-578 private star contains a six-column plateau and two foreign caps](tickets/0009-consume-state-578-localized-escape-or-private-star.md):
+  Lean uses all four private owners and all six disjoint cap blocks to replace
+  the raw star by one plateau cup disjoint from two foreign columns; the three
+  other residual branches remain open.
 
 ## Open frontier
 
-- [Consume the state-578 localized escapes or minimum-column private star](tickets/0009-consume-state-578-localized-escape-or-private-star.md)
-  by using the escaping residual cup across all six cap columns, or all four
-  singleton-owned deletion witnesses, to obtain a target or named strict
-  predecessor.
+- [Consume the state-578 plateau or localized residual escape](tickets/0010-consume-state-578-plateau-or-localized-escape.md)
+  by using the plateau cup's two foreign cap blocks, or an escaping residual
+  cup across all six columns, to obtain a target or named strict predecessor.
 
 - [Choose the canonical formal model](tickets/0001-choose-formal-model.md)
   before committing the proof architecture to Euclidean geometry, ordered
   configurations, or a verified two-layer representation.
 - [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
-  by kernel-checking the bounded pair-rank non-congruence witness, then
-  designing a higher-order predecessor-correlation invariant or a precise
-  realizability-sensitive transition. The scalar recurrence, maxima-only
+  now focuses on the uniform `PascalTailTwoSideBound`; its first open instance
+  is exactly the state-567 two-cap-free-sides theorem. The historical route
+  record follows. The scalar recurrence, maxima-only
   contexts, deterministic downset words, complete child pair-rank matrices,
   and pairwise raw-downset counting shortcut are now refuted routes; abstract
   decomposability and planar realizability are both kernel-checked for the
