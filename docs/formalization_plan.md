@@ -1275,3 +1275,628 @@ supported, but two proposed Lean conjunction-projection architectures each
 exceeded the ten-minute single-clause gate below the memory ceiling. Further
 work must split the 120 middle-color consequences and final finite cases into
 smaller semantic modules; more projection variants are not an active repair.
+
+## 2026-08-11 fourteen-thread forward plan
+
+This section is the detailed execution memory for the fourteen-thread
+portfolio in the Wayfinder map.  Threads 1--6 are the initial execution front;
+7--14 are staged reserve, revival, discovery, and research-system tracks.  The
+plans are intentionally branched: a failed candidate is
+supposed to return a precise counterexample or expiry decision instead of
+turning into an unbounded repair loop.  Computational evidence is never a
+completed result; every promoted mathematical milestone below is a named Lean
+theorem passing the repository proof gate without `sorry`, `admit`, unsafe
+axioms, or an unverified oracle.
+
+### Thread 1: predecessor half-subset producer
+
+**Destination.**  Prove `PredecessorHalfSubsetAt k` for every relevant `k`.
+Together with the already compiling predecessor recurrence and the `k=3`
+base, this supplies the unrestricted exact upper bound without requiring every
+realizable coloring to be recursively decomposable.
+
+**Stage 1.1: separate the three producer strengths at the first new boundary.**
+
+- Freeze exact `k=6`, `n=12` contracts for integral predecessor bicoloring,
+  fractional predecessor cover of total weight at most two, and one
+  predecessor-free support of at least half the vertices.
+- Search the abstract rank-three/signotope model first under the default
+  bounded-computation policy.  Classify a model into the first applicable
+  outcome: integral, fractional-only, half-only, or half failure.
+- Any failure must be independently checked.  Before it refutes the geometric
+  theorem, obtain an exact rational/integer realization or a proved bridge to
+  one.  An abstract-only model is a relaxed-model falsifier, not a planar
+  counterexample.
+- If half fails in an exact realizable model, expire this whole route and
+  Lean-certify the smallest counterexample.  If only integral or fractional
+  strength fails, demote that stronger producer and continue with the weakest
+  surviving contract.  If all three survive, treat the result only as bounded
+  evidence and proceed structurally.
+
+**Stage 1.2: maximum-support witness infrastructure without circular size
+assumptions.**
+
+- For a maximum-cardinality strong-`(k-1)`-free support `S`, prove the cheap
+  exterior-anchor lemma: every `v ∉ S` participates in a strong
+  `(k-1)`-witness `insert v A` with `A ⊆ S` and `A.card = k-2`.
+- Define the exterior-to-support eligibility relation from orientation or
+  middle-incidence data.  The definition must not contain injectivity, Hall's
+  condition, or the desired half-cardinality inequality.
+- Test the relation on the exact rational one-hole-exchange counterexample and
+  on the `k=6` boundary catalog.  The stopped exchange `(S \ D) ∪ (P \ {p})`
+  with `|D| ≤ 2` is forbidden as a proposed repair: its successful conclusion
+  contradicts maximum cardinality for formal cardinal reasons.
+- Prove either a Hall-neighborhood inequality for all exterior subsets, an
+  injective charge as a consequence of a separately stated collision lemma,
+  or an exact fractional dual inequality.  Compiling an interface that simply
+  assumes an injection is bookkeeping, not mathematical progress.
+
+**Stage 1.3: producer and recurrence.**
+
+- Package the surviving charge/dual theorem into
+  `PredecessorHalfSubsetAt k`.
+- Compose it with `sweepExactUpperAt_of_predecessorHalfSubset`, then prove the
+  all-`k` upper result by induction from the compiling base.
+- Transport through the existing swept-configuration/convex-position bridge
+  and combine with `classical_lower_sharpness` to obtain the exact formula.
+
+**Expiry rule.**  After two independently motivated eligibility or charging
+relations either inherit the exact rational controls or fail without exposing
+a new orientation-sensitive collision law, run a route review before proposing
+a third.  Do not weaken the destination by silently assuming the desired
+cardinality bound.
+
+### Thread 2: state-567 ten-residual occupancy leaves
+
+**Destination.**  Prove
+`PackedInternalMutuallyMiddleObstructedPairImpossibleAtTwentyTwo567`, hence the
+packed-internal state-567 obligation, while visibly using exact total 22,
+internality, and repeated global deletion packing.
+
+**Stage 2.1: normalize every escape to concrete set data.**
+
+- Add a small unpacking theorem for `PackedInternalPairFourResidualEscape`:
+  for each carrier vertices `a,b` and each four-set `block` in the ten-point
+  residual, choose a concrete strong six `third` contained in the prescribed
+  deletion and record its carrier intersections.
+- Compile generic finite-set lemmas for the residual cardinalities.  In the
+  residual-only case, prove that `third` equals the six vertices of
+  `residual \ block`; this is the sharp place where total 22 is spent.
+- Run the fixed 12- and 21-point controls against every proposed branch
+  antecedent.  A proof kernel inherited by either control is rejected before
+  deeper Lean work.
+
+**Stage 2.2: residual-only branch.**
+
+- Probe at least two distinct residual four-blocks rather than selecting one
+  arbitrary third witness.  Translate the resulting complement sixes into
+  overlapping strong-six constraints.
+- Use internality of the first carrier and the appropriate side's cap-four
+  exclusion to convert those overlap constraints into a forbidden ambient
+  cap, cup, or strong seven-set.
+- If a full-premise exact model survives, record and Lean-certify it and stop
+  this branch.  Otherwise freeze the smallest surviving contradiction theorem
+  and compile it.
+
+**Stage 2.3: one-carrier branch.**
+
+- Split by which carrier is met and normalize the intersection cardinality and
+  sweep-middle profile.  Use reversal/color duality only through a compiling
+  transport theorem.
+- Compare two or more universal escape probes so that global packing is used
+  beyond construction of the original pair.  Apply the twelve directed middle
+  failures and the internal side cap-four exclusion at the first common
+  profile.
+- Promote the terminal contradiction only after it fails the relaxed and
+  sharp-control models.
+
+**Stage 2.4: two-carrier branch and assembly.**
+
+- Use the six vertices of `third`, its intersections with both disjoint
+  carriers, and the ten residual vertices to enumerate the feasible occupancy
+  profiles without brute-force enumeration of ambient colorings.
+- Seek a pigeonhole profile forcing one of the recorded middle failures or an
+  ambient strong seven.  Any residual finite classification must expose a
+  small, reviewable signature and a certificate bridge if computation is used.
+- Combine the three compiled occupancy leaves with the existing trichotomy,
+  then invoke the existing explicit-pair consumer to close the packed-internal
+  obligation.
+
+**Expiry rule.**  Pair-only contradiction lemmas are permanently stopped.  A
+valid continuation must compare multiple universal escape probes or derive a
+genuinely universal consequence of all 210 residual four-blocks.
+
+### Thread 3: uniform Pascal-tail lift
+
+**Destination.**  Turn the state-567 structural mechanism into a parameterized
+theorem strong enough to prove `PascalTailTwoSideBound a u k`, then feed the
+existing critical-root reducers and the decomposable induction.
+
+**Stage 3.1: extract the parameterized kernel.**
+
+- Audit every use of the state-567 constants: side total 22, two carrier sizes
+  six, residual size ten, and four-vertex deletion blocks.  Rewrite each as a
+  binomial/Pascal expression or mark it explicitly as special to `(5,6,7)`.
+- Define a generic two-carrier residual-escape structure indexed by `a,u,k`,
+  with cardinalities and avoidance predicates separated from the terminal
+  color argument.
+- Generalize the finite-set residual cardinality and the zero/one/two-carrier
+  occupancy trichotomy first.  These are reusable regardless of whether the
+  terminal color lemma generalizes.
+
+**Stage 3.2: prove one genuinely uniform leaf.**
+
+- Select the state-567 occupancy leaf whose contradiction uses the fewest
+  special equalities.  State a parameterized inequality contract and verify
+  that its `(5,6,7)` specialization proves the concrete leaf rather than
+  assuming it.
+- Test the statement at the immediately adjacent feasible Pascal states and
+  their color duals.  A bounded countermodel narrows the parameter range; it
+  must not be patched with a conclusion equivalent to the desired recurrence.
+- Compile the parameterized leaf and its specialization before attempting all
+  occupancy classes.
+
+**Stage 3.3: lift through the existing recurrence interfaces.**
+
+- Generalize the remaining occupancy/balanced leaves that survive Stage 3.2.
+- Prove `PascalTailTwoSideBound a u k` over the largest honest parameter range.
+- Use `singletonLowerPascalTailGate_of_twoSideBound` and the generic critical
+  root reducers to discharge the corresponding decomposition-tree states.
+- Prove the uniform `DecomposableStateUpper`/`DecomposableExactUpperAt`
+  induction and combine it with either Thread 1 or a completed Layer-F bridge
+  for the unrestricted upper theorem.
+
+**Expiry rule.**  If a state-567 terminal proof depends essentially on an
+equality with no stable adjacent-state analogue, retain it as a finite theorem.
+Do not name a one-state wrapper “uniform”; return to a different Pascal-tail
+invariant.
+
+### Thread 4: Layer-F highest-stratum mutation descent
+
+**Destination.**  Prove or refute the frozen three-step target-free realizable
+drop in `StratifiedPrimeCoreRank`.  A proof supplies well-founded normalization
+to recursively decomposable colorings; a counterexample prevents further work
+on a false unrestricted bridge.
+
+**Stage 4.1: decisive realizable falsification.**
+
+- Freeze `ThreeStepTopPrimeStratumDropsAboveAt` with the exact threshold,
+  target-free intermediate states, realizability at every endpoint, and no
+  monotonicity requirement on intermediate ranks.
+- Extend the bounded exact-rational mutation graph controls only within a
+  predeclared limit.  Search specifically for a target-free closed component
+  or a vertex with no three-step decrease in its highest affected positive
+  stratum.
+- An abstract signotope obstruction remains diagnostic until rationally
+  realized.  A below-threshold obstruction cannot refute the threshold
+  consumer unless the theorem quantifies there.
+
+**Stage 4.2: local mutation accounting.**
+
+- Use the compiling locality theorem to characterize all prime supports whose
+  status can change under one flipped triple.
+- Prove structural inequalities comparing created and destroyed supports at
+  the highest changed stratum.  Permit temporary lower-stratum increases and
+  rank plateaus because exact seven-point controls require three-step macros.
+- Seek a geometric circuit-flip choice rule that forces the endpoint loss and
+  preserves target avoidance along a path of length at most three.
+
+**Stage 4.3: normalization consumer.**
+
+- Compile the three-step drop theorem, apply the existing well-founded
+  consumer, and obtain target-free normalization above the exact threshold.
+- Once Thread 3 supplies the uniform decomposable upper theorem, compose the
+  two and transport to the planar statement.
+
+**Expiry rule.**  A rationally realizable target-free closed component or
+highest-stratum local minimum satisfying the theorem's threshold closes this
+candidate.  Layer F remains a sidecar until the decomposable theorem is
+uniform; it must not consume all capacity merely because it is conceptually
+general.
+
+### Thread 5: state-567 balanced five-class branch
+
+**Destination.**  Prove `PackedElevenElevenForcesInternalStrongSix567`, the
+balanced companion to Thread 2.
+
+**Stage 5.1: compile the exhaustive shell.**
+
+- Freeze the common `11+11` context once: ordered disjoint sides, side cap-four
+  exclusions, `OneChangeOn`, ambient `(5,6,7)` target avoidance, and global
+  deletion packing.
+- Prove the mechanical five-way exhaustion from the existing packing/residue
+  infrastructure: crossing `2+4`, `3+3`, or `4+2`, otherwise three residues
+  with pair overlap in the left-right or right-left orientation.
+- Keep the five terminal contradiction Props separate so each can be tested
+  and compiled independently.
+
+**Stage 5.2: terminal classes.**
+
+- Attack `2+4` first and derive `4+2` only through a verified reversal/color
+  dual bridge; otherwise prove both orientations separately.
+- Treat `3+3` as its own central class.  Exact small controls already show
+  that generic crossing `3+3` pairs do not force a target, so the proof must
+  spend exact `11+11` capacity or repeated packing.
+- Attack the two residue-overlap classes as a dual pair.  Compare all three
+  residues, not one selected pair, and make the pair-overlap pigeonhole step
+  explicit.
+- Before Lean promotion, falsify each terminal signature against the 12- and
+  21-point controls and any exact balanced controls already recorded.
+
+**Stage 5.3: state-567 closure.**
+
+- Assemble the five terminal lemmas into
+  `PackedElevenElevenForcesInternalStrongSix567`.
+- Combine this with Thread 2's packed-internal theorem through the existing
+  exact reducer to prove `TwoCapFreeSidesBound567` and then the `(5,6,7)`
+  Pascal-tail gate.
+
+**Expiry rule.**  Reject any terminal contradiction whose proof does not use
+exact balanced size, side cap exclusions, or repeated packing.  Such a theorem
+is inherited by known exact-small controls.
+
+### Thread 6: finite `k=9` extreme-exchange Lean bridge
+
+**Destination.**  Kernel-check both normalized 17-vertex extreme-exchange
+extraction formulas while preserving the frozen CNF/LRAT and semantic theorem
+contracts, then use the finite proof to identify a uniform successor lemma.
+
+**Stage 6.1: bounded semantic engineering.**
+
+- Keep all variable maps, CNF clauses, LRAT traces, and final theorem
+  signatures byte-stable.  Regeneration must recheck their recorded hashes.
+- Replace the timed-out clause-local proof with three layers: small modules of
+  middle-color equalities, a reusable strong-ten pattern reconstruction, and a
+  final finite contradiction.  Group middle facts conservatively (initially
+  8--16 per module) so each file has a short independent gate.
+- First compile the smallest 9+8 clause under a ten-minute, single-job,
+  16-GiB cap.  If it succeeds, compile a noncontiguous clause and then all
+  seven.  If one small middle-fact module itself exceeds the cap, profile that
+  exact module and redesign once; do not return to direct or depth-four
+  conjunction projection.
+- Assemble the semantic chunks, normalized 8+9 and 9+8 theorems, and final
+  extraction theorem.  Run the forbidden-token and axiom audits plus targeted
+  and repository proof gates before integration.
+
+**Stage 6.2: mathematical extraction.**
+
+- Classify which semantic clause families actually occur in the compact
+  certificate.  Translate the recurring pattern into an extreme-core
+  extraction statement that does not assume `DiagonalCupBlocksForce4kk
+  (k+1)` or an equivalent ambient conclusion.
+- Combine the extracted opposite extreme cup extensions with the compiling
+  `OneChange` cup-gluing lemma.
+- Test the proposed successor statement at the next finite quotient before
+  formalizing an all-`k` induction.  SAT refutes the proposal; UNSAT is only
+  bounded support until certified and semantically bridged.
+- If the successor compiles, combine it with the existing diagonal base and
+  Thread 3's Pascal-tail interfaces.
+
+**Expiry rule.**  Once the exact `k=9` extraction compiles, stop adding isolated
+finite cases.  Continued certificate work is justified only by a named
+uniform consumer.  Two projection architectures have already failed their
+bounded elaboration gates and are not eligible for another retry.
+
+### Thread 7: integral predecessor Property-B producer
+
+**Destination.**  Prove `StrongPredecessorBicoloringAt k`, the strongest
+currently formalized predecessor producer.  Its two color classes then feed
+the compiling exact recurrence directly.
+
+**Stage 7.1: finish or deliberately park the finite semantic control.**
+
+- Preserve the exact Fin-8 Property-B CNF and certificate semantics.  The
+  bare LRAT contradiction, encoding layer, and at least one semantic chunk
+  compile; the monolithic generated final bridge does not have a verified
+  bounded build.
+- Try one bounded checkpointed semantic architecture that partitions by clause
+  origin: signotope constraints, strong-five definitions/avoidance, and the
+  balanced two-color obstruction.  Each chunk must compile independently and
+  the final theorem must use only those checked chunks.
+- Do not repeat dense-core minimization: removing 16 of 1,211 clauses enlarged
+  the fresh certificate and did not address elaboration.  If checkpointing
+  still exceeds the declared cap, park the finite promotion and retain the
+  independently replayed computational evidence.
+
+**Stage 7.2: expose structural hypergraph properties.**
+
+- For a strong-`k`-free realizable coloring, define the hypergraph of strong
+  `(k-1)` subsets.  Prove its hereditary, deletion, and local four-index
+  consequences without assuming a bicoloring.
+- Identify a property stronger than arbitrary hypergraph Property B but forced
+  by rank-three orientation structure: candidate forms include an ordered
+  interval property, bounded edge-intersection pattern, or a signed circuit
+  constraint.
+- Falsify each candidate against exact rational controls and the equality
+  construction before using it in a coloring theorem.
+
+**Stage 7.3: all-`k` bicoloring.**
+
+- Prove that the structural property admits a two-coloring splitting every
+  predecessor edge, or reduce it to a separately proved ordered-hypergraph
+  theorem.
+- Package the coloring as `StrongPredecessorBicoloringAt k` and use its
+  compiling recurrence consumer.
+
+**Expiry rule.**  Integral Property B is stronger than needed.  If Thread 1
+or 8 proves the half/fractional producer first, demote this route to a useful
+structural corollary.  A realizable non-bicolorable predecessor hypergraph
+stops it without affecting those weaker routes.
+
+### Thread 8: fractional predecessor-cover producer
+
+**Destination.**  Prove `FractionalPredecessorCoverAt k`.  The exact rational
+double-counting recurrence and the implication to `PredecessorHalfSubsetAt k`
+already compile, so this route can succeed even if integral Property B fails.
+
+**Stage 8.1: freeze primal and dual formulations.**
+
+- State the finite rational LP exactly: nonnegative weights on
+  strong-`(k-1)`-free supports, pointwise coverage at least one, total weight at
+  most two.
+- Prove a finite rational duality bridge in the needed form, or use a
+  certificate-bearing finite LP theorem already trusted by mathlib.  External
+  optimization output may suggest weights but cannot close the Lean theorem.
+- Derive the dual target: every nonnegative vertex weighting has a
+  predecessor-free support carrying at least half the total mass.
+
+**Stage 8.2: weighted geometric charging.**
+
+- Test weighted maximum-support, random-cut, sweep-interval, and deletion
+  averaging arguments.  The proof must use rank-three/realizability structure;
+  relaxed hypergraphs have exact fractional-versus-integral separators.
+- Start at `k=6` and use the integral-through-11 computation as a positive
+  control, not as a proof.  Search `n=12` for the first exact fractional/half
+  separator as part of Thread 1's common bounded gate.
+- When a weighted inequality survives, compile it first as a finite-sum lemma
+  for an arbitrary rational weight function, then derive the cover.
+
+**Stage 8.3: recurrence and comparison.**
+
+- Produce `FractionalPredecessorCoverAt k`, invoke the compiling direct
+  fractional recurrence, and compare its hypotheses with Thread 1's half
+  producer.  Retain whichever statement has the simpler all-`k` proof.
+
+**Expiry rule.**  An exact realizable model with fractional cover number
+greater than two stops the route and also refutes the half producer only if its
+maximum predecessor-free support has size less than half.  Keep those two
+conclusions separate.
+
+### Thread 9: diagonal extreme-exchange successor
+
+**Destination.**  Prove a noncircular successor from the diagonal cup-block
+theorem at `k` to the theorem at `k+1`, using extreme exchange rather than the
+stopped all-double-deletions gluing statement.
+
+**Stage 9.1: exact extraction contract.**
+
+- Retain two ordered cup blocks of sizes `(k-1)+k` and choose the far extreme
+  `q` and the opposite `k-1` core.
+- Under no four-cap and no strong `(k+1)`, conclude that some vertex of the
+  smaller block extends that core to a cup.  Do not assume absence of a
+  `(k+1)`-cup if that would make the extraction equivalent to the desired next
+  diagonal theorem.
+- Verify noncircularity formally by showing the theorem's premises are supplied
+  by `DiagonalCupBlocksForce4kk k` on genuine deletions, while its conclusion
+  is strictly local.
+
+**Stage 9.2: finite gate and Lean promotion.**
+
+- Thread 6 supplies the `k=9` finite truth test.  After its semantic bridge
+  compiles, inspect which local configurations close both orientations.
+- State the smallest symbolic exchange lemma explaining those configurations,
+  falsify it at `k=10` under a bounded quotient, and compile it if it survives.
+- Combine opposite-core extensions through the existing `OneChange` cup
+  gluing theorem.
+
+**Stage 9.3: successor induction.**
+
+- Prove the successor theorem for all `k` in its honest parameter range, then
+  derive the diagonal family from the compiling bases.
+- Feed the diagonal theorem into the Pascal-tail/critical-root machinery and
+  record exactly which off-diagonal leaves remain.
+
+**Expiry rule.**  The prior gluing statement `G(k)` with every double deletion
+is equivalent, under `D(k)`, to `D(k+1)` and is permanently stopped.  Any new
+contract that recreates this equivalence before doing local extraction is
+rejected as circular.
+
+### Thread 10: state-567 finite-certificate fallback
+
+**Destination.**  Kernel-check one exact state-567 packed obligation as a
+bounded fallback and as a source of structural proof patterns, without
+mistaking one finite state for the uniform theorem.
+
+**Stage 10.1: select the smallest semantic leaf.**
+
+- Compare the existing cut-7 trace, the five balanced terminal classes, and
+  the three residual occupancy branches by variable count, semantic-clause
+  complexity, and downstream leverage.
+- Freeze exactly one leaf whose conclusion plugs into a compiling reducer.
+  Keep the full semantic hypotheses; do not certify a weakened CNF with no
+  proved transport back to Lean.
+
+**Stage 10.2: deterministic certificate pipeline.**
+
+- Generate a bounded CNF, solver certificate, independent replay, corrupted
+  controls, and semantic clause map.  The source-to-clause bridge is part of
+  the deliverable.
+- If the monolithic LRAT import exceeds memory, checkpoint additions while
+  recording exact live-clause interfaces.  Each checkpoint theorem must be
+  small enough for the standard proof gate.
+- Compile the leaf, then the existing state-567 consumer.  Record standard
+  axioms and scan for forbidden placeholders.
+
+**Stage 10.3: mine rather than proliferate.**
+
+- Group retained clauses by mathematical origin and extract the smallest
+  repeated witness pattern.  Offer that pattern to Threads 2, 3, and 5 as a
+  symbolic lemma candidate.
+- Do not launch certificates for the remaining cuts unless the first one
+  either closes the full state or reveals a reusable uniform consumer.
+
+**Expiry rule.**  A certificate with no semantic bridge is computational
+evidence only.  Once one exact leaf compiles, priority returns to structural
+uniformization.
+
+### Thread 11: inverse stepping-up/decomposition extraction
+
+**Destination.**  Find a noncircular inverse to the lower-bound composition:
+a target-free configuration above the critical size should expose smaller
+predecessor-free pieces, a half-size predecessor-free support, or a usable
+deep split.
+
+**Stage 11.1: formulate exact alternatives.**
+
+- Study the equality construction under sweep order and identify the
+  partitions, extreme vertices, or deletion chains that witness its recursive
+  structure.
+- Freeze three distinct candidates: a near-halving two-piece partition, a
+  single half-size predecessor-free subset, and a deletion step lowering the
+  target parameter.  State each in the weakest model where the intended
+  consumer is valid.
+- Prove that none of the candidates merely restates `SweepExactUpperAt k` or
+  smuggles in the critical cardinal bound.
+
+**Stage 11.2: decisive small gates.**
+
+- Test the candidates on exact small realizable catalogs and on the known
+  recursively decomposable equality family.  Require a rational realization
+  for negative geometric claims.
+- For a survivor, identify the orientation/circuit mechanism producing the
+  split or deletion and compile the local lemma before the global cardinal
+  theorem.
+
+**Stage 11.3: connect to live consumers.**
+
+- A half-subset conclusion feeds Thread 1; a two-piece conclusion feeds the
+  bicoloring/fractional routes; a deep split feeds Thread 3; a mutation/deletion
+  normalization feeds Thread 4.
+- Promote only a candidate with one of these exact compiled consumers.
+
+**Expiry rule.**  After the three frozen alternatives have decisive exact
+controls, do not invent additional inverse statements without a new geometric
+mechanism.  A theorem true only for the recursively constructed lower-bound
+family is not an unrestricted bridge.
+
+### Thread 12: state-578 strict-gate revival
+
+**Destination.**  Reopen state `(5,7,8)` only if a new invariant uses the full
+32-point, six-cap, 24-deletion-row, complete-residual-family, exact-color
+package and produces a terminal consumer.
+
+**Stage 12.1: admission test.**
+
+- Write a lemma card for a static residual-exterior core, global carrier cover,
+  or acyclic rank.  The hypotheses must quantify over the full residual family
+  and use decomposition colors/density essentially.
+- Replay the relaxed 32-point two-cycle, exact-small decomposable carrier
+  cycles, plateau/two-foreign-cap controls, and universal seed-escape theorem.
+  Any candidate inherited by them is rejected without implementation.
+- Demand one exact conclusion: a residual boundary of size at most three, a
+  strict predecessor state, or a well-founded descent.  Another selected row
+  or local address classification does not pass admission.
+
+**Stage 12.2: bounded implementation if admitted.**
+
+- Compile the smallest full-family synchronization lemma and reconnect it to
+  the terminal carrier-cover or density-boundary consumer already present.
+- If a finite truth test is necessary, retain all six columns/full residual
+  family and independently check the certificate.  Incidence-only models are
+  useful falsifiers but cannot settle the exact coloring statement.
+
+**Expiry rule.**  Until Stage 12.1 passes, allocate no builder or long search.
+State 578 is a fixed-`k=8` milestone, not the uniform proof, and may not again
+become the sole focus.
+
+### Thread 13: goal-driven intermediary lemma forge
+
+**Destination.**  Generate independent, reusable lemmas that remove a named
+obstruction or reveal that a live route is false, without creating a second
+roadmap.
+
+**Stage 13.1: portfolio checkpoint.**
+
+- At each major approval/integration boundary, identify the one or two missing
+  invariants shared by active routes and ask whether an outside mechanism could
+  help.  Keep at most three simultaneous forge cards.
+- Each card records an exact Lean-shaped statement, model tier, compiled
+  dependencies, named downstream consumer, dual/hereditary forms, behavior on
+  the equality construction, bounded falsifier, and expiry condition.
+
+**Stage 13.2: lifecycle.**
+
+- Follow `seed -> normalize -> falsify -> formalize -> consumer audit`.
+  Reject duplicates, unreachable hypotheses, circular statements, and lemmas
+  whose only application assumes the target recurrence.
+- Maintain different failure modes: for example one weighted predecessor
+  lemma, one residual-escape compression lemma, and one planar circuit lemma,
+  rather than three variants of the same address count.
+- Promote only a compiling theorem with a verified consumer.  Park a true but
+  inert theorem; retain a counterexample for a false one.
+
+**Candidate queue.**  The stopped two-anchor rooted-circuit elimination and
+middle-word selector are negative controls.  Live families worth fresh cards
+include one-anchor circuit substitution with an exact consumer, weighted
+predecessor separation, and multi-probe residual escape compression.
+
+**Expiry rule.**  Forge work is capped and secondary.  It never displaces all
+direct work on Threads 1--3 and agent consensus never upgrades evidence.
+
+### Thread 14: formal-research system and template feedback
+
+**Destination.**  Improve the rate at which conjectures are correctly stated,
+falsified, formalized, and integrated.  This thread contributes to progress by
+reducing wasted proof search and evidence mistakes, but it produces no
+mathematical completion by itself.
+
+**Stage 14.1: planning and timing.**
+
+- Turn the existing estimate ledger into a deterministic summary grouped by
+  task type, reporting forecast midpoint versus actual active wall time and
+  separating stop budget from predicted duration.
+- Package the measured workflow as a reusable planning/timekeeping skill and
+  forward-test it on short Lean work, bounded searches, and multi-route blocks.
+- For multi-hour plans, compute the approval inventory before execution and
+  trigger foreseeable platform prompts at the beginning.
+
+**Stage 14.2: orchestration and evidence integrity.**
+
+- Harden immutable task-packet/result validation, workspace-fingerprint
+  handling under concurrent branches, ownership boundaries, and finish-gate
+  reporting.  Avoid unnecessary whole-workspace freezes for disjoint read-only
+  research when exact input hashes suffice.
+- Add a portfolio dashboard that distinguishes theorem completion, bounded
+  evidence, refutation, parked proposals, and elapsed critical path.
+- Preserve serialized top-level integration, full proof gates, scoped commits,
+  and pushes.
+
+**Stage 14.3: tools, skills, and template promotion.**
+
+- Build the planned catalog of free mathematical software with problem class,
+  trust boundary, license, resource profile, reproducibility notes, and an
+  optional skill entry point for each reproduced tool.
+- Extract the project-neutral orchestration, innovation-sidecar, certificate
+  chunking, and calibrated-timekeeping improvements into
+  `docs/template_improvements.md`.  Changes to the neighboring
+  `open-math-research-template` require a separate reviewed and authorized
+  project.
+
+**Expiry rule.**  Process work is scheduled only when it removes a measured
+bottleneck or prevents a demonstrated evidence failure.  It is never reported
+as progress on the exact formula and should remain a minority of total active
+capacity.
+
+### Portfolio scheduling and evidence gates
+
+- Keep at least one active item from Threads 1--3 whenever mathematical work
+  is scheduled.  Threads 4--11 are hedges, not replacements for every direct
+  route; Thread 12 is dormant; Threads 13--14 are bounded support work.
+- Resolve candidate statements with the cheapest exact falsifier before large
+  Lean scripts.  Promote only the strongest statement that survives.
+- Integrate shared files, run project gates, commit, and push serially from the
+  top-level orchestrator.  Specialist proposals and computations remain
+  untrusted until independently checked and incorporated into a compiling
+  theorem.
+- State 578 remains suspended.  It may re-enter only through the ticket-0010
+  revival condition recorded in the Wayfinder map.

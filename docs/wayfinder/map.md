@@ -61,6 +61,100 @@ sharpness construction of size `2^(n-2)`.
 
 ## Open frontier
 
+### Active fourteen-thread portfolio (2026-08-11)
+
+The project no longer allocates an entire research block to one unresolved
+leaf.  The current portfolio deliberately separates direct recurrence
+producers, the first concrete decomposable obstruction, uniformization,
+unrestricted-bridge work, and bounded certificate engineering.  The latest
+route-selection review is
+`runs/reviews/20260811-portfolio-plan/output/REPORT.md` (SHA-256
+`78121e80e15715197a25641a7d489ae007a67afb27479c4af2f95b63da85c428`).
+It is reused here because the fourteen routes below elaborate the reviewed
+portfolio rather than changing its mathematical direction.  Threads 1--6 are
+the current execution front; Threads 7--14 are independently gated reserve,
+revival, discovery, and research-system tracks.
+
+1. **Predecessor half-subset producer (primary unrestricted route).**  Seek
+   `PredecessorHalfSubsetAt k` directly.  Integral bicoloring and fractional
+   cover remain stronger possible producers, but bounded tests must classify
+   them separately.  The stopped maximum-support two-deletion exchange is not
+   to be retried.  The immediate falsification boundary is exact `k=6`,
+   `n=12`; a realizable half-subset counterexample expires the entire route,
+   while a separation between integral, fractional, and half contracts
+   redirects effort to the weakest survivor.
+2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
+   Use the compiling mutually-middle-obstructed pair and universal four-block
+   escape normalization.  Close, or exactly refute, the residual-only,
+   one-carrier, and two-carrier branches.  Every valid contradiction must use
+   the ten-point residual and repeated deletion packing; pair-only arguments
+   are expired by the 12-point control.
+3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
+   state-567 proof's numerical and structural kernel into a parameterized
+   two-carrier/residual-escape theorem and consume it through
+   `PascalTailTwoSideBound`.  The first milestone is a genuine parameterized
+   lemma whose specialization proves, rather than assumes, a state-567 leaf.
+   If the finite proof spends an equality peculiar to `(5,6,7)`, retain that
+   finite theorem and redesign the uniform invariant instead of disguising a
+   one-case proof as induction.
+4. **Layer-F highest-stratum mutation descent (unrestricted sidecar).**  Test
+   and then prove or refute `ThreeStepTopPrimeStratumDropsAboveAt`.  Only exact
+   realizable, target-free controls can decide the route; below-threshold
+   abstract censuses are diagnostics.  A realizable closed component or
+   highest-stratum local minimum expires the candidate.  Its final payoff
+   remains conditional on a uniform decomposable upper theorem.
+5. **State-567 balanced five-class leaves (parallel decomposable branch).**
+   Prove the mechanical five-way exhaustion, then attack the `2+4`, `3+3`,
+   `4+2`, left-right residue, and right-left residue terminal classes.  Pair
+   dual branches only after an explicit reversal/color-duality transport is
+   available.  The exact `11+11` split, side cap exclusions, and repeated
+   packing must remain visible in every terminal contract.
+6. **Finite `k=9` extreme-exchange Lean bridge (bounded engineering route).**
+   Preserve the frozen CNF/LRAT and theorem contracts.  Split the remaining
+   120 middle-color consequences and final strong-ten cases into small
+   modules; do not retry the two conjunction-projection architectures that
+   exceeded the ten-minute clause gate.  Once the normalized extraction
+   theorem compiles, stop accumulating finite cases and mine the certificate
+   for a uniform successor lemma.
+7. **Integral predecessor Property-B producer.**  Finish the finite semantic
+   control only with a bounded architecture, then seek an all-`k` structural
+   bicoloring theorem for the predecessor hypergraph.  The large Fin-8 bridge
+   is a diagnostic/base theorem, not the destination.
+8. **Fractional predecessor-cover producer.**  Use rational LP duality,
+   averaging, or exact weighted charging to prove total cover weight at most
+   two.  This route survives failure of integral Property B and already has a
+   compiling recurrence consumer.
+9. **Diagonal extreme-exchange successor.**  Replace the stopped monolithic
+   double-deletion gluing statement by a genuine core-extraction theorem plus
+   the compiling opposite-extreme cup gluing lemma.  The new premise must be
+   strictly weaker than the next diagonal theorem.
+10. **State-567 finite-certificate fallback.**  Maintain a bounded,
+    independently checked certificate path for one exact packed leaf.  Use it
+    only as a fallback and pattern miner; a finite state closure is not a
+    substitute for the uniform Pascal mechanism.
+11. **Inverse stepping-up/decomposition extraction.**  Test whether a large
+    target-free realizable configuration canonically yields two smaller
+    predecessor-free pieces, a half-size predecessor-free support, or an exact
+    deep split.  Reject any formulation equivalent to the desired recurrence.
+12. **State-578 strict-gate revival.**  Keep the route dormant unless a
+    complete-residual-family, exact-color-and-density invariant defeats every
+    recorded carrier/address cycle and constructs a cover, strict predecessor,
+    or true descent.
+13. **Goal-driven intermediary lemma forge.**  At portfolio checkpoints,
+    screen at most three route-independent Lean-shaped statements with named
+    consumers, exact model tiers, bounded falsifiers, and expiry conditions.
+14. **Formal-research system and template feedback.**  Improve certificate
+    chunking, immutable task packets, approval preflight, measured time
+    calibration, tool/skill cataloging, and parallel-route orchestration when
+    those changes reduce proof latency or evidence mistakes.  Process work is
+    never credited as mathematical completion.
+
+Threads 1--3 are the most direct paths to the exact upper recurrence.  Threads
+4--11 hedge distinct mathematical and formalization failure modes; 12 is
+dormant; 13--14 improve discovery and throughput.  No reserve or process
+thread may displace all three primary routes at once.  State 578 remains
+suspended under ticket 0010 until its stated revival gate is met.
+
 - [Choose the canonical formal model](tickets/0001-choose-formal-model.md)
   before committing the unrestricted bridge. Deletion-minimal
   decomposition-prime supports compile, but an exact realizable seven-point

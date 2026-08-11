@@ -766,7 +766,10 @@ sets.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
 - `docs/formalization_plan.md` records the intermediary lemma ladder from the
-  sweep model to the exact conjecture.
+  sweep model to the exact conjecture and the active fourteen-thread portfolio;
+  the first three threads remain the direct recurrence front, while reserve,
+  revival, lemma-forge, and research-system work have explicit promotion and
+  expiry gates.
 - `docs/literature_review.md` records the initial research synthesis.
 - `docs/bibliography.md` is the living source ledger.
 - `docs/agents/README.md` defines the repository's bounded multi-agent
