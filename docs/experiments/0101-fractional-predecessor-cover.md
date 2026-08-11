@@ -2,7 +2,8 @@
 
 Date: 2026-08-11
 
-Status: Generic exact-doubling consumer compiles; main-route promotion deferred
+Status: Integral/fractional/half hierarchy compiles; main-route promotion
+deferred
 
 ## Question
 
@@ -40,6 +41,14 @@ vertex incidence by this cardinality times total weight, giving
 This is a completed Lean implication. It does not prove
 `FractionalPredecessorCoverAt k`.
 
+Lean now also proves both adjacent hierarchy implications. Integral
+predecessor bicoloring gives a fractional cover by assigning weight one to
+each color class (weight two to their coincident empty support), and a
+fractional cover yields one positive-weight predecessor-free support
+containing at least half the vertices by exact rational averaging. The latter
+is packaged as `PredecessorHalfSubsetAt k`; together with the predecessor
+upper theorem it has its own compiling exact-doubling consumer.
+
 ## Separation and bounded gate
 
 The fractional contract is fractional Property B for the hypergraph whose
@@ -59,12 +68,22 @@ direct CSP both find that every strong-five-free instance already has an
 integral balanced predecessor bicoloring. This is bounded computational
 evidence, not a Lean theorem.
 
+The next exact finite screen also found no separation. For `k=6` and
+`n=8,9,10,11`, every strong-six-free abstract rank-three signotope in the
+certified formulas has an integral predecessor bicoloring. An independent
+semantic generator reproduced each CNF byte-for-byte, replayed every LRAT,
+and rejected corrupted controls. Thus fractional and half-subset relaxations
+provide no additional existence leverage at the reached sizes. This is
+computational evidence; only the generic hierarchy implications are Lean
+theorems.
+
 ## Disposition
 
 `MODIFY`.
 
 The exact recurrence consumer is reusable and now formalized. The fractional
 existence route should not be promoted over integral Property B until a frozen
-`k=6` or later exact-model search exhibits a fractional/integral separation.
+`k=6` or later exact-model search exhibits a fractional/integral separation;
+none occurs through the completed `k=6`, `n=11` gate.
 The canonical audit result has SHA-256
 `67e35ac22cb03984a48d2b3898e04ffc3df81e53cfbf6fd248f22bc19135d36a`.

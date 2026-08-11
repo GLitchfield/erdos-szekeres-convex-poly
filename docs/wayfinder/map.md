@@ -96,11 +96,16 @@ sharpness construction of size `2^(n-2)`.
   clauses while enlarging the certificate, so the bicoloring theorem and even
   this bounded semantic promotion remain open. A separate prefix-free
   middle-word frontier proposal is stopped by a six-vertex abstract
-  counterexample and is no longer an active route. A fractional predecessor
-  relaxation now also has a compiling exact-doubling consumer. Relaxed
-  hypergraphs separate it from integral bicoloring, but the first `k=5`,
-  `Fin 8` signotope gate does not; main-route promotion therefore waits for a
-  later exact-model fractional/integral separator.
+  counterexample and is no longer an active route. The predecessor hierarchy
+  now compiles all the way from integral bicoloring through fractional cover
+  and a single predecessor-free half-subset to the exact recurrence. A
+  certificate-free theorem proves the integral bicoloring for every
+  strong-`k`-free coloring on at most `2*k-3` vertices when `k>=5`. At `k=6`,
+  independent exact finite checks find no integral/fractional/half separator
+  through 11 vertices, but only the range through nine is a Lean theorem. A
+  maximum-support two-deletion exchange is retired by an exact rational
+  eight-point counterexample and a generic cardinality obstruction. The
+  hierarchy remains live; that construction does not.
 - [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
   now focuses on the uniform `PascalTailTwoSideBound`; its first open instance
   is exactly the state-567 two-cap-free-sides theorem. The diagonal `a=4`
@@ -117,9 +122,18 @@ sharpness construction of size `2^(n-2)`.
   three semantic layers compile; seven no-strong-ten semantic helpers still
   block the normalized Lean theorems. This partial promotion neither proves
   the successor nor assumes ambient ten-cup avoidance.
-  State 567 remains formally reduced to two exact 22-point packing obligations; the
-  completed `k=9` bridge validates the diagonal interface and certificate
-  workflow but does not by itself supply the uniform successor step. The historical route
+  State 567 remains formally reduced to two exact 22-point packing obligations.
+  In the packed internal branch, Lean now constructs the disjoint mutually
+  middle-obstructed partner, proves that the pair leaves exactly ten residual
+  vertices, and obtains an avoiding strong-six for every carrier pair and
+  residual four-block. A compiling trichotomy leaves three occupancy branches
+  according to whether that escape meets zero, one, or two carriers. None is
+  closed. The completed `k=9` bridge validates the diagonal interface and
+  certificate workflow but does not by itself supply the uniform successor
+  step. Direct and depth-four conjunction projections for the remaining
+  extreme-exchange strong clauses both exceed the bounded ten-minute gate; a
+  finer middle-fact/final-case module split is the only retained engineering
+  repair. The historical route
   record follows. The scalar recurrence, maxima-only
   contexts, deterministic downset words, complete child pair-rank matrices,
   and pairwise raw-downset counting shortcut are now refuted routes; abstract
@@ -841,8 +855,6 @@ sharpness construction of size `2^(n-2)`.
 
 ## Not yet specified
 
-- A kernel-checked formal reproduction of the classical lower-bound
-  construction for all `n`.
 - A geometric/combinatorial equivalence layer for convex position, cups, caps,
   strong polygons, and realizable orientation configurations.
 - Formal reproduction of the known exact cases `n ≤ 6` and extraction of the

@@ -172,16 +172,18 @@ approaches the 16-GiB ceiling. Exact core minimization removed only 16 of
 1,211 clauses while enlarging the certificate, so that repair is stopped. See
 Experiments 0096, 0097, and 0099.
 
-The fractional Property-B relaxation now has a compiling exact-doubling
-consumer. `FractionalPredecessorCoverAt k` places nonnegative rational weights
-on predecessor-free subsets, covers every vertex with weight at least one, and
-uses total weight at most two. Lean bounds every positive-weight support by the
-predecessor theorem and completes the finite rational double count. Checked
-relaxed hypergraphs show this condition is genuinely weaker than integral
-bicoloring, but the `k=5`, `Fin 8` signotope gate already has integral
-bicolorings. The route is retained as a secondary contract and requires a
-later exact-model fractional/integral separator before promotion. See
-Experiment 0101.
+The predecessor route now has a compiling implication hierarchy. Integral
+bicoloring gives a fractional cover; exact rational averaging extracts one
+predecessor-free half-subset; and that half-subset gives the same exact
+doubling recurrence. A certificate-free local theorem proves integral
+bicoloring for every strong-`k`-free coloring on at most `2*k-3` vertices when
+`k>=5`. At `k=6`, independent exact CNF/LRAT checks find no
+integral/fractional/half separator through 11 vertices, while the Lean theorem
+covers the range through nine. The proposed maximum-support two-deletion
+exchange is stopped: it would strictly enlarge a maximum free support, and an
+independently checked integer-coordinate eight-point configuration realizes
+the nonvacuous obstruction. The hierarchy remains live, but its next producer
+must use a different construction. See Experiments 0096 and 0101.
 
 ## Evidence
 

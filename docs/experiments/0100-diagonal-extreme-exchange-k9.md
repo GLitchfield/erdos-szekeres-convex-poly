@@ -88,5 +88,23 @@ The canonical partial-promotion result has SHA-256
 Only after the normalized declarations compile may this experiment be marked
 complete or used as a proved E3 successor ingredient.
 
+Two further bounded elaboration architectures were tested on the smallest
+retained `9+8` no-strong-ten clause. The first replaced the full 420-way
+destructuring by 112 typed projections through the midpoint-balanced
+conjunction tree; every projection has depth eight or nine. The second shared
+the tree at depth four before taking local projections. Deterministic tests
+verified all 420 projection paths and the same 112 selected negative atoms in
+all seven clauses, and all certificate hashes remained unchanged.
+
+Both warm single-job Lean builds used a full CPU core and remained near a few
+GiB of memory, but each reached the ten-minute gate without a diagnostic.
+This stops direct and depth-four projection extraction as the current repair.
+It does not refute the extraction theorem. The next engineering gate must
+split the 120 derived middle-color facts and final finite-case argument into
+smaller modules, with the same frozen clause and certificate. No generated
+uncompiled theorem module is retained as completed work. The canonical
+projection-attempt result has SHA-256
+`5b34b3137e2cff60e98c458b83915e0c7f2c48b56658899743366003393ec585`.
+
 Ignored audit artifacts are under
 `runs/agents/20260811-wave3/extreme-exchange/`.

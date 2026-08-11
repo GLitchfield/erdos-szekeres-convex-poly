@@ -753,7 +753,14 @@ sets.
   independent predecessor-bicoloring interface also compiles: such a
   bicoloring gives the exact doubling recurrence directly. Two independent
   computational encodings pass its stronger balanced eight-vertex `k=5`
-  gate, but the general bicoloring theorem remains open.
+  gate, but the general bicoloring theorem remains open. The complete
+  implication hierarchy from integral bicoloring through fractional cover and
+  a predecessor-free half-subset to exact doubling now compiles. A uniform
+  certificate-free theorem proves predecessor bicoloring below
+  `2*k-3` vertices for `k>=5`; exact computation extends the positive `k=6`
+  evidence through 11 vertices. A maximum-support two-deletion exchange is
+  stopped by an exact integer-coordinate eight-point counterexample and a
+  simple cardinality obstruction; it does not refute the hierarchy itself.
   The independent rooted-circuit branch stops: a seven-point rational Lean
   counterexample refutes preservation of two signed triangle anchors.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point

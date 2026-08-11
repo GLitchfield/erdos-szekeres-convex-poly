@@ -1229,3 +1229,49 @@ Experiment 0094. Reopen only for a complete-residual-family theorem using the
 exact 32-point coloring laws essentially and producing the cover, a strict
 predecessor, or a genuine descent. This suspension is not a proof or
 refutation of state `(5,7,8)`.
+
+## 2026-08-11 parallel-route integration
+
+The predecessor route now exposes the weakest presently known sufficient
+contract. `PredecessorHalfSubsetAt k` asks only for one
+strong-`(k-1)`-free support containing at least half the vertices. Lean proves
+the hierarchy
+
+```text
+StrongPredecessorBicoloringAt k
+  -> FractionalPredecessorCoverAt k
+  -> PredecessorHalfSubsetAt k
+  -> (SweepExactUpperAt (k-1) -> SweepExactUpperAt k).
+```
+
+The direct bicoloring and fractional recurrence consumers remain as
+independent proofs. A local four-index lemma also gives a uniform finite base:
+for `k>=5`, every strong-`k`-free coloring on at most `2*k-3` vertices has an
+integral predecessor bicoloring. This theorem does not use realizability. At
+`k=6` it proves the range through nine vertices; independent exact CNF/LRAT
+checks find no integral/fractional/half separator through 11, but the last two
+sizes remain computational evidence.
+
+The maximum-support one-hole exchange proposed as a producer is stopped. With
+a disjoint predecessor polygon, deleting at most two support vertices while
+inserting the other three polygon vertices strictly enlarges the support, so
+success would contradict maximum cardinality. An independently checked
+integer-coordinate eight-point configuration proves the premise is
+nonvacuous at the computational-evidence level. The predecessor hierarchy
+therefore remains a live proof architecture, but its next producer must not be
+this monotone maximum-support exchange.
+
+The state-567 branch also advanced without closing. The full-premise
+mutually-middle-obstructed pair is now a compiling interface for the packed
+internal obligation. Exact cardinality and a second use of deletion packing
+give a ten-point residual plus a universal four-residual escape family. A
+compiling trichotomy separates escapes meeting zero, one, or two carriers.
+Those three occupancy impossibilities and the five balanced terminal classes
+are the remaining structural leaves. Pair-only contradictions are rejected by
+the exact 12-point control.
+
+The `k=9` extreme-exchange mathematical extraction remains computationally
+supported, but two proposed Lean conjunction-projection architectures each
+exceeded the ten-minute single-clause gate below the memory ceiling. Further
+work must split the 120 middle-color consequences and final finite cases into
+smaller semantic modules; more projection variants are not an active repair.

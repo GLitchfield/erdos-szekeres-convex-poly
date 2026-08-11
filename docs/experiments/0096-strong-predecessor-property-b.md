@@ -2,8 +2,8 @@
 
 Date: 2026-08-10
 
-Status: Exact recurrence interface compiles; bounded `k = 5` certificate checks;
-final Lean semantic bridge pending
+Status: Exact recurrence hierarchy and small-cardinality base compile; bounded
+`k = 5` certificate checks; general producer remains open
 
 ## Question
 
@@ -66,9 +66,53 @@ abstract signotope search found no witness, no rational-realization step was
 needed. The result supports the realizable contract because the abstract model
 is a superset, but it does not prove the unbounded statement.
 
+## Weaker recurrence contract and uniform base region
+
+Lean now separates the structural content needed by the recurrence from the
+full two-coloring. `PredecessorHalfSubsetAt k` asks only for one
+strong-`(k-1)`-free subset containing at least half the vertices. The following
+implications compile:
+
+```text
+integral bicoloring -> fractional cover -> half subset -> exact recurrence.
+```
+
+The direct integral-to-half and fractional exact-doubling proofs also compile,
+providing independent checks of the hierarchy. None of these implications
+constructs its source contract.
+
+A new certificate-free base theorem proves something uniform rather than
+merely finite: for every `k >= 5`, every strong-`k`-free coloring on at most
+`2*k-3` vertices has a predecessor bicoloring. The proof uses only the
+four-index strong-polygon law and is stronger than a realizable statement.
+At the top cardinality, if every `(k-1)`-set were strong, then every ordered
+quadruple of a `k`-set would survive in a strong predecessor subset, making the
+whole `k`-set strong. This contradicts the hypothesis and supplies one free
+class; its complement is too small to contain a predecessor polygon.
+
+At `k=6` this theorem formally covers `n<=9`. Independent semantic CNF
+generation and LRAT replay found no integral/fractional/half separator for
+abstract rank-three signotopes through `n=11`; corrupted controls and a repeat
+run were rejected/confirmed as expected. The `n=10` and `n=11` extensions are
+computational evidence, not Lean theorems. The canonical result SHA-256 is
+`d6acc56f197cb4620c2f22a80a5beccfd75a6674cbb59ba4b8342eed42086708`.
+
+## Retired maximum-support exchange
+
+A proposed construction from a maximum predecessor-free support is now
+stopped. Replacing one point of a disjoint predecessor polygon while deleting
+at most two support vertices would produce a predecessor-free set strictly
+larger than the declared maximum. The premise is nonvacuous: an independently
+checked eight-point integer-coordinate configuration has no strong five-set,
+has 46 maximum strong-four-free supports and 14 eligible support/polygon
+pairs, and all 616 exchange trials fail. This refutes that exchange contract,
+not predecessor bicoloring, fractional cover, or the half-subset route. The
+canonical computational result SHA-256 is
+`7549842cd46ea2886debedc0fc14a7febc7bbdbbc3cda3b238f4248a12ea7339`.
+
 ## Route disposition
 
-`GO_AT_K5_BOUNDED_GATE`.
+`GO_ON_PREDECESSOR_HIERARCHY__STOP_MAXIMUM_SUPPORT_TWO_DELETION_EXCHANGE`.
 
 This route is structurally independent of state 578 and of Layer-F mutation
 normalization. It explains the exact exponent directly through a binary

@@ -1991,3 +1991,21 @@ remain isolated as 420-conjunct semantic helpers, and bounded elaboration
 attempts were stopped without a Lean error. The route outcome is therefore
 `EXTREME_EXCHANGE_K9_COMPUTATION_PASS__LEAN_SEMANTICS_PARTIAL`, not a completed
 successor theorem. See Experiment 0100.
+
+## 2026-08-11 residual-escape and projection gates
+
+The first state-567 packed internal leaf now has a compiling explicit-pair
+interface and consumer. Exact cardinality and a second use of deletion packing
+also compile to a stronger normalization: the two strong-six carriers leave a
+ten-point residual, and every carrier pair plus every residual four-block has
+an avoiding strong-six escape. A compiling trichotomy classifies a selected
+escape by whether it meets zero, one, or two carriers. These are reductions,
+not proofs of any of the three occupancy branches. The revised route outcome
+is `PACKED_567_RESIDUAL_ESCAPE_COMPILES_NOT_CLOSED`.
+
+For the `k=9` extreme-exchange certificate, direct depth-eight/nine atom
+projections and a depth-four shared-subtree variant each exceeded a ten-minute
+single-clause gate while staying below the memory ceiling. The certificate and
+theorem statement were unchanged. This localizes the next repair to separating
+the 120 middle-color facts and final finite-case proof into smaller compiling
+modules; repeating conjunction-projection variants is stopped.
