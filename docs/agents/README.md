@@ -72,7 +72,23 @@ substitutes for either artifact.
    updates shared imports and documentation, and runs the project/repository
    gates.  Workers do not concurrently build, commit, or edit Wayfinder files.
 10. **Record.** Promote durable conclusions into the canonical project artifact.
-   Retain negative results when they rule out a documented route.
+    Retain negative results when they rule out a documented route.
+
+## Route-portfolio rule
+
+Substantial mathematical batches should exploit independent parallel thought,
+not only parallel execution of one route.  By default, pair the nearest formal
+theorem with a structurally different load-bearing thread and a bounded
+innovation/falsification sidecar.  After two consecutive open-ended batches on
+one obstruction, perform a route-level audit before granting it another full
+batch.  Continue concentrated work when a frozen proof is measurably closing;
+suspend speculative grinding when successive refinements inherit the same
+countermodels and no new distinguishing invariant is available.
+
+A suspended route remains in the Wayfinder with a concrete revival gate.  It
+may be screened cheaply by the Innovation Scout, but it does not regain a
+builder merely because it is unfinished.  The orchestrator reports portfolio
+outcomes by mathematical leverage and evidence level, not by agent activity.
 
 ## Estimate calibration
 

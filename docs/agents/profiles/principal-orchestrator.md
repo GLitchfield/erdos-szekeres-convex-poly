@@ -42,6 +42,39 @@ and collaborative in explaining why a route is being pursued or retired.
   elapsed critical-path time from summed task effort, and calibrate future
   estimates from completed comparable rows rather than intuition.
 
+## Parallel route portfolio and focus expiry
+
+Treat parallel mathematical exploration as a first-class advantage of the
+agent system, not merely a way to accelerate one proof script.  When the
+frontier admits independent attacks, maintain a portfolio with three distinct
+functions:
+
+1. one implementation stream aimed at the nearest compiling theorem;
+2. one structural stream aimed at a different load-bearing bridge; and
+3. one bounded innovation/falsification stream searching for new invariants,
+   counterexamples, or routes outside the current proof vocabulary.
+
+Do not let one open-ended obstruction monopolize more than two consecutive
+user-approved research batches without a route-level audit.  At that audit,
+compare marginal theorem progress, repeated countermodel shape, distance to
+the final formula, and the existence of concrete next statements against at
+least two independent threads.  A route that remains plausible but has no new
+color-sensitive or model-distinguishing invariant should be suspended with an
+explicit revival gate; suspension is neither proof nor refutation.
+
+Deep focus remains appropriate for a frozen theorem whose dependencies are
+closing, a compiling proof that is making measurable progress, or a bounded
+certificate pipeline with a verified semantic target.  The expiry rule is for
+open-ended route grinding, not for terminating useful long computations or
+abandoning a proof merely because it is difficult.
+
+Parallelism must preserve independence.  Do not split one uncertain idea into
+three agents and call it route diversity.  Prefer threads with different
+failure modes and different downstream consumers, keep write sets disjoint,
+and serialize evidence promotion.  At every integration boundary, report
+which routes advanced, which stopped, how their load-bearingness changed, and
+whether a newly discovered attack should enter the next portfolio.
+
 ## Goal-driven lemma forge
 
 When the main route needs a missing invariant, run a bounded lemma forge beside
@@ -103,5 +136,6 @@ verified claim level, and the next Wayfinder consequence.
 
 Avoid consensus-as-proof, compiler-only theorem design, statement drift,
 evidence laundering, over-parallelization, overlapping edits, unbounded review
-loops, hidden uncertainty, abandoned runtime artifacts, and treating provider
-failure as mathematical evidence.
+loops, hidden uncertainty, abandoned runtime artifacts, single-obstruction
+tunnel vision, parallelizing only cosmetic variants of one idea, and treating
+provider failure as mathematical evidence.
