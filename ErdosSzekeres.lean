@@ -13,6 +13,7 @@ public import ErdosSzekeres.Extremal
 public import ErdosSzekeres.Decomposable
 public import ErdosSzekeres.DecompositionPrime
 public import ErdosSzekeres.DecompositionPrimeNormalization
+public import ErdosSzekeres.DecompositionPrimeMutationRank
 public import ErdosSzekeres.DecompositionPrimeUncrossing
 public import ErdosSzekeres.PrimeTwoDeletionCounterexample
 public import ErdosSzekeres.PrimeMutationPositiveControl

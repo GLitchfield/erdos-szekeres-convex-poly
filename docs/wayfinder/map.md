@@ -53,35 +53,35 @@ sharpness construction of size `2^(n-2)`.
   Lean uses all four private owners and all six disjoint cap blocks to replace
   the raw star by one plateau cup disjoint from two foreign columns; the three
   other residual branches remain open.
+- [The present state-578 residual-cycle route is suspended](tickets/0010-consume-state-578-plateau-or-localized-escape.md):
+  a terminal seven-carrier cover and universal seed-escape theorem compile,
+  while relaxed and exact-small cycles refute the current cardinality/address
+  ranks; revival requires a complete-family, exact-color invariant that fails
+  those controls and constructs a cover, strict predecessor, or true descent.
 
 ## Open frontier
-
-- [Consume the state-578 plateau or localized residual escape](tickets/0010-consume-state-578-plateau-or-localized-escape.md)
-  with genuinely global six-column/deletion-density data. Exact-small proposal
-  models expire the plateau-plus-two-foreign-caps local consumer. A compiling
-  seven-carrier-cover consumer would close the density contradiction, but
-  every individual residual seed now provably has an escaping cup and carrier
-  replacement is nonmonotone. The exact global coverage/acyclicity law remains
-  open; the controls omit the full 32-point premises and do not refute state
-  578.
 
 - [Choose the canonical formal model](tickets/0001-choose-formal-model.md)
   before committing the unrestricted bridge. Deletion-minimal
   decomposition-prime supports compile, but an exact realizable seven-point
-  Lean counterexample now stops one-or-two deletion descent. The surviving
-  Layer-F proposal is a target-free realizable mutation normalization feeding
-  the compiling target-reflecting exact-threshold consumer; one exact
-  geometric mutation into the decomposable class now compiles as its positive
-  control.
+  Lean counterexample stops one-or-two deletion descent. The original
+  unthresholded mutation contracts are also kernel-refuted by their empty
+  instance. Their exact-threshold replacements compile, as does the
+  characterization `PrimeCoreCount χ = 0 ↔ IsDecomposable χ` on nonempty
+  ground sets. The hard Layer-F target is a three-step target-free realizable
+  rank descent above the threshold, or a realizable closed component refuting
+  that proposal.
 - [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
   now focuses on the uniform `PascalTailTwoSideBound`; its first open instance
   is exactly the state-567 two-cap-free-sides theorem. The diagonal `a=4`
   cup-block interface and all cases through `k=8` now compile, isolating
   `k=9` (`7+8/8+7`) as the first new uniform test. Both `k=9`
   orientations and all nondual 22-point state-567 cuts are UNSAT in fresh
-  bounded audits, but no checked UNSAT certificate was produced. State 567
-  therefore remains formally reduced to two exact 22-point packing
-  obligations. The historical route
+  bounded audits. The two reduced `k=9` propositional cores now check in the
+  Lean kernel, but the clause-semantics and arbitrary-block transport bridge
+  is not yet formalized. State 567 therefore remains formally reduced to two
+  exact 22-point packing obligations, while the smaller `k=9` semantic bridge
+  is the preferred certificate promotion. The historical route
   record follows. The scalar recurrence, maxima-only
   contexts, deterministic downset words, complete child pair-rank matrices,
   and pairwise raw-downset counting shortcut are now refuted routes; abstract
@@ -795,10 +795,11 @@ sharpness construction of size `2^(n-2)`.
   two-column closure, while the exact global replacement gives a
   `24 → 18 → 9` exterior fan using at least three cap columns. An exact
   13-vertex decomposable, sweep-realizable model realizes that complete local
-  fan without any target. The active route is
-  [ticket 0005](tickets/0005-couple-state-578-exterior-fan-density.md): use
-  all six cap columns and global `32/23` density essentially to construct a
-  forbidden small transversal or an equivalent global collision.
+  fan without any target. Tickets 0005--0010 subsequently added the full
+  density matrix, eliminated opposite strict extensions, and isolated the
+  terminal seven-carrier cover. The present branch is now suspended because
+  all identified seed, address, and carrier-cardinality ranks admit explicit
+  cycles; Experiment 0094 records the exact revival gate.
 
 ## Not yet specified
 
@@ -812,6 +813,10 @@ sharpness construction of size `2^(n-2)`.
   theorem to constrain a minimal counterexample.
 - A new structural recurrence or decomposition theorem strong enough to close
   the gap between the lower construction and the best general upper bound.
+- A complete-residual-family, exact-color state-578 invariant which fails the
+  known cycle controls and constructs a seven-carrier cover, strict
+  predecessor, or well-founded descent. Until such a statement is concrete,
+  state 578 is not a main-route work item.
 
 ## Out of scope
 

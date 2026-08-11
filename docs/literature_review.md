@@ -224,6 +224,21 @@ open parent profiles.  Hence a uniform proof must retain correlations between
 chains—such as predecessor/rank downsets—or prove a new bounded quotient; a
 maxima-only context recurrence is insufficient.
 
+## Mutation connectivity and the Layer-F boundary
+
+Roudneff and Sturmfels prove that general-position arrangements can be joined
+by representability-preserving mutations. This is relevant to the proposed
+Layer-F normalization because a single rank-three mutation changes one
+oriented triple while remaining realizable. The theorem is unrestricted,
+however: it does not say that the induced graph on configurations avoiding a
+fixed strong polygon is connected, or that every such component contains a
+decomposable configuration. Removing the target-containing vertices and
+edges can create local minima or disconnected components. Consequently the
+project still needs an explicit target-free descent or a component theorem;
+ordinary mutation connectivity cannot serve as the missing normalization.
+See Roudneff--Sturmfels (1988), DOI `10.1007/BF00151346`, rechecked
+2026-08-10.
+
 ## Existing formal proof assets
 
 - **Isabelle/HOL, exact cases through six:** Marić's 2019 paper formalizes a

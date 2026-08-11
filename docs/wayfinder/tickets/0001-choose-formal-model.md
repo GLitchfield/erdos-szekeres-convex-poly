@@ -129,6 +129,27 @@ Crossing deep splits supply a compiling strong-four fallback, but an exact
 rational control shows they do not force a strong six without additional
 capacity. See Experiments 0088 and 0089.
 
+The next audit found and repaired an overstrong quantifier in the surviving
+normalization interface. Both unthresholded contracts include `Fin 0` and are
+therefore false for every positive target size: the empty coloring is
+sweep-realizable and target-free, but cannot be recursively decomposable.
+Lean now proves these refutations and supplies the exact-threshold replacement
+`TargetFreeMutationNormalizesAboveAt`. A one-to-three-step decrease of any
+natural-valued rank compiles to this normalization by strong induction, and
+then to `SweepExactUpperAt`.
+
+`DecompositionPrimeMutationRank.lean` provides the first noncircular rank
+candidate. On nonempty ground sets, `PrimeCoreCount χ = 0` is kernel-proved
+equivalent to `IsDecomposable χ`. Seven-point proposal diagnostics say that
+one- and two-edge descent fail for natural prime/restriction-defect ranks and
+that a three-edge macro is the smallest surviving contract; they are not a
+general theorem. The ticket remains open at the exact hard target: prove
+three-step target-free realizable descent above the threshold, or produce a
+realizable target-free mutation component without a decomposable vertex.
+Unrestricted representability-preserving mutation connectivity does not imply
+connectivity after deleting all target-containing vertices. See Experiment
+0093.
+
 ## Evidence
 
 - [Initial literature review](../../literature_review.md)
@@ -155,7 +176,9 @@ capacity. See Experiments 0088 and 0089.
 - [`ErdosSzekeres.PrimeTwoDeletionCounterexample`](../../../ErdosSzekeres/PrimeTwoDeletionCounterexample.lean),
   the realizable seven-point obstruction to one-or-two deletion descent
 - [`ErdosSzekeres.DecompositionPrimeNormalization`](../../../ErdosSzekeres/DecompositionPrimeNormalization.lean),
-  the exact target-reflecting Layer-F consumer
+  the corrected exact-threshold Layer-F consumer and three-step descent shell
+- [`ErdosSzekeres.DecompositionPrimeMutationRank`](../../../ErdosSzekeres/DecompositionPrimeMutationRank.lean),
+  the prime-core count and its zero/decomposable characterization
 - [`ErdosSzekeres.PrimeMutationPositiveControl`](../../../ErdosSzekeres/PrimeMutationPositiveControl.lean),
   one exact realizable target-free mutation into the decomposable class
 - [Intermediary lemma ladder](../../formalization_plan.md)

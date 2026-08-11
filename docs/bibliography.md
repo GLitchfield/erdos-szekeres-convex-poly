@@ -90,38 +90,44 @@ repository records.
     around the Erdős--Szekeres problem,” *European Journal of Combinatorics*
     131 (2026), 104236. Primary; includes saturation of the original lower-bound
     construction. <https://doi.org/10.1016/j.ejc.2025.104236>
+23. **J.-P. Roudneff and B. Sturmfels**, “Simplicial cells in arrangements and
+    mutations of oriented matroids,” *Geometriae Dedicata* 27 (1988),
+    153--170. Primary; representability-preserving mutation connectivity for
+    general-position arrangements. It does not address connectivity after
+    restricting to target-free configurations. Rechecked 2026-08-10.
+    <https://doi.org/10.1007/BF00151346>
 
 ## Computation and formal-verification methods
 
-23. **M. Balko and P. Valtr**, item 16 above. Triple-orientation SAT model and
+24. **M. Balko and P. Valtr**, item 16 above. Triple-orientation SAT model and
     decisive warning about over-strong abstractions.
-24. **B. Subercaseaux, W. Nawrocki, J. Gallicchio, C. Codel, M. Carneiro, and
+25. **B. Subercaseaux, W. Nawrocki, J. Gallicchio, C. Codel, M. Carneiro, and
     M. J. H. Heule**, “Formal Verification of the Empty Hexagon Number,” ITP
     2024. Primary/formal Lean methodology; the empty-polygon result itself is
     not the project target. <https://doi.org/10.4230/LIPIcs.ITP.2024.35>
-25. **M. J. H. Heule and M. Scheucher**, “Happy Ending: An Empty Hexagon in
+26. **M. J. H. Heule and M. Scheucher**, “Happy Ending: An Empty Hexagon in
     Every Set of 30 Points,” 2024. Primary/computational method.
     <https://arxiv.org/abs/2403.00737>
-26. **B. Dumitru**, “Notes on the 33-point Erdős--Szekeres problem,” preprint (2025).
+27. **B. Dumitru**, “Notes on the 33-point Erdős--Szekeres problem,” preprint (2025).
     Primary/preprint; SAT encoding for the first open exact case, not a settled
     proof. <https://arxiv.org/abs/2512.24061>
-27. **V. Koshelev and A. Koshka**, “Combinatorial Geometry of Erdős--Szekeres
+28. **V. Koshelev and A. Koshka**, “Combinatorial Geometry of Erdős--Szekeres
     Type Problems: SAT/ASP Modeling and Linear Subreduction,” preprint (2026).
     Primary/preprint; recent computational variants requiring independent review.
     <https://arxiv.org/abs/2604.20120>
 
 ## Surveys and historical syntheses
 
-28. **W. Morris and V. Soltan**, “The Erdős--Szekeres problem on points in
+29. **W. Morris and V. Soltan**, “The Erdős--Szekeres problem on points in
     convex position--a survey,” *Bulletin of the American Mathematical Society*
     37 (2000), 437--458. Survey; 89 references through 2000.
     <https://doi.org/10.1090/S0273-0979-00-00877-6>
-29. **I. Bárány and G. Károlyi**, “Problems and results around the
+30. **I. Bárány and G. Károlyi**, “Problems and results around the
     Erdős--Szekeres convex polygon theorem,” in *Discrete and Computational
     Geometry*, LNCS 2098 (2001), 91--105. Survey.
-30. **A. Suk**, item 12, includes a compact modern history and the key
+31. **A. Suk**, item 12, includes a compact modern history and the key
     transition to base two.
-31. **Erdős Problems: Convex**, live problem index used only for discovery,
+32. **Erdős Problems: Convex**, live problem index used only for discovery,
     never as a substitute for primary sources.
     <https://www.erdosproblems.com/tags/convex>
 
@@ -130,31 +136,31 @@ repository records.
 These works are not alternative project destinations. They are retained for a
 specific technique or caution.
 
-32. **I. Bárány and P. Valtr**, “A positive fraction Erdős--Szekeres theorem,”
+33. **I. Bárány and P. Valtr**, “A positive fraction Erdős--Szekeres theorem,”
     *Discrete & Computational Geometry* 19 (1998), 335--342. Partition/same
     type machinery. <https://doi.org/10.1007/PL00009350>
-33. **J. Fox, J. Pach, B. Sudakov, and A. Suk**, “Erdős--Szekeres-type
+34. **J. Fox, J. Pach, B. Sudakov, and A. Suk**, “Erdős--Szekeres-type
     theorems for monotone paths and convex bodies,” *Proceedings of the London
     Mathematical Society* 105 (2012), 953--982. Ordered monotone paths.
     <https://doi.org/10.1112/plms/pds018>
-34. **A. Hubard, L. Montejano, E. Mora, and A. Suk**, “Order types of convex
+35. **A. Hubard, L. Montejano, E. Mora, and A. Suk**, “Order types of convex
     bodies,” preprint (2010). Order-type machinery.
     <https://arxiv.org/abs/1010.4613>
-35. **M. G. Dobbins, A. Holmsen, and A. Hubard**, “The Erdős--Szekeres problem
+36. **M. G. Dobbins, A. Holmsen, and A. Hubard**, “The Erdős--Szekeres problem
     for non-crossing convex sets,” *Mathematika* 60 (2014), 463--484.
     Pseudoline/order-type connections.
     <https://doi.org/10.1112/S0025579314000072>
-36. **O. Devillers, F. Hurtado, G. Károlyi, and C. Seara**, “Chromatic
+37. **O. Devillers, F. Hurtado, G. Károlyi, and C. Seara**, “Chromatic
     variants of the Erdős--Szekeres theorem on points in convex position,”
     *Computational Geometry* 26 (2003), 193--208. Colored screening.
     <https://doi.org/10.1016/S0925-7721(03)00013-0>
-37. **T. Gerken**, “Empty Convex Hexagons in Planar Point Sets,” *Discrete &
+38. **T. Gerken**, “Empty Convex Hexagons in Planar Point Sets,” *Discrete &
     Computational Geometry* 39 (2008), 239--272. Empty-polygon screening.
     <https://doi.org/10.1007/s00454-007-9018-x>
-38. **J. D. Horton**, “Sets with no empty convex 7-gons,” *Canadian
+39. **J. D. Horton**, “Sets with no empty convex 7-gons,” *Canadian
     Mathematical Bulletin* 26 (1983), 482--484. Shows why empty polygons are a
     genuinely different problem. <https://doi.org/10.4153/CMB-1983-077-8>
-39. **G. Károlyi and P. Valtr**, “Point configurations in d-space without
+40. **G. Károlyi and P. Valtr**, “Point configurations in d-space without
     large subsets in convex position,” *Discrete & Computational Geometry* 30
     (2003), 277--286. Higher-dimensional screening.
     <https://doi.org/10.1007/s00454-003-0009-4>
@@ -166,6 +172,6 @@ specific technique or caution.
   the 1935 paper, Morris--Soltan survey, Suk paper, and Baek--Balko paper.
 - Classify all 89 Morris--Soltan references as direct, method-relevant, or
   neighboring/out of scope.
-- Check final publication metadata for items 26 and 27.
+- Check final publication metadata for items 27 and 28.
 - Audit non-English and pre-digital literature, especially early exact-case
   proofs and Makai's `ES(5)=9` argument.

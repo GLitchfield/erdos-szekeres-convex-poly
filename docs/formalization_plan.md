@@ -1187,3 +1187,31 @@ has at most `d+1` vertices. Appending block `t` follows from the binary crossing
 theorem and that block's cap bound `d-t+1`. The full row has size `2^d` by
 `Nat.sum_range_choose`, and `classical_lower_sharpness` transports the result
 to `HasSharpnessExample n (2^(n-2)+1)` for every `n ≥ 3`.
+
+## 2026-08-10 route integration: certificates, Layer F, and state 578
+
+The first new diagonal certificate target is now technically small. Both
+normalized `k=9` dense CNFs kernel-check directly after dependency trimming.
+They are not yet mathematical theorems: the next work item is the generated
+Lean semantic bridge for the retained clause families plus order-embedding
+transport from `Fin 15` to arbitrary `7+8` and `8+7` blocks. The much larger
+state-567 cut-7 proof can be checkpointed, but its semantic bridge is harder
+and it closes only one cut; it is therefore second priority.
+
+Layer F now has a corrected load-bearing API. The original unthresholded
+normalization contracts are false because of `Fin 0`; their exact-threshold
+versions compile. A one-to-three mutation rank decrease implies target-free
+normalization by well-founded induction and hence promotes the decomposable
+exact upper theorem. `PrimeCoreCount` is a concrete noncircular candidate,
+with zero proved equivalent to decomposability on nonempty ground sets. No
+general decrease theorem is claimed. The next hard target is a three-step
+decrease above threshold or a realizable target-free closed component that
+refutes it.
+
+The current state-578 route is suspended. The terminal seven-carrier-cover and
+seed-escape interfaces remain available, but seed selection, carrier size, and
+address depth all admit explicit cycles at the evidence levels recorded in
+Experiment 0094. Reopen only for a complete-residual-family theorem using the
+exact 32-point coloring laws essentially and producing the cover, a strict
+predecessor, or a genuine descent. This suspension is not a proof or
+refutation of state `(5,7,8)`.

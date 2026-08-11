@@ -1945,3 +1945,25 @@ structural leaves are one explicit mutually middle-obstructed strong-six pair
 for the internal branch, and five terminal classes for the balanced branch:
 the `2+4`, `3+3`, and `4+2` crossing profiles plus the two orientations of the
 three-residue pair-overlap package. See Experiment 0091.
+
+## 2026-08-10 certificate feasibility
+
+The propositional side of the first new diagonal gate is now small enough for
+direct kernel checking after dependency trimming. The normalized `7+8` and
+`8+7` dense cores have respectively `(396, 1157, 812)` and `(280, 429, 239)`
+variables, retained clauses, and LRAT additions; mathlib checks them in 3.01
+and 1.15 seconds using only the standard permitted axioms. This proves those
+two concrete CNFs UNSAT, not `DiagonalCupBlocksForce4kk 9`.
+
+The exact next theorem is `diagonalCupBlocksForce4kk_nine`. It requires a
+generated, independently audited Lean proof that the retained one-change,
+forced-block, cap/cup-avoidance, and strong-polygon clauses follow from the
+repository predicates, followed by normalized-`Fin 15` transport to arbitrary
+ordered blocks. This k=9 bridge is the preferred certificate promotion.
+
+The cut-7 state-567 core independently replays, but monolithic Lean checking
+exceeds 8 GiB and conservative import needs about eight checkpoints. Its
+semantic bridge is also much larger and completing that cut alone does not
+close state 567. Route disposition:
+`K9_CERTIFICATE_GO__SEMANTIC_BRIDGE_NEXT;
+CUT7_CERTIFICATE_CHECKPOINTABLE_BUT_SECOND_PRIORITY`. See Experiment 0092.

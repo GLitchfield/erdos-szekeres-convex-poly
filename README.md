@@ -723,26 +723,29 @@ sets.
   are UNSAT in a fresh independently regenerated audit, but remain formally
   open without a checked certificate. State 567 separately reduces to two
   exact 22-point deletion-packing obligations. Every nondual 22-point split is
-  likewise UNSAT computationally, but neither obligation has a Lean proof. In
-  the parallel
+  likewise UNSAT computationally, but neither obligation has a Lean proof.
+  The two reduced normalized `k=9` CNFs now check in Lean; the missing theorem
+  is the semantic clause and arbitrary-block transport bridge, so the CNF
+  certificates are not yet `DiagonalCupBlocksForce4kk 9`. In the parallel
   state-578 branch, all four private deletion
   owners force one full six-column plateau cup which misses two foreign cap
   blocks. This is a sharper Outcome-2 obstruction, not closure of state 578.
-  Exact-small proposal models now expire any consumer using only that cup and
-  its two foreign caps; the full six-column/32-point route and multi-spine
-  branch remain open. `DecompositionPrime.lean` begins the unrestricted
+  The subsequent global-cover interface and universal seed-escape theorem
+  compile, but explicit replacement/address cycles stop the current invariant
+  family. The state-578 main route is suspended under a precise
+  complete-family/color-sensitive revival gate; the state itself remains
+  open. `DecompositionPrime.lean` begins the unrestricted
   Layer-F replacement by proving that every finite indecomposable support
   contains a deletion-minimal prime support. The realizable one-or-two
   deletion proposal is now kernel-refuted by a seven-point integer-coordinate
   prime coloring with no strong six-set and no prime remainder after any one
-  or two deletions. The exact target-reflecting normalization consumer now
-  compiles; target-free realizable single-triple mutation is the surviving
-  construction proposal, with one kernel-checked geometric mutation into the
-  decomposable class as a positive control. The global state-578 follow-up
-  also compiles a terminal seven-carrier-cover consumer, but every individual
-  residual seed
-  has an escaping cup and carrier replacement is nonmonotone. This is a
-  sharper no-outcome diagnosis, not a proof or refutation of state 578.
+  or two deletions. The original unthresholded normalization contracts are
+  also kernel-refuted by their empty instance. Their exact-threshold
+  replacements compile, and `PrimeCoreCount χ = 0` is proved equivalent to
+  decomposability on nonempty ground sets. A three-step target-free realizable
+  rank descent is the surviving hard construction proposal, with one
+  kernel-checked geometric mutation into the decomposable class as a positive
+  control.
   The independent rooted-circuit branch stops: a seven-point rational Lean
   counterexample refutes preservation of two signed triangle anchors.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point

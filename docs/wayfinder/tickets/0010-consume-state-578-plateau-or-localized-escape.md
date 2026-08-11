@@ -2,7 +2,7 @@
 title: Consume the state-578 plateau or localized residual escape
 type: research
 mode: AFK
-status: open
+status: closed
 claim: codex-state-578-plateau-localized-consumer-2026-08-10
 blocked_by: none
 ---
@@ -70,6 +70,24 @@ quantify over the complete residual family and establish a color-sensitive
 coverage or acyclicity law, rather than select another individual row. See
 Experiment 0090.
 
+The 2026-08-10 three-route review and residual-cycle audit now close this
+ticket as a strategic suspension. This is not one of the mathematical
+Outcomes 1--3 and does not prove or refute `DecomposableStateUpper 5 7 8`.
+Rather, the current invariant family has met its stop condition: the relaxed
+32-point model retains all six cap columns, all 24 deletion rows, fan density,
+and a two-cycle of replacement carriers, while exact-small decomposable
+controls refute raw address-depth acyclicity. No concrete color-sensitive rank
+survived these controls.
+
+The compiled `FullSpineSevenCarrierCover578` and universal seed-escape theorem
+remain the landing interfaces. Reopen a state-578 main-route ticket only when
+a precise candidate quantifies over the complete residual family, uses exact
+decomposition colors and 32-point density essentially, fails the documented
+cycle controls, and constructs the full cover, a named strict predecessor, or
+a genuinely well-founded descent. Another selected-row or address/cardinality
+refinement is below that gate. See Experiment 0094 and review packet SHA-256
+`b7948090fde046765ddadb2cefa186f2c453294edab5a8ceae61b8fbaaba6311`.
+
 ## Evidence
 
 - `docs/experiments/0085-state-578-plateau-two-foreign-caps.md`
@@ -78,3 +96,4 @@ Experiment 0090.
 - `docs/experiments/0087-state-578-plateau-consumer-audit.md`
 - `ErdosSzekeres/StructuralChargingNextState578Global.lean`
 - `docs/experiments/0090-state-578-global-carrier-cover.md`
+- `docs/experiments/0094-state-578-route-suspension.md`
