@@ -1965,6 +1965,57 @@ capacity.
   and category summary; current medians, not raw task-list sums, must calibrate
   future plans.
 
+### Post-structural-round live matrix
+
+This matrix supersedes stale stage descriptions without deleting their
+historical rationale.  Every next item has a declared outcome contract; a
+completion report must name the outcome and evidence level.
+
+| Thread | Current state | Next exact gate | Declared outcomes |
+| --- | --- | --- | --- |
+| 1. Half-subset | Fin8 theorem and generic singleton-fan consumer compile; Fin9 is vacuous; Fin10 is nonvacuously UNSAT in two independently checked encodings | Promote `halfPureSingletonFanAtSixFinTen_of_oneChange`, then classify reusable semantic leaves | `T1-O1` finite theorem compiles and structural mining begins; `T1-O2` certificate bridge is operationally parked with computation retained; `T1-O3` semantic mismatch or counterexample repairs/expires the fan |
+| 2. State-567 residual | Probe reuse, carrier-only normalization, rectangles, and the two-profile dichotomy compile; grid-only color closure is realizably false | Package balanced grid plus two residual escapes; separately freeze the mixed profile; run the fixed-carrier-plus-ten-residual falsifier | `T2-O1` a full-context terminal closes one profile; `T2-O2` exact SAT witness refutes/repairs it; `T2-O3` only packaging lands and the color terminal remains open |
+| 3. Uniform Pascal | Generic seed-cover and collision/large-fiber counting compile, but only the state-567 two-carrier parameters instantiate | Test a variable/one-carrier residual kernel on adjacent Pascal states before formalization | `T3-O1` a genuine parameter theorem closes a concrete leaf and adjacent controls; `T3-O2` the count remains state-567-only; `T3-O3` an adjacent countermodel expires the proposed kernel |
+| 4. Layer F | Three-change prime-core path locality compiles; rank-dropping macro existence is open | Search the exact realizable target-free mutation graph at the theorem threshold, then state the highest-stratum loss lemma | `T4-O1` a three-step drop theorem compiles; `T4-O2` a realizable closed component stops the route; `T4-O3` only below-threshold evidence lands |
+| 5. Balanced state 567 | Five-way shell and universal clean `2+4` normalization compile; five terminal color leaves remain | Attack one terminal while visibly using exact `11+11` and repeated packing | `T5-O1` one or more terminal leaves compile; `T5-O2` an exact full-context model refutes a leaf; `T5-O3` only a sharper reduction lands |
+| 6. Finite extreme exchange | `extremeExchangeK9FinSeventeen` compiles end to end | No independent work; transfer the finite base to Thread 9 | `T6-O1` a uniform pattern is stated under Thread 9; `T6-O2` no honest pattern exists and the lane is archived; `T6-O3` regression repair only |
+| 7. Integral Property B | Recurrence consumer and small-cardinality base compile; Fin8 semantic promotion remains partial and integral behavior survives checked `k=6,n≤12` controls | One bounded checkpointed Fin8 bridge or one new ordered-hypergraph property, not both | `T7-O1` bounded theorem or structural property compiles; `T7-O2` engineering gate parks the certificate; `T7-O3` realizable non-bicolorable model stops integral but not weaker routes |
+| 8. Fractional cover | Fractional-to-half and direct recurrence consumers compile; no separator from integral/half appears through checked `k=6,n≤12` | Propose one weighted geometric inequality that passes rational and relaxed-hypergraph controls | `T8-O1` weighted lemma produces total weight at most two; `T8-O2` exact separator demotes/stops the route; `T8-O3` candidate fails controls and no Lean work follows |
+| 9. Diagonal successor | Exact diagonal `k=9` and extreme-exchange finite theorems compile; clause mining exposed no uniform law | Freeze a symbolic core-extraction candidate and falsify it at `k=10` | `T9-O1` noncircular successor compiles; `T9-O2` bounded counterexample stops the candidate; `T9-O3` no statement survives and the finite result remains a base only |
+| 10. State-567 certificate | Exact 22-point searches support the packed leaves, but no state-567 semantic certificate is kernel-checked | Activate only if structural Threads 2/5 stall; choose the smallest profile-aware leaf | `T10-O1` one leaf compiles and feeds the reducer; `T10-O2` resource/bridge cap parks it; `T10-O3` certificate mining yields a symbolic lemma returned to Threads 2/3/5 |
+| 11. Inverse extraction | Singleton-fan work graduated to Thread 1; one-anchor circuit is true but inert; deletion/two-piece proposals are stopped or unmotivated | Park until a new geometric mechanism gives a noncircular consumer | `T11-O1` a new mechanism produces an exact half/two-piece/deletion theorem; `T11-O2` decisive realizable control stops it; `T11-O3` remains parked |
+| 12. State 578 | Suspended; infrastructure retained | Admit only a full-residual, exact-color+density invariant that defeats every recorded cycle and constructs a boundary/predecessor/descent | `T12-O1` revival gate passes; `T12-O2` candidate is inherited by controls and rejected; `T12-O3` no admissible candidate, so no resources |
+| 13. Lemma forge | Residual probe counting graduated; exterior-rank and circuit candidates are negative/inert controls | Screen at most three cards: mixed profile, decomposability retention, variable-carrier Pascal repair | `T13-O1` a card graduates with compiling consumer; `T13-O2` a bounded falsifier retires it; `T13-O3` true but inert statement is parked |
+| 14. Research system | Packet discipline, outcome reporting, certificate chunking, and timing ledger operate; old estimates remain badly high | Build empirical category/size bands and a portfolio dashboard; preserve approval preflight | `T14-O1` calibration coverage materially improves; `T14-O2` instrumentation lands without better forecasts; `T14-O3` process work is parked because it does not remove a measured bottleneck |
+
+### Newly surfaced work and route ownership
+
+The latest results create five named subthreads but no fifteenth main route:
+
+1. `T1.A` promotes the nonvacuous Fin10 fan certificate and mines it for the
+   arbitrary-size producer.
+2. `T2.A` combines the balanced four-grid with universal ten-residual escape.
+3. `T2.B` treats the mixed four-area-5/two-area-8 profile, which is logically
+   necessary even if the balanced profile closes.
+4. `T2.C` determines whether decomposability can be retained through the
+   packed reducer before using it to exclude the exact planar grid witness.
+5. `T3.A` tests one-carrier or unequal-carrier residual counting at adjacent
+   Pascal states, repairing the precise scope failure of the current generic
+   theorem.
+
+The next four-slot mathematical wave should allocate one slot to `T1.A`, two
+to `T2.A/T2.B`, and one to `T3.A`.  `T2.C` is a short read-only dependency
+audit that should precede any decomposable-grid proof.  Threads 4--5 remain the
+first reserves; 6 and 11 are merged/parked, and 12 stays suspended.
+
+Empirical active-time bands for that wave are deliberately shorter than the
+old forecasts: 5--20 minutes for a mechanical Lean package, 10--35 minutes
+for a bounded falsifier or dependency audit, and 45--150 minutes for the Fin10
+semantic certificate promotion.  Stop budgets remain separate: 30 minutes,
+8 cores, 16 GiB, and 5 GiB for exploratory computation unless a packet states
+otherwise.  These bands will be scored against actual active time; they are
+not promises that four sequential tasks sum to a multi-hour critical path.
+
 ### Portfolio scheduling and evidence gates
 
 - Keep at least one active item from Threads 1--3 whenever mathematical work

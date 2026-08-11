@@ -130,13 +130,12 @@ revival, discovery, and research-system tracks.
    dual branches only after an explicit reversal/color-duality transport is
    available.  The exact `11+11` split, side cap exclusions, and repeated
    packing must remain visible in every terminal contract.
-6. **Finite `k=9` extreme-exchange Lean bridge (bounded engineering route).**
-   Preserve the frozen CNF/LRAT and theorem contracts.  Split the remaining
-   120 middle-color consequences and final strong-ten cases into small
-   modules; do not retry the two conjunction-projection architectures that
-   exceeded the ten-minute clause gate.  Once the normalized extraction
-   theorem compiles, stop accumulating finite cases and mine the certificate
-   for a uniform successor lemma.
+6. **Finite `k=9` extreme-exchange Lean bridge (completed; merged into 9).**
+   `extremeExchangeK9FinSeventeen` now compiles end to end, including all seven
+   former strong-ten blockers.  The bounded engineering route has reached its
+   stop condition.  Retain the theorem as a finite base and move any further
+   work to Thread 9's symbolic successor extraction; do not accumulate another
+   isolated finite case.
 7. **Integral predecessor Property-B producer.**  Finish the finite semantic
    control only with a bounded architecture, then seek an all-`k` structural
    bicoloring theorem for the predecessor hypergraph.  The large Fin-8 bridge
@@ -148,27 +147,66 @@ revival, discovery, and research-system tracks.
 9. **Diagonal extreme-exchange successor.**  Replace the stopped monolithic
    double-deletion gluing statement by a genuine core-extraction theorem plus
    the compiling opposite-extreme cup gluing lemma.  The new premise must be
-   strictly weaker than the next diagonal theorem.
+   strictly weaker than the next diagonal theorem.  The exact `k=9` extraction
+   theorem is now available; clause mining found no honest uniform statement,
+   so the next gate is a separately stated symbolic candidate tested at
+   `k=10`, not more certificate inspection.
 10. **State-567 finite-certificate fallback.**  Maintain a bounded,
-    independently checked certificate path for one exact packed leaf.  Use it
-    only as a fallback and pattern miner; a finite state closure is not a
-    substitute for the uniform Pascal mechanism.
+   independently checked certificate path for one exact packed leaf.  Use it
+   only as a fallback and pattern miner; a finite state closure is not a
+   substitute for the uniform Pascal mechanism.  The new omission-area
+   dichotomy should choose the smallest balanced-grid-plus-residual or mixed
+   profile leaf if this fallback is activated.
 11. **Inverse stepping-up/decomposition extraction.**  Test whether a large
-    target-free realizable configuration canonically yields two smaller
-    predecessor-free pieces, a half-size predecessor-free support, or an exact
-    deep split.  Reject any formulation equivalent to the desired recurrence.
+   target-free realizable configuration canonically yields two smaller
+   predecessor-free pieces, a half-size predecessor-free support, or an exact
+   deep split.  Reject any formulation equivalent to the desired recurrence.
+   The successful singleton-fan direction has graduated to Thread 1; the
+   two-piece and deletion alternatives remain parked until a new geometric
+   mechanism distinguishes them from the stopped controls.
 12. **State-578 strict-gate revival.**  Keep the route dormant unless a
     complete-residual-family, exact-color-and-density invariant defeats every
     recorded carrier/address cycle and constructs a cover, strict predecessor,
     or true descent.
 13. **Goal-driven intermediary lemma forge.**  At portfolio checkpoints,
-    screen at most three route-independent Lean-shaped statements with named
-    consumers, exact model tiers, bounded falsifiers, and expiry conditions.
+   screen at most three route-independent Lean-shaped statements with named
+   consumers, exact model tiers, bounded falsifiers, and expiry conditions.
+   The current cards are the mixed `(4 area-5)+(2 area-8)` full-context
+   terminal, a decomposability-retention bridge for the carrier union, and a
+   variable-carrier repair of the generic residual count.  The balanced-grid
+   residual escape has graduated to Thread 2.
 14. **Formal-research system and template feedback.**  Improve certificate
     chunking, immutable task packets, approval preflight, measured time
     calibration, tool/skill cataloging, and parallel-route orchestration when
-    those changes reduce proof latency or evidence mistakes.  Process work is
-    never credited as mathematical completion.
+   those changes reduce proof latency or evidence mistakes.  Process work is
+   never credited as mathematical completion.  The current ledger has 257
+   completed rows, median actual/midpoint ratio `0.218`, and only `12.1%`
+   inside the old forecast ranges; future estimates must use category- and
+   size-conditioned empirical bands rather than raw task-list sums.
+
+### Newly surfaced subthreads
+
+These are children of the reviewed portfolio, not new top-level routes.
+
+- **T1.A — Fin10 singleton-fan certificate promotion.**  Promote the
+  independently replayed `k=6,n=10` UNSAT result to
+  `halfPureSingletonFanAtSixFinTen_of_oneChange`, then mine its semantic leaves
+  for the first genuinely nonvacuous producer pattern.
+- **T2.A — balanced grid plus universal residual escape.**  Package the
+  compiling four-grid with the existing two carrier-touching escapes, then
+  test the full ten-residual terminal against the fixed planar grid
+  counterexample augmented by ten labeled residual vertices.
+- **T2.B — mixed omission-profile terminal.**  Give the surviving four-area-5
+  plus two-area-8 profile its own exact full-context consumer and cheapest
+  finite falsifier.  Closing only the balanced profile cannot close Thread 2.
+- **T2.C — decomposability-retention bridge.**  Audit whether ambient
+  decomposability can be retained through the packed reducer and restricted to
+  the twelve carrier vertices.  If so, test a decomposable-grid color theorem;
+  otherwise expire this repair rather than assuming a premise the leaf erased.
+- **T3.A — variable-carrier Pascal repair.**  Determine whether a one-carrier
+  or unequal-carrier residual system applies to adjacent Pascal states that
+  cannot host two disjoint predecessor carriers.  An adjacent-state
+  countermodel expires this form before Lean work.
 
 Threads 1--3 are the most direct paths to the exact upper recurrence.  Threads
 4--11 hedge distinct mathematical and formalization failure modes; 12 is
