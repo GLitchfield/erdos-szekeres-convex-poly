@@ -744,7 +744,18 @@ sets.
   large external certificate is not a Lean proof. Lean now separately packages
   the exact no-collision branch as a normalized finite omission-rectangle
   system: every anchor pair is covered, and rectangles of distinct witnesses
-  are edge-disjoint. The color-sensitive terminal remains open. The finite
+  are edge-disjoint. Lean now proves the exact area-profile dichotomy for this
+  system: it consists either of four `3×3` rectangles or of four area-5 and
+  two area-8 rectangles; the balanced four-grid extraction also compiles. A
+  tempting local color closure from the six strong pair-unions is false even
+  for an exact integer planar configuration. The counterexample is
+  nondecomposable, so the surviving terminal must use decomposability or the
+  full packed-22/residual-ten provenance. The preferred next repair retains
+  the balanced grid together with the universal ten-residual escape, first
+  packaging the existing two carrier-touching escapes. The generic residual counting kernel
+  has nevertheless been extracted: a division-free seed-cover theorem and
+  its `112 < choose 10 3` state-567 specialization compile. This is not yet a
+  uniform Pascal recurrence. The color-sensitive terminal remains open. The finite
   `k=9` results validate the diagonal interface and
   certificate workflow; they do not yet provide the uniform successor step.
   In the parallel
@@ -791,8 +802,15 @@ sets.
   The compact counterexample-UNSAT core has now been promoted to Lean:
   `halfPureDeepSplitAtFiveFinEight_of_oneChange` proves the exact Fin8
   one-change/no-strong-five implication with a kernel-checked semantic bridge
-  and LRAT replay. This is the first completed boundary theorem for the
-  producer; the uniform arbitrary-size producer remains open.
+  and LRAT replay. The thresholded singleton-fan producer now has a compiling
+  consumer into the predecessor half-subset recurrence. At `k=5,n=9`, Lean
+  reuses the existing ES5 certificate to prove
+  `containsStrongFiveFinNine_of_oneChange`, so the corresponding fan result is
+  vacuous rather than structural. At the first informative `k=6,n=10`
+  boundary, two independent complete encodings support the singleton-fan
+  conclusion and separate target-free controls are satisfiable, so this gate
+  is nonvacuous. Its Lean certificate promotion and the uniform arbitrary-size
+  producer remain open.
   The independent rooted-circuit branch stops: a seven-point rational Lean
   counterexample refutes preservation of two signed triangle anchors.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point

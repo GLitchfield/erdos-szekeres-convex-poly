@@ -81,14 +81,28 @@ revival, discovery, and research-system tracks.
    them separately.  The stopped maximum-support two-deletion exchange is not
    to be retried.  Exact computation finds no integral/fractional/half
    separator through `k=6,n=12`.  The first pure deep-split boundary now
-   compiles exactly at `k=5,Fin 8`; the next direct task is to extract its
-   structural arbitrary-size kernel rather than extend raw enumeration.
+   compiles exactly at `k=5,Fin 8`.  A thresholded singleton-fan producer now
+   has a compiling noncircular consumer into `PredecessorHalfSubsetAt`; its
+   `k=5,Fin 9` gate is vacuous because the existing nine-point signotope
+   certificate already forces a strong five.  At the first meaningful
+   `k=6,Fin 10` boundary, two independent complete encodings prove the fan
+   negation UNSAT while target-free controls are SAT; this is nonvacuous
+   computational evidence, and the exact finite fan theorem is the next
+   certificate-promotion target.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
    one-carrier, and two-carrier branches.  Every valid contradiction must use
    the ten-point residual and repeated deletion packing; pair-only arguments
-   are expired by the 12-point control.
+   are expired by the 12-point control.  The no-collision carrier-only branch
+   now has a compiling exact omission-area dichotomy: either four disjoint
+   `3×3` rectangles or four area-5 plus two area-8 rectangles.  A six-strong-
+   set color closure for the balanced profile is false even for exact integer
+   planar configurations; any repair must use decomposability or the full
+   packed-22/residual-ten provenance essentially.  The preferred repair keeps
+   the balanced four-grid together with the universal ten-residual escape;
+   package the existing two carrier-touching escapes first, then falsify or
+   prove the resulting full-context color terminal.
 3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
    state-567 proof's numerical and structural kernel into a parameterized
    two-carrier/residual-escape theorem and consume it through
@@ -96,13 +110,20 @@ revival, discovery, and research-system tracks.
    lemma whose specialization proves, rather than assumes, a state-567 leaf.
    If the finite proof spends an equality peculiar to `(5,6,7)`, retain that
    finite theorem and redesign the uniform invariant instead of disguising a
-   one-case proof as induction.
+   one-case proof as induction.  The generic bad-block seed-cover and
+   collision-or-large-fiber count now compile, including the exact state-567
+   specialization `112 < choose 10 3 = 120`.  This is reusable finite-set
+   machinery, but not a uniform Pascal-tail theorem: the smaller diagonal
+   controls do not even instantiate the two-disjoint-carrier residual setup.
 4. **Layer-F highest-stratum mutation descent (unrestricted sidecar).**  Test
    and then prove or refute `ThreeStepTopPrimeStratumDropsAboveAt`.  Only exact
    realizable, target-free controls can decide the route; below-threshold
    abstract censuses are diagnostics.  A realizable closed component or
    highest-stratum local minimum expires the candidate.  Its final payoff
-   remains conditional on a uniform decomposable upper theorem.
+   remains conditional on a uniform decomposable upper theorem.  Lean now
+   proves that any at-most-three target-free mutation macro localizes every
+   endpoint prime-core change to supports containing one of at most three
+   changed triples; existence of a rank-dropping macro remains open.
 5. **State-567 balanced five-class leaves (parallel decomposable branch).**
    Prove the mechanical five-way exhaustion, then attack the `2+4`, `3+3`,
    `4+2`, left-right residue, and right-left residue terminal classes.  Pair
@@ -250,7 +271,14 @@ suspended under ticket 0010 until its stated revival gate is met.
   In the collision branch, exact light replacement data and a four-repair
   triangular avoidance network also compile. A relaxed Fin12 rectangle
   terminal is computationally UNSAT but not kernel-checked. The exact
-  color-sensitive consumers remain open. The completed `k=9` bridge validates the finite
+  The carrier-only rectangle system now has a compiling exact area-profile
+  dichotomy and balanced four-grid extraction.  A consecutive-block complete
+  strong-six grid is computationally UNSAT, but the arbitrary-block lemma is
+  false: an independently replayed 12-vertex counterexample has an exact
+  integer planar realization while being nondecomposable.  Therefore neither
+  OneChange nor sweep realizability can close the local balanced grid; the next
+  consumer must spend decomposability of the union or the stronger packed
+  provenance.  The exact color-sensitive consumers remain open. The completed `k=9` bridge validates the finite
   diagonal interface and certificate workflow but does not itself supply the
   uniform successor step. The historical route
   record follows. The scalar recurrence, maxima-only

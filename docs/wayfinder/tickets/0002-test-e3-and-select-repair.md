@@ -2074,3 +2074,50 @@ rectangles of distinct witness sets are edge-disjoint by reusing the original
 incident blocks at common omitted anchors. It imports no SAT result and claims
 no color contradiction. The next theorem must consume this exact system under
 the full packed context.
+
+## 2026-08-11 four-slot structural round
+
+This round produced five compiling structural contributions and one decisive
+route retirement.
+
+The half-pure predecessor route now has a noncircular generic consumer.
+`HalfPureSingletonFanProducerAboveAt k` supplies a half-sized predecessor-free
+side, and `predecessorHalfSubsetAt_of_halfPureSingletonFanProducerAbove`
+combines it with the elementary `2*k-3` range. At `k=5,n=9`, the compiling
+theorem `containsStrongFiveFinNine_of_oneChange` shows the fan statement is
+vacuous: OneChange already forces a strong five. At the first nonvacuous
+`k=6,n=10` boundary, two independent full encodings are UNSAT while both
+target-free controls are SAT. The exact bounded fan theorem is supported by a
+replayed LRAT but is not yet a Lean result.
+
+The state-567 carrier-only branch now has a compiling exact omission-area
+dichotomy: either four `3×3` rectangles or four area-5 plus two area-8
+rectangles. The balanced grid extraction also compiles. A proposed local color
+consumer from the six strong pair-unions is false. The counterexample is an
+exact integer planar configuration, so sweep realizability does not repair it;
+two complete subset dynamic programs agree it is nondecomposable. The selected
+repair is therefore the full-context terminal
+`PackedBalancedGridResidualEscapeImpossible567`, which retains the universal
+ten-residual escape in addition to the grid. The counterexample has residual
+cardinality zero and does not inherit this premise. This is a precise redirect,
+not a proof of the state-567 leaf.
+
+The probe count has been separated from the state-specific proof. The generic
+division-free bad-block theorem derives seed coverage and a
+collision-or-large-fiber conclusion from
+`(C*M)*B < choose R (B-1)`; its `(10,6,4,2,14)` specialization recovers the
+state-567 fifteen-probe leaf from `112 < 120`. This is reusable counting
+infrastructure, not a uniform Pascal recurrence, because the smaller diagonal
+controls do not instantiate the two-carrier residual setup.
+
+Finally, Layer F gains compiling path-locality infrastructure: an
+at-most-three mutation macro confines every endpoint prime-core change to a
+support containing one of at most three changed triples. The existence of a
+target-free rank-dropping macro remains open.
+
+Outcome summary: half-pure `HP610-O2` (nonvacuous bounded support), state-567
+profiles `S567PL-O1` (proved reduction), grid test `S567GA-O1/S567GR-O2`
+(realizable refutation, nondecomposable), repair audit `S567I-O1` (viable
+full-context proposal), Pascal `PTCR-O1` (proved generic count), and Layer F
+`LF-O2` (proved locality only). None by itself proves E3, state 567, or the
+exact happy-ending formula.

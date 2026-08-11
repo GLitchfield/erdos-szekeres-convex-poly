@@ -1907,8 +1907,15 @@ capacity.
   promoted to the compiling theorem
   `halfPureDeepSplitAtFiveFinEight_of_oneChange`. This proves the exact bounded
   OneChange/no-strong-five implication, not its uniform arbitrary-size
-  generalization. A fourth local charge is forbidden; `n=13` receives
-  preflight only.
+  generalization. The thresholded `HalfPureSingletonFanProducerAboveAt`
+  interface and its noncircular consumer into `PredecessorHalfSubsetAt` now
+  compile. At `k=5,n=9` this producer is vacuous: the compiling theorem
+  `containsStrongFiveFinNine_of_oneChange` reuses the existing ES5 certificate
+  to rule out its target-free premise. At the first informative `k=6,n=10`
+  boundary, two independent complete encodings make the fan negation UNSAT
+  while target-free controls remain SAT. This is nonvacuous computational
+  evidence; the exact bounded fan theorem is the next Lean certificate target.
+  A fourth local charge is forbidden; `n=13` receives preflight only.
 - **Threads 2--3:** generic deletion packing and the state-567 specialization
   compile. Exact incidence counting supplies at least 30 bad residual probes
   and a carrier-touching escape for every probe. Choice-free fiber counting
@@ -1919,15 +1926,36 @@ capacity.
   triangular avoidance network. A relaxed Fin12 carrier-rectangle system is
   computationally UNSAT but not kernel-checked. The exact omission-rectangle
   interface now compiles: the finite carrier-only family covers every anchor
-  pair, and distinct witnesses have edge-disjoint rectangles. The remaining
-  work is its color-sensitive terminal consumer.
+  pair, and distinct witnesses have edge-disjoint rectangles. The generic
+  division-free seed-cover theorem now compiles as well: if `(C*M)*B` is below
+  `choose R (B-1)`, then there is a same-class collision or a witness fiber
+  larger than `M`; its exact state-567 specialization is `112 < 120` and gives
+  the 15-probe leaf without assuming it. This is a genuine parameterized
+  counting lemma but not a uniform Pascal recurrence, because the smaller
+  diagonal states do not instantiate two disjoint carriers. The carrier-only
+  terminal has also been reduced in Lean to exactly two omission-area profiles:
+  four `3×3` rectangles or four area-5 plus two area-8 rectangles. The balanced
+  four-grid extraction compiles. A proposed local color closure from the six
+  strong pair-unions is false: an independently checked interleaved Fin12
+  witness has exact integer coordinates and is nondecomposable. Hence
+  realizability does not repair the lemma. The selected repair retains the
+  balanced four-grid and `PackedInternalPairFourResidualEscape` together: the
+  counterexample has residual cardinality zero and cannot inherit the latter.
+  The first mechanical landing should package the grid with the existing two
+  carrier-touching residual escapes; the next consumer must then use that
+  packed-22/residual-ten provenance or decomposability essentially.
 - **Thread 5:** the balanced five-way shell, universal clean `2+4` escape
   family, and nine-middle-word normalization compile.  The five named terminal
   contracts remain open.
 - **Threads 4 and 11:** repeated uniform spectator lifting is stopped by an
   exact rational second-spectator target, while its generic local obstruction
   compiles.  Pure deep-split predecessor-freeness and its half-subset consumer
-  compile; a global producer remains under bounded falsification.
+  compile; a global producer remains under bounded falsification. For Layer F,
+  `AtMostThree.hasAtMostThreePrimeCoreCarrierCover` and its symmetric-difference
+  corollary now compile: every endpoint prime-core change along an at-most-three
+  mutation macro lies on a support containing one of at most three changed
+  triples. This is locality infrastructure, not existence of a rank-dropping
+  macro.
 - **Threads 6 and 9:** `extremeExchangeK9FinSeventeen` now compiles end to end,
   including all seven former strong-ten blockers.  It is retained as a finite
   successor base.  Its explicit clause reconstruction exposes no honest
