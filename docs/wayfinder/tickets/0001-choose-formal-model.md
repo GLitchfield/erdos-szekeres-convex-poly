@@ -189,11 +189,13 @@ and half-subset consumer compile. The frozen bounded gate first passes all
 2,862 strong-five-free decomposable Fin8 colorings, then passes all 19,870
 strong-five-free rank-three Fin8 signotopes in two independent complete
 encodings. The latter search examines every ordered disjoint pair allowed by
-the definition, including noncovering pairs. This is computational evidence,
-not a proof of the bounded theorem or the uniform producer. The next warranted
-Lean target is the exact Fin8 OneChange/no-strong-five implication; larger
-enumeration is deferred in favor of identifying its structural proof kernel.
-See Experiments 0096 and 0101.
+the definition, including noncovering pairs. The exact bounded theorem now
+compiles: `halfPureDeepSplitAtFiveFinEight_of_oneChange` connects the
+OneChange/no-strong-five semantics to a compact 483-leaf, 261-addition LRAT
+replay. This proves the Fin8 implication, not the uniform producer. The next
+warranted step is to mine that completed boundary theorem for a structural
+arbitrary-size kernel; larger enumeration is deferred. See Experiments 0096,
+0101, and 0102.
 
 ## Evidence
 
@@ -230,6 +232,8 @@ See Experiments 0096 and 0101.
   the integral and fractional exact-doubling recurrence interfaces
 - [`ErdosSzekeres.InverseSteppingUpKernel`](../../../ErdosSzekeres/InverseSteppingUpKernel.lean),
   pure deep-split predecessor-freeness and its half-subset consumer
+- [`ErdosSzekeres.HalfPureDeepSplitFin8`](../../../ErdosSzekeres/HalfPureDeepSplitFin8.lean),
+  the exact Fin8 OneChange/no-strong-five producer theorem
 - [`ErdosSzekeres.PrimeMutationPositiveControl`](../../../ErdosSzekeres/PrimeMutationPositiveControl.lean),
   one exact realizable target-free mutation into the decomposable class
 - [Intermediary lemma ladder](../../formalization_plan.md)

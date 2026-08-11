@@ -79,10 +79,10 @@ revival, discovery, and research-system tracks.
    `PredecessorHalfSubsetAt k` directly.  Integral bicoloring and fractional
    cover remain stronger possible producers, but bounded tests must classify
    them separately.  The stopped maximum-support two-deletion exchange is not
-   to be retried.  The immediate falsification boundary is exact `k=6`,
-   `n=12`; a realizable half-subset counterexample expires the entire route,
-   while a separation between integral, fractional, and half contracts
-   redirects effort to the weakest survivor.
+   to be retried.  Exact computation finds no integral/fractional/half
+   separator through `k=6,n=12`.  The first pure deep-split boundary now
+   compiles exactly at `k=5,Fin 8`; the next direct task is to extract its
+   structural arbitrary-size kernel rather than extend raw enumeration.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -207,12 +207,13 @@ suspended under ticket 0010 until its stated revival gate is met.
   deep-split producer first, followed by exactly one genuinely collective
   multi-exterior invariant. Integral and fractional producers remain reserves;
   `n=13` receives resource preflight only. The half-subset hierarchy remains
-  live and unproved. Its primary pure-split producer survives the complete
+  live and unproved in general. Its primary pure-split producer survives the complete
   Fin8 boundary: every one of the 19,870 strong-five-free rank-three
   signotopes has the unchanged `HalfPureDeepSplitAt 5` conclusion in two
-  independent enumerations. This is computational evidence, not a uniform
-  theorem; the next warranted formal target is the bounded Fin8 OneChange
-  statement, followed by a structural rather than larger-enumeration attack.
+  independent enumerations. The bounded statement is now a completed Lean
+  theorem: `halfPureDeepSplitAtFiveFinEight_of_oneChange` connects the exact
+  semantics to a compact certificate replay. This is not a uniform theorem;
+  the next warranted target is structural rather than larger enumeration.
 - [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
   now focuses on the uniform `PascalTailTwoSideBound`; its first open instance
   is exactly the state-567 two-cap-free-sides theorem. The diagonal `a=4`
@@ -240,12 +241,16 @@ suspended under ticket 0010 until its stated revival gate is met.
   the ten-point residual contains at least 30 non-strong six-subsets, hence at
   least 30 complementary four-block probes, and repeated packing supplies a
   carrier-touching strong-six escape for every counted probe. Choice-free
-  fiber counting and a residual-triple cover now compile and prove
-  `exists_sameOccupancyCollision_or_threeCarrierWitness567`: either two
-  distinct escapes share the same coarse one/two-carrier occupancy or one
-  incident strong six contains at least three carrier vertices. This is not
-  yet a color contradiction; those two terminal consumers are the exact open
-  state-567 branches. The completed `k=9` bridge validates the finite
+  fiber counting and a residual-triple cover now compile. The sharpened
+  theorem `exists_sameOccupancyCollision_or_carrierOnlyWitness567` yields
+  either two distinct escapes with the same coarse occupancy or a strong six
+  wholly contained in the carriers. Lean normalizes the latter to the five
+  overlap profiles, and packages its no-collision witnesses as a finite family
+  of pairwise edge-disjoint omission rectangles covering every anchor pair.
+  In the collision branch, exact light replacement data and a four-repair
+  triangular avoidance network also compile. A relaxed Fin12 rectangle
+  terminal is computationally UNSAT but not kernel-checked. The exact
+  color-sensitive consumers remain open. The completed `k=9` bridge validates the finite
   diagonal interface and certificate workflow but does not itself supply the
   uniform successor step. The historical route
   record follows. The scalar recurrence, maxima-only

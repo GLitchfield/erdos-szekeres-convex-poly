@@ -734,8 +734,18 @@ sets.
   escape. The resulting theorem
   `exists_sameOccupancyCollision_or_threeCarrierWitness567` now compiles: it
   yields either two distinct escapes with the same coarse carrier occupancy or
-  one incident strong six using at least three carrier vertices. Two
-  color-sensitive terminal contracts remain. The finite `k=9` results validate the diagonal interface and
+  one incident strong six using at least three carrier vertices. A second
+  exact incidence argument sharpens the latter branch to a carrier-only
+  strong six, with overlap profiles `1+5` through `5+1`. In the collision
+  branch, Lean now proves exact one- or two-vertex residual replacement data
+  and amplifies a light collision to four pairwise-distinct light repairs with
+  triangular residual avoidance. A relaxed 12-carrier omission-rectangle
+  encoding is UNSAT in two independent computational formulations, but its
+  large external certificate is not a Lean proof. Lean now separately packages
+  the exact no-collision branch as a normalized finite omission-rectangle
+  system: every anchor pair is covered, and rectangles of distinct witnesses
+  are edge-disjoint. The color-sensitive terminal remains open. The finite
+  `k=9` results validate the diagonal interface and
   certificate workflow; they do not yet provide the uniform successor step.
   In the parallel
   state-578 branch, all four private deletion
@@ -778,8 +788,11 @@ sets.
   gate succeeds on all 2,862 strong-five-free members of the complete
   decomposable Fin8 census, and two independent complete encodings extend the
   survival result to all 19,870 strong-five-free rank-three Fin8 signotopes.
-  This remains computational evidence and does not prove the producer for
-  arbitrary size or all sweep-realizable colorings.
+  The compact counterexample-UNSAT core has now been promoted to Lean:
+  `halfPureDeepSplitAtFiveFinEight_of_oneChange` proves the exact Fin8
+  one-change/no-strong-five implication with a kernel-checked semantic bridge
+  and LRAT replay. This is the first completed boundary theorem for the
+  producer; the uniform arbitrary-size producer remains open.
   The independent rooted-circuit branch stops: a seven-point rational Lean
   counterexample refutes preservation of two signed triangle anchors.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point

@@ -2043,3 +2043,34 @@ same-occupancy distinct-witness collision or an incident strong six with at
 least three carrier vertices. The result is now
 `PACKED_567_PROBE_REUSE_COMPILES__TWO_COLOR_TERMINALS_OPEN`: neither disjunct is
 yet contradictory from the middle-word equations.
+
+## 2026-08-11 carrier-only and repair-network refinement
+
+The probe-reuse disjunction has been sharpened again in Lean. If the
+same-occupancy collision is absent, the at-most-two witness types cannot both
+retain residual vertices: a residual triple meeting both traces would have to
+lie in a bad four-block whose incident witness avoids that same triple. Thus
+`exists_sameOccupancyCollision_or_carrierOnlyWitness567` yields either the
+collision or a strong six wholly contained in the two carriers. The latter has
+an exact compiling normalization into overlap profiles `1+5` through `5+1`.
+
+The collision branch also has two new compiling interfaces. A light incident
+witness is an exact one-for-one or two-for-two replacement of a nonstrong
+residual six, with the corresponding middle-extension failure recorded. A
+same-occupancy light collision either exposes a heavy incident witness or
+amplifies to four pairwise-distinct light witnesses with triangular residual
+avoidance. The theorem deliberately does not infer that their probe blocks are
+distinct.
+
+A separate relaxed Fin12 omission-rectangle gate is UNSAT in two independent
+encodings. The unrestricted formulation has 56,582 variables and 1,073,724
+clauses; its approximately 624-MB LRAT was checked by the solver but has not
+been replayed in Lean. This is computational evidence that the carrier-only
+rectangle pattern is promising, not a proof of the full packed 22-point leaf.
+The exact interface now compiles:
+`exists_carrierOnlyOmissionRectangleSystem567_of_noCollision` packages the
+finite normalized witness family, covers every anchor pair, and proves
+rectangles of distinct witness sets are edge-disjoint by reusing the original
+incident blocks at common omitted anchors. It imports no SAT result and claims
+no color contradiction. The next theorem must consume this exact system under
+the full packed context.

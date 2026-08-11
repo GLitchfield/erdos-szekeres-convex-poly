@@ -1897,18 +1897,26 @@ capacity.
   abstract rank-three model through `k=6,n=12`; this is computational evidence.
   Exact rational controls retire maximum-support exchange, neighborhood-only
   charging, signed local transitions, and the first exterior Borda-rank
-  invariant.  Sol/Fable ranks the compiling pure deep-split producer as the
-  next falsification target. That producer survives all 19,870
-  strong-five-free rank-three Fin8 signotopes in two independent complete
-  encodings; the result remains computational evidence. A fourth local charge
-  is forbidden; `n=13` receives preflight only.
+  invariant.  Sol/Fable ranks the pure deep-split producer first. That producer
+  survives all 19,870 strong-five-free rank-three Fin8 signotopes in two
+  independent complete encodings, and the compact UNSAT core has now been
+  promoted to the compiling theorem
+  `halfPureDeepSplitAtFiveFinEight_of_oneChange`. This proves the exact bounded
+  OneChange/no-strong-five implication, not its uniform arbitrary-size
+  generalization. A fourth local charge is forbidden; `n=13` receives
+  preflight only.
 - **Threads 2--3:** generic deletion packing and the state-567 specialization
   compile. Exact incidence counting supplies at least 30 bad residual probes
   and a carrier-touching escape for every probe. Choice-free fiber counting
   and the residual-triple cover now compile and force either a same-occupancy
-  distinct-witness collision or one witness with at least three carrier
-  vertices. The open work is exactly the two corresponding color-sensitive
-  terminal contracts.
+  distinct-witness collision or a carrier-only strong six. The latter has a
+  compiling `1+5` through `5+1` overlap normalization. A light collision now
+  compiles to exact one- or two-vertex replacement data and a four-repair
+  triangular avoidance network. A relaxed Fin12 carrier-rectangle system is
+  computationally UNSAT but not kernel-checked. The exact omission-rectangle
+  interface now compiles: the finite carrier-only family covers every anchor
+  pair, and distinct witnesses have edge-disjoint rectangles. The remaining
+  work is its color-sensitive terminal consumer.
 - **Thread 5:** the balanced five-way shell, universal clean `2+4` escape
   family, and nine-middle-word normalization compile.  The five named terminal
   contracts remain open.
