@@ -82,6 +82,37 @@ substitutes for either artifact.
 10. **Record.** Promote durable conclusions into the canonical project artifact.
     Retain negative results when they rule out a documented route.
 
+## Plan outcome contract
+
+Every planned mathematical work item must declare its possible outcomes before
+execution. The outcomes must be specific enough to determine the next route
+decision; a generic promise to "make progress" is not an outcome contract.
+Use stable labels in the plan and preserve those labels through execution.
+
+At minimum, distinguish:
+
+1. **Proved/closed:** the frozen target compiles in Lean and the named consumer
+   is available;
+2. **Reduced/modified:** a strictly stronger normalization or smaller open
+   obstruction compiles, but the parent target remains open;
+3. **Refuted/expired:** the frozen target or route is contradicted at a stated
+   model and evidence level; and
+4. **Inconclusive/operational stop:** the bounded work ends without deciding
+   the mathematical target.
+
+Tailor these branches to the actual theorem. For example, a falsification task
+should name the surviving repaired statement, while a proof task should name
+the downstream theorem unlocked by success. Computational evidence, proposal
+evidence, `file_compiles`, and a full project theorem remain separate evidence
+levels inside each outcome.
+
+Every completion or checkpoint report must name exactly which predeclared
+outcome occurred, explain why its evidence gate was met, and state the next
+work item implied by that branch. If execution reveals a genuinely new
+outcome, stop or replan explicitly rather than silently replacing the original
+labels. Multi-item and multi-hour plans report an outcome for every thread,
+including threads that were skipped, superseded, or stopped by another result.
+
 ## Route-portfolio rule
 
 Substantial mathematical batches should exploit independent parallel thought,

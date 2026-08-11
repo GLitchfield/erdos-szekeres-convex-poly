@@ -1859,6 +1859,10 @@ mathematical completion by itself.
 - Turn the existing estimate ledger into a deterministic summary grouped by
   task type, reporting forecast midpoint versus actual active wall time and
   separating stop budget from predicted duration.
+- Give every planned work item a stable, theorem-specific outcome contract
+  before execution. Completion reports must identify which declared outcome
+  occurred, its evidence level, and the next branch implied by that result;
+  never replace this with a generic activity or progress report.
 - Package the measured workflow as a reusable planning/timekeeping skill and
   forward-test it on short Lean work, bounded searches, and multi-route blocks.
 - For multi-hour plans, compute the approval inventory before execution and

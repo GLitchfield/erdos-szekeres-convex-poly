@@ -11,6 +11,7 @@ neighboring template repository.
 | Automatic innovation-sidecar decision | `docs/agents/README.md`: evaluate innovation help at every approved mathematical batch, with dispatch/reuse/skip recorded | Forward-test on routine, discovery, and route-change tasks without over-dispatching |
 | Free mathematical-software catalog and optional per-tool skills | User-requested backlog: record free tools, problem classes, trust boundaries, installation notes, licenses, and skill entry points | Design the catalog schema; seed it only with tools reproduced in at least one project |
 | Calibrated timekeeping and planning skill | `docs/agents/time-estimation.md` and `time-estimates.csv`: separate forecast, stop budget, backlog scope, paused time, and overlapping critical paths; compare forecast midpoint with actual active wall time | Add a deterministic ledger summary/check script, concise `SKILL.md`, unit tests, and forward-tests on short and multi-hour plans |
+| Predeclared outcome contracts | `docs/agents/README.md`: every planned item names stable proved/reduced/refuted/inconclusive branches and every report selects one with an evidence level and next action | Add outcome fields to the project-neutral task/result templates and validate label preservation from plan through report |
 
 For the timekeeping skill, the reusable behavior should be:
 
