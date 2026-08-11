@@ -719,14 +719,14 @@ sets.
   certificates. A new diagonal interface proves the reservoir identity
   `2k-3`, consumes a parameterized `(k-2)+(k-1)` cup-block theorem, and
   unifies every `(4,k,k)` singleton gate through `k=8`, including the omitted
-  `(4,7,7)` control. Its first new case is `k=9`; both normalized orientations
-  are UNSAT in a fresh independently regenerated audit, but remain formally
-  open without a checked certificate. State 567 separately reduces to two
-  exact 22-point deletion-packing obligations. Every nondual 22-point split is
+  `(4,7,7)` control. Its first new case `k=9` now compiles completely: generated
+  Lean proofs connect every retained semantic clause to two kernel-checked
+  LRAT contradictions, and normalization plus arbitrary-block transport prove
+  `diagonalCupBlocksForce4kk_nine`. State 567 separately reduces to two exact
+  22-point deletion-packing obligations. Every nondual 22-point split is
   likewise UNSAT computationally, but neither obligation has a Lean proof.
-  The two reduced normalized `k=9` CNFs now check in Lean; the missing theorem
-  is the semantic clause and arbitrary-block transport bridge, so the CNF
-  certificates are not yet `DiagonalCupBlocksForce4kk 9`. In the parallel
+  The `k=9` result validates the diagonal interface and certificate workflow;
+  it does not yet provide the uniform successor step. In the parallel
   state-578 branch, all four private deletion
   owners force one full six-column plateau cup which misses two foreign cap
   blocks. This is a sharper Outcome-2 obstruction, not closure of state 578.
@@ -742,10 +742,18 @@ sets.
   or two deletions. The original unthresholded normalization contracts are
   also kernel-refuted by their empty instance. Their exact-threshold
   replacements compile, and `PrimeCoreCount χ = 0` is proved equivalent to
-  decomposability on nonempty ground sets. A three-step target-free realizable
-  rank descent is the surviving hard construction proposal, with one
-  kernel-checked geometric mutation into the decomposable class as a positive
-  control.
+  decomposability on nonempty ground sets. Mutation locality and exact
+  created-versus-destroyed accounting now compile, as does the zero law for a
+  highest-cardinality-first stratified prime-core rank. Complete seven-point
+  and selected eight-point abstract controls support a three-step endpoint
+  drop while confirming that intermediate monotonicity is too strong. A
+  target-free realizable highest-stratum descent above the exact threshold is
+  the surviving hard construction proposal, with one kernel-checked geometric
+  mutation into the decomposable class as a positive control. A structurally
+  independent predecessor-bicoloring interface also compiles: such a
+  bicoloring gives the exact doubling recurrence directly. Two independent
+  computational encodings pass its stronger balanced eight-vertex `k=5`
+  gate, but the general bicoloring theorem remains open.
   The independent rooted-circuit branch stops: a seven-point rational Lean
   counterexample refutes preservation of two signed triangle anchors.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point

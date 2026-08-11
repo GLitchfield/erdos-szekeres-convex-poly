@@ -68,20 +68,37 @@ sharpness construction of size `2^(n-2)`.
   unthresholded mutation contracts are also kernel-refuted by their empty
   instance. Their exact-threshold replacements compile, as does the
   characterization `PrimeCoreCount χ = 0 ↔ IsDecomposable χ` on nonempty
-  ground sets. The hard Layer-F target is a three-step target-free realizable
-  rank descent above the threshold, or a realizable closed component refuting
-  that proposal.
+  ground sets. Mutation locality now compiles: changing one ordered triple can
+  alter prime-core status only on supports containing all three changed
+  vertices, with exact created-versus-destroyed accounting in every
+  cardinality stratum. The raw count is retained as a diagnostic, while the
+  primary candidate is now `StratifiedPrimeCoreRank`; its zero/decomposable
+  characterization compiles. A complete seven-point mutation census and all
+  2,158 selected hard eight-point promotions find a smaller
+  highest-cardinality-first endpoint within three target-free abstract
+  mutations; exactly two seven-point sources require all three, and some paths
+  increase at intermediate steps. These are below-threshold computational
+  controls, not realizable descent proofs. The hard Layer-F target is a
+  three-step target-free realizable drop in the highest affected prime stratum
+  above the threshold, or a realizable closed component refuting that proposal.
+  A genuinely independent unrestricted bridge is now also admitted:
+  `StrongPredecessorBicoloringAt k` asks for a two-coloring whose classes avoid
+  strong `(k-1)`-polygons. Its `SweepExactUpperAt (k-1) → SweepExactUpperAt k`
+  consumer and the `k=3` base compile, and two independent abstract audits pass
+  the stronger balanced `k=5`, eight-vertex gate. The bicoloring theorem itself
+  remains open and the bounded UNSAT result has no Lean certificate yet.
 - [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
   now focuses on the uniform `PascalTailTwoSideBound`; its first open instance
   is exactly the state-567 two-cap-free-sides theorem. The diagonal `a=4`
   cup-block interface and all cases through `k=8` now compile, isolating
   `k=9` (`7+8/8+7`) as the first new uniform test. Both `k=9`
   orientations and all nondual 22-point state-567 cuts are UNSAT in fresh
-  bounded audits. The two reduced `k=9` propositional cores now check in the
-  Lean kernel, but the clause-semantics and arbitrary-block transport bridge
-  is not yet formalized. State 567 therefore remains formally reduced to two
-  exact 22-point packing obligations, while the smaller `k=9` semantic bridge
-  is the preferred certificate promotion. The historical route
+  bounded audits. The two reduced `k=9` propositional cores, every retained
+  semantic clause, both normalized `Fin 15` consequences, and arbitrary-block
+  transport now compile, proving `diagonalCupBlocksForce4kk_nine`. State 567
+  remains formally reduced to two exact 22-point packing obligations; the
+  completed `k=9` bridge validates the diagonal interface and certificate
+  workflow but does not by itself supply the uniform successor step. The historical route
   record follows. The scalar recurrence, maxima-only
   contexts, deterministic downset words, complete child pair-rank matrices,
   and pairwise raw-downset counting shortcut are now refuted routes; abstract

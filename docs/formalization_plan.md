@@ -1190,23 +1190,37 @@ to `HasSharpnessExample n (2^(n-2)+1)` for every `n ≥ 3`.
 
 ## 2026-08-10 route integration: certificates, Layer F, and state 578
 
-The first new diagonal certificate target is now technically small. Both
-normalized `k=9` dense CNFs kernel-check directly after dependency trimming.
-They are not yet mathematical theorems: the next work item is the generated
-Lean semantic bridge for the retained clause families plus order-embedding
-transport from `Fin 15` to arbitrary `7+8` and `8+7` blocks. The much larger
-state-567 cut-7 proof can be checkpointed, but its semantic bridge is harder
-and it closes only one cut; it is therefore second priority.
+The first new diagonal certificate target is now complete. Both normalized
+`k=9` dense CNFs kernel-check directly after dependency trimming, generated
+Lean proofs derive every retained clause from the exact cup-block hypotheses,
+and order-embedding transport from `Fin 15` to arbitrary `7+8` and `8+7`
+blocks proves `diagonalCupBlocksForce4kk_nine`. The much larger state-567 cut-7
+proof can be checkpointed, but its semantic bridge is harder and it closes
+only one cut; it remains second priority. The diagonal route now needs a
+uniform successor consumer rather than another proof of the `k=9` base.
 
 Layer F now has a corrected load-bearing API. The original unthresholded
 normalization contracts are false because of `Fin 0`; their exact-threshold
 versions compile. A one-to-three mutation rank decrease implies target-free
 normalization by well-founded induction and hence promotes the decomposable
 exact upper theorem. `PrimeCoreCount` is a concrete noncircular candidate,
-with zero proved equivalent to decomposability on nonempty ground sets. No
-general decrease theorem is claimed. The next hard target is a three-step
-decrease above threshold or a realizable target-free closed component that
-refutes it.
+with zero proved equivalent to decomposability on nonempty ground sets.
+Support congruence now proves that a single mutation changes prime-core status
+only on supports containing its three vertices, and exact rank accounting
+compiles in every cardinality stratum. The primary candidate is the
+highest-cardinality-first `StratifiedPrimeCoreRank`; its zero law compiles and
+bounded mutation censuses pass its first falsification gates. No general
+decrease theorem is claimed. The next hard target is a three-step
+highest-stratum decrease above threshold or a realizable target-free closed
+component that refutes it.
+
+A separate unrestricted bridge now has a compiling exact recurrence.
+`StrongPredecessorBicoloringAt k` partitions a strong-`k`-free realizable
+coloring into two strong-`(k-1)`-free classes; together with the predecessor
+upper theorem this bounds each class by `2^(k-3)` and their union by
+`2^(k-2)`. The `k=3` base and recurrence consumer compile. Independent
+abstract encodings pass the balanced eight-vertex `k=5` gate, while the
+unbounded bicoloring theorem remains open.
 
 The current state-578 route is suspended. The terminal seven-carrier-cover and
 seed-escape interfaces remain available, but seed selection, carrier size, and

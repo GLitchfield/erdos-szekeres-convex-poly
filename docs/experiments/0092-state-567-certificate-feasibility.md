@@ -2,7 +2,7 @@
 
 Date: 2026-08-10
 
-Status: Kernel-checked CNF certificates; semantic bridge open
+Status: Feasibility gate completed; semantic bridge subsequently proved
 
 ## Question
 
@@ -71,3 +71,10 @@ order-reversal bridge currently merges them.
 
 The interrupted cut-11 trace was never independently verified and is excluded
 from every claim.
+
+## Subsequent outcome
+
+Experiment 0098 completes the requested promotion: generated semantic clauses,
+both normalized theorems, both arbitrary-block transports, and
+`diagonalCupBlocksForce4kk_nine` now compile. The cut-7 state-567 priority and
+limitations recorded above are unchanged.

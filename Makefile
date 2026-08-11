@@ -19,6 +19,7 @@ test: check lean
 	@python3 -m unittest discover -s scripts -p 'test_*.py'
 	@python3 scripts/check_e3_state455_aggregation.py
 	@python3 scripts/check_e3_state566_aggregation.py
+	@python3 scripts/check_diagonal_k9_semantics.py >/dev/null
 	@python3 scripts/check_decomposable_context_collision.py \
 		data/derived/e3-context-k6-n9-singleton-collision.json >/dev/null
 	@python3 scripts/check_decomposable_rank_profiles.py \
@@ -222,6 +223,8 @@ test: check lean
 		scripts/generate_e3_state455_lean.py \
 		scripts/generate_e3_state466_lean.py \
 		scripts/generate_e3_state566_lean.py \
+		scripts/generate_diagonal_k9_lean.py \
+		scripts/check_diagonal_k9_semantics.py \
 		scripts/generate_cup_blocks_state_sat.py \
 		scripts/generate_rooted_forced_sets_state_sat.py \
 		scripts/generate_rooted_cup_blocks_state_sat.py \

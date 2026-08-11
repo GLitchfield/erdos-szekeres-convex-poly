@@ -14,7 +14,9 @@ public import ErdosSzekeres.Decomposable
 public import ErdosSzekeres.DecompositionPrime
 public import ErdosSzekeres.DecompositionPrimeNormalization
 public import ErdosSzekeres.DecompositionPrimeMutationRank
+public import ErdosSzekeres.DecompositionPrimeMutationLocality
 public import ErdosSzekeres.DecompositionPrimeUncrossing
+public import ErdosSzekeres.StrongPredecessorBicoloring
 public import ErdosSzekeres.PrimeTwoDeletionCounterexample
 public import ErdosSzekeres.PrimeMutationPositiveControl
 public import ErdosSzekeres.DecomposableRealization
@@ -137,6 +139,7 @@ public import ErdosSzekeres.StructuralChargingPascalTails
 public import ErdosSzekeres.StructuralChargingPascalTails578
 public import ErdosSzekeres.StructuralChargingPascalTailGates
 public import ErdosSzekeres.StructuralChargingPascalCupBlocks
+public import ErdosSzekeres.DiagonalCupBlocksK9Certificate
 public import ErdosSzekeres.RootedTriangleCircuitCounterexample
 public import ErdosSzekeres.DecomposableStateDuality
 public import ErdosSzekeres.ES5Certificate
