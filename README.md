@@ -722,11 +722,22 @@ sets.
   `(4,7,7)` control. Its first new case `k=9` now compiles completely: generated
   Lean proofs connect every retained semantic clause to two kernel-checked
   LRAT contradictions, and normalization plus arbitrary-block transport prove
-  `diagonalCupBlocksForce4kk_nine`. State 567 separately reduces to two exact
-  22-point deletion-packing obligations. Every nondual 22-point split is
+  `diagonalCupBlocksForce4kk_nine`. The complementary extreme-exchange layer
+  now also compiles end to end: all seven strong-ten helpers, 48 semantic CNF
+  chunks, both orientations, and `extremeExchangeK9FinSeventeen` are checked
+  by Lean. These are exact finite `k=9` results; certificate mining found no
+  honest all-parameter propagation rule. State 567 separately reduces to two
+  exact 22-point deletion-packing obligations. Every nondual 22-point split is
   likewise UNSAT computationally, but neither obligation has a Lean proof.
-  The `k=9` result validates the diagonal interface and certificate workflow;
-  it does not yet provide the uniform successor step. In the parallel
+  Exact residual-ten incidence counting now compiles and gives at least 30
+  complementary bad four-block probes, each with a carrier-touching strong-six
+  escape. The resulting theorem
+  `exists_sameOccupancyCollision_or_threeCarrierWitness567` now compiles: it
+  yields either two distinct escapes with the same coarse carrier occupancy or
+  one incident strong six using at least three carrier vertices. Two
+  color-sensitive terminal contracts remain. The finite `k=9` results validate the diagonal interface and
+  certificate workflow; they do not yet provide the uniform successor step.
+  In the parallel
   state-578 branch, all four private deletion
   owners force one full six-column plateau cup which misses two foreign cap
   blocks. This is a sharper Outcome-2 obstruction, not closure of state 578.
@@ -758,9 +769,17 @@ sets.
   a predecessor-free half-subset to exact doubling now compiles. A uniform
   certificate-free theorem proves predecessor bicoloring below
   `2*k-3` vertices for `k>=5`; exact computation extends the positive `k=6`
-  evidence through 11 vertices. A maximum-support two-deletion exchange is
-  stopped by an exact integer-coordinate eight-point counterexample and a
-  simple cardinality obstruction; it does not refute the hierarchy itself.
+  evidence through 12 vertices, with the 1.23-GB `n=12` LRAT remaining
+  computational rather than kernel evidence. Maximum-support exchange,
+  neighborhood-only weighting, signed local transition charging, and the first
+  collective exterior-score invariant are stopped by exact rational
+  eight-point controls; none refutes the hierarchy itself. The compiling pure
+  deep-split producer is now the primary predecessor route. Its first bounded
+  gate succeeds on all 2,862 strong-five-free members of the complete
+  decomposable Fin8 census, and two independent complete encodings extend the
+  survival result to all 19,870 strong-five-free rank-three Fin8 signotopes.
+  This remains computational evidence and does not prove the producer for
+  arbitrary size or all sweep-realizable colorings.
   The independent rooted-circuit branch stops: a seven-point rational Lean
   counterexample refutes preservation of two signed triangle anchors.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point

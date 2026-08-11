@@ -2009,3 +2009,37 @@ single-clause gate while staying below the memory ceiling. The certificate and
 theorem statement were unchanged. This localizes the next repair to separating
 the 120 middle-color facts and final finite-case proof into smaller compiling
 modules; repeating conjunction-projection variants is stopped.
+
+## 2026-08-11 thirty-probe and extreme-exchange completion
+
+The middle-fact repair succeeded. All 56 middle-fact chunks, seven exact
+strong-ten helpers, 48 semantic CNF chunks, both orientation roots, and the
+exact conjunction `extremeExchangeK9FinSeventeen` compile. Independent full
+and dense LRAT replay and corrupted-proof controls pass; the final theorem's
+axiom audit reports only the accepted propositional boundary. This changes the
+finite `k=9` extraction from computational evidence to a kernel-checked
+theorem. It does not prove a uniform successor theorem. A subsequent
+certificate-mining audit found only explicit ten-vertex middle-color
+reconstruction, not a stable all-`k` propagation invariant, so uniformity by
+clause inspection is stopped.
+
+The packed-internal state-567 normalization has also strengthened. The generic
+residual-escape layer proves that residual-only witnesses cannot persist.
+Lean now defines all non-strong six-subsets of the exact ten-point residual and
+proves there are at least 30: all 120 seven-subsets contain a bad six-subset,
+while each bad six-subset extends to exactly four seven-subsets. Complementing
+inside the residual yields at least 30 distinct bad four-block probes, and
+`PackedInternalPairFourResidualEscape.exists_thirty_carrierTouching_probes`
+uses deletion packing separately for every probe to provide a carrier-touching
+strong-six escape.
+
+The choice-free incidence step now also compiles. A fixed witness serves at
+most `choose (10-r) 4` probes, where `r` is its residual intersection. If no
+two distinct witnesses have the same one/two-carrier occupancy, at most two
+witnesses cover the probes. The residual-triple cover eliminates the saturated
+carrier-light case. Consequently
+`exists_sameOccupancyCollision_or_threeCarrierWitness567` yields either a
+same-occupancy distinct-witness collision or an incident strong six with at
+least three carrier vertices. The result is now
+`PACKED_567_PROBE_REUSE_COMPILES__TWO_COLOR_TERMINALS_OPEN`: neither disjunct is
+yet contradictory from the middle-word equations.

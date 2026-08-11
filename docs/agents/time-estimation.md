@@ -57,6 +57,16 @@ After every five completed rows, summarize:
 - the largest miss and its cause; and
 - one concrete adjustment to future planning.
 
+Generate the deterministic summary and validate the stored arithmetic with:
+
+```bash
+python3 scripts/time_estimate_report.py --check-ratios
+```
+
+Use `--json` for machine-readable planning input.  The exceptional
+`--rewrite-ratios` option is only for a reviewed mechanical repair of the
+derived `error_ratio` column; it must not change forecasts or observed times.
+
 The useful categories are `lean-routine`, `lean-new-lemma`,
 `mathematical-discovery`, `bounded-computation`, `review`, `integration`, and
 `mixed-research`. Add a category only when existing ones are genuinely

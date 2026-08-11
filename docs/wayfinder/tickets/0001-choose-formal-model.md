@@ -178,12 +178,22 @@ predecessor-free half-subset; and that half-subset gives the same exact
 doubling recurrence. A certificate-free local theorem proves integral
 bicoloring for every strong-`k`-free coloring on at most `2*k-3` vertices when
 `k>=5`. At `k=6`, independent exact CNF/LRAT checks find no
-integral/fractional/half separator through 11 vertices, while the Lean theorem
-covers the range through nine. The proposed maximum-support two-deletion
-exchange is stopped: it would strictly enlarge a maximum free support, and an
-independently checked integer-coordinate eight-point configuration realizes
-the nonvacuous obstruction. The hierarchy remains live, but its next producer
-must use a different construction. See Experiments 0096 and 0101.
+integral/fractional/half separator through 12 vertices, while the Lean theorem
+covers the range through nine; the `n=12` LRAT is 1.23 GB and remains
+computational evidence. Maximum-support exchange, neighborhood-only weighting,
+signed local transitions, and the first collective exterior-score invariant
+are stopped by exact rational Fin8 controls.
+
+The active producer is now `HalfPureDeepSplitAt`. Its local pure-side kernels
+and half-subset consumer compile. The frozen bounded gate first passes all
+2,862 strong-five-free decomposable Fin8 colorings, then passes all 19,870
+strong-five-free rank-three Fin8 signotopes in two independent complete
+encodings. The latter search examines every ordered disjoint pair allowed by
+the definition, including noncovering pairs. This is computational evidence,
+not a proof of the bounded theorem or the uniform producer. The next warranted
+Lean target is the exact Fin8 OneChange/no-strong-five implication; larger
+enumeration is deferred in favor of identifying its structural proof kernel.
+See Experiments 0096 and 0101.
 
 ## Evidence
 
@@ -218,6 +228,8 @@ must use a different construction. See Experiments 0096 and 0101.
   support locality and the compiling top-stratum arithmetic bridge
 - [`ErdosSzekeres.StrongPredecessorBicoloring`](../../../ErdosSzekeres/StrongPredecessorBicoloring.lean),
   the integral and fractional exact-doubling recurrence interfaces
+- [`ErdosSzekeres.InverseSteppingUpKernel`](../../../ErdosSzekeres/InverseSteppingUpKernel.lean),
+  pure deep-split predecessor-freeness and its half-subset consumer
 - [`ErdosSzekeres.PrimeMutationPositiveControl`](../../../ErdosSzekeres/PrimeMutationPositiveControl.lean),
   one exact realizable target-free mutation into the decomposable class
 - [Intermediary lemma ladder](../../formalization_plan.md)

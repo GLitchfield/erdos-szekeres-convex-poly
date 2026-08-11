@@ -1835,10 +1835,14 @@ roadmap.
 - Promote only a compiling theorem with a verified consumer.  Park a true but
   inert theorem; retain a counterexample for a false one.
 
-**Candidate queue.**  The stopped two-anchor rooted-circuit elimination and
-middle-word selector are negative controls.  Live families worth fresh cards
-include one-anchor circuit substitution with an exact consumer, weighted
-predecessor separation, and multi-probe residual escape compression.
+**Candidate queue.**  Two-anchor rooted-circuit elimination and the middle-word
+selector remain negative controls.  One-anchor Carathéodory survives only as
+inert geometric infrastructure, while neighborhood weighting, signed local
+transitions, and the first collective exterior Borda-rank invariant fail exact
+rational Fin-8 controls.  Multi-probe residual escape has graduated from the
+forge: the 30-probe incidence theorem compiles and its witness-reuse/collision
+consumer is active state-567 work.  Do not add another exterior-rank candidate
+until it first passes the recorded Fin-8 and duplicated-neighborhood controls.
 
 **Expiry rule.**  Forge work is capped and secondary.  It never displaces all
 direct work on Threads 1--3 and agent consensus never upgrades evidence.
@@ -1886,6 +1890,40 @@ mathematical completion by itself.
 bottleneck or prevents a demonstrated evidence failure.  It is never reported
 as progress on the exact formula and should remain a minority of total active
 capacity.
+
+### 2026-08-11 portfolio checkpoint
+
+- **Thread 1:** no integral/fractional/half separator exists in the checked
+  abstract rank-three model through `k=6,n=12`; this is computational evidence.
+  Exact rational controls retire maximum-support exchange, neighborhood-only
+  charging, signed local transitions, and the first exterior Borda-rank
+  invariant.  Sol/Fable ranks the compiling pure deep-split producer as the
+  next falsification target. That producer survives all 19,870
+  strong-five-free rank-three Fin8 signotopes in two independent complete
+  encodings; the result remains computational evidence. A fourth local charge
+  is forbidden; `n=13` receives preflight only.
+- **Threads 2--3:** generic deletion packing and the state-567 specialization
+  compile. Exact incidence counting supplies at least 30 bad residual probes
+  and a carrier-touching escape for every probe. Choice-free fiber counting
+  and the residual-triple cover now compile and force either a same-occupancy
+  distinct-witness collision or one witness with at least three carrier
+  vertices. The open work is exactly the two corresponding color-sensitive
+  terminal contracts.
+- **Thread 5:** the balanced five-way shell, universal clean `2+4` escape
+  family, and nine-middle-word normalization compile.  The five named terminal
+  contracts remain open.
+- **Threads 4 and 11:** repeated uniform spectator lifting is stopped by an
+  exact rational second-spectator target, while its generic local obstruction
+  compiles.  Pure deep-split predecessor-freeness and its half-subset consumer
+  compile; a global producer remains under bounded falsification.
+- **Threads 6 and 9:** `extremeExchangeK9FinSeventeen` now compiles end to end,
+  including all seven former strong-ten blockers.  It is retained as a finite
+  successor base.  Its explicit clause reconstruction exposes no honest
+  all-parameter propagation theorem, so uniform certificate mining is stopped.
+- **Threads 13--14:** the one-anchor circuit route is suspended as true but
+  inert infrastructure.  The timing ledger now has a deterministic validator
+  and category summary; current medians, not raw task-list sums, must calibrate
+  future plans.
 
 ### Portfolio scheduling and evidence gates
 

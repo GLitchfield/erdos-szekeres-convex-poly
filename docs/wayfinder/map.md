@@ -196,10 +196,23 @@ suspended under ticket 0010 until its stated revival gate is met.
   certificate-free theorem proves the integral bicoloring for every
   strong-`k`-free coloring on at most `2*k-3` vertices when `k>=5`. At `k=6`,
   independent exact finite checks find no integral/fractional/half separator
-  through 11 vertices, but only the range through nine is a Lean theorem. A
-  maximum-support two-deletion exchange is retired by an exact rational
-  eight-point counterexample and a generic cardinality obstruction. The
-  hierarchy remains live; that construction does not.
+  through 12 vertices, but only the range through nine is a Lean theorem; the
+  independently replayed `n=12` LRAT is 1.23 GB and remains computational
+  evidence. A maximum-support two-deletion exchange, neighborhood-only
+  weighting, and the first signed consecutive-transition charge are retired
+  by exact rational eight-point controls. The 2026-08-11 predecessor-pivot
+  Sol/Fable review (report SHA-256
+  `64cffcc21fb0443e7568bad9ff35ab5b9162bf5563d1f326af5b0019c9476994`)
+  expires local eligibility charging and ranks the already defined pure
+  deep-split producer first, followed by exactly one genuinely collective
+  multi-exterior invariant. Integral and fractional producers remain reserves;
+  `n=13` receives resource preflight only. The half-subset hierarchy remains
+  live and unproved. Its primary pure-split producer survives the complete
+  Fin8 boundary: every one of the 19,870 strong-five-free rank-three
+  signotopes has the unchanged `HalfPureDeepSplitAt 5` conclusion in two
+  independent enumerations. This is computational evidence, not a uniform
+  theorem; the next warranted formal target is the bounded Fin8 OneChange
+  statement, followed by a structural rather than larger-enumeration attack.
 - [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
   now focuses on the uniform `PascalTailTwoSideBound`; its first open instance
   is exactly the state-567 two-cap-free-sides theorem. The diagonal `a=4`
@@ -212,22 +225,29 @@ suspended under ticket 0010 until its stated revival gate is met.
   The first noncircular successor repair has also been isolated. Lean proves
   that cup extensions of one core by opposite extreme vertices glue to a
   larger cup. Both normalized 17-point `k=9` extreme-exchange extraction gates
-  are independently certified UNSAT, and their bare LRAT, encoding, atom, and
-  three semantic layers compile; seven no-strong-ten semantic helpers still
-  block the normalized Lean theorems. This partial promotion neither proves
-  the successor nor assumes ambient ten-cup avoidance.
+  are now fully kernel-checked: all seven strong-ten helpers, all 48 semantic
+  chunks, both orientation roots, and `extremeExchangeK9FinSeventeen` compile.
+  The theorem is an exact finite successor base, not an all-parameter
+  extraction theorem. A read-only mining audit found that its clauses
+  reconstruct ten-point middle colors by explicit finite cases and expose no
+  stable uniform propagation rule, so uniformity by clause inspection is
+  stopped.
   State 567 remains formally reduced to two exact 22-point packing obligations.
   In the packed internal branch, Lean now constructs the disjoint mutually
   middle-obstructed partner, proves that the pair leaves exactly ten residual
   vertices, and obtains an avoiding strong-six for every carrier pair and
-  residual four-block. A compiling trichotomy leaves three occupancy branches
-  according to whether that escape meets zero, one, or two carriers. None is
-  closed. The completed `k=9` bridge validates the diagonal interface and
-  certificate workflow but does not by itself supply the uniform successor
-  step. Direct and depth-four conjunction projections for the remaining
-  extreme-exchange strong clauses both exceed the bounded ten-minute gate; a
-  finer middle-fact/final-case module split is the only retained engineering
-  repair. The historical route
+  residual four-block. Exact no-strong-seven incidence counting now compiles:
+  the ten-point residual contains at least 30 non-strong six-subsets, hence at
+  least 30 complementary four-block probes, and repeated packing supplies a
+  carrier-touching strong-six escape for every counted probe. Choice-free
+  fiber counting and a residual-triple cover now compile and prove
+  `exists_sameOccupancyCollision_or_threeCarrierWitness567`: either two
+  distinct escapes share the same coarse one/two-carrier occupancy or one
+  incident strong six contains at least three carrier vertices. This is not
+  yet a color contradiction; those two terminal consumers are the exact open
+  state-567 branches. The completed `k=9` bridge validates the finite
+  diagonal interface and certificate workflow but does not itself supply the
+  uniform successor step. The historical route
   record follows. The scalar recurrence, maxima-only
   contexts, deterministic downset words, complete child pair-rank matrices,
   and pairwise raw-downset counting shortcut are now refuted routes; abstract
