@@ -2,7 +2,7 @@
 
 Date: 2026-08-10
 
-Status: Highest-cardinality rank passes the bounded gate; threshold descent open
+Status: Highest-cardinality arithmetic bridge compiles; threshold descent open
 
 ## Question
 
@@ -64,6 +64,37 @@ stratifiedPrimeCoreRank_lt_of_topStratumDrop
 
 The subsequent load-bearing geometric contract is
 `ThreeStepTopPrimeStratumDropsAboveAt`.
+
+## Compiling arithmetic bridge
+
+`DecompositionPrimeMutationLocality.lean` now proves
+
+```lean
+stratifiedPrimeCoreRank_lt_of_topStratumDrop
+```
+
+from equality of prime-core membership above one positive cardinality stratum
+and a strict loss in `PrimeCoreCountAtCard` at that stratum.  The proof uses
+base `2^n + 1`: there are at most `2^n` lower supports in total, so their
+entire contribution is smaller than one unit at the distinguished stratum.
+
+The file also freezes the exact geometric obligation
+
+```lean
+ThreeStepTopPrimeStratumDropsAboveAt k
+```
+
+and proves that it supplies `ThreeStepMutationRankDescendsAboveAt` for the
+stratified rank.  Hence the arithmetic and well-founded-rank interface are no
+longer open.  What remains is the genuinely geometric assertion that a
+target-free sweep-realizable nondecomposable coloring above the exact
+threshold has such an at-most-three-mutation endpoint.  Every intermediate
+edge is explicitly required to remain target-free and sweep-realizable.
+
+An independent read-only formal review accepted the statement and arithmetic,
+reproduced the targeted build, and confirmed that the reviewed declarations
+use only the standard project axiom boundary (`propext`, `Classical.choice`,
+and `Quot.sound`).  This does not establish the geometric macro.
 
 ## Evidence boundary and resources
 

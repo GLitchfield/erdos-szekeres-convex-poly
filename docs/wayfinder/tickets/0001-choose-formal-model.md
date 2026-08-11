@@ -150,6 +150,39 @@ Unrestricted representability-preserving mutation connectivity does not imply
 connectivity after deleting all target-containing vertices. See Experiment
 0093.
 
+The highest-cardinality rank arithmetic is now complete.
+`DecompositionPrimeMutationLocality.lean` proves that losing one prime core at
+the highest changed positive cardinality stratum strictly decreases
+`StratifiedPrimeCoreRank`; the base `2^n+1` dominates every possible lower
+stratum. The file freezes `ThreeStepTopPrimeStratumDropsAboveAt` and proves
+that contract supplies the previously compiled threshold-normalization
+consumer. The remaining Layer-F obligation is therefore geometric, not
+arithmetic: construct such a target-free realizable three-mutation endpoint
+above the exact threshold, or find a realizable closed component.
+
+Two independent predecessor directions were also screened. The prefix-free
+middle-word frontier selector is stopped by a six-vertex abstract-signotope
+counterexample in which all vertices have the same five available words; no
+realizable counterexample is claimed. The stronger Property-B bicoloring
+recurrence remains live: its exact base and doubling consumer compile, and the
+balanced `k=5`, `Fin 8` counterexample formula has an independently checked
+exhaustive certificate plus a bare Lean LRAT contradiction. The final
+semantic Lean theorem is still open because its generated specialization
+approaches the 16-GiB ceiling. Exact core minimization removed only 16 of
+1,211 clauses while enlarging the certificate, so that repair is stopped. See
+Experiments 0096, 0097, and 0099.
+
+The fractional Property-B relaxation now has a compiling exact-doubling
+consumer. `FractionalPredecessorCoverAt k` places nonnegative rational weights
+on predecessor-free subsets, covers every vertex with weight at least one, and
+uses total weight at most two. Lean bounds every positive-weight support by the
+predecessor theorem and completes the finite rational double count. Checked
+relaxed hypergraphs show this condition is genuinely weaker than integral
+bicoloring, but the `k=5`, `Fin 8` signotope gate already has integral
+bicolorings. The route is retained as a secondary contract and requires a
+later exact-model fractional/integral separator before promotion. See
+Experiment 0101.
+
 ## Evidence
 
 - [Initial literature review](../../literature_review.md)
@@ -179,6 +212,10 @@ connectivity after deleting all target-containing vertices. See Experiment
   the corrected exact-threshold Layer-F consumer and three-step descent shell
 - [`ErdosSzekeres.DecompositionPrimeMutationRank`](../../../ErdosSzekeres/DecompositionPrimeMutationRank.lean),
   the prime-core count and its zero/decomposable characterization
+- [`ErdosSzekeres.DecompositionPrimeMutationLocality`](../../../ErdosSzekeres/DecompositionPrimeMutationLocality.lean),
+  support locality and the compiling top-stratum arithmetic bridge
+- [`ErdosSzekeres.StrongPredecessorBicoloring`](../../../ErdosSzekeres/StrongPredecessorBicoloring.lean),
+  the integral and fractional exact-doubling recurrence interfaces
 - [`ErdosSzekeres.PrimeMutationPositiveControl`](../../../ErdosSzekeres/PrimeMutationPositiveControl.lean),
   one exact realizable target-free mutation into the decomposable class
 - [Intermediary lemma ladder](../../formalization_plan.md)

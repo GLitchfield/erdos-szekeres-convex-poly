@@ -225,6 +225,10 @@ test: check lean
 		scripts/generate_e3_state566_lean.py \
 		scripts/generate_diagonal_k9_lean.py \
 		scripts/check_diagonal_k9_semantics.py \
+		scripts/check_extreme_exchange_k9.py \
+		scripts/check_extreme_exchange_k9_model.py \
+		scripts/generate_extreme_exchange_k9_lean.py \
+		scripts/generate_strong_predecessor_fin8_lean.py \
 		scripts/generate_cup_blocks_state_sat.py \
 		scripts/generate_rooted_forced_sets_state_sat.py \
 		scripts/generate_rooted_cup_blocks_state_sat.py \

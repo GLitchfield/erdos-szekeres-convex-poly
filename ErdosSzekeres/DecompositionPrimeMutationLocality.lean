@@ -278,6 +278,181 @@ noncomputable def StratifiedPrimeCoreRank {n : ℕ}
   ∑ support ∈ decompositionPrimeCores χ,
     (2 ^ n + 1) ^ support.card
 
+/-- If the first changed cardinality stratum, read from largest to smallest,
+loses a prime core, then the stratified rank strictly decreases.  The base
+`2^n+1` makes the total contribution of every lower support too small to
+cancel one lost core at the distinguished stratum. -/
+theorem stratifiedPrimeCoreRank_lt_of_topStratumDrop
+    {n m : ℕ} {χ ψ : TripleColoring n}
+    (hm : 0 < m)
+    (habove : ∀ support : Finset (Fin n), m < support.card →
+      (support ∈ decompositionPrimeCores χ ↔
+        support ∈ decompositionPrimeCores ψ))
+    (hdrop : PrimeCoreCountAtCard ψ m < PrimeCoreCountAtCard χ m) :
+    StratifiedPrimeCoreRank ψ < StratifiedPrimeCoreRank χ := by
+  classical
+  let base : ℕ := 2 ^ n + 1
+  let weight : Finset (Fin n) → ℕ := fun support ↦ base ^ support.card
+  let high (cores : Finset (Finset (Fin n))) :=
+    cores.filter fun support ↦ m < support.card
+  let same (cores : Finset (Finset (Fin n))) :=
+    cores.filter fun support ↦ support.card = m
+  let low (cores : Finset (Finset (Fin n))) :=
+    cores.filter fun support ↦ support.card < m
+  have split (cores : Finset (Finset (Fin n))) :
+      ∑ support ∈ cores, weight support =
+        (∑ support ∈ high cores, weight support) +
+        (∑ support ∈ same cores, weight support) +
+        ∑ support ∈ low cores, weight support := by
+    have hfirst := Finset.sum_filter_add_sum_filter_not cores
+      (fun support ↦ m < support.card) weight
+    have hsecond := Finset.sum_filter_add_sum_filter_not
+      (cores.filter fun support ↦ ¬m < support.card)
+      (fun support ↦ support.card = m) weight
+    have hsame :
+        ((cores.filter fun support ↦ ¬m < support.card).filter
+          fun support ↦ support.card = m) = same cores := by
+      ext support
+      simp [same]
+      omega
+    have hlow :
+        ((cores.filter fun support ↦ ¬m < support.card).filter
+          fun support ↦ ¬support.card = m) = low cores := by
+      ext support
+      simp only [Finset.mem_filter]
+      unfold low
+      simp only [Finset.mem_filter]
+      constructor
+      · rintro ⟨⟨hmem, hnotGreater⟩, hne⟩
+        exact ⟨hmem, by omega⟩
+      · rintro ⟨hmem, hlt⟩
+        exact ⟨⟨hmem, by omega⟩, by omega⟩
+    rw [hsame, hlow] at hsecond
+    calc
+      ∑ support ∈ cores, weight support =
+          (∑ support ∈ cores.filter (fun support ↦ m < support.card),
+            weight support) +
+          ∑ support ∈ cores.filter (fun support ↦ ¬m < support.card),
+            weight support := hfirst.symm
+      _ = (∑ support ∈ high cores, weight support) +
+          ((∑ support ∈ same cores, weight support) +
+            ∑ support ∈ low cores, weight support) := by
+        rw [hsecond]
+      _ = (∑ support ∈ high cores, weight support) +
+          (∑ support ∈ same cores, weight support) +
+          ∑ support ∈ low cores, weight support := by omega
+  have hhigh :
+      high (decompositionPrimeCores χ) =
+        high (decompositionPrimeCores ψ) := by
+    ext support
+    simp only [high, Finset.mem_filter]
+    constructor
+    · rintro ⟨hχ, hcard⟩
+      exact ⟨(habove support hcard).mp hχ, hcard⟩
+    · rintro ⟨hψ, hcard⟩
+      exact ⟨(habove support hcard).mpr hψ, hcard⟩
+  have hsameSum (cores : Finset (Finset (Fin n))) :
+      ∑ support ∈ same cores, weight support =
+        (same cores).card * base ^ m := by
+    apply Finset.sum_const_nat
+    intro support hsupport
+    have hcard : support.card = m := (Finset.mem_filter.mp hsupport).2
+    simp only [weight, hcard]
+  have hlowCard :
+      (low (decompositionPrimeCores ψ)).card ≤ 2 ^ n := by
+    calc
+      (low (decompositionPrimeCores ψ)).card ≤
+          (Finset.univ.powerset : Finset (Finset (Fin n))).card :=
+        Finset.card_le_card (by
+          intro support _
+          exact Finset.mem_powerset.mpr (Finset.subset_univ support))
+      _ = 2 ^ n := by simp
+  have hbasePos : 0 < base := by
+    simp only [base]
+    omega
+  have hlowWeight : ∀ support ∈ low (decompositionPrimeCores ψ),
+      weight support ≤ base ^ (m - 1) := by
+    intro support hsupport
+    have hcard : support.card < m := (Finset.mem_filter.mp hsupport).2
+    simp only [weight]
+    apply Nat.pow_le_pow_right hbasePos
+    omega
+  have hlowSum :
+      ∑ support ∈ low (decompositionPrimeCores ψ), weight support <
+        base ^ m := by
+    have hsumCard :
+        ∑ support ∈ low (decompositionPrimeCores ψ), weight support ≤
+          (low (decompositionPrimeCores ψ)).card * base ^ (m - 1) := by
+      simpa using Finset.sum_le_card_nsmul
+        (low (decompositionPrimeCores ψ)) weight (base ^ (m - 1)) hlowWeight
+    have hcardMul :
+        (low (decompositionPrimeCores ψ)).card * base ^ (m - 1) ≤
+          2 ^ n * base ^ (m - 1) :=
+      Nat.mul_le_mul_right (base ^ (m - 1)) hlowCard
+    have hbaseLt : 2 ^ n < base := by
+      simp only [base]
+      omega
+    have hpowPos : 0 < base ^ (m - 1) := by positivity
+    have hmulLt :
+        2 ^ n * base ^ (m - 1) < base * base ^ (m - 1) :=
+      Nat.mul_lt_mul_of_pos_right hbaseLt hpowPos
+    calc
+      ∑ support ∈ low (decompositionPrimeCores ψ), weight support ≤
+          (low (decompositionPrimeCores ψ)).card * base ^ (m - 1) := hsumCard
+      _ ≤ 2 ^ n * base ^ (m - 1) := hcardMul
+      _ < base * base ^ (m - 1) := hmulLt
+      _ = base ^ m := by
+        rw [Nat.mul_comm, ← Nat.pow_succ]
+        congr
+        omega
+  have hdrop' :
+      (same (decompositionPrimeCores ψ)).card <
+        (same (decompositionPrimeCores χ)).card := hdrop
+  simp only [StratifiedPrimeCoreRank]
+  change (∑ support ∈ decompositionPrimeCores ψ, weight support) <
+    ∑ support ∈ decompositionPrimeCores χ, weight support
+  have hsplitψ := split (decompositionPrimeCores ψ)
+  have hsplitχ := split (decompositionPrimeCores χ)
+  rw [hsplitψ, hsplitχ, hhigh, hsameSum, hsameSum]
+  have hstep :
+      (same (decompositionPrimeCores ψ)).card + 1 ≤
+        (same (decompositionPrimeCores χ)).card := by omega
+  have hpowPos : 0 < base ^ m := by positivity
+  have hmiddle :
+      (same (decompositionPrimeCores ψ)).card * base ^ m + base ^ m ≤
+        (same (decompositionPrimeCores χ)).card * base ^ m := by
+    simpa [Nat.add_mul] using Nat.mul_le_mul_right (base ^ m) hstep
+  omega
+
+/-- The geometric obligation for the stratified Layer-F route: above the
+exact threshold, every target-free realizable nondecomposable coloring has an
+at-most-three-mutation endpoint whose highest changed prime-core stratum
+strictly decreases.  Intermediate ranks are intentionally unconstrained. -/
+def ThreeStepTopPrimeStratumDropsAboveAt (k : ℕ) : Prop :=
+  ∀ {n : ℕ} {χ : TripleColoring n}, 2 ^ (k - 2) < n →
+    IsSweepRealizable χ →
+    ¬ContainsStrongPolygonSet χ Finset.univ k →
+    ¬IsDecomposable χ →
+    ∃ ψ m,
+      AtMostThree (TargetFreeRealizableMutationStepAt k) χ ψ ∧
+      0 < m ∧
+      (∀ support : Finset (Fin n), m < support.card →
+        (support ∈ decompositionPrimeCores χ ↔
+          support ∈ decompositionPrimeCores ψ)) ∧
+      PrimeCoreCountAtCard ψ m < PrimeCoreCountAtCard χ m
+
+/-- A top-stratum mutation macro supplies the concrete natural-valued rank
+descent required by the normalization theorem. -/
+theorem threeStepMutationRankDescendsAbove_of_topPrimeStratumDrop
+    {k : ℕ} (hdrop : ThreeStepTopPrimeStratumDropsAboveAt k) :
+    ThreeStepMutationRankDescendsAboveAt k
+      (fun _ χ ↦ StratifiedPrimeCoreRank χ) := by
+  intro n χ hcard hrealizable htarget hindecomposable
+  obtain ⟨ψ, m, hpath, hm, habove, hcount⟩ :=
+    hdrop hcard hrealizable htarget hindecomposable
+  exact ⟨ψ, hpath,
+    stratifiedPrimeCoreRank_lt_of_topStratumDrop hm habove hcount⟩
+
 /-- On a nonempty ground set, the stratified rank vanishes exactly at the
 recursively decomposable colorings. -/
 theorem stratifiedPrimeCoreRank_eq_zero_iff

@@ -1967,3 +1967,27 @@ semantic bridge is also much larger and completing that cut alone does not
 close state 567. Route disposition:
 `K9_CERTIFICATE_GO__SEMANTIC_BRIDGE_NEXT;
 CUT7_CERTIFICATE_CHECKPOINTABLE_BUT_SECOND_PRIORITY`. See Experiment 0092.
+
+## 2026-08-11 diagonal successor repair
+
+The proposed monolithic double-deletion gluing theorem is stopped as circular.
+Assuming the proved diagonal theorem at `k`, its deletion premises are supplied
+automatically, so the proposal is equivalent to the next diagonal theorem
+rather than a reduction of it.
+
+The surviving noncircular split has a certificate-free consumer and a finite
+extraction gate. `StructuralChargingPascalCupBlocks.lean` proves
+`isCupSet_insert_two_of_extreme_cup_extensions`: cup extensions of one ordered
+core by one vertex on each extreme glue to a larger cup under `OneChangeOn`.
+The extraction premise asks only that one small-block point extend the
+large-block core to a cup; it does not assume or forbid the resulting ambient
+ten-cup.
+
+Both normalized 17-point `k=9` extraction orientations are independently
+certified UNSAT. The bare dense LRAT declarations, compact encoding boundary,
+both atom modules, and three semantic chunks compile. The exact normalized
+orientation theorems do not yet compile: seven retained no-strong-ten clauses
+remain isolated as 420-conjunct semantic helpers, and bounded elaboration
+attempts were stopped without a Lean error. The route outcome is therefore
+`EXTREME_EXCHANGE_K9_COMPUTATION_PASS__LEAN_SEMANTICS_PARTIAL`, not a completed
+successor theorem. See Experiment 0100.

@@ -36,6 +36,16 @@ and collaborative in explaining why a route is being pursued or retired.
   stream, review it at the next cycle boundary, and send any leading route
   proposal through adversarial review before allocating build work.
 - Serialize integration, shared-file edits, full builds, tests, and Git work.
+- Serialize delegated builders as well: at most one Lean or finite-model worker
+  may own mutating/build work at a time.  Use the remaining slots for
+  read-only structural, adversarial, innovation, or review threads.  This is
+  both an evidence-isolation rule and protection against overlapping
+  high-memory elaborators.
+- Treat the whole-workspace fingerprint as an admission snapshot.  Once a
+  parallel packet is admitted, recheck the base revision and every explicit
+  frozen input hash; report but tolerate unrelated changes in disjoint owned
+  paths.  Never let an orchestrator timing or documentation edit create a
+  false mathematical stop.
 - Explain route choices in terms of the Wayfinder, not agent popularity.
 - Record every substantial time forecast and its actual in
   `docs/agents/time-estimates.csv`, following `time-estimation.md`. Distinguish

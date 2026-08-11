@@ -73,7 +73,11 @@ sharpness construction of size `2^(n-2)`.
   vertices, with exact created-versus-destroyed accounting in every
   cardinality stratum. The raw count is retained as a diagnostic, while the
   primary candidate is now `StratifiedPrimeCoreRank`; its zero/decomposable
-  characterization compiles. A complete seven-point mutation census and all
+  characterization compiles. Lean now also proves the decisive arithmetic
+  bridge: equality above one positive stratum plus a strict prime-core loss at
+  that stratum strictly decreases the stratified rank, and freezes the exact
+  three-step geometric contract that feeds the threshold-normalization
+  consumer. A complete seven-point mutation census and all
   2,158 selected hard eight-point promotions find a smaller
   highest-cardinality-first endpoint within three target-free abstract
   mutations; exactly two seven-point sources require all three, and some paths
@@ -85,8 +89,18 @@ sharpness construction of size `2^(n-2)`.
   `StrongPredecessorBicoloringAt k` asks for a two-coloring whose classes avoid
   strong `(k-1)`-polygons. Its `SweepExactUpperAt (k-1) → SweepExactUpperAt k`
   consumer and the `k=3` base compile, and two independent abstract audits pass
-  the stronger balanced `k=5`, eight-vertex gate. The bicoloring theorem itself
-  remains open and the bounded UNSAT result has no Lean certificate yet.
+  the stronger balanced `k=5`, eight-vertex gate. Its exact counterexample CNF
+  has an independently replayed exhaustive certificate and a bare Lean LRAT
+  contradiction, but the generated semantic theorem still exceeds the
+  16-GiB bridge budget. Exact core minimization removed only 16 of 1,211
+  clauses while enlarging the certificate, so the bicoloring theorem and even
+  this bounded semantic promotion remain open. A separate prefix-free
+  middle-word frontier proposal is stopped by a six-vertex abstract
+  counterexample and is no longer an active route. A fractional predecessor
+  relaxation now also has a compiling exact-doubling consumer. Relaxed
+  hypergraphs separate it from integral bicoloring, but the first `k=5`,
+  `Fin 8` signotope gate does not; main-route promotion therefore waits for a
+  later exact-model fractional/integral separator.
 - [Test E3 and select a repair strategy](tickets/0002-test-e3-and-select-repair.md)
   now focuses on the uniform `PascalTailTwoSideBound`; its first open instance
   is exactly the state-567 two-cap-free-sides theorem. The diagonal `a=4`
@@ -95,8 +109,15 @@ sharpness construction of size `2^(n-2)`.
   orientations and all nondual 22-point state-567 cuts are UNSAT in fresh
   bounded audits. The two reduced `k=9` propositional cores, every retained
   semantic clause, both normalized `Fin 15` consequences, and arbitrary-block
-  transport now compile, proving `diagonalCupBlocksForce4kk_nine`. State 567
-  remains formally reduced to two exact 22-point packing obligations; the
+  transport now compile, proving `diagonalCupBlocksForce4kk_nine`.
+  The first noncircular successor repair has also been isolated. Lean proves
+  that cup extensions of one core by opposite extreme vertices glue to a
+  larger cup. Both normalized 17-point `k=9` extreme-exchange extraction gates
+  are independently certified UNSAT, and their bare LRAT, encoding, atom, and
+  three semantic layers compile; seven no-strong-ten semantic helpers still
+  block the normalized Lean theorems. This partial promotion neither proves
+  the successor nor assumes ambient ten-cup avoidance.
+  State 567 remains formally reduced to two exact 22-point packing obligations; the
   completed `k=9` bridge validates the diagonal interface and certificate
   workflow but does not by itself supply the uniform successor step. The historical route
   record follows. The scalar recurrence, maxima-only

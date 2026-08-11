@@ -15,6 +15,103 @@ it to the parameter-uniform Pascal-tail consumer.
 
 namespace ErdosSzekeres
 
+/-- Two cup extensions of the same ordered core, one at each extreme, glue to
+a cup.  The only new triples use both extreme vertices; a second core vertex
+and the one-change law force their color. -/
+theorem isCupSet_insert_two_of_extreme_cup_extensions
+    {n : ℕ} {χ : TripleColoring n}
+    {core : Finset (Fin n)} {x y : Fin n}
+    (hcard : 2 ≤ core.card)
+    (hx : x ∉ core) (hy : y ∉ core)
+    (hleft : ∀ z ∈ core, x < z)
+    (hright : ∀ z ∈ core, z < y)
+    (hcupX : IsCupSet χ (insert x core))
+    (hcupY : IsCupSet χ (insert y core))
+    (hone : OneChangeOn χ (insert x (insert y core))) :
+    IsCupSet χ (insert x (insert y core)) := by
+  have hcoreNonempty : core.Nonempty := Finset.card_pos.mp (by omega)
+  obtain ⟨z₀, hz₀⟩ := hcoreNonempty
+  have hxy : x < y := (hleft z₀ hz₀).trans (hright z₀ hz₀)
+  have hxLe {z : Fin n} (hz : z ∈ insert x (insert y core)) : x ≤ z := by
+    simp only [Finset.mem_insert] at hz
+    rcases hz with rfl | rfl | hz
+    · exact le_rfl
+    · exact hxy.le
+    · exact (hleft z hz).le
+  have hleY {z : Fin n} (hz : z ∈ insert x (insert y core)) : z ≤ y := by
+    simp only [Finset.mem_insert] at hz
+    rcases hz with rfl | rfl | hz
+    · exact hxy.le
+    · exact le_rfl
+    · exact (hright z hz).le
+  have hcoreOfMem {z : Fin n}
+      (hz : z ∈ insert x (insert y core)) (hzx : z ≠ x) (hzy : z ≠ y) :
+      z ∈ core := by
+    simpa [hzx, hzy] using hz
+  intro t hi hj hk
+  have hiNotY : t.i ≠ y := by
+    intro hiy
+    have hyj : y < t.j := by simpa [hiy] using t.hij
+    exact (not_lt_of_ge (hleY hj)) hyj
+  have hjNotX : t.j ≠ x := by
+    intro hjx
+    have hix : t.i < x := by simpa [hjx] using t.hij
+    exact (not_lt_of_ge (hxLe hi)) hix
+  have hjNotY : t.j ≠ y := by
+    intro hjy
+    have hyk : y < t.k := by simpa [hjy] using t.hjk
+    exact (not_lt_of_ge (hleY hk)) hyk
+  have hkNotX : t.k ≠ x := by
+    intro hkx
+    have hjx : t.j < x := by simpa [hkx] using t.hjk
+    exact (not_lt_of_ge (hxLe hj)) hjx
+  have hjCore : t.j ∈ core := hcoreOfMem hj hjNotX hjNotY
+  by_cases hiX : t.i = x
+  · by_cases hkY : t.k = y
+    · obtain ⟨w, hwCore, hwne⟩ := core.exists_mem_ne (by omega) t.j
+      have hxj : x < t.j := by simpa [hiX] using t.hij
+      have hjy : t.j < y := by simpa [hkY] using t.hjk
+      have ht : t = ⟨x, t.j, y, hxj, hjy⟩ := by
+        cases t
+        simp_all
+      have hxMem : x ∈ insert x (insert y core) := Finset.mem_insert_self _ _
+      have hyMem : y ∈ insert x (insert y core) :=
+        Finset.mem_insert_of_mem (Finset.mem_insert_self _ _)
+      have hjMem : t.j ∈ insert x (insert y core) := by simp [hjCore]
+      have hwMem : w ∈ insert x (insert y core) := by simp [hwCore]
+      rcases lt_or_gt_of_ne hwne.symm with hjw | hwj
+      · have hwy : w < y := hright w hwCore
+        have ha : χ ⟨x, t.j, w, hxj, hjw⟩ = Turn.left :=
+          hcupX _ (by simp) (by simp [hjCore]) (by simp [hwCore])
+        have hd : χ ⟨t.j, w, y, hjw, hwy⟩ = Turn.left :=
+          hcupY _ (by simp [hjCore]) (by simp [hwCore]) (by simp)
+        have hall :=
+          (hone hxj hjw hwy hxMem hjMem hwMem hyMem).all_eq_of_outer_eq
+            (ha.trans hd.symm)
+        have hb : χ ⟨x, t.j, y, hxj, hjy⟩ = Turn.left :=
+          hall.1.symm.trans ha
+        rw [ht]
+        exact hb
+      · have hxw : x < w := hleft w hwCore
+        have ha : χ ⟨x, w, t.j, hxw, hwj⟩ = Turn.left :=
+          hcupX _ (by simp) (by simp [hwCore]) (by simp [hjCore])
+        have hd : χ ⟨w, t.j, y, hwj, hjy⟩ = Turn.left :=
+          hcupY _ (by simp [hwCore]) (by simp [hjCore]) (by simp)
+        have hall :=
+          (hone hxw hwj hjy hxMem hwMem hjMem hyMem).all_eq_of_outer_eq
+            (ha.trans hd.symm)
+        have hc : χ ⟨x, t.j, y, hxj, hjy⟩ = Turn.left := by
+          rw [← hall.2.1, ← hall.1, ha]
+        rw [ht]
+        exact hc
+    · have hkCore : t.k ∈ core := hcoreOfMem hk hkNotX hkY
+      exact hcupX t (by simp [hiX]) (by simp [hjCore]) (by simp [hkCore])
+  · have hiCore : t.i ∈ core := hcoreOfMem hi hiX hiNotY
+    by_cases hkY : t.k = y
+    · exact hcupY t (by simp [hiCore]) (by simp [hjCore]) (by simp [hkY])
+    · have hkCore : t.k ∈ core := hcoreOfMem hk hkNotX hkY
+      exact hcupX t (by simp [hiCore]) (by simp [hjCore]) (by simp [hkCore])
+
 /-- The parameterized ordered cup-block statement suggested by the certified
 `3+4`, `4+5`, `5+6`, and `6+7` developments.  It is deliberately a contract:
 proving it uniformly is the remaining mathematical obligation. -/

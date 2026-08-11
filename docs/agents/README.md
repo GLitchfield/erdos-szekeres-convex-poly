@@ -38,6 +38,14 @@ substitutes for either artifact.
    the base revision, workspace fingerprint, objective, exact theorem contract
    when applicable, inputs and hashes, ownership, budget, checks, success
    condition, stop conditions, deliverables, and permitted claim levels.
+   The whole-workspace fingerprint is an admission snapshot, not a global lock
+   on unrelated work.  During an admitted parallel run, the continuing gate is
+   the base revision plus every explicitly frozen input hash.  A worker reports
+   drift in disjoint orchestrator-owned or separately assigned paths but stops
+   only if a frozen input, its owned write set, or the base revision changes.
+   This distinction must be written into packets whose execution overlaps
+   integration work; otherwise routine timing or documentation updates create
+   false stops without improving evidence integrity.
 3. **Inventory approvals.** For every plan expected to take at least two hours,
    identify all foreseeable provider calls, out-of-sandbox commands, installs,
    resource increases, process termination, destructive actions, and external
@@ -89,6 +97,9 @@ A suspended route remains in the Wayfinder with a concrete revival gate.  It
 may be screened cheaply by the Innovation Scout, but it does not regain a
 builder merely because it is unfinished.  The orchestrator reports portfolio
 outcomes by mathematical leverage and evidence level, not by agent activity.
+Independent thought does not mean overlapping high-memory elaboration: only
+one delegated builder runs at a time, while read-only design, falsification,
+and review threads supply the parallel breadth.
 
 ## Estimate calibration
 
