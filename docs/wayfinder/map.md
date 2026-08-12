@@ -91,6 +91,16 @@ revival, discovery, and research-system tracks.
    438-variable dense core, 2,405 semantic leaves, and 2,007 LRAT additions are
    checked through 76 generated chunks.  Its 388 concrete fan branches remain
    Fin-10-specific, so the uniform producer is still the mathematical target.
+   Mining those branches rejects both arbitrary fan extension and maximal-fan
+   growth, including on exact planar controls.  The surviving candidate is
+   synchronization across overlapping ten-point restrictions: a common pivot
+   and direction whose compatible five-fans cover a half-sized side.  This has
+   a noncircular consumer into the thresholded singleton-fan producer.  Its
+   exact abstract `Fin 11` negation is now certificate-replayed UNSAT: 1,881
+   variables, 26,862 clauses, and 479,434 independently checked RUP additions
+   cover all 4,620 side/pivot/direction branches.  This selects a bounded
+   Fin-11 Lean promotion, not the all-`n` synchronization theorem or the
+   restriction/relabeling bridge needed for a uniform producer.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -107,8 +117,15 @@ revival, discovery, and research-system tracks.
    canonical repair now compiles as
    `carrierContainedStrongSix_classification_of_canonical567`: one bad
    residual four-block promotes every mixed carrier-contained strong six into
-   the actual probe family.  In the mixed branch, the profile now compiles to
-   `first.card = second.card = 6`; full normal-form reconstruction remains open.
+   the actual probe family.  The balanced four-grid has a proof-ready
+   three-carrier transversal; packing that transversal with any residual triple
+   forces a residual-touching strong six.  A fixed 22-point carrier extension
+   is certificate-replayed UNSAT, with strong-seven avoidance decisive, but
+   its minimized core depends on 96 carrier colors that are individually
+   flexible under canonical grid provenance.  It is therefore an
+   instance-specific control, not a terminal proof.  In the mixed branch, the
+   full six-rectangle normal form (or its transpose), including pointwise
+   incidence types and `6+6` carrier cardinalities, now compiles.
 3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
    state-567 proof's numerical and structural kernel into a parameterized
    two-carrier/residual-escape theorem and consume it through
@@ -124,8 +141,13 @@ revival, discovery, and research-system tracks.
    A genuinely unequal `5+1` carrier producer now compiles at state `(5,5,6)`:
    it leaves an eight-point residual with at least ten bad triples.  Its first
    all-in-one terminal is equivalent to the desired finite two-side bound and
-   is only a packaging boundary.  The honest next leaf is the generic
-   `(R,B,C,M)=(8,3,1,9)` collision-or-ten-fiber disjunction.
+   is only a packaging boundary.  The honest generic
+   `(R,B,C,M)=(8,3,1,9)` collision-or-ten-fiber disjunction now compiles:
+   either two distinct strong-five deletion witnesses occur, or one witness
+   serves at least ten bad residual triples.  Two explicit local color-leaf
+   interfaces retain the full ordered fourteen-point context, and their
+   compiled consumer recovers the old terminal.  Proving or refuting those two
+   leaves is the next state-556 task.
 4. **Layer-F highest-stratum mutation descent (unrestricted sidecar).**  Test
    and then prove or refute `ThreeStepTopPrimeStratumDropsAboveAt`.  Only exact
    realizable, target-free controls can decide the route; below-threshold
@@ -201,26 +223,33 @@ These are children of the reviewed portfolio, not new top-level routes.
 
 - **T1.A — Fin10 singleton-fan certificate promotion.**  **Completed:** the
   exact `halfPureSingletonFanAtSixFinTen_of_oneChange` theorem compiles.  The
-  remaining child task is replacing its 388 concrete fan branches by a
-  uniform producer argument.
+  synchronized compatible-ten-window candidate survives the exact `n=11`
+  gate with an independently replayed RUP certificate.  The next child task is
+  promoting that exact Fin-11 theorem to Lean; only afterward should the route
+  attempt the restriction/relabeling and overlap-synchronization bridge.
 - **T2.A — balanced canonical-provenance branch.**  The universal four-block
   escape is redundant once rectangle coverage is known, and the bare
-  carrier-contained classification is false.  Canonical provenance now
-  compiles; next construct a three-vertex transversal of the full canonical
-  carrier-only strong-six family and spend packing on it plus residual triples.
+  carrier-contained classification is false.  Canonical provenance compiles;
+  the three-vertex transversal and residual-touching packing theorem are now
+  proof-ready.  Direct promotion of the fixed-extension UNSAT core is expired
+  because its necessary carrier literals are not consequences of the grid.
+  The remaining terminal must couple residual-touching witnesses through a
+  genuinely placement-independent color law.
 - **T2.B — mixed omission-profile terminal.**  Carrier cardinalities `6+6`
-  now compile from the profile alone.  Prove the pointwise row/column type
-  exhaustion and reconstruct the explicit six-rectangle normal form (or its
-  transpose), then run the all-924-interleaving Fin-12 color gate.  Closing
-  only the balanced profile cannot close Thread 2.
+  and the complete pointwise/six-rectangle normal form now compile from the
+  profile alone.  The next gate is the all-interleaving finite color terminal,
+  with any surviving pattern promoted only after its semantic bridge is
+  separated from the structural theorem.
 - **T2.C — decomposability-retention bridge.**  Audit whether ambient
   decomposability can be retained through the packed reducer and restricted to
   the twelve carrier vertices.  If so, test a decomposable-grid color theorem;
   otherwise expire this repair rather than assuming a premise the leaf erased.
 - **T3.A — variable-carrier Pascal repair.**  **Partially completed:** the
   unequal `5+1` carrier system and eight-residual count compile at state 556.
-  The monolithic terminal is strategically inert; prove or refute the
-  collision-or-ten-fiber color leaves before claiming a new Pascal state.
+  The monolithic terminal is strategically inert; the choice-free witness
+  universe, collision-or-ten-fiber theorem, two local leaf interfaces, and
+  their consumer now compile.  Prove or refute those local color leaves before
+  claiming a new Pascal state.
 
 Threads 1--3 are the most direct paths to the exact upper recurrence.  Threads
 4--11 hedge distinct mathematical and formalization failure modes; 12 is
