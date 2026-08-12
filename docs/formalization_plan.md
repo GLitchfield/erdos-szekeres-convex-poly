@@ -2238,3 +2238,49 @@ for bounded controls, and 15--60 minutes for one generic Lean consumer:
   theorem.
 - State 578 remains suspended.  It may re-enter only through the ticket-0010
   revival condition recorded in the Wayfinder map.
+
+### Four-slot structural round results (2026-08-11)
+
+The approved round landed as follows.
+
+- **HP610L-O1 (`file_compiles`).**
+  `halfPureSingletonFanAtSixFinTen_of_oneChange` now compiles from an exact
+  certificate bridge.  The reduced proof has 438 propositional variables,
+  2,405 retained semantic leaves, and 2,007 LRAT additions, split across 76
+  semantic chunks.  Unlike the Fin-9 corollary, this gate is nonvacuous:
+  target-free controls exist.  The remaining uniform task is to replace 195
+  lower and 193 upper concrete Fin-10 branches by a parameterized producer.
+
+- **S567B-O3, repaired to S567BP-O1 (`file_compiles`).**
+  The proposed balanced-grid residual escape was not a new premise: rectangle
+  coverage already supplies it.  The stronger bare classification was exactly
+  refuted by a planar control containing 46 carrier-contained strong sixes.
+  Retaining the actual probe provenance repairs the statement, and
+  `carrierContainedStrongSix_classification_of_canonical567` now compiles.
+  The next balanced leaf must construct a small transversal of this full
+  canonical family and spend deletion packing on residual triples.
+
+- **S567M-O1 proposal; S567MN-O2 (`file_compiles` prefix).**
+  The mixed profile has one explicit six-rectangle normal form or its
+  transpose.  The formal prefix
+  `IsCarrierOnlyOmissionRectangleSystem567.carrier_cards_eq_six_of_mixed`
+  proves that the four area-five and two area-eight rectangles already force
+  both carriers to have cardinality six.  The aggregate degree equations alone
+  were underconstrained; the next formal lemma must prove the pointwise
+  row/column type exhaustion before reconstructing all six rectangles.
+
+- **PTVC-O1 infrastructure, PTVA-O2 terminal audit.**
+  Unequal-carrier residual extraction and its `(5,5,6)` specialization compile:
+  a strong five and one singleton leave an eight-point residual, and
+  no-strong-six forces at least ten bad residual triples.  The first monolithic
+  color terminal is equivalent to the finite `PascalTailTwoSideBound 5 5 6`,
+  so it closes nothing.  The next honest specialization is
+  `(R,B,C,M)=(8,3,1,9)`: either two distinct witnesses occur or one witness
+  serves at least ten probes.  Those two local color leaves, not the packaged
+  terminal, decide whether variable-carrier Pascal lifting progresses.
+
+These results preserve the four-way portfolio: the unrestricted singleton-fan
+base advanced to a theorem, both state-567 profiles became smaller exact
+objects, and the Pascal experiment produced reusable infrastructure while an
+adversarial audit prevented a tautological terminal from being credited as
+progress.
