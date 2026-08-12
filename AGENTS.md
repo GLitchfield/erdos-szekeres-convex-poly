@@ -53,17 +53,25 @@ This repository is an AI-assisted formal mathematics project initialized from
 
 ## Wayfinder
 
-- The canonical map is `docs/wayfinder/map.md`; decision tickets are under
-  `docs/wayfinder/tickets/`.
-- Start strategic work by reading the map and running
-  `python3 scripts/wayfinder_status.py`.
+- The canonical map is `docs/wayfinder/map.md`; the canonical inclusive route
+  registry is `docs/wayfinder/frontier-portfolio.md`; decision tickets are
+  under `docs/wayfinder/tickets/`.
+- Start strategic work by reading the map and frontier portfolio, then run
+  `python3 scripts/wayfinder_status.py` and
+  `python3 scripts/check_frontier_portfolio.py`.
+- Treat portfolio membership and execution scheduling as separate decisions.
+  The portfolio retains every thread with a credible contribution path and a
+  bounded discriminating gate. A work plan selects a temporary execution slate
+  from that registry; slot limits, recent activity, and omission from one slate
+  do not promote, demote, or delete a portfolio thread.
 - Resolve one consequential ticket per session. Use the repository's bounded
   Sol/Fable review before selecting or changing the main route.
 - Launch provider reviews directly with the exact prefix
   `python3 scripts/adversarial_review.py run`. Request out-of-sandbox execution
   for that command; the trusted project rule authorizes this one prefix without
   a repeated prompt after session startup. Do not add a shell wrapper.
-- Keep the map, README, survey, and Lean statement aligned when scope changes.
+- Keep the map, frontier portfolio, README, survey, and Lean statement aligned
+  when scope changes.
 
 ## Multi-agent orchestration
 

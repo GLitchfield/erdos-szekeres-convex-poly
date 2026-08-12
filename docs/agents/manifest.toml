@@ -1,6 +1,7 @@
 schema_version = 1
 orchestrator = "principal_orchestrator"
 wayfinder_map = "docs/wayfinder/map.md"
+frontier_portfolio = "docs/wayfinder/frontier-portfolio.md"
 wayfinder_status = ["python3", "scripts/wayfinder_status.py"]
 file_proof_gate = ["lake", "env", "lean"]
 project_proof_gate = ["lake", "build"]

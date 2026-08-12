@@ -10,10 +10,32 @@ The layers have different jobs:
 
 1. `map.md` is the low-resolution destination, decision index, fog, and scope
    boundary.
-2. `tickets/` stores one sharp decision or investigation per file.
-3. `docs/experiments/`, `data/derived/`, proofs, and source code store evidence.
-4. A project roadmap may narrate milestones, but this map is authoritative for
-   the strategic frontier.
+2. `frontier-portfolio.md` is the canonical inclusive registry of every
+   currently credible progress thread, including gated, parked, suspended, and
+   merged work. It is not an execution backlog.
+3. `tickets/` stores one sharp decision or investigation per file.
+4. `docs/experiments/`, `data/derived/`, proofs, and source code store evidence.
+5. A project roadmap may narrate milestones, but the Wayfinder map and
+   frontier portfolio are authoritative for strategic state.
+
+## Frontier portfolio versus execution slate
+
+The [frontier portfolio](frontier-portfolio.md) answers which threads remain
+potentially valuable and what evidence would advance or expire them. It aims
+for coverage: a credible thread stays recorded even when it is not selected
+for immediate work.
+
+An execution slate answers which small subset should consume the available
+worker slots in a particular approved block. It aims for leverage under current
+dependencies and resource constraints. Formally, the slate is a temporary
+subset of the executable portfolio entries. Agent assignments, slot counts,
+task packets, and wall-time estimates belong to the slate, not to the
+portfolio. Selection does not promote a route, and omission does not demote
+one.
+
+The portfolio's required fields, state transitions, update rules, and
+selection criteria are defined in its own file. Run
+`python3 scripts/check_frontier_portfolio.py` after editing it.
 
 ## Ticket schema
 
@@ -54,8 +76,12 @@ without turning tickets into ordinary to-do lists.
 
 ## Session protocol
 
-1. Read `map.md`, then run `python3 scripts/wayfinder_status.py`.
+1. Read `map.md` and `frontier-portfolio.md`, then run
+   `python3 scripts/wayfinder_status.py` and
+   `python3 scripts/check_frontier_portfolio.py`.
 2. Select the first unclaimed frontier ticket unless the user names another.
+   When planning a multi-thread work block, separately select an execution
+   slate from the portfolio and cite the stable `FP-NN` identifiers.
    Claim it before substantive work.
 3. Resolve one strategic ticket in the session, except explicitly parallel
    research tickets.

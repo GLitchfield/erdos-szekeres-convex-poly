@@ -5,12 +5,14 @@ research.  A **profile** describes how an agent reasons; a **task packet**
 describes one bounded assignment.  Keeping those separate lets us reuse a
 perspective without giving it vague or expanding authority.
 
-The Wayfinder remains the only strategic tracker.  Agent runs do not create a
-second roadmap: transient packets, transcripts, and results belong under the
-ignored `runs/agents/` directory, while durable conclusions are integrated
-into the relevant Wayfinder ticket, experiment note, Lean theorem, or source
-document.  The managed checkout reserves `.agents`, so portable project
-configuration is committed here under `docs/agents/`.
+The Wayfinder remains the only strategic tracker. Its canonical inclusive
+route registry is `docs/wayfinder/frontier-portfolio.md`. Agent runs and
+execution slates do not create a second roadmap: transient packets,
+transcripts, and results belong under the ignored `runs/agents/` directory,
+while durable conclusions are integrated into the portfolio, relevant
+Wayfinder ticket, experiment note, Lean theorem, or source document. The
+managed checkout reserves `.agents`, so portable project configuration is
+committed here under `docs/agents/`.
 
 ## Roles
 
@@ -32,8 +34,10 @@ substitutes for either artifact.
 
 ## Assignment lifecycle
 
-1. **Orient.** Read `docs/wayfinder/map.md`, run the Wayfinder status command,
-   and identify the consequential ticket served by the work.
+1. **Orient.** Read `docs/wayfinder/map.md` and
+   `docs/wayfinder/frontier-portfolio.md`, run the Wayfinder status and
+   portfolio checks, and identify the `FP-NN` entry and consequential ticket
+   served by the work.
 2. **Admit and freeze.** The orchestrator records an immutable task packet with
    the base revision, workspace fingerprint, objective, exact theorem contract
    when applicable, inputs and hashes, ownership, budget, checks, success
@@ -114,6 +118,15 @@ labels. Multi-item and multi-hour plans report an outcome for every thread,
 including threads that were skipped, superseded, or stopped by another result.
 
 ## Route-portfolio rule
+
+The canonical portfolio is
+`docs/wayfinder/frontier-portfolio.md`. It is an inclusive mathematical and
+research-system inventory, not the list of agents currently running. Before
+each bounded batch, the orchestrator selects a temporary execution slate from
+its executable entries using leverage, readiness, independence, information
+gain, cost, and focus-expiry considerations. The slate and its task packets
+record scheduling; they do not define portfolio membership. Results update the
+evidence, obstruction, gate, and state of the stable portfolio entry in place.
 
 Substantial mathematical batches should exploit independent parallel thought,
 not only parallel execution of one route.  By default, pair the nearest formal

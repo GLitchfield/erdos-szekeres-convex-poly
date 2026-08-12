@@ -61,19 +61,26 @@ sharpness construction of size `2^(n-2)`.
 
 ## Open frontier
 
-### Active fourteen-thread portfolio (2026-08-11)
+### Frontier portfolio snapshot (2026-08-12)
+
+The canonical, inclusive registry is
+[`frontier-portfolio.md`](frontier-portfolio.md). It retains every currently
+credible progress thread, including work that is gated, parked, suspended, or
+merged. The numbered summaries below are a navigational snapshot; entry fields,
+current evidence, next gates, and state transitions are maintained in the
+registry.
 
 The project no longer allocates an entire research block to one unresolved
-leaf.  The current portfolio deliberately separates direct recurrence
-producers, the first concrete decomposable obstruction, uniformization,
-unrestricted-bridge work, and bounded certificate engineering.  The latest
+leaf. The portfolio deliberately separates direct recurrence producers, the
+first concrete decomposable obstruction, uniformization, unrestricted-bridge
+work, and bounded certificate engineering. The latest
 route-selection review is
 `runs/reviews/20260811-portfolio-plan/output/REPORT.md` (SHA-256
 `78121e80e15715197a25641a7d489ae007a67afb27479c4af2f95b63da85c428`).
 It is reused here because the fourteen routes below elaborate the reviewed
-portfolio rather than changing its mathematical direction.  Threads 1--6 are
-the current execution front; Threads 7--14 are independently gated reserve,
-revival, discovery, and research-system tracks.
+portfolio rather than changing its mathematical direction. Work blocks select
+a temporary execution slate from this inventory; the number of slots and the
+current slate do not define which threads remain valuable.
 
 1. **Predecessor half-subset producer (primary unrestricted route).**  Seek
    `PredecessorHalfSubsetAt k` directly.  Integral bicoloring and fractional

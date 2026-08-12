@@ -815,19 +815,20 @@ sets.
   counterexample refutes preservation of two signed triangle anchors.
 - `ErdosSzekeres/Extremal.lean` constructs the classical `2^(n-2)`-point
   lower-bound examples for every `n ≥ 3`.
-- `docs/formalization_plan.md` records the intermediary lemma ladder from the
-  sweep model to the exact conjecture and the active fourteen-thread portfolio;
-  the first three threads remain the direct recurrence front, while reserve,
-  revival, lemma-forge, and research-system work have explicit promotion and
-  expiry gates.
+- `docs/wayfinder/frontier-portfolio.md` is the canonical inclusive registry of
+  every currently valuable progress thread, with explicit evidence, consumer,
+  next-gate, and expiry fields. Temporary execution slates are selected from it
+  but do not define membership.
+- `docs/formalization_plan.md` records the intermediary lemma ladder and
+  historical execution plans from the sweep model to the exact conjecture.
 - `docs/literature_review.md` records the initial research synthesis.
 - `docs/bibliography.md` is the living source ledger.
 - `docs/agents/README.md` defines the repository's bounded multi-agent
   orchestration protocol, durable specialist profiles, and task/result
   evidence contracts. The Wayfinder remains the sole strategic tracker.
-- `docs/wayfinder/map.md` is the canonical strategic index. Ticket 0002 owns
-  the generic E3 route selection, while claimed ticket 0010 owns the exact
-  state-578 side branch.
+- `docs/wayfinder/map.md` is the canonical strategic index, paired with the
+  frontier portfolio above. Ticket 0002 owns the generic E3 route selection,
+  while claimed ticket 0010 owns the exact state-578 side branch.
 
 ## Build
 

@@ -56,8 +56,11 @@ and collaborative in explaining why a route is being pursued or retired.
 
 Treat parallel mathematical exploration as a first-class advantage of the
 agent system, not merely a way to accelerate one proof script.  When the
-frontier admits independent attacks, maintain a portfolio with three distinct
-functions:
+frontier admits independent attacks, maintain the inclusive canonical registry
+in `docs/wayfinder/frontier-portfolio.md`, then select a separate temporary
+execution slate. Do not infer registry membership from the number of slots or
+which agents happen to be active. The slate should normally cover three
+distinct functions:
 
 1. one implementation stream aimed at the nearest compiling theorem;
 2. one structural stream aimed at a different load-bearing bridge; and
@@ -83,7 +86,9 @@ three agents and call it route diversity.  Prefer threads with different
 failure modes and different downstream consumers, keep write sets disjoint,
 and serialize evidence promotion.  At every integration boundary, report
 which routes advanced, which stopped, how their load-bearingness changed, and
-whether a newly discovered attack should enter the next portfolio.
+whether a newly discovered attack should enter the canonical portfolio. Update
+the stable entry in place; keep slot assignments and task packets in the
+execution slate.
 
 ## Goal-driven lemma forge
 

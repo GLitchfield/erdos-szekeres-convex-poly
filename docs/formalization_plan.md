@@ -1278,9 +1278,15 @@ smaller semantic modules; more projection variants are not an active repair.
 
 ## 2026-08-11 fourteen-thread forward plan
 
-This section is the detailed execution memory for the fourteen-thread
-portfolio in the Wayfinder map.  Threads 1--6 are the initial execution front;
-7--14 are staged reserve, revival, discovery, and research-system tracks.  The
+> This section is historical execution memory. The live, canonical inclusive
+> registry is [`docs/wayfinder/frontier-portfolio.md`](wayfinder/frontier-portfolio.md).
+> Portfolio membership is independent of any temporary execution slate; the
+> old “initial execution front” language below records that particular plan,
+> not current priority or value.
+
+This section records the detailed execution plans that first established the
+fourteen-thread portfolio. Threads 1--6 formed that initial execution slate;
+7--14 were staged reserve, revival, discovery, and research-system tracks. The
 plans are intentionally branched: a failed candidate is
 supposed to return a precise counterexample or expiry decision instead of
 turning into an unbounded repair loop.  Computational evidence is never a

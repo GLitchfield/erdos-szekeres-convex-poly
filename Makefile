@@ -111,6 +111,7 @@ test: check lean
 	@python3 scripts/check_rank_profile_realization.py >/dev/null
 	@python3 scripts/check_agent_orchestration.py >/dev/null
 	@python3 scripts/wayfinder_status.py >/dev/null
+	@python3 scripts/check_frontier_portfolio.py >/dev/null
 	@python3 -m py_compile scripts/adversarial_review.py \
 		scripts/analyze_cap_failure_charge_matching.py \
 		scripts/analyze_packed_escape_sharp_models.py \
@@ -240,7 +241,8 @@ test: check lean
 		scripts/verify_packed_middle_escape_model.py \
 		scripts/verify_middle_bridge_realization.py \
 		scripts/verify_repeated_residue_model.py \
-		scripts/wayfinder_status.py
+		scripts/wayfinder_status.py \
+		scripts/check_frontier_portfolio.py
 
 test-exhaustive: test
 	@python3 scripts/check_span_dominance_quotients.py \
@@ -258,6 +260,7 @@ test-exhaustive: test
 
 wayfinder:
 	@python3 scripts/wayfinder_status.py
+	@python3 scripts/check_frontier_portfolio.py
 
 review-doctor:
 	@python3 scripts/adversarial_review.py doctor

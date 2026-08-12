@@ -68,6 +68,13 @@ def validate_manifest(errors: list[str]) -> dict[str, Any]:
 
     if manifest.get("schema_version") != 1:
         errors.append("manifest schema_version must be 1")
+    portfolio = manifest.get("frontier_portfolio")
+    if portfolio != "docs/wayfinder/frontier-portfolio.md":
+        errors.append(
+            "manifest frontier_portfolio must be docs/wayfinder/frontier-portfolio.md"
+        )
+    elif not (ROOT / portfolio).is_file():
+        errors.append("manifest frontier_portfolio does not exist")
     policy = manifest.get("policy")
     if not isinstance(policy, dict):
         errors.append("manifest must contain a [policy] table")
