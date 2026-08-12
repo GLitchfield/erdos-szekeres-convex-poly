@@ -1459,16 +1459,18 @@ invariant.
 
 ### Thread 4: Layer-F highest-stratum mutation descent
 
-**Destination.**  Prove or refute the frozen three-step target-free realizable
-drop in `StratifiedPrimeCoreRank`.  A proof supplies well-founded normalization
-to recursively decomposable colorings; a counterexample prevents further work
-on a false unrestricted bridge.
+**Destination.**  Prove or refute a three-step target-free realizable strict
+deletion of the complete decomposition-prime family.  The stronger producer
+`ThreeStepPrimeCoreFamilyShrinksAboveAt` now has a compiling consumer through
+`StratifiedPrimeCoreRank`, well-founded normalization, and `SweepExactUpperAt`.
+A counterexample prevents further work on a false unrestricted bridge.
 
 **Stage 4.1: decisive realizable falsification.**
 
-- Freeze `ThreeStepTopPrimeStratumDropsAboveAt` with the exact threshold,
-  target-free intermediate states, realizability at every endpoint, and no
-  monotonicity requirement on intermediate ranks.
+- Freeze `ThreeStepPrimeCoreFamilyShrinksAboveAt` with the exact threshold,
+  target-free intermediate states, realizability at every endpoint, strict
+  inclusion of complete endpoint prime-core families, and no monotonicity
+  requirement on intermediate ranks.
 - Extend the bounded exact-rational mutation graph controls only within a
   predeclared limit.  Search specifically for a target-free closed component
   or a vertex with no three-step decrease in its highest affected positive
@@ -1481,11 +1483,13 @@ on a false unrestricted bridge.
 
 - Use the compiling locality theorem to characterize all prime supports whose
   status can change under one flipped triple.
-- Prove structural inequalities comparing created and destroyed supports at
-  the highest changed stratum.  Permit temporary lower-stratum increases and
-  rank plateaus because exact seven-point controls require three-step macros.
-- Seek a geometric circuit-flip choice rule that forces the endpoint loss and
-  preserves target avoidance along a path of length at most three.
+- Prove a local-to-ambient lifting law that both destroys a selected prime core
+  and creates no ambient prime core.  Restricted-core decomposability alone is
+  insufficient: the lift must preserve sweep realizability and target-freedom
+  on supports crossing the restriction.
+- Seek a geometric circuit-flip choice rule that supplies this creation-free
+  endpoint along a path of length at most three.  Permit temporary rank
+  increases and plateaus.
 
 **Stage 4.3: normalization consumer.**
 
@@ -2290,3 +2294,41 @@ base advanced to a theorem, both state-567 profiles became smaller exact
 objects, and the Pascal experiment produced reusable infrastructure while an
 adversarial audit prevented a tautological terminal from being credited as
 progress.
+
+### Frontier-cycle four-lane results (2026-08-12)
+
+The first execution block selected from the canonical frontier portfolio
+landed as follows.
+
+- **HPU11L-O4 (`computational_evidence`; resource stop).**
+  The exact Fin11 synchronized-fan CNF and both its full and causal LRAT traces
+  replay independently.  The causal core still has 19,207 semantic leaves and
+  435,540 additions; monolithic mathlib `FromLRAT` exhausted the 16 GiB gate.
+  No Fin11 theorem is claimed.  The next action is proof mining or checkpointed
+  kernel replay before semantic-bridge generation.
+
+- **S567MI-G1 (`computational_evidence`).**
+  The mixed normal-form all-interleaving terminal is UNSAT in two independent
+  formulations.  The quotient-free proof replays 134,821 RUP additions; the
+  Aut-768 cross-section proof replays 2,958,768.  Both clause-origin and damaged
+  proof controls pass.  Promote the quotient-free finite theorem and then prove
+  the exact transport from `mixed_normalForm`.
+
+- **PTV556-G2 and PTV556-T2 (`computational_evidence`).**
+  The two explicit state-556 leaves are separately UNSAT.  The distinct-witness
+  formula replays a 16,434-addition certificate; the genuine ten-distinct-block
+  fiber formula replays 14,315 additions.  Promote the leaves separately to
+  Lean and only then use their existing compiling conjunction consumer.
+
+- **LF-O1 at the consumer/evidence boundary (`file_compiles`).**
+  `ThreeStepPrimeCoreFamilyShrinksAboveAt` and its complete consumer into
+  stratified descent, target-free normalization, and `SweepExactUpperAt`
+  compile.  Independent bounded replay finds strict whole-family deletion
+  within radius three for every frozen Fin7 source and selected hard Fin8
+  extension.  The open geometric producer must lift a local mutation without
+  creating any ambient prime core or crossing strong target.
+
+The block validates the portfolio workflow: three direct/generalization lanes
+advanced independently while the unrestricted hedge gained a stronger exact
+interface.  Fin11 did not consume the remaining lanes after its resource stop;
+the serialized builder moved to state 567 and then both state-556 leaves.

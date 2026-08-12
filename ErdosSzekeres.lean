@@ -16,6 +16,7 @@ public import ErdosSzekeres.DecompositionPrimeNormalization
 public import ErdosSzekeres.DecompositionPrimeMutationRank
 public import ErdosSzekeres.DecompositionPrimeMutationLocality
 public import ErdosSzekeres.DecompositionPrimeMutationPathLocality
+public import ErdosSzekeres.DecompositionPrimeMutationFamily
 public import ErdosSzekeres.DecompositionPrimeUncrossing
 public import ErdosSzekeres.StrongPredecessorBicoloring
 public import ErdosSzekeres.PredecessorMaximumSupport

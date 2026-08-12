@@ -219,15 +219,20 @@ that deserves independent retention and scheduling consideration.
 - **Model tier:** sweep-realizable colorings for the uniform claim; bounded
   controls also cover abstract `OneChangeOn` colorings.
 - **Best evidence:** the generic consumer into `PredecessorHalfSubsetAt`
-  compiles; exact Fin8 and nonvacuous Fin10 fan theorems compile; the complete
+  compiles; exact Fin8 and nonvacuous Fin10 fan theorems compile.  The complete
   Fin11 synchronized-fan negation has independently replayed computational
-  evidence but is not yet kernel-checked.
+  evidence through both the 479,434-addition full LRAT and a 435,540-addition
+  causal core.  A direct mathlib `FromLRAT` promotion exhausted the 16 GiB gate,
+  so no Fin11 Lean theorem is claimed.
 - **Downstream consumer:** `sweepExactUpperAt_of_predecessorHalfSubset`, then
   the unrestricted exact upper bound.
-- **Open obstruction:** turn compatible ten-point singleton fans into one
+- **Open obstruction:** compact or checkpoint the Fin11 proof enough for a
+  kernel gate, then turn compatible ten-point singleton fans into one
   half-sized fan with a common pivot and direction for arbitrary size.
-- **Next discriminating gate:** promote the exact Fin11 synchronized-fan
-  theorem to Lean, then isolate the restriction/relabeling overlap bridge.
+- **Next discriminating gate:** obtain a radically smaller certified Fin11
+  trace or a streaming/checkpointed Lean checker before generating the semantic
+  bridge; only after it compiles, isolate the restriction/relabeling overlap
+  theorem.
 - **Success payoff:** a credible uniform producer for the unrestricted route.
 - **Expiry or revival gate:** a checked realizable target-free counterexample
   to synchronized compatible fans retires this producer; abstract-only failure
@@ -247,16 +252,20 @@ that deserves independent retention and scheduling consideration.
   an explicit bridge.
 - **Best evidence:** probe reuse, carrier normalization, omission rectangles,
   area profiles, canonical provenance, and the full mixed six-rectangle normal
-  form compile.  A three-carrier transversal and residual-touching escape are
-  proof-ready proposals.  A fixed 22-point extension is computationally UNSAT,
-  but its minimized core is instance-specific.
+  form compile.  The all-interleaving mixed color terminal is independently
+  certified UNSAT in both an all-orders encoding and a separately implemented
+  Aut-768 cross-section encoding; this is computational evidence, not yet a
+  Lean theorem.  A three-carrier transversal and residual-touching escape are
+  proof-ready proposals.
 - **Downstream consumer:** the packed state-567 reducer and ultimately the
   uniform decomposable exact upper theorem.
-- **Open obstruction:** derive a placement-independent color contradiction
-  from either the balanced residual-touching family or the compiled mixed
-  normal form.
-- **Next discriminating gate:** run the all-interleaving mixed-normal-form color
-  gate while separately screening genuinely relational balanced escape laws.
+- **Open obstruction:** promote the placement-independent mixed terminal and
+  its relabeling consumer to Lean; the balanced residual-touching family still
+  lacks a relational color law.
+- **Next discriminating gate:** promote the quotient-free mixed certificate
+  and exact structural transport to
+  `mixedCarrierOnlyOmissionNormalForm_forces_target567`; in parallel planning,
+  screen only genuinely relational balanced escape laws.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** a full-context target-free model retires the
   affected terminal.  Fixed-color UNSAT cores do not advance the general leaf
@@ -274,13 +283,18 @@ that deserves independent retention and scheduling consideration.
   producers, with each color terminal stated separately.
 - **Best evidence:** generic seed cover, division-free collision/large-fiber
   counting, the state-567 specialization, unequal carriers, and the exact
-  state-556 collision-or-ten-fiber normalization compile.
+  state-556 collision-or-ten-fiber normalization compile.  The two separate
+  Fin14 leaf negations are now independently RUP-certified UNSAT: the distinct-
+  witness gate uses 16,434 additions and the genuine ten-distinct-block fiber
+  gate uses 14,315 additions.  Both remain computational evidence.
 - **Downstream consumer:** `PascalTailTwoSideBound`, then the uniform
   decomposable recurrence.
-- **Open obstruction:** the two local state-556 color leaves—distinct
-  strong-five witnesses and one witness serving ten bad triples.
-- **Next discriminating gate:** independently prove or exactly falsify those
-  two leaves in the full ordered fourteen-point context.
+- **Open obstruction:** promote both exact state-556 color leaves through Lean
+  semantic bridges and consume them through the compiling witness-reuse
+  reduction.
+- **Next discriminating gate:** kernel-promote the smaller distinct-witness
+  leaf first, then the ten-fiber leaf with its exact distinct-block cardinality
+  bridge; finally rebuild their existing conjunction consumer.
 - **Success payoff:** validate the residual mechanism at an adjacent parameter
   state and expose a credible uniform Pascal theorem.
 - **Expiry or revival gate:** exact countermodels to both leaves, or proof that
@@ -298,14 +312,22 @@ that deserves independent retention and scheduling consideration.
 - **Model tier:** sweep-realizable target-free colorings and single-triple
   mutation paths.
 - **Best evidence:** prime-core ranks, their decomposable characterization, and
-  locality of at-most-three mutation macros compile; rank-dropping existence is
-  only a proposal with bounded controls.
+  locality of at-most-three mutation macros compile.  The stronger
+  `ThreeStepPrimeCoreFamilyShrinksAboveAt` producer now has a compiling consumer
+  all the way to `SweepExactUpperAt`.  Its complete below-threshold abstract
+  surrogate survives independently replayed controls: all 13,248 Fin7 sources
+  and 2,158 selected Fin8 hard extensions delete prime cores without creating
+  any within radius three.  Producer existence at the threshold remains open.
 - **Downstream consumer:** `TargetReflectingDecomposableNormalizationAt`, then
   any uniform decomposable exact theorem.
-- **Open obstruction:** prove that a target-free macro of length at most three
-  drops the highest nonzero prime stratum.
-- **Next discriminating gate:** search the exact realizable target-free graph at
-  the first theorem-relevant threshold for a closed component or local minimum.
+- **Open obstruction:** construct a local-to-ambient mutation macro that
+  preserves sweep realizability and target-freedom on crossing supports while
+  preventing every new ambient prime core; restricted-core decomposability is
+  insufficient.
+- **Next discriminating gate:** freeze one exact creation-free ambient lifting
+  criterion, test it on the rational positive control and the finite hard
+  paths, then attempt the first theorem-relevant threshold only if the
+  criterion survives.
 - **Success payoff:** an unrestricted-to-decomposable reduction independent of
   the half-subset producer.
 - **Expiry or revival gate:** a realizable target-free closed component or
@@ -426,15 +448,19 @@ that deserves independent retention and scheduling consideration.
 - **State:** gated.
 - **Model tier:** fixed finite state-567 ordered colorings, with independent
   semantic reconstruction and certificate replay.
-- **Best evidence:** broad exact searches support the packed leaves, but no
-  state-567 terminal certificate is kernel-checked; fixed balanced cores have
-  proved too instance-specific for promotion.
+- **Best evidence:** the all-interleaving mixed normal-form terminal is
+  independently certified UNSAT by two semantically distinct encodings; the
+  smaller authoritative proof has 134,821 RUP additions.  No state-567 terminal
+  certificate is kernel-checked, and fixed balanced cores remain too
+  instance-specific for promotion.
 - **Downstream consumer:** one exact leaf of `FP-02` or `FP-05`, or a symbolic
   lemma returned to `FP-02`, `FP-03`, or `FP-05`.
-- **Open obstruction:** choose a finite target whose hypotheses match a real
-  structural leaf and whose core is not dominated by fixed colors.
-- **Next discriminating gate:** activate only after a structural lane stalls,
-  selecting the smallest profile-aware terminal.
+- **Open obstruction:** translate the quotient-free mixed certificate into a
+  tractable kernel proof and connect its twelve labels to the compiling mixed
+  structural normal form.
+- **Next discriminating gate:** promote the authoritative mixed encoding before
+  running another state-567 search; reactivate discovery only if that semantic
+  bridge fails for a structural reason.
 - **Success payoff:** a finite branch closure or a trustworthy pattern miner.
 - **Expiry or revival gate:** resource growth, an unbridgeable semantic core,
   or instance-specific units park the certificate; a new rigid normal form can
@@ -515,21 +541,24 @@ that deserves independent retention and scheduling consideration.
 - **Model tier:** project process; it never constitutes mathematical evidence
   for the exact formula.
 - **Best evidence:** immutable packets, outcome contracts, serialized builders,
-  independent certificate checks, and empirical timing records operate in the
-  repository.  This frontier portfolio is itself part of that infrastructure.
+  independent certificate checks, empirical timing records, and the closed
+  portfolio execution cycle operate in the repository.  This four-lane run
+  preserved mathematical breadth while serializing every heavy builder and
+  exposed certificate size—not thread scheduling—as the Fin11 blocker.
 - **Downstream consumer:** all mathematical entries, through safer and broader
   execution.
 - **Open obstruction:** preserve useful breadth without allowing process work
   or scheduling metadata to become a competing mathematical roadmap.
-- **Next discriminating gate:** validate this registry, use stable IDs in the
-  next execution plan, and measure whether selection and reporting remain
-  synchronized with evidence.
+- **Next discriminating gate:** add a bounded proof-mining/checkpoint experiment
+  for the Fin11 435,540-step core, then verify that the next slate is selected
+  only after this evidence reconciliation.
 - **Success payoff:** faster route comparison, fewer repeated dead ends, and a
   durable memory of all potentially valuable work.
 - **Expiry or revival gate:** schedule process work only for a measured
   bottleneck or demonstrated evidence failure; otherwise return the slot to a
   mathematical thread.
-- **Children:** none.
+- **Children:** `FP-14.A` large-certificate proof mining and checkpointed Lean
+  replay.
 
 ## Current subthreads
 
@@ -537,20 +566,30 @@ Subthreads are tracked here because they are independently useful work units,
 but they inherit the contribution path and strategic disposition of their
 parent unless promoted.
 
-- **FP-01.A — Synchronized singleton fans.**  Promote the exact Fin11
-  certificate, then prove restriction/relabeling and compatible-window
-  synchronization.  A realizable target-free counterexample expires it.
+- **FP-01.A — Synchronized singleton fans.**  The exact Fin11 CNF and causal
+  LRAT core replay independently, but monolithic `FromLRAT` exceeds the 16 GiB
+  gate.  Mine a much smaller trace or checkpoint the kernel replay, then prove
+  restriction/relabeling and compatible-window synchronization.  A realizable
+  target-free counterexample expires it.
 - **FP-02.A — Balanced canonical transversal.**  The three-carrier transversal
   and residual-touching packing conclusion are proof-ready.  The next invariant
   must be placement-independent; fixed carrier signatures are expired.
 - **FP-02.B — Mixed omission normal form.**  The complete structural theorem
-  compiles.  The next gate is the all-interleaving color terminal.
+  compiles and the all-interleaving color terminal is dual-encoding certified
+  UNSAT.  The next gate is the quotient-free Lean certificate and exact
+  relabeling consumer.
 - **FP-02.C — Decomposability retention.**  Determine whether the packed
   reducer retains ambient decomposability strongly enough to restrict it to the
   twelve carrier vertices before using decomposable-only exclusions.
-- **FP-03.A — Variable-carrier state 556.**  Prove or refute the distinct-
-  witness and ten-fiber local color leaves exposed by the compiling incidence
-  theorem.
+- **FP-03.A — Variable-carrier state 556.**  Both the distinct-witness and
+  genuine ten-distinct-block fiber leaf negations are independently certified
+  UNSAT.  Promote them separately to Lean, then apply the compiling incidence
+  consumer.
+- **FP-14.A — Large-certificate kernel replay.**  The Fin11 causal core remains
+  435,540 additions and OOMs in monolithic `FromLRAT`.  Compare certified proof
+  mining, solver-trace replacement, and checkpointed/streaming Lean replay
+  under fixed semantic hashes; retire any architecture that cannot beat the
+  16 GiB gate without weakening kernel trust.
 
 ## Historical register
 

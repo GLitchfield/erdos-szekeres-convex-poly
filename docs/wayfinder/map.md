@@ -103,11 +103,14 @@ current slate do not define which threads remain valuable.
    synchronization across overlapping ten-point restrictions: a common pivot
    and direction whose compatible five-fans cover a half-sized side.  This has
    a noncircular consumer into the thresholded singleton-fan producer.  Its
-   exact abstract `Fin 11` negation is now certificate-replayed UNSAT: 1,881
-   variables, 26,862 clauses, and 479,434 independently checked RUP additions
-   cover all 4,620 side/pivot/direction branches.  This selects a bounded
-   Fin-11 Lean promotion, not the all-`n` synchronization theorem or the
-   restriction/relabeling bridge needed for a uniform producer.
+   exact abstract `Fin 11` negation is certificate-replayed UNSAT: 1,881
+   variables, 26,862 clauses, and 479,434 independently checked additions cover
+   all 4,620 side/pivot/direction branches.  A causal core still retains 19,207
+   semantic leaves and 435,540 additions; monolithic mathlib `FromLRAT`
+   exhausted the 16 GiB gate.  The next bounded action is proof mining or
+   checkpointed kernel replay, not another direct promotion attempt.  Neither
+   the all-`n` synchronization theorem nor its restriction/relabeling bridge is
+   proved.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -132,7 +135,12 @@ current slate do not define which threads remain valuable.
    flexible under canonical grid provenance.  It is therefore an
    instance-specific control, not a terminal proof.  In the mixed branch, the
    full six-rectangle normal form (or its transpose), including pointwise
-   incidence types and `6+6` carrier cardinalities, now compiles.
+   incidence types and `6+6` carrier cardinalities, now compiles.  Its exact
+   all-interleaving color terminal is independently certified UNSAT twice: an
+   authoritative quotient-free encoding replays 134,821 RUP additions, and an
+   independent Aut-768 cross-section encoding replays 2,958,768.  The next
+   task is Lean promotion plus the structural relabeling consumer; the packed
+   22-point branch remains unclaimed until that theorem compiles.
 3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
    state-567 proof's numerical and structural kernel into a parameterized
    two-carrier/residual-escape theorem and consume it through
@@ -153,8 +161,11 @@ current slate do not define which threads remain valuable.
    either two distinct strong-five deletion witnesses occur, or one witness
    serves at least ten bad residual triples.  Two explicit local color-leaf
    interfaces retain the full ordered fourteen-point context, and their
-   compiled consumer recovers the old terminal.  Proving or refuting those two
-   leaves is the next state-556 task.
+   compiled consumer recovers the old terminal.  Both exact Fin14 leaf
+   negations are independently certified UNSAT: the distinct-witness proof has
+   16,434 RUP additions, and the genuine ten-distinct-block fiber proof has
+   14,315.  They are now separate Lean certificate targets; the state-556
+   terminal is not claimed until both bridges compile.
 4. **Layer-F highest-stratum mutation descent (unrestricted sidecar).**  Test
    and then prove or refute `ThreeStepTopPrimeStratumDropsAboveAt`.  Only exact
    realizable, target-free controls can decide the route; below-threshold
@@ -163,7 +174,14 @@ current slate do not define which threads remain valuable.
    remains conditional on a uniform decomposable upper theorem.  Lean now
    proves that any at-most-three target-free mutation macro localizes every
    endpoint prime-core change to supports containing one of at most three
-   changed triples; existence of a rank-dropping macro remains open.
+   changed triples.  The stronger creation-free producer
+   `ThreeStepPrimeCoreFamilyShrinksAboveAt` has a compiling consumer through
+   stratified descent, target-free normalization, and `SweepExactUpperAt`.
+   Independent bounded replay finds strict whole-family deletion within radius
+   three for all 13,248 target-free indecomposable Fin7 signotopes and 2,158
+   selected hard Fin8 extensions.  Existence of a realizable threshold macro
+   remains open; the missing lemma must preserve target-freedom on crossing
+   supports and prevent creation of ambient prime cores.
 5. **State-567 balanced five-class leaves (parallel decomposable branch).**
    Prove the mechanical five-way exhaustion, then attack the `2+4`, `3+3`,
    `4+2`, left-right residue, and right-left residue terminal classes.  Pair
@@ -219,8 +237,8 @@ current slate do not define which threads remain valuable.
     chunking, immutable task packets, approval preflight, measured time
     calibration, tool/skill cataloging, and parallel-route orchestration when
    those changes reduce proof latency or evidence mistakes.  Process work is
-   never credited as mathematical completion.  The current ledger has 261
-   completed rows, median actual/midpoint ratio `0.229`, and only `13.4%`
+   never credited as mathematical completion.  The current ledger has 269
+   completed rows, median actual/midpoint ratio `0.240`, and only `15.2%`
    inside the old forecast ranges; future estimates must use category- and
    size-conditioned empirical bands rather than raw task-list sums.
 
@@ -231,9 +249,10 @@ These are children of the reviewed portfolio, not new top-level routes.
 - **T1.A — Fin10 singleton-fan certificate promotion.**  **Completed:** the
   exact `halfPureSingletonFanAtSixFinTen_of_oneChange` theorem compiles.  The
   synchronized compatible-ten-window candidate survives the exact `n=11`
-  gate with an independently replayed RUP certificate.  The next child task is
-  promoting that exact Fin-11 theorem to Lean; only afterward should the route
-  attempt the restriction/relabeling and overlap-synchronization bridge.
+  gate with independently replayed full and causal LRAT certificates.  Direct
+  `FromLRAT` promotion OOMs under 16 GiB, so the next child task is proof mining
+  or checkpointed kernel replay; only after a compiling Fin11 theorem should
+  the route attempt restriction/relabeling and overlap synchronization.
 - **T2.A — balanced canonical-provenance branch.**  The universal four-block
   escape is redundant once rectangle coverage is known, and the bare
   carrier-contained classification is false.  Canonical provenance compiles;
@@ -243,10 +262,10 @@ These are children of the reviewed portfolio, not new top-level routes.
   The remaining terminal must couple residual-touching witnesses through a
   genuinely placement-independent color law.
 - **T2.B — mixed omission-profile terminal.**  Carrier cardinalities `6+6`
-  and the complete pointwise/six-rectangle normal form now compile from the
-  profile alone.  The next gate is the all-interleaving finite color terminal,
-  with any surviving pattern promoted only after its semantic bridge is
-  separated from the structural theorem.
+  and the complete pointwise/six-rectangle normal form compile from the profile
+  alone.  Two independent encodings now certify the all-interleaving terminal
+  UNSAT.  The next gate is the quotient-free Lean certificate plus its exact
+  structural relabeling consumer.
 - **T2.C — decomposability-retention bridge.**  Audit whether ambient
   decomposability can be retained through the packed reducer and restricted to
   the twelve carrier vertices.  If so, test a decomposable-grid color theorem;
@@ -255,8 +274,13 @@ These are children of the reviewed portfolio, not new top-level routes.
   unequal `5+1` carrier system and eight-residual count compile at state 556.
   The monolithic terminal is strategically inert; the choice-free witness
   universe, collision-or-ten-fiber theorem, two local leaf interfaces, and
-  their consumer now compile.  Prove or refute those local color leaves before
-  claiming a new Pascal state.
+  their consumer compile.  Both exact local leaf negations are independently
+  certified UNSAT; promote them separately to Lean before claiming the finite
+  state-556 terminal.
+- **T14.A — large-certificate kernel replay.**  The Fin11 causal core remains
+  435,540 additions and defeats monolithic `FromLRAT`.  Compare proof mining,
+  an alternative certified trace, and checkpointed or streaming Lean replay
+  without weakening the semantic hashes or kernel trust.
 
 Threads 1--3 are the most direct paths to the exact upper recurrence.  Threads
 4--11 hedge distinct mathematical and formalization failure modes; 12 is
@@ -280,14 +304,17 @@ suspended under ticket 0010 until its stated revival gate is met.
   bridge: equality above one positive stratum plus a strict prime-core loss at
   that stratum strictly decreases the stratified rank, and freezes the exact
   three-step geometric contract that feeds the threshold-normalization
-  consumer. A complete seven-point mutation census and all
-  2,158 selected hard eight-point promotions find a smaller
-  highest-cardinality-first endpoint within three target-free abstract
-  mutations; exactly two seven-point sources require all three, and some paths
-  increase at intermediate steps. These are below-threshold computational
-  controls, not realizable descent proofs. The hard Layer-F target is a
-  three-step target-free realizable drop in the highest affected prime stratum
-  above the threshold, or a realizable closed component refuting that proposal.
+  consumer.  The stronger creation-free interface
+  `ThreeStepPrimeCoreFamilyShrinksAboveAt` and its consumer into the exact sweep
+  upper theorem now compile.  A complete seven-point mutation census and all
+  2,158 selected hard eight-point promotions find an endpoint whose complete
+  prime-core family is a strict subset within three target-free abstract
+  mutations; exactly two seven-point sources require all three. These are
+  below-threshold computational controls, not realizable descent proofs. The
+  hard Layer-F target is now an ambient lifting law that simultaneously
+  preserves sweep realizability, excludes crossing strong targets, and prevents
+  creation of every ambient prime core, or a realizable threshold obstruction
+  refuting that proposal.
   A genuinely independent unrestricted bridge is now also admitted:
   `StrongPredecessorBicoloringAt k` asks for a two-coloring whose classes avoid
   strong `(k-1)`-polygons. Its `SweepExactUpperAt (k-1) → SweepExactUpperAt k`
