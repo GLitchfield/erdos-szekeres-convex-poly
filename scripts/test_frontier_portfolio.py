@@ -48,6 +48,14 @@ Required fields.
 
 Select a temporary execution slate.
 
+## Frontier execution cycle
+
+1. **Close and integrate the previous run.** Verify results.
+2. **Reconcile this portfolio.** Update evidence.
+3. **Select an execution slate of size `N`.** Choose work.
+4. **Plan the entire slate.** Branch on outcomes.
+5. **Execute the approved slate.** Run work.
+
 ## How to update the portfolio
 
 Update evidence in place.
@@ -100,6 +108,14 @@ class FrontierPortfolioTest(unittest.TestCase):
     def test_rejects_noncontiguous_identifiers(self) -> None:
         temporary, path = self.write(portfolio([("FP-02", "Second route")]))
         with temporary, self.assertRaisesRegex(ValueError, "contiguous and ordered"):
+            read_frontier_portfolio(path)
+
+    def test_rejects_missing_cycle_step(self) -> None:
+        text = portfolio([("FP-01", "First route")]).replace(
+            "5. **Execute the approved slate.** Run work.\n", ""
+        )
+        temporary, path = self.write(text)
+        with temporary, self.assertRaisesRegex(ValueError, "execution cycle is missing"):
             read_frontier_portfolio(path)
 
 

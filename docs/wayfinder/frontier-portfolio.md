@@ -97,6 +97,36 @@ fields:
 - `retired` means decisive evidence rejects the contribution path.  Retired
   entries move to the historical register rather than disappearing.
 
+## Frontier execution cycle
+
+Every substantial multi-thread research block follows the same closed loop:
+
+1. **Close and integrate the previous run.** Every selected thread must land on
+   its predeclared outcome, an explicit bounded stop, or a documented
+   carry-forward point. Verify the evidence claim, report every thread, perform
+   serialized integration, and record actual time and resource use.
+2. **Reconcile this portfolio.** Update every affected stable entry from the
+   admitted results, including newly valuable children or main threads and
+   preserved counterexamples. Validate the registry before making a new
+   selection.
+3. **Select an execution slate of size `N`.** Choose from the now-current
+   executable entries using leverage, readiness, independence, information
+   gain, calibrated cost, concurrency, and focus expiry. Record the selection
+   rationale separately from the registry.
+4. **Plan the entire slate.** Plan each selected thread as far ahead as its
+   dependency tree honestly permits. Freeze exact targets, outcome branches,
+   evidence gates, budgets, approval needs, and stop conditions, and state what
+   work follows each outcome. Present the complete slate for user approval.
+5. **Execute the approved slate.** Use immutable packets, disjoint ownership,
+   parallel mathematical breadth, serialized builders and integration, and
+   regular progress reports. At the execution boundary, return to step 1.
+
+This order matters. Results cannot alter the registry until their evidence is
+admitted, and a new slate cannot be selected until the registry reflects the
+previous run. Planning “as far ahead as possible” means branching where future
+work depends on an unresolved outcome; it does not mean pretending that one
+branch is already known to hold.
+
 ## How to use the portfolio
 
 ### Orient research

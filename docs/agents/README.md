@@ -32,6 +32,27 @@ Agent names are runtime identities, not roles.  A newly launched agent receives
 the complete profile text and one task packet.  Reusing a friendly name never
 substitutes for either artifact.
 
+## Frontier execution cycle
+
+The orchestrator runs research batches as a closed portfolio loop:
+
+1. close the previous slate, verify every evidence claim, integrate accepted
+   results, report every predeclared outcome, and close timing estimates;
+2. update and validate the canonical frontier portfolio from those results,
+   including newly surfaced, expired, suspended, merged, or revived work;
+3. select `N` threads from the updated portfolio as a temporary execution slate
+   and record the leverage/readiness/independence/cost rationale;
+4. make the full branched work plan for every selected thread as far ahead as
+   current dependencies permit, inventory approvals, and obtain user approval;
+5. execute the approved slate under immutable packets and the lifecycle below,
+   then return to step 1.
+
+Step 1 is an evidence gate, not a summary ritual. Step 2 precedes selection so
+the next allocation sees every consequence of the prior run. Step 3 is a
+scheduling decision and never prunes the inclusive portfolio. Step 4 must name
+potential outcomes and downstream continuations; uncertain branches remain
+branches rather than hidden assumptions.
+
 ## Assignment lifecycle
 
 1. **Orient.** Read `docs/wayfinder/map.md` and

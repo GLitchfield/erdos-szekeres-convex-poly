@@ -23,6 +23,7 @@ REQUIRED_SECTIONS = (
     "# Frontier portfolio",
     "## Formal definition",
     "## Record schema",
+    "## Frontier execution cycle",
     "## How to use the portfolio",
     "## How to update the portfolio",
     "## Current registry",
@@ -41,6 +42,13 @@ REQUIRED_FIELDS = (
     "Success payoff",
     "Expiry or revival gate",
     "Children",
+)
+REQUIRED_CYCLE_STEPS = (
+    "Close and integrate the previous run",
+    "Reconcile this portfolio",
+    "Select an execution slate of size `N`",
+    "Plan the entire slate",
+    "Execute the approved slate",
 )
 ALLOWED_ROLES = {
     "direct",
@@ -113,6 +121,9 @@ def read_frontier_portfolio(path: Path = PORTFOLIO_PATH) -> list[FrontierEntry]:
     for section in REQUIRED_SECTIONS:
         if section not in body:
             raise ValueError(f"{path}: missing required section {section!r}")
+    for step in REQUIRED_CYCLE_STEPS:
+        if step not in body:
+            raise ValueError(f"{path}: frontier execution cycle is missing {step!r}")
     if "E ⊆" not in body or "execution slate" not in body.lower():
         raise ValueError(
             f"{path}: must formally distinguish the portfolio from an execution slate"

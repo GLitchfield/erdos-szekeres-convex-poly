@@ -73,6 +73,45 @@ This repository is an AI-assisted formal mathematics project initialized from
 - Keep the map, frontier portfolio, README, survey, and Lean statement aligned
   when scope changes.
 
+## Frontier execution cycle
+
+Use this cycle for every substantial multi-thread research block. Do not select
+the next slate from stale pre-run priorities.
+
+1. **Close and integrate the previous run.** Wait until every selected thread
+   has reached a predeclared outcome, an explicit bounded stop, or a documented
+   carry-forward point. Verify its claimed evidence gate, report the outcome
+   and limitation for every thread, integrate accepted results serially, and
+   record actual time and resource use.
+2. **Reconcile the frontier portfolio.** Update each affected `FP-NN` entry in
+   place: evidence, state, obstruction, next gate, payoff, expiry/revival rule,
+   and any newly surfaced child or main thread. Preserve negative knowledge and
+   run `python3 scripts/check_frontier_portfolio.py` before scheduling more
+   work.
+3. **Select a temporary execution slate.** Choose `N` executable threads from
+   the updated portfolio according to mathematical leverage, readiness,
+   independence, information gain, calibrated cost, available concurrency, and
+   focus-expiry history. Record why each was selected and identify any
+   advancing high-leverage entry deliberately deferred. Selection never changes
+   portfolio membership. Use bounded Sol/Fable review when this selection adds,
+   retires, or materially redirects a main route.
+4. **Plan the selected threads.** For every selected `FP-NN`, plan as far ahead
+   as its dependencies responsibly allow. State the exact theorem or falsifier,
+   staged dependencies, predeclared outcome branches, evidence gates, budgets,
+   approvals, stop conditions, and the downstream plan implied by each outcome.
+   Distinguish calibrated forecasts from uncalibrated ones. Present the complete
+   slate to the user and obtain approval before beginning a multi-hour block.
+5. **Execute the approved slate.** Freeze task packets, keep write sets
+   disjoint, exploit parallel mathematical breadth, serialize builders and
+   integration, provide progress updates, and do not silently change a theorem
+   contract or outcome label. When the slate reaches its boundary, return to
+   step 1.
+
+The evidence-admission part of step 1 is mandatory: agent prose or unchecked
+computation must not update the portfolio. Portfolio reconciliation in step 2
+is likewise mandatory before choosing the next slate, so new threads and route
+expiry affect the next allocation rather than one cycle later.
+
 ## Multi-agent orchestration
 
 - The canonical role manifest and execution protocol are

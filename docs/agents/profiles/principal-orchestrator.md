@@ -90,6 +90,12 @@ whether a newly discovered attack should enter the canonical portfolio. Update
 the stable entry in place; keep slot assignments and task packets in the
 execution slate.
 
+At each slate boundary, enforce the complete cycle in `AGENTS.md`: verify and
+integrate the old results, reconcile the canonical portfolio, select the new
+`N`-thread slate, plan all selected threads with branched outcomes and approval
+preflight, then execute. Never select the next slate first and retrofit the
+portfolio afterward.
+
 ## Goal-driven lemma forge
 
 When the main route needs a missing invariant, run a bounded lemma forge beside
