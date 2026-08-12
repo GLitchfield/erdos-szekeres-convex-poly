@@ -2016,6 +2016,215 @@ semantic certificate promotion.  Stop budgets remain separate: 30 minutes,
 otherwise.  These bands will be scored against actual active time; they are
 not promises that four sequential tasks sum to a multi-hour critical path.
 
+### Approved-next-wave candidate: four-lane deep execution plan
+
+This block is ready for user approval but is not self-authorizing.  It uses
+four parallel slots with disjoint source/run ownership and a serialized root
+integration lane.  Forecasts are active work, not stop budgets.  The closest
+calibration points are the 27-minute Fin8 half-pure certificate promotion,
+the 60/63-minute extreme/k9 certificate promotions, the 5--13-minute recent
+state-567 Lean packages, and the 6--15-minute recent bounded audits.
+
+#### Approval and resource inventory
+
+- No provider/Sol/Fable call is planned: these tasks implement or falsify the
+  already reviewed portfolio and do not select a new main route.
+- No network access, software installation, destructive cleanup, external
+  repository mutation, or resource-limit increase is planned.
+- Local Python, existing solver artifacts, targeted Lean checks, `make test`,
+  scoped `git add`/commit, and push are already normal project operations.  A
+  future approval of this plan authorizes their in-scope use but does not
+  bypass any platform prompt.
+- Each exploratory solver/checker command keeps the default ceiling of 30
+  minutes, 8 cores, 16 GiB RAM, and 5 GiB under ignored `runs/`.  A packet-owned
+  process may be terminated at its declared cap.  Any need to exceed a ceiling
+  pauses only that lane and requires a new narrow approval.
+- A route-changing result may trigger a later bounded review with the exact
+  authorized prefix `python3 scripts/adversarial_review.py run`; that call is
+  not part of this block and will not be made preemptively.
+
+#### Lane A — `T1.A`: Fin10 singleton-fan certificate promotion
+
+**Frozen target.**  Prove the exact theorem
+`halfPureSingletonFanAtSixFinTen_of_oneChange` from the existing 1,086-variable,
+17,930-clause CNF and independently replayed 6,502-addition LRAT.  Preserve all
+2,560 side/pivot pairs, including the 2,550 noncovering pairs.
+
+**Primary stages.**
+
+1. Freeze the theorem signature, CNF/LRAT hashes, semantic map, owned generated
+   modules, and per-module resource caps.  Adapt the compiling Fin8 certificate
+   architecture rather than inventing a monolithic proof.
+2. Generate and independently audit compact Lean atoms for OneChange, strong
+   four/five/six definitions, pure-side failure, deep-split branches, and the
+   5,120 fan-negation clauses.  Separate local semantic chunks from the LRAT
+   replay tree.
+3. Chunk the 6,502 additions with explicit live-clause interfaces.  Compile
+   the encoding, representative semantic chunks, every LRAT checkpoint, the
+   normalized `Fin 10` theorem, and then its public exact signature.
+4. Regenerate byte-identically; reject corrupted map/proof controls; run
+   forbidden-token and axiom audits.  Record compilation peak memory and the
+   slowest module instead of extrapolating from source size.
+5. If the theorem compiles, classify its retained semantic leaves into local
+   uniform laws versus finite witness-selection/RUP structure.  Freeze at most
+   one all-`n` producer candidate and give it a bounded `n=11` falsifier before
+   any uniform Lean proof.
+
+**Forecast.**  45--120 active minutes through the bounded theorem, plus
+15--45 minutes for post-proof structural mining.  Individual compile commands
+retain the 30-minute cap; one checkpoint redesign is allowed, not an unbounded
+sequence of chunk layouts.
+
+**Outcomes.**
+
+- `HP610L-O1`: the exact Fin10 theorem compiles; report the uniform/nonuniform
+  leaf split and next producer candidate.
+- `HP610L-O2`: encoding/LRAT layers compile but one bounded semantic family
+  exceeds the cap; retain precise partial evidence and the smallest blocker.
+- `HP610L-O3`: the Lean semantic reconstruction disagrees with the frozen
+  computational model; invalidate the computation until repaired.
+- `HP610L-O4`: operational stop before a trustworthy theorem, with no
+  mathematical inference.
+
+#### Lane B — `T2.A`: balanced grid plus universal ten-residual escape
+
+**Frozen target.**  Package the balanced omission-grid branch with the exact
+two carrier-touching residual escapes, then test the full proposed terminal
+`PackedBalancedGridResidualEscapeImpossible567`.  The contract must retain
+the ten-point residual, OneChange, ambient cap-five/cup-six/strong-seven
+avoidance, and universal four-block escape.
+
+**Primary stages.**
+
+1. Compile a mechanical `PackedBalancedGridTwoEscapeSystem567` theorem from
+   `fourGrid_of_balanced_area_profile` and
+   `packedInternalPair_has_two_carrierTouchingEscapes`.  This is packaging, not
+   closure, and must preserve the common carriers/ambient state.
+2. Freeze the terminal Prop and its exact consumer into the no-collision branch
+   of `PackedInternalMutuallyMiddleObstructedPairImpossibleAtTwentyTwo567`.
+   Audit every use of total 22, residual ten, internality, and repeated packing.
+3. Build the cheapest decisive falsifier: keep the exact realizable 12-carrier
+   grid coloring fixed, append ten labeled residual vertices, and encode the
+   remaining colors with OneChange/target avoidance and universal residual
+   escape.  Use a direct semantic checker independent of the producer.
+4. If SAT, classify decomposability and exact realizability only when those
+   properties decide a stated repair.  If UNSAT, mine the smallest
+   full-context color/escape conflict; do not promote solver output directly.
+5. Formalize a surviving conflict lemma and reconnect it through the existing
+   state-567 consumers.  Stop after the balanced profile is closed or exactly
+   refuted; the mixed profile remains Lane C's responsibility.
+
+**Forecast.**  5--20 minutes for the mechanical Lean package, 15--45 minutes
+for the exact falsifier/checker, and 20--75 minutes for one surviving terminal
+proof or counterexample classification: 40--140 active minutes total.
+
+**Outcomes.**
+
+- `S567B-O1`: a full-context balanced terminal compiles and removes the
+  balanced no-collision profile.
+- `S567B-O2`: an independently checked exact model refutes the terminal and
+  identifies which added premise is still missing.
+- `S567B-O3`: packaging compiles and the fixed falsifier is UNSAT, but only
+  computational support/one sharper proposal lands.
+- `S567B-O4`: bounded operational stop without a route claim.
+
+#### Lane C — `T2.B`: mixed omission-profile terminal
+
+**Frozen target.**  Resolve the surviving profile with four area-5 rectangles
+and two area-8 rectangles.  Area 5 means `1×5` or `5×1`; area 8 means `2×4` or
+`4×2`.  Closing the balanced profile alone is not state-567 progress unless
+this profile also has an exact disposition.
+
+**Primary stages.**
+
+1. Define `IsMixedCarrierOnlyOmissionProfile567` directly from the compiling
+   rectangle system and the `(4,2,0,6)` count.  Derive the exact orientation,
+   row-degree, column-degree, and omitted-block alternatives without colors.
+2. Independently enumerate the finite six-rectangle tilings of the `6×6`
+   anchor product and replay them with a different representation.  Freeze the
+   smallest complete structural classification as a Lean-shaped theorem.
+3. Compile the color-free classification if it materially narrows the mixed
+   branch.  Then state `PackedMixedOmissionProfileResidualEscapeImpossible567`
+   with the same full ambient/residual premises as Lane B.
+4. Reuse only the solver harness architecture, not the semantic encoding, from
+   Lane B to test the mixed layouts.  A SAT witness must be directly checked;
+   UNSAT is bounded support until a semantic Lean bridge exists.
+5. Formalize the first surviving color/residual conflict, or integrate the
+   smallest countermodel and expire the terminal.  If both Lane B and Lane C
+   close, compile the no-collision contradiction and hand the remaining
+   same-occupancy collision branch to the existing four-repair network.
+
+**Forecast.**  10--30 minutes for structural enumeration/classification,
+10--30 minutes for a compiling extraction, and 20--80 minutes for the
+full-context gate/terminal: 40--140 active minutes total.
+
+**Outcomes.**
+
+- `S567M-O1`: the mixed full-context terminal compiles and removes the second
+  no-collision profile.
+- `S567M-O2`: an independently checked mixed-profile model refutes the proposed
+  terminal and becomes the next repair control.
+- `S567M-O3`: an exact structural classification compiles, but the color
+  terminal remains open.
+- `S567M-O4`: bounded operational stop without mathematical inference.
+
+#### Lane D — `T3.A`: variable-carrier Pascal repair
+
+**Frozen question.**  Can the generic residual seed-cover/fiber count be fed
+by a one-carrier, unequal-carrier, or fractional witness-class producer at
+adjacent Pascal states whose reservoirs are too small for two disjoint
+predecessor carriers?
+
+**Primary stages.**
+
+1. Produce a parameter table for the exact controls `(4,5,5)`, `(4,6,6)`,
+   `(4,8,8)`, and `(5,6,7)`: reservoir size, possible carrier sizes, residual
+   size, deletion-block size, seed count, fiber cap, and the inequality needed
+   by `badResidualBlocks_collision_or_largeFiber`.
+2. Freeze exactly three noncircular producers before controls:
+   a single-carrier/private-witness system, an unequal two-carrier system, and
+   a fractional class-bound system.  None may assume the target Pascal bound,
+   injectivity, or the desired large fiber.
+3. Test all three on the compiled small states, equality construction, and the
+   exact state-567 positive control.  Use a finite-set/incidence falsifier
+   first; require exact color/decomposition evidence only for survivors.
+4. For the strongest survivor, compile a generic producer-to-count theorem
+   whose `(5,6,7)` specialization recovers existing state-567 infrastructure
+   and whose adjacent specialization is genuinely nonvacuous.
+5. Attempt one connection to `PascalTailTwoSideBound`.  If the geometric/color
+   terminal is still missing, freeze that precise interface and stop rather
+   than calling the count a uniform recurrence.
+
+**Forecast.**  10--30 minutes for the parameter/candidate audit, 15--45 minutes
+for bounded controls, and 15--60 minutes for one generic Lean consumer:
+40--135 active minutes total.
+
+**Outcomes.**
+
+- `PTVC-O1`: a variable-carrier parameter theorem compiles and has a genuine
+  adjacent-state specialization.
+- `PTVC-O2`: exactly one candidate survives controls and yields a precise open
+  geometric terminal, but no Pascal-tail theorem yet.
+- `PTVC-O3`: all three producers are refuted or reduce to the target bound;
+  expire this repair and retain the state-567 count as finite infrastructure.
+- `PTVC-O4`: operational stop before decisive controls.
+
+#### Contingent second wave and overall duration
+
+- After `HP610L-O1`, spend one bounded block on uniform leaf mining and only
+  then decide whether an `n=11` fan gate tests a named candidate.
+- After `S567B-O1` and `S567M-O1`, compile the no-collision contradiction and
+  switch Thread 2 to the same-occupancy collision/four-repair terminal.  If
+  either is refuted, the returned model controls the repair instead.
+- After `PTVC-O1/O2`, formalize only the surviving producer/terminal; after
+  `PTVC-O3`, return the slot to Layer F or the balanced state-567 branch.
+- The first wave contains roughly 165--515 cumulative active agent-minutes.
+  With four slots, the empirical elapsed forecast is 45--150 minutes.  The
+  contingent second wave adds 45--180 elapsed minutes only when an outcome
+  creates a named follow-on.  Thus 2--5 hours of useful parallel runway is
+  available, but the plan does not pad fast refutations to manufacture wall
+  time.
+
 ### Portfolio scheduling and evidence gates
 
 - Keep at least one active item from Threads 1--3 whenever mathematical work
