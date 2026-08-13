@@ -237,26 +237,31 @@ that deserves independent retention and scheduling consideration.
   maximizer either creates a strict full-ambient down-set difference at the
   next endpoint or the two maximizing endpoints cross.  The compiled Fin9
   collision realizes exactly the crossed branch, so it does not refute the
-  lemma.  Both collision controls also pass the proposed `(3,1)` threshold
-  cell, but that threshold-half-support claim remains computational/proposal
-  evidence rather than a theorem.
+  lemma.  That exact dichotomy, its clipped-rank extension helper, the
+  structured `AmbientDownsetThresholdHalfSupportAtSix` producer interface, and
+  the noncircular consumer into `PredecessorHalfSubsetAt 6` now compile.  An
+  independent proof-boundary review accepted the signatures, model tier, and
+  absence of same-`k` circularity.  Both collision controls also pass the
+  proposed `(3,1)` threshold cell, but the threshold-half-support producer
+  itself remains computational/proposal evidence rather than a theorem.
 - **Downstream consumer:** `sweepExactUpperAt_of_predecessorHalfSubset`, then
   the unrestricted exact upper bound.
 - **Open obstruction:** control crossed and saturated endpoint-maximizer
   transitions well enough to select one full-ambient down-set cell whose
   larger side is strong-`5`-free, without assuming the same-`k` upper bound.
-  Separately,
-  compress or share the retained Fin11 semantic-clause bridge; learned-trace
-  size is no longer the primary blocker.  After a kernel Fin11 theorem, turn
+  Separately, an exact indexed grouping compresses the minimum Fin11 cube from
+  9,181 ground base clauses to 3,527 complete object/unit families, with
+  literal-for-literal expansion and omitted-index/corrupted-family rejection.
+  The first monolithic FromLRAT leaf still exhausted the 16-GiB gate, so
+  kernel-memory structure rather than family count is now the certificate
+  blocker.  After a kernel Fin11 theorem, turn
   compatible ten-point singleton fans into one half-sized fan with a common
   pivot and direction for arbitrary size.
-- **Next discriminating gate:** compile the clipped pair-rank extension helper
-  and frozen `ambientEndpoint_separated_or_crossed`, then run the exact
-  rational `n=6..10` falsifier for
-  `AmbientDownsetThresholdHalfSupportAtSix`.  A survivor may be used as the
-  indexed family on one of the eleven proof-small Fin11 leaves; attempt Lean
-  certificate promotion only if that family materially reduces the 8,000-fact
-  base interface.
+- **Next discriminating gate:** run the exact rational `n=6..10` falsifier for
+  `AmbientDownsetThresholdHalfSupportAtSix`, then attack the crossed and
+  clipping-saturated transitions only if the card survives.  Fin11
+  certificate work belongs to `FP-14.B` and must use a chunked or streaming
+  proof architecture rather than another monolithic FromLRAT replay.
 - **Success payoff:** a credible uniform producer for the unrestricted route.
 - **Expiry or revival gate:** a checked realizable target-free counterexample
   to synchronized compatible fans retires this producer; abstract-only failure
@@ -293,19 +298,26 @@ that deserves independent retention and scheduling consideration.
 - **Open obstruction:** close two full-context color terminals: a same-anchor
   same-occupancy collision, and the universal residual-touching balanced-grid
   state.  The latter must compare multiple residual triples; one selected
-  witness or any carrier-only law is now formally insufficient.
-- **Next discriminating gate:** freeze
-  `PackedInternalBalancedResidualTouchingImpossibleAtTwentyTwo567` with the
-  entire exact-22 two-side context, then run an exact Fin22 abstract-signotope
-  SAT falsifier retaining arbitrary placement, canonical provenance, and all
-  120 residual-triple escape clauses.  In parallel, isolate the smallest
-  same-occupancy collision color terminal with the same context.
+  witness or any carrier-only law is now formally insufficient.  A full-context
+  encoding audit shows that eager six-deletion packing alone has 597,500,904
+  witness-literal occurrences (about 3.46 GiB under favorable DIMACS
+  numbering), before arbitrary carrier placement, canonical provenance,
+  grid/transversal, or symbolic residual circuits.  Those remaining families
+  were not reconstructed exactly, so the approved falsifier stopped without
+  solving a weakened relaxation.
+- **Next discriminating gate:** derive a mathematical symbolic compression for
+  global deletion packing and canonical provenance—preferably an indexed
+  bad-block/hitting theorem that makes the 120 residual triples choice-free—
+  before revisiting SAT.  In parallel, isolate the smallest same-occupancy
+  collision color terminal with the same full context.  A new child
+  `FP-02.D` records this carrier/provenance compression obligation.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** a full-context target-free model retires the
   affected terminal.  Fixed-color UNSAT cores do not advance the general leaf
   unless their hypotheses follow from canonical provenance.
 - **Children:** `FP-02.A` balanced canonical transversal; `FP-02.B` mixed
-  normal-form terminal; `FP-02.C` decomposability-retention bridge.
+  normal-form terminal; `FP-02.C` decomposability-retention bridge;
+  `FP-02.D` symbolic packing/provenance compression.
 
 ### FP-03 — Uniform Pascal-tail lift
 
@@ -326,22 +338,25 @@ that deserves independent retention and scheduling consideration.
   strong-four definitions are existentially eliminable certificate residue:
   6,165 clauses, or 38.6% of the retained core.  The remaining load-bearing
   interface is 4,186 OneChange clauses, 2,995 live strong-four lacing clauses,
-  2,584 profile-hole clauses, and 21 cut/window clauses.  This audit supports
-  one parameterized proposal,
-  `StrongPolygonMiddleProfileInPascalWindow`, but no generic theorem is yet
-  claimed.
+  2,584 profile-hole clauses, and 21 cut/window clauses.  The proposed
+  `StrongPolygonMiddleProfileInPascalWindow` now compiles generically: a strong
+  polygon's two endpoint-middle color classes partition its internal vertices,
+  and cap/cup holes bound their cardinalities.  The 556, 567, and color-dual
+  specializations compile with exact profile capacities 6, 10, and 10.  The
+  actual profile coefficient embeds in a compiling local capacity and then in
+  `decomposableBinomialWindow`; the old state-567 middle-word result is freshly
+  rederived without invoking its state-specific proof or a Pascal-tail bound.
 - **Downstream consumer:** `PascalTailTwoSideBound`, then the uniform
   decomposable recurrence.
-- **Open obstruction:** turn the local strong-polygon middle-profile window into
-  an extension-profile or lacing-capacity theorem that bounds the ambient
-  Pascal state.  The local profile theorem alone classifies one produced strong
-  polygon and is strictly weaker than the two-side bound.
-- **Next discriminating gate:** implement
-  `StrongPolygonMiddleProfileInPascalWindow` in
-  `StructuralChargingPascalProfileHoles.lean`; derive the 556, 567, and
-  color-dual specializations, and require the generic proof to replace the
-  existing state-specific strong-six middle-word theorem without using
-  `PascalTailTwoSideBound`.  Stop or demote if it has no honest later consumer.
+- **Open obstruction:** lift the now-kernel-checked local profile capacity into
+  an extension-profile or lacing theorem that bounds how many ambient vertices
+  may realize each admissible middle profile.  The local theorem classifies one
+  produced strong polygon and remains strictly weaker than the two-side bound.
+- **Next discriminating gate:** freeze a parameterized
+  `PascalMiddleProfileLacingCapacity` whose hypotheses are produced by the
+  published-slice machinery, and run its 556/567/dual adjacent-state controls
+  before Lean implementation.  It must bound ambient multiplicity, not merely
+  recount the 6/10 local profiles.
 - **Success payoff:** validate the residual mechanism at an adjacent parameter
   state and expose a credible uniform Pascal theorem.
 - **Expiry or revival gate:** exact countermodels to both leaves, or proof that
@@ -371,18 +386,26 @@ that deserves independent retention and scheduling consideration.
   the abstract rank-three signotope tier.  An independent checker recomputed
   the endpoint predicates and rejected a corrupted shield flag.  This is
   bounded computational evidence, not a producer theorem or realizability
-  claim.
+  claim.  A read-only dependency audit now gives an exact Lean-shaped consumer
+  chain from carrier cover plus endpoint split shield, through filtered
+  cardinality-stratum containment and one destroyed source core, to strict
+  `PrimeCoreCountAtCard` and `StratifiedPrimeCoreRank` descent.  The chain is
+  noncircular and uses no edgewise inclusion.  However, after carrier cover is
+  assumed, the endpoint shield is extensionally the no-new-cardinality-`m`
+  half of the desired descent, so this remains a reviewed interface rather than
+  a geometric theorem.
 - **Downstream consumer:** `TargetReflectingDecomposableNormalizationAt`, then
   any uniform decomposable exact theorem.
-- **Open obstruction:** compile the generic endpoint cardinality-`m`
-  subset/count-drop consumer, then construct a threshold-scoped geometric
-  producer that preserves sweep realizability and target-freedom stepwise.
-  The below-threshold abstract controls do not supply that producer.
-- **Next discriminating gate:** define
-  `HasEndpointPersistentPrimeSplitShieldAtCard` and compile the generic
-  source-to-endpoint cardinality-`m` subset/count-drop consumer plus the frozen
-  `ThreeStepEndpointShieldedPrimeCoreDropsAboveAt` interface.  Only afterward
-  search for a sweep-realizable threshold producer.
+- **Open obstruction:** derive a strictly weaker split-persistence or carrier
+  condition from planar geometry that implies the endpoint shield without
+  simply restating no-new-cardinality-`m` cores.  It must preserve sweep
+  realizability and target-freedom stepwise; the below-threshold abstract
+  controls do not supply it.
+- **Next discriminating gate:** freeze one independent geometric
+  split-persistence producer, with an abstract Fin17 falsifier and a separate
+  exact-rational control.  Compile the reviewed cardinality-stratum consumer
+  only together with that producer interface; a wrapper-only lane is expired
+  as strategically inert.
 - **Success payoff:** an unrestricted-to-decomposable reduction independent of
   the half-subset producer.
 - **Expiry or revival gate:** a realizable target-free closed component or
@@ -592,7 +615,7 @@ that deserves independent retention and scheduling consideration.
   orchestration, certificate chunking, reproducibility, approval preflight, and
   calibrated estimates.
 - **Strategic role:** research-system.
-- **State:** advancing.
+- **State:** gated.
 - **Model tier:** project process; it never constitutes mathematical evidence
   for the exact formula.
 - **Best evidence:** immutable packets, outcome contracts, serialized builders,
@@ -607,25 +630,32 @@ that deserves independent retention and scheduling consideration.
   2026-08-13 literature workflow retained 63 seed records, downloaded 70 open
   full texts, deep-read 26 papers, and produced a 54-item follow-up queue; these
   counts evidence a reproducible discovery process, not a mathematical result
-  or an exhaustive bibliography.
+  or an exhaustive bibliography.  On the unique minimum Fin11 depth-six cube,
+  a deterministic indexed ledger now compresses 9,181 exact base clauses into
+  3,527 complete family/index facts.  Independent reconstruction expands them
+  literal-for-literal to the frozen core; omitted-index and corrupted-family
+  controls reject, and native replay checks all 18,349 LRAT additions.  The
+  one authorized Lean leaf nevertheless failed with `std::bad_alloc` after
+  226.95 seconds at 14,908,088 KiB maximum RSS under the 16-GiB cap.  This is
+  process evidence only; no Fin11 Lean theorem is claimed.
 - **Downstream consumer:** all mathematical entries, through safer and broader
   execution.
-- **Open obstruction:** preserve useful breadth without allowing process work
-  or scheduling metadata to become a competing mathematical roadmap; safely
-  reproduce heavyweight generated certificates without reintroducing unsafe
-  Lake fan-out, and compress the retained semantic base of the Fin11 cubes.
-- **Next discriminating gate:** prototype an indexed semantic-base bridge on one
-  proof-small Fin11 cube, beginning with the full-ambient generated down-set
-  comparisons isolated in `FP-01.B`.  Require omitted-index and corrupted-family
-  controls, and distinguish clause-family compression from a proof of the
-  endpoint-repair producer.  Retain the guarded one-module artifact procedure
-  as the reproducible path for the now-integrated state-556 and mixed state-567
-  certificates.
+- **Open obstruction:** the Fin11 family count is no longer the immediate
+  blocker.  The remaining failure is monolithic kernel memory across the
+  3,527-family semantic context and proof replay, while preserving the same
+  trusted Lean/LRAT boundary.  Process work must not become a substitute for
+  the mathematical endpoint producer in `FP-01.B`.
+- **Next discriminating gate:** build a streaming or balanced-checkpoint
+  interface for this same selected leaf, targeting less than 12 GiB and keeping
+  the exact reconstructed families, proof, and corruption controls unchanged.
+  Only after that leaf compiles should one representative indexed semantic
+  producer be promoted.  Do not expand to all cubes or Fin12 first.
 - **Success payoff:** faster route comparison, fewer repeated dead ends, and a
   durable memory of all potentially valuable work.
-- **Expiry or revival gate:** schedule process work only for a measured
-  bottleneck or demonstrated evidence failure; otherwise return the slot to a
-  mathematical thread.
+- **Expiry or revival gate:** the measured 14.9-GiB failure permits one bounded
+  streaming/checkpoint prototype.  Another monolithic replay, any weakening of
+  kernel trust, or no credible sub-12-GiB design returns the slot to a
+  mathematical thread; successful bounded replay revives the entry.
 - **Children:** `FP-14.A` large-certificate proof mining and checkpointed Lean
   replay; `FP-14.B` indexed semantic-base compression and completion signaling.
 
@@ -644,14 +674,15 @@ parent unless promoted.
 - **FP-01.B — Ambient endpoint-synchronized down-sets.**  Literature analysis
   identifies a split-profile injection whose cap and cup share one endpoint but
   need an additional ambient correlation to synchronize the other endpoint.
-  This is a proposal, not an imported theorem or Lean result.  The uniform tier
-  is sweep-realizable; arbitrary `OneChangeOn` and decomposable instances are
-  bounded controls only.  First compile the local full-ambient generated
-  down-set strict-extension/injectivity lemma with clipping non-saturation
-  explicit, then freeze one noncircular `k=6` endpoint-repair/half-support card
-  and test it unchanged on the compiled realizable Fin9 collision pair and the
-  existing rational controls.  Any recurrence factoring through the clipped
-  child pair-rank matrix is already refuted by that collision.  A realizable
+  The exact full-ambient endpoint dichotomy, clipped extension helper,
+  `AmbientDownsetThresholdHalfSupportAtSix` interface, and noncircular consumer
+  into `PredecessorHalfSubsetAt 6` now compile and passed independent review.
+  The uniform tier is sweep-realizable; arbitrary `OneChangeOn` and
+  decomposable instances are bounded controls only.  Next run the unchanged
+  rational `n=6..10` falsifier for the threshold producer, then isolate the
+  crossed and clipping-saturated transitions.  Any recurrence factoring
+  through the clipped child pair-rank matrix is already refuted by the compiled
+  collision.  A realizable
   target-free failure expires the frozen repair; a surviving noncircular
   producer lands as the live mathematical child; a result that only compresses
   semantic clause families moves to `FP-14.B` without counting as mathematical
@@ -668,6 +699,11 @@ parent unless promoted.
 - **FP-02.C — Decomposability retention.**  Determine whether the packed
   reducer retains ambient decomposability strongly enough to restrict it to the
   twelve carrier vertices before using decomposable-only exclusions.
+- **FP-02.D — Symbolic packing/provenance compression.**  Replace the
+  597,500,904 eager six-deletion witness occurrences by an exact indexed
+  bad-block, canonical-family, or hitting statement that also retains arbitrary
+  carriers, the balanced transversal, and all 120 residual-triple obligations.
+  A weakened base-plus-packing SAT instance is explicitly inadmissible.
 - **FP-03.A — Variable-carrier state 556.**  Completed finite adjacent state:
   both advertised leaves and their consumer compile, via a stronger witness-free
   Fin14 contradiction, through `PascalTailTwoSideBound 5 5 6`.  The live child
@@ -678,11 +714,11 @@ parent unless promoted.
   still blocks the frozen Lean gate.  Do not deepen the same cube tree without
   a semantic-base compression mechanism.
 - **FP-14.B — Indexed semantic-base compression and completion signaling.**
-  Replace thousands of concrete clause theorems by a small indexed family or
-  proof-bearing snapshot on one Fin11 leaf, with corrupted-index and omitted-
-  family controls.  Test whether the full-ambient down-set comparisons from
-  `FP-01.B` discharge a deterministic clause family, while recording a
-  compression-only outcome separately from an endpoint-repair theorem.  The
+  One Fin11 leaf now has an exact 3,527-fact indexed ledger expanding to all
+  9,181 base clauses, with corruption controls, but a monolithic FromLRAT leaf
+  failed at 14.9 GiB.  Replace that replay by a sub-12-GiB streaming or balanced
+  checkpoint architecture without changing the trusted facts or proof.  Keep
+  this compression-only outcome separate from an endpoint-repair theorem.  The
   signaling half is complete: execution slates require
   one validated terminal result per task, the root may not finish while a lane
   is live, and guarded commands emit heartbeats and kill their whole process

@@ -79,8 +79,9 @@ review is recorded in
 reviewers rated the proposed update partially supported and recommended one
 conservative child under Thread 1, with a process-only cross-reference under
 Thread 14; the reciprocal critique failed operationally, so this is advisory
-rather than a complete harness result. The fourteen main routes and their
-states are unchanged. Work blocks select a temporary execution slate from this
+rather than a complete harness result. Subsequent admitted execution demoted
+Thread 14 to gated after its exact indexed Fin11 compression still exhausted
+the 16-GiB Lean gate. Work blocks select a temporary execution slate from this
 inventory; the number of slots and the current slate do not define which
 threads remain valuable.
 
@@ -109,21 +110,25 @@ threads remain valuable.
    variables, 26,862 clauses, and 479,434 independently checked additions cover
    all 4,620 side/pivot/direction branches.  Exhaustive splitting on six
    orientation variables now yields 64 independently certified leaves with
-   17,089--61,302 additions.  Learned-proof complexity is no longer the main
-   blocker: every leaf retains 9,181--12,010 semantic base clauses, above the
-   predeclared 8,000-clause Lean gate.  The next bounded action is indexed
-   semantic-base compression on one of the eleven otherwise proof-small leaves,
-   not deeper splitting of the same cube tree.  Neither the Fin11 theorem nor
-   the all-`n` synchronization/relabeling bridge is proved.  A new
+   17,089--61,302 additions.  On the unique minimum leaf, 3,527 indexed facts
+   reconstruct all 9,181 base clauses exactly with corruption controls, but a
+   monolithic Lean replay exhausted the 16-GiB gate at 14.9 GiB.  The next
+   certificate action is a streaming or balanced-checkpoint replay of that
+   same leaf, not deeper splitting of the same cube tree.  Neither the Fin11
+   theorem nor the all-`n` synchronization/relabeling bridge is proved.  A new
    literature-informed child studies full-ambient pair-rank down-sets as the
    possible synchronization mechanism.  Its first gate is local
    strict-extension with clipping non-saturation.  The resulting proposal says
    that a nonsaturated cap/cup maximizer either creates a strict full-ambient
    down-set difference or the two maximizing endpoints cross.  The compiled
    realizable Fin9 collision falls exactly into the crossed branch, so the
-   local lemma survives.  The next gate is its Lean proof plus an exact
-   rational `n=6..10` falsifier for the stronger threshold-half-support card;
-   that card, not the local dichotomy alone, would feed the recurrence.
+   local lemma survives.  The exact endpoint dichotomy, clipped extension
+   helper, threshold producer interface, and noncircular consumer into
+   `PredecessorHalfSubsetAt 6` now compile and passed independent review.  The
+   next gate is the exact rational `n=6..10` falsifier for the still-unproved
+   threshold-half-support producer, followed by the crossed and saturated
+   transitions if it survives; that producer, not the local dichotomy alone,
+   would feed the recurrence.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -160,7 +165,12 @@ threads remain valuable.
    clauses, arbitrary-placement finite theorem, and exact public structural
    consumer now compile.  The mixed omission profile is formally closed; the
    live state-567 work is now exactly the balanced residual-touching color law
-   plus the separate same-occupancy collision terminal.
+   plus the separate same-occupancy collision terminal.  A full-context
+   falsifier audit stopped before solving: eager packing alone requires
+   597,500,904 witness occurrences, while arbitrary carriers, canonical
+   provenance, the grid/transversal, and all 120 symbolic residual-triple
+   obligations were not reconstructed exactly.  The next move is mathematical
+   indexed packing/provenance compression, not a weakened SAT relaxation.
 3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
    state-567 proof's numerical and structural kernel into a parameterized
    two-carrier/residual-escape theorem and consume it through
@@ -190,11 +200,13 @@ threads remain valuable.
    `PascalTailTwoSideBound 5 5 6`.  Complete origin reconstruction shows that
    6,165 of the 15,951 retained clauses—every strong-five definition and 692
    dead strong-four definitions—are eliminable certificate residue.  The
-   surviving proposal is a generic strong-polygon middle-profile window: cap
-   and cup holes bound the two endpoint-color counts, recovering the 556, 567,
-   and dual Pascal layers.  Its Lean implementation and replacement of the old
-   state-specific middle-word proof are the next gate; a separate lacing or
-   extension-capacity theorem would still be needed for an ambient bound.
+   surviving generic strong-polygon middle-profile window now compiles: cap
+   and cup holes bound the two endpoint-color counts, with exact 556, 567, and
+   dual capacities 6, 10, and 10.  The coefficient embeds in the local
+   binomial window, and the old state-567 middle-word result has a fresh
+   noncircular derivation.  A separate parameterized lacing or
+   extension-capacity theorem controlling ambient multiplicity is now the next
+   gate.
 4. **Layer-F highest-stratum mutation descent (unrestricted sidecar).**  Test
    and then prove or refute `ThreeStepTopPrimeStratumDropsAboveAt`.  Only exact
    realizable, target-free controls can decide the route; below-threshold
@@ -212,10 +224,14 @@ threads remain valuable.
    but refutes monotone prime-core inclusion at every intermediate edge on four
    Fin7 and ten selected Fin8 controls.  A frozen endpoint-only persistent-split
    shield that explicitly allows those transient cores passes all fourteen
-   controls under independent replay and corruption rejection.  The next gate
-   is its generic cardinality-stratum subset/count-drop Lean consumer.
-   Existence of a realizable threshold macro remains open; the producer must
-   preserve target-freedom stepwise and establish the endpoint shield.
+   controls under independent replay and corruption rejection.  A read-only
+   audit gives the exact noncircular cardinality-stratum subset/count-drop
+   consumer chain, but also shows that carrier cover plus the endpoint shield
+   already packages the no-new-core half of descent.  The next gate is an
+   independently geometric split-persistence producer, tested separately on
+   abstract Fin17 and exact-rational controls; a wrapper-only formalization is
+   strategically inert.  Existence of a realizable threshold macro remains
+   open and must preserve target-freedom stepwise.
 5. **State-567 balanced five-class leaves (parallel decomposable branch).**
    Prove the mechanical five-way exhaustion, then attack the `2+4`, `3+3`,
    `4+2`, left-right residue, and right-left residue terminal classes.  Pair
