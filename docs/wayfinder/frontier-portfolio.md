@@ -3,7 +3,7 @@ title: Exact Erdős--Szekeres frontier portfolio
 artifact: frontier-portfolio
 schema_version: 1
 status: canonical
-last_updated: 2026-08-12
+last_updated: 2026-08-13
 ---
 
 # Frontier portfolio
@@ -225,23 +225,36 @@ that deserves independent retention and scheduling consideration.
   depth-six decomposition into 64 independently certified cubes.  Cube leaves
   reduce to 17,089--61,302 additions and at most 28.4 MiB each, but every leaf
   retains 9,181--12,010 semantic base clauses.  The predeclared 8,000-base gate
-  therefore stopped before Lean, so no Fin11 theorem is claimed.
+  therefore stopped before Lean, so no Fin11 theorem is claimed.  A bounded
+  2026-08-13 literature synthesis, at analysis rather than theorem level,
+  identifies the exact split-polygon down-set injection and its missing common
+  endpoint as a candidate semantic mechanism.  The repository already defines
+  the underlying pair ranks and down-set membership, while
+  `exists_realizable_pairRankState_collision` formally rules out using a
+  clipped child pair-rank matrix as a recursive state.
 - **Downstream consumer:** `sweepExactUpperAt_of_predecessorHalfSubset`, then
   the unrestricted exact upper bound.
-- **Open obstruction:** compress or share the retained Fin11 semantic-clause
-  bridge; learned-trace size is no longer the primary blocker.  After a kernel
-  Fin11 theorem, turn compatible ten-point singleton fans into one half-sized
-  fan with a common pivot and direction for arbitrary size.
-- **Next discriminating gate:** on one of the eleven proof-small depth-six
-  leaves, replace thousands of individual semantic leaf theorems by an indexed
-  family theorem or proof-bearing semantic snapshot.  Attempt Lean only if the
-  resulting imported base interface is materially smaller than 8,000 facts.
+- **Open obstruction:** freeze a full-ambient endpoint-repair alternative that
+  implies `PredecessorHalfSubsetAt` without assuming the same-`k` upper bound,
+  and test it against the existing realizable collisions.  Separately,
+  compress or share the retained Fin11 semantic-clause bridge; learned-trace
+  size is no longer the primary blocker.  After a kernel Fin11 theorem, turn
+  compatible ten-point singleton fans into one half-sized fan with a common
+  pivot and direction for arbitrary size.
+- **Next discriminating gate:** first compile the local full-ambient generated
+  down-set strict-extension/injectivity theorem, with clipping non-saturation
+  explicit, then freeze one exact endpoint-repair/half-support card at `k=6`
+  and evaluate it on the compiled Fin9 realizable collision pair and existing
+  rational controls.  Only a survivor may be used as the indexed family on one
+  of the eleven proof-small Fin11 leaves; attempt Lean certificate promotion
+  only if that family materially reduces the 8,000-fact base interface.
 - **Success payoff:** a credible uniform producer for the unrestricted route.
 - **Expiry or revival gate:** a checked realizable target-free counterexample
   to synchronized compatible fans retires this producer; abstract-only failure
   demotes the model tier but does not refute the realizable statement.
-- **Children:** `FP-01.A` synchronized singleton fans; `FP-07` integral
-  Property B; `FP-08` fractional cover.
+- **Children:** `FP-01.A` synchronized singleton fans; `FP-01.B` ambient
+  endpoint-synchronized down-sets; `FP-07` integral Property B; `FP-08`
+  fractional cover.
 
 ### FP-02 — State-567 ten-residual system
 
@@ -297,8 +310,11 @@ that deserves independent retention and scheduling consideration.
   base contradiction generalizes with the carrier/residual parameters; the
   current theorem is still one adjacent finite Pascal state.
 - **Next discriminating gate:** mine the compiled Fin14 semantic core by clause
-  family, freeze one parameterized cut/target-free lemma, and test it at the
-  next adjacent Pascal states before attempting a uniform Lean theorem.
+  family and classify each retained family as coordinate monotonicity,
+  Pascal/simplex-window membership, profile-hole restriction, lacing/gluing,
+  or genuinely finite residue.  Freeze one parameterized profile-hole or
+  cut/target-free lemma and test it at the next adjacent Pascal states before
+  attempting a uniform Lean theorem.
 - **Success payoff:** validate the residual mechanism at an adjacent parameter
   state and expose a credible uniform Pascal theorem.
 - **Expiry or revival gate:** exact countermodels to both leaves, or proof that
@@ -553,7 +569,11 @@ that deserves independent retention and scheduling consideration.
   A slate-completion manifest/checker now prevents omitted terminal lanes, and
   the guarded command runner enforces wall time, aggregate RSS, Lean-compiler
   count, process-group cleanup, and machine-readable heartbeats.  It caught a
-  14-compiler Lake fan-out before another WSL resource failure.
+  14-compiler Lake fan-out before another WSL resource failure.  The bounded
+  2026-08-13 literature workflow retained 63 seed records, downloaded 70 open
+  full texts, deep-read 26 papers, and produced a 54-item follow-up queue; these
+  counts evidence a reproducible discovery process, not a mathematical result
+  or an exhaustive bibliography.
 - **Downstream consumer:** all mathematical entries, through safer and broader
   execution.
 - **Open obstruction:** preserve useful breadth without allowing process work
@@ -561,8 +581,11 @@ that deserves independent retention and scheduling consideration.
   reproduce heavyweight generated certificates without reintroducing unsafe
   Lake fan-out, and compress the retained semantic base of the Fin11 cubes.
 - **Next discriminating gate:** prototype an indexed semantic-base bridge on one
-  proof-small Fin11 cube.  Retain the guarded one-module artifact procedure as
-  the reproducible path for the now-integrated state-556 and mixed state-567
+  proof-small Fin11 cube, beginning with the full-ambient generated down-set
+  comparisons isolated in `FP-01.B`.  Require omitted-index and corrupted-family
+  controls, and distinguish clause-family compression from a proof of the
+  endpoint-repair producer.  Retain the guarded one-module artifact procedure
+  as the reproducible path for the now-integrated state-556 and mixed state-567
   certificates.
 - **Success payoff:** faster route comparison, fewer repeated dead ends, and a
   durable memory of all potentially valuable work.
@@ -584,6 +607,22 @@ parent unless promoted.
   Compress/share that base interface, then prove restriction/relabeling and
   compatible-window synchronization.  A realizable target-free counterexample
   expires the mathematical producer.
+- **FP-01.B — Ambient endpoint-synchronized down-sets.**  Literature analysis
+  identifies a split-profile injection whose cap and cup share one endpoint but
+  need an additional ambient correlation to synchronize the other endpoint.
+  This is a proposal, not an imported theorem or Lean result.  The uniform tier
+  is sweep-realizable; arbitrary `OneChangeOn` and decomposable instances are
+  bounded controls only.  First compile the local full-ambient generated
+  down-set strict-extension/injectivity lemma with clipping non-saturation
+  explicit, then freeze one noncircular `k=6` endpoint-repair/half-support card
+  and test it unchanged on the compiled realizable Fin9 collision pair and the
+  existing rational controls.  Any recurrence factoring through the clipped
+  child pair-rank matrix is already refuted by that collision.  A realizable
+  target-free failure expires the frozen repair; a surviving noncircular
+  producer lands as the live mathematical child; a result that only compresses
+  semantic clause families moves to `FP-14.B` without counting as mathematical
+  progress on `FP-01`; and recovery of only the standard local injectivity fact
+  is recorded as inert infrastructure rather than scheduled as a producer.
 - **FP-02.A — Balanced canonical transversal.**  The three-carrier transversal
   and residual-touching packing conclusion are proof-ready.  The next invariant
   must be placement-independent; fixed carrier signatures are expired.
@@ -607,7 +646,10 @@ parent unless promoted.
 - **FP-14.B — Indexed semantic-base compression and completion signaling.**
   Replace thousands of concrete clause theorems by a small indexed family or
   proof-bearing snapshot on one Fin11 leaf, with corrupted-index and omitted-
-  family controls.  The signaling half is complete: execution slates require
+  family controls.  Test whether the full-ambient down-set comparisons from
+  `FP-01.B` discharge a deterministic clause family, while recording a
+  compression-only outcome separately from an endpoint-repair theorem.  The
+  signaling half is complete: execution slates require
   one validated terminal result per task, the root may not finish while a lane
   is live, and guarded commands emit heartbeats and kill their whole process
   group on wall-time, aggregate-RSS, or compiler-count violations.  The serial

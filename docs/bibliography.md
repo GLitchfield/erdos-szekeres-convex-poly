@@ -78,7 +78,9 @@ repository records.
 19. **J. Baek and M. Balko**, “The Erdős--Szekeres conjecture revisited,”
     *Journal of Combinatorial Theory, Series A* 222 (2026), 106195. Primary;
     split polygons, decomposable sets, and new extremal constructions.
-    <https://doi.org/10.1016/j.jcta.2026.106195>
+    <https://doi.org/10.1016/j.jcta.2026.106195> The open-access SoCG 2025
+    proceedings version was inspected on 2026-08-13:
+    <https://doi.org/10.4230/LIPIcs.SoCG.2025.13>.
 20. **N. Alon, E. Chiniforooshan, V. Chvátal, and F. Genest**, “Another
     abstraction of the Erdős--Szekeres happy end theorem,” *Electronic Journal
     of Combinatorics* 17 (2010), N11. Primary; useful for abstraction limits.

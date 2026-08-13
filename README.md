@@ -75,7 +75,10 @@ sets.
   16-state bound. `RankProfileCollision.lean` now kernel-checks the complete
   pair-rank collision and proves both witnesses are induced by explicit
   rational planar configurations. Straight-line sweep realizability therefore
-  does not repair this deterministic child-state transition.
+  does not repair this deterministic child-state transition.  The
+  literature-informed `FP-01.B` child consequently targets a full-ambient
+  generated down-set and endpoint-repair alternative; it explicitly does not
+  revive a recurrence through the clipped child state.
 - `ErdosSzekeres/DecomposableRealization.lean` closes the abstraction boundary
   for the entire recursive class. Its fixed-abscissa merge theorem vertically
   shifts arbitrarily interleaved deep-below children while retaining both

@@ -1,6 +1,6 @@
 # Initial literature review: the exact Erdős--Szekeres formula
 
-Last updated: 2026-08-01. This is a research synthesis, not a claim of
+Last updated: 2026-08-13. This is a research synthesis, not a claim of
 bibliographic exhaustiveness. The companion [source ledger](bibliography.md)
 records the works actually checked. The search began from the 2000
 Morris--Soltan survey and followed references and citations through the 2026
@@ -223,6 +223,21 @@ decomposition trees has identical child all-gap maxima profiles and different
 open parent profiles.  Hence a uniform proof must retain correlations between
 chains—such as predecessor/rank downsets—or prove a new bounded quotient; a
 maxima-only context recurrence is insufficient.
+
+A bounded 2026-08-13 literature pass strengthens that redirect without proving
+a new theorem.  The closest exact published architecture attaches extension
+ranks to ordered pairs, generates a down-set or monotone word at each vertex,
+proves injectivity by a local extension contradiction, and classifies the few
+missing profiles.  In the split-polygon application the cap and cup share one
+endpoint, while synchronizing the other endpoint remains the critical gap.
+The repository's `RankProfile` definitions already express the pair-rank and
+down-set layer, but `RankProfileCollision.lean` proves that the complete clipped
+child pair-rank matrix is not a recursive congruence even for explicit rational
+realizations.  The resulting proposal is therefore a *full-ambient* generated
+down-set/endpoint-repair child under `FP-01`, first tested against that Fin9
+collision.  The published split theorem is motivation and source material, not
+an imported Lean premise; abstract OneChange and decomposable instances remain
+controls for a sweep-realizable uniform target.
 
 ## Mutation connectivity and the Layer-F boundary
 

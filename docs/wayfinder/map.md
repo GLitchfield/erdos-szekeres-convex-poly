@@ -61,7 +61,7 @@ sharpness construction of size `2^(n-2)`.
 
 ## Open frontier
 
-### Frontier portfolio snapshot (2026-08-12)
+### Frontier portfolio snapshot (2026-08-13)
 
 The canonical, inclusive registry is
 [`frontier-portfolio.md`](frontier-portfolio.md). It retains every currently
@@ -73,14 +73,16 @@ registry.
 The project no longer allocates an entire research block to one unresolved
 leaf. The portfolio deliberately separates direct recurrence producers, the
 first concrete decomposable obstruction, uniformization, unrestricted-bridge
-work, and bounded certificate engineering. The latest
-route-selection review is
-`runs/reviews/20260811-portfolio-plan/output/REPORT.md` (SHA-256
-`78121e80e15715197a25641a7d489ae007a67afb27479c4af2f95b63da85c428`).
-It is reused here because the fourteen routes below elaborate the reviewed
-portfolio rather than changing its mathematical direction. Work blocks select
-a temporary execution slate from this inventory; the number of slots and the
-current slate do not define which threads remain valuable.
+work, and bounded certificate engineering. The latest literature-to-frontier
+review is recorded in
+`runs/reviews/20260813-literature-frontier-run/ADVISORY-SUMMARY.md`. Both blind
+reviewers rated the proposed update partially supported and recommended one
+conservative child under Thread 1, with a process-only cross-reference under
+Thread 14; the reciprocal critique failed operationally, so this is advisory
+rather than a complete harness result. The fourteen main routes and their
+states are unchanged. Work blocks select a temporary execution slate from this
+inventory; the number of slots and the current slate do not define which
+threads remain valuable.
 
 1. **Predecessor half-subset producer (primary unrestricted route).**  Seek
    `PredecessorHalfSubsetAt k` directly.  Integral bicoloring and fractional
@@ -112,7 +114,13 @@ current slate do not define which threads remain valuable.
    predeclared 8,000-clause Lean gate.  The next bounded action is indexed
    semantic-base compression on one of the eleven otherwise proof-small leaves,
    not deeper splitting of the same cube tree.  Neither the Fin11 theorem nor
-   the all-`n` synchronization/relabeling bridge is proved.
+   the all-`n` synchronization/relabeling bridge is proved.  A new
+   literature-informed child studies full-ambient pair-rank down-sets as the
+   possible synchronization mechanism.  Its first gate is local
+   strict-extension/injectivity with clipping non-saturation, followed by an
+   unchanged `k=6` endpoint-repair card tested on the compiled realizable Fin9
+   collision.  That collision already forbids any repair that factors through
+   the clipped child pair-rank matrix.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -173,7 +181,10 @@ current slate do not define which threads remain valuable.
    its checkpointed certificate, semantic bridge, exact ordered-set transport,
    both advertised leaves, and existing consumer now compile through
    `PascalTailTwoSideBound 5 5 6`.  The next route question is which clause
-   families generalize with the Pascal parameters, not another finite bridge.
+   families express coordinate monotonicity, Pascal/simplex-window membership,
+   profile holes, lacing or gluing, and which are genuinely finite residues.
+   Freeze and test a parameterized profile-hole or cut lemma before claiming a
+   uniform theorem.
 4. **Layer-F highest-stratum mutation descent (unrestricted sidecar).**  Test
    and then prove or refute `ThreeStepTopPrimeStratumDropsAboveAt`.  Only exact
    realizable, target-free controls can decide the route; below-threshold
@@ -267,6 +278,13 @@ These are children of the reviewed portfolio, not new top-level routes.
    the eleven otherwise proof-small leaves; only after a compiling Fin11
    theorem should the route attempt restriction/relabeling and overlap
    synchronization.
+- **T1.B — ambient endpoint-synchronized down-sets.**  Literature analysis,
+  not a theorem, isolates the split-profile endpoint mismatch as a candidate
+  mechanism.  Work in the sweep-realizable tier, using OneChange/decomposable
+  models only as controls.  Compile the local full-ambient down-set lemma,
+  freeze a noncircular endpoint-repair/half-support card, and attack it first
+  with the realizable Fin9 collision.  A compression-only outcome belongs to
+  T14.B; a recurrence through clipped child ranks is already refuted.
 - **T2.A — balanced canonical-provenance branch.**  The universal four-block
   escape is redundant once rectangle coverage is known, and the bare
   carrier-contained classification is false.  Canonical provenance compiles;
@@ -304,7 +322,9 @@ These are children of the reviewed portfolio, not new top-level routes.
   group cleanup; it caught a 14-compiler Lake fan-out before WSL failed.  The
   deferred state-556 and mixed state-567 artifacts have now been rebuilt
   serially and their umbrella imports restored.  The next gate is an indexed
-  semantic-base bridge on one Fin11 cube.
+  semantic-base bridge on one Fin11 cube, testing the full-ambient down-set
+  comparisons from T1.B with omitted-index and corrupted-family controls and
+  keeping certificate compression distinct from mathematical producer proof.
 
 Threads 1--3 are the most direct paths to the exact upper recurrence.  Threads
 4--11 hedge distinct mathematical and formalization failure modes; 12 is
