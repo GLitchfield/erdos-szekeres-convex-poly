@@ -558,12 +558,12 @@ that deserves independent retention and scheduling consideration.
   execution.
 - **Open obstruction:** preserve useful breadth without allowing process work
   or scheduling metadata to become a competing mathematical roadmap; safely
-  promote heavyweight generated certificates whose normal umbrella build
-  exceeds the aggregate compiler/RSS envelope.
+  reproduce heavyweight generated certificates without reintroducing unsafe
+  Lake fan-out, and compress the retained semantic base of the Fin11 cubes.
 - **Next discriminating gate:** prototype an indexed semantic-base bridge on one
-  proof-small Fin11 cube.  Separately rebuild the deferred state-556 and mixed
-  state-567 generated modules with an explicit one-module `lean -j1` sequence,
-  then restore their umbrella imports only after guarded `make test` passes.
+  proof-small Fin11 cube.  Retain the guarded one-module artifact procedure as
+  the reproducible path for the now-integrated state-556 and mixed state-567
+  certificates.
 - **Success payoff:** faster route comparison, fewer repeated dead ends, and a
   durable memory of all potentially valuable work.
 - **Expiry or revival gate:** schedule process work only for a measured
@@ -610,10 +610,11 @@ parent unless promoted.
   family controls.  The signaling half is complete: execution slates require
   one validated terminal result per task, the root may not finish while a lane
   is live, and guarded commands emit heartbeats and kill their whole process
-  group on wall-time, aggregate-RSS, or compiler-count violations.  The safe
-  promotion follow-up is a serial artifact manifest for heavyweight generated
-  modules.  Expire the proof bridge if it re-expands beyond the 16 GiB gate or
-  weakens kernel trust; retain the signaling/resource repair independently.
+  group on wall-time, aggregate-RSS, or compiler-count violations.  The serial
+  artifact follow-up is complete for the state-556 and mixed state-567
+  certificates, including restored umbrella imports.  Expire the Fin11 proof
+  bridge if it re-expands beyond the 16 GiB gate or weakens kernel trust; retain
+  the signaling/resource repair independently.
 
 ## Historical register
 

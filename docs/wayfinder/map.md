@@ -302,8 +302,9 @@ These are children of the reviewed portfolio, not new top-level routes.
   `scripts/check_agent_slate.py`.  `scripts/run_lean_guarded.py` additionally
   enforces wall time, aggregate RSS, Lean-compiler count, and whole-process-
   group cleanup; it caught a 14-compiler Lake fan-out before WSL failed.  The
-  next gate is a serial artifact manifest for deferred heavyweight certificates
-  plus an indexed semantic-base bridge on one Fin11 cube.
+  deferred state-556 and mixed state-567 artifacts have now been rebuilt
+  serially and their umbrella imports restored.  The next gate is an indexed
+  semantic-base bridge on one Fin11 cube.
 
 Threads 1--3 are the most direct paths to the exact upper recurrence.  Threads
 4--11 hedge distinct mathematical and formalization failure modes; 12 is

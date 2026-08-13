@@ -2335,15 +2335,16 @@ the serialized builder moved to state 567 and then both state-556 leaves.
 
 ### Promotion-wave four-lane results (2026-08-12--13)
 
-Integration note (2026-08-13): the mixed-567 public theorem retains its
-independently checked `file_compiles` evidence, but its umbrella import is
-deferred until the generated semantic chunks are rebuilt one module at a time
-under the aggregate Lean-process/RSS guard. The Pascal-556 umbrella import is
-deferred for the same reason, although its public endpoint has a current
-guarded direct-file pass. Project-wide Lake scheduling started many
-multi-gigabyte compiler children despite `-Kjobs=1`; the orchestrator stopped
-those builds before another WSL resource failure. The Layer-F endpoint also has
-a current guarded direct-file gate.
+Integration note (2026-08-13): the mixed-567 and Pascal-556 generated
+certificate artifacts were rebuilt one module at a time under the aggregate
+Lean-process/RSS guard.  Their exact public endpoints passed after the complete
+artifact inventories were restored, both umbrella imports are active, and the
+guarded project test passes.  The default test now requests the umbrella
+proof-only Lake facet; full generated C/editor artifacts remain available via
+`make lean-artifacts`.
+This serial promotion replaces the unsafe project-wide Lake fan-out that had
+started many multi-gigabyte compiler children despite `-Kjobs=1`.  The Layer-F
+endpoint also has a current guarded direct-file gate.
 
 The follow-up promotion wave reached one terminal outcome on every selected
 lane.  `scripts/check_agent_slate.py` validates the four task/result pairs.

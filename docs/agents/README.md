@@ -90,11 +90,14 @@ observed compiler set exceeds the packet's aggregate memory or builder budget,
 stop the process group at once and verify that no Lean/Lake child remains.
 `-Kjobs=1` is a Lake configuration override and must not be cited as evidence
 that compilation was serialized.  The safe local fallback is an explicit,
-one-module-at-a-time sequence of `lake env lean -j1 FILE.lean` gates (emitting
-the required artifacts when later modules import them), with no overlapping
-Lake build.  Project-wide `lake build` or `make test` remains the eventual
-integration gate, but it is deferred rather than crash-tested when the current
-checkout cannot run it within the declared aggregate resource envelope.
+one-module-at-a-time sequence of guarded direct-Lean or single-module Lake
+gates, with no overlapping Lake build.  The default `make test` Lean gate builds
+the umbrella `+ErdosSzekeres:olean` facet: it kernel-checks the imported proof
+graph without requiring generated C and editor metadata for theorem-only
+certificate modules.  `make lean-artifacts` retains the full default Lake
+library-facet build when those extra artifacts are required.  Either gate is
+deferred rather than crash-tested if the current checkout cannot run it within
+the declared aggregate resource envelope.
 
 ## Assignment lifecycle
 

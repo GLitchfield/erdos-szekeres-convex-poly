@@ -1,7 +1,7 @@
 PROJECT_TOOL_BIN := $(CURDIR)/scripts/toolchain
 export PATH := $(PROJECT_TOOL_BIN):$(PATH)
 
-.PHONY: check update lean test test-exhaustive wayfinder review-doctor
+.PHONY: check update lean lean-artifacts test test-exhaustive wayfinder review-doctor
 
 check:
 	@python3 --version
@@ -12,6 +12,10 @@ update: check
 	@lake update
 
 lean:
+	@! rg -n --glob '*.lean' '\b(sorry|admit)\b' ErdosSzekeres ErdosSzekeres.lean
+	@lake build +ErdosSzekeres:olean
+
+lean-artifacts:
 	@! rg -n --glob '*.lean' '\b(sorry|admit)\b' ErdosSzekeres ErdosSzekeres.lean
 	@lake build
 
