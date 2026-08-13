@@ -2332,3 +2332,59 @@ The block validates the portfolio workflow: three direct/generalization lanes
 advanced independently while the unrestricted hedge gained a stronger exact
 interface.  Fin11 did not consume the remaining lanes after its resource stop;
 the serialized builder moved to state 567 and then both state-556 leaves.
+
+### Promotion-wave four-lane results (2026-08-12--13)
+
+Integration note (2026-08-13): the mixed-567 public theorem retains its
+independently checked `file_compiles` evidence, but its umbrella import is
+deferred until the generated semantic chunks are rebuilt one module at a time
+under the aggregate Lean-process/RSS guard. The Pascal-556 umbrella import is
+deferred for the same reason, although its public endpoint has a current
+guarded direct-file pass. Project-wide Lake scheduling started many
+multi-gigabyte compiler children despite `-Kjobs=1`; the orchestrator stopped
+those builds before another WSL resource failure. The Layer-F endpoint also has
+a current guarded direct-file gate.
+
+The follow-up promotion wave reached one terminal outcome on every selected
+lane.  `scripts/check_agent_slate.py` validates the four task/result pairs.
+
+- **PTV556L-O1 (`file_compiles`; closed adjacent finite state).**  Thirty-two
+  LRAT checkpoints, 15,951 exact semantic clauses, and sixteen balanced
+  eliminators prove a stronger witness-free Fin14 contradiction.  Exact
+  ordered-set transport proves both advertised state-556 leaves, and the
+  existing consumer now compiles through `PascalTailTwoSideBound 5 5 6`.
+  This is genuine adjacent-state Pascal progress, but not a uniform parameter
+  theorem.  The next mathematical task is clause-family mining for a
+  parameterized cut/target-free statement.
+
+- **S567MIL-O1 (`file_compiles`; mixed profile closed).**  The authoritative
+  quotient-free all-order core is kernel-checked through 32 checkpoints; 58
+  semantic modules prove all 14,773 retained clauses and sixteen eliminators
+  connect them to the finite theorem.  The arbitrary-placement theorem and
+  `mixedCarrierOnlyOmissionNormalForm_forces_target567` compile with rectangle
+  system, both card-six premises, carrier disjointness, `OneChangeOn`, and both
+  normal-form branches unchanged.  State-567 work now concentrates on the
+  balanced residual-touching profile and upstream case-split consumption.
+
+- **LFCL-O2 (`file_compiles` plus bounded negative evidence).**  Target-
+  creation shields, persistent proper-split shields, their strict-family
+  consumer, and the exact rational positive control compile.  Independent
+  bounded screening refutes the stronger demand that every intermediate edge
+  monotonically avoid new prime cores.  The repaired Layer-F producer must
+  preserve target-freedom stepwise but account for prime-core inclusion only at
+  the macro endpoint.
+
+- **HPU11M-O4 (`computational_evidence`; depth/output stop).**  The exact Fin11
+  core is split exhaustively into 64 depth-six cubes and every child LRAT is
+  independently replayed with hash, unit, omitted-branch, and corrupted-hint
+  controls.  Leaf additions fall to 17,089--61,302 and eleven leaves meet the
+  learned-proof thresholds, but every leaf retains 9,181--12,010 semantic base
+  clauses, above the predeclared 8,000-clause Lean gate.  No Lean probe or Fin11
+  theorem is claimed.  Further work must compress or share the semantic base;
+  deeper splitting of the same tree is not justified.
+
+The wave also exposed an orchestration defect: a final status response ended
+the root turn while Fin11 was live, so its later completion was not reconciled
+until the next user message.  The agent protocol now forbids final responses
+while a slate worker is live and requires a machine-checked terminal result for
+every task before integration.

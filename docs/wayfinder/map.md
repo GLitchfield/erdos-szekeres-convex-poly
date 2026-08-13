@@ -105,12 +105,14 @@ current slate do not define which threads remain valuable.
    a noncircular consumer into the thresholded singleton-fan producer.  Its
    exact abstract `Fin 11` negation is certificate-replayed UNSAT: 1,881
    variables, 26,862 clauses, and 479,434 independently checked additions cover
-   all 4,620 side/pivot/direction branches.  A causal core still retains 19,207
-   semantic leaves and 435,540 additions; monolithic mathlib `FromLRAT`
-   exhausted the 16 GiB gate.  The next bounded action is proof mining or
-   checkpointed kernel replay, not another direct promotion attempt.  Neither
-   the all-`n` synchronization theorem nor its restriction/relabeling bridge is
-   proved.
+   all 4,620 side/pivot/direction branches.  Exhaustive splitting on six
+   orientation variables now yields 64 independently certified leaves with
+   17,089--61,302 additions.  Learned-proof complexity is no longer the main
+   blocker: every leaf retains 9,181--12,010 semantic base clauses, above the
+   predeclared 8,000-clause Lean gate.  The next bounded action is indexed
+   semantic-base compression on one of the eleven otherwise proof-small leaves,
+   not deeper splitting of the same cube tree.  Neither the Fin11 theorem nor
+   the all-`n` synchronization/relabeling bridge is proved.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -138,9 +140,12 @@ current slate do not define which threads remain valuable.
    incidence types and `6+6` carrier cardinalities, now compiles.  Its exact
    all-interleaving color terminal is independently certified UNSAT twice: an
    authoritative quotient-free encoding replays 134,821 RUP additions, and an
-   independent Aut-768 cross-section encoding replays 2,958,768.  The next
-   task is Lean promotion plus the structural relabeling consumer; the packed
-   22-point branch remains unclaimed until that theorem compiles.
+   independent Aut-768 cross-section encoding replays 2,958,768.  The
+   checkpointed quotient-free certificate, all 14,773 retained semantic
+   clauses, arbitrary-placement finite theorem, and exact public structural
+   consumer now compile.  The mixed omission profile is formally closed; the
+   live state-567 work is the balanced residual-touching color law and upstream
+   consumption of this closed branch.
 3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
    state-567 proof's numerical and structural kernel into a parameterized
    two-carrier/residual-escape theorem and consume it through
@@ -164,8 +169,11 @@ current slate do not define which threads remain valuable.
    compiled consumer recovers the old terminal.  Both exact Fin14 leaf
    negations are independently certified UNSAT: the distinct-witness proof has
    16,434 RUP additions, and the genuine ten-distinct-block fiber proof has
-   14,315.  They are now separate Lean certificate targets; the state-556
-   terminal is not claimed until both bridges compile.
+   14,315.  Proof mining found a stronger witness-free Fin14 contradiction;
+   its checkpointed certificate, semantic bridge, exact ordered-set transport,
+   both advertised leaves, and existing consumer now compile through
+   `PascalTailTwoSideBound 5 5 6`.  The next route question is which clause
+   families generalize with the Pascal parameters, not another finite bridge.
 4. **Layer-F highest-stratum mutation descent (unrestricted sidecar).**  Test
    and then prove or refute `ThreeStepTopPrimeStratumDropsAboveAt`.  Only exact
    realizable, target-free controls can decide the route; below-threshold
@@ -177,11 +185,14 @@ current slate do not define which threads remain valuable.
    changed triples.  The stronger creation-free producer
    `ThreeStepPrimeCoreFamilyShrinksAboveAt` has a compiling consumer through
    stratified descent, target-free normalization, and `SweepExactUpperAt`.
-   Independent bounded replay finds strict whole-family deletion within radius
-   three for all 13,248 target-free indecomposable Fin7 signotopes and 2,158
-   selected hard Fin8 extensions.  Existence of a realizable threshold macro
-   remains open; the missing lemma must preserve target-freedom on crossing
-   supports and prevent creation of ambient prime cores.
+   Explicit target-creation and persistent-split shields, their strict-family
+   consumer, and the exact rational positive control now compile.  Independent
+   bounded replay still finds target-free endpoint descent within radius three,
+   but refutes monotone prime-core inclusion at every intermediate edge on four
+   Fin7 and ten selected Fin8 controls.  Existence of a realizable threshold
+   macro remains open; the repaired lemma must preserve target-freedom stepwise
+   while allowing temporary core creation and proving inclusion only between
+   macro endpoints.
 5. **State-567 balanced five-class leaves (parallel decomposable branch).**
    Prove the mechanical five-way exhaustion, then attack the `2+4`, `3+3`,
    `4+2`, left-right residue, and right-left residue terminal classes.  Pair
@@ -248,11 +259,14 @@ These are children of the reviewed portfolio, not new top-level routes.
 
 - **T1.A — Fin10 singleton-fan certificate promotion.**  **Completed:** the
   exact `halfPureSingletonFanAtSixFinTen_of_oneChange` theorem compiles.  The
-  synchronized compatible-ten-window candidate survives the exact `n=11`
-  gate with independently replayed full and causal LRAT certificates.  Direct
-  `FromLRAT` promotion OOMs under 16 GiB, so the next child task is proof mining
-  or checkpointed kernel replay; only after a compiling Fin11 theorem should
-  the route attempt restriction/relabeling and overlap synchronization.
+   synchronized compatible-ten-window candidate survives the exact `n=11`
+   gate.  Exhaustive depth-six splitting gives 64 independently certified
+   cubes and reduces learned traces to 17,089--61,302 additions, but every leaf
+   retains at least 9,181 semantic base clauses and misses the frozen 8,000-leaf
+   gate.  The next child task is indexed semantic-base compression on one of
+   the eleven otherwise proof-small leaves; only after a compiling Fin11
+   theorem should the route attempt restriction/relabeling and overlap
+   synchronization.
 - **T2.A — balanced canonical-provenance branch.**  The universal four-block
   escape is redundant once rectangle coverage is known, and the bare
   carrier-contained classification is false.  Canonical provenance compiles;
@@ -261,26 +275,35 @@ These are children of the reviewed portfolio, not new top-level routes.
   because its necessary carrier literals are not consequences of the grid.
   The remaining terminal must couple residual-touching witnesses through a
   genuinely placement-independent color law.
-- **T2.B — mixed omission-profile terminal.**  Carrier cardinalities `6+6`
-  and the complete pointwise/six-rectangle normal form compile from the profile
-  alone.  Two independent encodings now certify the all-interleaving terminal
-  UNSAT.  The next gate is the quotient-free Lean certificate plus its exact
-  structural relabeling consumer.
+- **T2.B — mixed omission-profile terminal.**  **Completed finite terminal:**
+  carrier cardinalities `6+6`, the complete pointwise/six-rectangle normal
+  form, quotient-free checkpointed certificate, 14,773-clause semantic bridge,
+  arbitrary-placement theorem, and exact public relabeling consumer all
+  compile.  Consume this theorem in the state-567 case split; new proof work
+  belongs to the balanced profile or upstream normal-form production.
 - **T2.C — decomposability-retention bridge.**  Audit whether ambient
   decomposability can be retained through the packed reducer and restricted to
   the twelve carrier vertices.  If so, test a decomposable-grid color theorem;
   otherwise expire this repair rather than assuming a premise the leaf erased.
-- **T3.A — variable-carrier Pascal repair.**  **Partially completed:** the
-  unequal `5+1` carrier system and eight-residual count compile at state 556.
-  The monolithic terminal is strategically inert; the choice-free witness
-  universe, collision-or-ten-fiber theorem, two local leaf interfaces, and
-  their consumer compile.  Both exact local leaf negations are independently
-  certified UNSAT; promote them separately to Lean before claiming the finite
-  state-556 terminal.
-- **T14.A — large-certificate kernel replay.**  The Fin11 causal core remains
-  435,540 additions and defeats monolithic `FromLRAT`.  Compare proof mining,
-  an alternative certified trace, and checkpointed or streaming Lean replay
-  without weakening the semantic hashes or kernel trust.
+- **T3.A — variable-carrier Pascal repair.**  **Completed adjacent finite
+  state:** the unequal `5+1` carrier system, choice-free witness universe,
+  collision-or-ten-fiber theorem, both advertised leaves, and their consumer
+  compile through `PascalTailTwoSideBound 5 5 6`.  Proof mining found a stronger
+  witness-free Fin14 contradiction.  The next task is parameter extraction from
+  that semantic core, tested at adjacent Pascal states before any uniform claim.
+- **T14.A — large-certificate kernel replay.**  Checkpointing closed the
+  state-556 and mixed state-567 certificates.  Fin11 cube decomposition makes
+  the learned traces small enough but leaves 9,181--12,010 semantic clauses per
+  leaf.  Do not deepen the same cube tree until an indexed semantic-base bridge
+  or proof-bearing snapshot passes on one proof-small leaf.
+- **T14.B — guarded completion and certificate promotion.**  The protocol now
+  forbids final responses while a slate worker is live, requires frequent
+  root-owned commentary, and validates one terminal result per task with
+  `scripts/check_agent_slate.py`.  `scripts/run_lean_guarded.py` additionally
+  enforces wall time, aggregate RSS, Lean-compiler count, and whole-process-
+  group cleanup; it caught a 14-compiler Lake fan-out before WSL failed.  The
+  next gate is a serial artifact manifest for deferred heavyweight certificates
+  plus an indexed semantic-base bridge on one Fin11 cube.
 
 Threads 1--3 are the most direct paths to the exact upper recurrence.  Threads
 4--11 hedge distinct mathematical and formalization failure modes; 12 is

@@ -221,18 +221,21 @@ that deserves independent retention and scheduling consideration.
 - **Best evidence:** the generic consumer into `PredecessorHalfSubsetAt`
   compiles; exact Fin8 and nonvacuous Fin10 fan theorems compile.  The complete
   Fin11 synchronized-fan negation has independently replayed computational
-  evidence through both the 479,434-addition full LRAT and a 435,540-addition
-  causal core.  A direct mathlib `FromLRAT` promotion exhausted the 16 GiB gate,
-  so no Fin11 Lean theorem is claimed.
+  evidence through both the 479,434-addition full LRAT and an exhaustive
+  depth-six decomposition into 64 independently certified cubes.  Cube leaves
+  reduce to 17,089--61,302 additions and at most 28.4 MiB each, but every leaf
+  retains 9,181--12,010 semantic base clauses.  The predeclared 8,000-base gate
+  therefore stopped before Lean, so no Fin11 theorem is claimed.
 - **Downstream consumer:** `sweepExactUpperAt_of_predecessorHalfSubset`, then
   the unrestricted exact upper bound.
-- **Open obstruction:** compact or checkpoint the Fin11 proof enough for a
-  kernel gate, then turn compatible ten-point singleton fans into one
-  half-sized fan with a common pivot and direction for arbitrary size.
-- **Next discriminating gate:** obtain a radically smaller certified Fin11
-  trace or a streaming/checkpointed Lean checker before generating the semantic
-  bridge; only after it compiles, isolate the restriction/relabeling overlap
-  theorem.
+- **Open obstruction:** compress or share the retained Fin11 semantic-clause
+  bridge; learned-trace size is no longer the primary blocker.  After a kernel
+  Fin11 theorem, turn compatible ten-point singleton fans into one half-sized
+  fan with a common pivot and direction for arbitrary size.
+- **Next discriminating gate:** on one of the eleven proof-small depth-six
+  leaves, replace thousands of individual semantic leaf theorems by an indexed
+  family theorem or proof-bearing semantic snapshot.  Attempt Lean only if the
+  resulting imported base interface is materially smaller than 8,000 facts.
 - **Success payoff:** a credible uniform producer for the unrestricted route.
 - **Expiry or revival gate:** a checked realizable target-free counterexample
   to synchronized compatible fans retires this producer; abstract-only failure
@@ -252,20 +255,20 @@ that deserves independent retention and scheduling consideration.
   an explicit bridge.
 - **Best evidence:** probe reuse, carrier normalization, omission rectangles,
   area profiles, canonical provenance, and the full mixed six-rectangle normal
-  form compile.  The all-interleaving mixed color terminal is independently
-  certified UNSAT in both an all-orders encoding and a separately implemented
-  Aut-768 cross-section encoding; this is computational evidence, not yet a
-  Lean theorem.  A three-carrier transversal and residual-touching escape are
-  proof-ready proposals.
+  form compile.  The quotient-free all-order certificate, all semantic clauses,
+  arbitrary-placement transport, and exact public theorem
+  `mixedCarrierOnlyOmissionNormalForm_forces_target567` now compile.  This
+  formally closes the mixed omission profile.  A three-carrier transversal and
+  residual-touching escape remain proof-ready proposals for the balanced
+  profile.
 - **Downstream consumer:** the packed state-567 reducer and ultimately the
   uniform decomposable exact upper theorem.
-- **Open obstruction:** promote the placement-independent mixed terminal and
-  its relabeling consumer to Lean; the balanced residual-touching family still
-  lacks a relational color law.
-- **Next discriminating gate:** promote the quotient-free mixed certificate
-  and exact structural transport to
-  `mixedCarrierOnlyOmissionNormalForm_forces_target567`; in parallel planning,
-  screen only genuinely relational balanced escape laws.
+- **Open obstruction:** the balanced residual-touching family still lacks a
+  placement-independent relational color law; upstream production of the mixed
+  or balanced normal form also remains explicit.
+- **Next discriminating gate:** consume the compiled mixed theorem in the exact
+  state-567 case split, then screen only genuinely relational balanced escape
+  laws that retain residual ten and repeated packing.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** a full-context target-free model retires the
   affected terminal.  Fixed-color UNSAT cores do not advance the general leaf
@@ -283,18 +286,19 @@ that deserves independent retention and scheduling consideration.
   producers, with each color terminal stated separately.
 - **Best evidence:** generic seed cover, division-free collision/large-fiber
   counting, the state-567 specialization, unequal carriers, and the exact
-  state-556 collision-or-ten-fiber normalization compile.  The two separate
-  Fin14 leaf negations are now independently RUP-certified UNSAT: the distinct-
-  witness gate uses 16,434 additions and the genuine ten-distinct-block fiber
-  gate uses 14,315 additions.  Both remain computational evidence.
+  state-556 collision-or-ten-fiber normalization compile.  Proof mining exposed
+  a stronger witness-free Fin14 contradiction; its checkpointed certificate,
+  15,951-clause semantic bridge, generic ordered-set transport, both advertised
+  state-556 leaves, and the existing consumer now compile through
+  `PascalTailTwoSideBound 5 5 6`.
 - **Downstream consumer:** `PascalTailTwoSideBound`, then the uniform
   decomposable recurrence.
-- **Open obstruction:** promote both exact state-556 color leaves through Lean
-  semantic bridges and consume them through the compiling witness-reuse
-  reduction.
-- **Next discriminating gate:** kernel-promote the smaller distinct-witness
-  leaf first, then the ten-fiber leaf with its exact distinct-block cardinality
-  bridge; finally rebuild their existing conjunction consumer.
+- **Open obstruction:** identify which structural part of the stronger Fin14
+  base contradiction generalizes with the carrier/residual parameters; the
+  current theorem is still one adjacent finite Pascal state.
+- **Next discriminating gate:** mine the compiled Fin14 semantic core by clause
+  family, freeze one parameterized cut/target-free lemma, and test it at the
+  next adjacent Pascal states before attempting a uniform Lean theorem.
 - **Success payoff:** validate the residual mechanism at an adjacent parameter
   state and expose a credible uniform Pascal theorem.
 - **Expiry or revival gate:** exact countermodels to both leaves, or proof that
@@ -314,20 +318,21 @@ that deserves independent retention and scheduling consideration.
 - **Best evidence:** prime-core ranks, their decomposable characterization, and
   locality of at-most-three mutation macros compile.  The stronger
   `ThreeStepPrimeCoreFamilyShrinksAboveAt` producer now has a compiling consumer
-  all the way to `SweepExactUpperAt`.  Its complete below-threshold abstract
-  surrogate survives independently replayed controls: all 13,248 Fin7 sources
-  and 2,158 selected Fin8 hard extensions delete prime cores without creating
-  any within radius three.  Producer existence at the threshold remains open.
+  all the way to `SweepExactUpperAt`.  Explicit target-creation and
+  persistent-split shields, their strict-family consumer, and the exact rational
+  positive control compile.  Complete bounded screening shows target-free
+  endpoint descent within radius three, but refutes monotone prime-core
+  inclusion at every intermediate edge on four Fin7 and ten selected Fin8
+  controls.
 - **Downstream consumer:** `TargetReflectingDecomposableNormalizationAt`, then
   any uniform decomposable exact theorem.
-- **Open obstruction:** construct a local-to-ambient mutation macro that
-  preserves sweep realizability and target-freedom on crossing supports while
-  preventing every new ambient prime core; restricted-core decomposability is
-  insufficient.
-- **Next discriminating gate:** freeze one exact creation-free ambient lifting
-  criterion, test it on the rational positive control and the finite hard
-  paths, then attempt the first theorem-relevant threshold only if the
-  criterion survives.
+- **Open obstruction:** construct a local-to-ambient macro that preserves sweep
+  realizability and target-freedom stepwise while proving prime-core-family
+  inclusion only between macro endpoints.  Temporary intermediate core creation
+  must be permitted.
+- **Next discriminating gate:** freeze one endpoint shield that accounts for
+  every core created and later destroyed inside an at-most-three path; test it
+  on the fourteen new hard controls before any theorem-threshold search.
 - **Success payoff:** an unrestricted-to-decomposable reduction independent of
   the half-subset producer.
 - **Expiry or revival gate:** a realizable target-free closed component or
@@ -542,23 +547,30 @@ that deserves independent retention and scheduling consideration.
   for the exact formula.
 - **Best evidence:** immutable packets, outcome contracts, serialized builders,
   independent certificate checks, empirical timing records, and the closed
-  portfolio execution cycle operate in the repository.  This four-lane run
-  preserved mathematical breadth while serializing every heavy builder and
-  exposed certificate size—not thread scheduling—as the Fin11 blocker.
+  portfolio execution cycle operate in the repository.  Checkpoint replay made
+  the state-556 and mixed state-567 certificates kernel-feasible.  The Fin11
+  cube audit separated learned-proof complexity from semantic-base complexity.
+  A slate-completion manifest/checker now prevents omitted terminal lanes, and
+  the guarded command runner enforces wall time, aggregate RSS, Lean-compiler
+  count, process-group cleanup, and machine-readable heartbeats.  It caught a
+  14-compiler Lake fan-out before another WSL resource failure.
 - **Downstream consumer:** all mathematical entries, through safer and broader
   execution.
 - **Open obstruction:** preserve useful breadth without allowing process work
-  or scheduling metadata to become a competing mathematical roadmap.
-- **Next discriminating gate:** add a bounded proof-mining/checkpoint experiment
-  for the Fin11 435,540-step core, then verify that the next slate is selected
-  only after this evidence reconciliation.
+  or scheduling metadata to become a competing mathematical roadmap; safely
+  promote heavyweight generated certificates whose normal umbrella build
+  exceeds the aggregate compiler/RSS envelope.
+- **Next discriminating gate:** prototype an indexed semantic-base bridge on one
+  proof-small Fin11 cube.  Separately rebuild the deferred state-556 and mixed
+  state-567 generated modules with an explicit one-module `lean -j1` sequence,
+  then restore their umbrella imports only after guarded `make test` passes.
 - **Success payoff:** faster route comparison, fewer repeated dead ends, and a
   durable memory of all potentially valuable work.
 - **Expiry or revival gate:** schedule process work only for a measured
   bottleneck or demonstrated evidence failure; otherwise return the slot to a
   mathematical thread.
 - **Children:** `FP-14.A` large-certificate proof mining and checkpointed Lean
-  replay.
+  replay; `FP-14.B` indexed semantic-base compression and completion signaling.
 
 ## Current subthreads
 
@@ -566,30 +578,42 @@ Subthreads are tracked here because they are independently useful work units,
 but they inherit the contribution path and strategic disposition of their
 parent unless promoted.
 
-- **FP-01.A — Synchronized singleton fans.**  The exact Fin11 CNF and causal
-  LRAT core replay independently, but monolithic `FromLRAT` exceeds the 16 GiB
-  gate.  Mine a much smaller trace or checkpoint the kernel replay, then prove
-  restriction/relabeling and compatible-window synchronization.  A realizable
-  target-free counterexample expires it.
+- **FP-01.A — Synchronized singleton fans.**  Sixty-four exhaustive depth-six
+  cubes replay independently.  Learned traces are now small, but every leaf
+  retains at least 9,181 semantic base clauses, above the frozen Lean gate.
+  Compress/share that base interface, then prove restriction/relabeling and
+  compatible-window synchronization.  A realizable target-free counterexample
+  expires the mathematical producer.
 - **FP-02.A — Balanced canonical transversal.**  The three-carrier transversal
   and residual-touching packing conclusion are proof-ready.  The next invariant
   must be placement-independent; fixed carrier signatures are expired.
-- **FP-02.B — Mixed omission normal form.**  The complete structural theorem
-  compiles and the all-interleaving color terminal is dual-encoding certified
-  UNSAT.  The next gate is the quotient-free Lean certificate and exact
-  relabeling consumer.
+- **FP-02.B — Mixed omission normal form.**  Completed finite terminal: the
+  quotient-free checkpointed certificate, semantic bridge, arbitrary-placement
+  finite theorem, and exact public normal-form consumer compile.  Retain this
+  child as a closed dependency of `FP-02`; schedule only integration or upstream
+  case-split consumption.
 - **FP-02.C — Decomposability retention.**  Determine whether the packed
   reducer retains ambient decomposability strongly enough to restrict it to the
   twelve carrier vertices before using decomposable-only exclusions.
-- **FP-03.A — Variable-carrier state 556.**  Both the distinct-witness and
-  genuine ten-distinct-block fiber leaf negations are independently certified
-  UNSAT.  Promote them separately to Lean, then apply the compiling incidence
-  consumer.
-- **FP-14.A — Large-certificate kernel replay.**  The Fin11 causal core remains
-  435,540 additions and OOMs in monolithic `FromLRAT`.  Compare certified proof
-  mining, solver-trace replacement, and checkpointed/streaming Lean replay
-  under fixed semantic hashes; retire any architecture that cannot beat the
-  16 GiB gate without weakening kernel trust.
+- **FP-03.A — Variable-carrier state 556.**  Completed finite adjacent state:
+  both advertised leaves and their consumer compile, via a stronger witness-free
+  Fin14 contradiction, through `PascalTailTwoSideBound 5 5 6`.  The live child
+  question is parameter extraction from that stronger core.
+- **FP-14.A — Large-certificate kernel replay.**  Checkpointing succeeds for
+  state-556 and mixed state-567.  For Fin11, exhaustive depth-six cubes reduce
+  learned traces to 17,089--61,302 additions, but the 9,181-clause minimum base
+  still blocks the frozen Lean gate.  Do not deepen the same cube tree without
+  a semantic-base compression mechanism.
+- **FP-14.B — Indexed semantic-base compression and completion signaling.**
+  Replace thousands of concrete clause theorems by a small indexed family or
+  proof-bearing snapshot on one Fin11 leaf, with corrupted-index and omitted-
+  family controls.  The signaling half is complete: execution slates require
+  one validated terminal result per task, the root may not finish while a lane
+  is live, and guarded commands emit heartbeats and kill their whole process
+  group on wall-time, aggregate-RSS, or compiler-count violations.  The safe
+  promotion follow-up is a serial artifact manifest for heavyweight generated
+  modules.  Expire the proof bridge if it re-expands beyond the 16 GiB gate or
+  weakens kernel trust; retain the signaling/resource repair independently.
 
 ## Historical register
 

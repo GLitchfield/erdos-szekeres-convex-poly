@@ -53,6 +53,49 @@ scheduling decision and never prunes the inclusive portfolio. Step 4 must name
 potential outcomes and downstream continuations; uncertain branches remain
 branches rather than hidden assumptions.
 
+### Orchestrator liveness invariant
+
+An approved slate remains one active orchestrator turn until every dispatched
+worker has a terminal result, an explicit bounded stop, or a documented
+carry-forward marker.  The orchestrator must not send a final response while a
+slate worker is still running.  If the user asks for status during execution,
+answer in commentary and keep the wait/reconciliation loop alive.  If the turn
+must end unexpectedly, first interrupt or checkpoint every worker and record
+the carry-forward boundary.
+
+While workers are live, the orchestrator rechecks worker state regularly and
+emits a concise progress or unchanged-state update at least once per minute.
+When a worker finishes, validate its result immediately; do not wait for the
+next user message.  Before integrating or reporting slate completion, run
+`python3 scripts/check_agent_slate.py --slate PATH`.  This verifies that every
+frozen task in the slate has exactly one schema-valid terminal result with the
+same run and task IDs.  The runtime agent-state check remains an orchestrator
+responsibility because repository scripts cannot inspect the collaboration
+service.
+
+The same invariant covers serial integration commands.  A project build,
+certificate replay, test, or solver run must have one named owner, a hard wall
+clock and resource cap, and a terminal exit status.  While it is live, the
+orchestrator stays in the monitoring loop and reports the last verified
+milestone even if the command emits no new output.  A timeout is recorded as an
+operational stop, never inferred to be either success or a mathematical
+failure.
+
+For generated-certificate modules, command-level serialization is not by
+itself a resource guarantee.  Lake may schedule several external Lean
+compilers, and each compiler may create its own worker pool.  The orchestrator
+therefore samples host child count, CPU, and aggregate RSS shortly after a new
+heavy build begins and again after an unexpectedly quiet interval.  If the
+observed compiler set exceeds the packet's aggregate memory or builder budget,
+stop the process group at once and verify that no Lean/Lake child remains.
+`-Kjobs=1` is a Lake configuration override and must not be cited as evidence
+that compilation was serialized.  The safe local fallback is an explicit,
+one-module-at-a-time sequence of `lake env lean -j1 FILE.lean` gates (emitting
+the required artifacts when later modules import them), with no overlapping
+Lake build.  Project-wide `lake build` or `make test` remains the eventual
+integration gate, but it is deferred rather than crash-tested when the current
+checkout cannot run it within the declared aggregate resource envelope.
+
 ## Assignment lifecycle
 
 1. **Orient.** Read `docs/wayfinder/map.md` and
@@ -106,6 +149,11 @@ branches rather than hidden assumptions.
    gates.  Workers do not concurrently build, commit, or edit Wayfinder files.
 10. **Record.** Promote durable conclusions into the canonical project artifact.
     Retain negative results when they rule out a documented route.
+
+The slate-level completion manifest uses
+`templates/agent-execution-slate.json`.  It is transient and belongs under
+`runs/agents/`; its validator is a mandatory guard against silently omitting a
+finished, blocked, or failed lane from reconciliation.
 
 ## Plan outcome contract
 
