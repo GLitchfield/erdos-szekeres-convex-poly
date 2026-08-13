@@ -231,23 +231,32 @@ that deserves independent retention and scheduling consideration.
   endpoint as a candidate semantic mechanism.  The repository already defines
   the underlying pair ranks and down-set membership, while
   `exists_realizable_pairRankState_collision` formally rules out using a
-  clipped child pair-rank matrix as a recursive state.
+  clipped child pair-rank matrix as a recursive state.  A read-only
+  adversarial audit has now frozen the arbitrary-coloring endpoint lemma
+  `ambientEndpoint_separated_or_crossed`: a nonsaturated cap/cup pair-rank
+  maximizer either creates a strict full-ambient down-set difference at the
+  next endpoint or the two maximizing endpoints cross.  The compiled Fin9
+  collision realizes exactly the crossed branch, so it does not refute the
+  lemma.  Both collision controls also pass the proposed `(3,1)` threshold
+  cell, but that threshold-half-support claim remains computational/proposal
+  evidence rather than a theorem.
 - **Downstream consumer:** `sweepExactUpperAt_of_predecessorHalfSubset`, then
   the unrestricted exact upper bound.
-- **Open obstruction:** freeze a full-ambient endpoint-repair alternative that
-  implies `PredecessorHalfSubsetAt` without assuming the same-`k` upper bound,
-  and test it against the existing realizable collisions.  Separately,
+- **Open obstruction:** control crossed and saturated endpoint-maximizer
+  transitions well enough to select one full-ambient down-set cell whose
+  larger side is strong-`5`-free, without assuming the same-`k` upper bound.
+  Separately,
   compress or share the retained Fin11 semantic-clause bridge; learned-trace
   size is no longer the primary blocker.  After a kernel Fin11 theorem, turn
   compatible ten-point singleton fans into one half-sized fan with a common
   pivot and direction for arbitrary size.
-- **Next discriminating gate:** first compile the local full-ambient generated
-  down-set strict-extension/injectivity theorem, with clipping non-saturation
-  explicit, then freeze one exact endpoint-repair/half-support card at `k=6`
-  and evaluate it on the compiled Fin9 realizable collision pair and existing
-  rational controls.  Only a survivor may be used as the indexed family on one
-  of the eleven proof-small Fin11 leaves; attempt Lean certificate promotion
-  only if that family materially reduces the 8,000-fact base interface.
+- **Next discriminating gate:** compile the clipped pair-rank extension helper
+  and frozen `ambientEndpoint_separated_or_crossed`, then run the exact
+  rational `n=6..10` falsifier for
+  `AmbientDownsetThresholdHalfSupportAtSix`.  A survivor may be used as the
+  indexed family on one of the eleven proof-small Fin11 leaves; attempt Lean
+  certificate promotion only if that family materially reduces the 8,000-fact
+  base interface.
 - **Success payoff:** a credible uniform producer for the unrestricted route.
 - **Expiry or revival gate:** a checked realizable target-free counterexample
   to synchronized compatible fans retires this producer; abstract-only failure
@@ -270,18 +279,27 @@ that deserves independent retention and scheduling consideration.
   area profiles, canonical provenance, and the full mixed six-rectangle normal
   form compile.  The quotient-free all-order certificate, all semantic clauses,
   arbitrary-placement transport, and exact public theorem
-  `mixedCarrierOnlyOmissionNormalForm_forces_target567` now compile.  This
-  formally closes the mixed omission profile.  A three-carrier transversal and
-  residual-touching escape remain proof-ready proposals for the balanced
-  profile.
+  `mixedCarrierOnlyOmissionNormalForm_forces_target567` compile.  The exact
+  `packedInternalPair_has_sameOccupancyCollision_or_balancedGrid567` consumer
+  now compiles, formally eliminating the mixed omission profile.  The
+  color-free `15 > 4*3` pair-cover theorem supplies a three-point carrier
+  transversal meeting both carriers and all four grid witnesses.  With
+  canonical provenance and a new use of global deletion packing,
+  `packedInternalPair_has_balancedResidualTouchingEscape567_of_noCollision`
+  compiles: after deleting that transversal and any residual triple, a strong
+  six remains and must genuinely meet the ten-point residual.
 - **Downstream consumer:** the packed state-567 reducer and ultimately the
   uniform decomposable exact upper theorem.
-- **Open obstruction:** the balanced residual-touching family still lacks a
-  placement-independent relational color law; upstream production of the mixed
-  or balanced normal form also remains explicit.
-- **Next discriminating gate:** consume the compiled mixed theorem in the exact
-  state-567 case split, then screen only genuinely relational balanced escape
-  laws that retain residual ten and repeated packing.
+- **Open obstruction:** close two full-context color terminals: a same-anchor
+  same-occupancy collision, and the universal residual-touching balanced-grid
+  state.  The latter must compare multiple residual triples; one selected
+  witness or any carrier-only law is now formally insufficient.
+- **Next discriminating gate:** freeze
+  `PackedInternalBalancedResidualTouchingImpossibleAtTwentyTwo567` with the
+  entire exact-22 two-side context, then run an exact Fin22 abstract-signotope
+  SAT falsifier retaining arbitrary placement, canonical provenance, and all
+  120 residual-triple escape clauses.  In parallel, isolate the smallest
+  same-occupancy collision color terminal with the same context.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** a full-context target-free model retires the
   affected terminal.  Fixed-color UNSAT cores do not advance the general leaf
@@ -303,18 +321,27 @@ that deserves independent retention and scheduling consideration.
   a stronger witness-free Fin14 contradiction; its checkpointed certificate,
   15,951-clause semantic bridge, generic ordered-set transport, both advertised
   state-556 leaves, and the existing consumer now compile through
-  `PascalTailTwoSideBound 5 5 6`.
+  `PascalTailTwoSideBound 5 5 6`.  Exact origin reconstruction of all 15,951
+  retained clauses shows that 5,473 `strong_five_iff` clauses and 692 dead
+  strong-four definitions are existentially eliminable certificate residue:
+  6,165 clauses, or 38.6% of the retained core.  The remaining load-bearing
+  interface is 4,186 OneChange clauses, 2,995 live strong-four lacing clauses,
+  2,584 profile-hole clauses, and 21 cut/window clauses.  This audit supports
+  one parameterized proposal,
+  `StrongPolygonMiddleProfileInPascalWindow`, but no generic theorem is yet
+  claimed.
 - **Downstream consumer:** `PascalTailTwoSideBound`, then the uniform
   decomposable recurrence.
-- **Open obstruction:** identify which structural part of the stronger Fin14
-  base contradiction generalizes with the carrier/residual parameters; the
-  current theorem is still one adjacent finite Pascal state.
-- **Next discriminating gate:** mine the compiled Fin14 semantic core by clause
-  family and classify each retained family as coordinate monotonicity,
-  Pascal/simplex-window membership, profile-hole restriction, lacing/gluing,
-  or genuinely finite residue.  Freeze one parameterized profile-hole or
-  cut/target-free lemma and test it at the next adjacent Pascal states before
-  attempting a uniform Lean theorem.
+- **Open obstruction:** turn the local strong-polygon middle-profile window into
+  an extension-profile or lacing-capacity theorem that bounds the ambient
+  Pascal state.  The local profile theorem alone classifies one produced strong
+  polygon and is strictly weaker than the two-side bound.
+- **Next discriminating gate:** implement
+  `StrongPolygonMiddleProfileInPascalWindow` in
+  `StructuralChargingPascalProfileHoles.lean`; derive the 556, 567, and
+  color-dual specializations, and require the generic proof to replace the
+  existing state-specific strong-six middle-word theorem without using
+  `PascalTailTwoSideBound`.  Stop or demote if it has no honest later consumer.
 - **Success payoff:** validate the residual mechanism at an adjacent parameter
   state and expose a credible uniform Pascal theorem.
 - **Expiry or revival gate:** exact countermodels to both leaves, or proof that
@@ -328,7 +355,7 @@ that deserves independent retention and scheduling consideration.
   decomposable ones by a bounded mutation macro that strictly lowers the top
   decomposition-prime stratum.
 - **Strategic role:** bridge.
-- **State:** gated.
+- **State:** advancing.
 - **Model tier:** sweep-realizable target-free colorings and single-triple
   mutation paths.
 - **Best evidence:** prime-core ranks, their decomposable characterization, and
@@ -339,16 +366,23 @@ that deserves independent retention and scheduling consideration.
   positive control compile.  Complete bounded screening shows target-free
   endpoint descent within radius three, but refutes monotone prime-core
   inclusion at every intermediate edge on four Fin7 and ten selected Fin8
-  controls.
+  controls.  A frozen endpoint-only persistent-split shield, which permits
+  transient intermediate core creation, now passes all fourteen controls at
+  the abstract rank-three signotope tier.  An independent checker recomputed
+  the endpoint predicates and rejected a corrupted shield flag.  This is
+  bounded computational evidence, not a producer theorem or realizability
+  claim.
 - **Downstream consumer:** `TargetReflectingDecomposableNormalizationAt`, then
   any uniform decomposable exact theorem.
-- **Open obstruction:** construct a local-to-ambient macro that preserves sweep
-  realizability and target-freedom stepwise while proving prime-core-family
-  inclusion only between macro endpoints.  Temporary intermediate core creation
-  must be permitted.
-- **Next discriminating gate:** freeze one endpoint shield that accounts for
-  every core created and later destroyed inside an at-most-three path; test it
-  on the fourteen new hard controls before any theorem-threshold search.
+- **Open obstruction:** compile the generic endpoint cardinality-`m`
+  subset/count-drop consumer, then construct a threshold-scoped geometric
+  producer that preserves sweep realizability and target-freedom stepwise.
+  The below-threshold abstract controls do not supply that producer.
+- **Next discriminating gate:** define
+  `HasEndpointPersistentPrimeSplitShieldAtCard` and compile the generic
+  source-to-endpoint cardinality-`m` subset/count-drop consumer plus the frozen
+  `ThreeStepEndpointShieldedPrimeCoreDropsAboveAt` interface.  Only afterward
+  search for a sweep-realizable threshold producer.
 - **Success payoff:** an unrestricted-to-decomposable reduction independent of
   the half-subset producer.
 - **Expiry or revival gate:** a realizable target-free closed component or

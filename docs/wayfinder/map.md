@@ -117,10 +117,13 @@ threads remain valuable.
    the all-`n` synchronization/relabeling bridge is proved.  A new
    literature-informed child studies full-ambient pair-rank down-sets as the
    possible synchronization mechanism.  Its first gate is local
-   strict-extension/injectivity with clipping non-saturation, followed by an
-   unchanged `k=6` endpoint-repair card tested on the compiled realizable Fin9
-   collision.  That collision already forbids any repair that factors through
-   the clipped child pair-rank matrix.
+   strict-extension with clipping non-saturation.  The resulting proposal says
+   that a nonsaturated cap/cup maximizer either creates a strict full-ambient
+   down-set difference or the two maximizing endpoints cross.  The compiled
+   realizable Fin9 collision falls exactly into the crossed branch, so the
+   local lemma survives.  The next gate is its Lean proof plus an exact
+   rational `n=6..10` falsifier for the stronger threshold-half-support card;
+   that card, not the local dichotomy alone, would feed the recurrence.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -137,9 +140,13 @@ threads remain valuable.
    canonical repair now compiles as
    `carrierContainedStrongSix_classification_of_canonical567`: one bad
    residual four-block promotes every mixed carrier-contained strong six into
-   the actual probe family.  The balanced four-grid has a proof-ready
-   three-carrier transversal; packing that transversal with any residual triple
-   forces a residual-touching strong six.  A fixed 22-point carrier extension
+   the actual probe family.  The exact
+   `packedInternalPair_has_sameOccupancyCollision_or_balancedGrid567` consumer
+   now compiles and formally eliminates the mixed profile.  A color-free
+   `15>4*3` argument proves the balanced grid has a three-carrier transversal;
+   canonical provenance and a new use of global packing then prove that
+   deleting the transversal with any residual triple forces a genuinely
+   residual-touching strong six.  A fixed 22-point carrier extension
    is certificate-replayed UNSAT, with strong-seven avoidance decisive, but
    its minimized core depends on 96 carrier colors that are individually
    flexible under canonical grid provenance.  It is therefore an
@@ -152,8 +159,8 @@ threads remain valuable.
    checkpointed quotient-free certificate, all 14,773 retained semantic
    clauses, arbitrary-placement finite theorem, and exact public structural
    consumer now compile.  The mixed omission profile is formally closed; the
-   live state-567 work is the balanced residual-touching color law and upstream
-   consumption of this closed branch.
+   live state-567 work is now exactly the balanced residual-touching color law
+   plus the separate same-occupancy collision terminal.
 3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
    state-567 proof's numerical and structural kernel into a parameterized
    two-carrier/residual-escape theorem and consume it through
@@ -180,11 +187,14 @@ threads remain valuable.
    14,315.  Proof mining found a stronger witness-free Fin14 contradiction;
    its checkpointed certificate, semantic bridge, exact ordered-set transport,
    both advertised leaves, and existing consumer now compile through
-   `PascalTailTwoSideBound 5 5 6`.  The next route question is which clause
-   families express coordinate monotonicity, Pascal/simplex-window membership,
-   profile holes, lacing or gluing, and which are genuinely finite residues.
-   Freeze and test a parameterized profile-hole or cut lemma before claiming a
-   uniform theorem.
+   `PascalTailTwoSideBound 5 5 6`.  Complete origin reconstruction shows that
+   6,165 of the 15,951 retained clauses—every strong-five definition and 692
+   dead strong-four definitions—are eliminable certificate residue.  The
+   surviving proposal is a generic strong-polygon middle-profile window: cap
+   and cup holes bound the two endpoint-color counts, recovering the 556, 567,
+   and dual Pascal layers.  Its Lean implementation and replacement of the old
+   state-specific middle-word proof are the next gate; a separate lacing or
+   extension-capacity theorem would still be needed for an ambient bound.
 4. **Layer-F highest-stratum mutation descent (unrestricted sidecar).**  Test
    and then prove or refute `ThreeStepTopPrimeStratumDropsAboveAt`.  Only exact
    realizable, target-free controls can decide the route; below-threshold
@@ -200,10 +210,12 @@ threads remain valuable.
    consumer, and the exact rational positive control now compile.  Independent
    bounded replay still finds target-free endpoint descent within radius three,
    but refutes monotone prime-core inclusion at every intermediate edge on four
-   Fin7 and ten selected Fin8 controls.  Existence of a realizable threshold
-   macro remains open; the repaired lemma must preserve target-freedom stepwise
-   while allowing temporary core creation and proving inclusion only between
-   macro endpoints.
+   Fin7 and ten selected Fin8 controls.  A frozen endpoint-only persistent-split
+   shield that explicitly allows those transient cores passes all fourteen
+   controls under independent replay and corruption rejection.  The next gate
+   is its generic cardinality-stratum subset/count-drop Lean consumer.
+   Existence of a realizable threshold macro remains open; the producer must
+   preserve target-freedom stepwise and establish the endpoint shield.
 5. **State-567 balanced five-class leaves (parallel decomposable branch).**
    Prove the mechanical five-way exhaustion, then attack the `2+4`, `3+3`,
    `4+2`, left-right residue, and right-left residue terminal classes.  Pair
