@@ -2526,10 +2526,24 @@ exact route only if a theorem proves that it supplies `PredecessorHalfSubsetAt`,
 a decomposable producer, or a target-reflecting normalization step.  If no such
 consumer exists, retain the quantitative theorem and park endpoint mining.
 
+**Integrated result — `TV-UPPER-LAND`.**  The exact public theorem
+`tothValtr_upper` now compiles for every `n >= 3`, and
+`tothValtr_strictly_improves_classical` compiles for every `n >= 4`.  The proof
+uses an explicit coordinate normalization: a swept presentation, a centered
+quarter turn, a sufficiently small positive projective parameter, exact
+orientation-sign preservation, subsetwise convexity transfer, and a cap-anchor
+extension before the existing cup--cap theorem.  Declaration audits report
+only `propext`, `Classical.choice`, and `Quot.sound`.  Deterministic rational
+controls checked three configurations, 297 convexity subsets, 99 cap
+extensions, and rejected three coordinate corruptions.  A bounded repository
+reuse audit found no theorem from this frame to `PredecessorHalfSubsetAt`, a
+decomposable producer, or target-reflecting normalization.  Accordingly this
+closes supporting milestone `Q-UPPER` and no load-bearing exact edge.
+
 ### FP-15.B: Suk finite kernel and explicit asymptotic bound
 
-This child is locked until FP-15.A lands or is explicitly parked after both
-frame gates.  Build exact finite lemmas in this order:
+This child is unlocked by `TV-UPPER-LAND`.  Build exact finite lemmas in this
+order:
 
 1. four-wise convexity implies total convex position;
 2. the support-region and adjacent-region predicates;

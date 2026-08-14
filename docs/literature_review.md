@@ -93,6 +93,15 @@ Norin--Yuditsky, and Mojarrad--Vlachos improved constants further. These papers
 develop useful notions of convexity witnesses and forbidden subconfigurations,
 but none changed the exponential base.
 
+The Tóth--Valtr bound is now reproduced in Lean as
+`ErdosSzekeres.tothValtr_upper`, with the exact threshold
+`choose (2*n-5) (n-2) + 2`, and its strict improvement over the repository's
+classical binomial threshold is also proved for `n >= 4`.  The formal proof
+constructs the projective normalization explicitly and proves orientation-sign
+and finite-subset convexity preservation.  This closes the project's
+supporting quantitative milestone `Q-UPPER`; it does not improve the known
+mathematics or reduce the open exact upper-bound edge.
+
 Suk's 2017 JAMS paper introduced the decisive positive-fraction/partition
 method, obtaining `2^(n+O(n^(2/3) log n))`. Holmsen--Mojarrad--Pach--Tardos
 sharpened this to `2^(n+O(sqrt(n log n)))` and extended the method to

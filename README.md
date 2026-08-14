@@ -39,6 +39,13 @@ sets.
 - `ErdosSzekeres/StrongPolygon.lean` defines the four-index strong-polygon law
   and proves it equivalent to convex position for swept configurations and
   for their original finite point sets, including selected convex subsets.
+- `ErdosSzekeres/TothValtrUpper.lean` proves the unconditional published bound
+  `ES(n) <= choose(2*n-5,n-2)+2` for every `n >= 3`.  Its dependency chain
+  constructs an explicit projective normalization, proves orientation-sign and
+  finite-subset convexity preservation, extends transformed caps through an
+  anchor, and proves a strict improvement over the classical binomial bound for
+  `n >= 4`.  This closes supporting milestone `Q-UPPER`; it does not close or
+  reduce the exact universal upper-bound edge.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

@@ -253,7 +253,7 @@ that deserves independent retention and scheduling consideration.
 - **Named destination dependency:** `D-HALF`, the uniform
   `PredecessorHalfSubsetAt k` producer.
 - **Strategic role:** direct.
-- **State:** gated.
+- **State:** advancing.
 - **Model tier:** sweep-realizable colorings for the uniform claim; bounded
   controls also cover abstract `OneChangeOn` colorings.
 - **Scope ceiling:** a uniform recurrence consumer plus exact Fin8/Fin10 fan
@@ -993,46 +993,44 @@ that deserves independent retention and scheduling consideration.
   The immediately frozen theorem is the explicit Tóth--Valtr bound plus its
   strict comparison with `classical_binomial_upper` for `n >= 4`.  No exact
   Erdős--Szekeres threshold follows from any quantitative rung.
-- **Best evidence:** `classical_binomial_upper` compiles.  The primary
-  Tóth--Valtr proof has now been audited theorem-by-theorem: after selecting a
-  hull vertex, an exterior segment and a projective transformation preserve
-  convex position and make every cap on the remaining points extend through
-  the selected vertex.  The existing exact cup--cap theorem then supplies the
-  published coefficient.  Suk and Holmsen--Mojarrad--Pach--Tardos are
-  authenticated later source rungs, not current Lean results.
+- **Best evidence:** `tothValtr_upper` compiles for every `n >= 3`, and
+  `tothValtr_strictly_improves_classical` compiles for every `n >= 4`.  The
+  proof constructs an explicit rational projective normalization after a
+  determinant-one shear and quarter turn, proves exact orientation-sign and
+  finite-subset convexity preservation, extends every transformed cap through
+  the anchor, and invokes the existing cup--cap theorem.  Deterministic exact
+  rational controls cover three configurations, 297 convexity subsets, 99 cap
+  extensions, and three rejected coordinate corruptions.  Suk and
+  Holmsen--Mojarrad--Pach--Tardos remain authenticated later source rungs, not
+  current Lean results.
 - **Missing generalization bridge:** prove the published geometric predicates
   equivalent to the repository's realizable sweep predicates, then extract a
   parameterized lemma actually consumed by `D-HALF`, `D-DECOMP`, or
   `D-NORMALIZE`; a smaller numerical coefficient alone supplies no such bridge.
-- **Last forward result:** none on the load-bearing ledger.  The existing
-  classical all-parameter upper bound is the baseline, not a new result of this
-  thread.
-- **Downstream consumer:** a source-authenticated Lean theorem closing
-  `Q-UPPER`, followed only conditionally by an exact-route producer that names
-  and proves its implication to a load-bearing edge.
-- **Open obstruction:** mathlib supplies projectivization and linear group
-  actions but no located affine-chart theorem proving that the required
-  projective normalization preserves convex position for every subset of a
-  finite planar configuration.  This geometric frame, not the binomial
-  recurrence, is the first honest proof gap.
-- **Next discriminating gate:** compile the exact Tóth--Valtr arithmetic and
-  conditional cup--cap consumer, then attempt one explicit projective-frame
-  producer and at most one orientation-only reformulation.  Each frame must
-  pass deterministic rational preservation and cap-extension controls before
-  the public theorem is assembled.
-- **Success payoff:** `tothValtr_upper` closes supporting milestone `Q-UPPER`.
-  Only after that theorem compiles may the Suk finite kernel be attempted;
-  only after the Suk architecture compiles may the point-specialized current
-  best bound be attempted.
-- **Expiry or revival gate:** a conditional consumer, arithmetic comparison,
-  failed falsifier, or resource stop does not advance `Q-UPPER`.  If both
-  predeclared frame architectures fail their bounded gates, park FP-15.A.  If
-  the completed Tóth--Valtr frame has no proved consumer in `D-HALF`,
-  `D-DECOMP`, or `D-NORMALIZE`, retain the quantitative theorem but do not mine
-  successive endpoint variants.  Suk or HMPT work stops at the first missing
-  exact geometric producer rather than replacing it with asymptotic
-  bookkeeping.
-- **Children:** `FP-15.A` explicit Tóth--Valtr bound and projective frame;
+- **Last forward result:** supporting milestone `Q-UPPER` is closed by the
+  compiling unconditional theorem `tothValtr_upper`.  This is a genuine known
+  quantitative upper bound, but it changes no load-bearing destination edge.
+- **Downstream consumer:** the next quantitative consumer is Suk's finite
+  positive-fraction architecture.  Any claim of progress on the exact route
+  still requires a separate theorem into `D-HALF`, `D-DECOMP`, or
+  `D-NORMALIZE`.
+- **Open obstruction:** no exact-route consumer uses the completed frame, and
+  source-to-Lean contracts are not yet frozen for Suk's finite Dilworth and
+  adjacent-region gluing kernel.  The later positive-fraction and recurrence
+  layers remain blocked on those finite geometric lemmas.
+- **Next discriminating gate:** freeze and compile only the finite Dilworth
+  inequality and Suk adjacent-region gluing observation, with their exact
+  support-region predicates and small rational counterexample controls.  Do
+  not start the positive-fraction recurrence until both lemmas compile.
+- **Success payoff:** a compiling finite kernel unlocks Suk's support producer
+  and explicit integer recurrence.  Only a completed Suk architecture unlocks
+  the point-specialized current-best bound.
+- **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
+  parked because the reuse audit found no exact-route consumer.  Park
+  `FP-15.B` at the first missing finite geometric producer; arithmetic or
+  asymptotic bookkeeping alone is not progress.  Revive exact-route use of the
+  frame only with a theorem-shaped consumer into a named load-bearing edge.
+- **Children:** `FP-15.A` completed explicit Tóth--Valtr bound and projective frame;
   `FP-15.B` Suk positive-fraction/partial-order finite kernel and explicit
   asymptotic assembly; `FP-15.C` point-specialized
   Holmsen--Mojarrad--Pach--Tardos current-best bound.
@@ -1196,14 +1194,13 @@ parent unless promoted.
   certificates, including restored umbrella imports.  Expire the Fin11 proof
   bridge if it re-expands beyond the 16 GiB gate or weakens kernel trust; retain
   the signaling/resource repair independently.
-- **FP-15.A — Explicit Tóth--Valtr upper bound.**  The primary proof fixes the
-  public coefficient at `choose (2*n-5) (n-2) + 2`.  Build the exact
-  projective normalization frame, reuse the compiling cup--cap theorem, and
-  prove the strict comparison with the classical bound for `n >= 4`.  A
-  conditional consumer or failed frame probe does not close `Q-UPPER`; after
-  one coordinate and one orientation-only architecture, park on failure.
-- **FP-15.B — Suk finite quantitative kernel.**  Locked behind FP-15.A's
-  terminal disposition.  Formalize the finite Dilworth inequality,
+- **FP-15.A — Explicit Tóth--Valtr upper bound.**  **Completed:** the explicit
+  projective normalization frame, orientation-sign and convexity transfer,
+  cap-anchor extension, exact cup--cap consumer, unconditional forcing theorem,
+  and strict comparison with the classical bound all compile.  `Q-UPPER` is
+  closed; the bounded reuse audit found no exact-route consumer.
+- **FP-15.B — Suk finite quantitative kernel.**  Unlocked by FP-15.A.  Formalize
+  the finite Dilworth inequality,
   support-region geometry, adjacent-region gluing, positive-fraction producer,
   and explicit integer recurrence before deriving an asymptotic corollary.
   Arithmetic without the geometric producer is not an admitted result.

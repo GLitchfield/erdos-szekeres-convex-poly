@@ -180,3 +180,4 @@ public import ErdosSzekeres.ExtremeExchangeK9Certificate
 public import ErdosSzekeres.RootedTriangleCircuitCounterexample
 public import ErdosSzekeres.DecomposableStateDuality
 public import ErdosSzekeres.ES5Certificate
+public import ErdosSzekeres.TothValtrUpper
