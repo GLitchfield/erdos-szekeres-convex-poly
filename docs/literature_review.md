@@ -83,8 +83,12 @@ labeled a formal reproduction of a known theorem.
 ### 3. Incremental upper-bound improvements
 
 Chung--Graham removed the `+1` from the 1935 binomial upper bound.
-Kleitman--Pachter obtained a further linear subtraction, and Tóth--Valtr cut
-the leading binomial expression by about a factor of two. Vlachos,
+Kleitman--Pachter obtained a further linear subtraction, and Tóth--Valtr proved
+the explicit bound `ES(n) <= choose(2*n-5,n-2)+2`, cutting the leading binomial
+expression by about a factor of two.  Their proof selects a convex-hull vertex,
+uses an exterior segment and projective transformation to preserve finite
+convex-position judgments, and makes every cap on the remaining points extend
+through the selected vertex before applying the usual cup--cap theorem. Vlachos,
 Norin--Yuditsky, and Mojarrad--Vlachos improved constants further. These papers
 develop useful notions of convexity witnesses and forbidden subconfigurations,
 but none changed the exponential base.

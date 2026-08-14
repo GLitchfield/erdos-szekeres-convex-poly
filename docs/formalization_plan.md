@@ -2470,3 +2470,112 @@ the root turn while Fin11 was live, so its later completion was not reconciled
 until the next user message.  The agent protocol now forbids final responses
 while a slate worker is live and requires a machine-checked terminal result for
 every task before integration.
+
+## 2026-08-14 FP-15 quantitative upper-bound ladder
+
+This is one outcome-gated quantitative thread, not three independent routes.
+Its purpose is to formalize successively stronger published upper bounds while
+keeping the supporting milestone `Q-UPPER` separate from the exact universal
+edge `D-UPPER`.
+
+### FP-15.A: explicit Tóth--Valtr rung
+
+The frozen public contracts are
+
+```lean
+theorem tothValtr_upper (n : ℕ) (hn : 3 ≤ n) :
+    ForcesConvexPolygon n
+      (Nat.choose (2 * n - 5) (n - 2) + 2)
+
+theorem tothValtr_strictly_improves_classical
+    (n : ℕ) (hn : 4 ≤ n) :
+    Nat.choose (2 * n - 5) (n - 2) + 2 <
+      Nat.choose (2 * n - 4) (n - 2) + 1
+```
+
+The existing cup--cap theorem already supplies the finite recurrence.  The
+hard producer is a Tóth--Valtr frame for a finite general-position set:
+
+1. select a convex-hull vertex `a`;
+2. choose an exterior point and a line avoiding the convex hull and all
+   forbidden secant intersections;
+3. construct a projective map which sends that line to infinity and the
+   exterior segment at `a` to a downward vertical ray;
+4. prove general position and every finite-subset convex-position judgment are
+   preserved; and
+5. prove every cap on the transformed points other than `a` extends with `a`
+   to a convex polygon.
+
+First compile the arithmetic identities, the frame predicate, and the exact
+conditional cup--cap consumer.  This is assembly work and does not close
+`Q-UPPER`.  Then attempt one explicit homogeneous-coordinate producer.  Before
+promotion, deterministically check small rational configurations for
+nonvanishing denominators, subsetwise convexity preservation, and cap
+extension, with corrupted anchor, map, ray, and subset controls.  If the
+coordinate architecture fails, attempt one orientation-only formulation of
+the same line-arrangement cell.  No third frame architecture is admitted
+without a new route review.
+
+The outcomes are `TV-FRAME-LAND`, `TV-FRAME-REFORMULATE`, and
+`TV-FRAME-PARK`.  A conditional consumer, arithmetic comparison, failed
+falsifier, timeout, or narrower restatement is not forward progress.  Only a
+compiling `tothValtr_upper` reaches `TV-UPPER-LAND` and closes `Q-UPPER`.
+
+After `TV-UPPER-LAND`, perform one bounded reuse audit.  The frame affects an
+exact route only if a theorem proves that it supplies `PredecessorHalfSubsetAt`,
+a decomposable producer, or a target-reflecting normalization step.  If no such
+consumer exists, retain the quantitative theorem and park endpoint mining.
+
+### FP-15.B: Suk finite kernel and explicit asymptotic bound
+
+This child is locked until FP-15.A lands or is explicitly parked after both
+frame gates.  Build exact finite lemmas in this order:
+
+1. four-wise convexity implies total convex position;
+2. the support-region and adjacent-region predicates;
+3. the region relation is a finite partial order;
+4. the required finite Dilworth chain/antichain inequality;
+5. transitive two-color cup--cap on a chain, reusing `CupCap`;
+6. Suk's adjacent-region gluing observation; and
+7. the positive-fraction support theorem and iterative parameter recurrence.
+
+The first execution gate contains only items 4 and 6.  The positive-fraction
+theorem is not admitted until those compile.  State the final result first as
+an explicit integer bound with all ceilings and a concrete threshold `n0`;
+derive the `2^(n + O(n^(2/3)*log n))` formulation only afterward.  Arithmetic
+or asymptotic bookkeeping without the support producer does not advance this
+child.
+
+### FP-15.C: point-specialized current-best bound
+
+This child is locked until the Suk architecture compiles.  Specialize the
+Holmsen--Mojarrad--Pach--Tardos proof to ordinary planar points before
+considering arbitrary pseudoline arrangements.  Required layers are spikes,
+vertical and horizontal partial orders, the product chain bound, transitive
+colorings on maximal chains, the left/right and inner/outer gluing lemmas, the
+positive-fraction product estimate, and explicit parameter optimization.  The
+public scope is an integer theorem implying
+
+```text
+exists C n0, forall n >= n0,
+  ES(n) <= 2^(n + C * ceil(sqrt(n * log n))).
+```
+
+Only after that point-set theorem compiles may pseudo-configurations be added
+as a generalization.  A pseudo-configuration API without the point-set upper
+theorem does not complete this child.
+
+### Budgets and evidence gates
+
+The first FP-15.A block is budgeted at 6--16 active hours; full FP-15.A is an
+uncalibrated multi-day proof task.  FP-15.B and FP-15.C are uncalibrated
+multi-week or multi-month branches and require fresh approval checkpoints at
+their dependency boundaries.  Every individual process retains the default
+30-minute, 8-core, 16-GiB, and 5-GiB limits.
+
+Every proof-producing stage requires a direct Lean gate, a targeted
+`lake -Kjobs=2 build`, a forbidden-token scan, standard-only axiom audit, and
+`make test` before integration.  Initial work uses only local sources and
+requires no solver, installation, provider, destructive action, or network
+retrieval.  A material route redirection triggers bounded Sol/Fable review;
+routine implementation of the frozen contracts does not.

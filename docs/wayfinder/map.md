@@ -48,16 +48,19 @@ destination edge unless a separate implication is proved.
 
 | Milestone | Required result | Status | Scope firewall |
 | --- | --- | --- | --- |
-| `Q-UPPER` | A source-authenticated strict uniform improvement over `classical_binomial_upper` | gated | Quantitative improvement alone neither closes nor strictly reduces exact `D-UPPER`. |
+| `Q-UPPER` | A source-authenticated strict uniform improvement over `classical_binomial_upper` | open | The exact Tóth--Valtr contract is authenticated; its projective normalization frame is unproved.  Quantitative improvement alone neither closes nor strictly reduces exact `D-UPPER`. |
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | gated | This fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
-Two explicitly subordinate upper-bound milestones are now registered:
-`Q-UPPER` and `D-UPPER(6)`.  Their first gates are source and semantic audits,
-not proof or certificate production.  The exact state-567 `3+3` structural
-reduction remains subordinate forward movement; its UNSAT result and the
-same-occupancy UNSAT result are computational evidence, while the bounded
-two-cell exchange mechanism was refuted.
+The primary Tóth--Valtr audit fixes the first `Q-UPPER` contract at
+`choose (2*n-5) (n-2) + 2` and isolates the projective convexity-preservation
+frame as its first proof gate.  Suk and the point-specialized
+Holmsen--Mojarrad--Pach--Tardos argument remain outcome-gated children, not
+parallel claims.  `D-UPPER(6)` remains a separate subordinate milestone.  The
+exact state-567 `3+3` structural reduction remains subordinate forward
+movement; its UNSAT result and the same-occupancy UNSAT result are
+computational evidence, while the bounded two-cell exchange mechanism was
+refuted.
 
 ## Decisions so far
 
@@ -373,11 +376,12 @@ threads remain valuable.
    completed rows, median actual/midpoint ratio `0.240`, and only `15.2%`
    inside the old forecast ranges; future estimates must use category- and
    size-conditioned empirical bands rather than raw task-list sums.
-15. **Uniform quantitative upper-bound ladder.**  Authenticate the exact
-    Tóth--Valtr statement and proof dependencies before freezing any Lean
-    theorem.  A strict uniform improvement closes supporting milestone
-    `Q-UPPER`, not exact `D-UPPER`; retain a separate route only if the source
-    audit exposes reusable parameterized endpoint or good-point machinery.
+15. **Uniform quantitative upper-bound ladder.**  Prove the authenticated
+    Tóth--Valtr bound through an explicit projective normalization frame and
+    the existing cup--cap theorem.  Gate Suk's finite positive-fraction kernel
+    behind that rung and the point-specialized current-best bound behind Suk.
+    Closing `Q-UPPER` does not change exact `D-UPPER`; a reusable exact-route
+    mechanism requires a separate proved consumer.
 16. **Exact unrestricted `ES(6)=17`.**  Audit the Isabelle/HOL abstraction and
     certificate against the repository's realizable sweep semantics before
     replay work.  The terminal is the public Lean theorem

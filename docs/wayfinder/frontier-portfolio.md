@@ -973,8 +973,9 @@ that deserves independent retention and scheduling consideration.
 ### FP-15 — Uniform quantitative upper-bound ladder
 
 - **Contribution:** Formalize an authenticated strict uniform improvement over
-  the repository's classical binomial upper bound and expose its parameterized
-  endpoint or good-point mechanism for possible reuse by exact routes.
+  the repository's classical binomial upper bound, then conditionally build the
+  Suk and Holmsen--Mojarrad--Pach--Tardos quantitative machinery without
+  confusing any rung with the exact conjecture.
 - **Mechanism family:** quantitative-cup-cap.
 - **Named destination dependency:** `Q-UPPER`, a supporting quantitative
   milestone that does not close or strictly reduce universal `D-UPPER` without
@@ -982,16 +983,23 @@ that deserves independent retention and scheduling consideration.
 - **Strategic role:** bridge.
 - **State:** gated.
 - **Model tier:** general-position planar configurations and their
-  sweep-realizable presentations; the exact published hypotheses and their
-  translation to repository predicates are not yet authenticated.
-- **Scope ceiling:** the exact source-authenticated published uniform bound,
-  with an explicit comparison to `classical_binomial_upper`; no exact
-  Erdős--Szekeres threshold follows merely from a better multiplicative factor.
-- **Best evidence:** `classical_binomial_upper` compiles, and the primary-source
-  ledger plus the bounded literature synthesis identify the Tóth--Valtr
-  good-point line as a strict quantitative improvement.  The repository has
-  not yet authenticated its exact statement, constants, parameter range, or
-  dependency graph, and no corresponding Lean theorem is claimed.
+  sweep-realizable presentations.  The first rung is the source-authenticated
+  Tóth--Valtr theorem
+  `ES(n) <= choose (2*n-5) (n-2) + 2` for `n >= 3`; later rungs are Suk's
+  point-set argument and the point-specialized
+  Holmsen--Mojarrad--Pach--Tardos argument.
+- **Scope ceiling:** the best authenticated published point-set upper bound
+  `2^(n + O(sqrt(n*log n)))`, reached only through the outcome-gated ladder.
+  The immediately frozen theorem is the explicit Tóth--Valtr bound plus its
+  strict comparison with `classical_binomial_upper` for `n >= 4`.  No exact
+  Erdős--Szekeres threshold follows from any quantitative rung.
+- **Best evidence:** `classical_binomial_upper` compiles.  The primary
+  Tóth--Valtr proof has now been audited theorem-by-theorem: after selecting a
+  hull vertex, an exterior segment and a projective transformation preserve
+  convex position and make every cap on the remaining points extend through
+  the selected vertex.  The existing exact cup--cap theorem then supplies the
+  published coefficient.  Suk and Holmsen--Mojarrad--Pach--Tardos are
+  authenticated later source rungs, not current Lean results.
 - **Missing generalization bridge:** prove the published geometric predicates
   equivalent to the repository's realizable sweep predicates, then extract a
   parameterized lemma actually consumed by `D-HALF`, `D-DECOMP`, or
@@ -1002,24 +1010,32 @@ that deserves independent retention and scheduling consideration.
 - **Downstream consumer:** a source-authenticated Lean theorem closing
   `Q-UPPER`, followed only conditionally by an exact-route producer that names
   and proves its implication to a load-bearing edge.
-- **Open obstruction:** the proposed theorem is known here only through survey
-  summaries; freezing a Lean contract before checking the primary proof could
-  misstate the constant, hypotheses, or reusable mechanism.
-- **Next discriminating gate:** audit the primary Tóth--Valtr proof
-  theorem-by-theorem, record the exact statement and dependencies, prove on
-  paper the claimed strict comparison with `classical_binomial_upper`, and
-  identify one parameterized endpoint lemma plus an existing rank-profile
-  falsifier before any Lean implementation.
-- **Success payoff:** a correctly scoped uniform theorem contract and an early
-  decision whether the good-point mechanism is genuinely distinct from
-  `FP-01` and `FP-03` or should merge into one of them.
-- **Expiry or revival gate:** if the audit finds no strict theorem in the
-  intended range, stop.  If the proof is specialized bookkeeping with no
-  reusable parameterized mechanism, the quantitative theorem may be completed
-  and then parked, but it cannot promote an exact route.  Merge this entry into
-  `FP-01` or `FP-03` if its principal lemma proves or assumes their existing
-  producer.
-- **Children:** none.
+- **Open obstruction:** mathlib supplies projectivization and linear group
+  actions but no located affine-chart theorem proving that the required
+  projective normalization preserves convex position for every subset of a
+  finite planar configuration.  This geometric frame, not the binomial
+  recurrence, is the first honest proof gap.
+- **Next discriminating gate:** compile the exact Tóth--Valtr arithmetic and
+  conditional cup--cap consumer, then attempt one explicit projective-frame
+  producer and at most one orientation-only reformulation.  Each frame must
+  pass deterministic rational preservation and cap-extension controls before
+  the public theorem is assembled.
+- **Success payoff:** `tothValtr_upper` closes supporting milestone `Q-UPPER`.
+  Only after that theorem compiles may the Suk finite kernel be attempted;
+  only after the Suk architecture compiles may the point-specialized current
+  best bound be attempted.
+- **Expiry or revival gate:** a conditional consumer, arithmetic comparison,
+  failed falsifier, or resource stop does not advance `Q-UPPER`.  If both
+  predeclared frame architectures fail their bounded gates, park FP-15.A.  If
+  the completed Tóth--Valtr frame has no proved consumer in `D-HALF`,
+  `D-DECOMP`, or `D-NORMALIZE`, retain the quantitative theorem but do not mine
+  successive endpoint variants.  Suk or HMPT work stops at the first missing
+  exact geometric producer rather than replacing it with asymptotic
+  bookkeeping.
+- **Children:** `FP-15.A` explicit Tóth--Valtr bound and projective frame;
+  `FP-15.B` Suk positive-fraction/partial-order finite kernel and explicit
+  asymptotic assembly; `FP-15.C` point-specialized
+  Holmsen--Mojarrad--Pach--Tardos current-best bound.
 
 ### FP-16 — Exact unrestricted `ES(6)=17`
 
@@ -1180,6 +1196,22 @@ parent unless promoted.
   certificates, including restored umbrella imports.  Expire the Fin11 proof
   bridge if it re-expands beyond the 16 GiB gate or weakens kernel trust; retain
   the signaling/resource repair independently.
+- **FP-15.A — Explicit Tóth--Valtr upper bound.**  The primary proof fixes the
+  public coefficient at `choose (2*n-5) (n-2) + 2`.  Build the exact
+  projective normalization frame, reuse the compiling cup--cap theorem, and
+  prove the strict comparison with the classical bound for `n >= 4`.  A
+  conditional consumer or failed frame probe does not close `Q-UPPER`; after
+  one coordinate and one orientation-only architecture, park on failure.
+- **FP-15.B — Suk finite quantitative kernel.**  Locked behind FP-15.A's
+  terminal disposition.  Formalize the finite Dilworth inequality,
+  support-region geometry, adjacent-region gluing, positive-fraction producer,
+  and explicit integer recurrence before deriving an asymptotic corollary.
+  Arithmetic without the geometric producer is not an admitted result.
+- **FP-15.C — Point-specialized current-best upper bound.**  Locked behind a
+  compiling Suk architecture.  Formalize the point-set specialization of the
+  Holmsen--Mojarrad--Pach--Tardos spike and two-partial-order proof through an
+  explicit integer theorem implying `2^(n + O(sqrt(n*log n)))`.  General
+  pseudo-configurations are optional only after the point-set endpoint lands.
 
 ## Historical register
 
