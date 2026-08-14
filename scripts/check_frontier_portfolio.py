@@ -78,6 +78,8 @@ ALLOWED_MECHANISM_FAMILIES = {
     "predecessor-half",
     "decomposable-pascal",
     "normalization-descent",
+    "quantitative-cup-cap",
+    "finite-exact-upper",
     "route-discovery",
     "research-system",
 }

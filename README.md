@@ -853,7 +853,9 @@ sets.
   every currently valuable thread, with explicit mechanism-family, dependency,
   scope-ceiling, evidence, consumer, next-gate, and expiry fields. Temporary
   execution slates are selected from it but do not define membership or count
-  as independent proof routes.
+  as independent proof routes. The known quantitative upper-bound ladder and
+  unrestricted exact-six theorem are separate gated entries with supporting
+  milestones; neither changes the open universal upper-bound edge.
 - `docs/formalization_plan.md` records the intermediary lemma ladder and
   historical execution plans from the sweep model to the exact conjecture.
 - `docs/literature_review.md` records the initial research synthesis.

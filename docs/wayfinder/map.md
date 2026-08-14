@@ -42,11 +42,22 @@ prove both `D-DECOMP` and `D-NORMALIZE`.  Work on finite decomposable states,
 certificates, selectors, or research infrastructure changes this ledger only
 when it closes or strictly reduces one of those named edges.
 
+The following supporting milestones are intentionally outside the
+load-bearing ledger.  Closing one is a real scoped theorem, but changes no
+destination edge unless a separate implication is proved.
+
+| Milestone | Required result | Status | Scope firewall |
+| --- | --- | --- | --- |
+| `Q-UPPER` | A source-authenticated strict uniform improvement over `classical_binomial_upper` | gated | Quantitative improvement alone neither closes nor strictly reduces exact `D-UPPER`. |
+| `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | gated | This fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
+
 **Latest reconciliation:** no load-bearing destination dependency changed.
-The exact state-567 `3+3` structural reduction is subordinate forward movement;
-the associated UNSAT result and the same-occupancy UNSAT result are
-computational evidence, while the bounded two-cell exchange mechanism was
-refuted.
+Two explicitly subordinate upper-bound milestones are now registered:
+`Q-UPPER` and `D-UPPER(6)`.  Their first gates are source and semantic audits,
+not proof or certificate production.  The exact state-567 `3+3` structural
+reduction remains subordinate forward movement; its UNSAT result and the
+same-occupancy UNSAT result are computational evidence, while the bounded
+two-cell exchange mechanism was refuted.
 
 ## Decisions so far
 
@@ -89,6 +100,10 @@ refuted.
   while relaxed and exact-small cycles refute the current cardinality/address
   ranks; revival requires a complete-family, exact-color invariant that fails
   those controls and constructs a cover, strict predecessor, or true descent.
+- [Quantitative and exact-six upper bounds are separate gated intermediaries](tickets/0011-organize-upper-bound-intermediaries.md):
+  `FP-15` owns a source-authenticated uniform quantitative ladder and `FP-16`
+  owns unrestricted `ES(6)=17`; both are supporting milestones with explicit
+  firewalls against claims about universal `D-UPPER`.
 
 ## Open frontier
 
@@ -358,6 +373,17 @@ threads remain valuable.
    completed rows, median actual/midpoint ratio `0.240`, and only `15.2%`
    inside the old forecast ranges; future estimates must use category- and
    size-conditioned empirical bands rather than raw task-list sums.
+15. **Uniform quantitative upper-bound ladder.**  Authenticate the exact
+    Tóth--Valtr statement and proof dependencies before freezing any Lean
+    theorem.  A strict uniform improvement closes supporting milestone
+    `Q-UPPER`, not exact `D-UPPER`; retain a separate route only if the source
+    audit exposes reusable parameterized endpoint or good-point machinery.
+16. **Exact unrestricted `ES(6)=17`.**  Audit the Isabelle/HOL abstraction and
+    certificate against the repository's realizable sweep semantics before
+    replay work.  The terminal is the public Lean theorem
+    `erdosSzekeresFormulaAt_six`; after it compiles, stop fixed-instance
+    engineering unless one parameterized extraction hypothesis has a named
+    consumer beyond six.
 
 ### Newly surfaced subthreads
 
@@ -1258,11 +1284,6 @@ suspended under ticket 0010 until its stated revival gate is met.
   terminal seven-carrier cover. The present branch is now suspended because
   all identified seed, address, and carrier-cardinality ranks admit explicit
   cycles; Experiment 0094 records the exact revival gate.
-- [Organize quantitative upper-bound and exact-six intermediaries](tickets/0011-organize-upper-bound-intermediaries.md)
-  asks whether the known uniform quantitative improvement and unrestricted
-  `ES(6)=17` should become separate main portfolio entries or remain bounded
-  children.  No entry or supporting edge is added before adversarial review.
-
 ## Not yet specified
 
 - A geometric/combinatorial equivalence layer for convex position, cups, caps,

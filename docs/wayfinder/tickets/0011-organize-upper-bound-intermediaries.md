@@ -2,7 +2,7 @@
 title: Organize quantitative upper-bound and exact-six intermediaries
 type: research
 mode: AFK
-status: open
+status: closed
 claim: codex-upper-bound-intermediaries-2026-08-14
 blocked_by: none
 ---
@@ -67,8 +67,46 @@ The proposed organization is:
 
 ## Resolution
 
-Open pending the bounded Sol/Fable review and independent disposition of its
-material objections.
+Accept Outcome 1 with scope and admission revisions.  Add `FP-15` and `FP-16`
+as separate gated main entries because each has a destination-relevant public
+endpoint, a distinct mathematical failure mode, a bounded first gate, and a
+hard expiry rule.  This is an inclusive-registry decision, not a claim that the
+two entries are new independent proofs of the conjecture.
+
+The review packet SHA-256 is
+`8960f91b4c8edab8cfe0cf8cb46b744bf09425eccf0f0f0ac315ce912fe353d8`.
+Sol returned `partially_supported` with high confidence and an explicit
+`ACCEPT-WITH-REVISIONS`; its result SHA-256 is
+`312946f34356744bca0aed914ea559fca5dffed7ca298d8a21d5474316bb857d`.
+Fable returned HTTP 429 with zero tokens because its Fable 5 quota was
+exhausted; the recorded envelope SHA-256 is
+`aa3c5a1552c4665344c8eef1d77aeb3f80cfb0f0064cf95506b956f94385c80f`.
+There is therefore no two-reviewer consensus, and Sol's agreement is not the
+basis for this resolution.
+
+The material concerns are disposed as follows:
+
+1. Add `Q-UPPER` and `D-UPPER(6)` to a separate supporting-milestone table,
+   outside the load-bearing dependency ledger.  Closing either changes no
+   status on universal `D-UPPER` without a separately proved implication.
+2. Keep `FP-15` information-gated.  Its first task is a primary-source audit of
+   the exact theorem, constants, parameter range, and proof dependencies.  No
+   Lean contract is admitted from the present approximate survey summary.
+3. Keep `FP-15` separate from `FP-01` and `FP-03` only while the authenticated
+   good-point/endpoint mechanism remains distinct.  If its principal lemma
+   proves or assumes an existing producer, merge it rather than manufacturing
+   route breadth.
+4. Give `FP-16` mathematical ownership of the unrestricted public theorem;
+   `FP-14` may supply certificate tooling but cannot own or claim the result.
+   Its first task is a predicate- and clause-level Isabelle-to-repository
+   semantic correspondence audit, not a solver run.
+5. After exact six compiles, stop fixed-case certificate engineering unless a
+   single frozen parameterized extraction hypothesis has a named consumer
+   beyond `k=6` and an adjacent-parameter falsifier.
+
+These restrictions make the two entries honest scoped intermediaries.  They
+do not alter the assessment that every load-bearing unrestricted upper-bound
+edge remains open.
 
 ## Evidence
 
@@ -81,3 +119,6 @@ material objections.
 - `ErdosSzekeres/CupCap.lean`
 - `ErdosSzekeres/ES5Certificate.lean`
 - `ErdosSzekeres/E3FiniteReduction.lean`
+- `runs/reviews/20260814-upper-bound-intermediaries-review/evidence-packet.txt`
+- `runs/reviews/20260814-upper-bound-intermediaries-review/codex.initial.json`
+- `runs/reviews/20260814-upper-bound-intermediaries-review/raw/claude.initial.stdout`

@@ -970,6 +970,110 @@ that deserves independent retention and scheduling consideration.
 - **Children:** `FP-14.A` large-certificate proof mining and checkpointed Lean
   replay; `FP-14.B` indexed semantic-base compression and completion signaling.
 
+### FP-15 — Uniform quantitative upper-bound ladder
+
+- **Contribution:** Formalize an authenticated strict uniform improvement over
+  the repository's classical binomial upper bound and expose its parameterized
+  endpoint or good-point mechanism for possible reuse by exact routes.
+- **Mechanism family:** quantitative-cup-cap.
+- **Named destination dependency:** `Q-UPPER`, a supporting quantitative
+  milestone that does not close or strictly reduce universal `D-UPPER` without
+  a separate proved implication.
+- **Strategic role:** bridge.
+- **State:** gated.
+- **Model tier:** general-position planar configurations and their
+  sweep-realizable presentations; the exact published hypotheses and their
+  translation to repository predicates are not yet authenticated.
+- **Scope ceiling:** the exact source-authenticated published uniform bound,
+  with an explicit comparison to `classical_binomial_upper`; no exact
+  Erdős--Szekeres threshold follows merely from a better multiplicative factor.
+- **Best evidence:** `classical_binomial_upper` compiles, and the primary-source
+  ledger plus the bounded literature synthesis identify the Tóth--Valtr
+  good-point line as a strict quantitative improvement.  The repository has
+  not yet authenticated its exact statement, constants, parameter range, or
+  dependency graph, and no corresponding Lean theorem is claimed.
+- **Missing generalization bridge:** prove the published geometric predicates
+  equivalent to the repository's realizable sweep predicates, then extract a
+  parameterized lemma actually consumed by `D-HALF`, `D-DECOMP`, or
+  `D-NORMALIZE`; a smaller numerical coefficient alone supplies no such bridge.
+- **Last forward result:** none on the load-bearing ledger.  The existing
+  classical all-parameter upper bound is the baseline, not a new result of this
+  thread.
+- **Downstream consumer:** a source-authenticated Lean theorem closing
+  `Q-UPPER`, followed only conditionally by an exact-route producer that names
+  and proves its implication to a load-bearing edge.
+- **Open obstruction:** the proposed theorem is known here only through survey
+  summaries; freezing a Lean contract before checking the primary proof could
+  misstate the constant, hypotheses, or reusable mechanism.
+- **Next discriminating gate:** audit the primary Tóth--Valtr proof
+  theorem-by-theorem, record the exact statement and dependencies, prove on
+  paper the claimed strict comparison with `classical_binomial_upper`, and
+  identify one parameterized endpoint lemma plus an existing rank-profile
+  falsifier before any Lean implementation.
+- **Success payoff:** a correctly scoped uniform theorem contract and an early
+  decision whether the good-point mechanism is genuinely distinct from
+  `FP-01` and `FP-03` or should merge into one of them.
+- **Expiry or revival gate:** if the audit finds no strict theorem in the
+  intended range, stop.  If the proof is specialized bookkeeping with no
+  reusable parameterized mechanism, the quantitative theorem may be completed
+  and then parked, but it cannot promote an exact route.  Merge this entry into
+  `FP-01` or `FP-03` if its principal lemma proves or assumes their existing
+  producer.
+- **Children:** none.
+
+### FP-16 — Exact unrestricted `ES(6)=17`
+
+- **Contribution:** Prove the next unrestricted exact case through the public
+  repository API, exercising the geometric abstraction and certificate path
+  at the first case not already compiled in Lean.
+- **Mechanism family:** finite-exact-upper.
+- **Named destination dependency:** `D-UPPER(6)`, a fixed-instance subordinate
+  milestone that does not close or strictly reduce universal `D-UPPER` without
+  an already-defined uniform induction consuming it.
+- **Strategic role:** fallback.
+- **State:** gated.
+- **Model tier:** general-position planar configurations through
+  sweep-realizable colorings.  The external Isabelle/HOL development is a
+  read-only reference whose order-type, realizability, and strong-polygon
+  semantics still require an explicit correspondence audit.
+- **Scope ceiling:** the unrestricted public theorem
+  `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6`; no statement for
+  arbitrary `k` and no uniform transition.
+- **Best evidence:** the mathematical equality `ES(6)=17` and a formal
+  Isabelle/HOL proof are recorded in the source ledger.  This repository
+  compiles the unrestricted cases through five, the all-parameter lower bound,
+  and the decomposable upper theorem at six, but it has no unrestricted Lean
+  forcing theorem at six.
+- **Missing generalization bridge:** map every external abstraction and
+  certificate obligation to `IsSweepRealizable`, target containment, the
+  planar bridge, and the public forcing API.  Beyond the fixed theorem, a
+  separately frozen parameterized semantic-extraction lemma with a named
+  uniform consumer would be required.
+- **Last forward result:** none on universal `D-UPPER`; unrestricted exact six
+  has not compiled in this repository.  Exact cases through five and the
+  decomposable six theorem are prior baselines.
+- **Downstream consumer:**
+  `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6`, assembled from an
+  unrestricted forcing theorem, the explicit geometric bridge, and existing
+  sharpness.
+- **Open obstruction:** no checked correspondence table yet shows that the
+  Isabelle definitions, finite reduction, and certificate hypotheses match
+  the repository's realizable sweep semantics without a stronger hidden
+  assumption.
+- **Next discriminating gate:** audit the Isabelle sources and primary paper,
+  produce a clause-by-clause and predicate-by-predicate semantic
+  correspondence table, and freeze the smallest noncircular Lean bridge target
+  before generating, replaying, or compressing another certificate.
+- **Success payoff:** either an exact proof architecture for the first missing
+  unrestricted case or a precise incompatibility that prevents wasted
+  certificate engineering; eventual success closes `D-UPPER(6)` only.
+- **Expiry or revival gate:** an unmapped stronger premise, absent geometric
+  bridge, or certificate plan without a named public theorem parks the route.
+  Once `erdosSzekeresFormulaAt_six` compiles, stop fixed-case certificate work;
+  continue only under one frozen parameterized extraction hypothesis with a
+  consumer beyond `k=6` and an adjacent-parameter falsifier.
+- **Children:** none.
+
 ## Current subthreads
 
 Subthreads are tracked here because they are independently useful work units,
