@@ -270,6 +270,14 @@ that deserves independent retention and scheduling consideration.
   held-out rational Fin9 family nevertheless refutes it at admitted ordinal
   1,459.  That model still has 22 successful Boolean two-cell supports, so the
   selector is expired but the existential collective card remains alive.
+  A second selector mechanism is now formalized separately: the full 4,096
+  classifier domain, defect, radius-one/radius-two exchange relation, adaptive
+  cardinality lemma, and conditional consumer into `PredecessorHalfSubsetAt 6`
+  compile.  Exhaustive independently replayed controls refute the required
+  local descent.  The stored Fin9 model has 535 positive-defect radius-one
+  local minima and 265 radius-two local minima while retaining 44 successful
+  classifiers.  Thus bounded local exchange is expired as a producer, but the
+  collective existence card remains unrefuted.
   Separately, an exact indexed grouping compresses the minimum Fin11 cube from
   9,181 ground base clauses to 3,527 complete object/unit families, with
   literal-for-literal expansion and omitted-index/corrupted-family rejection.
@@ -278,13 +286,12 @@ that deserves independent retention and scheduling consideration.
   blocker.  After a kernel Fin11 theorem, turn
   compatible ten-point singleton fans into one half-sized fan with a common
   pivot and direction for arbitrary size.
-- **Next discriminating gate:** mine the successful-classifier geometry on the
-  inherited controls together with the frozen selector counterexample, then
-  freeze one materially different selector theorem for
-  `AmbientDownsetTwoCellBooleanHalfSupportAtSix` and test it on a new held-out
-  rational family.  The quadratic-fifths held-out family is now training data
-  and cannot be reused as an unbiased gate.  A target-free model with no
-  successful classifier retires the candidate immediately.  Fin11
+- **Next discriminating gate:** use a genuinely nonlocal selector invariant or
+  return to synchronized fans; do not enlarge the local-exchange radius or
+  retune either failed selector on its counterexample.  The still-blind
+  cubic-sevenths family may test one frozen nonlocal selector.  A target-free
+  model with no successful classifier retires the collective candidate
+  immediately.  Fin11
   certificate work belongs to `FP-14.B` and must
   use a chunked or streaming proof architecture rather than another monolithic
   FromLRAT replay.
@@ -296,7 +303,9 @@ that deserves independent retention and scheduling consideration.
   the two-cell collective card expires on one checked target-free model with no
   successful classifier and advances only through a noncircular selector.  The
   frozen robust orientation-balance/rank-distance selector is specifically
-  expired by the held-out Fin9 model and must not be retuned in place.
+  expired by the held-out Fin9 model and must not be retuned in place.  Any
+  producer whose only progress measure is strict defect descent within
+  Hamming radius one or two is also expired by the exact local minima.
 - **Children:** `FP-01.A` synchronized singleton fans; `FP-01.B` ambient
   endpoint-synchronized down-sets; `FP-01.C` adaptive two-cell Boolean
   down-set support; `FP-07` integral Property B; `FP-08` fractional cover.
@@ -354,34 +363,39 @@ that deserves independent retention and scheduling consideration.
   a full-context collision countermodel because every admissible 7--15 cut has
   a side cap-four.  Adding exactly the cut to the stronger targeted-packing CNF
   is UNSAT, but that compressed result cannot certify the collision terminal.
+  The direct full-context collision falsifier has now been run without that
+  shortcut: its 199,713-variable, 3,172,823-clause formula retains the exact
+  ordered cut, full four-repair network, and all same-occupancy cases, with no
+  targeted-packing, rectangle, or provenance variables.  Independent clause
+  reconstruction and a 1,283,493-addition pure-RUP replay certify UNSAT.  This
+  is strong computational evidence that the frozen four-repair terminal is
+  true, but its 3.17-million-clause base and 994-MiB trace are not a Lean proof.
 - **Downstream consumer:** the packed state-567 reducer and ultimately the
   uniform decomposable exact upper theorem.
 - **Open obstruction:** close two full-context color terminals: the
   provenance-coupled balanced grid and the same-anchor same-occupancy
-  four-repair network.  The fixed TP-SAT model is excluded by each missing
-  upstream coupling for a different exact reason, while the first exact
-  provenance augmentation is solver-hard.  Neither targeted packing nor a
-  cut added to that stronger consequence can substitute for the original
-  packed terminal.
+  four-repair network.  The direct collision negation is computationally
+  UNSAT, while the first exact provenance augmentation remains solver-hard.
+  The remaining collision obstruction is semantic proof extraction: isolate a
+  cut-sensitive color lemma or compact core that closes the Lean terminal.
 - **Next discriminating gate:** for the balanced branch, reduce the exact
   19.48-million-clause canonical-family augmentation before another solve:
   incrementally separate family-cardinality, rectangle-disjointness, and
   36-pair coverage, retaining arbitrary carriers, and freeze the smallest
-  first inconsistent or solver-hard layer.  For the collision branch, build
-  one direct network-aware Fin22 encoding of the frozen
-  `lightSameOccupancyFourRepairNetwork567_forces_target` negation.  It must
-  retain the ordered side window and exact four-repair structure, omit the
-  expired targeted-packing shortcut, allow equal initial blocks, and undergo
-  auxiliary-blind replay before any result is admitted.
+  first inconsistent or solver-hard layer.  For the collision branch, mine
+  the independently replayed direct UNSAT proof for the smallest cut-sensitive
+  semantic lemma, then state and prove that lemma in Lean.  Do not rerun the
+  same formula with another seed or attempt a monolithic certificate import.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** the standalone hitting-plus-targeted-packing
   terminal is expired by TP-SAT.  Only a target-free model satisfying the full
   packed/provenance context retires the parent balanced branch.  Fixed-color
   UNSAT cores and UNSAT formulas strengthened by targeted packing do not
   advance the general leaf unless their hypotheses follow from canonical
-  provenance.  The current provenance formula and collision shortcut may be
-  retried only after the exact structural compression described above, not by
-  additional raw solver seeds.
+  provenance.  The current provenance formula may be retried only after exact
+  structural compression.  The direct collision formula has completed its
+  computational gate and may advance only through semantic core mining or a
+  cut-sensitive structural theorem, not additional raw solver seeds.
 - **Children:** `FP-02.A` balanced canonical transversal; `FP-02.B` mixed
   normal-form terminal; `FP-02.C` decomposability-retention bridge;
   `FP-02.D` symbolic packing/provenance compression; `FP-02.E`
@@ -512,20 +526,29 @@ that deserves independent retention and scheduling consideration.
   through crossing-split and residue classes independent of the rectangle
   route.
 - **Strategic role:** hedge.
-- **State:** gated.
+- **State:** advancing.
 - **Model tier:** full packed `11+11` ordered split with side cap exclusions and
   repeated deletion packing.
 - **Best evidence:** the five-way shell, universal clean `2+4` normalization,
-  and middle-word infrastructure compile; all five color terminals remain open.
+  and middle-word infrastructure compile.  The new exact `3+3` reduction also
+  compiles: any packed witness has a disjoint mutually obstructed partner,
+  bounded middle words, proper splits, and all twelve normalized failures.
+  The exact full-context `3+3` negation is independently reconstructed and
+  computationally UNSAT (83,468 variables, 1,583,924 clauses, and 1,653,441
+  independently replayed pure-RUP additions).  Its 336-MiB proof is above the
+  promotion gate, so the color terminal is not yet a completed Lean result.
 - **Downstream consumer:** the balanced obligation in the state-567 reducer.
-- **Open obstruction:** close one of `2+4`, `3+3`, `4+2`, or the two directed
-  residue-overlap leaves while visibly using the exact packed context.
-- **Next discriminating gate:** select the smallest terminal with a full-context
-  falsifier and prove or refute it without pair-only weakening.
+- **Open obstruction:** extract a compact semantic proof of the now-supported
+  `3+3` terminal, or close one of the other four leaves while visibly using the
+  exact packed context.
+- **Next discriminating gate:** mine the `3+3` proof for a small color lemma or
+  shared semantic core that can be stated independently and proved in Lean.
+  Do not repeat the same SAT instance or substitute the pair-only weakening.
 - **Success payoff:** an independent state-567 closure path if `FP-02` stalls.
 - **Expiry or revival gate:** an exact full-context model retires the selected
-  leaf; repeated reductions inherited by the 12- or 21-point controls trigger
-  suspension and route review.
+  leaf; the direct `3+3` computational gate is complete and revives only for a
+  materially smaller certificate or structural theorem.  Repeated reductions
+  inherited by the 12- or 21-point controls trigger suspension and route review.
 - **Children:** none.
 
 ### FP-06 — Finite `k=9` extreme-exchange bridge
@@ -575,13 +598,20 @@ that deserves independent retention and scheduling consideration.
 - **State:** gated.
 - **Model tier:** exact predecessor hypergraphs from sweep-realizable colorings,
   with relaxed hypergraphs used only to separate logical strengths.
-- **Best evidence:** fractional-to-half and direct recurrence consumers compile;
-  no integral/fractional/half separator appears through checked `k=6,n≤12`.
+- **Best evidence:** the exact `PredecessorHalfMassAt` interface now compiles.
+  A rational cover of total weight at most two implies half-mass by a finite
+  double count; uniform half-mass implies `PredecessorHalfSubsetAt`; and
+  half-mass feeds the exact sweep recurrence.  All declarations use only the
+  standard project axioms.  Relaxed exact controls reproduce both a fractional-
+  not-integral separator and a complete 4-uniform `K7` obstruction, while no
+  integral/fractional/half separator appears through checked `k=6,n≤12`.
 - **Downstream consumer:** `FP-01`.
 - **Open obstruction:** prove a geometric or orientation-sensitive weighted
   inequality that cannot be cloned by relaxed hypergraphs.
-- **Next discriminating gate:** freeze one weighted candidate and test it on
-  exact rational controls plus the known relaxed separators before Lean work.
+- **Next discriminating gate:** freeze one orientation-sensitive weighted
+  inequality whose hypotheses hold for exact predecessor hypergraphs but fail
+  on the relaxed `K7` obstruction, then test it on exact rational controls
+  before Lean work.  A generic LP-duality restatement is not sufficient.
 - **Success payoff:** a producer strictly weaker than integral Property B.
 - **Expiry or revival gate:** an exact realizable fractional-cover obstruction
   retires this route; failure of one local weighting merely returns to the LP
@@ -785,10 +815,13 @@ parent unless promoted.
   choice is adaptive and no selector theorem exists.  The first frozen robust
   orientation-balance/rank-distance selector passed 3,271 inherited controls
   but is independently refuted by held-out rational Fin9 ordinal 1,459, which
-  still admits 22 successful supports.  Treat that held-out family as training
-  data now; freeze a materially different geometric selector and a new blind
-  family before Lean.  One checked target-free model with zero classifiers
-  expires this child.
+  still admits 22 successful supports.  A compiling defect/exchange framework
+  for all 4,096 classifiers is also refuted as a producer: the stored Fin9
+  model has 535 radius-one and 265 radius-two positive-defect local minima,
+  despite 44 successful classifiers.  Treat the used families as training
+  data, preserve the still-blind cubic-sevenths family, and test only a frozen
+  genuinely nonlocal selector.  One checked target-free model with zero
+  classifiers expires this child.
 - **FP-02.A — Balanced canonical transversal.**  The three-carrier transversal
   and residual-touching packing conclusion are proof-ready.  The next invariant
   must be placement-independent; fixed carrier signatures are expired.
@@ -820,9 +853,11 @@ parent unless promoted.
   no distinct-initial-block premise.  The old TP-SAT model directly realizes
   the network and global packing but has no admissible side cut.  Adding the
   cut to the stronger targeted-packing CNF is UNSAT and therefore
-  inconclusive for this child.  Next encode the repair network and full context
-  directly, omitting targeted packing, or prove the required color coupling
-  structurally in Lean.
+  inconclusive for this child.  The direct full-context formula is now
+  independently reconstructed and certified UNSAT: 199,713 variables,
+  3,172,823 clauses, and a 1,283,493-addition pure-RUP proof.  Its 994-MiB trace
+  is not promotion-ready.  Next mine a compact cut-sensitive semantic lemma and
+  prove it in Lean; do not rerun the same formula with another seed.
 - **FP-03.A — Variable-carrier state 556.**  Completed finite adjacent state:
   both advertised leaves and their consumer compile, via a stronger witness-free
   Fin14 contradiction, through `PascalTailTwoSideBound 5 5 6`.  The live child

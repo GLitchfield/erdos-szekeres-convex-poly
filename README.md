@@ -83,9 +83,11 @@ sets.
   Fin9 witness now kernel-checks a refutation of the stronger single-cell
   half-support producer.  An adaptive two-cell Boolean support survives the
   stored witness and all 3,270 target-free models in two bounded rational
-  domains, but no uniform geometric selector is proved.  Any revival must
-  explain that collective selection rather than merely search its 4,096
-  classifiers.
+  domains, but no uniform geometric selector is proved.  The full classifier
+  cube and conditional local-exchange consumer now compile, while exact replay
+  finds 535 radius-one and 265 radius-two positive-defect local minima in the
+  stored Fin9 model.  Any revival must use a genuinely nonlocal collective
+  selection rather than merely search or locally improve its 4,096 classifiers.
 - `ErdosSzekeres/DecomposableRealization.lean` closes the abstraction boundary
   for the entire recursive class. Its fixed-abscissa merge theorem vertically
   shifts arbitrarily interleaved deep-below children while retaining both
@@ -768,7 +770,14 @@ sets.
   960,960 targeted occurrences.  Its arbitrary-carrier Fin22 downstream
   consequence is nevertheless SAT with all 120 targeted deletions checked, so
   the next repair must restore canonical grid/bad-block provenance or stronger
-  global packing rather than treat the compression as a terminal law. The
+  global packing rather than treat the compression as a terminal law.  The
+  separate same-occupancy four-repair negation is now directly certified UNSAT
+  in the exact full Fin22 cut context, with independent reconstruction and
+  pure-RUP replay; its 994-MiB proof is computational evidence, not a Lean
+  theorem.  In the parallel five-class route, the exact packed `3+3`
+  partner/failure reduction compiles and its full-context negation is likewise
+  independently certified UNSAT.  Its 336-MiB proof still requires semantic
+  compression before the terminal can be promoted. The
   generic residual counting kernel has nevertheless been extracted: a
   division-free seed-cover theorem and its `112 < choose 10 3` state-567
   specialization compile. This is not yet a uniform Pascal recurrence. The
@@ -808,7 +817,11 @@ sets.
   computational encodings pass its stronger balanced eight-vertex `k=5`
   gate, but the general bicoloring theorem remains open. The complete
   implication hierarchy from integral bicoloring through fractional cover and
-  a predecessor-free half-subset to exact doubling now compiles. A uniform
+  a predecessor-free half-subset to exact doubling now compiles.  The exact
+  `PredecessorHalfMassAt` interface now makes the weighted middle layer
+  explicit: fractional cover implies half-mass by finite double counting,
+  uniform half-mass implies a half-subset, and half-mass feeds the recurrence.
+  The orientation-sensitive weighted producer remains open. A uniform
   certificate-free theorem proves predecessor bicoloring below
   `2*k-3` vertices for `k>=5`; exact computation extends the positive `k=6`
   evidence through 12 vertices, with the 1.23-GB `n=12` LRAT remaining

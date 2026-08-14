@@ -135,7 +135,12 @@ threads remain valuable.
    selector passed all inherited controls but is refuted by a new held-out
    rational Fin9 model that still admits 22 successful classifiers.  Thus the
    collective card survives, while selector design—not existential search—is
-   the sharpened obstruction.
+   the sharpened obstruction.  The complete classifier cube now has a
+   compiling defect, exchange relation, and conditional recurrence consumer,
+   but exact replay finds 535 radius-one and 265 radius-two positive-defect
+   local minima in the stored Fin9 model.  Local exchange of radius at most two
+   is therefore expired; any next selector must be genuinely nonlocal (or the
+   route must return to synchronized fans).
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -185,9 +190,13 @@ threads remain valuable.
    coverage; the exact 19.48-million-clause canonical augmentation reaches its
    30-minute resource gate without a decision.  Separately, the model realizes
    the complete light four-repair collision network and global packing but has
-   no admissible cap-four-free ordered cut.  The next gates must compress the
-   provenance augmentation and encode the collision network directly, without
-   importing the expired targeted-packing shortcut.
+   no admissible cap-four-free ordered cut.  The direct full-context collision
+   negation has now been encoded without targeted-packing or provenance
+   shortcuts and independently certified UNSAT (3,172,823 clauses and
+   1,283,493 pure-RUP additions).  Its 994-MiB proof is computational evidence,
+   not a Lean theorem.  The next gates must compress the provenance
+   augmentation and extract a cut-sensitive semantic lemma from this direct
+   collision proof, rather than rerunning either raw formula.
 3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
    state-567 proof's numerical and structural kernel into a parameterized
    two-carrier/residual-escape theorem and consume it through
@@ -260,7 +269,11 @@ threads remain valuable.
    `4+2`, left-right residue, and right-left residue terminal classes.  Pair
    dual branches only after an explicit reversal/color-duality transport is
    available.  The exact `11+11` split, side cap exclusions, and repeated
-   packing must remain visible in every terminal contract.
+   packing must remain visible in every terminal contract.  The exact `3+3`
+   structural reduction now compiles, and the corresponding full-context
+   negation is independently certified UNSAT (1,583,924 clauses and 1,653,441
+   pure-RUP additions).  The 336-MiB proof exceeds the Lean-promotion gate, so
+   semantic compression of this supported terminal is now the live task.
 6. **Finite `k=9` extreme-exchange Lean bridge (completed; merged into 9).**
    `extremeExchangeK9FinSeventeen` now compiles end to end, including all seven
    former strong-ten blockers.  The bounded engineering route has reached its
@@ -423,7 +436,12 @@ suspended under ticket 0010 until its stated revival gate is met.
   middle-word frontier proposal is stopped by a six-vertex abstract
   counterexample and is no longer an active route. The predecessor hierarchy
   now compiles all the way from integral bicoloring through fractional cover
-  and a single predecessor-free half-subset to the exact recurrence. A
+  and a single predecessor-free half-subset to the exact recurrence.  The new
+  exact `PredecessorHalfMassAt` interface also compiles: fractional cover gives
+  half-mass by finite double counting, uniform half-mass gives the half-subset,
+  and half-mass feeds the recurrence.  This closes the easy direction without
+  importing LP duality; an orientation-sensitive weighted producer remains
+  open. A
   certificate-free theorem proves the integral bicoloring for every
   strong-`k`-free coloring on at most `2*k-3` vertices when `k>=5`. At `k=6`,
   independent exact finite checks find no integral/fractional/half separator

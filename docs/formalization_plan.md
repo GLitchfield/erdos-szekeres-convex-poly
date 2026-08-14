@@ -1570,6 +1570,12 @@ balanced companion to Thread 2.
 - Keep the five terminal contradiction Props separate so each can be tested
   and compiled independently.
 
+The shell and all five named leaves compile.  For the `3+3` disjunct, the
+additional structural reduction
+`PackedElevenElevenOpen567.threeThree_has_bounded_crossing_state_partner`
+now produces a disjoint mutually obstructed partner, bounded middle words,
+proper splits, and all twelve normalized failures.
+
 **Stage 5.2: terminal classes.**
 
 - Attack `2+4` first and derive `4+2` only through a verified reversal/color
@@ -1582,6 +1588,12 @@ balanced companion to Thread 2.
   explicit.
 - Before Lean promotion, falsify each terminal signature against the 12- and
   21-point controls and any exact balanced controls already recorded.
+
+The exact full-context `3+3` negation is independently certified UNSAT:
+83,468 variables, 1,583,924 clauses, and 1,653,441 pure-RUP additions.  This is
+computational evidence only; the 336-MiB proof exceeds the promotion gate.
+The next proof task is semantic core mining or a compact color lemma, not a
+repeat solve and not the pair-only weakening.
 
 **Stage 5.3: state-567 closure.**
 
@@ -1700,14 +1712,20 @@ already compile, so this route can succeed even if integral Property B fails.
 - Derive the dual target: every nonnegative vertex weighting has a
   predecessor-free support carrying at least half the total mass.
 
+The exact dual target is now formalized as `PredecessorHalfMassAt`.  Finite
+rational double counting proves it from a cover of total weight at most two;
+uniform half-mass proves `PredecessorHalfSubsetAt`; and the exact recurrence
+consumer compiles.  The converse LP-duality bridge is deliberately still open.
+
 **Stage 8.2: weighted geometric charging.**
 
 - Test weighted maximum-support, random-cut, sweep-interval, and deletion
   averaging arguments.  The proof must use rank-three/realizability structure;
   relaxed hypergraphs have exact fractional-versus-integral separators.
-- Start at `k=6` and use the integral-through-11 computation as a positive
-  control, not as a proof.  Search `n=12` for the first exact fractional/half
-  separator as part of Thread 1's common bounded gate.
+- Start at `k=6` and use the checked range through `n=12` as a positive
+  control, not as a proof.  Exact relaxed separators show that the next
+  inequality must use orientation structure rather than generic hypergraph LP
+  facts.
 - When a weighted inequality survives, compile it first as a finite-sum lemma
   for an arbitrary rational weight function, then derive the cover.
 
@@ -1975,7 +1993,12 @@ capacity.
   boundary, two independent complete encodings make the fan negation UNSAT
   while target-free controls remain SAT. This is nonvacuous computational
   evidence; the exact bounded fan theorem is the next Lean certificate target.
-  A fourth local charge is forbidden; `n=13` receives preflight only.
+  A fourth local charge is forbidden; `n=13` receives preflight only.  For the
+  adaptive two-cell child, the complete classifier cube, defect, bounded
+  exchange relation, and conditional recurrence consumer now compile.  Exact
+  replay finds hundreds of positive-defect radius-one and radius-two local
+  minima in the stored Fin9 model, so bounded local exchange is expired while
+  the existential collective card remains alive.
 - **Threads 2--3:** generic deletion packing and the state-567 specialization
   compile. Exact incidence counting supplies at least 30 bad residual probes
   and a carrier-touching escape for every probe. Choice-free fiber counting
@@ -2003,10 +2026,18 @@ capacity.
   counterexample has residual cardinality zero and cannot inherit the latter.
   The first mechanical landing should package the grid with the existing two
   carrier-touching residual escapes; the next consumer must then use that
-  packed-22/residual-ten provenance or decomposability essentially.
+  packed-22/residual-ten provenance or decomposability essentially.  The
+  separate full-context same-occupancy repair negation is now directly and
+  independently certified UNSAT at 3,172,823 clauses, with a
+  1,283,493-addition pure-RUP replay.  This supports the frozen terminal at the
+  computational tier but leaves semantic proof extraction open; the 994-MiB
+  trace is not a Lean result.
 - **Thread 5:** the balanced five-way shell, universal clean `2+4` escape
-  family, and nine-middle-word normalization compile.  The five named terminal
-  contracts remain open.
+  family, and nine-middle-word normalization compile.  The exact `3+3`
+  partner/failure reduction now compiles, and its full-context negation is
+  independently certified UNSAT.  The terminal itself remains open in Lean
+  because the 336-MiB proof is not promotion-ready; semantic compression is the
+  next gate.
 - **Threads 4 and 11:** repeated uniform spectator lifting is stopped by an
   exact rational second-spectator target, while its generic local obstruction
   compiles.  Pure deep-split predecessor-freeness and its half-subset consumer
