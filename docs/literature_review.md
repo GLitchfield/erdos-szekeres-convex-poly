@@ -109,6 +109,16 @@ pseudoline arrangements and convex bodies. The exact formula likely needs a
 structural ingredient not visible after the losses inherent in these density
 and partition estimates.
 
+The first finite layer of Suk's proof is now formalized separately from those
+density losses.  Lean proves the required finite chain--antichain threshold,
+the triangle-containment partial order on a one-sided finite
+general-position set, and the four-point proof that two adjacent selected caps
+have a convex union once the paper's arrangement-cell and supporting-line
+facts are supplied.  The source argument derives those facts from the geometry
+of two adjacent support regions and chains; that derivation is the current
+formal obstruction.  Accordingly this checkpoint is not a formalization of
+Suk's positive-fraction theorem or asymptotic upper bound.
+
 ### 4. Equivalent strengthened statements
 
 Erdős, Tuza, and Valtr introduced numbers `N(n,a,b)` that simultaneously avoid

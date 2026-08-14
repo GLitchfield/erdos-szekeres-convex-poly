@@ -53,12 +53,15 @@ destination edge unless a separate implication is proved.
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
 The explicit Tóth--Valtr projective frame, its cup--cap consumer, and the
-strict arithmetic comparison now compile, closing supporting milestone
-`Q-UPPER` at `choose (2*n-5) (n-2) + 2`.  A bounded reuse audit finds no theorem
-from that frame to `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`; therefore it does not
-reduce exact `D-UPPER`.  Suk's quantitative kernel is now the next unlocked
-child, while the point-specialized Holmsen--Mojarrad--Pach--Tardos argument
-remains gated behind a compiling Suk architecture.  `D-UPPER(6)` remains a
+strict arithmetic comparison compile, closing supporting milestone `Q-UPPER`
+at `choose (2*n-5) (n-2) + 2`.  The first Suk finite checkpoint also compiles:
+the finite height--width theorem, the common-base region partial order under
+explicit geometric hypotheses, and the certificate-to-adjacent-convex-union
+consumer.  It does not derive that certificate from two actual adjacent
+support-region chains.  `FP-15.B` is therefore parked at that first geometric
+producer, and positive-fraction arithmetic is still locked.  A bounded reuse
+audit finds no theorem from the quantitative frame to `D-HALF`, `D-DECOMP`, or
+`D-NORMALIZE`; none of this reduces exact `D-UPPER`.  `D-UPPER(6)` remains a
 separate subordinate milestone.
 
 ## Decisions so far

@@ -46,6 +46,14 @@ sets.
   anchor, and proves a strict improvement over the classical binomial bound for
   `n >= 4`.  This closes supporting milestone `Q-UPPER`; it does not close or
   reduce the exact universal upper-bound edge.
+- `ErdosSzekeres/FiniteDilworth.lean`, `SukAdjacentRegions.lean`, and
+  `SukRegionOrder.lean` formalize the first finite kernel in Suk's later
+  quantitative route: the exact finite height--width alternative, the
+  common-base triangle-containment partial order, and adjacent convex-union
+  gluing from an explicit arrangement-cell/supporting-pair certificate.  The
+  missing theorem is the geometric producer of that certificate from two
+  actual adjacent support-region chains, so no positive-fraction or asymptotic
+  upper bound is claimed.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

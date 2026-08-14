@@ -1000,36 +1000,56 @@ that deserves independent retention and scheduling consideration.
   finite-subset convexity preservation, extends every transformed cap through
   the anchor, and invokes the existing cup--cap theorem.  Deterministic exact
   rational controls cover three configurations, 297 convexity subsets, 99 cap
-  extensions, and three rejected coordinate corruptions.  Suk and
-  Holmsen--Mojarrad--Pach--Tardos remain authenticated later source rungs, not
-  current Lean results.
+  extensions, and three rejected coordinate corruptions.  The first Suk finite
+  kernel now also compiles: `finiteDilworth_chain_or_antichain`, the exact
+  support-region vocabulary, the triangle-containment partial order on a
+  finite one-sided general-position set, its chain/antichain specialization,
+  and the conditional adjacent-region gluing theorem
+  `SukAdjacentRegionCertificate.inConvexPosition_union`.  Exact rational
+  controls realize two adjacent three-point chains and reject three coordinate
+  corruptions.  This does not yet derive the gluing certificate from support
+  regions.  Holmsen--Mojarrad--Pach--Tardos remains a later source rung, not a
+  current Lean result.
 - **Missing generalization bridge:** prove the published geometric predicates
   equivalent to the repository's realizable sweep predicates, then extract a
   parameterized lemma actually consumed by `D-HALF`, `D-DECOMP`, or
   `D-NORMALIZE`; a smaller numerical coefficient alone supplies no such bridge.
 - **Last forward result:** supporting milestone `Q-UPPER` is closed by the
-  compiling unconditional theorem `tothValtr_upper`.  This is a genuine known
-  quantitative upper bound, but it changes no load-bearing destination edge.
+  compiling unconditional theorem `tothValtr_upper`.  Within `FP-15.B`, the
+  generic finite height--width theorem, the region partial order under explicit
+  one-sided general-position hypotheses, and the certificate-to-convex-union
+  consumer compile.  These are reusable finite lemmas, but they change no
+  load-bearing destination edge and do not establish Suk's support producer.
 - **Downstream consumer:** the next quantitative consumer is Suk's finite
   positive-fraction architecture.  Any claim of progress on the exact route
   still requires a separate theorem into `D-HALF`, `D-DECOMP`, or
   `D-NORMALIZE`.
-- **Open obstruction:** no exact-route consumer uses the completed frame, and
-  source-to-Lean contracts are not yet frozen for Suk's finite Dilworth and
-  adjacent-region gluing kernel.  The later positive-fraction and recurrence
-  layers remain blocked on those finite geometric lemmas.
-- **Next discriminating gate:** freeze and compile only the finite Dilworth
-  inequality and Suk adjacent-region gluing observation, with their exact
-  support-region predicates and small rational counterexample controls.  Do
-  not start the positive-fraction recurrence until both lemmas compile.
-- **Success payoff:** a compiling finite kernel unlocks Suk's support producer
-  and explicit integer recurrence.  Only a completed Suk architecture unlocks
-  the point-specialized current-best bound.
+- **Open obstruction:** no exact-route consumer uses the completed frame.  In
+  the Suk route, no theorem yet derives `SukAdjacentRegionCertificate` from two
+  adjacent `SukSupportRegion`s and chains in their triangle-containment orders.
+  The missing content is precisely the arrangement-cell and two-pair
+  supporting-line geometry in Observation 3.1.  The chain-coloring consumer,
+  Pór--Valtr positive-fraction support theorem, and recurrence remain blocked
+  behind that producer.
+- **Next discriminating gate:** freeze an exact adjacent-support data structure
+  with five consecutive cap anchors, membership in the two open support
+  regions, chain hypotheses for the two common-base orders, selected left/right
+  caps, and ambient general position.  Prove from those hypotheses—not by
+  adding certificate fields—that the line through two chain points misses the
+  adjacent region and that the opposite anchor and region point occupy the same
+  arrangement cell; then construct `SukAdjacentRegionCertificate`.  The same
+  six-point rational control must pass, and a corrupted support or chain must
+  fail.  Do not begin positive-fraction arithmetic before this producer lands.
+- **Success payoff:** the geometric producer makes the compiled gluing theorem
+  usable and unlocks the chain two-color cup--cap layer.  Only that layer plus
+  a formal Pór--Valtr support theorem unlocks Suk's integer recurrence; only a
+  completed Suk architecture unlocks the point-specialized current-best bound.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
-  parked because the reuse audit found no exact-route consumer.  Park
-  `FP-15.B` at the first missing finite geometric producer; arithmetic or
-  asymptotic bookkeeping alone is not progress.  Revive exact-route use of the
-  frame only with a theorem-shaped consumer into a named load-bearing edge.
+  parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
+  now parked at the first missing finite geometric producer just
+  described; arithmetic, a restated certificate, or asymptotic bookkeeping
+  alone is not progress.  Revive exact-route use of the frame only with a
+  theorem-shaped consumer into a named load-bearing edge.
 - **Children:** `FP-15.A` completed explicit Tóth--Valtr bound and projective frame;
   `FP-15.B` Suk positive-fraction/partial-order finite kernel and explicit
   asymptotic assembly; `FP-15.C` point-specialized
@@ -1199,11 +1219,14 @@ parent unless promoted.
   cap-anchor extension, exact cup--cap consumer, unconditional forcing theorem,
   and strict comparison with the classical bound all compile.  `Q-UPPER` is
   closed; the bounded reuse audit found no exact-route consumer.
-- **FP-15.B — Suk finite quantitative kernel.**  Unlocked by FP-15.A.  Formalize
-  the finite Dilworth inequality,
-  support-region geometry, adjacent-region gluing, positive-fraction producer,
-  and explicit integer recurrence before deriving an asymptotic corollary.
-  Arithmetic without the geometric producer is not an admitted result.
+- **FP-15.B — Suk finite quantitative kernel.**  The generic finite Dilworth
+  inequality, support-region vocabulary, region partial order under explicit
+  one-sided general-position hypotheses, and conditional adjacent-region
+  gluing consumer compile.  The child is parked at the missing theorem from
+  two actual adjacent support-region chains to the arrangement-cell and
+  supporting-pair certificate.  Positive-fraction and recurrence work remains
+  locked; arithmetic without that geometric producer is not an admitted
+  result.
 - **FP-15.C — Point-specialized current-best upper bound.**  Locked behind a
   compiling Suk architecture.  Formalize the point-set specialization of the
   Holmsen--Mojarrad--Pach--Tardos spike and two-partial-order proof through an

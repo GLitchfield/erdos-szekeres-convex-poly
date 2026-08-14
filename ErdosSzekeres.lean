@@ -181,3 +181,6 @@ public import ErdosSzekeres.RootedTriangleCircuitCounterexample
 public import ErdosSzekeres.DecomposableStateDuality
 public import ErdosSzekeres.ES5Certificate
 public import ErdosSzekeres.TothValtrUpper
+public import ErdosSzekeres.FiniteDilworth
+public import ErdosSzekeres.SukAdjacentRegions
+public import ErdosSzekeres.SukRegionOrder

@@ -2560,6 +2560,25 @@ derive the `2^(n + O(n^(2/3)*log n))` formulation only afterward.  Arithmetic
 or asymptotic bookkeeping without the support producer does not advance this
 child.
 
+**First finite-kernel result.**  Items 4 and the consumer half of item 6 now
+compile.  `finiteDilworth_chain_or_antichain` proves the exact finite
+height--width threshold.  `SukRegionLE` is proved reflexive and transitive, and
+is antisymmetric on a finite general-position set strictly on one side of its
+common base; `sukRegion_chain_or_antichain` applies the finite theorem to that
+order.  `SukAdjacentRegionCertificate.inConvexPosition_union` proves
+Observation 3.1 from its geometric certificate fields by the four-point
+criterion.  Exact rational controls realize adjacent three-point chains, all
+arrangement-cell and supporting-pair fields, and the convex union, while three
+coordinate corruptions are rejected.
+
+This checkpoint does **not** finish the geometric observation as used in the
+paper.  The first missing producer must start from five consecutive cap
+anchors, two actual `SukSupportRegion`s, and chains in their common-base orders,
+then prove the arrangement-cell and supporting-pair fields rather than assume
+them.  `FP-15.B` is parked at that theorem.  The chain cup--cap layer,
+Pór--Valtr positive-fraction theorem, recurrence, and asymptotic arithmetic are
+not unlocked by the conditional consumer alone.
+
 ### FP-15.C: point-specialized current-best bound
 
 This child is locked until the Suk architecture compiles.  Specialize the
