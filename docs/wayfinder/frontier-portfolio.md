@@ -264,6 +264,12 @@ that deserves independent retention and scheduling consideration.
   rational survival does not explain how sweep geometry selects them.  Merely
   controlling crossed or clipping-saturated transitions cannot repair the
   formally refuted single-cell producer.
+  The first frozen noncircular selector, based on robust orientation balance
+  and pair-rank distance, passed all 3,271 inherited target-free controls
+  generated from 429,123 rational configurations.  An independently checked
+  held-out rational Fin9 family nevertheless refutes it at admitted ordinal
+  1,459.  That model still has 22 successful Boolean two-cell supports, so the
+  selector is expired but the existential collective card remains alive.
   Separately, an exact indexed grouping compresses the minimum Fin11 cube from
   9,181 ground base clauses to 3,527 complete object/unit families, with
   literal-for-literal expansion and omitted-index/corrupted-family rejection.
@@ -272,11 +278,13 @@ that deserves independent retention and scheduling consideration.
   blocker.  After a kernel Fin11 theorem, turn
   compatible ten-point singleton fans into one half-sized fan with a common
   pivot and direction for arbitrary size.
-- **Next discriminating gate:** freeze one exact selector theorem for
-  `AmbientDownsetTwoCellBooleanHalfSupportAtSix`, require its proposed selector
-  to choose a successful classifier on the stored hardest survivor and a new
-  exact rational family, and only then attempt Lean.  A target-free model with
-  no successful classifier retires the candidate immediately.  Fin11
+- **Next discriminating gate:** mine the successful-classifier geometry on the
+  inherited controls together with the frozen selector counterexample, then
+  freeze one materially different selector theorem for
+  `AmbientDownsetTwoCellBooleanHalfSupportAtSix` and test it on a new held-out
+  rational family.  The quadratic-fifths held-out family is now training data
+  and cannot be reused as an unbiased gate.  A target-free model with no
+  successful classifier retires the candidate immediately.  Fin11
   certificate work belongs to `FP-14.B` and must
   use a chunked or streaming proof architecture rather than another monolithic
   FromLRAT replay.
@@ -286,7 +294,9 @@ that deserves independent retention and scheduling consideration.
   checked realizable target-free
   counterexample to synchronized compatible fans retires that separate child;
   the two-cell collective card expires on one checked target-free model with no
-  successful classifier and advances only through a noncircular selector.
+  successful classifier and advances only through a noncircular selector.  The
+  frozen robust orientation-balance/rank-distance selector is specifically
+  expired by the held-out Fin9 model and must not be retuned in place.
 - **Children:** `FP-01.A` synchronized singleton fans; `FP-01.B` ambient
   endpoint-synchronized down-sets; `FP-01.C` adaptive two-cell Boolean
   down-set support; `FP-07` integral Property B; `FP-08` fractional cover.
@@ -329,32 +339,53 @@ that deserves independent retention and scheduling consideration.
   model expires the compressed consequence as a standalone color terminal; it
   does not satisfy or refute the omitted canonical-grid/bad-block provenance,
   full global packing, decomposability, or realizability premises.
+  Auxiliary-blind provenance replay now decides that omission on the fixed
+  model: all 210 residual four-blocks are bad, but there are 44 canonical mixed
+  witnesses rather than four; their rectangles overlap and cover only 28 of 36
+  anchor pairs.  Thus the fixed model fails the balanced canonical system
+  sharply.  An exact augmentation enforcing family cardinality four, `3x3`
+  shape, and full 36-pair coverage has 951,973 variables and 19,484,071
+  independently reconstructed clauses, but CaDiCaL reached the 30-minute gate
+  without SAT or UNSAT.  This is a resource stop, not evidence for either
+  disposition.
+  The same fixed model supplies separate collision diagnostics: it directly
+  satisfies global deletion packing and an exact four-light-repair network,
+  including equal initial probe blocks, while avoiding all targets.  It is not
+  a full-context collision countermodel because every admissible 7--15 cut has
+  a side cap-four.  Adding exactly the cut to the stronger targeted-packing CNF
+  is UNSAT, but that compressed result cannot certify the collision terminal.
 - **Downstream consumer:** the packed state-567 reducer and ultimately the
   uniform decomposable exact upper theorem.
-- **Open obstruction:** close two full-context color terminals: a same-anchor
-  same-occupancy collision, and the provenance-coupled balanced-grid state.
-  Hitting plus the 120 targeted deletions is now known insufficient.  The next
-  invariant must use an omitted upstream coupling essentially—first canonical
-  balanced-grid/bad-block provenance, and then full six-deletion packing if the
-  fixed SAT model also passes provenance.  Decomposability or realizability is
-  a later model-tier strengthening, not the first repair.
-- **Next discriminating gate:** on the admitted Fin22 SAT assignment, directly
-  reconstruct the exact canonical witness family, balanced four-grid, retained
-  bad residual four-block, and their provenance equalities.  If reconstruction
-  fails, add precisely those constraints to the independently reconstructed
-  compressed CNF and rerun one bounded SAT/UNSAT gate.  If it succeeds or the
-  augmented formula remains SAT, test full global six-deletion packing next.
-  In parallel, isolate the smallest same-occupancy collision color terminal
-  with the same full context.
+- **Open obstruction:** close two full-context color terminals: the
+  provenance-coupled balanced grid and the same-anchor same-occupancy
+  four-repair network.  The fixed TP-SAT model is excluded by each missing
+  upstream coupling for a different exact reason, while the first exact
+  provenance augmentation is solver-hard.  Neither targeted packing nor a
+  cut added to that stronger consequence can substitute for the original
+  packed terminal.
+- **Next discriminating gate:** for the balanced branch, reduce the exact
+  19.48-million-clause canonical-family augmentation before another solve:
+  incrementally separate family-cardinality, rectangle-disjointness, and
+  36-pair coverage, retaining arbitrary carriers, and freeze the smallest
+  first inconsistent or solver-hard layer.  For the collision branch, build
+  one direct network-aware Fin22 encoding of the frozen
+  `lightSameOccupancyFourRepairNetwork567_forces_target` negation.  It must
+  retain the ordered side window and exact four-repair structure, omit the
+  expired targeted-packing shortcut, allow equal initial blocks, and undergo
+  auxiliary-blind replay before any result is admitted.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** the standalone hitting-plus-targeted-packing
   terminal is expired by TP-SAT.  Only a target-free model satisfying the full
   packed/provenance context retires the parent balanced branch.  Fixed-color
-  UNSAT cores do not advance the general leaf unless their hypotheses follow
-  from canonical provenance.
+  UNSAT cores and UNSAT formulas strengthened by targeted packing do not
+  advance the general leaf unless their hypotheses follow from canonical
+  provenance.  The current provenance formula and collision shortcut may be
+  retried only after the exact structural compression described above, not by
+  additional raw solver seeds.
 - **Children:** `FP-02.A` balanced canonical transversal; `FP-02.B` mixed
   normal-form terminal; `FP-02.C` decomposability-retention bridge;
-  `FP-02.D` symbolic packing/provenance compression.
+  `FP-02.D` symbolic packing/provenance compression; `FP-02.E`
+  same-occupancy four-repair terminal.
 
 ### FP-03 — Uniform Pascal-tail lift
 
@@ -448,20 +479,26 @@ that deserves independent retention and scheduling consideration.
   changed circuits remain within source split sides, while one unique crossing
   mutation activates a split of a source prime support.  It is noncircular and
   passes all fourteen admitted abstract Fin7/Fin8 controls under fresh replay,
-  but the packet contained no Fin17 instance and the exact-rational control did
-  not expose the new witness fields.  Therefore neither required model-tier
-  gate was decided.
+  and exact rational Fin8 extraction now supplies five nonvacuous
+  carrier-interior persistence witnesses plus a unique-crossing activation.
+  The first exact Fin17 architecture is independently unit-refutable: its
+  source-prime Fin16 activation together with a persistent Fin16-plus-singleton
+  top split is an empty 680-variable, 434,680-clause class.  This rejects that
+  control architecture, not the rooted-circuit mechanism, and supplies no
+  Fin17 model or consumer theorem.
 - **Downstream consumer:** `TargetReflectingDecomposableNormalizationAt`, then
   any uniform decomposable exact theorem.
-- **Open obstruction:** decide the rooted-circuit split-surgery producer at the
-  required tiers.  The missing evidence is concrete rather than conceptual: a
-  named Fin17 instance and exact-rational extraction of source carrier-interior
-  split and unique-crossing activation witnesses.
-- **Next discriminating gate:** generate and freeze one exact abstract Fin17
-  control plus one rational witness extractor for the new predicate, then replay
-  the unchanged candidate with corruption rejection.  Compile the reviewed
-  consumer only if at least the rational gate survives; a wrapper-only lane
-  remains expired as strategically inert.
+- **Open obstruction:** obtain a nonempty above-threshold Fin17 control for the
+  unchanged rooted-circuit producer.  The rational witness fields are no longer
+  missing; the obstruction is that the first fixed Fin16-activation/top-split
+  architecture is inconsistent before candidate replay.
+- **Next discriminating gate:** factor the 680-variable Fin17 control into
+  cumulative exact layers—target-free signotope, source-prime activation,
+  endpoint split, and independent persistent top split—and identify the first
+  unit-refutable layer.  Freeze one alternative nonempty architecture only
+  after that diagnosis, then replay the unchanged candidate.  Compile the
+  reviewed consumer only after a nonvacuous Fin17 gate survives; a wrapper-only
+  lane remains expired as strategically inert.
 - **Success payoff:** an unrestricted-to-decomposable reduction independent of
   the half-subset producer.
 - **Expiry or revival gate:** a realizable target-free closed component or
@@ -745,10 +782,13 @@ parent unless promoted.
   selected support must be strong-five-free and contain at least half the
   vertices.  The frozen card survives the stored Fin9 obstruction and all 3,270
   target-free models in two independently replayed rational domains, but the
-  choice is adaptive and no selector theorem exists.  Next freeze one geometric
-  selector and falsify it on the hardest 34-classifier survivor plus a new
-  rational family before Lean.  One checked target-free model with zero
-  classifiers expires this child.
+  choice is adaptive and no selector theorem exists.  The first frozen robust
+  orientation-balance/rank-distance selector passed 3,271 inherited controls
+  but is independently refuted by held-out rational Fin9 ordinal 1,459, which
+  still admits 22 successful supports.  Treat that held-out family as training
+  data now; freeze a materially different geometric selector and a new blind
+  family before Lean.  One checked target-free model with zero classifiers
+  expires this child.
 - **FP-02.A — Balanced canonical transversal.**  The three-carrier transversal
   and residual-touching packing conclusion are proof-ready.  The next invariant
   must be placement-independent; fixed carrier signatures are expired.
@@ -769,9 +809,20 @@ parent unless promoted.
   960,960 occurrences.  The hitting, targeted-packing, residual-touching, and
   global-to-targeted interfaces now compile, completing that bounded bridge.
   The exact compressed consequence is nevertheless SAT, so it cannot replace
-  provenance as the terminal invariant.  Retain this child for the next
-  canonical-grid/bad-block augmentation; a weakened hitting-plus-targeted model
-  is now explicitly expired.
+  provenance as the terminal invariant.  Fixed-model replay finds 44
+  overlapping canonical witnesses and only 28/36 anchor-pair coverage.  The
+  first exact canonical-family augmentation times out at 19,484,071 clauses;
+  split its structural layers before another solver attempt.  A weakened
+  hitting-plus-targeted model is explicitly expired.
+- **FP-02.E — Same-occupancy four-repair terminal.**  The exact frozen terminal
+  retains the 22-point ordered split, side cap-four exclusions, mutual strong
+  carriers, global packing, and `LightSameOccupancyFourRepairNetwork567`, with
+  no distinct-initial-block premise.  The old TP-SAT model directly realizes
+  the network and global packing but has no admissible side cut.  Adding the
+  cut to the stronger targeted-packing CNF is UNSAT and therefore
+  inconclusive for this child.  Next encode the repair network and full context
+  directly, omitting targeted packing, or prove the required color coupling
+  structurally in Lean.
 - **FP-03.A — Variable-carrier state 556.**  Completed finite adjacent state:
   both advertised leaves and their consumer compile, via a stronger witness-free
   Fin14 contradiction, through `PascalTailTwoSideBound 5 5 6`.  The live child

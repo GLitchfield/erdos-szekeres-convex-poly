@@ -131,9 +131,11 @@ threads remain valuable.
    theorem now compile, so the single-cell producer is formally expired.
    The local dichotomy remains infrastructure.  An adaptive Boolean combination
    of two ambient cells survives the stored model and all 3,270 target-free
-   configurations in two bounded rational domains; the next theorem must select
-   such a classifier geometrically rather than merely existentially searching
-   4,096 choices.
+   configurations in two bounded rational domains.  The first frozen geometric
+   selector passed all inherited controls but is refuted by a new held-out
+   rational Fin9 model that still admits 22 successful classifiers.  Thus the
+   collective card survives, while selector design—not existential search—is
+   the sharpened obstruction.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -178,10 +180,14 @@ threads remain valuable.
    global-to-targeted implication now compile.  An independently reconstructed
    arbitrary-carrier Fin22 encoding of the compressed consequence is SAT and
    its model directly passes all 120 targeted deletions, so that consequence is
-   not a terminal color law.  The next bounded gate restores canonical
-   balanced-grid/bad-block provenance on the fixed model and in the CNF; only if
-   provenance does not separate it should full global six-deletion packing be
-   added next.
+   not a terminal color law.  Direct replay now shows the fixed model fails
+   canonical provenance with 44 overlapping witnesses and only 28/36 pair
+   coverage; the exact 19.48-million-clause canonical augmentation reaches its
+   30-minute resource gate without a decision.  Separately, the model realizes
+   the complete light four-repair collision network and global packing but has
+   no admissible cap-four-free ordered cut.  The next gates must compress the
+   provenance augmentation and encode the collision network directly, without
+   importing the expired targeted-packing shortcut.
 3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
    state-567 proof's numerical and structural kernel into a parameterized
    two-carrier/residual-escape theorem and consume it through
@@ -242,12 +248,13 @@ threads remain valuable.
    audit gives the exact noncircular cardinality-stratum subset/count-drop
    consumer chain, but also shows that carrier cover plus the endpoint shield
    already packages the no-new-core half of descent.  A noncircular rooted-
-   circuit split-surgery sufficient-interface proposal now passes all fourteen
-   small abstract
-   controls, but the admitted packet lacked both a concrete Fin17 instance and
-   exact-rational witness extraction.  Those two model-tier gates must be
-   supplied before formalization; no strict logical weakening of the endpoint
-   shield is claimed, and a wrapper-only theorem remains strategically inert.
+   circuit split-surgery sufficient-interface proposal passes all fourteen
+   small abstract controls and now has a nonvacuous exact rational Fin8 witness
+   with five persistence supports.  Its first exact Fin17 architecture is
+   independently unit-refutable before candidate replay, so the next task is to
+   locate the inconsistent architectural layer and construct a nonempty
+   above-threshold control.  No strict logical weakening of the endpoint shield
+   is claimed, and a wrapper-only theorem remains strategically inert.
 5. **State-567 balanced five-class leaves (parallel decomposable branch).**
    Prove the mechanical five-way exhaustion, then attack the `2+4`, `3+3`,
    `4+2`, left-right residue, and right-left residue terminal classes.  Pair
