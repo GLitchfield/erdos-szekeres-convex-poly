@@ -1258,6 +1258,10 @@ suspended under ticket 0010 until its stated revival gate is met.
   terminal seven-carrier cover. The present branch is now suspended because
   all identified seed, address, and carrier-cardinality ranks admit explicit
   cycles; Experiment 0094 records the exact revival gate.
+- [Organize quantitative upper-bound and exact-six intermediaries](tickets/0011-organize-upper-bound-intermediaries.md)
+  asks whether the known uniform quantitative improvement and unrestricted
+  `ES(6)=17` should become separate main portfolio entries or remain bounded
+  children.  No entry or supporting edge is added before adversarial review.
 
 ## Not yet specified
 
