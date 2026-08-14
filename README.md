@@ -76,9 +76,14 @@ sets.
   pair-rank collision and proves both witnesses are induced by explicit
   rational planar configurations. Straight-line sweep realizability therefore
   does not repair this deterministic child-state transition.  The
-  literature-informed `FP-01.B` child consequently targets a full-ambient
-  generated down-set and endpoint-repair alternative; it explicitly does not
-  revive a recurrence through the clipped child state.
+  literature-informed `FP-01.B` child consequently tested a full-ambient
+  generated down-set and endpoint-repair alternative; it explicitly did not
+  revive a recurrence through the clipped child state.  The local endpoint
+  dichotomy and its recurrence consumer now compile, but independently
+  replayed exact computation gives a rational Fin9 counterexample to the
+  stronger single-cell half-support producer.  This is not yet a Lean
+  counterexample theorem.  Any revival must combine several ambient cells or
+  use a weighted/synchronized support and must exclude that model.
 - `ErdosSzekeres/DecomposableRealization.lean` closes the abstraction boundary
   for the entire recursive class. Its fixed-abscissa merge theorem vertically
   shifts arbitrarily interleaved deep-below children while retaining both
@@ -754,11 +759,19 @@ sets.
   for an exact integer planar configuration. The counterexample is
   nondecomposable, so the surviving terminal must use decomposability or the
   full packed-22/residual-ten provenance. The preferred next repair retains
-  the balanced grid together with the universal ten-residual escape, first
-  packaging the existing two carrier-touching escapes. The generic residual counting kernel
-  has nevertheless been extracted: a division-free seed-cover theorem and
-  its `112 < choose 10 3` state-567 specialization compile. This is not yet a
-  uniform Pascal recurrence. The color-sensitive terminal remains open. The finite
+  the balanced grid together with the universal ten-residual escape.  Canonical
+  provenance, the three-carrier transversal, and the residual-touching escape
+  now compile.  A subsequent symbolic audit reduces the required packing
+  interface from 597,500,904 eager witness occurrences to 960,960 targeted
+  occurrences; its hitting/equivalence bridge is the next Lean gate. The
+  generic residual counting kernel has nevertheless been extracted: a
+  division-free seed-cover theorem and its `112 < choose 10 3` state-567
+  specialization compile. This is not yet a uniform Pascal recurrence. The
+  local middle-profile capacity also compiles, but independently replayed exact
+  567 coordinate computation and its 657 dual refute the first ambient
+  profile-multiplicity theorem at the computational-evidence tier; a new
+  cross-endpoint invariant is required. The color-sensitive terminal remains
+  open. The finite
   `k=9` results validate the diagonal interface and
   certificate workflow; they do not yet provide the uniform successor step.
   In the parallel

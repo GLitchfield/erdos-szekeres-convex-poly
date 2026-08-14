@@ -125,10 +125,12 @@ threads remain valuable.
    local lemma survives.  The exact endpoint dichotomy, clipped extension
    helper, threshold producer interface, and noncircular consumer into
    `PredecessorHalfSubsetAt 6` now compile and passed independent review.  The
-   next gate is the exact rational `n=6..10` falsifier for the still-unproved
-   threshold-half-support producer, followed by the crossed and saturated
-   transitions if it survives; that producer, not the local dichotomy alone,
-   would feed the recurrence.
+   independently replayed computation nevertheless gives an exact rational
+   Fin9 counterexample to the single-cell threshold producer: every threshold
+   side is too small or contains a strong five.  No kernel counterexample is
+   yet claimed.
+   The local dichotomy remains infrastructure, but any successor must use a
+   collective, weighted, or synchronized family of cells and reject that model.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -165,12 +167,12 @@ threads remain valuable.
    clauses, arbitrary-placement finite theorem, and exact public structural
    consumer now compile.  The mixed omission profile is formally closed; the
    live state-567 work is now exactly the balanced residual-touching color law
-   plus the separate same-occupancy collision terminal.  A full-context
-   falsifier audit stopped before solving: eager packing alone requires
-   597,500,904 witness occurrences, while arbitrary carriers, canonical
-   provenance, the grid/transversal, and all 120 symbolic residual-triple
-   obligations were not reconstructed exactly.  The next move is mathematical
-   indexed packing/provenance compression, not a weakened SAT relaxation.
+   plus the separate same-occupancy collision terminal.  A new mathematical
+   compression factors the balanced branch through a transversal hitting every
+   carrier-contained strong six and only the 120 residual-triple deletions,
+   reducing the raw witness ledger from 597,500,904 to 960,960 occurrences.
+   The next move is to compile that exact implication/equivalence before any
+   independently reconstructed SAT encoding.
 3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
    state-567 proof's numerical and structural kernel into a parameterized
    two-carrier/residual-escape theorem and consume it through
@@ -204,9 +206,12 @@ threads remain valuable.
    and cup holes bound the two endpoint-color counts, with exact 556, 567, and
    dual capacities 6, 10, and 10.  The coefficient embeds in the local
    binomial window, and the old state-567 middle-word result has a fresh
-   noncircular derivation.  A separate parameterized lacing or
-   extension-capacity theorem controlling ambient multiplicity is now the next
-   gate.
+   noncircular derivation.  Independently replayed exact computation refutes
+   the first ambient lacing-capacity theorem on an integer-coordinate 567 model
+   and its 657 reflection: identical
+   profiles and individually strong extensions do not force their union strong.
+   Revival requires an upstream cross-endpoint equality absent from OneChange
+   and the local profile window.
 4. **Layer-F highest-stratum mutation descent (unrestricted sidecar).**  Test
    and then prove or refute `ThreeStepTopPrimeStratumDropsAboveAt`.  Only exact
    realizable, target-free controls can decide the route; below-threshold
@@ -227,11 +232,13 @@ threads remain valuable.
    controls under independent replay and corruption rejection.  A read-only
    audit gives the exact noncircular cardinality-stratum subset/count-drop
    consumer chain, but also shows that carrier cover plus the endpoint shield
-   already packages the no-new-core half of descent.  The next gate is an
-   independently geometric split-persistence producer, tested separately on
-   abstract Fin17 and exact-rational controls; a wrapper-only formalization is
-   strategically inert.  Existence of a realizable threshold macro remains
-   open and must preserve target-freedom stepwise.
+   already packages the no-new-core half of descent.  A noncircular rooted-
+   circuit split-surgery sufficient-interface proposal now passes all fourteen
+   small abstract
+   controls, but the admitted packet lacked both a concrete Fin17 instance and
+   exact-rational witness extraction.  Those two model-tier gates must be
+   supplied before formalization; no strict logical weakening of the endpoint
+   shield is claimed, and a wrapper-only theorem remains strategically inert.
 5. **State-567 balanced five-class leaves (parallel decomposable branch).**
    Prove the mechanical five-way exhaustion, then attack the `2+4`, `3+3`,
    `4+2`, left-right residue, and right-left residue terminal classes.  Pair

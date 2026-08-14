@@ -241,14 +241,25 @@ that deserves independent retention and scheduling consideration.
   structured `AmbientDownsetThresholdHalfSupportAtSix` producer interface, and
   the noncircular consumer into `PredecessorHalfSubsetAt 6` now compile.  An
   independent proof-boundary review accepted the signatures, model tier, and
-  absence of same-`k` circularity.  Both collision controls also pass the
-  proposed `(3,1)` threshold cell, but the threshold-half-support producer
-  itself remains computational/proposal evidence rather than a theorem.
+  absence of same-`k` circularity.  Independently replayed computation now
+  gives an exact rational Fin9 counterexample to the frozen producer semantics
+  at the sweep-realizable tier: all 84
+  determinants are nonzero, all 84 six-subsets fail the strong-polygon law,
+  and every one of the 16 threshold cells and 16 complements is either below
+  half or contains an explicit strong five-set.  An independent checker
+  replayed 347,202 frozen rational candidates and rejected coordinate and
+  threshold-membership corruptions.  This operationally expires the
+  single-cell support card, but is not yet a kernel-checked counterexample
+  theorem; it does not affect the local endpoint dichotomy, synchronized fans,
+  or `PredecessorHalfSubsetAt 6` itself.
 - **Downstream consumer:** `sweepExactUpperAt_of_predecessorHalfSubset`, then
   the unrestricted exact upper bound.
-- **Open obstruction:** control crossed and saturated endpoint-maximizer
-  transitions well enough to select one full-ambient down-set cell whose
-  larger side is strong-`5`-free, without assuming the same-`k` upper bound.
+- **Open obstruction:** replace the expired single-cell threshold support by a
+  genuinely collective support mechanism—such as a union, weighted mixture,
+  or synchronized family of ambient down-set cells—or return to the compatible
+  ten-window fan synchronization in `FP-01.A`.  Merely controlling crossed or
+  clipping-saturated transitions cannot prove the operationally refuted
+  producer.
   Separately, an exact indexed grouping compresses the minimum Fin11 cube from
   9,181 ground base clauses to 3,527 complete object/unit families, with
   literal-for-literal expansion and omitted-index/corrupted-family rejection.
@@ -257,15 +268,21 @@ that deserves independent retention and scheduling consideration.
   blocker.  After a kernel Fin11 theorem, turn
   compatible ten-point singleton fans into one half-sized fan with a common
   pivot and direction for arbitrary size.
-- **Next discriminating gate:** run the exact rational `n=6..10` falsifier for
-  `AmbientDownsetThresholdHalfSupportAtSix`, then attack the crossed and
-  clipping-saturated transitions only if the card survives.  Fin11
-  certificate work belongs to `FP-14.B` and must use a chunked or streaming
-  proof architecture rather than another monolithic FromLRAT replay.
+- **Next discriminating gate:** promote the compact Fin9 rational failure to a
+  kernel-checked counterexample theorem, then freeze one multi-cell or weighted
+  ambient-downset support card and require it to reject that same model and one
+  fresh exact rational control family before uniform proof work.  Fin11
+  certificate work belongs to `FP-14.B` and must
+  use a chunked or streaming proof architecture rather than another monolithic
+  FromLRAT replay.
 - **Success payoff:** a credible uniform producer for the unrestricted route.
-- **Expiry or revival gate:** a checked realizable target-free counterexample
-  to synchronized compatible fans retires this producer; abstract-only failure
-  demotes the model tier but does not refute the realizable statement.
+- **Expiry or revival gate:** the single-cell ambient-threshold producer is
+  operationally expired by the independently replayed exact rational Fin9
+  model; kernel promotion remains the evidence-completion gate.  A checked
+  realizable target-free
+  counterexample to synchronized compatible fans retires that separate child;
+  a collective down-set card revives `FP-01.B` only if it excludes the Fin9
+  model and retains a noncircular consumer.
 - **Children:** `FP-01.A` synchronized singleton fans; `FP-01.B` ambient
   endpoint-synchronized down-sets; `FP-07` integral Property B; `FP-08`
   fractional cover.
@@ -292,25 +309,30 @@ that deserves independent retention and scheduling consideration.
   canonical provenance and a new use of global deletion packing,
   `packedInternalPair_has_balancedResidualTouchingEscape567_of_noCollision`
   compiles: after deleting that transversal and any residual triple, a strong
-  six remains and must genuinely meet the ten-point residual.
+  six remains and must genuinely meet the ten-point residual.  A source-level
+  compression audit now factors this conclusion through a three-carrier
+  transversal hitting every carrier-contained strong six and only the 120
+  deletions formed with residual triples.  The exact raw witness ledger falls
+  from 597,500,904 occurrences to 960,960, a factor of 621.775; the proposed
+  selected-set encoding needs 2,640 membership bits and 877,800 guarded
+  four-set rows before ordinary cardinality/reification clauses.  This is a
+  Lean-ready proposal, not yet a theorem or SAT result.
 - **Downstream consumer:** the packed state-567 reducer and ultimately the
   uniform decomposable exact upper theorem.
 - **Open obstruction:** close two full-context color terminals: a same-anchor
   same-occupancy collision, and the universal residual-touching balanced-grid
-  state.  The latter must compare multiple residual triples; one selected
-  witness or any carrier-only law is now formally insufficient.  A full-context
-  encoding audit shows that eager six-deletion packing alone has 597,500,904
-  witness-literal occurrences (about 3.46 GiB under favorable DIMACS
-  numbering), before arbitrary carrier placement, canonical provenance,
-  grid/transversal, or symbolic residual circuits.  Those remaining families
-  were not reconstructed exactly, so the approved falsifier stopped without
-  solving a weakened relaxation.
-- **Next discriminating gate:** derive a mathematical symbolic compression for
-  global deletion packing and canonical provenance—preferably an indexed
-  bad-block/hitting theorem that makes the 120 residual triples choice-free—
-  before revisiting SAT.  In parallel, isolate the smallest same-occupancy
-  collision color terminal with the same full context.  A new child
-  `FP-02.D` records this carrier/provenance compression obligation.
+  state.  For the balanced branch, formalize the new exact hitting/targeted-
+  packing interface before encoding it; the compression proof must remain
+  visibly downstream of canonical provenance and full global packing.  A SAT
+  model of the compressed consequence alone would be diagnostic rather than a
+  full-context counterexample unless every upstream premise were checked.
+- **Next discriminating gate:** compile
+  `exists_carrierTransversal_hitting_every_carrierStrongSix567` and the exact
+  equivalence between targeted packing and universal residual-touching
+  escapes.  If those gates pass, generate the selected-set CNF with independent
+  reconstruction and use a pinned proof-producing solver.  In parallel,
+  isolate the smallest same-occupancy collision color terminal with the same
+  full context.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** a full-context target-free model retires the
   affected terminal.  Fixed-color UNSAT cores do not advance the general leaf
@@ -324,7 +346,7 @@ that deserves independent retention and scheduling consideration.
 - **Contribution:** Generalize the residual bad-block and witness-reuse kernel
   so finite state-567 progress becomes a reusable inductive mechanism.
 - **Strategic role:** generalization.
-- **State:** advancing.
+- **State:** gated.
 - **Model tier:** generic finite-set incidence over exact ordered-coloring
   producers, with each color terminal stated separately.
 - **Best evidence:** generic seed cover, division-free collision/large-fiber
@@ -346,23 +368,35 @@ that deserves independent retention and scheduling consideration.
   actual profile coefficient embeds in a compiling local capacity and then in
   `decomposableBinomialWindow`; the old state-567 middle-word result is freshly
   rederived without invoking its state-specific proof or a Pascal-tail bound.
+  Independently replayed exact computation refutes the first ambient
+  multiplicity proposal on an integer-coordinate seven-point sweep model: two
+  individually strong
+  six-extensions of one five-core have the identical profile, satisfy
+  OneChange and the 567 cap/cup holes, but their union is not a strong seven.
+  The fiber has size two where the proposed bound is one; vertical reflection
+  gives the 657 dual.  Independent replay checked all determinants and rejected
+  a coordinate corruption.  No Lean counterexample theorem is claimed.
 - **Downstream consumer:** `PascalTailTwoSideBound`, then the uniform
   decomposable recurrence.
-- **Open obstruction:** lift the now-kernel-checked local profile capacity into
-  an extension-profile or lacing theorem that bounds how many ambient vertices
-  may realize each admissible middle profile.  The local theorem classifies one
-  produced strong polygon and remains strictly weaker than the two-side bound.
-- **Next discriminating gate:** freeze a parameterized
-  `PascalMiddleProfileLacingCapacity` whose hypotheses are produced by the
-  published-slice machinery, and run its 556/567/dual adjacent-state controls
-  before Lean implementation.  It must bound ambient multiplicity, not merely
-  recount the 6/10 local profiles.
+- **Open obstruction:** produce the missing cross-endpoint equality between two
+  same-profile extensions from published-slice geometry.  OneChange, a common
+  strong core, identical profiles, and individual strong extensions are
+  insufficient.  The 556 control is vacuous for this six-carrier mechanism.
+- **Next discriminating gate:** freeze `PascalAdjacentProfilePairLacing` for
+  `s = k - 1`, with the explicit condition that all ordered core pairs see the
+  same color on the two extension endpoints.  Audit whether an existing
+  published-slice or lowest-separated producer supplies that condition; do not
+  schedule Lean unless it excludes the exact 567/657 countermodel.
 - **Success payoff:** validate the residual mechanism at an adjacent parameter
   state and expose a credible uniform Pascal theorem.
-- **Expiry or revival gate:** exact countermodels to both leaves, or proof that
-  the required producers exist only at the state-567 equality, demote this to
-  finite infrastructure.
-- **Children:** `FP-03.A` variable-carrier state-556 leaves.
+- **Expiry or revival gate:** `PascalMiddleProfileLacingCapacity` is
+  operationally expired at abstract and sweep-realizable tiers by exact
+  computational counterevidence; kernel promotion remains open.  Revive
+  ambient multiplicity only with
+  an explicit cross-endpoint invariant produced upstream; if it exists only at
+  one adjacent state, retain it as finite infrastructure.
+- **Children:** `FP-03.A` variable-carrier state-556 leaves; `FP-03.B`
+  cross-endpoint adjacent-profile lacing.
 
 ### FP-04 — Layer-F highest-stratum mutation descent
 
@@ -370,7 +404,7 @@ that deserves independent retention and scheduling consideration.
   decomposable ones by a bounded mutation macro that strictly lowers the top
   decomposition-prime stratum.
 - **Strategic role:** bridge.
-- **State:** advancing.
+- **State:** gated.
 - **Model tier:** sweep-realizable target-free colorings and single-triple
   mutation paths.
 - **Best evidence:** prime-core ranks, their decomposable characterization, and
@@ -393,19 +427,26 @@ that deserves independent retention and scheduling consideration.
   noncircular and uses no edgewise inclusion.  However, after carrier cover is
   assumed, the endpoint shield is extensionally the no-new-cardinality-`m`
   half of the desired descent, so this remains a reviewed interface rather than
-  a geometric theorem.
+  a geometric theorem.  A rooted-circuit split-surgery proposal is now frozen
+  only as a possible sufficient geometric interface; no strict logical
+  separation from the endpoint shield is claimed:
+  changed circuits remain within source split sides, while one unique crossing
+  mutation activates a split of a source prime support.  It is noncircular and
+  passes all fourteen admitted abstract Fin7/Fin8 controls under fresh replay,
+  but the packet contained no Fin17 instance and the exact-rational control did
+  not expose the new witness fields.  Therefore neither required model-tier
+  gate was decided.
 - **Downstream consumer:** `TargetReflectingDecomposableNormalizationAt`, then
   any uniform decomposable exact theorem.
-- **Open obstruction:** derive a strictly weaker split-persistence or carrier
-  condition from planar geometry that implies the endpoint shield without
-  simply restating no-new-cardinality-`m` cores.  It must preserve sweep
-  realizability and target-freedom stepwise; the below-threshold abstract
-  controls do not supply it.
-- **Next discriminating gate:** freeze one independent geometric
-  split-persistence producer, with an abstract Fin17 falsifier and a separate
-  exact-rational control.  Compile the reviewed cardinality-stratum consumer
-  only together with that producer interface; a wrapper-only lane is expired
-  as strategically inert.
+- **Open obstruction:** decide the rooted-circuit split-surgery producer at the
+  required tiers.  The missing evidence is concrete rather than conceptual: a
+  named Fin17 instance and exact-rational extraction of source carrier-interior
+  split and unique-crossing activation witnesses.
+- **Next discriminating gate:** generate and freeze one exact abstract Fin17
+  control plus one rational witness extractor for the new predicate, then replay
+  the unchanged candidate with corruption rejection.  Compile the reviewed
+  consumer only if at least the rational gate survives; a wrapper-only lane
+  remains expired as strategically inert.
 - **Success payoff:** an unrestricted-to-decomposable reduction independent of
   the half-subset producer.
 - **Expiry or revival gate:** a realizable target-free closed component or
@@ -676,18 +717,15 @@ parent unless promoted.
   need an additional ambient correlation to synchronize the other endpoint.
   The exact full-ambient endpoint dichotomy, clipped extension helper,
   `AmbientDownsetThresholdHalfSupportAtSix` interface, and noncircular consumer
-  into `PredecessorHalfSubsetAt 6` now compile and passed independent review.
-  The uniform tier is sweep-realizable; arbitrary `OneChangeOn` and
-  decomposable instances are bounded controls only.  Next run the unchanged
-  rational `n=6..10` falsifier for the threshold producer, then isolate the
-  crossed and clipping-saturated transitions.  Any recurrence factoring
+  into `PredecessorHalfSubsetAt 6` compile and passed independent review.  The
+  single-cell threshold producer is operationally expired by the independently
+  replayed exact rational Fin9 model described under `FP-01`; kernel promotion
+  remains open, while the local endpoint dichotomy remains valid
+  infrastructure.  Any recurrence factoring
   through the clipped child pair-rank matrix is already refuted by the compiled
-  collision.  A realizable
-  target-free failure expires the frozen repair; a surviving noncircular
-  producer lands as the live mathematical child; a result that only compresses
-  semantic clause families moves to `FP-14.B` without counting as mathematical
-  progress on `FP-01`; and recovery of only the standard local injectivity fact
-  is recorded as inert infrastructure rather than scheduled as a producer.
+  collision.  Revive this child only with a multi-cell, weighted, or collective
+  support rule that excludes the Fin9 model; recovery of only standard local
+  injectivity remains inert infrastructure.
 - **FP-02.A — Balanced canonical transversal.**  The three-carrier transversal
   and residual-touching packing conclusion are proof-ready.  The next invariant
   must be placement-independent; fixed carrier signatures are expired.
@@ -703,11 +741,21 @@ parent unless promoted.
   597,500,904 eager six-deletion witness occurrences by an exact indexed
   bad-block, canonical-family, or hitting statement that also retains arbitrary
   carriers, the balanced transversal, and all 120 residual-triple obligations.
-  A weakened base-plus-packing SAT instance is explicitly inadmissible.
+  A Lean-ready proposal now uses a transversal hitting every carrier-contained
+  strong six and only the 120 targeted deletions, reducing the raw ledger to
+  960,960 occurrences.  Compile that implication/equivalence before SAT; a
+  weakened base-plus-packing instance remains inadmissible.
 - **FP-03.A — Variable-carrier state 556.**  Completed finite adjacent state:
   both advertised leaves and their consumer compile, via a stronger witness-free
   Fin14 contradiction, through `PascalTailTwoSideBound 5 5 6`.  The live child
   question is parameter extraction from that stronger core.
+- **FP-03.B — Cross-endpoint adjacent-profile lacing.**  The common-core
+  multiplicity theorem is operationally refuted by independently replayed
+  exact 567/657 coordinate controls, with kernel promotion still open.  The
+  smallest surviving consumer says that two same-profile `s = k - 1`
+  extensions form a strong `k`-set if all core pairs see one common color on
+  the two new endpoints.  No current published-slice theorem produces this
+  equality.  Revive only with such a producer that excludes the stored model.
 - **FP-14.A — Large-certificate kernel replay.**  Checkpointing succeeds for
   state-556 and mixed state-567.  For Fin11, exhaustive depth-six cubes reduce
   learned traces to 17,089--61,302 additions, but the 9,181-clause minimum base

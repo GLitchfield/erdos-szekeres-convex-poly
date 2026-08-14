@@ -1122,6 +1122,56 @@ seven-carrier and that carrier replacement cannot be monotone inclusion
 growth. The missing theorem is therefore global and color-sensitive: it must
 cover or rank the complete residual family, not choose another selected row.
 
+## 2026-08-13 next-gate frontier outcomes
+
+The full-ambient rank/downset lane now has a decisive model boundary.  Lean
+continues to provide the exact endpoint-extension dichotomy and the consumer
+from `AmbientDownsetThresholdHalfSupportAtSix` to
+`PredecessorHalfSubsetAt 6`, but independently replayed exact computation gives
+a rational Fin9 counterexample to the frozen producer semantics.  The result
+is not yet a kernel-checked counterexample theorem.  The configuration has no
+strong six and no threshold cell or
+complement that is both at least half-sized and strong-five-free.  The
+independent checker replayed all 84 determinants, all 84 six-subsets, all 32
+labeled threshold sides, and its two corruption controls.  Future downset work
+must combine several cells or introduce a weighted/synchronized family; proving
+only crossed or saturated transitions cannot recover the expired statement.
+
+The state-567 balanced branch acquired a practical symbolic compression at
+proposal level.  Canonical provenance upgrades the balanced three-carrier
+transversal to hit every carrier-contained strong six.  Global packing is then
+needed only for the 120 deletions formed from that transversal and a residual
+triple, reducing the raw witness ledger from 597,500,904 to 960,960
+occurrences.  The next formal module should prove the all-carrier hitting lemma
+and the exact equivalence between targeted packing and residual-touching
+escapes before any SAT encoding.
+
+Independently replayed exact computation also refutes the first proposed
+uniform Pascal profile-fiber bound on an integer-coordinate seven-point 567
+model.  No Lean counterexample theorem is claimed.  The model has two
+individually strong
+extensions of one five-core with identical endpoint profiles, while their
+union is not a strong seven; vertical reflection gives the 657 dual.  The
+missing local datum is a cross-endpoint color equality.  The local profile-hole
+theorem remains valid, but ambient multiplicity is gated on an upstream
+published-slice producer for that equality.
+
+For Layer F, a rooted-circuit split-surgery sufficient-interface proposal is
+noncircular and passes
+the fourteen admitted small abstract controls.  The run stopped operationally:
+the admitted artifacts contained neither a concrete Fin17 instance nor exact
+rational extraction of the new carrier-interior and unique-crossing witnesses.
+Those model-tier controls precede any Lean wrapper.  No strict logical
+weakening of the old endpoint shield is claimed until one exact rational
+instance is extracted and the implication to the shield is proved without
+assuming it.
+
+A bounded post-run route review rated this reconciliation partially supported:
+it accepted the FP-02 and FP-03 dispositions and requested the evidence and
+logical-strength qualifications above for FP-01 and FP-04.  The Sol review is
+planning evidence only.  Fable returned no judgment because its provider quota
+was exhausted, so no Sol/Fable consensus is claimed.
+
 ## External Lean baseline
 
 Jineon Baek's `jcpaik/erdos-tuza-valtr` repository was inspected read-only at
