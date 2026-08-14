@@ -15,7 +15,9 @@ The layers have different jobs:
    merged work. It is not an execution backlog.
 3. `tickets/` stores one sharp decision or investigation per file.
 4. `docs/experiments/`, `data/derived/`, proofs, and source code store evidence.
-5. A project roadmap may narrate milestones, but the Wayfinder map and
+5. Dated strategic assessments preserve the reasoning behind major route or
+   process changes, but do not supersede the live map or portfolio.
+6. A project roadmap may narrate milestones, but the Wayfinder map and
    frontier portfolio are authoritative for strategic state.
 
 ## Frontier portfolio versus execution slate

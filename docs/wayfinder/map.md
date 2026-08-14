@@ -12,10 +12,41 @@ sharpness construction of size `2^(n-2)`.
 - Domain: extremal combinatorial geometry, order types, and finite Ramsey
   theory, formalized in Lean 4 with mathlib.
 - Evidence standard: see `docs/reproducibility.md`.
+- The dated [sober proof-distance assessment](proof-distance-assessment-2026-08-14.md)
+  records the rationale for the current dependency ledger and frontier
+  discipline; it is a snapshot, not a second tracker.
 - The map may carry bounded execution when a ticket predeclares its inputs,
   resource limit, outcome branches, and independent certificate.
 - Strategic selection, redirection, closure, and frontier promotion receive a
   bounded Sol/Fable review under `docs/adversarial-review.md`.
+
+## Load-bearing dependency ledger
+
+This ledger, rather than the number of frontier entries or active workers,
+records proof distance to the destination.  The portfolio is an inclusive
+registry of possible contributions; several entries may attack the same edge
+below and therefore do not constitute independent routes.
+
+| Edge | Required result | Status | Exact evidence and remaining gap |
+| --- | --- | --- | --- |
+| `D-LOWER` | Sharpness examples of size `2^(k-2)` for every `k ≥ 3` | closed | `classical_lower_sharpness` compiles for all `k`. |
+| `D-MODEL` | Planar general-position sets reduce exactly to sweep colorings, and strong polygons reflect convex subsets | closed | Swept presentation, realizability, restriction, and the strong-polygon/convex-position equivalence compile. |
+| `D-UPPER` | `SweepExactUpperAt k` for every `k ≥ 3` | open | This is the load-bearing universal upper bound.  Neither route below currently supplies it. |
+| `D-HALF` | `PredecessorHalfSubsetAt k` for every `k ≥ 4`, feeding the exact doubling recurrence | open | The consumer compiles, but no uniform producer is known.  Finite fan theorems and bounded selector controls do not close this edge. |
+| `D-DECOMP` | `DecomposableExactUpperAt k` for every `k ≥ 3` | open | The theorem compiles at `k=5,6`; the uniform induction and the first `k=7` state-567 obstruction remain open. |
+| `D-NORMALIZE` | Normalize every above-threshold target-free realizable coloring to the decomposable class while reflecting targets | open | Conditional consumers compile, but no normalization or well-founded mutation-descent producer is proved. |
+| `D-ASSEMBLE` | Combine the universal sweep upper, planar bridge, and sharpness into `ErdosSzekeresConjecture` | gated | Routine formal assembly is blocked only by `D-UPPER`; no theorem claiming the destination exists. |
+
+There are presently two logical ways to close `D-UPPER`: prove `D-HALF`, or
+prove both `D-DECOMP` and `D-NORMALIZE`.  Work on finite decomposable states,
+certificates, selectors, or research infrastructure changes this ledger only
+when it closes or strictly reduces one of those named edges.
+
+**Latest reconciliation:** no load-bearing destination dependency changed.
+The exact state-567 `3+3` structural reduction is subordinate forward movement;
+the associated UNSAT result and the same-occupancy UNSAT result are
+computational evidence, while the bounded two-cell exchange mechanism was
+refuted.
 
 ## Decisions so far
 
@@ -61,7 +92,7 @@ sharpness construction of size `2^(n-2)`.
 
 ## Open frontier
 
-### Frontier portfolio snapshot (2026-08-13)
+### Frontier portfolio snapshot (2026-08-14)
 
 The canonical, inclusive registry is
 [`frontier-portfolio.md`](frontier-portfolio.md). It retains every currently
@@ -295,12 +326,12 @@ threads remain valuable.
    theorem is now available; clause mining found no honest uniform statement,
    so the next gate is a separately stated symbolic candidate tested at
    `k=10`, not more certificate inspection.
-10. **State-567 finite-certificate fallback.**  Maintain a bounded,
-   independently checked certificate path for one exact packed leaf.  Use it
-   only as a fallback and pattern miner; a finite state closure is not a
-   substitute for the uniform Pascal mechanism.  The new omission-area
-   dichotomy should choose the smallest balanced-grid-plus-residual or mixed
-   profile leaf if this fallback is activated.
+10. **State-567 finite-certificate fallback (merged into 2 and 5).**  The
+   quotient-free mixed certificate, semantic bridge, arbitrary-placement
+   transport, and exact public theorem now compile, so that finite branch is
+   closed.  Remaining balanced and collision certificates are owned by their
+   mathematical parents.  This entry has no independent execution lane; a
+   finite state closure is not a substitute for the uniform Pascal mechanism.
 11. **Inverse stepping-up/decomposition extraction.**  Test whether a large
    target-free realizable configuration canonically yields two smaller
    predecessor-free pieces, a half-size predecessor-free support, or an exact

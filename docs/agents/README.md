@@ -39,9 +39,13 @@ The orchestrator runs research batches as a closed portfolio loop:
 1. close the previous slate, verify every evidence claim, integrate accepted
    results, report every predeclared outcome, and close timing estimates;
 2. update and validate the canonical frontier portfolio from those results,
-   including newly surfaced, expired, suspended, merged, or revived work;
+   including newly surfaced, expired, suspended, merged, or revived work, and
+   name the exact load-bearing dependency-ledger edge changed or state that
+   none changed;
 3. select `N` threads from the updated portfolio as a temporary execution slate
-   and record the leverage/readiness/independence/cost rationale;
+   and record the leverage/readiness/independence/cost rationale, each slot's
+   `proof-producing` or `information-gathering` label, and the mechanism-family
+   concentration;
 4. make the full branched work plan for every selected thread as far ahead as
    current dependencies permit, inventory approvals, and obtain user approval;
 5. execute the approved slate under immutable packets and the lifecycle below,
@@ -199,6 +203,19 @@ its executable entries using leverage, readiness, independence, information
 gain, cost, and focus-expiry considerations. The slate and its task packets
 record scheduling; they do not define portfolio membership. Results update the
 evidence, obstruction, gate, and state of the stable portfolio entry in place.
+The concise load-bearing dependency ledger in `docs/wayfinder/map.md`, not the
+portfolio entry count, states proof distance to the destination.  Every entry
+records its stable mechanism family, named dependency, scope ceiling, missing
+generalization bridge, and last forward result.  Descendants sharing one
+unproved producer inherit the same evidence streak and are correlated routes.
+
+`Advancing` is reserved for a thread with recent forward proof movement and a
+next gate capable of producing a compiling theorem that closes or strictly
+reduces a named dependency.  A finite theorem updates a uniform parent only
+when it is a required base case of an existing induction or supplies a
+parameterized lemma used beyond that instance.  Conditional interfaces,
+finite survival, SAT/UNSAT, and certificate compression alone remain `gated`
+or retain their existing non-advancing state.
 
 Substantial mathematical batches should exploit independent parallel thought,
 not only parallel execution of one route.  By default, pair the nearest formal
@@ -208,6 +225,13 @@ one obstruction, perform a route-level audit before granting it another full
 batch.  Continue concentrated work when a frozen proof is measurably closing;
 suspend speculative grinding when successive refinements inherit the same
 countermodels and no new distinguishing invariant is available.
+
+By default no more than half a slate belongs to one mechanism family; a
+concentrated exception requires an explicit mathematical justification.  A
+slate with no proof-producing slot is reported as exploration.  After an exact
+SAT/UNSAT gate, further certificate work requires either a named Lean theorem
+it can close or a frozen semantic-extraction hypothesis; proof shrinking alone
+does not define another mathematical lane.
 
 A suspended route remains in the Wayfinder with a concrete revival gate.  It
 may be screened cheaply by the Innovation Scout, but it does not regain a

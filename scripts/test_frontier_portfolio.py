@@ -9,10 +9,15 @@ from check_frontier_portfolio import read_frontier_portfolio
 
 
 FIELDS = """- **Contribution:** advance a live theorem.
+- **Mechanism family:** predecessor-half.
+- **Named destination dependency:** `D-HALF`.
 - **Strategic role:** direct.
 - **State:** advancing.
 - **Model tier:** exact test model.
+- **Scope ceiling:** one exact finite test model; no uniform theorem.
 - **Best evidence:** proposal.
+- **Missing generalization bridge:** lift the finite statement uniformly.
+- **Last forward result:** a compiling producer interface.
 - **Downstream consumer:** a named theorem.
 - **Open obstruction:** one obstruction.
 - **Next discriminating gate:** one bounded gate.
@@ -29,7 +34,7 @@ def portfolio(entries: list[tuple[str, str]]) -> str:
     return f"""---
 title: Test frontier portfolio
 artifact: frontier-portfolio
-schema_version: 1
+schema_version: 2
 status: canonical
 last_updated: 2026-08-12
 ---
@@ -103,6 +108,26 @@ class FrontierPortfolioTest(unittest.TestCase):
         )
         temporary, path = self.write(text)
         with temporary, self.assertRaisesRegex(ValueError, "invalid state"):
+            read_frontier_portfolio(path)
+
+    def test_rejects_invalid_mechanism_family(self) -> None:
+        text = portfolio([("FP-01", "First route")]).replace(
+            "- **Mechanism family:** predecessor-half.",
+            "- **Mechanism family:** perpetual-motion.",
+        )
+        temporary, path = self.write(text)
+        with temporary, self.assertRaisesRegex(ValueError, "invalid mechanism family"):
+            read_frontier_portfolio(path)
+
+    def test_rejects_advancing_without_forward_result(self) -> None:
+        text = portfolio([("FP-01", "First route")]).replace(
+            "- **Last forward result:** a compiling producer interface.",
+            "- **Last forward result:** none on the load-bearing ledger.",
+        )
+        temporary, path = self.write(text)
+        with temporary, self.assertRaisesRegex(
+            ValueError, "cannot be advancing without a last forward result"
+        ):
             read_frontier_portfolio(path)
 
     def test_rejects_noncontiguous_identifiers(self) -> None:

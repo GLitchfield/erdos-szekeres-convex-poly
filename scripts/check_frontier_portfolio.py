@@ -11,6 +11,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 PORTFOLIO_PATH = ROOT / "docs/wayfinder/frontier-portfolio.md"
+MAP_PATH = ROOT / "docs/wayfinder/map.md"
 
 FRONT_MATTER = {
     "title",
@@ -32,10 +33,15 @@ REQUIRED_SECTIONS = (
 )
 REQUIRED_FIELDS = (
     "Contribution",
+    "Mechanism family",
+    "Named destination dependency",
     "Strategic role",
     "State",
     "Model tier",
+    "Scope ceiling",
     "Best evidence",
+    "Missing generalization bridge",
+    "Last forward result",
     "Downstream consumer",
     "Open obstruction",
     "Next discriminating gate",
@@ -67,6 +73,13 @@ ALLOWED_STATES = {
     "merged",
     "completed",
     "retired",
+}
+ALLOWED_MECHANISM_FAMILIES = {
+    "predecessor-half",
+    "decomposable-pascal",
+    "normalization-descent",
+    "route-discovery",
+    "research-system",
 }
 ENTRY_HEADING = re.compile(r"^### (FP-(\d{2})) — (.+)$", re.MULTILINE)
 FIELD = re.compile(r"^- \*\*([^*]+):\*\*\s*(.*)$", re.MULTILINE)
@@ -101,8 +114,8 @@ def _front_matter(lines: list[str], path: Path) -> tuple[dict[str, str], int]:
         )
     if metadata["artifact"] != "frontier-portfolio":
         raise ValueError(f"{path}: artifact must be 'frontier-portfolio'")
-    if metadata["schema_version"] != "1":
-        raise ValueError(f"{path}: schema_version must be 1")
+    if metadata["schema_version"] != "2":
+        raise ValueError(f"{path}: schema_version must be 2")
     if metadata["status"] != "canonical":
         raise ValueError(f"{path}: status must be 'canonical'")
     try:
@@ -164,10 +177,23 @@ def read_frontier_portfolio(path: Path = PORTFOLIO_PATH) -> list[FrontierEntry]:
 
         role = fields["Strategic role"].removesuffix(".")
         state = fields["State"].removesuffix(".")
+        mechanism_family = fields["Mechanism family"].removesuffix(".")
         if role not in ALLOWED_ROLES:
             raise ValueError(f"{path}: {match.group(1)} has invalid role {role!r}")
         if state not in ALLOWED_STATES:
             raise ValueError(f"{path}: {match.group(1)} has invalid state {state!r}")
+        if mechanism_family not in ALLOWED_MECHANISM_FAMILIES:
+            raise ValueError(
+                f"{path}: {match.group(1)} has invalid mechanism family "
+                f"{mechanism_family!r}"
+            )
+        if state == "advancing" and fields["Last forward result"].lower().startswith(
+            "none"
+        ):
+            raise ValueError(
+                f"{path}: {match.group(1)} cannot be advancing without a last "
+                "forward result"
+            )
         entries.append(
             FrontierEntry(identifier=match.group(1), title=match.group(3), fields=fields)
         )
@@ -191,6 +217,21 @@ def read_frontier_portfolio(path: Path = PORTFOLIO_PATH) -> list[FrontierEntry]:
     for child in sorted(declared_children):
         if f"**{child} —" not in subthreads:
             raise ValueError(f"{path}: declared child {child} has no subthread entry")
+
+    map_body = MAP_PATH.read_text(encoding="utf-8")
+    if "## Load-bearing dependency ledger" not in map_body:
+        raise ValueError(f"{MAP_PATH}: missing load-bearing dependency ledger")
+    for edge in (
+        "`D-LOWER`",
+        "`D-MODEL`",
+        "`D-UPPER`",
+        "`D-HALF`",
+        "`D-DECOMP`",
+        "`D-NORMALIZE`",
+        "`D-ASSEMBLE`",
+    ):
+        if edge not in map_body:
+            raise ValueError(f"{MAP_PATH}: dependency ledger is missing {edge}")
     return entries
 
 

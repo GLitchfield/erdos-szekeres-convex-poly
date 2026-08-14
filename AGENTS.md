@@ -74,6 +74,56 @@ suspend that family unless a genuinely new positive theorem or mechanism
 appears. Never use `closer`, `advancing`, `breakthrough`, or equivalent language
 unless net proof movement is forward and the exact closed dependency is named.
 
+## Architecture-level frontier discipline
+
+The frontier portfolio is inclusive and must not be interpreted as a count of
+independent proof routes. Every entry records a stable mechanism family, the
+named destination dependency it can close, its scope ceiling, the missing
+generalization bridge, and its last forward result. Threads which share the
+same unresolved producer or are expected to fail for the same mathematical
+reason are correlated even when their files, finite states, certificates, or
+agent assignments differ. Evidence streaks and the review/suspension rules
+above apply across descendants in the same mechanism family; assigning a new
+`FP-NN` identifier does not reset them.
+
+Maintain the load-bearing dependency ledger in `docs/wayfinder/map.md`
+separately from the inclusive portfolio. Every portfolio reconciliation must
+name the exact ledger edge changed or state that no load-bearing destination
+dependency changed. Portfolio entry counts, state counts, code volume, and
+completed runs are not substitutes for this ledger.
+
+A portfolio entry may be `advancing` only when it has recent forward proof
+movement and its next gate can itself yield a compiling theorem that closes or
+strictly reduces a named dependency. Conditional interfaces, surviving finite
+controls, computational SAT or UNSAT, certificate compression, and stronger
+proposed premises cannot by themselves sustain `advancing`; use `gated`.
+
+Every finite-case or restricted-class result must state its scope ceiling and
+the exact generalization bridge still required. It advances a uniform parent
+only when it closes a required base case in an already-defined induction or
+proves a parameterized lemma used beyond that instance. A certificate-only
+finite closure does not become evidence for a uniform mechanism merely because
+it concerns the first open state.
+
+Before promoting a reduction, list the unresolved obligations before and after
+the reduction and name the strict measure decrease. If a new premise is
+strategically equivalent to the old target, lacks an independent producer, or
+restores context discarded by the reduction, classify the result as neutral.
+
+For every execution slate, label each slot `proof-producing` or
+`information-gathering` and report the counts. Failure independence is judged
+at the mechanism-family level, not by disjoint files or separate workers. By
+default no more than half the slots belong to one mechanism family; exceeding
+that concentration requires an explicit mathematical justification. A slate
+containing only information-gathering gates must be described as exploration,
+not as a proof-advancement block.
+
+After an exact SAT or UNSAT gate completes, further certificate engineering is
+authorized only when it will either produce a Lean theorem closing a named
+dependency or test a frozen semantic-extraction hypothesis. Smaller proofs,
+additional solver seeds, deeper cubes, and kernel-replay attempts are
+operational improvements rather than mathematical progress by themselves.
+
 ## Primary formal system
 
 - Lean 4 with mathlib, pinned by `lean-toolchain` and `lakefile.toml`.

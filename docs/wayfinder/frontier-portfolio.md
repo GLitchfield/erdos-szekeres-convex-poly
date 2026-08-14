@@ -1,7 +1,7 @@
 ---
 title: Exact Erdős--Szekeres frontier portfolio
 artifact: frontier-portfolio
-schema_version: 1
+schema_version: 2
 status: canonical
 last_updated: 2026-08-14
 ---
@@ -42,6 +42,11 @@ the following:
 5. a bounded next discriminating gate; and
 6. a success payoff plus an expiry, suspension, merge, or revival condition.
 
+Portfolio membership does not imply architectural independence.  Every entry
+also identifies the stable mechanism family whose evidence streak it inherits,
+the exact load-bearing dependency it can affect, the strongest scope its
+current evidence reaches, and the generalization bridge still missing.
+
 A vague idea without a consumer or discriminating gate belongs in Wayfinder
 fog, a ticket, an experiment note, or a lemma-forge batch—not yet in `P`.
 
@@ -67,13 +72,24 @@ Every registry entry has a stable `FP-NN` identifier and the following required
 fields:
 
 - **Contribution:** how the thread can advance the exact project.
+- **Mechanism family:** the stable mathematical architecture shared with any
+  correlated parent, child, or sibling entries.
+- **Named destination dependency:** the exact edge in the load-bearing ledger,
+  or a named subordinate dependency, that the thread can close.
 - **Strategic role:** one of `direct`, `bridge`, `generalization`, `hedge`,
   `fallback`, `discovery`, or `research-system`.
 - **State:** one of `advancing`, `gated`, `parked`, `suspended`, `merged`,
   `completed`, or `retired`.
 - **Model tier:** the precise mathematical universe in which its claims live.
+- **Scope ceiling:** the strongest finite, restricted-class, or uniform claim
+  that the current admitted evidence can support.
 - **Best evidence:** the strongest current evidence, using repository claim
   levels and never upgrading computation or consensus into a theorem.
+- **Missing generalization bridge:** what must still be proved before the
+  current scope can affect a uniform parent route.
+- **Last forward result:** the most recent compiling theorem that closed or
+  strictly reduced a named dependency, or an explicit statement that none has
+  occurred on the load-bearing ledger.
 - **Downstream consumer:** the theorem, ticket, or route enabled by success.
 - **Open obstruction:** the smallest honest unresolved issue.
 - **Next discriminating gate:** the cheapest bounded work that materially
@@ -85,7 +101,9 @@ fields:
 
 `State` records mathematical disposition, not current scheduling:
 
-- `advancing` means positive evidence and a ready next gate;
+- `advancing` means recent forward proof movement and a ready next gate capable
+  of producing a compiling theorem that closes or strictly reduces a named
+  dependency;
 - `gated` means valuable but waiting on a prerequisite or discriminating test;
 - `parked` means no current gate justifies resources, although a new mechanism
   could reactivate it;
@@ -107,12 +125,15 @@ Every substantial multi-thread research block follows the same closed loop:
    serialized integration, and record actual time and resource use.
 2. **Reconcile this portfolio.** Update every affected stable entry from the
    admitted results, including newly valuable children or main threads and
-   preserved counterexamples. Validate the registry before making a new
+   preserved counterexamples. Name the exact load-bearing ledger edge changed,
+   or state that none changed. Validate the registry before making a new
    selection.
 3. **Select an execution slate of size `N`.** Choose from the now-current
    executable entries using leverage, readiness, independence, information
-   gain, calibrated cost, concurrency, and focus expiry. Record the selection
-   rationale separately from the registry.
+   gain, calibrated cost, concurrency, and focus expiry. Label every slot
+   `proof-producing` or `information-gathering`, count both kinds, and assess
+   independence by mechanism family. Record the selection rationale separately
+   from the registry.
 4. **Plan the entire slate.** Plan each selected thread as far ahead as its
    dependency tree honestly permits. Freeze exact targets, outcome branches,
    evidence gates, budgets, approval needs, and stop conditions, and state what
@@ -158,6 +179,11 @@ The resulting plan references `FP-NN` identifiers and gives each selected work
 item its own outcome contract, forecast, approvals, immutable packet, and stop
 conditions.  Those execution artifacts do not redefine the portfolio.
 
+By default, no more than half the slots in one slate should belong to the same
+mechanism family.  A more concentrated slate requires an explicit mathematical
+justification.  A slate with no proof-producing slot is an exploration slate,
+not a proof-advancement block.
+
 As a default breadth rule, a substantial batch should include distinct
 mathematical functions—for example one unrestricted producer, one concrete
 decomposable obstruction, and one generalization or falsification lane.  This
@@ -170,6 +196,8 @@ At an integration boundary, report for every selected thread:
 - the predeclared outcome that occurred;
 - its exact evidence level;
 - what changed in the contribution path;
+- the before/after unresolved obligation sets and strict measure decrease for
+  any claimed reduction;
 - the new obstruction and next gate; and
 - whether the portfolio state changed.
 
@@ -185,8 +213,8 @@ suspended, revived, completed, or retired.
 1. **Admit evidence.** Verify the relevant Lean gate, independent computation,
    source, or reviewed proposal and state its exact model tier.
 2. **Update in place.** Preserve the stable ID.  Replace stale evidence,
-   obstruction, next gate, payoff, and expiry text; do not append a second
-   competing status paragraph.
+   obstruction, next gate, payoff, expiry, scope ceiling, missing bridge, and
+   last-forward-result text; do not append a second competing status paragraph.
 3. **Add a thread conservatively.** Require every schema field.  If the idea is
    still indistinct, keep it in fog or under `FP-13` until it acquires a named
    consumer and falsifier.
@@ -203,6 +231,13 @@ suspended, revived, completed, or retired.
 7. **Validate.** Run `python3 scripts/check_frontier_portfolio.py`, then the
    normal repository gates before committing.
 
+A finite or restricted-class theorem advances a uniform parent only when it
+closes a required base case in an already-defined induction or proves a
+parameterized lemma used beyond that instance.  After an exact SAT or UNSAT
+gate, further certificate work needs either a named Lean theorem it can close
+or a frozen semantic-extraction hypothesis; proof shrinking alone is not a new
+mathematical gate.
+
 When evidence suggests several possible child attacks but none yet merits a
 new main entry, assign stable child IDs such as `FP-02.A`.  Promote a child to a
 new `FP-NN` entry only when it has a distinct contribution path or failure mode
@@ -214,10 +249,15 @@ that deserves independent retention and scheduling consideration.
 
 - **Contribution:** Produce a strong-`(k-1)`-free support containing at least
   half the vertices and feed it directly to the unrestricted exact recurrence.
+- **Mechanism family:** predecessor-half.
+- **Named destination dependency:** `D-HALF`, the uniform
+  `PredecessorHalfSubsetAt k` producer.
 - **Strategic role:** direct.
-- **State:** advancing.
+- **State:** gated.
 - **Model tier:** sweep-realizable colorings for the uniform claim; bounded
   controls also cover abstract `OneChangeOn` colorings.
+- **Scope ceiling:** a uniform recurrence consumer plus exact Fin8/Fin10 fan
+  theorems and bounded Fin9--Fin11 controls; no uniform producer.
 - **Best evidence:** the generic consumer into `PredecessorHalfSubsetAt`
   compiles; exact Fin8 and nonvacuous Fin10 fan theorems compile.  The complete
   Fin11 synchronized-fan negation has independently replayed computational
@@ -255,6 +295,13 @@ that deserves independent retention and scheduling consideration.
   4,096 classifiers.  Independent replay and three corruption controls pass;
   this is computational evidence for a candidate, not a uniform selector or
   theorem.
+- **Missing generalization bridge:** a canonical all-`k`, all-size mechanism
+  selecting or synchronizing a half-sized predecessor-free support; arbitrary
+  existence among many finite classifiers is insufficient.
+- **Last forward result:** `halfPureSingletonFanAtSixFinTen_of_oneChange`
+  compiles at the first nonvacuous finite boundary.  The later single-cell,
+  selector, and local-exchange outcomes are backward and did not change
+  `D-HALF`.
 - **Downstream consumer:** `sweepExactUpperAt_of_predecessorHalfSubset`, then
   the unrestricted exact upper bound.
 - **Open obstruction:** prove a noncircular geometric/combinatorial selector
@@ -318,11 +365,17 @@ that deserves independent retention and scheduling consideration.
 - **Contribution:** Close the first concrete packed decomposable obstruction
   using two strong six-carriers, an exact ten-point residual, and repeated
   deletion packing.
+- **Mechanism family:** decomposable-pascal.
+- **Named destination dependency:** the state-567 subordinate obligation of
+  `D-DECOMP`.
 - **Strategic role:** direct.
 - **State:** advancing.
 - **Model tier:** ordered `TripleColoring` with the exact packed state-567
   hypotheses; realizability or decomposability is added only when retained by
   an explicit bridge.
+- **Scope ceiling:** the exact packed state-567 branch; current Lean evidence
+  closes the mixed omission profile but not the balanced or collision
+  terminals, `k=7` as a whole, or the uniform decomposable theorem.
 - **Best evidence:** probe reuse, carrier normalization, omission rectangles,
   area profiles, canonical provenance, and the full mixed six-rectangle normal
   form compile.  The quotient-free all-order certificate, all semantic clauses,
@@ -376,6 +429,13 @@ that deserves independent retention and scheduling consideration.
   Net proof movement for this gate is neutral: confidence changed, but the
   formal terminal and its semantic difficulty remain open.  The parent is
   retained without promotion and raw reruns are expired.
+- **Missing generalization bridge:** close the two remaining full-context color
+  terminals, integrate them into the decomposable `k=7` transition, and then
+  extract a parameterized Pascal mechanism rather than another isolated state.
+- **Last forward result:**
+  `mixedCarrierOnlyOmissionNormalForm_forces_target567` kernel-checks the full
+  mixed normal-form branch.  Later SAT/UNSAT gates changed search information
+  but did not close another formal terminal.
 - **Downstream consumer:** the packed state-567 reducer and ultimately the
   uniform decomposable exact upper theorem.
 - **Open obstruction:** close two full-context color terminals: the
@@ -411,10 +471,15 @@ that deserves independent retention and scheduling consideration.
 
 - **Contribution:** Generalize the residual bad-block and witness-reuse kernel
   so finite state-567 progress becomes a reusable inductive mechanism.
+- **Mechanism family:** decomposable-pascal.
+- **Named destination dependency:** `D-DECOMP`, specifically a uniform
+  `PascalTailTwoSideBound` transition.
 - **Strategic role:** generalization.
 - **State:** gated.
 - **Model tier:** generic finite-set incidence over exact ordered-coloring
   producers, with each color terminal stated separately.
+- **Scope ceiling:** generic local profile/counting lemmas and the exact
+  state-556 bound; no all-parameter Pascal-tail theorem.
 - **Best evidence:** generic seed cover, division-free collision/large-fiber
   counting, the state-567 specialization, unequal carriers, and the exact
   state-556 collision-or-ten-fiber normalization compile.  Proof mining exposed
@@ -442,6 +507,13 @@ that deserves independent retention and scheduling consideration.
   The fiber has size two where the proposed bound is one; vertical reflection
   gives the 657 dual.  Independent replay checked all determinants and rejected
   a coordinate corruption.  No Lean counterexample theorem is claimed.
+- **Missing generalization bridge:** an independently produced cross-endpoint
+  lacing equality that excludes the exact 567/657 countermodel and scales to
+  every Pascal state used by the induction.
+- **Last forward result:** the generic
+  `StrongPolygonMiddleProfileInPascalWindow` theorem and the kernel-checked
+  `pascalTailTwoSideBound_556` specialization compile.  The proposed ambient
+  multiplicity lift was subsequently refuted.
 - **Downstream consumer:** `PascalTailTwoSideBound`, then the uniform
   decomposable recurrence.
 - **Open obstruction:** produce the missing cross-endpoint equality between two
@@ -469,10 +541,14 @@ that deserves independent retention and scheduling consideration.
 - **Contribution:** Normalize unrestricted target-free realizable colorings to
   decomposable ones by a bounded mutation macro that strictly lowers the top
   decomposition-prime stratum.
+- **Mechanism family:** normalization-descent.
+- **Named destination dependency:** `D-NORMALIZE`.
 - **Strategic role:** bridge.
 - **State:** gated.
 - **Model tier:** sweep-realizable target-free colorings and single-triple
   mutation paths.
+- **Scope ceiling:** conditional rank-descent consumers, mutation-locality
+  theorems, and small exact controls; no uniform normalization producer.
 - **Best evidence:** prime-core ranks, their decomposable characterization, and
   locality of at-most-three mutation macros compile.  The stronger
   `ThreeStepPrimeCoreFamilyShrinksAboveAt` producer now has a compiling consumer
@@ -506,6 +582,13 @@ that deserves independent retention and scheduling consideration.
   top split is an empty 680-variable, 434,680-clause class.  This rejects that
   control architecture, not the rooted-circuit mechanism, and supplies no
   Fin17 model or consumer theorem.
+- **Missing generalization bridge:** prove that every above-threshold
+  target-free realizable nondecomposable coloring admits the required bounded
+  macro and strict rank decrease, without assuming the no-new-core half of the
+  conclusion.
+- **Last forward result:** the at-most-three mutation localization and
+  prime-core rank consumer infrastructure compile.  No theorem has changed the
+  load-bearing `D-NORMALIZE` edge.
 - **Downstream consumer:** `TargetReflectingDecomposableNormalizationAt`, then
   any uniform decomposable exact theorem.
 - **Open obstruction:** obtain a nonempty above-threshold Fin17 control for the
@@ -531,10 +614,15 @@ that deserves independent retention and scheduling consideration.
 - **Contribution:** Attack the same exact 22-point decomposable obstruction
   through crossing-split and residue classes independent of the rectangle
   route.
+- **Mechanism family:** decomposable-pascal.
+- **Named destination dependency:** a balanced state-567 subordinate
+  obligation of `D-DECOMP`.
 - **Strategic role:** hedge.
 - **State:** gated.
 - **Model tier:** full packed `11+11` ordered split with side cap exclusions and
   repeated deletion packing.
+- **Scope ceiling:** an exact structural reduction for the finite 3+3 leaf;
+  its terminal and the other four balanced leaves remain open in Lean.
 - **Best evidence:** the five-way shell, universal clean `2+4` normalization,
   and middle-word infrastructure compile.  The new exact `3+3` reduction also
   compiles: any packed witness has a disjoint mutually obstructed partner,
@@ -546,6 +634,12 @@ that deserves independent retention and scheduling consideration.
   Net proof movement is forward only for the compiling structural reduction;
   the computational terminal is neutral and does not close a dependency.  The
   thread therefore remains gated.
+- **Missing generalization bridge:** a compiling proof of the 3+3 terminal or
+  another exact leaf, followed by integration into state-567 and a
+  parameterized transition beyond that finite state.
+- **Last forward result:** `StructuralChargingBalancedThreeThree567.lean`
+  compiles the proper-partner, bounded-word, and twelve-failure reduction.  The
+  subsequent full-context UNSAT result is neutral computational evidence.
 - **Downstream consumer:** the balanced obligation in the state-567 reducer.
 - **Open obstruction:** extract a compact semantic proof of the now-supported
   `3+3` terminal, or close one of the other four leaves while visibly using the
@@ -564,10 +658,18 @@ that deserves independent retention and scheduling consideration.
 
 - **Contribution:** Supply a trusted finite successor base and engineering
   pattern for diagonal extraction.
+- **Mechanism family:** decomposable-pascal.
+- **Named destination dependency:** the finite base subordinate to FP-09 and
+  ultimately `D-DECOMP`.
 - **Strategic role:** bridge.
 - **State:** merged.
 - **Model tier:** exact finite `OneChangeOn` statements at `k=9`.
+- **Scope ceiling:** the fixed `k=9`, `Fin 17` extreme-exchange theorem.
 - **Best evidence:** `extremeExchangeK9FinSeventeen` compiles end to end.
+- **Missing generalization bridge:** a noncircular symbolic successor valid at
+  `k=10` and then uniformly in `k`.
+- **Last forward result:** `extremeExchangeK9FinSeventeen` closed the declared
+  finite base and is now consumed only through FP-09.
 - **Downstream consumer:** `FP-09` symbolic diagonal successor.
 - **Open obstruction:** none within this bounded lane; uniform extraction is a
   separate problem.
@@ -582,13 +684,22 @@ that deserves independent retention and scheduling consideration.
 
 - **Contribution:** Bipartition the predecessor hypergraph so either color
   class supplies a half-sized predecessor-free support.
+- **Mechanism family:** predecessor-half.
+- **Named destination dependency:** `D-HALF` through the stronger integral
+  bicoloring producer.
 - **Strategic role:** hedge.
 - **State:** gated.
 - **Model tier:** exact predecessor hypergraphs induced by ordered or
   sweep-realizable colorings; relaxed hypergraphs are falsification controls.
+- **Scope ceiling:** compiling recurrence and small-cardinality theorems plus
+  bounded `k=6,n≤12` evidence; no uniform Property-B theorem.
 - **Best evidence:** the recurrence consumer and small-cardinality results
   compile; bounded integral behavior survives through checked `k=6,n≤12`;
   finite semantic promotion remains incomplete.
+- **Missing generalization bridge:** an all-`k` orientation-sensitive
+  bicoloring law for exact predecessor hypergraphs.
+- **Last forward result:** the small-cardinality integral bicoloring theorems
+  and their recurrence consumer compile; no later result changed `D-HALF`.
 - **Downstream consumer:** `FP-01` and its half-subset recurrence.
 - **Open obstruction:** find an all-`k` structural bicoloring law rather than a
   sequence of finite certificates.
@@ -603,10 +714,15 @@ that deserves independent retention and scheduling consideration.
 
 - **Contribution:** Obtain the half-subset property by a rational independent-
   set cover of total weight at most two.
+- **Mechanism family:** predecessor-half.
+- **Named destination dependency:** `D-HALF` through the weaker fractional
+  producer.
 - **Strategic role:** hedge.
 - **State:** gated.
 - **Model tier:** exact predecessor hypergraphs from sweep-realizable colorings,
   with relaxed hypergraphs used only to separate logical strengths.
+- **Scope ceiling:** compiling fractional-to-half implication interfaces and
+  bounded exact/relaxed controls; no weighted producer.
 - **Best evidence:** the exact `PredecessorHalfMassAt` interface now compiles.
   A rational cover of total weight at most two implies half-mass by a finite
   double count; uniform half-mass implies `PredecessorHalfSubsetAt`; and
@@ -617,6 +733,11 @@ that deserves independent retention and scheduling consideration.
   proof movement is forward only for the easy implication interface; the
   weighted producer and its estimated difficulty are unchanged, so the route
   remains gated.
+- **Missing generalization bridge:** an orientation-sensitive inequality that
+  constructs total fractional cover weight at most two for every exact
+  target-free predecessor hypergraph.
+- **Last forward result:** none on the load-bearing ledger; the compiling
+  double-counting implications are reusable specification infrastructure.
 - **Downstream consumer:** `FP-01`.
 - **Open obstruction:** prove a geometric or orientation-sensitive weighted
   inequality that cannot be cloned by relaxed hypergraphs.
@@ -634,12 +755,21 @@ that deserves independent retention and scheduling consideration.
 
 - **Contribution:** Turn the finite diagonal bases into a genuine symbolic
   successor step using core extraction and opposite-extreme cup gluing.
+- **Mechanism family:** decomposable-pascal.
+- **Named destination dependency:** a diagonal successor subordinate to
+  `D-DECOMP`.
 - **Strategic role:** generalization.
 - **State:** gated.
 - **Model tier:** ordered `OneChangeOn` cup-block configurations, with finite
   `k=9` the trusted base.
+- **Scope ceiling:** exact finite `k=9` diagonal and exchange theorems; no
+  symbolic successor.
 - **Best evidence:** exact diagonal and extreme-exchange `k=9` theorems compile;
   clause mining found no honest all-parameter law.
+- **Missing generalization bridge:** an extraction premise strictly weaker
+  than the next diagonal theorem that survives `k=10` and scales in `k`.
+- **Last forward result:** the exact `k=9` diagonal and extreme-exchange
+  theorems compile; they remain finite bases rather than a uniform transition.
 - **Downstream consumer:** the diagonal component of a uniform decomposable
   upper proof.
 - **Open obstruction:** state an extraction premise strictly weaker than the
@@ -657,38 +787,53 @@ that deserves independent retention and scheduling consideration.
 
 - **Contribution:** Close one exact packed leaf or mine a compact semantic
   pattern when structural work stalls.
+- **Mechanism family:** decomposable-pascal.
+- **Named destination dependency:** finite state-567 leaves subordinate to
+  `D-DECOMP`, now owned by FP-02 and FP-05.
 - **Strategic role:** fallback.
-- **State:** gated.
+- **State:** merged.
 - **Model tier:** fixed finite state-567 ordered colorings, with independent
   semantic reconstruction and certificate replay.
-- **Best evidence:** the all-interleaving mixed normal-form terminal is
-  independently certified UNSAT by two semantically distinct encodings; the
-  smaller authoritative proof has 134,821 RUP additions.  No state-567 terminal
-  certificate is kernel-checked, and fixed balanced cores remain too
-  instance-specific for promotion.
-- **Downstream consumer:** one exact leaf of `FP-02` or `FP-05`, or a symbolic
-  lemma returned to `FP-02`, `FP-03`, or `FP-05`.
-- **Open obstruction:** translate the quotient-free mixed certificate into a
-  tractable kernel proof and connect its twelve labels to the compiling mixed
-  structural normal form.
-- **Next discriminating gate:** promote the authoritative mixed encoding before
-  running another state-567 search; reactivate discovery only if that semantic
-  bridge fails for a structural reason.
-- **Success payoff:** a finite branch closure or a trustworthy pattern miner.
-- **Expiry or revival gate:** resource growth, an unbridgeable semantic core,
-  or instance-specific units park the certificate; a new rigid normal form can
-  reactivate it.
+- **Scope ceiling:** the exact mixed state-567 finite terminal, now formally
+  closed and transported to arbitrary placement.
+- **Best evidence:** the authoritative quotient-free checkpoint certificate,
+  all 14,773 retained semantic clauses, arbitrary-placement transport, and
+  `mixedCarrierOnlyOmissionNormalForm_forces_target567` compile.  Remaining
+  balanced and collision certificate work is tracked by FP-02 and FP-05.
+- **Missing generalization bridge:** the mixed finite branch needs no further
+  bridge; the parent still needs its other state-567 terminals and a uniform
+  Pascal transition.
+- **Last forward result:** the kernel-checked mixed normal-form theorem closed
+  this fallback's intended finite branch.
+- **Downstream consumer:** FP-02's packed state-567 reducer.
+- **Open obstruction:** none independently; unresolved finite leaves belong to
+  FP-02 or FP-05 rather than a duplicate certificate lane.
+- **Next discriminating gate:** no independent execution; attach any future
+  frozen semantic-extraction hypothesis to its owning mathematical parent.
+- **Success payoff:** already realized as the mixed branch closure.
+- **Expiry or revival gate:** revive only for a regression in the mixed theorem
+  or a precise parent-owned certificate helper, not for another isolated state
+  search.
 - **Children:** none.
 
 ### FP-11 — Inverse stepping-up and decomposition extraction
 
 - **Contribution:** Extract predecessor-free pieces or a useful deep split
   directly from a large target-free geometric configuration.
+- **Mechanism family:** predecessor-half.
+- **Named destination dependency:** `D-HALF`, or secondarily a structural
+  producer for `D-DECOMP`.
 - **Strategic role:** hedge.
 - **State:** parked.
 - **Model tier:** sweep-realizable planar configurations.
+- **Scope ceiling:** no current theorem-producing mechanism; the surviving
+  singleton-fan child is already represented in FP-01.
 - **Best evidence:** the useful singleton-fan branch graduated to `FP-01`;
   deletion, two-piece, and one-anchor proposals are false, circular, or inert.
+- **Missing generalization bridge:** a new geometric extraction theorem with a
+  noncircular producer and direct recurrence or decomposable consumer.
+- **Last forward result:** the singleton-fan mechanism graduated to FP-01; no
+  independent forward result remains in this parked entry.
 - **Downstream consumer:** `FP-01` or a uniform decomposable theorem.
 - **Open obstruction:** no remaining geometric mechanism has both a
   noncircular producer and a named consumer.
@@ -704,12 +849,23 @@ that deserves independent retention and scheduling consideration.
 - **Contribution:** Reuse the extensive state-578 matrix, density, and residual
   infrastructure only if a genuinely new invariant can turn it into descent or
   closure.
+- **Mechanism family:** decomposable-pascal.
+- **Named destination dependency:** the fixed state-578 subordinate obligation
+  of `D-DECOMP`.
 - **Strategic role:** hedge.
 - **State:** suspended.
 - **Model tier:** the exact decomposable 32-point state with full residual
   family, colors, density, and decomposition data.
+- **Scope ceiling:** fixed `k=8` state-578 structural infrastructure; no closed
+  state theorem or uniform transition.
 - **Best evidence:** extensive Lean infrastructure compiles, but relaxed and
   exact-small carrier/address cycles refute current cover and rank consumers.
+- **Missing generalization bridge:** a complete-family exact-color invariant
+  that defeats all recorded cycles and yields a cover, strict predecessor, or
+  well-founded descent usable beyond state 578.
+- **Last forward result:** the terminal carrier-cover and universal seed-escape
+  interfaces compile, but subsequent cycle countermodels prevent them from
+  closing the state or changing `D-DECOMP`.
 - **Downstream consumer:** the state-578 Pascal-tail obligation.
 - **Open obstruction:** every known local/cardinality/address invariant permits
   replacement cycles or lacks full residual coverage.
@@ -727,11 +883,20 @@ that deserves independent retention and scheduling consideration.
 - **Contribution:** Generate a small number of route-independent, Lean-shaped
   lemmas with named consumers and cheap falsifiers when primary routes expose
   a missing invariant.
+- **Mechanism family:** route-discovery.
+- **Named destination dependency:** whichever parent ledger edge is named by a
+  frozen card; FP-13 closes no destination edge independently.
 - **Strategic role:** discovery.
 - **State:** gated.
 - **Model tier:** varies per frozen card and must be explicit before screening.
+- **Scope ceiling:** individual proposal or intermediary-lemma cards with
+  explicit parent consumers.
 - **Best evidence:** several cards have graduated into `FP-02` and `FP-03`;
   negative and inert cards are retained as controls.
+- **Missing generalization bridge:** a surviving card must prove a reusable
+  theorem under its parent mechanism rather than remain a true but inert lemma.
+- **Last forward result:** none independently; successful cards inherit their
+  proof movement and evidence classification from the receiving parent entry.
 - **Downstream consumer:** whichever numbered mathematical thread names the
   missing lemma.
 - **Open obstruction:** avoid producing true but strategically inert statements
@@ -749,10 +914,15 @@ that deserves independent retention and scheduling consideration.
 - **Contribution:** Reduce proof latency and evidence mistakes through better
   orchestration, certificate chunking, reproducibility, approval preflight, and
   calibrated estimates.
+- **Mechanism family:** research-system.
+- **Named destination dependency:** none; this entry cannot close a
+  mathematical ledger edge.
 - **Strategic role:** research-system.
 - **State:** gated.
 - **Model tier:** project process; it never constitutes mathematical evidence
   for the exact formula.
+- **Scope ceiling:** process reliability, evidence admission, and certificate
+  feasibility only.
 - **Best evidence:** immutable packets, outcome contracts, serialized builders,
   independent certificate checks, empirical timing records, and the closed
   portfolio execution cycle operate in the repository.  Checkpoint replay made
@@ -773,6 +943,12 @@ that deserves independent retention and scheduling consideration.
   one authorized Lean leaf nevertheless failed with `std::bad_alloc` after
   226.95 seconds at 14,908,088 KiB maximum RSS under the 16-GiB cap.  This is
   process evidence only; no Fin11 Lean theorem is claimed.
+- **Missing generalization bridge:** none exists from process improvement to
+  mathematics; a mathematical parent must still supply every theorem and
+  producer.
+- **Last forward result:** none on the proof ledger.  Checkpointing has enabled
+  parent-owned finite theorems, whose proof movement is recorded under those
+  mathematical entries.
 - **Downstream consumer:** all mathematical entries, through safer and broader
   execution.
 - **Open obstruction:** the Fin11 family count is no longer the immediate
