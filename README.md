@@ -79,11 +79,13 @@ sets.
   literature-informed `FP-01.B` child consequently tested a full-ambient
   generated down-set and endpoint-repair alternative; it explicitly did not
   revive a recurrence through the clipped child state.  The local endpoint
-  dichotomy and its recurrence consumer now compile, but independently
-  replayed exact computation gives a rational Fin9 counterexample to the
-  stronger single-cell half-support producer.  This is not yet a Lean
-  counterexample theorem.  Any revival must combine several ambient cells or
-  use a weighted/synchronized support and must exclude that model.
+  dichotomy and its recurrence consumer now compile, and the exact rational
+  Fin9 witness now kernel-checks a refutation of the stronger single-cell
+  half-support producer.  An adaptive two-cell Boolean support survives the
+  stored witness and all 3,270 target-free models in two bounded rational
+  domains, but no uniform geometric selector is proved.  Any revival must
+  explain that collective selection rather than merely search its 4,096
+  classifiers.
 - `ErdosSzekeres/DecomposableRealization.lean` closes the abstraction boundary
   for the entire recursive class. Its fixed-abscissa merge theorem vertically
   shifts arbitrarily interleaved deep-below children while retaining both
@@ -761,9 +763,12 @@ sets.
   full packed-22/residual-ten provenance. The preferred next repair retains
   the balanced grid together with the universal ten-residual escape.  Canonical
   provenance, the three-carrier transversal, and the residual-touching escape
-  now compile.  A subsequent symbolic audit reduces the required packing
-  interface from 597,500,904 eager witness occurrences to 960,960 targeted
-  occurrences; its hitting/equivalence bridge is the next Lean gate. The
+  now compile.  The exact hitting/targeted-packing bridge also compiles, reducing
+  the required packing interface from 597,500,904 eager witness occurrences to
+  960,960 targeted occurrences.  Its arbitrary-carrier Fin22 downstream
+  consequence is nevertheless SAT with all 120 targeted deletions checked, so
+  the next repair must restore canonical grid/bad-block provenance or stronger
+  global packing rather than treat the compression as a terminal law. The
   generic residual counting kernel has nevertheless been extracted: a
   division-free seed-cover theorem and its `112 < choose 10 3` state-567
   specialization compile. This is not yet a uniform Pascal recurrence. The

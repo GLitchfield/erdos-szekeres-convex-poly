@@ -125,12 +125,15 @@ threads remain valuable.
    local lemma survives.  The exact endpoint dichotomy, clipped extension
    helper, threshold producer interface, and noncircular consumer into
    `PredecessorHalfSubsetAt 6` now compile and passed independent review.  The
-   independently replayed computation nevertheless gives an exact rational
-   Fin9 counterexample to the single-cell threshold producer: every threshold
-   side is too small or contains a strong five.  No kernel counterexample is
-   yet claimed.
-   The local dichotomy remains infrastructure, but any successor must use a
-   collective, weighted, or synchronized family of cells and reject that model.
+   exact rational Fin9 counterexample to the single-cell threshold producer:
+   every threshold side is too small or contains a strong five.  Its exact
+   geometric bridge, Boolean full-ambient rank computation, and public negation
+   theorem now compile, so the single-cell producer is formally expired.
+   The local dichotomy remains infrastructure.  An adaptive Boolean combination
+   of two ambient cells survives the stored model and all 3,270 target-free
+   configurations in two bounded rational domains; the next theorem must select
+   such a classifier geometrically rather than merely existentially searching
+   4,096 choices.
 2. **State-567 ten-residual occupancy leaves (primary decomposable route).**
    Use the compiling mutually-middle-obstructed pair and universal four-block
    escape normalization.  Close, or exactly refute, the residual-only,
@@ -171,8 +174,14 @@ threads remain valuable.
    compression factors the balanced branch through a transversal hitting every
    carrier-contained strong six and only the 120 residual-triple deletions,
    reducing the raw witness ledger from 597,500,904 to 960,960 occurrences.
-   The next move is to compile that exact implication/equivalence before any
-   independently reconstructed SAT encoding.
+   The exact hitting, targeted-packing, residual-touching equivalence, and
+   global-to-targeted implication now compile.  An independently reconstructed
+   arbitrary-carrier Fin22 encoding of the compressed consequence is SAT and
+   its model directly passes all 120 targeted deletions, so that consequence is
+   not a terminal color law.  The next bounded gate restores canonical
+   balanced-grid/bad-block provenance on the fixed model and in the CNF; only if
+   provenance does not separate it should full global six-deletion packing be
+   added next.
 3. **Uniform Pascal-tail lift (primary generalization route).**  Extract the
    state-567 proof's numerical and structural kernel into a parameterized
    two-carrier/residual-escape theorem and consume it through

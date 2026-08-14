@@ -2121,3 +2121,32 @@ profiles `S567PL-O1` (proved reduction), grid test `S567GA-O1/S567GR-O2`
 full-context proposal), Pascal `PTCR-O1` (proved generic count), and Layer F
 `LF-O2` (proved locality only). None by itself proves E3, state 567, or the
 exact happy-ending formula.
+
+## 2026-08-13 collective-downset and targeted-packing resolution
+
+The single-cell ambient-downset producer is now formally retired rather than
+merely computationally suspect.  The exact rational Fin9 configuration,
+geometric-to-coloring bridge, Boolean full-ambient pair-rank recurrence, and
+`not_ambientDownsetThresholdHalfSupportAtSix` all compile with only the standard
+axioms.  This does not affect the local endpoint dichotomy or the unrestricted
+predecessor-half-subset consumer.  A successor card using an adaptive Boolean
+combination of two ambient cells survives the stored witness and all 3,270
+target-free configurations in two bounded rational domains.  Its live gap is a
+noncircular geometric selector; exhaustive classifier search is not a proof.
+
+For state 567, the exact carrier-hitting, targeted residual-triple packing,
+residual-touching equivalence, and global-to-targeted bridge now compile.  The
+compressed consequence is nevertheless satisfiable on Fin22.  Independent
+reconstruction checks a 355,069-variable, 12,992,289-clause formula and a model
+with arbitrary disjoint strong carriers, all mutual-middle failures, a
+three-carrier transversal hitting every carrier-contained strong six, target
+avoidance, and all 120 targeted residual deletions.  This expires the compressed
+consequence as a standalone terminal, not the full packed state or the Lean
+bridge.  The next exact comparison restores canonical balanced-grid/bad-block
+provenance on that fixed model before adding full global packing or a stronger
+model tier.
+
+A bounded reconciliation review supported both dispositions and the
+provenance-first ordering.  The Sol review completed; Fable returned an
+immediate provider-quota response, so no reciprocal provider consensus is
+claimed.

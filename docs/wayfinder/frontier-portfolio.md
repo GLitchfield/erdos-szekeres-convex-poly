@@ -241,25 +241,29 @@ that deserves independent retention and scheduling consideration.
   structured `AmbientDownsetThresholdHalfSupportAtSix` producer interface, and
   the noncircular consumer into `PredecessorHalfSubsetAt 6` now compile.  An
   independent proof-boundary review accepted the signatures, model tier, and
-  absence of same-`k` circularity.  Independently replayed computation now
-  gives an exact rational Fin9 counterexample to the frozen producer semantics
-  at the sweep-realizable tier: all 84
-  determinants are nonzero, all 84 six-subsets fail the strong-polygon law,
-  and every one of the 16 threshold cells and 16 complements is either below
-  half or contains an explicit strong five-set.  An independent checker
-  replayed 347,202 frozen rational candidates and rejected coordinate and
-  threshold-membership corruptions.  This operationally expires the
-  single-cell support card, but is not yet a kernel-checked counterexample
-  theorem; it does not affect the local endpoint dichotomy, synchronized fans,
-  or `PredecessorHalfSubsetAt 6` itself.
+  absence of same-`k` circularity.  The exact rational Fin9 counterexample now
+  compiles at the sweep-realizable tier: all 84 determinants are nonzero, all
+  84 six-subsets fail the strong-polygon law, the Boolean full-ambient rank
+  bridge is proved, and `not_ambientDownsetThresholdHalfSupportAtSix` closes all
+  16 threshold cells and complements.  Thus the single-cell support card is
+  formally expired, while the local endpoint dichotomy, synchronized fans,
+  and `PredecessorHalfSubsetAt 6` remain alive.  Its first genuinely collective
+  successor also has bounded evidence: an adaptive Boolean combination of two
+  full-ambient cells succeeds on the stored Fin9 witness, all 3,210 target-free
+  models in the reused rational domain, and all 60 target-free models in a
+  fresh Fin9/Fin10 domain.  The hardest tested model still admits 34 of the
+  4,096 classifiers.  Independent replay and three corruption controls pass;
+  this is computational evidence for a candidate, not a uniform selector or
+  theorem.
 - **Downstream consumer:** `sweepExactUpperAt_of_predecessorHalfSubset`, then
   the unrestricted exact upper bound.
-- **Open obstruction:** replace the expired single-cell threshold support by a
-  genuinely collective support mechanism—such as a union, weighted mixture,
-  or synchronized family of ambient down-set cells—or return to the compatible
-  ten-window fan synchronization in `FP-01.A`.  Merely controlling crossed or
-  clipping-saturated transitions cannot prove the operationally refuted
-  producer.
+- **Open obstruction:** prove a noncircular geometric/combinatorial selector
+  for one of the finitely many adaptive two-cell Boolean supports, or return to
+  the compatible ten-window fan synchronization in `FP-01.A`.  The cell pair
+  and truth table may currently depend arbitrarily on the coloring; finite
+  rational survival does not explain how sweep geometry selects them.  Merely
+  controlling crossed or clipping-saturated transitions cannot repair the
+  formally refuted single-cell producer.
   Separately, an exact indexed grouping compresses the minimum Fin11 cube from
   9,181 ground base clauses to 3,527 complete object/unit families, with
   literal-for-literal expansion and omitted-index/corrupted-family rejection.
@@ -268,24 +272,24 @@ that deserves independent retention and scheduling consideration.
   blocker.  After a kernel Fin11 theorem, turn
   compatible ten-point singleton fans into one half-sized fan with a common
   pivot and direction for arbitrary size.
-- **Next discriminating gate:** promote the compact Fin9 rational failure to a
-  kernel-checked counterexample theorem, then freeze one multi-cell or weighted
-  ambient-downset support card and require it to reject that same model and one
-  fresh exact rational control family before uniform proof work.  Fin11
+- **Next discriminating gate:** freeze one exact selector theorem for
+  `AmbientDownsetTwoCellBooleanHalfSupportAtSix`, require its proposed selector
+  to choose a successful classifier on the stored hardest survivor and a new
+  exact rational family, and only then attempt Lean.  A target-free model with
+  no successful classifier retires the candidate immediately.  Fin11
   certificate work belongs to `FP-14.B` and must
   use a chunked or streaming proof architecture rather than another monolithic
   FromLRAT replay.
 - **Success payoff:** a credible uniform producer for the unrestricted route.
 - **Expiry or revival gate:** the single-cell ambient-threshold producer is
-  operationally expired by the independently replayed exact rational Fin9
-  model; kernel promotion remains the evidence-completion gate.  A checked
-  realizable target-free
+  formally expired by the compiling exact rational Fin9 counterexample.  A
+  checked realizable target-free
   counterexample to synchronized compatible fans retires that separate child;
-  a collective down-set card revives `FP-01.B` only if it excludes the Fin9
-  model and retains a noncircular consumer.
+  the two-cell collective card expires on one checked target-free model with no
+  successful classifier and advances only through a noncircular selector.
 - **Children:** `FP-01.A` synchronized singleton fans; `FP-01.B` ambient
-  endpoint-synchronized down-sets; `FP-07` integral Property B; `FP-08`
-  fractional cover.
+  endpoint-synchronized down-sets; `FP-01.C` adaptive two-cell Boolean
+  down-set support; `FP-07` integral Property B; `FP-08` fractional cover.
 
 ### FP-02 — State-567 ten-residual system
 
@@ -313,30 +317,41 @@ that deserves independent retention and scheduling consideration.
   compression audit now factors this conclusion through a three-carrier
   transversal hitting every carrier-contained strong six and only the 120
   deletions formed with residual triples.  The exact raw witness ledger falls
-  from 597,500,904 occurrences to 960,960, a factor of 621.775; the proposed
-  selected-set encoding needs 2,640 membership bits and 877,800 guarded
-  four-set rows before ordinary cardinality/reification clauses.  This is a
-  Lean-ready proposal, not yet a theorem or SAT result.
+  from 597,500,904 occurrences to 960,960, a factor of 621.775.  The exact
+  interfaces `HitsEveryCarrierStrongSix567`,
+  `TargetedResidualTriplePacking567`, their residual-touching equivalence, and
+  the global-to-targeted packing bridge now compile.  However, an exact
+  arbitrary-carrier Fin22 encoding of that compressed downstream consequence
+  is SAT: 355,069 variables and 12,992,289 clauses yield an independently
+  checked target-free model with both strong carriers, all twelve mutual-middle
+  failures, a three-carrier transversal hitting all 46 carrier-contained
+  strong sixes, and witnesses for all 120 targeted residual deletions.  The
+  model expires the compressed consequence as a standalone color terminal; it
+  does not satisfy or refute the omitted canonical-grid/bad-block provenance,
+  full global packing, decomposability, or realizability premises.
 - **Downstream consumer:** the packed state-567 reducer and ultimately the
   uniform decomposable exact upper theorem.
 - **Open obstruction:** close two full-context color terminals: a same-anchor
-  same-occupancy collision, and the universal residual-touching balanced-grid
-  state.  For the balanced branch, formalize the new exact hitting/targeted-
-  packing interface before encoding it; the compression proof must remain
-  visibly downstream of canonical provenance and full global packing.  A SAT
-  model of the compressed consequence alone would be diagnostic rather than a
-  full-context counterexample unless every upstream premise were checked.
-- **Next discriminating gate:** compile
-  `exists_carrierTransversal_hitting_every_carrierStrongSix567` and the exact
-  equivalence between targeted packing and universal residual-touching
-  escapes.  If those gates pass, generate the selected-set CNF with independent
-  reconstruction and use a pinned proof-producing solver.  In parallel,
-  isolate the smallest same-occupancy collision color terminal with the same
-  full context.
+  same-occupancy collision, and the provenance-coupled balanced-grid state.
+  Hitting plus the 120 targeted deletions is now known insufficient.  The next
+  invariant must use an omitted upstream coupling essentially—first canonical
+  balanced-grid/bad-block provenance, and then full six-deletion packing if the
+  fixed SAT model also passes provenance.  Decomposability or realizability is
+  a later model-tier strengthening, not the first repair.
+- **Next discriminating gate:** on the admitted Fin22 SAT assignment, directly
+  reconstruct the exact canonical witness family, balanced four-grid, retained
+  bad residual four-block, and their provenance equalities.  If reconstruction
+  fails, add precisely those constraints to the independently reconstructed
+  compressed CNF and rerun one bounded SAT/UNSAT gate.  If it succeeds or the
+  augmented formula remains SAT, test full global six-deletion packing next.
+  In parallel, isolate the smallest same-occupancy collision color terminal
+  with the same full context.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
-- **Expiry or revival gate:** a full-context target-free model retires the
-  affected terminal.  Fixed-color UNSAT cores do not advance the general leaf
-  unless their hypotheses follow from canonical provenance.
+- **Expiry or revival gate:** the standalone hitting-plus-targeted-packing
+  terminal is expired by TP-SAT.  Only a target-free model satisfying the full
+  packed/provenance context retires the parent balanced branch.  Fixed-color
+  UNSAT cores do not advance the general leaf unless their hypotheses follow
+  from canonical provenance.
 - **Children:** `FP-02.A` balanced canonical transversal; `FP-02.B` mixed
   normal-form terminal; `FP-02.C` decomposability-retention bridge;
   `FP-02.D` symbolic packing/provenance compression.
@@ -718,14 +733,22 @@ parent unless promoted.
   The exact full-ambient endpoint dichotomy, clipped extension helper,
   `AmbientDownsetThresholdHalfSupportAtSix` interface, and noncircular consumer
   into `PredecessorHalfSubsetAt 6` compile and passed independent review.  The
-  single-cell threshold producer is operationally expired by the independently
-  replayed exact rational Fin9 model described under `FP-01`; kernel promotion
-  remains open, while the local endpoint dichotomy remains valid
-  infrastructure.  Any recurrence factoring
+  single-cell threshold producer is formally expired by the compiling exact
+  rational Fin9 counterexample described under `FP-01`, while the local
+  endpoint dichotomy remains valid infrastructure.  Any recurrence factoring
   through the clipped child pair-rank matrix is already refuted by the compiled
   collision.  Revive this child only with a multi-cell, weighted, or collective
   support rule that excludes the Fin9 model; recovery of only standard local
   injectivity remains inert infrastructure.
+- **FP-01.C — Adaptive two-cell Boolean down-set support.**  For each coloring,
+  choose two full-ambient threshold cells and one Boolean truth table; the
+  selected support must be strong-five-free and contain at least half the
+  vertices.  The frozen card survives the stored Fin9 obstruction and all 3,270
+  target-free models in two independently replayed rational domains, but the
+  choice is adaptive and no selector theorem exists.  Next freeze one geometric
+  selector and falsify it on the hardest 34-classifier survivor plus a new
+  rational family before Lean.  One checked target-free model with zero
+  classifiers expires this child.
 - **FP-02.A — Balanced canonical transversal.**  The three-carrier transversal
   and residual-touching packing conclusion are proof-ready.  The next invariant
   must be placement-independent; fixed carrier signatures are expired.
@@ -743,8 +766,12 @@ parent unless promoted.
   carriers, the balanced transversal, and all 120 residual-triple obligations.
   A Lean-ready proposal now uses a transversal hitting every carrier-contained
   strong six and only the 120 targeted deletions, reducing the raw ledger to
-  960,960 occurrences.  Compile that implication/equivalence before SAT; a
-  weakened base-plus-packing instance remains inadmissible.
+  960,960 occurrences.  The hitting, targeted-packing, residual-touching, and
+  global-to-targeted interfaces now compile, completing that bounded bridge.
+  The exact compressed consequence is nevertheless SAT, so it cannot replace
+  provenance as the terminal invariant.  Retain this child for the next
+  canonical-grid/bad-block augmentation; a weakened hitting-plus-targeted model
+  is now explicitly expired.
 - **FP-03.A — Variable-carrier state 556.**  Completed finite adjacent state:
   both advertised leaves and their consumer compile, via a stronger witness-free
   Fin14 contradiction, through `PascalTailTwoSideBound 5 5 6`.  The live child
