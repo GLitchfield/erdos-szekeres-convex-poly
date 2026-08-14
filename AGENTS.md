@@ -27,6 +27,53 @@ This repository is an AI-assisted formal mathematics project initialized from
   and degeneracy conventions explicitly. Treat order types and realizable
   planar configurations as different objects until a bridge is proved.
 
+## Skeptical proof-distance accounting
+
+Do not describe all increased understanding as progress toward the destination.
+Maintain two separate ledgers:
+
+1. **Proof movement:** whether a compiling theorem closes a named dependency on
+   a currently viable path to the destination.
+2. **Search information:** whether verified evidence changes which routes should
+   receive resources.
+
+For every substantial result, classify net proof movement as `forward`,
+`neutral`, or `backward`. A negative result, surviving finite control,
+conditional interface without its producer, computational SAT or UNSAT result,
+sharper obstruction, or reduction to a narrower question is not proof movement
+by itself. It may be valuable search information, but report it separately.
+
+A reduction counts as forward proof movement only when all of the following
+hold:
+
+- it strictly decreases a predeclared measure such as the number of open cases,
+  hypothesis strength, quantifier complexity, certificate size, or unresolved
+  dependency depth;
+- it does not merely move the original difficulty into a new premise or
+  terminal; and
+- it exposes a credible closing mechanism that has not already failed in the
+  same form.
+
+Every run summary and affected portfolio reconciliation must state:
+
+- **Net proof movement:** forward, neutral, or backward;
+- **Evidence:** compiling theorem, checked computation, proposal, or operational
+  stop;
+- **Difficulty displaced:** the hard obligation that remains and whether it is
+  demonstrably smaller;
+- **Counterfactual test:** if the outcome had been known before the run, whether
+  the estimated remaining proof work or probability of success would actually
+  improve; if not, do not call it proof progress; and
+- **Planning consequence:** promote, retain, demote, suspend, or expire.
+
+Negative evidence may justify demotion or retirement, but must not by itself
+promote a refined descendant of the same mechanism. After two consecutive
+information-only or negative outcomes in one mechanism family, require an
+adversarial route review before scheduling another refinement. After three,
+suspend that family unless a genuinely new positive theorem or mechanism
+appears. Never use `closer`, `advancing`, `breakthrough`, or equivalent language
+unless net proof movement is forward and the exact closed dependency is named.
+
 ## Primary formal system
 
 - Lean 4 with mathlib, pinned by `lean-toolchain` and `lakefile.toml`.

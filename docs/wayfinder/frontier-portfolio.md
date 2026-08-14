@@ -3,7 +3,7 @@ title: Exact Erdős--Szekeres frontier portfolio
 artifact: frontier-portfolio
 schema_version: 1
 status: canonical
-last_updated: 2026-08-13
+last_updated: 2026-08-14
 ---
 
 # Frontier portfolio
@@ -277,7 +277,10 @@ that deserves independent retention and scheduling consideration.
   local descent.  The stored Fin9 model has 535 positive-defect radius-one
   local minima and 265 radius-two local minima while retaining 44 successful
   classifiers.  Thus bounded local exchange is expired as a producer, but the
-  collective existence card remains unrefuted.
+  collective existence card remains unrefuted.  Net proof movement for this
+  mechanism is backward: the conditional consumer is reusable infrastructure,
+  but no destination dependency closed and the selector obligation is not
+  smaller.  The planning consequence is expiry of bounded local exchange.
   Separately, an exact indexed grouping compresses the minimum Fin11 cube from
   9,181 ground base clauses to 3,527 complete object/unit families, with
   literal-for-literal expansion and omitted-index/corrupted-family rejection.
@@ -370,6 +373,9 @@ that deserves independent retention and scheduling consideration.
   reconstruction and a 1,283,493-addition pure-RUP replay certify UNSAT.  This
   is strong computational evidence that the frozen four-repair terminal is
   true, but its 3.17-million-clause base and 994-MiB trace are not a Lean proof.
+  Net proof movement for this gate is neutral: confidence changed, but the
+  formal terminal and its semantic difficulty remain open.  The parent is
+  retained without promotion and raw reruns are expired.
 - **Downstream consumer:** the packed state-567 reducer and ultimately the
   uniform decomposable exact upper theorem.
 - **Open obstruction:** close two full-context color terminals: the
@@ -526,7 +532,7 @@ that deserves independent retention and scheduling consideration.
   through crossing-split and residue classes independent of the rectangle
   route.
 - **Strategic role:** hedge.
-- **State:** advancing.
+- **State:** gated.
 - **Model tier:** full packed `11+11` ordered split with side cap exclusions and
   repeated deletion packing.
 - **Best evidence:** the five-way shell, universal clean `2+4` normalization,
@@ -537,6 +543,9 @@ that deserves independent retention and scheduling consideration.
   computationally UNSAT (83,468 variables, 1,583,924 clauses, and 1,653,441
   independently replayed pure-RUP additions).  Its 336-MiB proof is above the
   promotion gate, so the color terminal is not yet a completed Lean result.
+  Net proof movement is forward only for the compiling structural reduction;
+  the computational terminal is neutral and does not close a dependency.  The
+  thread therefore remains gated.
 - **Downstream consumer:** the balanced obligation in the state-567 reducer.
 - **Open obstruction:** extract a compact semantic proof of the now-supported
   `3+3` terminal, or close one of the other four leaves while visibly using the
@@ -604,7 +613,10 @@ that deserves independent retention and scheduling consideration.
   half-mass feeds the exact sweep recurrence.  All declarations use only the
   standard project axioms.  Relaxed exact controls reproduce both a fractional-
   not-integral separator and a complete 4-uniform `K7` obstruction, while no
-  integral/fractional/half separator appears through checked `k=6,n≤12`.
+  integral/fractional/half separator appears through checked `k=6,n≤12`.  Net
+  proof movement is forward only for the easy implication interface; the
+  weighted producer and its estimated difficulty are unchanged, so the route
+  remains gated.
 - **Downstream consumer:** `FP-01`.
 - **Open obstruction:** prove a geometric or orientation-sensitive weighted
   inequality that cannot be cloned by relaxed hypergraphs.
