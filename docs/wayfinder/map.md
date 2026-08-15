@@ -57,10 +57,14 @@ The first authenticated local nonstretchability boundary is now kernel-checked:
 nine-element alternating sign pattern has no homogeneous rank-three vector
 realization, and the public sweep-realizable and decomposable-carrier
 restriction exclusions compile.  This is a genuine reusable local theorem,
-not merely a model filter.  It does not reduce `D-DECOMP` yet: the attempted
-state-567 consumer stopped before admitting its SAT assignment because its
-prefrozen checker used the opposite Boolean/color convention, and no theorem
-forces a Ringel restriction from the full packed/provenance context.
+not merely a model filter.  A source-frozen convention adapter now admits the
+saved family-layer state-567 assignment: independent replay checks all
+17,245,219 clauses and finds 67 Ringel restrictions among all 497,420
+nine-subsets.  This one model lacks the stronger `3x3`/coverage context and is
+not a producer.  A separate source audit finds no supported deterministic
+nine-set selector; grid/incidence-only forcing is refuted by an exact
+realizable control, while the stronger canonical-family/provenance producer
+remains open.  Thus the Ringel work still does not reduce `D-DECOMP`.
 The finite-realizability child now has compiling general
 `IsSweepRealizable -> OneChangeOn` and exact four-point-equivalence theorems.
 Independent finite evidence covers all 62 five-point and 908 six-point
@@ -70,8 +74,12 @@ restriction appears through six.  Five/six Lean promotion is withheld because
 the consumer audit finds no effect on the nine-local `FP-02.F` obstruction or
 the global 17-point `FP-16` forcing problem.  Exact cell replay also shows that
 one coordinate representative does not determine an order type's rightmost
-extension set.  These are boundary and state-design results, not a reduction of
-`D-HALF`, `D-DECOMP`, `D-NORMALIZE`, or exact `D-UPPER`.
+extension set.  The exact theorem
+`isSweepRealizable_succ_iff_exists_rightExtensionData` now retains the parent
+realization and characterizes geometric right extension without making that
+invalid quotient.  No current consumer extracts a smaller cell invariant from
+it.  These are boundary and state-design results, not a reduction of `D-HALF`,
+`D-DECOMP`, `D-NORMALIZE`, or exact `D-UPPER`.
 The explicit Tóth--Valtr theorem still closes supporting milestone `Q-UPPER`
 at `choose (2*n-5) (n-2) + 2`.  The local Suk finite checkpoint is now stronger:
 the finite height--width theorem, common-base region order,
@@ -86,6 +94,11 @@ mutation lemma compiles without a uniform producer.  The later Ringel bridge
 has upgraded that diagnostic into local formal infrastructure, but without a
 full-context producer it still does not reduce `D-HALF`, `D-DECOMP`,
 `D-NORMALIZE`, or exact `D-UPPER`.
+The predecessor-half selector family is now suspended after its single-cell,
+robust-selector, bounded-exchange, and realization-cell interval descendants
+all failed without reducing the common pivot/support producer.  The existing
+finite fan theorems remain valid; revival requires a genuinely new positive
+producer rather than another selector reformulation.
 `D-UPPER(6)` remains a separate subordinate milestone.
 
 ## Decisions so far
@@ -95,14 +108,16 @@ full-context producer it still does not reduce `D-HALF`, `D-DECOMP`,
 - [The Ringel-nine nonstretchability boundary is formal, but its state-567
   producer is open](tickets/0015-formalize-ringel-nine-boundary.md): a 59-row
   final-polynomial certificate proves exact homogeneous nonrealizability and
-  sweep/decomposable exclusion in Lean; the attempted full-context consumer
-  stopped before model admission and changes no load-bearing edge.
+  sweep/decomposable exclusion in Lean; corrected model admission finds 67
+  family-layer occurrences, but no full-context selector is supported and no
+  load-bearing edge changes.
 
 - [OneChange is locally realizability-complete through six at checked finite
   scale](tickets/0014-classify-finite-sweep-realizability.md): the general and
   exact four-point theorems compile, all five/six states have independently
-  checked realizations, and fixed-realization extension sets are not
-  order-type invariants; no load-bearing edge moves.
+  checked realizations, fixed-realization extension sets are not order-type
+  invariants, and the exact realization-sensitive extension recurrence now
+  compiles; no load-bearing edge moves.
 
 - [The local one-change hierarchy has an exact extension law but no compressed
   training summary](tickets/0013-census-local-geometric-constraints.md): the

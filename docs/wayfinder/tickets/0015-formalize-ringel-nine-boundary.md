@@ -70,17 +70,26 @@ The local theorem landed; the global consumer did not.
    `IsSweepRealizable.noRingelNineRestrictionOn`, and
    `IsDecomposableOn.noRingelNineRestrictionOn`.  Direct Lean, targeted Lake,
    deterministic generation, style, forbidden-token, and axiom gates pass.
-4. **`R9-FILTER-MISMATCH` (operational stop).**  The layered state-567 family
-   formula was independently reconstructed and solved SAT, but its prefrozen
-   semantic checker mapped the CNF Boolean convention to the opposite turn.
-   The assignment was therefore not admitted, no Ringel scan or later layer
-   ran, and no full-context theorem was claimed.
+4. **`R9-ADMIT-RINGEL-PRESENT` (`computational_evidence`).**  A new adapter
+   froze `true = Turn.right` from the source encoding before opening the saved
+   assignment.  Independent replay checks all 17,245,219 family-layer clauses,
+   recomputes the cardinality-four family semantics without auxiliaries, and
+   scans all 497,420 nine-subsets.  Exactly 67 restrictions lie in the
+   authenticated Ringel class.  The model fails the stronger `3x3`/coverage
+   layer, so this is model information rather than a full-context producer.
+5. **`R9-PRODUCER-NO-CANDIDATE` (proposal audit).**  No deterministic selector
+   is supported by the existing interfaces.  A natural transversal-plus-escape
+   nine-set leaves 64 of its 84 signs uncontrolled.  Exact realizable controls
+   refute grid/incidence-only forcing, but do not decide the stronger exact
+   canonical-family/provenance context.  That stronger producer remains open;
+   a producer that assumes decomposability is rejected as circular.
 
 The local nonstretchability boundary is a real reusable theorem.  It changes no
 load-bearing destination edge because no retained state-567 producer forces a
-Ringel restriction.  The old catalog-only uncertainty is gone; the remaining
-mathematical obligation is not another certificate or scan but a full-context
-producer or consumer theorem.
+Ringel restriction.  The convention mismatch and one saved model are now fully
+resolved, but neither result reduces the uniform obligation.  The remaining
+mathematical task is a selector using exact canonical-family exhaustion and
+residual provenance, or a different proof of the state-567 terminal.
 
 ## Evidence
 
@@ -93,6 +102,8 @@ producer or consumer theorem.
 - `runs/agents/20260815-ringel-nine/verification-replay/result.json`
 - `runs/agents/20260815-ringel-nine/lean/result.json`
 - `runs/agents/20260815-ringel-nine/consumer/result.json`
+- `runs/agents/20260815-geometric-restriction-producers/state567-admission/result.json`
+- `runs/agents/20260815-geometric-restriction-producers/ringel-producer/result.json`
 
 ## Resource and scope record
 
@@ -101,8 +112,8 @@ producer or consumer theorem.
   preflight/replay used about 31 seconds per gate and 30 MiB RSS.
 - The final Lean certificate directly elaborated in about 15 seconds and the
   targeted Lake module built in about 14 seconds, both below 2.6 GiB RSS.
-- The consumer's first SAT layer solved in about 40 seconds at 3.83 GiB RSS,
-  but its assignment remains inadmissible because of the frozen convention
-  mismatch.
+- The corrected family-layer replay and complete Ringel scan use about
+  78 seconds and 104 MiB RSS; the orchestrator reproduced its 67-match output
+  byte-for-byte.
 - No result here characterizes rank-three realizability, proves state 567, or
   improves the exact Erdős--Szekeres upper bound without a separate producer.

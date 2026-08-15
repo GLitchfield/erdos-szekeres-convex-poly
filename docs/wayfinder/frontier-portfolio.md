@@ -253,7 +253,7 @@ that deserves independent retention and scheduling consideration.
 - **Named destination dependency:** `D-HALF`, the uniform
   `PredecessorHalfSubsetAt k` producer.
 - **Strategic role:** direct.
-- **State:** advancing.
+- **State:** suspended.
 - **Model tier:** sweep-realizable colorings for the uniform claim; bounded
   controls also cover abstract `OneChangeOn` colorings.
 - **Scope ceiling:** a uniform recurrence consumer plus exact Fin8/Fin10 fan
@@ -304,15 +304,14 @@ that deserves independent retention and scheduling consideration.
   existence among many finite classifiers is insufficient.
 - **Last forward result:** `halfPureSingletonFanAtSixFinTen_of_oneChange`
   compiles at the first nonvacuous finite boundary.  The later single-cell,
-  selector, and local-exchange outcomes are backward and did not change
-  `D-HALF`.
+  selector, local-exchange, and interval/Helly outcomes are backward or neutral
+  and did not change `D-HALF`.
 - **Downstream consumer:** `sweepExactUpperAt_of_predecessorHalfSubset`, then
   the unrestricted exact upper bound.
-- **Open obstruction:** prove a noncircular geometric/combinatorial selector
-  for one of the finitely many adaptive two-cell Boolean supports, or return to
-  the compatible ten-window fan synchronization in `FP-01.A`.  The cell pair
-  and truth table may currently depend arbitrarily on the coloring; finite
-  rational survival does not explain how sweep geometry selects them.  Merely
+- **Open obstruction:** the common choice of one pivot, direction, and
+  half-sized predecessor-free support remains the producer.  The cell pair and
+  truth table may currently depend arbitrarily on the coloring; finite rational
+  survival does not explain how sweep geometry selects them.  Merely
   controlling crossed or clipping-saturated transitions cannot repair the
   formally refuted single-cell producer.
   The first frozen noncircular selector, based on robust orientation balance
@@ -332,6 +331,12 @@ that deserves independent retention and scheduling consideration.
   mechanism is backward: the conditional consumer is reusable infrastructure,
   but no destination dependency closed and the selector obligation is not
   smaller.  The planning consequence is expiry of bounded local exchange.
+  A realization-cell interval/Helly audit now expires another descendant.
+  Pair-line cells can control the pivot-versus-pair signs, but not the separate
+  five-ary purity condition.  Putting the global support, pivot, and direction
+  into an interval frame simply restores the original selector; removing them
+  loses the direct half-support consumer.  No strict measure decreases, and
+  the still-blind held-out family was not opened.
   Separately, an exact indexed grouping compresses the minimum Fin11 cube from
   9,181 ground base clauses to 3,527 complete object/unit families, with
   literal-for-literal expansion and omitted-index/corrupted-family rejection.
@@ -340,15 +345,12 @@ that deserves independent retention and scheduling consideration.
   blocker.  After a kernel Fin11 theorem, turn
   compatible ten-point singleton fans into one half-sized fan with a common
   pivot and direction for arbitrary size.
-- **Next discriminating gate:** use a genuinely nonlocal selector invariant or
-  return to synchronized fans; do not enlarge the local-exchange radius or
-  retune either failed selector on its counterexample.  The still-blind
-  cubic-sevenths family may test one frozen nonlocal selector.  A target-free
-  model with no successful classifier retires the collective candidate
-  immediately.  Fin11
-  certificate work belongs to `FP-14.B` and must
-  use a chunked or streaming proof architecture rather than another monolithic
-  FromLRAT replay.
+- **Next discriminating gate:** none while suspended.  Do not retune the
+  selectors, enlarge the exchange radius, open the held-out family for the
+  interval descendant, or repackage the common support as a frame.  Revival
+  requires a genuinely new positive theorem or published mechanism that
+  constructs a common support without assuming a global selector.  Fin11
+  certificate work remains separate in `FP-14.B`.
 - **Success payoff:** a credible uniform producer for the unrestricted route.
 - **Expiry or revival gate:** the single-cell ambient-threshold producer is
   formally expired by the compiling exact rational Fin9 counterexample.  A
@@ -359,7 +361,11 @@ that deserves independent retention and scheduling consideration.
   frozen robust orientation-balance/rank-distance selector is specifically
   expired by the held-out Fin9 model and must not be retuned in place.  Any
   producer whose only progress measure is strict defect descent within
-  Hamming radius one or two is also expired by the exact local minima.
+  Hamming radius one or two is also expired by the exact local minima.  The
+  interval/consecutive-ones descendant is expired because its interval
+  producer contains the original global support choice.  The mechanism-family
+  negative streak now triggers suspension under the portfolio rules; revive
+  only on a genuinely new positive producer.
 - **Children:** `FP-01.A` synchronized singleton fans; `FP-01.B` ambient
   endpoint-synchronized down-sets; `FP-01.C` adaptive two-cell Boolean
   down-set support; `FP-07` integral Property B; `FP-08` fractional cover.
@@ -442,10 +448,16 @@ that deserves independent retention and scheduling consideration.
   public `IsSweepRealizable` and `IsDecomposableOn` restriction exclusions
   compile.  The Ringel class occurs in exactly 60 of the 497,420 nine-subsets
   of the admitted TP-SAT model, but that earlier model filter still does not
-  close a full-context terminal.  A first layered consumer stopped before
-  admitting its SAT assignment because its prefrozen checker used the opposite
-  Boolean/color convention; this is an operational mismatch, not evidence for
-  or against the retained terminal.
+  close a full-context terminal.  A source-frozen convention adapter now also
+  admits the separate family-layer assignment: all 17,245,219 clauses and the
+  auxiliary-blind cardinality-four family semantics replay, and 67 of its
+  497,420 nine-subsets are Ringel-equivalent.  That model has shapes `1+5`,
+  `3+3`, and `5+1`, overlapping rectangles, and only 16/36 coverage, so it does
+  not test the stronger balanced layer.  A read-only producer audit finds no
+  supported deterministic selector: the natural transversal-plus-escape
+  nine-set leaves 64 of 84 signs uncontrolled.  Exact realizable controls
+  refute grid/incidence-only forcing but do not refute the stronger exact
+  canonical-family/provenance producer.
 - **Missing generalization bridge:** close the two remaining full-context color
   terminals, integrate them into the decomposable `k=7` transition, and then
   extract a parameterized Pascal mechanism rather than another isolated state.
@@ -479,9 +491,13 @@ that deserves independent retention and scheduling consideration.
   rank-three Ringel class is now formally excluded from sweep-realizable and
   decomposable restrictions.  Its next admissible step is a full-context
   producer proving that the retained packed/provenance hypotheses force such a
-  restriction.  Do not rescan the same TP-SAT witness.  A saved assignment may
-  be replayed only under a newly frozen convention adapter and only for search
-  information; it cannot substitute for that producer.
+  restriction.  The saved family assignment has completed its one authorized
+  convention-correct replay and must not be rescanned or extended by automatic
+  CEGAR.  Its 67 occurrences may be used only as frozen pattern examples.  A
+  future Ringel gate must first freeze a selector or bounded candidate family
+  using canonical-family exactness and residual provenance, and the
+  information-only streak requires adversarial route review before scheduling
+  that refinement.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** the standalone hitting-plus-targeted-packing
   terminal is expired by TP-SAT.  Only a target-free model satisfying the full
@@ -941,11 +957,14 @@ that deserves independent retention and scheduling consideration.
   a compiling exact rightmost-extension equivalence for `OneChangeOn` and an
   independently replayed labeled census of sizes 8, 62, and 908 through six
   vertices.  Child `FP-13.B` adds a compiling realizable-to-one-change theorem
-  and exact four-point equivalence.  Independently checked certificates cover
-  all 62 five-point and 908 six-point states by 780 decomposition trees plus
-  190 exact six-point coordinate witnesses.  Two realizations of the same
-  five-point type have different rightmost extension sets for 43 of 62 checked
-  parents.  Child `FP-13.C` has now graduated its local boundary:
+  and exact four-point equivalence.  It now also has the compiling exact
+  realization-sensitive right-extension recurrence, which retains the
+  existential parent coordinates and reconstructs the full configuration.
+  Independently checked certificates cover all 62 five-point and 908 six-point
+  states by 780 decomposition trees plus 190 exact six-point coordinate
+  witnesses.  Two realizations of the same five-point type have different
+  rightmost extension sets for 43 of 62 checked parents.  Child `FP-13.C` has
+  now graduated its local boundary:
   `ringelNine_not_rankThreeVectorRealizable` and the public sweep-realizable
   and decomposable restriction exclusions compile from an exact
   final-polynomial proof.
@@ -955,7 +974,8 @@ that deserves independent retention and scheduling consideration.
   gates.  Child `FP-13.B` shows at computational tier that no additional local
   realizability restriction appears through six, but its five/six universal
   Lean promotion has no load-bearing consumer.  Fixed-representative cells are
-  not an order-type invariant.  `FP-13.C` has completed the local
+  not an order-type invariant, and the exact coordinate-retaining recurrence
+  does not by itself reduce a consumer.  `FP-13.C` has completed the local
   nonstretchability bridge, but no full-context theorem produces its Ringel
   restriction.
 - **Last forward result:** the fixed Ringel-nine homogeneous
@@ -973,8 +993,9 @@ that deserves independent retention and scheduling consideration.
   while the completed nine-point boundary now belongs to `FP-02.F`.  The next
   useful Ringel work is a full-context state-567 producer or consumer, not
   another certificate, catalog scan, or local exclusion theorem.  Any
-  extension recurrence must quantify over realization cells or prove
-  realization-independence; one coordinate representative is invalid.  The
+  successor to the exact extension recurrence must extract a strictly smaller
+  realization-cell consequence with a named `D-HALF`, `D-NORMALIZE`, or
+  state-567 consumer; one coordinate representative remains invalid.  The
   expired `FP-13.A` summary may not be retuned.
 - **Success payoff:** a new proof-ready subthread or a decisive route
   retirement.
@@ -1277,10 +1298,15 @@ parent unless promoted.
   `IsSweepRealizable` and `IsDecomposableOn` no-restriction consumers.  This
   closes the local realizability-filter boundary but remains neutral for the
   destination ledger.  The child is now gated only on a theorem forcing a
-  Ringel restriction from the retained full packed/provenance context.  The
-  first layered consumer stopped on a prefrozen Boolean/color convention
-  mismatch before admitting its model.  Do not rescan the same model or treat
-  the external catalog as a Lean premise.
+  Ringel restriction from the retained full packed/provenance context.  A
+  corrected replay admits the family-layer assignment and finds 67 Ringel
+  restrictions, but its shapes and coverage fail the stronger balanced layer.
+  No supported deterministic selector follows from current interfaces; the
+  exact canonical-family/provenance producer remains open.  Expire
+  grid/incidence-only forcing and any producer that assumes decomposability.
+  Do not rescan either saved model or treat the external catalog as a Lean
+  premise.  Another Ringel refinement requires adversarial route review and a
+  frozen selector using exact family exhaustion plus residual provenance.
 - **FP-03.A — Variable-carrier state 556.**  Completed finite adjacent state:
   both advertised leaves and their consumer compile, via a stronger witness-free
   Fin14 contradiction, through `PascalTailTwoSideBound 5 5 6`.  The live child
@@ -1326,7 +1352,12 @@ parent unless promoted.
   problem.  Exact cell enumeration also finds that two realizations of one
   five-point order type can admit different rightmost extensions (43/62 parent
   comparisons), so representative-cell recurrences are invalid without a
-  realization-independence theorem.
+  realization-independence theorem.  The exact theorem
+  `isSweepRealizable_succ_iff_exists_rightExtensionData` now gives the lawful
+  alternative by retaining one existential parent realization and all new
+  determinant signs.  It is compiling infrastructure, but no load-bearing
+  consumer extracts a smaller cell summary, so its net proof movement is
+  neutral.
 - **FP-13.C — First local nonstretchability boundary.**  **Local boundary
   completed; merged into `FP-02.F`.**  The exact Ringel-nine homogeneous
   nonrealizability theorem and its sweep/decomposable restriction exclusions

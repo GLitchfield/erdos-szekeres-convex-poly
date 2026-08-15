@@ -35,6 +35,12 @@ sets.
   The first frozen smaller summary failed to compress beyond color reflection
   and order reversal, so this is local combinatorial infrastructure rather
   than a recurrence for the Erdős--Szekeres numbers or a realizability result.
+- `ErdosSzekeres/TripleColoringGeometricExtension.lean` proves the exact
+  geometric analogue without quotienting the realization space: a coloring on
+  `n+1` vertices is sweep-realizable exactly when some particular swept
+  `n`-point realization admits a general-position point strictly to its right
+  with all prescribed incident colors.  This correct interface retains the
+  parent coordinates and supplies no smaller load-bearing cell summary.
 - `ErdosSzekeres/TripleColoringRealizability.lean` proves that every realizable
   coloring satisfies `OneChangeOn` and proves the exact converse at four
   points using all eight integer-coordinate witnesses.  Independent finite
@@ -47,8 +53,10 @@ sets.
   rank-three bracket realizability and prove that the exact Ringel nine-element
   sign pattern is nonrealizable.  Sweep-realizable and decomposable
   restrictions therefore cannot realize that pattern.  This is a local
-  nonstretchability theorem; no current theorem forces such a restriction from
-  the full state-567 context or improves the global upper bound.
+  nonstretchability theorem.  A convention-correct replay finds 67 Ringel
+  restrictions in one admitted family-layer state-567 model, but no current
+  theorem forces one from the stronger full context or improves the global
+  upper bound.
 - `ErdosSzekeres/Chains.lean` proves that, for sweep-realizable colorings,
   checking consecutive triples is equivalent to the all-triples cup/cap
   definition.

@@ -159,7 +159,11 @@ contradiction in Lean.  Thus
 decomposable-restriction exclusions compile.  This is a local obstruction, not
 a characterization of realizable sign systems: it affects the main proof only
 after a separate theorem forces a Ringel restriction from a retained
-full-context hypothesis.
+full-context hypothesis.  A corrected exhaustive replay finds 67 Ringel
+restrictions in one family-layer state-567 SAT assignment.  That is useful
+model evidence, not a producer theorem; the assignment does not satisfy the
+stronger shape/coverage layer, and one example cannot justify uniform minor
+selection.
 
 The `ES(6)=17` computation has an Isabelle/HOL formal proof by Filip Marić.
 Recent SAT work on 33 points (`n=7`) is currently a preprint/encoding effort,

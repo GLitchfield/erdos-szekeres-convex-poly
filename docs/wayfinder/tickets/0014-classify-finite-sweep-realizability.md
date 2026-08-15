@@ -122,9 +122,9 @@ None of these outcomes changes `D-UPPER` without a separate named consumer.
 
 ## Resolution
 
-### Results (2026-08-14)
+### Results (2026-08-14 and 2026-08-15)
 
-The bounded run reached three predeclared outcomes:
+The bounded work reached four admitted outcomes:
 
 1. **`GEOM4-LAND` (`file_compiles`).**
    `IsSweepRealizable.oneChangeOn_univ` and
@@ -146,6 +146,13 @@ The bounded run reached three predeclared outcomes:
    for 43 of 62 parents.  The independent checker validates all 1,550 claimed
    cells and their rational witnesses.  Therefore one representative's
    rightmost cells cannot be treated as universal for its order type.
+4. **`EXTCELL-LAND` (`file_compiles`).**
+   `isSweepRealizable_succ_iff_exists_rightExtensionData` gives the exact
+   realization-sensitive recurrence.  It retains one existential parent swept
+   configuration, a new point strictly to its right, every old-pair
+   determinant nonvanishing condition, and all initial and incident colors.
+   The converse reconstructs the full swept configuration.  No theorem claims
+   that feasible extensions are determined by the parent's abstract coloring.
 
 The corruption suites reject coordinate, color, omitted-mask, duplicate-mask,
 broken-sweep, decomposition-tree, extension-cell, witness, and verdict changes.
@@ -160,6 +167,11 @@ realizability through six cannot discharge it.  `FP-16` needs a global
 17-point forcing argument; allowing every six-point one-change type supplies no
 new six-local forbidden pattern.  Generating hundreds of finite Lean modules
 would therefore establish true but presently inert theorems.
+
+The exact geometric extension interface is also strategically neutral.  It
+formalizes rather than reduces the existential realization-space obligation:
+no current `D-HALF`, `D-NORMALIZE`, or state-567 consumer extracts a smaller
+cell/covector invariant from it.
 
 No load-bearing destination edge moved.  The useful boundary information is
 negative: realizability adds no independently checked local restriction through
