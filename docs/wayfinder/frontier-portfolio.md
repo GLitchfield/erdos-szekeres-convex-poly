@@ -437,17 +437,24 @@ that deserves independent retention and scheduling consideration.
   formulas satisfiable; their checked models contain thousands of OneChange
   violations.  This confirms that the existing geometric law is load-bearing
   but proves no new theorem.  The first authenticated nonstretchability
-  diagnostic is also complete: the Ringel nine-element reorientation class
-  occurs in exactly 60 of the 497,420 nine-subsets of the admitted TP-SAT
-  model.  That filters this relaxed model at the realizable tier, but no Lean
-  nonstretchability bridge or full-context terminal follows.
+  boundary is now formal: `ringelNine_not_rankThreeVectorRealizable` compiles
+  from an independently checked 59-row final-polynomial certificate, and the
+  public `IsSweepRealizable` and `IsDecomposableOn` restriction exclusions
+  compile.  The Ringel class occurs in exactly 60 of the 497,420 nine-subsets
+  of the admitted TP-SAT model, but that earlier model filter still does not
+  close a full-context terminal.  A first layered consumer stopped before
+  admitting its SAT assignment because its prefrozen checker used the opposite
+  Boolean/color convention; this is an operational mismatch, not evidence for
+  or against the retained terminal.
 - **Missing generalization bridge:** close the two remaining full-context color
   terminals, integrate them into the decomposable `k=7` transition, and then
   extract a parameterized Pascal mechanism rather than another isolated state.
 - **Last forward result:**
   `mixedCarrierOnlyOmissionNormalForm_forces_target567` kernel-checks the full
-  mixed normal-form branch.  Later SAT/UNSAT gates changed search information
-  but did not close another formal terminal.
+  mixed normal-form branch.  The separate local theorem
+  `ringelNine_not_rankThreeVectorRealizable` and its sweep/decomposable
+  restriction consumers now compile, but no theorem connects them to the full
+  packed state-567 context.
 - **Downstream consumer:** the packed state-567 reducer and ultimately the
   uniform decomposable exact upper theorem.
 - **Open obstruction:** close two full-context color terminals: the
@@ -456,6 +463,9 @@ that deserves independent retention and scheduling consideration.
   UNSAT, while the first exact provenance augmentation remains solver-hard.
   The remaining collision obstruction is semantic proof extraction: isolate a
   cut-sensitive color lemma or compact core that closes the Lean terminal.
+  The realizability-filter obstruction is now specifically a producer: prove
+  that the retained packed/decomposable context forces a Ringel-nine
+  restriction, rather than merely excluding that restriction once supplied.
 - **Next discriminating gate:** for the balanced branch, reduce the exact
   19.48-million-clause canonical-family augmentation before another solve:
   incrementally separate family-cardinality, rectangle-disjointness, and
@@ -464,15 +474,14 @@ that deserves independent retention and scheduling consideration.
   the independently replayed direct UNSAT proof for the smallest cut-sensitive
   semantic lemma, then state and prove that lemma in Lean.  Do not rerun the
   same formula with another seed or attempt a monolithic certificate import.
-  A separate bounded child, `FP-02.F`, tests the first genuinely new local
-  realizability filter beyond `OneChangeOn`: exclusion of the nonstretchable
-  uniform rank-three nine-element class.  It begins on the admitted TP-SAT
-  model and stops on one checked minor-free survivor.  It cannot advance the
-  balanced branch unless the exclusion is proved for `IsSweepRealizable` and
-  changes the full provenance-coupled terminal rather than only the weakened
-  targeted-packing formula.  Its catalog-and-scan gate is complete; the next
-  admissible step is the formal realizability-to-no-Ringel-minor bridge and a
-  full-context consumer, not another scan of the same TP-SAT witness.
+  A separate bounded child, `FP-02.F`, supplies the first genuinely new local
+  realizability filter beyond `OneChangeOn`: the nonstretchable uniform
+  rank-three Ringel class is now formally excluded from sweep-realizable and
+  decomposable restrictions.  Its next admissible step is a full-context
+  producer proving that the retained packed/provenance hypotheses force such a
+  restriction.  Do not rescan the same TP-SAT witness.  A saved assignment may
+  be replayed only under a newly frozen convention adapter and only for search
+  information; it cannot substitute for that producer.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** the standalone hitting-plus-targeted-packing
   terminal is expired by TP-SAT.  Only a target-free model satisfying the full
@@ -936,19 +945,24 @@ that deserves independent retention and scheduling consideration.
   all 62 five-point and 908 six-point states by 780 decomposition trees plus
   190 exact six-point coordinate witnesses.  Two realizations of the same
   five-point type have different rightmost extension sets for 43 of 62 checked
-  parents.
+  parents.  Child `FP-13.C` has now graduated its local boundary:
+  `ringelNine_not_rankThreeVectorRealizable` and the public sweep-realizable
+  and decomposable restriction exclusions compile from an exact
+  final-polynomial proof.
 - **Missing generalization bridge:** a surviving card must prove a reusable
   theorem under its parent mechanism rather than remain true but inert.  For
   `FP-13.A`, no strictly smaller parent invariant survived its first bounded
   gates.  Child `FP-13.B` shows at computational tier that no additional local
   realizability restriction appears through six, but its five/six universal
   Lean promotion has no load-bearing consumer.  Fixed-representative cells are
-  not an order-type invariant.
-- **Last forward result:** the general realizable-to-one-change theorem and the
-  exact four-point equivalence compile.  The five/six equality and extension-
-  sensitivity results are checked computation.  They change recurrence design
-  but no load-bearing destination edge; destination-level proof movement is
-  neutral.
+  not an order-type invariant.  `FP-13.C` has completed the local
+  nonstretchability bridge, but no full-context theorem produces its Ringel
+  restriction.
+- **Last forward result:** the fixed Ringel-nine homogeneous
+  nonrealizability theorem and its sweep/decomposable restriction exclusions
+  compile.  This is a real local theorem, but no named load-bearing destination
+  edge changes without a full-context producer.  The five/six equality and
+  extension-sensitivity results remain checked computation.
 - **Downstream consumer:** whichever numbered mathematical thread names the
   missing lemma.
 - **Open obstruction:** avoid producing true but strategically inert statements
@@ -956,11 +970,12 @@ that deserves independent retention and scheduling consideration.
   colorings is not a compressed recurrence.
 - **Next discriminating gate:** no further through-six certificate work.  A
   successor may test seven/eight exact realizability only with a named consumer,
-  or attack the first authenticated nine-point nonstretchability boundary via
-  a compiling realizability-to-no-Ringel-minor bridge and a full-context
-  `FP-02.F` consumer.  Any extension recurrence must quantify over realization
-  cells or prove realization-independence; one coordinate representative is
-  invalid.  The expired `FP-13.A` summary may not be retuned.
+  while the completed nine-point boundary now belongs to `FP-02.F`.  The next
+  useful Ringel work is a full-context state-567 producer or consumer, not
+  another certificate, catalog scan, or local exclusion theorem.  Any
+  extension recurrence must quantify over realization cells or prove
+  realization-independence; one coordinate representative is invalid.  The
+  expired `FP-13.A` summary may not be retuned.
 - **Success payoff:** a new proof-ready subthread or a decisive route
   retirement.
 - **Expiry or revival gate:** a card without a consumer or falsifier is rejected;
@@ -969,8 +984,8 @@ that deserves independent retention and scheduling consideration.
   closed; recurrence asset retained, first compression expired); `FP-13.B`
   finite sweep-realizability boundary (bounded child closed; four-point theorem
   compiled, five/six computational equality retained); `FP-13.C` first local
-  nonstretchability boundary (gated; seven/eight only with a consumer, or the
-  formal nine-point Ringel bridge).
+  nonstretchability boundary (local theorem completed and merged into
+  `FP-02.F`; full-context producer remains there).
 
 ### FP-14 — Formal-research system and template feedback
 
@@ -1257,10 +1272,15 @@ parent unless promoted.
   Two independent classifiers enumerate 120,960 labeled quotient
   representatives and find exactly 60 matching restrictions among all 497,420
   nine-subsets of the admitted TP-SAT model; exact realizable controls reject
-  the class.  This filters that relaxed witness but is neutral for the proof.
-  The child remains gated on a compiling `IsSweepRealizable`-to-no-Ringel-minor
-  theorem and a consumer that changes a full-context terminal.  Do not rescan
-  the same model or treat the external catalog as a Lean premise.
+  the class.  The exact theorem `ringelNine_not_rankThreeVectorRealizable` now
+  compiles from a 59-row final-polynomial proof, together with public
+  `IsSweepRealizable` and `IsDecomposableOn` no-restriction consumers.  This
+  closes the local realizability-filter boundary but remains neutral for the
+  destination ledger.  The child is now gated only on a theorem forcing a
+  Ringel restriction from the retained full packed/provenance context.  The
+  first layered consumer stopped on a prefrozen Boolean/color convention
+  mismatch before admitting its model.  Do not rescan the same model or treat
+  the external catalog as a Lean premise.
 - **FP-03.A — Variable-carrier state 556.**  Completed finite adjacent state:
   both advertised leaves and their consumer compile, via a stronger witness-free
   Fin14 contradiction, through `PascalTailTwoSideBound 5 5 6`.  The live child
@@ -1307,12 +1327,12 @@ parent unless promoted.
   five-point order type can admit different rightmost extensions (43/62 parent
   comparisons), so representative-cell recurrences are invalid without a
   realization-independence theorem.
-- **FP-13.C — First local nonstretchability boundary.**  **Gated child.**  The
-  possible next scale is exact seven/eight equality followed by the
-  authenticated nine-point Ringel separation.  Do not run a blind larger census
-  or promote finite certificates without a named consumer.  The high-value
-  version is the compiling `IsSweepRealizable`-to-no-Ringel-minor bridge plus a
-  full-context `FP-02.F` terminal that actually changes the state-567 branch.
+- **FP-13.C — First local nonstretchability boundary.**  **Local boundary
+  completed; merged into `FP-02.F`.**  The exact Ringel-nine homogeneous
+  nonrealizability theorem and its sweep/decomposable restriction exclusions
+  compile.  This closes the intermediary card but no load-bearing edge.  Any
+  further Ringel work must prove the full-context `FP-02.F` producer; do not
+  run a blind larger census or duplicate the local certificate.
 - **FP-14.A — Large-certificate kernel replay.**  Checkpointing succeeds for
   state-556 and mixed state-567.  For Fin11, exhaustive depth-six cubes reduce
   learned traces to 17,089--61,302 additions, but the 9,181-clause minimum base

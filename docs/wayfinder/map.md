@@ -52,6 +52,15 @@ destination edge unless a separate implication is proved.
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | gated | This fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
+The first authenticated local nonstretchability boundary is now kernel-checked:
+`ringelNine_not_rankThreeVectorRealizable` proves that the frozen Ringel
+nine-element alternating sign pattern has no homogeneous rank-three vector
+realization, and the public sweep-realizable and decomposable-carrier
+restriction exclusions compile.  This is a genuine reusable local theorem,
+not merely a model filter.  It does not reduce `D-DECOMP` yet: the attempted
+state-567 consumer stopped before admitting its SAT assignment because its
+prefrozen checker used the opposite Boolean/color convention, and no theorem
+forces a Ringel restriction from the full packed/provenance context.
 The finite-realizability child now has compiling general
 `IsSweepRealizable -> OneChangeOn` and exact four-point-equivalence theorems.
 Independent finite evidence covers all 62 five-point and 908 six-point
@@ -72,15 +81,22 @@ support fields are derived from two actual adjacent support-region chains
 rather than assumed.  `FP-15.B` is now gated at global chain selection,
 transitive chain cup--cap, and positive-fraction assembly.  The parallel small
 geometric-forcing tests otherwise changed search information only: OneChange
-is causally essential in three finite encodings; a Ringel nine-minor filters one
-relaxed state-567 model without a Lean realizability bridge; and a local
-carrier-internal mutation lemma compiles without a uniform producer.  None of
-these results reduces `D-HALF`, `D-DECOMP`, `D-NORMALIZE`, or exact `D-UPPER`.
+is causally essential in three finite encodings, and a local carrier-internal
+mutation lemma compiles without a uniform producer.  The later Ringel bridge
+has upgraded that diagnostic into local formal infrastructure, but without a
+full-context producer it still does not reduce `D-HALF`, `D-DECOMP`,
+`D-NORMALIZE`, or exact `D-UPPER`.
 `D-UPPER(6)` remains a separate subordinate milestone.
 
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
+
+- [The Ringel-nine nonstretchability boundary is formal, but its state-567
+  producer is open](tickets/0015-formalize-ringel-nine-boundary.md): a 59-row
+  final-polynomial certificate proves exact homogeneous nonrealizability and
+  sweep/decomposable exclusion in Lean; the attempted full-context consumer
+  stopped before model admission and changes no load-bearing edge.
 
 - [OneChange is locally realizability-complete through six at checked finite
   scale](tickets/0014-classify-finite-sweep-realizability.md): the general and

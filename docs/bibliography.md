@@ -117,19 +117,33 @@ repository records.
     Type Problems: SAT/ASP Modeling and Linear Subreduction,” preprint (2026).
     Primary/preprint; recent computational variants requiring independent review.
     <https://arxiv.org/abs/2604.20120>
+29. **K. Fukuda, H. Miyata, and S. Moriyama**, “Complete enumeration of small
+    realizable oriented matroids,” *Discrete & Computational Geometry* 49
+    (2013), 359--381. Primary/computational. The authors' archived official
+    OM(3,9) final-polynomial table supplies the exact 59-row certificate used
+    for the Ringel-nine Lean theorem. Retrieved 2026-08-14 from the 2022-12-07
+    Internet Archive snapshot of the official data endpoint; exact archive,
+    member, and README hashes are recorded in the ignored run ledger.
+    <https://doi.org/10.1007/s00454-012-9470-0>
+30. **J. J. Carroll**, *Java Oriented Matroids*, version 0.3. Primary/software,
+    GPLv3-or-later. The official `Examples.ringel()` crossing description was
+    used only as a hashed read-only reference and was independently transported
+    to the frozen 84-sign representative; no GPL source is incorporated into
+    this MIT-licensed repository. Retrieved 2026-08-14.
+    <https://sourceforge.net/projects/oriented/files/>
 
 ## Surveys and historical syntheses
 
-29. **W. Morris and V. Soltan**, “The Erdős--Szekeres problem on points in
+31. **W. Morris and V. Soltan**, “The Erdős--Szekeres problem on points in
     convex position--a survey,” *Bulletin of the American Mathematical Society*
     37 (2000), 437--458. Survey; 89 references through 2000.
     <https://doi.org/10.1090/S0273-0979-00-00877-6>
-30. **I. Bárány and G. Károlyi**, “Problems and results around the
+32. **I. Bárány and G. Károlyi**, “Problems and results around the
     Erdős--Szekeres convex polygon theorem,” in *Discrete and Computational
     Geometry*, LNCS 2098 (2001), 91--105. Survey.
-31. **A. Suk**, item 12, includes a compact modern history and the key
+33. **A. Suk**, item 12, includes a compact modern history and the key
     transition to base two.
-32. **Erdős Problems: Convex**, live problem index used only for discovery,
+34. **Erdős Problems: Convex**, live problem index used only for discovery,
     never as a substitute for primary sources.
     <https://www.erdosproblems.com/tags/convex>
 
@@ -138,31 +152,31 @@ repository records.
 These works are not alternative project destinations. They are retained for a
 specific technique or caution.
 
-33. **I. Bárány and P. Valtr**, “A positive fraction Erdős--Szekeres theorem,”
+35. **I. Bárány and P. Valtr**, “A positive fraction Erdős--Szekeres theorem,”
     *Discrete & Computational Geometry* 19 (1998), 335--342. Partition/same
     type machinery. <https://doi.org/10.1007/PL00009350>
-34. **J. Fox, J. Pach, B. Sudakov, and A. Suk**, “Erdős--Szekeres-type
+36. **J. Fox, J. Pach, B. Sudakov, and A. Suk**, “Erdős--Szekeres-type
     theorems for monotone paths and convex bodies,” *Proceedings of the London
     Mathematical Society* 105 (2012), 953--982. Ordered monotone paths.
     <https://doi.org/10.1112/plms/pds018>
-35. **A. Hubard, L. Montejano, E. Mora, and A. Suk**, “Order types of convex
+37. **A. Hubard, L. Montejano, E. Mora, and A. Suk**, “Order types of convex
     bodies,” preprint (2010). Order-type machinery.
     <https://arxiv.org/abs/1010.4613>
-36. **M. G. Dobbins, A. Holmsen, and A. Hubard**, “The Erdős--Szekeres problem
+38. **M. G. Dobbins, A. Holmsen, and A. Hubard**, “The Erdős--Szekeres problem
     for non-crossing convex sets,” *Mathematika* 60 (2014), 463--484.
     Pseudoline/order-type connections.
     <https://doi.org/10.1112/S0025579314000072>
-37. **O. Devillers, F. Hurtado, G. Károlyi, and C. Seara**, “Chromatic
+39. **O. Devillers, F. Hurtado, G. Károlyi, and C. Seara**, “Chromatic
     variants of the Erdős--Szekeres theorem on points in convex position,”
     *Computational Geometry* 26 (2003), 193--208. Colored screening.
     <https://doi.org/10.1016/S0925-7721(03)00013-0>
-38. **T. Gerken**, “Empty Convex Hexagons in Planar Point Sets,” *Discrete &
+40. **T. Gerken**, “Empty Convex Hexagons in Planar Point Sets,” *Discrete &
     Computational Geometry* 39 (2008), 239--272. Empty-polygon screening.
     <https://doi.org/10.1007/s00454-007-9018-x>
-39. **J. D. Horton**, “Sets with no empty convex 7-gons,” *Canadian
+41. **J. D. Horton**, “Sets with no empty convex 7-gons,” *Canadian
     Mathematical Bulletin* 26 (1983), 482--484. Shows why empty polygons are a
     genuinely different problem. <https://doi.org/10.4153/CMB-1983-077-8>
-40. **G. Károlyi and P. Valtr**, “Point configurations in d-space without
+42. **G. Károlyi and P. Valtr**, “Point configurations in d-space without
     large subsets in convex position,” *Discrete & Computational Geometry* 30
     (2003), 277--286. Higher-dimensional screening.
     <https://doi.org/10.1007/s00454-003-0009-4>

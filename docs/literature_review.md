@@ -147,6 +147,20 @@ relevant larger cases. Thus a theorem about arbitrary two-colorings or even a
 locally transitive triple system need not prove a theorem about planar points;
 realizability and global orientation axioms matter.
 
+Fukuda, Miyata, and Moriyama's complete enumeration of small realizable
+oriented matroids supplies an exact final-polynomial obstruction for the unique
+uniform nonrealizable rank-three class on nine elements.  The archived official
+59-row certificate and the independent Java Oriented Matroids Ringel example
+have been reconciled to one frozen 84-sign representative.  The project now
+formalizes the bracket identity, reorientation and relabeling transport, all
+59 strict certificate inequalities, and the balanced final-product
+contradiction in Lean.  Thus
+`ringelNine_not_rankThreeVectorRealizable` and its sweep-realizable and
+decomposable-restriction exclusions compile.  This is a local obstruction, not
+a characterization of realizable sign systems: it affects the main proof only
+after a separate theorem forces a Ringel restriction from a retained
+full-context hypothesis.
+
 The `ES(6)=17` computation has an Isabelle/HOL formal proof by Filip Marić.
 Recent SAT work on 33 points (`n=7`) is currently a preprint/encoding effort,
 not a proof of `ES(7)=33`. Any future SAT route in this repository must produce

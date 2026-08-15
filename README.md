@@ -42,6 +42,13 @@ sets.
   universal Lean theorems are intentionally not claimed.  Two realizations of
   one five-point type can have different rightmost extension cells, so one
   coordinate representative cannot stand in for its entire realization space.
+- `ErdosSzekeres/RankThreeBracket.lean`, `ErdosSzekeres/RingelNine.lean`, and
+  `ErdosSzekeres/RingelNineNonrealizable.lean` formalize homogeneous
+  rank-three bracket realizability and prove that the exact Ringel nine-element
+  sign pattern is nonrealizable.  Sweep-realizable and decomposable
+  restrictions therefore cannot realize that pattern.  This is a local
+  nonstretchability theorem; no current theorem forces such a restriction from
+  the full state-567 context or improves the global upper bound.
 - `ErdosSzekeres/Chains.lean` proves that, for sweep-realizable colorings,
   checking consecutive triples is equivalent to the all-triples cup/cap
   definition.

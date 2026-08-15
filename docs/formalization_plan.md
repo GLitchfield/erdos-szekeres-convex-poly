@@ -72,6 +72,7 @@ finite public input satisfying `InGeneralPosition`.
 | B4 | every swept coloring satisfies the necessary four-index consistency law | Compiles | Record realizability information rather than allowing arbitrary colorings |
 | B4a | exact rightmost-point recurrence for `OneChangeOn` | Compiles | Split the constraints on `n+1` into the old state and the three new pair colors for every old triple |
 | B4b | `oneChangeRealizabilityCompleteAt_four` | Compiles | Prove the full realizability converse at the first nontrivial size |
+| B4c | `ringelNine_not_rankThreeVectorRealizable` and sweep/decomposable restriction exclusions | Compiles | Record the first exact local nonstretchability obstruction beyond `OneChangeOn` |
 | B5 | reflection exchanges cups and caps and preserves convexity | Known; pending | Symmetry control and proof reuse |
 
 The theorem `oneChangeOn_univ_succ_iff` gives B4a without a realizability or
@@ -90,6 +91,14 @@ general: rank-three sign data can be nonrealizable.  Any theorem not valid for
 arbitrary `TripleColoring`s must take a `SweptConfiguration`, an
 `IsSweepRealizable` witness, or a separately proved sufficient consistency
 hypothesis.
+
+B4c is the first formal local separation between the abstract sign-coloring
+world and homogeneous rank-three realizability in this development.  It uses
+an exact 59-row final-polynomial certificate for one fixed Ringel-nine
+restriction and handles relabeling, element reorientation, and global sign
+explicitly.  It does not characterize realizability and does not by itself
+restrict an arbitrary larger coloring: a load-bearing use still needs a theorem
+that produces the forbidden restriction from the retained ambient hypotheses.
 
 B1 also proves that restriction preserves sweep realizability. Combined with
 `IsStrongPolygonOn`, the theorem
