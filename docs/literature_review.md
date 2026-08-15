@@ -165,6 +165,25 @@ model evidence, not a producer theorem; the assignment does not satisfy the
 stronger shape/coverage layer, and one example cannot justify uniform minor
 selection.
 
+The right-extension-fiber audit also separates three notions that the project
+must not identify.  Finschi--Fukuda's account of Las Vergnas localization gives
+an exact coline-cycle characterization of uniform *abstract* one-element
+oriented-matroid extensions.  Bergold--Felsner--Scheucher similarly construct
+rank-three signotope extensions from lower sets in the crossing order.  These
+are pseudoline or abstract-extension statements, not straight-line
+realizability criteria.  For one fixed vector realization,
+Sturmfels--Ziegler describe extensions through the face poset of a realizable
+adjoint; the union over all realizations is a different object, and topology or
+connectivity of the full abstract extension space does not decide membership in
+that realizable union.  Padrol--Philippe further distinguish sweep data from
+the little oriented matroid/order type, while Miyata's representation of the
+related rank-three sign systems uses pseudocurves.  Consequently, cocircuit
+localization, crossing-poset lower sets, and extension-space connectivity are
+useful abstract normal forms but currently supply no noncircular
+characterization of the project's `GeometricRightExtensionFiber`.  A fixed
+coordinate fiber is instead a strict half-plane feasibility problem; planar
+Helly applies only while all constraints share that one realization.
+
 The `ES(6)=17` computation has an Isabelle/HOL formal proof by Filip Marić.
 Recent SAT work on 33 points (`n=7`) is currently a preprint/encoding effort,
 not a proof of `ES(7)=33`. Any future SAT route in this repository must produce

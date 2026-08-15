@@ -52,6 +52,20 @@ destination edge unless a separate implication is proved.
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | gated | This fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
+The geometric right-extension-fiber slate closed one representation-interface
+card but did not reduce the upper-bound proof.  The compiling module now
+separates abstract compatible children, extensions of one fixed coordinate
+realization, and the union over all realizations of a parent coloring, with an
+exact membership theorem for the last object.  Independent computation through
+child size six checks 327 fixed realizations and 2,739 cells.  Fully labeled
+boundary order plus atomic simultaneous crossing slices reconstructs every
+fixed fiber, but this is an exact arrangement encoding rather than a compressed
+parent invariant.  Standard cocircuit/signotope localizations characterize
+abstract extensions, not straight-line realizability, while the tested
+target-free topology and two-step majority-class consumers fail or retain the
+original global selector.  Accordingly the seven-point atlas remains unopened,
+`FP-13.D` is closed as a bounded child with its API retained, and neither
+`D-HALF`, `D-DECOMP`, nor `D-NORMALIZE` changed.
 The first authenticated local nonstretchability boundary is now kernel-checked:
 `ringelNine_not_rankThreeVectorRealizable` proves that the frozen Ringel
 nine-element alternating sign pattern has no homogeneous rank-three vector
@@ -104,6 +118,12 @@ producer rather than another selector reformulation.
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
+
+- [Geometric right-extension fibers now have exact model boundaries but no
+  smaller consumer](tickets/0016-classify-geometric-extension-fibers.md): the
+  fiber API compiles and enriched fixed-arrangement wiring replays exactly
+  through six, while localization, topology, and majority-class candidates do
+  not characterize or exploit the union over parent realizations.
 
 - [The Ringel-nine nonstretchability boundary is formal, but its state-567
   producer is open](tickets/0015-formalize-ringel-nine-boundary.md): a 59-row

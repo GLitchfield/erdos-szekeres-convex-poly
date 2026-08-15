@@ -4,6 +4,7 @@ public import ErdosSzekeres.Basic
 public import ErdosSzekeres.Sweep
 public import ErdosSzekeres.TripleColoringExtension
 public import ErdosSzekeres.TripleColoringGeometricExtension
+public import ErdosSzekeres.TripleColoringExtensionFiber
 public import ErdosSzekeres.Chains
 public import ErdosSzekeres.Presentation
 public import ErdosSzekeres.Convexity

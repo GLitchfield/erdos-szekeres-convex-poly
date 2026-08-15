@@ -967,7 +967,11 @@ that deserves independent retention and scheduling consideration.
   now graduated its local boundary:
   `ringelNine_not_rankThreeVectorRealizable` and the public sweep-realizable
   and decomposable restriction exclusions compile from an exact
-  final-polynomial proof.
+  final-polynomial proof.  Child `FP-13.D` now has a compiling exact
+  abstract/fixed/union right-extension-fiber API and an independently checked
+  fixed-coordinate atlas through child size six.  Its enriched labeled wiring
+  exactly encodes every checked fixed arrangement, but is neither compression
+  nor an abstract-parent invariant.
 - **Missing generalization bridge:** a surviving card must prove a reusable
   theorem under its parent mechanism rather than remain true but inert.  For
   `FP-13.A`, no strictly smaller parent invariant survived its first bounded
@@ -977,7 +981,10 @@ that deserves independent retention and scheduling consideration.
   not an order-type invariant, and the exact coordinate-retaining recurrence
   does not by itself reduce a consumer.  `FP-13.C` has completed the local
   nonstretchability bridge, but no full-context theorem produces its Ringel
-  restriction.
+  restriction.  `FP-13.D` finds no source-backed realizability predicate
+  between abstract localization and child realizability, and its tested
+  target-free/two-step consumers either fail or retain the original global
+  support selector.
 - **Last forward result:** the fixed Ringel-nine homogeneous
   nonrealizability theorem and its sweep/decomposable restriction exclusions
   compile.  This is a real local theorem, but no named load-bearing destination
@@ -987,7 +994,9 @@ that deserves independent retention and scheduling consideration.
   missing lemma.
 - **Open obstruction:** avoid producing true but strategically inert statements
   or a second informal backlog.  A state-dependent sum over all parent
-  colorings is not a compressed recurrence.
+  colorings is not a compressed recurrence.  Likewise, a labeled wiring that
+  reconstructs every cell of one arrangement is not a compressed invariant of
+  the parent coloring.
 - **Next discriminating gate:** no further through-six certificate work.  A
   successor may test seven/eight exact realizability only with a named consumer,
   while the completed nine-point boundary now belongs to `FP-02.F`.  The next
@@ -996,7 +1005,9 @@ that deserves independent retention and scheduling consideration.
   successor to the exact extension recurrence must extract a strictly smaller
   realization-cell consequence with a named `D-HALF`, `D-NORMALIZE`, or
   state-567 consumer; one coordinate representative remains invalid.  The
-  expired `FP-13.A` summary may not be retuned.
+  expired `FP-13.A` summary may not be retuned.  `FP-13.D` may not open the
+  seven-point atlas unless a frozen through-six invariant first shows
+  nonsymmetric compression and has a named load-bearing consumer.
 - **Success payoff:** a new proof-ready subthread or a decisive route
   retirement.
 - **Expiry or revival gate:** a card without a consumer or falsifier is rejected;
@@ -1006,7 +1017,9 @@ that deserves independent retention and scheduling consideration.
   finite sweep-realizability boundary (bounded child closed; four-point theorem
   compiled, five/six computational equality retained); `FP-13.C` first local
   nonstretchability boundary (local theorem completed and merged into
-  `FP-02.F`; full-context producer remains there).
+  `FP-02.F`; full-context producer remains there); `FP-13.D` geometric
+  right-extension fibers (bounded child closed; exact API and fixed-coordinate
+  atlas retained, realization-space compression route suspended).
 
 ### FP-14 — Formal-research system and template feedback
 
@@ -1364,6 +1377,25 @@ parent unless promoted.
   compile.  This closes the intermediary card but no load-bearing edge.  Any
   further Ringel work must prove the full-context `FP-02.F` producer; do not
   run a blind larger census or duplicate the local certificate.
+- **FP-13.D — Geometric right-extension fibers.**  **Bounded child closed.**
+  `TripleColoringExtensionFiber.lean` compiles and distinguishes abstract
+  compatible links, extensions of one fixed swept realization, and the union
+  of geometric children over every realization of a parent coloring.  The
+  exact union membership theorem is representation infrastructure, not a
+  reduction of child realizability.  Independent exact-rational producer and
+  checker implementations cover child sizes four through six: 327 frozen
+  realizations and 2,739 fixed cells.  Canonical pair-line labels, boundary
+  order, and atomic equal-abscissa crossing slices replay every fixed fiber;
+  this is an exact arrangement encoding rather than compression.  The source
+  audit finds that Las Vergnas localizations and signotope lower sets stop at
+  abstract extension, while fixed-coordinate Helly feasibility does not pass
+  through the union over realization space.  Fixed target-free fibers are not
+  uniformly gated, and an exact Fin9 model refutes the direct majority-class
+  strong-support consumer.  Net proof movement is neutral and no ledger edge
+  changed.  Retain the API and atlas as gated infrastructure; suspend this
+  route unless a strictly smaller through-six invariant has a named consumer
+  and survives a preregistered nonsymmetric compression gate before `n = 7` is
+  opened.
 - **FP-14.A — Large-certificate kernel replay.**  Checkpointing succeeds for
   state-556 and mixed state-567.  For Fin11, exhaustive depth-six cubes reduce
   learned traces to 17,089--61,302 additions, but the 9,181-clause minimum base

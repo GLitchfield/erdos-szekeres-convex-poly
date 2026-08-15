@@ -41,6 +41,13 @@ sets.
   `n`-point realization admits a general-position point strictly to its right
   with all prescribed incident colors.  This correct interface retains the
   parent coordinates and supplies no smaller load-bearing cell summary.
+- `ErdosSzekeres/TripleColoringExtensionFiber.lean` separates compatible
+  abstract children, children of one fixed coordinate realization, and the
+  union of geometric children over all realizations of one parent coloring.
+  It records the incident colors as a labeled old-pair link and proves the
+  exact union-over-realizations membership theorem.  This is representation
+  infrastructure: it neither characterizes straight-line realizability from
+  the abstract link nor closes a destination dependency.
 - `ErdosSzekeres/TripleColoringRealizability.lean` proves that every realizable
   coloring satisfies `OneChangeOn` and proves the exact converse at four
   points using all eight integer-coordinate witnesses.  Independent finite

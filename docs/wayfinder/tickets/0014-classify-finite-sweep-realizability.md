@@ -176,9 +176,13 @@ cell/covector invariant from it.
 No load-bearing destination edge moved.  The useful boundary information is
 negative: realizability adds no independently checked local restriction through
 six beyond `OneChangeOn`, and coordinate-representative extension sets are not
-order-type invariants.  Seven and above remain outside this ticket.  Any new
-packet must either name a consumer for seven/eight equality or attack the
-nine-point Ringel boundary and its formal realizability bridge.
+order-type invariants.  Seven and above remain outside this ticket.  Successor
+ticket [0016](0016-classify-geometric-extension-fibers.md) has now formalized
+the exact abstract/fixed/union fiber boundary and checked the fixed-coordinate
+arrangements through six; it found no compressive consumer and left the
+seven-point gate unopened.  Any later seven/eight packet must therefore name a
+consumer and pass that successor's revival gate rather than merely extend the
+census.
 
 ## Evidence
 

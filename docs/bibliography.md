@@ -181,6 +181,36 @@ specific technique or caution.
     (2003), 277--286. Higher-dimensional screening.
     <https://doi.org/10.1007/s00454-003-0009-4>
 
+## Oriented-matroid and signotope extension theory
+
+43. **L. Finschi and K. Fukuda**, “Generation of Oriented Matroids—A Graph
+    Theoretical Approach,” *Discrete & Computational Geometry* 27 (2002).
+    Primary/computational. The paper records Las Vergnas's exact coline-cycle
+    localization criterion for abstract one-element extensions; it does not
+    establish stretchability of the extension. Retrieved 2026-08-13.
+    <https://doi.org/10.1007/s00454-001-0056-5>
+44. **B. Sturmfels and G. M. Ziegler**, “Extension Spaces of Oriented
+    Matroids,” *Discrete & Computational Geometry* 10 (1993). Primary.
+    Distinguishes fixed-realization adjoint extension spaces, their union over
+    realization classes, and abstract extension-space topology. Retrieved
+    2026-08-13. <https://doi.org/10.1007/BF02573961>
+45. **H. Bergold, S. Felsner, and M. Scheucher**, “An Extension Theorem for
+    Signotopes,” in *39th International Symposium on Computational Geometry
+    (SoCG 2023)*, LIPIcs 258, article 17. Primary. Crossing-poset lower sets
+    construct abstract signotope extensions; the theorem is not a
+    straight-line realization criterion. Retrieved 2026-08-15 from the
+    official Dagstuhl publication. <https://doi.org/10.4230/LIPIcs.SoCG.2023.17>
+46. **A. Padrol and E. Philippe**, “Sweeps, Polytopes, Oriented Matroids, and
+    Allowable Graphs of Permutations,” *Combinatorica* (2023). Primary.
+    Separates sweep oriented matroids, their little oriented matroids, and
+    pseudo-sweep/allowable structures. Retrieved 2026-08-13.
+    <https://doi.org/10.1007/s00493-023-00062-3>
+47. **H. Miyata**, “On Combinatorial Properties of Points and Polynomial
+    Curves,” preprint (2017). Primary/preprint. Represents the relevant
+    generalized sign systems by pseudoconfigurations; pseudocurve
+    representability is not straight-line realizability. Retrieved 2026-08-13.
+    <https://arxiv.org/abs/1703.04963>
+
 ## Coverage backlog
 
 - Authenticate the 1960/61 lower-bound paper from a stable primary archive.
