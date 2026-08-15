@@ -1,6 +1,6 @@
 # Sweep-orientation formalization plan
 
-Last updated: 2026-08-03.
+Last updated: 2026-08-14.
 
 ## Leading mathematical interface
 
@@ -69,10 +69,18 @@ finite public input satisfying `InGeneralPosition`.
 | B2 | `IsMonochromaticChain`, `IsCup`, and `IsCap` | Compiles | Common finite definition of cups and caps |
 | B2a | `IsSweepRealizable` and its canonical witness | Compiles | Keep realizability available in combinatorial theorem signatures |
 | B3 | `isCup_iff_isConsecutiveCup`, `isCap_iff_isConsecutiveCap` | Compiles | Matches classical recurrence-friendly definitions |
-| B4 | every swept coloring satisfies the necessary four-index consistency law | Known; pending | Record realizability information rather than allowing arbitrary colorings |
+| B4 | every swept coloring satisfies the necessary four-index consistency law | Compiles | Record realizability information rather than allowing arbitrary colorings |
+| B4a | exact rightmost-point recurrence for `OneChangeOn` | Compiles | Split the constraints on `n+1` into the old state and the three new pair colors for every old triple |
 | B5 | reflection exchanges cups and caps and preserves convexity | Known; pending | Symmetry control and proof reuse |
 
-We will not assert that B4 characterizes realizability. Rank-three sign data can
+The theorem `oneChangeOn_univ_succ_iff` gives B4a without a realizability or
+target premise.  The independently checked labeled catalogs contain 8, 62,
+and 908 states on four, five, and six vertices.  Their state-dependent extension
+sum is exact, but the first preregistered smaller parent spectrum compressed
+only the two validated symmetry orbits and therefore stopped before a
+seven-point test.
+
+We do not assert that B4 characterizes realizability. Rank-three sign data can
 be nonrealizable, and overly broad ordered-hypergraph generalizations are known
 to fail. Any theorem not valid for arbitrary `TripleColoring`s must take a
 `SweptConfiguration`, an `IsSweepRealizable` witness, or a separately proved

@@ -27,6 +27,14 @@ sets.
 - `ErdosSzekeres/Sweep.lean` formalizes the sweep ordering, ordered triple
   coloring, increasing restrictions, cups/caps, and the bridge from left/right
   turns to slope changes.
+- `ErdosSzekeres/TripleColoringExtension.lean` proves the exact rightmost-point
+  recurrence for the four-index one-change law: an extension is valid exactly
+  when its old restriction is valid and every old triple is compatible with
+  the three new incident-pair colors.  Independent exhaustive scripts recover
+  8, 62, and 908 labeled one-change colorings on four, five, and six vertices.
+  The first frozen smaller summary failed to compress beyond color reflection
+  and order reversal, so this is local combinatorial infrastructure rather
+  than a recurrence for the Erdős--Szekeres numbers or a realizability result.
 - `ErdosSzekeres/Chains.lean` proves that, for sweep-realizable colorings,
   checking consecutive triples is equivalent to the all-triples cup/cap
   definition.

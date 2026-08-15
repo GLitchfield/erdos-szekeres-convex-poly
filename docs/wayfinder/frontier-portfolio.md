@@ -928,22 +928,34 @@ that deserves independent retention and scheduling consideration.
 - **Scope ceiling:** individual proposal or intermediary-lemma cards with
   explicit parent consumers.
 - **Best evidence:** several cards have graduated into `FP-02` and `FP-03`;
-  negative and inert cards are retained as controls.
+  negative and inert cards are retained as controls.  Child `FP-13.A` now has
+  a compiling exact rightmost-extension equivalence for `OneChangeOn` and an
+  independently replayed labeled census of sizes 8, 62, and 908 through six
+  vertices.
 - **Missing generalization bridge:** a surviving card must prove a reusable
-  theorem under its parent mechanism rather than remain a true but inert lemma.
-- **Last forward result:** none independently; successful cards inherit their
-  proof movement and evidence classification from the receiving parent entry.
+  theorem under its parent mechanism rather than remain true but inert.  For
+  `FP-13.A`, no strictly smaller parent invariant or bridge from `OneChangeOn`
+  to straight-line realizability survived its first bounded gates.
+- **Last forward result:** the `FP-13.A` extension theorem is reusable formal
+  infrastructure, but it has no load-bearing consumer; destination-level proof
+  movement is neutral.
 - **Downstream consumer:** whichever numbered mathematical thread names the
   missing lemma.
 - **Open obstruction:** avoid producing true but strategically inert statements
-  or a second informal backlog.
+  or a second informal backlog.  A state-dependent sum over all parent
+  colorings is not a compressed recurrence.
 - **Next discriminating gate:** screen at most three cards chosen from current
   parent-thread obstructions, each with a consumer, falsifier, and expiry rule.
+  Child `FP-13.A` has completed its bounded gates.  Any successor must freeze a
+  structurally different summary with a named exact-route consumer and earn a
+  nonsymmetric training collision before held-out enumeration, or directly
+  prove a realizability restriction needed by `FP-02.F` or `FP-16`.
 - **Success payoff:** a new proof-ready subthread or a decisive route
   retirement.
 - **Expiry or revival gate:** a card without a consumer or falsifier is rejected;
   a surviving card graduates to its parent or a new `FP-NN` entry.
-- **Children:** none.
+- **Children:** `FP-13.A` local geometric constraint hierarchy (bounded child
+  closed; recurrence asset retained, first compression expired).
 
 ### FP-14 — Formal-research system and template feedback
 
@@ -1255,6 +1267,19 @@ parent unless promoted.
   with an independently stated source circuit/cell producer and a direct
   strict-rank consumer; reject a source-language restatement of the old
   endpoint shield.
+- **FP-13.A — Local geometric constraint hierarchy.**  **Bounded child
+  closed.**  `oneChangeOn_univ_succ_iff` compiles and exactly decomposes an
+  `n+1` constraint system into its first `n` vertices plus one compatibility
+  law for each old triple and the three new pair colors.  Independent producer
+  and brute-force checker agree on 8, 62, and 908 labeled states through six,
+  of which 8, 62, and 718 are recursively decomposable.  The frozen
+  pair-principal spectrum failed its preregistered training gate: all equal
+  spectra were already explained by color reflection and order reversal, so it
+  demonstrated no semantic compression and the seven-point gate remained
+  unopened.  Expire that summary without retuning.  The exact state-dependent
+  sum and census remain regression assets, not a compressed recurrence or
+  proof movement.  Full rational realization of all 908 states remains
+  deferred until `FP-02.F`, `FP-16`, or another named consumer needs it.
 - **FP-14.A — Large-certificate kernel replay.**  Checkpointing succeeds for
   state-556 and mixed state-567.  For Fin11, exhaustive depth-six cubes reduce
   learned traces to 17,089--61,302 additions, but the 9,181-clause minimum base

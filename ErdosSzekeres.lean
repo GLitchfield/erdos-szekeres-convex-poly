@@ -2,6 +2,7 @@ module
 
 public import ErdosSzekeres.Basic
 public import ErdosSzekeres.Sweep
+public import ErdosSzekeres.TripleColoringExtension
 public import ErdosSzekeres.Chains
 public import ErdosSzekeres.Presentation
 public import ErdosSzekeres.Convexity

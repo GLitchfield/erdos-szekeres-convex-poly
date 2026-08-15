@@ -52,6 +52,14 @@ destination edge unless a separate implication is proved.
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | gated | This fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
+The local-constraint-hierarchy child now has a compiling exact
+rightmost-extension equivalence for `OneChangeOn` and independently replayed
+labeled catalogs of sizes 8, 62, and 908 through six vertices.  Its frozen
+pair-principal spectrum failed the required training compression: every
+collision was already a color-reflection or order-reversal orbit.  The blind
+seven-point gate therefore remained unopened.  This records the exact local
+constraint growth but supplies neither a realizability characterization nor a
+compressed recurrence for `D-UPPER`.
 The explicit Tóth--Valtr theorem still closes supporting milestone `Q-UPPER`
 at `choose (2*n-5) (n-2) + 2`.  The local Suk finite checkpoint is now stronger:
 the finite height--width theorem, common-base region order,
@@ -70,6 +78,11 @@ these results reduces `D-HALF`, `D-DECOMP`, `D-NORMALIZE`, or exact `D-UPPER`.
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
+
+- [The local one-change hierarchy has an exact extension law but no compressed
+  training summary](tickets/0013-census-local-geometric-constraints.md): the
+  recurrence theorem compiles and the 5/6 census independently replays, while
+  the frozen pair spectrum fails before the blind seven-point gate.
 
 - [Small geometric forcings close one local Suk edge but no exact edge](tickets/0012-test-small-geometric-forcings.md):
   OneChange and Ringel-minor tests are diagnostic, carrier-internal split
