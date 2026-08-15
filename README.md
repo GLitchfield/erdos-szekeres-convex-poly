@@ -35,6 +35,13 @@ sets.
   The first frozen smaller summary failed to compress beyond color reflection
   and order reversal, so this is local combinatorial infrastructure rather
   than a recurrence for the Erdős--Szekeres numbers or a realizability result.
+- `ErdosSzekeres/TripleColoringRealizability.lean` proves that every realizable
+  coloring satisfies `OneChangeOn` and proves the exact converse at four
+  points using all eight integer-coordinate witnesses.  Independent finite
+  certificates cover all 62 five-point and 908 six-point states, but those
+  universal Lean theorems are intentionally not claimed.  Two realizations of
+  one five-point type can have different rightmost extension cells, so one
+  coordinate representative cannot stand in for its entire realization space.
 - `ErdosSzekeres/Chains.lean` proves that, for sweep-realizable colorings,
   checking consecutive triples is equivalent to the all-triples cup/cap
   definition.

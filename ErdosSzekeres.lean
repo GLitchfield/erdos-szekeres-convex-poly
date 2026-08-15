@@ -33,6 +33,7 @@ public import ErdosSzekeres.HalfPureSingletonFanFin10
 public import ErdosSzekeres.PrimeTwoDeletionCounterexample
 public import ErdosSzekeres.PrimeMutationPositiveControl
 public import ErdosSzekeres.DecomposableRealization
+public import ErdosSzekeres.TripleColoringRealizability
 public import ErdosSzekeres.Duality
 public import ErdosSzekeres.ContextProfile
 public import ErdosSzekeres.RootedChainFootprint

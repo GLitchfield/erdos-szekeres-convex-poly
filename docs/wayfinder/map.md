@@ -52,14 +52,17 @@ destination edge unless a separate implication is proved.
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | gated | This fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
-The local-constraint-hierarchy child now has a compiling exact
-rightmost-extension equivalence for `OneChangeOn` and independently replayed
-labeled catalogs of sizes 8, 62, and 908 through six vertices.  Its frozen
-pair-principal spectrum failed the required training compression: every
-collision was already a color-reflection or order-reversal orbit.  The blind
-seven-point gate therefore remained unopened.  This records the exact local
-constraint growth but supplies neither a realizability characterization nor a
-compressed recurrence for `D-UPPER`.
+The finite-realizability child now has compiling general
+`IsSweepRealizable -> OneChangeOn` and exact four-point-equivalence theorems.
+Independent finite evidence covers all 62 five-point and 908 six-point
+one-change types using 780 decomposition trees and 190 additional exact
+six-point coordinate witnesses.  Thus no checked local realizability
+restriction appears through six.  Five/six Lean promotion is withheld because
+the consumer audit finds no effect on the nine-local `FP-02.F` obstruction or
+the global 17-point `FP-16` forcing problem.  Exact cell replay also shows that
+one coordinate representative does not determine an order type's rightmost
+extension set.  These are boundary and state-design results, not a reduction of
+`D-HALF`, `D-DECOMP`, `D-NORMALIZE`, or exact `D-UPPER`.
 The explicit Tóth--Valtr theorem still closes supporting milestone `Q-UPPER`
 at `choose (2*n-5) (n-2) + 2`.  The local Suk finite checkpoint is now stronger:
 the finite height--width theorem, common-base region order,
@@ -78,6 +81,12 @@ these results reduces `D-HALF`, `D-DECOMP`, `D-NORMALIZE`, or exact `D-UPPER`.
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
+
+- [OneChange is locally realizability-complete through six at checked finite
+  scale](tickets/0014-classify-finite-sweep-realizability.md): the general and
+  exact four-point theorems compile, all five/six states have independently
+  checked realizations, and fixed-realization extension sets are not
+  order-type invariants; no load-bearing edge moves.
 
 - [The local one-change hierarchy has an exact extension law but no compressed
   training summary](tickets/0013-census-local-geometric-constraints.md): the

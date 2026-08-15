@@ -931,31 +931,46 @@ that deserves independent retention and scheduling consideration.
   negative and inert cards are retained as controls.  Child `FP-13.A` now has
   a compiling exact rightmost-extension equivalence for `OneChangeOn` and an
   independently replayed labeled census of sizes 8, 62, and 908 through six
-  vertices.
+  vertices.  Child `FP-13.B` adds a compiling realizable-to-one-change theorem
+  and exact four-point equivalence.  Independently checked certificates cover
+  all 62 five-point and 908 six-point states by 780 decomposition trees plus
+  190 exact six-point coordinate witnesses.  Two realizations of the same
+  five-point type have different rightmost extension sets for 43 of 62 checked
+  parents.
 - **Missing generalization bridge:** a surviving card must prove a reusable
   theorem under its parent mechanism rather than remain true but inert.  For
-  `FP-13.A`, no strictly smaller parent invariant or bridge from `OneChangeOn`
-  to straight-line realizability survived its first bounded gates.
-- **Last forward result:** the `FP-13.A` extension theorem is reusable formal
-  infrastructure, but it has no load-bearing consumer; destination-level proof
-  movement is neutral.
+  `FP-13.A`, no strictly smaller parent invariant survived its first bounded
+  gates.  Child `FP-13.B` shows at computational tier that no additional local
+  realizability restriction appears through six, but its five/six universal
+  Lean promotion has no load-bearing consumer.  Fixed-representative cells are
+  not an order-type invariant.
+- **Last forward result:** the general realizable-to-one-change theorem and the
+  exact four-point equivalence compile.  The five/six equality and extension-
+  sensitivity results are checked computation.  They change recurrence design
+  but no load-bearing destination edge; destination-level proof movement is
+  neutral.
 - **Downstream consumer:** whichever numbered mathematical thread names the
   missing lemma.
 - **Open obstruction:** avoid producing true but strategically inert statements
   or a second informal backlog.  A state-dependent sum over all parent
   colorings is not a compressed recurrence.
-- **Next discriminating gate:** screen at most three cards chosen from current
-  parent-thread obstructions, each with a consumer, falsifier, and expiry rule.
-  Child `FP-13.A` has completed its bounded gates.  Any successor must freeze a
-  structurally different summary with a named exact-route consumer and earn a
-  nonsymmetric training collision before held-out enumeration, or directly
-  prove a realizability restriction needed by `FP-02.F` or `FP-16`.
+- **Next discriminating gate:** no further through-six certificate work.  A
+  successor may test seven/eight exact realizability only with a named consumer,
+  or attack the first authenticated nine-point nonstretchability boundary via
+  a compiling realizability-to-no-Ringel-minor bridge and a full-context
+  `FP-02.F` consumer.  Any extension recurrence must quantify over realization
+  cells or prove realization-independence; one coordinate representative is
+  invalid.  The expired `FP-13.A` summary may not be retuned.
 - **Success payoff:** a new proof-ready subthread or a decisive route
   retirement.
 - **Expiry or revival gate:** a card without a consumer or falsifier is rejected;
   a surviving card graduates to its parent or a new `FP-NN` entry.
 - **Children:** `FP-13.A` local geometric constraint hierarchy (bounded child
-  closed; recurrence asset retained, first compression expired).
+  closed; recurrence asset retained, first compression expired); `FP-13.B`
+  finite sweep-realizability boundary (bounded child closed; four-point theorem
+  compiled, five/six computational equality retained); `FP-13.C` first local
+  nonstretchability boundary (gated; seven/eight only with a consumer, or the
+  formal nine-point Ringel bridge).
 
 ### FP-14 — Formal-research system and template feedback
 
@@ -1278,8 +1293,26 @@ parent unless promoted.
   demonstrated no semantic compression and the seven-point gate remained
   unopened.  Expire that summary without retuning.  The exact state-dependent
   sum and census remain regression assets, not a compressed recurrence or
-  proof movement.  Full rational realization of all 908 states remains
-  deferred until `FP-02.F`, `FP-16`, or another named consumer needs it.
+  proof movement.  The separate `FP-13.B` child has now supplied exact checked
+  realizability coverage through six without creating a load-bearing consumer.
+- **FP-13.B — Finite sweep-realizability boundary.**  **Bounded child closed.**
+  Lean proves the general `IsSweepRealizable -> OneChangeOn` implication and
+  the exact equivalence at four points using all eight explicit integer
+  configurations.  Independent exhaustive replay covers all 62 five-point and
+  908 six-point states by 780 recursive decomposition trees and 190 additional
+  exact six-point coordinate realizations.  Five/six universal Lean promotion
+  is deliberately not performed: the consumer audit shows it changes neither
+  the nine-local `FP-02.F` obstruction nor the global 17-point `FP-16` forcing
+  problem.  Exact cell enumeration also finds that two realizations of one
+  five-point order type can admit different rightmost extensions (43/62 parent
+  comparisons), so representative-cell recurrences are invalid without a
+  realization-independence theorem.
+- **FP-13.C — First local nonstretchability boundary.**  **Gated child.**  The
+  possible next scale is exact seven/eight equality followed by the
+  authenticated nine-point Ringel separation.  Do not run a blind larger census
+  or promote finite certificates without a named consumer.  The high-value
+  version is the compiling `IsSweepRealizable`-to-no-Ringel-minor bridge plus a
+  full-context `FP-02.F` terminal that actually changes the state-567 branch.
 - **FP-14.A — Large-certificate kernel replay.**  Checkpointing succeeds for
   state-556 and mixed state-567.  For Fin11, exhaustive depth-six cubes reduce
   learned traces to 17,089--61,302 additions, but the 9,181-clause minimum base

@@ -71,6 +71,7 @@ finite public input satisfying `InGeneralPosition`.
 | B3 | `isCup_iff_isConsecutiveCup`, `isCap_iff_isConsecutiveCap` | Compiles | Matches classical recurrence-friendly definitions |
 | B4 | every swept coloring satisfies the necessary four-index consistency law | Compiles | Record realizability information rather than allowing arbitrary colorings |
 | B4a | exact rightmost-point recurrence for `OneChangeOn` | Compiles | Split the constraints on `n+1` into the old state and the three new pair colors for every old triple |
+| B4b | `oneChangeRealizabilityCompleteAt_four` | Compiles | Prove the full realizability converse at the first nontrivial size |
 | B5 | reflection exchanges cups and caps and preserves convexity | Known; pending | Symmetry control and proof reuse |
 
 The theorem `oneChangeOn_univ_succ_iff` gives B4a without a realizability or
@@ -80,11 +81,15 @@ sum is exact, but the first preregistered smaller parent spectrum compressed
 only the two validated symmetry orbits and therefore stopped before a
 seven-point test.
 
-We do not assert that B4 characterizes realizability. Rank-three sign data can
-be nonrealizable, and overly broad ordered-hypergraph generalizations are known
-to fail. Any theorem not valid for arbitrary `TripleColoring`s must take a
-`SweptConfiguration`, an `IsSweepRealizable` witness, or a separately proved
-sufficient consistency hypothesis.
+The general implication `IsSweepRealizable.oneChangeOn_univ` and the exact
+four-point converse now compile.  Independently checked finite certificates
+cover all 62 five-point and 908 six-point one-change states, but those two
+universal Lean declarations have not been promoted because no load-bearing
+consumer needs them.  We do not assert that B4 characterizes realizability in
+general: rank-three sign data can be nonrealizable.  Any theorem not valid for
+arbitrary `TripleColoring`s must take a `SweptConfiguration`, an
+`IsSweepRealizable` witness, or a separately proved sufficient consistency
+hypothesis.
 
 B1 also proves that restriction preserves sweep realizability. Combined with
 `IsStrongPolygonOn`, the theorem
