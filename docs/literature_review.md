@@ -111,13 +111,16 @@ and partition estimates.
 
 The first finite layer of Suk's proof is now formalized separately from those
 density losses.  Lean proves the required finite chain--antichain threshold,
-the triangle-containment partial order on a one-sided finite
-general-position set, and the four-point proof that two adjacent selected caps
-have a convex union once the paper's arrangement-cell and supporting-line
-facts are supplied.  The source argument derives those facts from the geometry
-of two adjacent support regions and chains; that derivation is the current
-formal obstruction.  Accordingly this checkpoint is not a formalization of
-Suk's positive-fraction theorem or asymptotic upper bound.
+the triangle-containment partial order on a one-sided finite general-position
+set, and the four-point gluing theorem for adjacent selected caps.  It also now
+formalizes the local geometric step from two actual adjacent support-region
+chains to the required arrangement-cell and supporting-line certificate.  The
+proof uses explicit Grassmann--Pluecker sign identities under the five-anchor
+cap order type.  What remains is global rather than local: selecting enough
+large adjacent chains/caps, proving the chain-color cup--cap layer, and deriving
+the positive-fraction support count and recurrence.  Accordingly this is still
+not a formalization of Suk's positive-fraction theorem or asymptotic upper
+bound.
 
 ### 4. Equivalent strengthened statements
 

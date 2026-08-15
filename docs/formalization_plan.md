@@ -2571,13 +2571,24 @@ criterion.  Exact rational controls realize adjacent three-point chains, all
 arrangement-cell and supporting-pair fields, and the convex union, while three
 coordinate corruptions are rejected.
 
-This checkpoint does **not** finish the geometric observation as used in the
-paper.  The first missing producer must start from five consecutive cap
-anchors, two actual `SukSupportRegion`s, and chains in their common-base orders,
-then prove the arrangement-cell and supporting-pair fields rather than assume
-them.  `FP-15.B` is parked at that theorem.  The chain cup--cap layer,
-Pór--Valtr positive-fraction theorem, recurrence, and asymptotic arithmetic are
-not unlocked by the conditional consumer alone.
+**Second finite-kernel result — `SUPPORT-LAND`.**  The missing local producer
+now compiles.  `SukAdjacentSupportData` records five consecutive cap anchors,
+two disjoint finite subsets of the adjacent `SukSupportRegion`s, comparability
+in their common-base `SukRegionLE` orders, ambient general position, and the
+two anchor-extended cap hypotheses.  From exactly those fields,
+`SukAdjacentSupportData.toCertificate` derives both arrangement-cell fields
+and both opposite-pair supporting-line fields of
+`SukAdjacentRegionCertificate`.  The proof uses explicit rank-three
+Grassmann--Pluecker identities and triangle-containment inequalities; it does
+not assume any certificate field.  Exact rational controls cover all source
+and output fields and reject separate support and chain corruptions.
+
+This closes Observation 3.1's local support-chain-to-certificate edge, but not
+the published global selection/counting argument.  The next finite layers are
+the transitive two-color cup--cap theorem on one region chain and an explicit
+global lemma selecting sufficiently large adjacent chains/caps with a direct
+positive-fraction consumer.  The Pór--Valtr support theorem, recurrence, and
+asymptotic arithmetic remain locked until those layers compile.
 
 ### FP-15.C: point-specialized current-best bound
 

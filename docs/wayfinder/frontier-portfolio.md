@@ -259,7 +259,11 @@ that deserves independent retention and scheduling consideration.
 - **Scope ceiling:** a uniform recurrence consumer plus exact Fin8/Fin10 fan
   theorems and bounded Fin9--Fin11 controls; no uniform producer.
 - **Best evidence:** the generic consumer into `PredecessorHalfSubsetAt`
-  compiles; exact Fin8 and nonvacuous Fin10 fan theorems compile.  The complete
+  compiles; exact Fin8 and nonvacuous Fin10 fan theorems compile.  Deleting
+  only the Fin10 certificate's OneChange clauses makes it satisfiable, and the
+  independently checked model violates `OneChangeOn` on 77 four-sets.  This
+  confirms that the already proved four-point law is causally essential to the
+  finite theorem; it is diagnostic rather than a new producer.  The complete
   Fin11 synchronized-fan negation has independently replayed computational
   evidence through both the 479,434-addition full LRAT and an exhaustive
   depth-six decomposition into 64 independently certified cubes.  Cube leaves
@@ -428,7 +432,15 @@ that deserves independent retention and scheduling consideration.
   true, but its 3.17-million-clause base and 994-MiB trace are not a Lean proof.
   Net proof movement for this gate is neutral: confidence changed, but the
   formal terminal and its semantic difficulty remain open.  The parent is
-  retained without promotion and raw reruns are expired.
+  retained without promotion and raw reruns are expired.  Removing only the
+  `OneChangeOn` clauses also makes both the packed `3+3` and direct repair
+  formulas satisfiable; their checked models contain thousands of OneChange
+  violations.  This confirms that the existing geometric law is load-bearing
+  but proves no new theorem.  The first authenticated nonstretchability
+  diagnostic is also complete: the Ringel nine-element reorientation class
+  occurs in exactly 60 of the 497,420 nine-subsets of the admitted TP-SAT
+  model.  That filters this relaxed model at the realizable tier, but no Lean
+  nonstretchability bridge or full-context terminal follows.
 - **Missing generalization bridge:** close the two remaining full-context color
   terminals, integrate them into the decomposable `k=7` transition, and then
   extract a parameterized Pascal mechanism rather than another isolated state.
@@ -452,6 +464,15 @@ that deserves independent retention and scheduling consideration.
   the independently replayed direct UNSAT proof for the smallest cut-sensitive
   semantic lemma, then state and prove that lemma in Lean.  Do not rerun the
   same formula with another seed or attempt a monolithic certificate import.
+  A separate bounded child, `FP-02.F`, tests the first genuinely new local
+  realizability filter beyond `OneChangeOn`: exclusion of the nonstretchable
+  uniform rank-three nine-element class.  It begins on the admitted TP-SAT
+  model and stops on one checked minor-free survivor.  It cannot advance the
+  balanced branch unless the exclusion is proved for `IsSweepRealizable` and
+  changes the full provenance-coupled terminal rather than only the weakened
+  targeted-packing formula.  Its catalog-and-scan gate is complete; the next
+  admissible step is the formal realizability-to-no-Ringel-minor bridge and a
+  full-context consumer, not another scan of the same TP-SAT witness.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** the standalone hitting-plus-targeted-packing
   terminal is expired by TP-SAT.  Only a target-free model satisfying the full
@@ -465,7 +486,8 @@ that deserves independent retention and scheduling consideration.
 - **Children:** `FP-02.A` balanced canonical transversal; `FP-02.B` mixed
   normal-form terminal; `FP-02.C` decomposability-retention bridge;
   `FP-02.D` symbolic packing/provenance compression; `FP-02.E`
-  same-occupancy four-repair terminal.
+  same-occupancy four-repair terminal; `FP-02.F` nonstretchable-nine-minor
+  realizability filter.
 
 ### FP-03 — Uniform Pascal-tail lift
 
@@ -577,37 +599,47 @@ that deserves independent retention and scheduling consideration.
   passes all fourteen admitted abstract Fin7/Fin8 controls under fresh replay,
   and exact rational Fin8 extraction now supplies five nonvacuous
   carrier-interior persistence witnesses plus a unique-crossing activation.
-  The first exact Fin17 architecture is independently unit-refutable: its
-  source-prime Fin16 activation together with a persistent Fin16-plus-singleton
-  top split is an empty 680-variable, 434,680-clause class.  This rejects that
-  control architecture, not the rooted-circuit mechanism, and supplies no
-  Fin17 model or consumer theorem.
+  The exact local theorem
+  `HasDeepBelowSplit.persists_of_singleMutation_internal` and the
+  cardinality-restricted conditional consumer
+  `HasCarrierInternalSourceSplitsAboveAt.to_endpointSplits` now compile.  They
+  use only a source split, one changed triple, and containment of that triple
+  in one split side.  No theorem produces the source condition.  Exact
+  factorization of the first Fin17 architecture shows that its endpoint `8+8`
+  activation layer alone is unit-inconsistent after 510 propagations; the
+  advertised persistent top split is unnecessary.  This expires that control
+  architecture and gives no evidence for the uniform producer.
 - **Missing generalization bridge:** prove that every above-threshold
   target-free realizable nondecomposable coloring admits the required bounded
   macro and strict rank decrease, without assuming the no-new-core half of the
   conclusion.
-- **Last forward result:** the at-most-three mutation localization and
-  prime-core rank consumer infrastructure compile.  No theorem has changed the
-  load-bearing `D-NORMALIZE` edge.
+- **Last forward result:** the at-most-three mutation localization, prime-core
+  rank consumer infrastructure, and local carrier-internal split-persistence
+  lemma compile.  The latter is conditional infrastructure, so no theorem has
+  changed the load-bearing `D-NORMALIZE` edge.
 - **Downstream consumer:** `TargetReflectingDecomposableNormalizationAt`, then
   any uniform decomposable exact theorem.
-- **Open obstruction:** obtain a nonempty above-threshold Fin17 control for the
-  unchanged rooted-circuit producer.  The rational witness fields are no longer
-  missing; the obstruction is that the first fixed Fin16-activation/top-split
-  architecture is inconsistent before candidate replay.
-- **Next discriminating gate:** factor the 680-variable Fin17 control into
-  cumulative exact layers—target-free signotope, source-prime activation,
-  endpoint split, and independent persistent top split—and identify the first
-  unit-refutable layer.  Freeze one alternative nonempty architecture only
-  after that diagnosis, then replay the unchanged candidate.  Compile the
-  reviewed consumer only after a nonvacuous Fin17 gate survives; a wrapper-only
-  lane remains expired as strategically inert.
+- **Open obstruction:** prove a genuinely geometric source-side producer for
+  `HasCarrierInternalSourceSplitsAboveAt` on a named target-free mutation
+  family, and show that it supplies strict prime-core descent rather than only
+  a cardinality-filtered endpoint split.  The fixed Fin17 activation control
+  is empty and cannot test that question.
+- **Next discriminating gate:** do not retune the empty Fin17 architecture.
+  First state a source theorem that constructs carrier-internal splits from an
+  independently recognizable circuit or cell condition and has a direct
+  strict-rank consumer.  Test that frozen condition on the surviving rational
+  controls and one separately generated nonempty above-threshold family; stop
+  if its producer is merely the old endpoint shield in source notation.
 - **Success payoff:** an unrestricted-to-decomposable reduction independent of
   the half-subset producer.
 - **Expiry or revival gate:** a realizable target-free closed component or
   highest-stratum local minimum retires this rank; a new noncircular rank may
   revive mutation descent.
-- **Children:** none.
+- **Children:** `FP-04.A` carrier-internal rooted-circuit split persistence.
+  This child must prove that a source split persists when every changed carrier
+  is wholly inside one side, and must then show that the resulting source-side
+  producer is strictly weaker than the existing endpoint shield.  A compiling
+  locality lemma alone is infrastructure, not movement on `D-NORMALIZE`.
 
 ### FP-05 — State-567 balanced five-class leaves
 
@@ -631,6 +663,10 @@ that deserves independent retention and scheduling consideration.
   computationally UNSAT (83,468 variables, 1,583,924 clauses, and 1,653,441
   independently replayed pure-RUP additions).  Its 336-MiB proof is above the
   promotion gate, so the color terminal is not yet a completed Lean result.
+  Removing only its OneChange clauses produces a checked SAT model, but that
+  model loses 11,737 of the 74,613 deletion-packing consequences.  This is a
+  causal diagnostic for the already formalized geometric law, not evidence
+  for or against the full packed terminal.
   Net proof movement is forward only for the compiling structural reduction;
   the computational terminal is neutral and does not close a dependency.  The
   thread therefore remains gated.
@@ -1007,8 +1043,13 @@ that deserves independent retention and scheduling consideration.
   and the conditional adjacent-region gluing theorem
   `SukAdjacentRegionCertificate.inConvexPosition_union`.  Exact rational
   controls realize two adjacent three-point chains and reject three coordinate
-  corruptions.  This does not yet derive the gluing certificate from support
-  regions.  Holmsen--Mojarrad--Pach--Tardos remains a later source rung, not a
+  corruptions.  The missing local producer now compiles as well:
+  `SukAdjacentSupportData.toCertificate` derives both arrangement-cell fields
+  and both opposite-pair supporting-line fields from five cap anchors, two
+  actual adjacent support-region chains, their anchor-extended caps,
+  disjointness, and ambient general position.  Its proof uses explicit
+  Grassmann--Pluecker sign identities and assumes none of the certificate
+  fields.  Holmsen--Mojarrad--Pach--Tardos remains a later source rung, not a
   current Lean result.
 - **Missing generalization bridge:** prove the published geometric predicates
   equivalent to the repository's realizable sweep predicates, then extract a
@@ -1017,39 +1058,38 @@ that deserves independent retention and scheduling consideration.
 - **Last forward result:** supporting milestone `Q-UPPER` is closed by the
   compiling unconditional theorem `tothValtr_upper`.  Within `FP-15.B`, the
   generic finite height--width theorem, the region partial order under explicit
-  one-sided general-position hypotheses, and the certificate-to-convex-union
-  consumer compile.  These are reusable finite lemmas, but they change no
-  load-bearing destination edge and do not establish Suk's support producer.
+  one-sided general-position hypotheses, the support-chain-to-certificate
+  producer, and the certificate-to-convex-union consumer compile.  This closes
+  one named local geometric edge in the quantitative route but changes no
+  load-bearing exact-conjecture dependency.
 - **Downstream consumer:** the next quantitative consumer is Suk's finite
   positive-fraction architecture.  Any claim of progress on the exact route
   still requires a separate theorem into `D-HALF`, `D-DECOMP`, or
   `D-NORMALIZE`.
 - **Open obstruction:** no exact-route consumer uses the completed frame.  In
-  the Suk route, no theorem yet derives `SukAdjacentRegionCertificate` from two
-  adjacent `SukSupportRegion`s and chains in their triangle-containment orders.
-  The missing content is precisely the arrangement-cell and two-pair
-  supporting-line geometry in Observation 3.1.  The chain-coloring consumer,
-  Pór--Valtr positive-fraction support theorem, and recurrence remain blocked
-  behind that producer.
-- **Next discriminating gate:** freeze an exact adjacent-support data structure
-  with five consecutive cap anchors, membership in the two open support
-  regions, chain hypotheses for the two common-base orders, selected left/right
-  caps, and ambient general position.  Prove from those hypotheses—not by
-  adding certificate fields—that the line through two chain points misses the
-  adjacent region and that the opposite anchor and region point occupy the same
-  arrangement cell; then construct `SukAdjacentRegionCertificate`.  The same
-  six-point rational control must pass, and a corrupted support or chain must
-  fail.  Do not begin positive-fraction arithmetic before this producer lands.
+  the Suk route, the local adjacent-support geometry is closed, but no theorem
+  selects sufficiently large anchor-extended chains in enough adjacent support
+  regions or turns their repeated gluing into the published positive-fraction
+  support estimate.  The chain-coloring, Pór--Valtr support theorem, recurrence,
+  and asymptotic bound remain open.
+- **Next discriminating gate:** formalize the transitive two-color cup--cap
+  theorem on one `SukRegionLE` chain and state the exact global selection lemma
+  that supplies adjacent chain/cap data at the needed cardinalities.  The next
+  slate must freeze its finite inequalities and a direct consumer into the
+  positive-fraction support count before proof search.  Do not spend another
+  slot refining the now-closed local sign algebra or begin asymptotic
+  optimization before the global selection lemma compiles.
 - **Success payoff:** the geometric producer makes the compiled gluing theorem
   usable and unlocks the chain two-color cup--cap layer.  Only that layer plus
   a formal Pór--Valtr support theorem unlocks Suk's integer recurrence; only a
   completed Suk architecture unlocks the point-specialized current-best bound.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
   parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
-  now parked at the first missing finite geometric producer just
-  described; arithmetic, a restated certificate, or asymptotic bookkeeping
-  alone is not progress.  Revive exact-route use of the frame only with a
-  theorem-shaped consumer into a named load-bearing edge.
+  no longer parked at the local certificate producer; that edge is complete.
+  It remains gated at global chain selection and positive-fraction assembly.
+  Arithmetic, a restated certificate, or asymptotic bookkeeping alone is not
+  progress.  Revive exact-route use of the frame only with a theorem-shaped
+  consumer into a named load-bearing edge.
 - **Children:** `FP-15.A` completed explicit Tóth--Valtr bound and projective frame;
   `FP-15.B` Suk positive-fraction/partial-order finite kernel and explicit
   asymptotic assembly; `FP-15.C` point-specialized
@@ -1184,6 +1224,16 @@ parent unless promoted.
   3,172,823 clauses, and a 1,283,493-addition pure-RUP proof.  Its 994-MiB trace
   is not promotion-ready.  Next mine a compact cut-sensitive semantic lemma and
   prove it in Lean; do not rerun the same formula with another seed.
+- **FP-02.F — Nonstretchable-nine-minor realizability filter.**  The public
+  Ringel example and the 4,382-versus-4,381 catalog counts authenticate the
+  unique nonrealizable uniform rank-three nine-element reorientation class.
+  Two independent classifiers enumerate 120,960 labeled quotient
+  representatives and find exactly 60 matching restrictions among all 497,420
+  nine-subsets of the admitted TP-SAT model; exact realizable controls reject
+  the class.  This filters that relaxed witness but is neutral for the proof.
+  The child remains gated on a compiling `IsSweepRealizable`-to-no-Ringel-minor
+  theorem and a consumer that changes a full-context terminal.  Do not rescan
+  the same model or treat the external catalog as a Lean premise.
 - **FP-03.A — Variable-carrier state 556.**  Completed finite adjacent state:
   both advertised leaves and their consumer compile, via a stronger witness-free
   Fin14 contradiction, through `PascalTailTwoSideBound 5 5 6`.  The live child
@@ -1195,6 +1245,16 @@ parent unless promoted.
   extensions form a strong `k`-set if all core pairs see one common color on
   the two new endpoints.  No current published-slice theorem produces this
   equality.  Revive only with such a producer that excludes the stored model.
+- **FP-04.A — Carrier-internal rooted-circuit split persistence.**  The exact
+  local theorem `HasDeepBelowSplit.persists_of_singleMutation_internal` and its
+  cardinality-restricted source-side conditional consumer compile.  This is
+  infrastructure, not endpoint-descent progress: no geometric theorem produces
+  `HasCarrierInternalSourceSplitsAboveAt`, and the fixed Fin17 endpoint
+  activation layer is already unit-inconsistent before the persistent top
+  split is added.  Expire that control architecture.  Revive the child only
+  with an independently stated source circuit/cell producer and a direct
+  strict-rank consumer; reject a source-language restatement of the old
+  endpoint shield.
 - **FP-14.A — Large-certificate kernel replay.**  Checkpointing succeeds for
   state-556 and mixed state-567.  For Fin11, exhaustive depth-six cubes reduce
   learned traces to 17,089--61,302 additions, but the 9,181-clause minimum base
@@ -1221,12 +1281,13 @@ parent unless promoted.
   closed; the bounded reuse audit found no exact-route consumer.
 - **FP-15.B — Suk finite quantitative kernel.**  The generic finite Dilworth
   inequality, support-region vocabulary, region partial order under explicit
-  one-sided general-position hypotheses, and conditional adjacent-region
-  gluing consumer compile.  The child is parked at the missing theorem from
-  two actual adjacent support-region chains to the arrangement-cell and
-  supporting-pair certificate.  Positive-fraction and recurrence work remains
-  locked; arithmetic without that geometric producer is not an admitted
-  result.
+  one-sided general-position hypotheses, exact adjacent-support-chain producer,
+  and adjacent-region gluing consumer compile.  In particular,
+  `SukAdjacentSupportData.toCertificate` derives the arrangement-cell and
+  supporting-pair fields without assuming them.  The child is now gated at the
+  transitive chain cup--cap theorem and global selection/positive-fraction
+  assembly.  Recurrence and asymptotic optimization remain locked until those
+  geometric counting layers compile.
 - **FP-15.C — Point-specialized current-best upper bound.**  Locked behind a
   compiling Suk architecture.  Formalize the point-set specialization of the
   Holmsen--Mojarrad--Pach--Tardos spike and two-partial-order proof through an

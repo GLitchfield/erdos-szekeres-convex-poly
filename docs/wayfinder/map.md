@@ -52,21 +52,29 @@ destination edge unless a separate implication is proved.
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | gated | This fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
-The explicit Tóth--Valtr projective frame, its cup--cap consumer, and the
-strict arithmetic comparison compile, closing supporting milestone `Q-UPPER`
-at `choose (2*n-5) (n-2) + 2`.  The first Suk finite checkpoint also compiles:
-the finite height--width theorem, the common-base region partial order under
-explicit geometric hypotheses, and the certificate-to-adjacent-convex-union
-consumer.  It does not derive that certificate from two actual adjacent
-support-region chains.  `FP-15.B` is therefore parked at that first geometric
-producer, and positive-fraction arithmetic is still locked.  A bounded reuse
-audit finds no theorem from the quantitative frame to `D-HALF`, `D-DECOMP`, or
-`D-NORMALIZE`; none of this reduces exact `D-UPPER`.  `D-UPPER(6)` remains a
-separate subordinate milestone.
+The explicit Tóth--Valtr theorem still closes supporting milestone `Q-UPPER`
+at `choose (2*n-5) (n-2) + 2`.  The local Suk finite checkpoint is now stronger:
+the finite height--width theorem, common-base region order,
+support-chain-to-certificate producer, and certificate-to-adjacent-convex-union
+consumer all compile.  In particular, the arrangement-cell and opposite-pair
+support fields are derived from two actual adjacent support-region chains
+rather than assumed.  `FP-15.B` is now gated at global chain selection,
+transitive chain cup--cap, and positive-fraction assembly.  The parallel small
+geometric-forcing tests otherwise changed search information only: OneChange
+is causally essential in three finite encodings; a Ringel nine-minor filters one
+relaxed state-567 model without a Lean realizability bridge; and a local
+carrier-internal mutation lemma compiles without a uniform producer.  None of
+these results reduces `D-HALF`, `D-DECOMP`, `D-NORMALIZE`, or exact `D-UPPER`.
+`D-UPPER(6)` remains a separate subordinate milestone.
 
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
+
+- [Small geometric forcings close one local Suk edge but no exact edge](tickets/0012-test-small-geometric-forcings.md):
+  OneChange and Ringel-minor tests are diagnostic, carrier-internal split
+  persistence is conditional infrastructure, and the support-chain certificate
+  producer is the slate's sole forward theorem.
 
 - [The state-578 crossing-row address/deletion route is expired](tickets/0003-consume-state-578-crossing-row.md):
   exact Lean counterexamples refute address-only, one-column endpoint, and

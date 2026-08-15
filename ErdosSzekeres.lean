@@ -18,6 +18,7 @@ public import ErdosSzekeres.DecompositionPrimeMutationLocality
 public import ErdosSzekeres.DecompositionPrimeMutationPathLocality
 public import ErdosSzekeres.DecompositionPrimeMutationFamily
 public import ErdosSzekeres.DecompositionPrimeMutationCreationShield
+public import ErdosSzekeres.DecompositionPrimeRootedCircuitPersistence
 public import ErdosSzekeres.DecompositionPrimeUncrossing
 public import ErdosSzekeres.StrongPredecessorBicoloring
 public import ErdosSzekeres.StrongPredecessorFractionalDual
@@ -184,3 +185,4 @@ public import ErdosSzekeres.TothValtrUpper
 public import ErdosSzekeres.FiniteDilworth
 public import ErdosSzekeres.SukAdjacentRegions
 public import ErdosSzekeres.SukRegionOrder
+public import ErdosSzekeres.SukAdjacentSupportProducer
