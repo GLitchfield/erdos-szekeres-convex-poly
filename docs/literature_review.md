@@ -116,11 +116,16 @@ set, and the four-point gluing theorem for adjacent selected caps.  It also now
 formalizes the local geometric step from two actual adjacent support-region
 chains to the required arrangement-cell and supporting-line certificate.  The
 proof uses explicit Grassmann--Pluecker sign identities under the five-anchor
-cap order type.  What remains is global rather than local: selecting enough
-large adjacent chains/caps, proving the chain-color cup--cap layer, and deriving
-the positive-fraction support count and recurrence.  Accordingly this is still
-not a formalization of Suk's positive-fraction theorem or asymptotic upper
-bound.
+cap order type.  A further conditional Lean theorem now bundles one total
+triangle-containment chain, applies the exact binomial cup--cap recurrence, and
+propagates consecutive colors to all selected triples under the source's
+explicit transitivity law.  A separate adapter sends any full two-region cap
+selection into the existing certificate and gluing theorem.  The geometry must
+still produce the transitivity/color semantics, promote anchor-plus-each-triple
+convexity to convexity of the whole anchor-extended set, and select sufficiently
+large complementary caps in adjacent regions.  The positive-fraction count and
+recurrence remain downstream.  Accordingly this is still not a formalization
+of Suk's positive-fraction theorem or asymptotic upper bound.
 
 ### 4. Equivalent strengthened statements
 
@@ -184,7 +189,15 @@ characterization of the project's `GeometricRightExtensionFiber`.  A fixed
 coordinate fiber is instead a strict half-plane feasibility problem; planar
 Helly applies only while all constraints share that one realization.
 
-The `ES(6)=17` computation has an Isabelle/HOL formal proof by Filip Marić.
+The `ES(6)=17` computation has an Isabelle/HOL formal proof by Filip Marić.  A
+local source audit now identifies Szekeres--Peters's eight four-sign `E*`
+patterns with the project's `TurnSequenceAllowed`/`OneChangeOn` convention and
+separates their consecutive cup--cap convex-six predicate from the repository's
+strong-polygon predicate.  The public planar presentation and lower bound are
+already formalized; the remaining route needs the exact 17-vertex theorem plus
+those two small semantic bridges.  The Isabelle theories and generated proof
+artifacts are absent from the local corpus, so no external theorem has yet been
+admitted into Lean.
 Recent SAT work on 33 points (`n=7`) is currently a preprint/encoding effort,
 not a proof of `ES(7)=33`. Any future SAT route in this repository must produce
 a certificate checked inside or reduced to Lean's kernel and must separately
@@ -321,7 +334,9 @@ See Roudneff--Sturmfels (1988), DOI `10.1007/BF00151346`, rechecked
 
 - **Isabelle/HOL, exact cases through six:** Marić's 2019 paper formalizes a
   SAT-based proof of the conjecture for `n ≤ 6`. It validates the finite
-  orientation/SAT approach but is not a Lean artifact.
+  orientation/SAT approach but is not a Lean artifact.  The official ARGO
+  distribution advertises `HappyEnding.zip`; its bytes, license, theorem
+  statement, and trust boundary must be frozen and audited before reuse.
 - **Lean 4, Erdős--Tuza--Valtr `(n,4,n)`:** Baek's Apache-2.0 repository states
   its main theorem as `theorem main` and includes a cup--cap theorem. Its
   configuration API is the leading reuse candidate, subject to revision and

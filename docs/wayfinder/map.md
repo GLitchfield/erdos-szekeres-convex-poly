@@ -52,24 +52,19 @@ destination edge unless a separate implication is proved.
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | gated | This fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
-The geometric right-extension-fiber slate closed one representation-interface
-card but did not reduce the upper-bound proof.  The compiling module now
-separates abstract compatible children, extensions of one fixed coordinate
-realization, and the union over all realizations of a parent coloring, with an
-exact membership theorem for the last object.  Independent computation through
-child size six checks 327 fixed realizations and 2,739 cells.  Fully labeled
-boundary order plus atomic simultaneous crossing slices reconstructs every
-fixed fiber, but this is an exact arrangement encoding rather than a compressed
-parent invariant.  Standard cocircuit/signotope localizations characterize
-abstract extensions, not straight-line realizability, while the tested
-target-free topology and two-step majority-class consumers fail or retain the
-original global selector.  These are candidate-local or subfamily failures,
-not an exhaustion of realization-space mechanisms.  Accordingly the
-seven-point atlas remains unopened and the completed `FP-13.D` slate is closed,
-but its parent mechanism is retained as `probing` for one bounded through-six
-incubation slate on wall changes, chamber-stable invariants, fixed-fiber
-certificates, and the abstract-to-geometric lower-set gap.  Neither `D-HALF`,
-`D-DECOMP`, nor `D-NORMALIZE` changed.
+The bounded decorated-transition card now has a compiling exact abstraction:
+each compatible pair link is a permutation tournament, the connector colors
+are common intervals in both consecutive link orders, and within either block
+the only possible disagreement has one direction.  The admitted through-six
+atlas verifies these laws on all 1,550 two-step cells, but the first link and
+connector blocks do not predict the second: 195 of 310 such classes have more
+than one second permutation.  Source-authenticated left/right and inner/outer
+spike labels first become nonvacuous with seven total points, so this bounded
+outcome refutes connector-only determinism without refuting the decorated
+mechanism.  `FP-13.E` is closed, the parent returns from `probing` to `gated`,
+and a broad seven-point atlas remains unauthorized.  Revival is limited to one
+minimal source-faithful seven-point label/gluing falsifier with a named
+consumer.  Neither `D-HALF`, `D-DECOMP`, nor `D-NORMALIZE` changed.
 The first authenticated local nonstretchability boundary is now kernel-checked:
 `ringelNine_not_rankThreeVectorRealizable` proves that the frozen Ringel
 nine-element alternating sign pattern has no homogeneous rank-three vector
@@ -99,29 +94,39 @@ invalid quotient.  No current consumer extracts a smaller cell invariant from
 it.  These are boundary and state-design results, not a reduction of `D-HALF`,
 `D-DECOMP`, `D-NORMALIZE`, or exact `D-UPPER`.
 The explicit Tóth--Valtr theorem still closes supporting milestone `Q-UPPER`
-at `choose (2*n-5) (n-2) + 2`.  The local Suk finite checkpoint is now stronger:
-the finite height--width theorem, common-base region order,
-support-chain-to-certificate producer, and certificate-to-adjacent-convex-union
-consumer all compile.  In particular, the arrangement-cell and opposite-pair
-support fields are derived from two actual adjacent support-region chains
-rather than assumed.  `FP-15.B` is now gated at global chain selection,
-transitive chain cup--cap, and positive-fraction assembly.  The parallel small
-geometric-forcing tests otherwise changed search information only: OneChange
-is causally essential in three finite encodings, and a local carrier-internal
-mutation lemma compiles without a uniform producer.  The later Ringel bridge
-has upgraded that diagnostic into local formal infrastructure, but without a
-full-context producer it still does not reduce `D-HALF`, `D-DECOMP`,
-`D-NORMALIZE`, or exact `D-UPPER`.
+at `choose (2*n-5) (n-2) + 2`.  The local Suk finite checkpoint now also has a
+compiling conditional transitive two-color theorem at the exact binomial
+threshold and a noncircular global-selection-to-certificate consumer.  Its
+transitivity and anchor semantics remain explicit hypotheses, and the local
+output proves anchor convexity for every selected triple rather than convexity
+of the full anchor-extended selected set.  Consequently the next honest gate
+is the one-region geometric semantics/full-cap bridge; only then does the
+global adjacent-chain selector and positive-fraction assembly become active.
+This source-faithful interface work changes no exact ledger edge.
 The predecessor-half selector family is now suspended after its single-cell,
 robust-selector, bounded-exchange, and realization-cell interval descendants
 all failed without reducing the common pivot/support producer.  The existing
 finite fan theorems remain valid; revival requires a genuinely new positive
 producer rather than another selector reformulation.
-`D-UPPER(6)` remains a separate subordinate milestone.
+`D-UPPER(6)` remains a separate subordinate milestone.  The primary-paper
+audit identifies the exact eight `E*` four-sign patterns with the project's
+one-change law and freezes a route through a six-point weak/strong convexity
+bridge, a 17-vertex finite theorem, the existing planar presentation, and the
+existing lower construction.  The referenced Isabelle/HOL sources and proof
+artifacts are not in the local corpus.  The next gate is therefore bounded
+official-source retrieval and exact theorem/trust-boundary admission, not a
+fresh SAT encoding or certificate build.
 
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
+
+- [Decorated transitions are exact but not connector-deterministic; the Suk
+  chain and exact-six source gates are explicit](tickets/0017-test-decorated-extension-transitions.md):
+  two conditional Lean interfaces compile, the through-six atlas rejects
+  connector-only prediction while leaving a minimal seven-point label test
+  open, and the exact-six branch is gated on retrieving the existing Isabelle
+  source; no load-bearing edge changed.
 
 - [Geometric right-extension fibers now have exact model boundaries but no
   smaller consumer](tickets/0016-classify-geometric-extension-fibers.md): the
@@ -459,19 +464,22 @@ threads remain valuable.
     chunking, immutable task packets, approval preflight, measured time
     calibration, tool/skill cataloging, and parallel-route orchestration when
    those changes reduce proof latency or evidence mistakes.  Process work is
-   never credited as mathematical completion.  The current ledger has 269
-   completed rows, median actual/midpoint ratio `0.240`, and only `15.2%`
+   never credited as mathematical completion.  The current ledger has 325
+   completed rows, median actual/midpoint ratio `0.225`, and only `14.8%`
    inside the old forecast ranges; future estimates must use category- and
    size-conditioned empirical bands rather than raw task-list sums.
 15. **Uniform quantitative upper-bound ladder.**  The authenticated
     Tóth--Valtr bound now compiles through an explicit projective normalization
-    frame and the existing cup--cap theorem, closing `Q-UPPER`.  The next child
-    is Suk's finite partial-order and adjacent-region kernel; the
-    point-specialized current-best bound remains gated behind that architecture.
-    No exact-route consumer has been proved, so exact `D-UPPER` is unchanged.
-16. **Exact unrestricted `ES(6)=17`.**  Audit the Isabelle/HOL abstraction and
-    certificate against the repository's realizable sweep semantics before
-    replay work.  The terminal is the public Lean theorem
+    frame and the existing cup--cap theorem, closing `Q-UPPER`.  Suk's finite
+    partial order, conditional chain recurrence, adjacent support producer, and
+    gluing consumer compile.  The next child is the one-region
+    semantics/full-cap producer, before global selection or positive-fraction
+    assembly.  No exact-route consumer has been proved, so exact `D-UPPER` is
+    unchanged.
+16. **Exact unrestricted `ES(6)=17`.**  Retrieve and audit the official
+    Isabelle/HOL source distribution, then prove the `E*`/`OneChangeOn` and
+    source-convex-six/strong-polygon semantic bridges before replay work.  The
+    terminal is the public Lean theorem
     `erdosSzekeresFormulaAt_six`; after it compiles, stop fixed-instance
     engineering unless one parameterized extraction hypothesis has a named
     consumer beyond six.

@@ -951,7 +951,7 @@ that deserves independent retention and scheduling consideration.
 - **Named destination dependency:** whichever parent ledger edge is named by a
   frozen card; FP-13 closes no destination edge independently.
 - **Strategic role:** discovery.
-- **State:** probing.
+- **State:** gated.
 - **Model tier:** varies per frozen card and must be explicit before screening.
 - **Scope ceiling:** individual proposal or intermediary-lemma cards with
   explicit parent consumers.
@@ -974,7 +974,11 @@ that deserves independent retention and scheduling consideration.
   abstract/fixed/union right-extension-fiber API and an independently checked
   fixed-coordinate atlas through child size six.  Its enriched labeled wiring
   exactly encodes every checked fixed arrangement, but is neither compression
-  nor an abstract-parent invariant.
+  nor an abstract-parent invariant.  Child `FP-13.E` adds compiling exact
+  one-/two-step link-transition laws: compatible links are permutation
+  tournaments, connector colors are common intervals in both link orders, and
+  within a connector block disagreements have one direction.  All 1,550
+  admitted through-six two-step cells satisfy those laws.
 - **Missing generalization bridge:** a surviving card must prove a reusable
   theorem under its parent mechanism rather than remain true but inert.  For
   `FP-13.A`, no strictly smaller parent invariant survived its first bounded
@@ -987,9 +991,12 @@ that deserves independent retention and scheduling consideration.
   restriction.  The completed `FP-13.D` slate rejects bare labeled-wiring
   compression, abstract localization as geometric realizability, fixed-fiber
   connectivity as a useful consumer, the tested majority class, and blind
-  seven-point enumeration.  It does not decide whether realization-space wall
-  changes, chamber-stable invariants, bounded infeasibility certificates, or
-  the abstract-to-geometric lower-set gap expose a different mechanism.
+  seven-point enumeration.  `FP-13.E` shows that connector blocks alone do not
+  determine the next link permutation: 195 of 310 admitted classes have
+  multiple outcomes.  The source left/right and inner/outer spike labels are
+  not nonvacuous below seven total points, so that computation does not decide
+  whether those labels repair the transition.  No named spike/gluing consumer
+  yet uses the compiling transition theorem.
 - **Last forward result:** the fixed Ringel-nine homogeneous
   nonrealizability theorem and its sweep/decomposable restriction exclusions
   compile.  This is a real local theorem, but no named load-bearing destination
@@ -1004,26 +1011,22 @@ that deserves independent retention and scheduling consideration.
   of one arrangement is not a parent-coloring invariant.  The live question is
   whether changes across realization-space chambers admit a smaller stable
   description that constrains the extension hypergraph.
-- **Next discriminating gate:** run one bounded through-six mechanism-discovery
-  slate over the admitted atlas: compare adjacent realization chambers across
-  a single degeneracy wall; test chamber-stable summaries smaller than atomic
-  wiring; seek small fixed-fiber infeasibility or Helly certificates; and
-  measure the exact gap between abstract lower-set extensions and geometrically
-  realizable children.  Each probe must freeze a falsifier and a short consumer
-  ladder before outcomes.  Do not open the seven-point atlas unless a
-  through-six probe yields reproducible nonsymmetric structure and a credible
-  named bridge toward `D-HALF`, `D-NORMALIZE`, or state-567.  Ringel work
-  remains with the full-context `FP-02.F` producer rather than another local
-  certificate or catalog scan, and the expired `FP-13.A` summary may not be
-  retuned.
+- **Next discriminating gate:** before any broad seven-point atlas, freeze one
+  minimal seven-point source-faithful control consisting of a convex four-core,
+  three points in one spike, the exact left/right and inner/outer labels, and a
+  declared adjacent-spike gluing verdict.  It may reopen execution only if the
+  labeled transition omits atomic wiring while determining that verdict and a
+  short Lean-shaped consumer is named.  Connector-only, bare Ferrers/RSK,
+  abstract-localization, topology, and majority descendants remain closed.
+  Ringel work remains with the full-context `FP-02.F` producer.
 - **Success payoff:** a new proof-ready subthread or a decisive route
   retirement.
-- **Expiry or revival gate:** probing receives one bounded through-six
-  incubation slate.  Close each explanation on its preregistered falsifier and
-  return the parent to `gated` or `parked` if the slate yields no stable
-  nonsymmetric invariant, exact decomposition, or source-backed mechanism.  A
-  card without a falsifier and short consumer ladder is rejected; a surviving
-  card graduates to its parent or a new `FP-NN` entry.
+- **Expiry or revival gate:** the through-six incubation is complete and the
+  parent is `gated`, not `probing`.  One minimal seven-point label/gluing gate
+  is preserved because the relevant source labels were vacuous on the admitted
+  sample.  Failure of that unchanged gate, reconstruction of full wiring, or
+  absence of a named consumer parks this descendant.  A different mechanism
+  requires new positive structure rather than retuning connector blocks.
 - **Children:** `FP-13.A` local geometric constraint hierarchy (bounded child
   closed; recurrence asset retained, first compression expired); `FP-13.B`
   finite sweep-realizability boundary (bounded child closed; four-point theorem
@@ -1031,8 +1034,11 @@ that deserves independent retention and scheduling consideration.
   nonstretchability boundary (local theorem completed and merged into
   `FP-02.F`; full-context producer remains there); `FP-13.D` geometric
   right-extension fibers (bounded atlas slate closed; exact API and
-  fixed-coordinate atlas retained; parent mechanism probing realization-space
-  chamber structure while the named failed descendants remain closed).
+  fixed-coordinate atlas retained; parent mechanism gated on realization-space
+  chamber structure while the named failed descendants remain closed);
+  `FP-13.E` decorated extension transitions (bounded child closed: exact
+  link/connector transition theorem retained; connector-only prediction
+  rejected; one minimal source-label seven-point successor remains gated).
 
 ### FP-14 — Formal-research system and template feedback
 
@@ -1138,44 +1144,58 @@ that deserves independent retention and scheduling consideration.
   actual adjacent support-region chains, their anchor-extended caps,
   disjointness, and ambient general position.  Its proof uses explicit
   Grassmann--Pluecker sign identities and assumes none of the certificate
-  fields.  Holmsen--Mojarrad--Pach--Tardos remains a later source rung, not a
-  current Lean result.
-- **Missing generalization bridge:** prove the published geometric predicates
-  equivalent to the repository's realizable sweep predicates, then extract a
-  parameterized lemma actually consumed by `D-HALF`, `D-DECOMP`, or
-  `D-NORMALIZE`; a smaller numerical coefficient alone supplies no such bridge.
+  fields.  The conditional one-region theorem
+  `sukRegionChain_twoColor_cup_or_cap` now compiles at the exact binomial
+  threshold: it bundles a total `SukRegionLE` chain, reuses `CupCap.cup_cap`,
+  propagates a consecutive word through an explicit transitivity hypothesis,
+  and records anchor convexity for every selected triple.  The separate
+  `sukGlobalAdjacentChainSelection_toCertificate` theorem proves that an
+  independently supplied full adjacent selection feeds the existing
+  certificate and mixed-convex-union consumer.  Holmsen--Mojarrad--Pach--Tardos
+  remains a later source rung, not a current Lean result.
+- **Missing generalization bridge:** derive the transitivity and two-color
+  anchor semantics from the actual support-region geometry, and upgrade the
+  resulting anchor-plus-each-triple facts to full
+  `InConvexPosition (insert anchor selectedSet)`.  Then globally select two
+  complementary full caps in adjacent regions and prove the positive-fraction
+  count.  An exact-route claim still needs a separate parameterized theorem
+  consumed by `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
 - **Last forward result:** supporting milestone `Q-UPPER` is closed by the
   compiling unconditional theorem `tothValtr_upper`.  Within `FP-15.B`, the
   generic finite height--width theorem, the region partial order under explicit
   one-sided general-position hypotheses, the support-chain-to-certificate
   producer, and the certificate-to-convex-union consumer compile.  This closes
   one named local geometric edge in the quantitative route but changes no
-  load-bearing exact-conjecture dependency.
+  load-bearing exact-conjecture dependency.  The later conditional chain
+  recurrence and selection adapter compile but are neutral because their
+  geometric/full-cap producers remain open.
 - **Downstream consumer:** the next quantitative consumer is Suk's finite
   positive-fraction architecture.  Any claim of progress on the exact route
   still requires a separate theorem into `D-HALF`, `D-DECOMP`, or
   `D-NORMALIZE`.
 - **Open obstruction:** no exact-route consumer uses the completed frame.  In
-  the Suk route, the local adjacent-support geometry is closed, but no theorem
-  selects sufficiently large anchor-extended chains in enough adjacent support
-  regions or turns their repeated gluing into the published positive-fraction
-  support estimate.  The chain-coloring, Pór--Valtr support theorem, recurrence,
-  and asymptotic bound remain open.
-- **Next discriminating gate:** formalize the transitive two-color cup--cap
-  theorem on one `SukRegionLE` chain and state the exact global selection lemma
-  that supplies adjacent chain/cap data at the needed cardinalities.  The next
-  slate must freeze its finite inequalities and a direct consumer into the
-  positive-fraction support count before proof search.  Do not spend another
-  slot refining the now-closed local sign algebra or begin asymptotic
-  optimization before the global selection lemma compiles.
-- **Success payoff:** the geometric producer makes the compiled gluing theorem
-  usable and unlocks the chain two-color cup--cap layer.  Only that layer plus
-  a formal Pór--Valtr support theorem unlocks Suk's integer recurrence; only a
-  completed Suk architecture unlocks the point-specialized current-best bound.
+  the Suk route, the conditional recurrence is formal, but its geometric
+  transitivity/semantics producers and full-cap promotion are not.  No theorem
+  then selects sufficiently large complementary caps in adjacent regions or
+  turns repeated gluing into the published positive-fraction estimate.  The
+  Pór--Valtr support theorem, recurrence, and asymptotic bound remain open.
+- **Next discriminating gate:** freeze one source-faithful one-region theorem
+  deriving `SukRegionTransitiveTwoColoring` and
+  `SukRegionTwoColorSemantics` from the existing support-region and total-chain
+  hypotheses, with a corollary producing full anchor-extended convexity for the
+  selected set.  Require a direct link from that corollary into
+  `SukGlobalAdjacentChainSelection`; otherwise stop at an exact mismatch.  Do
+  not begin asymptotic optimization or another certificate refinement first.
+- **Success payoff:** a genuine geometric full-cap producer would make the
+  compiled finite recurrence feed the adjacent-selection interface.  Global
+  selection plus a formal Pór--Valtr support theorem would then unlock Suk's
+  integer recurrence; only a completed Suk architecture unlocks the
+  point-specialized current-best bound.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
   parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
   no longer parked at the local certificate producer; that edge is complete.
-  It remains gated at global chain selection and positive-fraction assembly.
+  It remains gated at the one-region semantics/full-cap producer, then global
+  adjacent selection and positive-fraction assembly.
   Arithmetic, a restated certificate, or asymptotic bookkeeping alone is not
   progress.  Revive exact-route use of the frame only with a theorem-shaped
   consumer into a named load-bearing edge.
@@ -1196,22 +1216,26 @@ that deserves independent retention and scheduling consideration.
 - **Strategic role:** fallback.
 - **State:** gated.
 - **Model tier:** general-position planar configurations through
-  sweep-realizable colorings.  The external Isabelle/HOL development is a
-  read-only reference whose order-type, realizability, and strong-polygon
-  semantics still require an explicit correspondence audit.
+  sweep-realizable colorings.  The primary finite theorem is stronger: it
+  ranges over all 17-vertex signatures satisfying the eight `E*` four-sign
+  patterns, whether or not realizable.  The external Isabelle/HOL development
+  remains a read-only reference pending exact source admission.
 - **Scope ceiling:** the unrestricted public theorem
   `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6`; no statement for
   arbitrary `k` and no uniform transition.
-- **Best evidence:** the mathematical equality `ES(6)=17` and a formal
-  Isabelle/HOL proof are recorded in the source ledger.  This repository
-  compiles the unrestricted cases through five, the all-parameter lower bound,
-  and the decomposable upper theorem at six, but it has no unrestricted Lean
-  forcing theorem at six.
-- **Missing generalization bridge:** map every external abstraction and
-  certificate obligation to `IsSweepRealizable`, target containment, the
-  planar bridge, and the public forcing API.  Beyond the fixed theorem, a
-  separately frozen parameterized semantic-extraction lemma with a named
-  uniform consumer would be required.
+- **Best evidence:** the mathematical equality `ES(6)=17` and Marić's formal
+  Isabelle/HOL proof are recorded in the source ledger.  A checked local audit
+  now maps Szekeres--Peters's eight `E*` patterns to the order
+  `123,124,134,234` used by `TurnSequenceAllowed`/`OneChangeOn`; distinguishes
+  their consecutive cup--cap convex-six predicate from `IsStrongPolygon`; and
+  freezes the exact finite-to-public theorem ladder.  The repository already
+  has the public planar presentation and lower bound.  It still lacks the
+  Isabelle theories/proof artifact and an unrestricted Lean forcing theorem.
+- **Missing generalization bridge:** admit the exact external theorem and trust
+  boundary, prove `PetersSzekeresEStar ↔ OneChangeOn`, and prove that the
+  source convex-six predicate is equivalent to `IsStrongPolygon` under `E*`.
+  Beyond the fixed theorem, a separately frozen parameterized extraction lemma
+  with a named uniform consumer would still be required.
 - **Last forward result:** none on universal `D-UPPER`; unrestricted exact six
   has not compiled in this repository.  Exact cases through five and the
   decomposable six theorem are prior baselines.
@@ -1219,23 +1243,28 @@ that deserves independent retention and scheduling consideration.
   `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6`, assembled from an
   unrestricted forcing theorem, the explicit geometric bridge, and existing
   sharpness.
-- **Open obstruction:** no checked correspondence table yet shows that the
-  Isabelle definitions, finite reduction, and certificate hypotheses match
-  the repository's realizable sweep semantics without a stronger hidden
-  assumption.
-- **Next discriminating gate:** audit the Isabelle sources and primary paper,
-  produce a clause-by-clause and predicate-by-predicate semantic
-  correspondence table, and freeze the smallest noncircular Lean bridge target
-  before generating, replaying, or compressing another certificate.
+- **Open obstruction:** the local corpus contains the complete primary paper
+  and bibliographic metadata, but no Isabelle `.thy`, session root, generated
+  table, SAT artifact, or checked distribution.  Therefore the exact theorem
+  statement, proof method, symmetry reduction, and trusted-code boundary
+  cannot yet be imported or translated.
+- **Next discriminating gate:** retrieve the official `HappyEnding.zip` source
+  distribution under a bounded packet, freeze its archive hash/license and
+  complete file inventory, then extract the exact Isabelle theorem and trust
+  boundary.  Run the two small semantic bridge gates before any Lean
+  certificate regeneration, SAT encoding, replay, or compression.
 - **Success payoff:** either an exact proof architecture for the first missing
   unrestricted case or a precise incompatibility that prevents wasted
   certificate engineering; eventual success closes `D-UPPER(6)` only.
-- **Expiry or revival gate:** an unmapped stronger premise, absent geometric
-  bridge, or certificate plan without a named public theorem parks the route.
+- **Expiry or revival gate:** an unavailable/unlicensed source archive, an
+  Isabelle theorem with a stronger unmapped premise, or failure of either
+  semantic bridge parks the route.  A certificate plan without the named
+  public theorem is rejected.
   Once `erdosSzekeresFormulaAt_six` compiles, stop fixed-case certificate work;
   continue only under one frozen parameterized extraction hypothesis with a
   consumer beyond `k=6` and an adjacent-parameter falsifier.
-- **Children:** none.
+- **Children:** `FP-16.A` official Isabelle source and semantic admission
+  (local primary-paper audit complete; archive retrieval gated).
 
 ## Current subthreads
 
@@ -1391,7 +1420,7 @@ parent unless promoted.
   further Ringel work must prove the full-context `FP-02.F` producer; do not
   run a blind larger census or duplicate the local certificate.
 - **FP-13.D — Geometric right-extension fibers.**  **Bounded slate closed;
-  parent mechanism probing.**
+  parent mechanism gated.**
   `TripleColoringExtensionFiber.lean` compiles and distinguishes abstract
   compatible links, extensions of one fixed swept realization, and the union
   of geometric children over every realization of a parent coloring.  The
@@ -1410,9 +1439,18 @@ parent unless promoted.
   they do not exhaust realization-space wall changes, chamber-stable
   invariants, bounded fixed-fiber infeasibility certificates, or the lower-set
   gap between abstract and geometric children.  Retain the API and atlas as
-  `probing` infrastructure for one bounded through-six incubation slate.  Keep
-  `n = 7` closed until a preregistered probe finds reproducible nonsymmetric
-  structure with a short named consumer ladder.
+  gated infrastructure; the through-six incubation has now run under
+  `FP-13.E`.
+- **FP-13.E — Decorated extension transitions.**  **Bounded child closed;
+  successor gated.**  `TripleColoringExtensionTransition.lean` proves the
+  permutation, common connector-interval, exact four-word, and one-directional
+  block laws.  Independent producer/checker replay verifies them on all 1,550
+  admitted through-six two-step cells.  Connector blocks do not predict the
+  second link permutation: 195/310 connector-decorated classes have multiple
+  outcomes.  The source left/right and inner/outer spike labels require at
+  least seven total points and were therefore vacuous in this sample.  Net
+  proof movement is neutral.  Keep broad `n = 7` closed; at most one frozen
+  seven-point four-core/three-spike label-and-gluing gate may follow.
 - **FP-14.A — Large-certificate kernel replay.**  Checkpointing succeeds for
   state-556 and mixed state-567.  For Fin11, exhaustive depth-six cubes reduce
   learned traces to 17,089--61,302 additions, but the 9,181-clause minimum base
@@ -1442,15 +1480,25 @@ parent unless promoted.
   one-sided general-position hypotheses, exact adjacent-support-chain producer,
   and adjacent-region gluing consumer compile.  In particular,
   `SukAdjacentSupportData.toCertificate` derives the arrangement-cell and
-  supporting-pair fields without assuming them.  The child is now gated at the
-  transitive chain cup--cap theorem and global selection/positive-fraction
-  assembly.  Recurrence and asymptotic optimization remain locked until those
+  supporting-pair fields without assuming them.  The exact conditional
+  binomial chain recurrence and global-selection-to-certificate adapter now
+  compile too.  The child is gated at proving the geometric transitivity and
+  anchor semantics, promoting local anchor-plus-triple witnesses to a full
+  anchor-extended cap, and then producing complementary caps in adjacent
+  regions.  Recurrence and asymptotic optimization remain locked until those
   geometric counting layers compile.
 - **FP-15.C — Point-specialized current-best upper bound.**  Locked behind a
   compiling Suk architecture.  Formalize the point-set specialization of the
   Holmsen--Mojarrad--Pach--Tardos spike and two-partial-order proof through an
   explicit integer theorem implying `2^(n + O(sqrt(n*log n)))`.  General
   pseudo-configurations are optional only after the point-set endpoint lands.
+- **FP-16.A — Official exact-six source admission.**  The primary-paper audit
+  freezes the eight `E*` patterns, the source convex-six predicate, and the
+  theorem ladder ending at `erdosSzekeresFormulaAt_six`.  The local corpus has
+  no Isabelle theories or proof artifacts.  Retrieve and hash the official
+  `HappyEnding.zip`, audit its license/files/theorem/trust boundary, then test
+  the two frozen semantic bridges before any certificate engineering.  This is
+  a fixed-case supporting milestone and cannot change universal `D-UPPER`.
 
 ## Historical register
 

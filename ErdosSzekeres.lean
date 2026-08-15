@@ -5,6 +5,7 @@ public import ErdosSzekeres.Sweep
 public import ErdosSzekeres.TripleColoringExtension
 public import ErdosSzekeres.TripleColoringGeometricExtension
 public import ErdosSzekeres.TripleColoringExtensionFiber
+public import ErdosSzekeres.TripleColoringExtensionTransition
 public import ErdosSzekeres.Chains
 public import ErdosSzekeres.Presentation
 public import ErdosSzekeres.Convexity
@@ -191,3 +192,4 @@ public import ErdosSzekeres.FiniteDilworth
 public import ErdosSzekeres.SukAdjacentRegions
 public import ErdosSzekeres.SukRegionOrder
 public import ErdosSzekeres.SukAdjacentSupportProducer
+public import ErdosSzekeres.SukRegionChainCupCap

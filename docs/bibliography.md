@@ -21,7 +21,10 @@ repository records.
 4. **F. Marić**, “Fast formal proof of the Erdős--Szekeres conjecture for
    convex polygons with at most 6 points,” *Journal of Automated Reasoning* 62
    (2019), 301--329. Primary/formal, Isabelle/HOL.
-   <https://doi.org/10.1007/s10817-017-9423-7>
+   <https://doi.org/10.1007/s10817-017-9423-7>.  The official ARGO downloads
+   page advertises the formalization archive as
+   <https://argo.matf.bg.ac.rs/downloads/formalizations/HappyEnding.zip>
+   (located 2026-08-15; archive bytes not yet retrieved or admitted).
 
 ## Upper bounds and proof methods
 

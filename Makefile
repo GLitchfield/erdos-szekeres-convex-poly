@@ -117,6 +117,7 @@ test: check lean
 	@python3 scripts/wayfinder_status.py >/dev/null
 	@python3 scripts/check_frontier_portfolio.py >/dev/null
 	@python3 -m py_compile scripts/adversarial_review.py \
+		scripts/analyze_decorated_extension_transitions.py \
 		scripts/analyze_cap_failure_charge_matching.py \
 		scripts/analyze_packed_escape_sharp_models.py \
 		scripts/search_middle_bridge_realization.py \
@@ -133,6 +134,7 @@ test: check lean
 		scripts/check_decomposable_contexts.py \
 		scripts/check_decomposable_context_collision.py \
 		scripts/check_decomposable_rank_profiles.py \
+		scripts/check_decorated_extension_transitions.py \
 		scripts/check_incoming_star_prefixes.py \
 		scripts/check_singleton_residuals.py \
 		scripts/check_span_rank_footprints.py \

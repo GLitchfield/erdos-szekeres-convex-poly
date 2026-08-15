@@ -48,6 +48,13 @@ sets.
   exact union-over-realizations membership theorem.  This is representation
   infrastructure: it neither characterizes straight-line realizability from
   the abstract link nor closes a destination dependency.
+- `ErdosSzekeres/TripleColoringExtensionTransition.lean` proves that every
+  compatible incident-pair link is a permutation tournament and that two
+  consecutive extensions share connector-color intervals, obey the exact
+  four-word law, and allow only one direction of change inside a connector
+  block.  Through-six computation confirms these laws but also shows that the
+  first link and connector blocks do not determine the second link, so no
+  predictive recurrence or destination implication is claimed.
 - `ErdosSzekeres/TripleColoringRealizability.lean` proves that every realizable
   coloring satisfies `OneChangeOn` and proves the exact converse at four
   points using all eight integer-coordinate witnesses.  Independent finite
@@ -84,14 +91,15 @@ sets.
   `n >= 4`.  This closes supporting milestone `Q-UPPER`; it does not close or
   reduce the exact universal upper-bound edge.
 - `ErdosSzekeres/FiniteDilworth.lean`, `SukAdjacentRegions.lean`,
-  `SukRegionOrder.lean`, and `SukAdjacentSupportProducer.lean` formalize the
-  first finite kernel in Suk's later quantitative route: the exact finite
-  height--width alternative, the common-base triangle-containment partial
-  order, the geometric construction of the arrangement-cell/supporting-pair
-  certificate from two adjacent support-region chains, and the resulting
-  adjacent convex-union gluing theorem.  Global chain selection, the
-  positive-fraction support estimate, and the asymptotic upper bound are not
-  yet formalized.
+  `SukRegionOrder.lean`, `SukAdjacentSupportProducer.lean`, and
+  `SukRegionChainCupCap.lean` formalize the first finite kernel in Suk's later
+  quantitative route: the exact finite height--width alternative, the
+  common-base triangle-containment partial order, the geometric construction
+  of the arrangement-cell/supporting-pair certificate, the adjacent
+  convex-union gluing theorem, and a conditional exact-binomial two-color
+  recurrence on one total region chain.  Producing the geometric color
+  semantics, a full anchor-extended cap, the global adjacent selection, the
+  positive-fraction support estimate, and the asymptotic bound remains open.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.
