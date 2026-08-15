@@ -67,6 +67,7 @@ ALLOWED_ROLES = {
 }
 ALLOWED_STATES = {
     "advancing",
+    "probing",
     "gated",
     "parked",
     "suspended",

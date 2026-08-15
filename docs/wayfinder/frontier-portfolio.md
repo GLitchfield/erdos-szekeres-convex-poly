@@ -3,7 +3,7 @@ title: Exact Erdős--Szekeres frontier portfolio
 artifact: frontier-portfolio
 schema_version: 2
 status: canonical
-last_updated: 2026-08-14
+last_updated: 2026-08-15
 ---
 
 # Frontier portfolio
@@ -78,8 +78,8 @@ fields:
   or a named subordinate dependency, that the thread can close.
 - **Strategic role:** one of `direct`, `bridge`, `generalization`, `hedge`,
   `fallback`, `discovery`, or `research-system`.
-- **State:** one of `advancing`, `gated`, `parked`, `suspended`, `merged`,
-  `completed`, or `retired`.
+- **State:** one of `advancing`, `probing`, `gated`, `parked`, `suspended`,
+  `merged`, `completed`, or `retired`.
 - **Model tier:** the precise mathematical universe in which its claims live.
 - **Scope ceiling:** the strongest finite, restricted-class, or uniform claim
   that the current admitted evidence can support.
@@ -104,6 +104,9 @@ fields:
 - `advancing` means recent forward proof movement and a ready next gate capable
   of producing a compiling theorem that closes or strictly reduces a named
   dependency;
+- `probing` means proof movement is not claimed, but a concrete reproducible
+  observation supports a bounded, high-information test between live
+  mathematical explanations;
 - `gated` means valuable but waiting on a prerequisite or discriminating test;
 - `parked` means no current gate justifies resources, although a new mechanism
   could reactivate it;
@@ -948,7 +951,7 @@ that deserves independent retention and scheduling consideration.
 - **Named destination dependency:** whichever parent ledger edge is named by a
   frozen card; FP-13 closes no destination edge independently.
 - **Strategic role:** discovery.
-- **State:** gated.
+- **State:** probing.
 - **Model tier:** varies per frozen card and must be explicit before screening.
 - **Scope ceiling:** individual proposal or intermediary-lemma cards with
   explicit parent consumers.
@@ -981,10 +984,12 @@ that deserves independent retention and scheduling consideration.
   not an order-type invariant, and the exact coordinate-retaining recurrence
   does not by itself reduce a consumer.  `FP-13.C` has completed the local
   nonstretchability bridge, but no full-context theorem produces its Ringel
-  restriction.  `FP-13.D` finds no source-backed realizability predicate
-  between abstract localization and child realizability, and its tested
-  target-free/two-step consumers either fail or retain the original global
-  support selector.
+  restriction.  The completed `FP-13.D` slate rejects bare labeled-wiring
+  compression, abstract localization as geometric realizability, fixed-fiber
+  connectivity as a useful consumer, the tested majority class, and blind
+  seven-point enumeration.  It does not decide whether realization-space wall
+  changes, chamber-stable invariants, bounded infeasibility certificates, or
+  the abstract-to-geometric lower-set gap expose a different mechanism.
 - **Last forward result:** the fixed Ringel-nine homogeneous
   nonrealizability theorem and its sweep/decomposable restriction exclusions
   compile.  This is a real local theorem, but no named load-bearing destination
@@ -993,33 +998,41 @@ that deserves independent retention and scheduling consideration.
 - **Downstream consumer:** whichever numbered mathematical thread names the
   missing lemma.
 - **Open obstruction:** avoid producing true but strategically inert statements
-  or a second informal backlog.  A state-dependent sum over all parent
-  colorings is not a compressed recurrence.  Likewise, a labeled wiring that
-  reconstructs every cell of one arrangement is not a compressed invariant of
-  the parent coloring.
-- **Next discriminating gate:** no further through-six certificate work.  A
-  successor may test seven/eight exact realizability only with a named consumer,
-  while the completed nine-point boundary now belongs to `FP-02.F`.  The next
-  useful Ringel work is a full-context state-567 producer or consumer, not
-  another certificate, catalog scan, or local exclusion theorem.  Any
-  successor to the exact extension recurrence must extract a strictly smaller
-  realization-cell consequence with a named `D-HALF`, `D-NORMALIZE`, or
-  state-567 consumer; one coordinate representative remains invalid.  The
-  expired `FP-13.A` summary may not be retuned.  `FP-13.D` may not open the
-  seven-point atlas unless a frozen through-six invariant first shows
-  nonsymmetric compression and has a named load-bearing consumer.
+  or a second informal backlog while preserving room to discover a delicate
+  geometric mechanism.  A state-dependent sum over all parent colorings is not
+  a compressed recurrence, and a labeled wiring that reconstructs every cell
+  of one arrangement is not a parent-coloring invariant.  The live question is
+  whether changes across realization-space chambers admit a smaller stable
+  description that constrains the extension hypergraph.
+- **Next discriminating gate:** run one bounded through-six mechanism-discovery
+  slate over the admitted atlas: compare adjacent realization chambers across
+  a single degeneracy wall; test chamber-stable summaries smaller than atomic
+  wiring; seek small fixed-fiber infeasibility or Helly certificates; and
+  measure the exact gap between abstract lower-set extensions and geometrically
+  realizable children.  Each probe must freeze a falsifier and a short consumer
+  ladder before outcomes.  Do not open the seven-point atlas unless a
+  through-six probe yields reproducible nonsymmetric structure and a credible
+  named bridge toward `D-HALF`, `D-NORMALIZE`, or state-567.  Ringel work
+  remains with the full-context `FP-02.F` producer rather than another local
+  certificate or catalog scan, and the expired `FP-13.A` summary may not be
+  retuned.
 - **Success payoff:** a new proof-ready subthread or a decisive route
   retirement.
-- **Expiry or revival gate:** a card without a consumer or falsifier is rejected;
-  a surviving card graduates to its parent or a new `FP-NN` entry.
+- **Expiry or revival gate:** probing receives one bounded through-six
+  incubation slate.  Close each explanation on its preregistered falsifier and
+  return the parent to `gated` or `parked` if the slate yields no stable
+  nonsymmetric invariant, exact decomposition, or source-backed mechanism.  A
+  card without a falsifier and short consumer ladder is rejected; a surviving
+  card graduates to its parent or a new `FP-NN` entry.
 - **Children:** `FP-13.A` local geometric constraint hierarchy (bounded child
   closed; recurrence asset retained, first compression expired); `FP-13.B`
   finite sweep-realizability boundary (bounded child closed; four-point theorem
   compiled, five/six computational equality retained); `FP-13.C` first local
   nonstretchability boundary (local theorem completed and merged into
   `FP-02.F`; full-context producer remains there); `FP-13.D` geometric
-  right-extension fibers (bounded child closed; exact API and fixed-coordinate
-  atlas retained, realization-space compression route suspended).
+  right-extension fibers (bounded atlas slate closed; exact API and
+  fixed-coordinate atlas retained; parent mechanism probing realization-space
+  chamber structure while the named failed descendants remain closed).
 
 ### FP-14 — Formal-research system and template feedback
 
@@ -1377,7 +1390,8 @@ parent unless promoted.
   compile.  This closes the intermediary card but no load-bearing edge.  Any
   further Ringel work must prove the full-context `FP-02.F` producer; do not
   run a blind larger census or duplicate the local certificate.
-- **FP-13.D — Geometric right-extension fibers.**  **Bounded child closed.**
+- **FP-13.D — Geometric right-extension fibers.**  **Bounded slate closed;
+  parent mechanism probing.**
   `TripleColoringExtensionFiber.lean` compiles and distinguishes abstract
   compatible links, extensions of one fixed swept realization, and the union
   of geometric children over every realization of a parent coloring.  The
@@ -1392,10 +1406,13 @@ parent unless promoted.
   through the union over realization space.  Fixed target-free fibers are not
   uniformly gated, and an exact Fin9 model refutes the direct majority-class
   strong-support consumer.  Net proof movement is neutral and no ledger edge
-  changed.  Retain the API and atlas as gated infrastructure; suspend this
-  route unless a strictly smaller through-six invariant has a named consumer
-  and survives a preregistered nonsymmetric compression gate before `n = 7` is
-  opened.
+  changed.  Those candidate-local and subfamily failures remain closed, but
+  they do not exhaust realization-space wall changes, chamber-stable
+  invariants, bounded fixed-fiber infeasibility certificates, or the lower-set
+  gap between abstract and geometric children.  Retain the API and atlas as
+  `probing` infrastructure for one bounded through-six incubation slate.  Keep
+  `n = 7` closed until a preregistered probe finds reproducible nonsymmetric
+  structure with a short named consumer ladder.
 - **FP-14.A — Large-certificate kernel replay.**  Checkpointing succeeds for
   state-556 and mixed state-567.  For Fin11, exhaustive depth-six cubes reduce
   learned traces to 17,089--61,302 additions, but the 9,181-clause minimum base

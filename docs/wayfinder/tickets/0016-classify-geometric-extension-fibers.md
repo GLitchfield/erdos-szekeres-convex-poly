@@ -155,6 +155,10 @@ does not strictly reduce it.
 - **Net proof movement:** neutral.
 - **Evidence:** one compiling interface theorem, checked bounded computation,
   and a source audit.
+- **Damage scope:** candidate-local for bare labeled-wiring compression and the
+  majority consumer; subfamily for abstract-localization, connectivity, and
+  direct topology consumers.  The slate did not establish an
+  architecture-level or mechanism-wide failure.
 - **Difficulty displaced:** none demonstrably smaller.  The open obligation is
   still to characterize or exploit the union over the realization space, or
   to produce a target-free support from it without reintroducing the original
@@ -163,14 +167,31 @@ does not strictly reduce it.
   fixed-representative, bare-swap, abstract-localization, topology, and
   majority-class detours.  It would not have reduced the remaining proof work
   enough to count as proof progress.
-- **Planning consequence:** retain the Lean API and atlas as gated
-  infrastructure; suspend geometric-fiber localization/topology and direct
-  majority consumers; do not open `n = 7` from this mechanism.
+- **Planning consequence:** retain the Lean API and atlas as `probing`
+  infrastructure for one bounded through-six incubation slate; keep the named
+  localization/topology and direct-majority descendants closed; do not open
+  `n = 7` without a smaller stable invariant and short consumer ladder.
 - **Load-bearing ledger:** no destination edge changed.
 
-## Revival gate
+## Continuation posture and incubation gate
 
-Revive this child only with a frozen invariant which:
+The bounded ticket is closed, but its parent mechanism may probe four live
+explanations which the slate did not test:
+
+1. single-wall changes between adjacent realization-space chambers;
+2. chamber-stable invariants smaller than complete atomic-slice wiring;
+3. bounded fixed-fiber infeasibility or Helly certificates; and
+4. a structured gap between abstract lower-set extensions and geometrically
+   realizable children.
+
+Use one bounded through-six incubation slate.  Every probe must freeze its
+candidate, falsifier, and a short ladder
+`structural theorem -> named intermediary bridge -> load-bearing consumer`
+before outcomes.  Continue a probe only if it yields reproducible nonsymmetric
+structure, an exact decomposition, or an untested source-backed mechanism.
+Return the parent to `gated` or `parked` if none does.
+
+Open `n = 7` only after a frozen invariant:
 
 1. is strictly smaller than labeled atomic-slice wiring or full child
    realizability;
@@ -180,6 +201,6 @@ Revive this child only with a frozen invariant which:
 4. has a preregistered false-positive/false-negative test before any
    seven-point outcome is opened.
 
-Do not revive it merely by enumerating more coordinate representatives,
-formalizing an abstract lower-set presentation, or rephrasing realizability as
-a coherent adjoint/allowable-lift premise.
+Do not continue merely by enumerating more coordinate representatives,
+formalizing an abstract lower-set presentation, increasing solver resources,
+or rephrasing realizability as a coherent adjoint/allowable-lift premise.

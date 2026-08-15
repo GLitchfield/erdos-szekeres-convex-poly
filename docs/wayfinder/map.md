@@ -63,9 +63,13 @@ fixed fiber, but this is an exact arrangement encoding rather than a compressed
 parent invariant.  Standard cocircuit/signotope localizations characterize
 abstract extensions, not straight-line realizability, while the tested
 target-free topology and two-step majority-class consumers fail or retain the
-original global selector.  Accordingly the seven-point atlas remains unopened,
-`FP-13.D` is closed as a bounded child with its API retained, and neither
-`D-HALF`, `D-DECOMP`, nor `D-NORMALIZE` changed.
+original global selector.  These are candidate-local or subfamily failures,
+not an exhaustion of realization-space mechanisms.  Accordingly the
+seven-point atlas remains unopened and the completed `FP-13.D` slate is closed,
+but its parent mechanism is retained as `probing` for one bounded through-six
+incubation slate on wall changes, chamber-stable invariants, fixed-fiber
+certificates, and the abstract-to-geometric lower-set gap.  Neither `D-HALF`,
+`D-DECOMP`, nor `D-NORMALIZE` changed.
 The first authenticated local nonstretchability boundary is now kernel-checked:
 `ringelNine_not_rankThreeVectorRealizable` proves that the frozen Ringel
 nine-element alternating sign pattern has no homogeneous rank-three vector

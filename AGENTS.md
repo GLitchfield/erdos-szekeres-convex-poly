@@ -59,6 +59,8 @@ Every run summary and affected portfolio reconciliation must state:
 - **Net proof movement:** forward, neutral, or backward;
 - **Evidence:** compiling theorem, checked computation, proposal, or operational
   stop;
+- **Damage scope:** `candidate-local`, `subfamily`, `architecture-level`,
+  `mechanism-wide`, or `operational-only`;
 - **Difficulty displaced:** the hard obligation that remains and whether it is
   demonstrably smaller;
 - **Counterfactual test:** if the outcome had been known before the run, whether
@@ -67,12 +69,49 @@ Every run summary and affected portfolio reconciliation must state:
 - **Planning consequence:** promote, retain, demote, suspend, or expire.
 
 Negative evidence may justify demotion or retirement, but must not by itself
-promote a refined descendant of the same mechanism. After two consecutive
-information-only or negative outcomes in one mechanism family, require an
-adversarial route review before scheduling another refinement. After three,
-suspend that family unless a genuinely new positive theorem or mechanism
-appears. Never use `closer`, `advancing`, `breakthrough`, or equivalent language
-unless net proof movement is forward and the exact closed dependency is named.
+promote a refined descendant of the same mechanism. Charge a failure to the
+narrowest scope actually tested:
+
+- `candidate-local` rejects only the frozen statement or construction;
+- `subfamily` rejects variants sharing the identified failing premise;
+- `architecture-level` rejects a representation, reduction architecture, or
+  consumer pattern while leaving materially different mechanisms open;
+- `mechanism-wide` requires evidence that covers the credible variants of the
+  whole stable mechanism family; and
+- `operational-only` records a source, resource, tooling, or protocol stop and
+  is not negative mathematical evidence.
+
+Do not roll candidate-local, subfamily, or operational failures into a
+mechanism-wide losing streak without an adversarial review establishing the
+shared mathematical cause. After two related architecture-level or
+mechanism-wide information-only or negative outcomes, require an adversarial
+route review before scheduling another descendant. No fixed outcome count
+automatically suspends a family: suspension requires an explicit exhaustion
+argument for the stated scope, while a genuinely different hypothesis or
+mechanism may remain eligible for bounded probing. Never use `closer`,
+`advancing`, `breakthrough`, or equivalent language unless net proof movement
+is forward and the exact closed dependency is named.
+
+## Exploratory patience and mechanism discovery
+
+Skeptical proof-distance accounting governs claims about progress; it does not
+by itself decide whether a difficult mechanism deserves further exploration.
+A neutral result may support bounded continuation when it exposes at least one
+of the following: reproducible unexplained structure, an exact representation
+or decomposition, a stable invariant across genuinely different controls, a
+source-backed mechanism not yet tested in the relevant model, or a next test
+that discriminates between live mathematical explanations.
+
+Such continuation is `probing`, not `advancing`.  A probing entry must record
+the concrete observation being pursued, the live explanations, the cheapest
+discriminating gate, an incubation budget or review boundary, and what result
+would stop each explanation.  Preserve failed descendants as closed controls
+without treating them as a verdict on untested mechanisms at a broader scope.
+
+Larger instances alone, more solver seeds, premise patching, certificate
+compression, renaming a failed construction, or repeating the same test with
+more resources do not justify probing.  The next gate must vary the mathematical
+information, not merely the amount of computation.
 
 ## Architecture-level frontier discipline
 
@@ -82,9 +121,10 @@ named destination dependency it can close, its scope ceiling, the missing
 generalization bridge, and its last forward result. Threads which share the
 same unresolved producer or are expected to fail for the same mathematical
 reason are correlated even when their files, finite states, certificates, or
-agent assignments differ. Evidence streaks and the review/suspension rules
-above apply across descendants in the same mechanism family; assigning a new
-`FP-NN` identifier does not reset them.
+agent assignments differ. Architecture-level and mechanism-wide evidence, and
+only narrower evidence whose shared cause has been established by review,
+applies across descendants in the same mechanism family; assigning a new
+`FP-NN` identifier does not reset it.
 
 Maintain the load-bearing dependency ledger in `docs/wayfinder/map.md`
 separately from the inclusive portfolio. Every portfolio reconciliation must
@@ -96,7 +136,19 @@ A portfolio entry may be `advancing` only when it has recent forward proof
 movement and its next gate can itself yield a compiling theorem that closes or
 strictly reduces a named dependency. Conditional interfaces, surviving finite
 controls, computational SAT or UNSAT, certificate compression, and stronger
-proposed premises cannot by themselves sustain `advancing`; use `gated`.
+proposed premises cannot by themselves sustain `advancing`; use `probing` for
+bounded mechanism discovery around a concrete unexplained observation, and
+`gated` when the route is waiting on a known prerequisite or discriminating
+test.
+
+A discovery thread need not already have a direct destination consumer, but it
+must fit a short consumer ladder of the form
+`structural theorem -> named intermediary bridge -> load-bearing consumer`.
+Beyond the proposed structural theorem, at most one arrow in that ladder may be
+speculative.  If both the bridge and its connection to the load-bearing
+consumer require new mechanisms, classify the work as foundational probing,
+give it a small explicit incubation budget, and do not imply near-term proof
+movement.
 
 Every finite-case or restricted-class result must state its scope ceiling and
 the exact generalization bridge still required. It advances a uniform parent

@@ -130,6 +130,18 @@ class FrontierPortfolioTest(unittest.TestCase):
         ):
             read_frontier_portfolio(path)
 
+    def test_accepts_probing_without_forward_result(self) -> None:
+        text = portfolio([("FP-01", "First route")])
+        text = text.replace("- **State:** advancing.", "- **State:** probing.")
+        text = text.replace(
+            "- **Last forward result:** a compiling producer interface.",
+            "- **Last forward result:** none on the load-bearing ledger.",
+        )
+        temporary, path = self.write(text)
+        with temporary:
+            entries = read_frontier_portfolio(path)
+        self.assertEqual(entries[0].fields["State"], "probing.")
+
     def test_rejects_noncontiguous_identifiers(self) -> None:
         temporary, path = self.write(portfolio([("FP-02", "Second route")]))
         with temporary, self.assertRaisesRegex(ValueError, "contiguous and ordered"):
