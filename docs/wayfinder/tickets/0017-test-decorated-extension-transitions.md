@@ -148,6 +148,44 @@ mechanisms as gated infrastructure; close this execution card and do not open
 a broad seven-point atlas, asymptotic Suk assembly, or new exact-six certificate
 engineering before the named producer/source gates.
 
+## Four-bridge follow-up resolution
+
+The approved follow-up slate completed on 2026-08-15 with two
+proof-producing slots and two information-gathering slots.
+
+1. `LABEL-LOSS`: the unchanged seven-point descriptor is exactly refuted by
+   rational configurations.  The collision preserves all connector words,
+   all 18 hidden core-link bits, and the source vertical order while reversing
+   the left/right role; only `chi 4 5 6` differs.  The pairwise descendant is
+   expired, and n=8 through n=10 remained unopened.
+2. `CUTSEM-DIFFUSE`: independent provenance replays of the accepted REPAIR and
+   balanced `3+3` contradictions expose no compact reusable semantic join.
+   REPAIR does not use its repair terminal, while the `3+3` stable boundary has
+   2,104 joins across 2,013 patterns.  No candidate was frozen and no Lean
+   premise was added.
+3. `SUK-GEOMETRY-LAND`: `SukRegionGeometry` now produces the exact anchor
+   semantics and transitive two-color law from raw support-region geometry.
+   `sukRegionGeometry_to_fullAnchoredCap` proves full anchor-extended convexity,
+   and the adjacent-chain adapter compiles.  This closes the named local
+   geometry/full-cap dependency in `FP-15.B`.
+4. `ES6-SOURCE-STOP`: the official archive is safe and exactly inventoried,
+   but contains checked cases only through five, dormant `6/17` generator
+   input, and no license, session root, generated formula, proof, or final
+   six-point theorem.  The source-import child is suspended.
+
+**Net proof movement:** forward only on the scoped Suk dependency; neutral on
+the exact destination.  **Evidence:** a compiling Lean theorem suite, two
+independently checked computations, and an exact source audit.  **Difficulty
+displaced:** the Suk route no longer assumes local semantics, transitivity, or
+full-cap promotion; its remaining global adjacent-chain/cardinality producer
+is strictly downstream.  The other three obligations are not smaller.
+**Counterfactual:** knowing these results would have avoided the n=8--10
+pairwise tests, further trace mining, and attempted import from the incomplete
+archive, while still scheduling the Suk theorem.  **Planning consequence:**
+promote `FP-15.B` to its global adjacent-pool gate, expire the tested `FP-13`
+descriptor, require route review for correlated `FP-02/FP-05`, and suspend
+`FP-16`.  No load-bearing ledger edge changed.
+
 ## Evidence
 
 - `docs/wayfinder/tickets/0016-classify-geometric-extension-fibers.md`
@@ -159,11 +197,16 @@ engineering before the named producer/source gates.
 - `runs/reviews/20260815-spike-ferrers-route/REPORT.md`
 - `ErdosSzekeres/TripleColoringExtensionTransition.lean`
 - `ErdosSzekeres/SukRegionChainCupCap.lean`
+- `ErdosSzekeres/SukRegionChainGeometry.lean`
 - `runs/agents/20260815-decorated-transition-slate/link/result.json`
 - `runs/agents/20260815-decorated-transition-slate/atlas/result.json`
 - `runs/agents/20260815-decorated-transition-slate/suk/result.json`
 - `runs/agents/20260815-decorated-transition-slate/es6/result.json`
 - `runs/agents/20260815-decorated-transition-slate/es6/semantic-correspondence.md`
+- `runs/agents/20260815-four-bridge-slate/n7-decorated/result.json`
+- `runs/agents/20260815-four-bridge-slate/cutsem/result.json`
+- `runs/agents/20260815-four-bridge-slate/suk-geometry/result.json`
+- `runs/agents/20260815-four-bridge-slate/es6-source/result.json`
 
 ## Approval and resources
 

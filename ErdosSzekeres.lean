@@ -193,3 +193,4 @@ public import ErdosSzekeres.SukAdjacentRegions
 public import ErdosSzekeres.SukRegionOrder
 public import ErdosSzekeres.SukAdjacentSupportProducer
 public import ErdosSzekeres.SukRegionChainCupCap
+public import ErdosSzekeres.SukRegionChainGeometry

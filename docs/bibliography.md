@@ -23,8 +23,14 @@ repository records.
    (2019), 301--329. Primary/formal, Isabelle/HOL.
    <https://doi.org/10.1007/s10817-017-9423-7>.  The official ARGO downloads
    page advertises the formalization archive as
-   <https://argo.matf.bg.ac.rs/downloads/formalizations/HappyEnding.zip>
-   (located 2026-08-15; archive bytes not yet retrieved or admitted).
+   <https://argo.matf.bg.ac.rs/downloads/formalizations/HappyEnding.zip>.
+   Retrieved and audited 2026-08-15: 42,349 bytes, SHA-256
+   `505e855ae8b9b41fbfb705129ee1935d5b2413f1100484af22e883cf3f371b02`.
+   It contains only `convex.thy`, `Combinatorics.thy`, and
+   `generate-formula.cpp`; the checked theories stop at cases through five,
+   while `6/17` appears only as dormant generator input.  No license, session
+   root, generated formula, checked proof artifact, or final six-point theorem
+   is included, so this archive is not an admitted formal proof of `ES(6)=17`.
 
 ## Upper bounds and proof methods
 

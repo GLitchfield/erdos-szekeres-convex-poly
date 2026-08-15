@@ -108,6 +108,18 @@ These restrictions make the two entries honest scoped intermediaries.  They
 do not alter the assessment that every load-bearing unrestricted upper-bound
 edge remains open.
 
+### Exact-six source follow-up
+
+The official `HappyEnding.zip` was retrieved and exactly audited on
+2026-08-15.  The safe archive contains two Isabelle theories and one formula
+generator, but no license, session root, generated `6/17` formula, proof
+artifact, or final six-point theorem; its checked declarations stop at cases
+through five.  This is an operational source stop, not evidence against
+`ES(6)=17`.  `FP-16` is therefore suspended rather than repeatedly refined.
+It revives only from a complete licensed formal distribution or a separately
+reviewed independent finite-proof packet.  `D-UPPER(6)` remains gated and no
+load-bearing universal edge changed.
+
 ## Evidence
 
 - `docs/wayfinder/proof-distance-assessment-2026-08-14.md`

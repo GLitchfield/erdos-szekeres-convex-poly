@@ -49,84 +49,55 @@ destination edge unless a separate implication is proved.
 | Milestone | Required result | Status | Scope firewall |
 | --- | --- | --- | --- |
 | `Q-UPPER` | A source-authenticated strict uniform improvement over `classical_binomial_upper` | closed | `tothValtr_upper` and `tothValtr_strictly_improves_classical` compile.  Quantitative improvement alone neither closes nor strictly reduces exact `D-UPPER`. |
-| `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | gated | This fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
+| `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | suspended | The advertised source archive is incomplete; this fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
-The bounded decorated-transition card now has a compiling exact abstraction:
-each compatible pair link is a permutation tournament, the connector colors
-are common intervals in both consecutive link orders, and within either block
-the only possible disagreement has one direction.  The admitted through-six
-atlas verifies these laws on all 1,550 two-step cells, but the first link and
-connector blocks do not predict the second: 195 of 310 such classes have more
-than one second permutation.  Source-authenticated left/right and inner/outer
-spike labels first become nonvacuous with seven total points, so this bounded
-outcome refutes connector-only determinism without refuting the decorated
-mechanism.  `FP-13.E` is closed, the parent returns from `probing` to `gated`,
-and a broad seven-point atlas remains unauthorized.  Revival is limited to one
-minimal source-faithful seven-point label/gluing falsifier with a named
-consumer.  Neither `D-HALF`, `D-DECOMP`, nor `D-NORMALIZE` changed.
-The first authenticated local nonstretchability boundary is now kernel-checked:
-`ringelNine_not_rankThreeVectorRealizable` proves that the frozen Ringel
-nine-element alternating sign pattern has no homogeneous rank-three vector
-realization, and the public sweep-realizable and decomposable-carrier
-restriction exclusions compile.  This is a genuine reusable local theorem,
-not merely a model filter.  A source-frozen convention adapter now admits the
-saved family-layer state-567 assignment: independent replay checks all
-17,245,219 clauses and finds 67 Ringel restrictions among all 497,420
-nine-subsets.  This one model lacks the stronger `3x3`/coverage context and is
-not a producer.  A separate source audit finds no supported deterministic
-nine-set selector; grid/incidence-only forcing is refuted by an exact
-realizable control, while the stronger canonical-family/provenance producer
-remains open.  Thus the Ringel work still does not reduce `D-DECOMP`.
-The finite-realizability child now has compiling general
-`IsSweepRealizable -> OneChangeOn` and exact four-point-equivalence theorems.
-Independent finite evidence covers all 62 five-point and 908 six-point
-one-change types using 780 decomposition trees and 190 additional exact
-six-point coordinate witnesses.  Thus no checked local realizability
-restriction appears through six.  Five/six Lean promotion is withheld because
-the consumer audit finds no effect on the nine-local `FP-02.F` obstruction or
-the global 17-point `FP-16` forcing problem.  Exact cell replay also shows that
-one coordinate representative does not determine an order type's rightmost
-extension set.  The exact theorem
-`isSweepRealizable_succ_iff_exists_rightExtensionData` now retains the parent
-realization and characterizes geometric right extension without making that
-invalid quotient.  No current consumer extracts a smaller cell invariant from
-it.  These are boundary and state-design results, not a reduction of `D-HALF`,
-`D-DECOMP`, `D-NORMALIZE`, or exact `D-UPPER`.
-The explicit Tóth--Valtr theorem still closes supporting milestone `Q-UPPER`
-at `choose (2*n-5) (n-2) + 2`.  The local Suk finite checkpoint now also has a
-compiling conditional transitive two-color theorem at the exact binomial
-threshold and a noncircular global-selection-to-certificate consumer.  Its
-transitivity and anchor semantics remain explicit hypotheses, and the local
-output proves anchor convexity for every selected triple rather than convexity
-of the full anchor-extended selected set.  Consequently the next honest gate
-is the one-region geometric semantics/full-cap bridge; only then does the
-global adjacent-chain selector and positive-fraction assembly become active.
-This source-faithful interface work changes no exact ledger edge.
-The predecessor-half selector family is now suspended after its single-cell,
-robust-selector, bounded-exchange, and realization-cell interval descendants
-all failed without reducing the common pivot/support producer.  The existing
-finite fan theorems remain valid; revival requires a genuinely new positive
-producer rather than another selector reformulation.
-`D-UPPER(6)` remains a separate subordinate milestone.  The primary-paper
-audit identifies the exact eight `E*` four-sign patterns with the project's
-one-change law and freezes a route through a six-point weak/strong convexity
-bridge, a 17-vertex finite theorem, the existing planar presentation, and the
-existing lower construction.  The referenced Isabelle/HOL sources and proof
-artifacts are not in the local corpus.  The next gate is therefore bounded
-official-source retrieval and exact theorem/trust-boundary admission, not a
-fresh SAT encoding or certificate build.
+The four-thread slate contained two proof-producing slots and two
+information-gathering slots.  Its sole forward result is scoped to the
+quantitative Suk route: `SukRegionGeometry` now derives the exact two-color
+semantics and transitivity from raw support-region geometry, and
+`sukRegionGeometry_to_fullAnchoredCap` promotes the selected chain to full
+anchor-extended convex position.  The adjacent adapter also compiles.  This
+closes the named local geometry/full-cap producer in `FP-15.B`; the next gate
+is global production of two complementary adjacent chains with an explicit
+cardinality loss.  It changes none of `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
+
+The one authorized seven-point successor to the decorated-transition probe is
+exactly refuted by rational configurations.  Two children have identical
+three connector words, identical 18 hidden core-link bits, and identical
+vertical order, but opposite left/right source roles; their only chirotope
+difference is `chi 4 5 6`.  The pairwise descriptor is therefore expired,
+n=8 through n=10 remain unopened, and any future descendant needs an
+independently motivated ternary mechanism rather than appending the missing
+answer bit.
+
+The accepted REPAIR and balanced `3+3` contradiction proofs were mined under
+two independently checked propagation policies.  REPAIR's empty-clause slice
+uses none of its advertised repair-network terminal clauses.  The `3+3` proof
+omits the existential `3+3` clause and exposes 2,104 stable terminal-to-target
+joins spread across 2,013 order/side patterns.  No reusable predicate with an
+independent producer and exact consumer was found.  This is neutral search
+information: further slicing, tie-break, seed, or certificate work on these
+traces is expired, and the correlated `FP-02`/`FP-05` family requires an
+adversarial route review before another refinement.
+
+The official `HappyEnding.zip` for Marić's Isabelle development was retrieved
+and exactly audited.  Its two theories prove cases only through five, while
+`6/17` occurs only as dormant generator input; the archive has no license,
+session root, generated formula, checked proof, or final six-point theorem.
+`FP-16` is suspended at an operational source stop.  It revives only from a
+complete licensed formal distribution or a separately reviewed independent
+finite-proof packet.  `D-UPPER(6)` and universal `D-UPPER` remain unproved.
 
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
 
-- [Decorated transitions are exact but not connector-deterministic; the Suk
-  chain and exact-six source gates are explicit](tickets/0017-test-decorated-extension-transitions.md):
-  two conditional Lean interfaces compile, the through-six atlas rejects
-  connector-only prediction while leaving a minimal seven-point label test
-  open, and the exact-six branch is gated on retrieving the existing Isabelle
-  source; no load-bearing edge changed.
+- [The pairwise decorated successor is expired, while raw Suk geometry now
+  supplies full anchored caps](tickets/0017-test-decorated-extension-transitions.md):
+  the exact rational seven-point collision loses a genuine ternary color, the
+  one-region Suk geometry/full-cap producer compiles, and the audited exact-six
+  archive is incomplete; no load-bearing edge changed.
 
 - [Geometric right-extension fibers now have exact model boundaries but no
   smaller consumer](tickets/0016-classify-geometric-extension-fibers.md): the

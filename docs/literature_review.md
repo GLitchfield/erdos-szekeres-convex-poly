@@ -189,15 +189,16 @@ characterization of the project's `GeometricRightExtensionFiber`.  A fixed
 coordinate fiber is instead a strict half-plane feasibility problem; planar
 Helly applies only while all constraints share that one realization.
 
-The `ES(6)=17` computation has an Isabelle/HOL formal proof by Filip Marić.  A
-local source audit now identifies Szekeres--Peters's eight four-sign `E*`
-patterns with the project's `TurnSequenceAllowed`/`OneChangeOn` convention and
-separates their consecutive cup--cap convex-six predicate from the repository's
-strong-polygon predicate.  The public planar presentation and lower bound are
-already formalized; the remaining route needs the exact 17-vertex theorem plus
-those two small semantic bridges.  The Isabelle theories and generated proof
-artifacts are absent from the local corpus, so no external theorem has yet been
-admitted into Lean.
+Marić's paper reports an Isabelle/HOL formal proof of `ES(6)=17`.  A local
+source audit identifies Szekeres--Peters's eight four-sign `E*` patterns with
+the project's `TurnSequenceAllowed`/`OneChangeOn` convention and separates
+their consecutive cup--cap convex-six predicate from the repository's
+strong-polygon predicate.  The official `HappyEnding.zip` was retrieved and
+audited on 2026-08-15, but its checked theories stop at cases through five;
+the `6/17` instance appears only as dormant generator input, and the archive
+contains no license, session root, generated formula, proof artifact, or final
+six-point theorem.  The public planar presentation and lower bound are already
+formalized, but no external six-point theorem has been admitted into Lean.
 Recent SAT work on 33 points (`n=7`) is currently a preprint/encoding effort,
 not a proof of `ES(7)=33`. Any future SAT route in this repository must produce
 a certificate checked inside or reduced to Lean's kernel and must separately
@@ -335,8 +336,11 @@ See Roudneff--Sturmfels (1988), DOI `10.1007/BF00151346`, rechecked
 - **Isabelle/HOL, exact cases through six:** Marić's 2019 paper formalizes a
   SAT-based proof of the conjecture for `n ≤ 6`. It validates the finite
   orientation/SAT approach but is not a Lean artifact.  The official ARGO
-  distribution advertises `HappyEnding.zip`; its bytes, license, theorem
-  statement, and trust boundary must be frozen and audited before reuse.
+  `HappyEnding.zip` was retrieved and hash-audited on 2026-08-15.  Its three
+  files contain checked cases only through five and dormant formula-generation
+  code for `6/17`, with no license, session root, generated formula, proof, or
+  final theorem.  A complete licensed distribution or a separately reviewed
+  independent finite proof is required before this route can resume.
 - **Lean 4, Erdős--Tuza--Valtr `(n,4,n)`:** Baek's Apache-2.0 repository states
   its main theorem as `theorem main` and includes a cup--cap theorem. Its
   configuration API is the leading reuse candidate, subject to revision and
