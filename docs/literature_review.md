@@ -135,10 +135,14 @@ caps whose full union is proved convex.  Their disjunction is eliminated by a
 single finite theorem under explicit cardinal hypotheses.  On the source side,
 Lean also constructs a clockwise periodic strict-cap enumeration of any
 supplied finite convex general-position set without changing its carrier.
-What remains is not the local color geometry or branch selection: it is the
-rest of the original Pór--Valtr point-set producer, followed by the
-positive-fraction recurrence and asymptotic assembly.  Thus this is still not
-a formalization of Suk's positive-fraction theorem or asymptotic upper bound.
+Lean now also formalizes the remaining Pór--Valtr source count: an ordered
+alternating support satisfies the exact cyclic open-cell product inequality,
+at least half the cells meet the corrected ceiling-minus-one threshold, and
+all marked pools are packaged on the original input carrier.  An independent
+review checked the source signs, wrap, rounding, factorial cancellation, and
+carrier boundary.  What remains is the distinct positive-fraction parameter
+composition and asymptotic assembly.  Thus this is still not a formalization
+of Suk's positive-fraction theorem or asymptotic upper bound.
 
 ### 4. Equivalent strengthened statements
 

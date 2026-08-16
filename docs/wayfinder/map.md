@@ -52,34 +52,32 @@ destination edge unless a separate implication is proved.
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | suspended | The advertised source archive is incomplete; this fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
-The approved `FP-15.B` branch-closing slate yielded four proof-producing gates
-and four information-gathering preparation/review gates in one serial
-quantitative-cup-cap mechanism family.  The actual-chain consumer, the
-nonadjacent-antichain consumer, and their generic branch integration now
-compile.  The antichain theorem derives its projective order, local caps,
-remote supports, exact disjoint-union cardinality, and whole-union convexity
-without assuming any of them.  An independent source review found no hidden
-branch, selector, target, or circular union premise.  On the source side,
-`exists_clockwiseStrictCapPeriodization` now enumerates and periodizes any
-supplied finite convex general-position set on its original carrier.
+The approved `FP-15.B` source slate added two proof-producing gates and three
+information-gathering control/scout/review gates in the existing
+quantitative-cup-cap mechanism family.  `exists_porValtrSupportProductData`
+now constructs an ordered cyclic support on the original carrier and proves
+the full Pór--Valtr product inequality.  `porValtr_exists_rich_half` extracts
+exactly half the cells at the corrected ceiling-minus-one threshold, and
+`exists_porValtrCyclicSupportData` derives every marked-pool field with
+`carrier = P`.  The independent review reproduced the final module and found
+no sign, wrap, threshold, carrier, import, or trust-boundary mismatch.
 
-**Net proof movement:** forward on `C-chain`, `C-anti`, generic finite branch
-assembly, and one of six frozen `C-source` subobligations.  **Evidence:** four
-targeted compiling modules, standard-only axiom audits, authenticated source
-analysis, deterministic rational controls, and an independent read-only
-formal review.  **Difficulty displaced:** the chain/antichain case split is
-fully consumed and the point-set source obligation count decreases from six
-to five; no target-equivalent premise was introduced.  The actual Pór--Valtr
-support-product/rich-cell/exact-pool producer, positive-fraction recurrence,
-and asymptotic wrapper remain.  **Counterfactual:** knowing these theorems
-before the run removes both global branches and their composition from the
-open route and reduces the source construction by one named stage, so the
-estimated remaining proof work genuinely decreases.  **Planning
-consequence:** retain `FP-15.B` as advancing but gate the next slate on the
-next original-carrier Pór--Valtr source theorem; do not schedule another
-branch adapter or unlock `FP-15.C`.  `D-UPPER`, `D-HALF`, `D-DECOMP`, and
-`D-NORMALIZE` remain open, `D-ASSEMBLE` remains gated, and supporting
-milestone `Q-UPPER` remains closed.
+**Net proof movement:** forward on the scoped `C-source` dependency.  Its
+frozen internal stage count decreases from five to zero in this continuation,
+and ticket 0019's remaining top-level source count decreases from one to zero.
+**Evidence:** two targeted compiling modules, standard-only axiom audits,
+authenticated source analysis, deterministic rational/counting/arithmetic
+controls, and an independent read-only formal review.  **Difficulty
+displaced:** no target-equivalent source premise was introduced; the distinct
+positive-fraction parameter composition and asymptotic wrapper remain.
+**Counterfactual:** knowing these theorems before the run removes the complete
+support-product, rich-cell, exact-pool, and original-carrier packaging work, so
+the remaining `FP-15.B` proof work materially decreases.  **Planning
+consequence:** retain `FP-15.B` as advancing and make the unchanged
+positive-fraction producer/recurrence composition its next theorem gate; do
+not infer an exact-route claim or unlock `FP-15.C` yet.  `D-UPPER`, `D-HALF`,
+`D-DECOMP`, and `D-NORMALIZE` remain open, `D-ASSEMBLE` remains gated, and
+supporting milestone `Q-UPPER` remains closed.
 
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical

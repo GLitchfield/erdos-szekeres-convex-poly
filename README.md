@@ -106,10 +106,14 @@ sets.
   theorem constructs a clockwise periodic strict-cap enumeration of any
   supplied finite general-position convex set on its original carrier, while
   the arithmetic layer repairs the one-point loss in the authenticated
-  Pór--Valtr count for `k >= 13` under an explicit large-`N` hypothesis.  This
-  remains a partial formalization: the Pór--Valtr construction producing the
-  required raw pools from an arbitrary large point set, the positive-fraction
-  recurrence, and Suk's asymptotic upper bound are open.
+  Pór--Valtr count for `k >= 13` under an explicit large-`N` hypothesis.  The
+  source construction is now complete as a separate formal layer:
+  `exists_porValtrSupportProductData` proves the exact cyclic support-product
+  inequality on the original carrier, `porValtr_exists_rich_half` extracts the
+  corrected ceiling-minus-one rich cells, and
+  `exists_porValtrCyclicSupportData` packages every required marked pool with
+  `carrier = P`.  This remains a partial formalization: the positive-fraction
+  parameter composition and Suk's asymptotic upper bound are open.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

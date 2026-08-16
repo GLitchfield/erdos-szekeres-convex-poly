@@ -1212,53 +1212,62 @@ that deserves independent retention and scheduling consideration.
   the resulting disjunction without a branch or target premise.  Independently,
   `exists_clockwiseStrictCapPeriodization` now enumerates a supplied finite
   convex general-position set on its original carrier and periodizes it with
-  every increasing triple negative; this closes one of six frozen source
-  obligations without reviving x-sort.
-- **Missing generalization bridge:** formalize the actual Pór--Valtr point-set
-  producer into `PorValtrCyclicSupportData`.  Clockwise original-carrier
-  periodization is complete, but the support-product witness, natural-number
-  rich-cell extraction, exact pool packaging, and final source assembly remain.
-  After that producer, the positive-fraction recurrence and asymptotic assembly
-  remain.  An exact-route claim still needs a separate parameterized theorem
-  consumed by `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
+  every increasing triple negative.  The rest of the source producer now
+  compiles as well.  `exists_porValtrSupportProductData` proves the full
+  original-carrier cyclic support-product inequality by ordered-even-support
+  double counting, exact wrap geometry, disjoint cells, and odd-point
+  reconstruction.  `porValtr_exists_rich_half` proves the generic
+  ceiling-minus-one rich-cell extraction, and
+  `exists_porValtrCyclicSupportData` packages every marked source field with
+  `carrier = P`.  An independent formal review reproduced the final module and
+  accepted its statements, signs, threshold, carrier, import DAG, and trust
+  boundary.
+- **Missing generalization bridge:** compose the completed original-carrier
+  source object with `PorValtrCyclicSupportData.toSukConsecutiveRawPools`, the
+  compiled global branch theorem, the density-slack lemma, and explicit
+  parameter choices into the next positive-fraction theorem.  The asymptotic
+  assembly remains after that.  An exact-route claim still needs a separate
+  parameterized theorem consumed by `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
 - **Last forward result:** supporting milestone `Q-UPPER` remains closed by the
   unconditional theorem `tothValtr_upper`.  Within `FP-15.B`, the latest
-  forward results are the compiling chain and antichain consumers, their exact
-  generic integration theorem, and the original-carrier clockwise
-  periodization theorem.  The branch obligations are closed, their composition
-  count decreases from one to zero, and the frozen source obligations decrease
-  from six to five.  The source correction, rejected x-sort adapter, and
-  independent source review are neutral search/review information rather than
-  separate proof movement.  No load-bearing exact-conjecture edge changed.
-- **Downstream consumer:** construct the remaining original-carrier
-  Pór--Valtr support-product/rich-cell/exact-pool data and feed it through
-  `PorValtrCyclicSupportData.toSukConsecutiveRawPools` and the compiled global
-  branch theorem.  Its common downstream consumer is Suk's finite
-  positive-fraction architecture.  Any claim on the exact route still requires
-  a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
+  forward result is the compiling original-carrier Pór--Valtr source producer:
+  the support-product, rich-half, and final cyclic-support theorems close
+  `C-source`.  Ticket 0019's branch/source obligation count decreases from
+  three to zero, and its source-stage count decreases from six to zero.  The
+  finite controls, representation scout, and independent formal review are
+  neutral search/review information rather than separate proof movement.  No
+  load-bearing exact-conjecture edge changed.
+- **Downstream consumer:** feed `exists_porValtrCyclicSupportData` through
+  `PorValtrCyclicSupportData.toSukConsecutiveRawPools` and
+  `SukConsecutiveRawPools.containsConvexSubset_of_globalParameters`, with the
+  explicit positive-fraction parameter recurrence and density conversion.
+  Any claim on the exact route still requires a theorem into `D-HALF`,
+  `D-DECOMP`, or `D-NORMALIZE`.
 - **Open obstruction:** the local geometry, recurrence, cyclic transport, and
   global chain/antichain selection, both branch consumers, and finite branch
-  integration are formal.  The repository has not yet formalized the remaining
-  primary Pór--Valtr support-product and rich-cell construction that produces
-  the cyclic source data from a sufficiently large point set.  The
-  positive-fraction recurrence and asymptotic bound remain open.
-- **Next discriminating gate:** freeze the next original-carrier Pór--Valtr
-  source theorem after clockwise periodization: the finite support-polygon and
-  alternating-support product witness, with exact carrier membership and the
-  corrected open-cell count.  It must be immediately consumed by the frozen
-  rich-cell stage and strictly reduce the five remaining source obligations;
-  do not begin asymptotic optimization first.
-- **Success payoff:** completing the source-data producer would let the now
-  compiled global finite theorem apply to an arbitrary sufficiently large
-  point set and make the positive-fraction recurrence the next direct target.
-  Only a completed Suk architecture unlocks the point-specialized current-best
-  bound.
+  integration and full original-carrier Pór--Valtr source producer are formal.
+  The remaining obstruction is the quantitative positive-fraction parameter
+  theorem that simultaneously instantiates the raw-pool length, pool-size,
+  chain/antichain, carry, and final-size inequalities; the asymptotic bound
+  remains after it.
+- **Next discriminating gate:** freeze one theorem that consumes
+  `exists_porValtrCyclicSupportData` and proves the explicit finite
+  positive-fraction consequence by composing the cyclic raw-pool bridge,
+  global branch consumer, and density slack at source-authenticated parameter
+  values.  It must not assume raw pools, a branch, a target convex subset, or
+  any of the global cardinal inequalities it is meant to discharge.  Do not
+  begin asymptotic constant optimization first.
+- **Success payoff:** this composition would turn the now-complete point-set
+  source and global finite consumer into a uniform positive-fraction theorem,
+  leaving the asymptotic wrapper as the next direct target.  Only a completed
+  Suk architecture unlocks the point-specialized current-best bound.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
   parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
   no longer parked at the local certificate, one-region semantics/full-cap,
   recurrence, cyclic support transport, or global Dilworth/path producers;
-  those edges and both branch consumers are complete.  It remains bounded by
-  the Pór--Valtr point-set producer and positive-fraction assembly.
+  those edges, both branch consumers, and the Pór--Valtr point-set producer are
+  complete.  It remains bounded by positive-fraction parameter assembly and
+  the asymptotic wrapper.
   Arithmetic, a restated certificate, or asymptotic bookkeeping alone is not
   progress.  Revive exact-route use of the frame only with a theorem-shaped
   consumer into a named load-bearing edge.
@@ -1554,10 +1563,11 @@ parent unless promoted.
   transport, and global chain-run-or-antichain-packing theorem now compile as
   well.  Both global branch consumers and their finite integration theorem now
   compile, including the derived nonadjacent cap-union convexity argument.
-  Original-carrier clockwise periodization closes one of six frozen source
-  stages.  The child is gated at the remaining source-authentic point-set
-  producer for `PorValtrCyclicSupportData`, followed by the positive-fraction
-  recurrence and asymptotic assembly.
+  The original-carrier Pór--Valtr source is now complete: clockwise
+  periodization, the cyclic support-product inequality, generic rich-half
+  extraction, and exact `PorValtrCyclicSupportData` packaging all compile.  The
+  child is gated at the positive-fraction parameter composition followed by
+  asymptotic assembly.
 - **FP-15.C — Point-specialized current-best upper bound.**  Locked behind a
   compiling Suk architecture.  Formalize the point-set specialization of the
   Holmsen--Mojarrad--Pach--Tardos spike and two-partial-order proof through an

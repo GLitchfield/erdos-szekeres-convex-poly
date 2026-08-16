@@ -2,7 +2,7 @@
 title: Close the Suk global branches and point-set source producer
 type: research
 mode: AFK
-status: open
+status: closed
 claim: codex-suk-branch-closing-2026-08-15
 blocked_by: none
 ---
@@ -39,11 +39,12 @@ or a preselected branch.  A local helper counts only when it is consumed in
 the same module or by an already-frozen downstream theorem and strictly
 reduces the remaining dependency count.
 
-After the approved run, `C-chain` and `C-anti` are closed and their generic
-finite disjunction is eliminated.  One of six frozen `C-source` stages is also
-closed.  Thus the ticket's three top-level branch/source obligations decrease
-from three to one, while the internal source-stage count decreases from six to
-five.  The remaining top-level obligation is `C-source`.
+After the two approved runs, `C-chain`, `C-anti`, and `C-source` are closed and
+the generic finite branch disjunction is eliminated.  Thus the ticket's three
+top-level branch/source obligations decrease from three to zero, while the
+internal source-stage count decreases from six to zero.  The distinct
+positive-fraction parameter assembly and asymptotic wrapper lie downstream of
+this ticket and remain open.
 
 ## Approved execution slate
 
@@ -124,21 +125,29 @@ The conditional integration gate reached `SUK-GLOBAL-BRANCH-LAND`:
 the chain/antichain disjunction under the frozen finite arithmetic hypotheses.
 It adds no selected cap, selector, branch, or target premise.
 
-Thread C did not complete the full point-set producer.  Its source audit froze
-six honest original-carrier obligations, and the first admitted implementation
-gate reached `PV-PERIODIZATION-LAND`:
+Thread C first froze six honest original-carrier obligations and reached
+`PV-PERIODIZATION-LAND`:
 `exists_clockwiseStrictCapPeriodization` constructs a periodic strict-cap
 enumeration of any supplied finite convex general-position set without x-sort
-or a carrier transformation.  This is forward on one source subdependency,
-but `C-source` still requires the support-product, rich-cell, and exact-pool
-packaging stages.
+or a carrier transformation.  The approved continuation then reached
+`PV-SUPPORT-PRODUCT-LAND` and `PV-POINTSET-PRODUCER-LAND`.
+`exists_porValtrSupportProductData` proves the full cyclic open-cell product
+bound from an arbitrary sufficiently large general-position point set, using
+an ordered-even-support double count and exact odd-point reconstruction.
+`porValtr_exists_rich_half` extracts exactly `r` rich cells at the corrected
+ceiling-minus-one threshold, and `exists_porValtrCyclicSupportData` packages
+every source field with `carrier = P`.  A separate read-only review reached
+`PV-SOURCE-REVIEW-PASS` and reproduced the final producer directly.
 
-Do not begin asymptotic constant optimization or an exact `D-UPPER` claim
-before `C-source` and the later positive-fraction producer close unchanged.
+Do not infer an asymptotic or exact `D-UPPER` claim from this closure.  The next
+gate is the unchanged positive-fraction parameter theorem that composes the
+source data, raw-pool bridge, compiled global branch theorem, and density
+slack; the asymptotic wrapper remains after it.
 
-All eight task/result pairs validate, the independent formal review passed,
-the umbrella imports and strategic documents are reconciled, and `make test`
-passes.  Root alone owns the exact-file commit and push to
+All eight prior task/result pairs and all five continuation pairs validate,
+both independent formal reviews passed, the umbrella imports and strategic
+documents are reconciled, and `make test` passes.  Root alone owns the
+exact-file commit and push to
 `origin/codex/state-578-tree-reservoir`.
 
 ## Innovation and review decision
@@ -165,13 +174,18 @@ ticket and review.
 
 ## Resolution
 
-Open at `C-source`.  Net proof movement is forward on `C-chain`, `C-anti`,
-generic finite branch assembly, and one frozen `C-source` subdependency.  The
-counterfactual test is positive: these compiling theorems remove both global
-cases and reduce the source-stage count without relocating them into new
-premises.  Planning consequence: retain `FP-15.B`, expire further
-branch-adapter work, and make the next bounded gate an original-carrier
-Pór--Valtr source theorem.  `D-UPPER`, `D-HALF`, `D-DECOMP`, and
+Closed.  Net proof movement is forward on `C-chain`, `C-anti`, generic finite
+branch assembly, and `C-source`; their top-level obligation count decreases
+from three to zero and the frozen source-stage count decreases from six to
+zero.  The counterfactual test is positive: the compiling theorems remove both
+global cases and the full original-carrier source producer without relocating
+them into supplied selectors, cells, pools, or target objects.  Evidence is
+compiling Lean theorems, targeted builds, standard-only axiom audits,
+deterministic controls, and an independent formal review.  Difficulty
+displaced: none within this ticket; the separate positive-fraction parameter
+assembly and asymptotic wrapper remain.  Planning consequence: retain
+`FP-15.B` as advancing and make that unchanged positive-fraction composition
+the next bounded theorem gate.  `D-UPPER`, `D-HALF`, `D-DECOMP`, and
 `D-NORMALIZE` remain open, `D-ASSEMBLE` remains gated, and no load-bearing
 destination edge has changed.
 
@@ -181,5 +195,8 @@ destination edge has changed.
 - `ErdosSzekeres/SukAntichainUnionConsumer.lean`
 - `ErdosSzekeres/SukGlobalBranchConsumer.lean`
 - `ErdosSzekeres/PorValtrClockwisePeriodization.lean`
+- `ErdosSzekeres/PorValtrSupportProduct.lean`
+- `ErdosSzekeres/PorValtrPointSetProducer.lean`
 - Schema-valid task/results and independent controls under ignored
-  `runs/agents/20260815-suk-branch-closing-slate/`
+  `runs/agents/20260815-suk-branch-closing-slate/` and
+  `runs/agents/20260816-por-valtr-source-slate/`

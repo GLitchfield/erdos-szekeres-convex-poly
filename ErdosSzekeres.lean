@@ -207,3 +207,5 @@ public import ErdosSzekeres.PorValtrClockwisePeriodization
 public import ErdosSzekeres.SukChainRunConsumer
 public import ErdosSzekeres.SukAntichainUnionConsumer
 public import ErdosSzekeres.SukGlobalBranchConsumer
+public import ErdosSzekeres.PorValtrSupportProduct
+public import ErdosSzekeres.PorValtrPointSetProducer
