@@ -1202,55 +1202,63 @@ that deserves independent retention and scheduling consideration.
   Pór--Valtr supplies `ceil (N / 2^(32*r)) - 1` interior points, not Suk's
   literal region-only ceiling; an exact `r=4` rational control also refutes the
   unchanged-coordinate x-sorted adapter while leaving the cyclic mechanism
-  intact.
+  intact.  The two global branches and their composition now compile as well.
+  `SukConsecutiveRawPools.containsConvexSubset_or_antichainPacking` maps actual
+  chain witnesses into the adjacent recurrence.  The antichain module derives
+  a canonical projective order, applies the exact cup--cap threshold, produces
+  base-supported caps, and proves their entire nonadjacent union convex with
+  exact cardinality.  The generic theorem
+  `SukConsecutiveRawPools.containsConvexSubset_of_globalParameters` eliminates
+  the resulting disjunction without a branch or target premise.  Independently,
+  `exists_clockwiseStrictCapPeriodization` now enumerates a supplied finite
+  convex general-position set on its original carrier and periodizes it with
+  every increasing triple negative; this closes one of six frozen source
+  obligations without reviving x-sort.
 - **Missing generalization bridge:** formalize the actual Pór--Valtr point-set
-  producer into `PorValtrCyclicSupportData`, then consume both branches of the
-  compiled global split.  The chain branch still needs a value-preserving
-  subtype-to-point-pool adapter with the exact cardinal parameters required by
-  `sukConsecutiveChainPools_containsConvexSubset`.  The antichain branch needs
-  a theorem combining pairwise nonadjacent antichain-rich regions into the
-  required cap.  Positive-fraction recurrence and asymptotic assembly remain
-  after those consumers.  An exact-route claim still needs a separate
-  parameterized theorem consumed by `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
+  producer into `PorValtrCyclicSupportData`.  Clockwise original-carrier
+  periodization is complete, but the support-product witness, natural-number
+  rich-cell extraction, exact pool packaging, and final source assembly remain.
+  After that producer, the positive-fraction recurrence and asymptotic assembly
+  remain.  An exact-route claim still needs a separate parameterized theorem
+  consumed by `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
 - **Last forward result:** supporting milestone `Q-UPPER` remains closed by the
   unconditional theorem `tothValtr_upper`.  Within `FP-15.B`, the latest
-  forward result is the compiling global raw-pool theorem
-  `SukConsecutiveRawPools.chainRun_or_antichainPacking`.  Together with the
-  compiled cyclic raw-pool bridge, it closes the predeclared
-  selected-block-to-global-Dilworth dependency and strictly reduces scoped
-  dependency depth to two explicit branch consumers.  The source mismatch and
-  rejected x-sorted adapter are neutral search information, not proof
-  movement.  No load-bearing exact-conjecture edge changed.
-- **Downstream consumer:** first convert the global split's consecutive chain
-  witnesses into `SukConsecutiveChainPools` and invoke the compiled iteration;
-  separately prove the nonadjacent-antichain union/cap theorem.  Their common
-  downstream consumer is Suk's finite positive-fraction architecture.  Any
-  claim on the exact route still requires a theorem into `D-HALF`, `D-DECOMP`,
-  or `D-NORMALIZE`.
+  forward results are the compiling chain and antichain consumers, their exact
+  generic integration theorem, and the original-carrier clockwise
+  periodization theorem.  The branch obligations are closed, their composition
+  count decreases from one to zero, and the frozen source obligations decrease
+  from six to five.  The source correction, rejected x-sort adapter, and
+  independent source review are neutral search/review information rather than
+  separate proof movement.  No load-bearing exact-conjecture edge changed.
+- **Downstream consumer:** construct the remaining original-carrier
+  Pór--Valtr support-product/rich-cell/exact-pool data and feed it through
+  `PorValtrCyclicSupportData.toSukConsecutiveRawPools` and the compiled global
+  branch theorem.  Its common downstream consumer is Suk's finite
+  positive-fraction architecture.  Any claim on the exact route still requires
+  a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
 - **Open obstruction:** the local geometry, recurrence, cyclic transport, and
-  global chain/antichain selection are formal.  The two global branches do not
-  yet conclude the required convex subset, and the repository has not yet
-  formalized the primary Pór--Valtr point-set construction that produces the
-  cyclic source data.  The positive-fraction recurrence and asymptotic bound
-  remain open.
-- **Next discriminating gate:** freeze a theorem converting the chain-run
-  branch's actual subtype chain witnesses into point pools satisfying
-  `SukConsecutiveChainPools`, with exact lower cardinality and no preselected
-  convex subset, then invoke `sukConsecutiveChainPools_containsConvexSubset`.
-  This closes one branch of the compiled global split.  In parallel planning,
-  state—but do not weaken—the nonadjacent-antichain union theorem that must
-  close the other branch.  Do not begin asymptotic optimization first.
-- **Success payoff:** closing the chain-run consumer removes one branch of the
-  global alternative; closing the antichain consumer and formalizing the
-  source-data producer would make the positive-fraction recurrence the next
-  direct target.  Only a completed Suk architecture unlocks the
-  point-specialized current-best bound.
+  global chain/antichain selection, both branch consumers, and finite branch
+  integration are formal.  The repository has not yet formalized the remaining
+  primary Pór--Valtr support-product and rich-cell construction that produces
+  the cyclic source data from a sufficiently large point set.  The
+  positive-fraction recurrence and asymptotic bound remain open.
+- **Next discriminating gate:** freeze the next original-carrier Pór--Valtr
+  source theorem after clockwise periodization: the finite support-polygon and
+  alternating-support product witness, with exact carrier membership and the
+  corrected open-cell count.  It must be immediately consumed by the frozen
+  rich-cell stage and strictly reduce the five remaining source obligations;
+  do not begin asymptotic optimization first.
+- **Success payoff:** completing the source-data producer would let the now
+  compiled global finite theorem apply to an arbitrary sufficiently large
+  point set and make the positive-fraction recurrence the next direct target.
+  Only a completed Suk architecture unlocks the point-specialized current-best
+  bound.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
   parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
   no longer parked at the local certificate, one-region semantics/full-cap,
   recurrence, cyclic support transport, or global Dilworth/path producers;
-  those edges are complete.  It remains bounded by the two branch consumers,
-  the Pór--Valtr point-set producer, and positive-fraction assembly.
+  those edges and both branch consumers are complete.  It remains bounded by
+  the Pór--Valtr point-set producer and positive-fraction assembly.
   Arithmetic, a restated certificate, or asymptotic bookkeeping alone is not
   progress.  Revive exact-route use of the frame only with a theorem-shaped
   consumer into a named load-bearing edge.
@@ -1544,11 +1552,12 @@ parent unless promoted.
   supporting-pair fields without assuming them.  The raw one-region geometry,
   exact adjacent recurrence, indexed chain-rich iteration, cyclic marked-pool
   transport, and global chain-run-or-antichain-packing theorem now compile as
-  well.  The child is gated at consuming both global branches: convert the
-  chain witnesses into the exact recurrence pools, and combine separated
-  antichain witnesses into the required cap.  A source-authentic point-set
-  producer for `PorValtrCyclicSupportData`, the positive-fraction recurrence,
-  and asymptotic assembly remain open.
+  well.  Both global branch consumers and their finite integration theorem now
+  compile, including the derived nonadjacent cap-union convexity argument.
+  Original-carrier clockwise periodization closes one of six frozen source
+  stages.  The child is gated at the remaining source-authentic point-set
+  producer for `PorValtrCyclicSupportData`, followed by the positive-fraction
+  recurrence and asymptotic assembly.
 - **FP-15.C — Point-specialized current-best upper bound.**  Locked behind a
   compiling Suk architecture.  Formalize the point-set specialization of the
   Holmsen--Mojarrad--Pach--Tardos spike and two-partial-order proof through an

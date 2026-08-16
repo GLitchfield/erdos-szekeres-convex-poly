@@ -52,29 +52,34 @@ destination edge unless a separate implication is proved.
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | suspended | The advertised source archive is incomplete; this fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
-The approved expanded `FP-15.B` block contained nine proof-producing gates and
-three information-gathering gates.  All belonged to the quantitative-cup-cap
-family; this deliberate concentration implemented one source-reviewed serial
-theorem ladder rather than treating its dependent components as independent
-route bets.  The adjacent recurrence, indexed chain-rich iteration, path
-dichotomy, antichain base separation, marked-edge selection, cyclic support
-contraction, raw Pór--Valtr-to-Suk pool bridge, global Dilworth/path split, and
-rounding-slack theorem now compile.  The primary-source audit corrected the
-open-region count to `ceil (N / 2^(32*r)) - 1`, and an exact rational falsifier
-retired only the unchanged-coordinate x-sorted adapter.
+The approved `FP-15.B` branch-closing slate yielded four proof-producing gates
+and four information-gathering preparation/review gates in one serial
+quantitative-cup-cap mechanism family.  The actual-chain consumer, the
+nonadjacent-antichain consumer, and their generic branch integration now
+compile.  The antichain theorem derives its projective order, local caps,
+remote supports, exact disjoint-union cardinality, and whole-union convexity
+without assuming any of them.  An independent source review found no hidden
+branch, selector, target, or circular union premise.  On the source side,
+`exists_clockwiseStrictCapPeriodization` now enumerates and periodizes any
+supplied finite convex general-position set on its original carrier.
 
-**Net proof movement:** forward on predeclared `FP-15.B` subdependencies.
-**Evidence:** nine targeted compiling modules, authenticated source audit, and
-independently checked finite controls.  **Difficulty displaced:** local
-recurrence, cyclic transport, global chain/antichain selection, and rounding
-are closed; the actual point-set source producer and both global branch
-consumers remain.  **Counterfactual:** these theorems strictly reduce the
-quantitative route's dependency depth, whereas the source mismatch and
-falsifier alone are neutral search information.  **Planning consequence:**
-retain `FP-15.B` as advancing at the chain-run consumer; do not unlock
-`FP-15.C`.  No load-bearing destination dependency changed: `D-UPPER`,
-`D-HALF`, `D-DECOMP`, and `D-NORMALIZE` remain open, `D-ASSEMBLE` remains
-gated, and supporting milestone `Q-UPPER` remains closed.
+**Net proof movement:** forward on `C-chain`, `C-anti`, generic finite branch
+assembly, and one of six frozen `C-source` subobligations.  **Evidence:** four
+targeted compiling modules, standard-only axiom audits, authenticated source
+analysis, deterministic rational controls, and an independent read-only
+formal review.  **Difficulty displaced:** the chain/antichain case split is
+fully consumed and the point-set source obligation count decreases from six
+to five; no target-equivalent premise was introduced.  The actual Pór--Valtr
+support-product/rich-cell/exact-pool producer, positive-fraction recurrence,
+and asymptotic wrapper remain.  **Counterfactual:** knowing these theorems
+before the run removes both global branches and their composition from the
+open route and reduces the source construction by one named stage, so the
+estimated remaining proof work genuinely decreases.  **Planning
+consequence:** retain `FP-15.B` as advancing but gate the next slate on the
+next original-carrier Pór--Valtr source theorem; do not schedule another
+branch adapter or unlock `FP-15.C`.  `D-UPPER`, `D-HALF`, `D-DECOMP`, and
+`D-NORMALIZE` remain open, `D-ASSEMBLE` remains gated, and supporting
+milestone `Q-UPPER` remains closed.
 
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical

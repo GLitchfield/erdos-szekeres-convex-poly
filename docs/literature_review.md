@@ -128,11 +128,17 @@ x-sorted extraction is false, but a source-faithful cyclic replacement does
 compile: marked-edge block selection and strict-cap support contraction produce
 `r-3` raw consecutive support pools without cardinality loss.  A global Lean
 theorem then applies the local Dilworth alternative to every pool and returns
-actual witnesses for one of the two global branches.  What remains is not the
-local color geometry: it is the original point-set producer, the chain-run
-recurrence adapter, the nonadjacent-antichain union theorem, and the final
-positive-fraction/asymptotic assembly.  Thus this is still not a formalization
-of Suk's positive-fraction theorem or asymptotic upper bound.
+actual witnesses for one of the two global branches.  Both branches now have
+compiling consumers: actual chain runs feed the adjacent-pool recurrence, while
+pairwise nonadjacent actual antichains yield internally selected base-supported
+caps whose full union is proved convex.  Their disjunction is eliminated by a
+single finite theorem under explicit cardinal hypotheses.  On the source side,
+Lean also constructs a clockwise periodic strict-cap enumeration of any
+supplied finite convex general-position set without changing its carrier.
+What remains is not the local color geometry or branch selection: it is the
+rest of the original Pór--Valtr point-set producer, followed by the
+positive-fraction recurrence and asymptotic assembly.  Thus this is still not
+a formalization of Suk's positive-fraction theorem or asymptotic upper bound.
 
 ### 4. Equivalent strengthened statements
 

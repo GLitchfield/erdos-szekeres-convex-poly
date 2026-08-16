@@ -203,3 +203,7 @@ public import ErdosSzekeres.SukCyclicSupportContraction
 public import ErdosSzekeres.PorValtrCyclicSupportBridge
 public import ErdosSzekeres.SukConsecutiveDilworth
 public import ErdosSzekeres.PorValtrDensitySlack
+public import ErdosSzekeres.PorValtrClockwisePeriodization
+public import ErdosSzekeres.SukChainRunConsumer
+public import ErdosSzekeres.SukAntichainUnionConsumer
+public import ErdosSzekeres.SukGlobalBranchConsumer

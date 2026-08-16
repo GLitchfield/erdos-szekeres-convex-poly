@@ -99,12 +99,17 @@ sets.
   selection, strict-cap support-cell contraction, and a source-shaped bridge
   to raw consecutive support pools without cardinality loss.  The global
   theorem `SukConsecutiveRawPools.chainRun_or_antichainPacking` then produces
-  actual chain or antichain witnesses from those raw pools.  A separate
-  arithmetic theorem repairs the one-point loss in the authenticated
+  actual chain or antichain witnesses from those raw pools.  Both branches now
+  have compiling consumers, and
+  `SukConsecutiveRawPools.containsConvexSubset_of_globalParameters` eliminates
+  their disjunction under explicit finite cardinal parameters.  A separate
+  theorem constructs a clockwise periodic strict-cap enumeration of any
+  supplied finite general-position convex set on its original carrier, while
+  the arithmetic layer repairs the one-point loss in the authenticated
   Pór--Valtr count for `k >= 13` under an explicit large-`N` hypothesis.  This
-  remains a partial formalization: the Pór--Valtr point-set producer, the
-  chain-run-to-recurrence adapter, the nonadjacent-antichain union theorem, the
-  positive-fraction recurrence, and Suk's asymptotic upper bound are open.
+  remains a partial formalization: the Pór--Valtr construction producing the
+  required raw pools from an arbitrary large point set, the positive-fraction
+  recurrence, and Suk's asymptotic upper bound are open.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

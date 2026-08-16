@@ -2631,13 +2631,24 @@ internal `r-3` raw support pools without cardinality loss.
 Finally, `SukConsecutiveRawPools.chainRun_or_antichainPacking` composes the raw
 geometry, finite Dilworth theorem, and path dichotomy.  It returns either a
 pairwise nonadjacent family of actual antichain witnesses or a consecutive run
-of actual chain witnesses.  This strictly reduces the scoped `FP-15.B`
-dependency depth, but it changes no load-bearing exact-conjecture edge.  The
-next formal consumers are (i) converting a chain run into the exact point-pool
-recurrence with its cardinal parameters and (ii) proving that the separated
-antichain witnesses combine into the required cap.  The source-level
-Pór--Valtr point-set producer, positive-fraction recurrence, and asymptotic
-assembly remain open.
+of actual chain witnesses.  Both formal consumers now compile.
+`SukConsecutiveRawPools.containsConvexSubset_or_antichainPacking` maps a chain
+run into the exact adjacent-pool recurrence while preserving the original
+carrier.  The antichain consumer derives a common projective order from raw
+signs, applies the exact cup--cap threshold, constructs base-supported caps,
+and proves their whole nonadjacent union convex by a supporting-line argument.
+`SukConsecutiveRawPools.containsConvexSubset_of_globalParameters` then
+eliminates the two branches under explicit finite arithmetic hypotheses.
+
+The source producer has one additional compiling stage:
+`exists_clockwiseStrictCapPeriodization` enumerates a supplied finite convex
+general-position set on its original carrier and periodizes the enumeration
+with all increasing triples negative.  This removes one of the six frozen
+source obligations without reviving the rejected x-sorted adapter.  The
+remaining Pór--Valtr support-product, rich-cell, and exact-pool packaging
+stages, followed by the positive-fraction recurrence and asymptotic assembly,
+remain open.  These scoped forward results change no load-bearing
+exact-conjecture edge.
 
 ### FP-15.C: point-specialized current-best bound
 
