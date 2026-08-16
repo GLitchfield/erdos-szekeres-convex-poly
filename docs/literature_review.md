@@ -140,9 +140,18 @@ alternating support satisfies the exact cyclic open-cell product inequality,
 at least half the cells meet the corrected ceiling-minus-one threshold, and
 all marked pools are packaged on the original input carrier.  An independent
 review checked the source signs, wrap, rounding, factorial cancellation, and
-carrier boundary.  What remains is the distinct positive-fraction parameter
-composition and asymptotic assembly.  Thus this is still not a formalization
-of Suk's positive-fraction theorem or asymptotic upper bound.
+carrier boundary.  The positive-fraction parameter composition and asymptotic
+assembly now compile too.  For every `n >= 65`, Lean proves the exact bound
+
+```text
+ES(n) <= 2^(n + 64*(sukCubeScale n)^2*clog_2(3*n) + 128),
+```
+
+where `sukCubeScale n` is the least natural `s` with `n <= s^3`; a separate
+certificate bounds the cube of `s^2` by `64*n^2`.  This is a conservative
+formal realization of Suk's `2^(n+O(n^(2/3) log n))` method, not a reproduction
+of its optimized constant and not progress on the exact threshold.  The
+stronger Holmsen--Mojarrad--Pach--Tardos error term remains unformalized here.
 
 ### 4. Equivalent strengthened statements
 

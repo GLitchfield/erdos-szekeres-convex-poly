@@ -112,8 +112,14 @@ sets.
   inequality on the original carrier, `porValtr_exists_rich_half` extracts the
   corrected ceiling-minus-one rich cells, and
   `exists_porValtrCyclicSupportData` packages every required marked pool with
-  `carrier = P`.  This remains a partial formalization: the positive-fraction
-  parameter composition and Suk's asymptotic upper bound are open.
+  `carrier = P`.  The remaining positive-fraction layers now compile as well.
+  `sukPositiveFraction_forces_threshold` instantiates every natural parameter
+  and composes the source with both global branch consumers, while
+  `suk_explicit_upper` proves for every `n >= 65` the concrete bound
+  `2^(n + 64*(sukCubeScale n)^2*Nat.clog 2 (3*n) + 128)`.  This completes the
+  project's conservative formalization of Suk's
+  `2^(n+O(n^(2/3) log n))` route; it neither reproduces the optimized published
+  constant nor changes the open exact Erdős--Szekeres upper-bound edge.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

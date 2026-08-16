@@ -2640,20 +2640,33 @@ and proves their whole nonadjacent union convex by a supporting-line argument.
 `SukConsecutiveRawPools.containsConvexSubset_of_globalParameters` then
 eliminates the two branches under explicit finite arithmetic hypotheses.
 
-The source producer has one additional compiling stage:
-`exists_clockwiseStrictCapPeriodization` enumerates a supplied finite convex
-general-position set on its original carrier and periodizes the enumeration
-with all increasing triples negative.  This removes one of the six frozen
-source obligations without reviving the rejected x-sorted adapter.  The
-remaining Pór--Valtr support-product, rich-cell, and exact-pool packaging
-stages, followed by the positive-fraction recurrence and asymptotic assembly,
-remain open.  These scoped forward results change no load-bearing
-exact-conjecture edge.
+**Integrated result — `SUK-EXPLICIT-UPPER-LAND`.**  The source and quantitative
+layers are now complete.  The clockwise
+periodization, `exists_porValtrSupportProductData`,
+`porValtr_exists_rich_half`, and `exists_porValtrCyclicSupportData` construct
+the exact marked pools on the original carrier.  The strengthened bridge
+`toSukConsecutiveRawPoolsWithCarrier` retains their membership in that carrier.
+`sukPositiveFractionParameters_valid` then proves every rounding-safe finite
+parameter, and `sukPositiveFraction_forces_threshold` composes the source,
+density conversion, and branch consumer without assuming a pool, branch,
+selected subset, or global inequality.
+
+Finally, `sukCubeScale_sq_cube_le` controls the least cubic scale and
+`suk_explicit_upper` proves, for every `n >= 65`, the exact forcing exponent
+
+```text
+n + 64*(sukCubeScale n)^2*Nat.clog 2 (3*n) + 128.
+```
+
+This closes the scoped `FP-15.B` positive-fraction ladder.  It formalizes one
+conservative `2^(n+O(n^(2/3) log n))` bound, not Suk's optimized constant, and
+changes no load-bearing exact-conjecture edge.
 
 ### FP-15.C: point-specialized current-best bound
 
-This child is locked until the Suk architecture compiles.  Specialize the
-Holmsen--Mojarrad--Pach--Tardos proof to ordinary planar points before
+This child is now unlocked by the compiling Suk architecture, but no
+Holmsen--Mojarrad--Pach--Tardos layer has yet been admitted.  Specialize that
+proof to ordinary planar points before
 considering arbitrary pseudoline arrangements.  Required layers are spikes,
 vertical and horizontal partial orders, the product chain bound, transitive
 colorings on maximal chains, the left/right and inner/outer gluing lemmas, the
@@ -2671,11 +2684,10 @@ theorem does not complete this child.
 
 ### Budgets and evidence gates
 
-The first FP-15.A block is budgeted at 6--16 active hours; full FP-15.A is an
-uncalibrated multi-day proof task.  FP-15.B and FP-15.C are uncalibrated
-multi-week or multi-month branches and require fresh approval checkpoints at
-their dependency boundaries.  Every individual process retains the default
-30-minute, 8-core, 16-GiB, and 5-GiB limits.
+FP-15.A and FP-15.B are complete at their declared scope ceilings.  FP-15.C is
+an uncalibrated multi-week or multi-month branch and requires a fresh approval
+checkpoint at its dependency boundary.  Every individual process retains the
+default 30-minute, 8-core, 16-GiB, and 5-GiB limits.
 
 Every proof-producing stage requires a direct Lean gate, a targeted
 `lake -Kjobs=2 build`, a forbidden-token scan, standard-only axiom audit, and

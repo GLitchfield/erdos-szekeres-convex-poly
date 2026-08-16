@@ -3,7 +3,7 @@ title: Exact Erdős--Szekeres frontier portfolio
 artifact: frontier-portfolio
 schema_version: 2
 status: canonical
-last_updated: 2026-08-15
+last_updated: 2026-08-16
 ---
 
 # Frontier portfolio
@@ -1146,9 +1146,10 @@ that deserves independent retention and scheduling consideration.
   Holmsen--Mojarrad--Pach--Tardos argument.
 - **Scope ceiling:** the best authenticated published point-set upper bound
   `2^(n + O(sqrt(n*log n)))`, reached only through the outcome-gated ladder.
-  The immediately frozen theorem is the explicit Tóth--Valtr bound plus its
-  strict comparison with `classical_binomial_upper` for `n >= 4`.  No exact
-  Erdős--Szekeres threshold follows from any quantitative rung.
+  The currently admitted highest rung is the conservative explicit Suk bound
+  `2^(n + 64*(sukCubeScale n)^2*clog_2(3*n) + 128)` for `n >= 65`, together
+  with its exact cubic-scale certificate.  No exact Erdős--Szekeres threshold
+  follows from any quantitative rung.
 - **Best evidence:** `tothValtr_upper` compiles for every `n >= 3`, and
   `tothValtr_strictly_improves_classical` compiles for every `n >= 4`.  The
   proof constructs an explicit rational projective normalization after a
@@ -1221,56 +1222,54 @@ that deserves independent retention and scheduling consideration.
   `exists_porValtrCyclicSupportData` packages every marked source field with
   `carrier = P`.  An independent formal review reproduced the final module and
   accepted its statements, signs, threshold, carrier, import DAG, and trust
-  boundary.
-- **Missing generalization bridge:** compose the completed original-carrier
-  source object with `PorValtrCyclicSupportData.toSukConsecutiveRawPools`, the
-  compiled global branch theorem, the density-slack lemma, and explicit
-  parameter choices into the next positive-fraction theorem.  The asymptotic
-  assembly remains after that.  An exact-route claim still needs a separate
-  parameterized theorem consumed by `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
+  boundary.  The positive-fraction composition now compiles too:
+  `PorValtrCyclicSupportData.toSukConsecutiveRawPoolsWithCarrier` preserves the
+  source carrier, `sukPositiveFractionParameters_valid` proves the exact
+  rounding-safe parameter bundle, and
+  `sukPositiveFraction_forces_threshold` consumes the arbitrary point-set
+  source and global finite theorem without any supplied pool, branch, target,
+  or global inequality.  Finally, `sukCubeScale_sq_cube_le` and
+  `suk_explicit_upper` prove the exact `n >= 65` exponent above.  Independent
+  reviews accepted both final public statements and their standard-only trust
+  boundaries.
+- **Missing generalization bridge:** `FP-15.B` has reached its scope ceiling.
+  Reaching the portfolio ceiling now requires the distinct point-set
+  Holmsen--Mojarrad--Pach--Tardos mechanism in `FP-15.C`.  Affecting the exact
+  route still requires a separate theorem consumed by `D-HALF`, `D-DECOMP`, or
+  `D-NORMALIZE`; no such implication follows from the quantitative bound.
 - **Last forward result:** supporting milestone `Q-UPPER` remains closed by the
   unconditional theorem `tothValtr_upper`.  Within `FP-15.B`, the latest
-  forward result is the compiling original-carrier Pór--Valtr source producer:
-  the support-product, rich-half, and final cyclic-support theorems close
-  `C-source`.  Ticket 0019's branch/source obligation count decreases from
-  three to zero, and its source-stage count decreases from six to zero.  The
-  finite controls, representation scout, and independent formal review are
-  neutral search/review information rather than separate proof movement.  No
-  load-bearing exact-conjecture edge changed.
-- **Downstream consumer:** feed `exists_porValtrCyclicSupportData` through
-  `PorValtrCyclicSupportData.toSukConsecutiveRawPools` and
-  `SukConsecutiveRawPools.containsConvexSubset_of_globalParameters`, with the
-  explicit positive-fraction parameter recurrence and density conversion.
-  Any claim on the exact route still requires a theorem into `D-HALF`,
-  `D-DECOMP`, or `D-NORMALIZE`.
-- **Open obstruction:** the local geometry, recurrence, cyclic transport, and
-  global chain/antichain selection, both branch consumers, and finite branch
-  integration and full original-carrier Pór--Valtr source producer are formal.
-  The remaining obstruction is the quantitative positive-fraction parameter
-  theorem that simultaneously instantiates the raw-pool length, pool-size,
-  chain/antichain, carry, and final-size inequalities; the asymptotic bound
-  remains after it.
-- **Next discriminating gate:** freeze one theorem that consumes
-  `exists_porValtrCyclicSupportData` and proves the explicit finite
-  positive-fraction consequence by composing the cyclic raw-pool bridge,
-  global branch consumer, and density slack at source-authenticated parameter
-  values.  It must not assume raw pools, a branch, a target convex subset, or
-  any of the global cardinal inequalities it is meant to discharge.  Do not
-  begin asymptotic constant optimization first.
-- **Success payoff:** this composition would turn the now-complete point-set
-  source and global finite consumer into a uniform positive-fraction theorem,
-  leaving the asymptotic wrapper as the next direct target.  Only a completed
-  Suk architecture unlocks the point-specialized current-best bound.
+  forward results are `sukPositiveFraction_forces_threshold` and
+  `suk_explicit_upper`.  They close `C-compose` and `C-asymptotic`, decreasing
+  ticket 0020's scoped count from two to zero.  The finite controls and
+  independent formal reviews are neutral supporting evidence rather than
+  separate proof movement.  No load-bearing exact-conjecture edge changed.
+- **Downstream consumer:** the `FP-15.B` theorem is now a finished quantitative
+  benchmark and unlock condition for `FP-15.C`.  Any claim on the exact route
+  still requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
+- **Open obstruction:** `FP-15.B` has no remaining scoped obstruction.  The
+  portfolio's higher quantitative ceiling is blocked by the distinct
+  Holmsen--Mojarrad--Pach--Tardos spike, dual-partial-order, gluing, and
+  parameter-optimization layers; none is yet frozen as a Lean interface.
+- **Next discriminating gate:** after a bounded source-authentication and route
+  review, freeze one point-set theorem for the first
+  Holmsen--Mojarrad--Pach--Tardos spike/dual-partial-order layer together with
+  its immediate product-chain consumer.  Success must compile and strictly
+  reduce the predeclared `FP-15.C` layer count; a source summary, abstract API
+  without a point-set producer, or pseudoline generalization is neutral.
+- **Success payoff:** a source-faithful first `FP-15.C` producer/consumer pair
+  would begin the route to the current-best
+  `2^(n + O(sqrt(n*log n)))` point-set bound while reusing the completed
+  quantitative infrastructure where its interfaces genuinely match.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
   parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
-  no longer parked at the local certificate, one-region semantics/full-cap,
-  recurrence, cyclic support transport, or global Dilworth/path producers;
-  those edges, both branch consumers, and the Pór--Valtr point-set producer are
-  complete.  It remains bounded by positive-fraction parameter assembly and
-  the asymptotic wrapper.
-  Arithmetic, a restated certificate, or asymptotic bookkeeping alone is not
-  progress.  Revive exact-route use of the frame only with a theorem-shaped
-  consumer into a named load-bearing edge.
+  complete through its original-carrier source, both global consumers, exact
+  natural parameter composition, and explicit asymptotic wrapper.  Do not
+  schedule constant optimization or another Suk repackaging as proof progress.
+  `FP-15.C` proceeds only from a source-authenticated point-set theorem contract
+  with an immediate consumer; suspend it after two correlated information-only
+  outcomes.  Revive exact-route use only with a theorem-shaped consumer into a
+  named load-bearing edge.
 - **Children:** `FP-15.A` completed explicit Tóth--Valtr bound and projective frame;
   `FP-15.B` Suk positive-fraction/partial-order finite kernel and explicit
   asymptotic assembly; `FP-15.C` point-specialized
@@ -1553,8 +1552,8 @@ parent unless promoted.
   cap-anchor extension, exact cup--cap consumer, unconditional forcing theorem,
   and strict comparison with the classical bound all compile.  `Q-UPPER` is
   closed; the bounded reuse audit found no exact-route consumer.
-- **FP-15.B — Suk finite quantitative kernel.**  The generic finite Dilworth
-  inequality, support-region vocabulary, region partial order under explicit
+- **FP-15.B — Suk finite quantitative kernel.**  **Completed:** the generic
+  finite Dilworth inequality, support-region vocabulary, region partial order under explicit
   one-sided general-position hypotheses, exact adjacent-support-chain producer,
   and adjacent-region gluing consumer compile.  In particular,
   `SukAdjacentSupportData.toCertificate` derives the arrangement-cell and
@@ -1566,10 +1565,13 @@ parent unless promoted.
   The original-carrier Pór--Valtr source is now complete: clockwise
   periodization, the cyclic support-product inequality, generic rich-half
   extraction, and exact `PorValtrCyclicSupportData` packaging all compile.  The
-  child is gated at the positive-fraction parameter composition followed by
-  asymptotic assembly.
-- **FP-15.C — Point-specialized current-best upper bound.**  Locked behind a
-  compiling Suk architecture.  Formalize the point-set specialization of the
+  carrier-preserving bridge, exact natural parameter bundle,
+  arbitrary-point-set composition theorem, cubic-scale certificate, and
+  explicit `n >= 65` positive-fraction exponent now compile as well.  Its two
+  final scoped dependencies are closed; no load-bearing exact edge changes.
+- **FP-15.C — Point-specialized current-best upper bound.**  Unlocked by the
+  compiling Suk architecture but not yet started.  Formalize the point-set
+  specialization of the
   Holmsen--Mojarrad--Pach--Tardos spike and two-partial-order proof through an
   explicit integer theorem implying `2^(n + O(sqrt(n*log n)))`.  General
   pseudo-configurations are optional only after the point-set endpoint lands.

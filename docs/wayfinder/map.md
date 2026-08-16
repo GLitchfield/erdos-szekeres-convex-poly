@@ -52,30 +52,36 @@ destination edge unless a separate implication is proved.
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | suspended | The advertised source archive is incomplete; this fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
-The approved `FP-15.B` source slate added two proof-producing gates and three
-information-gathering control/scout/review gates in the existing
-quantitative-cup-cap mechanism family.  `exists_porValtrSupportProductData`
-now constructs an ordered cyclic support on the original carrier and proves
-the full Pór--Valtr product inequality.  `porValtr_exists_rich_half` extracts
-exactly half the cells at the corrected ceiling-minus-one threshold, and
-`exists_porValtrCyclicSupportData` derives every marked-pool field with
-`carrier = P`.  The independent review reproduced the final module and found
-no sign, wrap, threshold, carrier, import, or trust-boundary mismatch.
+The approved ticket 0020 slate used three proof-producing slots and two
+information-gathering slots in the existing quantitative-cup-cap mechanism
+family.  A carrier-preserving cyclic-pool projection first closed the one
+interface exposed by preaudit.  `sukPositiveFractionParameters_valid` then
+proved every rounding-safe natural parameter, and
+`sukPositiveFraction_forces_threshold` composed the arbitrary original
+point-set source, density conversion, and both global branch consumers without
+assuming pools, a branch, a target subset, or a global cardinal inequality.
+At the least cubic scale, `sukCubeScale_sq_cube_le` and `suk_explicit_upper`
+now prove for every `n >= 65` the exact forcing exponent
 
-**Net proof movement:** forward on the scoped `C-source` dependency.  Its
-frozen internal stage count decreases from five to zero in this continuation,
-and ticket 0019's remaining top-level source count decreases from one to zero.
-**Evidence:** two targeted compiling modules, standard-only axiom audits,
-authenticated source analysis, deterministic rational/counting/arithmetic
-controls, and an independent read-only formal review.  **Difficulty
-displaced:** no target-equivalent source premise was introduced; the distinct
-positive-fraction parameter composition and asymptotic wrapper remain.
-**Counterfactual:** knowing these theorems before the run removes the complete
-support-product, rich-cell, exact-pool, and original-carrier packaging work, so
-the remaining `FP-15.B` proof work materially decreases.  **Planning
-consequence:** retain `FP-15.B` as advancing and make the unchanged
-positive-fraction producer/recurrence composition its next theorem gate; do
-not infer an exact-route claim or unlock `FP-15.C` yet.  `D-UPPER`, `D-HALF`,
+```text
+n + 64*(sukCubeScale n)^2*Nat.clog 2 (3*n) + 128.
+```
+
+**Net proof movement:** forward within the scoped `FP-15.B` ladder.  Its
+predeclared open count decreases from two (`C-compose`, `C-asymptotic`) to
+zero.  **Evidence:** four compiling modules, warning-clean direct checks,
+targeted builds, standard-only axiom audits, independently checked finite
+controls, and independent read-only reviews of both final public theorems.
+The controls' earlier resource stop and shared corrupted negative witness were
+not admitted as arithmetic evidence; the separately frozen three-way recovery
+was neutral checked computation.  **Difficulty displaced:** none within the
+frozen positive-fraction ladder; the exact threshold comparison and canonical
+scale are proved rather than moved into premises.  The exact-conjecture route
+and the sharper Holmsen--Mojarrad--Pach--Tardos error term remain separate.
+**Counterfactual:** knowing these theorems before the run removes all remaining
+ticket-0020 work and materially reduces the scoped proof estimate.  **Planning
+consequence:** mark `FP-15.B` complete and unlock `FP-15.C` only behind a fresh
+source-authenticated theorem contract and route review.  `D-UPPER`, `D-HALF`,
 `D-DECOMP`, and `D-NORMALIZE` remain open, `D-ASSEMBLE` remains gated, and
 supporting milestone `Q-UPPER` remains closed.
 
@@ -109,6 +115,16 @@ finite-proof packet.  `D-UPPER(6)` and universal `D-UPPER` remain unproved.
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
+
+- [The conservative Suk positive-fraction upper bound now
+  compiles](tickets/0020-compose-suk-positive-fraction.md):
+  exact natural parameters, original-carrier composition, and the explicit
+  `n >= 65` exponent close `FP-15.B`; no load-bearing exact edge changes.
+
+- [Both Suk branches and the original-carrier Pór--Valtr source now
+  compile](tickets/0019-close-suk-global-branches.md):
+  chain and antichain consumers plus the support-product/rich-pool producer
+  close the three scoped branch/source obligations without changing `D-UPPER`.
 
 - [The Suk/Pór--Valtr ladder now reaches an actual global
   chain-or-antichain split](tickets/0018-formalize-suk-por-valtr-ladder.md):
