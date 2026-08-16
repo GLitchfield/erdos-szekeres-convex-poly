@@ -1187,47 +1187,70 @@ that deserves independent retention and scheduling consideration.
   `InConvexPosition (insert anchor selectedSet)` via both kinds of four-subset,
   and `sukRegionGeometry_to_fullAnchoredCap` compiles at the exact binomial
   threshold.  The adjacent adapter consumes two already supplied complementary
-  chains and concludes only the frozen global-selection interface.
-- **Missing generalization bridge:** globally produce two complementary full
-  caps in adjacent regions at a quantitatively useful size, then prove the
-  positive-fraction count.  The local transitivity, anchor semantics, and
-  anchor-plus-whole-chain convexity obligations are closed.  An exact-route
-  claim still needs a separate parameterized theorem consumed by `D-HALF`,
-  `D-DECOMP`, or `D-NORMALIZE`.
-- **Last forward result:** supporting milestone `Q-UPPER` is closed by the
-  compiling unconditional theorem `tothValtr_upper`.  Within `FP-15.B`, the
-  generic finite height--width theorem, the region partial order under explicit
-  one-sided general-position hypotheses, the support-chain-to-certificate
-  producer, and the certificate-to-convex-union consumer compile.  The new raw
-  one-region geometry theorem closes the previously explicit transitivity,
-  semantics, and full-anchor-cap producer obligations.  This is forward on the
-  scoped Suk dependency while changing no load-bearing exact-conjecture edge.
-- **Downstream consumer:** the next quantitative consumer is Suk's finite
-  positive-fraction architecture.  Any claim of progress on the exact route
-  still requires a separate theorem into `D-HALF`, `D-DECOMP`, or
-  `D-NORMALIZE`.
-- **Open obstruction:** no exact-route consumer uses the completed frame.  In
-  the Suk route, local geometric production is now formal.  No theorem selects
-  sufficiently large complementary caps in adjacent regions or turns repeated
-  gluing into the published positive-fraction estimate.  The Pór--Valtr support
-  theorem, recurrence, and asymptotic bound remain open.
-- **Next discriminating gate:** freeze one source-faithful adjacent-pool theorem
-  that produces the two complementary `SukRegionHasAnchoredColorChain`
-  witnesses, with explicit cardinality loss, directly from five anchors and
-  authenticated support-region data.  Its unchanged consumer is
-  `sukAdjacentAnchoredChains_to_globalSelection`; failure to supply both chains
-  at a quantitatively useful size stops the child.  Do not begin asymptotic
-  optimization or another certificate refinement first.
-- **Success payoff:** a genuine geometric full-cap producer would make the
-  compiled finite recurrence feed the adjacent-selection interface.  Global
-  selection plus a formal Pór--Valtr support theorem would then unlock Suk's
-  integer recurrence; only a completed Suk architecture unlocks the
+  chains and concludes only the frozen global-selection interface.  The
+  subsequent source-faithful recurrence slate also compiles.  It proves the
+  one-pool carry/completion step, indexed iteration across a chain-rich run,
+  the finite path dichotomy, common-base separation for actual antichains,
+  marked cyclic-edge selection, and strict-cap support-cell contraction.
+  `PorValtrCyclicSupportData.toSukConsecutiveRawPools` composes the latter two
+  into `r-3` raw consecutive support pools without cardinality loss, and
+  `SukConsecutiveRawPools.chainRun_or_antichainPacking` turns those pools into
+  either pairwise nonadjacent actual antichain witnesses or a consecutive run
+  of actual chain witnesses.  `porValtrMinusOne_to_sukCoarseDensity` separately
+  repairs the authenticated one-point rounding loss for `k >= 13` under an
+  explicit large-`N` hypothesis.  The primary-source audit found that
+  Pór--Valtr supplies `ceil (N / 2^(32*r)) - 1` interior points, not Suk's
+  literal region-only ceiling; an exact `r=4` rational control also refutes the
+  unchanged-coordinate x-sorted adapter while leaving the cyclic mechanism
+  intact.
+- **Missing generalization bridge:** formalize the actual Pór--Valtr point-set
+  producer into `PorValtrCyclicSupportData`, then consume both branches of the
+  compiled global split.  The chain branch still needs a value-preserving
+  subtype-to-point-pool adapter with the exact cardinal parameters required by
+  `sukConsecutiveChainPools_containsConvexSubset`.  The antichain branch needs
+  a theorem combining pairwise nonadjacent antichain-rich regions into the
+  required cap.  Positive-fraction recurrence and asymptotic assembly remain
+  after those consumers.  An exact-route claim still needs a separate
+  parameterized theorem consumed by `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
+- **Last forward result:** supporting milestone `Q-UPPER` remains closed by the
+  unconditional theorem `tothValtr_upper`.  Within `FP-15.B`, the latest
+  forward result is the compiling global raw-pool theorem
+  `SukConsecutiveRawPools.chainRun_or_antichainPacking`.  Together with the
+  compiled cyclic raw-pool bridge, it closes the predeclared
+  selected-block-to-global-Dilworth dependency and strictly reduces scoped
+  dependency depth to two explicit branch consumers.  The source mismatch and
+  rejected x-sorted adapter are neutral search information, not proof
+  movement.  No load-bearing exact-conjecture edge changed.
+- **Downstream consumer:** first convert the global split's consecutive chain
+  witnesses into `SukConsecutiveChainPools` and invoke the compiled iteration;
+  separately prove the nonadjacent-antichain union/cap theorem.  Their common
+  downstream consumer is Suk's finite positive-fraction architecture.  Any
+  claim on the exact route still requires a theorem into `D-HALF`, `D-DECOMP`,
+  or `D-NORMALIZE`.
+- **Open obstruction:** the local geometry, recurrence, cyclic transport, and
+  global chain/antichain selection are formal.  The two global branches do not
+  yet conclude the required convex subset, and the repository has not yet
+  formalized the primary Pór--Valtr point-set construction that produces the
+  cyclic source data.  The positive-fraction recurrence and asymptotic bound
+  remain open.
+- **Next discriminating gate:** freeze a theorem converting the chain-run
+  branch's actual subtype chain witnesses into point pools satisfying
+  `SukConsecutiveChainPools`, with exact lower cardinality and no preselected
+  convex subset, then invoke `sukConsecutiveChainPools_containsConvexSubset`.
+  This closes one branch of the compiled global split.  In parallel planning,
+  state—but do not weaken—the nonadjacent-antichain union theorem that must
+  close the other branch.  Do not begin asymptotic optimization first.
+- **Success payoff:** closing the chain-run consumer removes one branch of the
+  global alternative; closing the antichain consumer and formalizing the
+  source-data producer would make the positive-fraction recurrence the next
+  direct target.  Only a completed Suk architecture unlocks the
   point-specialized current-best bound.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
   parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
-  no longer parked at the local certificate or one-region semantics/full-cap
-  producers; those edges are complete.  It remains bounded by global
-  adjacent-chain selection and positive-fraction assembly.
+  no longer parked at the local certificate, one-region semantics/full-cap,
+  recurrence, cyclic support transport, or global Dilworth/path producers;
+  those edges are complete.  It remains bounded by the two branch consumers,
+  the Pór--Valtr point-set producer, and positive-fraction assembly.
   Arithmetic, a restated certificate, or asymptotic bookkeeping alone is not
   progress.  Revive exact-route use of the frame only with a theorem-shaped
   consumer into a named load-bearing edge.
@@ -1518,13 +1541,14 @@ parent unless promoted.
   one-sided general-position hypotheses, exact adjacent-support-chain producer,
   and adjacent-region gluing consumer compile.  In particular,
   `SukAdjacentSupportData.toCertificate` derives the arrangement-cell and
-  supporting-pair fields without assuming them.  The exact conditional
-  binomial chain recurrence and global-selection-to-certificate adapter now
-  compile too.  The child is gated at proving the geometric transitivity and
-  anchor semantics, promoting local anchor-plus-triple witnesses to a full
-  anchor-extended cap, and then producing complementary caps in adjacent
-  regions.  Recurrence and asymptotic optimization remain locked until those
-  geometric counting layers compile.
+  supporting-pair fields without assuming them.  The raw one-region geometry,
+  exact adjacent recurrence, indexed chain-rich iteration, cyclic marked-pool
+  transport, and global chain-run-or-antichain-packing theorem now compile as
+  well.  The child is gated at consuming both global branches: convert the
+  chain witnesses into the exact recurrence pools, and combine separated
+  antichain witnesses into the required cap.  A source-authentic point-set
+  producer for `PorValtrCyclicSupportData`, the positive-fraction recurrence,
+  and asymptotic assembly remain open.
 - **FP-15.C — Point-specialized current-best upper bound.**  Locked behind a
   compiling Suk architecture.  Formalize the point-set specialization of the
   Holmsen--Mojarrad--Pach--Tardos spike and two-partial-order proof through an

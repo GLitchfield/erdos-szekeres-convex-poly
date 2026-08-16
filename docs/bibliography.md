@@ -220,6 +220,16 @@ specific technique or caution.
     representability is not straight-line realizability. Retrieved 2026-08-13.
     <https://arxiv.org/abs/1703.04963>
 
+## Additional authenticated quantitative input
+
+48. **A. Pór and P. Valtr**, “The partitioned version of the
+    Erdős--Szekeres theorem,” *Discrete & Computational Geometry* 28 (2002),
+    625--637. Primary. Theorem 4 supplies the cyclic positive-fraction
+    clustering cited by Suk. Its p. 629 construction selects
+    `ceil (N / 2^(32*r)) - 1` interior points before adjoining the boundary
+    anchor. Rechecked 2026-08-15.
+    <https://doi.org/10.1007/s00454-002-2894-1>
+
 ## Coverage backlog
 
 - Authenticate the 1960/61 lower-bound paper from a stable primary archive.

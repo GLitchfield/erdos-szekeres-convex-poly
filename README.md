@@ -90,16 +90,21 @@ sets.
   anchor, and proves a strict improvement over the classical binomial bound for
   `n >= 4`.  This closes supporting milestone `Q-UPPER`; it does not close or
   reduce the exact universal upper-bound edge.
-- `ErdosSzekeres/FiniteDilworth.lean`, `SukAdjacentRegions.lean`,
-  `SukRegionOrder.lean`, `SukAdjacentSupportProducer.lean`, and
-  `SukRegionChainCupCap.lean` formalize the first finite kernel in Suk's later
-  quantitative route: the exact finite height--width alternative, the
-  common-base triangle-containment partial order, the geometric construction
-  of the arrangement-cell/supporting-pair certificate, the adjacent
-  convex-union gluing theorem, and a conditional exact-binomial two-color
-  recurrence on one total region chain.  Producing the geometric color
-  semantics, a full anchor-extended cap, the global adjacent selection, the
-  positive-fraction support estimate, and the asymptotic bound remains open.
+- The `Suk*.lean` and `PorValtr*.lean` modules now formalize a larger finite
+  segment of Suk's quantitative route.  Besides the finite height--width
+  theorem, support-region order, full one-region geometry, and adjacent
+  convex-union consumer, Lean now proves the exact adjacent-pool recurrence,
+  its indexed chain-rich iteration, the path dichotomy between separated
+  antichain-rich pools and a consecutive chain-rich run, marked cyclic-edge
+  selection, strict-cap support-cell contraction, and a source-shaped bridge
+  to raw consecutive support pools without cardinality loss.  The global
+  theorem `SukConsecutiveRawPools.chainRun_or_antichainPacking` then produces
+  actual chain or antichain witnesses from those raw pools.  A separate
+  arithmetic theorem repairs the one-point loss in the authenticated
+  Pór--Valtr count for `k >= 13` under an explicit large-`N` hypothesis.  This
+  remains a partial formalization: the Pór--Valtr point-set producer, the
+  chain-run-to-recurrence adapter, the nonadjacent-antichain union theorem, the
+  positive-fraction recurrence, and Suk's asymptotic upper bound are open.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

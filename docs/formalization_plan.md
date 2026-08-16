@@ -2606,11 +2606,38 @@ not assume any certificate field.  Exact rational controls cover all source
 and output fields and reject separate support and chain corruptions.
 
 This closes Observation 3.1's local support-chain-to-certificate edge, but not
-the published global selection/counting argument.  The next finite layers are
-the transitive two-color cup--cap theorem on one region chain and an explicit
-global lemma selecting sufficiently large adjacent chains/caps with a direct
-positive-fraction consumer.  The Pór--Valtr support theorem, recurrence, and
-asymptotic arithmetic remain locked until those layers compile.
+the published global selection/counting argument.
+
+**Recurrence and cyclic-support result.**  The subsequent finite layers now
+compile.  `SukRegionGeometry` derives the exact two-color semantics,
+transitivity, and full anchor-extended cap from raw support geometry.
+`sukAdjacentPool_fullCapStep` proves the one-pool carry/completion recurrence,
+and `sukConsecutiveChainPools_containsConvexSubset` iterates it across a
+chain-rich interval.  Independently,
+`exists_pairwise_nonadjacent_or_consecutive_run` proves the exact path
+dichotomy needed to find either separated antichain-rich pools or a
+consecutive chain-rich run.
+
+The authenticated Pór--Valtr source has a material rounding detail: its open
+region contains `ceil (N / 2^(32*r)) - 1` selected interior points, and the
+missing point is recovered only after adjoining a boundary anchor.  The Lean
+theorem `porValtrMinusOne_to_sukCoarseDensity` absorbs this loss for `k >= 13`
+under an explicit large-`N` hypothesis.  The unchanged-coordinate x-sorted
+adapter is false, but the source's cyclic mechanism survives.  Lean now proves
+the pure marked-edge block selection, strict-cap support-cell contraction, and
+`PorValtrCyclicSupportData.toSukConsecutiveRawPools`, which produces the
+internal `r-3` raw support pools without cardinality loss.
+
+Finally, `SukConsecutiveRawPools.chainRun_or_antichainPacking` composes the raw
+geometry, finite Dilworth theorem, and path dichotomy.  It returns either a
+pairwise nonadjacent family of actual antichain witnesses or a consecutive run
+of actual chain witnesses.  This strictly reduces the scoped `FP-15.B`
+dependency depth, but it changes no load-bearing exact-conjecture edge.  The
+next formal consumers are (i) converting a chain run into the exact point-pool
+recurrence with its cardinal parameters and (ii) proving that the separated
+antichain witnesses combine into the required cap.  The source-level
+Pór--Valtr point-set producer, positive-fraction recurrence, and asymptotic
+assembly remain open.
 
 ### FP-15.C: point-specialized current-best bound
 

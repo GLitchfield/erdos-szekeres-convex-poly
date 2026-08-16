@@ -194,3 +194,12 @@ public import ErdosSzekeres.SukRegionOrder
 public import ErdosSzekeres.SukAdjacentSupportProducer
 public import ErdosSzekeres.SukRegionChainCupCap
 public import ErdosSzekeres.SukRegionChainGeometry
+public import ErdosSzekeres.SukAdjacentChainRecurrence
+public import ErdosSzekeres.SukChainRichIteration
+public import ErdosSzekeres.SukPoolIntervalDichotomy
+public import ErdosSzekeres.SukAntichainBaseSeparation
+public import ErdosSzekeres.SukMarkedEdgeBlocks
+public import ErdosSzekeres.SukCyclicSupportContraction
+public import ErdosSzekeres.PorValtrCyclicSupportBridge
+public import ErdosSzekeres.SukConsecutiveDilworth
+public import ErdosSzekeres.PorValtrDensitySlack

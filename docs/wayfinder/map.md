@@ -52,15 +52,29 @@ destination edge unless a separate implication is proved.
 | `D-UPPER(6)` | Unrestricted `erdosSzekeresFormulaAt_six : ErdosSzekeresFormulaAt 6` | suspended | The advertised source archive is incomplete; this fixed case has no known uniform consumer and does not close exact `D-UPPER`. |
 
 **Latest reconciliation:** no load-bearing destination dependency changed.
-The four-thread slate contained two proof-producing slots and two
-information-gathering slots.  Its sole forward result is scoped to the
-quantitative Suk route: `SukRegionGeometry` now derives the exact two-color
-semantics and transitivity from raw support-region geometry, and
-`sukRegionGeometry_to_fullAnchoredCap` promotes the selected chain to full
-anchor-extended convex position.  The adjacent adapter also compiles.  This
-closes the named local geometry/full-cap producer in `FP-15.B`; the next gate
-is global production of two complementary adjacent chains with an explicit
-cardinality loss.  It changes none of `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
+The approved expanded `FP-15.B` block contained nine proof-producing gates and
+three information-gathering gates.  All belonged to the quantitative-cup-cap
+family; this deliberate concentration implemented one source-reviewed serial
+theorem ladder rather than treating its dependent components as independent
+route bets.  The adjacent recurrence, indexed chain-rich iteration, path
+dichotomy, antichain base separation, marked-edge selection, cyclic support
+contraction, raw Pór--Valtr-to-Suk pool bridge, global Dilworth/path split, and
+rounding-slack theorem now compile.  The primary-source audit corrected the
+open-region count to `ceil (N / 2^(32*r)) - 1`, and an exact rational falsifier
+retired only the unchanged-coordinate x-sorted adapter.
+
+**Net proof movement:** forward on predeclared `FP-15.B` subdependencies.
+**Evidence:** nine targeted compiling modules, authenticated source audit, and
+independently checked finite controls.  **Difficulty displaced:** local
+recurrence, cyclic transport, global chain/antichain selection, and rounding
+are closed; the actual point-set source producer and both global branch
+consumers remain.  **Counterfactual:** these theorems strictly reduce the
+quantitative route's dependency depth, whereas the source mismatch and
+falsifier alone are neutral search information.  **Planning consequence:**
+retain `FP-15.B` as advancing at the chain-run consumer; do not unlock
+`FP-15.C`.  No load-bearing destination dependency changed: `D-UPPER`,
+`D-HALF`, `D-DECOMP`, and `D-NORMALIZE` remain open, `D-ASSEMBLE` remains
+gated, and supporting milestone `Q-UPPER` remains closed.
 
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
@@ -92,6 +106,11 @@ finite-proof packet.  `D-UPPER(6)` and universal `D-UPPER` remain unproved.
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
+
+- [The Suk/Pór--Valtr ladder now reaches an actual global
+  chain-or-antichain split](tickets/0018-formalize-suk-por-valtr-ladder.md):
+  cyclic raw-pool transport, finite recurrence, and both-witness selection
+  compile; the two branch consumers and source point-set producer remain.
 
 - [The pairwise decorated successor is expired, while raw Suk geometry now
   supplies full anchored caps](tickets/0017-test-decorated-extension-transitions.md):
@@ -442,11 +461,12 @@ threads remain valuable.
 15. **Uniform quantitative upper-bound ladder.**  The authenticated
     Tóth--Valtr bound now compiles through an explicit projective normalization
     frame and the existing cup--cap theorem, closing `Q-UPPER`.  Suk's finite
-    partial order, conditional chain recurrence, adjacent support producer, and
-    gluing consumer compile.  The next child is the one-region
-    semantics/full-cap producer, before global selection or positive-fraction
-    assembly.  No exact-route consumer has been proved, so exact `D-UPPER` is
-    unchanged.
+    partial order, raw one-region geometry, adjacent recurrence, indexed
+    chain-rich iteration, cyclic raw-pool bridge, and global
+    chain-run-or-antichain-packing theorem compile.  The next child converts
+    the actual chain-run witnesses into the existing point-pool recurrence;
+    the nonadjacent-antichain union theorem is the parallel unresolved branch.
+    No exact-route consumer has been proved, so exact `D-UPPER` is unchanged.
 16. **Exact unrestricted `ES(6)=17`.**  Retrieve and audit the official
     Isabelle/HOL source distribution, then prove the `E*`/`OneChangeOn` and
     source-convex-six/strong-polygon semantic bridges before replay work.  The

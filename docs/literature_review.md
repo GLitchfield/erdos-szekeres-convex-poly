@@ -109,22 +109,29 @@ pseudoline arrangements and convex bodies. The exact formula likely needs a
 structural ingredient not visible after the losses inherent in these density
 and partition estimates.
 
-The first finite layer of Suk's proof is now formalized separately from those
-density losses.  Lean proves the required finite chain--antichain threshold,
-the triangle-containment partial order on a one-sided finite general-position
-set, and the four-point gluing theorem for adjacent selected caps.  It also now
-formalizes the local geometric step from two actual adjacent support-region
-chains to the required arrangement-cell and supporting-line certificate.  The
-proof uses explicit Grassmann--Pluecker sign identities under the five-anchor
-cap order type.  A further conditional Lean theorem now bundles one total
-triangle-containment chain, applies the exact binomial cup--cap recurrence, and
-propagates consecutive colors to all selected triples under the source's
-explicit transitivity law.  A separate adapter sends any full two-region cap
-selection into the existing certificate and gluing theorem.  The geometry must
-still produce the transitivity/color semantics, promote anchor-plus-each-triple
-convexity to convexity of the whole anchor-extended set, and select sufficiently
-large complementary caps in adjacent regions.  The positive-fraction count and
-recurrence remain downstream.  Accordingly this is still not a formalization
+The finite layer of Suk's proof is now formalized separately from those density
+losses.  Lean proves the finite chain--antichain threshold, the
+triangle-containment partial order, the adjacent-cap gluing theorem, and the
+local support-to-certificate geometry.  Raw support-region signs now also
+produce the exact two-color semantics, transitivity, and convexity of the whole
+anchor-extended selected chain.  The exact adjacent-pool recurrence, its
+indexed chain-rich iteration, and the finite path dichotomy between separated
+antichain-rich pools and a consecutive chain-rich run compile as separate
+theorems.
+
+The primary Pór--Valtr construction requires a rounding correction that is
+easy to lose in a prose summary.  On journal p. 629 the open region contributes
+`ceil (N / 2^(32*r)) - 1` interior points; the full ceiling is reached only by
+adjoining the boundary anchor.  Lean now proves an explicit large-parameter
+lemma absorbing that one-point loss.  The literal unchanged-coordinate
+x-sorted extraction is false, but a source-faithful cyclic replacement does
+compile: marked-edge block selection and strict-cap support contraction produce
+`r-3` raw consecutive support pools without cardinality loss.  A global Lean
+theorem then applies the local Dilworth alternative to every pool and returns
+actual witnesses for one of the two global branches.  What remains is not the
+local color geometry: it is the original point-set producer, the chain-run
+recurrence adapter, the nonadjacent-antichain union theorem, and the final
+positive-fraction/asymptotic assembly.  Thus this is still not a formalization
 of Suk's positive-fraction theorem or asymptotic upper bound.
 
 ### 4. Equivalent strengthened statements
