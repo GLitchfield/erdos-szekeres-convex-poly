@@ -85,6 +85,21 @@ source-authenticated theorem contract and route review.  `D-UPPER`, `D-HALF`,
 `D-DECOMP`, and `D-NORMALIZE` remain open, `D-ASSEMBLE` remains gated, and
 supporting milestone `Q-UPPER` remains closed.
 
+The subsequent one-slot `FP-15.C` exploration used zero proof-producing slots
+and one information-gathering slot.  It authenticated HMPT's Euclidean
+spike-pool vertical and horizontal partial orders and their immediate Dilworth
+consumer `|P_i| <= v_i*h_i`, then froze a six-layer point-set ledger and an
+exact Lean-shaped H1 contract.  Existing `SukRegionGeometry` supplies every
+geometric premise; the remaining H1 proof is the crossed-segment horizontal
+order plus exclusive comparability.  **Net proof movement:** neutral.
+**Evidence:** authenticated primary source and interface proposal; no Lean
+theorem.  **Difficulty displaced:** source/model uncertainty is removed, but
+the geometric H1 producer remains.  **Counterfactual:** this makes a bounded
+theorem gate schedulable but does not reduce any exact-conjecture obligation.
+**Planning consequence:** retain `FP-15.C` as theorem-ready and make H1 the next
+proof-producing gate; do not schedule another information refinement first.
+No load-bearing destination dependency changed.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical

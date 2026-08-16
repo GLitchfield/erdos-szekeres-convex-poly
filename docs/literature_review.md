@@ -109,6 +109,19 @@ pseudoline arrangements and convex bodies. The exact formula likely needs a
 structural ingredient not visible after the losses inherent in these density
 and partition estimates.
 
+The current arXiv v3 and JEMS source for the Holmsen--Mojarrad--Pach--Tardos
+argument were reauthenticated on 2026-08-16.  Its first distinctive Euclidean
+layer is exact and finite: on each spike pool it defines a vertical
+triangle-containment order and a horizontal crossed-segment order, proves that
+every distinct pair is comparable in exactly one order, and immediately uses
+Dilworth to obtain `|P_i| <= v_i*h_i`.  The repository's support-region data
+already supplies the local point-set hypotheses and its triangle order is the
+reverse vertical order.  The horizontal-order and exclusive-comparability
+proofs are now frozen as a Lean-shaped contract, but they have not been
+formalized; the paper itself summarizes them as checks of a few four- and
+five-point configurations.  The later optimized parameter choice still uses
+`o(1)` notation and therefore requires a separate exact-natural wrapper.
+
 The finite layer of Suk's proof is now formalized separately from those density
 losses.  Lean proves the finite chain--antichain threshold, the
 triangle-containment partial order, the adjacent-cap gluing theorem, and the
@@ -151,7 +164,8 @@ where `sukCubeScale n` is the least natural `s` with `n <= s^3`; a separate
 certificate bounds the cube of `s^2` by `64*n^2`.  This is a conservative
 formal realization of Suk's `2^(n+O(n^(2/3) log n))` method, not a reproduction
 of its optimized constant and not progress on the exact threshold.  The
-stronger Holmsen--Mojarrad--Pach--Tardos error term remains unformalized here.
+stronger Holmsen--Mojarrad--Pach--Tardos error term remains unformalized here;
+only its first producer/consumer interface has been source-authenticated.
 
 ### 4. Equivalent strengthened statements
 

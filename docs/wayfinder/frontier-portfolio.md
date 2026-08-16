@@ -1231,7 +1231,14 @@ that deserves independent retention and scheduling consideration.
   or global inequality.  Finally, `sukCubeScale_sq_cube_le` and
   `suk_explicit_upper` prove the exact `n >= 65` exponent above.  Independent
   reviews accepted both final public statements and their standard-only trust
-  boundaries.
+  boundaries.  The first `FP-15.C` source gate is now authenticated as well.
+  HMPT Observation 3.1 defines, on each Euclidean spike pool, a vertical
+  triangle-containment order and a horizontal crossed-segment order, while
+  equation (3) immediately combines exclusive comparability with Dilworth to
+  obtain `|P_i| <= v_i*h_i`.  Existing `SukRegionGeometry` supplies every
+  geometric premise and `SukRegionLE` supplies the reversed vertical order.
+  The horizontal partial order and exclusive-comparability producer remain an
+  exact frozen Lean-shaped contract, not a compiling theorem.
 - **Missing generalization bridge:** `FP-15.B` has reached its scope ceiling.
   Reaching the portfolio ceiling now requires the distinct point-set
   Holmsen--Mojarrad--Pach--Tardos mechanism in `FP-15.C`.  Affecting the exact
@@ -1243,20 +1250,25 @@ that deserves independent retention and scheduling consideration.
   `suk_explicit_upper`.  They close `C-compose` and `C-asymptotic`, decreasing
   ticket 0020's scoped count from two to zero.  The finite controls and
   independent formal reviews are neutral supporting evidence rather than
-  separate proof movement.  No load-bearing exact-conjecture edge changed.
+  separate proof movement.  The subsequent `HMPT-POINTSET-PAIR-AUTH` source
+  result is also neutral: it makes `FP-15.C` theorem-ready but compiles no
+  declaration.  No load-bearing exact-conjecture edge changed.
 - **Downstream consumer:** the `FP-15.B` theorem is now a finished quantitative
   benchmark and unlock condition for `FP-15.C`.  Any claim on the exact route
   still requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
 - **Open obstruction:** `FP-15.B` has no remaining scoped obstruction.  The
-  portfolio's higher quantitative ceiling is blocked by the distinct
-  Holmsen--Mojarrad--Pach--Tardos spike, dual-partial-order, gluing, and
-  parameter-optimization layers; none is yet frozen as a Lean interface.
-- **Next discriminating gate:** after a bounded source-authentication and route
-  review, freeze one point-set theorem for the first
-  Holmsen--Mojarrad--Pach--Tardos spike/dual-partial-order layer together with
-  its immediate product-chain consumer.  Success must compile and strictly
-  reduce the predeclared `FP-15.C` layer count; a source summary, abstract API
-  without a point-set producer, or pseudoline generalization is neutral.
+  first `FP-15.C` layer is now exact but uncompiled: prove the crossed-segment
+  horizontal relation is a partial order on a `SukRegionGeometry` pool and
+  that every distinct pair is comparable in exactly one of it and the reversed
+  `SukRegionLE` order.  The later coloring, gluing, aggregation, and exact
+  parameter layers remain open behind that producer.
+- **Next discriminating gate:** implement the frozen point-set order-pair
+  producer and its immediate maximum-chain product consumer from ticket 0021.
+  Success requires both public theorems to compile from raw
+  `SukRegionGeometry`, with no supplied order, chain, product bound, or target;
+  it decreases the predeclared `FP-15.C` layer count from six to five.  A
+  definition-only module, abstract supplied-order shell, or one-sided order
+  theorem is neutral.
 - **Success payoff:** a source-faithful first `FP-15.C` producer/consumer pair
   would begin the route to the current-best
   `2^(n + O(sqrt(n*log n)))` point-set bound while reusing the completed
@@ -1266,10 +1278,12 @@ that deserves independent retention and scheduling consideration.
   complete through its original-carrier source, both global consumers, exact
   natural parameter composition, and explicit asymptotic wrapper.  Do not
   schedule constant optimization or another Suk repackaging as proof progress.
-  `FP-15.C` proceeds only from a source-authenticated point-set theorem contract
-  with an immediate consumer; suspend it after two correlated information-only
-  outcomes.  Revive exact-route use only with a theorem-shaped consumer into a
-  named load-bearing edge.
+  `FP-15.C` now has one source-authenticated information outcome and must next
+  attempt the frozen proof-producing H1 gate rather than another source or API
+  refinement.  After a second correlated information-only outcome, require an
+  adversarial review; suspend after a third unless a genuinely new positive
+  theorem appears.  Revive exact-route use only with a theorem-shaped consumer
+  into a named load-bearing edge.
 - **Children:** `FP-15.A` completed explicit Tóth--Valtr bound and projective frame;
   `FP-15.B` Suk positive-fraction/partial-order finite kernel and explicit
   asymptotic assembly; `FP-15.C` point-specialized
@@ -1569,12 +1583,13 @@ parent unless promoted.
   arbitrary-point-set composition theorem, cubic-scale certificate, and
   explicit `n >= 65` positive-fraction exponent now compile as well.  Its two
   final scoped dependencies are closed; no load-bearing exact edge changes.
-- **FP-15.C — Point-specialized current-best upper bound.**  Unlocked by the
-  compiling Suk architecture but not yet started.  Formalize the point-set
-  specialization of the
-  Holmsen--Mojarrad--Pach--Tardos spike and two-partial-order proof through an
-  explicit integer theorem implying `2^(n + O(sqrt(n*log n)))`.  General
-  pseudo-configurations are optional only after the point-set endpoint lands.
+- **FP-15.C — Point-specialized current-best upper bound.**  The primary
+  point-set two-order layer and immediate product consumer are authenticated
+  and frozen in ticket 0021.  Its finite open-layer count is six.  The next
+  proof-producing gate is the `SukRegionGeometry` horizontal-order and
+  exclusive-comparability producer plus its exact Dilworth product consumer;
+  success changes six to five.  General pseudo-configurations are optional
+  only after the point-set endpoint lands.
 - **FP-16.A — Official exact-six source admission.**  The primary-paper audit
   freezes the eight `E*` patterns, the source convex-six predicate, and the
   theorem ladder ending at `erdosSzekeresFormulaAt_six`.  The local corpus has

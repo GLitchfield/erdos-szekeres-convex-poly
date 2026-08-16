@@ -62,7 +62,9 @@ repository records.
 13. **A. F. Holmsen, H. N. Mojarrad, J. Pach, and G. Tardos**, “Two
     extensions of the Erdős--Szekeres problem,” *Journal of the European
     Mathematical Society* 22 (2020), 3981--3995. Primary; best recorded error
-    term and related extensions. <https://doi.org/10.4171/JEMS/1000>
+    term and related extensions. ArXiv v3 and the EMS publication record were
+    reauthenticated 2026-08-16. <https://arxiv.org/abs/1710.11415>
+    <https://doi.org/10.4171/JEMS/1000>
 14. **G. Moshkovitz and A. Shapira**, “Ramsey theory, integer partitions and a new proof of
     the Erdős--Szekeres theorem,” *Advances in Mathematics* 262 (2014),
     1107--1129. Primary/combinatorial reformulation.
