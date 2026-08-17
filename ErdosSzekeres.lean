@@ -198,6 +198,7 @@ public import ErdosSzekeres.HMPTAdjacentPairTransport
 public import ErdosSzekeres.HMPTAdjacentSpikeGluing
 public import ErdosSzekeres.HMPTCyclicSpikeGeometry
 public import ErdosSzekeres.HMPTCyclicSpikeProducer
+public import ErdosSzekeres.HMPTCyclicNoTarget
 public import ErdosSzekeres.SukAdjacentRegions
 public import ErdosSzekeres.SukRegionOrder
 public import ErdosSzekeres.SukAdjacentSupportProducer

@@ -2680,15 +2680,20 @@ three.  The next producer slate now closes C1 and C2 as well.
 projection at `3 <= r`, including cell zero and the last-to-first window.
 `HMPTVerticalProfileProducer.lean` proves the HMPT transitive coloring and
 constructs actual vertical, horizontal, and outer-anchored maximum chains with
-the exact binomial bound.  The subordinate measure is therefore one: only C4
-remains.  H2's official five-layer count is unchanged until C4 composes the
-three producers around the full cycle.
+the exact binomial bound.  `HMPTCyclicNoTarget.lean` now composes those profiles
+around the full cycle.  It transports the actual successor profile across the
+four cyclic anchor equalities, invokes C3, obtains the exact selected-union
+cardinality from pool disjointness, keeps every selected point in the original
+carrier, and contradicts the no-target hypothesis whenever an adjacent sum is
+at least `n`.  The subordinate C1--C4 measure is therefore zero and H2 is
+complete; the official finite-layer count decreases from five to four.
 
 Continue to specialize the proof to ordinary planar points before considering
-arbitrary pseudoline arrangements.  The next H2 obligation is now the cyclic
-no-target consumer C4, with all of C1--C3 available as compiling inputs.  Later
-gluing layers, the positive-fraction product estimate, and explicit parameter
-optimization remain.  The public scope is an integer theorem implying
+arbitrary pseudoline arrangements.  The next work is to authenticate and
+freeze the exact H3 point-set theorem contract before implementation.  Later
+aggregation layers, the positive-fraction product estimate, and explicit
+parameter optimization remain.  The public scope is an integer theorem
+implying
 
 ```text
 exists C n0, forall n >= n0,

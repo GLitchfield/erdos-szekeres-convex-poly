@@ -276,6 +276,27 @@ construction from the remaining H2 proof.  **Planning consequence:** promote
 finite-layer count remains five until C4 closes H2; `D-HALF`, `D-DECOMP`, and
 `D-NORMALIZE` remain unchanged, and no load-bearing edge changes.
 
+Ticket 0027 closes the remaining cyclic consumer C4.  The warning-clean theorem
+`PorValtrSupportProductData.exists_hmptCyclicProfiles` chooses the compiled C2
+profile in every C1 local region, transports the actual successor profile
+through all four cyclic anchor equalities, and applies C3 at every index,
+including the final-to-zero pair.  Adjacent-pool disjointness gives the exact
+selected-union cardinality, both chains remain inside the original carrier
+`P`, and an exact `n`-subset would contradict the frozen no-target premise.
+No supplied profile, inequality, target subset, carrier change, or public
+transport certificate enters the theorem.  **Net proof movement:** forward on
+H2: the subordinate set `{C4}` becomes empty and the official finite-layer
+count decreases from five to four.  **Evidence:** a warning-clean first direct
+gate, targeted module build, standard-only declaration audit, and independent
+pre-source/final-hash review.  **Difficulty displaced:** none into a premise;
+the distinct downstream H3--H6 layers remain.  **Counterfactual:** knowing this
+theorem before the run removes the last H2 obligation and materially shortens
+the point-set upper-bound formalization.  **Planning consequence:** close
+ticket 0027, mark H2 complete, and gate `FP-15.C` on a fresh authenticated H3
+contract and route review rather than launching H3 automatically.  `D-HALF`,
+`D-DECOMP`, and `D-NORMALIZE` remain unchanged, and no load-bearing exact edge
+changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical

@@ -138,11 +138,15 @@ cyclic source projection now compiles at the sharp reachable endpoint
 `3 <= r`, preserving the original carrier through cell zero and the final
 wrap.  The complete local vertical-profile producer also compiles: it derives
 the reversed HMPT/Suk order semantics, transitive coloring, actual maxima, and
-the exact binomial profile bound internally from one raw region.  Consequently
-C1, C2, and C3 are formalized, while the cyclic no-target consumer C4 remains
-the sole subordinate obligation before H2 can be called complete.  Later
-aggregation and optimized parameter choice remain unformalized; the source's
-`o(1)` notation will also require a separate exact-natural wrapper.
+the exact binomial profile bound internally from one raw region.  The cyclic
+no-target consumer now compiles as well.  It chooses one produced profile in
+every source pool, aligns the final-to-zero successor window, applies the
+distinct-anchor gluing theorem, and converts each exact disjoint-union
+cardinality into the published adjacent-chain inequality on the unchanged
+carrier.  Thus C1--C4 formalize H2 and reduce the remaining finite-layer count
+from five to four.  Later aggregation and optimized parameter choice remain
+unformalized; the source's `o(1)` notation will also require a separate
+exact-natural wrapper.
 
 The finite layer of Suk's proof is now formalized separately from those density
 losses.  Lean proves the finite chain--antichain threshold, the

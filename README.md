@@ -140,12 +140,17 @@ sets.
   adjacent spike window, including cell zero and the last-to-first wrap.
   `HMPTVerticalProfileProducer.lean` derives the HMPT-direction transitive
   coloring, actual maximum chains, outer-anchor maxima, and exact
-  `choose (L+R-2) (L-1)` bound from one raw region.  Thus C1, C2, and C3 are
-  complete without supplied profiles or a changed carrier; C4, the cyclic
-  no-target consumer, is the sole remaining subordinate H2 obligation.  H1 is
-  still the only complete layer of the six-layer route to the published
-  `2^(n+O(sqrt(n log n)))` bound; H2's official open-layer count remains five,
-  and no exact-conjecture dependency changes.
+  `choose (L+R-2) (L-1)` bound from one raw region.
+  `HMPTCyclicNoTarget.lean` now chooses those profiles around the complete
+  cycle and applies the adjacent gluing theorem at every successor pair.  Exact
+  pool disjointness identifies each selected union cardinality, and absence of
+  an `n`-point convex subset in the original carrier forces every adjacent
+  right/left chain sum below `n`.  C1--C4 therefore close H2 without supplied
+  profiles, inequalities, targets, or a changed carrier.  The official open
+  layer count for the six-layer route to the published
+  `2^(n+O(sqrt(n log n)))` bound decreases from five to four.  H3 and later
+  layers remain unauthenticated in Lean, and no exact-conjecture dependency
+  changes.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

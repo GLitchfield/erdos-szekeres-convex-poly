@@ -1137,7 +1137,7 @@ that deserves independent retention and scheduling consideration.
   milestone that does not close or strictly reduce universal `D-UPPER` without
   a separate proved implication.
 - **Strategic role:** bridge.
-- **State:** advancing.
+- **State:** gated.
 - **Model tier:** general-position planar configurations and their
   sweep-realizable presentations.  The first rung is the source-authenticated
   Tóth--Valtr theorem
@@ -1273,6 +1273,14 @@ that deserves independent retention and scheduling consideration.
   from raw region geometry.  All three declarations pass warning-clean direct
   gates, targeted builds, standard-only axiom audits, and independent static
   review without a supplied field or strengthened premise.
+  Ticket 0027 now closes C4 and H2 itself.
+  `PorValtrSupportProductData.exists_hmptCyclicProfiles` chooses the compiled
+  profiles around the entire cycle, transports the unchanged successor
+  profile across the four anchor equalities, applies C3 at every index, proves
+  the exact disjoint-union cardinality, and derives every adjacent no-target
+  inequality on the original carrier.  Its direct gate passed on the first
+  attempt, its targeted build and standard-only axiom audit pass, and an
+  independent reviewer accepted the frozen final hash.
 - **Missing generalization bridge:** `FP-15.B` has reached its scope ceiling.
   Reaching the portfolio ceiling now requires the distinct point-set
   Holmsen--Mojarrad--Pach--Tardos mechanism in `FP-15.C`.  Affecting the exact
@@ -1293,9 +1301,10 @@ that deserves independent retention and scheduling consideration.
   Ticket 0025's exact adjacent gluing theorem closes C3 and decreases the
   C1--C4 subordinate count from four to three.  The latest forward results are
   ticket 0026's C1 cyclic producer and C2 profile producer, which decrease that
-  count from three to one.  They do not change the official five-layer H2
-  count or any load-bearing exact edge; the finite control suites and read-only
-  review remain neutral supporting evidence.
+  count from three to one.  Ticket 0027's C4 theorem then decreases it from one
+  to zero and closes H2, reducing the official finite-layer count from five to
+  four.  No load-bearing exact edge changes; the finite control suites and
+  read-only reviews remain neutral supporting evidence.
 - **Downstream consumer:** the `FP-15.B` theorem is now a finished quantitative
   benchmark and unlock condition for `FP-15.C`.  Any claim on the exact route
   still requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
@@ -1319,17 +1328,16 @@ that deserves independent retention and scheduling consideration.
   not used.  Ticket 0025's exact consumer now compiles and closes every mixed
   four-subset case without exposing a certificate.  Ticket 0026 closes the
   full cyclic source projection C1 and the complete local profile/binomial
-  producer C2.  The cyclic no-target consumer C4 is now the sole subordinate
-  H2 obligation; H3--H6 remain behind H2.
-- **Next discriminating gate:** prove the exact C4 cyclic no-target consumer
-  from the compiling C1 geometry, C2 profiles, and C3 adjacent gluing theorem.
-  It must establish successor-window alignment, apply C3 at every cyclic
-  index, preserve exact union cardinalities, and derive every frozen
-  no-target inequality without accepting a profile, target subset, desired
-  inequality, changed carrier, or duplicated wrap endpoint as a premise.  A
-  passing C4 theorem closes H2 and decreases the official finite-layer count
-  from five to four; any target-equivalent shell or renewed wrap collision is
-  a stop rather than a repair.
+  producer C2.  Ticket 0027 closes the cyclic no-target consumer C4, so H2 is
+  complete; H3--H6 remain unauthenticated and unformalized.
+- **Next discriminating gate:** authenticate the exact H3 point-set statement
+  and its source dependencies, then freeze one theorem contract whose passing
+  Lean gate would reduce the remaining finite-layer count from four to three.
+  The review must identify every new aggregation object, carrier convention,
+  natural-number rounding step, and consumer of the H2 inequalities.  No H3
+  proof worker starts until bounded route review accepts that contract; a
+  conditional interface lacking an independent producer leaves the family
+  gated.
 - **Success payoff:** a source-faithful H2 theorem would extend the now-compiled
   local product layer toward the current-best
   `2^(n + O(sqrt(n*log n)))` point-set bound while testing whether its
@@ -1340,15 +1348,14 @@ that deserves independent retention and scheduling consideration.
   natural parameter composition, and explicit asymptotic wrapper.  Do not
   schedule constant optimization or another Suk repackaging as proof progress.
   `FP-15.C` retains forward movement from H1, the compiled signed-pair
-  subobligation, C3, and now the exact C1/C2 producers.  The old `r = 2`
+  subobligation, C3, the exact C1/C2 producers, and the completed C4 consumer.
+  The old `r = 2`
   contract remains expired by its kernel counterexample, while the reachable
   `3 <= r` producer is a distinct compiling theorem rather than a syntactic
-  repair.  Promote the family to one exact C4 gate: it has compiling producers
-  and an immediate consumer that would close H2.  A target-equivalent premise,
-  renewed boundary collision, or information-only C4 terminal triggers
-  architecture review rather than another automatic refinement.  The current
-  C1--C3 results do not change the five-layer H2 count or an exact-conjecture
-  edge.  The parallel H1-only
+  repair.  C4 closes H2 and reduces the official count to four.  Gate the
+  family until an authenticated H3 theorem contract and bounded review expose
+  the next proof-producing edge; do not infer H3 from the H2 data or launch an
+  aggregation implementation from source prose alone.  The parallel H1-only
   two-ranking/Greene coefficient-improvement lane is expired: a rational
   permutation-2143 spike fixture has rectangular profile `(2,2)` and
   saturates `|P_i| = v_i*h_i`.  Revive that lane only if H2--H4 independently
@@ -1669,9 +1676,9 @@ parent unless promoted.
   distinct-anchor pair-transport gate and ticket 0025's exact C3
   mixed-four-subset consumer now compile without a supplied certificate or
   common anchor.  Ticket 0026 adds the exact original-carrier cyclic source
-  projection and the complete local profile/binomial producer.  C1, C2, and
-  C3 are complete; only C4 remains.  H2 remains open and its finite count stays
-  five until that cyclic consumer lands.
+  projection and the complete local profile/binomial producer.  Ticket 0027
+  adds the exact cyclic no-target consumer.  C1--C4 and therefore H2 are
+  complete; the finite count is now four, with H3--H6 remaining.
   General
   pseudo-configurations remain optional until the point-set route lands.
 - **FP-16.A — Official exact-six source admission.**  The primary-paper audit
