@@ -1238,7 +1238,14 @@ that deserves independent retention and scheduling consideration.
   raw support-region geometry.  The independent finite consumer constructs
   actual maximum vertical and horizontal chains and proves
   `|P_i| <= v_i*h_i` by finite Dilworth.  Both declarations passed targeted
-  builds, standard-only axiom audits, and independent formal review.
+  builds, standard-only axiom audits, and independent formal review.  The first
+  frozen H2 producer contract did not survive its mandatory endpoint gate:
+  `HMPTCyclicSourceCounterexample.frozenContract_false` kernel-checks an
+  inhabited `PorValtrSupportProductData P 2` for which a five-anchor cyclic
+  block over four anchors repeats its outer endpoint and contradicts the
+  strict `orient014` field.  The bootstrap/counterexample umbrella integration
+  passes all 10,297 Lean jobs, 107 unit tests, and deterministic checks.  This
+  is candidate-local negative evidence, not an H2 theorem.
 - **Missing generalization bridge:** `FP-15.B` has reached its scope ceiling.
   Reaching the portfolio ceiling now requires the distinct point-set
   Holmsen--Mojarrad--Pach--Tardos mechanism in `FP-15.C`.  Affecting the exact
@@ -1252,20 +1259,27 @@ that deserves independent retention and scheduling consideration.
   independent formal reviews are neutral supporting evidence rather than
   separate proof movement.  The subsequent `HMPT-H1-LAND` theorem pair closes
   H1 and decreases `FP-15.C`'s finite-layer count from six to five.  No
-  load-bearing exact-conjecture edge changed.
+  load-bearing exact-conjecture edge changed.  The H2 `r = 2`
+  counterexample is neutral proof movement and leaves that count at five.
 - **Downstream consumer:** the `FP-15.B` theorem is now a finished quantitative
   benchmark and unlock condition for `FP-15.C`.  Any claim on the exact route
   still requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
 - **Open obstruction:** `FP-15.B` has no remaining scoped obstruction and H1
-  of `FP-15.C` is closed.  H2 is now first: authenticate and formalize the
-  vertical-chain coloring, its binomial bound, and adjacent gluing without
-  assuming a coloring, glued target, or the resulting inequality.  H3--H6
-  remain behind that layer.
-- **Next discriminating gate:** perform one bounded primary-source/interface
-  audit of H2 and freeze a Lean-shaped producer/consumer contract with an exact
-  finite layer-decrease criterion.  Only a later compiling H2 theorem may
-  change the open count from five to four; source prose, a supplied coloring,
-  or a conditional gluing shell is neutral.
+  of `FP-15.C` is closed.  Ticket 0022's frozen H2 source contract is false at
+  `r = 2`; its exact kernel counterexample is now durable.  A possible
+  `3 <= r` repair is consistent with the existing point-set source producer,
+  but it has not been independently reviewed or admitted.  Even after such a
+  repair, the full cyclic source projection (including cell zero and the wrap
+  pair), local vertical-chain profile, distinct outer-anchor gluing theorem,
+  and immediate cyclic no-target inequalities remain.  H3--H6 stay behind
+  that layer.
+- **Next discriminating gate:** perform a fresh source/interface and bounded
+  adversarial review of the proposed `3 <= r` producer, including an explicit
+  `r = 3` five-anchor distinctness control and proof that every downstream H2
+  invocation supplies that bound.  Only after that review may a new frozen
+  packet schedule the cyclic producer.  Compilation of all four H2 obligations
+  is still the only event that can change the open count from five to four;
+  correcting the false premise alone is neutral.
 - **Success payoff:** a source-faithful H2 theorem would extend the now-compiled
   local product layer toward the current-best
   `2^(n + O(sqrt(n*log n)))` point-set bound while testing whether its
@@ -1275,8 +1289,10 @@ that deserves independent retention and scheduling consideration.
   complete through its original-carrier source, both global consumers, exact
   natural parameter composition, and explicit asymptotic wrapper.  Do not
   schedule constant optimization or another Suk repackaging as proof progress.
-  `FP-15.C` has recent forward movement from H1 but is gated until an exact H2
-  producer/consumer contract is authenticated.  The parallel H1-only
+  `FP-15.C` retains recent forward movement from H1, but its first H2
+  producer contract is expired by a kernel counterexample and the route is
+  gated on a freshly reviewed replacement.  Do not treat the syntactic
+  `3 <= r` repair as promotion evidence.  The parallel H1-only
   two-ranking/Greene coefficient-improvement lane is expired: a rational
   permutation-2143 spike fixture has rectangular profile `(2,2)` and
   saturates `|P_i| = v_i*h_i`.  Revive that lane only if H2--H4 independently
@@ -1585,8 +1601,12 @@ parent unless promoted.
 - **FP-15.C — Point-specialized current-best upper bound.**  The primary
   point-set two-order layer and immediate product consumer now compile and
   close H1 in ticket 0021, decreasing the finite open-layer count from six to
-  five.  The route is gated on authenticating an exact H2 contract for
-  vertical-chain coloring, its binomial bound, and adjacent gluing.  General
+  five.  Ticket 0022's first exact H2 contract is kernel-refuted at `r = 2`:
+  five consecutive cyclic anchors over four positions repeat an endpoint and
+  violate the required strict cap sign, even though the full support-product
+  premise is inhabited.  The route is gated on a fresh review of any
+  `3 <= r` replacement; H2 remains open and its finite count stays five.
+  General
   pseudo-configurations remain optional until the point-set route lands.
 - **FP-16.A — Official exact-six source admission.**  The primary-paper audit
   freezes the eight `E*` patterns, the source convex-six predicate, and the

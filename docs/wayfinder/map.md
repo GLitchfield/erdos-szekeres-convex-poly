@@ -105,6 +105,44 @@ Greene/profile coefficient-refinement lane is expired unless H2--H4 later
 produce a genuine cross-pool restriction.  No load-bearing destination
 dependency changed.
 
+The subsequent H2 planning audit authenticates the primary-source interval for
+vertical separation, left/right transitive coloring, the binomial profile, and
+adjacent gluing.  Adversarial review exposed and corrected two contract errors
+before execution: the top-level source must be the full cyclic
+`PorValtrSupportProductData` rather than the later linear raw-pool bridge, and
+the no-target premise must name the original carrier while the two chain fields
+bind the distinct outer anchors.  Ticket 0022 now freezes three proof-producing
+threads plus one information-gathering orchestration lane.  **Net proof
+movement:** neutral at planning; no H2 theorem yet compiles.  **Evidence:**
+authenticated source/interface audit and advisory review.  **Difficulty
+displaced:** none; the cyclic projection, local profile recurrence, adjacent
+outer-anchor geometry, and cyclic no-target consumer remain.  **Counterfactual:**
+the corrected contract prevents a linear no-wrap or common-anchor result from
+being misclassified as H2 progress, but does not shorten the proof until its
+kernel gates land.  **Planning consequence:** mark `FP-15.C` advancing behind
+the exact ticket-0022 theorem slate; H2 remains open at five finite layers.
+No load-bearing destination dependency changed.
+
+Execution then stopped at the ticket's mandatory degenerate-cardinality gate.
+For `r = 2`, an explicit general-position four-point
+`PorValtrSupportProductData` source is inhabited, while the required
+five-anchor cyclic window repeats its first endpoint at offset four.  The Lean
+theorem `HMPTCyclicSourceCounterexample.frozenContract_false` turns the
+resulting impossible `orientation x0 x1 x0 < 0` field into a kernel-checked
+negation of the frozen producer contract.  The local-profile and adjacent
+design lanes were superseded and controls/positive H2 composition did not run;
+the accepted bootstrap and counterexample nevertheless passed the full
+repository integration gate.  **Net proof movement:** neutral; H2 remains open
+and its finite-layer count remains five.
+**Evidence:** warning-clean compiling counterexample theorem, targeted build,
+and standard-only axiom audit.  **Difficulty displaced:** none; a possible
+`3 <= r` repair removes only this boundary collision and leaves all four H2
+kernel obligations.  **Counterfactual:** prior knowledge would have avoided a
+false packet but not reduced corrected H2 work.  **Planning consequence:**
+close ticket 0022 as falsified and gate `FP-15.C` on a fresh source/interface
+and adversarial review before admitting any replacement.  No load-bearing
+destination edge changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical
