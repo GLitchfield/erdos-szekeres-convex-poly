@@ -1245,7 +1245,11 @@ that deserves independent retention and scheduling consideration.
   block over four anchors repeats its outer endpoint and contradicts the
   strict `orient014` field.  The bootstrap/counterexample umbrella integration
   passes all 10,297 Lean jobs, 107 unit tests, and deterministic checks.  This
-  is candidate-local negative evidence, not an H2 theorem.
+  is candidate-local negative evidence, not an H2 theorem.  Ticket 0023's
+  repaired propositions elaborate, but its independently checked positive C2
+  fixture is inadmissible: `(p0,p3,p4)` and `(p1,p2,p5)` are collinear.  Seven
+  other positive gates and all fourteen corruptions agree, but the preflight
+  stop prevented every C1--C4 proof worker from starting.
 - **Missing generalization bridge:** `FP-15.B` has reached its scope ceiling.
   Reaching the portfolio ceiling now requires the distinct point-set
   Holmsen--Mojarrad--Pach--Tardos mechanism in `FP-15.C`.  Affecting the exact
@@ -1260,26 +1264,32 @@ that deserves independent retention and scheduling consideration.
   separate proof movement.  The subsequent `HMPT-H1-LAND` theorem pair closes
   H1 and decreases `FP-15.C`'s finite-layer count from six to five.  No
   load-bearing exact-conjecture edge changed.  The H2 `r = 2`
-  counterexample is neutral proof movement and leaves that count at five.
+  counterexample and ticket-0023 control mismatch are neutral proof movement
+  and leave that count at five.
 - **Downstream consumer:** the `FP-15.B` theorem is now a finished quantitative
   benchmark and unlock condition for `FP-15.C`.  Any claim on the exact route
   still requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
 - **Open obstruction:** `FP-15.B` has no remaining scoped obstruction and H1
   of `FP-15.C` is closed.  Ticket 0022's frozen H2 source contract is false at
-  `r = 2`; its exact kernel counterexample is now durable.  A possible
-  `3 <= r` repair is consistent with the existing point-set source producer,
-  but it has not been independently reviewed or admitted.  Even after such a
-  repair, the full cyclic source projection (including cell zero and the wrap
-  pair), local vertical-chain profile, distinct outer-anchor gluing theorem,
-  and immediate cyclic no-target inequalities remain.  H3--H6 stay behind
-  that layer.
-- **Next discriminating gate:** perform a fresh source/interface and bounded
-  adversarial review of the proposed `3 <= r` producer, including an explicit
-  `r = 3` five-anchor distinctness control and proof that every downstream H2
-  invocation supplies that bound.  Only after that review may a new frozen
-  packet schedule the cyclic producer.  Compilation of all four H2 obligations
-  is still the only event that can change the open count from five to four;
-  correcting the false premise alone is neutral.
+  `r = 2`; its exact kernel counterexample is now durable.  Ticket 0023's
+  bounded review accepts `3 <= r` as the sharp reachable replacement but
+  identifies two mandatory preflight obligations: an admitted all-empty-pool
+  `r = 3` boundary fixture, and explicit proofs of reverse HMPT/Suk strict-order
+  compatibility plus outer-anchor color semantics in the local-profile lane.
+  The boundary/cyclic/C3 controls survive, but the first proposed C2 fixture
+  has two accidental collinear triples and supplies no admissible evidence for
+  those bridges.
+  The full cyclic source projection, profile/binomial theorem,
+  distinct-outer-anchor gluing, and cyclic no-target inequalities remain
+  unproved.  H3--H6 stay behind that layer.
+- **Next discriminating gate:** do not perturb and rerun ticket 0023 directly.
+  Ticket 0022's kernel falsifier and ticket 0023's inadmissible positive control
+  are two consecutive negative/information-only outcomes in the H2 mechanism
+  family, so a fresh bounded adversarial route review must first decide whether
+  a genuinely new C2 fixture/construction warrants a third refinement or H2
+  should be suspended.  Compilation of all four H2 obligations remains the
+  only event that can change the open count from five to four; a replacement
+  fixture, review, controls, or any proper subset are neutral.
 - **Success payoff:** a source-faithful H2 theorem would extend the now-compiled
   local product layer toward the current-best
   `2^(n + O(sqrt(n*log n)))` point-set bound while testing whether its
@@ -1291,8 +1301,11 @@ that deserves independent retention and scheduling consideration.
   schedule constant optimization or another Suk repackaging as proof progress.
   `FP-15.C` retains recent forward movement from H1, but its first H2
   producer contract is expired by a kernel counterexample and the route is
-  gated on a freshly reviewed replacement.  Do not treat the syntactic
-  `3 <= r` repair as promotion evidence.  The parallel H1-only
+  now gated on a fresh adversarial route review after ticket 0023's positive
+  control failed general-position admission.  Do not treat the syntactic
+  `3 <= r` repair, a perturbed fixture, or passing controls as promotion
+  evidence.  A third information-only/negative H2 outcome suspends this family
+  unless a genuinely new positive theorem or mechanism appears.  The parallel H1-only
   two-ranking/Greene coefficient-improvement lane is expired: a rational
   permutation-2143 spike fixture has rectangular profile `(2,2)` and
   saturates `|P_i| = v_i*h_i`.  Revive that lane only if H2--H4 independently
@@ -1604,8 +1617,12 @@ parent unless promoted.
   five.  Ticket 0022's first exact H2 contract is kernel-refuted at `r = 2`:
   five consecutive cyclic anchors over four positions repeat an endpoint and
   violate the required strict cap sign, even though the full support-product
-  premise is inhabited.  The route is gated on a fresh review of any
-  `3 <= r` replacement; H2 remains open and its finite count stays five.
+  premise is inhabited.  Ticket 0023's review accepts `3 <= r` only behind an
+  empty-pool boundary control and explicit local order/outer-anchor bridges.
+  The repaired statements elaborate and most frozen controls pass, but the
+  first positive C2 fixture contains two collinear triples; preflight stopped
+  before every proof worker.  A fresh adversarial review is mandatory before
+  any third H2 refinement.  H2 remains open and its finite count stays five.
   General
   pseudo-configurations remain optional until the point-set route lands.
 - **FP-16.A — Official exact-six source admission.**  The primary-paper audit

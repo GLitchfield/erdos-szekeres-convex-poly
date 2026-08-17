@@ -143,6 +143,41 @@ close ticket 0022 as falsified and gate `FP-15.C` on a fresh source/interface
 and adversarial review before admitting any replacement.  No load-bearing
 destination edge changes.
 
+Ticket 0023 records that fresh review.  Both advisory reviewers agree that
+`3 <= r` exactly removes the repeated-endpoint family and matches the compiled
+point-set source producer, but they require an all-empty-pool `r = 3` boundary
+fixture and an explicit local-profile bridge audit before proof workers start.
+The repository audit finds the H1 order-pair producer, but the strict
+HMPT/reverse-Suk equivalence is private and the existing Suk color semantics
+uses the two inner anchors rather than H2's outer endpoints.  The repaired C2
+lane therefore owns those proofs rather than assuming them.  **Net proof
+movement:** neutral; no repaired H2 theorem compiles and the finite-layer count
+remains five.  **Evidence:** static interface audit and bounded advisory review.
+**Difficulty displaced:** none; C1 cyclic projection, C2 profile/binomial
+theorem, C3 distinct-anchor gluing, and C4 cyclic consumer remain.
+**Counterfactual:** this plan prevents a second false or premise-smuggling
+packet but does not shorten the kernel proof.  **Planning consequence:** retain
+`FP-15.C` as gated; run ticket 0023's declaration and exact-rational preflight
+before any C1--C3 proof work.  No load-bearing destination edge changes.
+
+Ticket 0023 then stopped at that exact preflight boundary.  The repaired
+C1--C4 propositions elaborate, and two independently frozen exact-rational
+evaluators agree on seven of nine positive gates, every one of fourteen
+corruption rejections, and a common semantic projection.  The `r = 3` empty
+and nonempty cyclic controls, wrap reconstruction, maximum arithmetic, and all
+C3 four-subsets pass.  The proposed local fixture is not in general position:
+`(p0,p3,p4)` and `(p1,p2,p5)` are exactly collinear, so both C2 gates correctly
+reject its admission.  No proof worker or post-outcome fixture repair ran.
+**Net proof movement:** neutral; H2 remains open at five finite layers.
+**Evidence:** compiling proposition smoke plus checked computation, not an H2
+theorem or theorem falsifier.  **Difficulty displaced:** none; C1--C4 remain.
+**Counterfactual:** prior knowledge would have avoided this slate but would not
+have shortened the corrected proof.  **Planning consequence:** close ticket
+0023, retain `FP-15.C` as gated, and require a fresh adversarial route review
+before any third H2-family refinement, as this is the second consecutive
+negative/information-only H2 outcome.  No load-bearing destination edge
+changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical
