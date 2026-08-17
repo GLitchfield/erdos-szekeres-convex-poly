@@ -120,6 +120,15 @@ sets.
   project's conservative formalization of Suk's
   `2^(n+O(n^(2/3) log n))` route; it neither reproduces the optimized published
   constant nor changes the open exact Erdős--Szekeres upper-bound edge.
+- The first finite layer of the sharper Holmsen--Mojarrad--Pach--Tardos
+  point-set route now compiles.  `HMPTSpikeOrderGeometry.lean` derives the
+  literal triangle-containment and crossed-closed-segment partial orders, plus
+  exact exclusive comparability, from one `SukRegionGeometry` pool.
+  `HMPTSpikeOrderConsumer.lean` constructs actual maximum chains and proves
+  `|P_i| <= v_i*h_i` by finite Dilworth.  This closes only H1 of a six-layer
+  route to the published `2^(n+O(sqrt(n log n)))` bound; the coloring, gluing,
+  aggregation, and exact-natural asymptotic layers remain unformalized, and no
+  exact-conjecture dependency changes.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

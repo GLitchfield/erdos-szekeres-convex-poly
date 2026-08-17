@@ -2,8 +2,8 @@
 title: Formalize the HMPT point-set spike orders
 type: research
 mode: AFK
-status: open
-claim: unclaimed
+status: closed
+claim: codex-hmpt-h1-2026-08-16
 blocked_by: none
 ---
 
@@ -115,9 +115,34 @@ order, weaken exclusive comparability, or replace point sets by pseudolines.
 
 ## Resolution
 
-Open.  The source-authentication stage is complete, but the H1 Lean slate has
-not been planned or approved.  The next action is a separate proof-producing
-plan using the frozen contract above.
+Closed with outcome `HMPT-H1-LAND`.
+
+- `HMPTSpikeOrderDefs.lean` defines the literal triangle-containment and
+  crossed-closed-segment relations, their reflexive closures, the exact
+  exclusive order-pair interface, and cardinality-maximum finite chains.
+- `SukRegionGeometry.toHMPTSpikeOrderPair` derives both partial-order laws and
+  exhaustive-and-exclusive comparability from raw support-region geometry.
+  The proof keeps literal closed-segment semantics through an explicit Cramer
+  bridge and uses general position only to exclude the two sign boundaries.
+- `HMPTSpikeOrderPair.exists_maxChains_card_le_product` constructs actual
+  maximum chains internally, applies finite Dilworth to the vertical order,
+  and converts the antichain branch to a horizontal chain.  It assumes neither
+  a chain witness nor a product inequality.
+
+Both public theorems passed warning-clean direct checks, targeted module
+builds, and declaration-only audits with only `propext`, `Classical.choice`,
+and `Quot.sound`.  Independent read-only reviews accepted their contracts,
+semantics, trust boundaries, and accounting.  Optional review replays under a
+stricter 2 GiB cap stopped operationally before or during startup; the
+authenticated 12 GiB worker gates remain the admitted kernel evidence.
+
+The parallel rank-profile audit found that the two HMPT orders are the
+agreement and disagreement orders of two projective total rankings.  This adds
+no datum beyond exclusive comparability.  An exact rational permutation-2143
+fixture has Greene shape `(2,2)` and saturates `|s| = v*h`, so an H1-only
+positive rectangle-defect improvement is expired.  Such a refinement may be
+reconsidered only if H2--H4 independently produce a nonrectangular cross-pool
+restriction.
 
 ## Evidence
 
@@ -128,13 +153,25 @@ plan using the frozen contract above.
   `runs/literature/20260816-hmpt-pointset-auth/`.
 - Existing compiled interfaces: `SukRegionGeometry`, `SukRegionLE`,
   `SukConsecutiveRawPools`, and `finiteDilworth_chain_or_antichain`.
+- Compiling H1 modules: `ErdosSzekeres/HMPTSpikeOrderDefs.lean`,
+  `ErdosSzekeres/HMPTSpikeOrderGeometry.lean`, and
+  `ErdosSzekeres/HMPTSpikeOrderConsumer.lean`.
+- Frozen worker results, controls, rank-profile audit, and independent reviews:
+  `runs/agents/20260816-hmpt-h1-slate/`.
 
 ## Current accounting
 
-**Net proof movement:** neutral.  **Evidence:** authenticated primary source and
-Lean-shaped proposal.  **Difficulty displaced:** source and interface
-uncertainty are removed, but the crossed-segment geometry remains unproved.
-**Counterfactual:** the audit makes a bounded H1 theorem gate schedulable but
-does not reduce an exact-conjecture obligation.  **Planning consequence:**
-retain `FP-15.C` as theorem-ready and make H1 its next proof-producing gate.
-No load-bearing edge in `docs/wayfinder/map.md` changed.
+**Net proof movement:** forward within `FP-15.C`: the predeclared finite-layer
+count decreases from six to five by closing H1.  **Evidence:** two compiling
+public Lean theorems, targeted builds, standard-only axiom audits, checked
+geometric controls, and independent proposal-level reviews.  **Difficulty
+displaced:** none inside H1; the literal segment order, its laws, exclusive
+comparability, maximum-chain construction, and product consumer are proved
+rather than moved into premises.  The remaining route begins at H2
+vertical-chain coloring, its binomial bound, and adjacent gluing.
+**Counterfactual:** knowing the two theorems before the run removes the entire
+first HMPT layer and materially reduces the scoped proof estimate.  **Planning
+consequence:** close this ticket, retain `FP-15.C`, gate the next execution on
+an authenticated H2 theorem contract, and expire the H1-only Greene/profile
+coefficient-refinement lane.  No load-bearing edge in
+`docs/wayfinder/map.md` changed.

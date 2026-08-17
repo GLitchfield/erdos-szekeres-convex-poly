@@ -85,20 +85,25 @@ source-authenticated theorem contract and route review.  `D-UPPER`, `D-HALF`,
 `D-DECOMP`, and `D-NORMALIZE` remain open, `D-ASSEMBLE` remains gated, and
 supporting milestone `Q-UPPER` remains closed.
 
-The subsequent one-slot `FP-15.C` exploration used zero proof-producing slots
-and one information-gathering slot.  It authenticated HMPT's Euclidean
-spike-pool vertical and horizontal partial orders and their immediate Dilworth
-consumer `|P_i| <= v_i*h_i`, then froze a six-layer point-set ledger and an
-exact Lean-shaped H1 contract.  Existing `SukRegionGeometry` supplies every
-geometric premise; the remaining H1 proof is the crossed-segment horizontal
-order plus exclusive comparability.  **Net proof movement:** neutral.
-**Evidence:** authenticated primary source and interface proposal; no Lean
-theorem.  **Difficulty displaced:** source/model uncertainty is removed, but
-the geometric H1 producer remains.  **Counterfactual:** this makes a bounded
-theorem gate schedulable but does not reduce any exact-conjecture obligation.
-**Planning consequence:** retain `FP-15.C` as theorem-ready and make H1 the next
-proof-producing gate; do not schedule another information refinement first.
-No load-bearing destination dependency changed.
+The approved three-thread `FP-15.C` H1 slate used two proof-producing slots
+and one information-gathering slot.  Lean now derives the literal HMPT
+triangle-containment and crossed-closed-segment partial orders directly from
+`SukRegionGeometry`, proves exhaustive-and-exclusive comparability, constructs
+actual maximum chains internally, and proves `|P_i| <= v_i*h_i` by finite
+Dilworth.  Both public theorems passed targeted builds, standard-only axiom
+audits, and independent contract/semantic review.  **Net proof movement:**
+forward within `FP-15.C`; H1 closes and its finite-layer count decreases from
+six to five.  **Evidence:** compiling Lean theorems, checked geometric controls,
+and proposal-level reviews.  **Difficulty displaced:** none inside H1; H2
+vertical-chain coloring, its binomial bound, and adjacent gluing are now the
+first open layer.  **Counterfactual:** these results remove the entire frozen
+H1 obligation and materially reduce its proof estimate.  **Planning
+consequence:** close ticket 0021, retain `FP-15.C`, and gate the next execution
+on an authenticated H2 theorem contract.  The parallel exact-rational
+permutation-2143 control saturates the H1 product inequality, so the H1-only
+Greene/profile coefficient-refinement lane is expired unless H2--H4 later
+produce a genuine cross-pool restriction.  No load-bearing destination
+dependency changed.
 
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
@@ -130,6 +135,12 @@ finite-proof packet.  `D-UPPER(6)` and universal `D-UPPER` remain unproved.
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
+
+- [The first HMPT point-set order layer now
+  compiles](tickets/0021-formalize-hmpt-pointset-orders.md):
+  raw support geometry produces both literal spike orders and exact
+  comparability, and finite Dilworth gives the maximum-chain product bound;
+  `FP-15.C` H1 closes without changing an exact-conjecture edge.
 
 - [The conservative Suk positive-fraction upper bound now
   compiles](tickets/0020-compose-suk-positive-fraction.md):

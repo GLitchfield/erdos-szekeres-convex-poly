@@ -116,11 +116,15 @@ triangle-containment order and a horizontal crossed-segment order, proves that
 every distinct pair is comparable in exactly one order, and immediately uses
 Dilworth to obtain `|P_i| <= v_i*h_i`.  The repository's support-region data
 already supplies the local point-set hypotheses and its triangle order is the
-reverse vertical order.  The horizontal-order and exclusive-comparability
-proofs are now frozen as a Lean-shaped contract, but they have not been
-formalized; the paper itself summarizes them as checks of a few four- and
-five-point configurations.  The later optimized parameter choice still uses
-`o(1)` notation and therefore requires a separate exact-natural wrapper.
+reverse vertical order.  This first layer now compiles in Lean with the literal
+closed-segment definition: an explicit Cramer bridge proves the horizontal
+order laws, the two anchor-orientation signs give exact four-way exclusive
+comparability, and an independent finite theorem constructs maximum chains and
+derives the product bound.  A rational permutation-2143 spike fixture has
+Greene shape `(2,2)` and saturates the product, so the two common projective
+rankings alone do not improve its coefficient.  The later coloring, gluing,
+aggregation, and optimized parameter choice remain unformalized; the source's
+`o(1)` notation will also require a separate exact-natural wrapper.
 
 The finite layer of Suk's proof is now formalized separately from those density
 losses.  Lean proves the finite chain--antichain threshold, the
@@ -164,8 +168,8 @@ where `sukCubeScale n` is the least natural `s` with `n <= s^3`; a separate
 certificate bounds the cube of `s^2` by `64*n^2`.  This is a conservative
 formal realization of Suk's `2^(n+O(n^(2/3) log n))` method, not a reproduction
 of its optimized constant and not progress on the exact threshold.  The
-stronger Holmsen--Mojarrad--Pach--Tardos error term remains unformalized here;
-only its first producer/consumer interface has been source-authenticated.
+stronger Holmsen--Mojarrad--Pach--Tardos error term remains unformalized here,
+but its first exact finite producer/consumer layer now compiles.
 
 ### 4. Equivalent strengthened statements
 

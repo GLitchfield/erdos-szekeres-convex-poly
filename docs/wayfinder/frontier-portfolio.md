@@ -1137,7 +1137,7 @@ that deserves independent retention and scheduling consideration.
   milestone that does not close or strictly reduce universal `D-UPPER` without
   a separate proved implication.
 - **Strategic role:** bridge.
-- **State:** advancing.
+- **State:** gated.
 - **Model tier:** general-position planar configurations and their
   sweep-realizable presentations.  The first rung is the source-authenticated
   Tóth--Valtr theorem
@@ -1231,14 +1231,14 @@ that deserves independent retention and scheduling consideration.
   or global inequality.  Finally, `sukCubeScale_sq_cube_le` and
   `suk_explicit_upper` prove the exact `n >= 65` exponent above.  Independent
   reviews accepted both final public statements and their standard-only trust
-  boundaries.  The first `FP-15.C` source gate is now authenticated as well.
-  HMPT Observation 3.1 defines, on each Euclidean spike pool, a vertical
-  triangle-containment order and a horizontal crossed-segment order, while
-  equation (3) immediately combines exclusive comparability with Dilworth to
-  obtain `|P_i| <= v_i*h_i`.  Existing `SukRegionGeometry` supplies every
-  geometric premise and `SukRegionLE` supplies the reversed vertical order.
-  The horizontal partial order and exclusive-comparability producer remain an
-  exact frozen Lean-shaped contract, not a compiling theorem.
+  boundaries.  The first `FP-15.C` layer now compiles too.
+  `SukRegionGeometry.toHMPTSpikeOrderPair` derives the literal vertical
+  triangle-containment order, horizontal crossed-closed-segment order, both
+  partial-order laws, and exhaustive-and-exclusive comparability directly from
+  raw support-region geometry.  The independent finite consumer constructs
+  actual maximum vertical and horizontal chains and proves
+  `|P_i| <= v_i*h_i` by finite Dilworth.  Both declarations passed targeted
+  builds, standard-only axiom audits, and independent formal review.
 - **Missing generalization bridge:** `FP-15.B` has reached its scope ceiling.
   Reaching the portfolio ceiling now requires the distinct point-set
   Holmsen--Mojarrad--Pach--Tardos mechanism in `FP-15.C`.  Affecting the exact
@@ -1250,40 +1250,39 @@ that deserves independent retention and scheduling consideration.
   `suk_explicit_upper`.  They close `C-compose` and `C-asymptotic`, decreasing
   ticket 0020's scoped count from two to zero.  The finite controls and
   independent formal reviews are neutral supporting evidence rather than
-  separate proof movement.  The subsequent `HMPT-POINTSET-PAIR-AUTH` source
-  result is also neutral: it makes `FP-15.C` theorem-ready but compiles no
-  declaration.  No load-bearing exact-conjecture edge changed.
+  separate proof movement.  The subsequent `HMPT-H1-LAND` theorem pair closes
+  H1 and decreases `FP-15.C`'s finite-layer count from six to five.  No
+  load-bearing exact-conjecture edge changed.
 - **Downstream consumer:** the `FP-15.B` theorem is now a finished quantitative
   benchmark and unlock condition for `FP-15.C`.  Any claim on the exact route
   still requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
-- **Open obstruction:** `FP-15.B` has no remaining scoped obstruction.  The
-  first `FP-15.C` layer is now exact but uncompiled: prove the crossed-segment
-  horizontal relation is a partial order on a `SukRegionGeometry` pool and
-  that every distinct pair is comparable in exactly one of it and the reversed
-  `SukRegionLE` order.  The later coloring, gluing, aggregation, and exact
-  parameter layers remain open behind that producer.
-- **Next discriminating gate:** implement the frozen point-set order-pair
-  producer and its immediate maximum-chain product consumer from ticket 0021.
-  Success requires both public theorems to compile from raw
-  `SukRegionGeometry`, with no supplied order, chain, product bound, or target;
-  it decreases the predeclared `FP-15.C` layer count from six to five.  A
-  definition-only module, abstract supplied-order shell, or one-sided order
-  theorem is neutral.
-- **Success payoff:** a source-faithful first `FP-15.C` producer/consumer pair
-  would begin the route to the current-best
-  `2^(n + O(sqrt(n*log n)))` point-set bound while reusing the completed
-  quantitative infrastructure where its interfaces genuinely match.
+- **Open obstruction:** `FP-15.B` has no remaining scoped obstruction and H1
+  of `FP-15.C` is closed.  H2 is now first: authenticate and formalize the
+  vertical-chain coloring, its binomial bound, and adjacent gluing without
+  assuming a coloring, glued target, or the resulting inequality.  H3--H6
+  remain behind that layer.
+- **Next discriminating gate:** perform one bounded primary-source/interface
+  audit of H2 and freeze a Lean-shaped producer/consumer contract with an exact
+  finite layer-decrease criterion.  Only a later compiling H2 theorem may
+  change the open count from five to four; source prose, a supplied coloring,
+  or a conditional gluing shell is neutral.
+- **Success payoff:** a source-faithful H2 theorem would extend the now-compiled
+  local product layer toward the current-best
+  `2^(n + O(sqrt(n*log n)))` point-set bound while testing whether its
+  adjacent-chain geometry reuses the completed Suk interfaces.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
   parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
   complete through its original-carrier source, both global consumers, exact
   natural parameter composition, and explicit asymptotic wrapper.  Do not
   schedule constant optimization or another Suk repackaging as proof progress.
-  `FP-15.C` now has one source-authenticated information outcome and must next
-  attempt the frozen proof-producing H1 gate rather than another source or API
-  refinement.  After a second correlated information-only outcome, require an
-  adversarial review; suspend after a third unless a genuinely new positive
-  theorem appears.  Revive exact-route use only with a theorem-shaped consumer
-  into a named load-bearing edge.
+  `FP-15.C` has recent forward movement from H1 but is gated until an exact H2
+  producer/consumer contract is authenticated.  The parallel H1-only
+  two-ranking/Greene coefficient-improvement lane is expired: a rational
+  permutation-2143 spike fixture has rectangular profile `(2,2)` and
+  saturates `|P_i| = v_i*h_i`.  Revive that lane only if H2--H4 independently
+  prove a nonrectangular cross-pool profile restriction and an adversarial
+  review accepts a quantitative consumer.  Revive exact-route use only with a
+  theorem-shaped consumer into a named load-bearing edge.
 - **Children:** `FP-15.A` completed explicit Tóth--Valtr bound and projective frame;
   `FP-15.B` Suk positive-fraction/partial-order finite kernel and explicit
   asymptotic assembly; `FP-15.C` point-specialized
@@ -1584,12 +1583,11 @@ parent unless promoted.
   explicit `n >= 65` positive-fraction exponent now compile as well.  Its two
   final scoped dependencies are closed; no load-bearing exact edge changes.
 - **FP-15.C — Point-specialized current-best upper bound.**  The primary
-  point-set two-order layer and immediate product consumer are authenticated
-  and frozen in ticket 0021.  Its finite open-layer count is six.  The next
-  proof-producing gate is the `SukRegionGeometry` horizontal-order and
-  exclusive-comparability producer plus its exact Dilworth product consumer;
-  success changes six to five.  General pseudo-configurations are optional
-  only after the point-set endpoint lands.
+  point-set two-order layer and immediate product consumer now compile and
+  close H1 in ticket 0021, decreasing the finite open-layer count from six to
+  five.  The route is gated on authenticating an exact H2 contract for
+  vertical-chain coloring, its binomial bound, and adjacent gluing.  General
+  pseudo-configurations remain optional until the point-set route lands.
 - **FP-16.A — Official exact-six source admission.**  The primary-paper audit
   freezes the eight `E*` patterns, the source convex-six predicate, and the
   theorem ladder ending at `erdosSzekeresFormulaAt_six`.  The local corpus has

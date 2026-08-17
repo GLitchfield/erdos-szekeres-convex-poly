@@ -189,6 +189,9 @@ public import ErdosSzekeres.DecomposableStateDuality
 public import ErdosSzekeres.ES5Certificate
 public import ErdosSzekeres.TothValtrUpper
 public import ErdosSzekeres.FiniteDilworth
+public import ErdosSzekeres.HMPTSpikeOrderDefs
+public import ErdosSzekeres.HMPTSpikeOrderGeometry
+public import ErdosSzekeres.HMPTSpikeOrderConsumer
 public import ErdosSzekeres.SukAdjacentRegions
 public import ErdosSzekeres.SukRegionOrder
 public import ErdosSzekeres.SukAdjacentSupportProducer
