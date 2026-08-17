@@ -178,6 +178,30 @@ before any third H2-family refinement, as this is the second consecutive
 negative/information-only H2 outcome.  No load-bearing destination edge
 changes.
 
+Ticket 0024 completes that mandatory route review. Independent read-only
+audits find no mathematical premise gap in C2 or C3. C2 can run the existing
+finite two-color recurrence on the actual maximum vertical-chain point set in
+forward Suk order, where raw negative and positive triples have the required
+outer-left and outer-right cap meanings; exact successor sizes give
+`choose (L+R-2) (L-1)`. C3 reduces to a signed distinct-anchor pair
+transport: an increasing left pair sees `x3` and every remote right-pool point
+with the same negative orientation, and the reflected right pair sees `x1`
+and every remote left-pool point positively. Those signs feed the existing
+`3+1` replacement and `2+2` opposite-support consumers without a common-`x2`
+cap or supplied certificate. Sol/Fable converge on retaining exactly one
+theorem-first attempt at that signed pair gate, with automatic suspension on
+any falsifier, missing premise, certificate-shaped repair, or resource-only
+stop. **Net proof movement:** neutral; these are proposal-level audits and no
+new theorem compiles. **Evidence:** authenticated source, three independent
+read-only audits, and bounded advisory review. **Difficulty displaced:** no
+new premise is introduced, but C1--C4 remain kernel-open and H2's layer count
+remains five. **Counterfactual:** the review rules out the invalid common
+anchor route and makes C2/C3 implementation materially more determinate, but
+does not shorten the proved exact route. **Planning consequence:** retain
+`FP-15.C` as gated for ticket 0024's one signed-pair theorem gate; do not rerun
+the old fixture or launch the full H2 slate. `D-HALF`, `D-DECOMP`, and
+`D-NORMALIZE` remain unchanged, and no load-bearing edge changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical

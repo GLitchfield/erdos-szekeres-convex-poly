@@ -1278,18 +1278,27 @@ that deserves independent retention and scheduling consideration.
   compatibility plus outer-anchor color semantics in the local-profile lane.
   The boundary/cyclic/C3 controls survive, but the first proposed C2 fixture
   has two accidental collinear triples and supplies no admissible evidence for
-  those bridges.
+  those bridges. Ticket 0024's mandatory route review now derives noncircular
+  proposal-level proof graphs for both difficult local contracts. C2 uses
+  reverse HMPT/Suk order, outer-anchor sign semantics, actual powerset maxima,
+  and the existing generic two-color recurrence at exact successor sizes. C3
+  uses signed Plücker/wedge transport to put remote points on the same pair-line
+  side as the actual distinct anchors `x3` and `x1`; the common-`x2`
+  certificate is not used. These audits reduce implementation uncertainty but
+  do not compile a theorem, close a layer, or reset the evidence streak by
+  themselves.
   The full cyclic source projection, profile/binomial theorem,
   distinct-outer-anchor gluing, and cyclic no-target inequalities remain
   unproved.  H3--H6 stay behind that layer.
-- **Next discriminating gate:** do not perturb and rerun ticket 0023 directly.
-  Ticket 0022's kernel falsifier and ticket 0023's inadmissible positive control
-  are two consecutive negative/information-only outcomes in the H2 mechanism
-  family, so a fresh bounded adversarial route review must first decide whether
-  a genuinely new C2 fixture/construction warrants a third refinement or H2
-  should be suspended.  Compilation of all four H2 obligations remains the
-  only event that can change the open count from five to four; a replacement
-  fixture, review, controls, or any proper subset are neutral.
+- **Next discriminating gate:** ticket 0024 authorizes exactly one
+  theorem-first attempt at the two signed C3 pair-transport declarations on
+  raw `HMPTAdjacentSpikeGeometry`. The gate contains no profile, maximum,
+  union, convexity conclusion, supplied certificate, or common anchor. A
+  warning-clean compiling theorem pair is the only positive outcome; any
+  falsifier, missing raw premise, certificate-shaped workaround, or
+  resource-only stop suspends active H2 work. Do not perturb ticket 0023's
+  fixture or launch the full C1--C4 slate. Even a successful helper leaves the
+  official H2 count at five until the complete layer lands.
 - **Success payoff:** a source-faithful H2 theorem would extend the now-compiled
   local product layer toward the current-best
   `2^(n + O(sqrt(n*log n)))` point-set bound while testing whether its
@@ -1300,12 +1309,15 @@ that deserves independent retention and scheduling consideration.
   natural parameter composition, and explicit asymptotic wrapper.  Do not
   schedule constant optimization or another Suk repackaging as proof progress.
   `FP-15.C` retains recent forward movement from H1, but its first H2
-  producer contract is expired by a kernel counterexample and the route is
-  now gated on a fresh adversarial route review after ticket 0023's positive
-  control failed general-position admission.  Do not treat the syntactic
-  `3 <= r` repair, a perturbed fixture, or passing controls as promotion
-  evidence.  A third information-only/negative H2 outcome suspends this family
-  unless a genuinely new positive theorem or mechanism appears.  The parallel H1-only
+  producer contract is expired by a kernel counterexample. Ticket 0024's
+  completed adversarial review retains only one signed-pair theorem attempt
+  after ticket 0023's positive control failed general-position admission. Do
+  not treat the syntactic `3 <= r` repair, a perturbed fixture, passing
+  controls, or the proposal-level derivability audits as promotion evidence.
+  Any non-theorem terminal at the signed-pair gate is the third
+  information-only/negative H2 outcome and suspends this family. A compiling
+  pair theorem is revival evidence but does not change the five-layer count or
+  an exact-conjecture edge. The parallel H1-only
   two-ranking/Greene coefficient-improvement lane is expired: a rational
   permutation-2143 spike fixture has rectangular profile `(2,2)` and
   saturates `|P_i| = v_i*h_i`.  Revive that lane only if H2--H4 independently
@@ -1621,8 +1633,11 @@ parent unless promoted.
   empty-pool boundary control and explicit local order/outer-anchor bridges.
   The repaired statements elaborate and most frozen controls pass, but the
   first positive C2 fixture contains two collinear triples; preflight stopped
-  before every proof worker.  A fresh adversarial review is mandatory before
-  any third H2 refinement.  H2 remains open and its finite count stays five.
+  before every proof worker. Ticket 0024's completed adversarial review finds
+  credible theorem-level C2 and C3 proof graphs and authorizes exactly one
+  signed distinct-anchor pair-transport theorem gate before automatic
+  suspension. No fixture repair or full H2 slate is authorized. H2 remains
+  open and its finite count stays five.
   General
   pseudo-configurations remain optional until the point-set route lands.
 - **FP-16.A — Official exact-six source admission.**  The primary-paper audit
