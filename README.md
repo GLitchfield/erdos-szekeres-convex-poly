@@ -146,11 +146,15 @@ sets.
   pool disjointness identifies each selected union cardinality, and absence of
   an `n`-point convex subset in the original carrier forces every adjacent
   right/left chain sum below `n`.  C1--C4 therefore close H2 without supplied
-  profiles, inequalities, targets, or a changed carrier.  The official open
-  layer count for the six-layer route to the published
-  `2^(n+O(sqrt(n log n)))` bound decreases from five to four.  H3 and later
-  layers remain unauthenticated in Lean, and no exact-conjecture dependency
-  changes.
+  profiles, inequalities, targets, or a changed carrier.  H3 now compiles too.
+  `HMPTHorizontalColorGeometry.lean` derives the literal five-point inner/outer
+  semantics and both-color transitivity from raw region geometry, while
+  `HMPTHorizontalProfileProducer.lean` constructs actual maximum literal inner
+  and outer subchains of the unchanged H2 horizontal chain and proves the exact
+  `choose (c+d-2) (c-1)` recurrence.  The official open layer count for the
+  six-layer route to the published `2^(n+O(sqrt(n log n)))` bound therefore
+  decreases from four to three.  H4--H6 remain unformalized, and no
+  exact-conjecture dependency changes.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

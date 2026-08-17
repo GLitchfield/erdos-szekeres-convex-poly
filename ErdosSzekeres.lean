@@ -194,6 +194,9 @@ public import ErdosSzekeres.HMPTSpikeOrderGeometry
 public import ErdosSzekeres.HMPTSpikeOrderConsumer
 public import ErdosSzekeres.HMPTVerticalChainDefs
 public import ErdosSzekeres.HMPTVerticalProfileProducer
+public import ErdosSzekeres.HMPTHorizontalChainDefs
+public import ErdosSzekeres.HMPTHorizontalColorGeometry
+public import ErdosSzekeres.HMPTHorizontalProfileProducer
 public import ErdosSzekeres.HMPTAdjacentPairTransport
 public import ErdosSzekeres.HMPTAdjacentSpikeGluing
 public import ErdosSzekeres.HMPTCyclicSpikeGeometry

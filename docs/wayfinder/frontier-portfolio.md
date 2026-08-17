@@ -1178,8 +1178,10 @@ that deserves independent retention and scheduling consideration.
   `sukGlobalAdjacentChainSelection_toCertificate` theorem proves that an
   independently supplied full adjacent selection feeds the existing
   certificate and mixed-convex-union consumer.  Holmsen--Mojarrad--Pach--Tardos
-  remains a later source rung, not a current Lean result.  The one-region
-  geometric producer now compiles too.  `SukRegionGeometry` contains only the
+  begins a separate later source rung; the portfolio below records its now
+  compiled finite layers, but not yet the full quantitative bound.  The
+  one-region geometric producer now compiles too.  `SukRegionGeometry` contains
+  only the
   four anchor-cap signs, ambient general position, and open support membership;
   from those facts `SukRegionGeometry.twoColorSemantics` and
   `SukRegionGeometry.transitiveTwoColoring` are proved using explicit
@@ -1280,7 +1282,22 @@ that deserves independent retention and scheduling consideration.
   the exact disjoint-union cardinality, and derives every adjacent no-target
   inequality on the original carrier.  Its direct gate passed on the first
   attempt, its targeted build and standard-only axiom audit pass, and an
-  independent reviewer accepted the frozen final hash.
+  independent reviewer accepted the frozen final hash.  The next H3 boundary
+  is now source-authenticated at Observation 3.6(i) and TeX lines 509--512,
+  with Observation 3.6(ii) and Observation 3.7 explicitly reserved for H4.
+  The literal horizontal-chain definitions and exact G3/F3 theorem signatures
+  compile.  Independent exact-rational controls found no falsifier, but neither
+  the source audit, controls, nor definitions are theorem evidence.  Ticket
+  0028's first G3 proof packet then stopped after its fourth authorized direct
+  attempt with one literal `Finset` singleton-normalization equality unresolved.
+  The final source passed independent mathematical, contract, scope, and trust
+  review, but did not compile; F3 was therefore not started in that slate.  A
+  separately frozen recovery then discharged exactly that normalization goal
+  without changing G3's theorem or proof graph.  G3 now compiles with its raw
+  five-set classifier and both-color transitivity, and F3 now constructs actual
+  literal inner/outer maxima on the unchanged H2 horizontal chain and proves
+  the exact binomial recurrence.  Both final sources passed independent static
+  review, targeted builds, and standard-only declaration audits.
 - **Missing generalization bridge:** `FP-15.B` has reached its scope ceiling.
   Reaching the portfolio ceiling now requires the distinct point-set
   Holmsen--Mojarrad--Pach--Tardos mechanism in `FP-15.C`.  Affecting the exact
@@ -1303,8 +1320,12 @@ that deserves independent retention and scheduling consideration.
   ticket 0026's C1 cyclic producer and C2 profile producer, which decrease that
   count from three to one.  Ticket 0027's C4 theorem then decreases it from one
   to zero and closes H2, reducing the official finite-layer count from five to
-  four.  No load-bearing exact edge changes; the finite control suites and
-  read-only reviews remain neutral supporting evidence.
+  four.  The subsequent authenticated H3 boundary, advisory review, controls,
+  definitions, and contract smoke are neutral supporting evidence: they leave
+  the finite-layer count at four.  The first G3 resource terminal and
+  dependency-stopped F3 lane are neutral historical evidence.  The recovery's
+  G3 and F3 theorems close H3, reducing the official finite-layer count from
+  four to three.  No load-bearing exact edge changes.
 - **Downstream consumer:** the `FP-15.B` theorem is now a finished quantitative
   benchmark and unlock condition for `FP-15.C`.  Any claim on the exact route
   still requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
@@ -1329,19 +1350,20 @@ that deserves independent retention and scheduling consideration.
   four-subset case without exposing a certificate.  Ticket 0026 closes the
   full cyclic source projection C1 and the complete local profile/binomial
   producer C2.  Ticket 0027 closes the cyclic no-target consumer C4, so H2 is
-  complete; H3--H6 remain unauthenticated and unformalized.
-- **Next discriminating gate:** authenticate the exact H3 point-set statement
-  and its source dependencies, then freeze one theorem contract whose passing
-  Lean gate would reduce the remaining finite-layer count from four to three.
-  The review must identify every new aggregation object, carrier convention,
-  natural-number rounding step, and consumer of the H2 inequalities.  No H3
-  proof worker starts until bounded route review accepts that contract; a
-  conditional interface lacking an independent producer leaves the family
-  gated.
-- **Success payoff:** a source-faithful H2 theorem would extend the now-compiled
-  local product layer toward the current-best
-  `2^(n + O(sqrt(n*log n)))` point-set bound while testing whether its
-  adjacent-chain geometry reuses the completed Suk interfaces.
+  complete.  H3 is now complete as well: G3 proves the raw-geometry five-set
+  classifier and horizontal color transitivity, while F3 constructs actual
+  literal maxima and the exact private horizontal CupCap transport on the
+  unchanged H2 chain.  H4--H6 remain unauthenticated and unformalized.
+- **Next discriminating gate:** authenticate the exact H4 point-set source
+  boundary and freeze one theorem contract whose passing gate would reduce the
+  remaining finite-layer count from three to two.  The review must separate
+  Observation 3.6(ii)'s whole-chain convexity from Observation 3.7's parity
+  gluing, identify every cyclic aggregation object and carrier convention, and
+  expose a theorem-producing consumer rather than a supplied H4 certificate.
+  No H4 proof worker starts before bounded route review accepts that contract.
+- **Success payoff:** a source-faithful H4 theorem would combine the completed
+  horizontal profiles across the cycle and reduce the remaining finite-layer
+  count from three to two while preserving the original point carrier.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
   parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
   complete through its original-carrier source, both global consumers, exact
@@ -1352,10 +1374,11 @@ that deserves independent retention and scheduling consideration.
   The old `r = 2`
   contract remains expired by its kernel counterexample, while the reachable
   `3 <= r` producer is a distinct compiling theorem rather than a syntactic
-  repair.  C4 closes H2 and reduces the official count to four.  Gate the
-  family until an authenticated H3 theorem contract and bounded review expose
-  the next proof-producing edge; do not infer H3 from the H2 data or launch an
-  aggregation implementation from source prose alone.  The parallel H1-only
+  repair.  C4 closes H2 and reduces the official count to four.  Ticket 0028's
+  separately bounded recovery closes both G3 and F3 and therefore H3, reducing
+  the count to three.  Gate the family on a fresh authenticated H4 contract and
+  bounded review; do not infer H4 from the completed H3 data.  The parallel
+  H1-only
   two-ranking/Greene coefficient-improvement lane is expired: a rational
   permutation-2143 spike fixture has rectangular profile `(2,2)` and
   saturates `|P_i| = v_i*h_i`.  Revive that lane only if H2--H4 independently
@@ -1678,7 +1701,8 @@ parent unless promoted.
   common anchor.  Ticket 0026 adds the exact original-carrier cyclic source
   projection and the complete local profile/binomial producer.  Ticket 0027
   adds the exact cyclic no-target consumer.  C1--C4 and therefore H2 are
-  complete; the finite count is now four, with H3--H6 remaining.
+  complete.  Ticket 0028's separately frozen recovery proves both G3 and F3,
+  so H3 is complete and the finite count is now three.  H4--H6 remain.
   General
   pseudo-configurations remain optional until the point-set route lands.
 - **FP-16.A — Official exact-six source admission.**  The primary-paper audit

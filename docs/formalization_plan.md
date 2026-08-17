@@ -2688,12 +2688,19 @@ carrier, and contradicts the no-target hypothesis whenever an adjacent sum is
 at least `n`.  The subordinate C1--C4 measure is therefore zero and H2 is
 complete; the official finite-layer count decreases from five to four.
 
-Continue to specialize the proof to ordinary planar points before considering
-arbitrary pseudoline arrangements.  The next work is to authenticate and
-freeze the exact H3 point-set theorem contract before implementation.  Later
-aggregation layers, the positive-fraction product estimate, and explicit
-parameter optimization remain.  The public scope is an integer theorem
-implying
+The source-authenticated H3 point-set layer now compiles.
+`SukRegionGeometry.hmptHorizontalTripleGeometry` proves the literal inner and
+outer five-point semantics and both-color transitivity from raw geometry.
+`SukRegionGeometry.exists_hmptHorizontalProfile` then constructs actual
+maximum literal inner and outer subchains of the unchanged H2 horizontal chain
+and proves the exact binomial profile.  The official finite-layer count is
+therefore three.  Continue to specialize the proof to ordinary planar points
+before considering arbitrary pseudoline arrangements.  The next work is to
+authenticate and freeze the exact H4 point-set theorem contract, explicitly
+separating its whole-chain convexity and parity-gluing dependencies from the
+completed H3 recurrence.  Later aggregation layers, the positive-fraction
+product estimate, and explicit parameter optimization remain.  The public
+scope is an integer theorem implying
 
 ```text
 exists C n0, forall n >= n0,

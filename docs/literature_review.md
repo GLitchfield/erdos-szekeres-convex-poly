@@ -144,9 +144,15 @@ every source pool, aligns the final-to-zero successor window, applies the
 distinct-anchor gluing theorem, and converts each exact disjoint-union
 cardinality into the published adjacent-chain inequality on the unchanged
 carrier.  Thus C1--C4 formalize H2 and reduce the remaining finite-layer count
-from five to four.  Later aggregation and optimized parameter choice remain
-unformalized; the source's `o(1)` notation will also require a separate
-exact-natural wrapper.
+from five to four.  The source-authenticated H3 layer now compiles as well.
+Lean derives literal inner/outer five-point semantics and both-color
+transitivity from raw horizontal geometry, then constructs actual maximum
+literal inner and outer subchains of the unchanged H2 horizontal chain and
+proves `h_i <= choose (c_i+d_i-2) (c_i-1)`.  This reduces the remaining
+finite-layer count from four to three without importing the H4 whole-chain
+convexity or parity-gluing statements.  Later aggregation and optimized
+parameter choice remain unformalized; the source's `o(1)` notation will also
+require a separate exact-natural wrapper.
 
 The finite layer of Suk's proof is now formalized separately from those density
 losses.  Lean proves the finite chain--antichain threshold, the

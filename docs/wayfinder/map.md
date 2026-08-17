@@ -297,6 +297,67 @@ contract and route review rather than launching H3 automatically.  `D-HALF`,
 `D-DECOMP`, and `D-NORMALIZE` remain unchanged, and no load-bearing exact edge
 changes.
 
+The next H3 boundary is now authenticated directly from the primary HMPT TeX:
+the literal inner/outer definitions and transitivity use Observation 3.6(i),
+while the exact recurrence is at lines 509--512.  Observation 3.6(ii) and
+Observation 3.7 are explicitly reserved for H4.  A bounded Sol/Fable review
+required raw geometry in the finite producer, strict horizontal rather than
+vertical order, a private horizontal CupCap transport, and an explicit
+sorting/permutation bridge.  Independent exact-rational evaluators then agreed
+on every frozen positive, Nat-edge, permutation, and corruption control.  The
+literal definitions and exact G3/F3 theorem signatures compile, but neither
+the reviews, controls, nor signatures prove those theorems.  **Net proof
+movement:** neutral; the official finite-layer count remains four.  **Evidence:**
+authenticated source, checked computation, and compiling definitions/contracts.
+**Difficulty displaced:** none; G3 must still prove five-set semantics and
+both-color transitivity, while F3 must construct actual maxima and the exact
+binomial profile on the unchanged H2 chain.  **Counterfactual:** this evidence
+would have prevented a mis-scoped H4 dependency and a vertically ordered
+recurrence implementation, but it does not reduce the remaining theorem count.
+**Planning consequence:** retain `FP-15.C` as gated and execute ticket 0028's
+two proof-producing declarations.  No load-bearing `D-HALF`, `D-DECOMP`, or
+`D-NORMALIZE` edge changes.
+
+Ticket 0028's first proof slate reached the predeclared `HMPT-H3-RESOURCE`
+terminal.  The final G3 candidate preserves the exact raw-geometry theorem and
+passed independent mathematical, contract, scope, circularity, and static trust
+review, but its fourth authorized direct attempt left one theorem-local
+`Finset` equality: a nested four-point insertion had not normalized to literal
+four-element notation.  No targeted build or axiom audit followed.  Because G3
+did not become an admitted producer, F3 was explicitly not run rather than
+being supplied with the missing semantics.  **Net proof movement:** neutral;
+the subordinate set remains `{G3,F3}` and the official finite-layer count
+remains four.  **Evidence:** proposal-level static review and an operational
+Lean stop, not a compiling theorem.  **Difficulty displaced:** formally none;
+the local G3 normalization still blocks the whole declaration, and all F3
+maxima, sorting, and recurrence work remains.  **Counterfactual:** knowing the
+exact residual before the final attempt would improve operational scheduling,
+but this terminal does not reduce admitted proof work.  **Planning
+consequence:** retain the exact contracts and gate any continuation on a fresh,
+narrowly bounded G3 recovery packet; do not run a fifth attempt or start F3
+under this slate.  No load-bearing destination edge changes.
+
+Ticket 0028's separately frozen recovery slate now closes H3.  A one-candidate
+normalization smoke identified the exact representation repair for G3; the
+live theorem then passed warning-clean direct elaboration, targeted build,
+independent final-source review, and a standard-only axiom audit without any
+statement, hypothesis, sign, classifier, carrier, or import-boundary change.
+The admitted F3 theorem constructs actual filtered-powerset inner and outer
+maxima on the unchanged H2 horizontal chain, closes cards zero through two,
+and in the large branch combines the strict horizontal order, exact CupCap
+offsets, consecutive-color propagation, and canonical sorting of arbitrary
+triples.  **Net proof movement:** forward on H3: the subordinate set
+`{G3,F3}` becomes empty and the official finite-layer count decreases from
+four to three.  **Evidence:** two warning-clean compiling theorems, targeted
+module builds, independent static review, and declaration audits containing
+only `propext`, `Classical.choice`, and `Quot.sound`, plus the passing root
+exact-state repository gate.  **Difficulty displaced:** none inside H3; the
+distinct H4--H6 source layers remain.  **Counterfactual:** these theorems
+remove both predeclared H3 obligations and materially reduce the remaining
+formalization.  **Planning consequence:** close ticket 0028 and require a
+fresh authenticated H4 contract and bounded route review before H4 execution.
+No load-bearing `D-UPPER`, `D-HALF`, `D-DECOMP`, or `D-NORMALIZE` edge changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical
