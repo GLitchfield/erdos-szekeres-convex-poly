@@ -2664,14 +2664,22 @@ changes no load-bearing exact-conjecture edge.
 
 ### FP-15.C: point-specialized current-best bound
 
-This child is now unlocked by the compiling Suk architecture, but no
-Holmsen--Mojarrad--Pach--Tardos layer has yet been admitted.  Specialize that
-proof to ordinary planar points before
-considering arbitrary pseudoline arrangements.  Required layers are spikes,
-vertical and horizontal partial orders, the product chain bound, transitive
-colorings on maximal chains, the left/right and inner/outer gluing lemmas, the
-positive-fraction product estimate, and explicit parameter optimization.  The
-public scope is an integer theorem implying
+This child is unlocked by the compiling Suk architecture.  Its first finite
+Holmsen--Mojarrad--Pach--Tardos layer now compiles for ordinary planar points:
+the literal vertical and horizontal spike orders form the required exclusive
+pair, and finite Dilworth gives the product chain bound.  The raw signed bridge
+for adjacent spikes also compiles: a vertical pair sees its actual distinct
+outer anchor and every point of the neighboring pool with the same strict
+orientation sign.  This removes two predeclared geometric implications from
+the next gluing proof, but does not yet prove its mixed-four-subset consumer or
+decrease H2's official five-layer count.
+
+Continue to specialize the proof to ordinary planar points before considering
+arbitrary pseudoline arrangements.  The next bounded gate is the two-anchor
+adjacent certificate and its exact H2 gluing consumer; transitive colorings on
+maximal chains, cyclic source projection, cyclic no-target inequalities, later
+gluing layers, the positive-fraction product estimate, and explicit parameter
+optimization remain.  The public scope is an integer theorem implying
 
 ```text
 exists C n0, forall n >= n0,

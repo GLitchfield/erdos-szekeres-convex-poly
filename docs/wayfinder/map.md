@@ -202,6 +202,32 @@ does not shorten the proved exact route. **Planning consequence:** retain
 the old fixture or launch the full H2 slate. `D-HALF`, `D-DECOMP`, and
 `D-NORMALIZE` remain unchanged, and no load-bearing edge changes.
 
+The authorized ticket-0024 signed-pair gate now lands.  The warning-clean
+theorems `HMPTAdjacentSpikeGeometry.leftPair_orientation_neg` and
+`HMPTAdjacentSpikeGeometry.rightPair_orientation_pos` derive the two required
+distinct-anchor signs directly from raw adjacent-spike geometry, point
+memberships, and the literal vertical relation; no profile, maximum chain,
+supplied certificate, common anchor, or convex-union conclusion enters either
+statement.  Independent exact-rational evaluators also agree on both positive
+fixtures, reject all eight frozen corruptions, and find no falsifier among
+83,334 fully admitted bounded transport queries.  **Net proof movement:**
+forward on the predeclared signed-pair subobligation of C3, whose open theorem
+count decreases from two to zero; the official H2 five-layer count does not
+change because the mixed-four-subset consumer has not yet compiled.
+**Evidence:** two compiling Lean theorems, warning-clean direct elaboration,
+targeted module build, standard-only axiom audits, and neutral checked
+computation.  **Difficulty displaced:** the anchor mismatch is resolved at the
+raw pair-sign interface rather than moved into a certificate premise; the
+remaining distinct obligation is to consume the two signs in the exact `3+1`
+and `2+2` gluing theorem.  **Counterfactual:** knowing these theorems before the
+run would remove both signed-pair proof obligations and materially reduce the
+next C3 implementation, so this is genuine scoped proof progress.  **Planning
+consequence:** retain `FP-15.C` as gated and place one exact two-anchor C3
+consumer checkpoint next; do not launch the full H2 slate or build a generic
+anchor-transport framework unless that consumer exposes a second independent
+need.  `D-HALF`, `D-DECOMP`, and `D-NORMALIZE` remain unchanged, and no
+load-bearing destination edge changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical

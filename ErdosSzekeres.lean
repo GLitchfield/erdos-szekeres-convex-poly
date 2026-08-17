@@ -193,6 +193,7 @@ public import ErdosSzekeres.HMPTSpikeOrderDefs
 public import ErdosSzekeres.HMPTSpikeOrderGeometry
 public import ErdosSzekeres.HMPTSpikeOrderConsumer
 public import ErdosSzekeres.HMPTVerticalChainDefs
+public import ErdosSzekeres.HMPTAdjacentPairTransport
 public import ErdosSzekeres.HMPTCyclicSpikeGeometry
 public import ErdosSzekeres.SukAdjacentRegions
 public import ErdosSzekeres.SukRegionOrder

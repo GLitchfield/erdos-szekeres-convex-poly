@@ -237,3 +237,34 @@ the full H2 slate from this review alone.
 The finite H2 open-layer count remains five. `D-HALF`, `D-DECOMP`, and
 `D-NORMALIZE` remain unchanged, and no load-bearing exact-conjecture ledger
 edge changes.
+
+## Authorized successor outcome (2026-08-17)
+
+The one theorem-first successor authorized by this ticket closed with
+`HMPT-H2-PAIR-LAND`.  The new module
+`ErdosSzekeres/HMPTAdjacentPairTransport.lean` proves both frozen declarations
+without a profile, maximum, cap/chain certificate, common-`x2` certificate,
+convex-union premise, changed carrier, or supplied sign.  A warning-clean
+direct check, targeted module build, and declaration-only audits all pass; each
+declaration depends only on `propext`, `Classical.choice`, and `Quot.sound`.
+
+The independently frozen exact-rational lane closed with
+`HMPT-H2-PAIR-CONTROLS-PASS`: two implementations admitted both positive raw
+geometries, rejected all eight frozen corruptions, checked 83,334 fully
+admissible bounded queries, and found no falsifier.  That lane is computational
+evidence only and is not part of theorem acceptance.
+
+**Net proof movement:** forward on the exact signed-pair gate: the two frozen
+raw geometric implications decrease from two open obligations to zero.
+**Evidence:** compiling Lean theorems with standard-only trust audits; checked
+finite controls are separate neutral search information.  **Difficulty
+displaced:** none into a premise.  The remaining C3 work is the distinct
+two-anchor arrangement-cell/opposite-support consumer for the `3+1` and `2+2`
+mixed four-subsets; C1, C2, and C4 also remain.  **Counterfactual:** these
+theorems remove the uncertain wedge/vertical-direction geometry from C3 and
+materially reduce that proof to explicit consumers, but do not prove an H2
+layer.  **Planning consequence:** retain `FP-15.C` as gated and permit a new
+checkpoint plan for the two-anchor C3 consumer; do not launch the full H2 slate.
+
+H2's official finite-layer count remains five.  No load-bearing edge in
+`docs/wayfinder/map.md` changes.

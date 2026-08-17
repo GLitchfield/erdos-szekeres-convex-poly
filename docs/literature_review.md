@@ -122,9 +122,16 @@ order laws, the two anchor-orientation signs give exact four-way exclusive
 comparability, and an independent finite theorem constructs maximum chains and
 derives the product bound.  A rational permutation-2143 spike fixture has
 Greene shape `(2,2)` and saturates the product, so the two common projective
-rankings alone do not improve its coefficient.  The later coloring, gluing,
-aggregation, and optimized parameter choice remain unformalized; the source's
-`o(1)` notation will also require a separate exact-natural wrapper.
+rankings alone do not improve its coefficient.  One raw input to the next
+gluing layer now compiles as well.  For a strict vertical pair in the left
+spike, Lean derives negative orientation at the actual outer-right anchor and
+at every point of the adjacent right spike; the reflected right-pair theorem
+derives both positive signs at the outer-left anchor and adjacent left spike.
+These are point-set consequences of the raw support regions and general
+position, not supplied support certificates.  The mixed-four-subset gluing
+consumer, the complete H2 layer, later aggregation, and optimized parameter
+choice remain unformalized; the source's `o(1)` notation will also require a
+separate exact-natural wrapper.
 
 The finite layer of Suk's proof is now formalized separately from those density
 losses.  Lean proves the finite chain--antichain threshold, the
@@ -169,7 +176,8 @@ certificate bounds the cube of `s^2` by `64*n^2`.  This is a conservative
 formal realization of Suk's `2^(n+O(n^(2/3) log n))` method, not a reproduction
 of its optimized constant and not progress on the exact threshold.  The
 stronger Holmsen--Mojarrad--Pach--Tardos error term remains unformalized here,
-but its first exact finite producer/consumer layer now compiles.
+but its first exact finite producer/consumer layer and the next raw
+adjacent-pair sign bridge now compile.
 
 ### 4. Equivalent strengthened statements
 

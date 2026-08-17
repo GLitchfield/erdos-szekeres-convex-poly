@@ -125,10 +125,15 @@ sets.
   literal triangle-containment and crossed-closed-segment partial orders, plus
   exact exclusive comparability, from one `SukRegionGeometry` pool.
   `HMPTSpikeOrderConsumer.lean` constructs actual maximum chains and proves
-  `|P_i| <= v_i*h_i` by finite Dilworth.  This closes only H1 of a six-layer
-  route to the published `2^(n+O(sqrt(n log n)))` bound; the coloring, gluing,
-  aggregation, and exact-natural asymptotic layers remain unformalized, and no
-  exact-conjecture dependency changes.
+  `|P_i| <= v_i*h_i` by finite Dilworth.  The next raw geometric bridge now
+  compiles too: `HMPTAdjacentPairTransport.lean` proves that a vertically
+  ordered pair in either of two adjacent spike pools sees the appropriate
+  distinct outer anchor and every point of the opposite pool with the same
+  strict orientation sign.  This closes the signed-pair input to adjacent
+  gluing, but not the mixed-four-subset consumer or H2 itself.  H1 is still the
+  only complete layer of the six-layer route to the published
+  `2^(n+O(sqrt(n log n)))` bound; H2's official open-layer count remains five,
+  and no exact-conjecture dependency changes.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.
