@@ -134,8 +134,16 @@ sets.
   proves their selected union convex by closing all `4+0`, `3+1`, `2+2`,
   `1+3`, and `0+4` four-point patterns at the distinct anchors `x3` and `x1`.
   This closes the exact C3 gluing obligation without a supplied certificate or
-  common anchor, but not H2 itself.  H1 is still the only complete layer of the
-  six-layer route to the published
+  common anchor.  The two producers feeding the final cyclic consumer now
+  compile as well.  `HMPTCyclicSpikeProducer.lean` projects arbitrary
+  original-carrier support-product data at `3 <= r` to every cyclic local and
+  adjacent spike window, including cell zero and the last-to-first wrap.
+  `HMPTVerticalProfileProducer.lean` derives the HMPT-direction transitive
+  coloring, actual maximum chains, outer-anchor maxima, and exact
+  `choose (L+R-2) (L-1)` bound from one raw region.  Thus C1, C2, and C3 are
+  complete without supplied profiles or a changed carrier; C4, the cyclic
+  no-target consumer, is the sole remaining subordinate H2 obligation.  H1 is
+  still the only complete layer of the six-layer route to the published
   `2^(n+O(sqrt(n log n)))` bound; H2's official open-layer count remains five,
   and no exact-conjecture dependency changes.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.

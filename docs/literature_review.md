@@ -133,10 +133,16 @@ consumer now compiles as well.  Lean proves the selected right-anchored chain
 of one spike and selected left-anchored chain of its neighbor jointly convex:
 the actual `x3` and `x1` caps handle the two `3+1` directions, opposite-pair
 support handles `2+2`, and the profile caps handle the unmixed subsets.  No
-common-anchor or supplied convex-union certificate appears.  The complete H2
-layer, later aggregation, and optimized parameter choice remain unformalized;
-the source's `o(1)` notation will also require a separate exact-natural
-wrapper.
+common-anchor or supplied convex-union certificate appears.  The corrected
+cyclic source projection now compiles at the sharp reachable endpoint
+`3 <= r`, preserving the original carrier through cell zero and the final
+wrap.  The complete local vertical-profile producer also compiles: it derives
+the reversed HMPT/Suk order semantics, transitive coloring, actual maxima, and
+the exact binomial profile bound internally from one raw region.  Consequently
+C1, C2, and C3 are formalized, while the cyclic no-target consumer C4 remains
+the sole subordinate obligation before H2 can be called complete.  Later
+aggregation and optimized parameter choice remain unformalized; the source's
+`o(1)` notation will also require a separate exact-natural wrapper.
 
 The finite layer of Suk's proof is now formalized separately from those density
 losses.  Lean proves the finite chain--antichain threshold, the

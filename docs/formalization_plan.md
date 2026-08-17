@@ -2674,13 +2674,19 @@ orientation sign.  The exact adjacent-spike consumer now compiles too: it uses
 those pair signs at distinct anchors `x3` and `x1` to close both `3+1`
 directions, both opposite supports for `2+2`, and the unmixed profile-cap
 cases.  Thus C3 is complete without a common-anchor or supplied certificate;
-the subordinate C1--C4 measure decreases from four open obligations to three.
-H2's official five-layer count is unchanged until the whole H2 layer lands.
+the subordinate C1--C4 measure first decreased from four open obligations to
+three.  The next producer slate now closes C1 and C2 as well.
+`HMPTCyclicSpikeProducer.lean` proves the full original-carrier cyclic
+projection at `3 <= r`, including cell zero and the last-to-first window.
+`HMPTVerticalProfileProducer.lean` proves the HMPT transitive coloring and
+constructs actual vertical, horizontal, and outer-anchored maximum chains with
+the exact binomial bound.  The subordinate measure is therefore one: only C4
+remains.  H2's official five-layer count is unchanged until C4 composes the
+three producers around the full cycle.
 
 Continue to specialize the proof to ordinary planar points before considering
-arbitrary pseudoline arrangements.  The remaining H2 obligations are cyclic
-source projection C1, transitive colorings and maxima on local chains C2, and
-the cyclic no-target consumer C4; C4 remains blocked on C1 and C2.  Later
+arbitrary pseudoline arrangements.  The next H2 obligation is now the cyclic
+no-target consumer C4, with all of C1--C3 available as compiling inputs.  Later
 gluing layers, the positive-fraction product estimate, and explicit parameter
 optimization remain.  The public scope is an integer theorem implying
 

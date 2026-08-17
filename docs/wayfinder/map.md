@@ -253,6 +253,29 @@ HMPT finite-layer count remains five until H2 as a whole lands.  `D-HALF`,
 `D-DECOMP`, and `D-NORMALIZE` remain unchanged, and no load-bearing edge
 changes.
 
+Ticket 0026 closes both producers that C4 was waiting for.  The warning-clean
+theorem `PorValtrSupportProductData.toHMPTCyclicSpikeGeometry` derives the
+complete original-carrier cyclic geometry at `3 <= r`, including cell zero,
+all wrapped five-anchor signs, and the final-to-zero adjacent window.  The
+theorems `SukRegionGeometry.hmptVerticalTransitiveColoring` and
+`SukRegionGeometry.exists_hmptVerticalProfile` derive the reversed-order color
+law, actual maximum vertical and horizontal chains, maximum outer-anchored
+subchains, and the exact `choose (L+R-2) (L-1)` bound internally from one raw
+region.  Neither producer accepts a supplied sign, coloring, chain, maximum,
+inequality, profile, or changed carrier.  An independent reviewer derived the
+two proof graphs before seeing the sources and accepted both final hashes.
+**Net proof movement:** forward on C1 and C2, decreasing the subordinate H2
+count from three (`C1`, `C2`, `C4`) to one (`C4`).  **Evidence:** three
+compiling declarations with warning-clean direct gates, targeted builds,
+standard-only axiom audits, and a separate proposal-level source review.
+**Difficulty displaced:** none into a premise; the remaining work is the
+distinct cyclic no-target composition C4.  **Counterfactual:** knowing these
+producers earlier removes the complete cyclic projection and local profile
+construction from the remaining H2 proof.  **Planning consequence:** promote
+`FP-15.C` to one separately approved C4 theorem gate.  The official HMPT
+finite-layer count remains five until C4 closes H2; `D-HALF`, `D-DECOMP`, and
+`D-NORMALIZE` remain unchanged, and no load-bearing edge changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical
