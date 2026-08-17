@@ -2670,14 +2670,17 @@ the literal vertical and horizontal spike orders form the required exclusive
 pair, and finite Dilworth gives the product chain bound.  The raw signed bridge
 for adjacent spikes also compiles: a vertical pair sees its actual distinct
 outer anchor and every point of the neighboring pool with the same strict
-orientation sign.  This removes two predeclared geometric implications from
-the next gluing proof, but does not yet prove its mixed-four-subset consumer or
-decrease H2's official five-layer count.
+orientation sign.  The exact adjacent-spike consumer now compiles too: it uses
+those pair signs at distinct anchors `x3` and `x1` to close both `3+1`
+directions, both opposite supports for `2+2`, and the unmixed profile-cap
+cases.  Thus C3 is complete without a common-anchor or supplied certificate;
+the subordinate C1--C4 measure decreases from four open obligations to three.
+H2's official five-layer count is unchanged until the whole H2 layer lands.
 
 Continue to specialize the proof to ordinary planar points before considering
-arbitrary pseudoline arrangements.  The next bounded gate is the two-anchor
-adjacent certificate and its exact H2 gluing consumer; transitive colorings on
-maximal chains, cyclic source projection, cyclic no-target inequalities, later
+arbitrary pseudoline arrangements.  The remaining H2 obligations are cyclic
+source projection C1, transitive colorings and maxima on local chains C2, and
+the cyclic no-target consumer C4; C4 remains blocked on C1 and C2.  Later
 gluing layers, the positive-fraction product estimate, and explicit parameter
 optimization remain.  The public scope is an integer theorem implying
 

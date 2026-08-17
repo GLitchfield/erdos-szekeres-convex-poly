@@ -228,6 +228,31 @@ anchor-transport framework unless that consumer exposes a second independent
 need.  `D-HALF`, `D-DECOMP`, and `D-NORMALIZE` remain unchanged, and no
 load-bearing destination edge changes.
 
+Ticket 0025 closes that exact C3 checkpoint.  The warning-clean theorem
+`HMPTAdjacentSpikeGeometry.right_left_union_convex` consumes the two actual
+maximum anchored profile chains and the compiled distinct-anchor pair signs.
+It proves the whole selected union convex by arrangement-cell replacement at
+`x3` and `x1` for the two `3+1` directions, opposite-pair support for `2+2`,
+and inherited profile-cap convexity for `4+0` and `0+4`.  No supplied
+certificate, common anchor, extra profile premise, target subset, transformed
+geometry, or carrier change enters the statement.  Two independently frozen
+exact-rational evaluators separately admit two complete `4+4` profiles, reject
+all ten corruptions, agree on 467,963 fully admitted bounded unions, and find
+no falsifier; that computation is neutral supporting evidence.  **Net proof
+movement:** forward on C3, decreasing the predeclared subordinate H2 count
+from four open obligations to three (`C1`, `C2`, `C4`).  **Evidence:** one
+compiling Lean theorem with warning-clean direct and targeted gates and a
+standard-only axiom audit; bounded checked computation is separate.
+**Difficulty displaced:** none into a premise; C1 cyclic source projection, C2
+profile/recurrence, and C4 cyclic composition remain distinct.  **Counterfactual:**
+knowing this theorem earlier deletes the complete adjacent mixed-four-subset
+obligation and its case split, materially reducing remaining H2 work.
+**Planning consequence:** retain `FP-15.C` as gated, mark C3 complete, and
+reconcile C1/C2 before the next slate; C4 remains blocked on them.  The official
+HMPT finite-layer count remains five until H2 as a whole lands.  `D-HALF`,
+`D-DECOMP`, and `D-NORMALIZE` remain unchanged, and no load-bearing edge
+changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical

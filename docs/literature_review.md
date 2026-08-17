@@ -129,9 +129,14 @@ at every point of the adjacent right spike; the reflected right-pair theorem
 derives both positive signs at the outer-left anchor and adjacent left spike.
 These are point-set consequences of the raw support regions and general
 position, not supplied support certificates.  The mixed-four-subset gluing
-consumer, the complete H2 layer, later aggregation, and optimized parameter
-choice remain unformalized; the source's `o(1)` notation will also require a
-separate exact-natural wrapper.
+consumer now compiles as well.  Lean proves the selected right-anchored chain
+of one spike and selected left-anchored chain of its neighbor jointly convex:
+the actual `x3` and `x1` caps handle the two `3+1` directions, opposite-pair
+support handles `2+2`, and the profile caps handle the unmixed subsets.  No
+common-anchor or supplied convex-union certificate appears.  The complete H2
+layer, later aggregation, and optimized parameter choice remain unformalized;
+the source's `o(1)` notation will also require a separate exact-natural
+wrapper.
 
 The finite layer of Suk's proof is now formalized separately from those density
 losses.  Lean proves the finite chain--antichain threshold, the

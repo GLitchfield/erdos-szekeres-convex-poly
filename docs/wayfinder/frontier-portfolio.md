@@ -1256,7 +1256,14 @@ that deserves independent retention and scheduling consideration.
   left-pool point positively.  The statements consume neither a supplied
   certificate nor a common anchor.  Two independent exact-rational controls
   agree on both positive fixtures, reject all eight frozen corruptions, and
-  find no bounded falsifier.
+  find no bounded falsifier.  Ticket 0025 now closes C3 itself:
+  `HMPTAdjacentSpikeGeometry.right_left_union_convex` proves the actual
+  selected right/left profile-chain union convex through the complete `4+0`,
+  `3+1`, `2+2`, `1+3`, and `0+4` split at distinct anchors `x3` and `x1`.
+  Its warning-clean direct and targeted gates and standard-only axiom audit
+  pass.  Independent complete-profile controls admit both `4+4` positives,
+  reject ten corruptions, agree on 467,963 bounded admitted unions, and find no
+  nonconvex candidate; those controls remain neutral computational evidence.
 - **Missing generalization bridge:** `FP-15.B` has reached its scope ceiling.
   Reaching the portfolio ceiling now requires the distinct point-set
   Holmsen--Mojarrad--Pach--Tardos mechanism in `FP-15.C`.  Affecting the exact
@@ -1272,10 +1279,13 @@ that deserves independent retention and scheduling consideration.
   H1 and decreases `FP-15.C`'s finite-layer count from six to five.  No
   load-bearing exact-conjecture edge changed.  The H2 `r = 2`
   counterexample and ticket-0023 control mismatch are neutral proof movement
-  and leave that count at five.  The latest forward result is the ticket-0024
-  theorem pair, which decreases the predeclared signed-pair subobligation of C3
-  from two open declarations to zero.  It does not yet close C3 or change the
-  five-layer H2 count; its finite controls are neutral supporting evidence.
+  and leave that count at five.  The ticket-0024 theorem pair decreases the
+  signed-pair subobligation of C3 from two open declarations to zero.  The
+  latest forward result is ticket 0025's exact adjacent gluing theorem, which
+  closes C3 and strictly decreases the C1--C4 subordinate count from four to
+  three.  It does not change the official five-layer H2 count or any
+  load-bearing exact edge; both finite control suites are neutral supporting
+  evidence.
 - **Downstream consumer:** the `FP-15.B` theorem is now a finished quantitative
   benchmark and unlock condition for `FP-15.C`.  Any claim on the exact route
   still requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
@@ -1296,23 +1306,20 @@ that deserves independent retention and scheduling consideration.
   `leftPair_orientation_neg` and `rightPair_orientation_pos` compile from raw
   `HMPTAdjacentSpikeGeometry` and put remote points on the same pair-line side
   as the actual distinct anchors `x3` and `x1`; the common-`x2` certificate is
-  not used.  The remaining C3 obligation is the exact `3+1`/`2+2`
-  mixed-four-subset consumer.  The full cyclic source projection,
-  profile/binomial theorem, completed distinct-outer-anchor gluing, and cyclic
-  no-target inequalities remain unproved.  H3--H6 stay behind that layer.
-- **Next discriminating gate:** freeze one minimal two-anchor adjacent-region
-  certificate and the exact C3 mixed-four-subset consumer.  Its producer must
-  derive every field from raw `HMPTAdjacentSpikeGeometry` plus the now-compiled
-  signed-pair theorems, and its consumer must prove the required `3+1` and
-  `2+2` convexity cases without assuming convexity, a target subset, a common
-  anchor, or a supplied certificate.  A warning-clean compiling consumer is
-  the positive outcome.  A missing field that recreates the target, a valid
-  rational falsifier, or a second consumer-independent need for different
-  anchors stops the checkpoint for architecture review.  Do not launch C1,
-  C2, C4, or full H2 in parallel, and do not introduce a generic
-  anchor-transport framework unless this concrete consumer demonstrates a
-  second reusable instance.  H2's official count remains five until C3 as a
-  whole lands.
+  not used.  Ticket 0025's exact consumer now compiles and closes every mixed
+  four-subset case without exposing a certificate.  The full cyclic source
+  projection C1, profile/binomial theorem C2, and cyclic no-target consumer C4
+  remain unproved; C4 stays blocked on C1 and C2.  H3--H6 remain behind H2.
+- **Next discriminating gate:** perform a fresh C1/C2 dependency and cost
+  reconciliation before selecting another slate.  C1 must project arbitrary
+  reachable `PorValtrSupportProductData P r` at `3 <= r` to the complete cyclic
+  spike geometry, including wraparound, without reviving the false `r=2`
+  contract.  C2 must construct the complete vertical profile, actual maxima,
+  outer-anchor color semantics, and exact binomial bound from one raw region.
+  Both next gates are theorem-producing and independent after their shared
+  frozen definitions, but neither may assume C4 or the desired quantitative
+  inequality.  C4 remains deferred until C1 and C2 compile.  H2's official
+  count remains five until H2 as a whole lands.
 - **Success payoff:** a source-faithful H2 theorem would extend the now-compiled
   local product layer toward the current-best
   `2^(n + O(sqrt(n*log n)))` point-set bound while testing whether its
@@ -1322,17 +1329,18 @@ that deserves independent retention and scheduling consideration.
   complete through its original-carrier source, both global consumers, exact
   natural parameter composition, and explicit asymptotic wrapper.  Do not
   schedule constant optimization or another Suk repackaging as proof progress.
-  `FP-15.C` retains forward movement from H1 and now from the compiled
-  signed-pair subobligation, but its first H2 producer contract remains expired
-  by a kernel counterexample.  The theorem pair is genuine revival evidence:
-  it removes two raw C3 obligations without strengthening a premise, while the
-  passing controls remain neutral.  Retain the family as gated for exactly the
-  two-anchor C3 consumer checkpoint; a target-equivalent certificate premise,
-  a valid falsifier, or an information-only C3 terminal triggers another
-  architecture review rather than an automatic refinement.  Do not treat the
-  syntactic `3 <= r` repair, a perturbed fixture, or passing controls alone as
-  promotion evidence.  The theorem pair does not change the five-layer H2
-  count or an exact-conjecture edge.  The parallel H1-only
+  `FP-15.C` retains forward movement from H1, the compiled signed-pair
+  subobligation, and now the complete C3 consumer, while its first H2 producer
+  contract remains expired by a kernel counterexample.  C3's theorem is
+  genuine revival evidence because it closes a predeclared obligation without
+  strengthening a premise; both passing control suites remain neutral.  Retain
+  the family as gated while C1 and C2 are freshly reconciled, and do not launch
+  C4 or full H2 before both producers compile.  A target-equivalent premise,
+  renewed boundary collision, or information-only next terminal triggers
+  architecture review rather than another automatic refinement.  Do not treat
+  the syntactic `3 <= r` repair, a perturbed fixture, or passing controls alone
+  as promotion evidence.  C3 does not change the five-layer H2 count or an
+  exact-conjecture edge.  The parallel H1-only
   two-ranking/Greene coefficient-improvement lane is expired: a rational
   permutation-2143 spike fixture has rectangular profile `(2,2)` and
   saturates `|P_i| = v_i*h_i`.  Revive that lane only if H2--H4 independently
@@ -1649,11 +1657,12 @@ parent unless promoted.
   The repaired statements elaborate and most frozen controls pass, but the
   first positive C2 fixture contains two collinear triples; preflight stopped
   before every proof worker.  Ticket 0024's completed adversarial review finds
-  credible theorem-level C2 and C3 proof graphs, and its authorized signed
-  distinct-anchor pair-transport gate now compiles without a supplied
-  certificate or common anchor.  The next bounded checkpoint is the exact
-  two-anchor C3 mixed-four-subset consumer; no fixture repair or full H2 slate
-  is authorized.  H2 remains open and its finite count stays five.
+  credible theorem-level C2 and C3 proof graphs.  Its authorized signed
+  distinct-anchor pair-transport gate and ticket 0025's exact C3
+  mixed-four-subset consumer now compile without a supplied certificate or
+  common anchor.  C3 is complete; C1 cyclic source projection, C2 local
+  profile/binomial construction, and C4 cyclic consumer remain.  H2 remains
+  open and its finite count stays five until that whole layer lands.
   General
   pseudo-configurations remain optional until the point-set route lands.
 - **FP-16.A — Official exact-six source admission.**  The primary-paper audit

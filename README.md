@@ -129,9 +129,13 @@ sets.
   compiles too: `HMPTAdjacentPairTransport.lean` proves that a vertically
   ordered pair in either of two adjacent spike pools sees the appropriate
   distinct outer anchor and every point of the opposite pool with the same
-  strict orientation sign.  This closes the signed-pair input to adjacent
-  gluing, but not the mixed-four-subset consumer or H2 itself.  H1 is still the
-  only complete layer of the six-layer route to the published
+  strict orientation sign.  `HMPTAdjacentSpikeGluing.lean` now consumes those
+  signs and the actual maximum anchored chains from both vertical profiles. It
+  proves their selected union convex by closing all `4+0`, `3+1`, `2+2`,
+  `1+3`, and `0+4` four-point patterns at the distinct anchors `x3` and `x1`.
+  This closes the exact C3 gluing obligation without a supplied certificate or
+  common anchor, but not H2 itself.  H1 is still the only complete layer of the
+  six-layer route to the published
   `2^(n+O(sqrt(n log n)))` bound; H2's official open-layer count remains five,
   and no exact-conjecture dependency changes.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
