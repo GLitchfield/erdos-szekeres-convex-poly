@@ -2706,26 +2706,28 @@ bounds.  H5 now compiles as a separate exact-natural aggregation layer.
 estimates, and `HMPTProductAggregation` combines the exact stored family with
 the source product bound, cyclic exponent sum, logarithmic conversion, ceiling
 cover, and positive root cancellation.  The official finite-layer count is
-therefore one.  Continue to specialize the proof to ordinary planar points
-before considering arbitrary pseudoline arrangements.  The next work is a
-separately frozen H6 parameter-optimization and asymptotic wrapper.  Its public
-scope is an integer theorem implying
+therefore one.  H6 now compiles as the final point-set layer.
+`HMPTAsymptoticParameters` proves the exact natural square-root scale, and
+`HMPTExplicitUpper` composes the original-carrier source and H5 into
 
 ```text
-exists C n0, forall n >= n0,
-  ES(n) <= 2^(n + C * ceil(sqrt(n * log n))).
+forall n >= 3,
+  ForcesConvexPolygon n
+    (2^(n + 32*sqrt(n*clog_2 n) + 128)).
 ```
 
-Only after that point-set theorem compiles may pseudo-configurations be added
-as a generalization.  A pseudo-configuration API without the point-set upper
-theorem does not complete this child.
+The official finite-layer count is therefore zero and `FP-15.C` is complete at
+its source-authenticated point-set ceiling.  This reproduces the published
+asymptotic order; it neither improves it nor changes an exact-conjecture edge.
+Pseudo-configurations remain a separate optional generalization.  Any reuse on
+the exact route needs a fresh theorem-shaped consumer and route review.
 
 ### Budgets and evidence gates
 
-FP-15.A and FP-15.B are complete at their declared scope ceilings.  FP-15.C is
-an uncalibrated multi-week or multi-month branch and requires a fresh approval
-checkpoint at its dependency boundary.  Every individual process retains the
-default 30-minute, 8-core, 16-GiB, and 5-GiB limits.
+FP-15.A, FP-15.B, and FP-15.C are complete at their declared scope ceilings.
+Any new quantitative generalization or exact-route consumer requires a fresh
+approval checkpoint.  Every individual process retains the default 30-minute,
+8-core, 16-GiB, and 5-GiB limits.
 
 Every proof-producing stage requires a direct Lean gate, a targeted
 `lake -Kjobs=2 build`, a forbidden-token scan, standard-only axiom audit, and

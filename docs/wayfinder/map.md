@@ -401,6 +401,32 @@ H6 contract that chooses `r` and derives the published
 `2^(n+O(sqrt(n*log n)))` point-set bound.  No load-bearing `D-UPPER`,
 `D-HALF`, `D-DECOMP`, or `D-NORMALIZE` edge changes.
 
+Ticket 0031 now closes H6 and the declared `FP-15.C` point-set ladder.  The
+exact scale `max 3 (Nat.sqrt (n * Nat.clog 2 n) + 1)` satisfies the required
+square and ceiling covers.  Lean composes the original-carrier Pór--Valtr
+source with H5 exactly once and proves, for every `n >= 3`,
+
+```text
+ForcesConvexPolygon n
+  (2^(n + 32*Nat.sqrt (n*Nat.clog 2 n) + 128)).
+```
+
+**Net proof movement:** forward at the scoped published-bound ceiling: the
+official HMPT set decreases from `{H6}` to empty.  **Evidence:** four exact
+public declarations with warning-clean direct checks, targeted builds,
+standard-only axiom audits, independent source review, bounded corroborating
+controls, and the root repository gate.  **Difficulty displaced:** none
+inside H6; the square-root choice, source threshold, additive absorption, and
+final exponent removal are theorems rather than premises.  Using this
+quantitative machinery toward the exact conjecture remains a distinct bridge.
+**Counterfactual:** knowing these theorems beforehand removes the final
+dependency of the vetted HMPT point-set reproduction and materially reduces
+that scoped proof estimate.  **Planning consequence:** close ticket 0031 and
+mark `FP-15.C` complete at its declared scope ceiling.  Require a fresh route
+review and a theorem-shaped consumer before assigning any exact-route work to
+this machinery.  `D-UPPER`, `D-HALF`, `D-DECOMP`, and `D-NORMALIZE` remain
+open; no load-bearing destination edge changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical
@@ -431,6 +457,12 @@ finite-proof packet.  `D-UPPER(6)` and universal `D-UPPER` remain unproved.
 ## Decisions so far
 
 <!-- One linked, one-line gist per closed ticket. Detail stays in the ticket. -->
+
+- [The point-set HMPT current-best-order upper bound now
+  compiles](tickets/0031-prove-hmpt-asymptotic-endpoint.md): exact natural
+  parameter selection and original-carrier H5 composition prove an explicit
+  `2^(n+O(sqrt(n*log n)))` forcing theorem; `FP-15.C` reaches its scope ceiling
+  without changing an exact-conjecture edge.
 
 - [The first HMPT point-set order layer now
   compiles](tickets/0021-formalize-hmpt-pointset-orders.md):

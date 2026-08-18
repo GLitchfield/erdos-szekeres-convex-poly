@@ -1137,7 +1137,7 @@ that deserves independent retention and scheduling consideration.
   milestone that does not close or strictly reduce universal `D-UPPER` without
   a separate proved implication.
 - **Strategic role:** bridge.
-- **State:** advancing.
+- **State:** completed.
 - **Model tier:** general-position planar configurations and their
   sweep-realizable presentations.  The first rung is the source-authenticated
   Tóth--Valtr theorem
@@ -1145,13 +1145,11 @@ that deserves independent retention and scheduling consideration.
   point-set argument and the point-specialized
   Holmsen--Mojarrad--Pach--Tardos argument.
 - **Scope ceiling:** the best authenticated published point-set upper bound
-  `2^(n + O(sqrt(n*log n)))`, reached only through the outcome-gated ladder.
-  The currently admitted highest rung is the conservative explicit Suk bound
-  `2^(n + 64*(sukCubeScale n)^2*clog_2(3*n) + 128)` for `n >= 65`, together
-  with its exact cubic-scale certificate.  The HMPT point-set route now has
-  every exact finite and product-aggregation layer H1--H5, but not the H6
-  parameter choice needed to state its published asymptotic bound.  No exact
-  Erdős--Szekeres threshold follows from any quantitative rung.
+  `2^(n + O(sqrt(n*log n)))`.  The explicit endpoint now compiles as
+  `2^(n + 32*sqrt(n*clog_2 n) + 128)` for every `n >= 3`, after the exact
+  natural scale choice and original-carrier H5 composition.  This reaches
+  the declared point-set ceiling.  No exact Erdős--Szekeres threshold follows
+  from any quantitative rung.
 - **Best evidence:** `tothValtr_upper` compiles for every `n >= 3`, and
   `tothValtr_strictly_improves_classical` compiles for every `n >= 4`.  The
   proof constructs an explicit rational projective normalization after a
@@ -1319,12 +1317,18 @@ that deserves independent retention and scheduling consideration.
   Both modules pass warning-clean direct gates, targeted builds,
   standard-only declaration audits, independent frozen-ledger review, and the
   root exact-state repository gate.  The bounded natural-number controls are
-  corroborating computational evidence only.
+  corroborating computational evidence only.  Ticket 0031 now closes H6:
+  `hmptAsymptoticScale_spec` proves the exact square-root envelope, while
+  `hmpt_scale_upper` and `hmpt_explicit_upper` compose the source and H5 on
+  the unchanged carrier and prove the explicit published-order endpoint.
+  The final sources pass warning-clean direct checks, targeted builds,
+  standard-only axiom audits, independent exact-hash review, and the root
+  repository gate.  Its controls remain neutral computational corroboration.
 - **Missing generalization bridge:** `FP-15.B` has reached its scope ceiling.
-  Reaching the portfolio ceiling now requires the distinct point-set
-  Holmsen--Mojarrad--Pach--Tardos mechanism in `FP-15.C`.  Affecting the exact
-  route still requires a separate theorem consumed by `D-HALF`, `D-DECOMP`, or
-  `D-NORMALIZE`; no such implication follows from the quantitative bound.
+  `FP-15.C` has now reached the portfolio's published point-set ceiling too.
+  Affecting the exact route still requires a separate theorem consumed by
+  `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`; no such implication follows from the
+  quantitative bound.
 - **Last forward result:** supporting milestone `Q-UPPER` remains closed by the
   unconditional theorem `tothValtr_upper`.  Within `FP-15.B`, the latest
   forward results are `sukPositiveFraction_forces_threshold` and
@@ -1350,10 +1354,13 @@ that deserves independent retention and scheduling consideration.
   four to three.  Ticket 0029's L4/W4/R4/B4/G4/F4 theorem chain then closes H4,
   reducing the count from three to two.  Ticket 0030's exact A5/B5 theorem
   chain closes H5 and reduces the official finite-layer set from `{H5,H6}` to
-  `{H6}`.  No load-bearing exact edge changes.
+  `{H6}`.  Ticket 0031's exact parameter and endpoint theorems then close H6
+  and reduce that set to empty.  This reaches the declared published-bound
+  ceiling without changing a load-bearing exact edge.
 - **Downstream consumer:** the `FP-15.B` theorem is now a finished quantitative
-  benchmark and unlock condition for `FP-15.C`.  Any claim on the exact route
-  still requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
+  benchmark, and the completed `FP-15.C` theorem is the source-authenticated
+  current-best-order point-set benchmark.  Any claim on the exact route still
+  requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
 - **Open obstruction:** `FP-15.B` has no remaining scoped obstruction and H1
   of `FP-15.C` is closed.  Ticket 0022's frozen H2 source contract is false at
   `r = 2`; its exact kernel counterexample is now durable.  Ticket 0023's
@@ -1381,18 +1388,18 @@ that deserves independent retention and scheduling consideration.
   unchanged H2 chain.  H4 is complete too: local convexity, cyclic separation,
   parity gluing, and the same-family numerical package all compile on the
   original carrier.  H5 is now complete: the conservative exact-natural
-  arithmetic and stored-family product aggregation compile.  H6 alone remains
-  unformalized.
-- **Next discriminating gate:** authenticate and freeze H6: choose an explicit
-  natural parameter `r`, construct or invoke the exact support-product source,
-  apply `card_lt_hmptAggregation`, and prove a uniform integer theorem with
-  exponent `n + O(sqrt(n*log n))`.  The gate must state every threshold and
-  rounding branch explicitly and must not hide the source-threshold or
-  asymptotic comparison in a premise.
-- **Success payoff:** an exact H6 theorem would reproduce the published
-  point-set `2^(n+O(sqrt(n*log n)))` upper bound in Lean and complete
-  `FP-15.C` at its declared scope ceiling.  It would still not change an exact
-  Erdős--Szekeres load-bearing edge.
+  arithmetic and stored-family product aggregation compile.  H6 is complete
+  as well: its exact scale and both public point-set forcing endpoints compile.
+  There is no remaining obstruction within FP-15's declared quantitative
+  scope.  The separate open obstruction is a theorem-shaped consumer into an
+  exact load-bearing edge.
+- **Next discriminating gate:** none within the completed quantitative ladder.
+  Any attempted exact-route reuse first requires a fresh adversarial route
+  review and a frozen theorem contract naming its consumer in `D-HALF`,
+  `D-DECOMP`, or `D-NORMALIZE`.
+- **Success payoff:** achieved.  Lean now reproduces the published point-set
+  `2^(n+O(sqrt(n*log n)))` upper-bound order and completes `FP-15.C` at its
+  declared ceiling.  No exact Erdős--Szekeres load-bearing edge changes.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
   parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
   complete through its original-carrier source, both global consumers, exact
@@ -1407,8 +1414,9 @@ that deserves independent retention and scheduling consideration.
   separately bounded recovery closes both G3 and F3 and therefore H3, reducing
   the count to three.  Ticket 0029 closes all six H4 subobligations and reduces
   the count to two.  Ticket 0030 closes H5 with the valid nonstrict estimate
-  and reduces the set to `{H6}`.  Retain the family for one separately frozen
-  H6 endpoint; do not reschedule H5 constant optimization as proof movement.
+  and reduces the set to `{H6}`.  Ticket 0031 closes H6 and the set becomes
+  empty.  The family is complete at its scope ceiling; do not reschedule
+  constant optimization or another quantitative repackaging as proof movement.
   The parallel H1-only
   two-ranking/Greene coefficient-improvement lane is expired: a rational
   permutation-2143 spike fixture has rectangular profile `(2,2)` and
@@ -1736,9 +1744,10 @@ parent unless promoted.
   so H3 is complete.  Ticket 0029 proves local chain convexity, cyclic
   separation, parity-union convexity, and the same-family numerical package;
   H4 is complete.  Ticket 0030 proves the exact-natural arithmetic and stored
-  package product aggregation, so H5 is complete and the finite-layer set is
-  now `{H6}`.  General pseudo-configurations remain optional until the
-  point-set route lands.
+  package product aggregation, so H5 is complete.  Ticket 0031 proves the
+  exact square-root scale and both point-set forcing endpoints, so H6 is
+  complete and the finite-layer set is empty.  General pseudo-configurations
+  remain a separate optional generalization, not part of this completed child.
 - **FP-16.A — Official exact-six source admission.**  The primary-paper audit
   freezes the eight `E*` patterns, the source convex-six predicate, and the
   theorem ladder ending at `erdosSzekeresFormulaAt_six`.  The local corpus has

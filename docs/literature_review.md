@@ -159,9 +159,15 @@ and total-inner no-target inequalities.  H5 aggregation now compiles as well.
 Lean proves the conservative natural-number binomial estimates and combines
 the exact stored H2--H4 family with the source support-product inequality,
 including cyclic exponent reindexing, ceiling cover, positive root
-cancellation, and one-bit strict slack.  The finite-layer count is therefore
-one.  H6 optimized parameter choice remains unformalized; the source's `o(1)`
-notation still requires a separate exact-natural wrapper.
+  cancellation, and one-bit strict slack.  The finite-layer count is therefore
+one.  H6 now compiles as well.  The exact natural scale
+`max 3 (Nat.sqrt (n * Nat.clog 2 n) + 1)` supplies the square and ceiling
+covers, and the endpoint composes the source and H5 on the unchanged carrier.
+For every `n >= 3`, Lean proves
+`ForcesConvexPolygon n (2^(n + 32*Nat.sqrt (n*Nat.clog 2 n) + 128))`.
+This completes the point-set reproduction of the HMPT published asymptotic
+order.  It does not improve that order and does not cover the paper's broader
+pseudo-configuration variants.
 
 The finite layer of Suk's proof is now formalized separately from those density
 losses.  Lean proves the finite chain--antichain threshold, the
@@ -205,11 +211,11 @@ where `sukCubeScale n` is the least natural `s` with `n <= s^3`; a separate
 certificate bounds the cube of `s^2` by `64*n^2`.  This is a conservative
 formal realization of Suk's `2^(n+O(n^(2/3) log n))` method, not a reproduction
 of its optimized constant and not progress on the exact threshold.  The
-stronger Holmsen--Mojarrad--Pach--Tardos error term remains unformalized here,
-although its complete H1--H5 point-set machinery now compiles.  The remaining
-H6 layer must choose the parameter and derive an explicit uniform
-`2^(n+O(sqrt(n*log n)))` theorem before this repository reproduces the
-published asymptotic result.
+stronger Holmsen--Mojarrad--Pach--Tardos point-set order now compiles too.  Its
+H1--H6 modules prove the explicit bound
+`2^(n + 32*Nat.sqrt (n*Nat.clog 2 n) + 128)` for every `n >= 3`, thereby
+reproducing `2^(n+O(sqrt(n*log n)))`.  This is a formal reproduction of the
+published order, not an improvement and not progress on the exact threshold.
 
 ### 4. Equivalent strengthened statements
 

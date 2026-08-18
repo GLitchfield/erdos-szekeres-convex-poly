@@ -160,10 +160,13 @@ sets.
   estimates, and `HMPTProductAggregation.lean` combines the exact stored
   profile family with the original-carrier support-product inequality to show
   `P.card - 4*r <= 2^(hmptAggregationExponent n r)`, together with a strict
-  no-target wrapper.  The official open layer count for the six-layer route to
-  the published `2^(n+O(sqrt(n log n)))` bound is now one.  H6 parameter
-  optimization remains unformalized, so the published asymptotic theorem and
-  every exact-conjecture dependency remain open.
+  no-target wrapper.  H6 now compiles too.  `HMPTAsymptoticParameters.lean`
+  proves the exact natural square-root scale, and `HMPTExplicitUpper.lean`
+  composes the source and H5 on the unchanged carrier.  For every `n >= 3`,
+  Lean proves the concrete point-set forcing bound
+  `2^(n + 32*Nat.sqrt (n*Nat.clog 2 n) + 128)`.  This reproduces the published
+  `2^(n+O(sqrt(n log n)))` order; it is not a new asymptotic improvement, and
+  every exact-conjecture dependency remains open.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

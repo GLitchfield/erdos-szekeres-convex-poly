@@ -208,6 +208,8 @@ public import ErdosSzekeres.HMPTParityInnerGluing
 public import ErdosSzekeres.HMPTCyclicHorizontalProfiles
 public import ErdosSzekeres.HMPTAggregationArithmetic
 public import ErdosSzekeres.HMPTProductAggregation
+public import ErdosSzekeres.HMPTAsymptoticParameters
+public import ErdosSzekeres.HMPTExplicitUpper
 public import ErdosSzekeres.SukAdjacentRegions
 public import ErdosSzekeres.SukRegionOrder
 public import ErdosSzekeres.SukAdjacentSupportProducer
