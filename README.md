@@ -151,10 +151,14 @@ sets.
   semantics and both-color transitivity from raw region geometry, while
   `HMPTHorizontalProfileProducer.lean` constructs actual maximum literal inner
   and outer subchains of the unchanged H2 horizontal chain and proves the exact
-  `choose (c+d-2) (c-1)` recurrence.  The official open layer count for the
-  six-layer route to the published `2^(n+O(sqrt(n log n)))` bound therefore
-  decreases from four to three.  H4--H6 remain unformalized, and no
-  exact-conjecture dependency changes.
+  `choose (c+d-2) (c-1)` recurrence.  H4 now compiles too.  Lean proves each
+  literal inner/outer chain convex, derives cyclic same-parity pair and base
+  separation including the `r=3` wrap cases, proves each exact parity union
+  convex, and packages the same stored H2/H3 family with every adjacent,
+  outer, parity-inner, and total-inner no-target bound.  The official open
+  layer count for the six-layer route to the published
+  `2^(n+O(sqrt(n log n)))` bound is now two.  H5 and H6 remain unformalized,
+  and no exact-conjecture dependency changes.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.

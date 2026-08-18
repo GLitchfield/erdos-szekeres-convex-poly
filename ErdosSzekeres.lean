@@ -202,6 +202,10 @@ public import ErdosSzekeres.HMPTAdjacentSpikeGluing
 public import ErdosSzekeres.HMPTCyclicSpikeGeometry
 public import ErdosSzekeres.HMPTCyclicSpikeProducer
 public import ErdosSzekeres.HMPTCyclicNoTarget
+public import ErdosSzekeres.HMPTHorizontalChainConvexity
+public import ErdosSzekeres.HMPTCyclicHorizontalSeparation
+public import ErdosSzekeres.HMPTParityInnerGluing
+public import ErdosSzekeres.HMPTCyclicHorizontalProfiles
 public import ErdosSzekeres.SukAdjacentRegions
 public import ErdosSzekeres.SukRegionOrder
 public import ErdosSzekeres.SukAdjacentSupportProducer

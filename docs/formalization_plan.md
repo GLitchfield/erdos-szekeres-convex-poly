@@ -2694,13 +2694,19 @@ outer five-point semantics and both-color transitivity from raw geometry.
 `SukRegionGeometry.exists_hmptHorizontalProfile` then constructs actual
 maximum literal inner and outer subchains of the unchanged H2 horizontal chain
 and proves the exact binomial profile.  The official finite-layer count is
-therefore three.  Continue to specialize the proof to ordinary planar points
-before considering arbitrary pseudoline arrangements.  The next work is to
-authenticate and freeze the exact H4 point-set theorem contract, explicitly
-separating its whole-chain convexity and parity-gluing dependencies from the
-completed H3 recurrence.  Later aggregation layers, the positive-fraction
-product estimate, and explicit parameter optimization remain.  The public
-scope is an integer theorem implying
+therefore three.  H4 now compiles as a separate point-set layer.
+`HMPTHorizontalChainConvexity` proves both literal local chains convex;
+`HMPTCyclicHorizontalSeparation` derives every same-parity placement, remote
+pair support, and base-edge separator including the `r=3` wrap cases;
+`HMPTParityInnerGluing` proves the exact parity unions convex; and
+`HMPTCyclicHorizontalProfiles` stores one exact H2 family and dependent H3
+family with all adjacent, outer, parity-inner, and total-inner no-target
+bounds.  The official finite-layer count is therefore two.  Continue to
+specialize the proof to ordinary planar points before considering arbitrary
+pseudoline arrangements.  The next work is a separately frozen H5 aggregation
+theorem using the valid nonstrict binomial estimate and explicit natural
+boundary branches, followed by H6 parameter optimization.  The public scope
+is an integer theorem implying
 
 ```text
 exists C n0, forall n >= n0,

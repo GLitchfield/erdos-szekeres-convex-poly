@@ -1137,7 +1137,7 @@ that deserves independent retention and scheduling consideration.
   milestone that does not close or strictly reduce universal `D-UPPER` without
   a separate proved implication.
 - **Strategic role:** bridge.
-- **State:** gated.
+- **State:** advancing.
 - **Model tier:** general-position planar configurations and their
   sweep-realizable presentations.  The first rung is the source-authenticated
   Tóth--Valtr theorem
@@ -1297,7 +1297,17 @@ that deserves independent retention and scheduling consideration.
   five-set classifier and both-color transitivity, and F3 now constructs actual
   literal inner/outer maxima on the unchanged H2 horizontal chain and proves
   the exact binomial recurrence.  Both final sources passed independent static
-  review, targeted builds, and standard-only declaration audits.
+  review, targeted builds, and standard-only declaration audits.  Ticket 0029
+  now closes H4 as well.  `HMPTHorizontalChainConvexity` proves both literal
+  whole-chain convexity statements; `HMPTCyclicHorizontalSeparation` derives
+  cyclic placement, remote pair support, and base-edge separation including
+  the `r = 3` wrap cases; `HMPTParityInnerGluing` proves each exact parity union
+  convex; and `HMPTCyclicHorizontalProfiles` packages one stored H2 family and
+  its dependent H3 profiles with every adjacent, outer, parity-inner, and
+  total-inner no-target bound.  All declarations pass targeted builds,
+  standard-only audits, and independent frozen-ledger review.  The controls
+  mismatch is operational-only because its frozen positive fixture was
+  collinear and inadmissible.
 - **Missing generalization bridge:** `FP-15.B` has reached its scope ceiling.
   Reaching the portfolio ceiling now requires the distinct point-set
   Holmsen--Mojarrad--Pach--Tardos mechanism in `FP-15.C`.  Affecting the exact
@@ -1325,7 +1335,8 @@ that deserves independent retention and scheduling consideration.
   the finite-layer count at four.  The first G3 resource terminal and
   dependency-stopped F3 lane are neutral historical evidence.  The recovery's
   G3 and F3 theorems close H3, reducing the official finite-layer count from
-  four to three.  No load-bearing exact edge changes.
+  four to three.  Ticket 0029's L4/W4/R4/B4/G4/F4 theorem chain then closes H4,
+  reducing the count from three to two.  No load-bearing exact edge changes.
 - **Downstream consumer:** the `FP-15.B` theorem is now a finished quantitative
   benchmark and unlock condition for `FP-15.C`.  Any claim on the exact route
   still requires a theorem into `D-HALF`, `D-DECOMP`, or `D-NORMALIZE`.
@@ -1353,17 +1364,19 @@ that deserves independent retention and scheduling consideration.
   complete.  H3 is now complete as well: G3 proves the raw-geometry five-set
   classifier and horizontal color transitivity, while F3 constructs actual
   literal maxima and the exact private horizontal CupCap transport on the
-  unchanged H2 chain.  H4--H6 remain unauthenticated and unformalized.
-- **Next discriminating gate:** authenticate the exact H4 point-set source
-  boundary and freeze one theorem contract whose passing gate would reduce the
-  remaining finite-layer count from three to two.  The review must separate
-  Observation 3.6(ii)'s whole-chain convexity from Observation 3.7's parity
-  gluing, identify every cyclic aggregation object and carrier convention, and
-  expose a theorem-producing consumer rather than a supplied H4 certificate.
-  No H4 proof worker starts before bounded route review accepts that contract.
-- **Success payoff:** a source-faithful H4 theorem would combine the completed
-  horizontal profiles across the cycle and reduce the remaining finite-layer
-  count from three to two while preserving the original point carrier.
+  unchanged H2 chain.  H4 is complete too: local convexity, cyclic separation,
+  parity gluing, and the same-family numerical package all compile on the
+  original carrier.  H5 and H6 remain unformalized.
+- **Next discriminating gate:** freeze and prove a conservative exact-natural
+  H5 aggregation theorem using the stored H1--H4 fields.  It must use the valid
+  nonstrict estimate `choose (c+d-2) (c-1) <= d^(c-1)`, recover strictness
+  from the H2/H4 no-target inequalities, and explicitly cover the `0/1`,
+  truncated-base, `r=0`, and source-threshold boundary cases identified by
+  preflight.
+- **Success payoff:** an exact H5 theorem would combine the completed finite
+  layers with the source product estimate and reduce the official set from
+  `{H5,H6}` to `{H6}` while preserving the package needed for explicit
+  parameter optimization.
 - **Expiry or revival gate:** `FP-15.A` is complete and endpoint variants are
   parked because the reuse audit found no exact-route consumer.  `FP-15.B` is
   complete through its original-carrier source, both global consumers, exact
@@ -1376,9 +1389,10 @@ that deserves independent retention and scheduling consideration.
   `3 <= r` producer is a distinct compiling theorem rather than a syntactic
   repair.  C4 closes H2 and reduces the official count to four.  Ticket 0028's
   separately bounded recovery closes both G3 and F3 and therefore H3, reducing
-  the count to three.  Gate the family on a fresh authenticated H4 contract and
-  bounded review; do not infer H4 from the completed H3 data.  The parallel
-  H1-only
+  the count to three.  Ticket 0029 closes all six H4 subobligations and reduces
+  the count to two.  Retain the family for one separately frozen H5 theorem;
+  do not import the false strict binomial estimate rejected by preflight.  The
+  parallel H1-only
   two-ranking/Greene coefficient-improvement lane is expired: a rational
   permutation-2143 spike fixture has rectangular profile `(2,2)` and
   saturates `|P_i| = v_i*h_i`.  Revive that lane only if H2--H4 independently
@@ -1702,8 +1716,9 @@ parent unless promoted.
   projection and the complete local profile/binomial producer.  Ticket 0027
   adds the exact cyclic no-target consumer.  C1--C4 and therefore H2 are
   complete.  Ticket 0028's separately frozen recovery proves both G3 and F3,
-  so H3 is complete and the finite count is now three.  H4--H6 remain.
-  General
+  so H3 is complete.  Ticket 0029 proves local chain convexity, cyclic
+  separation, parity-union convexity, and the same-family numerical package;
+  H4 is complete and the finite count is now two.  H5 and H6 remain.  General
   pseudo-configurations remain optional until the point-set route lands.
 - **FP-16.A — Official exact-six source admission.**  The primary-paper audit
   freezes the eight `E*` patterns, the source convex-six predicate, and the

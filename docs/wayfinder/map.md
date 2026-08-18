@@ -358,6 +358,27 @@ formalization.  **Planning consequence:** close ticket 0028 and require a
 fresh authenticated H4 contract and bounded route review before H4 execution.
 No load-bearing `D-UPPER`, `D-HALF`, `D-DECOMP`, or `D-NORMALIZE` edge changes.
 
+Ticket 0029 now closes H4.  Lean proves convexity of each literal local inner
+and outer chain, both cyclic same-parity separation mechanisms including the
+`r = 3` wrap cases, convexity of each exact parity union, and a dependent
+package retaining one H2 family with one attached H3 profile per exact member.
+The package preserves every adjacent inequality and derives every outer-chain
+bound, both parity inner sums below `n`, and the total inner sum below `2*n`
+on the original carrier.  The independent review found no hidden certificate,
+profile reselection, carrier change, circularity, or trust defect.  The
+controls lane's collinear positive fixture caused an operational-only mismatch
+and supplies no theorem evidence.  **Net proof movement:** forward on H4: the
+subordinate set `{L4,W4,R4,B4,G4,F4}` becomes empty and the official finite
+layer set decreases from `{H4,H5,H6}` to `{H5,H6}`.  **Evidence:** compiling
+theorems, targeted builds, standard-only axiom audits, independent source
+review, and the root repository gate.  **Difficulty displaced:** none inside
+H4; H5 product aggregation and H6 exact-natural asymptotics remain distinct.
+**Counterfactual:** these theorems remove the complete H4 obligation and make
+the exact H5 aggregation gate executable.  **Planning consequence:** close
+ticket 0029 and freeze H5 separately, retaining the nonstrict binomial bound
+and all mandatory natural-number boundary branches found by preflight.  No
+load-bearing `D-UPPER`, `D-HALF`, `D-DECOMP`, or `D-NORMALIZE` edge changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical

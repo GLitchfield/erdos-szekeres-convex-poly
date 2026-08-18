@@ -150,9 +150,14 @@ transitivity from raw horizontal geometry, then constructs actual maximum
 literal inner and outer subchains of the unchanged H2 horizontal chain and
 proves `h_i <= choose (c_i+d_i-2) (c_i-1)`.  This reduces the remaining
 finite-layer count from four to three without importing the H4 whole-chain
-convexity or parity-gluing statements.  Later aggregation and optimized
-parameter choice remain unformalized; the source's `o(1)` notation will also
-require a separate exact-natural wrapper.
+convexity or parity-gluing statements.  The source-authenticated H4 layer now
+compiles too: both literal local chains are convex; same-parity remote pair and
+base-edge separation is derived around the full cycle including `r=3` wrap;
+each parity union of inner chains is convex; and one dependent package retains
+the exact H2/H3 profile family together with all adjacent, outer, parity-inner,
+and total-inner no-target inequalities.  The finite-layer count is therefore
+two.  H5 aggregation and H6 optimized parameter choice remain unformalized;
+the source's `o(1)` notation will require a separate exact-natural wrapper.
 
 The finite layer of Suk's proof is now formalized separately from those density
 losses.  Lean proves the finite chain--antichain threshold, the
