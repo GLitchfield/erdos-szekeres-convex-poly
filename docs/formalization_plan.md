@@ -2701,12 +2701,15 @@ pair support, and base-edge separator including the `r=3` wrap cases;
 `HMPTParityInnerGluing` proves the exact parity unions convex; and
 `HMPTCyclicHorizontalProfiles` stores one exact H2 family and dependent H3
 family with all adjacent, outer, parity-inner, and total-inner no-target
-bounds.  The official finite-layer count is therefore two.  Continue to
-specialize the proof to ordinary planar points before considering arbitrary
-pseudoline arrangements.  The next work is a separately frozen H5 aggregation
-theorem using the valid nonstrict binomial estimate and explicit natural
-boundary branches, followed by H6 parameter optimization.  The public scope
-is an integer theorem implying
+bounds.  H5 now compiles as a separate exact-natural aggregation layer.
+`HMPTAggregationArithmetic` proves the boundary-safe nonstrict binomial
+estimates, and `HMPTProductAggregation` combines the exact stored family with
+the source product bound, cyclic exponent sum, logarithmic conversion, ceiling
+cover, and positive root cancellation.  The official finite-layer count is
+therefore one.  Continue to specialize the proof to ordinary planar points
+before considering arbitrary pseudoline arrangements.  The next work is a
+separately frozen H6 parameter-optimization and asymptotic wrapper.  Its public
+scope is an integer theorem implying
 
 ```text
 exists C n0, forall n >= n0,

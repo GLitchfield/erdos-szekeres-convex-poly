@@ -379,6 +379,28 @@ ticket 0029 and freeze H5 separately, retaining the nonstrict binomial bound
 and all mandatory natural-number boundary branches found by preflight.  No
 load-bearing `D-UPPER`, `D-HALF`, `D-DECOMP`, or `D-NORMALIZE` edge changes.
 
+Ticket 0030 now closes H5.  Lean proves the exact boundary-safe estimates
+`choose (a+b) a <= (b+1)^a` and
+`choose (c+d-2) (c-1) <= d^(c-1)`, then aggregates the original-carrier
+support-product inequality with the one stored H2--H4 profile family.  The
+proof transports only the exponent sum through the cyclic successor
+equivalence, keeps every natural truncation branch, converts the horizontal
+factor through `Nat.clog`, applies the exact ceiling cover, and cancels the
+positive common power.  The public wrapper obtains one conservative bit of
+strict slack without a source-threshold premise.  **Net proof movement:**
+forward on H5: the official finite-layer set decreases from `{H5,H6}` to
+`{H6}`.  **Evidence:** warning-clean compiling A5 and B5 theorems, targeted
+module builds, standard-only axiom audits, independent frozen-ledger review,
+and the passing root exact-state repository gate; the bounded controls are
+neutral corroboration only.  **Difficulty displaced:** H6 remains as the
+distinct exact-natural parameter choice and asymptotic wrapper; no H5 premise
+was added.  **Counterfactual:** knowing these theorems in advance removes the
+entire product-aggregation obligation and materially reduces the remaining
+formal work.  **Planning consequence:** close ticket 0030 and require a fresh
+H6 contract that chooses `r` and derives the published
+`2^(n+O(sqrt(n*log n)))` point-set bound.  No load-bearing `D-UPPER`,
+`D-HALF`, `D-DECOMP`, or `D-NORMALIZE` edge changes.
+
 The one authorized seven-point successor to the decorated-transition probe is
 exactly refuted by rational configurations.  Two children have identical
 three connector words, identical 18 hidden core-link bits, and identical

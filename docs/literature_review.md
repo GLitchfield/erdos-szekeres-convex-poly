@@ -155,9 +155,13 @@ compiles too: both literal local chains are convex; same-parity remote pair and
 base-edge separation is derived around the full cycle including `r=3` wrap;
 each parity union of inner chains is convex; and one dependent package retains
 the exact H2/H3 profile family together with all adjacent, outer, parity-inner,
-and total-inner no-target inequalities.  The finite-layer count is therefore
-two.  H5 aggregation and H6 optimized parameter choice remain unformalized;
-the source's `o(1)` notation will require a separate exact-natural wrapper.
+and total-inner no-target inequalities.  H5 aggregation now compiles as well.
+Lean proves the conservative natural-number binomial estimates and combines
+the exact stored H2--H4 family with the source support-product inequality,
+including cyclic exponent reindexing, ceiling cover, positive root
+cancellation, and one-bit strict slack.  The finite-layer count is therefore
+one.  H6 optimized parameter choice remains unformalized; the source's `o(1)`
+notation still requires a separate exact-natural wrapper.
 
 The finite layer of Suk's proof is now formalized separately from those density
 losses.  Lean proves the finite chain--antichain threshold, the
@@ -202,8 +206,10 @@ certificate bounds the cube of `s^2` by `64*n^2`.  This is a conservative
 formal realization of Suk's `2^(n+O(n^(2/3) log n))` method, not a reproduction
 of its optimized constant and not progress on the exact threshold.  The
 stronger Holmsen--Mojarrad--Pach--Tardos error term remains unformalized here,
-but its first exact finite producer/consumer layer and the next raw
-adjacent-pair sign bridge now compile.
+although its complete H1--H5 point-set machinery now compiles.  The remaining
+H6 layer must choose the parameter and derive an explicit uniform
+`2^(n+O(sqrt(n*log n)))` theorem before this repository reproduces the
+published asymptotic result.
 
 ### 4. Equivalent strengthened statements
 

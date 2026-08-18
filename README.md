@@ -155,10 +155,15 @@ sets.
   literal inner/outer chain convex, derives cyclic same-parity pair and base
   separation including the `r=3` wrap cases, proves each exact parity union
   convex, and packages the same stored H2/H3 family with every adjacent,
-  outer, parity-inner, and total-inner no-target bound.  The official open
-  layer count for the six-layer route to the published
-  `2^(n+O(sqrt(n log n)))` bound is now two.  H5 and H6 remain unformalized,
-  and no exact-conjecture dependency changes.
+  outer, parity-inner, and total-inner no-target bound.  H5 now compiles too.
+  `HMPTAggregationArithmetic.lean` proves the boundary-safe binomial
+  estimates, and `HMPTProductAggregation.lean` combines the exact stored
+  profile family with the original-carrier support-product inequality to show
+  `P.card - 4*r <= 2^(hmptAggregationExponent n r)`, together with a strict
+  no-target wrapper.  The official open layer count for the six-layer route to
+  the published `2^(n+O(sqrt(n log n)))` bound is now one.  H6 parameter
+  optimization remains unformalized, so the published asymptotic theorem and
+  every exact-conjecture dependency remain open.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.
