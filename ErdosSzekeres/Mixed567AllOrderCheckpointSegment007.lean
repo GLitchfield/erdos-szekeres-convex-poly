@@ -18,10 +18,10 @@ namespace ErdosSzekeres
 set_option maxHeartbeats 0
 
 lrat_checkpoint_segment Mixed567AllOrderCheckpointContext Mixed567AllOrderCheckpoint 7 256
-  (include_str "../runs/agents/20260812-promotion-wave/mixed567-lean/core/a-core.cnf")
-  (include_str "../runs/agents/20260812-promotion-wave/mixed567-lean/checkpoints/segment-007.lrat")
-  (include_str "../runs/agents/20260812-promotion-wave/mixed567-lean/checkpoints/carry-input-007.txt")
-  (include_str "../runs/agents/20260812-promotion-wave/mixed567-lean/checkpoints/carry-output-007.txt")
+  (include_str "../certificates/mixed567-all-order-checkpoints/core.cnf")
+  (include_str "../certificates/mixed567-all-order-checkpoints/segment-007.lrat")
+  (include_str "../certificates/mixed567-all-order-checkpoints/carry-input-007.txt")
+  (include_str "../certificates/mixed567-all-order-checkpoints/carry-output-007.txt")
 
 end ErdosSzekeres
 

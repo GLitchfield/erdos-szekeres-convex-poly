@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-development-brief.schema.json",
+  "title": "Erdos-Szekeres evidence-first development brief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "brief_id", "task_id", "seed", "target_ref", "worker_mode", "probe", "selected_context", "hostile_controls", "allowed_methods", "lean_policy", "checkpoint_tool_calls", "persistence_instruction", "policies", "authority"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "brief_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "seed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["batch_path", "batch_sha256", "seed_id"],
+      "properties": {
+        "batch_path": {"type": "string", "minLength": 1},
+        "batch_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "seed_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "target_ref": {"type": "string", "minLength": 1, "maxLength": 240},
+    "worker_mode": {"enum": ["context_rich", "representation_escape", "failure_dual", "independent_replication"]},
+    "probe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "assumption_refs", "actions", "live_signal", "kill_signal", "ceiling_minutes", "stop_condition"],
+      "properties": {
+        "question": {"type": "string", "minLength": 1, "maxLength": 2400},
+        "assumption_refs": {"type": "array", "maxItems": 8, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 240}},
+        "actions": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"type": "string", "minLength": 1, "maxLength": 1000}},
+        "live_signal": {"type": "string", "minLength": 1, "maxLength": 800},
+        "kill_signal": {"type": "string", "minLength": 1, "maxLength": 800},
+        "ceiling_minutes": {"type": "integer", "minimum": 1, "maximum": 30},
+        "stop_condition": {"type": "string", "minLength": 1, "maxLength": 1000}
+      }
+    },
+    "selected_context": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256", "purpose"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "purpose": {"type": "string", "minLength": 1, "maxLength": 600}
+        }
+      }
+    },
+    "hostile_controls": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["control_id", "construction", "expected_if_mechanism_is_real", "expected_if_artifact", "stop_observation"],
+        "properties": {
+          "control_id": {"type": "string", "minLength": 1, "maxLength": 120},
+          "construction": {"type": "string", "minLength": 1, "maxLength": 1000},
+          "expected_if_mechanism_is_real": {"type": "string", "minLength": 1, "maxLength": 800},
+          "expected_if_artifact": {"type": "string", "minLength": 1, "maxLength": 800},
+          "stop_observation": {"type": "string", "minLength": 1, "maxLength": 800}
+        }
+      }
+    },
+    "allowed_methods": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["manual_reasoning", "local_python", "local_lean", "local_exact_solver", "read_only_sources"]}
+    },
+    "lean_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "theorem_contract_ref", "rationale"],
+      "properties": {
+        "mode": {"enum": ["not_yet", "fixed_statement_in_loop", "post_survival_only", "post_discovery_certificate"]},
+        "theorem_contract_ref": {"type": ["string", "null"], "maxLength": 240},
+        "rationale": {"type": "string", "minLength": 1, "maxLength": 800}
+      }
+    },
+    "checkpoint_tool_calls": {"type": "integer", "minimum": 1, "maximum": 10},
+    "persistence_instruction": {"const": "The frozen target and conventions may not be weakened or replaced. Seek a proof, exact counterexample, strongest scoped obstruction, or explicitly inconclusive terminal. Continue only while an undepleted predeclared discriminating test remains within budget. Negative, empty, and inconclusive terminals are acceptable. Effort, prior belief, worker agreement, and failure to find a counterexample are not evidence. Do not infer that the requested conclusion is true or smuggle it into a premise."},
+    "policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["persistence", "serendipity", "claims", "metrics"],
+      "properties": {
+        "persistence": {"const": "neutral-v1"},
+        "serendipity": {"const": "scoped-sidecar-v1"},
+        "claims": {"const": "verification-funnel-v1"},
+        "metrics": {"const": "evidence-vector-v1"}
+      }
+    },
+    "authority": {"const": "investigation_only; task_packet_controls_all_actions"}
+  },
+  "$defs": {
+    "fileReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

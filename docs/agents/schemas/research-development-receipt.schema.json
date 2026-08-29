@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-development-receipt.schema.json",
+  "title": "Erdos-Szekeres evidence-first development receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "brief_id", "brief_sha256", "terminal", "assigned_gate_outcome", "evidence_events", "resource_use", "claim_candidate", "serendipity", "route_action", "admission_status"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "brief_id": {"type": "string", "minLength": 1},
+    "brief_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "terminal": {"enum": ["GATE_POSITIVE_SIGNAL", "GATE_FALSIFIER", "NO_DISCRIMINATING_SIGNAL", "OPERATIONAL_STOP"]},
+    "assigned_gate_outcome": {"type": "string", "minLength": 1, "maxLength": 1600},
+    "evidence_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "claim_level", "statement", "scope", "artifact", "replay_or_check"],
+        "properties": {
+          "kind": {"enum": ["checked_computation", "exact_falsifier", "authenticated_source_interface", "compiling_fixed_statement", "reproducible_unexplained_invariant", "claim_refuted", "proposal_only"]},
+          "claim_level": {"enum": ["proposal", "computational_evidence", "file_compiles"]},
+          "statement": {"type": "string", "minLength": 1, "maxLength": 1600},
+          "scope": {"type": "string", "minLength": 1, "maxLength": 1200},
+          "artifact": {"$ref": "#/$defs/fileReceipt"},
+          "replay_or_check": {"type": "string", "minLength": 1, "maxLength": 1000}
+        }
+      }
+    },
+    "resource_use": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wall_minutes", "active_minutes", "cpu_seconds", "peak_memory_mib", "artifact_bytes", "input_tokens", "output_tokens", "tool_calls", "source_requests", "experiment_runs", "checker_runs"],
+      "properties": {
+        "wall_minutes": {"type": ["number", "null"], "minimum": 0},
+        "active_minutes": {"type": ["number", "null"], "minimum": 0},
+        "cpu_seconds": {"type": ["number", "null"], "minimum": 0},
+        "peak_memory_mib": {"type": ["number", "null"], "minimum": 0},
+        "artifact_bytes": {"type": ["integer", "null"], "minimum": 0},
+        "input_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "output_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "tool_calls": {"type": ["integer", "null"], "minimum": 0},
+        "source_requests": {"type": ["integer", "null"], "minimum": 0},
+        "experiment_runs": {"type": ["integer", "null"], "minimum": 0},
+        "checker_runs": {"type": ["integer", "null"], "minimum": 0}
+      }
+    },
+    "claim_candidate": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["statement", "model_tier", "scope_ceiling", "evidence_event_indices", "downstream"],
+          "properties": {
+            "statement": {"type": "string", "minLength": 1, "maxLength": 2400},
+            "model_tier": {"type": "string", "minLength": 1, "maxLength": 1200},
+            "scope_ceiling": {"type": "string", "minLength": 1, "maxLength": 1200},
+            "evidence_event_indices": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+            "downstream": {"const": "verification_funnel_required"}
+          }
+        }
+      ]
+    },
+    "serendipity": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["statement_or_observation", "model_tier", "scope_ceiling", "relation_to_assigned_probe", "evidence_event_indices", "contains_claim_candidate", "downstream"],
+          "properties": {
+            "statement_or_observation": {"type": "string", "minLength": 1, "maxLength": 2400},
+            "model_tier": {"type": "string", "minLength": 1, "maxLength": 1200},
+            "scope_ceiling": {"type": "string", "minLength": 1, "maxLength": 1200},
+            "relation_to_assigned_probe": {"type": "string", "minLength": 1, "maxLength": 1200},
+            "evidence_event_indices": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+            "contains_claim_candidate": {"type": "boolean"},
+            "downstream": {"const": "root_audit_required"}
+          }
+        }
+      ]
+    },
+    "route_action": {"const": "none"},
+    "admission_status": {"const": "unadmitted"}
+  },
+  "$defs": {
+    "fileReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

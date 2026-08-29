@@ -92,6 +92,28 @@ mechanism may remain eligible for bounded probing. Never use `closer`,
 `advancing`, `breakthrough`, or equivalent language unless net proof movement
 is forward and the exact closed dependency is named.
 
+### Failure-genome memory
+
+Every independently admitted mathematical negative, refutation, or model gap
+must receive one compact failure genome during reconciliation. Record its
+stable card/family, model tier, scope ceiling, terminal artifact and hash; then
+record the verified failing feature, strongest supported statement at the
+admitted scope, evidence level, and damage scope. Add representation blindness,
+candidate discriminator, mutation directions, anti-duplication warning, and
+cheapest falsifier only with an individual `verified`, `inferred`, or
+`not-established` tag. Evidence level and damage scope must copy the admitted
+fields above exactly.
+
+A genome is duplicate-avoidance and mutation-constraint memory, not a new
+route, score, or authorization. It cannot revive, promote, or schedule a
+descendant; any mutation must separately pass source, novelty, premise,
+target-equivalence, model-tier, producer, return-bridge, and immutable-gate
+review. Store the full genome in exactly one existing route record: the
+originating idea-ledger entry, otherwise the affected `FP-NN` entry, otherwise
+the owning decision ticket. Do not create a second tracker or a synthetic
+idea/portfolio entry. Purely `operational-only` stops receive no mathematical
+genome.
+
 ## Exploratory patience and mechanism discovery
 
 Skeptical proof-distance accounting governs claims about progress; it does not
@@ -235,8 +257,8 @@ the next slate from stale pre-run priorities.
 2. **Reconcile the frontier portfolio.** Update each affected `FP-NN` entry in
    place: evidence, state, obstruction, next gate, payoff, expiry/revival rule,
    and any newly surfaced child or main thread. Preserve negative knowledge and
-   run `python3 scripts/check_frontier_portfolio.py` before scheduling more
-   work.
+   its admitted failure-genome anchor, then run
+   `python3 scripts/check_frontier_portfolio.py` before scheduling more work.
 3. **Select a temporary execution slate.** Choose `N` executable threads from
    the updated portfolio according to mathematical leverage, readiness,
    independence, information gain, calibrated cost, available concurrency, and
@@ -256,10 +278,93 @@ the next slate from stale pre-run priorities.
    contract or outcome label. When the slate reaches its boundary, return to
    step 1.
 
+Ticket 0078 supersedes the old **four-plus-one idea-generation semantics** with
+the evidence-first campaign in `docs/agents/research-campaign.md`; it does not
+supersede the rolling scheduler or the four-investigation occupancy target.
+The coordinator keeps a full hash-frozen reconciled snapshot, generates up to
+five compact and materially distinct proposal-level seeds, applies only the
+lightweight safety and model-tier screen, and develops a seed through its
+cheapest hostile mathematical test as soon as a compatible slot and a
+separately approved immutable packet exist. Seed generation and these bounded
+pre-admission probes are information-gathering support: they are not portfolio
+threads, proof-producing slots, route admission, promotion, revival, or proof
+movement. Fewer than five honest seeds is a valid novelty stop; never pad the
+batch.
+
+Workers receive only the selected context frozen in their development brief,
+while root retains the full snapshot for later duplicate, stale-input, and
+route review. Admitted failures become evidence-scoped mutation constraints;
+every mutation receives a new immutable identity and no inferred genome field
+becomes positive evidence. A claim candidate enters the independent
+verification funnel before route admission, serendipitous evidence is an
+optional sidecar to the assigned terminal, Lean enters at the gap-shaped mode
+declared in the brief, and campaign performance is recorded as an evidence
+vector rather than a scalar idea score. The historical
+`FACTORY-REFRESH-014-CURRENT-STATE-V3` prompt and task are preserved byte for
+byte but are superseded-before-dispatch and may not be run, mutated, deleted,
+or given a fabricated result. Any future experimental control requires a new
+approved wrapper task, identity, and output path.
+
+Ticket 0083 supersedes Ticket 0079's one-reserve and per-call approval clauses
+for the campaign's seed-generation service in
+`docs/agents/continuous-idea-generator.md`. One exact standing authorization
+may let the daemon rebuild current context, freeze a new immutable packet, and
+make another proposal-only Sol call without this chat while all of these bounds
+hold: one call at a time; at most six calls per rolling 24 hours; at least 30
+minutes between completed calls; 100 calls total; at most ten unreconciled
+batches or fifty seeds; and circuit-open after two consecutive provider stops
+or two consecutive zero-seed batches. Each call retains the 90-minute, 2-CPU,
+4-GiB local RSS, 0.05-GiB output, read-only, no-subagent envelope. An attempted
+packet is never retried. The daemon may not run first tests, consume or
+reconcile its output, edit canonical files, admit or schedule routes, assign
+proof movement, or widen its own authority. Root must authenticate and
+reconcile every batch. The receipt binds the daemon, packet builder, campaign
+validator, and seed schema; configured limits may be tightened but not
+weakened. Immutable versioned authorization files preserve historical packet
+receipts, and crash recovery must authenticate boot/start process identity
+before following a PID. Any model, code, mode, limit, or authority change
+invalidates the active standing receipt and requires a new user decision.
+
+Four remains a capacity target, not a quota: if fewer than four mathematically
+distinct gates are executable, run the smaller honest slate and use spare
+capacity for approved campaign support, source grounding, card audit, or route
+review. With four active-agent slots, the normal full-slate allocation is three
+delegated lanes plus one root-owned lane.
+
 The evidence-admission part of step 1 is mandatory: agent prose or unchecked
 computation must not update the portfolio. Portfolio reconciliation in step 2
 is likewise mandatory before choosing the next slate, so new threads and route
 expiry affect the next allocation rather than one cycle later.
+
+### Rolling-pipeline override
+
+As of Ticket 0067, the user has replaced the synchronized batch-start barrier
+with a rolling research pipeline. This subsection supersedes any requirement
+to wait for every lane, to delay campaign support until an entire slate ends,
+or to possess four ready lanes before any execution:
+
+- once one portfolio thread has an approved immutable plan, dispatch it as soon
+  as a compatible slot is free; do not wait for a four-thread batch;
+- independently admit and reconcile each terminal result before using the freed
+  slot, while unrelated frozen lanes continue against their own input hashes;
+- target four concurrent mathematical investigations, but use spare capacity
+  for idea generation, source grounding, card audit, and route review whenever
+  fewer than four honest execution gates exist;
+- campaign seed generation and approved bounded development may run from a
+  hash-frozen reconciled snapshot; every proposal or evidence receipt must be
+  rebased against results integrated after that snapshot before admission,
+  seed generation never counts as mathematical proof work, and pre-admission
+  development never fills a proof-producing portfolio slot;
+- plan and approve threads individually or as a rolling wave. A named approval
+  covers only its frozen packets; any thread expected to exceed two hours or
+  requiring new external authority still needs the approval inventory required
+  below; and
+- preserve the no-padding, evidence-admission, mechanism-correlation, root-only
+  integration, and proof-distance rules unchanged.
+
+Thus four is an occupancy target, not a start gate or reconciliation barrier.
+Fast lanes may finish, reconcile, and be backfilled while longer lanes remain
+active.
 
 ## Multi-agent orchestration
 

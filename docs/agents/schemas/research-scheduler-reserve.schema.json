@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-scheduler-reserve.schema.json",
+  "title": "Approved research-scheduler reserve plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "protocol",
+    "created_at",
+    "approval_state",
+    "approval_ref",
+    "authorization",
+    "operational_wave",
+    "minimum_ready_packets",
+    "jobs"
+  ],
+  "$defs": {
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "job": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_packet",
+        "slot_label",
+        "occupancy_class",
+        "mechanism_family",
+        "priority",
+        "provider",
+        "resume_limit"
+      ],
+      "properties": {
+        "task_packet": {"$ref": "#/$defs/receipt"},
+        "slot_label": {
+          "enum": [
+            "proof-producing",
+            "information-gathering",
+            "discovery-support",
+            "verification"
+          ]
+        },
+        "occupancy_class": {"enum": ["mathematical", "support"]},
+        "mechanism_family": {"type": ["string", "null"]},
+        "priority": {"type": "integer"},
+        "provider": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["model", "reasoning_effort", "web_search"],
+          "properties": {
+            "model": {"type": ["string", "null"]},
+            "reasoning_effort": {
+              "enum": [null, "low", "medium", "high", "xhigh", "max", "ultra"]
+            },
+            "web_search": {"enum": ["disabled", "live"]}
+          }
+        },
+        "resume_limit": {"type": "integer", "minimum": 0, "maximum": 1}
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {"const": 1},
+    "protocol": {"const": "research-scheduler-v2"},
+    "created_at": {"type": "string", "minLength": 1},
+    "approval_state": {"const": "approved"},
+    "approval_ref": {"type": "string", "minLength": 1},
+    "authorization": {"$ref": "#/$defs/receipt"},
+    "operational_wave": {"$ref": "#/$defs/receipt"},
+    "minimum_ready_packets": {"type": "integer", "minimum": 0},
+    "jobs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/job"}
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/wayfinder-thread-lifecycle.schema.json",
+  "title": "Sealed Wayfinder thread-lifecycle receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "protocol",
+    "sealed_at",
+    "approval_ref",
+    "inbox",
+    "job_id",
+    "disposition",
+    "adjudication",
+    "canonical_transition",
+    "checks"
+  ],
+  "$defs": {
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "failure_genome_anchor": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["record", "anchor"],
+          "properties": {
+            "record": {"$ref": "#/$defs/receipt"},
+            "anchor": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "exit_code", "stdout_sha256", "stderr_sha256"],
+      "properties": {
+        "command": {"type": "string", "minLength": 1},
+        "exit_code": {"const": 0},
+        "stdout_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "stderr_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {"const": 1},
+    "protocol": {"const": "wayfinder-thread-lifecycle-v1"},
+    "sealed_at": {"type": "string", "minLength": 1},
+    "approval_ref": {"type": "string", "minLength": 1},
+    "inbox": {"$ref": "#/$defs/receipt"},
+    "job_id": {"type": "string", "minLength": 1},
+    "disposition": {"enum": ["accepted", "rejected", "operational"]},
+    "adjudication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "net_proof_movement",
+        "evidence",
+        "damage_scope",
+        "difficulty_displaced",
+        "counterfactual_test",
+        "planning_consequence",
+        "ledger_edge",
+        "mathematical_negative",
+        "affected_portfolio_entries",
+        "failure_genome_anchor"
+      ],
+      "properties": {
+        "net_proof_movement": {"enum": ["forward", "neutral", "backward"]},
+        "evidence": {
+          "enum": ["compiling_theorem", "checked_computation", "proposal", "operational_stop"]
+        },
+        "damage_scope": {
+          "enum": ["candidate-local", "subfamily", "architecture-level", "mechanism-wide", "operational-only"]
+        },
+        "difficulty_displaced": {"type": "string", "minLength": 1},
+        "counterfactual_test": {"type": "string", "minLength": 1},
+        "planning_consequence": {
+          "enum": ["promote", "retain", "demote", "suspend", "expire"]
+        },
+        "ledger_edge": {"type": "string", "minLength": 1},
+        "mathematical_negative": {"type": "boolean"},
+        "affected_portfolio_entries": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^FP-[0-9]{2}(?:\\.[A-Z])?$"}
+        },
+        "failure_genome_anchor": {"$ref": "#/$defs/failure_genome_anchor"}
+      }
+    },
+    "canonical_transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pre_state", "post_state", "changed_paths", "pre_snapshot", "post_snapshot"],
+      "properties": {
+        "pre_state": {
+          "type": "array",
+          "minItems": 3,
+          "items": {"$ref": "#/$defs/receipt"}
+        },
+        "post_state": {
+          "type": "array",
+          "minItems": 3,
+          "items": {"$ref": "#/$defs/receipt"}
+        },
+        "changed_paths": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "pre_snapshot": {"$ref": "#/$defs/receipt"},
+        "post_snapshot": {"$ref": "#/$defs/receipt"}
+      }
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"$ref": "#/$defs/check"}
+    }
+  }
+}

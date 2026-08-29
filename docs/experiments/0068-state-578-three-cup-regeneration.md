@@ -34,7 +34,7 @@ new `SevenWitnessRegenerationPacking578` retains the regenerated cap together
 with the three external caps. Those four caps are pairwise disjoint. The exact
 singleton-root gate now returns this full package directly.
 
-## Certified counterexample
+## Structural model and native-checked counterexample
 
 Use `(A < B)` for a decomposition node with lower child `A` and upper child
 `B`. Lean checks the explicit tree
@@ -60,21 +60,21 @@ K220 = {0,2,8,11}, with profile (2,2,0)
 K211 = {0,4,5,8},  with profile (1,1,2).
 ```
 
-Native finite certificates prove that the coloring has no five-cap, no
+Native finite evaluation reports that the coloring has no five-cap, no
 five-cup, no seven-cap, and no strong eight-set. The explicit decomposition
-tree proves decomposability, and the general realization theorem then proves
-that the coloring is realized by a swept planar configuration in general
-position. Thus both incidence branches survive every hypothesis of the local
-consumer. The extra no-five-cap fact also refutes the review's tentative
-repair by adding a no-six-cap hypothesis.
+tree and both incidence profiles are kernel-checked, and the general
+realization theorem applies to the structural coloring. The target-avoidance
+endpoints, however, use `native_decide` and depend on its generated axiom.
+They are checked computational evidence rather than completed kernel-only
+theorems, and the module is excluded from the root library import surface.
 
 An ignored independent checker reconstructs the same tree coloring directly
 and obtains zero five-cups, zero seven-caps, and zero strong eight-sets. This
-check was exploratory corroboration; the Lean theorem is the accepted result.
+is independent computational corroboration, not formal proof movement.
 
 ## Outcome and route decision
 
-**Outcome 3: certified counterexample and route expiry.** Recursive
+**Outcome 3: checked counterexample and route expiry as search information.** Recursive
 decomposability, sweep realizability, target avoidance, the complete local
 root profiles, and either incidence branch do not close regeneration on the
 12 selected cup vertices. Any continuation using only that local
@@ -87,7 +87,8 @@ features essentially. The strongest currently compiled interface is the
 seven-witness package: three disjoint cups, four pairwise-disjoint caps (one
 regenerated inside the cups), a 24-vertex selected support, and an eight-vertex
 remainder. A next consumer that reduces again to four independent local cap
-arguments is ruled out by this experiment.
+arguments is ruled out for planning purposes by this experiment. This is a
+search-information decision, not a completed kernel-only refutation.
 
 ## Reproduction
 

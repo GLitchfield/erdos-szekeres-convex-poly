@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-seed-batch.schema.json",
+  "title": "Erdos-Szekeres evidence-first research seed batch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "campaign_id", "generation_mode", "snapshot", "terminal", "claim_level", "seeds", "generation_metrics"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "generation_mode": {"enum": ["context_rich", "representation_escape", "failure_dual", "recombination"]},
+    "snapshot": {"$ref": "#/$defs/fileReceipt"},
+    "terminal": {"enum": ["SEED-BATCH-COMPLETE", "SEED-BATCH-NOVELTY-STOP", "SEED-BATCH-PROVIDER-STOP", "SEED-BATCH-PACKET-MISMATCH"]},
+    "claim_level": {"const": "proposal"},
+    "seeds": {"type": "array", "maxItems": 5, "items": {"$ref": "#/$defs/seed"}},
+    "generation_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["private_seed_count", "literal_duplicates_removed", "target_equivalent_removed", "malformed_removed", "tool_calls", "source_requests", "input_tokens", "output_tokens", "provider_cost_usd"],
+      "properties": {
+        "private_seed_count": {"type": "integer", "minimum": 0},
+        "literal_duplicates_removed": {"type": "integer", "minimum": 0},
+        "target_equivalent_removed": {"type": "integer", "minimum": 0},
+        "malformed_removed": {"type": "integer", "minimum": 0},
+        "tool_calls": {"type": ["integer", "null"], "minimum": 0},
+        "source_requests": {"type": ["integer", "null"], "minimum": 0},
+        "input_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "output_tokens": {"type": ["integer", "null"], "minimum": 0},
+        "provider_cost_usd": {"type": ["number", "null"], "minimum": 0}
+      }
+    }
+  },
+  "$defs": {
+    "fileReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "seed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seed_id", "target_ref", "title", "model", "mechanism", "lineage", "nearest_controls", "first_test", "closest_source_lead", "claim_level"],
+      "properties": {
+        "seed_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9._-]*$"},
+        "target_ref": {"type": "string", "minLength": 1, "maxLength": 240},
+        "title": {"type": "string", "minLength": 1, "maxLength": 120},
+        "model": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["working_tier", "target_tier", "transfer_status", "bridge_ref", "information_at_risk"],
+          "properties": {
+            "working_tier": {"type": "string", "minLength": 1, "maxLength": 600},
+            "target_tier": {"type": "string", "minLength": 1, "maxLength": 600},
+            "transfer_status": {"enum": ["same_tier", "conjectural", "verified_bridge"]},
+            "bridge_ref": {"type": ["string", "null"], "maxLength": 240},
+            "information_at_risk": {"type": "string", "minLength": 1, "maxLength": 800}
+          }
+        },
+        "mechanism": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["family_hint", "objects", "operation", "retained_information"],
+          "properties": {
+            "family_hint": {"type": "string", "minLength": 1, "maxLength": 240},
+            "objects": {"type": "string", "minLength": 1, "maxLength": 800},
+            "operation": {"type": "string", "minLength": 1, "maxLength": 800},
+            "retained_information": {"type": "string", "minLength": 1, "maxLength": 800}
+          }
+        },
+        "lineage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "parent_refs", "genuinely_new_step"],
+          "properties": {
+            "kind": {"enum": ["de_novo", "mutation", "recombination"]},
+            "parent_refs": {"type": "array", "maxItems": 2, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 240}},
+            "genuinely_new_step": {"type": "string", "minLength": 1, "maxLength": 800}
+          }
+        },
+        "nearest_controls": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ref", "material_difference"],
+            "properties": {
+              "ref": {"type": "string", "minLength": 1, "maxLength": 240},
+              "material_difference": {"type": "string", "minLength": 1, "maxLength": 800}
+            }
+          }
+        },
+        "first_test": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["question", "live_signal", "kill_signal", "ceiling_minutes", "information_if_live", "information_if_killed", "information_if_no_signal"],
+          "properties": {
+            "question": {"type": "string", "minLength": 1, "maxLength": 800},
+            "live_signal": {"type": "string", "minLength": 1, "maxLength": 600},
+            "kill_signal": {"type": "string", "minLength": 1, "maxLength": 600},
+            "ceiling_minutes": {"type": "integer", "minimum": 1, "maximum": 30},
+            "information_if_live": {"type": "string", "minLength": 1, "maxLength": 800},
+            "information_if_killed": {"type": "string", "minLength": 1, "maxLength": 800},
+            "information_if_no_signal": {"type": "string", "minLength": 1, "maxLength": 800}
+          }
+        },
+        "closest_source_lead": {"type": ["string", "null"], "maxLength": 800},
+        "claim_level": {"const": "proposal"}
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "brief_id": "YYYYMMDD-campaign-S01-probe",
+  "task_id": "YYYYMMDD-campaign-S01-probe",
+  "seed": {
+    "batch_path": "runs/agents/YYYYMMDD-campaign/seeds.json",
+    "batch_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "seed_id": "S01"
+  },
+  "target_ref": "D-HALF",
+  "worker_mode": "context_rich",
+  "probe": {
+    "question": "Does the exact frozen overlap statistic discriminate the named controls?",
+    "assumption_refs": ["ErdosSzekeres.ExampleFrozenPremise"],
+    "actions": [
+      "Authenticate the selected artifacts and reconstruct the statistic.",
+      "Run the hostile control before interpreting the target control.",
+      "Record the live, kill, or no-signal observation without repairing the seed."
+    ],
+    "live_signal": "The prospectively fixed statistic separates the controls.",
+    "kill_signal": "The statistic agrees on the hostile and target controls.",
+    "ceiling_minutes": 20,
+    "stop_condition": "Stop after the frozen comparison or when the enclosing task budget expires."
+  },
+  "selected_context": [
+    {
+      "path": "docs/wayfinder/map.md",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "purpose": "Authenticate the named destination dependency."
+    }
+  ],
+  "hostile_controls": [
+    {
+      "control_id": "KNOWN-FALSE-WORLD",
+      "construction": "A frozen control in which the proposed mechanism should be an artifact.",
+      "expected_if_mechanism_is_real": "The statistic differs from the target control.",
+      "expected_if_artifact": "The same statistic appears in both controls.",
+      "stop_observation": "Agreement kills the literal seed at its tested scope."
+    }
+  ],
+  "allowed_methods": ["manual_reasoning", "local_python"],
+  "lean_policy": {
+    "mode": "not_yet",
+    "theorem_contract_ref": null,
+    "rationale": "The representation is being tested before any exact theorem is frozen."
+  },
+  "checkpoint_tool_calls": 10,
+  "persistence_instruction": "The frozen target and conventions may not be weakened or replaced. Seek a proof, exact counterexample, strongest scoped obstruction, or explicitly inconclusive terminal. Continue only while an undepleted predeclared discriminating test remains within budget. Negative, empty, and inconclusive terminals are acceptable. Effort, prior belief, worker agreement, and failure to find a counterexample are not evidence. Do not infer that the requested conclusion is true or smuggle it into a premise.",
+  "policies": {
+    "persistence": "neutral-v1",
+    "serendipity": "scoped-sidecar-v1",
+    "claims": "verification-funnel-v1",
+    "metrics": "evidence-vector-v1"
+  },
+  "authority": "investigation_only; task_packet_controls_all_actions"
+}

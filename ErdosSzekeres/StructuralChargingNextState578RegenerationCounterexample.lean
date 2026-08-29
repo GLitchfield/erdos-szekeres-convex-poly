@@ -7,13 +7,16 @@ public import ErdosSzekeres.DecomposableRealization
 @[expose] public section
 
 /-!
-# A target-free three-cup regeneration configuration
+# Native-checked three-cup regeneration candidate
 
 The three disjoint four-cups and a covering four-cap obtained from the
 color-dual packing do not by themselves force a five-cup, seven-cap, or strong
-eight-set.  This file kernel-checks a minimal twelve-vertex recursively
-decomposable counterexample.  The same coloring realizes both possible cap
-incidence profiles, `2+2+0` and `2+1+1`.
+eight-set according to the finite native checks below.  The structural data
+and incidence profiles are kernel-checked, but the target-avoidance checks use
+`native_decide` and introduce nonstandard generated axioms.  This module is
+retained as checked computational evidence, is not imported by the root
+library, and is not a completed kernel-only counterexample.  The same coloring
+realizes both possible cap incidence profiles, `2+2+0` and `2+1+1`.
 
 The example does not carry the additional twenty vertices, the three disjoint
 external caps, or the singleton-root data of the live 32-vertex gate.

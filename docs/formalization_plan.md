@@ -1348,6 +1348,43 @@ exceeded the ten-minute single-clause gate below the memory ceiling. Further
 work must split the 120 middle-color consequences and final finite cases into
 smaller semantic modules; more projection variants are not an active repair.
 
+## 2026-08-23 fixed base and `HALF-HULLALT` repair boundary
+
+Ticket 0072 adds the compiling theorem
+`predecessorHalfSubsetAt_four : PredecessorHalfSubsetAt 4`. It uses the
+existing realizable five-point strong-four result to bound a target-free
+carrier by four vertices and then constructs the required half support by
+cardinality. This is forward proof movement on the named fixed base of
+`D-HALF`: the remaining load-bearing obligation is exactly
+`PredecessorHalfSubsetAt k` for every `k >= 5`.
+
+The same ticket independently classifies the authenticated 13-point
+affine-bad, strong-six-free fixture as decomposition-prime and freezes the
+canonical alternating convex-hull-layer producer/checker packet. These are
+checked finite and tooling evidence only. They make the `HALF-HULLALT` card
+complete enough for bounded route-admission review, but they neither prove its
+uniform predecessor-freeness claim nor authorize its mathematical panel.
+Ticket 0073 completes that advisory review and admits probing child `FP-01.D`
+without changing the suspended parent or `D-HALF`. Its one finite incubation
+must first be corrected: Fin9 fixtures cannot count because they never satisfy
+the strict above-threshold target-free premise, and a separate in-range control
+must deconfound affine badness from decomposition primality. Ticket 0074
+authenticates the 16-point equality fixture, but the exact interpolation from
+the affine-good recursive 13-point seed to the affine-bad prime endpoint has
+99 determinant-cell representatives and no simultaneous strong-six-free,
+affine-good, decomposition-prime control. The checked negative is
+candidate-local to that path and changes `FP-01.D` from probing to gated. The
+next mathematical prerequisite is an independently checked off-path control;
+only after it is admitted may a corrected panel be newly frozen and submitted
+for separate approval. Ticket 0075 reviews one fixed-`x`, one-flip off-path
+acquisition proposal and retains its mathematical scope only under
+`MUTSTAR-REVIEW-REVISE`: its determinant/Gordan certificates, complete
+286-flip accounting, labeled hashing, three-predicate witness semantics,
+independent checker/corruptions, and resource envelope must be frozen before
+implementation. The same ticket's Factory Batch 013 yields four unadmitted
+source-grounded route proposals for later review. No panel, proposal execution,
+or Lean formalization follows automatically.
+
 ## 2026-08-11 fourteen-thread forward plan
 
 > This section is historical execution memory. The live, canonical inclusive

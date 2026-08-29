@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "brief_id": "YYYYMMDD-campaign-S01-probe",
+  "brief_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "terminal": "NO_DISCRIMINATING_SIGNAL",
+  "assigned_gate_outcome": "The frozen control comparison produced neither the declared live nor kill signal.",
+  "evidence_events": [
+    {
+      "kind": "proposal_only",
+      "claim_level": "proposal",
+      "statement": "The bounded probe was executed but supplies no mathematical conclusion.",
+      "scope": "The one frozen seed and its named controls.",
+      "artifact": {
+        "path": "runs/agents/YYYYMMDD-campaign/execution/S01/report.md",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "replay_or_check": "Authenticate the report and its separately declared checks."
+    }
+  ],
+  "resource_use": {
+    "wall_minutes": null,
+    "active_minutes": null,
+    "cpu_seconds": null,
+    "peak_memory_mib": null,
+    "artifact_bytes": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "tool_calls": null,
+    "source_requests": null,
+    "experiment_runs": null,
+    "checker_runs": null
+  },
+  "claim_candidate": null,
+  "serendipity": null,
+  "route_action": "none",
+  "admission_status": "unadmitted"
+}

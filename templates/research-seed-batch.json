@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "campaign_id": "YYYYMMDD-campaign",
+  "generation_mode": "context_rich",
+  "snapshot": {
+    "path": "runs/agents/YYYYMMDD-campaign/coordinator-snapshot.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "terminal": "SEED-BATCH-NOVELTY-STOP",
+  "claim_level": "proposal",
+  "seeds": [
+    {
+      "seed_id": "S01",
+      "target_ref": "D-HALF",
+      "title": "Example compact seed",
+      "model": {
+        "working_tier": "sweep-realizable planar triple colorings",
+        "target_tier": "sweep-realizable planar triple colorings",
+        "transfer_status": "same_tier",
+        "bridge_ref": null,
+        "information_at_risk": "The first test observes only the frozen finite controls."
+      },
+      "mechanism": {
+        "family_hint": "example-family",
+        "objects": "Frozen predecessor supports and their overlaps.",
+        "operation": "Compare one overlap statistic with its color dual.",
+        "retained_information": "Vertex identities, order, colors, and support intersections."
+      },
+      "lineage": {
+        "kind": "de_novo",
+        "parent_refs": [],
+        "genuinely_new_step": "Retain ordered overlap data discarded by the nearest aggregate count."
+      },
+      "nearest_controls": [
+        {
+          "ref": "FP-EXAMPLE",
+          "material_difference": "The example seed preserves order instead of using only cardinalities."
+        }
+      ],
+      "first_test": {
+        "question": "Does the color-dual overlap statistic separate the two frozen controls?",
+        "live_signal": "The statistic changes under the prospectively fixed dual comparison.",
+        "kill_signal": "The statistic is identical on the hostile and target controls.",
+        "ceiling_minutes": 20,
+        "information_if_live": "A reproducible representation-sensitive observation exists.",
+        "information_if_killed": "The literal statistic is candidate-locally uninformative.",
+        "information_if_no_signal": "The bounded controls do not discriminate and no conclusion is supported."
+      },
+      "closest_source_lead": null,
+      "claim_level": "proposal"
+    }
+  ],
+  "generation_metrics": {
+    "private_seed_count": 1,
+    "literal_duplicates_removed": 0,
+    "target_equivalent_removed": 0,
+    "malformed_removed": 0,
+    "tool_calls": null,
+    "source_requests": null,
+    "input_tokens": null,
+    "output_tokens": null,
+    "provider_cost_usd": null
+  }
+}

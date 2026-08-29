@@ -59,11 +59,12 @@ deletion choices by at least ten distinct global cup probes.
 
 ## Certified and checked limits
 
-The existing 12-vertex Lean counterexample now additionally certifies a
+The existing 12-vertex structural candidate now additionally kernel-checks a
 shared vertex which is a sweep-middle vertex of both the `2+1+1` cap and the
 third cup. The cup is wholly in the root upper child, so the new shared-middle
-theorem is true but nonclosing. Thus shared-middle conflict alone does not
-resolve the all-hit branch.
+theorem is true but nonclosing. The candidate's target avoidance remains
+native-checked search evidence, so this observation alone does not resolve the
+all-hit branch.
 
 The independent checker
 `scripts/verify_state578_private_cup_incidence_model.py` validates the compact

@@ -65,12 +65,16 @@ The first candidate said that every disjoint secondary cap must consume two
 of the nine terminal tails.  Deterministic search with seed `57832` produced
 a 17-vertex recursive tree whose terminal cap is `{7,8,13,14}`, whose outer
 tail set has nine vertices, and whose secondary cap `{5,9,10,11}` meets the
-tails only at `5`.  It has no five-cap, seven-cup, or strong eight-set.  The
-counterexample module proves
+tails only at `5`.  Native executable checks report no five-cap, seven-cup, or
+strong eight-set.  The retained evidence module states
 
 ```text
 not_terminalNineTailSecondaryMultiplicityGate578.
 ```
+
+That endpoint depends on the generated axiom introduced by `native_decide`.
+It is checked computational evidence, not a completed kernel-only theorem;
+the module is therefore excluded from the root library import surface.
 
 The second shortcut treated six distinct private caps as six nearly disjoint
 charges.  A nine-vertex recursively decomposable target-free coloring has

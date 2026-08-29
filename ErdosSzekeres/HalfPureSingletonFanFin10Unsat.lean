@@ -7,8 +7,8 @@ public import Mathlib.Tactic.Sat.FromLRAT
 namespace ErdosSzekeres
 
 lrat_proof halfPureSingletonFanFin10_lrat_unsat
-  (include_str "../runs/agents/20260811-four-slot-deep-wave/half-pure-fin10/half-pure-singleton-fin10-core.cnf")
-  (include_str "../runs/agents/20260811-four-slot-deep-wave/half-pure-fin10/half-pure-singleton-fin10-core.lrat")
+  (include_str "../certificates/half-pure-singleton-fin10/half-pure-singleton-fin10-core.cnf")
+  (include_str "../certificates/half-pure-singleton-fin10/half-pure-singleton-fin10-core.lrat")
 
 end ErdosSzekeres
 

@@ -21,20 +21,32 @@ and collaborative in explaining why a route is being pursued or retired.
   statement.  Never let either replace the other.
 - Freeze the objective, inputs, theorem contract, ownership, budget, success
   condition, and stop conditions before dispatch.
+- For evidence-first campaigns, keep the full hash-frozen reconciled snapshot
+  at root and give each development worker only the one-to-five selected
+  artifacts and purposes frozen in its brief. Re-audit receipts against the
+  full snapshot before any verification or route decision.
 - Delegate perspective and bounded execution, not final judgment.
 - Treat workers as untrusted proposers; reproduce the relevant gate before
   promoting a claim.
 - Prefer reusable intermediary lemmas that remove a named obstruction.
 - Preserve negative results and the strongest true repair of a false claim.
-- At admission of every user-approved mathematical work item or batch, record
-  whether to dispatch the Innovation Scout, reuse a current scout result, or
-  skip it with a concrete reason. Dispatch is the default for new invariants,
-  route changes, recent counterexamples, multi-item research batches, and
-  substantial open-ended work; skip only mechanical frozen-theorem work or
-  repository maintenance.
-- Run the Innovation Scout as a bounded read-only sidecar alongside the main
-  stream, review it at the next cycle boundary, and send any leading route
-  proposal through adversarial review before allocating build work.
+- At admission of every user-approved mathematical item or batch, record
+  `campaign seed pass`, `dispatch scout`, `reuse current result`, or `skip`.
+  The campaign pass is the default discovery mechanism; use a separate Scout
+  only for an explicitly independent representation-escape or route-review
+  pass, not as redundant ritual.
+- Apply only the lightweight campaign screen before a seed's approved bounded
+  development. Do not demand a publication card or assign a scalar merit score
+  before trying the first hostile test.
+- When a development receipt contains a credible claim candidate, allocate the
+  next compatible capacity to the verification funnel: literal claim freezing,
+  root reproduction,
+  hostile review, cold rederivation or counterexample search, source/novelty
+  audit, and then an independent checker or Lean gate as appropriate. Worker
+  agreement and same-provider repetition remain correlated.
+- Preserve serendipity as a scoped sidecar to the assigned terminal. It may
+  trigger a new frozen review packet but cannot silently replace the probe or
+  broaden its authority.
 - Serialize integration, shared-file edits, full builds, tests, and Git work.
 - Serialize delegated builders as well: at most one Lean or finite-model worker
   may own mutating/build work at a time.  Use the remaining slots for
@@ -47,6 +59,8 @@ and collaborative in explaining why a route is being pursued or retired.
   paths.  Never let an orchestrator timing or documentation edit create a
   false mathematical stop.
 - Explain route choices in terms of the Wayfinder, not agent popularity.
+- Record campaign outcomes as an evidence vector with raw denominators and
+  resource use. Never optimize or report one hidden scalar fitness score.
 - Record every substantial time forecast and its actual in
   `docs/agents/time-estimates.csv`, following `time-estimation.md`. Distinguish
   elapsed critical-path time from summed task effort, and calibrate future

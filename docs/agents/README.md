@@ -23,7 +23,10 @@ The registered profiles are listed in `manifest.toml`.
 | Principal Research Orchestrator | integration owner | choose bounded work, arbitrate evidence, and integrate |
 | Laplace, adversarial math copilot | read-only | falsify or sharpen a proposed theorem, invariant, or route |
 | Structural Proof Architect | read-only | design the conceptual dependency chain and bridge lemmas |
-| Mathematical Innovation Scout | read-only | generate cross-domain approaches with cheap falsifiers and Lean landing points |
+| Mathematical Innovation Scout | read-only | generate compact cross-domain seeds with cheap discriminators |
+| Research Question Generator | named owned files | emit up to five compact, materially distinct seeds from a frozen snapshot |
+| Research Lead Investigator | named owned files | execute one approved selective-context development brief and emit replayable evidence |
+| Research Card Auditor | named owned files | safety-screen seeds before development and fully audit only evidence-bearing route candidates |
 | Lean Kernel Engineer | named owned files | prove a frozen theorem contract in Lean |
 | Finite-Model Experimentalist | named owned files | run bounded, reproducible searches and produce checkable evidence |
 | Formal Proof Reviewer | read-only | independently audit statements, proof boundaries, and claims |
@@ -56,6 +59,157 @@ the next allocation sees every consequence of the prior run. Step 3 is a
 scheduling decision and never prunes the inclusive portfolio. Step 4 must name
 potential outcomes and downstream continuations; uncertain branches remain
 branches rather than hidden assumptions.
+
+### Evidence-first research campaign
+
+Ticket 0078 replaces the publication-card-first, serial four-plus-one factory
+with the campaign contract in `research-campaign.md`. The coordinator retains
+the full reconciled project snapshot and generates up to five compact,
+materially distinct seeds. Each schema-valid seed receives only a lightweight
+safety, duplication, target-equivalence, and model-tier screen before its
+cheapest hostile mathematical probe is frozen. We do not try to predict a
+question's value through a large speculative card before trying to answer it.
+Fewer than five honest seeds is a valid novelty stop.
+
+A seed can be developed as soon as a compatible slot is free only after its
+exact task packet and selective-context brief are frozen and approved. These
+bounded probes are proposal-level information gathering outside the portfolio:
+they do not count as proof-producing slots, route admission, promotion,
+revival, or proof movement. Root later audits each receipt against the full
+coordinator snapshot. A credible claim takes capacity away from more
+generation and enters the independent verification funnel; an admitted
+failure supplies scoped negative constraints for a newly identified mutation;
+and serendipitous evidence is preserved in a sidecar without replacing the
+assigned probe's terminal.
+
+The old `FACTORY-REFRESH-014-CURRENT-STATE-V3` prompt and task are an immutable
+historical control with disposition
+`superseded-before-dispatch / immutable-historical-control-only`. They are not
+reserve work and must not be run, mutated, deleted, or assigned a fabricated
+result. A future prospective comparison needs its own approved wrapper task,
+identity, input hashes, and output paths.
+
+The seed stage may be operated by the bounded service in
+`continuous-idea-generator.md`. Ticket 0083 makes the daemon a bounded
+self-refilling proposal inbox, not an orchestrator: one standing authorization
+binds the daemon, builder, validator, schema, provider executable, rate,
+total-call, resource,
+high-water, and circuit-breaker limits; every individual packet remains
+hash-frozen; authorization rotation preserves old receipts and global rate
+accounting; an attempted packet is never retried; and root alone consumes,
+reconciles, admits, or schedules output.
+
+Four concurrent mathematical investigations remains the occupancy target, and
+the ordinary no-padding and mechanism-diversity rules remain unchanged. Spare
+capacity may perform approved campaign generation, development, source
+grounding, audit, or route review. Seed generation itself is not mathematical
+proof work, and an unadmitted development probe does not fill a
+proof-producing portfolio slot.
+
+### Rolling execution pipeline
+
+Ticket 0067 supersedes the synchronized-batch waiting rule. An admitted,
+approved thread launches whenever a compatible slot is free; its terminal is
+checked and reconciled immediately, and that slot may be backfilled without
+waiting for unrelated lanes. When fewer than four mathematical gates are
+ready, unused capacity works on approved campaign generation or development,
+grounding, card audit, and route review. A campaign lane uses a frozen
+reconciled snapshot and may overlap execution, but its proposals and evidence
+must be rebased against any intervening admitted result before portfolio entry
+or scheduling. A mathematical negative receives its admitted failure-genome
+anchor during that serial reconciliation before the slot is reused; unrelated
+frozen lanes do not wait. Four remains the occupancy target and never licenses
+padding.
+
+The four selected investigations retain the ordinary mechanism-diversity and
+proof-distance rules.  No more than two normally come from one correlated
+family.  Unless no credible theorem gate is executable and the user explicitly
+approves an exploration-only slate, at least one slot should be
+`proof-producing`; otherwise the slate is labeled exploration. Campaign seeds
+and pre-admission development are tracked separately and never count toward
+that proof-producing quota.
+
+#### Immediate backfill transaction
+
+For occupancy purposes, a packet is **dispatch-ready** only when its exact
+bytes validate, its input closure still authenticates, and the user has
+approved that exact packet as part of the current rolling wave.  A frozen but
+merely planned packet is useful reserve inventory, but it is not an available
+replacement and must never be reported as running or ready-to-dispatch.
+
+The orchestrator treats every worker terminal as one indivisible backfill
+transaction:
+
+1. observe the terminal with a contemporaneous collaboration-state query;
+2. authenticate the task/result pair and admit its evidence at the narrowest
+   supported scope;
+3. reconcile the affected route and load-bearing dependency, explicitly
+   recording when neither changes;
+4. dispatch one compatible approved reserve packet into the freed slot before
+   unrelated planning continues; and
+5. freeze and seek approval for a replacement reserve until the approved queue
+   returns to its declared floor.
+
+The normal operational reserve floor is four approved packets from honest,
+bounded, nonduplicative gates or support tasks.  A lower floor requires an
+explicit user-approved thin-wave reason.  If the queue falls below its floor,
+reserve production becomes the root's next orchestration task; spare workers
+may perform bounded route grounding, source grounding, campaign seed work, or
+card audit, but none of those may be mislabeled as an admitted mathematical
+investigation.
+Result-dependent successors enter the reserve only after their prerequisites
+are admitted and their new input hashes are frozen.
+
+After each dispatch or terminal, update the board in the same transaction and
+run:
+
+```text
+make rolling-pipeline BOARD=runs/agents/<run>/live-board.json
+```
+
+Then compare the validated declaration with a fresh collaboration-state query.
+The checker cannot observe the agent service, so neither the board nor a stale
+worker name is sufficient evidence of occupancy.  When explicit approval is
+the only missing condition, request the next consolidated exact-hash wave
+before active lanes are expected to finish; if approval is still absent, record
+that precise unavoidable vacancy instead of inventing work or silently
+broadening authority.
+
+#### Persistent execution scheduler
+
+The process-backed implementation of the approved-packet queue is documented
+in `research-scheduler.md`. Unlike `live-board.json`, it owns durable SQLite
+state, worker process telemetry, transient systemd control groups, resource
+limits, crash detection, and dispatch. Unlike the continuous idea generator,
+it does not manufacture packets: every job must already appear by exact hash
+in an authenticated approved operational wave.
+
+The scheduler targets four mathematical workers, prioritizes mathematical
+packets over support packets, enforces the builder and mechanism-family limits,
+and records exact under-capacity causes when the approved reserve is too small.
+One approved reserve plan can import a complete exact-hash wave after every
+packet and dispatch parameter passes preflight. A valid or operational worker
+terminal immediately releases its process lane for independent approved
+backfill while the terminal remains in a separate root-only reconciliation
+inbox. This preserves the mandatory evidence gate: replacement cannot use the
+result, infer a successor, edit the Wayfinder, assign proof movement, or widen
+a packet. Late reconciliation cannot release a lane already reused by another
+worker.
+
+The terminal inbox is now paired with a serialized Wayfinder lifecycle
+control plane. Every terminal receives an immutable lifecycle-inbox item.
+Scheduler reconciliation requires an independently sealed receipt binding the
+exact task/result, root adjudication, owning ticket, affected portfolio entry,
+map/ledger statement, any required existing-record failure-genome anchor,
+pre/post canonical snapshots, and passing Wayfinder checks. Thus an already
+approved independent reserve may preserve process occupancy, but no
+result-dependent successor can become eligible from worker prose or stale
+portfolio state.
+
+The service is separately authorized from the proposal-only continuous idea
+generator. Neither daemon's standing receipt grants authority to the other.
+Changing scheduler code, schemas, Codex version, models, resource limits, or
+authority invalidates its receipt and requires a new explicit user decision.
 
 ### Orchestrator liveness invariant
 
@@ -105,10 +259,12 @@ the declared aggregate resource envelope.
 
 ## Assignment lifecycle
 
-1. **Orient.** Read `docs/wayfinder/map.md` and
+1. **Orient.** For admitted portfolio work, read `docs/wayfinder/map.md` and
    `docs/wayfinder/frontier-portfolio.md`, run the Wayfinder status and
    portfolio checks, and identify the `FP-NN` entry and consequential ticket
-   served by the work.
+   served by the work. Root performs that global orientation for a campaign;
+   a pre-admission development worker authenticates only the selected context
+   in its brief and does not infer portfolio membership from the assignment.
 2. **Admit and freeze.** The orchestrator records an immutable task packet with
    the base revision, workspace fingerprint, objective, exact theorem contract
    when applicable, inputs and hashes, ownership, budget, checks, success
@@ -121,6 +277,28 @@ the declared aggregate resource envelope.
    This distinction must be written into packets whose execution overlaps
    integration work; otherwise routine timing or documentation updates create
    false stops without improving evidence integrity.
+
+   A rolling lane must not directly freeze a root-owned canonical file that the
+   orchestrator is required to edit while the lane can remain live. In
+   particular, `docs/wayfinder/map.md`,
+   `docs/wayfinder/frontier-portfolio.md`, and the active reconciliation ticket
+   are live integration outputs, not stable worker inputs. Before dispatch,
+   root uses `scripts/freeze_agent_context.py` to embed the exact needed UTF-8
+   bytes and their original paths/hashes in one immutable ignored context
+   capsule. The task freezes that capsule, not the live canonical files. A
+   worker verifies the capsule internally at admission and terminal; it does
+   not compare the embedded provenance to live canonical bytes at terminal.
+   Root performs the live comparison and semantic rebase when admitting the
+   result.
+
+   This capsule exception is narrow. Lean sources, theorem statements,
+   implementation code, source evidence, experiment artifacts, and every other
+   input whose exact bytes affect the task's mathematical or computational
+   meaning remain direct frozen task inputs. Moving such an artifact into a
+   context capsule merely to evade drift is a protocol violation. A lane that
+   genuinely needs the current live canonical state must instead be serialized
+   with reconciliation. Capsule corruption, direct semantic-input drift,
+   owned-write drift, or base-revision drift remains terminal.
 3. **Inventory approvals.** For every plan expected to take at least two hours,
    identify all foreseeable provider calls, out-of-sandbox commands, installs,
    resource increases, process termination, destructive actions, and external
@@ -130,19 +308,19 @@ the declared aggregate resource envelope.
    trigger all foreseeable platform prompts at the beginning of the block. An
    unforeseen later prompt pauses only its dependent branch.
 4. **Innovation check.** At the start of every user-approved mathematical work
-   item or batch, record one of `dispatch now`, `reuse current result`, or
-   `skip`, with a concrete reason. Dispatching the Mathematical Innovation
-   Scout is the default for a new invariant, a route selection or redirect, a
-   recent counterexample, a multi-item research batch, or work expected to
-   consume substantial time. Skip only for mechanical implementation of an
-   already frozen theorem contract or repository maintenance. The scout is a
-   read-only sidecar: it runs alongside the main stream and is reviewed at the
-   next cycle boundary rather than blocking implementation.
+   item or batch, record one of `campaign seed pass`, `dispatch scout`, `reuse
+   current result`, or `skip`, with a concrete reason. A completed campaign
+   seed pass satisfies this check; do not automatically launch a redundant
+   scout. Use a separate Innovation Scout for a strategic route redirect or an
+   explicitly independent representation-escape pass. Skip only for mechanical
+   implementation of an already frozen theorem contract or repository
+   maintenance.
 5. **Falsify or design.** Before expensive implementation, consult Laplace for
    a questionable statement or the Structural Proof Architect for a missing
-   conceptual route.  When the frontier stalls or a route is retired, consult
-   the Mathematical Innovation Scout for a bounded portfolio of alternatives.
-   This stage is read-only.
+   conceptual route. When the frontier stalls or a route is retired, use the
+   evidence-first campaign or an independent Innovation Scout to generate
+   compact alternatives with hostile first tests. This stage is read-only
+   unless a separately approved development packet grants exact owned paths.
 6. **Dispatch.** Give a builder concrete, non-overlapping write paths.  Shared
    integration files remain orchestrator-owned.  A worker may not silently
    weaken or replace a frozen theorem statement.
@@ -155,12 +333,34 @@ the declared aggregate resource envelope.
    updates shared imports and documentation, and runs the project/repository
    gates.  Workers do not concurrently build, commit, or edit Wayfinder files.
 10. **Record.** Promote durable conclusions into the canonical project artifact.
-    Retain negative results when they rule out a documented route.
+Retain negative results when they rule out a documented route.
 
 The slate-level completion manifest uses
 `templates/agent-execution-slate.json`.  It is transient and belongs under
 `runs/agents/`; its validator is a mandatory guard against silently omitting a
 finished, blocked, or failed lane from reconciliation.
+
+### Failure-genome admission and propagation
+
+A worker may propose a failure genome, but root owns admission after checking
+the terminal evidence. The admitted block records one provenance subject, four
+verified core fields, and five individually tagged design-memory fields under
+the schema in `AGENTS.md`; the result schema does not change. Unsupported
+design lessons become `not-established`, and purely operational stops receive
+no mathematical genome.
+
+The full block has exactly one existing durable home: its originating
+idea-ledger entry; otherwise its `FP-NN` entry; otherwise the decision ticket
+that owns a pre-admission rejection. Portfolio reconciliation copies only the
+ordinary evidence, scope, gate, and revival consequences and links the durable
+block rather than duplicating it. The next coordinator snapshot reads the
+block from that existing home with its evidence hash and
+`verified`/`inferred`/`not-established` tags intact; a worker sees only the
+selected digest required by its brief. A mutation receives a new immutable
+identity and must state the material mathematical information changed. A
+discriminator, mutation, or falsifier remains proposal memory and cannot become
+a backfill lane without a separately approved packet and, for portfolio work,
+ordinary route admission.
 
 ## Plan outcome contract
 
@@ -192,6 +392,9 @@ work item implied by that branch. If execution reveals a genuinely new
 outcome, stop or replan explicitly rather than silently replacing the original
 labels. Multi-item and multi-hour plans report an outcome for every thread,
 including threads that were skipped, superseded, or stopped by another result.
+An unexpected observation is recorded as a scoped serendipity sidecar to one
+of the ordinary primary terminals. It does not replace the frozen target,
+expand authority, or self-admit a claim or route.
 
 ## Route-portfolio rule
 

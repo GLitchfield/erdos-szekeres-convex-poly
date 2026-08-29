@@ -83,6 +83,123 @@ sets.
 - `ErdosSzekeres/StrongPolygon.lean` defines the four-index strong-polygon law
   and proves it equivalent to convex position for swept configurations and
   for their original finite point sets, including selected convex subsets.
+- The `SynchronizedFiveFanFin11*.lean` modules close the complete fixed Fin11
+  synchronized-fan case and its half-support consumer. The newer
+  `SynchronizedFiveFanFin11WindowTransport.lean` also proves the exact
+  arbitrary-ambient eleven-window theorem
+  `predecessorFreeSixSubsetAtSixFinElevenWindow_of_oneChange`, with an
+  independently admitted standard-axiom boundary. This completes `FP-17` as a
+  reusable transport/relabeling card. It does not close `D-HALF`: each local
+  witness still has only six points, and the audited obvious compatibility
+  formulations either fail to produce ambient growth/cross-window freeness or
+  restore the target support as a premise. The later
+  `PredecessorHalfFin13*.lean` modules replay a 12,585-clause compact
+  dependency core through kernel-checked LRAT and balanced semantic
+  checkpoints. They prove that every thirteen-point `OneChangeOn` coloring
+  without a strong six-set has a strong-five-free seven-point support and
+  transport that result through arbitrary increasing thirteen-point windows.
+  `exists_predecessorHalfSubsetAtSix_of_card_le_fourteen` composes it with the
+  earlier finite results, moving the first unresolved fixed-six ambient
+  cardinality from thirteen to fifteen. This does not prove the fixed-six or
+  uniform predecessor theorem: ambient cardinalities from fifteen onward, an
+  exact-six ceiling, and the all-`k >= 6` producer remain open. The
+  `PredecessorHalfFin15ExteriorSystem.lean`,
+  `PredecessorHalfFin15SharedAnchorGlobal.lean`, and
+  `PredecessorHalfFin15SingleExchangeGlobal.lean` modules now package the
+  complete eight-exterior obstruction and compile its global
+  repeated-anchor/Fano versus exact single-exchange dichotomy, along with
+  transversal, forced-witness, saturation, and third-exterior consumers.
+  This closes one named subordinate proof stage, not ambient cardinality
+  fifteen: both raw contradiction branches still require either a new
+  cross-exterior color implication or a proved well-founded selector. The same
+  rolling wave retires
+  `FP-18` after the exact first control gives `m2=3280>630`, and retires the
+  cardinality-only `FP-19` subfamily after its `(9,5)` cone is exactly feasible.
+  The canonical Pappus frame closes at a candidate-local model gap, while the
+  deterministic one-layer Helly projection closes at a candidate-local
+  negative. Batch011 preserves rooted bowtie convexity and one-interior wedge
+  charging only as source-corrected, unfrozen proposals; the completed
+  reciprocal route review admits neither and returns
+  `NO-BATCH011-ROUTE-READY`. Failure genomes now feed every admitted
+  mathematical negative back
+  into duplicate avoidance and mutation constraints with verified/inferred
+  tags. Ticket 0067 keeps execution rolling rather than waiting for four.
+  The corrected Batch012 whole-project factory refresh then screens 80 private
+  mechanisms and returns `FACTORY-NOVELTY-STOP` with zero exposed ideas; exact
+  output and novelty counteraudits uphold that result. Its largest recorded
+  attrition is 31 remembered-family collisions, while the first three
+  novelty/producer/consumer categories account for 59 of 80 candidates. This
+  is neutral process information, not a mathematical result. Ticket 0069 now
+  admits the deterministic sparse-context projector and corruption-tested
+  synthetic pilot checker. The live policy pilot remains unrun: authentic
+  platform telemetry, enforced input isolation, fresh post-reconciliation
+  contexts, semantic dual-auditor agreement, and separate user/platform
+  approval are still mandatory. Ticket 0070 then admits runtime-checker v6
+  only at its bounded synthetic boundary and stops the live path at
+  `BIND-01-NATIVE-EXEC`: actual command-child/profile binding, bypass denial,
+  and launcher-only receipt ownership remain unproved. No provider call ran,
+  and no load-bearing `D-HALF` or `D-UPPER` edge changed in this wave. Ticket
+  0071 then returns to mathematical acquisition and retains one distinct
+  convex-layer alternating-support near-card, `HALF-HULLALT`, but the bounded
+  reciprocal review requires a fixed `k=4` endpoint, an in-range
+  decomposition-prime control, and a frozen checker packet before execution.
+  No portfolio state, theorem, or load-bearing edge changes from that audit.
+  Ticket 0072 closes those three repair fields without running the panel.
+  `predecessorHalfSubsetAt_four` now compiles, so the remaining load-bearing
+  `D-HALF` domain is every `k >= 5`. Two independent exact classifiers verify
+  that the authenticated 13-point affine-bad strong-six-free fixture is
+  decomposition-prime, and two independent hull algorithms freeze the
+  canonical alternating-layer support packet with corruption controls. Those
+  latter results are finite/tooling evidence, not proof movement. `FP-01`
+  remains suspended, and the repaired card next requires separate bounded
+  route-admission review before any panel or promotion. Ticket 0073 completes
+  that review and admits `FP-01.D` as one bounded probing child. The review also
+  corrects the future panel: both Fin9 fixtures are outside the strict theorem
+  premise and cannot count as refuters, and the 13-point affine-bad/prime
+  fixture needs a separate in-range deconfounding comparison. Ticket 0074
+  authenticates the 16-point equality control, then exhausts one exact
+  99-representative interpolation without finding a simultaneous
+  strong-six-free, affine-good, decomposition-prime control. That negative is
+  candidate-local to the frozen path. `FP-01.D` is therefore gated on an
+  independently checked off-path control and a newly frozen panel. No panel
+  ran, `FP-01` remains suspended, and `D-HALF` remains open for every
+  `k >= 5`. Ticket 0075's reciprocal review preserves one fixed-`x`,
+  one-triple-flip off-path acquisition proposal only after an exact semantic-
+  contract revision; it authorizes neither implementation nor execution.
+  Ticket 0076 freezes and independently accepts that corrected prospective
+  contract without opening a mutation row. `FP-01.D` remains gated: next comes
+  implementation-only source plus a non-author synthetic audit, and real
+  acquisition still needs separate approval. Batch 013's Yao--Yao, Tucker,
+  and chip-firing cards remain unresolved after operational source stops; its
+  literal operad card expires candidate-locally because the proposed local
+  truth table and endpoint flags have no proved outer-context congruence. No
+  Batch-013 family is admitted, no panel ran, and no load-bearing edge changed.
+  Ticket 0078 supersedes the publication-card-first four-plus-one factory with
+  an evidence-first campaign: up to five compact seeds, separately approved
+  selective-context first probes, evidence-scoped mutations, claim-triggered
+  verification, and gap-shaped Lean timing. The frozen Factory v3 packet is an
+  immutable historical control and was not run. This is a neutral process
+  change; it changes no portfolio state or load-bearing proof edge. Ticket 0083
+  now runs that seed stage as a persistent self-refilling service under one
+  finite standing envelope: one read-only Sol-max call at a time, no attempted
+  packet retries, rolling/cooldown/total/inbox/circuit limits, and root-only
+  reconciliation and route decisions. Batch 007 was frozen automatically and
+  completed with five validated but unadmitted proposal seeds before the
+  service entered its declared cooldown. A hardened versioned receipt preserved
+  that accounting across restart and automatically launched failure-dual Batch
+  008 at the original eligibility time; the service still cannot run probes,
+  admit routes, edit canonical files, consume its inbox, or claim proof
+  movement. Ticket 0082's final governance-refrozen admission replays now
+  reject the exact Batch-005 Lorentzian full-incidence polynomial at
+  candidate-local scope and the literal exact-directed-split-side
+  delta-matroid family at subfamily scope. Both are checked finite negative
+  evidence with one anchored failure genome each; neither changes `D-UPPER`,
+  `D-DECOMP`, or net proof movement. A subsequent composition proof now makes
+  the exact small-case inventory load-bearing: `predecessorHalfSubsetAt_five`
+  compiles and has passed independent contract, semantic, kernel, and axiom
+  review. Together with the earlier `k = 4` theorem, it reduces the remaining
+  `D-HALF` parameter domain to every `k >= 6`; it does not supply the missing
+  uniform higher-parameter producer.
 - `ErdosSzekeres/TothValtrUpper.lean` proves the unconditional published bound
   `ES(n) <= choose(2*n-5,n-2)+2` for every `n >= 3`.  Its dependency chain
   constructs an explicit projective normalization, proves orientation-sign and
@@ -937,9 +1054,13 @@ sets.
   highest-cardinality-first stratified prime-core rank. Complete seven-point
   and selected eight-point abstract controls support a three-step endpoint
   drop while confirming that intermediate monotonicity is too strong. A
-  target-free realizable highest-stratum descent above the exact threshold is
-  the surviving hard construction proposal, with one kernel-checked geometric
-  mutation into the decomposable class as a positive control. A structurally
+  target-free realizable highest-stratum descent above the exact threshold
+  remains unproved, and the current mutation-source family is suspended.  The
+  latest top-apex source card is positive only on one engineered rational Fin8
+  witness, has zero coverage on twenty admitted abstract mutation edges, and
+  fails its mandatory carrier-field deletion discriminator; it is
+  `CARD-NOT-FROZEN`, not a Lean target.  One kernel-checked geometric mutation
+  into the decomposable class remains a positive control. A structurally
   independent predecessor-bicoloring interface also compiles: such a
   bicoloring gives the exact doubling recurrence directly. Two independent
   computational encodings pass its stronger balanced eight-vertex `k=5`

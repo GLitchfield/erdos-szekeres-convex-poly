@@ -81,6 +81,7 @@ ALLOWED_MECHANISM_FAMILIES = {
     "normalization-descent",
     "quantitative-cup-cap",
     "finite-exact-upper",
+    "hereditary-beta-cardinality-cones",
     "route-discovery",
     "research-system",
 }

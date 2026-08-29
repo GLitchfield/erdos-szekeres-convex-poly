@@ -1,23 +1,43 @@
 PROJECT_TOOL_BIN := $(CURDIR)/scripts/toolchain
 export PATH := $(PROJECT_TOOL_BIN):$(PATH)
 
-.PHONY: check update lean lean-artifacts test test-exhaustive wayfinder review-doctor
+# Keep Lean checkpoint builds bounded even when the host exposes many CPUs.
+# The process guard provides a graceful stop below the outer cgroup limit used
+# by release/checkpoint jobs; the Lean runtime setting bounds Lake's task pool.
+LEAN_BUILD_CPUS ?= 0,1
+LEAN_BUILD_THREADS ?= 2
+LEAN_BUILD_TIMEOUT_SECONDS ?= 5400
+LEAN_BUILD_MAX_RSS_MIB ?= 20480
+LEAN_BUILD_MAX_PROCESSES ?= 2
+export LEAN_NUM_THREADS := $(LEAN_BUILD_THREADS)
+LEAN_BUILD_GUARD := python3 scripts/run_lean_guarded.py \
+	--timeout-seconds $(LEAN_BUILD_TIMEOUT_SECONDS) \
+	--max-rss-mib $(LEAN_BUILD_MAX_RSS_MIB) \
+	--max-lean-processes $(LEAN_BUILD_MAX_PROCESSES) \
+	--heartbeat-seconds 30 --poll-seconds 0.5 --grace-seconds 10 --
+LEAN_LAKE := $(LEAN_BUILD_GUARD) taskset --cpu-list $(LEAN_BUILD_CPUS) lake
+
+.PHONY: check update lean lean-artifacts test test-exhaustive wayfinder \
+	rolling-pipeline review-doctor idea-generator-status idea-generator-stop \
+	research-scheduler-status research-scheduler-doctor research-scheduler-stop \
+	research-scheduler-acceptance-check
 
 check:
 	@python3 --version
 	@git --version
 	@lake --version
+	@taskset --version | head -n 1
 
 update: check
 	@lake update
 
 lean:
 	@! rg -n --glob '*.lean' '\b(sorry|admit)\b' ErdosSzekeres ErdosSzekeres.lean
-	@lake build +ErdosSzekeres:olean
+	@$(LEAN_LAKE) build +ErdosSzekeres:olean
 
 lean-artifacts:
 	@! rg -n --glob '*.lean' '\b(sorry|admit)\b' ErdosSzekeres ErdosSzekeres.lean
-	@lake build
+	@$(LEAN_LAKE) build
 
 test: check lean
 	@python3 -m unittest discover -s scripts -p 'test_*.py'
@@ -114,6 +134,7 @@ test: check lean
 	@python3 scripts/check_published_offwindow.py >/dev/null
 	@python3 scripts/check_rank_profile_realization.py >/dev/null
 	@python3 scripts/check_agent_orchestration.py >/dev/null
+	@python3 scripts/check_research_campaign.py --templates >/dev/null
 	@python3 scripts/wayfinder_status.py >/dev/null
 	@python3 scripts/check_frontier_portfolio.py >/dev/null
 	@python3 -m py_compile scripts/adversarial_review.py \
@@ -128,6 +149,15 @@ test: check lean
 		scripts/analyze_two_probe_bridge_compatibility.py \
 		scripts/check_agent_orchestration.py \
 		scripts/check_agent_slate.py \
+		scripts/check_research_campaign.py \
+		scripts/freeze_agent_context.py \
+		scripts/continuous_idea_generator.py \
+		scripts/research_scheduler.py \
+		scripts/check_wayfinder_thread_lifecycle.py \
+		scripts/run_research_scheduler_acceptance.py \
+		scripts/check_research_scheduler_acceptance.py \
+		scripts/scheduler_acceptance_fake_codex.py \
+		scripts/check_factory_v3_runtime_receipt.py \
 		scripts/run_lean_guarded.py \
 		scripts/check_e3_state455_aggregation.py \
 		scripts/check_e3_state566_aggregation.py \
@@ -270,5 +300,30 @@ wayfinder:
 	@python3 scripts/wayfinder_status.py
 	@python3 scripts/check_frontier_portfolio.py
 
+rolling-pipeline:
+	@python3 scripts/check_rolling_pipeline.py --board "$(BOARD)" \
+		--max-age-minutes 5
+
 review-doctor:
 	@python3 scripts/adversarial_review.py doctor
+
+idea-generator-status:
+	@python3 scripts/continuous_idea_generator.py status
+
+idea-generator-stop:
+	@python3 scripts/continuous_idea_generator.py stop \
+		--reason "operator requested Makefile stop"
+
+research-scheduler-status:
+	@python3 scripts/research_scheduler.py status
+
+research-scheduler-doctor:
+	@python3 scripts/research_scheduler.py doctor
+
+research-scheduler-stop:
+	@python3 scripts/research_scheduler.py stop \
+		--reason "operator requested Makefile stop"
+
+research-scheduler-acceptance-check:
+	@python3 scripts/check_research_scheduler_acceptance.py \
+		--result "$(RESULT)" --result-sha256 "$(RESULT_SHA256)"

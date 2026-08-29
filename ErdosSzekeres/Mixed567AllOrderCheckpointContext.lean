@@ -13,7 +13,7 @@ run_cmd
     Lean.LibrarySuggestions.nameDenyListExt.addEntry env "Mixed567AllOrderCheckpoint"
 
 lrat_checkpoint_context Mixed567AllOrderCheckpointContext
-  (include_str "../runs/agents/20260812-promotion-wave/mixed567-lean/core/a-core.cnf")
+  (include_str "../certificates/mixed567-all-order-checkpoints/core.cnf")
 
 end ErdosSzekeres
 

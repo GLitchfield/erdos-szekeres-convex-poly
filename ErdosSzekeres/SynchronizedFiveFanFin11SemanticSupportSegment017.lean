@@ -1,0 +1,1662 @@
+module
+
+public import ErdosSzekeres.SynchronizedFiveFanFin11SemanticSupportSegment016
+
+@[expose] public section
+
+set_option maxRecDepth 30000
+set_option linter.unusedSimpArgs false
+
+namespace ErdosSzekeres
+
+/-! Semantic helper facts in bounded group 017. -/
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask1063 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {0, 1, 2, 5, 10} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 1 2 5
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 1 2 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 1 5 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 2 5 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 2 5 10
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 1) (k := 2) (l := 5)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 1) (k := 2) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 1) (k := 5) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 2) (k := 5) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 2) (k := 5) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask0659 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {0, 1, 4, 7, 9} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 1 4 7
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 1 4 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 1 7 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 4 7 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 4 7 9
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 1) (k := 4) (l := 7)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 1) (k := 4) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 1) (k := 7) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 4) (k := 7) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 4) (k := 7) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask0541 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {0, 2, 3, 4, 9} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 2 3 4
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 2 3 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 2 4 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 3 4 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 3 4 9
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 2) (k := 3) (l := 4)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 2) (k := 3) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 2) (k := 4) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 3) (k := 4) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 3) (k := 4) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask0405 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {0, 2, 4, 7, 8} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 2 4 7
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 2 4 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 2 7 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 4 7 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 4 7 8
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 2) (k := 4) (l := 7)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 2) (k := 4) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 2) (k := 7) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 4) (k := 7) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 4) (k := 7) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask0569 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {0, 3, 4, 5, 9} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 3 4 5
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 3 4 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 3 5 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 4 5 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 3 4 5 9
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 3) (k := 4) (l := 5)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 3) (k := 4) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 3) (k := 5) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 4) (k := 5) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 3) (j := 4) (k := 5) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask1417 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {0, 3, 7, 8, 10} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 3 7 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 3 7 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 3 8 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 0 7 8 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 3 7 8 10
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 3) (k := 7) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 3) (k := 7) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 3) (k := 8) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 0) (j := 7) (k := 8) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 3) (j := 7) (k := 8) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask0062 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {1, 2, 3, 4, 5} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 2 3 4
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 2 3 5
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 2 4 5
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 3 4 5
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 3 4 5
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 2) (k := 3) (l := 4)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 2) (k := 3) (l := 5)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 2) (k := 4) (l := 5)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 3) (k := 4) (l := 5)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 3) (k := 4) (l := 5)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask0310 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {1, 2, 4, 5, 8} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 2 4 5
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 2 4 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 2 5 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 4 5 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 4 5 8
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 2) (k := 4) (l := 5)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 2) (k := 4) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 2) (k := 5) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 4) (k := 5) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 4) (k := 5) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask1798 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {1, 2, 8, 9, 10} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 2 8 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 2 8 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 2 9 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 8 9 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 8 9 10
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 2) (k := 8) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 2) (k := 8) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 2) (k := 9) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 8) (k := 9) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 8) (k := 9) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask0690 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {1, 4, 5, 7, 9} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 4 5 7
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 4 5 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 4 7 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 5 7 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 4 5 7 9
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 4) (k := 5) (l := 7)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 4) (k := 5) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 4) (k := 7) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 5) (k := 7) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 4) (j := 5) (k := 7) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask1730 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {1, 6, 7, 9, 10} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 6 7 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 6 7 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 6 9 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 1 7 9 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 6 7 9 10
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 6) (k := 7) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 6) (k := 7) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 6) (k := 9) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 1) (j := 7) (k := 9) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 6) (j := 7) (k := 9) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask0372 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {2, 4, 5, 6, 8} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 4 5 6
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 4 5 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 4 6 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 5 6 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 4 5 6 8
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 4) (k := 5) (l := 6)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 4) (k := 5) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 4) (k := 6) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 5) (k := 6) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 4) (j := 5) (k := 6) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask0932 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {2, 5, 7, 8, 9} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 5 7 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 5 7 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 5 8 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 2 7 8 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 5 7 8 9
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 5) (k := 7) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 5) (k := 7) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 5) (k := 8) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 2) (j := 7) (k := 8) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 5) (j := 7) (k := 8) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask0488 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {3, 5, 6, 7, 8} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 3 5 6 7
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 3 5 6 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 3 5 7 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 3 6 7 8
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 5 6 7 8
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 3) (j := 5) (k := 6) (l := 7)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 3) (j := 5) (k := 6) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 3) (j := 5) (k := 7) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 3) (j := 6) (k := 7) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 5) (j := 6) (k := 7) (l := 8)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_strongSet_iff_mask1936 (chi : TripleColoring 11) :
+    IsStrongPolygonSet chi {4, 7, 8, 9, 10} ↔
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 4 7 8 9
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 4 7 8 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 4 7 9 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 4 8 9 10
+        (by decide) (by decide) (by decide) ∧
+      SynchronizedFiveFanFin11SemanticStrongQuad chi 7 8 9 10
+        (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 4) (j := 7) (k := 8) (l := 9)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 4) (j := 7) (k := 8) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 4) (j := 7) (k := 9) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 4) (j := 8) (k := 9) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp)),
+      (by
+        simpa [SynchronizedFiveFanFin11SemanticStrongQuad] using h
+          (i := 7) (j := 8) (k := 9) (l := 10)
+          (by decide) (by decide) (by decide)
+          (by simp) (by simp) (by simp) (by simp))⟩
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [SynchronizedFiveFanFin11SemanticStrongQuad]
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask0179 (chi : TripleColoring 11) :
+    IsCupSet chi {0, 1, 4, 5, 7} ↔
+      chi ⟨0, 1, 4, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 1, 5, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 1, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 4, 5, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 4, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 5, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 4, 5, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 4, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 5, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 5, 7, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask0157 (chi : TripleColoring 11) :
+    IsCupSet chi {0, 2, 3, 4, 7} ↔
+      chi ⟨0, 2, 3, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 2, 4, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 2, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 3, 4, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 3, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 4, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 3, 4, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 3, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 4, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 4, 7, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask1301 (chi : TripleColoring 11) :
+    IsCupSet chi {0, 2, 4, 8, 10} ↔
+      chi ⟨0, 2, 4, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 2, 8, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 2, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 4, 8, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 4, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 8, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 4, 8, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 4, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 8, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 8, 10, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask0665 (chi : TripleColoring 11) :
+    IsCupSet chi {0, 3, 4, 7, 9} ↔
+      chi ⟨0, 3, 4, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 3, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 3, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 4, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 4, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 7, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 4, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 4, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 7, 9, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask1585 (chi : TripleColoring 11) :
+    IsCupSet chi {0, 4, 5, 9, 10} ↔
+      chi ⟨0, 4, 5, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 4, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 4, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 5, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 5, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨0, 9, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 5, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 5, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 9, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨5, 9, 10, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask0558 (chi : TripleColoring 11) :
+    IsCupSet chi {1, 2, 3, 5, 9} ↔
+      chi ⟨1, 2, 3, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 2, 5, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 2, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 3, 5, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 3, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 5, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 3, 5, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 3, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 5, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 5, 9, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask1190 (chi : TripleColoring 11) :
+    IsCupSet chi {1, 2, 5, 7, 10} ↔
+      chi ⟨1, 2, 5, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 2, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 2, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 5, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 5, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 7, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 5, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 5, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 7, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨5, 7, 10, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask0682 (chi : TripleColoring 11) :
+    IsCupSet chi {1, 3, 5, 7, 9} ↔
+      chi ⟨1, 3, 5, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 3, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 3, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 5, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 5, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 7, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 5, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 5, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨5, 7, 9, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask1810 (chi : TripleColoring 11) :
+    IsCupSet chi {1, 4, 8, 9, 10} ↔
+      chi ⟨1, 4, 8, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 4, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 4, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 8, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 8, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨1, 9, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 8, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 8, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 9, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨8, 9, 10, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask0684 (chi : TripleColoring 11) :
+    IsCupSet chi {2, 3, 5, 7, 9} ↔
+      chi ⟨2, 3, 5, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 3, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 3, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 5, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 5, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 7, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 5, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 5, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨5, 7, 9, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask1812 (chi : TripleColoring 11) :
+    IsCupSet chi {2, 4, 8, 9, 10} ↔
+      chi ⟨2, 4, 8, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 4, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 4, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 8, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 8, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨2, 9, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 8, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 8, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 9, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨8, 9, 10, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask1432 (chi : TripleColoring 11) :
+    IsCupSet chi {3, 4, 7, 8, 10} ↔
+      chi ⟨3, 4, 7, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 4, 8, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 4, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 7, 8, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨3, 8, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 7, 8, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 7, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨4, 8, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨7, 8, 10, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_cupSet_iff_mask1952 (chi : TripleColoring 11) :
+    IsCupSet chi {5, 7, 8, 9, 10} ↔
+      chi ⟨5, 7, 8, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨5, 7, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨5, 7, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨5, 8, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨5, 8, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨5, 9, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨7, 8, 9, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨7, 8, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨7, 9, 10, by decide, by decide⟩ = Turn.left ∧
+      chi ⟨8, 9, 10, by decide, by decide⟩ = Turn.left := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask0155 (chi : TripleColoring 11) :
+    IsCapSet chi {0, 1, 3, 4, 7} ↔
+      chi ⟨0, 1, 3, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 1, 4, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 1, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 3, 4, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 3, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 4, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 3, 4, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 3, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 4, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 4, 7, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask1299 (chi : TripleColoring 11) :
+    IsCapSet chi {0, 1, 4, 8, 10} ↔
+      chi ⟨0, 1, 4, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 1, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 1, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 4, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 4, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 8, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 4, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 4, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 8, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨4, 8, 10, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask0205 (chi : TripleColoring 11) :
+    IsCapSet chi {0, 2, 3, 6, 7} ↔
+      chi ⟨0, 2, 3, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 2, 6, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 2, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 3, 6, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 3, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 6, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 3, 6, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 3, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 6, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask1189 (chi : TripleColoring 11) :
+    IsCapSet chi {0, 2, 5, 7, 10} ↔
+      chi ⟨0, 2, 5, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 2, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 2, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 5, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 5, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 7, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 5, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 5, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 7, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 7, 10, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask0425 (chi : TripleColoring 11) :
+    IsCapSet chi {0, 3, 5, 7, 8} ↔
+      chi ⟨0, 3, 5, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 3, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 3, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 5, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 5, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 7, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 5, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 5, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 7, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 7, 8, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask1681 (chi : TripleColoring 11) :
+    IsCapSet chi {0, 4, 7, 9, 10} ↔
+      chi ⟨0, 4, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 4, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 4, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 7, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 7, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨0, 9, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨4, 7, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨4, 7, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨4, 9, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨7, 9, 10, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask1294 (chi : TripleColoring 11) :
+    IsCapSet chi {1, 2, 3, 8, 10} ↔
+      chi ⟨1, 2, 3, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 2, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 2, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 3, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 3, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 8, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 3, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 3, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 8, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 8, 10, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask1606 (chi : TripleColoring 11) :
+    IsCapSet chi {1, 2, 6, 9, 10} ↔
+      chi ⟨1, 2, 6, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 2, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 2, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 6, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 6, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 9, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 6, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 6, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 9, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨6, 9, 10, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask1354 (chi : TripleColoring 11) :
+    IsCapSet chi {1, 3, 6, 8, 10} ↔
+      chi ⟨1, 3, 6, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 3, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 3, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 6, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 6, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 8, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 6, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 8, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨6, 8, 10, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask1698 (chi : TripleColoring 11) :
+    IsCapSet chi {1, 5, 7, 9, 10} ↔
+      chi ⟨1, 5, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 5, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 5, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 7, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 7, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨1, 9, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 7, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 7, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 9, 10, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨7, 9, 10, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask0716 (chi : TripleColoring 11) :
+    IsCapSet chi {2, 3, 6, 7, 9} ↔
+      chi ⟨2, 3, 6, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 3, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 3, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 6, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 6, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 7, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask0868 (chi : TripleColoring 11) :
+    IsCapSet chi {2, 5, 6, 8, 9} ↔
+      chi ⟨2, 5, 6, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 5, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 5, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 6, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 6, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨2, 8, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 6, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 6, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 8, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨6, 8, 9, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_capSet_iff_mask0936 (chi : TripleColoring 11) :
+    IsCapSet chi {3, 5, 7, 8, 9} ↔
+      chi ⟨3, 5, 7, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 5, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 5, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 7, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨3, 8, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 7, 8, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 7, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨5, 8, 9, by decide, by decide⟩ = Turn.right ∧
+      chi ⟨7, 8, 9, by decide, by decide⟩ = Turn.right := by
+  constructor
+  · intro h
+    exact ⟨
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp),
+      h _ (by simp) (by simp) (by simp)⟩
+  · rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8, h9⟩ ⟨i, j, k, hij, hjk⟩ hi hj hk
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;> try omega
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask0591 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {0, 1, 2, 3, 6, 9} →
+      polygon.card = 5 →
+        polygon = {0, 1, 2, 3, 6} ∨
+          polygon = {0, 1, 2, 3, 9} ∨
+          polygon = {0, 1, 2, 6, 9} ∨
+          polygon = {0, 1, 3, 6, 9} ∨
+          polygon = {0, 2, 3, 6, 9} ∨
+          polygon = {1, 2, 3, 6, 9} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask0343 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {0, 1, 2, 4, 6, 8} →
+      polygon.card = 5 →
+        polygon = {0, 1, 2, 4, 6} ∨
+          polygon = {0, 1, 2, 4, 8} ∨
+          polygon = {0, 1, 2, 6, 8} ∨
+          polygon = {0, 1, 4, 6, 8} ∨
+          polygon = {0, 2, 4, 6, 8} ∨
+          polygon = {1, 2, 4, 6, 8} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask0603 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {0, 1, 3, 4, 6, 9} →
+      polygon.card = 5 →
+        polygon = {0, 1, 3, 4, 6} ∨
+          polygon = {0, 1, 3, 4, 9} ∨
+          polygon = {0, 1, 3, 6, 9} ∨
+          polygon = {0, 1, 4, 6, 9} ∨
+          polygon = {0, 3, 4, 6, 9} ∨
+          polygon = {1, 3, 4, 6, 9} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask0467 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {0, 1, 4, 6, 7, 8} →
+      polygon.card = 5 →
+        polygon = {0, 1, 4, 6, 7} ∨
+          polygon = {0, 1, 4, 6, 8} ∨
+          polygon = {0, 1, 4, 7, 8} ∨
+          polygon = {0, 1, 6, 7, 8} ∨
+          polygon = {0, 4, 6, 7, 8} ∨
+          polygon = {1, 4, 6, 7, 8} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask1181 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {0, 2, 3, 4, 7, 10} →
+      polygon.card = 5 →
+        polygon = {0, 2, 3, 4, 7} ∨
+          polygon = {0, 2, 3, 4, 10} ∨
+          polygon = {0, 2, 3, 7, 10} ∨
+          polygon = {0, 2, 4, 7, 10} ∨
+          polygon = {0, 3, 4, 7, 10} ∨
+          polygon = {2, 3, 4, 7, 10} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask0725 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {0, 2, 4, 6, 7, 9} →
+      polygon.card = 5 →
+        polygon = {0, 2, 4, 6, 7} ∨
+          polygon = {0, 2, 4, 6, 9} ∨
+          polygon = {0, 2, 4, 7, 9} ∨
+          polygon = {0, 2, 6, 7, 9} ∨
+          polygon = {0, 4, 6, 7, 9} ∨
+          polygon = {2, 4, 6, 7, 9} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask0857 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {0, 3, 4, 6, 8, 9} →
+      polygon.card = 5 →
+        polygon = {0, 3, 4, 6, 8} ∨
+          polygon = {0, 3, 4, 6, 9} ∨
+          polygon = {0, 3, 4, 8, 9} ∨
+          polygon = {0, 3, 6, 8, 9} ∨
+          polygon = {0, 4, 6, 8, 9} ∨
+          polygon = {3, 4, 6, 8, 9} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask1086 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {1, 2, 3, 4, 5, 10} →
+      polygon.card = 5 →
+        polygon = {1, 2, 3, 4, 5} ∨
+          polygon = {1, 2, 3, 4, 10} ∨
+          polygon = {1, 2, 3, 5, 10} ∨
+          polygon = {1, 2, 4, 5, 10} ∨
+          polygon = {1, 3, 4, 5, 10} ∨
+          polygon = {2, 3, 4, 5, 10} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask1334 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {1, 2, 4, 5, 8, 10} →
+      polygon.card = 5 →
+        polygon = {1, 2, 4, 5, 8} ∨
+          polygon = {1, 2, 4, 5, 10} ∨
+          polygon = {1, 2, 4, 8, 10} ∨
+          polygon = {1, 2, 5, 8, 10} ∨
+          polygon = {1, 4, 5, 8, 10} ∨
+          polygon = {2, 4, 5, 8, 10} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask1242 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {1, 3, 4, 6, 7, 10} →
+      polygon.card = 5 →
+        polygon = {1, 3, 4, 6, 7} ∨
+          polygon = {1, 3, 4, 6, 10} ∨
+          polygon = {1, 3, 4, 7, 10} ∨
+          polygon = {1, 3, 6, 7, 10} ∨
+          polygon = {1, 4, 6, 7, 10} ∨
+          polygon = {3, 4, 6, 7, 10} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask1506 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {1, 5, 6, 7, 8, 10} →
+      polygon.card = 5 →
+        polygon = {1, 5, 6, 7, 8} ∨
+          polygon = {1, 5, 6, 7, 10} ∨
+          polygon = {1, 5, 6, 8, 10} ∨
+          polygon = {1, 5, 7, 8, 10} ∨
+          polygon = {1, 6, 7, 8, 10} ∨
+          polygon = {5, 6, 7, 8, 10} := by decide
+
+theorem synchronizedFiveFanFin11_fiveSubset_mask1268 :
+    ∀ polygon : Finset (Fin 11), polygon ⊆ {2, 4, 5, 6, 7, 10} →
+      polygon.card = 5 →
+        polygon = {2, 4, 5, 6, 7} ∨
+          polygon = {2, 4, 5, 6, 10} ∨
+          polygon = {2, 4, 5, 7, 10} ∨
+          polygon = {2, 4, 6, 7, 10} ∨
+          polygon = {2, 5, 6, 7, 10} ∨
+          polygon = {4, 5, 6, 7, 10} := by decide
+
+end ErdosSzekeres
+
+end

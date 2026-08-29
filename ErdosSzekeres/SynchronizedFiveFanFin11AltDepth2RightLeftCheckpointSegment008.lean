@@ -1,0 +1,30 @@
+-- Generated checkpoint source; do not edit.
+module
+
+public import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2RightLeftCheckpointContext
+import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2RightLeftCheckpointSegment000
+import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2RightLeftCheckpointSegment001
+import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2RightLeftCheckpointSegment002
+import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2RightLeftCheckpointSegment003
+import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2RightLeftCheckpointSegment004
+import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2RightLeftCheckpointSegment005
+import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2RightLeftCheckpointSegment006
+import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2RightLeftCheckpointSegment007
+
+public section
+
+namespace ErdosSzekeres
+
+set_option maxHeartbeats 1000000000
+
+lrat_checkpoint_segment
+  SynchronizedFiveFanFin11AltDepth2RightLeftCheckpointContext
+  SynchronizedFiveFanFin11AltDepth2RightLeftCheckpoint 8 256
+  (include_str "Fin11AltDepth2CheckpointData/RightLeft/core.cnf")
+  (include_str "Fin11AltDepth2CheckpointData/RightLeft/segment-008.lrat")
+  (include_str "Fin11AltDepth2CheckpointData/RightLeft/carry-input-008.txt")
+  (include_str "Fin11AltDepth2CheckpointData/RightLeft/carry-output-008.txt")
+
+end ErdosSzekeres
+
+end

@@ -6,11 +6,16 @@ public import ErdosSzekeres.RankProfileCollision
 @[expose] public section
 
 /-!
-# Counterexample to two-tail multiplicity for secondary caps
+# Native-checked candidate counterexample to two-tail multiplicity
 
 A deterministic bounded search found this 17-vertex recursive coloring.  It
 has no five-cap, seven-cup, or strong eight-set, but a terminal four-cap with
 nine genuine outer tails has a disjoint secondary cap using only one tail.
+
+The target-avoidance checks below use `native_decide` and therefore introduce
+nonstandard generated axioms.  This module is retained as checked
+computational evidence, not imported by the root library, and is not a
+completed kernel-only formal result.
 -/
 
 namespace ErdosSzekeres

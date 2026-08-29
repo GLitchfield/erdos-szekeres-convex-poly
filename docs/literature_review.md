@@ -406,6 +406,108 @@ collision.  The published split theorem is motivation and source material, not
 an imported Lean premise; abstract OneChange and decomposable instances remain
 controls for a sweep-realizable uniform target.
 
+## Convex-geometry beta-transform screening
+
+Edelman, Reiner, and Welker study convex and free sets of oriented matroids and
+express a beta invariant of the convex-set lattice as an alternating weighted
+sum over free sets. For a planar point configuration, a free set is a
+convex-position subset whose hull contains no other point of the restricted
+configuration. This makes a hereditary restriction sum potentially relevant:
+for a fixed convex subset `A`, precisely the points outside `conv(A)` may be
+chosen freely in a restriction containing `A`.
+
+The source does not prove an Erdős--Szekeres inequality, and its application
+section has a sign defect that matters before that idea can be tested. It
+states that the alternating free-set sum is `(-1)^(rank-1)` times the number of
+interior elements, while the preceding interior-link sphere has dimension
+`rank-2`. On four general-position planar points with one interior point, the
+free singletons, pairs, and triples contribute `-4 + 12 - 9 = -1`, not the
+displayed rank-three value `+1`. The corresponding hereditary polynomial is
+`-z^4`, so a cone treating those coefficients as nonnegative is not the
+published free-set sum.
+
+Ticket 0063 consequently keeps the proposed beta transform outside the
+frontier portfolio. This is a defect in the frozen sign convention, not an
+exhaustion of the machinery. A future card must prospectively choose either
+the nonpositive free-set enumerator or its consistently negated positive
+interior enumerator, pass the four-point control, and undergo fresh route
+review before larger controls or rational cones are run.
+
+That prospective correction was later made and admitted as `FP-19`. Independent
+implementations agree on `betaPlus = -betaMinus = interiorCount`, the exact
+four-point control, and all frozen larger transforms. The first
+cardinality-only cone at `(n,k)=(9,5)` is nevertheless exactly feasible. This
+retires the aggregate cardinality-cone subfamily before `(17,6)`; it does not
+refute the hereditary identity or independently sourced incidence/realizability
+machinery. No such richer producer is currently admitted.
+
+## Canonical bowtie decomposition screening
+
+Bouvel, Féray, Goaoc, and Koechlin define a bowtie product of two acyclic
+uniform rank-three chirotopes with marked proxies. For nontrivial factors, the
+product is a chirotope exactly under the source's extreme-proxy condition; its
+realizability and extreme elements are characterized, and every chirotope has
+a unique canonical decomposition tree whose nodes are convex or indecomposable
+and whose edges never join two convex nodes. The full arXiv v2 and official
+SoCG 2024 versions were cross-checked on 2026-08-22; their titles and theorem
+numbers differ.
+
+The source does not prove Batch011's proposed three-term maximum formula for
+the convex capacity of every restriction, nor does it identify the project's
+`HasProperDeepBelowSplitOn` predicate with a bowtie edge after restoring
+proxies. Factor-recovery statements also do not cover every empty or singleton
+boundary restriction automatically. The idea therefore remains a
+source-authenticated structural proposal with a short consumer ladder, but no
+exact fixture, boundary calculus, or project adapter is dispatch-ready.
+
+## One-interior alternating-wedge screening
+
+Huemer, Hurtado, Noy, Urrutia, and Wood define a signed alternating count of
+convex polygons containing exactly one interior point and localize it at a
+directed edge. In the 2022 version of record, the local value lies in
+`{-1,0,1}`; it equals `+1` exactly when every other point lies in the interior
+of the opposite `p`-wedge. The global identity counts non-extreme points. The
+source gives neither an exact-threshold positive-incidence theorem nor a
+two-block decomposition of the occupied wedge.
+
+Batch011 proposed splitting that wedge by a ray from `p` toward edge `qr`.
+Primary-source geometry exposes a definition defect: such a ray enters the
+triangle sector, while the `p`-wedge is the opposite sector; the edge also does
+not choose a unique direction or boundary policy. A corrected divider would be
+a new prospective project definition, and positive-incidence production plus
+the deep-split adapter remain separate speculative steps. The current gate is
+therefore not executable, though the authenticated local charge remains useful
+search information.
+
+## Operadic Gröbner screening
+
+Dotsenko and Khoroshkin develop Gröbner bases for shuffle operads using
+decorated tree monomials. Their exact source defines admissible path-
+lexicographic orders, subtree divisibility, reductions and S-polynomials,
+proves the operadic Diamond/Buchberger criterion, identifies irreducible tree
+monomials as a quotient basis under the Gröbner hypothesis, and explains how
+symmetric operads and ideals pass to the shuffle setting. The machinery begins
+with a declared generator collection, composition law, monomial order, and
+relations; it does not manufacture those data for an unrelated combinatorial
+model or guarantee finite completion.
+
+Batch 013 proposed identifying decomposable sweep-coloring witnesses modulo
+equality of their truth tables through four leaves plus endpoint flags. The
+source audit finds the transfer incomplete at the first semantic hinge. A
+rewrite inside an outer decomposition tree can create triples with leaves both
+inside and outside the replaced subtree. Those mixed triples are absent from
+the local table, and the current sweep-endpoint predicates are not a complete
+boundary interface. Closure of an already defined operadic ideal under
+substitution therefore cannot establish the missing project evaluation
+morphism or contextual congruence.
+
+The same card's finite normal-form gate also cannot test its advertised live
+states at eight leaves: the exact project thresholds are 14 at `556`, 25 at
+`567`, and 41 at `578`. This expires only the literal B013-S02 representation
+and gate. A materially different operadic approach remains possible only if it
+first defines a typed evaluation and proves a complete outer-context
+congruence independently of any overlap census or desired capacity bound.
+
 ## Mutation connectivity and the Layer-F boundary
 
 Roudneff and Sturmfels prove that general-position arrangements can be joined
@@ -420,6 +522,266 @@ project still needs an explicit target-free descent or a component theorem;
 ordinary mutation connectivity cannot serve as the missing normalization.
 See Roudneff--Sturmfels (1988), DOI `10.1007/BF00151346`, rechecked
 2026-08-10.
+
+## Anti-exchange closure and directed modular-decomposition screening
+
+Edelman's 1980 theorem identifies finite anti-exchange closure systems with
+meet-distributive closed-set lattices. That theorem does not identify the
+binary projection sending a rooted planar circuit `(p; {a,b,c})` to three arcs
+`p -> a,b,c` with a named lattice join-dependency relation. McConnell and de
+Montgolfier's directed modular-decomposition theory starts from an already
+specified digraph and then canonically organizes its strong modules; it cannot
+supply the missing closure-to-digraph identity.
+
+This matters geometrically. Collapsing rooted circuits to simple arcs forgets
+which three hull labels occurred together, while convex 2|2 circuits do not
+appear in point-convex closure at all. The projected graph therefore loses
+orientation information used by `HasDeepBelowSplit`. Its canonical module tree
+also need not canonically choose one shore of a cut. Continuous Batch009's
+closure-factor seed consequently remains source-and-consumer grounding: a
+primary rooted-circuit/join-dependency correspondence, an orientation-return
+theorem, and a recursive numerical consumer are all still missing.
+
+## Dulmage--Mendelsohn source screening
+
+Dulmage and Mendelsohn's 1958 paper gives the original finite simple bipartite
+covering framework, maximum disjoint edge sets, irreducible pieces, canonical
+decomposition, and minimum-cover lattice. Kita's 2016 primary preprint gives a
+modern component-poset formulation: for ordinary matchings it defines
+elementary components, their canonical partial order and normalized ideals,
+and later supplies an alternating orientation and side-sensitive reachability
+from vertices loose under maximum matchings.
+
+The two sources close several remembered-definition gaps but do not yet give
+one exact proposition matching the project's intended chosen-maximum-matching
+auxiliary implementation to the classical elementary-component partition in
+all inevitable-edge cases. Explicit isolated, edgeless, perfect-matching, and
+parallel-edge conventions also remain only partially covered. More
+importantly, neither source defines the project's proposed role layers,
+boundary map, common-ideal selector, geometric return, or recurrence consumer.
+The typed-DM proposal therefore remains a source-grounding lead, not an
+authorized computation or movement on the exact proof.
+
+## Split decomposition and the complete segment-crossing graph
+
+Gioan and Paul give a source-faithful graph-labelled-tree formulation of split
+decomposition for connected graphs. In that domain, original graph vertices
+are tree leaves, auxiliary marker vertices label internal incidences, internal
+tree edges induce leaf bipartitions, and a reduced tree has prime or
+clique/star-degenerate internal labels with stated join prohibitions. Their
+uniqueness theorem is explicitly for connected graphs; an arbitrary split
+inside a degenerate node may also require a node split rather than already
+appearing as a reduced-tree edge. Cunningham's accessible official record
+supports a general unique digraph decomposition at abstract level but does not
+authenticate the exact undirected disconnected conventions needed here.
+
+This domain restriction is decisive for the Batch011 segment-crossing seed.
+Its vertices are all labeled point-set segments, adjacent exactly when two
+disjoint-endpoint segment interiors cross. Every convex-hull boundary segment
+is isolated, so this graph is disconnected for every nontrivial planar input.
+Deleting those vertices changes the proposed endpoint-purity statement, while
+passing to the complement is not justified by a split-preservation theorem.
+No located source defines a unique disconnected tree or forest retaining all
+original leaves and the required marker, reduction, component, and boundary
+semantics. Endpoint-pure point-cut uniqueness and the geometric return to a
+deep split are separate missing results. The route therefore remains
+source/definition grounding rather than an authorized graph experiment.
+
+## Matroid foundations and marked extension-fiber images
+
+Baker and Lorscheid represent realization classes and rescaling classes using
+universal idylls and matroid foundations. Baker--Lorscheid--Zhang further show
+that an embedded minor `N -> M` induces a foundation morphism `F_N -> F_M`.
+For a child matroid and its deletion parent, precomposition therefore gives a
+well-defined unmarked map from child to parent rescaling classes, with fixed
+underlying matroids.
+
+That statement stops before the geometry needed by `FP-13.D`. The project's
+right-extension fiber fixes an oriented extension link, restricts to positive
+rescaling/sign data, marks an affine direction and a rightmost element, and
+takes a union over all sweep-compatible real realizations of the parent. The
+located foundation sources neither define this marked domain nor prove that
+its deletion image is a finite-atlas constructible or semialgebraic region;
+they also do not identify that image with the project union fiber. Such a
+bridge may be derivable using additional real-algebraic machinery, but it is
+not supplied by the authenticated propositions. Foundation elimination is
+therefore premature until the marked-image and union-equivalence theorem is
+sourced or proved independently.
+
+## Circular-ones representations and negative certificates
+
+Hsu and McConnell define the circular-ones property by a cyclic column order
+making every row's ones consecutive, equivalently its zeros consecutive. Their
+PC tree compactly represents the complete family of compatible cyclic orders;
+prime-node reversals and circular equivalence account for its embeddings, and
+their incremental reductions construct the representation on successful
+instances.
+
+Safe supplies the missing negative-side theorem, with a correction to the
+seed's terminology. His explicit family `FcircR` is a minimal family of
+minimal forbidden submatrices for the circular-ones property. Lemma 10 carries
+a Tucker matrix in a row-complement reduction back to row/column maps in the
+original matrix, and Corollary 14 plus Algorithm 1 find an `FcircR` member in
+the original negative instance in linear time. This is a replayable negative
+certificate. It is not necessarily a Tucker matrix, and the source does not
+claim that the occurrence is unique, implementation-independently canonical,
+or minimum-cardinality among all obstructions in the input.
+
+The project audit has now fixed the prospective complete strong-five incidence
+matrix, one deterministic compatible original-label cyclic-order selector, and
+the alternating-position implication at `k = 6`. Every circular interval of
+five positions contains both parities even on an odd carrier and across the
+cyclic seam, so a positive matrix conditionally supplies the literal
+`StrongPredecessorBicoloringAt 6` conclusion. The first remaining finite-audit
+gap is an input package: the available receipts do not freeze complete
+unchanged same-tier colorings, all strong-five rows, a realized-control
+catalogue, and independent-checker inputs for the advertised panel. No matrix
+or fixture outcome has been computed under this route. More importantly, even
+finite positive outcomes would not prove the uniform circular-ones producer
+for every admissible strong-six-free realizable coloring.
+
+## Finite-algebra decomposition versus a middle-link invariant
+
+Rónyai and Eberly--Giesbrecht provide general algorithms for radical and
+semisimple decomposition of finite-dimensional associative algebras over
+finite fields. The official Wedderga manual gives a concrete semisimple
+group-algebra setting and explicitly records nonuniqueness of complete
+orthogonal primitive idempotents; Zhu treats lifting central idempotents across
+Jacobson radicals as a separate hypotheses-sensitive problem. These sources
+support generic machinery, not the proposed geometric representation.
+
+The Batch010 middle-Wedderburn seed fails before that machinery applies. A
+project `TripleColoring` returns `Turn`, not `F_3`, and the seed specifies no
+field encoding, total zero-padding/index convention, small-carrier branches,
+reversal or restriction law, or reconstruction theorem through adjacent
+differences, the generated algebra/commutant, and a selected block. Different
+choices can alter every downstream algebraic object. The idea is therefore
+retained only as an underdefined global representation, not as an authorized
+experiment or a sourced path to a deep split.
+
+## Rank-three Plücker identities and the packed-caller boundary
+
+Apel fixes the rank-three four-term Grassmann--Plücker convention, its
+repeated-index specialization, alternating bracket normalization, and
+repeated-label zeros. Speyer and Sturmfels state quadratic generation of the
+generic Plücker ideal over the integers; at rank three this supports a complete
+quadratic universe on original homogeneous vectors. Natura and
+Cheung--Gleixner--Steffy supply exact rational Farkas/linear-combination
+certificate semantics and independently replayable rational multipliers.
+
+Together these sources make the proposed finite algebraic search precise in
+the coordinate tier: on the 22 original packed labels, use every increasing
+triple bracket and every normalized rank-three quadratic relation, with no
+constructed intersection labels. They do not bridge the project's unchanged
+abstract packed caller into that tier. `PackedElevenElevenOpen567` and a
+crossing strong `3+3` witness provide neither realizing homogeneous vectors
+nor a uniform strict determinant-sign theorem for every bracket factor.
+Filtering away unsigned monomials before such a sign inventory is proved
+would repeat `B010-I04`'s central defect in a larger search space. A
+realizability premise would also strengthen, rather than prove, the literal
+`PackedBalancedThreeThreeImpossible567` terminal. The complete cone is
+therefore sourced but unauthorized until an independent caller-to-sign bridge
+exists.
+
+## Tope graphs, gatedness, and gated amalgams
+
+Knauer and Marc characterize COM tope graphs as antipodally gated partial
+cubes and specialize the result to oriented matroids. Their theta classes give
+the usual hypercube-coordinate convex halfspaces, and antipodal gated
+subgraphs correspond to covectors. This retains substantially more sign
+compatibility than a single pivot tournament or an equality class in a
+maximally refined pair coloring.
+
+That machinery does not provide the decomposition used by
+`FD011-TOPE-GATED`. Gatedness of one antipodal subgraph says every exterior
+vertex has a unique metric gate; it does not create a second gated side, their
+overlap, a union equality, or properness. Chepoi--Knauer--Marc give successive
+gated-amalgam construction for hypercellular partial cubes, a strictly
+narrower class, and no sourced theorem or project producer makes the relevant
+rank-three tope graphs hypercellular. A canonical minimum-boundary amalgam and
+its theta-label-to-point-cut map therefore remain undefined rather than
+source consequences.
+
+## Complete covectors and binary-matroid connectivity
+
+Knauer and Marc's covector account is stronger than the tope-only summary: it
+fixes the signed covector set, zero and opposite covectors, reorientation and
+deletion, the topes, and reconstruction from the associated antipodal gated
+subgraphs. Oxley's standard representation of a binary vector matroid and its
+connectivity function make a binary incidence matrix and a proposed minimum
+connectivity shore unambiguous once the matrix and ground set are fixed.
+Oum's cut-rank convention independently confirms the familiar rank over the
+binary field for a cross-shore adjacency submatrix; it does not prove that the
+project's covector incidence construction has a useful cut.
+
+These sources do not complete `R012-COVECTOR-PAIR-CONNECTIVITY`. The proposed
+instruction to “recursively choose the least proper minimum” is not a total
+mathematical object: a shore and its complement tie, no complement
+normalization or secondary key is specified, empty and small carriers lack a
+branch, and recursion could either recompute covectors after oriented-matroid
+deletion or merely restrict the original binary column matroid. Child order
+and terminal conventions are also absent. Consequently no sourced theorem yet
+connects a canonical covector cut to a recursive point decomposition or the
+load-bearing consumer.
+
+## Strict gammoids versus owner-linked Pascal demands
+
+Mason, Ingleton--Piff, Perfect, and the explicit modern definitions of
+Afzali--Law--Müller source the standard finite picture: in a directed graph
+with fixed exits, sets linkable to those exits by mutually vertex-disjoint
+directed paths form a matroid; a strict gammoid's ground set is the whole
+vertex set. These theorems are exact once the digraph and exits are supplied.
+
+They do not define the proposed owner-interleaving object. The Batch012 seed
+does not specify its prefix vertices or state `q`, edges and sign acceptance,
+demand sources, exits, acyclicity, or a function assigning a newly closed
+crossing to a `LeafOwner`. The compiled `leafOwner_nonreuse` theorem is only
+injectivity for leaf owners already present in a supplied decomposition tree.
+Moreover, restricting a strict gammoid to demand-source vertices must be
+stated explicitly; it is not the same definition as taking all DAG vertices.
+
+The numerical return is independently missing. The existing TransitionHall
+consumer assumes Hall expansion for finite sets of raw frontier spans and
+bounds their raw cardinality. A low gammoid rank merely makes several demand
+sources dependent; it does not reduce their number or imply the ambient
+`left.card + right.card <= 21` obligation in `PascalTailTwoSideBound 5 6 7`.
+Thus standard gammoid theory is source-grounded, while both the project graph
+and its Pascal consumer remain new mechanisms.
+
+## Orchard deletion partitions and radial selectors
+
+Bacher's Orchard morphism and the planar treatment with Garber source a
+natural unordered partition of a generic configuration into at most two
+classes using separating-hyperplane parity. Applied after deleting one point,
+the relation lives on the surviving labels; the restriction vector records
+zero at the deleted anchor. The sources do not choose a shore for that anchor,
+turn all deletion partitions into total cuts of the original label set, or
+connect a radial-score maximum to predecessor-hyperedge bicoloring.
+
+That distinction blocks the proposed Orchard-pencil selector before any
+fixture test. Separately, no primary source was authenticated for the proposed
+all-lag `delta * (m-delta)` radial-necklace kernel or for a theorem converting
+its balanced maxima into hard predecessor-edge coverage. Both ideas therefore
+remain project inventions requiring prospective definitions and a structural
+coverage observation, rather than sourced consequences of Orchard theory.
+
+## Lexicographic extensions versus recursive point decomposition
+
+Hochstättler and Wilhelmi give the standard cocircuit-localization description
+of a one-element extension and define signed lexicographic extensions by the
+first nonzero coordinate in an ordered signed support. They also record
+reorientation to a positive lexicographic extension and prove preservation of
+Euclideaness; their main shelling results concern topological sweeps and the
+tope-cell poset of a Euclidean oriented-matroid program.
+
+Those results do not establish the structural bridge proposed by
+`RC010-LEXEXT-PEEL`. In particular, they do not bound the minimum
+lexicographic-support depth of an arbitrary deletion localization, prescribe a
+canonical sequence of minimum-depth deletions, align that sequence with a
+registered point-set root, or imply `HasDeepBelowSplit` or `D-DECOMP`.
+Vertex-shellability and recursive atom orderings in the sourced tope-cell
+poset must therefore remain distinct from the project's recursive deep-below
+decomposition until an explicit theorem connects them.
 
 ## Existing formal proof assets
 

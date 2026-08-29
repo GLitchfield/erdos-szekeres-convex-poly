@@ -473,7 +473,7 @@ def clause_chunk_text(index: int, entries) -> str:
 
 
 def unsat_text() -> str:
-    stem = "../runs/agents/20260811-four-slot-deep-wave/half-pure-fin10/half-pure-singleton-fin10-core"
+    stem = "../certificates/half-pure-singleton-fin10/half-pure-singleton-fin10-core"
     return f'''module
 
 public import Mathlib.Tactic.Sat.FromLRAT

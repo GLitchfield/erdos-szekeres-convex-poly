@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-scheduler-dispatch.schema.json",
+  "title": "Authenticated research-scheduler dispatch receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "protocol",
+    "job_id",
+    "created_at",
+    "task_packet",
+    "operational_wave",
+    "reserve_plan",
+    "approval_ref",
+    "slot_label",
+    "occupancy_class",
+    "mechanism_family",
+    "priority",
+    "profile",
+    "expected_result_path",
+    "provider",
+    "resume_policy",
+    "budget",
+    "authorization",
+    "prompt"
+  ],
+  "$defs": {
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {"const": 1},
+    "protocol": {"const": "research-scheduler-v2"},
+    "job_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "minLength": 1},
+    "task_packet": {"$ref": "#/$defs/receipt"},
+    "operational_wave": {"$ref": "#/$defs/receipt"},
+    "reserve_plan": {
+      "oneOf": [
+        {"$ref": "#/$defs/receipt"},
+        {"type": "null"}
+      ]
+    },
+    "approval_ref": {"type": "string", "minLength": 1},
+    "slot_label": {
+      "enum": [
+        "proof-producing",
+        "information-gathering",
+        "discovery-support",
+        "verification"
+      ]
+    },
+    "occupancy_class": {"enum": ["mathematical", "support"]},
+    "mechanism_family": {"type": ["string", "null"]},
+    "priority": {"type": "integer"},
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "path", "sha256"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "expected_result_path": {"type": "string", "minLength": 1},
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["model", "reasoning_effort", "web_search", "sandbox"],
+      "properties": {
+        "model": {"type": "string", "minLength": 1},
+        "reasoning_effort": {
+          "enum": ["low", "medium", "high", "xhigh", "max", "ultra"]
+        },
+        "web_search": {"enum": ["disabled", "live"]},
+        "sandbox": {"enum": ["read-only", "workspace-write"]}
+      }
+    },
+    "resume_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_same_thread_resumes"],
+      "properties": {
+        "max_same_thread_resumes": {"type": "integer", "minimum": 0, "maximum": 1}
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wall_minutes", "cpu_cores", "memory_gib", "output_gib"],
+      "properties": {
+        "wall_minutes": {"type": "integer", "minimum": 1},
+        "cpu_cores": {"type": "integer", "minimum": 1},
+        "memory_gib": {"type": "integer", "minimum": 1},
+        "output_gib": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "authorization": {"$ref": "#/$defs/receipt"},
+    "prompt": {"$ref": "#/$defs/receipt"}
+  }
+}

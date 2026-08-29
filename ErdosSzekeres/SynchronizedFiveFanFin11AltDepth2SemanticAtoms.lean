@@ -1,0 +1,4 @@
+module
+
+public import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2SemanticAtomBundle00
+public import ErdosSzekeres.SynchronizedFiveFanFin11AltDepth2SemanticAtomBundle01
