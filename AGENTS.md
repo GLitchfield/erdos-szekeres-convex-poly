@@ -335,11 +335,14 @@ plus one root-owned lane.
 
 ### Theorem-first operating rebalance
 
-Ticket 0103 is the current user-approved operating policy. It temporarily
+Ticket 0103 is the current user-approved operating policy. Ticket 0107's first
+scheduled review retains it unchanged and records a snapshot-specific empty
+execution slate; that empty slate is not route retirement or a standing ban on
+new work. The policy temporarily
 supersedes automatic spare-capacity campaign backfill and the default
 four-packet reserve-floor rule, while preserving the rolling pipeline,
 mechanism diversity, evidence admission, and all proof-distance requirements.
-Review the policy after two complete post-Ticket-0103 frontier cycles or
+Review the policy again after two complete post-Ticket-0107 frontier cycles or
 immediately after a load-bearing ledger edge changes; review does not
 automatically expire it.
 

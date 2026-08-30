@@ -375,6 +375,35 @@ or theorem memo, and return selection to the reconciled frontier.  No
 portfolio entry changes, no failure genome is created, no service is
 restarted, and no load-bearing ledger edge changes.
 
+[Ticket 0107](tickets/0107-review-theorem-first-policy-select-empty-slate.md)
+closes the scheduled Ticket-0103 policy review and the post-Ticket-0106
+cycle-step-3 selection. Four hash-frozen read-only audits independently find
+no qualified theorem-entry memo for `D-HALF`, `D-DECOMP`, or an alternate
+`D-UPPER`/`D-NORMALIZE` mechanism; the skeptical lane recommends retaining the
+policy. The pinned reciprocal Fable/Sol review supports retaining Ticket 0103
+and zero proof-producing work but challenges the zero-information-gathering
+selection because its packet omitted the full map/portfolio and suggests a
+possible `FP-01.D` falsifier. Root resolves that objection against the primary
+registry: `FP-01.D` explicitly says its former panel is not executable until
+an independently authenticated off-path in-range deconfounding fixture exists,
+after which a newly frozen panel still needs separate review and user approval.
+The schematic cross-layer law is not a frozen theorem contract, and Ticket
+0103's one-falsifier clause is a ceiling rather than authorization. The honest
+temporary slate is therefore **zero proof-producing and zero
+information-gathering investigations**. This is an evidence-bounded current
+selection, not route retirement or a mechanism-wide research stop. Ticket 0103
+is retained unchanged; review it again after two complete post-Ticket-0107
+frontier cycles or earlier on a load-bearing change or literal revival.
+**Net proof movement:** neutral. **Evidence:** authenticated proposal-level
+audits and advisory provider review. **Damage scope:** candidate-local for the
+three memo shapes and `operational-only` for the aggregate scheduling
+decision. **Difficulty displaced:** none. **Counterfactual:** the review avoids
+target-restating builders, correlated padding, and a premature panel but does
+not reduce mathematical proof work. **Planning consequence:** authorize no
+execution packet now and reopen selection on a literal memo, revival, or
+newly approved source/falsifier gate. No portfolio state, failure genome,
+service, or load-bearing ledger edge changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.

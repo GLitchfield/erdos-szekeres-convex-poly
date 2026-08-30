@@ -192,7 +192,12 @@ mathematical functions—for example one unrestricted producer, one concrete
 decomposable obstruction, and one generalization or falsification lane.  This
 is a scheduling heuristic, not a membership rule.
 
-Ticket 0103 adds the current theorem-first selection override. Discretionary
+Ticket 0103 adds the current theorem-first selection override, and Ticket 0107
+retains it unchanged after its first scheduled review. Ticket 0107 also selects
+a snapshot-specific empty execution slate: zero proof-producing and zero
+information-gathering investigations. This is not a portfolio-state change,
+route retirement, or a prohibition on a later separately reviewed gate.
+Discretionary
 research time is planned over a rolling window at 40% `D-HALF` structural
 work, 30% `D-DECOMP` repair, 20% source-grounded distinct mechanism discovery,
 and 10% bounded computation/process work. Mandatory reconciliation,
