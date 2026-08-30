@@ -1819,10 +1819,20 @@ that deserves independent retention and scheduling consideration.
   `8762822d5638dc678ed5c126e067bece1b71e7c14fecf71a01c53857901344b0`.
   This is neutral `operational-only` evidence, creates no failure genome,
   spends the v3 identity without retry, and leaves every mathematical field
-  unchanged.
-- **Missing generalization bridge:** an independently produced cross-endpoint
-  lacing equality that excludes the exact 567/657 countermodel and scales to
-  every Pascal state used by the induction.
+  unchanged.  Ticket 0104 then applies the theorem-first entry gate directly to
+  the current Lean interfaces.  It observes that the singleton-tail consumer
+  already possesses `IsDecomposableOn χ upper`, so a decomposable-only
+  two-side bound is a legitimate strict model narrowing.  That bridge still
+  concludes the whole missing cardinal bound, however, and no contextual
+  root-to-leaf address, recursive transition, or decreasing child-obligation
+  measure is defined.  The result is
+  `DDECOMP-THEOREM-ENTRY-NOT-QUALIFIED__CONTEXT-ADDRESS-PRODUCER-MISSING`:
+  neutral proposal evidence at `candidate-local` scope, no Lean packet, no
+  new mathematical refutation or failure genome, and no load-bearing change.
+- **Missing generalization bridge:** an independently produced contextual
+  decomposition address or cross-endpoint lacing equality that excludes the
+  exact 567/657 countermodel, has a genuine recursive measure decrease, and
+  scales to every Pascal state used by the induction.
 - **Last forward result:** the generic
   `StrongPolygonMiddleProfileInPascalWindow` theorem and the kernel-checked
   `pascalTailTwoSideBound_556` specialization compile.  The proposed ambient
@@ -1832,20 +1842,25 @@ that deserves independent retention and scheduling consideration.
 - **Open obstruction:** produce the missing cross-endpoint equality between two
   same-profile extensions from published-slice geometry.  OneChange, a common
   strong core, identical profiles, and individual strong extensions are
-  insufficient.  The 556 control is vacuous for this six-carrier mechanism.
-- **Next discriminating gate:** none scheduled.  The bounded local source audit
-  found no qualifying object, while the attempted reciprocal adversarial route
-  review stopped operationally at the Fable provider limit and admitted no
-  strategic verdict.  Do not
-  invent port compatibility from the stored 567/657 outcomes, open the stored
-  countermodel, or schedule Lean unless that review prospectively identifies a
-  labeled joint object whose independent producer excludes the countermodel and
-  leaves at most one speculative arrow to `PascalTailTwoSideBound`.  If it does
-  not, suspend the surveyed source-reuse subfamily until genuinely new joint-
-  extension machinery appears; the broader parent remains gated at its stated
-  scope.  Any future review is a fresh bounded identity requiring verified
-  current Fable capacity and approval, not a retry of either stopped run.  A
-  third capacity-blind launch is not an eligible mathematical gate.
+  insufficient.  Decomposability of the retained reservoir is available but
+  no theorem transports the anchor-relative mixed-triple context through a
+  smaller decomposition split.  The 556 control is vacuous for this
+  six-carrier mechanism.
+- **Next discriminating gate:** none scheduled.  Ticket 0104 confirms that the
+  natural decomposable-only two-side bridge is not itself a producer.  Before
+  any descendant is eligible, a prospective five-field memo must define the
+  contextual address and its child transition, state the decreasing measure,
+  derive the strict Pascal reservoir count, and explain why the compiling
+  pair-rank, turn-language, and incoming-star collision controls do not apply.
+  Do not add the conditional bridge, name an unspecified injection, reopen the
+  stored 567/657 countermodel, mine proof traces, or schedule Lean merely to
+  restate the cardinal bound.  The earlier source audit found no qualifying
+  joint object, and both reciprocal review identities stopped operationally at
+  the Fable provider limit; neither may be retried.  A genuinely new
+  source-authenticated joint object may receive a fresh bounded review with
+  verified provider capacity and user approval, but current rolling allocation
+  moves to a structurally distinct route rather than another immediate
+  descendant.  The broader parent remains gated at its stated scope.
 - **Success payoff:** validate the residual mechanism at an adjacent parameter
   state and expose a credible uniform Pascal theorem.
 - **Expiry or revival gate:** `PascalMiddleProfileLacingCapacity` is

@@ -33,7 +33,7 @@ below and therefore do not constitute independent routes.
 | `D-MODEL` | Planar general-position sets reduce exactly to sweep colorings, and strong polygons reflect convex subsets | closed | Swept presentation, realizability, restriction, and the strong-polygon/convex-position equivalence compile. |
 | `D-UPPER` | `SweepExactUpperAt k` for every `k ≥ 3` | open | This is the load-bearing universal upper bound. Neither route below currently supplies it. The corrected `FP-19` transforms pass, but its first `(9,5)` cardinality-only cone is exactly feasible, retiring that subfamily before `(17,6)`. No uniform upper-bound producer or rational-dual family is proved. |
 | `D-HALF` | `PredecessorHalfSubsetAt 4` and `PredecessorHalfSubsetAt 5`, followed by `PredecessorHalfSubsetAt k` for every `k ≥ 6`, feeding the exact doubling recurrence | open | `predecessorHalfSubsetAt_four` and `predecessorHalfSubsetAt_five` compile and close the fixed `k = 4,5` subobligations. At fixed `k = 6`, `exists_predecessorHalfSubsetAtSix_of_card_le_fourteen` compiles and unconditionally supplies the required half support through ambient cardinality fourteen. It composes the earlier elementary, exact Fin10, and arbitrary-window Fin11 results with the kernel-checked arbitrary-window Fin13 theorem. Thus the unresolved fixed-six ambient domain begins at fifteen. The Fin15 maximum-support, blocker-design, single-exchange, shared-anchor, and complete-system dichotomy theorems now compile: the last globally partitions all eight exterior anchors into a repeated-anchor/Fano branch or an exact single-exchange branch. In the seven-block Fano branch, `fin15ExteriorSystem_fano_commonOwner_distinctAnchors` now also compiles and closes the common-owner, pairwise-distinct-anchor placement obligation. The Ticket 0096 Boolean formula has an independently checked finite UNSAT certificate, but a later compiling four-point control proves that its monochromatic strong-quad atom is strictly stronger than the project's pair-equality predicate. The old formula therefore cannot be reflected to the intended endpoint. A corrected pair-equality formula and exact sixteen-leaf cover now authenticate independently, but the first three pilots each exhaust a 192-MiB proof allowance and 900-second solver setting without a literal status; the fourth pilot and all nonpilots remain unopened. The corrected formula therefore has not yet been decided. The cross-exterior consumer, raw branch contradiction, and public Fin15 endpoint also do not compile, so the load-bearing edge remains open. A cross-exterior color producer or well-founded selector, a producer for the rest of the fixed-six tail, an independently formalized exact-six ceiling, and the all-`k ≥ 6` mechanism remain absent. |
-| `D-DECOMP` | `DecomposableExactUpperAt k` for every `k ≥ 3` | open | The theorem compiles at `k=5,6`; the uniform induction and the first `k=7` state-567 obstruction remain open. |
+| `D-DECOMP` | `DecomposableExactUpperAt k` for every `k ≥ 3` | open | The theorem compiles at `k=5,6`; the uniform induction and the first `k=7` state-567 obstruction remain open. Ticket 0104 confirms that retaining decomposability in the two-side Pascal interface is a legitimate narrowing, but no context-sensitive recursive address producer or decreasing child-obligation measure is defined, so no theorem packet qualifies. |
 | `D-NORMALIZE` | Normalize every above-threshold target-free realizable coloring to the decomposable class while reflecting targets | open | Conditional consumers compile, but no normalization or well-founded mutation-descent producer is proved. |
 | `D-ASSEMBLE` | Combine the universal sweep upper, planar bridge, and sharpness into `ErdosSzekeresConjecture` | gated | Routine formal assembly is blocked only by `D-UPPER`; no theorem claiming the destination exists. |
 
@@ -295,6 +295,32 @@ overhead and caught readiness defects earlier, but prove no theorem.
 **Planning consequence:** begin the next selection with a smaller theorem-
 design/source-grounding wave unless a producer passes the new entry gate. No
 load-bearing ledger edge changes.
+
+[Ticket 0104](tickets/0104-audit-anchored-decomposable-pascal-tail-entry.md)
+closes the first bounded theorem-entry design block under Ticket 0103.  The
+all-parameter arithmetic reduction and consumer ladder already compile; the
+first open specialization is the geometric `TwoCapFreeSidesBound567`, not a
+missing Pascal identity.  The audit isolates one real loss in the present
+interface: a singleton-tail caller starts with a decomposable reservoir but
+forgets that structure when invoking the arbitrary-`OneChangeOn` two-side
+bound.  Adding decomposability is a valid model narrowing and feeds the
+existing singleton/critical-root consumer, but the resulting proposition still
+states the entire cardinal bound.  No canonical anchor-relative context
+address, recursive transition, or strict measure decrease is presently
+defined; the recorded pair-rank, turn-language, incoming-star, and same-profile
+controls already rule out constructing it solely from their existing
+summaries.
+The outcome is
+`DDECOMP-THEOREM-ENTRY-NOT-QUALIFIED__CONTEXT-ADDRESS-PRODUCER-MISSING`:
+**net proof movement:** neutral; **evidence:** proposal-level interface audit
+against compiling consumers and admitted controls; **damage scope:**
+`candidate-local`; **difficulty displaced:** none; **counterfactual:** the
+stop prevents a conditional Lean interface that would leave the original
+bound untouched but does not reduce proof work; **planning consequence:** keep
+`FP-03` gated, freeze no Lean packet, and move the next bounded design
+allocation to a structurally distinct `D-HALF` producer audit.  This block has
+zero proof-producing and one information-gathering slot.  No failure genome,
+portfolio-state change, service action, or load-bearing ledger change follows.
 
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
