@@ -345,6 +345,36 @@ This block has zero proof-producing and one information-gathering slot.  No
 failure genome, portfolio-state change, service action, or load-bearing ledger
 change follows.
 
+[Ticket 0106](tickets/0106-audit-etv-adjacent-lift-source.md) records the
+largest honest post-Ticket-0105 slate after four parallel planning audits.
+`D-HALF`, `D-DECOMP`, and deletion-minimal-prime planning each return no ready
+thread: alternating hull support lacks an independent cross-layer law;
+tree-global boundary tokens conserve rather than strictly pay Pascal mass; and
+the canonical bowtie source leaves an uncontrolled indecomposable node behind
+two new mechanisms.  One materially distinct exact-source investigation is
+approved: a bounded audit of the Erdős--Tuza--Valtr parameter family and
+Baek's `(n,4,n)` proof/API.  Three correlated read-only source lanes run in
+parallel but count as **zero proof-producing and one information-gathering
+investigation**.  A positive terminal must expose a planar adjacent-parameter
+theorem, strict decrease of `n-a`, and a one-intermediary return to
+`SweepExactUpperAt`; otherwise the source object or short ladder expires at
+its predeclared scope.  The run closes at
+`ETV-SOURCE-ACCESS-STOP`: both final paper texts remain inaccessible, and the
+available earlier manuscripts are not substituted under the byte-identity
+gate.  The exact pinned Lean source independently returns
+`BAEK-LEAN-BASE-ONLY`: its ETV result hard-codes cap size four, while its only
+variable cap/cup theorem is the already adapted classical binomial route.
+**Net proof movement:** neutral.  **Evidence:** two authenticated operational
+source stops and one exact-commit formal-source interface audit.  **Damage
+scope:** `operational-only` for the combined terminal.  **Difficulty
+displaced:** none; the paper mechanism remains unclassified and `D-UPPER` is
+unchanged.  **Counterfactual:** the result avoids using inexact editions or
+porting a fixed-base API as an adjacent lift, but does not reduce proof work.
+**Planning consequence:** close the exact packet without retry, admit no route
+or theorem memo, and return selection to the reconciled frontier.  No
+portfolio entry changes, no failure genome is created, no service is
+restarted, and no load-bearing ledger edge changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.

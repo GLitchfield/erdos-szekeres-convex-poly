@@ -1205,6 +1205,17 @@ project's `Turn`, list-chain, realizability, and public convex-subset APIs. The
 source file carries a modification notice; `NOTICE` records the pinned source,
 and `LICENSE-APACHE-2.0` reproduces the upstream license.
 
+Ticket 0106's 2026-08-30 exact-commit API audit fixes the upstream ETV ceiling
+more precisely.  The exported `main` proves only the `(k,4,k)` upper
+alternative; `Config.MainGoal`, `Config.MainGoalWlog`, the induction step,
+the join lemmas, and the laced-to-gon consumer all hard-code
+`HasNCap 4`.  The induction raises the common polygon/cup size, not the cap
+parameter.  The only independently variable cap/cup theorem is `cap_cup`,
+whose classical binomial route is already adapted below.  The pinned source
+therefore contains no generic ETV predicate or adjacent-cap producer.  This is
+an exact formal-source interface result, not a claim about the inaccessible
+final 1996 or 2025 paper texts and not proof movement toward the exact formula.
+
 `ErdosSzekeres/CupCap.lean` now proves the recurrence threshold
 `choose (a+b) a + 1`, upgrades its consecutive chains to all-triples cups or
 caps only for actual swept configurations, and transports monochromatic chains
