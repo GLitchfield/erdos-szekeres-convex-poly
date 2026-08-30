@@ -438,13 +438,23 @@ that deserves independent retention and scheduling consideration.
   Pilot `1010` and all nonpilots remain unopened.  This is checked cover
   construction plus an `operational-only` resource stop; it decides neither a
   leaf nor the corrected endpoint and creates no failure genome.
+  Ticket 0105 then audits the uniform half-pure singleton-fan interface without
+  opening a Lean builder or computation.  At a fixed target-free deep split
+  with nonempty opposite side, the existing inverse kernels prove that
+  cup/cap purity implies predecessor-freeness, while predecessor-freeness makes
+  that purity assertion vacuous.  Thus the proposed geometry-plus-purity
+  factorization retains the hard conclusion in its second factor.  This is
+  proposal-level planning evidence, not a new theorem or negative result; all
+  exact finite fan theorems remain unchanged.
 - **Missing generalization bridge:** at fixed `k = 6`, a half-support producer
   for ambient cardinality at least fifteen (or an independently formalized
   exact-six ceiling plus the remaining supports at fifteen and sixteen);
   beyond that, a
   canonical all-`k >= 6`, all-size mechanism selecting or synchronizing a
   half-sized predecessor-free support. Arbitrary existence among many finite
-  classifiers is insufficient.
+  classifiers is insufficient.  A pure-fan successor additionally needs an
+  independently defined internal-triple invariant and a decreasing selection
+  law; the bare crossing-triple data in `HasDeepBelowSplit` is insufficient.
 - **Last forward result:** at the named Fin15 subordinate-dependency level,
   `fin15ExteriorSystem_fano_commonOwner_distinctAnchors` compiles and closes
   the independently produced seven-block placement obligation.  The unresolved
@@ -484,6 +494,12 @@ that deserves independent retention and scheduling consideration.
   survival does not explain how sweep geometry selects them.  Merely
   controlling crossed or clipping-saturated transitions cannot repair the
   formally refuted single-cell producer.
+  Ticket 0105 rules out treating the current half-pure singleton-fan premise as
+  an already smaller factorization: once its split witness is fixed, its
+  purity clause is conclusion-equivalent to predecessor-freeness, and the
+  split law says nothing about triples wholly inside the selected side.  This
+  is a candidate-local readiness stop, not a refutation of every geometric
+  fan or pivot mechanism.
   The first frozen noncircular selector, based on robust orientation balance
   and pair-rank distance, passed all 3,271 inherited target-free controls
   generated from 429,123 rational configurations.  An independently checked
@@ -553,7 +569,12 @@ that deserves independent retention and scheduling consideration.
   compositional endpoint/consumer audit use only the standard project axioms.
   The finite obligation set is empty; the depth-three and 31-leaf fallbacks did
   not run and are expired as unnecessary operational contingencies.
-- **Next discriminating gate:** the complete seven-block system already
+- **Next discriminating gate:** no uniform half-pure singleton-fan descendant
+  is immediately eligible.  Such a descendant must first supply a
+  source-grounded internal-triple invariant, a strict decreasing measure, and
+  a selector that does not name the final predecessor-free support; another
+  finite fan instance, arbitrary extension rule, or conditional purity adapter
+  is not a new gate.  Separately, the complete seven-block system already
   compiles as a producer of a same-owner triple with pairwise-distinct selected
   blocks, but its four-shape consumer still lacks an ordered-quadruple
   cross-color equality.  Ticket 0090 rejected the quarantined
@@ -1267,7 +1288,9 @@ that deserves independent retention and scheduling consideration.
   single-exchange UNSAT certificate can support one exact branch closure only
   after a compiling semantic-reflection theorem; the Fano branch would still
   remain.  Only a genuinely parameterized enriched compatibility theorem, not
-  a finite Fin15 closure, can revive the uniform parent.
+  a finite Fin15 closure, can revive the uniform parent.  A uniform fan theorem
+  has the same payoff only when its producer passes Ticket 0103's strict
+  separation gate; the current pure-fan premise does not.
 - **Expiry or revival gate:** the prior suspension revival gate fired at one
   named Fin15 subordinate stage: the compiling common-owner/distinct-anchor
   placement theorem is a genuinely new positive producer.  Its exact consumer
@@ -1281,8 +1304,13 @@ that deserves independent retention and scheduling consideration.
   three opened pilots stop at their 192-MiB/900-second bounds and no remaining
   leaf opens.  The exact cube identity is spent, and this operational stop does
   not revive or advance the entry.
-  The entry therefore stays `gated` without erasing the earlier forward
-  placement theorem or claiming broader mathematical damage.  On the
+  Ticket 0105 also expires only the attempted interpretation of the current
+  geometry-plus-purity interface as an independently smaller theorem entry.
+  Reviving a uniform fan descendant requires new internal-triple information
+  and a proved decreasing selector; the exact Fin8, Fin10, and Fin11 theorems
+  alone cannot satisfy that gate.  The entry therefore stays `gated` without
+  erasing the earlier forward placement theorem or claiming broader
+  mathematical damage.  On the
   single-exchange side, revival first requires a checked truth value for the
   corrected formula and, if UNSAT, then the semantic-reflection theorem; on
   the Fano side, only successful consumer composition can sustain advancement
@@ -3879,7 +3907,11 @@ parent unless promoted.
   admitted, and the fixed Fin11 theorem remains unchanged. Ticket 0063
   promotes only the restriction/relabeling obligation to main bridge entry
   `FP-17`; this completed child remains fixed and the suspended parent is not
-  revived.
+  revived. Ticket 0105 preserves every fixed theorem but finds no strict
+  factorization of the uniform pure-fan premise: after a target-free split is
+  chosen, its purity clause restates predecessor-freeness at that witness.
+  Reopen no uniform descendant without an independently produced
+  internal-triple invariant and decreasing selector.
 - **FP-01.B — Ambient endpoint-synchronized down-sets.**  Literature analysis
   identifies a split-profile injection whose cap and cup share one endpoint but
   need an additional ambient correlation to synchronize the other endpoint.
