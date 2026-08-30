@@ -42,6 +42,16 @@ approved queue is reported as empty. Seed generation, source grounding, and
 route review may use otherwise idle capacity only when they have their own
 approved packets and are labeled as support.
 
+Ticket 0103 currently overrides automatic support backfill and the default
+four-packet reserve floor. While no `advancing` entry and no theorem-ready
+producer exist, an honest approved reserve may contain zero to three packets;
+do not manufacture support work to restore occupancy. The scheduler remains
+intentionally paused/stopped. The commands below document the implementation
+but provide no current restart authority. Before any restart, diagnose and
+report the stopped implementation and receipt state, identify a theorem-first
+workload satisfying Ticket 0103, obtain a valid current implementation and
+receipt, and receive a new explicit user decision.
+
 ## Authority boundary
 
 Three independently authenticated layers govern a bulk-dispatched provider
@@ -137,6 +147,10 @@ receipt because their packets cannot own canonical Wayfinder paths.
 
 V2 uses the preserved, separate state directory
 `runs/agents/research-scheduler-v2`; the v1 directory remains historical.
+
+The following configuration examples are inactive while the Ticket 0103 hold
+is in force. Historical or observer receipts grant no dispatch authority, and
+the shown reserve floor is not the current planning requirement.
 
 An observer-only receipt is safe to start without provider authority:
 

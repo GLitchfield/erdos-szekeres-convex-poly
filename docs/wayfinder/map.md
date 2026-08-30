@@ -247,6 +247,55 @@ freeze the two probes and any support packets before user approval; selection
 authorizes no execution.  No load-bearing edge changes, and
 `D-HALF(k=6)` remains first unresolved at ambient cardinality fifteen.
 
+[Ticket 0102](tickets/0102-plan-post-ticket0101-two-probe-slate.md) completes
+cycle steps 4 and 5 for exactly Ticket 0101's two selected pre-admission
+probes.  After approval of the two frozen hashes, MOD3 reaches
+`MOD3-INPUT-STOP`: two independent packet implementations and a third root
+reconstruction find the same three literal strong six-subsets in recursive
+Fin8, contradicting that coordinate fixture's frozen `strong_six_free=true`
+role.  Complete `K_9^5` and every actual or switched modular system remain
+unopened.  Copoint reaches `COPOINT-CHECKER-STOP`: its conclusion-erasure DAG
+passes and rejects the synthetic back-edge, but the first coordinate assertion
+compares AST tuples with JSON lists and stops before geometry.  No closure,
+width, convexity, or inequality outcome opens.  Root normalizes only the two
+result/receipt packages to canonical schemas; all four final contracts and the
+two-result slate validate.  Both terminals are `operational-only` under the
+repository's role-invalid-input precedent, so no mathematical failure genome,
+portfolio change, retry, replacement, route action, support backfill, or
+service action follows.  **Net proof movement:** neutral.  **Evidence:**
+checked exact fixture-role computation and authenticated operational stops.
+**Damage scope:** `operational-only`.  **Difficulty displaced:** none; every
+uniform producer and load-bearing consumer remains open and undiminished.
+**Counterfactual:** knowing the two readiness defects earlier would avoid the
+invalid runs but would not reduce proof work or raise an admitted route's
+success probability.  **Planning consequence:** close both exact packet
+identities and select any later work only from the freshly checked reconciled
+frontier.  No load-bearing edge changes; `D-HALF(k=6)` remains first unresolved
+at ambient cardinality fifteen.
+
+[Ticket 0103](tickets/0103-adopt-theorem-first-operating-rebalance.md) records
+the user's 2026-08-30 approval of a theorem-first operating rebalance. Rolling
+discretionary research weights are now 40% `D-HALF` structural work, 30%
+`D-DECOMP` repair, 20% source-grounded distinct mechanism discovery, and 10%
+bounded computation/process work; mandatory evidence admission and integration
+remain outside those weights. A five-field theorem-entry memo is required
+before any proof-producing or intermediary-lemma packet, and fixture-dependent
+computation requires an independent semantic-readiness receipt before packet
+freeze. At most one Fin15 lane may run simultaneously; `D-NORMALIZE` receives
+no ordinary allocation while suspended; automatic campaign backfill and the
+four-packet reserve floor are suspended when no theorem-ready producer exists.
+The scheduler remains intentionally stopped and the continuous idea generator
+remains failed/stopped pending diagnosis, a theorem-first workload, valid
+current receipts, and a new explicit user decision. **Net proof movement:**
+neutral. **Evidence:** explicit user-approved operating decision and reconciled
+Ticket 0102 operational evidence. **Damage scope:** `operational-only`.
+**Difficulty displaced:** none of `D-HALF`, `D-DECOMP`, `D-NORMALIZE`, or
+`D-UPPER`. **Counterfactual:** the rules would have prevented some packet
+overhead and caught readiness defects earlier, but prove no theorem.
+**Planning consequence:** begin the next selection with a smaller theorem-
+design/source-grounding wave unless a producer passes the new entry gate. No
+load-bearing ledger edge changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.

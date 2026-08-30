@@ -326,10 +326,87 @@ before following a PID. Any model, code, mode, limit, or authority change
 invalidates the active standing receipt and requires a new user decision.
 
 Four remains a capacity target, not a quota: if fewer than four mathematically
-distinct gates are executable, run the smaller honest slate and use spare
-capacity for approved campaign support, source grounding, card audit, or route
-review. With four active-agent slots, the normal full-slate allocation is three
-delegated lanes plus one root-owned lane.
+distinct gates are executable, run the smaller honest slate. Spare capacity may
+be used for approved campaign support, source grounding, card audit, or route
+review only when that work has its own decision-changing gate under the current
+operating policy; never author support work merely to fill a lane. With four
+active-agent slots, the normal full-slate allocation is three delegated lanes
+plus one root-owned lane.
+
+### Theorem-first operating rebalance
+
+Ticket 0103 is the current user-approved operating policy. It temporarily
+supersedes automatic spare-capacity campaign backfill and the default
+four-packet reserve-floor rule, while preserving the rolling pipeline,
+mechanism diversity, evidence admission, and all proof-distance requirements.
+Review the policy after two complete post-Ticket-0103 frontier cycles or
+immediately after a load-bearing ledger edge changes; review does not
+automatically expire it.
+
+Use these rolling planning weights for discretionary mathematical research
+time, excluding mandatory reconciliation, independent verification, guarded
+builds, repository tests, and integration:
+
+- **40% `D-HALF` structural work.** Prefer a uniform geometric producer for a
+  coherent half-sized predecessor-free support. Use at most one simultaneous
+  Fin15 lane, and only from an independently motivated source for the missing
+  cross-color or selection law. Do not increase solver time, proof allowance,
+  seed count, cube depth, or certificate compression merely to continue Fin15.
+- **30% `D-DECOMP` repair.** Seek a boundary-aware invariant or direct injection
+  for the uniform decomposable induction. Do not mine proof traces or restore a
+  clipped child summary already ruled out by recorded collisions.
+- **20% source-grounded mechanism discovery.** Study minimal indecomposable
+  structure or another mathematically distinct exact-upper mechanism with a
+  short consumer ladder and a cheap hostile test.
+- **10% bounded computation and process work.** Use computation only for a
+  decision-changing falsifier, semantic verification, or required integration;
+  process throughput and larger finite searches are not producer substitutes.
+
+`D-NORMALIZE` receives no ordinary execution allocation while its current
+mutation-descent family is suspended. It may revive only through the positive
+source-side producer or genuinely new monotone mechanism required by `FP-04`.
+Adjacent lemmas are demand-driven: an existing named consumer and the short
+consumer-ladder rule must identify the missing lemma before a builder is
+allocated.
+
+Before freezing any proof-producing theorem packet or intermediary-lemma
+packet, record a human-readable **theorem-entry memo** with all five fields:
+
+1. the exact producer theorem, model tier, and hypotheses;
+2. the existing named downstream consumer;
+3. the strict difficulty separation or predeclared measure decrease;
+4. the smallest plausible counterexample or hostile neighboring world; and
+5. the geometric, combinatorial, or source-authenticated fact expected to
+   produce the theorem.
+
+If a field is missing, the item remains route design. It may receive at most
+one separately approved cheap falsifier when that test can change allocation;
+it may not receive a Lean builder, certificate-engineering packet, or
+`proof-producing` label.
+
+Before freezing a computation or solver packet whose conclusion depends on a
+fixture, corpus, role label, or serialized mathematical object, require a
+separate **semantic-readiness receipt**. An implementation independent of the
+primary outcome engine at the role-critical boundary must reconstruct the
+object from raw frozen inputs, recompute every gate-critical predicate
+(including general position, target-free or strong-free status, model
+membership, and positive/negative control behavior), and normalize tuple/list,
+index, order, sign, and label conventions. Hash, schema, and provenance checks
+remain necessary but are not semantic readiness. Any disagreement stops before
+outcome-bearing work and grants no repair, substitution, retry, or successor.
+
+When no portfolio entry is `advancing` and no theorem-ready producer passes the
+memo, prefer a smaller route-design or source-grounding block. Do not default to
+an exploration slate or automatic campaign support. The honest approved reserve
+may contain zero to three packets; an exploration-only slate still needs a new
+explicit user approval and decision-changing gates.
+
+The scheduler remains intentionally paused/stopped and the continuous idea
+generator remains failed/stopped. Neither may be repaired, reconfigured,
+reauthorized, or restarted merely to occupy capacity. A future restart requires
+a fresh diagnosis and report, a theorem-first workload satisfying Ticket 0103,
+a valid current implementation and receipt, and a new explicit user decision.
+Historical receipts grant no current execution authority.
 
 The evidence-admission part of step 1 is mandatory: agent prose or unchecked
 computation must not update the portfolio. Portfolio reconciliation in step 2

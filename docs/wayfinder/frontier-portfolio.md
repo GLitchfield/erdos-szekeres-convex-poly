@@ -192,6 +192,26 @@ mathematical functions—for example one unrestricted producer, one concrete
 decomposable obstruction, and one generalization or falsification lane.  This
 is a scheduling heuristic, not a membership rule.
 
+Ticket 0103 adds the current theorem-first selection override. Discretionary
+research time is planned over a rolling window at 40% `D-HALF` structural
+work, 30% `D-DECOMP` repair, 20% source-grounded distinct mechanism discovery,
+and 10% bounded computation/process work. Mandatory reconciliation,
+verification, guarded builds, tests, and integration are outside those
+weights. At most one simultaneous Fin15 lane is selected, and it must introduce
+new mathematical information rather than larger solver or certificate
+resources. `D-NORMALIZE` receives no ordinary lane while its current family is
+suspended.
+
+Every proof-producing or intermediary-lemma candidate must pass the five-field
+theorem-entry memo in `AGENTS.md` before packet freeze. Every fixture-dependent
+computation must separately pass semantic readiness by independently
+reconstructing its role-critical predicates and representation conventions
+from raw frozen inputs. When no entry is `advancing` and no theorem-ready
+producer passes that gate, select a smaller route-design or source-grounding
+block instead of padding an exploration slate. The approved reserve may be
+empty; campaign support is not automatic backfill. These are scheduling rules
+only and do not change any entry's state or membership.
+
 ### Interpret results
 
 At an integration boundary, report for every selected thread:

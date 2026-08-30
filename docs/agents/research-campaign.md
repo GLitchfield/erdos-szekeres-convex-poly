@@ -76,6 +76,28 @@ still requires an immutable packet and exact user approval. "Immediate" means
 the next approved compatible free slot after screening; it grants no provider,
 network, tool, or mathematical execution authority by itself.
 
+### Ticket 0103 theorem-first selection override
+
+Ticket 0103 suspends automatic campaign backfill while the reconciled portfolio
+has no `advancing` entry and no theorem-ready producer passes the theorem-entry
+memo in `AGENTS.md`. An idle lane is not a reason to generate, develop, or
+repair a seed. Select a pre-admission development only when its cheapest hostile
+test can change mathematical allocation and the future user approves its exact
+packet. Otherwise use a smaller route-design or source-grounding block and
+leave the lane empty.
+
+The rolling discretionary research weights are 40% `D-HALF` structural work,
+30% `D-DECOMP` repair, 20% source-grounded distinct mechanism discovery, and
+10% bounded computation/process work. They are planning weights rather than
+seed quotas. Campaign activity belongs to the final two categories unless a
+later admitted theorem card places it under a load-bearing parent.
+
+The scheduler and continuous idea generator remain stopped under Ticket 0103.
+This protocol documents their allowable behavior if separately reauthorized;
+it supplies no present restart authority. Diagnosis, a theorem-first workload,
+a valid current implementation and receipt, and a new explicit user decision
+are all required before either service can restart.
+
 The campaign has six stages.
 
 ### 1. Generate five brief seeds
@@ -122,6 +144,9 @@ breakers. Daemon persistence does not grant retry of an attempted packet,
 development, reconciliation, route admission, scheduling, proof movement, or
 canonical write authority.
 
+Ticket 0103 currently holds this optional service stopped. Do not invoke it to
+restore seed count, queue depth, or occupancy.
+
 ### 2. Apply only the seed safety screen
 
 Before mathematical work, reject a seed only when it is malformed, a literal
@@ -140,6 +165,22 @@ Every selected seed receives an immutable development brief plus the ordinary
 agent task packet. The task packet is authoritative for ownership, tools,
 network/provider access, resources, and external actions; a development brief
 can never expand that authority.
+
+Before freezing that execution packet, apply two additional readiness gates
+when relevant:
+
+- a proof-producing or intermediary-lemma target must have the five-field
+  theorem-entry memo required by `AGENTS.md`; without it the work remains route
+  design and cannot receive a Lean builder or proof-producing label; and
+- any finite fixture, corpus, role label, or serialized mathematical object
+  controlling gate precedence must have a separate semantic-readiness receipt.
+  An independent reconstruction must recompute every role-critical predicate
+  from raw frozen inputs and normalize representation boundaries before the
+  outcome engine is frozen.
+
+Schema, hash, and selected-context validation do not replace semantic
+readiness. A readiness mismatch is an input stop with no automatic repair,
+substitution, retry, packet mutation, or descendant authority.
 
 A version-one brief contains at most five selected research artifacts and
 2,000,000 bytes. A larger closure requires a new reviewed schema version plus a

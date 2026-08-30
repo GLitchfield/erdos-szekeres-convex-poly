@@ -6,6 +6,14 @@ service. Its single mathematical job is to maintain an immutable inbox of
 proposal-level seed batches for later root review. It is not an autonomous
 research director.
 
+Ticket 0103 currently holds this service failed/stopped and suspends automatic
+seed backfill. The commands and standing envelope below remain historical and
+implementation documentation, not current execution authority. A future
+restart requires a fresh diagnosis and report, a theorem-first workload with a
+decision-changing gate, a valid current implementation and receipt, and a new
+explicit user decision. Queue depth, idle capacity, or a desire for more ideas
+is not a restart reason.
+
 ## Authority boundary
 
 One standing authorization binds the daemon entrypoint, packet builder,

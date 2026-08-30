@@ -60,6 +60,32 @@ scheduling decision and never prunes the inclusive portfolio. Step 4 must name
 potential outcomes and downstream continuations; uncertain branches remain
 branches rather than hidden assumptions.
 
+### Theorem-first operating rebalance
+
+Ticket 0103 is the current user-approved selection override. Discretionary
+research time is planned at 40% `D-HALF` structural work, 30% `D-DECOMP`
+repair, 20% source-grounded distinct mechanism discovery, and 10% bounded
+computation/process work. Mandatory evidence admission, integration, guarded
+builds, and repository tests are outside those planning weights.
+
+Before a proof-producing or intermediary-lemma packet is frozen, its
+human-readable theorem-entry memo must name the exact producer, existing
+consumer, strict difficulty separation, smallest plausible hostile example,
+and expected geometric/combinatorial/source producer fact. A missing field
+keeps the item at route-design scope. Before a fixture-dependent computation
+packet is frozen, a separate semantic-readiness receipt must independently
+reconstruct all role-critical predicates from raw inputs and normalize every
+representation boundary used by gate precedence. Hash and schema checks alone
+are not readiness evidence.
+
+When no portfolio entry is `advancing` and no theorem-ready producer passes
+that gate, run a smaller route-design or source-grounding block rather than
+padding an exploration slate. Adjacent lemmas require an existing named
+consumer. At most one simultaneous Fin15 lane is allowed under the current
+allocation, and it must change the mathematical information rather than merely
+increase computational resources. `D-NORMALIZE` remains without ordinary
+allocation until its recorded revival condition is met.
+
 ### Evidence-first research campaign
 
 Ticket 0078 replaces the publication-card-first, serial four-plus-one factory
@@ -100,11 +126,12 @@ accounting; an attempted packet is never retried; and root alone consumes,
 reconciles, admits, or schedules output.
 
 Four concurrent mathematical investigations remains the occupancy target, and
-the ordinary no-padding and mechanism-diversity rules remain unchanged. Spare
-capacity may perform approved campaign generation, development, source
-grounding, audit, or route review. Seed generation itself is not mathematical
-proof work, and an unadmitted development probe does not fill a
-proof-producing portfolio slot.
+the ordinary no-padding and mechanism-diversity rules remain unchanged. Under
+Ticket 0103, spare capacity may perform campaign generation, development,
+source grounding, audit, or route review only when that work has its own
+decision-changing gate and exact future approval; it is not automatic backfill.
+Seed generation itself is not mathematical proof work, and an unadmitted
+development probe does not fill a proof-producing portfolio slot.
 
 ### Rolling execution pipeline
 
@@ -112,8 +139,9 @@ Ticket 0067 supersedes the synchronized-batch waiting rule. An admitted,
 approved thread launches whenever a compatible slot is free; its terminal is
 checked and reconciled immediately, and that slot may be backfilled without
 waiting for unrelated lanes. When fewer than four mathematical gates are
-ready, unused capacity works on approved campaign generation or development,
-grounding, card audit, and route review. A campaign lane uses a frozen
+ready, Ticket 0103 permits unused capacity to remain idle; campaign generation,
+development, grounding, card audit, or route review runs only from a separately
+justified decision-changing gate. A campaign lane uses a frozen
 reconciled snapshot and may overlap execution, but its proposals and evidence
 must be rebased against any intervening admitted result before portfolio entry
 or scheduling. A mathematical negative receives its admitted failure-genome
@@ -150,13 +178,13 @@ transaction:
 5. freeze and seek approval for a replacement reserve until the approved queue
    returns to its declared floor.
 
-The normal operational reserve floor is four approved packets from honest,
-bounded, nonduplicative gates or support tasks.  A lower floor requires an
-explicit user-approved thin-wave reason.  If the queue falls below its floor,
-reserve production becomes the root's next orchestration task; spare workers
-may perform bounded route grounding, source grounding, campaign seed work, or
-card audit, but none of those may be mislabeled as an admitted mathematical
-investigation.
+Ticket 0103 suspends the normal four-packet operational reserve floor while no
+`advancing` entry and no theorem-ready producer exist. The honest approved
+reserve may then contain zero to three packets, and reserve production is not
+triggered merely by queue depth. Do not author support work to restore a
+numeric floor. A future exploration-only or support wave requires its own
+decision-changing gates and exact user approval; none may be mislabeled as an
+admitted mathematical investigation.
 Result-dependent successors enter the reserve only after their prerequisites
 are admitted and their new input hashes are frozen.
 
@@ -269,6 +297,13 @@ the declared aggregate resource envelope.
    the base revision, workspace fingerprint, objective, exact theorem contract
    when applicable, inputs and hashes, ownership, budget, checks, success
    condition, stop conditions, deliverables, and permitted claim levels.
+   Before this freeze, a proof-producing or intermediary-lemma assignment must
+   pass the five-field theorem-entry memo in `AGENTS.md`. A fixture-dependent
+   computation must separately freeze a semantic-readiness receipt produced by
+   an independent reconstruction of every role-critical predicate and
+   representation boundary. A missing memo or receipt is a readiness stop, not
+   a field to be supplied by the execution worker after outcome-bearing work
+   begins.
    The whole-workspace fingerprint is an admission snapshot, not a global lock
    on unrelated work.  During an admitted parallel run, the continuing gate is
    the base revision plus every explicitly frozen input hash.  A worker reports
