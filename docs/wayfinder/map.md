@@ -448,6 +448,29 @@ crossing-aware decomposable spans, and the newly located copoint-graph source.
 Cycle 002 has zero proof-producing and four information-gathering gates.  No
 portfolio state, service, or load-bearing ledger edge changes.
 
+[Ticket 0110](tickets/0110-reconcile-cycle002-select-cycle003-discovery.md)
+closes Cycle 002.  The overload lane identifies a valid lexicographic descent
+measure but no producer for either cofacial strong faces or a load-reducing
+replacement.  The visibility lane proves at proposal level the exact local
+cyclic-interval/hidden-chain classification, while a rational neighboring-world
+pair refutes recovery of mixed exterior turns from individual endpoints.  The
+crossing-poset lane finds a genuine width-two carrier, but its height-ten,
+all-but-one cover, and Pascal transition are all absent.  Morris's copoint
+theorem has the wrong implication direction for `D-UPPER`, with its own
+pseudoline hostile example.  The two admitted narrow failures receive one
+failure genome each; no five-field theorem-entry memo survives.  **Net proof
+movement:** neutral. **Evidence:** authenticated proposal audits and one
+authenticated published-source theorem; no new compiling theorem or checked
+computation. **Damage scope:** candidate-local for endpoint-only visibility
+and the Morris-source direct return. **Difficulty displaced:** none.
+**Counterfactual:** the cycle blocks four unqualified builders but does not
+lower formal proof work. **Planning consequence:** Cycle 003 is a four-lane,
+all-information-gathering wave: two lanes authenticate and test a newly located
+Dehnhardt--Harborth--Lángi nested-hull/beyond-edge bucket mechanism, and two
+retain full decomposition-tree context through divergence words and sweep-cut
+traces.  No load-bearing edge or portfolio state changes, and both stopped
+services remain untouched.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.

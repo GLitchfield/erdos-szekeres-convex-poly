@@ -3,7 +3,7 @@ title: Exact Erdős--Szekeres frontier portfolio
 artifact: frontier-portfolio
 schema_version: 2
 status: canonical
-last_updated: 2026-08-28
+last_updated: 2026-08-30
 ---
 
 # Frontier portfolio
@@ -470,6 +470,44 @@ that deserves independent retention and scheduling consideration.
   candidate-local scope and does not refute a separately produced realizable
   exchange theorem.
 
+  Ticket 0110 reconciles Cycle 002 without adding a producer.  A
+  lexicographically minimal private-edge load profile is a valid finite descent
+  measure, but overload does not make its strong predecessor edges cofacial
+  and a replacement needs the same unproduced mixed ordered-quadruple
+  equalities as the existing cross-extension obstruction.  Separately, the
+  exact realizable visibility classification gives one cyclic visible-edge
+  interval for an exterior point and an exact hidden-chain deletion.  That
+  information is local to one convex predecessor.  Two rational neighboring
+  worlds have identical individual visible chains and opposite mixed turns,
+  so endpoint-only cross-turn recovery is expired at candidate-local scope.
+  Neither result changes the half-support obligation or the last compiling
+  theorem.
+
+  **Failure genome `FP-01-VISIBILITY-ENDPOINT-01`:** stable card/family
+  `C002-DHALF-VISIBILITY-INTERVAL-V1` / predecessor-half; model tier:
+  realizable planar point sets in general position; scope ceiling:
+  determination of mixed exterior turns from individual cyclic visible-edge
+  intervals alone, not a target-free congestion theorem, nested-hull capacity,
+  or half-support selector. Terminal artifact
+  `runs/agents/20260830-cycle002-theorem-discovery/results/visibility/result.md`,
+  SHA-256
+  `24a5782c2a110add0f9814ed1b438a253a59b0adbc406b63b4540bce7140f4b4`.
+  **Verified failing feature:** for the displayed rational triangle and fixed
+  exterior point, two further points have the same visible chain but make
+  `orientation(x,y,A)` respectively `-1/5` and `3/20`. **Strongest supported
+  statement:** individual endpoints do not determine mixed exterior turns;
+  aggregate and target-free strengthenings remain undecided. **Evidence
+  level:** `proposal`. **Damage scope:** `candidate-local`.
+  **Representation blindness (`verified`):** the interval forgets orientation
+  data among exterior points. **Candidate discriminator (`verified`):** a
+  successor must aggregate many points through an independently produced
+  convex-core or layer law. **Mutation directions (`inferred`):** sourced
+  beyond-edge bucket capacities for a nested convex core may be reviewed under
+  a new identity. **Anti-duplication warning (`verified`):** changing cyclic
+  intervals to endpoint pairs, hull chains, or sweep intervals does not add
+  the missing cross-point information. **Cheapest falsifier (`verified`):**
+  recheck the two rational determinants and their identical visible chains.
+
   **Failure genome `FP-01-EXTENSION-OWNER-01`:** stable card/family
   `C001-DHALF-EXTENSION-SIGNATURE-V1` / predecessor-half; model tier:
   abstract `OneChangeOn` ordered triple colorings; scope ceiling: only the
@@ -617,8 +655,17 @@ that deserves independent retention and scheduling consideration.
   compositional endpoint/consumer audit use only the standard project axioms.
   The finite obligation set is empty; the depth-three and 31-leaf fallbacks did
   not run and are expired as unnecessary operational contingencies.
-- **Next discriminating gate:** no uniform half-pure singleton-fan descendant
-  is immediately eligible.  Such a descendant must first supply a
+- **Next discriminating gate:** Ticket 0110 selects two bounded
+  information-gathering audits around a newly located, source-level nested-hull
+  bucket mechanism.  One must authenticate and parameterize the exact
+  beyond-edge lemma; the other must identify an existing carrier that supplies
+  the nested convex core, assigns every relevant point, and returns through at
+  most one new bridge to `D-HALF`.  These are pre-admission probes, not a route
+  revival or theorem packet.  Stop if the result is fixed-six only, leaves
+  interior points unassigned, assumes an outer convex polygon not produced by
+  the route, or retains two speculative arrows.  No uniform half-pure
+  singleton-fan descendant is immediately eligible.  Such a descendant must
+  first supply a
   source-grounded internal-triple invariant, a strict decreasing measure, and
   a selector that does not name the final predecessor-free support; another
   finite fan instance, arbitrary extension rule, or conditional purity adapter
@@ -1914,6 +1961,17 @@ that deserves independent retention and scheduling consideration.
   this remains proposal evidence at candidate-local scope and does not damage
   other context-sensitive addresses.
 
+  Ticket 0110's Cycle 002 crossing-poset audit retains both child endpoints
+  and uses their two child orders positively.  The two orientation fibers are
+  chains, so the exact same-node carrier has width at most two and the stored
+  crossing pair is a valid two-element antichain rather than a refutation.
+  The attractive `1 + 2 * choose 5 2 = 21` arithmetic still has no height-ten
+  producer, no all-but-one cover of the original reservoir, and no
+  child-to-parent semantic transition.  Keeping every endpoint is lossless but
+  uncompressed; quotienting further recreates the known collisions.  This is
+  neutral proposal evidence at candidate-local scope, not a new failure
+  genome, and changes no compiling theorem or ledger edge.
+
   **Failure genome `FP-03-SAME-PATH-LAMINAR-01`:** stable card/family
   `C001-DDECOMP-LAMINAR-ADDRESS-V1` / decomposable-Pascal; model tier:
   the transparent decomposable transition fixture, with sweep realizability
@@ -1955,7 +2013,15 @@ that deserves independent retention and scheduling consideration.
   no theorem transports the anchor-relative mixed-triple context through a
   smaller decomposition split.  The 556 control is vacuous for this
   six-carrier mechanism.
-- **Next discriminating gate:** none scheduled.  Ticket 0104 confirms that the
+- **Next discriminating gate:** Ticket 0110 schedules two bounded
+  information-gathering audits which deliberately abandon endpoint summaries:
+  one retains the complete root-to-leaf divergence word, and one retains the
+  complete first-mixed-ancestor trace across every sweep cut.  Each must derive
+  an exact color characterization, finite recursive state, and strict measure
+  before it can become a theorem-entry memo.  They are correlated
+  decomposable-Pascal probes, not theorem packets or a route promotion; stop
+  if either is merely a lossless restatement, an unspecified automaton, or the
+  cardinal target under a new name.  Ticket 0104 confirms that the
   natural decomposable-only two-side bridge is not itself a producer.  Before
   any descendant is eligible, a prospective five-field memo must define the
   contextual address and its child transition, state the decreasing measure,
