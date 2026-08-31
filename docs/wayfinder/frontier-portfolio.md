@@ -500,6 +500,23 @@ that deserves independent retention and scheduling consideration.
   *multi-core* cover is not tested by either negative and receives the single
   bounded Cycle 004 producer/consumer audit selected below.
 
+  Ticket 0112 reconciles that final multicore audit.  The source coverage
+  argument does parameterize: for target-free cyclic cores `P_i` whose
+  exposed-edge buckets cover an outer convex polygon `P_0`, one has
+  `card V(P_0) <= sum_i (r-card V(P_i)-1)`, after first proving every core has
+  fewer than `r` vertices.  The canonical carrier-supported common-center
+  triangle fan specializes this to `h_outer <= m*(r-4)`, which is strictly
+  weaker than the automatic `h_outer<=r-1` throughout the live range
+  `r>=6,m>=3`.  A useful family must instead satisfy
+  `sum_i card V(P_i) > (m-1)*(r-1)`, requiring large sector cores not produced
+  by ordinary or alternating hull layers.  Even a nonvacuous shell count would
+  not determine the mixed orientations needed to extend an arbitrary
+  cross-layer strong predecessor.  Thus both the useful-core producer and the
+  half-support return remain speculative, no theorem-entry memo survives, and
+  the immediate multicore-shell observation expires after its declared final
+  probe.  The conditional shell statement is retained as source information;
+  it changes no load-bearing dependency or portfolio state.
+
   **Failure genome `FP-01-NESTED-HULL-TOTAL-CARRIER-01`:** stable card/family
   `C003-DHALF-NESTED-HULL-CONSUMER-V1` / predecessor-half nested hull; model
   tier: realizable planar point sets in general position; scope ceiling: the
@@ -563,6 +580,71 @@ that deserves independent retention and scheduling consideration.
   alone cannot be rescheduled as a joint-extension theorem.  **Cheapest
   falsifier (`verified`):** recompute the four edge-sign vectors, all twenty
   nonzero determinants, and the displayed positive barycentric identity.
+
+  **Failure genome `FP-01-NESTED-HULL-TRIANGLE-FAN-01`:** stable card/family
+  `C004-DHALF-MULTICORE-SHELL-BOUND-V1` / predecessor-half nested hull; model
+  tier: realizable planar point sets in general position; scope ceiling: the
+  canonical common-center triangle-fan specialization of the parameterized
+  cyclic shell bound for `r>=6` and at least three inner-hull vertices, not
+  mixed large-core families or the conditional shell theorem itself.
+  Terminal artifacts
+  `runs/agents/20260830-cycle004-multicore-shell/results/shell/result.md` and
+  `runs/agents/20260830-cycle004-multicore-shell/results/return/result.md`,
+  SHA-256 values
+  `a71b3c7c2b62dd308c3a58d79609a637c85b752047196119c386d028bc7c067e`
+  and
+  `6a239385efd9736a18ef456dc3182d1729ff488866bb2ce6ffb041497fb447e1`.
+  **Verified failing feature:** the fan gives
+  `h_outer <= m*(r-4)`, while `m>=3,r>=6` imply
+  `m*(r-4)>r-1` and target-freeness already gives
+  `h_outer<=r-1`.  **Strongest supported statement:** this canonical fan adds
+  no shell restriction in any live uniform case; source-compatible families
+  with sufficiently large cores remain untested.  **Evidence level:**
+  `authenticated source derivation plus checked exact arithmetic`.  **Damage
+  scope:** `candidate-local`.  **Representation blindness (`verified`):** the
+  common center forces every sector core to have only three vertices and
+  therefore pays the largest local deficit.  **Candidate discriminator
+  (`verified`):** a successor must independently produce carrier-supported
+  cyclic cores satisfying
+  `sum_i card V(P_i) > (m-1)*(r-1)`.  **Mutation directions (`inferred`):** a
+  source theorem producing compatible quadrilateral, pentagonal, or
+  near-`(r-1)` sector cores could be screened under a new identity.
+  **Anti-duplication warning (`verified`):** more hull layers, a different
+  center, or a larger ambient instance leaves every core triangular and does
+  not change the inequality.  **Cheapest falsifier (`verified`):** compare
+  `3*(r-4)` with `r-1` at `r=6`, then use monotonicity of the difference for
+  all `r>=6`.
+
+  **Failure genome `FP-01-HULL-LAYER-CARDINALITY-BLINDNESS-01`:** stable
+  card/family `C004-DHALF-HULLALT-MULTICORE-RETURN-V1` /
+  alternating-hull predecessor-half; model tier: realizable planar point sets
+  in general position; scope ceiling: recovery of cross-layer convexity from
+  hull-layer cardinalities and the fixed outer cyclic order, not from full
+  radial incidence, exact orientations, or a richer alternating-layer
+  invariant.  Terminal artifact
+  `runs/agents/20260830-cycle004-multicore-shell/results/return/result.md`,
+  SHA-256
+  `6a239385efd9736a18ef456dc3182d1729ff488866bb2ce6ffb041497fb447e1`.
+  **Verified failing feature:** the two exact five-point worlds with outer
+  square `A=(-1,-1),B=(1,-1),C=(1,1),D=(-1,1)` and inner points respectively
+  `(1/4,0)` and `(-1/4,0)` have identical layer sizes `(4,1)` and outer cycle,
+  but `A,B,C` plus the inner point is respectively nonconvex and convex; all
+  ten triple determinants in each world are nonzero.  **Strongest supported
+  statement:** layer sizes and cyclic parity alone do not encode even one
+  mixed-layer four-point convexity decision; richer geometric data and the
+  full `FP-01.D` mechanism remain open.  **Evidence level:** `checked exact
+  rational computation`.  **Damage scope:** `candidate-local`.
+  **Representation blindness (`verified`):** cardinalities and outer parity
+  erase the side of the diagonal `CA` on which the inner point lies.
+  **Candidate discriminator (`verified`):** a successor must retain an exact
+  cross-layer orientation or an independently proved extension relation, not
+  only layer counts.  **Mutation directions (`inferred`):** a radial order,
+  visible-edge assignment, or carrier-supported annular-cell incidence may be
+  tested only with its own producer and half-support return.  **Anti-duplication
+  warning (`verified`):** refining only the numerical shell inequality or
+  cyclic even/odd labels cannot distinguish the two worlds.  **Cheapest
+  falsifier (`verified`):** recompute the displayed twenty determinants and
+  test whether the inner point lies inside triangle `ABC`.
 
   **Failure genome `FP-01-VISIBILITY-ENDPOINT-01`:** stable card/family
   `C002-DHALF-VISIBILITY-INTERVAL-V1` / predecessor-half; model tier:
@@ -736,18 +818,14 @@ that deserves independent retention and scheduling consideration.
   compositional endpoint/consumer audit use only the standard project axioms.
   The finite obligation set is empty; the depth-three and 31-leaf fallbacks did
   not run and are expired as unnecessary operational contingencies.
-- **Next discriminating gate:** Ticket 0111 selects one last bounded,
-  two-lane audit of the source's cyclic *multi-core* cover, which is not tested
-  by the failed total single-core carrier or individual-anchor implication.
-  The producer lane must derive the exact parameterized shell inequality,
-  including coverage and overlap hypotheses, and show a nonvacuous
-  specialization with a strict measure.  The consumer lane must construct the
-  cyclic cores from ordinary or alternating hull layers and close or strictly
-  reduce the existing `FP-01.D` cross-layer predecessor-freeness obligation.
-  Both are information-gathering and correlated.  Stop this observation after
-  Cycle 004 if the canonical fan specialization is vacuous, useful larger
-  cores have no independent producer, the shell count does not control
-  crossing predecessors, or two new bridges remain.  No uniform half-pure
+- **Next discriminating gate:** none in the immediate nested-hull family.
+  Ticket 0112 authenticates the parameterized cyclic shell inequality but
+  expires its direct `D-HALF` observation: the only canonical fan is vacuous,
+  useful larger cores have no independent producer, and shell cardinalities
+  do not control crossing predecessors.  Any revival must begin with a new
+  source-backed producer of carrier-supported cyclic cores satisfying the
+  strict useful-core threshold and a separate exact orientation-sensitive
+  return; premise patching or a larger fan is ineligible.  No uniform half-pure
   singleton-fan descendant is immediately eligible.  Such a descendant must
   first supply a
   source-grounded internal-triple invariant, a strict decreasing measure, and

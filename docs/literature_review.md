@@ -310,12 +310,33 @@ corollary of the source lemma, not a theorem stated by the paper.
 The paper's second lemma avoids a single-core coverage assumption by using a
 cyclic family of triangles, quadrilaterals, and pentagons whose exposed edges
 cover an enclosing polygon.  Summing the corresponding bucket caps proves its
-fixed-six criterion.  The construction is potentially useful nested-hull
-machinery, but the paper does not produce such a family from an arbitrary
-point carrier or connect its shell count to a half-sized predecessor-free
-support.  Interior points and points beyond several edges also remain outside
-the single-core bucket system.  Thus these lemmas are source-authenticated
-conditional structure, not a new exact upper bound or a completed destination
+fixed-six criterion.  The coverage part of its proof is target-independent:
+for cyclic convex cores `P_i` with the source's exposed-edge,
+consecutive-interior-disjointness, strict-containment, and general-position
+hypotheses, absence of a convex `r`-set gives the parameterized conditional
+shell inequality
+
+```text
+card V(P_0) <= sum_i (r - card V(P_i) - 1),
+```
+
+after first proving `card V(P_i)<r`.  Overlaps among exposed-edge buckets are
+harmless because only a union bound is used.  This arbitrary-target statement
+is an elementary corollary of the source argument, not a theorem stated in the
+paper.
+
+The most canonical carrier-supported construction takes one deeper point and
+fans triangles over every edge of an inner hull with `m` vertices.  It gives
+only `h_outer <= m(r-4)`.  For every live `r>=6,m>=3` case this is weaker than
+the automatic `h_outer<=r-1` bound.  A nonvacuous family must instead satisfy
+`sum_i card V(P_i) > (m-1)(r-1)`, so it needs many quadrilateral, pentagonal,
+or nearly maximal sector cores.  Neither the paper nor ordinary hull peeling
+produces those large carrier-supported cells for an arbitrary configuration.
+Moreover, shell cardinalities do not supply the mixed cross-layer
+orientations required to turn an arbitrary strong predecessor into a larger
+convex set.  Thus the parameterized lemma is useful conditional nested-hull
+machinery, but its immediate triangle-fan and alternating-layer returns are
+expired; it is not a new exact upper bound or a completed destination
 dependency.
 
 ### 6. The 2026 structural advance

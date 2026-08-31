@@ -493,6 +493,30 @@ distinct cyclic *multi-core* shell cover and its possible `FP-01.D`
 alternating-layer return.  No load-bearing edge or portfolio state changes,
 and both stopped services remain untouched.
 
+[Ticket 0112](tickets/0112-reconcile-cycle004-select-cycle005-source-wave.md)
+closes Cycle 004.  The cyclic source coverage does parameterize to the exact
+conditional shell inequality
+`card V(P_0) <= sum_i (r-card V(P_i)-1)`, but the canonical common-center
+triangle fan yields only `h_outer <= m*(r-4)`, weaker than the automatic
+`h_outer<=r-1` for every live `r>=6,m>=3` case.  A useful family requires
+`sum_i card V(P_i) > (m-1)*(r-1)` and has no hull-layer producer; even such a
+shell count would not recover the mixed orientations needed to extend an
+arbitrary cross-layer predecessor.  Exact five-point neighboring worlds also
+show that layer sizes and outer cyclic order alone do not decide mixed-layer
+convexity.  **Net proof movement:** neutral.  **Evidence:** two authenticated
+static source/geometric reports and checked exact rational arithmetic; no new
+compiling theorem.  **Damage scope:** candidate-local for the canonical
+triangle fan and the layer-cardinality representation.  **Difficulty
+displaced:** none; the useful-core producer and half-support return remain two
+separate speculative bridges.  **Counterfactual:** the result prevents a
+vacuous fan builder and an invalid cardinality-to-orientation inference, but
+does not lower the proof estimate.  **Planning consequence:** retain `FP-01`
+gated, expire the immediate multicore-shell observation, and select a
+four-lane source-and-representation exploration wave: two decomposable-Pascal
+audits, one canonical-bowtie capacity audit, and one unrestricted 33-point
+structural-source audit.  No load-bearing edge or portfolio state changes,
+and both stopped services remain untouched.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.
