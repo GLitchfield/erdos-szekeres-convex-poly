@@ -3,7 +3,7 @@ title: Exact Erdős--Szekeres frontier portfolio
 artifact: frontier-portfolio
 schema_version: 2
 status: canonical
-last_updated: 2026-08-30
+last_updated: 2026-08-31
 ---
 
 # Frontier portfolio
@@ -1847,6 +1847,21 @@ that deserves independent retention and scheduling consideration.
   realizability, or selector information before another theorem-entry review.
   No `D-HALF` ledger edge changes.
 
+  Ticket 0118's policy-boundary review extends that stop across the bounded
+  locally recorded source corpus.  Exact-six sources, nested-hull geometry,
+  rank-three brackets, abstract extensions, allowable sequences, orchard and
+  radial selectors, circular-ones incidence, bowtie/tope/covector structure,
+  and generic weighted machinery each either lack hypotheses produced by the
+  current caller, run in the wrong model direction, retain the missing
+  cross-color or selector as a premise, or leave a two-arrow consumer gap.
+  This authenticated static audit is neutral, `candidate-local` source
+  readiness information rather than a literature-exhaustion or mathematical
+  nonexistence claim.  It adds no theorem, computation, negative, or failure
+  genome.  Retain `FP-01` as `gated`; a successor needs a newly authenticated
+  proposition with literal caller hypotheses, a model bridge, a named current
+  consumer, and a strict one-arrow obligation decrease.  No `D-HALF` ledger
+  edge changes.
+
 ### FP-02 — State-567 ten-residual system
 
 - **Contribution:** Close the first concrete packed decomposable obstruction
@@ -2405,6 +2420,20 @@ that deserves independent retention and scheduling consideration.
   genuinely smaller child-stable quotient with an explicit transition and
   strict Pascal payoff before reconsideration.  No `D-DECOMP` ledger edge
   changes.
+
+  Ticket 0118's bounded local-source audit finds no ready quotient beyond that
+  interface pool.  The canonical bowtie tree is the closest genuinely
+  different mechanism: its exact one-node proxy-capacity transition has a
+  strict subtree measure, but the repository still lacks both an adapter from
+  the ordered deep split to a canonical bowtie edge and a proxy-conditioned
+  off-diagonal Pascal return to the `5--6--7` consumer.  A cheapest adapter
+  test would leave the second mechanism wholly open and therefore would not
+  change allocation.  This is neutral, `candidate-local` source-readiness
+  information, not a refutation or source-exhaustion claim, and creates no
+  failure genome.  Retain `FP-03` as `gated`; reopen only on new
+  source-authenticated boundary data or a proved quotient package supplying
+  child transition and strict Pascal payoff together.  No `D-DECOMP` ledger
+  edge changes.
 
   **Failure genome `FP-03-SAME-PATH-LAMINAR-01`:** stable card/family
   `C001-DDECOMP-LAMINAR-ADDRESS-V1` / decomposable-Pascal; model tier:

@@ -716,6 +716,43 @@ information through a source-authenticated producer, a materially new
 child-stable quotient, or a separately reviewed discriminating experiment.
 No load-bearing ledger edge, portfolio state, or service state changes.
 
+[Ticket 0118](tickets/0118-review-theorem-first-policy-select-post-cycle010-slate.md)
+performs the scheduled post-Cycle-010 theorem-first policy and route review.
+Two authenticated local-source audits find no ready `D-HALF` cross-exterior
+producer or child-stable `D-DECOMP` quotient in the bounded recorded corpus.
+A third state-567 audit is rejected before mathematical admission because its
+claimed source hashes and ticket paths disagree with the frozen manifest.
+The reciprocal Fable/Sol review agrees on retaining the `40/30/20/10` policy
+and on rejecting three of four proposed directions, but splits over a possible
+`FP-02.D` structural-compression computation.
+
+Root resolves that split against the exact history.  The family layer of the
+19,484,071-clause provenance formula has already been separated and decided;
+no new compression map, theorem-supplied layer removal, quotient, or
+placement-preserving color predicate is frozen for the remaining terminal.
+Re-encoding or rerunning the same mathematical formula would vary resources,
+not mathematical information, while the existing formula also omits the full
+global packing and internal-cut context.  The portfolio's conditional retry
+after exact structural compression remains valid, but its antecedent is not
+met.  No solver or semantic-readiness packet is frozen.
+
+Ticket 0103 and its rolling weights are retained unchanged.  Future cycles
+must record actual wall time and instrumented resource use, and the next
+scheduled policy review occurs after two complete post-Ticket-0118 cycles or
+immediately on a load-bearing edge change or literal route revival.  The
+temporary slate has zero proof-producing and zero information-gathering lanes.
+**Net proof movement:** neutral.  **Evidence:** two authenticated static
+source-readiness audits, one operational authentication stop, root's exact
+history/formula audit, and an advisory provider review.  **Damage scope:**
+`candidate-local` for the bounded local source compositions and
+`operational-only` for the invalid lane and empty selection.  **Difficulty
+displaced:** none.  **Counterfactual:** the review prevents another local-source
+renaming, two-arrow adapter probe, and unchanged formula-compression run but
+does not lower the proof estimate.  **Planning consequence:** keep `FP-01`,
+`FP-02`, `FP-03`, and correlated parents gated and reopen selection only on a
+literal new-information condition.  No load-bearing ledger edge, portfolio
+state, or service state changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.
