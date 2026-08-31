@@ -404,6 +404,28 @@ execution packet now and reopen selection on a literal memo, revival, or
 newly approved source/falsifier gate. No portfolio state, failure genome,
 service, or load-bearing ledger edge changes.
 
+[Ticket 0108](tickets/0108-audit-mutstar-reopening-design.md) performs the
+approved design-only audit of the nearest named `FP-01.D` reopening support
+chain. Four hash-frozen static lanes agree that a fresh author replay and a
+later protected-predecessor-bound, two-replay non-author audit are technically
+designable. The independent decision-value audit controls scheduling: those
+operational stages would only reach a fixed 286-row search which can either
+expire its own one-flip candidate or make a separately reviewed finite panel
+eligible; neither branch shortens the missing uniform alternating-layer
+producer or changes a load-bearing allocation. The terminal is
+`MUTSTAR-REOPENING-DESIGN-STOP__ACQUISITION-VALUE-INSUFFICIENT`. Ticket 0077's
+stale open lifecycle is closed because its author authority was consumed and
+later Tickets 0081/0082 control. The temporary slate remains **zero
+proof-producing and zero information-gathering investigations**. **Net proof
+movement:** neutral. **Evidence:** authenticated proposal-level static audits
+and root byte/hash reconstruction. **Damage scope:** `operational-only`.
+**Difficulty displaced:** none. **Counterfactual:** even a known acquisition
+result would at most enable another probe or expire one local search
+candidate, not reduce formal proof work. **Planning consequence:** freeze no
+successor and retain `FP-01.D` gated until a literal Ticket-0107 reopening
+condition or a new decision-value premise is authenticated. No failure genome,
+service action, portfolio-state change, or load-bearing ledger edge follows.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.

@@ -197,6 +197,12 @@ retains it unchanged after its first scheduled review. Ticket 0107 also selects
 a snapshot-specific empty execution slate: zero proof-producing and zero
 information-gathering investigations. This is not a portfolio-state change,
 route retirement, or a prohibition on a later separately reviewed gate.
+Ticket 0108 tests the nearest named `FP-01.D` support-chain reopening and
+retains that empty slate: the package and audit are technically designable,
+but their eventual acquisition can only expire one fixed star or make another
+finite panel eligible, so the chain does not pass the current decision-value
+gate. Ticket 0077's stale open lifecycle is closed; its consumed authority is
+not a current packet.
 Discretionary
 research time is planned over a rolling window at 40% `D-HALF` structural
 work, 30% `D-DECOMP` repair, 20% source-grounded distinct mechanism discovery,
@@ -4028,10 +4034,24 @@ parent unless promoted.
   replay passed and all real commands remained zero-work, but a stale author
   file allow-list, an unauthenticated protected predecessor, and a failed first
   hostile invocation would independently require `REVISE`. This remains
-  `operational-only`, neutral evidence with no failure genome. The next gate is
-  a snapshot-bound repaired package plus a fresh two-replay non-author audit;
-  only its acceptance may expose a separately frozen and approved real
-  acquisition design.
+  `operational-only`, neutral evidence with no failure genome. The previously
+  recorded technical prerequisite chain is a snapshot-bound repaired package
+  plus a fresh two-replay non-author audit; only its acceptance could expose a
+  separately frozen and approved real acquisition design.
+
+  Ticket 0108 independently reconstructs that support chain without executing
+  it. The repaired six source/test bytes need no further semantic change, and
+  both a non-lossy two-suite author replay and a protected-predecessor-bound,
+  corrected-marker, two-hostile-replay audit are technically designable.
+  Nevertheless `ACQUISITION-VALUE-INSUFFICIENT` controls scheduling under
+  Tickets 0103/0107: success would only reach a fixed 286-row acquisition whose
+  winner branch permits another finite panel review and whose empty branch
+  retires only itself. Neither branch reduces the uniform alternating-layer
+  freeness obligation. No author, audit, readiness, acquisition, or panel
+  packet is selected; Ticket 0077's historical authority is closed and
+  consumed. This is operational-only neutral evidence, creates no failure
+  genome, and leaves the child gated on a literal authenticated off-path
+  fixture or new evidence that changes the decision-value account.
 
   The former one-panel incubation is not executable. Its remaining
   prerequisite is one prospectively selected, independently authenticated
