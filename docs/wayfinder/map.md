@@ -540,6 +540,24 @@ for a fresh zero-start median hitting-forest successor; any real four-fixture
 execution still requires exact hash approval.  No load-bearing ledger edge or
 service state changes.
 
+That Cycle 006 support chain is now closed at an operational author stop.  V7
+preserves the exact normalized mathematical fingerprint but fails the approved-
+task digest boundary before parsing/import.  One final no-successor v8 repair
+attempt then reaches `MEDIAN-V8-AUTHOR-DEFECT` when the mandatory contradicted-
+ledger mutation exposes an uncaught `TypeError`; only adapter/supervisor drafts
+exist, while the candidate, contract, receipts, execution leaf, fourteen
+outputs, and every mathematical run remain absent.  **Net proof movement:**
+neutral.  **Evidence:** authenticated static semantic comparison, integrity
+audits, and root-reconstructed operational test failure; no checked
+mathematical computation or compiling theorem.  **Damage scope:**
+`operational-only`.  **Difficulty displaced:** none; the four-fixture panel and
+uniform half-support producer remain wholly unexecuted.  **Counterfactual:**
+the hostile gates prevent unsafe authority/evidence handling but do not lower
+the destination proof estimate.  **Planning consequence:** expire this
+incubation, do not patch v8 or package v9/v10, and perform a fresh portfolio
+reconciliation before selecting new work.  No load-bearing ledger edge,
+portfolio state, mathematical genome, or service state changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.

@@ -144,9 +144,80 @@ four-fixture proposal at candidate-local scope; `FOREST-NO-SIGNAL` would retain
 finite allocation data only; all input, checker, control, and resource stops
 would be operational. None is predeclared as proof movement.
 
+## Cycle 006 closure
+
+The selected operational support chain is now closed without a mathematical
+start.  The v7 author reached `MEDIAN-V7-AUTHOR-READY`, result SHA-256
+`e93b284ce130771defbd2ee68b9c5d374e4cafae7e21d086053c805c88033d83`,
+but the independent supervisor audit reached
+`MEDIAN-SUPERVISOR-BASE-DEFECT`, SHA-256
+`a99c0d2749c699b5984d1fe40acc0105cff630f4f2b32215799dfa656eb3f333`.
+The first defect is decisive: the supervisor hashes whichever task bytes are
+present at startup but never compares them with an independently supplied
+approved candidate digest before parsing and validator import.  V7 therefore
+cannot carry an exact user approval across its execution boundary.
+
+The mathematical payload itself remains intact.  The independent semantic
+baseline has SHA-256
+`0c38f15545bd146d4d8f0b6cb4d9aa3c9bacc868f0e20b362fcc6d2bc28d828e`,
+and the v7 comparison reaches `MEDIAN-V7-SEMANTICS-MATCH`, SHA-256
+`80d66d8bc270f1238af66f7605b21a5882c6b79cb1e5cfda15948470ddbdf8fe`.
+All ten normalized fields reproduce fingerprint
+`971c6836eda151eec4e28227946f775bcb7109a667f91ca797bbfb780669025c`:
+the exact four fixtures and point digests, source lineage, mathematical
+conventions, independent producer/checker split, twelve stages, resource and
+output partitions, terminal meanings, and claim ceiling.  This is proposal-
+level static equality, not finite mathematical evidence.
+
+An adversarial value review then allowed exactly one final bounded v8 author
+attempt and one different-worker preflight, with an explicit no-v9/v10 stop;
+its result SHA-256 is
+`4297af5c192e0d711e12031508292accd67a55603ac14c10ff2f0337b1e6d791`.
+The noncircular bootstrap blueprint and complete integrity-repair
+specification have SHA-256 values
+`4b766fd189afe8aab0a6189441685669101761c1c26b2915118f2f46c9d704b4`
+and
+`d59010389339867b31d989d7fde64464e91c51da1c24c98e5a7a9eec08d82836`.
+Three different-worker expectation records were frozen without reading author
+output: the approval boundary, adapter-semantic oracle, and hostile-preflight
+template have SHA-256 values
+`552c2bb393fcdd037bb9fba481415f3d5edd7f004977ed166d81193853b4095d`,
+`c64775673a364722c158710e3b60a43312ae99ac694b5468dc0008fea8a571dc`,
+and
+`dbad8cce650b72714f6bd014466b68efcd417dc2318776eea1c2a7d79cf472aa`.
+They are static support proposals only.
+
+The sole v8 author attempt terminates at `MEDIAN-V8-AUTHOR-DEFECT` before a
+candidate, contract, inventory, receipt, audit, or result is frozen.  Only the
+adapter and supervisor drafts exist, with SHA-256 values
+`0d02643f467b86ccdf1edbaa150503f6bcc0f8de6467cdc9b029b1b9e2a62b22`
+and
+`1b72cc1457156795a4a24061da8f0442c0f98112896b9b3813f9b58a11d3245f`,
+totalling 96,414 bytes.  Mandatory hostile group 7 mutates the first ledger
+row's `start_elapsed_seconds` to `None`; the authenticated draft's
+`validate_stage_ledger` records the type mismatch but still evaluates
+`float(finish) < float(start)`, so the deliberately contradicted record raises
+an uncaught `TypeError` instead of returning a closed validation error.  Root
+reconstructed this failure statically and authenticated that the other six
+declared author outputs, v8 execution leaf, and all fourteen real outputs are
+absent.  No reliable CPU/RSS/wall telemetry was sealed because the author
+correctly stopped before its receipt; the observed planning output is within
+the declared cap.  No real fixture, producer, checker, candidate supervisor,
+namespace, solver, Lean/Lake command, or provider ran.  The scheduler remained
+intentionally stopped and the continuous idea generator remained failed/
+stopped.
+
+This author stop is `operational-only`.  It is not evidence against the median
+hitting-forest law, creates no mathematical failure genome, and does not
+change any portfolio state or destination dependency.  The predeclared hard
+boundary now applies: do not patch v8, run its preflight, request execution
+approval, or create v9/v10 under this ticket.  The exact mathematical panel
+remains unspent, but this incubation is expired and the next action is a fresh
+portfolio reconciliation rather than another packaging descendant.
+
 ## Resolution
 
-`CYCLE005-NO-THEOREM-ENTRY__BOWTIE-IDENTITY-RETAINED__CYCLE006-MEDIAN-SUCCESSOR-SUPPORT-SELECTED`.
+`CYCLE005-NO-THEOREM-ENTRY__BOWTIE-IDENTITY-RETAINED__CYCLE006-MEDIAN-SUPPORT-OPERATIONALLY-EXPIRED`.
 
 ## Proof-distance accounting
 
@@ -164,11 +235,12 @@ would be operational. None is predeclared as proof movement.
   contextual Pascal transition, normalization producer, and unrestricted
   exact-upper producer remain open and are not demonstrably smaller.
 - **Counterfactual test:** prior knowledge prevents four unqualified theorem
-  packets and preserves one exact adjacent identity, but does not reduce the
-  admitted destination proof estimate. The median repair can only make a
-  finite discriminator executable.
+  packets, preserves one exact adjacent identity, and would have prevented the
+  v7/v8 execution-integrity work from being mistaken for mathematical
+  progress. It does not reduce the admitted destination proof estimate.
 - **Planning consequence:** retain `FP-01` and `FP-03` gated, `FP-04`
   suspended, the bowtie identity as foundational source information, and the
-  33-point source as encoding-only; run only the median successor author/
-  preflight support chain before another mathematical selection.
+  33-point source as encoding-only; expire the Ticket 0113 median successor
+  support chain with no v8 repair or v9/v10 descendant, and reconcile the full
+  portfolio before another selection.
 - **Load-bearing ledger edge changed:** none.
