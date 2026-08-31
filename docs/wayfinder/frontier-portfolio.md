@@ -483,6 +483,87 @@ that deserves independent retention and scheduling consideration.
   Neither result changes the half-support obligation or the last compiling
   theorem.
 
+  Ticket 0111 reconciles Cycle 003 without a theorem-entry memo.  The
+  authenticated Dehnhardt--Harborth--Lángi source proves that outer vertices
+  beyond exactly one common edge of a nested convex core can be adjoined while
+  preserving convex position.  This yields the conditional uniform bucket cap
+  `card B_e <= r-s-1`, but the core, common outer polygon, and exact one-edge
+  carrier are producer hypotheses.  A universal total single-core carrier is
+  impossible already at `r=6`: it would give `card A <= s*(6-s) <= 9`, while
+  the compiling sharpness construction supplies target-free carriers of
+  cardinalities fifteen and sixteen.  The Fin15 interface instead supplies
+  point-dependent four-cores.  Root also independently checks an exact
+  six-point rational world in which two points are individual same-edge
+  convex-five extensions of one square but their joint union is not convex.
+  Thus neither changing quantifier order nor retaining the edge label produces
+  the missing cross-exterior theorem.  The source's stronger cyclic
+  *multi-core* cover is not tested by either negative and receives the single
+  bounded Cycle 004 producer/consumer audit selected below.
+
+  **Failure genome `FP-01-NESTED-HULL-TOTAL-CARRIER-01`:** stable card/family
+  `C003-DHALF-NESTED-HULL-CONSUMER-V1` / predecessor-half nested hull; model
+  tier: realizable planar point sets in general position; scope ceiling: the
+  universal claim that every no-convex-six carrier in the first open regime is
+  one convex `s`-core together with points completely assigned to the core's
+  unique same-edge buckets, not partial carriers, cyclic multi-core covers, or
+  remainder recurrences.  Terminal artifact
+  `runs/agents/20260830-cycle003-theorem-discovery/results/nested_hull/result.md`,
+  SHA-256
+  `f01e6c64fc6966be551b39e8ada7fff16e97c4a359a69d4b96823b914d329116`.
+  **Verified failing feature:** the bucket caps force
+  `card A <= s + s*(6-s-1) = s*(6-s) <= 9` for `3 <= s <= 5`, whereas the
+  compiling lower-sharpness construction gives a general-position
+  convex-six-free sixteen-point carrier and deletion gives one of cardinality
+  fifteen.  **Strongest supported statement:** the exact universal total
+  single-core carrier is false at the realizable fixed-six tier; conditional
+  bucket caps and multi-core or explicitly accounted partial carriers remain
+  open.  **Evidence level:** `compiling theorem plus checked exact arithmetic`.
+  **Damage scope:** `candidate-local`.
+  **Representation blindness (`verified`):** the total-carrier equation erases
+  interior points, points beyond several core edges, and points naturally
+  assigned to different cores.  **Candidate discriminator (`verified`):** a
+  successor must produce an explicit remainder recurrence or a global
+  multi-core cover rather than assume those points absent.  **Mutation
+  directions (`inferred`):** the source's cyclic family of exposed core edges
+  may be tested under a new immutable identity.  **Anti-duplication warning
+  (`verified`):** renaming unassigned points, changing the core size, or
+  applying the cap to only the already counted subset does not create a total
+  carrier.  **Cheapest falsifier (`verified`):** instantiate `r=6` at
+  `s=3,4,5` and compare the maximum nine with
+  `classical_lower_sharpness 6` and its one-point deletion.
+
+  **Failure genome `FP-01-NESTED-HULL-INDIVIDUAL-ANCHOR-01`:** stable
+  card/family `C003-DHALF-NESTED-HULL-CONSUMER-V1` / predecessor-half nested
+  hull; model tier: realizable planar point sets in general position; scope
+  ceiling: the exact implication that two points which are each unique
+  same-edge convex-five extensions of one convex four-core jointly form a
+  convex six-set, not source Lemma 1 with both points in the vertex set of one
+  common outer convex polygon.  Terminal artifact
+  `runs/agents/20260830-cycle003-theorem-discovery/results/nested_hull/result.md`,
+  SHA-256
+  `f01e6c64fc6966be551b39e8ada7fff16e97c4a359a69d4b96823b914d329116`.
+  **Verified failing feature:** for
+  `A=(-1,0), B=(1,0), C=(1,1), D=(-1,1)`, both
+  `x=(1/10,-4/5)` and `z=(0,-2)` lie beyond only `A->B` and individually
+  make convex pentagons, while
+  `x=(1/4)A+(7/20)B+(2/5)z` lies strictly inside triangle `ABz`; all twenty
+  triple determinants are nonzero.  **Strongest supported statement:**
+  individual unique-edge extensions, even over an equal core and edge, do not
+  produce their joint convex extension; additional common-outer-polygon or
+  relative-extremality structure remains untested.  **Evidence level:**
+  `checked exact rational computation`.  **Damage scope:** `candidate-local`.
+  **Representation blindness (`verified`):** individual anchors forget the
+  radial/extremality order among exterior points.  **Candidate discriminator
+  (`verified`):** a successor must independently put the selected points on
+  one common outer convex boundary or prove an equivalent cross-exterior
+  extremality relation.  **Mutation directions (`inferred`):** the source's
+  cyclic multi-core cover may aggregate already-extreme outer vertices without
+  using the false implication.  **Anti-duplication warning (`verified`):** a
+  shared edge label, equal anchor core, or two individual convex-five facts
+  alone cannot be rescheduled as a joint-extension theorem.  **Cheapest
+  falsifier (`verified`):** recompute the four edge-sign vectors, all twenty
+  nonzero determinants, and the displayed positive barycentric identity.
+
   **Failure genome `FP-01-VISIBILITY-ENDPOINT-01`:** stable card/family
   `C002-DHALF-VISIBILITY-INTERVAL-V1` / predecessor-half; model tier:
   realizable planar point sets in general position; scope ceiling:
@@ -655,15 +736,18 @@ that deserves independent retention and scheduling consideration.
   compositional endpoint/consumer audit use only the standard project axioms.
   The finite obligation set is empty; the depth-three and 31-leaf fallbacks did
   not run and are expired as unnecessary operational contingencies.
-- **Next discriminating gate:** Ticket 0110 selects two bounded
-  information-gathering audits around a newly located, source-level nested-hull
-  bucket mechanism.  One must authenticate and parameterize the exact
-  beyond-edge lemma; the other must identify an existing carrier that supplies
-  the nested convex core, assigns every relevant point, and returns through at
-  most one new bridge to `D-HALF`.  These are pre-admission probes, not a route
-  revival or theorem packet.  Stop if the result is fixed-six only, leaves
-  interior points unassigned, assumes an outer convex polygon not produced by
-  the route, or retains two speculative arrows.  No uniform half-pure
+- **Next discriminating gate:** Ticket 0111 selects one last bounded,
+  two-lane audit of the source's cyclic *multi-core* cover, which is not tested
+  by the failed total single-core carrier or individual-anchor implication.
+  The producer lane must derive the exact parameterized shell inequality,
+  including coverage and overlap hypotheses, and show a nonvacuous
+  specialization with a strict measure.  The consumer lane must construct the
+  cyclic cores from ordinary or alternating hull layers and close or strictly
+  reduce the existing `FP-01.D` cross-layer predecessor-freeness obligation.
+  Both are information-gathering and correlated.  Stop this observation after
+  Cycle 004 if the canonical fan specialization is vacuous, useful larger
+  cores have no independent producer, the shell count does not control
+  crossing predecessors, or two new bridges remain.  No uniform half-pure
   singleton-fan descendant is immediately eligible.  Such a descendant must
   first supply a
   source-grounded internal-triple invariant, a strict decreasing measure, and
@@ -1972,6 +2056,22 @@ that deserves independent retention and scheduling consideration.
   neutral proposal evidence at candidate-local scope, not a new failure
   genome, and changes no compiling theorem or ledger edge.
 
+  Ticket 0111 reconciles the two Cycle 003 full-context descendants.  A
+  labeled root-to-leaf divergence word reconstructs each triple color exactly:
+  at the first three-way divergence, the color is the child bit of the
+  sweep-middle leaf.  The resulting two divergence-bit equalities characterize
+  strong quadruples exactly.  Likewise, the complete marked decomposition tree
+  and first-mixed sweep-cut records admit an exact one-leaf transition.  Both
+  states distinguish the stored pair-rank, turn-language, incoming-star, and
+  crossing-span collisions only by retaining the whole labeled input and its
+  arbitrary child-interleaving word.  Tree size and the unread-leaf counter
+  decrease for evaluation, but no extremal cardinality, state size, hypothesis
+  strength, or dependency-depth measure decreases.  These are useful lossless
+  semantics and candidate-local stops, not a bounded quotient, recurrence, or
+  new failure genome.  No immediate full-word, full-trace, or renamed endpoint
+  descendant is eligible; a successor needs a new source-backed forbidden
+  subtrace or quotient law with both a collision payoff and Pascal capacity.
+
   **Failure genome `FP-03-SAME-PATH-LAMINAR-01`:** stable card/family
   `C001-DDECOMP-LAMINAR-ADDRESS-V1` / decomposable-Pascal; model tier:
   the transparent decomposable transition fixture, with sweep realizability
@@ -2013,15 +2113,14 @@ that deserves independent retention and scheduling consideration.
   no theorem transports the anchor-relative mixed-triple context through a
   smaller decomposition split.  The 556 control is vacuous for this
   six-carrier mechanism.
-- **Next discriminating gate:** Ticket 0110 schedules two bounded
-  information-gathering audits which deliberately abandon endpoint summaries:
-  one retains the complete root-to-leaf divergence word, and one retains the
-  complete first-mixed-ancestor trace across every sweep cut.  Each must derive
-  an exact color characterization, finite recursive state, and strict measure
-  before it can become a theorem-entry memo.  They are correlated
-  decomposable-Pascal probes, not theorem packets or a route promotion; stop
-  if either is merely a lossless restatement, an unspecified automaton, or the
-  cardinal target under a new name.  Ticket 0104 confirms that the
+- **Next discriminating gate:** none is immediately selected.  Ticket 0111
+  closes the complete divergence-word and complete sweep-cut-trace probes as
+  lossless, noncompressive representations.  Any later descendant must begin
+  with a genuinely new source-authenticated forbidden-subtrace or finite
+  quotient law, prove that its collisions force one of the target forbidden
+  patterns, give an explicit child transition and strict extremal measure, and
+  derive the Pascal capacity without retaining the entire merge word.  Ticket
+  0104 confirms that the
   natural decomposable-only two-side bridge is not itself a producer.  Before
   any descendant is eligible, a prospective five-field memo must define the
   contextual address and its child transition, state the decreasing measure,

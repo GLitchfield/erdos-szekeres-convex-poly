@@ -471,6 +471,28 @@ retain full decomposition-tree context through divergence words and sweep-cut
 traces.  No load-bearing edge or portfolio state changes, and both stopped
 services remain untouched.
 
+[Ticket 0111](tickets/0111-reconcile-cycle003-select-cycle004-multicore-shell.md)
+closes Cycle 003.  The authenticated Dehnhardt--Harborth--Lángi source gives a
+real conditional same-edge bucket cap, but neither its common nested core nor
+its common outer polygon is produced for an arbitrary carrier.  A universal
+total single-core reading contradicts the compiling fifteen- and sixteen-point
+lower controls, and an independently checked rational world shows that two
+individual same-edge convex-five extensions need not form a joint convex six.
+The two full-decomposition-context lanes reconstruct every relevant color and
+transition only by retaining the whole labeled tree or cut trace; their
+automatic recursion reads the input without reducing an extremal measure.  No
+five-field theorem-entry memo survives.  **Net proof movement:** neutral.
+**Evidence:** authenticated primary-source statements, proposal-level static
+derivations, compiling controls, and checked exact rational arithmetic.
+**Damage scope:** candidate-local for the two single-core readings and the two
+frozen lossless full-context designs.  **Difficulty displaced:** none.
+**Counterfactual:** the results prevent four unqualified builders but do not
+lower the proof estimate.  **Planning consequence:** retain `FP-01` and
+`FP-03` gated; run a final two-lane information-gathering audit of the source's
+distinct cyclic *multi-core* shell cover and its possible `FP-01.D`
+alternating-layer return.  No load-bearing edge or portfolio state changes,
+and both stopped services remain untouched.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.

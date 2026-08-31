@@ -653,6 +653,22 @@ specific technique or caution.
     checked 2026-08-28; no paper bytes retained.
     <https://doi.org/10.1007/BF01271277>
 
+## Nested-hull source audited in theorem-discovery Cycle 003
+
+95. **K. Dehnhardt, H. Harborth, and Z. Lángi**, “A partial proof of the
+    Erdős--Szekeres Conjecture for hexagons,” *Journal of Pure and Applied
+    Mathematics: Advances and Applications* 2(1) (2009), 69--86. Primary.
+    Theorem 1 proves the seventeen-point case when the outer hull is a
+    pentagon.  Lemma 1 joins vertices from one edge bucket of an enclosing
+    convex polygon to a nested convex core; Lemma 2 sums such capacities over a
+    cyclic family of several cores.  These are conditional nested-hull tools,
+    not a uniform half-support producer or a proof of the all-`n` formula.
+    Author PDF and publication metadata authenticated 2026-08-30; PDF byte
+    SHA-256
+    `91417be27af9de23a9b4af52347e49d9c17435d31b389a8e20833a187967e736`.
+    No paper bytes retained.
+    <https://www.math.u-szeged.hu/~zlangi/publications/ErdosSzekeres.pdf>
+
 ## Coverage backlog
 
 - Authenticate the 1960/61 lower-bound paper from a stable primary archive.

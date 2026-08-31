@@ -1,6 +1,6 @@
 # Initial literature review: the exact Erdős--Szekeres formula
 
-Last updated: 2026-08-13. This is a research synthesis, not a claim of
+Last updated: 2026-08-30. This is a research synthesis, not a claim of
 bibliographic exhaustiveness. The companion [source ledger](bibliography.md)
 records the works actually checked. The search began from the 2000
 Morris--Soltan survey and followed references and citations through the 2026
@@ -293,6 +293,30 @@ Recent SAT work on 33 points (`n=7`) is currently a preprint/encoding effort,
 not a proof of `ES(7)=33`. Any future SAT route in this repository must produce
 a certificate checked inside or reduced to Lean's kernel and must separately
 verify the geometric abstraction.
+
+### 5a. A nested-hull partial result for hexagons
+
+Dehnhardt, Harborth, and Lángi prove that every seventeen-point
+general-position set with a pentagonal outer hull contains a convex hexagon.
+Their first lemma is more reusable than that fixed statement but has important
+literal hypotheses: a convex core `Q` lies strictly inside one convex polygon
+`P`, and the selected points are vertices of `P` lying beyond exactly the same
+edge of `Q`.  Under those hypotheses the core vertices together with the
+selected outer vertices are in convex position.  Consequently, in a carrier
+with no convex `r`-set, a same-edge bucket around an `s`-vertex core has at
+most `r-s-1` outer vertices.  This parameterized cap is an elementary
+corollary of the source lemma, not a theorem stated by the paper.
+
+The paper's second lemma avoids a single-core coverage assumption by using a
+cyclic family of triangles, quadrilaterals, and pentagons whose exposed edges
+cover an enclosing polygon.  Summing the corresponding bucket caps proves its
+fixed-six criterion.  The construction is potentially useful nested-hull
+machinery, but the paper does not produce such a family from an arbitrary
+point carrier or connect its shell count to a half-sized predecessor-free
+support.  Interior points and points beyond several edges also remain outside
+the single-core bucket system.  Thus these lemmas are source-authenticated
+conditional structure, not a new exact upper bound or a completed destination
+dependency.
 
 ### 6. The 2026 structural advance
 
