@@ -674,6 +674,20 @@ require a full-history identity/premise/conclusion/failure-genome comparison
 before selecting another loop.  No load-bearing ledger edge, portfolio state,
 or service state changes.
 
+[Ticket 0117](tickets/0117-select-cycle010-full-history-theorem-card-audit.md)
+selects Cycle 010 as the required full-history freshness pass.  Four static
+lanes respectively audit predecessor-half/Fin15, packed state-567, the uniform
+decomposable-Pascal transition, and existing realizability/geometric laws with
+current consumers.  Each may return at most one five-field theorem card and
+must compare theorem shape, premises, conclusion, obstruction, correlated
+siblings, expiry rules, and failure-genome warnings against the complete
+canonical parent history.  Otherwise it must certify exhaustion of its stated
+bounded source/API pool.  The slate has zero proof-producing and four
+information-gathering slots, with at most two in one mechanism family.  It
+authorizes no Lean, computation, provider, network, service, or route action.
+Selection is neutral and changes no load-bearing ledger edge, portfolio state,
+or service state.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.
