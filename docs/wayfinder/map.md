@@ -602,6 +602,36 @@ return a complete five-field theorem-entry memo or its declared stop before
 any builder or route review.  No load-bearing ledger edge, portfolio state, or
 service state changes at selection.
 
+Ticket 0115 now closes Cycle 008 with no qualified theorem-entry memo.  The
+canonical first-extension disagreement really is a bit inequality and exactly
+the existing constant-profile branch, but no current open theorem consumes
+that normalization.  A complete abstract eight-vertex table then refutes the
+proposed raw multi-witness one-switch/betweenness law at candidate-local scope:
+all three exteriors strongly extend the common five-set, every seven-set is
+nonstrong, the first canonical bits agree, and every exterior-pair profile is
+`LRLRL`.  Its sole failure genome is stored in `FP-02`; it does not refute a
+base-relative or realizable mechanism.  Fixed-seed bad-block codegree gives
+the underflow-safe inequality `(residual \ fixed).card <= 2 * codegree` and
+four bad four-blocks through every state-567 residual pair, but current
+consumers erase the pair and summation recovers only the existing thirty-block
+bound.  Finally, the overfull-Pascal-cell contract has an exact local cup--cap
+proof skeleton but lacks both a traced-frame producer and an arbitrary-input
+return to `PascalTailTwoSideBound`.
+
+**Net proof movement:** neutral.  **Evidence:** authenticated static theorem
+and API audits, a source-exact adjacent-lemma proposal, and an independently
+checked complete abstract color table; no new compiling theorem or checked
+computation.  **Damage scope:** `candidate-local` for the raw one-switch law,
+fixed-seed codegree alone as a geometric consumer, and an immediate
+load-bearing return from lower-cell stability.  **Difficulty displaced:**
+none; the relational common-residue consumer, pair-sensitive color law, traced
+frame, and return adapter remain unsolved and are not demonstrably smaller.
+**Counterfactual:** the cycle prevents four inert or false builders but does
+not lower the proof estimate.  **Planning consequence:** retain `FP-02` and
+`FP-03` gated and select the next loop only from the freshly reconciled
+snapshot using mathematically different information.  No load-bearing ledger
+edge, portfolio state, or service state changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.

@@ -2070,6 +2070,52 @@ that deserves independent retention and scheduling consideration.
   orbit expansion, graphical transcription, or matching-field restatement is
   not a new producer.  **Cheapest falsifier (`verified`):** count the mixed
   signs supplied by current premises before formalizing a target recognizer.
+  Ticket 0115's Cycle 008 common-residue and lower-codegree audits produce no
+  qualified theorem-entry memo.  The first-middle disagreement predicate is
+  exactly inequality of the two canonical first-extension colors and, under
+  the existing dichotomy, exactly the constant pair-profile branch, but no
+  current open consumer uses that bit.  The generic underflow-safe incidence
+  theorem `(residual \ fixed).card <= 2 * codegree` specializes at state 567 to
+  four bad four-blocks through every residual pair; summing gives exactly the
+  existing thirty-block count, and every current open consumer erases the
+  fixed pair.  The advertised `R-B+2` spelling requires the additional
+  hypothesis `B <= R`.  These are authenticated static search information,
+  not compiling theorems or strict reductions; this entry remains `gated` and
+  its last forward result and destination edge do not change.
+
+  **Failure genome `FP-02-COMMON-RESIDUE-ONE-SWITCH-01`:** stable card/family
+  `C008-RESIDUE-COHERENCE-CONSUMER-V1` / common-residue multi-witness
+  coherence; model tier: abstract ordered `TripleColoring` on `Fin 8` with
+  `OneChangeOn` and three strong extensions of one common five-set, without a
+  sweep-realizability, decomposability, or planar-realizability claim; scope
+  ceiling: the raw exterior-pair profile one-switch, interval, betweenness, or
+  transitivity contract before a cut or base-relative quotient is defined,
+  not every multi-witness or realizable common-residue mechanism.  Terminal
+  artifact
+  `runs/agents/20260831-cycle008-multi-witness-discovery/results/residue-coherence/result.md`,
+  SHA-256
+  `4d4f694bf989bdc75e24447616d5559702761f5949efb36f5610b839b33e70a7`.
+  **Verified failing feature:** the complete color table satisfies the stated
+  one-change and common-strong-extension hypotheses and makes every seven-set
+  nonstrong, while all first canonical extension bits agree and every
+  exterior-pair profile is `LRLRL`, not a one-switch word; the exterior triple
+  color remains independently selectable.  **Strongest supported statement:**
+  the audited hypotheses do not force a raw pair-profile switch/betweenness law
+  or recover the exterior triple, while a genuinely base-relative quotient or
+  stronger realizable producer remains untested.  **Evidence level:**
+  `authenticated static complete color-table counterexample`.  **Damage
+  scope:** `candidate-local`.  **Representation blindness (`verified`):** the
+  raw profile and first bit omit both the exterior triple and the profile's
+  relation to the common base's middle-color word.  **Candidate discriminator
+  (`verified`):** a successor must retain base-relative color data or
+  independently force the exterior triple/cut, and must name a current
+  consumer before theorem entry.  **Mutation directions (`inferred`):** an
+  absorption indicator relative to the base middle-color word may be audited
+  under a fresh identity, without inheriting positive evidence.  **Anti-
+  duplication warning (`verified`):** relabeling, reorienting, or calling the
+  alternating raw profile an interval state does not evade this table.
+  **Cheapest falsifier (`verified`):** replay the exact eight-vertex table with
+  base words `w=LRLRL`, `c=RLRLL`, and either exterior-triple color.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** the standalone hitting-plus-targeted-packing
   terminal is expired by TP-SAT.  Only a target-free model satisfying the full
@@ -2265,6 +2311,18 @@ that deserves independent retention and scheduling consideration.
   crossing-span and unmarked-register controls, not a new countermodel or
   genome.  `FP-03` remains gated; no full-trace, register, endpoint-pair, or
   numerology descendant is eligible.
+
+  Ticket 0115's Cycle 008 adjacent audits also stop before theorem entry.  The
+  fixed-seed bad-block lower-codegree inequality is exact static incidence
+  information, but its pointwise multiplicity is erased by the open
+  `PascalTailTwoSideBound` consumers and its only strict branch simplification
+  is an alternate proof of the already closed state-556 control.  Separately,
+  an overfull traced Pascal cell has a source-exact cup--cap proof skeleton and
+  sharp `1,2,1` control, but the present lower-construction API erases the cell
+  and chain witnesses, while no arbitrary-input adapter returns them to the
+  load-bearing consumer.  That leaves two speculative arrows.  Neither
+  proposal is compiled, no open obligation or strict measure decreases, and
+  `FP-03` remains `gated` with the same last forward result and ledger edge.
 
   **Failure genome `FP-03-SAME-PATH-LAMINAR-01`:** stable card/family
   `C001-DDECOMP-LAMINAR-ADDRESS-V1` / decomposable-Pascal; model tier:
