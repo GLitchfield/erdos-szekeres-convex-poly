@@ -294,6 +294,17 @@ not a proof of `ES(7)=33`. Any future SAT route in this repository must produce
 a certificate checked inside or reduced to Lean's kernel and must separately
 verify the geometric abstraction.
 
+A complete local audit of Dumitru's seven-page preprint on 2026-08-30 confirms
+that its only numbered mathematical proposition is the standard four-subset
+criterion for convex position, already present in stronger compiling project
+infrastructure.  The remaining material defines triple-sign and four-set CNF
+encodings and reports UNSAT runs for selected nested-hull and wedge-anchored
+templates.  The source package supplies neither the certificate bytes and
+independent checker needed to admit those runs nor a theorem that the selected
+templates exhaust arbitrary 33-point configurations.  Thus the paper currently
+contributes exact encoding and source classification, not a structural
+reduction of unrestricted `D-UPPER(7)`.
+
 ### 5a. A nested-hull partial result for hexagons
 
 Dehnhardt, Harborth, and Lángi prove that every seventeen-point
@@ -451,6 +462,26 @@ collision.  The published split theorem is motivation and source material, not
 an imported Lean premise; abstract OneChange and decomposable instances remain
 controls for a sweep-realizable uniform target.
 
+A later literal source audit also tests whether the published induction keeps
+an unrecorded non-scalar resource at the off-window branch.  It does not: the
+formal source semantics expose only the maximally chosen scalar index, an
+arbitrary retained child subset, and the local saturated-branch bit.  The first
+unresolved non-index-one instance is `(4,6,6,3,2)`, where the retained child has
+size `2` or `3` and the complement has size `10` or `9`; no source transition
+turns those alternatives into the open `PascalTailTwoSideBound 5 6 7`.
+
+A bounded primary-source search for a genuinely different tree quotient found
+ordinary and refined Horton--Strahler/register theory as the closest exact
+object.  Its elementary height recurrence gives the Pascal prefix
+`sum_{j=0}^{min(h,r)} choose h j`, not the required Pascal interval, while
+target avoidance supplies no height bound in terms of `k-2`.  More
+fundamentally, two sweep labelings of the same four-leaf comb have identical
+unmarked tree/register state but different middle-determinacy: one has every
+triple right and the other has only triple `123` left.  A sound successor must
+therefore mark enough sweep placement to distinguish this control *and* prove a
+bounded collision-to-target transition; restoring the full labeling or merge
+word merely returns to the known lossless representation.
+
 ## Convex-geometry beta-transform screening
 
 Edelman, Reiner, and Welker study convex and free sets of oriented matroids and
@@ -497,13 +528,31 @@ and whose edges never join two convex nodes. The full arXiv v2 and official
 SoCG 2024 versions were cross-checked on 2026-08-22; their titles and theorem
 numbers differ.
 
-The source does not prove Batch011's proposed three-term maximum formula for
-the convex capacity of every restriction, nor does it identify the project's
-`HasProperDeepBelowSplitOn` predicate with a bowtie edge after restoring
-proxies. Factor-recovery statements also do not cover every empty or singleton
-boundary restriction automatically. The idea therefore remains a
-source-authenticated structural proposal with a short consumer ladder, but no
-exact fixture, boundary calculus, or project adapter is dispatch-ready.
+The source does not state Batch011's proposed capacity formula, but a complete
+case split from its literal sign rule now derives the exact one-node identity.
+For a nontrivial product `kappa = chi bowtie xi`, let `C0` and `D0` be the
+largest convex restrictions wholly inside either factor after omitting its
+proxy, and let `C1` and `D1` be the largest proxy-extendable restrictions in
+the two factors. Then
+
+```text
+Cap(kappa) = max(C0, D0, C1 + D1).
+```
+
+The three branches correspond respectively to restrictions contained in the
+first factor, contained in the second, or meeting both factors; the empty,
+singleton, and one-sided boundaries are included. This is currently a
+proposal-level paper derivation, not a compiling Lean theorem and not wording
+claimed from the source.
+
+The identity is exact adjacent machinery, but it does not yet enter a proof
+route. A canonical tree recursion needs proxy-conditioned states at every
+incident edge, and the repository still lacks a theorem identifying a
+realizable bowtie edge with an ordered `HasProperDeepBelowSplitOn` split (or a
+different existing consumer). Those are two independent bridges beyond the
+one-node calculus. The observation therefore supports only a small bounded
+foundational probe; it neither revives suspended normalization descent nor
+changes `D-NORMALIZE` or `D-DECOMP`.
 
 ## One-interior alternating-wedge screening
 

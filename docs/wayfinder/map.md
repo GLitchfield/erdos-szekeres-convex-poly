@@ -517,6 +517,29 @@ audits, one canonical-bowtie capacity audit, and one unrestricted 33-point
 structural-source audit.  No load-bearing edge or portfolio state changes,
 and both stopped services remain untouched.
 
+[Ticket 0113](tickets/0113-reconcile-cycle005-select-cycle006-median-support.md)
+closes Cycle 005.  Neither the published off-window semantics nor a bounded
+primary-source search supplies the missing labeled Pascal-window transition;
+the closest unmarked Horton--Strahler state is already blind to sweep-middle
+placement on a four-leaf comb.  The bowtie lane does yield the exact
+proposal-level one-node law `Cap(kappa)=max(C0,D0,C1+D1)`, independently
+reconstructed across every boundary restriction, but both its ordered
+deep-split adapter and multi-proxy tree/normalization return remain new.  The
+33-point source contributes only duplicate four-subset infrastructure,
+encodings, and unchecked restricted-template computations.  **Net proof
+movement:** neutral. **Evidence:** authenticated primary-source reports, an
+independently reconstructed paper proof, and a transparent finite model gap;
+no new compiling theorem or checked mathematical computation. **Damage
+scope:** candidate-local or source-relative subfamily only, plus
+operational-only source/preflight stops. **Difficulty displaced:** none.
+**Counterfactual:** the wave blocks four unqualified theorem packets and
+preserves one exact adjacent identity, but lowers no destination obligation.
+**Planning consequence:** no mathematical Cycle 006 slot currently passes the
+theorem-entry gate.  Run only the operational author/non-author-preflight chain
+for a fresh zero-start median hitting-forest successor; any real four-fixture
+execution still requires exact hash approval.  No load-bearing ledger edge or
+service state changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.

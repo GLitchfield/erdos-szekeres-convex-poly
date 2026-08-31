@@ -1719,6 +1719,21 @@ that deserves independent retention and scheduling consideration.
   displacement, or load-bearing movement. Fresh non-author preflight remains
   mandatory before exact approval.
 
+  Later supervision and authoritative-result-seal audits supersede that v2
+  execution identity through a zero-start v6 candidate, SHA-256
+  `a9a539740958a88e3b32112fc2bc8930627db56f8b16fb1f809fa2aff5a39c9d`.
+  Its complete replacement preflight authenticates 28 of 29 direct inputs but
+  stops because `docs/agents/README.md` changed from frozen SHA-256
+  `d327a94dd50f7ab8ad1c89a57675e8fc324565a043822691c161ea0342a8c6dc`
+  to
+  `76b175c1769db0cf55160456c59ea0ad48711e467b1c8de4ca82b0333f33ff2b`.
+  No mathematical engine or v6 namespace ran.  This is `operational-only` and
+  makes both de83/v2 and v6 ineligible for dispatch.  The exact mathematical
+  four-fixture test remains unspent; its next support gate is a new immutable
+  identity binding the current protocol bytes, followed by independent
+  non-author preflight and exact user approval.  No old identity may be edited,
+  retried, or silently rebound.
+
   The later joint post-radial review retains `RC009-ORCHARD-RADIAL` and
   `FD011-NECKLACE-BISECTION` outside the portfolio and unscheduled. Orchard
   sources give only an unordered partition on each deletion, not a total
@@ -2150,6 +2165,26 @@ that deserves independent retention and scheduling consideration.
   descendant is eligible; a successor needs a new source-backed forbidden
   subtrace or quotient law with both a collision payoff and Pascal capacity.
 
+  Ticket 0113's Cycle 005 source wave closes both newly frozen source readings
+  without a theorem-entry memo.  The literal published-slice semantics retain
+  only a maximal scalar auxiliary index, an arbitrary retained child subset,
+  and the local saturated-branch bit.  They define no non-scalar child
+  transition or capacity object.  The first unresolved non-index-one branch is
+  `(a,u,k,u',a')=(4,6,6,3,2)`, with retained-child cardinality `2` or `3` and
+  complement cardinality `10` or `9`; its existing consumer is
+  `PascalTailTwoSideBound 5 6 7`.  A separate bounded primary-source search
+  finds ordinary and refined Horton--Strahler/register states as the closest
+  exact objects.  Their hand-derived height recurrence is the Pascal *prefix*
+  `M(h,r)=sum_{j=0}^{min(h,r)} choose h j`, not the required interval, and
+  target avoidance supplies no bound tying height to `k-2`.  A four-leaf comb
+  with the same unlabeled shape and register state under two sweep labelings
+  has respectively all-right triples and the pattern with only `123` left, so
+  the unmarked source state does not determine middle-determinacy status.
+  Full labeled divergence words repair this only by returning to the already
+  expired lossless representation.  These results are neutral, candidate-local
+  or source-relative `subfamily` information; they close the frozen source
+  pool, not the decomposable-Pascal mechanism, and no load-bearing edge changes.
+
   **Failure genome `FP-03-SAME-PATH-LAMINAR-01`:** stable card/family
   `C001-DDECOMP-LAMINAR-ADDRESS-V1` / decomposable-Pascal; model tier:
   the transparent decomposable transition fixture, with sweep realizability
@@ -2174,6 +2209,38 @@ that deserves independent retention and scheduling consideration.
   the endpoint pair without a smaller codomain is not compression. **Cheapest
   falsifier (`verified`):** reify the stored tree and kernel-prove both root
   allocations plus nonlaminarity.
+
+  **Failure genome `FP-03-UNMARKED-HS-MIDDLE-01`:** stable card/family
+  `C005-DDECOMP-FORBIDDEN-SUBTRACE-SOURCE-V1` / decomposable-Pascal unmarked
+  Horton--Strahler/register quotient; model tier: abstract four-leaf ordered
+  triple colorings induced by the repository deep-split middle-leaf crossing
+  semantics, with no kernel instance or realizable-planar claim; scope ceiling:
+  whether unmarked full-tree shape, height, standard register, refined
+  Horton--Strahler state, and their source child transitions determine
+  middle-determinacy/strong-four status, not augmented labeled quotients,
+  target-free fiber capacity, collision payoff, or all forbidden-subtrace
+  mechanisms.  Terminal artifact
+  `runs/agents/20260830-cycle005-source-wave/results/subtrace/result.md`,
+  SHA-256
+  `95f04415b894afa74395c088d23429875114487657c705a192fddc669ac1a7a6`.
+  **Verified failing feature:** the same four-leaf comb and register state,
+  relabeled only by moving the nested singleton from sweep label `1` to `2`,
+  changes the last ordered triple from right to left and destroys
+  middle-determinacy.  **Strongest supported statement:** unmarked tree/register
+  data do not determine middle-determinacy, while a smaller labeled quotient
+  with a collision-to-target theorem remains open.  **Evidence
+  level:** proposal.  **Damage scope:** `candidate-local`.
+  **Representation blindness (`verified`):** the quotient forgets placement of
+  the sweep-middle leaf at the first mixed node.  **Candidate discriminator
+  (`verified`):** a successor must distinguish these placements or prove a
+  collision payoff that tolerates them, then derive a strict Pascal capacity.
+  **Mutation directions (`inferred`):** a source-backed marked register state
+  with an independently bounded transition may still differ materially.
+  **Anti-duplication warning (`verified`):** restoring the full leaf labeling,
+  divergence word, or merge trace is the already closed lossless repair.
+  **Cheapest falsifier (`verified`):** the two four-leaf tables reject any
+  same-unmarked-state/same-middle-determinacy claim.  A both-target-free
+  collision for a distinct collision-payoff claim is `not-established`.
 - **Missing generalization bridge:** an independently produced contextual
   decomposition address or cross-endpoint lacing equality that excludes the
   exact 567/657 countermodel, has a genuine recursive measure decrease, and
@@ -2207,8 +2274,11 @@ that deserves independent retention and scheduling consideration.
   Do not add the conditional bridge, name an unspecified injection, reopen the
   stored 567/657 countermodel, mine proof traces, or schedule Lean merely to
   restate the cardinal bound.  The earlier source audit found no qualifying
-  joint object, and both reciprocal review identities stopped operationally at
-  the Fable provider limit; neither may be retried.  A genuinely new
+  joint object; Ticket 0113's independent off-window and forbidden-subtrace
+  source audits likewise find no non-scalar published-slice transition or
+  source-authenticated labeled finite quotient.  Both reciprocal review
+  identities stopped operationally at the Fable provider limit and neither may
+  be retried.  A genuinely new
   source-authenticated joint object may receive a fresh bounded review with
   verified provider capacity and user approval, but current rolling allocation
   moves to a structurally distinct route rather than another immediate

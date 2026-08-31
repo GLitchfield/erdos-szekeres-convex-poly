@@ -123,7 +123,11 @@ repository records.
     <https://arxiv.org/abs/2403.00737>
 27. **B. Dumitru**, “Notes on the 33-point Erdős--Szekeres problem,” preprint (2025).
     Primary/preprint; SAT encoding for the first open exact case, not a settled
-    proof. <https://arxiv.org/abs/2512.24061>
+    proof. A complete local audit on 2026-08-30 found only the standard
+    four-subset convexity proposition plus definitions and author-reported
+    computations on non-exhaustive hull/anchor templates; the assigned source
+    contained no independently checkable certificates.
+    <https://arxiv.org/abs/2512.24061>
 28. **V. Koshelev and A. Koshka**, “Combinatorial Geometry of Erdős--Szekeres
     Type Problems: SAT/ASP Modeling and Linear Subreduction,” preprint (2026).
     Primary/preprint; recent computational variants requiring independent review.
@@ -292,7 +296,10 @@ specific technique or caution.
     nontrivial factors with extreme marked proxies, and proves the unique
     canonical tree with no convex--convex edge. It does not state the
     project's proposed convex-capacity maximum formula or deep-split adapter.
-    Retrieved and cross-version audited 2026-08-22.
+    A project audit on 2026-08-30 derived the one-node maximum formula directly
+    from the source sign rule at proposal level, including boundary
+    restrictions; proxy-conditioned recursion and the ordered deep-split
+    adapter remain unproved. Retrieved and cross-version audited 2026-08-22.
     <https://arxiv.org/abs/2403.10311>
     <https://doi.org/10.4230/LIPIcs.SoCG.2024.23>
 56. **C. Huemer, F. Hurtado, M. Noy, J. Urrutia, and D. R. Wood**, “On the
