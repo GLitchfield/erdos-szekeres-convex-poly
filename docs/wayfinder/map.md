@@ -632,6 +632,18 @@ not lower the proof estimate.  **Planning consequence:** retain `FP-02` and
 snapshot using mathematically different information.  No load-bearing ledger
 edge, portfolio state, or service state changes.
 
+[Ticket 0116](tickets/0116-select-cycle009-relational-gluing-discovery.md)
+selects Cycle 009 from the freshly reconciled post-Cycle-008 frontier.  Two
+common-residue lanes test a base-relative absorption law that survives the
+alternating counterexample and whether genuine sweep realizability supplies a
+literal ternary discriminator.  Two Fin15 complete-system lanes audit the
+missing Fano common-owner cross-color equality and the coordinated use of the
+compiled single-exchange three-trichotomy package.  The slate has zero
+proof-producing and four information-gathering slots, split two-and-two by
+mechanism family.  It excludes raw pair-word repairs, fixed-seed recounts,
+lower-trace work, solver variants, and service actions.  Selection is neutral
+and changes no load-bearing ledger edge, portfolio state, or service state.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.
