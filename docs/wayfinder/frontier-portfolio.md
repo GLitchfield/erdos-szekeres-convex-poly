@@ -936,6 +936,24 @@ that deserves independent retention and scheduling consideration.
   probe, and rescanning the same Ringel class are ineligible.  `FP-01` remains
   `gated`; its last forward result is unchanged and no load-bearing edge moves.
 
+  Ticket 0116's Cycle 009 Fin15 audits produce no theorem-entry memo and are
+  duplicate controls at reconciliation.  The three-exterior witness shape
+  necessarily asks for a strong-quad endpoint equality comparing the
+  uncontrolled exterior-triple color with an owner-containing face;
+  incidence-only Fano placement, `OneChangeOn`, distinct-block shared-anchor
+  data, and current common-base transitions do not produce it.  The
+  single-exchange package still quantifies its nine residue/base witnesses
+  independently, permits the third exterior to recycle an old anchor, and
+  leaves that same ternary color open even under hypothetical coordination.
+  Tickets 0091--0098 already spent the isolated common-owner contract, and
+  Ticket 0090 already recorded the single-exchange coordination gap.  These
+  static restatements therefore add no mathematical negative or failure
+  genome.  Both Cycle 009 Fin15 identities expire; any successor must pass a
+  full-history premise/conclusion and genome comparison and independently
+  produce new color, availability, history, erasure, or realizability
+  information.  `FP-01` remains `gated`; its last forward result and
+  load-bearing edge do not change.
+
   **Failure genome `FP-01-FIN15-COMMON-OWNER-CANDIDATE-01`:** stable family
   `FP-01` / Fin15 common-owner cross-extension; model tier: the exact frozen
   abstract `TripleColoring 15` manifest and its claimed maximum-support
@@ -2116,6 +2134,20 @@ that deserves independent retention and scheduling consideration.
   alternating raw profile an interval state does not evade this table.
   **Cheapest falsifier (`verified`):** replay the exact eight-vertex table with
   base words `w=LRLRL`, `c=RLRLL`, and either exterior-triple color.
+
+  Ticket 0116's Cycle 009 common-residue audits also stop before theorem
+  entry.  Endpoint-relative absorption is a canonical consequence of the
+  already compiling `TurnSequenceAllowed.all_eq_of_outer_eq`, but no current
+  consumer supplies its match antecedent or replaces either unconditional
+  premise of `sharedStrongResidue_glue`.  At the realizability tier, current
+  source APIs prove only sweep-realizable implies `OneChangeOn` in general and
+  the converse at size four; they neither realize nor exclude the exact Fin8
+  table, and its direct five-point Grassmann--Pluecker sign relations leave the
+  exterior ternary color free.  An exclusion would still need a separate
+  uniform return consumer.  These are authenticated static API boundaries,
+  not compiling results or new mathematical negatives; no failure genome is
+  added.  Both identities expire, and `FP-02` remains `gated` with its last
+  forward result and destination edge unchanged.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** the standalone hitting-plus-targeted-packing
   terminal is expired by TP-SAT.  Only a target-free model satisfying the full

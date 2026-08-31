@@ -2,8 +2,8 @@
 title: Select Cycle 009 relational gluing discovery
 type: research
 mode: HITL
-status: open
-claim: cycle009-four-lane-relational-gluing-discovery-selected-2026-08-31
+status: closed
+claim: cycle009-reconciled-no-qualified-theorem-entry-2026-08-31
 blocked_by: none
 ---
 
@@ -131,9 +131,54 @@ computation, use a provider or network service, invoke Git, diagnose or restart
 a service, or create theorem source.  A qualified memo still needs root
 authentication, reconciliation, and a separately frozen proof-producing plan.
 
+## Cycle 009 closure
+
+Root froze the four read-only packets at base revision
+`2380bd14b008372698e3c19f808755a16f512005`.  The authenticated context,
+manifest, and embedded aggregate hashes were respectively
+`8ef92a6f1d9cd647e0be66d6d61273854b582c8eea1475b05a3b1fca12ab7483`,
+`bc42fa306df8364f588b533584b09da53dce055c4eccbe38bc1ca89e3f219da6`,
+and `5cd83979ba2c15cb2192ec0d9e8f1d0da40d9524d4c8933e7fa0ba3e7bdcd834`.
+Every result and direct packet hash authenticated before admission.
+
+| Identity | Terminal | Admitted evidence and disposition |
+| --- | --- | --- |
+| `C009-RESIDUE-RELATIVE-ABSORPTION-V1` | `RESIDUE-ABSORPTION-TRUE-BUT-INERT` | Result SHA-256 `e268665e5cf18bb73af12c382aefc110fba47d1b26c02b44b7f49699cb2d1ea7`.  The exact local law is already an instance of the compiling `TurnSequenceAllowed.all_eq_of_outer_eq`; its strongest endpoint-relative form is canonical, but it supplies neither unconditional premise of `sharedStrongResidue_glue` and no open consumer produces its trigger equality. |
+| `C009-RESIDUE-REALIZABILITY-TERNARY-V1` | `RESIDUE-REALIZABILITY-NO-DISCRIMINATOR` | Result SHA-256 `3f64ea440f0db41a1d6fa62ce011eea0273cca76ad6bdc90e0a21e6f6aafbb68`.  Current APIs prove sweep realizability implies `OneChangeOn` and prove the converse only at size four.  The two Fin8 tables pass every available four-point and direct five-point sign check, but no size-eight coordinate, rank-three exclusion, or return consumer exists.  This neither proves nor refutes realizability. |
+| `C009-FIN15-FANO-CROSS-EQUALITY-V1` | `FIN15-FANO-CROSS-TERNARY-GAP` | Result SHA-256 `765428eedb679c25183cb4add59eb1404e1c35e877b652d6cfeade2cbd5abcbe`.  Every three-exterior insertion requires an endpoint equality comparing the uncontrolled color of the exterior triple with an owner-containing face.  The current Fano placement is incidence-only, distinct blocks prevent use of the shared-base transitions, and `OneChangeOn` permits the equality to fail.  This refines the already recorded cross-color obstruction but supplies no producer. |
+| `C009-FIN15-SINGLE-EXCHANGE-GLUE-V1` | `FIN15-SINGLE-EXCHANGE-CHOICE-GAP` | Result SHA-256 `c9cabf59f701b171c19941bb1d9009d9904a5a78178a1493ae65dcac277fedd4`.  The nine trichotomy cells quantify their three- or four-point witnesses independently; carrier cardinality does not coordinate them, the retained third exterior may recycle an old anchor, and even hypothetical common-residue coordination leaves the exterior-triple color open. |
+
+The wave ran from the manifest timestamp to its final result in 12 minutes 16
+seconds.  The four result files total 44,551 bytes.  CPU time and peak RSS
+were not instrumented and are therefore not claimed.  No lane invoked
+Lean/Lake, the guarded build, a solver, fixture computation, provider,
+network, Git, service control, or canonical write.  The scheduler remains
+intentionally stopped and the continuous idea-generator remains
+failed/stopped.
+
+### Freshness correction
+
+Reconciliation found that both Fin15 selections were stale against the full
+portfolio history.  Tickets 0091--0098 had already tested the isolated
+`Fin15CommonOwnerDistinctCrossExteriorContract`, and its candidate-local
+failure is stored in the existing common-owner genomes.  Ticket 0090 and the
+`FP-01` record had already stated that the single-exchange trichotomies give an
+arbitrary third exterior, uncoordinated witnesses, and no branch-independent
+incidence law.  The Cycle 009 static audits sharpen the literal missing data
+but do not constitute new mathematical negatives, do not receive duplicate
+failure genomes, and may not be used to revive either spent gate.
+
+The selection ticket's assertion that these were fresh relational consumers
+was therefore a protocol-level freshness defect.  No evidence was fabricated
+and the lanes stayed inside their read-only bounds, but the defect consumed
+two slots which should have been rejected before dispatch.  Any successor
+loop must first compare every proposed theorem identity, premise/conclusion
+shape, and advertised obstruction against the full `FP-NN` history and its
+failure-genome anti-duplication warnings.
+
 ## Resolution
 
-`CYCLE009-FOUR-LANE-RELATIONAL-GLUING-DISCOVERY-SELECTED__EXECUTION-PENDING`.
+`CYCLE009-NO-QUALIFIED-THEOREM-ENTRY__RELATIVE-LAW-INERT__FIN15-GATES-STALE`.
 
 ## Initial proof-distance accounting
 
@@ -151,4 +196,27 @@ authentication, reconciliation, and a separately frozen proof-producing plan.
 - **Planning consequence:** freeze and execute all four hostile static audits,
   independently authenticate each terminal, and reconcile before any builder
   or later loop.
+- **Load-bearing ledger edge changed:** none.
+
+## Final proof-distance accounting
+
+- **Net proof movement:** `neutral`.
+- **Evidence:** four authenticated static theorem/API audits; no new compiling
+  theorem, checked computation, coordinate witness, or nonrealizability
+  certificate.
+- **Damage scope:** `candidate-local` for treating relative absorption or the
+  current realizability API as a consumer-bearing common-residue mechanism;
+  the two Fin15 outcomes are duplicate controls, while their stale selection
+  is `operational-only` protocol damage.
+- **Difficulty displaced:** none.  An unconditional common-residue producer,
+  size-eight realizability discriminator plus return, independently produced
+  Fin15 ternary/cross-face law, and witness-coordination mechanism remain and
+  are not demonstrably smaller.
+- **Counterfactual test:** prior knowledge of the two common-residue outcomes
+  would prevent inert builders; proper use of the existing Fin15 history would
+  have prevented two redundant lanes.  Neither changes the estimated
+  remaining proof work or probability of success.
+- **Planning consequence:** expire all four Cycle 009 identities, retain
+  `FP-01` and `FP-02` as `gated`, add no failure genome, and require a
+  full-history freshness audit before another theorem-discovery slate.
 - **Load-bearing ledger edge changed:** none.

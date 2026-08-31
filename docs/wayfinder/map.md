@@ -644,6 +644,36 @@ mechanism family.  It excludes raw pair-word repairs, fixed-seed recounts,
 lower-trace work, solver variants, and service actions.  Selection is neutral
 and changes no load-bearing ledger edge, portfolio state, or service state.
 
+Ticket 0116 now closes Cycle 009 with no qualified theorem-entry memo.  The
+base-relative absorption implication is exact but already subsumed by
+`TurnSequenceAllowed.all_eq_of_outer_eq`; no current open consumer supplies
+its trigger or uses its conditional conclusion.  The current realizability
+API has no size-eight completeness, coordinate witness, or rank-three
+exclusion for the Cycle-008 table, and the direct five-point sign relations do
+not determine its exterior ternary color.  In the Fin15 branch, the first
+three-exterior insertion equality necessarily compares that uncontrolled
+exterior-triple color with an owner-containing face.  The single-exchange
+trichotomies separately retain uncoordinated existential residues, and even a
+hypothetical common choice would expose the same ternary gap.
+
+Reconciliation also corrects a selection error: both Fin15 gates were already
+spent at their admitted scopes.  Tickets 0091--0098 and the existing
+common-owner genomes record the isolated-contract result, while Ticket 0090
+already records the arbitrary-third-anchor and branch-coordination gap.  The
+new static audits clarify those obstructions but are duplicate controls, not
+new mathematical negatives; no failure genome is added.  **Net proof
+movement:** neutral.  **Evidence:** four authenticated static theorem/API
+audits, with no compiling theorem or checked computation.  **Damage scope:**
+`candidate-local` for the two new common-residue claims and
+`operational-only` for the stale-selection protocol defect.  **Difficulty
+displaced:** none.  **Counterfactual:** the local audits prevent inert
+builders, and a correct history check would have prevented two redundant
+lanes, but neither lowers the destination proof estimate.  **Planning
+consequence:** expire all four identities, keep `FP-01` and `FP-02` gated, and
+require a full-history identity/premise/conclusion/failure-genome comparison
+before selecting another loop.  No load-bearing ledger edge, portfolio state,
+or service state changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.
