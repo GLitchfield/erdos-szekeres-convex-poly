@@ -457,6 +457,43 @@ that deserves independent retention and scheduling consideration.
   factorization retains the hard conclusion in its second factor.  This is
   proposal-level planning evidence, not a new theorem or negative result; all
   exact finite fan theorems remain unchanged.
+  Ticket 0109's first theorem-discovery cycle adds no producer.  Complementing
+  a predecessor transversal is exactly equivalent to the current half-free
+  support, while the only noncircular-looking private-edge formulation still
+  lacks a load-reducing exchange.  Its canonical Fin15 anchor family places
+  load five on one support owner against the desired `k-2=4` cap, so a future
+  overload law must reselect witnesses rather than count the existing anchors.
+  The same cycle rejects the exact abstract extension-owner law requiring an
+  injective owner map with omitted range: the compiling pair-owner control has
+  five exterior vertices and a five-vertex predecessor, making that
+  conjunction cardinally impossible.  This is proposal evidence at
+  candidate-local scope and does not refute a separately produced realizable
+  exchange theorem.
+
+  **Failure genome `FP-01-EXTENSION-OWNER-01`:** stable card/family
+  `C001-DHALF-EXTENSION-SIGNATURE-V1` / predecessor-half; model tier:
+  abstract `OneChangeOn` ordered triple colorings; scope ceiling: only the
+  canonical first-bad-quadruple owner law asserting both injection and omitted
+  range, not every extension signature or sweep-realizable repair. Terminal
+  artifact
+  `runs/agents/20260830-cycle001-theorem-discovery/results/intermediary/result.md`,
+  SHA-256
+  `ed6c3839591d387a7fffb8c57b4b274b0d9437e0aae5925de51fda98b4b4f7ea`.
+  **Verified failing feature:** the admitted pair-owner control supplies a
+  five-element outside domain and five-element predecessor codomain, so no
+  injection can also omit a codomain point. **Strongest supported statement:**
+  the exact conjunction is false at that abstract tier; sweep realizability
+  and other bounded-multiplicity laws are not decided. **Evidence level:**
+  proposal. **Damage scope:** `candidate-local`. **Representation blindness
+  (`verified`):** `OneChangeOn` does not supply the absent geometric
+  restriction. **Candidate discriminator (`verified`):** any realizable
+  successor must independently produce the geometric exclusion before using
+  the owner count. **Mutation directions (`inferred`):** bounded congestion,
+  noncanonical ownership, or a geometric exchange may be reviewed under a new
+  identity. **Anti-duplication warning (`verified`):** adding common-owner or
+  realizability as an unsupported premise does not repair this card.
+  **Cheapest falsifier (`verified`):** kernel-promote the `5 -> 5` injection
+  plus omitted-range contradiction without enumerating the owner table.
 - **Missing generalization bridge:** at fixed `k = 6`, a half-support producer
   for ambient cardinality at least fifteen (or an independently formalized
   exact-six ceiling plus the remaining supports at fifteen and sixteen);
@@ -1868,6 +1905,39 @@ that deserves independent retention and scheduling consideration.
   `DDECOMP-THEOREM-ENTRY-NOT-QUALIFIED__CONTEXT-ADDRESS-PRODUCER-MISSING`:
   neutral proposal evidence at `candidate-local` scope, no Lean packet, no
   new mathematical refutation or failure genome, and no load-bearing change.
+  Ticket 0109 then tests the first explicit two-ended version of that address.
+  The stored transition fixture already contains exact-rank spans `[4,6]` and
+  `[5,7]` which cross at the same root. Keeping both endpoints retains the
+  original demand count, while quotienting to the lowest path recreates the
+  collision; laminarity alone would not bound a family by 21 in any case. The
+  main-tree reification of the transparent stored fixture was not compiled, so
+  this remains proposal evidence at candidate-local scope and does not damage
+  other context-sensitive addresses.
+
+  **Failure genome `FP-03-SAME-PATH-LAMINAR-01`:** stable card/family
+  `C001-DDECOMP-LAMINAR-ADDRESS-V1` / decomposable-Pascal; model tier:
+  the transparent decomposable transition fixture, with sweep realizability
+  inherited mathematically but the main `DecompositionTree` adapter not
+  kernel-instantiated; scope ceiling: the exact same-lowest-path laminar law
+  for right-color exact-rank-three spans, not crossing-aware summaries.
+  Terminal artifact
+  `runs/agents/20260830-cycle001-theorem-discovery/results/ddecomp/result.md`,
+  SHA-256
+  `487a3d5f516e9cf67436ea0819af2a0469133fb7401e25b80a9c27df83d98274`.
+  **Verified failing feature:** displayed spans `[4,6]` and `[5,7]` occupy
+  opposite root children and strictly interleave. **Strongest supported
+  statement:** raw lowest-node/path data do not force laminarity or a Pascal
+  slot; the state-567-specific target-premise strengthening remains untested.
+  **Evidence level:** proposal. **Damage scope:** `candidate-local`.
+  **Representation blindness (`verified`):** the path quotient forgets the
+  endpoint interleaving that distinguishes the two demands. **Candidate
+  discriminator (`verified`):** a successor must use crossings positively and
+  derive a strict capacity recurrence, not exclude this pair. **Mutation
+  directions (`inferred`):** a two-order or crossing-poset resource may be
+  reviewed separately. **Anti-duplication warning (`verified`):** retaining
+  the endpoint pair without a smaller codomain is not compression. **Cheapest
+  falsifier (`verified`):** reify the stored tree and kernel-prove both root
+  allocations plus nonlaminarity.
 - **Missing generalization bridge:** an independently produced contextual
   decomposition address or cross-endpoint lacing equality that excludes the
   exact 567/657 countermodel, has a genuine recursive measure decrease, and

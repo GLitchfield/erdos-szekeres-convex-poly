@@ -426,6 +426,28 @@ successor and retain `FP-01.D` gated until a literal Ticket-0107 reopening
 condition or a new decision-value premise is authenticated. No failure genome,
 service action, portfolio-state change, or load-bearing ledger edge follows.
 
+[Ticket 0109](tickets/0109-reconcile-cycle001-select-cycle002-discovery.md)
+reconciles the user-requested first bounded theorem-discovery loop.  Four
+authenticated static lanes produce no qualifying five-field memo.  The exact
+abstract extension-owner injection with omitted range fails on the compiling
+five-against-five pair-owner control; the same-lowest-path laminar address
+fails on stored crossing spans `[4,6]` and `[5,7]`; blocker complementation is
+equivalent to the existing half-support obligation without a new overload
+exchange; and the frozen local source corpus contains no distinct short
+exact-upper ladder.  The two exact candidate failures are recorded once at
+proposal evidence and candidate-local scope in `FP-01` and `FP-03`.  Root also
+checks the suggested saturation source and stops it at its construction-only
+implication direction.  **Net proof movement:** neutral. **Evidence:**
+compiling inputs, authenticated proposal audits, and primary-source
+inspection. **Damage scope:** candidate-local for the two frozen laws.
+**Difficulty displaced:** none. **Counterfactual:** the cycle prevents false
+or target-restating builders but does not lower formal proof work. **Planning
+consequence:** retain the empty proof slate and open a four-lane exploration
+cycle on private-edge overload exchange, realizable visibility intervals,
+crossing-aware decomposable spans, and the newly located copoint-graph source.
+Cycle 002 has zero proof-producing and four information-gathering gates.  No
+portfolio state, service, or load-bearing ledger edge changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.
