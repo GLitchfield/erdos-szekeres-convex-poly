@@ -588,6 +588,20 @@ four frozen Cycle 007 pools and choose any next exploration only from a
 materially different reconciled mechanism.  No load-bearing ledger edge,
 portfolio state, or service state changes.
 
+[Ticket 0115](tickets/0115-select-cycle008-multi-witness-discovery.md)
+selects a materially different four-lane Cycle 008 static audit from the
+freshly reconciled frontier.  Two correlated lanes test the existing exact
+common-five-residue pair-state theorem for a canonical-bit normal form and a
+genuine multi-witness coherence consumer.  A decomposable lane tests whether
+pointwise `(B-2)`-seed codegree, which is stronger than the current aggregate
+bad-block count, has an existing geometric collision consumer.  A small
+foundational lane tests one-point stability of the explicit recursive lower
+construction and stops if the return needs two speculative arrows.  The slate
+has zero proof-producing and four information-gathering slots; every lane must
+return a complete five-field theorem-entry memo or its declared stop before
+any builder or route review.  No load-bearing ledger edge, portfolio state, or
+service state changes at selection.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.
