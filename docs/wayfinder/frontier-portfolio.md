@@ -1752,6 +1752,57 @@ that deserves independent retention and scheduling consideration.
   new frontier review, materially justified architecture, fresh identity, and
   exact user decision rather than a continuation of this support chain.
 
+  Ticket 0114's Cycle 007 theorem-entry audit closes without a qualified memo.
+  The unchanged-`hprev`, one-support consumer exposes only two facts: a support
+  exceeds the predecessor threshold and the existential strong predecessor
+  returned by `hprev` is impossible there.  Threshold, conditional-freeness,
+  target-lift, critical-size, proof-selected, and fractional variants either
+  reconstruct those facts on the active branch or become equivalent to the
+  missing exact upper result.  Root independently reproduced this normal form
+  from the compiling source.  The exact consumer-weakening architecture is
+  expired, but an independently produced half support and a materially
+  different multi-witness consumer remain outside this negative.  The parallel
+  layer/source audit adds no new producer: its shell control duplicates the
+  existing layer-cardinality genome, and raw Orchard classes still lack a
+  target-free predecessor-coverage theorem.  `FP-01` remains gated and
+  `D-HALF` does not move.
+
+  **Failure genome `FP-01-SINGLE-SUPPORT-CONSUMER-WEAKENING-01`:** stable
+  card/family `C007-DHALF-CONSUMER-WEAKENING-V1` / predecessor-half unchanged-
+  induction single-support consumer; model tier: sweep-realizable ordered
+  triple colorings under the existing `SweepExactUpperAt (k-1)` hypothesis;
+  scope ceiling: threshold, conditional-freeness, target-lift, critical-size,
+  proof-selected-witness, and fractional predicates consumed only through one
+  support by the current recurrence, not independent geometric producers,
+  multi-support combination theorems, or other exact-upper mechanisms.
+  Terminal artifact
+  `runs/agents/20260831-cycle007-theorem-entry-discovery/results/dhalf-consumer/result.md`,
+  SHA-256
+  `b02e59edaad49be571f7761c7aa8e04dde07f420470bfd9cd3a8e176545f53ae`.
+  **Verified failing feature:** after restricting `hprev` to the selected
+  support, the consumer receives only the existential
+  `ContainsStrongPolygonSet`; any one-support contradiction must negate that
+  whole proposition, while the first critical arithmetic world
+  `n=2*B+1, card support=B` rejects every weaker uniform cardinal condition.
+  **Strongest supported statement:** within this architecture, the six audited
+  weakenings do not strictly reduce the hard producer or dependency depth;
+  a separately motivated producer or different consumer remains open.
+  **Evidence level:** `authenticated static theorem-interface audit`.
+  **Damage scope:** `architecture-level`.
+  **Representation blindness (`verified`):** the consumer erases the produced
+  predecessor's location, canonicality, and relation to other witnesses,
+  retaining only its existential proposition.  **Candidate discriminator
+  (`verified`):** a successor must supply an independent structural producer
+  or a consumer that combines additional witness information rather than
+  negate one existential.  **Mutation directions (`inferred`):** a natural
+  multi-support intersection/extension theorem could be reviewed under a new
+  identity if it has its own producer and strict measure.  **Anti-duplication
+  warning (`verified`):** restricting ambient cardinality, making freeness
+  conditional on largeness, or replacing it by a target-lifting implication
+  does not change the active contradiction.  **Cheapest falsifier
+  (`verified`):** erase the negative support conclusion and test
+  `n=2*B+1, card support=B`; `hprev` then produces an unopposed predecessor.
+
   The later joint post-radial review retains `RC009-ORCHARD-RADIAL` and
   `FD011-NECKLACE-BISECTION` outside the portfolio and unscheduled. Orchard
   sources give only an unordered partition on each deletion, not a total
@@ -2202,6 +2253,18 @@ that deserves independent retention and scheduling consideration.
   expired lossless representation.  These results are neutral, candidate-local
   or source-relative `subfamily` information; they close the frozen source
   pool, not the decomposable-Pascal mechanism, and no load-bearing edge changes.
+
+  Ticket 0114's Cycle 007 canonical-cut audit likewise finds no qualified
+  memo.  At `(5,6,7)` the existing consumer requires the strict 21-vertex
+  capacity.  Lowest-separating-node provenance supplies only evaluation
+  descent and a relative two-port count; mixed cut trees and register states
+  either have a Pascal-prefix recurrence or forget the sweep-middle placement;
+  endpoint/crossing states merely reproduce the attractive arithmetic
+  `1 + 2*choose(5,2)=21` without an all-but-one cover, child transition, or
+  collision payoff.  These are applications of the already recorded
+  crossing-span and unmarked-register controls, not a new countermodel or
+  genome.  `FP-03` remains gated; no full-trace, register, endpoint-pair, or
+  numerology descendant is eligible.
 
   **Failure genome `FP-03-SAME-PATH-LAMINAR-01`:** stable card/family
   `C001-DDECOMP-LAMINAR-ADDRESS-V1` / decomposable-Pascal; model tier:

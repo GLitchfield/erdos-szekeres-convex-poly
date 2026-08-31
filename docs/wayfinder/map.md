@@ -558,6 +558,36 @@ incubation, do not patch v8 or package v9/v10, and perform a fresh portfolio
 reconciliation before selecting new work.  No load-bearing ledger edge,
 portfolio state, mathematical genome, or service state changes.
 
+[Ticket 0114](tickets/0114-reconcile-cycle006-select-cycle007-theorem-entry-discovery.md)
+closes Cycle 007 with zero qualified theorem-entry memos.  The exact
+single-support recurrence consumer cannot be weakened through threshold,
+conditional, target-lift, critical-size, proof-selected, or fractional
+renamings: under the unchanged predecessor induction, each either reconstructs
+support freeness or becomes equivalent to the missing target.  This admitted
+`architecture-level` negative receives its sole failure genome in `FP-01` and
+does not damage an independent producer or multi-witness mechanism.  The
+layer-sensitive audit repeats the existing shell-cardinality and Orchard
+coverage gaps; the decomposable audit finds that lowest-node, mixed-register,
+and endpoint/crossing states still fail to combine a proper-child transition,
+collision payoff, and the required 21-slot capacity.  A bounded source lane
+stops operationally after eight queries, two opened records, and a malformed
+arXiv handoff; root's independent correct-source reading finds only
+asymptotic/relative cups--caps machinery, not an exact return.
+
+**Net proof movement:** neutral.  **Evidence:** authenticated static theorem,
+API, and primary-source audits plus one operational stop; no new compiling
+theorem or checked mathematical computation.  **Damage scope:**
+`architecture-level` only for the unchanged-`hprev`, one-support consumer,
+candidate-local proposal screening elsewhere, and `operational-only` for the
+source stop.  **Difficulty displaced:** none; the independent half-support
+producer, bounded marked Pascal quotient, normalization producer, and exact
+upper result remain open.  **Counterfactual:** the cycle prevents consumer
+renamings, lossless/numerological cut packets, and duplicate shell/source work
+but does not lower the proof estimate.  **Planning consequence:** expire the
+four frozen Cycle 007 pools and choose any next exploration only from a
+materially different reconciled mechanism.  No load-bearing ledger edge,
+portfolio state, or service state changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.
