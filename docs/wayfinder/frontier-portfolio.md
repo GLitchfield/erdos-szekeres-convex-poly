@@ -1832,6 +1832,21 @@ that deserves independent retention and scheduling consideration.
   damage. Neither proposal creates a child or failure genome, changes this
   suspended entry, or moves `D-HALF`.
 
+  Ticket 0117's Cycle 010 full-history audit exhausts the bounded current
+  `FP-01` theorem-card pool without a qualified memo.  The exact Fin15
+  consumer still asks for incompatibility of every complete exterior system.
+  Fano common ownership, distinct anchors, erasure witnesses, and
+  single-exchange trichotomies supply incidence and local alternatives but no
+  independently produced cross-exterior color law, coordinated choice, or
+  well-founded selector.  The fixed Fin15 conclusion also supplies no
+  parameterized producer for the uniform tail.  This authenticated static
+  audit is neutral, `candidate-local` search information: it adds no theorem,
+  checked computation, or new mathematical negative, and therefore no failure
+  genome.  Expire only `C010-DHALF-FULL-HISTORY-CARD-V1`, retain `FP-01` as
+  `gated`, and require genuinely new color, availability, erasure-history,
+  realizability, or selector information before another theorem-entry review.
+  No `D-HALF` ledger edge changes.
+
 ### FP-02 — State-567 ten-residual system
 
 - **Contribution:** Close the first concrete packed decomposable obstruction
@@ -2148,6 +2163,23 @@ that deserves independent retention and scheduling consideration.
   not compiling results or new mathematical negatives; no failure genome is
   added.  Both identities expire, and `FP-02` remains `gated` with its last
   forward result and destination edge unchanged.
+
+  Ticket 0117's Cycle 010 full-history audit also exhausts the bounded current
+  state-567 theorem/API card pool.  Mixed normal form is already consumed;
+  balanced-grid/transversal/targeted-packing and collision/four-repair
+  interfaces still lack their full-context color/provenance contradiction;
+  fixed-seed counts are erased by their consumers; and current Ringel
+  exclusions have no packed producer of the required mixed signs.  The only
+  superficially unrecorded seam sends the crossing `3+3` partner through the
+  generic residual-escape API, but doing so erases the internal-placement
+  discriminator needed by the existing terminal and creates two new
+  crossing-carrier contradictions with the same missing coupling.  The honest
+  hard-obligation measure therefore does not decrease.  This is authenticated
+  static, `candidate-local`, neutral search information, not a refutation or a
+  new failure genome.  Expire `C010-S567-FULL-HISTORY-CARD-V1`, keep `FP-02`
+  and correlated `FP-05` `gated`, and require genuinely new full-context
+  cut/provenance color information before another card review.  No state-567
+  or `D-DECOMP` ledger edge changes.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** the standalone hitting-plus-targeted-packing
   terminal is expired by TP-SAT.  Only a target-free model satisfying the full
@@ -2355,6 +2387,24 @@ that deserves independent retention and scheduling consideration.
   load-bearing consumer.  That leaves two speculative arrows.  Neither
   proposal is compiled, no open obligation or strict measure decreases, and
   `FP-03` remains `gated` with the same last forward result and ledger edge.
+
+  Ticket 0117's Cycle 010 full-history audit exhausts the bounded current
+  decomposable-Pascal theorem/API card pool.  A chosen decomposition tree
+  supplies exact lowest-node lookup and a local multiplicity-two endpoint-port
+  bound for an already ordered cap family; independently, the current
+  four-cap interface supplies a total charge into nine insertion-failure
+  signatures.  No current producer couples Pascal demand or those signature
+  fibers to child-stable ports, defines their restriction transition, or
+  proves capacities two with one strict capacity.  Adding the chosen tree and
+  path to the sharp-charge contract retains ambient identities and the hard
+  capacity premises, so it decorates rather than reduces
+  `PascalTailTwoSideBound 5 6 7`.  This is neutral, authenticated static,
+  `candidate-local` search information and adds no theorem, checked
+  computation, negative, or failure genome.  Expire
+  `C010-DDECOMP-FULL-HISTORY-CARD-V1`, retain `FP-03` as `gated`, and require a
+  genuinely smaller child-stable quotient with an explicit transition and
+  strict Pascal payoff before reconsideration.  No `D-DECOMP` ledger edge
+  changes.
 
   **Failure genome `FP-03-SAME-PATH-LAMINAR-01`:** stable card/family
   `C001-DDECOMP-LAMINAR-ADDRESS-V1` / decomposable-Pascal; model tier:
@@ -2798,6 +2848,18 @@ that deserves independent retention and scheduling consideration.
   Retain caller/model grounding only, add no child or failure genome, and
   change no load-bearing dependency. The v1 query-count stop remains purely
   operational history.
+
+  Ticket 0117's correlated full-history audit confirms that the apparent
+  `3+3`-to-residual-escape adapter is not a smaller consumer.  The generic
+  escape theorem can accept both crossing carriers only after discarding the
+  internal-side placement used by the existing `FP-02` terminals; its output
+  is two crossing-carrier collision/grid obligations with the same unproduced
+  color/provenance coupling.  The obligation measure is `1 -> 2`, not a
+  decrease.  This bounded static finding is neutral and `candidate-local`, adds
+  no new negative or genome, and does not broaden the earlier target-
+  equivalence review.  Keep `FP-05` `gated`; a successor still needs new
+  full-context cut/provenance information with a direct return.  No state-567
+  or `D-DECOMP` ledger edge changes.
 - **Success payoff:** an independent state-567 closure path if `FP-02` stalls.
 - **Expiry or revival gate:** an exact full-context model retires the selected
   leaf; the direct `3+3` computational and proof-mining gates are complete and
@@ -3555,6 +3617,21 @@ that deserves independent retention and scheduling consideration.
   scope that specifies changed-control behavior for actionless terminals and
   corrects the packet's 29-versus-30 input-count prose; the partial v7 checker
   must not be preflighted or executed.
+
+  Ticket 0117's Cycle 010 consumer audit exhausts the bounded reuse pool of
+  the current sweep-realizability, fixed-coordinate, rank-three, Ringel, and
+  HMPT APIs.  The available arrows either reproduce `OneChangeOn`, preserve
+  the original coloring through a richer representation, return only a
+  negative Ringel filter without a positive full-context restriction
+  producer, or require adjacent-spike geometry and vertical profiles absent
+  from the current callers.  None supplies a missing ternary/cross-face law,
+  coherent half support, contextual transition, or Pascal capacity to a
+  current `D-HALF` or `D-DECOMP` consumer.  This is authenticated static,
+  neutral, `candidate-local` search information, not a new mathematical
+  negative or failure genome.  Expire
+  `C010-REALIZABILITY-CONSUMER-CARD-V1`, retain `FP-13` `gated`, and require a
+  genuinely new geometric producer plus an explicit return bridge before
+  another reuse review.  No load-bearing dependency changes.
 - **Success payoff:** a new proof-ready subthread or a decisive route
   retirement.
 - **Expiry or revival gate:** the through-six incubation and the one allowed

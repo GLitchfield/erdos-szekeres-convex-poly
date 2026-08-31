@@ -2,8 +2,8 @@
 title: Select Cycle 010 full-history theorem-card audit
 type: research
 mode: HITL
-status: open
-claim: cycle010-four-lane-full-history-theorem-card-audit-selected-2026-08-31
+status: closed
+claim: cycle010-bounded-static-card-pools-exhausted-no-qualified-theorem-entry-2026-08-31
 blocked_by: none
 ---
 
@@ -108,7 +108,41 @@ review.
 
 ## Resolution
 
-`CYCLE010-FOUR-LANE-FULL-HISTORY-THEOREM-CARD-AUDIT-SELECTED__EXECUTION-PENDING`.
+Root froze the four read-only packets at base revision
+`57cd144ec7369f8c86655ee2776d3f3501618a8b`.  The authenticated context and
+manifest SHA-256 values were respectively
+`c66f73f8b998ecf2cc6b3b9510ea18e1bf868eebee4661c30b83856723aa5cda`
+and `942a13a585437ddd7be4f4c29c3679e645adde4bb880cbfd92f36879805c80f5`;
+the embedded 120-entry full-history aggregate was
+`4be69e907b0dc14ed4b88b7a5a85197b7b861c2025af70c0caa402b6e1e29c89`.
+Every brief, direct mathematical input, result, and literal terminal
+authenticated independently before admission.
+
+| Identity | Terminal | Admitted evidence and disposition |
+| --- | --- | --- |
+| `C010-DHALF-FULL-HISTORY-CARD-V1` | `DHALF-BOUNDED-CARD-POOL-EXHAUSTED` | Result SHA-256 `c79765d47131c9a86fa545808d47ab2972535399c1b49fe6e0a95dfad8648d68`.  The complete fixed-six/Fin15 graph still ends in exterior-system incompatibility: Fano common ownership and erasure witnesses do not produce the missing cross-exterior color law, while the single-exchange witnesses are uncoordinated.  The finite conclusion also supplies no uniform-tail producer. |
+| `C010-S567-FULL-HISTORY-CARD-V1` | `S567-BOUNDED-CARD-POOL-EXHAUSTED` | Result SHA-256 `4588211c444807f6d053e9869da4804e9192ed9fdb0a5900c47361c8d7144804`.  Every current mixed, balanced, collision, provenance, targeted-packing, residual, and Ringel seam is spent, inert, or target-equivalent.  The only superficially unrecorded adapter sends the crossing `3+3` partner through a residual-escape API only by erasing the internal-placement discriminator, creating two equally open crossing-carrier contradictions rather than reducing the original one. |
+| `C010-DDECOMP-FULL-HISTORY-CARD-V1` | `DDECOMP-BOUNDED-CARD-POOL-EXHAUSTED` | Result SHA-256 `7f095cbccccb8273a7626c1c0ab44395c1923de01635d2bd8c28858fc667cdd9`.  A chosen decomposition tree gives lowest-node lookup and local two-port capacity, while a four-cap gives a total nine-signature charge.  No current theorem couples the two into a child-stable finite quotient, explicit transition, strict measure, and Pascal capacity.  Adding the tree address merely decorates the target-equivalent sharp-charge contract. |
+| `C010-REALIZABILITY-CONSUMER-CARD-V1` | `REALIZABILITY-BOUNDED-CARD-POOL-EXHAUSTED` | Result SHA-256 `61226a98e69070c42ff6375a17db8420ec512720a6fe309636055580aab06165`.  Existing sweep, fixed-coordinate, rank-three, Ringel, and HMPT APIs either repeat `OneChangeOn`, preserve the original coloring in a richer representation, or require geometric hypotheses no current caller produces.  None returns the missing ternary/cross-face law, contextual transition, half support, or Pascal capacity to a current consumer. |
+
+The wave ran for 10 minutes 15 seconds from the manifest timestamp to the
+last result.  The four result files total 69,689 bytes.  CPU time and peak RSS
+were not instrumented and are not claimed.  No lane invoked Lean/Lake, the
+guarded build, solver or fixture computation, provider, network, Git, or
+service control.  The scheduler remains intentionally stopped and the
+continuous idea-generator remains failed/stopped.
+
+The four terminals exhaust only the frozen current theorem/API card pools.
+They do not establish source exhaustion, refute the parent mechanisms, or
+justify suspension.  None is an independently admitted new mathematical
+negative, so no failure genome is added.  The next mathematically honest
+search must introduce new information: a source-authenticated geometric
+producer, a genuinely child-stable decomposable quotient with capacity, or a
+separately reviewed mathematical experiment that distinguishes such
+producers.  Another internal theorem-name shuffle or premise patch is not an
+eligible successor.
+
+`CYCLE010-BOUNDED-STATIC-CARD-POOLS-EXHAUSTED__NO-QUALIFIED-THEOREM-ENTRY`.
 
 ## Initial proof-distance accounting
 
@@ -125,4 +159,31 @@ review.
 - **Planning consequence:** freeze all four exact packets, dispatch them in
   parallel, authenticate every terminal, and reconcile before any builder or
   subsequent loop.
+- **Load-bearing ledger edge changed:** none.
+
+## Final proof-distance accounting
+
+- **Net proof movement:** `neutral`.
+- **Evidence:** four authenticated full-history static theorem/API audits; no
+  new compiling theorem, checked computation, source retrieval, or formal
+  counterexample.
+- **Damage scope:** `candidate-local`, limited to the frozen current static
+  card pools and exact compositions audited.  Previously admitted broader
+  controls retain their original scopes; no new architecture-level or
+  mechanism-wide damage is claimed.
+- **Difficulty displaced:** none.  `D-HALF` still needs independently produced
+  cross-exterior color/selection information and a uniform tail;
+  state-567 still needs full-context color/provenance coupling; `D-DECOMP`
+  still needs a smaller child-stable quotient with strict Pascal capacity.
+  Existing realizability APIs supply none of those facts.
+- **Counterfactual test:** knowing this audit earlier would prevent builders
+  for stale, placement-erasing, target-equivalent, or model-direction-invalid
+  cards, but would not reduce the estimated remaining proof work or improve a
+  demonstrated probability of closure.  This is search information, not proof
+  progress.
+- **Planning consequence:** expire the four Cycle 010 identities, retain
+  `FP-01`, `FP-02`, `FP-03`, `FP-05`, and `FP-13` as `gated`, and stop this
+  bounded internal-card loop.  Any successor requires genuinely new
+  mathematical information and a fresh reconciled selection; do not allocate
+  a Lean builder to an enumerated seam.
 - **Load-bearing ledger edge changed:** none.

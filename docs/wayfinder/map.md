@@ -688,6 +688,34 @@ authorizes no Lean, computation, provider, network, service, or route action.
 Selection is neutral and changes no load-bearing ledger edge, portfolio state,
 or service state.
 
+Ticket 0117 now closes Cycle 010 with all four bounded static pools exhausted
+and no qualified theorem-entry card.  The Fin15 graph still lacks an
+independently produced cross-exterior color law or selector and has no uniform
+tail producer.  The one apparently new state-567 adapter erases the internal-
+placement discriminator and replaces one crossing `3+3` contradiction by two
+equally open crossing-carrier contradictions.  The decomposition APIs expose
+a chosen-tree lowest-node/two-port bound and a separate nine-signature charge,
+but no child-stable coupling, transition, or strict Pascal capacity.  Finally,
+the current sweep, rank-three, fixed-coordinate, Ringel, and HMPT APIs either
+repeat existing premises, preserve the full coloring in a richer
+representation, or require hypotheses no current caller produces.
+
+**Net proof movement:** neutral.  **Evidence:** four authenticated full-history
+static theorem/API audits; no new compiling theorem, checked computation,
+source retrieval, or formal counterexample.  **Damage scope:**
+`candidate-local` for only the frozen current card pools; no broader negative
+or new failure genome is admitted.  **Difficulty displaced:** none;
+cross-exterior selection, full-context state-567 provenance/color coupling,
+and a child-stable Pascal quotient remain unchanged.  **Counterfactual:** the
+audit prevents stale, target-equivalent, placement-erasing, and model-direction
+invalid builders, but does not lower the remaining proof estimate.
+**Planning consequence:** expire the four Cycle 010 identities, retain
+`FP-01`, `FP-02`, `FP-03`, `FP-05`, and `FP-13` gated, and stop the bounded
+internal-card loop.  A successor must introduce genuinely new mathematical
+information through a source-authenticated producer, a materially new
+child-stable quotient, or a separately reviewed discriminating experiment.
+No load-bearing ledger edge, portfolio state, or service state changes.
+
 The following supporting milestones are intentionally outside the
 load-bearing ledger.  Closing one is a real scoped theorem, but changes no
 destination edge unless a separate implication is proved.
