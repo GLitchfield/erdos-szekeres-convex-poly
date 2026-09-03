@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-validated-learning-export.schema.json",
+  "title": "Generator-validated continuous learning export",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "protocol", "service_dir", "excluded_campaign_id", "standing_authorization", "accounting_checkpoint", "validator_components", "continuous_entries", "learning_receipts", "input_receipts", "learning_epoch_sha256", "current_input_fingerprint_sha256", "export_core_sha256"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "protocol": {"const": "continuous-idea-generator-validated-learning-export-v1"},
+    "service_dir": {"type": "string", "minLength": 1},
+    "excluded_campaign_id": {"type": "string", "minLength": 1},
+    "standing_authorization": {"$ref": "#/$defs/fileReceipt"},
+    "accounting_checkpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baseline", "event_count", "charged_count", "unresolved_attempt_ordinal", "last_event"],
+      "properties": {
+        "baseline": {"$ref": "#/$defs/fileReceipt"},
+        "event_count": {"type": "integer", "minimum": 0},
+        "charged_count": {"type": "integer", "minimum": 0},
+        "unresolved_attempt_ordinal": {"type": ["integer", "null"], "minimum": 1},
+        "last_event": {"$ref": "#/$defs/fileReceipt"}
+      }
+    },
+    "validator_components": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generator", "campaign", "first_test_guard", "seed_schema", "brief_schema", "task_schema", "development_receipt_schema", "event_verification_schema", "first_test_execution_envelope_schema", "feedback_schema"],
+      "properties": {
+        "generator": {"$ref": "#/$defs/fileReceipt"},
+        "campaign": {"$ref": "#/$defs/fileReceipt"},
+        "first_test_guard": {"$ref": "#/$defs/fileReceipt"},
+        "seed_schema": {"$ref": "#/$defs/fileReceipt"},
+        "brief_schema": {"$ref": "#/$defs/fileReceipt"},
+        "task_schema": {"$ref": "#/$defs/fileReceipt"},
+        "development_receipt_schema": {"$ref": "#/$defs/fileReceipt"},
+        "event_verification_schema": {"$ref": "#/$defs/fileReceipt"},
+        "first_test_execution_envelope_schema": {"$ref": "#/$defs/fileReceipt"},
+        "feedback_schema": {"$ref": "#/$defs/fileReceipt"}
+      }
+    },
+    "continuous_entries": {"type": "array", "items": {"$ref": "#/$defs/continuousEntry"}},
+    "learning_receipts": {"type": "array", "items": {"$ref": "#/$defs/learningReceipt"}},
+    "input_receipts": {"type": "array", "items": {"$ref": "#/$defs/fileReceipt"}},
+    "learning_epoch_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "current_input_fingerprint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "export_core_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "fileReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "learningReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "receipt"],
+      "properties": {
+        "kind": {"enum": ["claim", "feedback", "canonical_failure_memory"]},
+        "receipt": {"$ref": "#/$defs/fileReceipt"}
+      }
+    },
+    "continuousEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["campaign_id", "seed_id", "ordinal", "state", "seed_batch", "result", "claim", "feedback", "feedback_core_sha256", "registry"],
+      "properties": {
+        "campaign_id": {"type": "string", "minLength": 1},
+        "seed_id": {"type": "string", "minLength": 1},
+        "ordinal": {"type": "integer", "minimum": 0},
+        "state": {"enum": ["ready", "investigating", "investigated", "legacy_reconciled_investigation_unknown"]},
+        "seed_batch": {"$ref": "#/$defs/fileReceipt"},
+        "result": {"oneOf": [{"$ref": "#/$defs/fileReceipt"}, {"type": "null"}]},
+        "claim": {"oneOf": [{"$ref": "#/$defs/fileReceipt"}, {"type": "null"}]},
+        "feedback": {"oneOf": [{"$ref": "#/$defs/fileReceipt"}, {"type": "null"}]},
+        "feedback_core_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "registry": {"type": "object"}
+      }
+    }
+  }
+}

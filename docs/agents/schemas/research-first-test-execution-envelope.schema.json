@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-first-test-execution-envelope.schema.json",
+  "title": "Ticket-0119 guarded first-test and event-verifier execution envelopes",
+  "oneOf": [
+    {"$ref": "#/$defs/firstTestEnvelope"},
+    {"$ref": "#/$defs/verifierEnvelope"}
+  ],
+  "$defs": {
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "nullablePid": {
+      "oneOf": [
+        {"type": "integer", "minimum": 1},
+        {"type": "null"}
+      ]
+    },
+    "namespaceInodes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["user", "mount", "pid", "net", "ipc", "uts", "cgroup"],
+      "properties": {
+        "user": {"oneOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]},
+        "mount": {"oneOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]},
+        "pid": {"oneOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]},
+        "net": {"oneOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]},
+        "ipc": {"oneOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]},
+        "uts": {"oneOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]},
+        "cgroup": {"oneOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]}
+      }
+    },
+    "launch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "started_at", "finished_at", "boot_id", "outer_pid", "sandbox_pid",
+        "sandbox_start_ticks", "process_group", "argv", "cwd"
+      ],
+      "properties": {
+        "started_at": {"type": "string", "minLength": 1},
+        "finished_at": {"type": "string", "minLength": 1},
+        "boot_id": {"type": "string", "minLength": 1},
+        "outer_pid": {"type": "integer", "minimum": 1},
+        "sandbox_pid": {"$ref": "#/$defs/nullablePid"},
+        "sandbox_start_ticks": {"$ref": "#/$defs/nullablePid"},
+        "process_group": {"$ref": "#/$defs/nullablePid"},
+        "argv": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "cwd": {"const": "/work"}
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wall_seconds", "cpu_affinity", "memory_bytes", "output_bytes",
+        "process_model", "network", "repository", "persistent_writes",
+        "seccomp_policy_sha256", "namespace_inodes"
+      ],
+      "properties": {
+        "wall_seconds": {"type": "integer", "minimum": 1, "maximum": 1800},
+        "cpu_affinity": {
+          "type": "array", "minItems": 1, "maxItems": 2, "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 0}
+        },
+        "memory_bytes": {"type": "integer", "minimum": 1, "maximum": 4294967296},
+        "output_bytes": {"type": "integer", "minimum": 1, "maximum": 107374182},
+        "process_model": {"const": "one-filtered-process-no-children-v1"},
+        "network": {
+          "enum": ["new-net-namespace-plus-seccomp-kill", "not-observed"]
+        },
+        "repository": {
+          "enum": ["sparse-authenticated-inputs-read-only", "not-observed"]
+        },
+        "persistent_writes": {
+          "type": "array", "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "seccomp_policy_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "namespace_inodes": {"$ref": "#/$defs/namespaceInodes"}
+      }
+    },
+    "stream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "bytes"],
+      "properties": {
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bytes": {"type": "integer", "minimum": 0, "maximum": 107374182}
+      }
+    },
+    "write": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "path", "sha256", "bytes", "materialized"],
+      "properties": {
+        "role": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$"},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bytes": {"type": "integer", "minimum": 0, "maximum": 107374182},
+        "materialized": {"type": "boolean"}
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exit_code", "signal", "wall_seconds", "cpu_seconds",
+        "peak_aggregate_rss_bytes", "worker_output_bytes", "writes",
+        "stdout", "stderr", "forbidden_attempts", "violations"
+      ],
+      "properties": {
+        "exit_code": {
+          "oneOf": [{"type": "integer", "minimum": 0, "maximum": 255}, {"type": "null"}]
+        },
+        "signal": {
+          "oneOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]
+        },
+        "wall_seconds": {"type": "number", "minimum": 0, "maximum": 1805},
+        "cpu_seconds": {"type": "number", "minimum": 0, "maximum": 3605},
+        "peak_aggregate_rss_bytes": {"type": "integer", "minimum": 0},
+        "worker_output_bytes": {"type": "integer", "minimum": 0, "maximum": 107374182},
+        "writes": {"type": "array", "items": {"$ref": "#/$defs/write"}},
+        "stdout": {"$ref": "#/$defs/stream"},
+        "stderr": {"$ref": "#/$defs/stream"},
+        "forbidden_attempts": {"enum": ["none", "at-least-one", "not-observed"]},
+        "violations": {
+          "type": "array", "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "firstIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "seed_claim", "claim_id", "development_brief", "brief_id",
+        "task_packet", "task_id", "execution_contract_id"
+      ],
+      "properties": {
+        "seed_claim": {"$ref": "#/$defs/receipt"},
+        "claim_id": {"type": "string", "minLength": 1},
+        "development_brief": {"$ref": "#/$defs/receipt"},
+        "brief_id": {"type": "string", "minLength": 1},
+        "task_packet": {"$ref": "#/$defs/receipt"},
+        "task_id": {"type": "string", "minLength": 1},
+        "execution_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "verifierIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verifier_request", "verifier_contract_id", "seed_claim", "claim_id",
+        "task_packet", "task_id", "event_id", "event_core_sha256",
+        "subject_contract_id", "model_contract_id", "scope_contract_id",
+        "event_artifact"
+      ],
+      "properties": {
+        "verifier_request": {"$ref": "#/$defs/receipt"},
+        "verifier_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "seed_claim": {"$ref": "#/$defs/receipt"},
+        "claim_id": {"type": "string", "minLength": 1},
+        "task_packet": {"$ref": "#/$defs/receipt"},
+        "task_id": {"type": "string", "minLength": 1},
+        "event_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "event_core_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "subject_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "model_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "scope_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "event_artifact": {"$ref": "#/$defs/receipt"}
+      }
+    },
+    "firstTestEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "protocol", "envelope_id", "guard_component",
+        "identity", "launch", "enforced_policy", "observation", "terminal"
+      ],
+      "properties": {
+        "schema_version": {"const": 1},
+        "protocol": {"const": "research-first-test-execution-envelope-v1"},
+        "envelope_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "guard_component": {"$ref": "#/$defs/receipt"},
+        "identity": {"$ref": "#/$defs/firstIdentity"},
+        "launch": {"$ref": "#/$defs/launch"},
+        "enforced_policy": {"$ref": "#/$defs/policy"},
+        "observation": {"$ref": "#/$defs/observation"},
+        "terminal": {"enum": ["PASS", "VIOLATION", "LAUNCH_STOP"]}
+      }
+    },
+    "normalizedResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "bytes", "value", "matches_expected"],
+      "properties": {
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bytes": {"type": "integer", "minimum": 0, "maximum": 107374182},
+        "value": {"oneOf": [{"type": "object"}, {"type": "null"}]},
+        "matches_expected": {"type": "boolean"}
+      }
+    },
+    "verifierEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "protocol", "envelope_id", "guard_component",
+        "identity", "launch", "enforced_policy", "observation",
+        "normalized_result", "terminal"
+      ],
+      "properties": {
+        "schema_version": {"const": 1},
+        "protocol": {"const": "research-event-verifier-execution-envelope-v1"},
+        "envelope_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "guard_component": {"$ref": "#/$defs/receipt"},
+        "identity": {"$ref": "#/$defs/verifierIdentity"},
+        "launch": {"$ref": "#/$defs/launch"},
+        "enforced_policy": {"$ref": "#/$defs/policy"},
+        "observation": {"$ref": "#/$defs/observation"},
+        "normalized_result": {"$ref": "#/$defs/normalizedResult"},
+        "terminal": {"enum": ["PASS", "VIOLATION", "LAUNCH_STOP"]}
+      }
+    }
+  }
+}

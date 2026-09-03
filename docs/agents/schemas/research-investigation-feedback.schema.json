@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-investigation-feedback.schema.json",
+  "title": "Root-admitted per-seed investigation feedback",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "feedback_id", "seed", "investigation", "root_admission", "evidence", "proof_distance", "learned", "next_discriminating_test", "canonical_failure_memory_ref", "claim_candidate", "queue_disposition"],
+  "properties": {
+    "schema_version": {"const": 3},
+    "feedback_id": {"type": "string", "minLength": 1},
+    "seed": {
+      "type": "object", "additionalProperties": false,
+      "required": ["registry_id", "campaign_id", "seed_id", "seed_batch"],
+      "properties": {
+        "registry_id": {"type": "string", "minLength": 1},
+        "campaign_id": {"type": "string", "minLength": 1},
+        "seed_id": {"type": "string", "minLength": 1},
+        "seed_batch": {"$ref": "#/$defs/fileReceipt"}
+      }
+    },
+    "investigation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["brief_id", "brief_sha256", "development_receipt", "terminal"],
+      "properties": {
+        "brief_id": {"type": "string", "minLength": 1},
+        "brief_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "development_receipt": {"$ref": "#/$defs/fileReceipt"},
+        "terminal": {"enum": ["GATE_POSITIVE_SIGNAL", "GATE_FALSIFIER", "NO_DISCRIMINATING_SIGNAL", "OPERATIONAL_STOP"]}
+      }
+    },
+    "root_admission": {
+      "type": "object", "additionalProperties": false,
+      "required": ["reconciled_at", "admitted_feedback_core_sha256", "reconciliation"],
+      "properties": {
+        "reconciled_at": {"type": "string", "minLength": 1},
+        "admitted_feedback_core_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "reconciliation": {"$ref": "#/$defs/fileReceipt"}
+      }
+    },
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["level", "event_ids", "contract_id", "model_contract_id", "scope_contract_id", "damage_scope"],
+      "properties": {
+        "level": {"enum": ["proposal", "checked_computation", "operational_stop"]},
+        "event_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+        "contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "model_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "scope_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "damage_scope": {"enum": ["candidate-local", "subfamily", "operational-only"]}
+      }
+    },
+    "proof_distance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["net_proof_movement", "forward_reduction_receipt", "difficulty_displaced", "demonstrably_smaller", "counterfactual_test", "planning_consequence"],
+      "properties": {
+        "net_proof_movement": {"enum": ["neutral", "backward"]},
+        "forward_reduction_receipt": {"type": "null"},
+        "difficulty_displaced": {"type": "string", "minLength": 1},
+        "demonstrably_smaller": {"type": "boolean"},
+        "counterfactual_test": {"type": "string", "minLength": 1},
+        "planning_consequence": {"enum": ["promote", "retain", "demote", "suspend", "expire"]}
+      }
+    },
+    "learned": {
+      "type": "object", "additionalProperties": false,
+      "required": ["failing_feature", "strongest_supported_statement", "surviving_structure", "representation_blindness", "anti_duplication_warning"],
+      "properties": {
+        "failing_feature": {"$ref": "#/$defs/taggedLearning"},
+        "strongest_supported_statement": {"$ref": "#/$defs/taggedLearning"},
+        "surviving_structure": {"$ref": "#/$defs/nonVerifiedLearning"},
+        "representation_blindness": {"$ref": "#/$defs/nonVerifiedLearning"},
+        "anti_duplication_warning": {"$ref": "#/$defs/nonVerifiedLearning"}
+      }
+    },
+    "next_discriminating_test": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "question", "changed_mathematical_information", "ceiling_minutes", "stop_signal"],
+      "properties": {
+        "status": {"enum": ["inferred", "not-established"]},
+        "question": {"type": ["string", "null"]},
+        "changed_mathematical_information": {"type": ["string", "null"]},
+        "ceiling_minutes": {"type": ["integer", "null"], "minimum": 1, "maximum": 30},
+        "stop_signal": {"type": ["string", "null"]}
+      }
+    },
+    "canonical_failure_memory_ref": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["record_path", "record_anchor", "genome_id", "genome_core_sha256", "terminal_artifact"],
+          "properties": {
+            "record_path": {"type": "string", "minLength": 1},
+            "record_anchor": {"type": "string", "minLength": 1},
+            "genome_id": {"type": "string", "minLength": 1},
+            "genome_core_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "terminal_artifact": {"$ref": "#/$defs/fileReceipt"}
+          }
+        }
+      ]
+    },
+    "claim_candidate": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["contract_id", "model_contract_id", "scope_contract_id", "downstream"],
+          "properties": {
+            "contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "model_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "scope_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "downstream": {"const": "verification_funnel_required"}
+          }
+        }
+      ]
+    },
+    "queue_disposition": {"const": "investigated-do-not-reselect"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "evidence": {
+            "properties": {"level": {"const": "operational_stop"}},
+            "required": ["level"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence": {
+            "properties": {"event_ids": {"maxItems": 0}}
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "evidence": {
+            "properties": {"event_ids": {"minItems": 1}}
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "fileReceipt": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "taggedLearning": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "text", "subject_contract_id", "evidence_event_ids", "learning_claim_id"],
+      "properties": {
+        "status": {"enum": ["verified", "inferred", "not-established"]},
+        "text": {"type": ["string", "null"]},
+        "subject_contract_id": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "evidence_event_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+        "learning_claim_id": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "verified"}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "text": {"type": "string", "minLength": 1},
+              "subject_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "evidence_event_ids": {"minItems": 1, "maxItems": 1},
+              "learning_claim_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "inferred"}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "text": {"type": "string", "minLength": 1},
+              "evidence_event_ids": {"maxItems": 0},
+              "learning_claim_id": {"type": "null"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "not-established"}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "text": {"type": "null"},
+              "subject_contract_id": {"type": "null"},
+              "evidence_event_ids": {"maxItems": 0},
+              "learning_claim_id": {"type": "null"}
+            }
+          }
+        }
+      ]
+    },
+    "nonVerifiedLearning": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "text", "subject_contract_id", "evidence_event_ids", "learning_claim_id"],
+      "properties": {
+        "status": {"enum": ["inferred", "not-established"]},
+        "text": {"type": ["string", "null"]},
+        "subject_contract_id": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "evidence_event_ids": {"type": "array", "maxItems": 0},
+        "learning_claim_id": {"type": "null"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "inferred"}}, "required": ["status"]},
+          "then": {"properties": {"text": {"type": "string", "minLength": 1}}}
+        },
+        {
+          "if": {"properties": {"status": {"const": "not-established"}}, "required": ["status"]},
+          "then": {
+            "properties": {
+              "text": {"type": "null"},
+              "subject_contract_id": {"type": "null"}
+            }
+          }
+        }
+      ]
+    }
+  }
+}

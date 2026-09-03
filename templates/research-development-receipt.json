@@ -1,20 +1,34 @@
 {
-  "schema_version": 1,
+  "schema_version": 3,
   "brief_id": "YYYYMMDD-campaign-S01-probe",
   "brief_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "execution_envelope": {
+    "path": "runs/agents/YYYYMMDD-campaign/root-receipts/YYYYMMDD-campaign-S01-probe.execution-envelope.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
   "terminal": "NO_DISCRIMINATING_SIGNAL",
   "assigned_gate_outcome": "The frozen control comparison produced neither the declared live nor kill signal.",
   "evidence_events": [
     {
+      "event_id": "2cf167e67d1393bb1dce9522138b8d8f4dc0ed28dd4719abb162f58febc8b6b7",
       "kind": "proposal_only",
       "claim_level": "proposal",
-      "statement": "The bounded probe was executed but supplies no mathematical conclusion.",
-      "scope": "The one frozen seed and its named controls.",
+      "gate_branch": "no_signal",
+      "binding": {
+        "primary_contract_id": "6214b3cd3b21197a5820636f7af4e15e6ff1cb1016f39521b995a67715fe1a04",
+        "subject": "primary_claim",
+        "subject_contract_id": "6214b3cd3b21197a5820636f7af4e15e6ff1cb1016f39521b995a67715fe1a04",
+        "model_contract_id": "56b2906a821ce2f6f6d88c44dbbc21cb2099eeaae88a907c7ee5d0d44243713a",
+        "scope_contract_id": "c51c708f895442d33cf8005cdbd3a9b4a4c491da6bfbcd2675cdb9c7ab86ebe7",
+        "polarity": "observes",
+        "damage_scope_reached": "candidate-local"
+      },
       "artifact": {
         "path": "runs/agents/YYYYMMDD-campaign/execution/S01/report.md",
         "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
       },
-      "replay_or_check": "Authenticate the report and its separately declared checks."
+      "verification_receipt": null,
+      "observation": "The bounded probe was executed but supplies no mathematical conclusion."
     }
   ],
   "resource_use": {

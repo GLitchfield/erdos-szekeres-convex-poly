@@ -9,6 +9,7 @@
     "schema_version": {"const": 1},
     "campaign_id": {"type": "string", "minLength": 1},
     "generation_mode": {"enum": ["context_rich", "representation_escape", "failure_dual", "recombination"]},
+    "requested_seed_count": {"type": "integer", "minimum": 1, "maximum": 5},
     "snapshot": {"$ref": "#/$defs/fileReceipt"},
     "terminal": {"enum": ["SEED-BATCH-COMPLETE", "SEED-BATCH-NOVELTY-STOP", "SEED-BATCH-PROVIDER-STOP", "SEED-BATCH-PACKET-MISMATCH"]},
     "claim_level": {"const": "proposal"},

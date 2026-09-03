@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 3,
   "brief_id": "YYYYMMDD-campaign-S01-probe",
   "task_id": "YYYYMMDD-campaign-S01-probe",
   "seed": {
@@ -9,6 +9,30 @@
   },
   "target_ref": "D-HALF",
   "worker_mode": "context_rich",
+  "evidence_contract": {
+    "contract_id": "6214b3cd3b21197a5820636f7af4e15e6ff1cb1016f39521b995a67715fe1a04",
+    "statement": "Does the exact frozen overlap statistic discriminate the named controls?",
+    "target_ref": "D-HALF",
+    "model": {
+      "working_tier": "abstract frozen control model",
+      "target_tier": "abstract frozen control model",
+      "transfer_status": "same_tier",
+      "bridge_ref": null,
+      "information_at_risk": "The overlap statistic may omit structure needed by the target dependency."
+    },
+    "model_contract_id": "56b2906a821ce2f6f6d88c44dbbc21cb2099eeaae88a907c7ee5d0d44243713a",
+    "scope": {
+      "scope_contract_id": "c51c708f895442d33cf8005cdbd3a9b4a4c491da6bfbcd2675cdb9c7ab86ebe7",
+      "candidate": {
+        "campaign_id": "YYYYMMDD-campaign",
+        "seed_id": "S01",
+        "seed_batch_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "ceiling": "candidate-local",
+      "subfamily": null
+    },
+    "theorem": null
+  },
   "probe": {
     "question": "Does the exact frozen overlap statistic discriminate the named controls?",
     "assumption_refs": ["ErdosSzekeres.ExampleFrozenPremise"],
@@ -38,7 +62,7 @@
       "stop_observation": "Agreement kills the literal seed at its tested scope."
     }
   ],
-  "allowed_methods": ["manual_reasoning", "local_python"],
+  "allowed_methods": ["local_python"],
   "lean_policy": {
     "mode": "not_yet",
     "theorem_contract_ref": null,
@@ -52,5 +76,24 @@
     "claims": "verification-funnel-v1",
     "metrics": "evidence-vector-v1"
   },
-  "authority": "investigation_only; task_packet_controls_all_actions"
+  "authority": {
+    "protocol": "ticket-0119-standing-first-test-v1",
+    "approval_ref": "docs/wayfinder/tickets/0119-adopt-self-refilling-investigation-loop.md#approval-and-operational-inventory",
+    "execution_class": "pre_admission_information_gathering",
+    "terminal_ceiling": "has_legs_or_earlier",
+    "limits": {
+      "wall_minutes": 30,
+      "cpu_cores": 2,
+      "memory_gib": 4,
+      "output_gib": 0.1
+    },
+    "writes": "exact_ignored_runs_agents_paths_only",
+    "provider_calls": 0,
+    "service_starts": 0,
+    "scheduler_mutations": false,
+    "canonical_writes": false,
+    "external_writes": false,
+    "installations": false,
+    "destructive_actions": false
+  }
 }

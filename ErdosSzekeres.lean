@@ -6,6 +6,7 @@ public import ErdosSzekeres.TripleColoringExtension
 public import ErdosSzekeres.TripleColoringGeometricExtension
 public import ErdosSzekeres.TripleColoringExtensionFiber
 public import ErdosSzekeres.TripleColoringExtensionTransition
+public import ErdosSzekeres.CommonAnchorPermutationOrder
 public import ErdosSzekeres.Chains
 public import ErdosSzekeres.Presentation
 public import ErdosSzekeres.Convexity
@@ -42,6 +43,7 @@ public import ErdosSzekeres.PredecessorHalfFin15SingleExchange
 public import ErdosSzekeres.PredecessorHalfFin15ExteriorSystem
 public import ErdosSzekeres.PredecessorHalfFin15SharedAnchorGlobal
 public import ErdosSzekeres.PredecessorHalfFin15SingleExchangeGlobal
+public import ErdosSzekeres.PredecessorHalfFin15CrossExterior
 public import ErdosSzekeres.PredecessorBlockerPackingScaling
 public import ErdosSzekeres.SpectatorExtensionObstruction
 public import ErdosSzekeres.InverseSteppingUpKernel
@@ -84,6 +86,7 @@ public import ErdosSzekeres.TurnLanguage
 public import ErdosSzekeres.IncomingStarTransition
 public import ErdosSzekeres.IncomingStarTransitionCollision
 public import ErdosSzekeres.StructuralCharging
+public import ErdosSzekeres.StrongCommonAnchorMultiOwner
 public import ErdosSzekeres.StructuralChargingCore
 public import ErdosSzekeres.StructuralChargingTransport
 public import ErdosSzekeres.TurnLanguageCollision

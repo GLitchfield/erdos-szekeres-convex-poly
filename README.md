@@ -112,6 +112,33 @@ sets.
   This closes one named subordinate proof stage, not ambient cardinality
   fifteen: both raw contradiction branches still require either a new
   cross-exterior color implication or a proved well-founded selector. The same
+  development now also contains compiling five-label odd-quadruple parity and
+  strong-deletion lemmas plus a guarded local permutation-reorder table.  The
+  table uses `native_decide` and remains finite computational evidence.  A
+  source now also contains LSP-elaborated actual placement-`00` and
+  placement-`33` common-anchor transport candidates plus placement-`03`,
+  placement-`04`, and placement-`13` impossibility candidates.  The latest
+  placement-`13` diagnostic has no errors and five cosmetic unused-`simp`-
+  argument warnings.  The guarded project gate timed out in an older generated
+  module before reaching this package; four actual
+  placement cases, the generic common-anchor multi-owner closure, and its
+  adaptive Fin15 consumer remain unadmitted.  They do not yet close either raw
+  branch or move a load-bearing dependency.  A fresh blind Fable-5.1/Sol
+  review finds no producer-ready uniform wrapper, proposition relabel, or tag
+  API; it selected the now-elaborated placement-`13` source incubation, with
+  `24` retained as reserve.  A subsequent current-source comparison now
+  selected placement-`24` over final contradiction `14`; its first immutable
+  identity stopped on a `OneChangeOn` argument mismatch and was removed without
+  mathematical damage.  A fresh corrected identity now uses the literal
+  adjacent-order calls and a finite inline three-matching case proof.  It and
+  the separately packeted placement-`14` contradiction both pass their sole
+  declaration-scoped diagnostics, leaving only actual leaves `23` and `34` at
+  proposal level and closing the contradiction-source subfamily.  No guarded
+  project gate has admitted these candidates, so proof movement remains
+  neutral.  Both remaining leaves have complete theorem-entry memos, but the
+  router additionally lacks exact tag/swap, selection, uniqueness, and
+  pair-classifier producers; leaf completion alone will not close it.
+  The same
   rolling wave retires
   `FP-18` after the exact first control gives `m2=3280>630`, and retires the
   cardinality-only `FP-19` subfamily after its `(9,5)` cone is exactly feasible.
@@ -179,17 +206,47 @@ sets.
   selective-context first probes, evidence-scoped mutations, claim-triggered
   verification, and gap-shaped Lean timing. The frozen Factory v3 packet is an
   immutable historical control and was not run. This is a neutral process
-  change; it changes no portfolio state or load-bearing proof edge. Ticket 0083
-  now runs that seed stage as a persistent self-refilling service under one
-  finite standing envelope: one read-only Sol-max call at a time, no attempted
-  packet retries, rolling/cooldown/total/inbox/circuit limits, and root-only
-  reconciliation and route decisions. Batch 007 was frozen automatically and
+  change; it changes no portfolio state or load-bearing proof edge. Historically,
+  Ticket 0083 ran that seed stage as a rate-limited, cooldown-bound persistent
+  service. Ticket 0119's current temporary target is a ten-item individual
+  proposal queue with exact-deficit calls, no rolling daily cap or cooldown,
+  retained lifetime/per-call/circuit limits, a 100-call lifetime ceiling with
+  30 charged and at most 70 remaining, hash-linked v3 attempt/outcome
+  accounting, no attempted packet retries, and root-only reconciliation and
+  route decisions. Authoritative ready/pending/reserved inventory is accounting-
+  backed. Root fallback requires a generator-validated learning export, current
+  snapshot build and admission, same-run semantic screen, pre/post currency
+  checks, and a final result commit marker. Root admission and reconciliation
+  bind the same complete feedback-core digest after exact evidence validation.
+  Batch 007 was historically frozen automatically and
   completed with five validated but unadmitted proposal seeds before the
-  service entered its declared cooldown. A hardened versioned receipt preserved
-  that accounting across restart and automatically launched failure-dual Batch
-  008 at the original eligibility time; the service still cannot run probes,
+  Ticket-0083 service entered its then-declared cooldown. A hardened historical
+  versioned receipt preserved that accounting across restart and automatically
+  launched failure-dual Batch 008 at the original eligibility time; the service
+  still cannot run probes,
   admit routes, edit canonical files, consume its inbox, or claim proof
-  movement. Ticket 0082's final governance-refrozen admission replays now
+  movement. The v3 state, learning, guarded-first-test, and exact outcome-tail
+  restart repairs are implemented; the v3 suite passes 24/24 and all seven
+  repaired base-generator cases pass focused reruns (the final aggregate rerun
+  was interrupted and is not claimed complete),
+  and the independently audited portfolio correction retains one checked
+  fixed-anchor negative while downgrading five scout-only conclusions to
+  proposals.  The release gate subsequently passed and authorization
+  `9581e1bf0f70bf1f3a685f39f413971ebc5a884dc195a70d2b452c1997b7e115`
+  is active.  The generator is live and idle at its accounting-backed target of
+  ten ready seeds after Batches 055--056, with 41 charged lifetime calls and no
+  unresolved attempt.  Queue depth is proposal inventory, not mathematical
+  evidence.  The scheduler remains paused/stopped and is non-dispatchable
+  because its implementation has drifted from its authorization. Standing investigations, once released,
+  are guarded deterministic Python tests with exact artifact-consuming replay;
+  they have no manual, source, Lean, or `file_compiles` branch. Later Lean needs
+  separate approval through the guarded Makefile path, and `native_decide`
+  remains computational evidence and is never replaced with kernel `decide`.
+  The loop stops at the six-part “has legs” gate: first-hostile-test survival,
+  independent hostile/cold reproduction, explicit model and return status, the
+  complete theorem-entry memo and consumer ladder, a genuine mathematical
+  delta from controls, and a bounded allocation-changing next gate. That is
+  normally neutral search information, not proof movement. Ticket 0082's final governance-refrozen admission replays now
   reject the exact Batch-005 Lorentzian full-incidence polynomial at
   candidate-local scope and the literal exact-directed-split-side
   delta-matroid family at subfamily scope. Both are checked finite negative

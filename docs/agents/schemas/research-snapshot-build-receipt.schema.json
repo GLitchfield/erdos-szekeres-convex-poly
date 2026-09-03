@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-snapshot-build-receipt.schema.json",
+  "title": "Authenticated Sol idea-snapshot build receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "protocol", "campaign_id", "purpose", "started_at", "finished_at", "terminal", "builder_component", "invocation", "input_state", "outputs", "output_aggregate_sha256", "meaning"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "protocol": {"const": "sol-idea-snapshot-build-v1"},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "purpose": {"enum": ["provider_generation", "root_fallback"]},
+    "started_at": {"type": "string", "minLength": 1},
+    "finished_at": {"type": "string", "minLength": 1},
+    "terminal": {"const": "SNAPSHOT-BUILD-COMPLETE"},
+    "builder_component": {"$ref": "#/$defs/fileReceipt"},
+    "invocation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["service_dir", "output_dir", "max_inline_bytes", "excluded_campaign_id"],
+      "properties": {
+        "service_dir": {"type": "string", "minLength": 1},
+        "output_dir": {"type": "string", "minLength": 1},
+        "max_inline_bytes": {"type": "integer", "minimum": 1},
+        "excluded_campaign_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "input_state": {
+      "type": "object", "additionalProperties": false,
+      "required": ["validated_learning_export", "validated_learning_export_core_sha256", "current_input_fingerprint_sha256", "learning_state_manifest", "learning_epoch_sha256", "workspace_manifest_aggregate_sha256"],
+      "properties": {
+        "validated_learning_export": {"$ref": "#/$defs/fileReceipt"},
+        "validated_learning_export_core_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "current_input_fingerprint_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "learning_state_manifest": {"$ref": "#/$defs/fileReceipt"},
+        "learning_epoch_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "workspace_manifest_aggregate_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "outputs": {
+      "type": "object", "additionalProperties": false,
+      "required": ["manifest_json", "context_md", "lean_declarations_md", "prior_idea_registry_json", "prior_idea_registry_md", "learning_state_manifest_json", "packet_summary_json"],
+      "properties": {
+        "manifest_json": {"$ref": "#/$defs/fileReceipt"},
+        "context_md": {"$ref": "#/$defs/fileReceipt"},
+        "lean_declarations_md": {"$ref": "#/$defs/fileReceipt"},
+        "prior_idea_registry_json": {"$ref": "#/$defs/fileReceipt"},
+        "prior_idea_registry_md": {"$ref": "#/$defs/fileReceipt"},
+        "learning_state_manifest_json": {"$ref": "#/$defs/fileReceipt"},
+        "packet_summary_json": {"$ref": "#/$defs/fileReceipt"}
+      }
+    },
+    "output_aggregate_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "meaning": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "fileReceipt": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

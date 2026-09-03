@@ -325,6 +325,70 @@ receipts, and crash recovery must authenticate boot/start process identity
 before following a PID. Any model, code, mode, limit, or authority change
 invalidates the active standing receipt and requires a new user decision.
 
+Ticket 0119 supersedes Ticket 0083's cadence and inbox-accounting clauses for
+the current service revision.  Maintain exactly ten authenticated `ready`
+proposal items using individual seed identities and deficit-bound packets; no
+rolling daily call limit or post-call cooldown applies.  Preserve one provider
+call at a time, the 100-call cross-version lifetime ceiling, the 90-minute / 2
+CPU / 4-GiB / 0.05-GiB per-call envelope, both two-strike circuits, read-only
+proposal-only authority, and no retry of an attempted packet.  Claims and
+root-admitted feedback are per seed.  Every subsequently frozen packet binds
+the latest claim-plus-feedback-and-canonical-failure-memory learning epoch;
+stale packets/results expose no ready seeds.  The fresh v3 authorization binds
+one immutable migration baseline for all 30 charged v2/v2.1 calls and the six
+explicitly excluded pre-standing v1 calls.  Every new charged attempt and
+outcome enters the hash-linked service ledger. The attempt event, batch receipt,
+and accounting head are durable before provider creation; after creation, a
+PID/boot/start/process-group acknowledgement is durable before prompt delivery.
+A missing acknowledgement is an operator-diagnosis stop, never a retry or
+fabricated outcome. A missing artifact, malformed
+terminal, chain gap, or unresolved attempt is circuit-open before fresh
+spending.  A charged identity is never removed from lifetime accounting by
+batch loss. The v3 active-authorization pointer must name the latest immutable
+activation event and head, so rolling the pointer back to an older valid file
+fails closed. A purely local chain does not defend against a coordinated
+rollback of the head and every removed tail artifact; that threat requires an
+external monotonic anchor and is outside the standing envelope.
+
+Whenever the authenticated ready count is zero and no provider reservation is
+pending, root may freeze compact fallback seeds without waiting for or
+weakening a provider safety stop.  The root batch must come from the current
+generator's accounting-backed validated-learning export, closed snapshot-build
+receipt, and immutable snapshot-admission receipt, and must pass the batch-bound
+JSON semantic screen: exact seed hashes, schema/identity/snapshot/proposal/
+budget checks, and root attestations for semantic duplication, target
+equivalence, model/return status, failure memory, source/novelty status, family
+correlation, and no padding.  The builder may consume Ticket-0119 continuous
+state only through that validated export; it may not scan raw batch, claim, or
+feedback directories and reinterpret admission itself.  Root-origin seeds enter
+the same duplicate memory, claim, and feedback rules and receive no evidentiary
+privilege.
+
+Snapshot validation has two deliberately different time modes.  **Current
+admission** regenerates the validated learning export, cold-rebuilds and byte-
+compares every deterministic output with the current builder, checks the post-
+replay campaign-excluded learning epoch and workspace aggregate, and only then
+writes one immutable snapshot-admission receipt.  **Historical attestation**
+authenticates those frozen outputs and admission cross-bindings without
+consulting a later builder or later mutable learning targets; it does not claim
+that today's implementation would reproduce the old snapshot.  Launch and
+ready exposure separately require current currency.  Both current builds
+exclude the candidate campaign itself so materializing its returned batch does
+not invalidate its pre-call provenance.
+
+All authoritative v3 ready, pending, and reserved counts come from one current
+active authorization and its authenticated hash-linked accounting view.  A
+provider campaign contributes inventory only after its exact attempt, outcome,
+result, and seed-batch receipts close in the current head.  Missing heads,
+chain gaps, unresolved attempts, and receipt mismatches fail closed.  A root
+import instead requires its exact root result, snapshot admission, and semantic
+screen.  Its source, snapshot, screen, and derived admission must remain in the
+same resolved ignored root run; pre-write and post-write currency checks bracket
+the service-directory writes, and the result receipt is written last as the
+only queue-visibility commit marker.  An incomplete import is retained for
+operator diagnosis, exposes no ready seed, and is never silently deleted or
+retried.
+
 Four remains a capacity target, not a quota: if fewer than four mathematically
 distinct gates are executable, run the smaller honest slate. Spare capacity may
 be used for approved campaign support, source grounding, card audit, or route
@@ -335,7 +399,8 @@ plus one root-owned lane.
 
 ### Theorem-first operating rebalance
 
-Ticket 0103 is the current user-approved operating policy. Tickets 0107 and
+Ticket 0103 is the retained baseline operating policy, subject to the explicit
+temporary Ticket-0119 overrides below. Tickets 0107 and
 0118 retain it unchanged at their scheduled reviews and record
 snapshot-specific empty execution slates; those empty slates are not route
 retirement or a standing ban on new work. The policy temporarily
@@ -407,12 +472,129 @@ an exploration slate or automatic campaign support. The honest approved reserve
 may contain zero to three packets; an exploration-only slate still needs a new
 explicit user approval and decision-changing gates.
 
-The scheduler remains intentionally paused/stopped and the continuous idea
-generator remains failed/stopped. Neither may be repaired, reconfigured,
-reauthorized, or restarted merely to occupy capacity. A future restart requires
+Under the Ticket-0103 baseline, the scheduler remains intentionally
+paused/stopped and the continuous idea generator remains failed/stopped.
+Ticket 0119 supplies the later, generator-only exception; it does not affect the
+scheduler stop. Neither service may be repaired, reconfigured, reauthorized, or
+restarted merely to occupy capacity. A restart outside Ticket 0119 requires
 a fresh diagnosis and report, a theorem-first workload satisfying Ticket 0103,
 a valid current implementation and receipt, and a new explicit user decision.
 Historical receipts grant no current execution authority.
+
+### Self-refilling investigation-loop override
+
+Ticket 0119 is the current user-approved temporary operating policy.  It pauses
+the post-Ticket-0118 empty frontier cycle and supersedes Ticket 0103's
+`40/30/20/10` discretionary weights, automatic-campaign prohibition, and zero-
+reserve preference while this temporary policy is in force, including before
+the generator release gate passes.  It preserves the theorem-entry
+memo, semantic-readiness receipt, evidence-admission, failure-genome, model-
+tier, no-padding, mechanism-correlation, proof-distance, and load-bearing-
+ledger rules.  The scheduler remains intentionally paused/stopped; of those
+two services Ticket 0119 authorizes only the separately diagnosed and freshly
+receipted v3 idea generator.  Its separate standing first-test clause below
+authorizes bounded investigation packets; it is not authority to restart the
+scheduler or another service.
+
+The v3 state, accounting, learning-export, first-test-guard, and exact outcome-
+tail restart repairs are implemented; the final v3 suite passes 24/24 and all
+seven repaired base-generator cases pass focused reruns.  The final aggregate
+rerun was interrupted by the user deadline and is not claimed complete; the
+corrected portfolio reconciliation is independently CLEAN.  The
+generator remains stopped and may not be configured, authorized, started, or
+spend a provider call until the final post-repair guarded `make test`, remaining
+final-byte CLEAN reviews, and one new authorization binding the final bytes all
+pass.  That authorization must reconfirm the immutable 30-call charged baseline
+and at most 70 remaining provider calls.  The scheduler remains stopped
+throughout and after the generator-only release.
+
+Keep ten authenticated, not-yet-assigned proposal items `ready`.  Claiming an
+item changes only that individual seed to `investigating` and releases one
+deficit slot.  Run up to four mathematically distinct bounded investigations,
+normally three delegated and one root-owned, and by default assign no more than
+half to one mechanism family.  Whenever the ready queue is empty and no
+provider packet reserves capacity, root creates compact proposal seeds until
+at least one honest item is ready.  Root-origin items enter the same prior
+registry and receive no evidentiary privilege.
+
+Before reusing an investigation slot, authenticate its declared evidence gate
+and write a per-seed root feedback receipt.  Feed the exact terminal, evidence
+level, scope, damage, proof-distance account, tagged learned features,
+anti-duplication warning, and next mathematically different discriminator into
+every later generator snapshot.  `verified` fields constrain duplicates and
+mutations at their admitted scope; `inferred` fields may suggest questions but
+are never positive evidence.  In-flight identities remain visible so they are
+not regenerated.  Legacy batch consumption is
+`legacy_reconciled_investigation_unknown`, not proof that a seed was tested.
+Each development brief freezes a damage-scope contract.  A per-seed positive
+or no-signal terminal is `candidate-local`; an admitted falsifier may be at
+most `subfamily`, and only when the brief named the shared premise and subfamily
+  in advance.  Its feedback must hash-bind one exact canonical route record,
+one heading-bounded immutable genome core, a unique genome identity/anchor, and
+the selected exact falsifier artifact. Later text may be appended outside that
+core without invalidating earlier feedback, but moving, duplicating, or changing
+the core fails authentication. Architecture- or
+mechanism-wide scope requires a separate authenticated shared-cause/adversarial
+review integrated into that same canonical genome home; it never mutates or
+broadens the original per-seed receipt.  Canonical route-memory receipts enter
+the learning epoch so both generator and root learn that later review.
+
+The generator, not the packet builder, validates and projects continuous
+learning.  Under the service lock it must derive one immutable validated-
+learning export from current authorization and accounting, closed batch/result
+receipts, exact claims and task packets, full feedback validation, root
+reconciliations, and canonical failure-memory receipts.  A feedback core is the
+canonical digest of every feedback field except `root_admission`; both root
+admission and `research-root-reconciliation-v2` bind that same full core and
+the exact claim, development receipt, standing authority, and timestamp.  The
+root reconciliation records a checked cross-binding and does not make unchecked
+prose true.  Only learning statements explicitly established by a normalized,
+independently checked verifier result may be tagged `verified`; contextual or
+suggestive residue remains `inferred` or `not-established`.
+
+Continue the rolling loop until one candidate passes Ticket 0119's “has legs”
+gate: authenticated first-hostile-test survival, independent hostile or cold
+reproduction, explicit model/return status, a complete theorem-entry memo and
+short consumer ladder, a genuine mathematical delta from controls, and a
+bounded next gate whose outcomes change allocation.  This terminal is search
+information and normally neutral proof movement.  Only a compiling theorem
+that strictly reduces or closes a named load-bearing dependency is forward.
+At that six-part terminal, stop new claims and further loop spending or work;
+continuation is a separate user decision.  Merely filling the ten-item queue is
+not evidence that any candidate has legs.
+
+The user's 2026-08-31 instruction gives standing approval for the loop's future
+pre-admission first tests only after root freezes a seed-specific immutable
+development brief and exact Ticket-0119 task packet.  A standing test is a
+root-launched, noninteractive guarded deterministic check, not an ordinary
+collaboration-agent execution: agent reasoning may be frozen as proposal-only
+input, but it cannot author admitted checked evidence without a trusted
+execution envelope.  Each guarded test is information-gathering, lasts at most
+30 minutes, uses at most 2 CPU cores, 4 GiB local RSS, and 0.1 GiB total output,
+and may materialize only its exact ignored `runs/agents/` deliverables.  The
+root-owned guard authenticates the claim, brief, task, exact Python checker and
+raw inputs; enforces the process, filesystem, network, resource, and forbidden-
+action envelope; makes the checker consume the exact event artifact; and emits
+the independently authenticated execution and verifier receipts.  Missing or
+violated guard evidence is `OPERATIONAL_STOP / operational-only`, with no
+selected mathematical event, verified learning, or claim candidate.
+Every standing first-test feedback records net proof movement `neutral` or
+`backward`; this envelope cannot support a forward claim.
+
+Standing probes have no `manual_reasoning`, `read_only_sources`, `local_lean`,
+`fixed_statement_in_loop`, theorem contract, `file_compiles`, or Lean verifier
+branch.  They authorize no provider/service/scheduler action, canonical or
+external write, network/source access, installation, destructive action,
+resource increase, unapproved delegation, or continuation past the “has legs”
+terminal.  Up to four may run concurrently subject to family diversity.  A
+checked event binds one immutable contract/model/scope ID and the hash of its
+exact kind, branch, subject, polarity, damage, artifact, and observation, and
+its normalized guarded verifier result must establish that exact event.  Lean
+may enter only later under a separately approved canonical theorem packet using
+the guarded Makefile path.  `native_decide` remains computational evidence and
+must use guarded `make test`; it is never `file_compiles` and may never be
+replaced with kernel `decide`.  A later fixed-statement kernel proof may claim
+`file_compiles` only through that separately approved guarded path.
 
 The evidence-admission part of step 1 is mandatory: agent prose or unchecked
 computation must not update the portfolio. Portfolio reconciliation in step 2

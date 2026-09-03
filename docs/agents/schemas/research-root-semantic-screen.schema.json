@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-root-semantic-screen.schema.json",
+  "title": "Root semantic screen for an empty-queue fallback seed batch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "protocol", "screen_id", "screened_at", "reviewer", "authority", "campaign_id", "approval_ref", "standing_authorization", "seed_batch", "snapshot", "snapshot_build", "prior_idea_registry", "feedback_epoch_sha256", "seed_reviews", "overall_decision", "claim_level"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "protocol": {"const": "research-root-semantic-screen-v1"},
+    "screen_id": {"type": "string", "minLength": 1},
+    "screened_at": {"type": "string", "minLength": 1},
+    "reviewer": {"const": "root"},
+    "authority": {"const": "proposal_queue_screen_only"},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "approval_ref": {"type": "string", "minLength": 1},
+    "standing_authorization": {"$ref": "#/$defs/fileReceipt"},
+    "seed_batch": {"$ref": "#/$defs/fileReceipt"},
+    "snapshot": {"$ref": "#/$defs/fileReceipt"},
+    "snapshot_build": {"$ref": "#/$defs/fileReceipt"},
+    "prior_idea_registry": {"$ref": "#/$defs/fileReceipt"},
+    "feedback_epoch_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "seed_reviews": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {"$ref": "#/$defs/seedReview"}
+    },
+    "overall_decision": {"const": "pass"},
+    "claim_level": {"const": "proposal"}
+  },
+  "$defs": {
+    "fileReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "seedReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seed_id", "seed_sha256", "working_model_tier", "machine_checks", "root_judgment_checks", "decision", "rationale"],
+      "properties": {
+        "seed_id": {"type": "string", "minLength": 1},
+        "seed_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "working_model_tier": {"type": "string", "minLength": 1},
+        "machine_checks": {
+          "type": "object", "additionalProperties": false,
+          "required": ["schema_valid", "identity_bound", "snapshot_bound", "proposal_only", "literal_duplicate_absent", "first_test_within_30_minutes"],
+          "properties": {
+            "schema_valid": {"const": "pass"},
+            "identity_bound": {"const": "pass"},
+            "snapshot_bound": {"const": "pass"},
+            "proposal_only": {"const": "pass"},
+            "literal_duplicate_absent": {"const": "pass"},
+            "first_test_within_30_minutes": {"const": "pass"}
+          }
+        },
+        "root_judgment_checks": {
+          "type": "object", "additionalProperties": false,
+          "required": ["semantic_duplicate_absent", "target_equivalence_screened", "model_tier_and_return_status_explicit", "failure_memory_respected", "novelty_or_source_status_reviewed", "family_correlation_reviewed", "no_padding"],
+          "properties": {
+            "semantic_duplicate_absent": {"$ref": "#/$defs/judgment"},
+            "target_equivalence_screened": {"$ref": "#/$defs/judgment"},
+            "model_tier_and_return_status_explicit": {"$ref": "#/$defs/judgment"},
+            "failure_memory_respected": {"$ref": "#/$defs/judgment"},
+            "novelty_or_source_status_reviewed": {"$ref": "#/$defs/judgment"},
+            "family_correlation_reviewed": {"$ref": "#/$defs/judgment"},
+            "no_padding": {"$ref": "#/$defs/judgment"}
+          }
+        },
+        "decision": {"const": "pass"},
+        "rationale": {"type": "string", "minLength": 1}
+      }
+    },
+    "judgment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "rationale", "record_refs"],
+      "properties": {
+        "status": {"const": "pass"},
+        "rationale": {"type": "string", "minLength": 1},
+        "record_refs": {"type": "array", "items": {"$ref": "#/$defs/fileReceipt"}}
+      }
+    }
+  }
+}

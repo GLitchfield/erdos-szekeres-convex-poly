@@ -4,11 +4,12 @@
   "title": "Erdos-Szekeres evidence-first development receipt",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "brief_id", "brief_sha256", "terminal", "assigned_gate_outcome", "evidence_events", "resource_use", "claim_candidate", "serendipity", "route_action", "admission_status"],
+  "required": ["schema_version", "brief_id", "brief_sha256", "execution_envelope", "terminal", "assigned_gate_outcome", "evidence_events", "resource_use", "claim_candidate", "serendipity", "route_action", "admission_status"],
   "properties": {
-    "schema_version": {"const": 1},
+    "schema_version": {"const": 3},
     "brief_id": {"type": "string", "minLength": 1},
     "brief_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_envelope": {"$ref": "#/$defs/fileReceipt"},
     "terminal": {"enum": ["GATE_POSITIVE_SIGNAL", "GATE_FALSIFIER", "NO_DISCRIMINATING_SIGNAL", "OPERATIONAL_STOP"]},
     "assigned_gate_outcome": {"type": "string", "minLength": 1, "maxLength": 1600},
     "evidence_events": {
@@ -16,14 +17,28 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["kind", "claim_level", "statement", "scope", "artifact", "replay_or_check"],
+        "required": ["event_id", "kind", "claim_level", "gate_branch", "binding", "artifact", "verification_receipt", "observation"],
         "properties": {
-          "kind": {"enum": ["checked_computation", "exact_falsifier", "authenticated_source_interface", "compiling_fixed_statement", "reproducible_unexplained_invariant", "claim_refuted", "proposal_only"]},
-          "claim_level": {"enum": ["proposal", "computational_evidence", "file_compiles"]},
-          "statement": {"type": "string", "minLength": 1, "maxLength": 1600},
-          "scope": {"type": "string", "minLength": 1, "maxLength": 1200},
+          "event_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "kind": {"enum": ["checked_computation", "exact_falsifier", "reproducible_unexplained_invariant", "claim_refuted", "proposal_only"]},
+          "claim_level": {"enum": ["proposal", "computational_evidence"]},
+          "gate_branch": {"enum": ["live", "kill", "no_signal", "sidecar"]},
+          "binding": {
+            "type": "object", "additionalProperties": false,
+            "required": ["primary_contract_id", "subject", "subject_contract_id", "model_contract_id", "scope_contract_id", "polarity", "damage_scope_reached"],
+            "properties": {
+              "primary_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "subject": {"enum": ["primary_claim", "shared_premise"]},
+              "subject_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "model_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "scope_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "polarity": {"enum": ["supports", "refutes", "observes"]},
+              "damage_scope_reached": {"enum": ["candidate-local", "subfamily"]}
+            }
+          },
           "artifact": {"$ref": "#/$defs/fileReceipt"},
-          "replay_or_check": {"type": "string", "minLength": 1, "maxLength": 1000}
+          "verification_receipt": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/fileReceipt"}]},
+          "observation": {"type": "string", "minLength": 1, "maxLength": 2000}
         }
       }
     },
@@ -51,12 +66,12 @@
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["statement", "model_tier", "scope_ceiling", "evidence_event_indices", "downstream"],
+          "required": ["contract_id", "model_contract_id", "scope_contract_id", "evidence_event_ids", "downstream"],
           "properties": {
-            "statement": {"type": "string", "minLength": 1, "maxLength": 2400},
-            "model_tier": {"type": "string", "minLength": 1, "maxLength": 1200},
-            "scope_ceiling": {"type": "string", "minLength": 1, "maxLength": 1200},
-            "evidence_event_indices": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+            "contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "model_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "scope_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "evidence_event_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
             "downstream": {"const": "verification_funnel_required"}
           }
         }
@@ -68,13 +83,13 @@
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["statement_or_observation", "model_tier", "scope_ceiling", "relation_to_assigned_probe", "evidence_event_indices", "contains_claim_candidate", "downstream"],
+          "required": ["statement_or_observation", "model_tier", "scope_ceiling", "relation_to_assigned_probe", "evidence_event_ids", "contains_claim_candidate", "downstream"],
           "properties": {
             "statement_or_observation": {"type": "string", "minLength": 1, "maxLength": 2400},
             "model_tier": {"type": "string", "minLength": 1, "maxLength": 1200},
             "scope_ceiling": {"type": "string", "minLength": 1, "maxLength": 1200},
             "relation_to_assigned_probe": {"type": "string", "minLength": 1, "maxLength": 1200},
-            "evidence_event_indices": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+            "evidence_event_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
             "contains_claim_candidate": {"type": "boolean"},
             "downstream": {"const": "root_audit_required"}
           }

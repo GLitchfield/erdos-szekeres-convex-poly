@@ -3,7 +3,7 @@ title: Exact Erdős--Szekeres frontier portfolio
 artifact: frontier-portfolio
 schema_version: 2
 status: canonical
-last_updated: 2026-08-31
+last_updated: 2026-09-01
 ---
 
 # Frontier portfolio
@@ -192,8 +192,9 @@ mathematical functions—for example one unrestricted producer, one concrete
 decomposable obstruction, and one generalization or falsification lane.  This
 is a scheduling heuristic, not a membership rule.
 
-Ticket 0103 adds the current theorem-first selection override, and Ticket 0107
-retains it unchanged after its first scheduled review. Ticket 0107 also selects
+Ticket 0103 supplies the retained theorem-first baseline outside Ticket 0119's
+current temporary override, and Ticket 0107 retains that baseline unchanged
+after its first scheduled review. Ticket 0107 also selects
 a snapshot-specific empty execution slate: zero proof-producing and zero
 information-gathering investigations. This is not a portfolio-state change,
 route retirement, or a prohibition on a later separately reviewed gate.
@@ -213,11 +214,49 @@ new mathematical information rather than larger solver or certificate
 resources. `D-NORMALIZE` receives no ordinary lane while its current family is
 suspended.
 
+Ticket 0119 temporarily supersedes those discretionary weights and the
+automatic-campaign prohibition while its user-approved self-refilling policy is
+in force. Actual generation and investigation remain release-gated below. This
+is an execution-policy change, not a
+portfolio-state change: the inclusive entries, correlations, contribution
+paths, and load-bearing dependencies below are unchanged. The temporary queue
+contains ten proposal items, not ten routes; semantic review and the usual
+mechanism-family concentration rule still govern the at-most-four active
+investigations. The provider's 30-call migration baseline and hash-linked v3
+ledger are operational safeguards, not mathematical evidence; root fallback
+requires a current batch-bound semantic screen. A candidate having “legs” is neutral search information until
+the ordinary compiling-theorem and strict dependency-reduction gates are met.
+The exact stop requires first-hostile-test survival, independent hostile/cold
+reproduction, explicit working/target model and return status, the complete
+theorem-entry memo and consumer ladder, a genuine mathematical delta from
+controls, and a bounded next gate whose branches change allocation. Standing
+checked probes use a trusted deterministic guard and artifact-consuming replay;
+they have no manual, source, Lean, theorem-contract, or `file_compiles` branch.
+At that six-part terminal, new claims and spending stop for a separate user
+decision. Later Lean requires separate approval and the guarded Makefile path;
+`native_decide` remains computational and is never replaced by kernel `decide`.
+The scheduler remains stopped.
+
+The target loop is not live yet. The state/accounting, validated-learning-
+export, first-test-guard, and exact outcome-tail restart repairs are implemented;
+the v3 suite passes 24/24 and all seven repaired base-generator cases pass
+focused reruns; the interrupted final aggregate rerun is not claimed complete.
+The corrected portfolio
+reconciliation is independently CLEAN. The v3 generator remains stopped pending
+the final post-repair guarded `make test`, final-byte CLEAN reviews, and a fresh
+authorization confirming 30 charged calls and at most 70 remaining. Current
+admission regenerates the accounting-backed learning export and cold-replays
+the snapshot; historical attestation authenticates the frozen admission without
+consulting later mutable state. Root imports require same-run containment,
+pre/post currency checks, and a final result commit marker. The scheduler
+remains stopped throughout.
+
 Every proof-producing or intermediary-lemma candidate must pass the five-field
 theorem-entry memo in `AGENTS.md` before packet freeze. Every fixture-dependent
 computation must separately pass semantic readiness by independently
 reconstructing its role-critical predicates and representation conventions
-from raw frozen inputs. When no entry is `advancing` and no theorem-ready
+from raw frozen inputs. Outside the Ticket-0119 policy period, when no entry is
+`advancing` and no theorem-ready
 producer passes that gate, select a smaller route-design or source-grounding
 block instead of padding an exploration slate. The approved reserve may be
 empty; campaign support is not automatic backfill. These are scheduling rules
@@ -1862,6 +1901,392 @@ that deserves independent retention and scheduling consideration.
   consumer, and a strict one-arrow obligation decrease.  No `D-HALF` ledger
   edge changes.
 
+  The 2026-08-31 two-deletion Orchard investigations add exact search memory
+  without moving `D-HALF`.  The Orchard-XOR cut on common survivors is, up to
+  complement, the odd-degree set of the graph whose edge `xy` says that line
+  `xy` separates the two anchors.  An independently checked seven-point
+  integer configuration is target-free at `k=6` and has one fixed anchor pair
+  `(2,3)` for which all four extensions leave a monochromatic strong five-set.
+  Root independently reproduced all 35 nonzero determinants, the two strong
+  five-sets, absence of a strong six-set, and the complete 21-pair extension
+  census.  Crucially, the other twenty anchor pairs all have a successful
+  extension.  Thus the result rejects a fixed-pair local shortcut but does not
+  refute existential anchor choice or the frozen realizable Orchard panel.
+  Net proof movement is `neutral`; evidence is `checked computation`, namely
+  an independently reproduced exact integer census using two formulations;
+  damage is `candidate-local`; the undiminished difficulty is a
+  global anchor selector/coverage producer; counterfactually the result avoids
+  an invalid local proof but shortens no remaining proof obligation; planning
+  consequence: expire the universal fixed-anchor strengthening and retain the
+  literal existential palette only as bounded probing.  No load-bearing edge
+  changed.
+
+  **Failure genome `FP-01-ORCHARD-FIXED-ANCHOR-01`:** stable card/family
+  `ORCHARD-XOR-FIXED-ANCHOR-LOCAL-V1` / predecessor-half two-deletion Orchard;
+  model tier: seven realizable integer points in general position at `k=6`,
+  with the exact four-index strong-set law and sourced Orchard threshold;
+  scope ceiling: the claim that every fixed anchor pair locally cuts every
+  strong predecessor, not existential pair selection or every Orchard-derived
+  mechanism.  Terminal artifact
+  `runs/agents/20260831-self-refilling-loop/orchard-parity-counterexample-verify/report.md`,
+  SHA-256
+  `53ed1f848ce86927901d70398203d75fb36e811d85e3d3ef6103fbe6daaf993d`.
+  **Verified failing feature:** pair `(2,3)` has a constant survivor XOR on
+  strong set `{0,1,4,5,6}`, so no free anchor bits repair it.  **Strongest
+  supported statement:** this pair is uniquely bad in the same configuration;
+  all other twenty pairs admit a valid extension.  **Evidence level:**
+  `checked computation`.  **Damage scope:**
+  `candidate-local`.  **Representation blindness (`verified`):** freezing an
+  arbitrary anchor pair discards the global pair-selection freedom visible in
+  the same configuration.  **Candidate discriminator (`verified`):** a
+  successor must couple different anchor pairs or independently select one;
+  target avoidance alone cannot certify each pair locally.  **Mutation
+  directions (`inferred`):** a genuinely global compatibility/selection law
+  remains eligible for a separate bounded test.  **Anti-duplication warning
+  (`verified`):** changing the local parity formula, shore representative, or
+  free anchor-bit convention cannot repair the displayed constant survivor
+  cut.  **Cheapest falsifier (`verified`):** replay the displayed seven
+  coordinates at anchors `(2,3)` and enumerate the four extensions.  This
+  ordinary Wayfinder genome is withheld from Ticket-0119 queue learning until
+  a marker-bounded immutable core and the required feedback/reconciliation
+  cross-bindings exist.
+
+  A separate agent-only cross-anchor scout proposes the exact triangle cocycle,
+  a parity-reciprocity normalization `o_p(q)+o_q(p)=N mod 2`, and an abstract
+  nine-vertex Property-B hostile in which identity-compatible cuts fail.  The
+  same scout notes that the hostile is not claimed realizable and that the
+  independently checked seven-point sidecar still has twenty successful anchor
+  pairs.  These observations have not been independently replayed through an
+  admissible evidence chain.  Net proof movement is `neutral`; evidence is
+  `proposal`; no mathematical damage is admitted, with `candidate-local` only
+  the proposed scope ceiling; the global selector remains wholly open;
+  counterfactually the proposal may identify a useful hostile test but does not
+  change the proof estimate; planning consequence: retain it only as route-
+  design input, run the already frozen guarded finite panel, and require an
+  independent check before treating any identity-alone limitation as learned.
+  No `D-HALF` edge changed and no failure genome is created.
+
+  Ticket 0120 reconciles the later common-anchor wave without promoting this
+  entry.  Compiling five-label parity and deletion lemmas, a local
+  `native_decide` permutation-reorder table, and symbolic generic transports
+  expose a bounded intermediary package.  The generic router, three-owner
+  closure, and adaptive Fin15 composition have not all passed a project Lean
+  gate, and the honest consumer ladder still contains the single unproduced
+  full-context incompatibility-or-strict-descent arrow.  The local adaptive
+  witness split can fall from seven patterns to four for one selected
+  candidate, but all surviving difficulty is concentrated in the multi-owner
+  branch; no load-bearing obligation is demonstrably smaller.  Net proof
+  movement is `neutral`; evidence is compiling subordinate theorem,
+  computational, symbolic, and checked-negative evidence at the scopes below;
+  difficulty displaced at destination level is none; counterfactually the wave
+  prevents two false formalizations and identifies a bounded machinery theorem
+  but does not lower the admitted proof estimate; planning consequence is to
+  retain `FP-01` `gated` and run at most the explicitly correlated two-lane
+  Ticket-0120 incubation.  No `D-HALF` edge changed.
+
+  The approved Ticket-0120 incubation closed at a precise carry-forward rather
+  than a theorem admission.  Root added the source-level normal-form dual
+  `perfectMatching_sameLeft_normalForm` and actual placement-`00` theorem
+  `perfectCrossMatching_sameLeft_transport`; both are clean under declaration
+  elaboration in `StrongCommonAnchorMultiOwner.lean`, SHA-256
+  `54fddc6bec56f045fab0691041717ab24b1e8fd3cbec280534fe9423707a41a0`.
+  The support inventory shows that a generic router still lacks actual dual
+  transports `23`, `24`, `33`, and `34` and actual contradiction transports
+  `03`, `04`, `13`, and `14`.  The full-context lane found no current producer/
+  consumer/strict-transition entry within its frozen corpus, and the qualified
+  Signed-Jump fixture panel remains support-only because no first test ran.
+  The exact guarded project build passed its no-`sorry`/`admit` precheck but
+  timed out after 1800.3 seconds in the older generated module
+  `HalfPureSingletonFanFin10ClauseChunk46`, before reaching the new imports;
+  this is `operational-only` and not authority for a resource-only retry.  Net
+  proof movement remains `neutral`; evidence is source proposal, checked
+  support inventory, bounded discovery, and operational stop; no mathematical
+  damage is admitted; difficulty displaced at the load-bearing level is none;
+  counterfactually the exact case map avoids another premature router attempt
+  but does not reduce admitted proof depth; planning consequence is to retain
+  `FP-01` `gated`, preserve placement `00` as an unadmitted carry-forward, and
+  make another actual transport or the separately authorized Signed-Jump first
+  test compete at the next reconciled selection.  Payoff remains the same
+  common-anchor intermediary package; expiry occurs if the actual transports
+  cannot be assembled without a new premise or if the full-context successor
+  remains target-equivalent; revival requires either a project-gated closure
+  with a demonstrably smaller consumer or an independently produced strict
+  full-context transition.  No `D-HALF` edge changed, and no new failure genome
+  is created.
+
+  Ticket 0121 records the low-resource successor.  The source now also
+  contains `perfectMatching_sameLastGap_normalForm` and the actual placement-
+  `33` transport `perfectCrossMatching_sameLastGap_transport`; both pass
+  declaration-level elaboration, and an independent static audit returns
+  `CONTRACT-CLEAN` for source SHA-256
+  `21e2183cb0ce5fba74ea97086792c4eb8e4f2635c66345fb09b0e0e34dbdf9cb`.
+  No guarded project gate reached them, so they remain proposals and the
+  load-bearing proof ledger is unchanged.  The actual source deficit is now
+  seven cases: `23`, `24`, `34`, `03`, `04`, `13`, and `14`.  A separate
+  authenticated review supplies a complete five-field theorem-entry memo for
+  placement `03`: strong-owner middle determination factors all six actual
+  edges into the active-clique form already rejected by
+  `not_perfectMatching_activeClique`, with no new premise.  Signed-Jump remains
+  unclaimed because its transition graph and diamond/path event are not
+  uniquely specified; the generic guard is reusable, but implementing a
+  checker now would choose the claim.  Net proof movement is `neutral`;
+  evidence is source proposal and authenticated static review; the packet-
+  drift and execution-contract stops are `operational-only`; difficulty
+  displaced at destination level is none; counterfactually this avoids an
+  invalid ambient reflection and a disproportionate underspecified harness
+  but does not reduce admitted proof depth; planning consequence is to retain
+  `FP-01` `gated` and select only the exact placement-`03` source incubation
+  under Ticket 0121.  Payoff, expiry, and revival remain the Ticket-0120
+  common-anchor conditions.  No `D-HALF` edge changed and no failure genome is
+  created.
+
+  The approved Ticket-0121 incubation reached
+  `GAP03-LSP-CLEAN-SOURCE-CANDIDATE`.  Source SHA-256
+  `55c06639193c2affa12b71626ac79a79d37f09f9777458268f3d0d305de2e2a4`
+  contains the exact theorem `not_perfectCrossMatching_gap03` with only the
+  three placement inequalities and two strong-owner hypotheses frozen in its
+  theorem-entry memo.  Middle determination rewrites the six actual edges to
+  the active-clique factorization rejected by
+  `not_perfectMatching_activeClique`; the declaration region is LSP-clean with
+  zero diagnostics.  No guarded project gate reached it, so evidence remains
+  a `proposal`, net proof movement remains `neutral`, and the scope ceiling is
+  `candidate-local` with no negative mathematical damage.  The contradiction-
+  case source deficit decreases `4 → 3`, while the total actual-placement
+  source deficit decreases `7 → 6`: dual transports `23`, `24`, `34` and
+  contradictions `04`, `13`, `14` remain.  The router, closure, adaptive
+  consumer, full-context successor, and uniform tail are unchanged;
+  counterfactually one exact source case is removed but admitted destination
+  depth is not.  Retain `FP-01` as `gated`, preserve the candidate, and
+  reconcile before selecting another actual case.  Payoff, expiry, and revival
+  remain the Ticket-0120 common-anchor conditions.  No `D-HALF` edge changed
+  and no failure genome is created.
+
+  Ticket 0122 compares every remaining actual-case family from one frozen
+  source snapshot.  Authenticated static reviews return complete theorem-entry
+  memos for exterior contradiction `04`, internal contradiction `13` (with
+  `14` also algebraically retained), and dual transport `24` ahead of `23` and
+  `34`.  Root selects only `04`: all six cross quadruples have the uniform
+  order `o < e i < e j < p`, ten existing middle-determination reductions
+  make edge `ij` exactly `P i ∧ P j`, and
+  `not_perfectMatching_activeClique` is the existing final consumer.  Its
+  frozen statement needs only `o < e 0`, `e 3 < p`, and the two strong-owner
+  hypotheses.  `13` and `24` remain qualified unselected reserves, not new
+  portfolio children.  Net proof movement is `neutral`; evidence is
+  authenticated proposal; `candidate-local` is only a scope ceiling and no
+  mathematical damage is admitted; difficulty at the router and destination
+  levels is unchanged; counterfactually the comparison selects the lowest-
+  risk unavoidable leaf but does not reduce admitted proof depth.  Retain
+  `FP-01` as `gated` and await approval for the one-slot placement-`04` source
+  incubation.  No `D-HALF` edge changed and no failure genome is created.
+
+  The approved Ticket-0122 incubation reached
+  `GAP04-LSP-CLEAN-SOURCE-CANDIDATE` on its first declaration pass.  Source
+  SHA-256
+  `00fbe8f26e0e83370a7a05abeef6542293b742f1f211bb8a5b87c274424bc728`
+  contains the exact theorem `not_perfectCrossMatching_gap04` under only
+  `o < e 0`, `e 3 < p`, and the two strong-owner hypotheses.  Ten existing
+  middle-determination reductions make the six actual edge predicates the
+  active-clique factorization rejected by
+  `not_perfectMatching_activeClique`; the declaration region is LSP-clean with
+  zero diagnostics.  No guarded project gate reached it, so evidence remains
+  a `proposal`, net proof movement remains `neutral`, and `candidate-local` is
+  only a scope ceiling with no mathematical negative.  The contradiction-
+  source deficit decreases `3 → 2` and the total actual-placement source
+  deficit decreases `6 → 5`; `23`, `24`, `34`, `13`, `14`, the router,
+  closure, adaptive consumer, full-context successor, and uniform tail remain.
+  Counterfactually one unavoidable self-dual leaf is removed but admitted
+  destination depth is unchanged.  Retain `FP-01` as `gated`, preserve the
+  candidate, and reconcile before selecting another case.  No `D-HALF` edge
+  changed and no failure genome is created.
+
+  Ticket 0123 then tries the newly released Fable 5.1 on three exact common-
+  anchor subproblems.  Model `claude-fable-5-1` stops with zero input/output
+  tokens and zero cost because installed Claude Code `2.1.235` is below the
+  required `2.1.251`; the immutable packet forbids update, retry, or fallback.
+  The Sol control completes and advises that matching-tag routing has the
+  greatest uniform leverage but still lacks its placement-classifier producer,
+  with placement `13` the cheapest next local check.  No Fable mathematical
+  judgment or reciprocal consensus exists.  Net proof movement is `neutral`;
+  evidence is an `operational-only` Fable stop and `candidate-local` Sol
+  proposal; difficulty and counterfactual proof depth are unchanged; retain
+  `FP-01` as `gated`, implement nothing from the Sol-only output, and require
+  explicit software-update authority plus a new identity for a genuine
+  Fable-5.1 review.  No `D-HALF` edge changed and no failure genome is created.
+
+  Ticket 0124 closes that fresh identity after the user updates Claude Code to
+  `2.1.257`.  Both blind V2 reviews complete and agree that a uniform
+  separated-placement wrapper still hides four literal sorted-order proofs,
+  a proposition-level relabel compresses only a short `23/24` tail, and the
+  tag API remains producer-blocked on the actual placement classifier.  Fable
+  recommends the already frozen placement-`13` source incubation and calls
+  `24` an equal alternative; Sol instead recommends a symbolic uniformity
+  falsifier, so no route-ranking consensus is claimed.  Root selects `13`
+  from the authenticated Ticket-0122 theorem-entry memo and existing immediate
+  consumer `not_perfectMatching_activeClique`, not from model agreement;
+  `24` remains reserve and none of the three abstractions receives a builder.
+  Fable's concrete placement-`12` world and equality-head helper remain
+  unverified proposals.  Net proof movement is `neutral`; evidence is
+  authenticated provider advice, damage has only a `candidate-local` proposal
+  ceiling, no hard obligation or counterfactual proof depth decreases, and
+  `FP-01` remains `gated`.  Plan one information-gathering placement-`13`
+  source incubation as the next explicit execution decision.  No `D-HALF`
+  edge changed and no failure genome is created.
+
+  Ticket 0125 executes that one placement-`13` lane.  Result source SHA-256
+  `17ebe8718f977b2c0d69640e3c8d5bb6fa3edb55c06b957bd26bd768797a971d`
+  contains the exact theorem under four literal placement inequalities and two
+  strong-owner sets.  The first declaration-scoped LSP call succeeds without
+  errors, timeout, or failed dependencies and reports only five unused-`simp`-
+  argument warnings.  No guarded project build reached it, so evidence remains
+  a proposal and net proof movement remains `neutral`.  The source inventory
+  decreases `5 -> 4` (`14`, `23`, `24`, `34`) and the contradiction inventory
+  `2 -> 1`, while the admitted router, closure, adaptive consumer, full-context
+  successor, and uniform tail remain unchanged.  Damage has only a
+  `candidate-local` scope ceiling, no mathematical negative is admitted, and
+  counterfactual admitted proof depth is unchanged.  Retain `FP-01` as
+  `gated`, preserve the candidate, and reconcile before selecting `14` or
+  `24`.  No `D-HALF` edge changed and no failure genome is created.
+
+  Ticket 0126 then compares final contradiction `14` against qualified dual
+  transport `24` through two current-source entry audits and one independent
+  allocation challenge.  Both retain all five theorem-entry fields.  `14` is
+  the cheaper active-clique proof and would close contradiction leaves `1 ->
+  0`; `24` instead tests the first remaining actual-order dual through two
+  literal one-change words, proposition-only matching reversal, and a color
+  terminal.  Root selects only the latter because it varies the mathematical
+  information after three successful active-clique source instances, while
+  retaining `14` as theorem-ready reserve.  The proposed equality-head helper
+  is valid proposition packaging but removes no obligation and is excluded.
+  Net proof movement is `neutral`; evidence is authenticated proposal, damage
+  has only a `candidate-local` scope ceiling, no difficulty or counterfactual
+  admitted proof depth decreases, and `FP-01` remains `gated`.  The frozen
+  `C015-DHALF-GAP24-SOURCE-V1` plan awaits explicit execution approval.  No
+  `D-HALF` edge changed and no failure genome is created.
+
+  Ticket 0127 executes that exact identity through its one authorized
+  declaration-scoped diagnostic and reaches
+  `GAP24-LITERAL-WORD-API-MISMATCH-CANDIDATE-LOCAL`.  Failed-source SHA-256
+  `b4fecbf8c4ac2c9175b4e7180e47c2a643dc70e4b8a41845f1ee4b8bd03c6aa0`
+  reports its first errors at the two frozen word calls: the third arguments
+  `h2p : e 2 < p` and `h3p : e 3 < p` occur where the actual `OneChangeOn` API
+  expects a proof with `p` on the left, and corresponding membership goals
+  remain unsolved.  A downstream proposition relabel reaches the 200,000-
+  heartbeat limit but is not separately admitted after that first stop.  The
+  packet forbids reordering, premise repair, helper insertion, or a second
+  pass, so the exact identity expires.  Canonical source is restored to its
+  pre-run SHA-256
+  `17ebe8718f977b2c0d69640e3c8d5bb6fa3edb55c06b957bd26bd768797a971d`;
+  no failed theorem remains.  Evidence is a failed source-proposal diagnostic,
+  net proof movement is `neutral`, and damage is `candidate-local` to the exact
+  implementation rather than a mathematical negative.  Actual leaves remain
+  `14`, `23`, `24`, `34`; the dual deficit remains three, no difficulty is
+  displaced, and counterfactual admitted proof depth is unchanged.  Retain
+  `FP-01` as `gated`; retain `24` only as an unexecuted entry proposal requiring
+  a new identity and review for any mutation, without automatically promoting
+  reserve `14`.  Payoff, expiry, and revival remain the Ticket-0120 common-
+  anchor conditions.  No `D-HALF` edge changed and no failure genome is
+  created.
+
+  Ticket 0128 then compares reserve `14` with one genuinely new `24`
+  implementation identity through three authenticated read-only reviews.
+  Both pass current theorem-entry gates.  Placement `14` remains a positive,
+  low-risk candidate because it would close contradiction-source deficit
+  `1 -> 0`, independently of the Ticket-0127 stop, but it repeats the
+  active-clique producer already instantiated by `03`, `04`, and `13`.
+  Corrected placement `24` uses the actual consecutive-order arguments
+  `hone h1o ho2 h2p` and `hone h1o ho3 h3p` for the unchanged words.  Its new
+  packet also replaces the timed-out broad proposition relabel with a bounded
+  inline three-matching case split that returns `M0` and refutes `M1`/`M2`
+  through negative edge `01`; no premise, reflection, helper, or heartbeat
+  increase is introduced.  Root and the independent challenge select only
+  `C016-DHALF-GAP24-WORD-FIX-V1` as one information-gathering proposal lane,
+  retaining `14` as reserve.  Evidence is proposal-level and net proof
+  movement is `neutral`; damage is only a `candidate-local` scope ceiling,
+  no difficulty is displaced, and counterfactual admitted proof depth is
+  unchanged.  `FP-01` remains `gated`; the plan awaits explicit execution
+  approval and has no in-packet fallback.  Payoff, expiry, and revival remain
+  the Ticket-0120 common-anchor conditions.  No `D-HALF` edge changed and no
+  failure genome is created.
+
+  Ticket 0129 then runs the approved rolling leaf wave.  Corrected placement
+  `24` and final contradiction placement `14` each pass their one
+  declaration-scoped diagnostic with no error, timeout, partial result, or
+  failed dependency.  Final source SHA-256
+  `15b4988978224288cc84c7313e38d1381acbf63c6b6434016ec15ea2dcab520b`
+  contains both exact candidates; no guarded project gate reached them.  The
+  proposal-level actual source deficit changes `4 -> 2`, leaving dual leaves
+  `23` and `34`, while the contradiction deficit changes `1 -> 0`.  A parallel
+  hash-frozen review makes both remaining leaves theorem-entry complete:
+  `23` reuses the two-word equality-head mechanism and `34` requires the
+  six-word, three-branch right-adjacent reversal.  Router preflight separately
+  shows that exact tag/swap, `AnchorSelectsTag`, uniqueness, and pair-classifier
+  producers remain absent, so leaf completion alone cannot authorize the
+  router.  Net proof movement is `neutral`; evidence is two source proposals
+  and authenticated static review; damage is only a `candidate-local` evidence
+  ceiling with no mathematical negative; source implementation work is
+  smaller, but admitted dependency depth and every load-bearing obligation are
+  unchanged.  Counterfactually the wave removes two exact source cases and
+  exposes the real router boundary, improving allocation without improving the
+  admitted proof estimate.  Retain `FP-01` as `gated`; plan serial `23` then
+  `34` execution and a separate router-helper design lane.  Payoff, expiry, and
+  revival remain the Ticket-0120 common-anchor conditions.  No `D-HALF` edge
+  changed and no failure genome is created.
+
+  **Failure genome `FP-01-COMMON-ANCHOR-NATURAL-ORDER-01`:** stable card/family
+  `COMMON-ANCHOR-NATURAL-OWNER-ONECHANGE-V1` / predecessor-half common-anchor
+  selected-edge representation; model tier: eight integer planar points in
+  general position in the prescribed sweep order, with a strong four-base,
+  four strong owner anchors, a common pair-owner perfect matching, and no strong
+  six; scope ceiling: the natural ambient-owner-order claim that the uniquely
+  selected matching edge is `OneChangeOn`, not permutation-reordered incidence,
+  the common-matching lemmas, or other multi-owner mechanisms.  Terminal
+  artifact
+  `runs/agents/20260901-root-math-wave/middle-gap-counterexample-realizability-report.md`,
+  SHA-256
+  `7fcec8ff2960aa2d636e5f579dc1a27f33fe8b109bc59f4b7c93e11126af9ce3`.
+  **Verified failing feature:** exact determinants reproduce selected-edge word
+  `0010`, which has two changes, while every gate-critical planar, anchor,
+  matching, and target-free predicate holds.  **Strongest supported statement:**
+  planar realizability and general position alone cannot repair this natural-
+  order induced-signotope architecture.  **Evidence level:** `checked
+  computation`.  **Damage scope:** `architecture-level`.  **Representation
+  blindness (`verified`):** ambient owner order discards the pair-cell
+  permutation encoded by the contraction link.  **Candidate discriminator
+  (`verified`):** a successor must use an independently produced different
+  order or stronger contextual field and must clear this exact control.
+  **Mutation directions (`inferred`):** permutation-order contraction-link
+  transport remains eligible under a separate theorem contract.
+  **Anti-duplication warning (`verified`):** moving the same statement from the
+  abstract tier to planar realizability does not alter the counterexample.
+  **Cheapest falsifier (`verified`):** replay the eight displayed integer
+  coordinates and the four selected-edge statuses.
+
+  **Failure genome `FP-01-SIX-OWNER-3PLUS3-UNIQUENESS-01`:** stable card/family
+  `SIX-OWNER-3PLUS3-UNIQUENESS-V1` / common-anchor permutation-order survivor
+  classification; model tier: abstract six-owner binary pair/triple normal form
+  with every pair bit zero and every four-owner packet allowed and
+  nonmonochromatic; scope ceiling: uniqueness of the displayed consecutive
+  `3+3` survivor under reversal and color dual, not the six-owner survivor
+  mechanism, seven-owner threshold, or planar realizability.  Terminal artifact
+  `runs/agents/20260901-root-math-wave/six-owner-extremal-structure-report.md`,
+  SHA-256
+  `9b167b2577070c914b365a174e9fbfe7462483bb19e7508aa8788de882cd1997`.
+  **Verified failing feature:** the exact twenty-bit state differing at `015`
+  has all fifteen required packets, eight rather than nine strong quadruples,
+  and complement-graph degree sequence `(2,2,4,2,2,2)`, so it is not the
+  displayed two-triangle state.  **Strongest supported statement:** the literal
+  `3+3` uniqueness claim is false at this abstract tier.  **Evidence level:**
+  `checked computation`.  **Damage scope:** `candidate-local`.
+  **Representation blindness (`verified`):** the block template misses other
+  Eulerian complement graphs compatible with the same pair state.  **Candidate
+  discriminator (`verified`):** compare strong-quadruple count and complement-
+  graph degree sequence before asserting equivalence.  **Mutation directions
+  (`inferred`):** classify compatible degree-`2/4` complement graphs before any
+  new uniqueness claim.  **Anti-duplication warning (`verified`):** reversal or
+  color dual preserves the strong-quadruple count and cannot identify the two
+  displayed states.  **Cheapest falsifier (`verified`):** replay the stated
+  twenty triple bits through the fifteen four-packets.
+
 ### FP-02 — State-567 ten-residual system
 
 - **Contribution:** Close the first concrete packed decomposable obstruction
@@ -2195,6 +2620,20 @@ that deserves independent retention and scheduling consideration.
   and correlated `FP-05` `gated`, and require genuinely new full-context
   cut/provenance color information before another card review.  No state-567
   or `D-DECOMP` ledger edge changes.
+
+  A 2026-08-31 agent-only canonical-Radon scout proposes that the six least-bad
+  quadruples force a repeated carrier pair by `18>15`, while the frozen caller
+  exposes only `OneChangeOn` and generic circuit elimination appears to lose
+  the probes, provenance labels, and absolute color gauge needed by the
+  consumer.  The proposal has no independent common-circuit model or replay;
+  citing the older admitted rooted-triangle control does not verify this new
+  state-567 interface analysis.  Net proof movement is `neutral`; evidence is
+  `proposal`; no mathematical damage is admitted, with `candidate-local` only
+  the proposed scope ceiling; the mixed-color/provenance return remains
+  unchanged; counterfactually this is a candidate hostile test, not reduced
+  proof work; planning consequence: retain it as unscheduled interface input
+  until an independent full-context check exists.  No state-567 or `D-DECOMP`
+  edge changed and no new failure genome is created.
 - **Success payoff:** discharge one or both exact state-567 terminal profiles.
 - **Expiry or revival gate:** the standalone hitting-plus-targeted-packing
   terminal is expired by TP-SAT.  Only a target-free model satisfying the full
@@ -2434,6 +2873,35 @@ that deserves independent retention and scheduling consideration.
   source-authenticated boundary data or a proved quotient package supplying
   child transition and strict Pascal payoff together.  No `D-DECOMP` ledger
   edge changes.
+
+  A 2026-08-31 agent-only submodular-profile scout proposes that occupied
+  endpoint-middle profiles form a normalized monotone submodular partition-
+  matroid rank bounded by the compiled profile capacity, and compares its
+  duplicate-only slack with the older admitted same-profile/nonstrong-union
+  control.  The rank calculation and same-run enumeration have not been
+  independently replayed, so the older control does not verify the new
+  conclusion.  Net proof movement is `neutral`; evidence is `proposal`; no new
+  mathematical damage is admitted, with `candidate-local` only the proposed
+  scope ceiling; the extension-fiber/collision obligation is unchanged;
+  counterfactually this identifies a possible discriminator but does not lower
+  proof work; planning consequence: retain the note as route-design input and
+  require independent checking before expiring a profile-rank mechanism.  No
+  `D-DECOMP` edge changed and no new failure genome is created.
+
+  Ticket 0121 independently reapplies the five-field theorem-entry gate after
+  the common-anchor wave.  The occupied endpoint-profile rank still lacks an
+  authenticated producer theorem and an exact collision return.  The existing
+  mismatch-energy submodularity can support a zero-energy meet/join closure,
+  but no named consumer accepts that lattice, and reaching
+  `PascalTailTwoSideBound` would require both a new child-stable boundary
+  adapter and a new capacity theorem.  Thus neither honest candidate has the
+  allowed one-arrow consumer ladder.  Net proof movement is `neutral`;
+  evidence is authenticated static interface audit; damage is
+  `candidate-local` to those two candidates; the child-stable strict Pascal
+  producer is not smaller; counterfactually the result avoids an unconsumed
+  easy lemma but does not improve the proof estimate; planning consequence is
+  to retain `FP-03` `gated` and allocate no `D-DECOMP` packet.  No failure
+  genome is created and no `D-DECOMP` edge changed.
 
   **Failure genome `FP-03-SAME-PATH-LAMINAR-01`:** stable card/family
   `C001-DDECOMP-LAMINAR-ADDRESS-V1` / decomposable-Pascal; model tier:
@@ -2782,6 +3250,20 @@ that deserves independent retention and scheduling consideration.
   recursive-Fin13/hostile-control/return/recursion/consumer fields are absent.
   This is route-grounding evidence only: no child is added, this entry stays
   suspended, and neither `D-NORMALIZE` nor `D-DECOMP` changes.
+
+  A 2026-08-31 agent-only commutation scout proposes the raw Boolean square for
+  two distinct coordinate mutations, then notes that neither fourth-corner
+  sweep realizability/target avoidance nor a strict prime-core descent follows
+  from the currently visible locality interface.  No compiled theorem,
+  geometric counterexample, or independent verifier establishes that analysis.
+  Net proof movement is `neutral`; evidence is `proposal`; no mathematical
+  damage is admitted, with `candidate-local` only the proposed scope ceiling;
+  fourth-corner admissibility and directional descent remain open;
+  counterfactually this supplies a candidate hostile test but reduces no proof
+  work; planning consequence: retain it only as route-design input while
+  `FP-04` remains suspended pending an independently checked admissible square
+  or directional source law.  No load-bearing edge changed and no new failure
+  genome is created.
 
 ### FP-05 — State-567 balanced five-class leaves
 
@@ -3661,6 +4143,23 @@ that deserves independent retention and scheduling consideration.
   `C010-REALIZABILITY-CONSUMER-CARD-V1`, retain `FP-13` `gated`, and require a
   genuinely new geometric producer plus an explicit return bridge before
   another reuse review.  No load-bearing dependency changes.
+
+  Ticket 0120 records a small new intermediary inventory without changing this
+  entry's state.  `StructuralCharging.lean` and
+  `StrongPredecessorBicoloring.lean` now contain compiling four-point strong-set
+  reflection, five-label odd-quadruple parity, strong-deletion bounds, and a
+  seven-strong-five disjunction.  `CommonAnchorPermutationOrder.lean` also has
+  a guarded module result, including a local `native_decide` table whose
+  evidence class remains computational.  None has a current direct
+  load-bearing consumer.  The generic common-anchor router and final closure
+  are still uncompiled source/symbolic proposals, so no `FP-13` child is added
+  and no consumer/API exhaustion result is reversed.  Net proof movement is
+  `neutral`; evidence is compiling theorem plus local checked computation;
+  damage is none; the missing return bridge is unchanged; counterfactually the
+  lemmas reduce future formalization duplication but not destination proof
+  depth; planning consequence is `retain` `gated` and allow only the
+  Ticket-0120 demand-shaped formalization incubation.  No load-bearing edge
+  changed.
 - **Success payoff:** a new proof-ready subthread or a decisive route
   retirement.
 - **Expiry or revival gate:** the through-six incubation and the one allowed
@@ -3852,6 +4351,30 @@ that deserves independent retention and scheduling consideration.
   The daemon still cannot run
   experiments, change canonical files, consume its inbox, admit or schedule a
   route, or assign proof movement. This is process-throughput evidence only.
+  Ticket 0119 is the later current policy decision, not a mathematical result.
+  It specifies exactly ten individual ready proposal items, no daily/cooldown
+  gate, a 100-call lifetime with 30 charged and at most 70 remaining,
+  accounting-backed inventory, per-seed claims and full-core feedback, root
+  fallback, and a six-part “has legs” stop. The Wave-4 state, learning,
+  evidence, and guard repairs are implemented. A later hostile queue audit
+  exposed and then drove repair of the exact durable-outcome-tail restart path;
+  start and serve now share the same locked exact-tail preflight, the v3 suite
+  passes 24/24, all seven repaired base-generator cases pass focused reruns,
+  the interrupted aggregate rerun is not claimed complete, and altered or multiple tails remain fail-
+  closed. The corrected scout reconciliation retains one independently checked
+  fixed-anchor genome and downgrades five agent-only observations to proposals;
+  its independent final audit is CLEAN.  Ticket 0120 records that the release
+  gate later produced active authorization
+  `9581e1bf0f70bf1f3a685f39f413971ebc5a884dc195a70d2b452c1997b7e115`.
+  An exact idempotent start authenticated the already supervised daemon, and
+  Batches 055--056 closed with ten ready proposal seeds in total.  The service
+  is now live and idle at target, with zero pending reservations, 41 charged
+  lifetime calls, and no unresolved attempt.  No seed is thereby admitted or
+  given mathematical evidence.  The real Orchard panel remains unopened.  The
+  scheduler status instead fails closed on implementation/authorization drift,
+  so it remains stopped and non-dispatchable.  This is `checked computation` operational evidence
+  only; net proof movement is `neutral`, damage is `operational-only`, named
+  destination dependency is `none`, and no load-bearing edge changed.
   Ticket 0087's first local process terminal, SHA-256
   `b5b9ab3a9b60c0ecc4991dac8c074dcd0acef925441e5b925ebf6e78d58258fc`,
   is reconciled through its owning ticket, this `FP-14` entry, the map, and
@@ -3961,11 +4484,17 @@ that deserves independent retention and scheduling consideration.
   replayably certified affirmative-control population independently of
   generated research cards.  OWRE v0.1 does not reset that requirement: its
   canonical-interchange defect is necessary process repair, not a positive
-  mathematical or question-generation mechanism. The evidence-first continuous
-  generator now self-refills proposal packets under Ticket 0083's finite
-  standing receipt. Its next mathematical action is still root reconciliation
-  or a separately approved selective-context test, never autonomous seed
-  execution. Its operation does not revive the suspended
+  mathematical or question-generation mechanism. The Ticket-0083 generator
+  runs above remain immutable historical process evidence; their receipt grants
+  no v3 authority. The Ticket-0119 generator is active under the exact
+  Ticket-0120 authorization and currently maintains ten accounting-backed
+  ready seeds.  Its idle-at-target state is healthy; it must not be restarted
+  merely because no provider child is active. A seed-specific standing first test needs no new chat
+  approval only after an exact claim, brief, task, and trusted guarded
+  execution contract are frozen; it is a deterministic artifact-consuming
+  Python probe with no manual/source/Lean/`file_compiles` authority, never
+  autonomous seed execution. At the six-part “has legs” terminal, claims and
+  spending stop for a separate user decision. None of this revives the suspended
   v1/v2 classifier family `FP-14.C`. The Ticket-0085 scheduler v2 is likewise a
   ready process asset, not a source of work: live dispatch remains disabled.
   Its next gate is the separately approved five-task real-provider canary from Ticket
@@ -4272,6 +4801,20 @@ that deserves independent retention and scheduling consideration.
   the current public exports. That architecture-level result does not exhaust
   richer pre-aggregation data or materially new exports from the same primary
   sources, and it adds no child or schedule.
+
+  A 2026-08-31 agent-only pre-aggregation audit proposes that the current
+  `PorValtrSupportProductData P 3` producer is unavailable at the contemplated
+  `17`- and `33`-point stages because its displayed precondition specializes to
+  `2^96 < P.card`, and supplies a hand-checkable all-one witness for a numerical
+  relaxation.  The packet was proposal-only and has no independent replay; it
+  therefore does not close or refute an exact-route reuse.  Net proof movement
+  is `neutral`; evidence is `proposal`; no mathematical damage is admitted,
+  with `candidate-local` only the proposed scope ceiling; the small-cardinality
+  source-data producer remains missing; counterfactually this is a useful
+  readiness screen but does not improve the proof estimate; planning
+  consequence: retain the staged-DP warning as route-design input and require
+  an independently checked producer/interface gate before allocating a DP.
+  No exact-conjecture ledger edge changed and no new failure genome is created.
 - **Success payoff:** achieved.  Lean now reproduces the published point-set
   `2^(n+O(sqrt(n*log n)))` upper-bound order and completes `FP-15.C` at its
   declared ceiling.  No exact Erdős--Szekeres load-bearing edge changes.

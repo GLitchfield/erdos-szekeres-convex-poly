@@ -60,9 +60,10 @@ scheduling decision and never prunes the inclusive portfolio. Step 4 must name
 potential outcomes and downstream continuations; uncertain branches remain
 branches rather than hidden assumptions.
 
-### Theorem-first operating rebalance
+### Retained Ticket-0103 theorem-first baseline
 
-Ticket 0103 is the current user-approved selection override. Discretionary
+Ticket 0103 is the retained baseline selection policy outside the current
+Ticket-0119 temporary override. Its discretionary
 research time is planned at 40% `D-HALF` structural work, 30% `D-DECOMP`
 repair, 20% source-grounded distinct mechanism discovery, and 10% bounded
 computation/process work. Mandatory evidence admission, integration, guarded
@@ -116,14 +117,23 @@ result. A future prospective comparison needs its own approved wrapper task,
 identity, input hashes, and output paths.
 
 The seed stage may be operated by the bounded service in
-`continuous-idea-generator.md`. Ticket 0083 makes the daemon a bounded
-self-refilling proposal inbox, not an orchestrator: one standing authorization
-binds the daemon, builder, validator, schema, provider executable, rate,
-total-call, resource,
-high-water, and circuit-breaker limits; every individual packet remains
-hash-frozen; authorization rotation preserves old receipts and global rate
-accounting; an attempted packet is never retried; and root alone consumes,
-reconciles, admits, or schedules output.
+`continuous-idea-generator.md`. Historically, Ticket 0083 made the daemon a
+rate-limited, cooldown-bound proposal inbox. Ticket 0119 is the current
+temporary contract: exactly ten authenticated individual `ready` items, exact-
+deficit reservations, no rolling daily call limit or post-call cooldown, one
+provider call at a time, 100 lifetime calls, 30 charged and at most 70
+remaining, retained per-call/two-strike/no-retry safety, and root-only claim,
+feedback, admission, and scheduling. The daemon is not an orchestrator.
+
+That target contract is not live yet. The state, accounting, validated-
+learning-export, first-test-guard, and exact outcome-tail restart repairs are
+implemented; the v3 suite passes 24/24 and all seven repaired base-generator
+cases pass focused reruns, while the interrupted final aggregate rerun is not
+claimed complete. The corrected
+portfolio reconciliation is independently CLEAN. The v3 generator remains
+stopped pending the final post-repair guarded `make test`, final-byte CLEAN
+reviews, and one fresh authorization binding final bytes. The scheduler remains
+independently paused/stopped.
 
 Four concurrent mathematical investigations remains the occupancy target, and
 the ordinary no-padding and mechanism-diversity rules remain unchanged. Under
@@ -139,7 +149,7 @@ Ticket 0067 supersedes the synchronized-batch waiting rule. An admitted,
 approved thread launches whenever a compatible slot is free; its terminal is
 checked and reconciled immediately, and that slot may be backfilled without
 waiting for unrelated lanes. When fewer than four mathematical gates are
-ready, Ticket 0103 permits unused capacity to remain idle; campaign generation,
+ready, the Ticket-0103 baseline permits unused capacity to remain idle; campaign generation,
 development, grounding, card audit, or route review runs only from a separately
 justified decision-changing gate. A campaign lane uses a frozen
 reconciled snapshot and may overlap execution, but its proposals and evidence
@@ -178,7 +188,8 @@ transaction:
 5. freeze and seek approval for a replacement reserve until the approved queue
    returns to its declared floor.
 
-Ticket 0103 suspends the normal four-packet operational reserve floor while no
+Outside the Ticket-0119 policy period, Ticket 0103 suspends the normal four-
+packet operational reserve floor while no
 `advancing` entry and no theorem-ready producer exist. The honest approved
 reserve may then contain zero to three packets, and reserve production is not
 triggered merely by queue depth. Do not author support work to restore a
@@ -187,6 +198,38 @@ decision-changing gates and exact user approval; none may be mislabeled as an
 admitted mathematical investigation.
 Result-dependent successors enter the reserve only after their prerequisites
 are admitted and their new input hashes are frozen.
+
+Ticket 0119 currently replaces that empty-reserve preference for the idea
+campaign only. Maintain ten authenticated unassigned proposal seeds, claim and
+reconcile them individually, and feed each root-admitted terminal into the next
+generation epoch together with current canonical failure memory. Provider calls
+are protected by an immutable 30-call migration baseline and a hash-linked
+attempt/outcome ledger; all ready/pending/reserved counts are derived from the
+current authorization and authenticated accounting view. Provider inventory
+requires closed attempt/outcome/result/seed receipts. Root fallback requires a
+generator-produced validated-learning export, an exact snapshot-build and
+snapshot-admission receipt, a same-run batch-bound semantic screen, pre/post
+currency checks, and a final result commit marker. Up to four mathematically distinct bounded
+investigations may run, but queue membership and first-gate survival remain
+search information. The separate scheduler stays paused/stopped.
+
+Each Ticket-0119 claim authenticates its development brief and exact task
+packet. Standing checked probes are root-launched guarded deterministic Python
+tests with trusted execution/verifier envelopes and exact artifact-consuming
+commands. They have no manual, source, Lean, theorem-contract, or
+`file_compiles` branch. Checked events bind immutable claim/model/scope IDs and
+their exact semantic event core; full feedback and root reconciliation bind the
+same complete feedback-core digest. Later Lean needs separate approval and the
+guarded Makefile path. `lean_native_decide` stays computational, uses guarded
+`make test`, is never `file_compiles`, and is never replaced by kernel
+`decide`.
+
+The loop stops new claims and spending when one candidate passes all six
+Ticket-0119 “has legs” conditions: first hostile survival, independent hostile
+or cold reproduction, explicit model/return status, the complete theorem-entry
+memo and consumer ladder, a real mathematical delta from controls, and one
+bounded allocation-changing next gate. That remains neutral search information
+unless a compiling theorem strictly reduces a named load-bearing dependency.
 
 After each dispatch or terminal, update the board in the same transaction and
 run:
@@ -211,6 +254,10 @@ state, worker process telemetry, transient systemd control groups, resource
 limits, crash detection, and dispatch. Unlike the continuous idea generator,
 it does not manufacture packets: every job must already appear by exact hash
 in an authenticated approved operational wave.
+
+This subsection describes the scheduler architecture, not current permission or
+status. The scheduler is intentionally paused/stopped under Ticket 0119 and may
+not be restarted by the generator repair, authorization, or investigation loop.
 
 The scheduler targets four mathematical workers, prioritizes mathematical
 packets over support packets, enforces the builder and mechanism-family limits,
@@ -397,6 +444,15 @@ discriminator, mutation, or falsifier remains proposal memory and cannot become
 a backfill lane without a separately approved packet and, for portfolio work,
 ordinary route admission.
 
+Ticket-0119 per-seed feedback binds that home by one heading-bounded immutable
+JSON genome core, unique genome identity/anchor, and selected terminal-artifact
+hash. Appending later scoped review outside the core preserves prior receipts;
+moving, duplicating, or mutating the core does not. Its damage ceiling is
+candidate-local except for a falsifier whose brief predeclared a named shared-
+premise subfamily. Architecture- or mechanism-wide scope requires a separate
+authenticated shared-cause review in the same home; it does not broaden the
+immutable per-seed receipt merely by repetition or reviewer agreement.
+
 ## Plan outcome contract
 
 Every planned mathematical work item must declare its possible outcomes before
@@ -538,6 +594,12 @@ The machine-readable contracts are:
 - `schemas/result.schema.json`
 - `templates/agent-task-packet.json`
 - `templates/agent-result.json`
+
+Ticket 0119's narrower standing pre-admission computation uses
+`schemas/research-first-test-task.schema.json`.  It is intentionally separate
+from the ordinary agent task contract: its v2 packet forbids theorem contracts,
+caps resources at the standing first-test envelope, and binds the guarded exact
+execution contract.
 
 Run `python3 scripts/check_agent_orchestration.py` to validate the committed
 system.  Pass `--task-packet PATH` or `--result PATH` to validate a concrete

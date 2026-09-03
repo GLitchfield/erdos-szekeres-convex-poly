@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erdos-szekeres/research-first-test-task.schema.json",
+  "title": "Erdos-Szekeres standing first-test task packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "task_id",
+    "wayfinder_ticket",
+    "profile",
+    "base_revision",
+    "workspace_fingerprint",
+    "objective",
+    "theorem_contract",
+    "inputs",
+    "ownership",
+    "budget",
+    "required_checks",
+    "success",
+    "stop",
+    "deliverables",
+    "claims_allowed",
+    "standing_first_test",
+    "first_test_execution"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "run_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "wayfinder_ticket": {"type": ["string", "null"]},
+    "profile": {"type": "string", "minLength": 1},
+    "base_revision": {"type": "string", "minLength": 1},
+    "workspace_fingerprint": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "theorem_contract": {"type": "null"},
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["read_paths", "write_paths"],
+      "properties": {
+        "read_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "write_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wall_minutes", "cpu_cores", "memory_gib", "output_gib"],
+      "properties": {
+        "wall_minutes": {"type": "integer", "minimum": 1, "maximum": 30},
+        "cpu_cores": {"type": "integer", "minimum": 1, "maximum": 2},
+        "memory_gib": {"type": "integer", "minimum": 1, "maximum": 4},
+        "output_gib": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.1}
+      }
+    },
+    "required_checks": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "success": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "stop": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "deliverables": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+    "claims_allowed": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["proposal", "computational_evidence"]}
+    },
+    "standing_first_test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protocol",
+        "approval_ref",
+        "execution_class",
+        "terminal_ceiling",
+        "limits",
+        "writes",
+        "provider_calls",
+        "service_starts",
+        "scheduler_mutations",
+        "canonical_writes",
+        "external_writes",
+        "installations",
+        "destructive_actions"
+      ],
+      "properties": {
+        "protocol": {"const": "ticket-0119-standing-first-test-v1"},
+        "approval_ref": {"const": "docs/wayfinder/tickets/0119-adopt-self-refilling-investigation-loop.md#approval-and-operational-inventory"},
+        "execution_class": {"const": "pre_admission_information_gathering"},
+        "terminal_ceiling": {"const": "has_legs_or_earlier"},
+        "limits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["wall_minutes", "cpu_cores", "memory_gib", "output_gib"],
+          "properties": {
+            "wall_minutes": {"const": 30},
+            "cpu_cores": {"const": 2},
+            "memory_gib": {"const": 4},
+            "output_gib": {"const": 0.1}
+          }
+        },
+        "writes": {"const": "exact_ignored_runs_agents_paths_only"},
+        "provider_calls": {"const": 0},
+        "service_starts": {"const": 0},
+        "scheduler_mutations": {"const": false},
+        "canonical_writes": {"const": false},
+        "external_writes": {"const": false},
+        "installations": {"const": false},
+        "destructive_actions": {"const": false}
+      }
+    },
+    "first_test_execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protocol",
+        "contract_id",
+        "guard_component",
+        "engine",
+        "argv_template",
+        "cwd",
+        "input_receipts",
+        "outputs",
+        "normalized_result_role",
+        "process_model"
+      ],
+      "properties": {
+        "protocol": {"const": "ticket-0119-first-test-execution-v1"},
+        "contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "guard_component": {"$ref": "#/$defs/fileReceipt"},
+        "engine": {"enum": ["python_exact", "exact_solver_in_process"]},
+        "argv_template": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 64,
+          "prefixItems": [
+            {"const": "/usr/bin/python3"},
+            {"const": "-B"},
+            {"type": "string", "pattern": "^scripts/(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+\\.py$"}
+          ],
+          "items": {"type": "string", "minLength": 1}
+        },
+        "cwd": {"const": "."},
+        "input_receipts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/fileReceipt"}
+        },
+        "outputs": {
+          "type": "array",
+          "minItems": 1,
+          "contains": {
+            "type": "object",
+            "properties": {"media_type": {"const": "application/json"}},
+            "required": ["media_type"]
+          },
+          "minContains": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["role", "path", "media_type"],
+            "properties": {
+              "role": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$"},
+              "path": {"type": "string", "minLength": 1},
+              "media_type": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "normalized_result_role": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$"},
+        "process_model": {"const": "one-filtered-process-no-children-v1"}
+      }
+    }
+  },
+  "$defs": {
+    "fileReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

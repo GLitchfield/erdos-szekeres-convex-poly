@@ -4,9 +4,9 @@
   "title": "Erdos-Szekeres evidence-first development brief",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "brief_id", "task_id", "seed", "target_ref", "worker_mode", "probe", "selected_context", "hostile_controls", "allowed_methods", "lean_policy", "checkpoint_tool_calls", "persistence_instruction", "policies", "authority"],
+  "required": ["schema_version", "brief_id", "task_id", "seed", "target_ref", "worker_mode", "evidence_contract", "probe", "selected_context", "hostile_controls", "allowed_methods", "lean_policy", "checkpoint_tool_calls", "persistence_instruction", "policies", "authority"],
   "properties": {
-    "schema_version": {"const": 1},
+    "schema_version": {"const": 3},
     "brief_id": {"type": "string", "minLength": 1},
     "task_id": {"type": "string", "minLength": 1},
     "seed": {
@@ -21,6 +21,59 @@
     },
     "target_ref": {"type": "string", "minLength": 1, "maxLength": 240},
     "worker_mode": {"enum": ["context_rich", "representation_escape", "failure_dual", "independent_replication"]},
+    "evidence_contract": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contract_id", "statement", "target_ref", "model", "model_contract_id", "scope", "theorem"],
+      "properties": {
+        "contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "statement": {"type": "string", "minLength": 1, "maxLength": 4000},
+        "target_ref": {"type": "string", "minLength": 1, "maxLength": 240},
+        "model": {
+          "type": "object", "additionalProperties": false,
+          "required": ["working_tier", "target_tier", "transfer_status", "bridge_ref", "information_at_risk"],
+          "properties": {
+            "working_tier": {"type": "string", "minLength": 1},
+            "target_tier": {"type": "string", "minLength": 1},
+            "transfer_status": {"enum": ["same_tier", "conjectural", "verified_bridge"]},
+            "bridge_ref": {"type": ["string", "null"]},
+            "information_at_risk": {"type": "string", "minLength": 1}
+          }
+        },
+        "model_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "scope": {
+          "type": "object", "additionalProperties": false,
+          "required": ["scope_contract_id", "candidate", "ceiling", "subfamily"],
+          "properties": {
+            "scope_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "candidate": {
+              "type": "object", "additionalProperties": false,
+              "required": ["campaign_id", "seed_id", "seed_batch_sha256"],
+              "properties": {
+                "campaign_id": {"type": "string", "minLength": 1},
+                "seed_id": {"type": "string", "minLength": 1},
+                "seed_batch_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+              }
+            },
+            "ceiling": {"enum": ["candidate-local", "subfamily"]},
+            "subfamily": {
+              "oneOf": [
+                {"type": "null"},
+                {
+                  "type": "object", "additionalProperties": false,
+                  "required": ["subfamily_ref", "shared_premise", "shared_premise_contract_id"],
+                  "properties": {
+                    "subfamily_ref": {"type": "string", "minLength": 1},
+                    "shared_premise": {"type": "string", "minLength": 1},
+                    "shared_premise_contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "theorem": {"type": "null"}
+      }
+    },
     "probe": {
       "type": "object",
       "additionalProperties": false,
@@ -71,15 +124,15 @@
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "items": {"enum": ["manual_reasoning", "local_python", "local_lean", "local_exact_solver", "read_only_sources"]}
+      "items": {"enum": ["local_python", "local_exact_solver"]}
     },
     "lean_policy": {
       "type": "object",
       "additionalProperties": false,
       "required": ["mode", "theorem_contract_ref", "rationale"],
       "properties": {
-        "mode": {"enum": ["not_yet", "fixed_statement_in_loop", "post_survival_only", "post_discovery_certificate"]},
-        "theorem_contract_ref": {"type": ["string", "null"], "maxLength": 240},
+        "mode": {"enum": ["not_yet", "post_survival_only", "post_discovery_certificate"]},
+        "theorem_contract_ref": {"type": "null"},
         "rationale": {"type": "string", "minLength": 1, "maxLength": 800}
       }
     },
@@ -96,7 +149,29 @@
         "metrics": {"const": "evidence-vector-v1"}
       }
     },
-    "authority": {"const": "investigation_only; task_packet_controls_all_actions"}
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["protocol", "approval_ref", "execution_class", "terminal_ceiling", "limits", "writes", "provider_calls", "service_starts", "scheduler_mutations", "canonical_writes", "external_writes", "installations", "destructive_actions"],
+      "properties": {
+        "protocol": {"const": "ticket-0119-standing-first-test-v1"},
+        "approval_ref": {"const": "docs/wayfinder/tickets/0119-adopt-self-refilling-investigation-loop.md#approval-and-operational-inventory"},
+        "execution_class": {"const": "pre_admission_information_gathering"},
+        "terminal_ceiling": {"const": "has_legs_or_earlier"},
+        "limits": {
+          "type": "object", "additionalProperties": false,
+          "required": ["wall_minutes", "cpu_cores", "memory_gib", "output_gib"],
+          "properties": {
+            "wall_minutes": {"const": 30}, "cpu_cores": {"const": 2},
+            "memory_gib": {"const": 4}, "output_gib": {"const": 0.1}
+          }
+        },
+        "writes": {"const": "exact_ignored_runs_agents_paths_only"},
+        "provider_calls": {"const": 0}, "service_starts": {"const": 0},
+        "scheduler_mutations": {"const": false}, "canonical_writes": {"const": false},
+        "external_writes": {"const": false}, "installations": {"const": false},
+        "destructive_actions": {"const": false}
+      }
+    }
   },
   "$defs": {
     "fileReceipt": {

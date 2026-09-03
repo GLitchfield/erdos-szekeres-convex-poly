@@ -50,10 +50,25 @@ rules. Build that snapshot with
 python3 scripts/build_sol_idea_packet.py --output-dir runs/agents/<campaign>/coordinator-snapshot
 ```
 
-and bind the seed batch to the resulting `packet-summary.json`, whose receipts
-commit the manifest, inline context, Lean declaration index, and prior-idea
-registry. Rebuild it after reconciliation rather than incrementally editing an
-old packet. A development worker receives only the selected seed, immutable
+For Ticket-0119 provider/root generation also pass `--service-dir`,
+`--campaign-id`, and `--purpose`, but only through the generator-owned snapshot
+preparation path. It first produces one accounting-backed validated-learning
+export from current closed batch/results, exact claims and tasks, full feedback
+and reconciliation, and canonical failure-memory receipts. The packet builder
+may consume continuous state only through that export; it must not scan raw
+service directories or decide evidence admission. Bind the seed batch to the
+resulting `packet-summary.json`, `snapshot-build-receipt.json`, and immutable
+snapshot-admission receipt.
+
+Current admission regenerates the learning export, cold-rebuilds all seven
+deterministic outputs with the current builder, byte-compares them, and checks
+the post-replay campaign-excluded learning epoch and workspace aggregate before
+writing the admission. Historical attestation later authenticates those frozen
+outputs and cross-bindings without consulting a newer builder or mutable
+learning targets. Currency is a separate launch/ready-exposure check. The build
+and replay both exclude the campaign being authenticated, so adding its
+returned seed batch cannot make its own pre-call snapshot irreproducible. A
+copied builder hash in a hand-written receipt is insufficient. A development worker receives only the selected seed, immutable
 brief, and small explicit input closure. The full coordinator snapshot is
 provenance, not downstream worker context. A `representation_escape` seed pass
 is the deliberate exception: it receives only the exact target and selected
@@ -72,11 +87,13 @@ A pre-admission development brief is bounded information-gathering, not a
 portfolio thread, proof-producing slot, route admission, promotion, revival, or
 proof movement. This is the narrow exception to the ordinary rule that
 mathematical execution slates are selected from admitted `FP-NN` entries. It
-still requires an immutable packet and exact user approval. "Immediate" means
+still requires an immutable packet and exact user approval, except that Ticket
+0119's explicit standing first-test envelope covers its future seed-specific
+packets without another chat approval. "Immediate" means
 the next approved compatible free slot after screening; it grants no provider,
 network, tool, or mathematical execution authority by itself.
 
-### Ticket 0103 theorem-first selection override
+### Ticket 0103 theorem-first baseline
 
 Ticket 0103 suspends automatic campaign backfill while the reconciled portfolio
 has no `advancing` entry and no theorem-ready producer passes the theorem-entry
@@ -92,19 +109,85 @@ The rolling discretionary research weights are 40% `D-HALF` structural work,
 seed quotas. Campaign activity belongs to the final two categories unless a
 later admitted theorem card places it under a load-bearing parent.
 
-The scheduler and continuous idea generator remain stopped under Ticket 0103.
+The scheduler and continuous idea generator remain stopped under the Ticket-
+0103 baseline unless a later explicit override applies.
 This protocol documents their allowable behavior if separately reauthorized;
 it supplies no present restart authority. Diagnosis, a theorem-first workload,
 a valid current implementation and receipt, and a new explicit user decision
 are all required before either service can restart.
 
+### Ticket 0119 self-refilling investigation-loop override
+
+Ticket 0119 supplies the later explicit decision for the idea generator after
+an operational-only diagnosis and a v3 implementation/receipt migration. While
+that temporary policy is in force it supersedes Ticket 0103's automatic-
+backfill prohibition,
+discretionary weights, and zero-reserve preference. It preserves all theorem-
+entry, semantic-readiness, evidence-admission, model-tier, failure-memory,
+mechanism-correlation, no-padding, and proof-distance gates. The scheduler
+remains paused/stopped.
+
+This paragraph states the approved target policy, not current liveness. The
+state, validated-learning-export, first-test-guard, and exact outcome-tail
+restart repairs are implemented; the v3 suite passes 24/24 and all seven
+repaired base-generator cases pass focused reruns, while the interrupted final
+aggregate rerun is not claimed complete. The corrected portfolio reconciliation
+is independently CLEAN. The v3
+generator remains stopped pending the final post-repair guarded `make test`,
+final-byte CLEAN reviews, and one fresh authorization confirming 30 charged
+calls and at most 70 remaining. No provider call or first investigation may
+precede that gate. The scheduler remains stopped throughout.
+
+Maintain ten authenticated `ready` proposal items. Provider packets request
+only the exact unreserved deficit, at most five, with no rolling daily cap or
+post-call cooldown; retained lifetime, per-call, concurrency, circuit, and
+no-retry limits remain binding. Claims and root-admitted feedback are per seed.
+Every later packet binds the latest claim-plus-feedback-and-canonical-failure-
+memory learning epoch and sees all in-flight identities. The active provider
+authorization also binds an immutable migration baseline and an alternating
+hash-linked attempt/outcome ledger; any unresolved attempt or corrupt/lost
+artifact stops fresh spending. Whenever ready depth is zero and no provider
+reservation is pending, root-origin seeds may enter the same schema and
+learning memory after a batch-bound JSON semantic screen of every exact seed.
+Ready, pending, and reserved counts come only from one current authorization
+and its authenticated accounting view. Provider artifacts become inventory
+only after exact attempt/outcome/result/seed receipts close; root imports use
+their exact result/snapshot-admission/screen receipts and final result commit
+marker. A root import keeps its source, snapshot, derived admission, and screen
+inside one resolved ignored run outside the service directory; current
+authorization/accounting and snapshot currency are checked before and after
+destination writes. Partial imports remain operator-diagnosis states, expose no
+ready seed, and are not deleted or retried.
+
+Run up to four bounded, mathematically distinct first-falsifier investigations
+and reconcile every terminal before treating it as learned. Continue until a
+candidate survives its first hostile gate and an independent hostile/cold
+check, has explicit model and return status, a complete theorem-entry memo and
+short consumer ladder, a genuine mathematical delta from controls, and one
+bounded next allocation-changing gate. This “has legs” classification is
+normally neutral search information, not route admission or proof movement.
+
+Ticket 0119 supplies standing approval only for these future immutable first-
+test packets: at most 30 minutes, 2 CPU cores, 4 GiB local RSS, and 0.1 GiB
+total output per lane; at most four concurrent lanes; exact ignored
+`runs/agents/` outputs only. Each checked test is a root-launched guarded
+deterministic Python execution with a trusted execution envelope, exact frozen
+checker/raw inputs, declared outputs, and an artifact-consuming guarded root
+replay. Ordinary agent reasoning is proposal input, not checked evidence. This
+standing branch has no manual-reasoning, source-reading, Lean, theorem-contract,
+or `file_compiles` mode. It does not authorize canonical edits, installation,
+destructive or external writes, network access, scheduler changes, added
+provider authority, resource increases, unapproved delegation, or work past
+the “has legs” stopping gate.
+
 The campaign has six stages.
 
-### 1. Generate five brief seeds
+### 1. Generate deficit-bound brief seeds
 
-Request up to five seeds as a breadth target. If fewer than five honest seeds survive
-the generator's literal duplicate and target-equivalence screen, return a
-novelty stop rather than padding.
+Request up to five seeds as a breadth target, or only the smaller exact ready-
+queue deficit under Ticket 0119. If fewer than the frozen requested number of
+honest seeds survive the generator's literal duplicate and target-equivalence
+screen, return a novelty stop rather than padding.
 
 Record whether the pass is `context_rich`, `representation_escape`,
 `failure_dual`, or `recombination`. This is provenance for later evidence-vector
@@ -136,16 +219,16 @@ The machine-readable contract is
 `docs/agents/schemas/research-seed-batch.schema.json`.
 
 The optional chat-independent implementation of this stage is
-`docs/agents/continuous-idea-generator.md`. Under Ticket 0083 it may
-self-refill an immutable proposal inbox within one exact standing authorization:
-one call at a time, bounded rolling and total call counts, bounded unreconciled
-batches/seeds, a minimum cooldown, and explicit provider/zero-seed circuit
-breakers. Daemon persistence does not grant retry of an attempted packet,
+`docs/agents/continuous-idea-generator.md`. Under Tickets 0083 and 0119 it may
+self-refill an immutable ten-item proposal queue within one exact standing
+authorization: one call at a time, exact deficit reservations, a bounded total
+call count, and explicit provider/zero-seed circuit breakers. Daemon persistence does not grant retry of an attempted packet,
 development, reconciliation, route admission, scheduling, proof movement, or
 canonical write authority.
 
-Ticket 0103 currently holds this optional service stopped. Do not invoke it to
-restore seed count, queue depth, or occupancy.
+Ticket 0119 supersedes Ticket 0103's service stop after the recorded diagnosis,
+v3 validation, fresh receipt, and explicit user decision. Queue depth still
+does not constitute mathematical evidence or authorize seed development.
 
 ### 2. Apply only the seed safety screen
 
@@ -191,6 +274,10 @@ the complete prior-idea registry, or the complete Lean declaration index.
 Every brief includes:
 
 - the frozen question and model tier;
+- canonical hashes of the exact primary claim, model contract, and scope
+  contract;
+- a damage-scope contract: candidate-local, or a named subfamily and the exact
+  shared premise whose failure the probe can test;
 - selected input hashes and the nearest relevant failure-memory references;
 - at least one hostile control or known-false neighboring world;
 - the first falsifier and concrete mathematical tasks;
@@ -221,13 +308,76 @@ A claim candidate or serendipitous scoped result is an optional sidecar to that
 primary terminal, never a replacement terminal. The sidecar freezes its exact
 statement and evidence but does not authorize a pivot.
 
+The seed's question/live/kill strings cannot be rewritten in the development
+brief. The accompanying Ticket-0119 task packet is validated by the dedicated
+`docs/agents/schemas/research-first-test-task.schema.json`, not the ordinary
+agent-task schema. It is also closed: at most 30
+minutes, 2 CPU, 4 GiB, 0.1 GiB, exact ignored `runs/agents/<run>/...` writes,
+and no provider, service, scheduler, canonical, external, installation, or
+destructive authority. Under Ticket 0119's standing clause it additionally
+freezes a root-owned guard contract and rejects `manual_reasoning`,
+`read_only_sources`, `local_lean`, `fixed_statement_in_loop`, any theorem
+contract, `file_compiles`, and every Lean verification engine. A collaboration
+agent may help formulate proposal input, but only the guarded deterministic
+test can produce a checked development event.
+
+Every non-proposal evidence event has an independent verification receipt that
+hash-binds its exact kind, gate branch, subject, polarity, damage, artifact, and
+observation to the frozen claim/model/scope IDs. One non-operational terminal
+has exactly one semantically matching primary event:
+`live/supports/primary`, `kill/refutes`, or `no_signal/observes`, and feedback
+selects that event. For the standing branch, the trusted root guard first
+enforces the claim/task authority and resource envelope and materializes only
+the declared artifact. Root then reruns the exact frozen checker under that
+guard; its command consumes that artifact and all required raw inputs, and its
+normalized result must establish the event's exact claim/model/scope core. A
+self-authored verifier receipt or worker resource counters are not evidence.
+Missing or violated guard evidence forces `OPERATIONAL_STOP`,
+`operational-only`, empty mathematical events, no verified learning, and no
+claim candidate.
+Every standing first-test feedback has net proof movement `neutral` or
+`backward`; this authority cannot support a forward claim.
+
+Lean is a later, separately approved canonical theorem workflow through the
+guarded Makefile path. `lean_native_decide` remains computational evidence and
+must pass guarded `make test`; it cannot be relabeled as a kernel theorem or
+replaced with kernel `decide`. Only a later fixed-statement `lean_kernel` event
+may claim `file_compiles`, and only through that separate guarded approval.
+
 The machine-readable contract is
 `docs/agents/schemas/research-development-brief.schema.json`.
 
 ### 4. Mutate evidence, not prose
 
+The per-seed feedback schema computes a canonical digest over every field except
+`root_admission`. Root admission and `research-root-reconciliation-v2` must
+both bind that complete core, the exact claim and development receipt, the
+standing authority, and the reconciliation timestamp. Before projecting any
+learning, the generator independently validates the task, trusted execution
+envelope, terminal event, guarded verifier result, evidence level, scope,
+proof-distance account, learned tags, next discriminator, failure-memory
+reference, claim-candidate disposition, and queue disposition. Root
+reconciliation is therefore a checked cross-binding, not an evidence oracle.
+No field outside an evidence-only subset can be changed after admission.
+
 After root independently admits a mathematical negative, its existing failure
-genome remains the canonical memory. Within that same existing record, the
+genome remains the canonical memory. The per-seed receipt must bind exactly one
+existing route home and heading, one unique marker-bounded JSON core and its
+canonical digest, and the exact selected `exact_falsifier` or `claim_refuted`
+artifact. The immutable core contains the admitted evidence level, damage
+scope, terminal event, verified failing feature, strongest supported statement,
+and tagged mutation constraints. Later review may append outside that core in
+the same home; moving, duplicating, or changing the core fails authentication.
+A positive, no-signal, or
+operational terminal has no failure-genome reference.
+
+Per-seed positive and no-signal results are candidate-local. A falsifier is at
+most subfamily-wide, and only when its immutable brief predeclared the shared
+premise and subfamily. Architecture- or mechanism-wide damage requires a
+separate authenticated shared-cause/adversarial review that records variants
+covered and untested in the same canonical genome home. It leaves the original
+feedback immutable; the changed canonical route record enters every later
+learning epoch. Within that same existing record, the
 reconciliation may additionally identify:
 
 - an unexpected invariant or structure that survived;

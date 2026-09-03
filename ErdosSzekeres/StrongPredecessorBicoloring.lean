@@ -102,6 +102,359 @@ theorem isStrongPolygonSet_of_all_pred_subsets
     (Finset.mem_erase.mpr ⟨hxm.symm, hm⟩)
     (Finset.mem_erase.mpr ⟨hxl.symm, hl⟩)
 
+/-- A non-strong set has an ordered quadruple meeting every vertex deletion
+whose remaining facet is strong. -/
+theorem exists_ordered_quadruple_hitting_strong_deletions
+    {n : ℕ} {χ : TripleColoring n} {s : Finset (Fin n)}
+    (hnot : ¬ IsStrongPolygonSet χ s) :
+    ∃ i j k l : Fin n,
+      i < j ∧ j < k ∧ k < l ∧
+      i ∈ s ∧ j ∈ s ∧ k ∈ s ∧ l ∈ s ∧
+      ∀ d, IsStrongPolygonSet χ (s.erase d) →
+        d ∈ ({i, j, k, l} : Finset (Fin n)) := by
+  classical
+  unfold IsStrongPolygonSet at hnot
+  push Not at hnot
+  obtain ⟨i, j, k, l, hij, hjk, hkl, hi, hj, hk, hl, hbad⟩ := hnot
+  refine ⟨i, j, k, l, hij, hjk, hkl, hi, hj, hk, hl, ?_⟩
+  intro d hstrong
+  by_contra hd
+  simp only [Finset.mem_insert, Finset.mem_singleton, not_or] at hd
+  obtain ⟨hdi, hdj, hdk, hdl⟩ := hd
+  have hquad := hstrong hij hjk hkl
+    (Finset.mem_erase.mpr ⟨Ne.symm hdi, hi⟩)
+    (Finset.mem_erase.mpr ⟨Ne.symm hdj, hj⟩)
+    (Finset.mem_erase.mpr ⟨Ne.symm hdk, hk⟩)
+    (Finset.mem_erase.mpr ⟨Ne.symm hdl, hl⟩)
+  exact hbad hquad.1 hquad.2
+
+/-- At most four vertices of a non-strong set have a strong deletion facet. -/
+theorem strong_deletions_card_le_four
+    {n : ℕ} {χ : TripleColoring n} {s deletions : Finset (Fin n)}
+    (hnot : ¬ IsStrongPolygonSet χ s)
+    (hdeletions : ∀ d ∈ deletions, IsStrongPolygonSet χ (s.erase d)) :
+    deletions.card ≤ 4 := by
+  classical
+  obtain ⟨i, j, k, l, hij, hjk, hkl, _hi, _hj, _hk, _hl, hhit⟩ :=
+    exists_ordered_quadruple_hitting_strong_deletions hnot
+  have hsubset : deletions ⊆ {i, j, k, l} := by
+    intro d hd
+    exact hhit d (hdeletions d hd)
+  calc
+    deletions.card ≤ ({i, j, k, l} : Finset (Fin n)).card :=
+      Finset.card_le_card hsubset
+    _ = 4 := by
+      simp [ne_of_lt hij, ne_of_lt (hij.trans hjk),
+        ne_of_lt (hij.trans (hjk.trans hkl)), ne_of_lt hjk,
+        ne_of_lt (hjk.trans hkl), ne_of_lt hkl]
+
+/-- At most three vertices of a non-strong set of cardinality at least five
+have a strong deletion facet.  Four such deletions would be the four vertices
+of a bad quadruple; a fifth ambient vertex then repairs both failed
+equalities. -/
+theorem strong_deletions_card_le_three_of_five_le
+    {n : ℕ} {χ : TripleColoring n} {s deletions : Finset (Fin n)}
+    (hcard : 5 ≤ s.card) (hnot : ¬ IsStrongPolygonSet χ s)
+    (hdeletions : ∀ d ∈ deletions, IsStrongPolygonSet χ (s.erase d)) :
+    deletions.card ≤ 3 := by
+  classical
+  by_contra hlarge
+  unfold IsStrongPolygonSet at hnot
+  push Not at hnot
+  obtain ⟨i, j, k, l, hij, hjk, hkl, hi, hj, hk, hl, hbad⟩ := hnot
+  let quad : Finset (Fin n) := {i, j, k, l}
+  have hquadCard : quad.card = 4 := by
+    simp [quad, ne_of_lt hij, ne_of_lt (hij.trans hjk),
+      ne_of_lt (hij.trans (hjk.trans hkl)), ne_of_lt hjk,
+      ne_of_lt (hjk.trans hkl), ne_of_lt hkl]
+  have hsubset : deletions ⊆ quad := by
+    intro d hd
+    by_contra hdq
+    simp only [quad, Finset.mem_insert, Finset.mem_singleton, not_or] at hdq
+    obtain ⟨hdi, hdj, hdk, hdl⟩ := hdq
+    have hstrong := hdeletions d hd
+    have hgood := hstrong hij hjk hkl
+      (Finset.mem_erase.mpr ⟨Ne.symm hdi, hi⟩)
+      (Finset.mem_erase.mpr ⟨Ne.symm hdj, hj⟩)
+      (Finset.mem_erase.mpr ⟨Ne.symm hdk, hk⟩)
+      (Finset.mem_erase.mpr ⟨Ne.symm hdl, hl⟩)
+    exact hbad hgood.1 hgood.2
+  have hdelCard : deletions.card = 4 := by
+    have hle := Finset.card_le_card hsubset
+    rw [hquadCard] at hle
+    omega
+  have hdeq : deletions = quad :=
+    Finset.eq_of_subset_of_card_le hsubset (by rw [hquadCard, hdelCard])
+  have hsi : IsStrongPolygonSet χ (s.erase i) := by
+    apply hdeletions i
+    rw [hdeq]
+    simp [quad]
+  have hsj : IsStrongPolygonSet χ (s.erase j) := by
+    apply hdeletions j
+    rw [hdeq]
+    simp [quad]
+  have hsk : IsStrongPolygonSet χ (s.erase k) := by
+    apply hdeletions k
+    rw [hdeq]
+    simp [quad]
+  have hsl : IsStrongPolygonSet χ (s.erase l) := by
+    apply hdeletions l
+    rw [hdeq]
+    simp [quad]
+  have hnotSubset : ¬s ⊆ quad := by
+    intro hsub
+    have hle := Finset.card_le_card hsub
+    rw [hquadCard] at hle
+    omega
+  obtain ⟨x, hxs, hxquad⟩ := Finset.not_subset.mp hnotSubset
+  have hxi : x ≠ i := by
+    intro h
+    subst x
+    exact hxquad (by simp [quad])
+  have hxj : x ≠ j := by
+    intro h
+    subst x
+    exact hxquad (by simp [quad])
+  have hxk : x ≠ k := by
+    intro h
+    subst x
+    exact hxquad (by simp [quad])
+  have hxl : x ≠ l := by
+    intro h
+    subst x
+    exact hxquad (by simp [quad])
+  have hxI : x ∈ s.erase i := Finset.mem_erase.mpr ⟨hxi, hxs⟩
+  have hjI : j ∈ s.erase i := Finset.mem_erase.mpr ⟨ne_of_gt hij, hj⟩
+  have hkI : k ∈ s.erase i :=
+    Finset.mem_erase.mpr ⟨ne_of_gt (hij.trans hjk), hk⟩
+  have hlI : l ∈ s.erase i :=
+    Finset.mem_erase.mpr ⟨ne_of_gt (hij.trans (hjk.trans hkl)), hl⟩
+  have hxJ : x ∈ s.erase j := Finset.mem_erase.mpr ⟨hxj, hxs⟩
+  have hiJ : i ∈ s.erase j := Finset.mem_erase.mpr ⟨ne_of_lt hij, hi⟩
+  have hkJ : k ∈ s.erase j := Finset.mem_erase.mpr ⟨ne_of_gt hjk, hk⟩
+  have hlJ : l ∈ s.erase j :=
+    Finset.mem_erase.mpr ⟨ne_of_gt (hjk.trans hkl), hl⟩
+  have hxK : x ∈ s.erase k := Finset.mem_erase.mpr ⟨hxk, hxs⟩
+  have hiK : i ∈ s.erase k :=
+    Finset.mem_erase.mpr ⟨ne_of_lt (hij.trans hjk), hi⟩
+  have hjK : j ∈ s.erase k := Finset.mem_erase.mpr ⟨ne_of_lt hjk, hj⟩
+  have hlK : l ∈ s.erase k := Finset.mem_erase.mpr ⟨ne_of_gt hkl, hl⟩
+  have hxL : x ∈ s.erase l := Finset.mem_erase.mpr ⟨hxl, hxs⟩
+  have hiL : i ∈ s.erase l :=
+    Finset.mem_erase.mpr ⟨ne_of_lt (hij.trans (hjk.trans hkl)), hi⟩
+  have hjL : j ∈ s.erase l :=
+    Finset.mem_erase.mpr ⟨ne_of_lt (hjk.trans hkl), hj⟩
+  have hkL : k ∈ s.erase l := Finset.mem_erase.mpr ⟨ne_of_lt hkl, hk⟩
+  have hposition :
+      x < i ∨ (i < x ∧ x < j) ∨ (j < x ∧ x < k) ∨
+        (k < x ∧ x < l) ∨ l < x := by
+    omega
+  have hgood :
+      χ ⟨i, j, k, hij, hjk⟩ = χ ⟨i, j, l, hij, hjk.trans hkl⟩ ∧
+        χ ⟨i, k, l, hij.trans hjk, hkl⟩ = χ ⟨j, k, l, hjk, hkl⟩ := by
+    rcases hposition with hxiLt | ⟨hix, hxjLt⟩ | ⟨hjx, hxkLt⟩ |
+      ⟨hkx, hxlLt⟩ | hlx
+    · constructor
+      · calc
+          χ ⟨i, j, k, hij, hjk⟩ =
+              χ ⟨x, j, k, hxiLt.trans hij, hjk⟩ :=
+            (hsl hxiLt hij hjk hxL hiL hjL hkL).2.symm
+          _ = χ ⟨x, j, l, hxiLt.trans hij, hjk.trans hkl⟩ :=
+            (hsi (hxiLt.trans hij) hjk hkl hxI hjI hkI hlI).1
+          _ = χ ⟨i, j, l, hij, hjk.trans hkl⟩ :=
+            (hsk hxiLt hij (hjk.trans hkl) hxK hiK hjK hlK).2
+      · calc
+          χ ⟨i, k, l, hij.trans hjk, hkl⟩ =
+              χ ⟨x, k, l, hxiLt.trans (hij.trans hjk), hkl⟩ :=
+            (hsj hxiLt (hij.trans hjk) hkl hxJ hiJ hkJ hlJ).2.symm
+          _ = χ ⟨j, k, l, hjk, hkl⟩ :=
+            (hsi (hxiLt.trans hij) hjk hkl hxI hjI hkI hlI).2
+    · constructor
+      · calc
+          χ ⟨i, j, k, hij, hjk⟩ = χ ⟨x, j, k, hxjLt, hjk⟩ :=
+            (hsl hix hxjLt hjk hiL hxL hjL hkL).2
+          _ = χ ⟨x, j, l, hxjLt, hjk.trans hkl⟩ :=
+            (hsi hxjLt hjk hkl hxI hjI hkI hlI).1
+          _ = χ ⟨i, j, l, hij, hjk.trans hkl⟩ :=
+            (hsk hix hxjLt (hjk.trans hkl) hiK hxK hjK hlK).2.symm
+      · calc
+          χ ⟨i, k, l, hij.trans hjk, hkl⟩ =
+              χ ⟨x, k, l, hxjLt.trans hjk, hkl⟩ :=
+            (hsj hix (hxjLt.trans hjk) hkl hiJ hxJ hkJ hlJ).2
+          _ = χ ⟨j, k, l, hjk, hkl⟩ :=
+            (hsi hxjLt hjk hkl hxI hjI hkI hlI).2
+    · constructor
+      · calc
+          χ ⟨i, j, k, hij, hjk⟩ = χ ⟨i, j, x, hij, hjx⟩ :=
+            (hsl hij hjx hxkLt hiL hjL hxL hkL).1.symm
+          _ = χ ⟨i, j, l, hij, hjk.trans hkl⟩ :=
+            (hsk hij hjx (hxkLt.trans hkl) hiK hjK hxK hlK).1
+      · calc
+          χ ⟨i, k, l, hij.trans hjk, hkl⟩ = χ ⟨x, k, l, hxkLt, hkl⟩ :=
+            (hsj (hij.trans hjx) hxkLt hkl hiJ hxJ hkJ hlJ).2
+          _ = χ ⟨j, k, l, hjk, hkl⟩ :=
+            (hsi hjx hxkLt hkl hjI hxI hkI hlI).2.symm
+    · constructor
+      · calc
+          χ ⟨i, j, k, hij, hjk⟩ = χ ⟨i, j, x, hij, hjk.trans hkx⟩ :=
+            (hsl hij hjk hkx hiL hjL hkL hxL).1
+          _ = χ ⟨i, j, l, hij, hjk.trans hkl⟩ :=
+            (hsk hij (hjk.trans hkx) hxlLt hiK hjK hxK hlK).1
+      · calc
+          χ ⟨i, k, l, hij.trans hjk, hkl⟩ =
+              χ ⟨i, k, x, hij.trans hjk, hkx⟩ :=
+            (hsj (hij.trans hjk) hkx hxlLt hiJ hkJ hxJ hlJ).1.symm
+          _ = χ ⟨j, k, x, hjk, hkx⟩ :=
+            (hsl hij hjk hkx hiL hjL hkL hxL).2
+          _ = χ ⟨j, k, l, hjk, hkl⟩ :=
+            (hsi hjk hkx hxlLt hjI hkI hxI hlI).1
+    · constructor
+      · calc
+          χ ⟨i, j, k, hij, hjk⟩ =
+              χ ⟨i, j, x, hij, hjk.trans (hkl.trans hlx)⟩ :=
+            (hsl hij hjk (hkl.trans hlx) hiL hjL hkL hxL).1
+          _ = χ ⟨i, j, l, hij, hjk.trans hkl⟩ :=
+            (hsk hij (hjk.trans hkl) hlx hiK hjK hlK hxK).1.symm
+      · calc
+          χ ⟨i, k, l, hij.trans hjk, hkl⟩ =
+              χ ⟨i, k, x, hij.trans hjk, hkl.trans hlx⟩ :=
+            (hsj (hij.trans hjk) hkl hlx hiJ hkJ hlJ hxJ).1
+          _ = χ ⟨j, k, x, hjk, hkl.trans hlx⟩ :=
+            (hsl hij hjk (hkl.trans hlx) hiL hjL hkL hxL).2
+          _ = χ ⟨j, k, l, hjk, hkl⟩ :=
+            (hsi hjk hkl hlx hjI hkI hlI hxI).1.symm
+  exact hbad hgood.1 hgood.2
+
+private def StrongQuadAt {n : ℕ} (χ : TripleColoring n)
+    {a b c d : Fin n} (hab : a < b) (hbc : b < c) (hcd : c < d) : Prop :=
+  χ ⟨a, b, c, hab, hbc⟩ = χ ⟨a, b, d, hab, hbc.trans hcd⟩ ∧
+    χ ⟨a, c, d, hab.trans hbc, hcd⟩ = χ ⟨b, c, d, hbc, hcd⟩
+
+private theorem isStrongPolygonSet_five_of_strongQuads
+    {n : ℕ} {χ : TripleColoring n} {a b c d e : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d) (hde : d < e)
+    (h1 : StrongQuadAt χ hab hbc hcd)
+    (h2 : StrongQuadAt χ hab hbc (hcd.trans hde))
+    (h3 : StrongQuadAt χ hab (hbc.trans hcd) hde)
+    (h4 : StrongQuadAt χ (hab.trans hbc) hcd hde)
+    (h5 : StrongQuadAt χ hbc hcd hde) :
+    IsStrongPolygonSet χ {a, b, c, d, e} := by
+  classical
+  intro i j k l hij hjk hkl hi hj hk hl
+  change StrongQuadAt χ hij hjk hkl
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+  rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+    rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+    rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+    rcases hl with rfl | rfl | rfl | rfl | rfl <;> omega
+
+private theorem turnSequenceAllowed_second_eq_of_first_eq_third
+    {a b c d : Turn} (h : TurnSequenceAllowed a b c d) (hac : a = c) :
+    a = b := by
+  rcases h with h | h | h | h | h | h | h | h <;> simp_all
+
+private theorem turnSequenceAllowed_third_eq_fourth_of_first_ne_third
+    {a b c d : Turn} (h : TurnSequenceAllowed a b c d) (hac : a ≠ c) :
+    c = d := by
+  rcases h with h | h | h | h | h | h | h | h <;> simp_all
+
+/-- On seven ordered labels, four overlapping strong five-sets and the
+one-change law force one of the two additional strong five-sets detected by
+the seven-local modular discriminator. -/
+theorem seven_ordered_strong_fives_force_disjunction
+    {n : ℕ} {χ : TripleColoring n} {a b c d e f g : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d) (hde : d < e)
+    (hef : e < f) (hfg : f < g)
+    (hone : OneChangeOn χ {a, b, c, d, e, f, g})
+    (hacefg : IsStrongPolygonSet χ {a, c, e, f, g})
+    (hadefg : IsStrongPolygonSet χ {a, d, e, f, g})
+    (hbcdfg : IsStrongPolygonSet χ {b, c, d, f, g})
+    (hbcefg : IsStrongPolygonSet χ {b, c, e, f, g}) :
+    IsStrongPolygonSet χ {a, b, e, f, g} ∨
+      IsStrongPolygonSet χ {b, d, e, f, g} := by
+  classical
+  have hac := hab.trans hbc
+  have had := hac.trans hcd
+  have hae := had.trans hde
+  have haf := hae.trans hef
+  have hbd := hbc.trans hcd
+  have hbe := hbd.trans hde
+  have hbf := hbe.trans hef
+  have hce := hcd.trans hde
+  have hcf := hce.trans hef
+  have hdg := hde.trans (hef.trans hfg)
+  have heg := hef.trans hfg
+  have honeE := hone hab hbd hde (by simp) (by simp) (by simp) (by simp)
+  have honeF := hone hab hbd (hde.trans hef) (by simp) (by simp) (by simp) (by simp)
+  have honeG := hone hab hbd hdg (by simp) (by simp) (by simp) (by simp)
+  have hCef :
+      χ ⟨a, d, e, had, hde⟩ = χ ⟨a, d, f, had, hde.trans hef⟩ :=
+    (hadefg had hde hef (by simp) (by simp) (by simp) (by simp)).1
+  have hCeg : χ ⟨a, d, e, had, hde⟩ = χ ⟨a, d, g, had, hdg⟩ :=
+    (hadefg had hde heg (by simp) (by simp) (by simp) (by simp)).1
+  by_cases hAC : χ ⟨a, b, d, hab, hbd⟩ = χ ⟨a, d, e, had, hde⟩
+  · have hBE : χ ⟨a, b, d, hab, hbd⟩ = χ ⟨a, b, e, hab, hbe⟩ :=
+      turnSequenceAllowed_second_eq_of_first_eq_third honeE hAC
+    have hBF : χ ⟨a, b, d, hab, hbd⟩ = χ ⟨a, b, f, hab, hbf⟩ :=
+      turnSequenceAllowed_second_eq_of_first_eq_third honeF (hAC.trans hCef)
+    have hBG :
+        χ ⟨a, b, d, hab, hbd⟩ = χ ⟨a, b, g, hab, hbf.trans hfg⟩ :=
+      turnSequenceAllowed_second_eq_of_first_eq_third honeG (hAC.trans hCeg)
+    have hACEF := hacefg hac hce hef (by simp) (by simp) (by simp) (by simp)
+    have hBCEF := hbcefg hbc hce hef (by simp) (by simp) (by simp) (by simp)
+    have hACEG := hacefg hac hce heg (by simp) (by simp) (by simp) (by simp)
+    have hBCEG := hbcefg hbc hce heg (by simp) (by simp) (by simp) (by simp)
+    have hACFG := hacefg hac hcf hfg (by simp) (by simp) (by simp) (by simp)
+    have hBCFG := hbcefg hbc hcf hfg (by simp) (by simp) (by simp) (by simp)
+    have h1 : StrongQuadAt χ hab hbe hef :=
+      ⟨hBE.symm.trans hBF, hACEF.2.trans hBCEF.2.symm⟩
+    have h2 : StrongQuadAt χ hab hbe heg :=
+      ⟨hBE.symm.trans hBG, hACEG.2.trans hBCEG.2.symm⟩
+    have h3 : StrongQuadAt χ hab hbf hfg :=
+      ⟨hBF.symm.trans hBG, hACFG.2.trans hBCFG.2.symm⟩
+    have h4 : StrongQuadAt χ hae hef hfg :=
+      hacefg hae hef hfg (by simp) (by simp) (by simp) (by simp)
+    have h5 : StrongQuadAt χ hbe hef hfg :=
+      hbcefg hbe hef hfg (by simp) (by simp) (by simp) (by simp)
+    exact Or.inl (isStrongPolygonSet_five_of_strongQuads hab hbe hef hfg h1 h2 h3 h4 h5)
+  · have hDE : χ ⟨a, d, e, had, hde⟩ = χ ⟨b, d, e, hbd, hde⟩ :=
+      turnSequenceAllowed_third_eq_fourth_of_first_ne_third honeE hAC
+    have hACF : χ ⟨a, b, d, hab, hbd⟩ ≠ χ ⟨a, d, f, had, hde.trans hef⟩ := by
+      intro h
+      exact hAC (h.trans hCef.symm)
+    have hACG : χ ⟨a, b, d, hab, hbd⟩ ≠ χ ⟨a, d, g, had, hdg⟩ := by
+      intro h
+      exact hAC (h.trans hCeg.symm)
+    have hDF :
+        χ ⟨a, d, f, had, hde.trans hef⟩ = χ ⟨b, d, f, hbd, hde.trans hef⟩ :=
+      turnSequenceAllowed_third_eq_fourth_of_first_ne_third honeF hACF
+    have hDG : χ ⟨a, d, g, had, hdg⟩ = χ ⟨b, d, g, hbd, hdg⟩ :=
+      turnSequenceAllowed_third_eq_fourth_of_first_ne_third honeG hACG
+    have hACEF := hacefg hac hce hef (by simp) (by simp) (by simp) (by simp)
+    have hBCEF := hbcefg hbc hce hef (by simp) (by simp) (by simp) (by simp)
+    have hADEF := hadefg had hde hef (by simp) (by simp) (by simp) (by simp)
+    have hACEG := hacefg hac hce heg (by simp) (by simp) (by simp) (by simp)
+    have hBCEG := hbcefg hbc hce heg (by simp) (by simp) (by simp) (by simp)
+    have hADEG := hadefg had hde heg (by simp) (by simp) (by simp) (by simp)
+    have hACFG := hacefg hac hcf hfg (by simp) (by simp) (by simp) (by simp)
+    have hBCFG := hbcdfg hbc hcf hfg (by simp) (by simp) (by simp) (by simp)
+    have hADFG :=
+      hadefg had (hde.trans hef) hfg (by simp) (by simp) (by simp) (by simp)
+    have h1 : StrongQuadAt χ hbd hde hef :=
+      ⟨hDE.symm.trans (hCef.trans hDF),
+        hBCEF.2.trans (hACEF.2.symm.trans hADEF.2)⟩
+    have h2 : StrongQuadAt χ hbd hde heg :=
+      ⟨hDE.symm.trans (hCeg.trans hDG),
+        hBCEG.2.trans (hACEG.2.symm.trans hADEG.2)⟩
+    have h3 : StrongQuadAt χ hbd (hde.trans hef) hfg :=
+      ⟨hDF.symm.trans (hCef.symm.trans (hCeg.trans hDG)),
+        hBCFG.2.trans (hACFG.2.symm.trans hADFG.2)⟩
+    have h4 : StrongQuadAt χ hbe hef hfg :=
+      hbcefg hbe hef hfg (by simp) (by simp) (by simp) (by simp)
+    have h5 : StrongQuadAt χ hde hef hfg :=
+      hadefg hde hef hfg (by simp) (by simp) (by simp) (by simp)
+    exact Or.inr (isStrongPolygonSet_five_of_strongQuads hbd hde hef hfg h1 h2 h3 h4 h5)
+
 /-- On at most `2 * k - 3` vertices, strong-`k` avoidance already forces a
 predecessor bicoloring.  Below the boundary the two classes can both be made
 too small to contain `k-1` vertices.  At equality, failure of every

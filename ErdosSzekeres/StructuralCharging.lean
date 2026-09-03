@@ -39,6 +39,397 @@ def OneChangeOn {n : ℕ} (χ : TripleColoring n) (s : Finset (Fin n)) : Prop :=
         (χ ⟨i, k, l, hij.trans hjk, hkl⟩)
         (χ ⟨j, k, l, hjk, hkl⟩)
 
+/-- Strong four-subsets of a finite ordered vertex set. -/
+noncomputable def StrongQuadruplesIn {n : ℕ} (χ : TripleColoring n)
+    (s : Finset (Fin n)) : Finset (Finset (Fin n)) := by
+  classical
+  exact (s.powersetCard 4).filter (IsStrongPolygonSet χ)
+
+@[simp] theorem mem_strongQuadruplesIn {n : ℕ}
+    {χ : TripleColoring n} {s q : Finset (Fin n)} :
+    q ∈ StrongQuadruplesIn χ s ↔
+      q ⊆ s ∧ q.card = 4 ∧ IsStrongPolygonSet χ q := by
+  classical
+  simp [StrongQuadruplesIn, and_assoc]
+
+/-- An allowed four-turn word has an equal first pair or an equal last pair. -/
+theorem TurnSequenceAllowed.first_eq_or_last_eq
+    {A B C D : Turn} (h : TurnSequenceAllowed A B C D) :
+    A = B ∨ C = D := by
+  rcases h with h | h | h | h | h | h | h | h <;> simp_all
+
+/-- Strongness of an ordered four-set is exactly its two outer equalities. -/
+theorem isStrongPolygonSet_four_iff
+    {n : ℕ} {χ : TripleColoring n} {a b c d : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d) :
+    IsStrongPolygonSet χ {a, b, c, d} ↔
+      (χ ⟨a, b, c, hab, hbc⟩ =
+          χ ⟨a, b, d, hab, hbc.trans hcd⟩ ∧
+        χ ⟨a, c, d, hab.trans hbc, hcd⟩ =
+          χ ⟨b, c, d, hbc, hcd⟩) := by
+  constructor
+  · intro h
+    exact h hab hbc hcd (by simp) (by simp) (by simp) (by simp)
+  · intro h i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl <;>
+        rcases hk with rfl | rfl | rfl | rfl <;>
+          rcases hl with rfl | rfl | rfl | rfl <;> omega
+
+/-- A family of strong sets covering every four-subset makes the target set
+strong. -/
+theorem isStrongPolygonSet_of_quadruple_cover
+    {n : ℕ} {χ : TripleColoring n} {s : Finset (Fin n)}
+    {cover : Finset (Finset (Fin n))}
+    (hstrong : ∀ t ∈ cover, IsStrongPolygonSet χ t)
+    (hcover : ∀ q ∈ s.powersetCard 4, ∃ t ∈ cover, q ⊆ t) :
+    IsStrongPolygonSet χ s := by
+  intro i j k l hij hjk hkl hi hj hk hl
+  have hquad : ({i, j, k, l} : Finset (Fin n)) ∈ s.powersetCard 4 := by
+    rw [Finset.mem_powersetCard]
+    constructor
+    · intro x hx
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+      rcases hx with rfl | rfl | rfl | rfl
+      · exact hi
+      · exact hj
+      · exact hk
+      · exact hl
+    · simp [ne_of_lt hij, ne_of_lt (hij.trans hjk),
+        ne_of_lt (hij.trans (hjk.trans hkl)), ne_of_lt hjk,
+        ne_of_lt (hjk.trans hkl), ne_of_lt hkl]
+  obtain ⟨t, ht, hsub⟩ := hcover {i, j, k, l} hquad
+  exact hstrong t ht hij hjk hkl
+    (hsub (by simp)) (hsub (by simp)) (hsub (by simp)) (hsub (by simp))
+
+private def turnChange (x y : Turn) : ℕ :=
+  if x = y then 0 else 1
+
+private def turnBit : Turn → ZMod 2
+  | .left => 0
+  | .right => 1
+
+private theorem turnChange_cast (x y : Turn) :
+    (turnChange x y : ZMod 2) = turnBit x + turnBit y := by
+  cases x <;> cases y
+  · rfl
+  · rfl
+  · rfl
+  · change (0 : ZMod 2) = 1 + 1
+    rw [← Nat.cast_one, ← Nat.cast_one, ← Nat.cast_add,
+      ZMod.natCast_self]
+
+private theorem turnChange_comm (x y : Turn) :
+    turnChange x y = turnChange y x := by
+  simp [turnChange, eq_comm]
+
+private theorem turnChange_triangle_even (x y z : Turn) :
+    Even (turnChange x y + turnChange y z + turnChange z x) := by
+  rw [← ZMod.natCast_eq_zero_iff_even]
+  push_cast
+  simp only [turnChange_cast]
+  ring_nf
+  have htwo : (2 : ZMod 2) = 0 := ZMod.natCast_self 2
+  simp [htwo]
+
+private theorem turnChange_cycle_four_even (w x y z : Turn) :
+    Even (turnChange w x + turnChange x y + turnChange y z + turnChange z w) := by
+  rw [← ZMod.natCast_eq_zero_iff_even]
+  push_cast
+  simp only [turnChange_cast]
+  ring_nf
+  have htwo : (2 : ZMod 2) = 0 := ZMod.natCast_self 2
+  simp [htwo]
+
+private def outerDefect (A B C D : Turn) : ℕ :=
+  turnChange A B + turnChange C D
+
+private theorem outerDefect_eq_badIndicator
+    {A B C D : Turn} (h : TurnSequenceAllowed A B C D) :
+    outerDefect A B C D = if ¬(A = B ∧ C = D) then 1 else 0 := by
+  rcases h.first_eq_or_last_eq with hab | hcd
+  · subst B
+    simp [outerDefect, turnChange]
+  · subst D
+    simp [outerDefect, turnChange]
+
+private theorem powersetCard_four_ordered_five
+    {n : ℕ} {a b c d e : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d) (hde : d < e) :
+    ({a, b, c, d, e} : Finset (Fin n)).powersetCard 4 =
+      {{a, b, c, d}, {a, b, c, e}, {a, b, d, e},
+        {a, c, d, e}, {b, c, d, e}} := by
+  classical
+  let s : Finset (Fin n) := {a, b, c, d, e}
+  let q0 : Finset (Fin n) := {a, b, c, d}
+  let q1 : Finset (Fin n) := {a, b, c, e}
+  let q2 : Finset (Fin n) := {a, b, d, e}
+  let q3 : Finset (Fin n) := {a, c, d, e}
+  let q4 : Finset (Fin n) := {b, c, d, e}
+  have hac := hab.trans hbc
+  have had := hac.trans hcd
+  have hae := had.trans hde
+  have hbd := hbc.trans hcd
+  have hbe := hbd.trans hde
+  have hce := hcd.trans hde
+  have hsCard : s.card = 5 := by
+    simp [s, hab.ne, hac.ne, had.ne, hae.ne, hbc.ne, hbd.ne,
+      hbe.ne, hcd.ne, hce.ne, hde.ne]
+  change s.powersetCard 4 = {q0, q1, q2, q3, q4}
+  ext q
+  constructor
+  · intro hq
+    obtain ⟨hsub, hcard⟩ := Finset.mem_powersetCard.mp hq
+    have hnot : ¬s ⊆ q := by
+      intro hsq
+      have hle := Finset.card_le_card hsq
+      omega
+    obtain ⟨x, hxs, hxq⟩ := Finset.not_subset.mp hnot
+    have hqsub : q ⊆ s.erase x := by
+      intro y hy
+      exact Finset.mem_erase.mpr ⟨by
+        intro hyx
+        subst y
+        exact hxq hy, hsub hy⟩
+    have heraseCard : (s.erase x).card = 4 := by
+      rw [Finset.card_erase_of_mem hxs, hsCard]
+    have hqeq : q = s.erase x :=
+      Finset.eq_of_subset_of_card_le hqsub (by omega)
+    rw [hqeq]
+    simp only [Finset.mem_insert, Finset.mem_singleton]
+    simp only [s, Finset.mem_insert, Finset.mem_singleton] at hxs
+    rcases hxs with rfl | rfl | rfl | rfl | rfl
+    · refine Or.inr (Or.inr (Or.inr (Or.inr ?_)))
+      ext y
+      simp only [s, q4, Finset.mem_erase, Finset.mem_insert,
+        Finset.mem_singleton]
+      omega
+    · refine Or.inr (Or.inr (Or.inr (Or.inl ?_)))
+      ext y
+      simp only [s, q3, Finset.mem_erase, Finset.mem_insert,
+        Finset.mem_singleton]
+      omega
+    · refine Or.inr (Or.inr (Or.inl ?_))
+      ext y
+      simp only [s, q2, Finset.mem_erase, Finset.mem_insert,
+        Finset.mem_singleton]
+      omega
+    · refine Or.inr (Or.inl ?_)
+      ext y
+      simp only [s, q1, Finset.mem_erase, Finset.mem_insert,
+        Finset.mem_singleton]
+      omega
+    · refine Or.inl ?_
+      ext y
+      simp only [s, q0, Finset.mem_erase, Finset.mem_insert,
+        Finset.mem_singleton]
+      omega
+  · intro hq
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hq
+    rcases hq with rfl | rfl | rfl | rfl | rfl <;>
+      simp [s, q0, q1, q2, q3, q4, hab.ne, hac.ne, had.ne, hae.ne,
+        hbc.ne, hbd.ne, hbe.ne, hcd.ne, hce.ne, hde.ne]
+
+/-- Five ordered vertices satisfying the one-change law have an odd number
+of strong four-subsets. -/
+theorem odd_card_strongQuadruplesIn_ordered_five
+    {n : ℕ} {χ : TripleColoring n} {a b c d e : Fin n}
+    (hab : a < b) (hbc : b < c) (hcd : c < d) (hde : d < e)
+    (hone : OneChangeOn χ {a, b, c, d, e}) :
+    Odd (StrongQuadruplesIn χ {a, b, c, d, e}).card := by
+  classical
+  let s : Finset (Fin n) := {a, b, c, d, e}
+  let q0 : Finset (Fin n) := {a, b, c, d}
+  let q1 : Finset (Fin n) := {a, b, c, e}
+  let q2 : Finset (Fin n) := {a, b, d, e}
+  let q3 : Finset (Fin n) := {a, c, d, e}
+  let q4 : Finset (Fin n) := {b, c, d, e}
+  change OneChangeOn χ s at hone
+  change Odd (StrongQuadruplesIn χ s).card
+  have hac := hab.trans hbc
+  have had := hac.trans hcd
+  have hae := had.trans hde
+  have hbd := hbc.trans hcd
+  have hbe := hbd.trans hde
+  have hce := hcd.trans hde
+  let A : Turn := χ ⟨a, b, c, hab, hbc⟩
+  let B : Turn := χ ⟨a, b, d, hab, hbd⟩
+  let C : Turn := χ ⟨a, b, e, hab, hbe⟩
+  let D : Turn := χ ⟨a, c, d, hac, hcd⟩
+  let E : Turn := χ ⟨a, c, e, hac, hce⟩
+  let F : Turn := χ ⟨a, d, e, had, hde⟩
+  let G : Turn := χ ⟨b, c, d, hbc, hcd⟩
+  let H : Turn := χ ⟨b, c, e, hbc, hce⟩
+  let I : Turn := χ ⟨b, d, e, hbd, hde⟩
+  let J : Turn := χ ⟨c, d, e, hcd, hde⟩
+  have hone0 : TurnSequenceAllowed A B D G := by
+    simpa [A, B, D, G] using hone hab hbc hcd
+      (by simp [s]) (by simp [s]) (by simp [s]) (by simp [s])
+  have hone1 : TurnSequenceAllowed A C E H := by
+    simpa [A, C, E, H] using hone hab hbc hce
+      (by simp [s]) (by simp [s]) (by simp [s]) (by simp [s])
+  have hone2 : TurnSequenceAllowed B C F I := by
+    simpa [B, C, F, I] using hone hab hbd hde
+      (by simp [s]) (by simp [s]) (by simp [s]) (by simp [s])
+  have hone3 : TurnSequenceAllowed D E F J := by
+    simpa [D, E, F, J] using hone hac hcd hde
+      (by simp [s]) (by simp [s]) (by simp [s]) (by simp [s])
+  have hone4 : TurnSequenceAllowed G H I J := by
+    simpa [G, H, I, J] using hone hbc hcd hde
+      (by simp [s]) (by simp [s]) (by simp [s]) (by simp [s])
+  have hstrong0 : IsStrongPolygonSet χ q0 ↔ A = B ∧ D = G := by
+    simpa [q0, A, B, D, G] using
+      (isStrongPolygonSet_four_iff (χ := χ) hab hbc hcd)
+  have hstrong1 : IsStrongPolygonSet χ q1 ↔ A = C ∧ E = H := by
+    simpa [q1, A, C, E, H] using
+      (isStrongPolygonSet_four_iff (χ := χ) hab hbc hce)
+  have hstrong2 : IsStrongPolygonSet χ q2 ↔ B = C ∧ F = I := by
+    simpa [q2, B, C, F, I] using
+      (isStrongPolygonSet_four_iff (χ := χ) hab hbd hde)
+  have hstrong3 : IsStrongPolygonSet χ q3 ↔ D = E ∧ F = J := by
+    simpa [q3, D, E, F, J] using
+      (isStrongPolygonSet_four_iff (χ := χ) hac hcd hde)
+  have hstrong4 : IsStrongPolygonSet χ q4 ↔ G = H ∧ I = J := by
+    simpa [q4, G, H, I, J] using
+      (isStrongPolygonSet_four_iff (χ := χ) hbc hcd hde)
+  have hdefect0 : outerDefect A B D G =
+      if ¬IsStrongPolygonSet χ q0 then 1 else 0 := by
+    by_cases hs : IsStrongPolygonSet χ q0
+    · obtain ⟨hAB, hDG⟩ := hstrong0.mp hs
+      simp [hs, outerDefect, turnChange, hAB, hDG]
+    · have hn : ¬(A = B ∧ D = G) := fun h => hs (hstrong0.mpr h)
+      simpa [hs, hn] using outerDefect_eq_badIndicator hone0
+  have hdefect1 : outerDefect A C E H =
+      if ¬IsStrongPolygonSet χ q1 then 1 else 0 := by
+    by_cases hs : IsStrongPolygonSet χ q1
+    · obtain ⟨hAC, hEH⟩ := hstrong1.mp hs
+      simp [hs, outerDefect, turnChange, hAC, hEH]
+    · have hn : ¬(A = C ∧ E = H) := fun h => hs (hstrong1.mpr h)
+      simpa [hs, hn] using outerDefect_eq_badIndicator hone1
+  have hdefect2 : outerDefect B C F I =
+      if ¬IsStrongPolygonSet χ q2 then 1 else 0 := by
+    by_cases hs : IsStrongPolygonSet χ q2
+    · obtain ⟨hBC, hFI⟩ := hstrong2.mp hs
+      simp [hs, outerDefect, turnChange, hBC, hFI]
+    · have hn : ¬(B = C ∧ F = I) := fun h => hs (hstrong2.mpr h)
+      simpa [hs, hn] using outerDefect_eq_badIndicator hone2
+  have hdefect3 : outerDefect D E F J =
+      if ¬IsStrongPolygonSet χ q3 then 1 else 0 := by
+    by_cases hs : IsStrongPolygonSet χ q3
+    · obtain ⟨hDE, hFJ⟩ := hstrong3.mp hs
+      simp [hs, outerDefect, turnChange, hDE, hFJ]
+    · have hn : ¬(D = E ∧ F = J) := fun h => hs (hstrong3.mpr h)
+      simpa [hs, hn] using outerDefect_eq_badIndicator hone3
+  have hdefect4 : outerDefect G H I J =
+      if ¬IsStrongPolygonSet χ q4 then 1 else 0 := by
+    by_cases hs : IsStrongPolygonSet χ q4
+    · obtain ⟨hGH, hIJ⟩ := hstrong4.mp hs
+      simp [hs, outerDefect, turnChange, hGH, hIJ]
+    · have hn : ¬(G = H ∧ I = J) := fun h => hs (hstrong4.mpr h)
+      simpa [hs, hn] using outerDefect_eq_badIndicator hone4
+  have hcycle1 := turnChange_triangle_even A B C
+  have hcycle2 := turnChange_cycle_four_even D G H E
+  have hcycle3 := turnChange_triangle_even F I J
+  have hcycles : Even
+      ((turnChange A B + turnChange B C + turnChange C A) +
+        (turnChange D G + turnChange G H + turnChange H E + turnChange E D) +
+        (turnChange F I + turnChange I J + turnChange J F)) := by
+    rcases hcycle1 with ⟨u, hu⟩
+    rcases hcycle2 with ⟨v, hv⟩
+    rcases hcycle3 with ⟨w, hw⟩
+    refine ⟨u + v + w, ?_⟩
+    omega
+  have hdefectSum :
+      outerDefect A B D G + outerDefect A C E H +
+          outerDefect B C F I + outerDefect D E F J +
+          outerDefect G H I J =
+        (turnChange A B + turnChange B C + turnChange C A) +
+          (turnChange D G + turnChange G H + turnChange H E + turnChange E D) +
+          (turnChange F I + turnChange I J + turnChange J F) := by
+    simp only [outerDefect]
+    rw [turnChange_comm A C, turnChange_comm E H,
+      turnChange_comm D E, turnChange_comm F J]
+    ac_rfl
+  have htotalDefect : Even
+      (outerDefect A B D G + outerDefect A C E H +
+        outerDefect B C F I + outerDefect D E F J +
+        outerDefect G H I J) := by
+    rw [hdefectSum]
+    exact hcycles
+  have finset_ne_of_mem_not_mem
+      {u v : Finset (Fin n)} {x : Fin n}
+      (hu : x ∈ u) (hv : x ∉ v) : u ≠ v := by
+    intro huv
+    exact hv (huv ▸ hu)
+  have hq01 : q0 ≠ q1 := finset_ne_of_mem_not_mem
+    (x := d) (by simp [q0])
+    (by simp [q1, ne_of_gt had, ne_of_gt hbd, ne_of_gt hcd, hde.ne])
+  have hq02 : q0 ≠ q2 := finset_ne_of_mem_not_mem
+    (x := c) (by simp [q0])
+    (by simp [q2, ne_of_gt hac, ne_of_gt hbc, hcd.ne, hce.ne])
+  have hq03 : q0 ≠ q3 := finset_ne_of_mem_not_mem
+    (x := b) (by simp [q0])
+    (by simp [q3, ne_of_gt hab, hbc.ne, hbd.ne, hbe.ne])
+  have hq04 : q0 ≠ q4 := finset_ne_of_mem_not_mem
+    (x := a) (by simp [q0])
+    (by simp [q4, hab.ne, hac.ne, had.ne, hae.ne])
+  have hq12 : q1 ≠ q2 := finset_ne_of_mem_not_mem
+    (x := c) (by simp [q1])
+    (by simp [q2, ne_of_gt hac, ne_of_gt hbc, hcd.ne, hce.ne])
+  have hq13 : q1 ≠ q3 := finset_ne_of_mem_not_mem
+    (x := b) (by simp [q1])
+    (by simp [q3, ne_of_gt hab, hbc.ne, hbd.ne, hbe.ne])
+  have hq14 : q1 ≠ q4 := finset_ne_of_mem_not_mem
+    (x := a) (by simp [q1])
+    (by simp [q4, hab.ne, hac.ne, had.ne, hae.ne])
+  have hq23 : q2 ≠ q3 := finset_ne_of_mem_not_mem
+    (x := b) (by simp [q2])
+    (by simp [q3, ne_of_gt hab, hbc.ne, hbd.ne, hbe.ne])
+  have hq24 : q2 ≠ q4 := finset_ne_of_mem_not_mem
+    (x := a) (by simp [q2])
+    (by simp [q4, hab.ne, hac.ne, had.ne, hae.ne])
+  have hq34 : q3 ≠ q4 := finset_ne_of_mem_not_mem
+    (x := a) (by simp [q3])
+    (by simp [q4, hab.ne, hac.ne, had.ne, hae.ne])
+  have hpowerset : s.powersetCard 4 = {q0, q1, q2, q3, q4} := by
+    simpa [s, q0, q1, q2, q3, q4] using
+      powersetCard_four_ordered_five hab hbc hcd hde
+  let bad := (s.powersetCard 4).filter fun q ↦ ¬IsStrongPolygonSet χ q
+  have hbadCard : bad.card =
+      (if ¬IsStrongPolygonSet χ q0 then 1 else 0) +
+        (if ¬IsStrongPolygonSet χ q1 then 1 else 0) +
+        (if ¬IsStrongPolygonSet χ q2 then 1 else 0) +
+        (if ¬IsStrongPolygonSet χ q3 then 1 else 0) +
+        (if ¬IsStrongPolygonSet χ q4 then 1 else 0) := by
+    by_cases h0 : IsStrongPolygonSet χ q0 <;>
+      by_cases h1 : IsStrongPolygonSet χ q1 <;>
+        by_cases h2 : IsStrongPolygonSet χ q2 <;>
+          by_cases h3 : IsStrongPolygonSet χ q3 <;>
+            by_cases h4 : IsStrongPolygonSet χ q4 <;>
+              simp [bad, hpowerset, Finset.filter_insert,
+                Finset.filter_singleton, h0, h1, h2, h3, h4,
+                hq01, hq02, hq03, hq04, hq12, hq13, hq14, hq23, hq24, hq34]
+  have hbadDefect : bad.card =
+      outerDefect A B D G + outerDefect A C E H +
+        outerDefect B C F I + outerDefect D E F J +
+        outerDefect G H I J := by
+    rw [hbadCard, ← hdefect0, ← hdefect1, ← hdefect2,
+      ← hdefect3, ← hdefect4]
+  have hbadEven : Even bad.card := by
+    rw [hbadDefect]
+    exact htotalDefect
+  have hfullCard : (s.powersetCard 4).card = 5 := by
+    rw [hpowerset]
+    simp [hq01, hq02, hq03, hq04, hq12, hq13, hq14, hq23, hq24, hq34]
+  have hpartition : (StrongQuadruplesIn χ s).card + bad.card = 5 := by
+    simpa [StrongQuadruplesIn, bad, hfullCard] using
+      (Finset.card_filter_add_card_filter_not
+        (s := s.powersetCard 4) (p := IsStrongPolygonSet χ))
+  rcases hbadEven with ⟨k, hk⟩
+  refine ⟨2 - k, ?_⟩
+  omega
+
 /-- The irreducible structural core selected by the route review: two
 consecutive cup blocks of sizes three and four force the `(4,5,5)` outcome. -/
 def CupBlocks34Force455 : Prop :=
