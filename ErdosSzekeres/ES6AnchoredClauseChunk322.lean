@@ -1,0 +1,7442 @@
+module
+
+public import ErdosSzekeres.ES6AnchoredEncoding
+
+@[expose] public section
+
+set_option maxHeartbeats 0
+set_option maxRecDepth 30000
+set_option linter.unusedVariables false
+set_option linter.unusedSimpArgs false
+
+namespace ErdosSzekeres
+
+/-! Retained anchored ES(6) semantic clauses, group 322. -/
+
+theorem es6Anchored_clause41216 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨9, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41217 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨9, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41218 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨9, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41219 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨9, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41220 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨9, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41221 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨9, 13, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 13, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41222 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨9, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41223 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨9, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41224 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨9, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41225 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨9, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41226 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨9, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41227 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨9, 14, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 14, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41228 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 9, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 15, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 9, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 9, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 15, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 9, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 15, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨9, 15, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 9, 15, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41229 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41230 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41231 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41232 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41233 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41234 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41235 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41236 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.right) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hb15 hs
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41237 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41238 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41239 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 12, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 12] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41240 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41241 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41242 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41243 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41244 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41245 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41246 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41247 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.right) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hb15 hs
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41248 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41249 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41250 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41251 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41252 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41253 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41254 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41255 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41256 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41257 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41258 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.right) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hb15 hs
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41259 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41260 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41261 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41262 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41263 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41264 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41265 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41266 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41267 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41268 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41269 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41270 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 16, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 11, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41271 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 11, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 11, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41272 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41273 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.right) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hb15 hs
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41274 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41275 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41276 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41277 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41278 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41279 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41280 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.right) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hb15 hs
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41281 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41282 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41283 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41284 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41285 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41286 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41287 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41288 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41289 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41290 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41291 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.right) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hb15 hs
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41292 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41293 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41294 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41295 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41296 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41297 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41298 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41299 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41300 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 12, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41301 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41302 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 12, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 12, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41303 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41304 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41305 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41306 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41307 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41308 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41309 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41310 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.right) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hb15 hs
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41311 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41312 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41313 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 14, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 14] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41314 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41315 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41316 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41317 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41318 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41319 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41320 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41321 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 16, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41322 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 13, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 13, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 13, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 13, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 13, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41323 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41324 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41325 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41326 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41327 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41328 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41329 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨10, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41330 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 14, 15, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 14, 15] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41331 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 14, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 14, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 14, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 14, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 14, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 14, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41332 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 15, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 15, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 15, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 15, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 15, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41333 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 15, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 10, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 15, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 15, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 10, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 15, 16, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨10, 15, 16, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 10, 15, 16] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41334 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨11, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 11, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41335 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨11, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 11, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41336 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨11, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 11, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41337 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨11, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 11, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41338 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨11, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 11, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41339 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬(¬(chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨11, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 11, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.right) (x1 := Turn.right) (x2 := Turn.right) (x3 := Turn.right) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hb0 hs
+  · exact hb1 hs
+  · exact hb2 hs
+  · exact hb3 hs
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41340 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨11, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 11, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.left) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hs hb15
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41341 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨11, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 11, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.right) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.right) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hb9 hs
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hb15 hs
+  · exact hs hb16
+  · exact hs hb17
+  · exact hb18 hs
+  · exact hb19 hs
+
+theorem es6Anchored_clause41342 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨11, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 11, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.right) (x5 := Turn.right) (x6 := Turn.right) (x7 := Turn.left) (x8 := Turn.left) (x9 := Turn.left) (x10 := Turn.right) (x11 := Turn.right) (x12 := Turn.right) (x13 := Turn.left) (x14 := Turn.left) (x15 := Turn.left) (x16 := Turn.left) (x17 := Turn.left) (x18 := Turn.left) (x19 := Turn.left)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hb4 hs
+  · exact hb5 hs
+  · exact hb6 hs
+  · exact hs hb7
+  · exact hs hb8
+  · exact hs hb9
+  · exact hb10 hs
+  · exact hb11 hs
+  · exact hb12 hs
+  · exact hs hb13
+  · exact hs hb14
+  · exact hs hb15
+  · exact hs hb16
+  · exact hs hb17
+  · exact hs hb18
+  · exact hs hb19
+
+theorem es6Anchored_clause41343 (chi : TripleColoring 17)
+    (hallowed : ∀ (a b c d : Fin 17),
+      ∀ (hab : a < b) (hbc : b < c) (hcd : c < d),
+      TurnSequenceAllowed
+        (chi ⟨a, b, c, hab, hbc⟩)
+        (chi ⟨a, b, d, hab, hbc.trans hcd⟩)
+        (chi ⟨a, c, d, hab.trans hbc, hcd⟩)
+        (chi ⟨b, c, d, hbc, hcd⟩))
+    (hno : ∀ f : Fin 6 ↪o Fin 17, ¬ IsStrongPolygonOn chi f)
+    (hanchor : chi.IsAnchored) :
+    ¬((chi ⟨3, 6, 7, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 6, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨3, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨3, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 11, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 12, by decide, by decide⟩ = Turn.left) ∧
+      (chi ⟨6, 7, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨6, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 12, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 11, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨7, 12, 13, by decide, by decide⟩ = Turn.left) ∧
+      ¬(chi ⟨11, 12, 13, by decide, by decide⟩ = Turn.left)) := by
+  intro hbad
+  let f : Fin 6 ↪o Fin 17 := OrderEmbedding.ofStrictMono ![3, 6, 7, 11, 12, 13] (by decide)
+  have hm := strongSix_mismatch chi f (hno f) (x0 := Turn.left) (x1 := Turn.left) (x2 := Turn.left) (x3 := Turn.left) (x4 := Turn.left) (x5 := Turn.left) (x6 := Turn.left) (x7 := Turn.right) (x8 := Turn.right) (x9 := Turn.right) (x10 := Turn.left) (x11 := Turn.left) (x12 := Turn.left) (x13 := Turn.right) (x14 := Turn.right) (x15 := Turn.right) (x16 := Turn.right) (x17 := Turn.right) (x18 := Turn.right) (x19 := Turn.right)
+    (by simp [StrongSixValues])
+  simp only [f, Turn.ne_right_iff_eq_left] at hm
+  rcases hbad with ⟨hb0, hb1, hb2, hb3, hb4, hb5, hb6, hb7, hb8, hb9, hb10, hb11, hb12, hb13, hb14, hb15, hb16, hb17, hb18, hb19⟩
+  rcases hm with hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs | hs
+  · exact hs hb0
+  · exact hs hb1
+  · exact hs hb2
+  · exact hs hb3
+  · exact hs hb4
+  · exact hs hb5
+  · exact hs hb6
+  · exact hb7 hs
+  · exact hb8 hs
+  · exact hb9 hs
+  · exact hs hb10
+  · exact hs hb11
+  · exact hs hb12
+  · exact hb13 hs
+  · exact hb14 hs
+  · exact hb15 hs
+  · exact hb16 hs
+  · exact hb17 hs
+  · exact hb18 hs
+  · exact hb19 hs
+
+end ErdosSzekeres
+
+end

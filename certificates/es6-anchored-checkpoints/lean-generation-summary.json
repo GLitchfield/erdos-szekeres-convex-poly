@@ -1,0 +1,13 @@
+{
+  "categories": {
+    "anchor": 120,
+    "no_strong_six": 45005,
+    "one_change": 14559
+  },
+  "checkpoint_segments": 192,
+  "clause_chunks": 467,
+  "core_clauses": 59684,
+  "core_cnf_sha256": "d060e01cf3f8ca0244a30f9ec7a3a031bfb2720b520b89359eb8cfa458cf6d01",
+  "schema_version": 1,
+  "semantic_segments": 128
+}
