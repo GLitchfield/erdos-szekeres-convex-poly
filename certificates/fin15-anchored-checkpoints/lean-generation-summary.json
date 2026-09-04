@@ -1,0 +1,19 @@
+{
+  "categories": {
+    "anchor": 90,
+    "every_eight_has_strong_five": 1715,
+    "no_strong_six": 2285,
+    "one_change": 7101,
+    "strong_five_definition": 12837,
+    "strong_quad_definition": 8281
+  },
+  "checkpoint_segments": 256,
+  "clause_chunks": 253,
+  "core_clauses": 32309,
+  "core_cnf_sha256": "78cca30290f095cff29a892ccb8f386e093962f5045c183f57a462760fa10d1c",
+  "core_variables": 4302,
+  "schema_version": 1,
+  "semantic_segments": 128,
+  "support_chunks": 108,
+  "support_facts": 4302
+}

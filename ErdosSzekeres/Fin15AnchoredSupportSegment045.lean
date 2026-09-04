@@ -1,0 +1,1538 @@
+module
+
+public import ErdosSzekeres.Fin15AnchoredEncoding
+
+@[expose] public section
+
+set_option maxHeartbeats 0
+set_option maxRecDepth 30000
+set_option linter.unusedSimpArgs false
+set_option linter.unusedVariables false
+
+namespace ErdosSzekeres
+
+/-! Semantic helper facts in bounded group 045. -/
+
+theorem fin15Anchored_strongSet_iff_mask02660 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 9, 11} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 9 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 9 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 9 11 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 9)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 9) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 9) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask04708 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 9, 12} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 9 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 9 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 9 12 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 9)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 9) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 9) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask08804 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 9, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 9 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 9 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 9 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 9)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 9) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 9) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask16996 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 9, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 9 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 9 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 9 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 9)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 9) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 9) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask03172 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 10, 11} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 10 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 10 11 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 10) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 10) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask05220 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 10, 12} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 10 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 10 12 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask09316 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 10, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 10 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 10 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask17508 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 10, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 10 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 10 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 10) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 10) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask06244 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 11, 12} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 11 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 11 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 11 12 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 11) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 11) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 11) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask10340 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 11, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 11 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 11 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 11 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 11) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 11) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 11) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask18532 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 11, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 11 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 11 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 11 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 11) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 11) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 11) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask12388 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 12, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 12 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 12 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 12 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 12) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 12) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 12) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask20580 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 12, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 12 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 12 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 12 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 12) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 12) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 12) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask24676 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 6, 13, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 6 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 6 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 13 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 6 13 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 6 13 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 6) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 13) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 6) (k := 13) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 6) (k := 13) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask01444 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 8, 10} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 8 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 8 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 8 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 8 10 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 8)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 8) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 8) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 8) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask08612 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 8, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 8 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 8 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 8 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 8 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 8)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 8) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 8) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 8) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask01700 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 9, 10} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 9 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 9 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 9 10 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 9)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 9) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 9) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask02724 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 9, 11} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 9 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 9 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 9 11 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 9)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 9) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 9) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask04772 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 9, 12} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 9 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 9 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 9 12 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 9)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 9) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 9) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask08868 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 9, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 9 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 9 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 9 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 9)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 9) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 9) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask17060 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 9, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 9 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 9 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 9 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 9)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 9) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 9) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask03236 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 10, 11} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 10 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 10 11 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 10) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 10) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask05284 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 10, 12} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 10 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 10 12 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask09380 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 10, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 10 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 10 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask17572 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 10, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 10 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 10 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 10) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 10) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask06308 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 11, 12} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 11 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 11 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 11 12 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 11) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 11) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 11) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask10404 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 11, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 11 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 11 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 11 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 11) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 11) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 11) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask18596 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 11, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 11 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 11 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 11 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 11) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 11) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 11) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask12452 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 12, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 12 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 12 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 12 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 12) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 12) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 12) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask20644 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 12, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 12 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 12 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 12 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 12) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 12) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 12) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask24740 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 7, 13, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 7 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 7 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 13 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 7 13 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 7 13 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 7) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 13) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 7) (k := 13) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 7) (k := 13) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask05412 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 8, 10, 12} ↔
+      Fin15AnchoredStrongQuad chi 2 5 8 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 8 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 8 10 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 8 10 12 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 8) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 8) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 8) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 8) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask09508 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 8, 10, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 8 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 8 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 8 10 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 8 10 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 8) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 8) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 8) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 8) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask12580 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 8, 12, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 8 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 8 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 12 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 8 12 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 8 12 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 8) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 8) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 12) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 8) (k := 12) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 8) (k := 12) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask03620 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 9, 10, 11} ↔
+      Fin15AnchoredStrongQuad chi 2 5 9 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 9 10 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 9 10 11 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 9) (k := 10) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 9) (k := 10) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask05668 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 9, 10, 12} ↔
+      Fin15AnchoredStrongQuad chi 2 5 9 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 9 10 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 9 10 12 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 9) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 9) (k := 10) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask09764 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 9, 10, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 9 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 9 10 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 9 10 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 9) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 9) (k := 10) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask17956 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 9, 10, 14} ↔
+      Fin15AnchoredStrongQuad chi 2 5 9 10 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 10 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 9 10 14 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 9 10 14 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 10)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 10) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 9) (k := 10) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 9) (k := 10) (l := 14)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask06692 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 9, 11, 12} ↔
+      Fin15AnchoredStrongQuad chi 2 5 9 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 11 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 9 11 12 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 9 11 12 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 11) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 9) (k := 11) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 9) (k := 11) (l := 12)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+theorem fin15Anchored_strongSet_iff_mask10788 (chi : TripleColoring 15) :
+    IsStrongPolygonSet chi {2, 5, 9, 11, 13} ↔
+      Fin15AnchoredStrongQuad chi 2 5 9 11 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 9 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 5 11 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 2 9 11 13 (by decide) (by decide) (by decide) ∧
+      Fin15AnchoredStrongQuad chi 5 9 11 13 (by decide) (by decide) (by decide) := by
+  constructor
+  · intro h
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 11)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 9) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 5) (k := 11) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 2) (j := 9) (k := 11) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+    · simpa [Fin15AnchoredStrongQuad] using h
+        (i := 5) (j := 9) (k := 11) (l := 13)
+        (by decide) (by decide) (by decide)
+        (by simp) (by simp) (by simp) (by simp)
+  · rintro ⟨h0, h1, h2, h3, h4⟩ i j k l hij hjk hkl hi hj hk hl
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hi hj hk hl
+    rcases hi with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hj with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hk with rfl | rfl | rfl | rfl | rfl <;>
+      rcases hl with rfl | rfl | rfl | rfl | rfl <;> try omega
+    all_goals simp_all [Fin15AnchoredStrongQuad]
+
+end ErdosSzekeres
+
+end
