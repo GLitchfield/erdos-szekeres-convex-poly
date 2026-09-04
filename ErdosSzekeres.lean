@@ -33,6 +33,12 @@ public import ErdosSzekeres.StrongPredecessorBaseFour
 public import ErdosSzekeres.StrongPredecessorBaseFive
 public import ErdosSzekeres.StrongPredecessorBaseSixLow
 public import ErdosSzekeres.StrongPredecessorBaseSix
+public import ErdosSzekeres.AnchoredPresentation
+public import ErdosSzekeres.ES6Bridge
+public import ErdosSzekeres.ES6Certificate
+public import ErdosSzekeres.StrongPolygonSubsets
+public import ErdosSzekeres.AnchoredFin15Consumer
+public import ErdosSzekeres.PredecessorHalfSix
 public import ErdosSzekeres.StrongPredecessorFractionalDual
 public import ErdosSzekeres.PredecessorMaximumSupport
 public import ErdosSzekeres.PredecessorHalfFin15Obstruction

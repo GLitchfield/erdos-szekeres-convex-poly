@@ -100,8 +100,9 @@ sets.
   transport that result through arbitrary increasing thirteen-point windows.
   `exists_predecessorHalfSubsetAtSix_of_card_le_fourteen` composes it with the
   earlier finite results, moving the first unresolved fixed-six ambient
-  cardinality from thirteen to fifteen. This does not prove the fixed-six or
-  uniform predecessor theorem: ambient cardinalities from fifteen onward, an
+  cardinality from thirteen to fifteen; `PredecessorHalfSix.lean` (below)
+  has since closed the fixed-six theorem outright. The thirteen-point result
+  alone does not prove the fixed-six or uniform predecessor theorem: ambient cardinalities from fifteen onward, an
   exact-six ceiling, and the all-`k >= 6` producer remain open. The
   `PredecessorHalfFin15ExteriorSystem.lean`,
   `PredecessorHalfFin15SharedAnchorGlobal.lean`, and
@@ -344,6 +345,30 @@ sets.
 - `ErdosSzekeres/ES5Certificate.lean` proves the exact result `ES(5) = 9`.
   Its finite upper-bound certificate is checked from a committed LRAT trace,
   with a compiling Lean bridge from all 2,016 clauses to the sweep axioms.
+- `ErdosSzekeres/ES6Certificate.lean` proves the exact result `ES(6) = 17`
+  (`forces_six : ForcesConvexPolygon 6 17`, `erdosSzekeresFormulaAt_six`) on
+  standard axioms only, with no external axiom.  `AnchoredPresentation.lean`
+  proves that every swept configuration can be re-indexed so that vertex 0
+  sees every later pair as a right turn; the anchored seventeen-point
+  signotope instance (680 triple variables, 217,176 clauses) is refuted by
+  CaDiCaL in five minutes, and its 59,684-clause dependency core is replayed
+  in the kernel through 192 checkpoint segments (`ES6AnchoredCheckpoint*`,
+  `ES6AnchoredClauseChunk*`, `ES6AnchoredSemanticSegment*`; experiment 0109).
+  `ES6Bridge.lean` also supplies the strong-six cardinality ceiling used by
+  the fixed-six predecessor-half composition.
+- `ErdosSzekeres/PredecessorHalfSix.lean` proves
+  `predecessorHalfSubsetAt_six : PredecessorHalfSubsetAt 6` unconditionally:
+  every sweep-realizable strong-six-free coloring on `n` vertices has a
+  strong-five-free support of at least `n/2` vertices.  It composes the
+  theorem through fourteen with the ES(6) ceiling and with the anchored Fin15
+  certificate: the corrected 4,823-variable endpoint instance plus 91 anchor
+  units is refuted by CaDiCaL in three minutes, its 32,309-clause dependency
+  core is replayed through 256 kernel checkpoints (`Fin15AnchoredCheckpoint*`,
+  `Fin15AnchoredClauseChunk*`, `Fin15AnchoredSupportSegment*`,
+  `Fin15AnchoredSemanticSegment*`; experiment 0110), and
+  `AnchoredFin15Consumer.lean` maps the anchored eight-point support back to
+  the original configuration.  This closes the fixed `k = 6` case of the
+  predecessor-half ledger; the uniform all-`k` theorem remains open.
 - `ErdosSzekeres/E3State466Certificate.lean` and
   `ErdosSzekeres/E3State566Certificate.lean` kernel-check the two finite E3
   states needed at six vertices. Every twelve-vertex one-change coloring has a
