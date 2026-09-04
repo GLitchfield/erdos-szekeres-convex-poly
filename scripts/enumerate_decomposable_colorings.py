@@ -1,217 +1,232 @@
 #!/usr/bin/env python3
-"""Exactly enumerate colorings induced by recursive deep-below trees.
+"""Enumerate the abstract decomposable class (`IsDecomposableOn` in
+Decomposable.lean) on n ordered vertices, exactly.
 
-This is the producer for Wayfinder ticket 0002.  It uses dynamic programming
-on labeled leaf subsets and deduplicates by the complete triple-color bit
-vector.  Bit ``1`` means ``Turn.left``; triples occur in lexicographic order.
-The independent checker intentionally does not import this module.
+A coloring on an index set S is decomposable if S is a singleton or S is the
+disjoint union of a lower and an upper part, both decomposable, such that every
+triple meeting both parts is a left turn exactly when its middle vertex is in
+the lower part (`HasDeepBelowSplit`).  Parts may interleave in sweep order.
+
+Colorings are bitmasks over the increasing triples of range(n) in
+lexicographic order (bit set = left turn).  The class on n vertices is built
+recursively from the classes on the parts, transported through the order
+isomorphisms, and deduplicated.  Per coloring the script records the longest
+cap and cup, the strong sets present, and per-vertex attachment profiles
+(longest cap/cup ending at or starting from each vertex), which Workstream B's
+plan uses to search for a profile-carrying induction hypothesis.
 """
 
 from __future__ import annotations
 
 import argparse
-import hashlib
 import itertools
 import json
-import os
-import subprocess
-from collections import Counter
+import sys
+import time
 from pathlib import Path
-from typing import TypeAlias
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 
-Tree: TypeAlias = int | tuple["Tree", "Tree"]
+def triple_index(n):
+    return {t: i for i, t in enumerate(itertools.combinations(range(n), 3))}
 
 
-def triples(n: int) -> tuple[tuple[int, int, int], ...]:
-    return tuple(itertools.combinations(range(n), 3))
+def enumerate_class(max_n, progress=True):
+    """Return {m: set of bitmasks} for 1 <= m <= max_n."""
+    classes = {1: {0}, 2: {0}}
+    tindex = {m: triple_index(m) for m in range(1, max_n + 1)}
+    for m in range(3, max_n + 1):
+        started = time.time()
+        found = set()
+        idx = tindex[m]
+        vertices = list(range(m))
+        # ordered bipartitions (lower, upper), both nonempty
+        for lower_bits in range(1, (1 << m) - 1):
+            lower = [v for v in vertices if lower_bits >> v & 1]
+            upper = [v for v in vertices if not lower_bits >> v & 1]
+            # crossing triples: colored by the side of the middle vertex
+            cross_left = 0
+            for (i, j, k), pos in idx.items():
+                inl = (lower_bits >> i & 1) + (lower_bits >> j & 1) + (lower_bits >> k & 1)
+                if inl in (1, 2) and lower_bits >> j & 1:
+                    cross_left |= 1 << pos
+            # transport tables for the two parts
+            def transport(part):
+                table = []
+                for (a, b, c) in itertools.combinations(range(len(part)), 3):
+                    table.append(idx[(part[a], part[b], part[c])])
+                return table
+            tl, tu = transport(lower), transport(upper)
+            def lift(mask, table):
+                out = 0
+                p = 0
+                while mask:
+                    if mask & 1:
+                        out |= 1 << table[p]
+                    mask >>= 1
+                    p += 1
+                return out
+            lower_lifted = [lift(x, tl) for x in classes[len(lower)]]
+            upper_lifted = [lift(x, tu) for x in classes[len(upper)]]
+            for xl in lower_lifted:
+                base = cross_left | xl
+                for xu in upper_lifted:
+                    found.add(base | xu)
+        classes[m] = found
+        if progress:
+            print(f"n={m}: {len(found)} decomposable colorings ({time.time()-started:.1f}s)", file=sys.stderr, flush=True)
+    return classes, tindex
 
 
-def subsets(mask: int) -> list[int]:
-    result: list[int] = []
-    sub = mask
-    while sub:
-        result.append(sub)
-        sub = (sub - 1) & mask
-    return result
+def coloring_dict(mask, n, idx):
+    return {t: bool(mask >> p & 1) for t, p in idx.items()}
 
 
-def enumerate_colorings(n: int) -> tuple[dict[int, Tree], dict[int, int]]:
-    """Return witnesses on all leaves and distinct-color counts by subset size."""
-    triple_list = triples(n)
-    by_subset: dict[int, dict[int, Tree]] = {}
-    layer_counts: Counter[int] = Counter()
-    full = (1 << n) - 1
-
-    for size in range(1, n + 1):
-        for mask in (m for m in range(1, full + 1) if m.bit_count() == size):
-            if size == 1:
-                leaf = (mask & -mask).bit_length() - 1
-                by_subset[mask] = {0: leaf}
-                layer_counts[size] += 1
-                continue
-
-            colorings: dict[int, Tree] = {}
-            for lower in subsets(mask):
-                if lower == mask:
-                    continue
-                upper = mask ^ lower
-                crossing = 0
-                for position, (i, j, k) in enumerate(triple_list):
-                    triple_mask = (1 << i) | (1 << j) | (1 << k)
-                    if triple_mask & mask != triple_mask:
-                        continue
-                    wholly_lower = triple_mask & lower == triple_mask
-                    wholly_upper = triple_mask & upper == triple_mask
-                    if not wholly_lower and not wholly_upper and lower & (1 << j):
-                        crossing |= 1 << position
-                for lower_bits, lower_tree in by_subset[lower].items():
-                    for upper_bits, upper_tree in by_subset[upper].items():
-                        bits = lower_bits | upper_bits | crossing
-                        colorings.setdefault(bits, (lower_tree, upper_tree))
-            by_subset[mask] = colorings
-            layer_counts[size] += len(colorings)
-
-    return by_subset[full], dict(sorted(layer_counts.items()))
-
-
-def color(bits: int, position: dict[tuple[int, int, int], int],
-          i: int, j: int, k: int) -> bool:
-    return bool(bits & (1 << position[(i, j, k)]))
-
-
-def is_strong(bits: int, position: dict[tuple[int, int, int], int],
-              vertices: tuple[int, ...]) -> bool:
-    for i, j, k, l in itertools.combinations(vertices, 4):
-        if color(bits, position, i, j, k) != color(bits, position, i, j, l):
-            return False
-        if color(bits, position, i, k, l) != color(bits, position, j, k, l):
+def one_change(chi, n):
+    for i, j, k, l in itertools.combinations(range(n), 4):
+        v = [chi[(i, j, k)], chi[(i, j, l)], chi[(i, k, l)], chi[(j, k, l)]]
+        if sum(a != b for a, b in zip(v, v[1:])) > 1:
             return False
     return True
 
 
-def is_monochromatic(bits: int, position: dict[tuple[int, int, int], int],
-                     vertices: tuple[int, ...], expected: bool) -> bool:
-    return all(color(bits, position, *t) == expected
-               for t in itertools.combinations(vertices, 3))
+def chain_profiles(chi, n, left):
+    """Longest chain (all consecutive triples with color ``left``) ending at
+    each vertex and starting at each vertex; chains of one or two vertices
+    count as length 1 or 2."""
+    # end[(i, j)] = longest chain ending with edge i<j ; start[(i, j)] = starting with edge
+    end = {}
+    for j in range(n):
+        for i in range(j):
+            best = 2
+            for h in range(i):
+                if chi[(h, i, j)] == left:
+                    best = max(best, end[(h, i)] + 1)
+            end[(i, j)] = best
+    start = {}
+    for i in range(n - 1, -1, -1):
+        for j in range(i + 1, n):
+            best = 2
+            for k in range(j + 1, n):
+                if chi[(i, j, k)] == left:
+                    best = max(best, start[(j, k)] + 1)
+            start[(i, j)] = best
+    ending = [max([1] + [end[(i, v)] for i in range(v)]) for v in range(n)]
+    starting = [max([1] + [start[(v, k)] for k in range(v + 1, n)]) for v in range(n)]
+    return ending, starting, max(ending)
 
 
-def is_signotope(bits: int, position: dict[tuple[int, int, int], int], n: int) -> bool:
-    for a, b, c, d in itertools.combinations(range(n), 4):
-        values = (
-            color(bits, position, a, b, c),
-            color(bits, position, a, b, d),
-            color(bits, position, a, c, d),
-            color(bits, position, b, c, d),
-        )
-        if sum(x != y for x, y in zip(values, values[1:])) > 1:
-            return False
-    return True
+def strong_sizes(chi, n):
+    """Sizes k for which a strong k-set exists (all quads strong)."""
+    def strong(vs):
+        for i, j, k, l in itertools.combinations(vs, 4):
+            if chi[(i, j, k)] != chi[(i, j, l)] or chi[(i, k, l)] != chi[(j, k, l)]:
+                return False
+        return True
+    largest = 3 if n >= 3 else n
+    for k in range(4, n + 1):
+        if any(strong(vs) for vs in itertools.combinations(range(n), k)):
+            largest = k
+        else:
+            break
+    return largest
 
 
-def maximum_size(bits: int, position: dict[tuple[int, int, int], int], n: int,
-                 predicate) -> int:
-    for size in range(n, 0, -1):
-        if any(predicate(bits, position, subset)
-               for subset in itertools.combinations(range(n), size)):
-            return size
-    raise AssertionError("the empty search range cannot occur")
-
-
-def tree_json(tree: Tree) -> object:
-    if isinstance(tree, int):
-        return tree
-    return {"lower": tree_json(tree[0]), "upper": tree_json(tree[1])}
-
-
-def git_revision(repo: Path) -> str:
-    completed = subprocess.run(
-        ["git", "--git-dir=.git-data", "--work-tree=.", "rev-parse", "HEAD"],
-        cwd=repo, check=True, text=True, stdout=subprocess.PIPE)
-    return completed.stdout.strip()
-
-
-def write_atomic(path: Path, value: object) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
-    os.replace(temporary, path)
+def threshold(a, u, k):
+    """decomposableThreshold a u k from Decomposable.lean."""
+    from math import comb
+    if a == 1 or u == 1:
+        return 0
+    if a + u <= k + 3:
+        return comb(a + u - 4, a - 2)
+    return sum(comb(k - 2, j) for j in range(k - a, u - 1))
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("n", type=int)
+    parser.add_argument("--max-n", type=int, default=8)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--validate", action="store_true", help="cross-check with the census checker for n <= 6")
+    parser.add_argument("--max-k", type=int, default=7)
     args = parser.parse_args()
-    if not 1 <= args.n <= 8:
-        parser.error("n must lie between 1 and 8")
-
-    all_colorings, layer_counts = enumerate_colorings(args.n)
-    triple_list = triples(args.n)
-    position = {triple: i for i, triple in enumerate(triple_list)}
-    width = max(1, (len(triple_list) + 3) // 4)
-    ordered_bits = sorted(all_colorings)
-    digest_input = "".join(f"{bits:0{width}x}\n" for bits in ordered_bits).encode()
-
-    strong_histogram: Counter[int] = Counter()
-    cup_histogram: Counter[int] = Counter()
-    cap_histogram: Counter[int] = Counter()
-    cap_strong_histogram: Counter[tuple[int, int]] = Counter()
-    cup_strong_histogram: Counter[tuple[int, int]] = Counter()
-    signotope_count = 0
-    minimizer_bits: int | None = None
-    minimum_strong = args.n + 1
-    for bits in ordered_bits:
-        strong = maximum_size(bits, position, args.n, is_strong)
-        cup = maximum_size(
-            bits, position, args.n,
-            lambda b, p, s: is_monochromatic(b, p, s, True))
-        cap = maximum_size(
-            bits, position, args.n,
-            lambda b, p, s: is_monochromatic(b, p, s, False))
-        strong_histogram[strong] += 1
-        cup_histogram[cup] += 1
-        cap_histogram[cap] += 1
-        cap_strong_histogram[(cap, strong)] += 1
-        cup_strong_histogram[(cup, strong)] += 1
-        if is_signotope(bits, position, args.n):
-            signotope_count += 1
-        if strong < minimum_strong:
-            minimum_strong = strong
-            minimizer_bits = bits
-
-    assert minimizer_bits is not None
-    repo = Path(__file__).resolve().parent.parent
-    manifest = {
-        "schema_version": 1,
-        "producer": "scripts/enumerate_decomposable_colorings.py",
-        "revision": git_revision(repo),
-        "n": args.n,
-        "triple_order": "lexicographic combinations(range(n), 3); LSB first; 1=left",
-        "triple_count": len(triple_list),
-        "distinct_coloring_count": len(ordered_bits),
-        "distinct_colorings_sha256": hashlib.sha256(digest_input).hexdigest(),
-        "dynamic_program_layer_totals": layer_counts,
-        "signotope_count": signotope_count,
-        "minimum_strong_maximum": minimum_strong,
-        "strong_maximum_histogram": dict(sorted(strong_histogram.items())),
-        "cup_maximum_histogram": dict(sorted(cup_histogram.items())),
-        "cap_maximum_histogram": dict(sorted(cap_histogram.items())),
-        "cap_strong_joint_histogram": {
-            f"{cap},{strong}": count
-            for (cap, strong), count in sorted(cap_strong_histogram.items())
-        },
-        "cup_strong_joint_histogram": {
-            f"{cup},{strong}": count
-            for (cup, strong), count in sorted(cup_strong_histogram.items())
-        },
-        "minimum_witness": {
-            "coloring_hex": f"{minimizer_bits:0{width}x}",
-            "tree": tree_json(all_colorings[minimizer_bits]),
-        },
-    }
-    write_atomic(args.output, manifest)
-    print(args.output)
+    classes, tindex = enumerate_class(args.max_n)
+    summary = {"counts": {m: len(c) for m, c in classes.items()}, "validation": {}, "per_n": {}}
+    if args.validate:
+        import census_order_type_decomposability as census
+        for m in range(3, min(6, args.max_n) + 1):
+            idx = tindex[m]
+            # every enumerated coloring is accepted by the checker
+            accepted = 0
+            for mask in classes[m]:
+                col = census.Coloring(m, coloring_dict(mask, m, idx))
+                if col.decomposable((1 << m) - 1, {}):
+                    accepted += 1
+            # completeness against all one-change colorings (the class lies inside them)
+            complete = None
+            if m <= 6:
+                total = 1 << len(idx)
+                checker_yes = set()
+                onechange = 0
+                for mask in range(total):
+                    chi = coloring_dict(mask, m, idx)
+                    if not one_change(chi, m):
+                        continue
+                    onechange += 1
+                    if census.Coloring(m, chi).decomposable((1 << m) - 1, {}):
+                        checker_yes.add(mask)
+                complete = {"one_change_colorings": onechange, "checker_decomposable": len(checker_yes),
+                            "sets_equal": checker_yes == classes[m]}
+            summary["validation"][m] = {"enumerated": len(classes[m]), "accepted_by_checker": accepted, "completeness": complete}
+            print(f"validate n={m}: {summary['validation'][m]}", file=sys.stderr, flush=True)
+    # per-coloring statistics, streamed; full records kept only for extremal
+    # colorings (those avoiding an a-cap, u-cup and strong k-set at the
+    # largest n where that happens is decided after the pass, so witnesses are
+    # kept per (a,u,k) up to a cap)
+    keys = [(a, u, k) for a in range(3, args.max_k + 1) for u in range(3, args.max_k + 1)
+            for k in range(max(a, u, 4), args.max_k + 1)]
+    witness_cap = 3000
+    for m in range(3, args.max_n + 1):
+        idx = tindex[m]
+        avoid = {key: 0 for key in keys}
+        witnesses = {key: [] for key in keys}
+        profile_hist = {}
+        count = 0
+        for mask in classes[m]:
+            chi = coloring_dict(mask, m, idx)
+            cup_end, cup_start, max_cup = chain_profiles(chi, m, True)
+            cap_end, cap_start, max_cap = chain_profiles(chi, m, False)
+            largest = strong_sizes(chi, m)
+            count += 1
+            profile = [[cap_end[v], cap_start[v], cup_end[v], cup_start[v]] for v in range(m)]
+            for key in keys:
+                a, u, k = key
+                if max_cap < a and max_cup < u and largest < k:
+                    avoid[key] += 1
+                    if len(witnesses[key]) < witness_cap:
+                        witnesses[key].append({"mask": mask, "profile": profile})
+            sig = (max_cap, max_cup, largest)
+            profile_hist[sig] = profile_hist.get(sig, 0) + 1
+        avoid_named = {f"{a},{u},{k}": c for (a, u, k), c in avoid.items() if c}
+        summary["per_n"][m] = {"colorings": count, "avoiding_counts": avoid_named,
+                               "cap_cup_strong_histogram": {f"{a},{u},{k}": c for (a, u, k), c in sorted(profile_hist.items())}}
+        out = args.output.with_name(args.output.stem + f"-witnesses-n{m}.json")
+        out.write_text(json.dumps({f"{a},{u},{k}": w for (a, u, k), w in witnesses.items() if w}, separators=(",", ":")) + "\n")
+        summary["per_n"][m]["witness_file"] = str(out)
+        print(f"stats n={m}: {count} colorings; avoiding table entries {len(avoid_named)}", file=sys.stderr, flush=True)
+    # threshold check: largest n with an (a,u,k)-avoiding decomposable coloring vs decomposableThreshold
+    table = {}
+    for a in range(3, args.max_k + 1):
+        for u in range(3, args.max_k + 1):
+            for k in range(max(a, u, 4), args.max_k + 1):
+                key = f"{a},{u},{k}"
+                largest_n = max((m for m in range(3, args.max_n + 1) if key in summary["per_n"][m]["avoiding_counts"]), default=None)
+                table[key] = {"largest_avoiding_n_enumerated": largest_n, "decomposableThreshold": threshold(a, u, k),
+                              "extremal_count": summary["per_n"][largest_n]["avoiding_counts"][key] if largest_n else 0,
+                              "bound_holds_within_enumeration": largest_n is None or largest_n <= threshold(a, u, k)}
+    summary["threshold_table"] = table
+    args.output.write_text(json.dumps(summary, indent=1) + "\n")
+    print(f"wrote {args.output}", file=sys.stderr)
 
 
 if __name__ == "__main__":

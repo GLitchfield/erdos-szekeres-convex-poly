@@ -74,32 +74,42 @@ job with peak memory and OOM count.
 
 - ~~Send the Baek–Balko email~~ Decided 4 September: no email; Workstream B
   proceeds without the authors (`workstream-b-self-reliant-plan.md`).
-- `.wslconfig`: reduce `memory` from 48 GB and `swap` from 16 GB so Windows
-  keeps headroom; suggested 36 GB and 4 GB with gradual memory reclaim.
+- `.wslconfig`: decided 4 September to keep `memory=48GB` and `swap=16GB`
+  and add `[experimental] autoMemoryReclaim=gradual` (WSL 2.7.12), effective
+  after the next `wsl --shutdown`; `scripts/wsl_return_memory.sh` covers the
+  interim.
 - Q10 is refuted as stated.  Decide whether to keep the weaker form (every
   extremal set has a top split in some direction; true on every case checked)
   as the conjecture, or drop the direction-based framing.
 
 ## Next actions (4–10 September)
 
-- ES(6) is verified and recorded (README, map, note 0109).  Still to do when
-  the Fin15 chain finishes: `#print axioms` on `predecessorHalfSubsetAt_six`,
-  record it, run `make test`, and commit when Gavin asks.
+- ES(6) is verified and recorded (README, map, note 0109).  Commits 1–2 are
+  on `main`.  Still open: the axiom audit of `predecessorHalfSubsetAt_six`
+  cannot be run as one `#print axioms` (its proof terms span ~90 GB of
+  private oleans against 47 GB of RAM and thrash forever); run it
+  compositionally, the Fin15 middle producer (36 GB working set) and the
+  base-six composition (~32 GB) each alone with a 44 GB cap, at a time when
+  the Windows host is not short of memory (the run pins the VM at its
+  ceiling; `scripts/wsl_return_memory.sh` hands cache back afterwards).
+  Then commit 3 (Fin15 certificate), `make test`, and the root build.
 - Experiment 0111 done (4 September): all three 64-point octagon-free sets
   have verified heptagon-free halves; the chain enumerator makes the
   perturbation search below feasible.
-- Workstream E: the first falsifier ran (experiment 0113): 760 heptagon-free
-  single-flip neighbours of the 19 extremal sets all have hexagon-free
-  halves.  Remaining: write the conjecture with its parameter, consumer, and
-  falsifier; extend the walks (longer, non-nearest lines) at negligible cost.
+- Workstream E: the conjecture is written with its parameter, consumer
+  (`sweepExactUpperAt_of_predecessorHalfSubset`) and ordered falsifiers in
+  `predecessor-half-conjecture.md`; the first falsifier ran (experiment 0113,
+  negative).  Next: Horton-type and double-chain sets at k = 7, the
+  signotope-tier SAT instance at k = 7 for n ≤ 32, longer flip walks.
 - Workstream C: the brief for Sol is drafted
   (`sol-brief-etv-parameter-5.md`); the opening computation at n = 6 is done
   (experiment 0112: exactly the conjectured 16).  Remaining: n = 7 with a
   Tseitin encoding, then hand over.
-- Workstream B: self-reliant plan drafted (`workstream-b-self-reliant-plan.md`):
-  exhaustive small decomposable worlds with per-vertex external cap/cup
-  profiles, mechanical invariant search, paper proof of the boundary
-  family, then one parameterized Lean theorem; internal note as fallback.
+- Workstream B: self-reliant plan drafted (`workstream-b-self-reliant-plan.md`).
+  Step 1 done (experiment 0114): the class enumerated exactly through nine
+  vertices, thresholds tight everywhere, extremal profiles recorded.  Next:
+  step 2, the mechanical search for a profile-carrying bound that is
+  additive across splits.
 
 ## Resource rules in force
 

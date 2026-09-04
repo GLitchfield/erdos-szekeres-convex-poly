@@ -1,7 +1,11 @@
 # Commit plan for the 3–4 September work
 
-Prepared 4 September 2026.  Nothing has been committed; this is the proposed
-split for Gavin to approve.  All sizes are on-disk; git compresses the LRAT
+Prepared 4 September 2026; approved the same afternoon.  Commits 1 and 2
+landed on `main` as `f8467b7` and `72599c7` (fast-forward from Sol's merged
+line at `c74c737`, no branch kept); commit 3 follows the axiom audit.  The
+email draft and the review text were held back as proposed; the full
+9-point census is committed gzipped.  The rest of this file is the plan as
+approved.  All sizes are on-disk; git compresses the LRAT
 text by roughly three to four times.
 
 ## Convention already in the repository

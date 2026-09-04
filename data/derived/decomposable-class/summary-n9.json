@@ -1,0 +1,766 @@
+{
+ "counts": {
+  "1": 1,
+  "2": 1,
+  "3": 2,
+  "4": 8,
+  "5": 62,
+  "6": 718,
+  "7": 10596,
+  "8": 186888,
+  "9": 3816380
+ },
+ "validation": {},
+ "per_n": {
+  "3": {
+   "colorings": 2,
+   "avoiding_counts": {
+    "3,4,4": 1,
+    "3,4,5": 1,
+    "3,4,6": 1,
+    "3,4,7": 1,
+    "3,5,5": 1,
+    "3,5,6": 1,
+    "3,5,7": 1,
+    "3,6,6": 1,
+    "3,6,7": 1,
+    "3,7,7": 1,
+    "4,3,4": 1,
+    "4,3,5": 1,
+    "4,3,6": 1,
+    "4,3,7": 1,
+    "4,4,4": 2,
+    "4,4,5": 2,
+    "4,4,6": 2,
+    "4,4,7": 2,
+    "4,5,5": 2,
+    "4,5,6": 2,
+    "4,5,7": 2,
+    "4,6,6": 2,
+    "4,6,7": 2,
+    "4,7,7": 2,
+    "5,3,5": 1,
+    "5,3,6": 1,
+    "5,3,7": 1,
+    "5,4,5": 2,
+    "5,4,6": 2,
+    "5,4,7": 2,
+    "5,5,5": 2,
+    "5,5,6": 2,
+    "5,5,7": 2,
+    "5,6,6": 2,
+    "5,6,7": 2,
+    "5,7,7": 2,
+    "6,3,6": 1,
+    "6,3,7": 1,
+    "6,4,6": 2,
+    "6,4,7": 2,
+    "6,5,6": 2,
+    "6,5,7": 2,
+    "6,6,6": 2,
+    "6,6,7": 2,
+    "6,7,7": 2,
+    "7,3,7": 1,
+    "7,4,7": 2,
+    "7,5,7": 2,
+    "7,6,7": 2,
+    "7,7,7": 2
+   },
+   "cap_cup_strong_histogram": {
+    "2,3,3": 1,
+    "3,2,3": 1
+   },
+   "witness_file": "runs/experiments/20260903-week1/decomposable/enum-n9-witnesses-n3.json"
+  },
+  "4": {
+   "colorings": 8,
+   "avoiding_counts": {
+    "3,5,5": 1,
+    "3,5,6": 1,
+    "3,5,7": 1,
+    "3,6,6": 1,
+    "3,6,7": 1,
+    "3,7,7": 1,
+    "4,4,4": 4,
+    "4,4,5": 6,
+    "4,4,6": 6,
+    "4,4,7": 6,
+    "4,5,5": 7,
+    "4,5,6": 7,
+    "4,5,7": 7,
+    "4,6,6": 7,
+    "4,6,7": 7,
+    "4,7,7": 7,
+    "5,3,5": 1,
+    "5,3,6": 1,
+    "5,3,7": 1,
+    "5,4,5": 7,
+    "5,4,6": 7,
+    "5,4,7": 7,
+    "5,5,5": 8,
+    "5,5,6": 8,
+    "5,5,7": 8,
+    "5,6,6": 8,
+    "5,6,7": 8,
+    "5,7,7": 8,
+    "6,3,6": 1,
+    "6,3,7": 1,
+    "6,4,6": 7,
+    "6,4,7": 7,
+    "6,5,6": 8,
+    "6,5,7": 8,
+    "6,6,6": 8,
+    "6,6,7": 8,
+    "6,7,7": 8,
+    "7,3,7": 1,
+    "7,4,7": 7,
+    "7,5,7": 8,
+    "7,6,7": 8,
+    "7,7,7": 8
+   },
+   "cap_cup_strong_histogram": {
+    "2,4,4": 1,
+    "3,3,3": 4,
+    "3,3,4": 2,
+    "4,2,4": 1
+   },
+   "witness_file": "runs/experiments/20260903-week1/decomposable/enum-n9-witnesses-n4.json"
+  },
+  "5": {
+   "colorings": 62,
+   "avoiding_counts": {
+    "3,6,6": 1,
+    "3,6,7": 1,
+    "3,7,7": 1,
+    "4,4,5": 16,
+    "4,4,6": 16,
+    "4,4,7": 16,
+    "4,5,5": 35,
+    "4,5,6": 38,
+    "4,5,7": 38,
+    "4,6,6": 39,
+    "4,6,7": 39,
+    "4,7,7": 39,
+    "5,4,5": 35,
+    "5,4,6": 38,
+    "5,4,7": 38,
+    "5,5,5": 54,
+    "5,5,6": 60,
+    "5,5,7": 60,
+    "5,6,6": 61,
+    "5,6,7": 61,
+    "5,7,7": 61,
+    "6,3,6": 1,
+    "6,3,7": 1,
+    "6,4,6": 39,
+    "6,4,7": 39,
+    "6,5,6": 61,
+    "6,5,7": 61,
+    "6,6,6": 62,
+    "6,6,7": 62,
+    "6,7,7": 62,
+    "7,3,7": 1,
+    "7,4,7": 39,
+    "7,5,7": 61,
+    "7,6,7": 62,
+    "7,7,7": 62
+   },
+   "cap_cup_strong_histogram": {
+    "2,5,5": 1,
+    "3,3,4": 16,
+    "3,4,4": 19,
+    "3,4,5": 3,
+    "4,3,4": 19,
+    "4,3,5": 3,
+    "5,2,5": 1
+   },
+   "witness_file": "runs/experiments/20260903-week1/decomposable/enum-n9-witnesses-n5.json"
+  },
+  "6": {
+   "colorings": 718,
+   "avoiding_counts": {
+    "3,7,7": 1,
+    "4,4,5": 20,
+    "4,4,6": 20,
+    "4,4,7": 20,
+    "4,5,5": 129,
+    "4,5,6": 209,
+    "4,5,7": 209,
+    "4,6,6": 265,
+    "4,6,7": 269,
+    "4,7,7": 270,
+    "5,4,5": 129,
+    "5,4,6": 209,
+    "5,4,7": 209,
+    "5,5,5": 374,
+    "5,5,6": 590,
+    "5,5,7": 596,
+    "5,6,6": 646,
+    "5,6,7": 656,
+    "5,7,7": 657,
+    "6,4,6": 265,
+    "6,4,7": 269,
+    "6,5,6": 646,
+    "6,5,7": 656,
+    "6,6,6": 702,
+    "6,6,7": 716,
+    "6,7,7": 717,
+    "7,3,7": 1,
+    "7,4,7": 270,
+    "7,5,7": 657,
+    "7,6,7": 717,
+    "7,7,7": 718
+   },
+   "cap_cup_strong_histogram": {
+    "2,6,6": 1,
+    "3,3,4": 20,
+    "3,4,4": 109,
+    "3,4,5": 80,
+    "3,5,5": 56,
+    "3,5,6": 4,
+    "4,3,4": 109,
+    "4,3,5": 80,
+    "4,4,4": 136,
+    "4,4,5": 56,
+    "4,4,6": 6,
+    "5,3,5": 56,
+    "5,3,6": 4,
+    "6,2,6": 1
+   },
+   "witness_file": "runs/experiments/20260903-week1/decomposable/enum-n9-witnesses-n6.json"
+  },
+  "7": {
+   "colorings": 10596,
+   "avoiding_counts": {
+    "4,5,5": 193,
+    "4,5,6": 912,
+    "4,5,7": 912,
+    "4,6,6": 1658,
+    "4,6,7": 1936,
+    "4,7,7": 2070,
+    "5,4,5": 193,
+    "5,4,6": 912,
+    "5,4,7": 912,
+    "5,5,5": 1656,
+    "5,5,6": 5974,
+    "5,5,7": 6302,
+    "5,6,6": 7564,
+    "5,6,7": 8299,
+    "5,7,7": 8433,
+    "6,4,6": 1658,
+    "6,4,7": 1936,
+    "6,5,6": 7564,
+    "6,5,7": 8299,
+    "6,6,6": 9154,
+    "6,6,7": 10296,
+    "6,7,7": 10430,
+    "7,4,7": 2070,
+    "7,5,7": 8433,
+    "7,6,7": 10430,
+    "7,7,7": 10564
+   },
+   "cap_cup_strong_histogram": {
+    "2,7,7": 1,
+    "3,4,4": 193,
+    "3,4,5": 719,
+    "3,5,5": 746,
+    "3,5,6": 278,
+    "3,6,6": 134,
+    "3,6,7": 5,
+    "4,3,4": 193,
+    "4,3,5": 719,
+    "4,4,4": 1270,
+    "4,4,5": 2880,
+    "4,4,6": 328,
+    "4,5,5": 844,
+    "4,5,6": 129,
+    "4,5,7": 10,
+    "5,3,5": 746,
+    "5,3,6": 278,
+    "5,4,5": 844,
+    "5,4,6": 129,
+    "5,4,7": 10,
+    "6,3,6": 134,
+    "6,3,7": 5,
+    "7,2,7": 1
+   },
+   "witness_file": "runs/experiments/20260903-week1/decomposable/enum-n9-witnesses-n7.json"
+  },
+  "8": {
+   "colorings": 186888,
+   "avoiding_counts": {
+    "4,5,6": 2880,
+    "4,5,7": 2880,
+    "4,6,6": 7974,
+    "4,6,7": 13174,
+    "4,7,7": 16387,
+    "5,4,6": 2880,
+    "5,4,7": 2880,
+    "5,5,5": 2862,
+    "5,5,6": 54480,
+    "5,5,7": 63630,
+    "5,6,6": 85797,
+    "5,6,7": 112499,
+    "5,7,7": 119147,
+    "6,4,6": 7974,
+    "6,4,7": 13174,
+    "6,5,6": 85797,
+    "6,5,7": 112499,
+    "6,6,6": 122906,
+    "6,6,7": 168348,
+    "6,7,7": 174996,
+    "7,4,7": 16387,
+    "7,5,7": 119147,
+    "7,6,7": 174996,
+    "7,7,7": 181644
+   },
+   "cap_cup_strong_histogram": {
+    "2,8,8": 1,
+    "3,4,5": 2880,
+    "3,5,5": 5094,
+    "3,5,6": 5200,
+    "3,6,6": 3213,
+    "3,6,7": 782,
+    "3,7,7": 288,
+    "3,7,8": 6,
+    "4,3,5": 2880,
+    "4,4,4": 2862,
+    "4,4,5": 45858,
+    "4,4,6": 9150,
+    "4,5,5": 26223,
+    "4,5,6": 12352,
+    "4,5,7": 1072,
+    "4,6,6": 3435,
+    "4,6,7": 266,
+    "4,6,8": 15,
+    "5,3,5": 5094,
+    "5,3,6": 5200,
+    "5,4,5": 26223,
+    "5,4,6": 12352,
+    "5,4,7": 1072,
+    "5,5,5": 5792,
+    "5,5,6": 1188,
+    "5,5,7": 364,
+    "5,5,8": 20,
+    "6,3,6": 3213,
+    "6,3,7": 782,
+    "6,4,6": 3435,
+    "6,4,7": 266,
+    "6,4,8": 15,
+    "7,3,7": 288,
+    "7,3,8": 6,
+    "8,2,8": 1
+   },
+   "witness_file": "runs/experiments/20260903-week1/decomposable/enum-n9-witnesses-n8.json"
+  },
+  "9": {
+   "colorings": 3816380,
+   "avoiding_counts": {
+    "4,5,6": 5860,
+    "4,5,7": 5860,
+    "4,6,6": 27342,
+    "4,6,7": 81556,
+    "4,7,7": 122672,
+    "5,4,6": 5860,
+    "5,4,7": 5860,
+    "5,5,6": 409794,
+    "5,5,7": 571730,
+    "5,6,6": 857302,
+    "5,6,7": 1530117,
+    "5,7,7": 1749103,
+    "6,4,6": 27342,
+    "6,4,7": 81556,
+    "6,5,6": 857302,
+    "6,5,7": 1530117,
+    "6,6,6": 1552850,
+    "6,6,7": 2951962,
+    "6,7,7": 3206019,
+    "7,4,7": 122672,
+    "7,5,7": 1749103,
+    "7,6,7": 3206019,
+    "7,7,7": 3460076
+   },
+   "cap_cup_strong_histogram": {
+    "2,9,9": 1,
+    "3,4,5": 5860,
+    "3,5,5": 21482,
+    "3,5,6": 54214,
+    "3,6,6": 41116,
+    "3,6,7": 24931,
+    "3,7,7": 11068,
+    "3,7,8": 1944,
+    "3,8,8": 585,
+    "3,8,9": 7,
+    "4,3,5": 5860,
+    "4,4,5": 398074,
+    "4,4,6": 161936,
+    "4,5,5": 426026,
+    "4,5,6": 456665,
+    "4,5,7": 51593,
+    "4,6,6": 177870,
+    "4,6,7": 49555,
+    "4,6,8": 3095,
+    "4,7,7": 11535,
+    "4,7,8": 542,
+    "4,7,9": 21,
+    "5,3,5": 21482,
+    "5,3,6": 54214,
+    "5,4,5": 426026,
+    "5,4,6": 456665,
+    "5,4,7": 51593,
+    "5,5,5": 248040,
+    "5,5,6": 215418,
+    "5,5,7": 34784,
+    "5,5,8": 3408,
+    "5,6,6": 35071,
+    "5,6,7": 3268,
+    "5,6,8": 876,
+    "5,6,9": 35,
+    "6,3,6": 41116,
+    "6,3,7": 24931,
+    "6,4,6": 177870,
+    "6,4,7": 49555,
+    "6,4,8": 3095,
+    "6,5,6": 35071,
+    "6,5,7": 3268,
+    "6,5,8": 876,
+    "6,5,9": 35,
+    "7,3,7": 11068,
+    "7,3,8": 1944,
+    "7,4,7": 11535,
+    "7,4,8": 542,
+    "7,4,9": 21,
+    "8,3,8": 585,
+    "8,3,9": 7,
+    "9,2,9": 1
+   },
+   "witness_file": "runs/experiments/20260903-week1/decomposable/enum-n9-witnesses-n9.json"
+  }
+ },
+ "threshold_table": {
+  "3,3,4": {
+   "largest_avoiding_n_enumerated": null,
+   "decomposableThreshold": 2,
+   "extremal_count": 0,
+   "bound_holds_within_enumeration": true
+  },
+  "3,3,5": {
+   "largest_avoiding_n_enumerated": null,
+   "decomposableThreshold": 2,
+   "extremal_count": 0,
+   "bound_holds_within_enumeration": true
+  },
+  "3,3,6": {
+   "largest_avoiding_n_enumerated": null,
+   "decomposableThreshold": 2,
+   "extremal_count": 0,
+   "bound_holds_within_enumeration": true
+  },
+  "3,3,7": {
+   "largest_avoiding_n_enumerated": null,
+   "decomposableThreshold": 2,
+   "extremal_count": 0,
+   "bound_holds_within_enumeration": true
+  },
+  "3,4,4": {
+   "largest_avoiding_n_enumerated": 3,
+   "decomposableThreshold": 3,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "3,4,5": {
+   "largest_avoiding_n_enumerated": 3,
+   "decomposableThreshold": 3,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "3,4,6": {
+   "largest_avoiding_n_enumerated": 3,
+   "decomposableThreshold": 3,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "3,4,7": {
+   "largest_avoiding_n_enumerated": 3,
+   "decomposableThreshold": 3,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "3,5,5": {
+   "largest_avoiding_n_enumerated": 4,
+   "decomposableThreshold": 4,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "3,5,6": {
+   "largest_avoiding_n_enumerated": 4,
+   "decomposableThreshold": 4,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "3,5,7": {
+   "largest_avoiding_n_enumerated": 4,
+   "decomposableThreshold": 4,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "3,6,6": {
+   "largest_avoiding_n_enumerated": 5,
+   "decomposableThreshold": 5,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "3,6,7": {
+   "largest_avoiding_n_enumerated": 5,
+   "decomposableThreshold": 5,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "3,7,7": {
+   "largest_avoiding_n_enumerated": 6,
+   "decomposableThreshold": 6,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "4,3,4": {
+   "largest_avoiding_n_enumerated": 3,
+   "decomposableThreshold": 3,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "4,3,5": {
+   "largest_avoiding_n_enumerated": 3,
+   "decomposableThreshold": 3,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "4,3,6": {
+   "largest_avoiding_n_enumerated": 3,
+   "decomposableThreshold": 3,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "4,3,7": {
+   "largest_avoiding_n_enumerated": 3,
+   "decomposableThreshold": 3,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "4,4,4": {
+   "largest_avoiding_n_enumerated": 4,
+   "decomposableThreshold": 4,
+   "extremal_count": 4,
+   "bound_holds_within_enumeration": true
+  },
+  "4,4,5": {
+   "largest_avoiding_n_enumerated": 6,
+   "decomposableThreshold": 6,
+   "extremal_count": 20,
+   "bound_holds_within_enumeration": true
+  },
+  "4,4,6": {
+   "largest_avoiding_n_enumerated": 6,
+   "decomposableThreshold": 6,
+   "extremal_count": 20,
+   "bound_holds_within_enumeration": true
+  },
+  "4,4,7": {
+   "largest_avoiding_n_enumerated": 6,
+   "decomposableThreshold": 6,
+   "extremal_count": 20,
+   "bound_holds_within_enumeration": true
+  },
+  "4,5,5": {
+   "largest_avoiding_n_enumerated": 7,
+   "decomposableThreshold": 7,
+   "extremal_count": 193,
+   "bound_holds_within_enumeration": true
+  },
+  "4,5,6": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 10,
+   "extremal_count": 5860,
+   "bound_holds_within_enumeration": true
+  },
+  "4,5,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 10,
+   "extremal_count": 5860,
+   "bound_holds_within_enumeration": true
+  },
+  "4,6,6": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 11,
+   "extremal_count": 27342,
+   "bound_holds_within_enumeration": true
+  },
+  "4,6,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 15,
+   "extremal_count": 81556,
+   "bound_holds_within_enumeration": true
+  },
+  "4,7,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 16,
+   "extremal_count": 122672,
+   "bound_holds_within_enumeration": true
+  },
+  "5,3,5": {
+   "largest_avoiding_n_enumerated": 4,
+   "decomposableThreshold": 4,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "5,3,6": {
+   "largest_avoiding_n_enumerated": 4,
+   "decomposableThreshold": 4,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "5,3,7": {
+   "largest_avoiding_n_enumerated": 4,
+   "decomposableThreshold": 4,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "5,4,5": {
+   "largest_avoiding_n_enumerated": 7,
+   "decomposableThreshold": 7,
+   "extremal_count": 193,
+   "bound_holds_within_enumeration": true
+  },
+  "5,4,6": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 10,
+   "extremal_count": 5860,
+   "bound_holds_within_enumeration": true
+  },
+  "5,4,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 10,
+   "extremal_count": 5860,
+   "bound_holds_within_enumeration": true
+  },
+  "5,5,5": {
+   "largest_avoiding_n_enumerated": 8,
+   "decomposableThreshold": 8,
+   "extremal_count": 2862,
+   "bound_holds_within_enumeration": true
+  },
+  "5,5,6": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 14,
+   "extremal_count": 409794,
+   "bound_holds_within_enumeration": true
+  },
+  "5,5,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 20,
+   "extremal_count": 571730,
+   "bound_holds_within_enumeration": true
+  },
+  "5,6,6": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 15,
+   "extremal_count": 857302,
+   "bound_holds_within_enumeration": true
+  },
+  "5,6,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 25,
+   "extremal_count": 1530117,
+   "bound_holds_within_enumeration": true
+  },
+  "5,7,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 26,
+   "extremal_count": 1749103,
+   "bound_holds_within_enumeration": true
+  },
+  "6,3,6": {
+   "largest_avoiding_n_enumerated": 5,
+   "decomposableThreshold": 5,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "6,3,7": {
+   "largest_avoiding_n_enumerated": 5,
+   "decomposableThreshold": 5,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "6,4,6": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 11,
+   "extremal_count": 27342,
+   "bound_holds_within_enumeration": true
+  },
+  "6,4,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 15,
+   "extremal_count": 81556,
+   "bound_holds_within_enumeration": true
+  },
+  "6,5,6": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 15,
+   "extremal_count": 857302,
+   "bound_holds_within_enumeration": true
+  },
+  "6,5,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 25,
+   "extremal_count": 1530117,
+   "bound_holds_within_enumeration": true
+  },
+  "6,6,6": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 16,
+   "extremal_count": 1552850,
+   "bound_holds_within_enumeration": true
+  },
+  "6,6,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 30,
+   "extremal_count": 2951962,
+   "bound_holds_within_enumeration": true
+  },
+  "6,7,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 31,
+   "extremal_count": 3206019,
+   "bound_holds_within_enumeration": true
+  },
+  "7,3,7": {
+   "largest_avoiding_n_enumerated": 6,
+   "decomposableThreshold": 6,
+   "extremal_count": 1,
+   "bound_holds_within_enumeration": true
+  },
+  "7,4,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 16,
+   "extremal_count": 122672,
+   "bound_holds_within_enumeration": true
+  },
+  "7,5,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 26,
+   "extremal_count": 1749103,
+   "bound_holds_within_enumeration": true
+  },
+  "7,6,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 31,
+   "extremal_count": 3206019,
+   "bound_holds_within_enumeration": true
+  },
+  "7,7,7": {
+   "largest_avoiding_n_enumerated": 9,
+   "decomposableThreshold": 32,
+   "extremal_count": 3460076,
+   "bound_holds_within_enumeration": true
+  }
+ }
+}
