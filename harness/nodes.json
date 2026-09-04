@@ -1,0 +1,492 @@
+{
+ "generated_at": "2026-09-04T23:21:04Z",
+ "git_sha": "72599c7248db5029b01e5204f75db1a774d5c8d4",
+ "toolchain": "leanprover/lean4:v4.29.1",
+ "modules": 8485,
+ "tree_hash": "992cc9962983b4da",
+ "nonstandard_axioms": [
+  "lcCast",
+  "Quot.lcInv",
+  "lcUnreachable",
+  "lcErased",
+  "lcAny",
+  "lcVoid",
+  "sorryAx",
+  "lcProof",
+  "Lean.trustCompiler",
+  "Lean.ofReduceNat",
+  "Lean.ofReduceBool",
+  "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
+ ],
+ "taint": {
+  "cached_modules": 8485,
+  "scanned_constants": 0,
+  "scanned_modules": 0
+ },
+ "nodes": [
+  {
+   "name": "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt",
+   "module": "ESBlueprint.A.ForcesConvexPolygonOfSweepExactUpperAt",
+   "ws": "A",
+   "kind": "formalization",
+   "description": "A sweep-model exact upper bound at k transfers to the planar statement: every general-position set of 2^(k-2)+1 points contains a convex k-gon. Route: exists_sweptPresentation, apply h to P.configuration.tripleColoring, then SweptPresentation.containsConvexSubset_iff_exists_isStrongPolygonOn.",
+   "tags": {
+    "node": "",
+    "ws": "A",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ErdosSzekeresConjecture"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    ErdosSzekeres.SweepExactUpperAt k →\n      ErdosSzekeres.ForcesConvexPolygon k (instHAdd.hAdd (instHPow.hPow 2 (instHSub.hSub k 2)) 1)",
+   "type_hash": "de5bf55bf587cb09",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
+   "name": "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all",
+   "module": "ESBlueprint.A.SweepExactUpperAtOfPredecessorHalfSubsetAll",
+   "ws": "A",
+   "kind": "formalization",
+   "description": "Predecessor-half subsets at every level from 4 to k give the sweep-model exact upper bound at k. Route: Nat.le_induction from sweepExactUpperAt_three and sweepExactUpperAt_of_predecessorHalfSubset.",
+   "tags": {
+    "node": "",
+    "ws": "A",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.sweepExactUpperAt_three",
+     "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset"
+    ],
+    "consumer": "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
+   "type_hash": "ee88bf4ffda45548",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [
+    "ErdosSzekeres.sweepExactUpperAt_three",
+    "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset"
+   ],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
+   "name": "ErdosSzekeres.predecessorHalfSubsetAt_all",
+   "module": "ESBlueprint.E.PredecessorHalfSubsetAtAll",
+   "ws": "E",
+   "kind": "conjecture",
+   "description": "The predecessor-half conjecture: every sweep-realizable strong-k-free coloring has a support of the required size with no strong (k-1)-set. Falsified against the known extremal constructions (classical Erdős–Szekeres sets and Theorem-19 blow-ups) at k = 6, 7.",
+   "tags": {
+    "node": "",
+    "ws": "E",
+    "kind": "conjecture",
+    "consumer": "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all",
+    "falsifier": "predecessor_half_constructions.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (k : Nat), instLENat.le 4 k → ErdosSzekeres.PredecessorHalfSubsetAt k",
+   "type_hash": "a18a0a755e1ad825",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": {
+    "node": "ErdosSzekeres.predecessorHalfSubsetAt_all",
+    "falsifier": "predecessor_half_constructions.py",
+    "falsifier_sha256": "fdad682799e3c20a2c37cc651d22e8ae5a636adb151050ec8d05a258883de156",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "a18a0a755e1ad825",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 0.8,
+    "at": "2026-09-04T23:02:09Z",
+    "agent": "gavin@Gavin:268186",
+    "witness": {
+     "node": "ErdosSzekeres.predecessorHalfSubsetAt_all",
+     "checked": [
+      {
+       "k": 6,
+       "name": "ES(6,6,6)",
+       "size": 16,
+       "k_gon_free": true,
+       "half": {
+        "found": true,
+        "gon_count": 802,
+        "subset": [
+         0,
+         1,
+         2,
+         3,
+         5,
+         6,
+         8,
+         11
+        ]
+       }
+      },
+      {
+       "k": 6,
+       "name": "Theorem19(x=1,m=4)",
+       "size": 16,
+       "k_gon_free": true,
+       "half": {
+        "found": true,
+        "gon_count": 802,
+        "subset": [
+         0,
+         1,
+         2,
+         3,
+         5,
+         6,
+         8,
+         11
+        ]
+       }
+      },
+      {
+       "k": 7,
+       "name": "ES(7,7,7)",
+       "size": 32,
+       "k_gon_free": true,
+       "half": {
+        "found": true,
+        "gon_count": 39648,
+        "subset": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         6,
+         7,
+         8,
+         10,
+         11,
+         13,
+         16,
+         17,
+         19,
+         22,
+         26
+        ]
+       }
+      },
+      {
+       "k": 7,
+       "name": "Theorem19(x=1,m=5)",
+       "size": 32,
+       "k_gon_free": true,
+       "half": {
+        "found": true,
+        "gon_count": 25103,
+        "subset": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         6,
+         7,
+         8,
+         10,
+         11,
+         13,
+         14,
+         16,
+         19,
+         22,
+         26
+        ]
+       }
+      },
+      {
+       "k": 7,
+       "name": "Theorem19(x=2,m=3)",
+       "size": 32,
+       "k_gon_free": true,
+       "half": {
+        "found": true,
+        "gon_count": 29848,
+        "subset": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         6,
+         7,
+         8,
+         10,
+         11,
+         13,
+         16,
+         17,
+         19,
+         22,
+         26
+        ]
+       }
+      }
+     ],
+     "failures": []
+    }
+   },
+   "lock_ok": true,
+   "opened": "uncommitted"
+  }
+ ],
+ "destinations": [
+  {
+   "name": "ErdosSzekeres.classical_lower_sharpness",
+   "module": "ErdosSzekeres.Extremal",
+   "type_pp": "∀ (n : Nat),\n  instLENat.le 3 n →\n    ErdosSzekeres.HasSharpnessExample n (instHAdd.hAdd (instHPow.hPow 2 (instHSub.hSub n 2)) 1)",
+   "type_hash": "4faa684f97e96b43",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "D4: the classical all-`n` lower construction, as an actual planar\nsharpness witness of size `2^(n-2)`.",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.erdosSzekeresFormulaAt_five",
+   "module": "ErdosSzekeres.ES5Certificate",
+   "type_pp": "ErdosSzekeres.ErdosSzekeresFormulaAt 5",
+   "type_hash": "69ddac605322bbd4",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "The happy-ending formula is exact at `n = 5`: nine points force a convex\npentagon, while eight points need not contain one.",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.erdosSzekeresFormulaAt_four",
+   "module": "ErdosSzekeres.SmallCases",
+   "type_pp": "ErdosSzekeres.ErdosSzekeresFormulaAt 4",
+   "type_hash": "c1a599f22fb67654",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.erdosSzekeresFormulaAt_six",
+   "module": "ErdosSzekeres.ES6Certificate",
+   "type_pp": "ErdosSzekeres.ErdosSzekeresFormulaAt 6",
+   "type_hash": "4e29f0a7bfa78d90",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "The happy-ending formula is exact at `n = 6`: seventeen points force a\nconvex hexagon, while sixteen points need not contain one.",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.erdosSzekeresFormulaAt_three",
+   "module": "ErdosSzekeres.SmallCases",
+   "type_pp": "ErdosSzekeres.ErdosSzekeresFormulaAt 3",
+   "type_hash": "b451a4e38c7921d7",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.exists_predecessorHalfSubsetAtSix_of_card_le_fourteen",
+   "module": "ErdosSzekeres.StrongPredecessorBaseSixThroughFourteen",
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n},\n  ErdosSzekeres.IsSweepRealizable χ →\n    Not (ErdosSzekeres.ContainsStrongPolygonSet χ Finset.univ 6) →\n      instLENat.le n 14 →\n        Exists fun support =>\n          And (Not (ErdosSzekeres.ContainsStrongPolygonSet χ support 5))\n            (instLENat.le n (instHMul.hMul 2 support.card))",
+   "type_hash": "cc8fd1edf44bf734",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "Through fourteen vertices, the elementary, Fin10, Fin11, and Fin13\npredecessor theorems supply a half-sized strong-five-free support.",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.forces_six",
+   "module": "ErdosSzekeres.ES6Certificate",
+   "type_pp": "ErdosSzekeres.ForcesConvexPolygon 6 17",
+   "type_hash": "5c738390a53f84ae",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "The kernel-checked seventeen-point upper bound for the happy-ending problem\nat six vertices.",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.hmpt_explicit_upper",
+   "module": "ErdosSzekeres.HMPTExplicitUpper",
+   "type_pp": "∀ (n : Nat),\n  instLENat.le 3 n →\n    ErdosSzekeres.ForcesConvexPolygon n\n      (instHPow.hPow 2\n        (instHAdd.hAdd (instHAdd.hAdd n (instHMul.hMul 32 (instHMul.hMul n (Nat.clog 2 n)).sqrt))\n          128))",
+   "type_hash": "401c7ebeab8f9643",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "The explicit HMPT upper bound in published asymptotic form.",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.predecessorHalfSubsetAt_six",
+   "module": "ErdosSzekeres.PredecessorHalfSix",
+   "type_pp": "ErdosSzekeres.PredecessorHalfSubsetAt 6",
+   "type_hash": "e24b788b074ae4fd",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.strongSixCardinalityCeiling",
+   "module": "ErdosSzekeres.PredecessorHalfSix",
+   "type_pp": "ErdosSzekeres.StrongSixCardinalityCeiling",
+   "type_hash": "51ff3f7c4d7ff222",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.suk_explicit_upper",
+   "module": "ErdosSzekeres.SukPositiveFractionExplicitUpper",
+   "type_pp": "∀ (n : Nat),\n  instLENat.le 65 n →\n    ErdosSzekeres.ForcesConvexPolygon n\n      (instHPow.hPow 2\n        (instHAdd.hAdd\n          (instHAdd.hAdd n\n            (instHMul.hMul (instHMul.hMul 64 (instHPow.hPow (ErdosSzekeres.sukCubeScale n) 2))\n              (Nat.clog 2 (instHMul.hMul 3 n))))\n          128))",
+   "type_hash": "48e21f84d6d30844",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "The frozen positive-fraction threshold is bounded by one explicit power.",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.tothValtr_upper",
+   "module": "ErdosSzekeres.TothValtrUpper",
+   "type_pp": "∀ (n : Nat),\n  instLENat.le 3 n →\n    ErdosSzekeres.ForcesConvexPolygon n\n      (instHAdd.hAdd ((instHSub.hSub (instHMul.hMul 2 n) 5).choose (instHSub.hSub n 2)) 2)",
+   "type_hash": "b8d96bce0ebb91b2",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "The explicit Tóth--Valtr uniform upper bound for planar point sets in\ngeneral position.",
+   "uncovered_axioms": [],
+   "merged_from": null
+  }
+ ],
+ "problems": [],
+ "lock_problems": [],
+ "duplicate_problems": [],
+ "warnings": [
+  "destination ErdosSzekeres.decomposableExactUpperAt_six not found in the environment",
+  "destination ErdosSzekeres.decomposableStateUpper_488 not found in the environment"
+ ]
+}

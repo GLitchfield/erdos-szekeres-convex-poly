@@ -1,0 +1,29 @@
+{
+  "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt": {
+    "type_hash": "de5bf55bf587cb09",
+    "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    ErdosSzekeres.SweepExactUpperAt k →\n      ErdosSzekeres.ForcesConvexPolygon k (instHAdd.hAdd (instHPow.hPow 2 (instHSub.hSub k 2)) 1)",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-04",
+    "kind": "formalization",
+    "ws": "A",
+    "module": "ESBlueprint.A.ForcesConvexPolygonOfSweepExactUpperAt"
+  },
+  "ErdosSzekeres.predecessorHalfSubsetAt_all": {
+    "type_hash": "a18a0a755e1ad825",
+    "type_pp": "∀ (k : Nat), instLENat.le 4 k → ErdosSzekeres.PredecessorHalfSubsetAt k",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-04",
+    "kind": "conjecture",
+    "ws": "E",
+    "module": "ESBlueprint.E.PredecessorHalfSubsetAtAll"
+  },
+  "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all": {
+    "type_hash": "ee88bf4ffda45548",
+    "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-04",
+    "kind": "formalization",
+    "ws": "A",
+    "module": "ESBlueprint.A.SweepExactUpperAtOfPredecessorHalfSubsetAll"
+  }
+}

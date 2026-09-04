@@ -1,0 +1,92 @@
+from __future__ import annotations
+
+import time
+from datetime import datetime
+
+from es import EXIT_OK
+from es.context import Ctx
+from es.nodes import days_open, dests_from_json, load_nodes_json, nodes_from_json
+from es.output import Result, table
+from es.spec import Arg, CommandSpec, command
+from es.store import Store
+
+
+def burn_down(cfg, weeks: int = 8) -> list[dict]:
+    with Store(cfg) as st:
+        since = time.time() - weeks * 7 * 86400
+        attempts = st.attempts(since=since)
+        events = st.events_since(since)
+    buckets: dict[str, dict[str, int]] = {}
+
+    def week(ts: float) -> str:
+        iso = datetime.fromtimestamp(ts).isocalendar()
+        return f"{iso[0]}-W{iso[1]:02d}"
+
+    for a in attempts:
+        b = buckets.setdefault(week(a["started_at"] or time.time()), {"attempts": 0, "closed": 0, "refuted": 0, "retired": 0})
+        b["attempts"] += 1
+    for e in events:
+        if e["kind"] in ("closed", "refuted", "retired"):
+            b = buckets.setdefault(week(e["at"]), {"attempts": 0, "closed": 0, "refuted": 0, "retired": 0})
+            b[e["kind"]] += 1
+    return [{"week": w, **c} for w, c in sorted(buckets.items())]
+
+
+def run(ctx: Ctx, brief: bool = False, ws: str | None = None) -> Result:
+    cfg = ctx.cfg
+    data = load_nodes_json(cfg)
+    nodes = nodes_from_json(data)
+    dests = dests_from_json(data)
+    with Store(cfg) as st:
+        claims = st.claims()
+    for n in nodes:
+        n.claim = claims.get(n.name)
+        if n.claim and n.status == "open":
+            n.status = "claimed"
+    if ws:
+        nodes = [n for n in nodes if n.ws == ws]
+    res = Result()
+    counts: dict[str, int] = {}
+    for n in nodes:
+        counts[n.status] = counts.get(n.status, 0) + 1
+    res.line(f"frontier @ {data.get('git_sha', '?')[:12]} ({data.get('generated_at', '?')}): " + (", ".join(f"{k} {v}" for k, v in sorted(counts.items())) or "no nodes"))
+    problems = data.get("problems", []) + data.get("lock_problems", []) + data.get("duplicate_problems", [])
+    if problems:
+        res.line(f"{len(problems)} problem(s) reported by `es extract` (run `es extract --check`)")
+    rows = []
+    for w in cfg.workstreams:
+        group = sorted((n for n in nodes if n.ws == w), key=lambda x: x.name)
+        for n in group:
+            f = (n.falsify or {}).get("result", "-") if n.falsifier else "-"
+            rows.append([w, n.name, n.kind, n.status, "yes" if n.ready else ("blocked" if n.blocked_by else ""),
+                         (n.claim or {}).get("agent", ""), days_open(n.opened), f])
+    for n in (x for x in nodes if x.ws not in cfg.workstreams):
+        rows.append(["?", n.name, n.kind, n.status, "", "", "", "tags: " + "; ".join(n.tag_errors)])
+    if brief:
+        rows = [r for r in rows if r[3] not in ("closed", "merged", "retired", "refuted")][:18]
+    res.human.extend(table(rows, ["ws", "node", "kind", "status", "ready", "claimed by", "days", "falsifier"]))
+    if not brief:
+        bad = [d for d in dests if d.sorry or d.uncovered_axioms]
+        res.line("")
+        res.line(f"destinations: {len(dests)} audited" + (f", {len(bad)} with sorry or uncovered axioms: " + ", ".join(d.name for d in bad) if bad else ", all clean"))
+        bd = burn_down(cfg)
+        if bd:
+            res.line("")
+            res.human.extend(table([[b["week"], b["attempts"], b["closed"], b["refuted"], b["retired"]] for b in bd], ["week", "attempts", "closed", "refuted", "retired"]))
+    res.payload = {"generated_at": data.get("generated_at"), "git_sha": data.get("git_sha"), "counts": counts,
+                   "nodes": [n.to_json() | {"claim": n.claim, "days_open": days_open(n.opened)} for n in nodes],
+                   "destinations": [d.to_json() for d in dests], "problems": problems,
+                   "burn_down": None if brief else burn_down(cfg)}
+    res.exit_code = EXIT_OK
+    return res
+
+
+command(
+    CommandSpec(
+        name="status",
+        cli=["status"],
+        help="Frontier grouped by workstream, then burn-down.",
+        run=run,
+        args=[Arg("brief", "at most ~25 lines, for the SessionStart hook", "bool"), Arg("ws", "only this workstream")],
+    )
+)

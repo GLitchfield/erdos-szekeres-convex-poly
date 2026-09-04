@@ -1,0 +1,16 @@
+# Theorems in ESCore included in the axiom audit and the frontier (one per line).
+# `es close` appends every closed node automatically.
+ErdosSzekeres.classical_lower_sharpness
+ErdosSzekeres.decomposableExactUpperAt_six
+ErdosSzekeres.decomposableStateUpper_488
+ErdosSzekeres.erdosSzekeresFormulaAt_five
+ErdosSzekeres.erdosSzekeresFormulaAt_four
+ErdosSzekeres.erdosSzekeresFormulaAt_six
+ErdosSzekeres.erdosSzekeresFormulaAt_three
+ErdosSzekeres.exists_predecessorHalfSubsetAtSix_of_card_le_fourteen
+ErdosSzekeres.forces_six
+ErdosSzekeres.hmpt_explicit_upper
+ErdosSzekeres.predecessorHalfSubsetAt_six
+ErdosSzekeres.strongSixCardinalityCeiling
+ErdosSzekeres.suk_explicit_upper
+ErdosSzekeres.tothValtr_upper

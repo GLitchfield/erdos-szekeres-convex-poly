@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "es": {
+      "command": "tools/es/bin/es-mcp",
+      "args": []
+    }
+  }
+}

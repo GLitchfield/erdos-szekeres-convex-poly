@@ -1,3 +1,11 @@
+> **Superseded process notice (2026-09-04).** The `es` harness (`tools/es`, design in
+> `docs/harness-design.md`) now owns project state: what is open, claimed, closed and
+> what depends on what is derived from the compiled Lean environment (`es status`,
+> `es ready`, `harness/status.md`). The working rules in `CLAUDE.md` take precedence
+> over anything below that describes tickets, packets, slates, the frontier cycle,
+> the idea generator or the scheduler; those sections are historical until this file
+> is rewritten (harness milestone M6). Builds go through `es build` / `es check`.
+
 # Erdős--Szekeres convex-polygon research guidance
 
 This repository is an AI-assisted formal mathematics project initialized from

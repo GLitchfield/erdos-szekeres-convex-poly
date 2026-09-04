@@ -1,0 +1,66 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  harness-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e "tools/es[test]"
+      - run: pytest tools/es/tests -q
+
+  layers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e tools/es
+      - run: es layers
+
+  # The Lean job needs the certificate oleans (~130 GB of build products; single
+  # modules need up to 15 GiB of RAM), which no hosted runner can restore or
+  # rebuild.  It therefore runs on a self-hosted runner that keeps .lake/build
+  # warm (label `es-lean`).  Until one is registered this job is skipped.
+  lean:
+    if: ${{ vars.ES_LEAN_RUNNER == 'true' }}
+    runs-on: [self-hosted, es-lean]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          clean: false
+      - run: pip install -e tools/es
+      - run: es doctor
+      - run: es build certs --budget 30
+      - run: es build core --budget 10
+      - run: es build blueprint --budget 20
+      - run: es extract --check
+      - run: es audit
+
+  pr-shape:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: one node per PR; lock changes need a restatement entry
+        run: |
+          set -e
+          base="${{ github.event.pull_request.base.sha }}"
+          files=$(git diff --name-only "$base"...HEAD)
+          echo "$files"
+          nodes=$(echo "$files" | grep -E '^ESBlueprint/.+\.lean$' | grep -v '^ESBlueprint/Extract.lean$' || true)
+          n=$(echo "$nodes" | grep -c . || true)
+          if [ "$n" -gt 1 ]; then echo "PR touches $n blueprint modules; one node per PR"; exit 1; fi
+          if echo "$files" | grep -q '^harness/statements.lock$'; then
+            echo "$files" | grep -q '^harness/restatements.md$' || { echo "statements.lock changed without a restatements.md entry"; exit 1; }
+          fi

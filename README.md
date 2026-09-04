@@ -1200,6 +1200,27 @@ sets.
   the generic E3 route selection, while claimed ticket 0010 owns the exact
   state-578 side branch.
 
+## Build and the `es` harness
+
+The repository is one Lake package with two library targets: `ESCore` (rooted at
+`ErdosSzekeres.lean`, including the generated certificate modules it imports) and
+`ESBlueprint` (one module per open node; the only place `sorry` is allowed).
+Project state is derived from Lean by the `es` harness in `tools/es`
+(design: `docs/harness-design.md`):
+
+```
+tools/es/bin/es doctor          # toolchain, config, oleans, database
+tools/es/bin/es build core      # memory-guarded, budgeted `lake build ESCore`
+tools/es/bin/es extract         # nodes.json / index.json / harness/status.md from the compiled environment
+tools/es/bin/es status          # the frontier; `es ready` lists claimable nodes
+tools/es/bin/es audit           # non-standard axioms vs harness/allowlist.json
+```
+
+`make lean` builds `ESCore` through the harness guard; `make harness-test` runs the
+layering check, the extract consistency check, the axiom audit and the harness unit
+tests. The generated frontier lives in `harness/status.md`; destination theorems are
+listed in `harness/destinations.txt`; the trust surface is `harness/allowlist.json`.
+
 ## Build
 
 ```console

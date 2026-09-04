@@ -1,9 +1,21 @@
 name = "erdos_szekeres_convex_poly"
 version = "0.1.0"
-defaultTargets = ["ErdosSzekeres"]
+defaultTargets = ["ESCore"]
 
+# ESCore: the hand-written development rooted at ErdosSzekeres.lean, together with
+# the generated certificate modules it imports (they share the ErdosSzekeres.*
+# namespace until they are relocated; see docs/harness-design.md §4 and
+# `es certs relocate`).  Layering between core and certificates is enforced by
+# `es layers`, not by Lake.
 [[lean_lib]]
-name = "ErdosSzekeres"
+name = "ESCore"
+roots = ["ErdosSzekeres"]
+weakLeanArgs = ["--tstack=65536"]
+
+# ESBlueprint: one module per open node; `sorry` is allowed here and nowhere else.
+[[lean_lib]]
+name = "ESBlueprint"
+roots = ["ESBlueprint"]
 weakLeanArgs = ["--tstack=65536"]
 
 [[require]]

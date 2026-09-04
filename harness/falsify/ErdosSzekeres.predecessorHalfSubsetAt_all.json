@@ -1,0 +1,142 @@
+{
+ "node": "ErdosSzekeres.predecessorHalfSubsetAt_all",
+ "falsifier": "predecessor_half_constructions.py",
+ "falsifier_sha256": "fdad682799e3c20a2c37cc651d22e8ae5a636adb151050ec8d05a258883de156",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "a18a0a755e1ad825",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 0.8,
+ "at": "2026-09-04T23:02:09Z",
+ "agent": "gavin@Gavin:268186",
+ "witness": {
+  "node": "ErdosSzekeres.predecessorHalfSubsetAt_all",
+  "checked": [
+   {
+    "k": 6,
+    "name": "ES(6,6,6)",
+    "size": 16,
+    "k_gon_free": true,
+    "half": {
+     "found": true,
+     "gon_count": 802,
+     "subset": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      8,
+      11
+     ]
+    }
+   },
+   {
+    "k": 6,
+    "name": "Theorem19(x=1,m=4)",
+    "size": 16,
+    "k_gon_free": true,
+    "half": {
+     "found": true,
+     "gon_count": 802,
+     "subset": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      8,
+      11
+     ]
+    }
+   },
+   {
+    "k": 7,
+    "name": "ES(7,7,7)",
+    "size": 32,
+    "k_gon_free": true,
+    "half": {
+     "found": true,
+     "gon_count": 39648,
+     "subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      10,
+      11,
+      13,
+      16,
+      17,
+      19,
+      22,
+      26
+     ]
+    }
+   },
+   {
+    "k": 7,
+    "name": "Theorem19(x=1,m=5)",
+    "size": 32,
+    "k_gon_free": true,
+    "half": {
+     "found": true,
+     "gon_count": 25103,
+     "subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      10,
+      11,
+      13,
+      14,
+      16,
+      19,
+      22,
+      26
+     ]
+    }
+   },
+   {
+    "k": 7,
+    "name": "Theorem19(x=2,m=3)",
+    "size": 32,
+    "k_gon_free": true,
+    "half": {
+     "found": true,
+     "gon_count": 29848,
+     "subset": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      10,
+      11,
+      13,
+      16,
+      17,
+      19,
+      22,
+      26
+     ]
+    }
+   }
+  ],
+  "failures": []
+ }
+}

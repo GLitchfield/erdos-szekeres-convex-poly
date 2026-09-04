@@ -16,8 +16,10 @@ LEAN_BUILD_GUARD := python3 scripts/run_lean_guarded.py \
 	--max-lean-processes $(LEAN_BUILD_MAX_PROCESSES) \
 	--heartbeat-seconds 30 --poll-seconds 0.5 --grace-seconds 10 --
 LEAN_LAKE := $(LEAN_BUILD_GUARD) taskset --cpu-list $(LEAN_BUILD_CPUS) lake
+# es harness (tools/es): memory-guarded, budgeted Lake builds and the blueprint frontier.
+ES := tools/es/bin/es
 
-.PHONY: check update lean lean-artifacts test test-exhaustive wayfinder \
+.PHONY: check update lean lean-artifacts harness-test test test-exhaustive wayfinder \
 	rolling-pipeline review-doctor idea-generator-status idea-generator-stop \
 	research-scheduler-status research-scheduler-doctor research-scheduler-stop \
 	research-scheduler-acceptance-check
@@ -31,15 +33,22 @@ check:
 update: check
 	@lake update
 
+# `sorry` is allowed only in ESBlueprint/ (open nodes); ESCore must stay sorry-free.
 lean:
 	@! rg -n --glob '*.lean' '\b(sorry|admit)\b' ErdosSzekeres ErdosSzekeres.lean
-	@$(LEAN_LAKE) build +ErdosSzekeres:olean
+	@$(ES) build core
+
+harness-test:
+	@$(ES) layers
+	@$(ES) extract --check
+	@$(ES) audit
+	@cd tools/es && .venv/bin/python -m pytest -q
 
 lean-artifacts:
 	@! rg -n --glob '*.lean' '\b(sorry|admit)\b' ErdosSzekeres ErdosSzekeres.lean
 	@$(LEAN_LAKE) build
 
-test: check lean
+test: check lean harness-test
 	@python3 -m unittest discover -s scripts -p 'test_*.py'
 	@python3 scripts/check_e3_state455_aggregation.py
 	@python3 scripts/check_e3_state566_aggregation.py

@@ -1,3 +1,9 @@
+> **Harness note (2026-09-04).** Scope under the harness: bounded Sol/Fable review is
+> run (a) on a node's statement before `es node add` when the node is of kind
+> `conjecture` or is a destination-level formalization, (b) on `es node retire` of a
+> conjecture, (c) on additions to `harness/allowlist.json`. It is not run on slate
+> selection, proof PRs, or process changes. Output is attached to the PR.
+
 # Sol/Fable adversarial review
 
 `scripts/adversarial_review.py` asks Claude Fable and Codex Sol to review the

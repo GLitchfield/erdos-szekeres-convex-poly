@@ -1,3 +1,11 @@
+> **Harness note (2026-09-04).** Trust policy is now enforced by `es audit`: every
+> non-standard axiom reachable from a blueprint node or a destination theorem must be
+> covered by an entry in `harness/allowlist.json` (`reaches` names the theorems it may
+> reach). `sorry` is allowed only under `ESBlueprint/`. Generated certificate modules
+> form the `ESCertificates` layer (patterns in `harness/config.toml`); `es layers`
+> checks the import boundary. Builds run through `es build` (cgroup memory guard,
+> wall-clock budget). See `docs/harness-design.md` §7.4 and §10.
+
 # Lean automation policy
 
 The project uses automation to discover and check local proof steps. Automation

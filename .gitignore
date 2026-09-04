@@ -29,3 +29,9 @@ dist/
 *.log
 *.tmp
 *.checkpoint
+
+# es harness: local state lives in ~/.es; these are per-machine
+harness/*.tmp
+
+# materialized by `es extract` from tools/es/lean/Extract.lean.tmpl
+ESBlueprint/Extract.lean

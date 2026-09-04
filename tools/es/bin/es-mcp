@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# MCP server launcher (stdio).  Needs the `mcp` package: uv pip install -e "tools/es[mcp]".
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export ES_PROJECT_ROOT="${ES_PROJECT_ROOT:-$(cd "$here/../../.." && pwd)}"
+if [ -x "$here/../.venv/bin/python" ]; then
+  exec "$here/../.venv/bin/python" -m es.mcp_server "$@"
+fi
+PYTHONPATH="$here/..${PYTHONPATH:+:$PYTHONPATH}" exec python3 -m es.mcp_server "$@"

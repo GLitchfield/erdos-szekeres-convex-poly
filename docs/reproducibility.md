@@ -1,3 +1,11 @@
+> **Harness note (2026-09-04).** Evidence tiers under the harness: kernel theorem
+> (closed node, `es check` reports no `sorryAx` and only standard axioms) >
+> allowlisted external certificate (`harness/allowlist.json`) > `native_decide` /
+> falsifier `pass` (computational evidence) > solver output without a checked proof.
+> Falsifier results in `harness/falsify/<node>.json` are the canonical record of
+> computational evidence for a conjecture node; datasets live in `harness/dataset/`.
+> A falsifier result that retires a node still needs an independent replay.
+
 # Reproducibility contract
 
 ## Evidence levels
