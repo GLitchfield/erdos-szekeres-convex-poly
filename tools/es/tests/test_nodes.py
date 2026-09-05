@@ -98,3 +98,14 @@ def test_allowlist_glob_matches_native_decide_axioms():
     entries = [{"axiom": "*._native.native_decide.*", "reaches": ["TCore.n"]}]
     assert uncovered(entries, "TCore.n", ["TCore.n._native.native_decide.ax_1_1"], []) == []
     assert uncovered(entries, "TCore.other", ["TCore.other._native.native_decide.ax_1_1"], []) == ["TCore.other._native.native_decide.ax_1_1"]
+
+
+def test_extract_check_ignores_volatile_lines():
+    """The staleness check must not trip on fields that change with every commit or run."""
+    from es.commands.extract import _strip_volatile
+    committed = '{\n "generated_at": "2026-09-05T21:19:28Z",\n "git_sha": "4e18571",\n "tree_hash": "b053fa61",\n' \
+                ' "taint": {\n  "cached_modules": 15341,\n  "scanned_constants": 4,\n  "scanned_modules": 2\n },\n "nodes": [1]\n}'
+    regenerated = committed.replace("21:19:28", "21:26:46").replace("4e18571", "7b08c5a").replace("b053fa61", "c9457d1b") \
+                           .replace("15341", "15343").replace('"scanned_constants": 4', '"scanned_constants": 0').replace('"scanned_modules": 2', '"scanned_modules": 0')
+    assert _strip_volatile(committed) == _strip_volatile(regenerated)
+    assert _strip_volatile(committed) != _strip_volatile(committed.replace('"nodes": [1]', '"nodes": [2]'))

@@ -33,6 +33,9 @@ def run_claim(ctx: Ctx, name: str, agent: str | None = None, note: str | None = 
 def run_release(ctx: Ctx, name: str, agent: str | None = None, outcome: str = "abandoned") -> Result:
     cfg = ctx.cfg
     n = find_node(cfg, name)
+    # releasing a node that is already sorry-free is not an abandoned attempt
+    if outcome == "abandoned" and n.status in ("closed", "merged"):
+        outcome = "closed"
     with Store(cfg) as st:
         ok = st.release(n.name, agent or ctx.agent, outcome=outcome)
     if not ok:
