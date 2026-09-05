@@ -1,0 +1,177 @@
+{
+ "k": 7,
+ "seed": 20260906,
+ "scale": 64,
+ "tries_per_base": 150,
+ "keep_per_base": 300,
+ "per_base": [
+  {
+   "base": "Valtr(S#0)",
+   "tries": 686,
+   "general_position": 686,
+   "k_gon_free": 328,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 314.8
+  },
+  {
+   "base": "Valtr(S#1)",
+   "tries": 592,
+   "general_position": 592,
+   "k_gon_free": 318,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 300.7
+  },
+  {
+   "base": "Valtr(S#2)",
+   "tries": 613,
+   "general_position": 613,
+   "k_gon_free": 319,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 474.0
+  },
+  {
+   "base": "Valtr(S#3)",
+   "tries": 626,
+   "general_position": 626,
+   "k_gon_free": 322,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 252.8
+  },
+  {
+   "base": "Valtr(S#4)",
+   "tries": 604,
+   "general_position": 604,
+   "k_gon_free": 325,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 320.4
+  },
+  {
+   "base": "Valtr(S#5)",
+   "tries": 621,
+   "general_position": 621,
+   "k_gon_free": 317,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 192.4
+  },
+  {
+   "base": "Valtr(S#6)",
+   "tries": 677,
+   "general_position": 677,
+   "k_gon_free": 330,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 515.9
+  },
+  {
+   "base": "Valtr(S#7)",
+   "tries": 696,
+   "general_position": 696,
+   "k_gon_free": 332,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 358.2
+  },
+  {
+   "base": "Valtr(S#8)",
+   "tries": 588,
+   "general_position": 588,
+   "k_gon_free": 316,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 361.1
+  },
+  {
+   "base": "Valtr(S#9)",
+   "tries": 608,
+   "general_position": 608,
+   "k_gon_free": 322,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 256.2
+  },
+  {
+   "base": "Valtr(S#10)",
+   "tries": 487,
+   "general_position": 487,
+   "k_gon_free": 318,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 211.5
+  },
+  {
+   "base": "Valtr(S#11)",
+   "tries": 626,
+   "general_position": 626,
+   "k_gon_free": 328,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 386.4
+  },
+  {
+   "base": "Valtr(S#12)",
+   "tries": 574,
+   "general_position": 574,
+   "k_gon_free": 310,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 462.5
+  },
+  {
+   "base": "Valtr(S#13)",
+   "tries": 572,
+   "general_position": 572,
+   "k_gon_free": 313,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 287.4
+  },
+  {
+   "base": "Valtr(S#14)",
+   "tries": 561,
+   "general_position": 561,
+   "k_gon_free": 327,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 358.0
+  },
+  {
+   "base": "Valtr(S#15)",
+   "tries": 602,
+   "general_position": 602,
+   "k_gon_free": 320,
+   "new_order_types": 300,
+   "half_found": 300,
+   "half_missing": 0,
+   "seconds": 299.5
+  }
+ ],
+ "totals": {
+  "tries": 9733,
+  "general_position": 9733,
+  "k_gon_free": 5145,
+  "new_order_types": 4800,
+  "half_found": 4800,
+  "half_missing": 0
+ }
+}

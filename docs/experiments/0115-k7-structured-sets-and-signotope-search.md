@@ -43,6 +43,20 @@ neighbours of the constructions, all with verified hexagon-free 16-point
 halves.  About 44 % of flips across one of the eight nearest lines keep
 heptagon-freeness.
 
+**Addendum, 6 September: walks from the non-decomposable bases only.**
+`--keep 300 --nearest 12 --seed 20260906`, seeded from the sixteen Valtr
+blow-ups alone (the bases that are decomposable in no direction):
+
+| Bases | Flips tried | Heptagon-free | New order types | Halves found | Halves missing | Time |
+|---|---|---|---|---|---|---|
+| 16 | 9,733 | 5,145 | 4,800 | 4,800 | 0 | 90 min |
+
+`data/derived/predecessor-half-k7-flip-search-valtr-long.json`.  With the
+runs above and experiment 0113 this is 7,080 distinct heptagon-free order
+types near the constructions, every one with a verified hexagon-free
+16-point half; about 53 % of flips across one of the twelve nearest lines
+keep heptagon-freeness.
+
 ## 2. Structured sets: Horton sets, double chains, deep-below unions
 
 **Horton sets and double chains are not heptagon-free and have no large
