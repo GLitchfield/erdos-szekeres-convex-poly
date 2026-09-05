@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-05T20:49:32Z",
- "git_sha": "16136f4bbcf04d96933ae955895ced1d3e7b8e0c",
+ "generated_at": "2026-09-05T21:19:28Z",
+ "git_sha": "4e18571161386a88187d92b94ddc088fde6fca01",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15343,
- "tree_hash": "dcff3738d2fd6c13",
+ "tree_hash": "b053fa619dbd0800",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15343,
-  "scanned_constants": 0,
-  "scanned_modules": 0
+  "cached_modules": 15341,
+  "scanned_constants": 4,
+  "scanned_modules": 2
  },
  "nodes": [
   {
@@ -47,13 +47,8 @@
    ],
    "nonstandard_axioms": [],
    "deps_declared": [],
-   "deps_actual": [],
-   "helpers": [],
-   "status": "claimed",
-   "ready": false,
-   "blocked_by": [],
-   "uncovered_axioms": [
-    "sorryAx"
+   "deps_actual": [
+    "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt._proof_1_1"
    ],
    "helpers": [],
    "status": "closed",
@@ -94,13 +89,8 @@
     "ErdosSzekeres.sweepExactUpperAt_three",
     "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset"
    ],
-   "deps_actual": [],
-   "helpers": [],
-   "status": "claimed",
-   "ready": false,
-   "blocked_by": [],
-   "uncovered_axioms": [
-    "sorryAx"
+   "deps_actual": [
+    "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all._proof_1_1"
    ],
    "helpers": [],
    "status": "closed",
