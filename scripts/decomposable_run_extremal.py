@@ -63,11 +63,32 @@ def main() -> None:
     parser.add_argument("--cases", default="4,4,5;4,5,5;5,4,5;5,5,5;4,4,6;4,5,6")
     parser.add_argument("--max-runs", type=int, default=4)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--avoiding", action="store_true",
+                        help="enumerate only the (a,u,k)-avoiding subclass of the single case given (hereditary; exact), "
+                             "which reaches thresholds beyond the full class's n <= 9")
     args = parser.parse_args()
     started = time.time()
-    classes, tindex = enumerate_class(args.max_n, progress=False)
     data = {}
+    if args.avoiding:
+        from decomposable_avoiding_class import enumerate_avoiding
+        cases = args.cases.split(";")
+        assert len(cases) == 1, "--avoiding takes exactly one case"
+        a0, u0, k0 = (int(x) for x in cases[0].split(","))
+        classes, tindex = enumerate_avoiding(a0, u0, k0, args.max_n)
+        for m in range(1, args.max_n + 1):
+            recs = classes.get(m, {})
+            if not recs:
+                data[m] = (np.zeros((0, m, m), dtype=np.int8), np.zeros((0, m, m), dtype=np.int8), np.zeros(0, dtype=np.int8))
+                continue
+            cups = np.stack([t[0] for t in recs.values()]); caps = np.stack([t[1] for t in recs.values()])
+            strong = np.array([t[2] for t in recs.values()], dtype=np.int8)
+            data[m] = (cups, caps, strong)
+        print(f"avoiding subclass sizes: { {m: len(classes.get(m, {})) for m in range(1, args.max_n + 1)} }", file=sys.stderr, flush=True)
+    else:
+        classes, tindex = enumerate_class(args.max_n, progress=False)
     for m in range(1, args.max_n + 1):
+        if args.avoiding:
+            break
         idx = tindex[m]
         masks = sorted(classes[m])
         cups = np.zeros((len(masks), m, m), dtype=np.int8)
@@ -89,6 +110,8 @@ def main() -> None:
         """Largest m with a decomposable coloring in p runs meeting the constraints."""
         for m in range(args.max_n, p - 1, -1):
             cups, caps, strong = data[m]
+            if len(strong) == 0:
+                continue
             ok_strong = strong <= k - 1
             if lower:
                 base_ok = ok_strong & (caps.max(axis=(1, 2)) <= a - 1)
@@ -117,6 +140,7 @@ def main() -> None:
         a, u, k = (int(x) for x in case.split(","))
         T = threshold(a, u, k)
         if T > args.max_n:
+            print(f"skipping ({a},{u},{k}): threshold {T} > max-n", file=sys.stderr)
             continue
         low = {}
         up = {}

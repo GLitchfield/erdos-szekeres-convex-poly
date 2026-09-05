@@ -220,3 +220,28 @@ python3 scripts/decomposable_run_extremal.py --max-n 8 --output data/derived/dec
 ```
 
 Inputs: the class enumerator of experiment 0114; numpy 2.4.
+
+## Addendum, 6 September: `(4,5,6)` at threshold 10
+
+The avoiding subclass is hereditary, so `scripts/decomposable_avoiding_class.py`
+enumerates it exactly by the split recursion with the union lemma as an
+O(n²) rejection test (validated against the full class at `(4,5,5)`: 2, 7,
+35, 129, 193, 0 colorings at `n = 3..8`).  For `(4,5,6)`: 2, 7, 38, 209,
+912, 2,880, 5,860, **5,874**, 0 colorings at `n = 3..11`, so the threshold
+10 is exact in the class and there are 5,874 extremal colorings (the count
+5,860 at `n = 9` agrees with experiment 0114).  Tables in
+`data/derived/decomposable-run-extremal-456-n11.json` (40 s).
+
+The reading of the depth-1 tables above predicts every `E_low` entry of
+`(4,5,6)` correctly: `10, 6, 3` for one run with 0, 1, 2 outer flags at
+coupling 1; `9 = 10 − 1` for two or three runs with the sibling strictly
+inside at coupling 1 (`κ = 5 ≥ u`); `6 = T(4,4,6)` at coupling 2.  It
+fails on the upper child with the sibling strictly inside: `E_up = 7` at
+couplings 1 and 2, against the predicted `10 − 1 = 9`.  There the cap
+parameter is 4, so caps inside a run are limited to 2 and every run is a
+cup, and the loss against the threshold is three vertices, not one.  So
+the loss of item 3 is parameter-dependent: one vertex in the six cases
+with threshold at most 8 and on the lower side of `(4,5,6)`, three on its
+upper side.  A closed form must produce it from the run-internal bound
+(`u − 2` or `a − 2`) together with the deep-below relation between the runs
+inside the child; this is the first concrete target for step 3.
