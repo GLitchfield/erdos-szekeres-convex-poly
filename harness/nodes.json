@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-05T20:24:19Z",
- "git_sha": "2267d05a4839b9971d2144d98eca81726f1a8649",
+ "generated_at": "2026-09-05T20:49:32Z",
+ "git_sha": "16136f4bbcf04d96933ae955895ced1d3e7b8e0c",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15343,
- "tree_hash": "4c066c4680fca328",
+ "tree_hash": "dcff3738d2fd6c13",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -264,7 +264,7 @@
     }
    },
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-05"
   },
   {
    "name": "ErdosSzekeres.predecessorHalfSubsetAt_all",
@@ -304,143 +304,721 @@
    "falsify": {
     "node": "ErdosSzekeres.predecessorHalfSubsetAt_all",
     "falsifier": "predecessor_half_constructions.py",
-    "falsifier_sha256": "fdad682799e3c20a2c37cc651d22e8ae5a636adb151050ec8d05a258883de156",
+    "falsifier_sha256": "c4036614c250771196bb1ba9d1b95dca70f23a977ccc825ad5f6158719511884",
     "dataset": "harness/dataset",
     "statement_type_hash": "a18a0a755e1ad825",
     "result": "pass",
     "exit_code": 0,
-    "seconds": 0.8,
-    "at": "2026-09-04T23:02:09Z",
-    "agent": "gavin@Gavin:268186",
+    "seconds": 527.5,
+    "at": "2026-09-05T20:46:19Z",
+    "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
     "witness": {
      "node": "ErdosSzekeres.predecessorHalfSubsetAt_all",
-     "checked": [
-      {
-       "k": 6,
-       "name": "ES(6,6,6)",
-       "size": 16,
-       "k_gon_free": true,
-       "half": {
-        "found": true,
-        "gon_count": 802,
-        "subset": [
-         0,
-         1,
-         2,
-         3,
-         5,
-         6,
-         8,
-         11
-        ]
-       }
+     "steps": {
+      "constructions": {
+       "checked": 5,
+       "records": [
+        {
+         "k": 6,
+         "name": "ES(6,6,6)",
+         "size": 16,
+         "k_gon_free": true,
+         "half": {
+          "found": true,
+          "gon_count": 802,
+          "subset": [
+           0,
+           1,
+           2,
+           3,
+           5,
+           6,
+           8,
+           11
+          ]
+         }
+        },
+        {
+         "k": 6,
+         "name": "Theorem19(x=1,m=4)",
+         "size": 16,
+         "k_gon_free": true,
+         "half": {
+          "found": true,
+          "gon_count": 802,
+          "subset": [
+           0,
+           1,
+           2,
+           3,
+           5,
+           6,
+           8,
+           11
+          ]
+         }
+        },
+        {
+         "k": 7,
+         "name": "ES(7,7,7)",
+         "size": 32,
+         "k_gon_free": true,
+         "half": {
+          "found": true,
+          "gon_count": 39648,
+          "subset": [
+           0,
+           1,
+           2,
+           3,
+           4,
+           6,
+           7,
+           8,
+           10,
+           11,
+           13,
+           16,
+           17,
+           19,
+           22,
+           26
+          ]
+         }
+        },
+        {
+         "k": 7,
+         "name": "Theorem19(x=1,m=5)",
+         "size": 32,
+         "k_gon_free": true,
+         "half": {
+          "found": true,
+          "gon_count": 25103,
+          "subset": [
+           0,
+           1,
+           2,
+           3,
+           4,
+           6,
+           7,
+           8,
+           10,
+           11,
+           13,
+           14,
+           16,
+           19,
+           22,
+           26
+          ]
+         }
+        },
+        {
+         "k": 7,
+         "name": "Theorem19(x=2,m=3)",
+         "size": 32,
+         "k_gon_free": true,
+         "half": {
+          "found": true,
+          "gon_count": 29848,
+          "subset": [
+           0,
+           1,
+           2,
+           3,
+           4,
+           6,
+           7,
+           8,
+           10,
+           11,
+           13,
+           16,
+           17,
+           19,
+           22,
+           26
+          ]
+         }
+        }
+       ]
       },
-      {
-       "k": 6,
-       "name": "Theorem19(x=1,m=4)",
-       "size": 16,
-       "k_gon_free": true,
-       "half": {
-        "found": true,
-        "gon_count": 802,
-        "subset": [
-         0,
-         1,
-         2,
-         3,
-         5,
-         6,
-         8,
-         11
-        ]
-       }
+      "interleaved": {
+       "tested": 30,
+       "counterexamples": 0,
+       "unions": [
+        {
+         "union": "U(P(6,4),P(4,6))",
+         "pattern": "stacked",
+         "size": 30,
+         "pruned": null,
+         "tested_size": 30,
+         "half": {
+          "found": true,
+          "size": 15,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,6))",
+         "pattern": "stacked-reversed",
+         "size": 30,
+         "pruned": null,
+         "tested_size": 30,
+         "half": {
+          "found": true,
+          "size": 15,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,6))",
+         "pattern": "alternating",
+         "size": 30,
+         "pruned": null,
+         "tested_size": 30,
+         "half": {
+          "found": true,
+          "size": 15,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,6))",
+         "pattern": "random#0",
+         "size": 30,
+         "pruned": null,
+         "tested_size": 30,
+         "half": {
+          "found": true,
+          "size": 15,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,6))",
+         "pattern": "random#1",
+         "size": 30,
+         "pruned": null,
+         "tested_size": 30,
+         "half": {
+          "found": true,
+          "size": 15,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,6))",
+         "pattern": "random#2",
+         "size": 30,
+         "pruned": null,
+         "tested_size": 30,
+         "half": {
+          "found": true,
+          "size": 15,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(5,5),P(4,5))",
+         "pattern": "stacked",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(4,5))",
+         "pattern": "stacked-reversed",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(4,5))",
+         "pattern": "alternating",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(4,5))",
+         "pattern": "random#0",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(4,5))",
+         "pattern": "random#1",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(4,5))",
+         "pattern": "random#2",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(5,4))",
+         "pattern": "stacked",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(5,4))",
+         "pattern": "stacked-reversed",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(5,4))",
+         "pattern": "alternating",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(5,4))",
+         "pattern": "random#0",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(5,4))",
+         "pattern": "random#1",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(5,4))",
+         "pattern": "random#2",
+         "size": 30,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(7,4),P(4,5))",
+         "pattern": "stacked",
+         "size": 31,
+         "pruned": 26,
+         "tested_size": 26,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(7,4),P(4,5))",
+         "pattern": "stacked-reversed",
+         "size": 31,
+         "pruned": 26,
+         "tested_size": 26,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(7,4),P(4,5))",
+         "pattern": "alternating",
+         "size": 31,
+         "pruned": 26,
+         "tested_size": 26,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(7,4),P(4,5))",
+         "pattern": "random#0",
+         "size": 31,
+         "pruned": 26,
+         "tested_size": 26,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(7,4),P(4,5))",
+         "pattern": "random#1",
+         "size": 31,
+         "pruned": 26,
+         "tested_size": 26,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(7,4),P(4,5))",
+         "pattern": "random#2",
+         "size": 31,
+         "pruned": 26,
+         "tested_size": 26,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(4,7),P(5,4))",
+         "pattern": "stacked",
+         "size": 31,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(4,7),P(5,4))",
+         "pattern": "stacked-reversed",
+         "size": 31,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(4,7),P(5,4))",
+         "pattern": "alternating",
+         "size": 31,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(4,7),P(5,4))",
+         "pattern": "random#0",
+         "size": 31,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(4,7),P(5,4))",
+         "pattern": "random#1",
+         "size": 31,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(4,7),P(5,4))",
+         "pattern": "random#2",
+         "size": 31,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(7,4),P(3,6))",
+         "pattern": "stacked",
+         "size": 26,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(7,4),P(3,6))",
+         "pattern": "stacked-reversed",
+         "size": 26,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(7,4),P(3,6))",
+         "pattern": "alternating",
+         "size": 26,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(7,4),P(3,6))",
+         "pattern": "random#0",
+         "size": 26,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(7,4),P(3,6))",
+         "pattern": "random#1",
+         "size": 26,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(7,4),P(3,6))",
+         "pattern": "random#2",
+         "size": 26,
+         "pruned": null,
+         "tested_size": null,
+         "half": null
+        },
+        {
+         "union": "U(P(5,5),P(3,6))",
+         "pattern": "stacked",
+         "size": 25,
+         "pruned": null,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(5,5),P(3,6))",
+         "pattern": "stacked-reversed",
+         "size": 25,
+         "pruned": null,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(5,5),P(3,6))",
+         "pattern": "alternating",
+         "size": 25,
+         "pruned": null,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(5,5),P(3,6))",
+         "pattern": "random#0",
+         "size": 25,
+         "pruned": null,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(5,5),P(3,6))",
+         "pattern": "random#1",
+         "size": 25,
+         "pruned": null,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(5,5),P(3,6))",
+         "pattern": "random#2",
+         "size": 25,
+         "pruned": null,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,7))",
+         "pattern": "stacked",
+         "size": 36,
+         "pruned": 31,
+         "tested_size": 31,
+         "half": {
+          "found": true,
+          "size": 16,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,7))",
+         "pattern": "stacked-reversed",
+         "size": 36,
+         "pruned": 31,
+         "tested_size": 31,
+         "half": {
+          "found": true,
+          "size": 16,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,7))",
+         "pattern": "alternating",
+         "size": 36,
+         "pruned": 31,
+         "tested_size": 31,
+         "half": {
+          "found": true,
+          "size": 16,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,7))",
+         "pattern": "random#0",
+         "size": 36,
+         "pruned": 31,
+         "tested_size": 31,
+         "half": {
+          "found": true,
+          "size": 16,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,7))",
+         "pattern": "random#1",
+         "size": 36,
+         "pruned": 31,
+         "tested_size": 31,
+         "half": {
+          "found": true,
+          "size": 16,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(4,7))",
+         "pattern": "random#2",
+         "size": 36,
+         "pruned": 31,
+         "tested_size": 31,
+         "half": {
+          "found": true,
+          "size": 16,
+          "max_strong_six_free": 16
+         }
+        },
+        {
+         "union": "U(P(6,4),P(5,4),P(4,5))",
+         "pattern": "stacked",
+         "size": 35,
+         "pruned": 25,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(6,4),P(5,4),P(4,5))",
+         "pattern": "stacked-reversed",
+         "size": 35,
+         "pruned": 25,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(6,4),P(5,4),P(4,5))",
+         "pattern": "alternating",
+         "size": 35,
+         "pruned": 25,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(6,4),P(5,4),P(4,5))",
+         "pattern": "random#0",
+         "size": 35,
+         "pruned": 25,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(6,4),P(5,4),P(4,5))",
+         "pattern": "random#1",
+         "size": 35,
+         "pruned": 25,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        },
+        {
+         "union": "U(P(6,4),P(5,4),P(4,5))",
+         "pattern": "random#2",
+         "size": 35,
+         "pruned": 25,
+         "tested_size": 25,
+         "half": {
+          "found": true,
+          "size": 13,
+          "max_strong_six_free": 15
+         }
+        }
+       ]
       },
-      {
-       "k": 7,
-       "name": "ES(7,7,7)",
-       "size": 32,
-       "k_gon_free": true,
-       "half": {
-        "found": true,
-        "gon_count": 39648,
-        "subset": [
-         0,
-         1,
-         2,
-         3,
-         4,
-         6,
-         7,
-         8,
-         10,
-         11,
-         13,
-         16,
-         17,
-         19,
-         22,
-         26
-        ]
-       }
+      "flips": {
+       "bases": 19,
+       "new_order_types": 187,
+       "half_found": 187,
+       "half_missing": 0
       },
-      {
-       "k": 7,
-       "name": "Theorem19(x=1,m=5)",
-       "size": 32,
-       "k_gon_free": true,
-       "half": {
-        "found": true,
-        "gon_count": 25103,
-        "subset": [
-         0,
-         1,
-         2,
-         3,
-         4,
-         6,
-         7,
-         8,
-         10,
-         11,
-         13,
-         14,
-         16,
-         19,
-         22,
-         26
-        ]
-       }
-      },
-      {
-       "k": 7,
-       "name": "Theorem19(x=2,m=3)",
-       "size": 32,
-       "k_gon_free": true,
-       "half": {
-        "found": true,
-        "gon_count": 29848,
-        "subset": [
-         0,
-         1,
-         2,
-         3,
-         4,
-         6,
-         7,
-         8,
-         10,
-         11,
-         13,
-         16,
-         17,
-         19,
-         22,
-         26
-        ]
-       }
+      "cegar": {
+       "n": 25,
+       "result": "budget",
+       "iterations": 12,
+       "hardest_max_strong_six_free": 15,
+       "target": 13,
+       "seconds": 316.2
       }
-     ],
-     "failures": []
+     },
+     "failures": [],
+     "errors": []
     }
    },
    "lock_ok": true,

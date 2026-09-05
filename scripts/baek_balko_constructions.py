@@ -715,13 +715,19 @@ def decomposability_by_direction(points, limit_directions=None):
 
 # ------------------------------------------------- half supports
 
-def largest_gon_free_subset(points, g: int, target: int, cadical: Path | None):
-    """Find a subset of size >= target with no convex g-gon, by SAT."""
+def largest_gon_free_subset(points, g: int, target: int, cadical: Path | None, gons=None,
+                            time_limit: int | None = None):
+    """Find a subset of size >= target with no convex g-gon, by SAT.
+    ``gons`` may carry the convex g-gons enumerated by a previous call on the
+    same points (index tuples), so that a search over several targets
+    enumerates once.  ``time_limit`` (seconds) bounds the solver; a timeout
+    is reported as ``found: None``."""
     n = len(points)
     # The chain enumeration is exact and validated against the four-point
     # test (experiment 0111); the subset scan is kept for small sets.
-    gons = (convex_polygons_by_chains(points, g) if n > 24
-            else convex_sets_of_size(points, g))
+    if gons is None:
+        gons = (convex_polygons_by_chains(points, g) if n > 24
+                else convex_sets_of_size(points, g))
     if not gons:
         return {"gon_count": 0, "found": True, "subset": list(range(n))}
     clauses = [[-(p + 1) for p in gon] for gon in gons]
@@ -754,7 +760,8 @@ def largest_gon_free_subset(points, g: int, target: int, cadical: Path | None):
         " ".join(map(str, c)) + " 0\n" for c in clauses)
     if cadical is None:
         return {"gon_count": len(gons), "found": None, "reason": "no solver"}
-    proc = subprocess.run([str(cadical), "-q"], input=cnf, text=True,
+    command = [str(cadical), "-q"] + (["-t", str(int(time_limit))] if time_limit else [])
+    proc = subprocess.run(command, input=cnf, text=True,
                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out = proc.stdout
     if "s UNSATISFIABLE" in out:

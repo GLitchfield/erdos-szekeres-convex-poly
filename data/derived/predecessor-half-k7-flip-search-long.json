@@ -1,0 +1,207 @@
+{
+ "k": 7,
+ "seed": 20260905,
+ "scale": 64,
+ "tries_per_base": 150,
+ "keep_per_base": 80,
+ "per_base": [
+  {
+   "base": "ES(7,7,7)",
+   "tries": 219,
+   "general_position": 219,
+   "k_gon_free": 86,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 38.5
+  },
+  {
+   "base": "Theorem19(x=1,m=5)",
+   "tries": 198,
+   "general_position": 198,
+   "k_gon_free": 92,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 78.1
+  },
+  {
+   "base": "Theorem19(x=2,m=3)",
+   "tries": 215,
+   "general_position": 215,
+   "k_gon_free": 88,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 40.3
+  },
+  {
+   "base": "Valtr(S#0)",
+   "tries": 184,
+   "general_position": 184,
+   "k_gon_free": 92,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 38.0
+  },
+  {
+   "base": "Valtr(S#1)",
+   "tries": 205,
+   "general_position": 205,
+   "k_gon_free": 88,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 36.8
+  },
+  {
+   "base": "Valtr(S#2)",
+   "tries": 205,
+   "general_position": 205,
+   "k_gon_free": 88,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 35.1
+  },
+  {
+   "base": "Valtr(S#3)",
+   "tries": 232,
+   "general_position": 232,
+   "k_gon_free": 88,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 38.9
+  },
+  {
+   "base": "Valtr(S#4)",
+   "tries": 185,
+   "general_position": 185,
+   "k_gon_free": 84,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 35.0
+  },
+  {
+   "base": "Valtr(S#5)",
+   "tries": 186,
+   "general_position": 186,
+   "k_gon_free": 84,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 37.2
+  },
+  {
+   "base": "Valtr(S#6)",
+   "tries": 189,
+   "general_position": 189,
+   "k_gon_free": 90,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 39.0
+  },
+  {
+   "base": "Valtr(S#7)",
+   "tries": 223,
+   "general_position": 223,
+   "k_gon_free": 92,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 38.5
+  },
+  {
+   "base": "Valtr(S#8)",
+   "tries": 198,
+   "general_position": 198,
+   "k_gon_free": 90,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 35.2
+  },
+  {
+   "base": "Valtr(S#9)",
+   "tries": 176,
+   "general_position": 176,
+   "k_gon_free": 91,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 33.4
+  },
+  {
+   "base": "Valtr(S#10)",
+   "tries": 171,
+   "general_position": 171,
+   "k_gon_free": 87,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 27.3
+  },
+  {
+   "base": "Valtr(S#11)",
+   "tries": 241,
+   "general_position": 241,
+   "k_gon_free": 86,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 41.9
+  },
+  {
+   "base": "Valtr(S#12)",
+   "tries": 197,
+   "general_position": 197,
+   "k_gon_free": 91,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 43.6
+  },
+  {
+   "base": "Valtr(S#13)",
+   "tries": 194,
+   "general_position": 194,
+   "k_gon_free": 85,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 35.8
+  },
+  {
+   "base": "Valtr(S#14)",
+   "tries": 160,
+   "general_position": 160,
+   "k_gon_free": 85,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 33.4
+  },
+  {
+   "base": "Valtr(S#15)",
+   "tries": 238,
+   "general_position": 238,
+   "k_gon_free": 93,
+   "new_order_types": 80,
+   "half_found": 80,
+   "half_missing": 0,
+   "seconds": 43.9
+  }
+ ],
+ "totals": {
+  "tries": 3816,
+  "general_position": 3816,
+  "k_gon_free": 1680,
+  "new_order_types": 1520,
+  "half_found": 1520,
+  "half_missing": 0
+ }
+}

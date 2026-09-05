@@ -21,7 +21,7 @@ Nodes: claimed 2, open 3.
 
 | node | kind | status | ready | blocked by | falsifier | opened |
 | --- | --- | --- | --- | --- | --- | --- |
-| `ErdosSzekeres.etvCapFive_all` | conjecture | open | yes |  | pass | uncommitted |
+| `ErdosSzekeres.etvCapFive_all` | conjecture | open | yes |  | pass | 2026-09-05 |
 
 ## Workstream E
 

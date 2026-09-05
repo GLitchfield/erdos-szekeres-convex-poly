@@ -1,0 +1,73 @@
+{
+ "k": 7,
+ "seed": 20260905,
+ "min_size": 25,
+ "counterexamples": 0,
+ "records": [
+  {
+   "name": "Horton(m=5,factor=4)",
+   "size": 32,
+   "general_position": true,
+   "largest_convex": 14,
+   "prune": {
+    "gon_count": 158208,
+    "size": 0,
+    "unsat_at": 25
+   },
+   "prune_seconds": 0.8,
+   "seconds": 0.8
+  },
+  {
+   "name": "Horton(m=5,factor=1)",
+   "size": 32,
+   "general_position": true,
+   "largest_convex": 14,
+   "prune": {
+    "gon_count": 158208,
+    "size": 0,
+    "unsat_at": 25
+   },
+   "prune_seconds": 0.8,
+   "seconds": 0.8
+  },
+  {
+   "name": "Horton(m=5,factor=1/4)",
+   "size": 32,
+   "general_position": true,
+   "largest_convex": 14,
+   "prune": {
+    "gon_count": 158208,
+    "size": 0,
+    "unsat_at": 25
+   },
+   "prune_seconds": 0.8,
+   "seconds": 0.8
+  },
+  {
+   "name": "Horton(m=5,factor=1/64)",
+   "size": 32,
+   "general_position": true,
+   "largest_convex": 14,
+   "prune": {
+    "gon_count": 158208,
+    "size": 0,
+    "unsat_at": 25
+   },
+   "prune_seconds": 0.8,
+   "seconds": 0.8
+  },
+  {
+   "name": "Horton(m=5,factor=1/4096)",
+   "size": 32,
+   "general_position": true,
+   "largest_convex": 14,
+   "prune": {
+    "gon_count": 137074,
+    "size": 0,
+    "unsat_at": 25
+   },
+   "prune_seconds": 0.6,
+   "seconds": 0.6
+  }
+ ]
+}

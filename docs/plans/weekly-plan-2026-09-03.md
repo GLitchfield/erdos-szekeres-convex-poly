@@ -171,3 +171,31 @@ in some direction) as the conjecture, or dropping the direction framing.
   and a batch stream), each under its own cap, total caps below 36 GiB.
 - No multi-hour run without explicit go-ahead.
 - Solvers and large Python jobs run under `systemd-run --user --scope -p MemoryMax=…`.
+
+## 5 September, evening (items 1–4 of the frontier, approved by Gavin)
+
+- A: both bridge nodes are proved and verified by `es check` (standard axioms
+  only): `forcesConvexPolygon_of_sweepExactUpperAt` on branch
+  `node/forcesConvexPolygon_of_sweepExactUpperAt` (71cc7a3) and
+  `sweepExactUpperAt_of_predecessorHalfSubset_all` on
+  `node/sweepExactUpperAt_of_predecessorHalfSubset_all` (f37745b); one node
+  per branch, statements untouched, awaiting review and `es close`.  With both
+  closed, `ErdosSzekeresConjecture`'s upper half reduces to
+  `PredecessorHalfSubsetAt j` for all `j ≥ 4`.
+- C: node `etvCapFive_all` added with falsifier `etv_cap5_small_n.py`
+  (pass at `n = 5, 6`; 16136f4).  The Sol brief and the `n = 7` computation are
+  unchanged.
+- E: falsifiers 1, 2 and 4 of `predecessor-half-conjecture.md` run and
+  negative; falsifier 3 implemented as a bounded counterexample-guided
+  search; all four folded into the harness falsifier (experiment 0115).
+  Horton sets and double chains cannot reach 25 heptagon-free points; the
+  deep-below unions that can are decomposable.
+- B: step 2, first level, done (experiment 0116): the exact description of
+  what a child of a deep-below split sees of its sibling (longest cap or cup
+  of the sibling, and the two gaps holding the sibling's first and last
+  vertex), verified on every split through seven vertices, and the
+  positional extremal tables at the `(4,4,5)`, `(4,5,5)`, `(5,5,5)`
+  boundary.  Next: the two-sided state and its closure test.
+- Harness notes: `es node add` and `es extract` refuse to start below 42 GiB
+  available, so SAT jobs must be stopped first; `es falsify` runs scripts
+  without a cgroup.
