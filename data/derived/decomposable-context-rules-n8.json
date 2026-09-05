@@ -1,0 +1,39 @@
+{
+ "max_n": 8,
+ "stats": {
+  "colorings": 198274,
+  "subtrees": 1367052,
+  "queries": 29496032,
+  "H1_cup_position_fail": 0,
+  "H1_cap_position_fail": 0,
+  "H2_cup_gap_fail": 0,
+  "H2_cap_gap_fail": 0,
+  "H3_cup_single_level_fail": 0,
+  "H3_cap_single_level_fail": 0,
+  "H4_mixed_strong_ext_nonzero": 0,
+  "ext_cup_values": {
+   "0": 5197618,
+   "1": 2418740,
+   "2": 303526,
+   "3": 21934,
+   "4": 726,
+   "5": 6
+  },
+  "ext_strong_cup_values": {
+   "0": 2866522,
+   "1": 3957766,
+   "2": 973952,
+   "3": 134805,
+   "4": 9313,
+   "5": 192
+  }
+ },
+ "failures": {
+  "H1": [],
+  "H2": [],
+  "H3": [],
+  "H4": []
+ },
+ "H3_table_shapes": [],
+ "seconds": 392.0
+}

@@ -4,7 +4,7 @@ Date: 2026-09-05 / 06
 
 Status: exact computation on the abstract decomposable class, every claim
 verified by brute force on every subtree of every decomposition tree
-through seven vertices (eight vertices: see the addendum); no Lean theorem
+through eight vertices; no Lean theorem
 is claimed.  Workstream B, step 2 of
 `docs/plans/workstream-b-self-reliant-plan.md`, second level; continues
 experiment 0116.
@@ -69,6 +69,7 @@ form has no exception:
 | 5 | 72 | 248 | 0 |
 | 6 | 790 | 3,808 | 0 |
 | 7 | 11,386 | 67,200 | 0 |
+| 8 | 198,274 | 1,367,052 | 0 |
 
 (The coloring counts exceed the class sizes of experiment 0114 because a
 coloring is visited once per decomposition path here.)
@@ -105,7 +106,8 @@ and interleaving is the paper proof of step 3.
 
 ```console
 python3 scripts/decomposable_context_functions.py --max-n 7 --output data/derived/decomposable-context-rules-n7.json
+python3 scripts/decomposable_context_functions.py --max-n 8 --output data/derived/decomposable-context-rules-n8.json
 ```
 
-11 s single core through `n = 7`.  Inputs: the class enumerator of
-experiment 0114.
+11 s single core through `n = 7`, 392 s through `n = 8` (under a 12 GiB
+cap).  Inputs: the class enumerator of experiment 0114.
