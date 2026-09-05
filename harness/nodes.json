@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-05T19:28:50Z",
- "git_sha": "6199dc6aea7b161e1d2983fe682fece6bb14e1bd",
+ "generated_at": "2026-09-05T20:24:19Z",
+ "git_sha": "2267d05a4839b9971d2144d98eca81726f1a8649",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15342,
- "tree_hash": "ecff040eadda9f85",
+ "modules": 15343,
+ "tree_hash": "4c066c4680fca328",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15342,
+  "cached_modules": 15343,
   "scanned_constants": 0,
   "scanned_modules": 0
  },
@@ -52,8 +52,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -97,8 +97,8 @@
    ],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -143,6 +143,126 @@
     "sorryAx"
    ],
    "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-05"
+  },
+  {
+   "name": "ErdosSzekeres.etvCapFive_all",
+   "module": "ESBlueprint.C.EtvCapFiveAll",
+   "ws": "C",
+   "kind": "conjecture",
+   "description": "The Erdős–Tuza–Valtr case with cap parameter 5 (Workstream C): every sweep-realizable coloring on more than decomposableThreshold 5 n n vertices contains a 5-cap, an n-cup, or a strong n-set; through the presentation bridge this is the planar statement that decomposableThreshold 5 n n + 1 points in general position contain a 5-cap, an n-cup, or a convex n-gon. Baek proved cap parameter 4. At n = 5 this is ES(5) = 9; at n = 6 the signotope-tier number is exactly 16 (experiment 0112); at n = 7 it is at least 27 and the 27-point instance is undecided.",
+   "tags": {
+    "node": "",
+    "ws": "C",
+    "kind": "conjecture",
+    "dangling-ok": "standing Workstream C problem; the Erdős–Tuza–Valtr family implies ErdosSzekeresConjecture through the monotone implication scheme, which is not yet formalized",
+    "falsifier": "etv_cap5_small_n.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (n : Nat),\n  instLENat.le 5 n →\n    ∀ {N : Nat} {χ : ErdosSzekeres.TripleColoring N},\n      ErdosSzekeres.IsSweepRealizable χ →\n        instLTNat.lt (ErdosSzekeres.decomposableThreshold 5 n n) N →\n          Or (ErdosSzekeres.ContainsCapSet χ Finset.univ 5)\n            (Or (ErdosSzekeres.ContainsCupSet χ Finset.univ n)\n              (ErdosSzekeres.ContainsStrongPolygonSet χ Finset.univ n))",
+   "type_hash": "3347c8538095c325",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": {
+    "node": "ErdosSzekeres.etvCapFive_all",
+    "falsifier": "etv_cap5_small_n.py",
+    "falsifier_sha256": "fbacf7f6c8a690288aca75173751f73a589352093296a8bc3bba9882d5282026",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "3347c8538095c325",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 315.6,
+    "at": "2026-09-05T20:20:07Z",
+    "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
+    "witness": {
+     "node": "ErdosSzekeres.etvCapFive_all",
+     "n_values": [
+      5,
+      6
+     ],
+     "results": [
+      {
+       "N": 8,
+       "n": 5,
+       "a": 5,
+       "b": 5,
+       "verdict": "SAT",
+       "variables": 56,
+       "clauses": 1120,
+       "seconds": 0.0,
+       "model_check": {
+        "one_change": true,
+        "cap_free": true,
+        "cup_free": true,
+        "gon_free": true,
+        "valid": true
+       },
+       "role": "gate: threshold must be attained (SAT)"
+      },
+      {
+       "N": 9,
+       "n": 5,
+       "a": 5,
+       "b": 5,
+       "verdict": "UNSAT",
+       "variables": 84,
+       "clauses": 2268,
+       "seconds": 0.03,
+       "role": "conjecture: threshold + 1 must be UNSAT"
+      },
+      {
+       "N": 15,
+       "n": 6,
+       "a": 5,
+       "b": 6,
+       "verdict": "SAT",
+       "variables": 455,
+       "clauses": 99008,
+       "seconds": 0.22,
+       "model_check": {
+        "one_change": true,
+        "cap_free": true,
+        "cup_free": true,
+        "gon_free": true,
+        "valid": true
+       },
+       "role": "gate: threshold must be attained (SAT)"
+      },
+      {
+       "N": 16,
+       "n": 6,
+       "a": 5,
+       "b": 6,
+       "verdict": "UNSAT",
+       "variables": 560,
+       "clauses": 155064,
+       "seconds": 314.02,
+       "role": "conjecture: threshold + 1 must be UNSAT"
+      }
+     ],
+     "counterexamples": [],
+     "undetermined": [],
+     "gate_failures": []
+    }
+   },
    "lock_ok": true,
    "opened": "uncommitted"
   },

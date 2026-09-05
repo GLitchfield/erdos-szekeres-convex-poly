@@ -1,0 +1,82 @@
+{
+ "node": "ErdosSzekeres.etvCapFive_all",
+ "falsifier": "etv_cap5_small_n.py",
+ "falsifier_sha256": "fbacf7f6c8a690288aca75173751f73a589352093296a8bc3bba9882d5282026",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "3347c8538095c325",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 315.6,
+ "at": "2026-09-05T20:20:07Z",
+ "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
+ "witness": {
+  "node": "ErdosSzekeres.etvCapFive_all",
+  "n_values": [
+   5,
+   6
+  ],
+  "results": [
+   {
+    "N": 8,
+    "n": 5,
+    "a": 5,
+    "b": 5,
+    "verdict": "SAT",
+    "variables": 56,
+    "clauses": 1120,
+    "seconds": 0.0,
+    "model_check": {
+     "one_change": true,
+     "cap_free": true,
+     "cup_free": true,
+     "gon_free": true,
+     "valid": true
+    },
+    "role": "gate: threshold must be attained (SAT)"
+   },
+   {
+    "N": 9,
+    "n": 5,
+    "a": 5,
+    "b": 5,
+    "verdict": "UNSAT",
+    "variables": 84,
+    "clauses": 2268,
+    "seconds": 0.03,
+    "role": "conjecture: threshold + 1 must be UNSAT"
+   },
+   {
+    "N": 15,
+    "n": 6,
+    "a": 5,
+    "b": 6,
+    "verdict": "SAT",
+    "variables": 455,
+    "clauses": 99008,
+    "seconds": 0.22,
+    "model_check": {
+     "one_change": true,
+     "cap_free": true,
+     "cup_free": true,
+     "gon_free": true,
+     "valid": true
+    },
+    "role": "gate: threshold must be attained (SAT)"
+   },
+   {
+    "N": 16,
+    "n": 6,
+    "a": 5,
+    "b": 6,
+    "verdict": "UNSAT",
+    "variables": 560,
+    "clauses": 155064,
+    "seconds": 314.02,
+    "role": "conjecture: threshold + 1 must be UNSAT"
+   }
+  ],
+  "counterexamples": [],
+  "undetermined": [],
+  "gate_failures": []
+ }
+}
