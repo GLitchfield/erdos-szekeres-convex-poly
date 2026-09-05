@@ -99,12 +99,19 @@ Tags: **settle now** (an answer is a lookup, an email, or a bounded computation)
 
 ## Schedule
 
-- **Week 1.** Send the Baek–Balko email (Q1). Stop the generator and scheduler; write the weekly plan. Start the EmptyHexagonLean bridge (A1–A2). Run the unlogged Fin15 solve (Q2). Script the order-type census (Q3) and implement the Baek–Balko constructions (Q4).
+- **Week 1.** ~~Send the Baek–Balko email (Q1)~~ (decided 4 September: no email; Workstream B is self-reliant). Stop the generator and scheduler; write the weekly plan. Start the EmptyHexagonLean bridge (A1–A2). Run the unlogged Fin15 solve (Q2). Script the order-type census (Q3) and implement the Baek–Balko constructions (Q4).
 - **Weeks 2–4.** Finish `erdosSzekeresFormulaAt_six`. Depending on Q2: cube-and-replay Fin15, or analyze the model. Report D results and decide Q10's status. Sol starts C with Baek's proof; B step 2 census runs against the frozen external-endpoint state. Draft the formalization paper outline.
 - **Weeks 5–8.** B: formalize whichever proof of Theorem 8 is available, or write the note. C: weekly state of the argument; stop at the timebox unless a parameterized partial result exists. E: publish the conjecture with the evidence from A and D. Split the certificate packages out of the main build.
 - **Weeks 9–12.** One F slot, chosen from what survived D and E. Formalization paper submitted. Reassess the ledger with only parameterized statements on it.
 
 ## Working rules
+
+*5 September 2026.* The rules below are now enforced by the `es` harness: `es node add`
+refuses a statement without a workstream, a kind, a consumer (or an explicit
+`@dangling-ok` reason) and, for conjectures, a falsifier; statements are locked on
+approval; the frontier is `harness/status.md`. Where this document describes process
+(tickets, ledger, weekly reconciliation), the harness supersedes it; where it
+describes mathematics and priorities, it stands. See `docs/harness-design.md`.
 
 A theorem target must have a parameter, a named consumer already in the tree, and a falsifier that can run before the proof is attempted. Finite certificates are funded only when they close a named base case of a uniform argument or decide a stated conjecture; proof-shrinking, seed changes, and cube refinements are not funded. Computation for truth discovery runs without proof logging and without artificial caps; computation for kernel proofs runs with them. Every negative result is recorded in one paragraph in the workstream's weekly note; the genome apparatus is retired. Reviews by Sol or Fable audit frozen statements and route retirements, and the human decides slates. The proof-movement accounting stays, and "forward" continues to mean that a named parameterized dependency closed.
 

@@ -111,6 +111,60 @@ job with peak memory and OOM count.
   step 2, the mechanical search for a profile-carrying bound that is
   additive across splits.
 
+## Reconciliation, 5 September
+
+**Closed since the 4 September entry above.**
+
+- Workstream A steps 1–4 are done: `forces_six`, `erdosSzekeresFormulaAt_six` and
+  the unconditional `predecessorHalfSubsetAt_six` are kernel-checked theorems. The
+  axiom audit that could not be run as one `#print axioms` is done by the harness's
+  module-order scan (validated against `#print axioms` on six declarations where
+  Lean finishes): the three standard axioms only. Commit 3 (Fin15 certificate) and
+  the root build are on `main`; the ES(6) family now lives in namespace
+  `ErdosSzekeres.ES6` (its encoding clashed with E3State466's).
+- The `es` harness is live on `main` (`docs/harness-design.md`,
+  `docs/harness-implementation-2026-09-04.md`). Project state, what is open,
+  claimed, closed, and what depends on what, is derived from the compiled Lean
+  environment: `harness/status.md` is the frontier, `es status` / `es ready` /
+  `es claim` / `es node add` / `es check` / `es close` are the working commands,
+  `CLAUDE.md` carries the rules, and the pre-commit hook enforces layering, the
+  statement lock and the axiom allowlist. This supersedes the ledger, tickets,
+  packets and the weekly reconciliation as a state record; the weekly note is
+  written by `es note`, with a Judgment section left for a human.
+
+**Frontier on 5 September** (`es status`): four open, ready nodes.
+
+- A: `forcesConvexPolygon_of_sweepExactUpperAt` (sweep bound to the planar
+  statement) and `sweepExactUpperAt_of_predecessorHalfSubset_all` (the
+  `Nat.le_induction`). These are the last two A items from the plan.
+- B: `decomposableStateUpper_all` (Theorem 8 for all parameters; check the
+  degenerate a = 1 / u = 1 cases before proving).
+- E: `predecessorHalfSubsetAt_all`, conjecture kind, falsifier
+  `harness/falsifiers/predecessor_half_constructions.py` (passes at k = 6, 7).
+- Statement approvals on all four lock entries are provisional ("fable"); Gavin
+  confirms via the CODEOWNERS review.
+
+**Next actions (5–10 September).**
+
+- A: prove the two bridge nodes (`es claim`, then `es check`; they only need
+  `DecompositionPrimeNormalization` and `StrongPredecessorBicoloring`).
+- B: step 2 of `workstream-b-self-reliant-plan.md` as before; the node exists to
+  receive the theorem.
+- C: the `etv_cap_five` conjecture node waits for its falsifier
+  (`etv_cap5_small_n.py`, n ≤ 6 from experiment 0112's encoding); write it, then
+  `es node add --kind conjecture`. The n = 7 computation and the Sol brief are unchanged.
+- D: the direction-census falsifier (Gavin) is what the D/F conjecture nodes wait on.
+- E: next falsifiers as listed above (Horton-type and double-chain sets at k = 7,
+  the signotope SAT instance at k = 7, longer flip walks); add each as a step of the
+  existing falsifier script so `es falsify` records them.
+- Build hygiene: hand-written modules in the import closure of a certificate family
+  are frozen (`harness/encodings.txt`; `es layers` explains); new lemmas that would
+  touch one go in a new module. The nightly timer (03:00) runs the guarded core
+  build, the extract check and the audit.
+
+**Still Gavin's decision:** Q10's weaker form (every extremal set has a top split
+in some direction) as the conjecture, or dropping the direction framing.
+
 ## Resource rules in force
 
 - One heavy job at a time per stream; two streams at most (a checkpoint chain
