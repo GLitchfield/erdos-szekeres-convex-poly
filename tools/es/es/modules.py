@@ -67,7 +67,7 @@ def classify(cfg: Config, layers: list[Layer], name: str, rel_under_prefix: str 
     is_gen = _generated_matcher(cfg)
     generated = rel_under_prefix is not None and is_gen(rel_under_prefix, head)
     gen_layers = [layer for layer in layers if layer.generated]
-    plain = [layer for layer in layers if not layer.generated]
+    plain = [layer for layer in layers if not layer.generated and not layer.inputs_of]  # input layers are assigned in a second pass
     if generated:
         for layer in gen_layers:
             if any(name == p or name.startswith(p + ".") for p in layer.prefixes):
@@ -113,7 +113,35 @@ def scan_modules(cfg: Config, layers: list[Layer] | None = None) -> dict[str, Mo
             head = text[:4000]
             layer_name, generated = classify(cfg, layers, name, _rel_under_prefix(name, all_prefixes), head)
             seen[name] = Module(name=name, path=rel, layer=layer_name, imports=parse_imports(text), generated=generated)
+    assign_closure_layers(layers, seen)
     return seen
+
+
+def input_layer_members(layer: Layer, mods: dict[str, Module]) -> set[str]:
+    """Hand-written modules under the layer's prefixes directly imported by ``inputs_of`` modules."""
+    out: set[str] = set()
+    for m in mods.values():
+        if m.layer != layer.inputs_of:
+            continue
+        for i in m.imports:
+            t = mods.get(i)
+            if t is not None and not t.generated and t.layer != layer.inputs_of and any(i == p or i.startswith(p + ".") for p in layer.prefixes):
+                out.add(i)
+    return out
+
+
+def frozen_closure(layer: Layer, mods: dict[str, Module]) -> set[str]:
+    """Every hand-written module in the transitive import closure of the ``inputs_of`` layer."""
+    roots = [m.name for m in mods.values() if m.layer == layer.inputs_of]
+    return {m for m in transitive_closure(mods, roots) if m in mods and not mods[m].generated and mods[m].layer != layer.inputs_of}
+
+
+def assign_closure_layers(layers: list[Layer], mods: dict[str, Module]) -> None:
+    for layer in layers:
+        if not layer.inputs_of:
+            continue
+        for name in input_layer_members(layer, mods):
+            mods[name].layer = layer.name
 
 
 def transitive_closure(mods: dict[str, Module], roots: list[str]) -> set[str]:

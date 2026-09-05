@@ -8,7 +8,7 @@ from es.output import Result
 from es.spec import Arg, CommandSpec, command
 
 
-def run(ctx: Ctx, write_allowlists: bool = False) -> Result:
+def run(ctx: Ctx, write_allowlists: bool = False, allow_rebuild: bool = False) -> Result:
     cfg = ctx.cfg
     mods = scan_modules(cfg)
     res = Result()
@@ -17,7 +17,7 @@ def run(ctx: Ctx, write_allowlists: bool = False) -> Result:
         for file, names in derived.items():
             write_name_list(cfg.root / file, names, header=f"maintained by `es layers --write-allowlists`; one module per line")
             res.line(f"wrote {file}: {len(names)} module(s)")
-    violations = check_layers(cfg, mods)
+    violations = check_layers(cfg, mods, allow_rebuild=True if allow_rebuild else None)
     counts: dict[str, int] = {}
     for m in mods.values():
         counts[m.layer or "?"] = counts.get(m.layer or "?", 0) + 1
@@ -45,6 +45,7 @@ command(
         cli=["layers"],
         help="Check import layering, the certificate allowlists, and that the blueprint root imports every node module.",
         run=run,
-        args=[Arg("write_allowlists", "rewrite the allowlist files from the current import graph before checking", "bool")],
+        args=[Arg("write_allowlists", "rewrite the allowlist / pinned-layer files from the current import graph before checking", "bool"),
+              Arg("allow_rebuild", "accept changes to frozen encoding modules (a certificate rebuild is being committed)", "bool")],
     )
 )

@@ -106,6 +106,47 @@ acceptance checklist (§13) at the end of the first build session.
   and B2/D/F conjecture nodes wait for their falsifiers (milestone M5). Lock entries
   carry `approved_by = "fable (provisional; Gavin to confirm via CODEOWNERS review)"`.
 
+## Second round (evening of 2026-09-04): the five decisions
+
+1. **Headline confirmed.** `predecessorHalfSubsetAt_six : PredecessorHalfSubsetAt 6` is
+   unconditional (`PredecessorHalfSix.lean:23`, composed from `strongSixCardinalityCeiling`
+   via the ES(6) certificate and `predecessorHalfSubsetAtSixMiddle` via the Fin15 endpoint,
+   `Fin15Anchored.lean:1878`). The taint scan was validated against `#print axioms` on
+   six declarations where Lean finishes, including `decomposableExactUpperAt_six` whose
+   closure is the 27 GB E3State566 family (Lean: 735 s, 33 GB; scan: 752 s first pass):
+   identical results on every one. The scan also reproduces Lean's `native_decide`
+   auxiliary axiom. With that, the ES(6)/Fin15 audit is no longer provisional.
+2. **Deviations accepted; fourth layer named.** `ESEncodings` = the hand-written modules
+   the generated modules import directly (33, pinned in `harness/encodings.txt`). Certificate
+   families are stacked (a family's consumer is another family's encoding input), so
+   encodings may import core; what protects the certificates is the frozen closure:
+   `es layers` fails on any diff to a hand-written module in the transitive import closure
+   of the certificate layer, naming how many generated modules depend on it, unless the
+   commit message carries `[certificate-rebuild]` (the pre-bash hook passes
+   `--allow-rebuild`) or `ES_CERTIFICATE_REBUILD=1`. The 37 GB double-load fact is in
+   `tools/es/README.md` and `es doctor` checks the extractor's header.
+3. **ES(6) family namespaced** into `ErdosSzekeres.ES6` (791 files, two qualified literals,
+   `ES6Certificate.lean`, the generator, and `split_lrat_checkpoints.py --namespace`). The
+   exact clash was three names: `StrongSixValues`, `isStrongPolygonOn_finSix_iff`,
+   `strongSix_mismatch`. Both families were already committed and built; ES(6) is 791
+   modules including 192 LRAT checkpoint segments (1–2 min each), E3State466 is 137 modules
+   (128 CNF chunks, 4 segments). The choice costs the larger rebuild; the checkpoint
+   commands qualify their declarations with the current namespace, so nothing else changes.
+4. **Stale families triaged.** Lean builds are byte-deterministic here (verified on a
+   leaf module). Lake's own verdict: Fin13, HalfPure, the Pascal556 segments, E3State566,
+   ES(6) and Fin15 are current; stale are the 24 oleans destroyed mid-compile by the first
+   parallel attempt (DiagonalCupBlocksK9, ExtremeExchangeK9, Mixed567, the Pascal556
+   semantic chunks and a few `StructuralCharging*` modules) plus the SynchronizedFiveFan
+   checkpoint chain (its context was edited on 2026-08-29 after its 2026-08-20 build) and
+   the E3State466 checkpoint context. All hand-written changes in those closures since
+   August are pure additions (`+N −0`), but the two that matter (`StrongPredecessorBicoloring`
+   +683 and `StructuralCharging` +391, both 2026-09-03) sit under the fresh ES(6)/Fin15
+   oleans, so reverting them would trade a small rebuild for a 60 GB one. The rebuild is
+   unavoidable and was started detached at 20:40 on 2026-09-04 (`es build core --budget 720`,
+   serial pre-pass, guarded at 20 GB; log under `~/.es/erdos-szekeres/logs/`).
+5. **CI.** The Lean job stays gated on a self-hosted runner; the honest local gate is the
+   pre-commit hook plus the nightly user timer (`tools/es/systemd/`, 03:00, guarded).
+
 ## Acceptance checklist (§13)
 
 | # | Item | State | Evidence (2026-09-04) |

@@ -62,6 +62,11 @@ def run(ctx: Ctx) -> Result:
     add("memory", available_gib() > 8, f"{available_gib():.0f} GiB available; {lean_compilers_running()} lean compiler(s) running")
     for name, path in (("destinations", cfg.destinations_file), ("allowlist", cfg.allowlist_file), ("lock", cfg.lock_file)):
         add(name, path.exists(), str(path))
+    script = cfg.extract_script
+    if script.exists():
+        head = script.read_text()[:3000]
+        bad = [line for line in head.splitlines() if line.startswith("import ") and line.split()[1] != "Lean"]
+        add("extractor imports", not bad, "only `import Lean` at the top (a second load of the project oleans cannot mmap and reads ~37 GB into RAM)" if not bad else f"top-level {bad[0]!r}: remove it, main imports the project")
     cache = cfg.taint_dir
     n_cache = len(list(cache.glob("*.json"))) if cache.exists() else 0
     add("taint cache", True, f"{n_cache} module file(s) in {cache}")

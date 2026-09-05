@@ -17,10 +17,22 @@ remote = "origin"
 
 [layers]
 # Earlier layers may not import later ones unless a rule below says otherwise.
-order = ["ESCertificates", "ESCore", "ESBlueprint"]
+# ESEncodings = the hand-written modules the generated certificate modules import
+# directly (encodings, presentations, LRATCheckpoint, support glue), pinned in
+# harness/encodings.txt. Their whole hand-written import closure is FROZEN: editing any
+# module in it invalidates every certificate built on it (125 GB of oleans), so
+# `es layers` fails on such a diff unless the commit carries the marker
+# [certificate-rebuild] (the pre-bash hook passes --allow-rebuild) or ES_CERTIFICATE_REBUILD=1.
+order = ["ESEncodings", "ESCertificates", "ESCore", "ESBlueprint"]
 core = "ESCore"
 blueprint = "ESBlueprint"
 certificates = "ESCertificates"
+
+[layers.ESEncodings]
+prefixes = ["ErdosSzekeres"]
+inputs_of = "ESCertificates"           # computed from the import graph ...
+members_file = "harness/encodings.txt" # ... and pinned here (`es layers --write-allowlists` regenerates)
+frozen_closure = true                  # freeze the transitive closure, not just the direct inputs
 
 [layers.ESCertificates]
 prefixes = ["ErdosSzekeres"]
@@ -33,20 +45,29 @@ prefixes = ["ErdosSzekeres"]
 prefixes = ["ESBlueprint"]
 exclude_from_root = ["ESBlueprint.Extract"]
 
-# Certificates sit between core definitions (encodings, presentations) and core
-# consumers, so both directions across the ESCore/ESCertificates boundary are
-# allowlisted explicitly.  `es layers --write-allowlists` regenerates the files.
+# Modules that consume certificates are allowlisted explicitly (`es layers
+# --write-allowlists` regenerates the file); some encoding-layer "support" modules sit
+# between two generated layers and consume certificates too. Certificates may import
+# ESEncodings freely (earlier layer) and nothing else.
 [[layers.rules]]
 from = "ESCore"
 to = "ESCertificates"
-allow = "importers"                    # the importing core module must be listed
+allow = "importers"                    # the importing module must be listed
 file = "harness/certificate_consumers.txt"
 
 [[layers.rules]]
-from = "ESCertificates"
+from = "ESEncodings"
+to = "ESCertificates"
+allow = "importers"
+file = "harness/certificate_consumers.txt"
+
+# Certificate families are stacked (one family's consumer is another family's
+# encoding input), so encodings may import core modules; what protects the
+# certificates is the frozen closure above, not an import direction.
+[[layers.rules]]
+from = "ESEncodings"
 to = "ESCore"
-allow = "imported"                     # the imported core module must be listed
-file = "harness/certificate_inputs.txt"
+allow = "any"
 
 [certificates]
 # A module under ErdosSzekeres is a generated certificate module when its path
@@ -75,8 +96,11 @@ guard = true                           # run lake inside a transient user cgroup
 memory_max = "20G"                     # MemoryMax for one build; Fin13 clause chunks need ~15 GiB each
 cpu_quota_cores = 0                    # 0 = no CPU quota
 lean_threads = 0                       # 0 = Lean's default
-serial_missing = true                  # build modules with no olean one at a time before the full target
+serial_missing = true                  # build Lake's out-of-date list before the full target, round by round
                                        # (Lake 5 has no -j; parallel compilers of big modules exhaust RAM)
+serial_rounds = 5000                   # chains are deep (192 checkpoint segments import each other)
+batch_small = 6                        # independent small chain heads per lake invocation
+heavy_patterns = ["*CheckpointSegment*", "*CheckpointContext", "*CNFRaw*", "*CNFMid*"]  # always alone
 
 [build.targets]
 core = ["ESCore"]

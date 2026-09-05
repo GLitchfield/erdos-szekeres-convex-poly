@@ -1,0 +1,10 @@
+[Unit]
+Description=es harness nightly: guarded core build, extract consistency check, axiom audit
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/git/erdos-szekeres-convex-poly
+Environment=ES_AGENT=es-nightly
+ExecStart=/bin/bash -lc 'tools/es/bin/es build core --budget 300 && tools/es/bin/es extract --check && tools/es/bin/es audit'
+StandardOutput=append:%h/.es/erdos-szekeres/logs/nightly.log
+StandardError=append:%h/.es/erdos-szekeres/logs/nightly.log

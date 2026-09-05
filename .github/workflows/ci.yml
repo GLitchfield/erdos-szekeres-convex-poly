@@ -28,8 +28,11 @@ jobs:
 
   # The Lean job needs the certificate oleans (~130 GB of build products; single
   # modules need up to 15 GiB of RAM), which no hosted runner can restore or
-  # rebuild.  It therefore runs on a self-hosted runner that keeps .lake/build
-  # warm (label `es-lean`).  Until one is registered this job is skipped.
+  # rebuild.  The honest gate is local: the pre-commit hook (`es layers && es
+  # extract --check && es audit --changed`) plus the nightly user timer in
+  # tools/es/systemd/ (`es build core && es extract --check && es audit`).  This
+  # job exists for a self-hosted runner on the WSL box (label `es-lean`) and is
+  # skipped until the repository variable ES_LEAN_RUNNER is set to "true".
   lean:
     if: ${{ vars.ES_LEAN_RUNNER == 'true' }}
     runs-on: [self-hosted, es-lean]

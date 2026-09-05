@@ -41,6 +41,9 @@ class Layer:
     prefixes: tuple[str, ...]
     generated: bool = False  # claims only modules meeting the [certificates] criteria
     exclude_from_root: tuple[str, ...] = ()
+    inputs_of: str | None = None  # claims the hand-written modules directly imported by that layer's modules
+    members_file: str | None = None  # pinned member list (committed); the computed set must match it
+    frozen_closure: bool = False  # the whole hand-written import closure of `inputs_of` may not change without a rebuild marker
 
 
 @dataclass
@@ -134,6 +137,9 @@ class Config:
                     prefixes=tuple(str(p) for p in spec.get("prefixes", [])),
                     generated=bool(spec.get("generated", False)),
                     exclude_from_root=tuple(str(x) for x in spec.get("exclude_from_root", [])),
+                    inputs_of=spec.get("inputs_of"),
+                    members_file=spec.get("members_file"),
+                    frozen_closure=bool(spec.get("frozen_closure", False)),
                 )
             )
         return out

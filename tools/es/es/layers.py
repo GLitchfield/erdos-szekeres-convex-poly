@@ -4,8 +4,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+import os
+
 from es.config import Config
-from es.modules import Module, read_name_list, scan_modules
+from es.modules import Module, frozen_closure, input_layer_members, module_to_path, read_name_list, scan_modules
 
 
 @dataclass
@@ -18,9 +20,11 @@ class Violation:
         return f"{self.kind}: {self.module}: {self.detail}"
 
 
-def check_layers(cfg: Config, mods: dict[str, Module] | None = None) -> list[Violation]:
+def check_layers(cfg: Config, mods: dict[str, Module] | None = None, allow_rebuild: bool | None = None) -> list[Violation]:
     layers = cfg.layers()
     mods = mods if mods is not None else scan_modules(cfg, layers)
+    if allow_rebuild is None:
+        allow_rebuild = os.environ.get("ES_CERTIFICATE_REBUILD") == "1"
     order = {layer.name: i for i, layer in enumerate(layers)}
     rules = {(r.from_layer, r.to_layer): r for r in cfg.layer_rules()}
     lists: dict[str, set[str]] = {}
@@ -60,6 +64,48 @@ def check_layers(cfg: Config, mods: dict[str, Module] | None = None) -> list[Vio
                     )
                 )
     out.extend(check_blueprint_root(cfg, mods))
+    out.extend(check_pinned_layers(cfg, mods, allow_rebuild))
+    return out
+
+
+def check_pinned_layers(cfg: Config, mods: dict[str, Module], allow_rebuild: bool) -> list[Violation]:
+    """Closure layers with a members file: the computed set must equal the pinned list, and
+    frozen members may not differ from the default branch without a rebuild marker."""
+    out: list[Violation] = []
+    for layer in cfg.layers():
+        if not layer.inputs_of:
+            continue
+        if layer.members_file:
+            pinned = set(read_name_list(cfg.root / layer.members_file))
+            computed = input_layer_members(layer, mods)
+            for name in sorted(computed - pinned):
+                out.append(Violation("encodings-unpinned", name, f"is imported directly by {layer.inputs_of} modules but not listed in {layer.members_file}; add it deliberately (it becomes frozen)"))
+            for name in sorted(pinned - computed):
+                out.append(Violation("encodings-stale-pin", name, f"listed in {layer.members_file} but no {layer.inputs_of} module imports it any more"))
+        if layer.frozen_closure and not allow_rebuild:
+            from es.gitutil import changed_files, git_ok
+
+            if git_ok(cfg):
+                closure = frozen_closure(layer, mods)
+                changed = set(changed_files(cfg, f"{cfg.git_remote}/{cfg.default_branch}"))
+                by_path = {str(module_to_path(n)): n for n in closure}
+                hit = sorted(n for rel, n in by_path.items() if rel in changed)
+                if hit:
+                    rev: dict[str, set[str]] = {}
+                    for m in mods.values():
+                        for i in m.imports:
+                            rev.setdefault(i, set()).add(m.name)
+                    for name in hit:
+                        seen: set[str] = set()
+                        stack = [name]
+                        while stack:
+                            x = stack.pop()
+                            if x in seen:
+                                continue
+                            seen.add(x)
+                            stack.extend(rev.get(x, ()))
+                        n_gen = sum(1 for x in seen if x in mods and mods[x].generated)
+                        out.append(Violation("frozen-module", name, f"{module_to_path(name)} differs from {cfg.git_remote}/{cfg.default_branch} and {n_gen} generated certificate module(s) are built on it; they will all be rebuilt. Commit with the marker [certificate-rebuild] (or ES_CERTIFICATE_REBUILD=1) to accept that"))
     return out
 
 
@@ -88,9 +134,12 @@ def check_blueprint_root(cfg: Config, mods: dict[str, Module]) -> list[Violation
 
 
 def derive_allowlists(cfg: Config, mods: dict[str, Module] | None = None) -> dict[str, list[str]]:
-    """For every allowlist rule, the names the current import graph would require."""
+    """For every allowlist rule and pinned closure layer, the names the current import graph would require."""
     mods = mods if mods is not None else scan_modules(cfg)
     result: dict[str, list[str]] = {}
+    for layer in cfg.layers():
+        if layer.inputs_of and layer.members_file:
+            result[layer.members_file] = sorted(input_layer_members(layer, mods))
     for r in cfg.layer_rules():
         if r.allow not in ("importers", "imported") or not r.file:
             continue
@@ -102,5 +151,5 @@ def derive_allowlists(cfg: Config, mods: dict[str, Module] | None = None) -> dic
                 t = mods.get(imp)
                 if t is not None and t.layer == r.to_layer:
                     names.add(m.name if r.allow == "importers" else imp)
-        result[r.file] = sorted(names)
+        result[r.file] = sorted(set(result.get(r.file, [])) | names)
     return result

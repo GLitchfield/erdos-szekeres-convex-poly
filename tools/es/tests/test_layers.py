@@ -48,3 +48,37 @@ def test_derive_allowlists(cfg):
     d = derive_allowlists(cfg)
     assert d["harness/certificate_consumers.txt"] == ["TCore.Consumer"]
     assert d["harness/certificate_inputs.txt"] == ["TCore.Encoding"]
+
+
+def _enable_encodings(cfg):
+    import tomllib
+    text = (cfg.root / "harness" / "config.toml").read_text()
+    text = text.replace('order = ["TCerts", "TCore", "TBlueprint"]', 'order = ["TEnc", "TCerts", "TCore", "TBlueprint"]')
+    text = text.replace('[[layers.rules]]\nfrom = "TCerts"\nto = "TCore"\nallow = "imported"\nfile = "harness/certificate_inputs.txt"\n', '')
+    text += '\n[layers.TEnc]\nprefixes = ["TCore"]\ninputs_of = "TCerts"\nmembers_file = "harness/encodings.txt"\nfrozen_closure = true\n[[layers.rules]]\nfrom = "TEnc"\nto = "TCore"\nallow = "any"\n' 
+    (cfg.root / "harness" / "config.toml").write_text(text)
+    from es.config import load_config
+    return load_config(cfg.root)
+
+
+def test_encodings_pinned_and_frozen(cfg, monkeypatch):
+    import subprocess
+    cfg = _enable_encodings(cfg)
+    (cfg.root / "harness" / "encodings.txt").write_text("TCore.Encoding\n")
+    mods = scan_modules(cfg)
+    assert mods["TCore.Encoding"].layer == "TEnc" and mods["TCore.Basic"].layer == "TCore"
+    monkeypatch.setenv("ES_CERTIFICATE_REBUILD", "1")
+    assert [v for v in check_layers(cfg) if v.kind.startswith("encodings")] == []
+    # a certificate starts importing an unpinned core module
+    (cfg.root / "TCore" / "Chunk001.lean").write_text("import TCore.Basic\n")
+    v = check_layers(cfg)
+    assert any(x.kind == "encodings-unpinned" and x.module == "TCore.Basic" for x in v)
+    (cfg.root / "TCore" / "Chunk001.lean").unlink()
+    # editing a module in the frozen closure (Basic is imported by Encoding) is flagged without the marker
+    subprocess.run(["git", "remote", "add", "origin", str(cfg.root)], cwd=cfg.root, check=True)
+    subprocess.run(["git", "update-ref", "refs/remotes/origin/main", "HEAD"], cwd=cfg.root, check=True)
+    (cfg.root / "TCore" / "Basic.lean").write_text("theorem foo : True := trivial\ntheorem bar : True := trivial\n")
+    monkeypatch.delenv("ES_CERTIFICATE_REBUILD")
+    v = check_layers(cfg)
+    assert any(x.kind == "frozen-module" and x.module == "TCore.Basic" for x in v)
+    assert not any(x.kind == "frozen-module" for x in check_layers(cfg, allow_rebuild=True))

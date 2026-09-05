@@ -223,18 +223,56 @@ def build(cfg: Config, kind: str, *, budget_min: float | None = None, node_modul
             stale = [m for m in stale if m not in seen]
             if not stale:
                 break
+            # Chain heads are independent of each other: build small ones a few per
+            # invocation (one Lake start-up each is the dominant cost for hundreds of
+            # modules); heavy ones (checkpoint segments etc.) strictly one at a time.
+            # A batch that trips the memory cap is retried module by module.
+            heavy_pats = [str(x) for x in cfg.get("build", "heavy_patterns", default=["*CheckpointSegment*", "*CheckpointContext", "*CNFRaw*", "*CNFMid*"])]
+            batch_size = int(cfg.get("build", "batch_small", default=6))
+            import fnmatch
+            def heavy(m: str) -> bool:
+                return any(fnmatch.fnmatchcase(m, p) for p in heavy_pats)
+            groups: list[list[str]] = []
+            small: list[str] = []
             for m in stale:
                 seen.add(m)
+                if heavy(m):
+                    groups.append([m])
+                else:
+                    small.append(m)
+                    if len(small) >= batch_size:
+                        groups.append(small); small = []
+            if small:
+                groups.append(small)
+            for group in groups:
                 remaining = (deadline - time.time()) / 60
                 if remaining <= 0:
-                    results.append(BuildResult(124, 0, 0, "", [cfg.lake, "build", m], budget_exceeded=True))
+                    results.append(BuildResult(124, 0, 0, "", [cfg.lake, "build", *group], budget_exceeded=True))
                     return results
-                log = log_dir / f"build-{stamp}-{m}.log"
-                res = run_guarded(cfg, [cfg.lake, "build", m, *(extra_args or [])], log_path=log, budget_min=remaining, force=force)
+                log = log_dir / f"build-{stamp}-{group[0]}{'+%d' % (len(group) - 1) if len(group) > 1 else ''}.log"
+                res = run_guarded(cfg, [cfg.lake, "build", *group, *(extra_args or [])], log_path=log, budget_min=remaining, force=force)
                 results.append(res)
-                if not res.ok:
+                if not res.ok and len(group) > 1 and not res.budget_exceeded:
+                    # retry one at a time (memory cap or a single failing module)
+                    for m in group:
+                        remaining = (deadline - time.time()) / 60
+                        if remaining <= 0:
+                            return results
+                        log = log_dir / f"build-{stamp}-{m}.log"
+                        res = run_guarded(cfg, [cfg.lake, "build", m, *(extra_args or [])], log_path=log, budget_min=remaining, force=force)
+                        results.append(res)
+                        if not res.ok:
+                            return results
+                elif not res.ok:
                     return results
         budget_min = max(1.0, (deadline - time.time()) / 60) if budget_min else None
+        # Never hand a still-stale tree to the fully parallel build: a memory-cap kill
+        # there destroys the oleans of every module in flight.
+        left = lake_out_of_date(cfg, targets)
+        if left:
+            results.append(BuildResult(124, 0, 0, "", [cfg.lake, "build", *targets], budget_exceeded=True,
+                                       tail=[f"{len(left)} chain head(s) still out of date after the serial pass (budget exhausted?): " + ", ".join(left[:8])]))
+            return results
     log = log_dir / f"build-{stamp}-{kind}.log"
     results.append(run_guarded(cfg, [cfg.lake, "build", *targets, *(extra_args or [])], log_path=log, budget_min=budget_min, force=force))
     return results

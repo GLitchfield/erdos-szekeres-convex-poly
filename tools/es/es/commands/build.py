@@ -31,6 +31,8 @@ def run(ctx: Ctx, target: str, name: str | None = None, budget: int | None = Non
     if res.exit_code != EXIT_OK:
         res.line("--- log tail ---")
         res.human.extend(last.tail)
+        if last.budget_exceeded:
+            res.line("stopped before the parallel build; rerun `es build core` to continue where it left off")
     res.payload = {
         "results": [r.__dict__ for r in results],
         "seconds": sum(r.seconds for r in results),
