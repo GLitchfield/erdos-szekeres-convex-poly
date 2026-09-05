@@ -67,7 +67,13 @@ def run(ctx: Ctx, name: str, dry_run: bool = False, force: bool = False) -> Resu
     if new_path.exists():
         raise CheckFailed(f"{new_path.relative_to(cfg.root)} already exists")
     git_mv(cfg, old_path, new_path)
-    # the moved file keeps its content; strip the blueprint-only docstring tags? No: tags document provenance.
+    # the moved file keeps its content (the docstring tags document provenance), but a core
+    # root written in Lean's module system cannot import a plain-`import` file
+    core_root = cfg.root / module_to_path(cfg.core_root_module)
+    if core_root.exists() and re.match(r"\s*module\b", core_root.read_text()):
+        converted = to_module_form(new_path.read_text())
+        if converted is not None:
+            new_path.write_text(converted)
     touched = rewrite_imports(cfg, n.module, new_module, [d for d in dirs if (cfg.root / d).exists()])
     root_text = cfg.blueprint_root.read_text()
     root_text = re.sub(rf"^import\s+{re.escape(new_module)}\s*\n", "", root_text, flags=re.M)
@@ -91,7 +97,13 @@ def run(ctx: Ctx, name: str, dry_run: bool = False, force: bool = False) -> Resu
             core_root.write_text(text.rstrip("\n") + f"\n{kw} {new_module}\n")
             touched.append(str(core_root.relative_to(cfg.root)))
     log = cfg.build_log_dir / f"close-{time.strftime('%Y%m%d-%H%M%S')}-{n.short}.log"
-    build_target = consumer_module(cfg, consumer) if consumer else new_module
+    # the consumer may itself be a node closed a moment ago, whose module the index has
+    # not recorded yet: fall back to its lock entry, then to the moved module itself
+    build_target = consumer_module(cfg, consumer) if consumer else None
+    if consumer and not build_target:
+        build_target = lock.get(consumer, {}).get("merged_module") or lock.get(consumer, {}).get("module")
+    if not build_target:
+        build_target = new_module
     build = run_guarded(cfg, [cfg.lake, "build", build_target], log_path=log, budget_min=cfg.core_budget_min * 2, force=force)
     if not build.ok:
         raise LeanError(f"consumer build failed after the move ({build.summary()}); the move is left in place for inspection:\n" + "\n".join(build.tail))
@@ -107,6 +119,22 @@ def run(ctx: Ctx, name: str, dry_run: bool = False, force: bool = False) -> Resu
     res.payload = {"node": n.name, "new_module": new_module, "touched": touched, "build": build.__dict__}
     res.exit_code = EXIT_OK
     return res
+
+
+def to_module_form(text: str) -> str | None:
+    """Rewrite a plain-`import` Lean file as a module-system file: `module` header, `public`
+    imports, one `@[expose] public section` around the body, closed by `end`.  Returns None
+    when the file already starts with `module`."""
+    if re.match(r"\s*module\b", text):
+        return None
+    lines = text.split("\n")
+    imports = []
+    while lines and (lines[0].startswith("import ") or lines[0].strip() == ""):
+        line = lines.pop(0)
+        if line.startswith("import "):
+            imports.append("public " + line)
+    body = "\n".join(lines).strip("\n")
+    return "module\n\n" + "\n".join(imports) + "\n\n@[expose] public section\n\n" + body + "\n\nend\n"
 
 
 def consumer_module(cfg, consumer: str | None) -> str | None:

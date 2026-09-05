@@ -259,3 +259,5 @@ public import ErdosSzekeres.SukPositiveFractionUpper
 public import ErdosSzekeres.SukPositiveFractionExplicitUpper
 public import ErdosSzekeres.TopeHellyCube
 public import ErdosSzekeres.ThreePointAffineTopeReturnBridge
+public import ErdosSzekeres.Closed.A.ForcesConvexPolygonOfSweepExactUpperAt
+public import ErdosSzekeres.Closed.A.SweepExactUpperAtOfPredecessorHalfSubsetAll

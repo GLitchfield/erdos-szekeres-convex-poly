@@ -1,4 +1,8 @@
-import ErdosSzekeres.DecompositionPrimeNormalization
+module
+
+public import ErdosSzekeres.DecompositionPrimeNormalization
+
+@[expose] public section
 
 namespace ErdosSzekeres
 
@@ -20,3 +24,5 @@ theorem forcesConvexPolygon_of_sweepExactUpperAt (k : ℕ) (hk : 3 ≤ k) (h : S
     FinsetPolygon.IsStrongPolygonSet.isStrongPolygonOn_orderEmbOfFin hstrong⟩
 
 end ErdosSzekeres
+
+end

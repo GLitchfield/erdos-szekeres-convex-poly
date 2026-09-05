@@ -1,4 +1,8 @@
-import ErdosSzekeres.StrongPredecessorBicoloring
+module
+
+public import ErdosSzekeres.StrongPredecessorBicoloring
+
+@[expose] public section
 
 namespace ErdosSzekeres
 
@@ -21,3 +25,5 @@ theorem sweepExactUpperAt_of_predecessorHalfSubset_all (k : ℕ) (hk : 3 ≤ k) 
       (h (m + 1) (by omega) le_rfl) hreal hcard
 
 end ErdosSzekeres
+
+end

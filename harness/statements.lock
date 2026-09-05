@@ -24,7 +24,9 @@
     "approved_at": "2026-09-04",
     "kind": "formalization",
     "ws": "A",
-    "module": "ESBlueprint.A.ForcesConvexPolygonOfSweepExactUpperAt"
+    "module": "ESBlueprint.A.ForcesConvexPolygonOfSweepExactUpperAt",
+    "merged_module": "ErdosSzekeres.Closed.A.ForcesConvexPolygonOfSweepExactUpperAt",
+    "merged_at": "2026-09-05"
   },
   "ErdosSzekeres.predecessorHalfSubsetAt_all": {
     "type_hash": "a18a0a755e1ad825",
@@ -42,6 +44,8 @@
     "approved_at": "2026-09-04",
     "kind": "formalization",
     "ws": "A",
-    "module": "ESBlueprint.A.SweepExactUpperAtOfPredecessorHalfSubsetAll"
+    "module": "ESBlueprint.A.SweepExactUpperAtOfPredecessorHalfSubsetAll",
+    "merged_module": "ErdosSzekeres.Closed.A.SweepExactUpperAtOfPredecessorHalfSubsetAll",
+    "merged_at": "2026-09-05"
   }
 }

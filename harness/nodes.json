@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-05T21:19:28Z",
- "git_sha": "4e18571161386a88187d92b94ddc088fde6fca01",
+ "generated_at": "2026-09-05T21:57:20Z",
+ "git_sha": "e924f2c3e6ccb32601b34e0018a0e628e1056956",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15343,
- "tree_hash": "b053fa619dbd0800",
+ "tree_hash": "2debffc6b4a97ea7",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,88 +19,11 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15341,
+  "cached_modules": 15339,
   "scanned_constants": 4,
-  "scanned_modules": 2
+  "scanned_modules": 4
  },
  "nodes": [
-  {
-   "name": "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt",
-   "module": "ESBlueprint.A.ForcesConvexPolygonOfSweepExactUpperAt",
-   "ws": "A",
-   "kind": "formalization",
-   "description": "A sweep-model exact upper bound at k transfers to the planar statement: every general-position set of 2^(k-2)+1 points contains a convex k-gon. Route: exists_sweptPresentation, apply h to P.configuration.tripleColoring, then SweptPresentation.containsConvexSubset_iff_exists_isStrongPolygonOn.",
-   "tags": {
-    "node": "",
-    "ws": "A",
-    "kind": "formalization",
-    "consumer": "ErdosSzekeres.ErdosSzekeresConjecture"
-   },
-   "tag_errors": [],
-   "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    ErdosSzekeres.SweepExactUpperAt k →\n      ErdosSzekeres.ForcesConvexPolygon k (instHAdd.hAdd (instHPow.hPow 2 (instHSub.hSub k 2)) 1)",
-   "type_hash": "de5bf55bf587cb09",
-   "sorry": false,
-   "axioms": [
-    "propext",
-    "Classical.choice",
-    "Quot.sound"
-   ],
-   "nonstandard_axioms": [],
-   "deps_declared": [],
-   "deps_actual": [
-    "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt._proof_1_1"
-   ],
-   "helpers": [],
-   "status": "closed",
-   "ready": false,
-   "blocked_by": [],
-   "uncovered_axioms": [],
-   "falsify": null,
-   "lock_ok": true,
-   "opened": "2026-09-04"
-  },
-  {
-   "name": "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all",
-   "module": "ESBlueprint.A.SweepExactUpperAtOfPredecessorHalfSubsetAll",
-   "ws": "A",
-   "kind": "formalization",
-   "description": "Predecessor-half subsets at every level from 4 to k give the sweep-model exact upper bound at k. Route: Nat.le_induction from sweepExactUpperAt_three and sweepExactUpperAt_of_predecessorHalfSubset.",
-   "tags": {
-    "node": "",
-    "ws": "A",
-    "kind": "formalization",
-    "depends": [
-     "ErdosSzekeres.sweepExactUpperAt_three",
-     "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset"
-    ],
-    "consumer": "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt"
-   },
-   "tag_errors": [],
-   "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
-   "type_hash": "ee88bf4ffda45548",
-   "sorry": false,
-   "axioms": [
-    "propext",
-    "Classical.choice",
-    "Quot.sound"
-   ],
-   "nonstandard_axioms": [],
-   "deps_declared": [
-    "ErdosSzekeres.sweepExactUpperAt_three",
-    "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset"
-   ],
-   "deps_actual": [
-    "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all._proof_1_1"
-   ],
-   "helpers": [],
-   "status": "closed",
-   "ready": false,
-   "blocked_by": [],
-   "uncovered_axioms": [],
-   "falsify": null,
-   "lock_ok": true,
-   "opened": "2026-09-04"
-  },
   {
    "name": "ErdosSzekeres.decomposableStateUpper_all",
    "module": "ESBlueprint.B.DecomposableStateUpperAll",
@@ -1149,6 +1072,22 @@
    "merged_from": null
   },
   {
+   "name": "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt",
+   "module": "ErdosSzekeres.Closed.A.ForcesConvexPolygonOfSweepExactUpperAt",
+   "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    ErdosSzekeres.SweepExactUpperAt k →\n      ErdosSzekeres.ForcesConvexPolygon k (instHAdd.hAdd (instHPow.hPow 2 (instHSub.hSub k 2)) 1)",
+   "type_hash": "de5bf55bf587cb09",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "A sweep-model exact upper bound at k transfers to the planar statement: every general-position set of 2^(k-2)+1 points contains a convex k-gon. Route: exists_sweptPresentation, apply h to P.configuration.tripleColoring, then SweptPresentation.containsConvexSubset_iff_exists_isStrongPolygonOn.",
+   "uncovered_axioms": [],
+   "merged_from": "ESBlueprint.A.ForcesConvexPolygonOfSweepExactUpperAt"
+  },
+  {
    "name": "ErdosSzekeres.forces_six",
    "module": "ErdosSzekeres.ES6Certificate",
    "type_pp": "ErdosSzekeres.ForcesConvexPolygon 6 17",
@@ -1227,6 +1166,22 @@
    "description": "The frozen positive-fraction threshold is bounded by one explicit power.",
    "uncovered_axioms": [],
    "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all",
+   "module": "ErdosSzekeres.Closed.A.SweepExactUpperAtOfPredecessorHalfSubsetAll",
+   "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
+   "type_hash": "ee88bf4ffda45548",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "Predecessor-half subsets at every level from 4 to k give the sweep-model exact upper bound at k. Route: Nat.le_induction from sweepExactUpperAt_three and sweepExactUpperAt_of_predecessorHalfSubset.",
+   "uncovered_axioms": [],
+   "merged_from": "ESBlueprint.A.SweepExactUpperAtOfPredecessorHalfSubsetAll"
   },
   {
    "name": "ErdosSzekeres.tothValtr_upper",

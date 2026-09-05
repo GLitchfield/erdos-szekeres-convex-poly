@@ -27,3 +27,12 @@ def test_note_from_fixture_tables(cfg):
     text = "\n".join(res.human)
     assert "opened: 1" in text and "closed: 1" in text and "attempts started this week: 1" in text and "## Judgment" in text
     assert (cfg.root / res.payload["path"]).exists()
+
+
+def test_close_converts_moved_file_to_module_form():
+    from es.commands.close import to_module_form
+    src = "import ErdosSzekeres.Basic\n\nnamespace ErdosSzekeres\n\n/-- doc -/\ntheorem t : True := trivial\n\nend ErdosSzekeres\n"
+    out = to_module_form(src)
+    assert out.startswith("module\n\npublic import ErdosSzekeres.Basic\n\n@[expose] public section\n\n")
+    assert out.endswith("end ErdosSzekeres\n\nend\n")
+    assert to_module_form(out) is None
