@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-05T19:28:50Z",
- "git_sha": "6199dc6aea7b161e1d2983fe682fece6bb14e1bd",
+ "generated_at": "2026-09-05T19:59:08Z",
+ "git_sha": "2267d05a4839b9971d2144d98eca81726f1a8649",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15342,
- "tree_hash": "ecff040eadda9f85",
+ "tree_hash": "cbcba28f9507035b",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15342,
-  "scanned_constants": 0,
-  "scanned_modules": 0
+  "cached_modules": 15340,
+  "scanned_constants": 3,
+  "scanned_modules": 2
  },
  "nodes": [
   {
@@ -52,8 +52,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -81,28 +81,25 @@
    "tag_errors": [],
    "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
    "type_hash": "ee88bf4ffda45548",
-   "sorry": true,
+   "sorry": false,
    "axioms": [
     "propext",
     "Classical.choice",
-    "Quot.sound",
-    "sorryAx"
+    "Quot.sound"
    ],
-   "nonstandard_axioms": [
-    "sorryAx"
-   ],
+   "nonstandard_axioms": [],
    "deps_declared": [
     "ErdosSzekeres.sweepExactUpperAt_three",
     "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset"
    ],
-   "deps_actual": [],
-   "helpers": [],
-   "status": "open",
-   "ready": true,
-   "blocked_by": [],
-   "uncovered_axioms": [
-    "sorryAx"
+   "deps_actual": [
+    "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all._proof_1_1"
    ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-04"
@@ -144,7 +141,7 @@
    ],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-05"
   },
   {
    "name": "ErdosSzekeres.predecessorHalfSubsetAt_all",
