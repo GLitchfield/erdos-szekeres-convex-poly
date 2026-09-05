@@ -9,7 +9,7 @@ set_option maxRecDepth 30000
 set_option linter.unusedVariables false
 set_option linter.unusedSimpArgs false
 
-namespace ErdosSzekeres
+namespace ErdosSzekeres.ES6
 
 /-! Retained anchored ES(6) semantic clauses, group 004. -/
 
@@ -3341,6 +3341,6 @@ theorem es6Anchored_clause00639 (chi : TripleColoring 17)
   · exact hb2 hs
   · exact hs hb3
 
-end ErdosSzekeres
+end ErdosSzekeres.ES6
 
 end

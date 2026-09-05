@@ -110,7 +110,7 @@ anchor is only justified for sweep-realizable colorings.
 python3 scripts/generate_es6_anchored_sat.py --output runs/experiments/20260903-week1/es6-signotope/es-17-6-sb.cnf
 ~/.elan/toolchains/leanprover--lean4---v4.29.1/bin/cadical --lrat --no-binary es-17-6-sb.cnf es-17-6-sb.lrat
 python3 scripts/extract_lrat_dependency_core.py ...   # see core/extract.log
-python3 scripts/split_lrat_checkpoints.py certificates/es6-anchored-checkpoints/core.cnf core/core.lrat certificates/es6-anchored-checkpoints --original-clauses 59684 --segments 192 --lean-prefix ES6AnchoredCheckpoint --lean-dir ErdosSzekeres --bundle-size 4096 --compact-final
+python3 scripts/split_lrat_checkpoints.py certificates/es6-anchored-checkpoints/core.cnf core/core.lrat certificates/es6-anchored-checkpoints --original-clauses 59684 --segments 192 --lean-prefix ES6AnchoredCheckpoint --lean-dir ErdosSzekeres --namespace ErdosSzekeres.ES6 --bundle-size 4096 --compact-final
 python3 scripts/generate_es6_anchored_lean.py --segments 192
 scripts/build_checkpoint_chain.sh ES6AnchoredCheckpointSegment 0 191 20G
 python3 scripts/run_guarded_build_plan.py runs/experiments/20260903-week1/build/plan-20260903.json --guard-log ... --log ...

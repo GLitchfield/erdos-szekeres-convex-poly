@@ -103,14 +103,14 @@ def header(imports: list[str]) -> list[str]:
         "set_option linter.unusedVariables false",
         "set_option linter.unusedSimpArgs false",
         "",
-        "namespace ErdosSzekeres",
+        "namespace ErdosSzekeres.ES6",
         "",
     ]
     return lines
 
 
 def footer() -> list[str]:
-    return ["end ErdosSzekeres", "", "end", ""]
+    return ["end ErdosSzekeres.ES6", "", "end", ""]
 
 
 def triple_term(variable: int) -> str:
@@ -260,12 +260,12 @@ def reject_segment_tree_lines(segments, indent: str) -> list[str]:
 def unsat_alias_text(segment_count: int) -> str:
     lines = ["module", "",
              f"public import ErdosSzekeres.{PREFIX}CheckpointSegment{segment_count - 1:03d}",
-             "", "@[expose] public section", "", "namespace ErdosSzekeres", "",
+             "", "@[expose] public section", "", "namespace ErdosSzekeres.ES6", "",
              "/-! Public alias for the checkpointed, kernel-checked anchored ES(6) refutation. -/",
              "run_cmd",
              "  Lean.Elab.Command.liftTermElabM do",
              f"    let sourceName := `ErdosSzekeres.{PREFIX}Checkpoint.publicUnsat",
-             f"    let targetName := `ErdosSzekeres.es6Anchored_lrat_unsat",
+             f"    let targetName := `ErdosSzekeres.ES6.es6Anchored_lrat_unsat",
              "    let info ← Lean.getConstInfo sourceName",
              "    Lean.withExporting do",
              "      Lean.addDecl <| .thmDecl {",
@@ -274,7 +274,7 @@ def unsat_alias_text(segment_count: int) -> str:
              "        type := info.type",
              "        value := Lean.mkConst sourceName (info.levelParams.map Lean.mkLevelParam)",
              "      }",
-             "", "end ErdosSzekeres", "", "end", ""]
+             "", "end ErdosSzekeres.ES6", "", "end", ""]
     return "\n".join(lines)
 
 

@@ -137,7 +137,7 @@ set_option maxRecDepth 30000
 set_option linter.unusedVariables false
 set_option linter.unusedSimpArgs false
 
-namespace ErdosSzekeres
+namespace ErdosSzekeres.ES6
 
 /-- Every anchored one-change coloring on seventeen vertices contains a
 strong six-set: the kernel-checked LRAT refutation of the anchored
@@ -1024,6 +1024,6 @@ theorem es6Anchored_of_oneChange (chi : TripleColoring 17)
                 exact es6Anchored_rejectSemanticSegment127
                   chi hallowed hno hanchor hbad
 
-end ErdosSzekeres
+end ErdosSzekeres.ES6
 
 end

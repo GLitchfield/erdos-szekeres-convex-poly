@@ -10,7 +10,7 @@ set_option maxRecDepth 30000
 set_option linter.unusedVariables false
 set_option linter.unusedSimpArgs false
 
-namespace ErdosSzekeres
+namespace ErdosSzekeres.ES6
 
 /-- The fifteen four-tuple consistency conditions on the twenty triples of
 six ordered vertices, in lexicographic triple order. -/
@@ -201,6 +201,6 @@ theorem containsStrongPolygonSet_univ_of_isStrongPolygonOn {n : ℕ}
     by rw [Finset.card_image_of_injective _ f.injective]; simp,
     FinsetPolygon.IsStrongPolygonOn.isStrongPolygonSet_image h⟩
 
-end ErdosSzekeres
+end ErdosSzekeres.ES6
 
 end

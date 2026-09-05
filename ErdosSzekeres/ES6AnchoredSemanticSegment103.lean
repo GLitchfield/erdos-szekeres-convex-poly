@@ -12,7 +12,7 @@ set_option maxRecDepth 30000
 set_option linter.unusedVariables false
 set_option linter.unusedSimpArgs false
 
-namespace ErdosSzekeres
+namespace ErdosSzekeres.ES6
 
 /-! Semantic rejection of balanced CNF subtree 103. -/
 
@@ -11234,6 +11234,6 @@ theorem es6Anchored_rejectSemanticSegment103
                   ·
                     exact es6Anchored_clause48492 chi hallowed hno hanchor hbad
 
-end ErdosSzekeres
+end ErdosSzekeres.ES6
 
 end

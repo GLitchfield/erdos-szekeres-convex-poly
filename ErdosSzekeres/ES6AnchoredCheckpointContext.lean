@@ -5,7 +5,7 @@ public import ErdosSzekeres.LRATCheckpoint
 
 @[expose] public section
 
-namespace ErdosSzekeres
+namespace ErdosSzekeres.ES6
 
 -- The checkpoint projections are proof infrastructure, not useful premises.
 run_cmd
@@ -15,6 +15,6 @@ run_cmd
 lrat_checkpoint_context ES6AnchoredCheckpointContext
   (include_str "../certificates/es6-anchored-checkpoints/core.cnf")
 
-end ErdosSzekeres
+end ErdosSzekeres.ES6
 
 end

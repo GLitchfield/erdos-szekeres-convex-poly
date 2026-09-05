@@ -18,7 +18,7 @@ statements below.
 namespace ErdosSzekeres
 
 theorem anchoredSeventeenForcesStrongSix : AnchoredSeventeenForcesStrongSix :=
-  es6Anchored_of_oneChange
+  ES6.es6Anchored_of_oneChange
 
 /-- Every swept configuration with at least seventeen vertices contains a
 strong six-set. -/

@@ -64,7 +64,7 @@ import ErdosSzekeres.ES6AnchoredCheckpointSegment058
 
 public section
 
-namespace ErdosSzekeres
+namespace ErdosSzekeres.ES6
 
 set_option maxHeartbeats 0
 
@@ -74,6 +74,6 @@ lrat_checkpoint_segment ES6AnchoredCheckpointContext ES6AnchoredCheckpoint 59 40
   (include_str "../certificates/es6-anchored-checkpoints/carry-input-059.txt")
   (include_str "../certificates/es6-anchored-checkpoints/carry-output-059.txt")
 
-end ErdosSzekeres
+end ErdosSzekeres.ES6
 
 end
