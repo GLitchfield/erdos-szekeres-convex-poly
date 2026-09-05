@@ -245,3 +245,47 @@ with threshold at most 8 and on the lower side of `(4,5,6)`, three on its
 upper side.  A closed form must produce it from the run-internal bound
 (`u − 2` or `a − 2`) together with the deep-below relation between the runs
 inside the child; this is the first concrete target for step 3.
+
+## Addendum 2, 6 September: the depth-one closed form
+
+The loss is explained.  Write `T = decomposableThreshold`.  For a lower
+child with `p` runs, outer flags `b` (a sibling vertex before the first run)
+and `e` (one after the last), and coupling `d` (the sibling's longest cap):
+
+* `p = 1`, or `p ≥ 2` with an outer flag:
+  `E = T(a, 1 + min(u − 1 − b − e, k − 1 − max(b + e, d)), k)`.
+  Every cup of the child is bounded by the reduced cup parameter and by the
+  strong coupling; the runs cost nothing.
+* `p ∈ {2, 3}` with no outer flag (the sibling strictly inside):
+  `E = max { T(a, c + 1, k) + T(d' + 1, min(u − 1, k − d), k) : c ≤ min(u − 2, k − 2 − d), d' ≤ a − 2, c + d' ≤ k − 1 }`.
+  Run 1 is a lower part with cups at most `c`: a cup of run 1 extended by
+  a run-2 vertex is a cup of the child that joins the sibling's cap, hence
+  `c + 1 + d ≤ k − 1`.  Run 2 is an upper part with caps at most `d'`
+  (extended by run 1 on the left) and cups at most `min(u − 2, k − 1 − d)`,
+  and the two parts obey the strong coupling `c + d' ≤ k − 1`.
+
+Upper children are the mirror image.  `scripts/decomposable_depth1_formula.py`
+checks this against every entry of the tables for the seven cases
+`(4,4,5)`, `(4,5,5)`, `(5,4,5)`, `(5,5,5)`, `(4,4,6)`, `(4,5,6)`, `(4,5,7)`
+(the last via the avoiding subclass, 40 s): 430 existing entries, 430
+matches, no exception; the 370 remaining entries are run structures that do
+not exist (over-extended pairs) or four-run structures, which the formula
+does not address.  Searching signed combinations of up to three shifted
+thresholds finds no formula for the inside case, so the two-part maximum
+is not a disguised Pascal identity: in the binomial regime it equals
+`T(a, u − 1, k) + T(a − 1, u − 1, k) = T(a, u, k) − T(a − 2, u, k)`, while
+in the window regime and under a binding coupling only the maximum is
+right (for instance `(5,4,5)`: `T(5,3,5) + T(3,3,5) = 4 + 2 = 6`, where the
+Pascal form would give 7).
+
+The inside formula is the published stacked recursion applied to the child
+with position-reduced parameters.  The witnesses of
+`scripts/decomposable_run_witnesses.py` show that the extremal children are
+not literally stacked (their own deep-below splits take vertices from both
+runs), so the two-part maximum is a formula for the value, not a
+description of the structure.  What step 3 has to prove is that this
+recursion, applied with the context rules of experiment 0117 at every
+level, is additive; the depth-two signature tables of experiment 0119 are
+the test set, and `(4,6,6)` at threshold 11 is the next prediction to
+check (the formula gives 10, 6, 3 for the lower child with the sibling
+inside at couplings 1, 2, 3 and 8, 8, 5 for the upper child).
