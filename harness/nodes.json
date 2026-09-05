@@ -83,16 +83,13 @@
    "tag_errors": [],
    "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
    "type_hash": "ee88bf4ffda45548",
-   "sorry": true,
+   "sorry": false,
    "axioms": [
     "propext",
     "Classical.choice",
-    "Quot.sound",
-    "sorryAx"
+    "Quot.sound"
    ],
-   "nonstandard_axioms": [
-    "sorryAx"
-   ],
+   "nonstandard_axioms": [],
    "deps_declared": [
     "ErdosSzekeres.sweepExactUpperAt_three",
     "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset"
@@ -105,6 +102,11 @@
    "uncovered_axioms": [
     "sorryAx"
    ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-04"
