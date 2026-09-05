@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-05T22:11:20Z",
- "git_sha": "fc0d75eea08926168927c2b872b8a91262e728d7",
+ "generated_at": "2026-09-05T22:16:07Z",
+ "git_sha": "ae0692aa562af4b60bea05b20c8c32d055b0f7d7",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15343,
- "tree_hash": "c118af50072d0461",
+ "modules": 15344,
+ "tree_hash": "1e5db9a861ca86c9",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -20,8 +20,8 @@
  ],
  "taint": {
   "cached_modules": 15342,
-  "scanned_constants": 0,
-  "scanned_modules": 1
+  "scanned_constants": 1,
+  "scanned_modules": 2
  },
  "nodes": [
   {
@@ -992,6 +992,22 @@
    "merged_from": null
   },
   {
+   "name": "ErdosSzekeres.erdosSzekeresConjecture_of_predecessorHalfSubsetAt_all",
+   "module": "ErdosSzekeres.Closed.A.ErdosSzekeresConjectureOfPredecessorHalfSubsetAtAll",
+   "type_pp": "(∀ (j : Nat), instLENat.le 4 j → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n  ErdosSzekeres.ErdosSzekeresConjecture",
+   "type_hash": "e734cdc1e3931ff0",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "The headline reduction: the predecessor-half property at every level j ≥ 4 gives the Erdős–Szekeres conjecture, both halves. Upper half: sweepExactUpperAt_of_predecessorHalfSubset_all then forcesConvexPolygon_of_sweepExactUpperAt; sharpness: classical_lower_sharpness.",
+   "uncovered_axioms": [],
+   "merged_from": "ESBlueprint.A.ErdosSzekeresConjectureOfPredecessorHalfSubsetAtAll"
+  },
+  {
    "name": "ErdosSzekeres.erdosSzekeresFormulaAt_five",
    "module": "ErdosSzekeres.ES5Certificate",
    "type_pp": "ErdosSzekeres.ErdosSzekeresFormulaAt 5",
@@ -1200,9 +1216,7 @@
    "merged_from": null
   }
  ],
- "problems": [
-  "destination ErdosSzekeres.erdosSzekeresConjecture_of_predecessorHalfSubsetAt_all not found in the environment"
- ],
+ "problems": [],
  "lock_problems": [],
  "duplicate_problems": []
 }

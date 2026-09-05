@@ -107,6 +107,14 @@ def run(ctx: Ctx, name: str, dry_run: bool = False, force: bool = False) -> Resu
     build = run_guarded(cfg, [cfg.lake, "build", build_target], log_path=log, budget_min=cfg.core_budget_min * 2, force=force)
     if not build.ok:
         raise LeanError(f"consumer build failed after the move ({build.summary()}); the move is left in place for inspection:\n" + "\n".join(build.tail))
+    # the extractor reads the core root's environment: rebuild the root so that it contains
+    # the moved module, otherwise the new destination is reported as not found
+    if build_target != cfg.core_root_module:
+        root_log = cfg.build_log_dir / f"close-{time.strftime('%Y%m%d-%H%M%S')}-{n.short}-root.log"
+        root_build = run_guarded(cfg, [cfg.lake, "build", cfg.core_root_module], log_path=root_log,
+                                 budget_min=cfg.core_budget_min * 2, force=force)
+        if not root_build.ok:
+            raise LeanError(f"core root build failed after the move ({root_build.summary()}); the move is left in place for inspection:\n" + "\n".join(root_build.tail))
     from es.commands.extract import run_extract
     run_extract(ctx)
     with Store(cfg) as st:
