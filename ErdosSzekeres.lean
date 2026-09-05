@@ -261,3 +261,4 @@ public import ErdosSzekeres.TopeHellyCube
 public import ErdosSzekeres.ThreePointAffineTopeReturnBridge
 public import ErdosSzekeres.Closed.A.ForcesConvexPolygonOfSweepExactUpperAt
 public import ErdosSzekeres.Closed.A.SweepExactUpperAtOfPredecessorHalfSubsetAll
+public import ErdosSzekeres.Closed.A.ErdosSzekeresConjectureOfPredecessorHalfSubsetAtAll

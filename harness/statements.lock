@@ -15,7 +15,9 @@
     "approved_at": "2026-09-05",
     "kind": "formalization",
     "ws": "A",
-    "module": "ESBlueprint.A.ErdosSzekeresConjectureOfPredecessorHalfSubsetAtAll"
+    "module": "ESBlueprint.A.ErdosSzekeresConjectureOfPredecessorHalfSubsetAtAll",
+    "merged_module": "ErdosSzekeres.Closed.A.ErdosSzekeresConjectureOfPredecessorHalfSubsetAtAll",
+    "merged_at": "2026-09-05"
   },
   "ErdosSzekeres.etvCapFive_all": {
     "type_hash": "3347c8538095c325",

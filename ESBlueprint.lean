@@ -3,4 +3,3 @@
 import ESBlueprint.E.PredecessorHalfSubsetAtAll
 import ESBlueprint.B.DecomposableStateUpperAll
 import ESBlueprint.C.EtvCapFiveAll
-import ESBlueprint.A.ErdosSzekeresConjectureOfPredecessorHalfSubsetAtAll

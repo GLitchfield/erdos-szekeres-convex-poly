@@ -1,6 +1,10 @@
-import ErdosSzekeres.Closed.A.SweepExactUpperAtOfPredecessorHalfSubsetAll
-import ErdosSzekeres.Closed.A.ForcesConvexPolygonOfSweepExactUpperAt
-import ErdosSzekeres.Extremal
+module
+
+public import ErdosSzekeres.Closed.A.SweepExactUpperAtOfPredecessorHalfSubsetAll
+public import ErdosSzekeres.Closed.A.ForcesConvexPolygonOfSweepExactUpperAt
+public import ErdosSzekeres.Extremal
+
+@[expose] public section
 
 namespace ErdosSzekeres
 
@@ -18,3 +22,5 @@ theorem erdosSzekeresConjecture_of_predecessorHalfSubsetAt_all (h : ∀ j, 4 ≤
     (sweepExactUpperAt_of_predecessorHalfSubset_all n hn fun j hj _ => h j hj)
 
 end ErdosSzekeres
+
+end
