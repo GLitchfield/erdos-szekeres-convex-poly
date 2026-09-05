@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-05T21:57:20Z",
- "git_sha": "e924f2c3e6ccb32601b34e0018a0e628e1056956",
+ "generated_at": "2026-09-05T22:04:34Z",
+ "git_sha": "fa923b8943a62aaab231a1821521b4ff8a2c4869",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15343,
- "tree_hash": "2debffc6b4a97ea7",
+ "modules": 15344,
+ "tree_hash": "c535ecfb8048b3de",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,11 +19,58 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15339,
-  "scanned_constants": 4,
-  "scanned_modules": 4
+  "cached_modules": 15344,
+  "scanned_constants": 0,
+  "scanned_modules": 0
  },
  "nodes": [
+  {
+   "name": "ErdosSzekeres.erdosSzekeresConjecture_of_predecessorHalfSubsetAt_all",
+   "module": "ESBlueprint.A.ErdosSzekeresConjectureOfPredecessorHalfSubsetAtAll",
+   "ws": "A",
+   "kind": "formalization",
+   "description": "The headline reduction: the predecessor-half property at every level j ≥ 4 gives the Erdős–Szekeres conjecture, both halves. Upper half: sweepExactUpperAt_of_predecessorHalfSubset_all then forcesConvexPolygon_of_sweepExactUpperAt; sharpness: classical_lower_sharpness.",
+   "tags": {
+    "node": "",
+    "ws": "A",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all",
+     "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt",
+     "ErdosSzekeres.classical_lower_sharpness"
+    ],
+    "consumer": "ErdosSzekeres.ErdosSzekeresConjecture"
+   },
+   "tag_errors": [],
+   "type_pp": "(∀ (j : Nat), instLENat.le 4 j → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n  ErdosSzekeres.ErdosSzekeresConjecture",
+   "type_hash": "e734cdc1e3931ff0",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [
+    "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all",
+    "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt",
+    "ErdosSzekeres.classical_lower_sharpness"
+   ],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
   {
    "name": "ErdosSzekeres.decomposableStateUpper_all",
    "module": "ESBlueprint.B.DecomposableStateUpperAll",

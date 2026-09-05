@@ -8,6 +8,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.DecomposableStateUpperAll"
   },
+  "ErdosSzekeres.erdosSzekeresConjecture_of_predecessorHalfSubsetAt_all": {
+    "type_hash": "e734cdc1e3931ff0",
+    "type_pp": "(∀ (j : Nat), instLENat.le 4 j → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n  ErdosSzekeres.ErdosSzekeresConjecture",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-05",
+    "kind": "formalization",
+    "ws": "A",
+    "module": "ESBlueprint.A.ErdosSzekeresConjectureOfPredecessorHalfSubsetAtAll"
+  },
   "ErdosSzekeres.etvCapFive_all": {
     "type_hash": "3347c8538095c325",
     "type_pp": "∀ (n : Nat),\n  instLENat.le 5 n →\n    ∀ {N : Nat} {χ : ErdosSzekeres.TripleColoring N},\n      ErdosSzekeres.IsSweepRealizable χ →\n        instLTNat.lt (ErdosSzekeres.decomposableThreshold 5 n n) N →\n          Or (ErdosSzekeres.ContainsCapSet χ Finset.univ 5)\n            (Or (ErdosSzekeres.ContainsCupSet χ Finset.univ n)\n              (ErdosSzekeres.ContainsStrongPolygonSet χ Finset.univ n))",
