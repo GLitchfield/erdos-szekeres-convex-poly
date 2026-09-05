@@ -12,6 +12,7 @@ from es.commands import (  # noqa: F401
     falsify,
     jobs,
     layers,
+    lock,
     node,
     note,
     ready,

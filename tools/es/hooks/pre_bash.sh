@@ -22,10 +22,10 @@ fail=0
 rebuild=0
 case "$cmd" in *"[certificate-rebuild]"*) rebuild=1 ;; esac
 if [ "$rebuild" = 1 ]; then
-  "$es" layers --allow-rebuild >/tmp/es-pre-bash.$$ 2>&1 || { echo "es layers failed:"; tail -20 /tmp/es-pre-bash.$$; fail=1; }
+  "$es" layers --allow-rebuild --base HEAD >/tmp/es-pre-bash.$$ 2>&1 || { echo "es layers failed:"; tail -20 /tmp/es-pre-bash.$$; fail=1; }
   echo "es: [certificate-rebuild] commit; extract consistency check skipped until the certificates are rebuilt" >&2
 else
-  "$es" layers >/tmp/es-pre-bash.$$ 2>&1 || { echo "es layers failed:"; tail -20 /tmp/es-pre-bash.$$; fail=1; }
+  "$es" layers --base HEAD >/tmp/es-pre-bash.$$ 2>&1 || { echo "es layers failed:"; tail -20 /tmp/es-pre-bash.$$; fail=1; }
   "$es" extract --check >>/tmp/es-pre-bash.$$ 2>&1 || { echo "es extract --check failed:"; tail -20 /tmp/es-pre-bash.$$; fail=1; }
 fi
 "$es" audit --changed >>/tmp/es-pre-bash.$$ 2>&1 || { echo "es audit --changed failed:"; tail -20 /tmp/es-pre-bash.$$; fail=1; }

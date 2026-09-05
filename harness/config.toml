@@ -101,6 +101,11 @@ serial_missing = true                  # build Lake's out-of-date list before th
 serial_rounds = 5000                   # chains are deep (192 checkpoint segments import each other)
 batch_small = 6                        # independent small chain heads per lake invocation
 heavy_patterns = ["*CheckpointSegment*", "*CheckpointContext", "*CNFRaw*", "*CNFMid*"]  # always alone
+memory_max_retry = "30G"               # a single module that hits memory_max is retried once with this cap
+memory_max_final = "30G"               # the final parallel step (the root module maps every olean)
+[[build.memory_overrides]]             # modules known to need more than memory_max on their own
+pattern = "ErdosSzekeres.StructuralChargingNextState578UpperBracketFanCounterexample"
+memory_max = "28G"
 
 [build.targets]
 core = ["ESCore"]
@@ -112,18 +117,11 @@ ESBlueprint = "ESBlueprint"
 
 [extract]
 script = "ESBlueprint/Extract.lean"    # materialized from tools/es/lean/Extract.lean.tmpl
-# Normally ["ESBlueprint", "ErdosSzekeres"] (the whole core). TEMPORARY (2026-09-04): the
-# core root is out of date (318-module certificate rebuild pending Gavin's go-ahead, see
-# docs/harness-implementation-2026-09-04.md), so the extractor imports the destination
-# theorems' modules directly; restore the root once `es build core` has completed.
-imports = ["ESBlueprint", "ErdosSzekeres.SmallCases", "ErdosSzekeres.ES5Certificate", "ErdosSzekeres.ES6Certificate", "ErdosSzekeres.Extremal", "ErdosSzekeres.TothValtrUpper", "ErdosSzekeres.SukPositiveFractionExplicitUpper", "ErdosSzekeres.HMPTExplicitUpper", "ErdosSzekeres.StrongPredecessorBaseSixThroughFourteen", "ErdosSzekeres.PredecessorHalfSix", "ErdosSzekeres.DecompositionPrimeNormalization", "ErdosSzekeres.StrongPredecessorBicoloring", "ErdosSzekeres.CommonAnchorPermutationOrder"]
+imports = ["ESBlueprint", "ErdosSzekeres"]
 memory_max = "36G"                     # the environment maps every olean; proof terms are read once, sequentially
 budget_min = 180
-index_layers = ["ESCore"]              # layers whose declarations go into index.json (certificates excluded)
-# TEMPORARY (2026-09-04): two destinations live on the E3State466 side of the StrongSixValues
-# clash and cannot be imported together with the ES(6) certificate; report them as warnings
-# instead of failing `es extract --check`. Set back to "error" once the clash is fixed.
-missing_destinations = "warn"
+index_layers = ["ESCore", "ESEncodings"]  # layers whose declarations go into index.json (certificates excluded)
+missing_destinations = "error"
 
 [claims]
 ttl_hours = 12

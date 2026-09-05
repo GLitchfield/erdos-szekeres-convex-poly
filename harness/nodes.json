@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-04T23:21:04Z",
- "git_sha": "72599c7248db5029b01e5204f75db1a774d5c8d4",
+ "generated_at": "2026-09-05T19:28:50Z",
+ "git_sha": "6199dc6aea7b161e1d2983fe682fece6bb14e1bd",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 8485,
- "tree_hash": "992cc9962983b4da",
+ "modules": 15342,
+ "tree_hash": "ecff040eadda9f85",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 8485,
+  "cached_modules": 15342,
   "scanned_constants": 0,
   "scanned_modules": 0
  },
@@ -60,7 +60,7 @@
    ],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-04"
   },
   {
    "name": "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all",
@@ -95,6 +95,45 @@
     "ErdosSzekeres.sweepExactUpperAt_three",
     "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset"
    ],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-04"
+  },
+  {
+   "name": "ErdosSzekeres.decomposableStateUpper_all",
+   "module": "ESBlueprint.B.DecomposableStateUpperAll",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The decomposable theorem (Baek–Balko Theorem 8) for all parameters: a decomposable coloring on more than decomposableThreshold a u k vertices contains an a-cap, a u-cup, or a strong k-set. The degenerate a = 1 / u = 1 cases are to be checked against containsCupSet_one before this statement is locked.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "dangling-ok": "uniform theorem; consumer is E3FiniteReduction's DecomposableExactUpperAt",
+    "measure": "a + u (published induction)"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (a u k : Nat),\n  instLENat.le 1 a →\n    instLENat.le 1 u →\n      instLENat.le a k → instLENat.le u k → ErdosSzekeres.DecomposableStateUpper a u k",
+   "type_hash": "a5d6767d0f8a1d2e",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
    "status": "open",
@@ -285,7 +324,7 @@
     }
    },
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-04"
   }
  ],
  "destinations": [
@@ -302,6 +341,38 @@
    ],
    "nonstandard_axioms": [],
    "description": "D4: the classical all-`n` lower construction, as an actual planar\nsharpness witness of size `2^(n-2)`.",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.decomposableExactUpperAt_six",
+   "module": "ErdosSzekeres.E3FiniteReduction",
+   "type_pp": "ErdosSzekeres.DecomposableExactUpperAt 6",
+   "type_hash": "fa26d108fd33e3b2",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "The exact Erdős--Szekeres upper formula holds at `k = 6` throughout the\nabstract recursively decomposable class.",
+   "uncovered_axioms": [],
+   "merged_from": null
+  },
+  {
+   "name": "ErdosSzekeres.decomposableStateUpper_488",
+   "module": "ErdosSzekeres.StructuralChargingResidualWindow488",
+   "type_pp": "ErdosSzekeres.DecomposableStateUpper 4 8 8",
+   "type_hash": "da5f029dafcbb7bd",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "description": "The unconditional root closure lifts through the hereditary root\ntransition to the full decomposable `(4,8,8)` state.",
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -484,9 +555,5 @@
  ],
  "problems": [],
  "lock_problems": [],
- "duplicate_problems": [],
- "warnings": [
-  "destination ErdosSzekeres.decomposableExactUpperAt_six not found in the environment",
-  "destination ErdosSzekeres.decomposableStateUpper_488 not found in the environment"
- ]
+ "duplicate_problems": []
 }

@@ -156,10 +156,44 @@ def run_guarded(
         except (ValueError, OSError):
             pass
         stats.unlink(missing_ok=True)
+    if rc == -15 or budget_exceeded:
+        # the stopped scope's compilers take a few seconds to exit; do not let the next
+        # invocation be refused for "a compiler is already running"
+        for _ in range(60):
+            if lean_compilers_running() == 0:
+                break
+            time.sleep(2)
     text = log_path.read_text(errors="replace")
     built = sum(1 for line in text.splitlines() if "Built " in line) if count_built else 0
     tail = text.splitlines()[-15:]
     return BuildResult(rc, seconds, built, str(log_path), argv, budget_exceeded, ooms, peak, tail=tail)
+
+
+def memory_for(cfg: Config, modules: list[str]) -> str:
+    """The memory cap for a lake invocation: the largest [[build.memory_overrides]] match, else the default."""
+    import fnmatch
+    best = _mem_gib(cfg.build_memory_max)
+    spec = cfg.build_memory_max
+    for o in cfg.get("build", "memory_overrides", default=[]) or []:
+        pat, mem = str(o.get("pattern", "")), str(o.get("memory_max", ""))
+        if mem and any(fnmatch.fnmatchcase(m, pat) for m in modules) and _mem_gib(mem) > best:
+            best, spec = _mem_gib(mem), mem
+    return spec
+
+
+def build_module_group(cfg: Config, group: list[str], *, log: Path, budget_min: float | None, force: bool,
+                       extra_args: list[str] | None = None) -> BuildResult:
+    """One guarded lake invocation; a single module that hits the cap is retried once with the escalation cap."""
+    mem = memory_for(cfg, group)
+    res = run_guarded(cfg, [cfg.lake, "build", *group, *(extra_args or [])], log_path=log, budget_min=budget_min, memory_max=mem, force=force)
+    if res.rc == -15 and not res.budget_exceeded and len(group) == 1:
+        bigger = str(cfg.get("build", "memory_max_retry", default="30G"))
+        if _mem_gib(bigger) > _mem_gib(mem):
+            log2 = log.with_name(log.stem + "-retry" + log.suffix)
+            res2 = run_guarded(cfg, [cfg.lake, "build", *group, *(extra_args or [])], log_path=log2, budget_min=budget_min, memory_max=bigger, force=force)
+            res2.tail = [f"(retried with MemoryMax={bigger} after the {mem} cap was hit)"] + res2.tail
+            return res2
+    return res
 
 
 def missing_olean_modules(cfg: Config, mods: dict[str, Module], roots: list[str]) -> list[str]:
@@ -250,7 +284,7 @@ def build(cfg: Config, kind: str, *, budget_min: float | None = None, node_modul
                     results.append(BuildResult(124, 0, 0, "", [cfg.lake, "build", *group], budget_exceeded=True))
                     return results
                 log = log_dir / f"build-{stamp}-{group[0]}{'+%d' % (len(group) - 1) if len(group) > 1 else ''}.log"
-                res = run_guarded(cfg, [cfg.lake, "build", *group, *(extra_args or [])], log_path=log, budget_min=remaining, force=force)
+                res = build_module_group(cfg, group, log=log, budget_min=remaining, force=force, extra_args=extra_args)
                 results.append(res)
                 if not res.ok and len(group) > 1 and not res.budget_exceeded:
                     # retry one at a time (memory cap or a single failing module)
@@ -259,7 +293,7 @@ def build(cfg: Config, kind: str, *, budget_min: float | None = None, node_modul
                         if remaining <= 0:
                             return results
                         log = log_dir / f"build-{stamp}-{m}.log"
-                        res = run_guarded(cfg, [cfg.lake, "build", m, *(extra_args or [])], log_path=log, budget_min=remaining, force=force)
+                        res = build_module_group(cfg, [m], log=log, budget_min=remaining, force=force, extra_args=extra_args)
                         results.append(res)
                         if not res.ok:
                             return results
@@ -274,5 +308,7 @@ def build(cfg: Config, kind: str, *, budget_min: float | None = None, node_modul
                                        tail=[f"{len(left)} chain head(s) still out of date after the serial pass (budget exhausted?): " + ", ".join(left[:8])]))
             return results
     log = log_dir / f"build-{stamp}-{kind}.log"
-    results.append(run_guarded(cfg, [cfg.lake, "build", *targets, *(extra_args or [])], log_path=log, budget_min=budget_min, force=force))
+    # the final (parallel) step maps the whole library into the root module's compiler; give it the larger cap
+    final_mem = str(cfg.get("build", "memory_max_final", default=cfg.get("build", "memory_max_retry", default="30G")))
+    results.append(run_guarded(cfg, [cfg.lake, "build", *targets, *(extra_args or [])], log_path=log, budget_min=budget_min, memory_max=final_mem, force=force))
     return results

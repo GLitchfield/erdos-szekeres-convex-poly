@@ -20,7 +20,7 @@ class Violation:
         return f"{self.kind}: {self.module}: {self.detail}"
 
 
-def check_layers(cfg: Config, mods: dict[str, Module] | None = None, allow_rebuild: bool | None = None) -> list[Violation]:
+def check_layers(cfg: Config, mods: dict[str, Module] | None = None, allow_rebuild: bool | None = None, base: str | None = None) -> list[Violation]:
     layers = cfg.layers()
     mods = mods if mods is not None else scan_modules(cfg, layers)
     if allow_rebuild is None:
@@ -64,11 +64,11 @@ def check_layers(cfg: Config, mods: dict[str, Module] | None = None, allow_rebui
                     )
                 )
     out.extend(check_blueprint_root(cfg, mods))
-    out.extend(check_pinned_layers(cfg, mods, allow_rebuild))
+    out.extend(check_pinned_layers(cfg, mods, allow_rebuild, base))
     return out
 
 
-def check_pinned_layers(cfg: Config, mods: dict[str, Module], allow_rebuild: bool) -> list[Violation]:
+def check_pinned_layers(cfg: Config, mods: dict[str, Module], allow_rebuild: bool, base: str | None = None) -> list[Violation]:
     """Closure layers with a members file: the computed set must equal the pinned list, and
     frozen members may not differ from the default branch without a rebuild marker."""
     out: list[Violation] = []
@@ -87,7 +87,8 @@ def check_pinned_layers(cfg: Config, mods: dict[str, Module], allow_rebuild: boo
 
             if git_ok(cfg):
                 closure = frozen_closure(layer, mods)
-                changed = set(changed_files(cfg, f"{cfg.git_remote}/{cfg.default_branch}"))
+                ref = base or f"{cfg.git_remote}/{cfg.default_branch}"
+                changed = set(changed_files(cfg, ref))
                 by_path = {str(module_to_path(n)): n for n in closure}
                 hit = sorted(n for rel, n in by_path.items() if rel in changed)
                 if hit:
@@ -105,7 +106,7 @@ def check_pinned_layers(cfg: Config, mods: dict[str, Module], allow_rebuild: boo
                             seen.add(x)
                             stack.extend(rev.get(x, ()))
                         n_gen = sum(1 for x in seen if x in mods and mods[x].generated)
-                        out.append(Violation("frozen-module", name, f"{module_to_path(name)} differs from {cfg.git_remote}/{cfg.default_branch} and {n_gen} generated certificate module(s) are built on it; they will all be rebuilt. Commit with the marker [certificate-rebuild] (or ES_CERTIFICATE_REBUILD=1) to accept that"))
+                        out.append(Violation("frozen-module", name, f"{module_to_path(name)} differs from {ref} and {n_gen} generated certificate module(s) are built on it; they will all be rebuilt. Commit with the marker [certificate-rebuild] (or ES_CERTIFICATE_REBUILD=1) to accept that"))
     return out
 
 

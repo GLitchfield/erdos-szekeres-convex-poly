@@ -51,8 +51,8 @@ acceptance checklist (§13) at the end of the first build session.
    hash, so only changed modules are rescanned. `importAll := true` must not be used
    (it forces a 30+ GB environment); a plain import exposes every proof term.
 5. **Statement identity** is `mixHash (Expr.hash type) (hash levelParams)`; stable
-   within a toolchain, not across toolchain bumps (all lock entries would then need
-   `es node restate`, or a future `es lock refresh`).
+   within a toolchain, not across toolchain bumps. `es lock refresh --all --reason ...`
+   re-approves entries whose pretty-printed statement is unchanged and refuses the rest.
 6. **CI Lean job needs a self-hosted runner** (`es-lean` label); hosted runners
    cannot hold 130 GB of build products or 15 GiB compiles. The job is gated on a
    repository variable until such a runner exists.
@@ -147,11 +147,28 @@ acceptance checklist (§13) at the end of the first build session.
 5. **CI.** The Lean job stays gated on a self-hosted runner; the honest local gate is the
    pre-commit hook plus the nightly user timer (`tools/es/systemd/`, 03:00, guarded).
 
+## 2026-09-05: finishing the rebuild
+
+The overnight run built the clause chunks, semantic segments, the other stale families
+and checkpoint segments 001–018 (about 95 s each), then aborted on a harness bug: a
+two-module batch of `StructuralChargingNextState578*` hit the 20 GB cap and the
+single-module retry was refused because the killed compiler was still exiting. Fixed
+in `es build`: after a scope stop it waits for the compilers to exit; a single module
+that hits the cap is retried once with `build.memory_max_retry` (30 GB), per-module
+`[[build.memory_overrides]]` exist (`…UpperBracketFanCounterexample` needs 20.5 GB on
+its own), and the final parallel step gets `build.memory_max_final`. The rest of the
+ES(6) checkpoint chain (segments 019–191) was rebuilt on 2026-09-05 by a driver that
+relaunches `es build core` until Lake reports nothing stale; the root built at 15:03.
+Afterwards `[extract] imports` went back to the root, `missing_destinations` to `error`,
+`index_layers` gained `ESEncodings`, the full-root extraction took 15.6 min (ES(6) family
+rescanned once, now cached) with all 14 destinations clean, and the B seed node
+`decomposableStateUpper_all` was added. Frontier: four open, ready nodes (A, A, B, E).
+
 ## Acceptance checklist (§13)
 
 | # | Item | State | Evidence (2026-09-04) |
 | --- | --- | --- | --- |
-| 1 | `lake build ESCore` from warm cache within budget | **blocked** | the root does not build (`StrongSixValues` clash) and 318 modules are stale; the eight hand-written stale modules built serially in 3–53 s each under the guard |
+| 1 | `lake build ESCore` from warm cache within budget | done (2026-09-05) | after the ES(6) namespacing and the chain rebuild, `es build core` on the warm tree completes in 40 s against the 10-minute budget (Lake: 13,304 jobs, nothing to build) |
 | 2 | `es layers` passes; an unlisted ESCore→certificate import fails | done | passes on the tree (9,857 / 364 / 4 modules); unit test `test_core_importing_certificate_outside_allowlist_fails` |
 | 3 | `es extract` lists nodes with correct sorry/axioms; a proof flips a node to closed | done | smoke node: open → `es check` → closed, standard axioms only, no harness file edited |
 | 4 | `--check` fails on a hand-edited statement, passes after `es node restate` | done | "statement changed by hand (lock b948…, now 506a…)"; restate rewrote the lock and appended to `restatements.md` |

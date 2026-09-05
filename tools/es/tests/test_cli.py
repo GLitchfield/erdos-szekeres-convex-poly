@@ -73,3 +73,20 @@ def test_dispatch_drops_unset_optional_args(cfg):
     ns.name = "x"; ns.generators = None
     dispatch(spec, ns)
     assert seen == {"name": "x", "generators": "default,globs"}
+
+
+def test_lock_refresh_only_when_statement_text_unchanged(cfg, capsys, monkeypatch):
+    import json
+    from es.cli import main
+    nodes = {"generated_at": "x", "git_sha": "y", "nodes": [
+        {"name": "TCore.a", "module": "TBlueprint.A.A", "type_pp": "True", "type_hash": "new", "sorry": True, "axioms": [], "tags": {"ws": "A", "kind": "formalization"}},
+        {"name": "TCore.b", "module": "TBlueprint.A.B", "type_pp": "False", "type_hash": "new2", "sorry": True, "axioms": [], "tags": {"ws": "A", "kind": "formalization"}}],
+        "destinations": []}
+    (cfg.root / "harness" / "nodes.json").write_text(json.dumps(nodes))
+    (cfg.root / "harness" / "statements.lock").write_text(json.dumps({
+        "TCore.a": {"type_hash": "old", "type_pp": "True"}, "TCore.b": {"type_hash": "old2", "type_pp": "True ∧ True"}}))
+    rc = main(["lock", "refresh", "--reason", "toolchain bump", "--all", "--json"])
+    out = json.loads(capsys.readouterr().out)
+    assert rc == 1 and out["refreshed"] == ["TCore.a"]
+    lock = json.loads((cfg.root / "harness" / "statements.lock").read_text())
+    assert lock["TCore.a"]["type_hash"] == "new" and lock["TCore.b"]["type_hash"] == "old2"

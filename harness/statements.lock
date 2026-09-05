@@ -1,4 +1,13 @@
 {
+  "ErdosSzekeres.decomposableStateUpper_all": {
+    "type_hash": "a5d6767d0f8a1d2e",
+    "type_pp": "∀ (a u k : Nat),\n  instLENat.le 1 a →\n    instLENat.le 1 u →\n      instLENat.le a k → instLENat.le u k → ErdosSzekeres.DecomposableStateUpper a u k",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-05",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.DecomposableStateUpperAll"
+  },
   "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt": {
     "type_hash": "de5bf55bf587cb09",
     "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    ErdosSzekeres.SweepExactUpperAt k →\n      ErdosSzekeres.ForcesConvexPolygon k (instHAdd.hAdd (instHPow.hPow 2 (instHSub.hSub k 2)) 1)",

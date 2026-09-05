@@ -10,6 +10,7 @@ and why: `docs/harness-implementation-2026-09-04.md`.
     tools/es/bin/es check <node>      # build the node module, re-extract, report sorry/axioms
     tools/es/bin/es build core        # memory-guarded, budgeted lake build
     tools/es/bin/es layers | audit    # import layering / axiom allowlist checks
+    tools/es/bin/es lock refresh --all --reason "toolchain vX"   # re-approve unchanged statements after a toolchain bump
 
 Install for development: `uv venv tools/es/.venv && uv pip install -e "tools/es[test,mcp]"`,
 then `pytest tools/es/tests`. The MCP server (`tools/es/bin/es-mcp`) is registered in
