@@ -39,16 +39,13 @@
    "tag_errors": [],
    "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    ErdosSzekeres.SweepExactUpperAt k →\n      ErdosSzekeres.ForcesConvexPolygon k (instHAdd.hAdd (instHPow.hPow 2 (instHSub.hSub k 2)) 1)",
    "type_hash": "de5bf55bf587cb09",
-   "sorry": true,
+   "sorry": false,
    "axioms": [
     "propext",
     "Classical.choice",
-    "Quot.sound",
-    "sorryAx"
+    "Quot.sound"
    ],
-   "nonstandard_axioms": [
-    "sorryAx"
-   ],
+   "nonstandard_axioms": [],
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
@@ -58,6 +55,11 @@
    "uncovered_axioms": [
     "sorryAx"
    ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-04"

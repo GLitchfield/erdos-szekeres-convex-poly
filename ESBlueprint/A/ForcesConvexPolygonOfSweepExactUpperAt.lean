@@ -8,6 +8,15 @@ namespace ErdosSzekeres
 @kind formalization
 @consumer ErdosSzekeres.ErdosSzekeresConjecture -/
 theorem forcesConvexPolygon_of_sweepExactUpperAt (k : ℕ) (hk : 3 ≤ k) (h : SweepExactUpperAt k) : ForcesConvexPolygon k (2 ^ (k - 2) + 1) := by
-  sorry
+  intro s hcard hgp
+  classical
+  let P := Classical.choice (exists_sweptPresentation s hgp)
+  have hlt : 2 ^ (k - 2) < s.card := by omega
+  obtain ⟨polygon, -, hpolygonCard, hstrong⟩ :=
+    h P.configuration.tripleColoring_isSweepRealizable hlt
+  rw [P.containsConvexSubset_iff_exists_isStrongPolygonOn k]
+  subst hpolygonCard
+  exact ⟨polygon.orderEmbOfFin rfl,
+    FinsetPolygon.IsStrongPolygonSet.isStrongPolygonOn_orderEmbOfFin hstrong⟩
 
 end ErdosSzekeres
