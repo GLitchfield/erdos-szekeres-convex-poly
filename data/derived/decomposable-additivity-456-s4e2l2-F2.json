@@ -1,0 +1,25 @@
+{
+ "case": "4,5,6",
+ "recursion": "F2",
+ "s_max": 4,
+ "e_max": 2,
+ "levels": 2,
+ "stats": {
+  "contexts": 4315,
+  "nonzero_contexts": 2747,
+  "partitions": 20310,
+  "violations": 0,
+  "slack_histogram": {
+   "0": 10090,
+   "1": 4502,
+   "2": 2862,
+   "3": 1360,
+   "4": 1004,
+   "5": 440,
+   "6": 36,
+   "7": 16
+  },
+  "seconds": 902.0
+ },
+ "violations": []
+}

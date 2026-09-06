@@ -136,3 +136,14 @@ on every abstract context tested, including the `k = 6` contexts that
 defeat the stacked form.  The exchange map of section 1 says which cut to
 take: one of the four boundary positions in the better orientation, and,
 by section 4, an interior block when the lower part is sandwiched.
+
+**Addendum 2, 7 September.**  The five-letter (5,5,6) test with interval
+cuts, run as four independent shards with bounded memoization tables
+(`scripts/decomposable_additivity_test.py --shard`, merged by
+`scripts/decomposable_additivity_merge.py`): all 66,828 interleaved
+partitions of the 4,408 nonzero contexts, **no violation**, 4.2 h of
+shard time at under 2 GiB per shard, where the single process had reached
+28 GiB without finishing.  The four-letter interval-cut chain is also clean
+at (4,5,6), (5,4,6) and (4,6,6) (20,310 partitions each).  So on every
+context tested at `k = 6`, the interval-cut recursion is additive exactly
+where the stacked one is not.
