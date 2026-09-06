@@ -147,3 +147,16 @@ shard time at under 2 GiB per shard, where the single process had reached
 at (4,5,6), (5,4,6) and (4,6,6) (20,310 partitions each).  So on every
 context tested at `k = 6`, the interval-cut recursion is additive exactly
 where the stacked one is not.
+
+**Addendum 3, 7 September.**  Interval cuts, exactness at `k = 5`: the
+sharded comparison on all 8,078 deep signatures of `(5,5,5)` (depths two to
+five) gives `F2 − E = 0` on every one
+(`data/derived/decomposable-recursive-F2-vs-exact-555.json`), so `F2` is
+exact on all 8,624 deep contexts at `k = 5`.  Three external levels with
+interval cuts at `(4,4,5)`: 179,354 partitions, no violation (sharded).
+And at `(4,5,6)`, deep signatures taken from a sample of 50 extremal
+colorings of the compiled class (348 signatures, all tight) show the stacked
+recursion below the exact value on 4 of them, by one or two, so the sandwich
+effect is present at `(4,5,6)` as well as `(5,5,6)`; the full `(4,5,6)`,
+`(4,5,7)` and sampled `(5,5,6)` tables with both recursions are running
+(`scripts/decomposable_deep_tables_compiled.py`).

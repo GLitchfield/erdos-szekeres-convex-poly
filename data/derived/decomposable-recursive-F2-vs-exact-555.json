@@ -1,0 +1,9 @@
+{
+ "case": "5,5,5",
+ "recursion": "F2",
+ "signatures": 8078,
+ "F2_minus_E": {
+  "0": 8078
+ },
+ "shards": 4
+}
