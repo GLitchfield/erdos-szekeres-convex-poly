@@ -235,6 +235,18 @@ int main(int argc, char **argv) {
             fclose(fp);
         }
         if (!cls[n].count) break;
+        /* Records of size <= n-1 are reused at levels >= n+1 only paired with a part of at least
+         * two vertices (longest chain >= 2), so only those with cupmax <= K-3 (as a lower part) or
+         * capmax <= K-3 (as an upper part) can ever be used again: prune the rest and free the
+         * finished hash tables.  Memory then holds two consecutive full classes at most. */
+        for (int q = 1; q <= n - 1; q++) {
+            Class *c = &cls[q];
+            size_t w = 0;
+            for (size_t i = 0; i < c->count; i++)
+                if (c->recs[i].cupmax <= K - 3 || c->recs[i].capmax <= K - 3) c->recs[w++] = c->recs[i];
+            c->count = w;
+            if (c->table) { free(c->table); c->table = NULL; c->tcap = 0; }
+        }
     }
     printf("}}\n");
     return 0;
