@@ -19,6 +19,9 @@ Steps, cheapest first (``--steps`` selects; all run by default):
   half, counterexample-guided, within --cegar-seconds
   (scripts/predecessor_half_k7_cegar.py, experiment 0115); an abstract
   witness is reported as an error (exit 3) until its realizability is checked.
+* ``hamming``: the same search at 32 vertices restricted to colorings within
+  --hamming-radius orientation flips of the Erdős–Szekeres set, which
+  terminates (UNSAT exhausts the ball); experiment 0115 addendum.
 
 Exit 0 = no counterexample in any step, 2 = counterexample (witness in --out),
 other = error.
@@ -65,7 +68,9 @@ def main() -> int:
     ap.add_argument("--node")
     ap.add_argument("--statement")
     ap.add_argument("--k", type=int, action="append", help="k values for the constructions step (default 6 7)")
-    ap.add_argument("--steps", default="constructions,interleaved,flips,cegar")
+    ap.add_argument("--steps", default="constructions,interleaved,flips,cegar,hamming")
+    ap.add_argument("--hamming-radius", type=int, default=8)
+    ap.add_argument("--hamming-seconds", type=int, default=600)
     ap.add_argument("--flip-keep", type=int, default=10)
     ap.add_argument("--flip-nearest", type=int, default=6)
     ap.add_argument("--cegar-n", type=int, default=25)
@@ -156,6 +161,22 @@ def main() -> int:
         elif proc.returncode != 0:
             errors.append({"step": "cegar", "rc": proc.returncode})
 
+    if "hamming" in steps:
+        base = ROOT / "data" / "derived" / "baek-balko-constructions-k7.json"
+        out = tmp / "hamming-k7-n32.json"
+        if base.exists():
+            proc = run_script([SCRIPTS / "predecessor_half_k7_cegar.py", "--n", 32, "--base-construction", base, "--base-name", "ES(7,7,7)",
+                               "--hamming", a.hamming_radius, "--budget-seconds", a.hamming_seconds, "--cadical", cad,
+                               "--output", out, "--counterexample-dir", ce_dir])
+            if out.exists():
+                data = json.loads(out.read_text())
+                summary["steps"]["hamming"] = {"base": "ES(7,7,7)", "radius": a.hamming_radius, "result": data.get("result"),
+                                               "iterations": len(data.get("iterations", [])), "seconds": data.get("seconds")}
+            if proc.returncode == 2:
+                errors.append({"step": "hamming", "rc": 2, "note": "abstract-tier witness near ES(7,7,7); realizability undetermined",
+                               "witnesses": sorted(str(p) for p in ce_dir.glob("k7-signotope-*.json"))})
+            elif proc.returncode != 0:
+                errors.append({"step": "hamming", "rc": proc.returncode})
     summary["failures"] = failures
     summary["errors"] = errors
     print(json.dumps({"steps": list(summary["steps"]), "failures": len(failures), "errors": errors}), file=sys.stderr)

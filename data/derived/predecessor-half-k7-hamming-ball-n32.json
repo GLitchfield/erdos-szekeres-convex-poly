@@ -1,0 +1,216 @@
+{
+ "n": 32,
+ "target": 16,
+ "runs": [
+  {
+   "base": "ES(7,7,7)",
+   "hamming": 4,
+   "result": "unsat",
+   "iterations": 1,
+   "seconds": 179.8,
+   "learned_clauses": 8,
+   "largest_strong_six_free_seen": 16,
+   "variables": 1168328,
+   "clauses": {
+    "one_change": 287680,
+    "quad_to": 143840,
+    "quad_from": 143840,
+    "five_from": 201376,
+    "five_to": 1006880,
+    "six_from": 906192,
+    "six_to": 5437152,
+    "no_strong_seven": 3365856,
+    "hamming": 44635
+   }
+  },
+  {
+   "base": "ES(7,7,7)",
+   "hamming": 8,
+   "result": "unsat",
+   "iterations": 1,
+   "seconds": 279.5,
+   "learned_clauses": 8,
+   "largest_strong_six_free_seen": 16,
+   "variables": 1188168,
+   "clauses": {
+    "one_change": 287680,
+    "quad_to": 143840,
+    "quad_from": 143840,
+    "five_from": 201376,
+    "five_to": 1006880,
+    "six_from": 906192,
+    "six_to": 5437152,
+    "no_strong_seven": 3365856,
+    "hamming": 84311
+   }
+  },
+  {
+   "base": "ES(7,7,7)",
+   "hamming": 12,
+   "result": "unsat",
+   "iterations": 1,
+   "seconds": 269.2,
+   "learned_clauses": 8,
+   "largest_strong_six_free_seen": 16,
+   "variables": 1208008,
+   "clauses": {
+    "one_change": 287680,
+    "quad_to": 143840,
+    "quad_from": 143840,
+    "five_from": 201376,
+    "five_to": 1006880,
+    "six_from": 906192,
+    "six_to": 5437152,
+    "no_strong_seven": 3365856,
+    "hamming": 123987
+   }
+  },
+  {
+   "base": "ES(7,7,7)",
+   "hamming": 16,
+   "result": "unsat",
+   "iterations": 3,
+   "seconds": 366.4,
+   "learned_clauses": 24,
+   "largest_strong_six_free_seen": 16,
+   "variables": 1227848,
+   "clauses": {
+    "one_change": 287680,
+    "quad_to": 143840,
+    "quad_from": 143840,
+    "five_from": 201376,
+    "five_to": 1006880,
+    "six_from": 906192,
+    "six_to": 5437152,
+    "no_strong_seven": 3365856,
+    "hamming": 163663
+   }
+  },
+  {
+   "base": "ES(7,7,7)",
+   "hamming": 24,
+   "result": "unsat",
+   "iterations": 5,
+   "seconds": 625.6,
+   "learned_clauses": 40,
+   "largest_strong_six_free_seen": 16,
+   "variables": 1267528,
+   "clauses": {
+    "one_change": 287680,
+    "quad_to": 143840,
+    "quad_from": 143840,
+    "five_from": 201376,
+    "five_to": 1006880,
+    "six_from": 906192,
+    "six_to": 5437152,
+    "no_strong_seven": 3365856,
+    "hamming": 243015
+   }
+  },
+  {
+   "base": "Valtr(S#0)",
+   "hamming": 4,
+   "result": "unsat",
+   "iterations": 1,
+   "seconds": 173.3,
+   "learned_clauses": 8,
+   "largest_strong_six_free_seen": 16,
+   "variables": 1168328,
+   "clauses": {
+    "one_change": 287680,
+    "quad_to": 143840,
+    "quad_from": 143840,
+    "five_from": 201376,
+    "five_to": 1006880,
+    "six_from": 906192,
+    "six_to": 5437152,
+    "no_strong_seven": 3365856,
+    "hamming": 44635
+   }
+  },
+  {
+   "base": "Valtr(S#0)",
+   "hamming": 8,
+   "result": "unsat",
+   "iterations": 1,
+   "seconds": 279.1,
+   "learned_clauses": 8,
+   "largest_strong_six_free_seen": 16,
+   "variables": 1188168,
+   "clauses": {
+    "one_change": 287680,
+    "quad_to": 143840,
+    "quad_from": 143840,
+    "five_from": 201376,
+    "five_to": 1006880,
+    "six_from": 906192,
+    "six_to": 5437152,
+    "no_strong_seven": 3365856,
+    "hamming": 84311
+   }
+  },
+  {
+   "base": "Valtr(S#0)",
+   "hamming": 12,
+   "result": "unsat",
+   "iterations": 1,
+   "seconds": 262.6,
+   "learned_clauses": 8,
+   "largest_strong_six_free_seen": 16,
+   "variables": 1208008,
+   "clauses": {
+    "one_change": 287680,
+    "quad_to": 143840,
+    "quad_from": 143840,
+    "five_from": 201376,
+    "five_to": 1006880,
+    "six_from": 906192,
+    "six_to": 5437152,
+    "no_strong_seven": 3365856,
+    "hamming": 123987
+   }
+  },
+  {
+   "base": "Valtr(S#0)",
+   "hamming": 16,
+   "result": "unsat",
+   "iterations": 3,
+   "seconds": 356.3,
+   "learned_clauses": 24,
+   "largest_strong_six_free_seen": 16,
+   "variables": 1227848,
+   "clauses": {
+    "one_change": 287680,
+    "quad_to": 143840,
+    "quad_from": 143840,
+    "five_from": 201376,
+    "five_to": 1006880,
+    "six_from": 906192,
+    "six_to": 5437152,
+    "no_strong_seven": 3365856,
+    "hamming": 163663
+   }
+  },
+  {
+   "base": "Valtr(S#0)",
+   "hamming": 24,
+   "result": "unsat",
+   "iterations": 5,
+   "seconds": 629.2,
+   "learned_clauses": 40,
+   "largest_strong_six_free_seen": 16,
+   "variables": 1267528,
+   "clauses": {
+    "one_change": 287680,
+    "quad_to": 143840,
+    "quad_from": 143840,
+    "five_from": 201376,
+    "five_to": 1006880,
+    "six_from": 906192,
+    "six_to": 5437152,
+    "no_strong_seven": 3365856,
+    "hamming": 243015
+   }
+  }
+ ]
+}

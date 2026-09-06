@@ -130,6 +130,41 @@ reach of this loop in an hour, and the honest reading is that the
 signotope-tier search is a counterexample generator with no convergence
 guarantee, useful only if a counterexample exists.
 
+**Addendum, 6 September: the search restricted to a Hamming ball.**  The
+unconstrained loop has no convergence guarantee, but the same instance with
+the additional constraint "at most `D` triples differ from the coloring of a
+realizable extremal set" (a sequential counter over the 4,960 triple
+variables; anchoring dropped, the base fixes the symmetry) does terminate:
+UNSAT means that no strong-7-free one-change coloring within `D` orientation
+flips of the base lacks a strong-6-free 16-subset, the learned halves being
+necessary conditions.  Bases: the 32-point Erdős–Szekeres set and the Valtr
+blow-up `Valtr(S#0)`, the latter decomposable in no direction.
+`scripts/predecessor_half_k7_cegar.py --base-construction … --hamming D`,
+1,168,328 variables, 11.5 M clauses, python-sat, 24 GiB cap.
+
+| Base | Distance | Iterations | Learned half clauses | Time | Verdict |
+|---|---|---|---|---|---|
+| ES(7,7,7) | 4 | 1 | 8 | 180 s | UNSAT |
+| ES(7,7,7) | 8 | 1 | 8 | 280 s | UNSAT |
+| ES(7,7,7) | 12 | 1 | 8 | 269 s | UNSAT |
+| ES(7,7,7) | 16 | 3 | 24 | 366 s | UNSAT |
+| ES(7,7,7) | 24 | 5 | 40 | 626 s | UNSAT |
+| Valtr(S#0) | 4 | 1 | 8 | 173 s | UNSAT |
+| Valtr(S#0) | 8 | 1 | 8 | 279 s | UNSAT |
+| Valtr(S#0) | 12 | 1 | 8 | 263 s | UNSAT |
+| Valtr(S#0) | 16 | 3 | 24 | 356 s | UNSAT |
+| Valtr(S#0) | 24 | 5 | 40 | 629 s | UNSAT |
+
+Every ball is exhausted; each run needed at most five learned halves.  So
+the conjecture holds at the abstract tier in a radius-24 orientation ball
+around each of these two extremal sets, which contains every set
+reachable from them by up to 24 single flips (the flip walks of
+experiments 0113 and 0115 explore a small realizable part of it).  Results
+in `data/derived/predecessor-half-k7-hamming-ball-n32.json`.  A radius of
+24 out of 4,960 orientations is small; the cost grows quickly with the
+radius (the distance-24 runs took ten minutes each), and a radius that
+reaches other extremal order types is out of reach of this encoding.
+
 ## 4. The harness falsifier
 
 `harness/falsifiers/predecessor_half_constructions.py` now runs, in order:

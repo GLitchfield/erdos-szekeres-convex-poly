@@ -112,7 +112,20 @@ def make_solver(backend: str, cadical: Path | None, variables: int):
 
 # ----------------------------------------------------------- encoding
 
-def build(n: int, anchored: bool, backend: str, cadical: Path | None):
+def base_coloring_from_points(points, n_take: int | None = None):
+    """Left-turn triples of a planar point set in x-order (the sweep coloring)."""
+    pts = sorted((float(x), float(y)) for x, y in points)
+    if n_take:
+        pts = pts[:n_take]
+    left = []
+    for i, j, k in itertools.combinations(range(len(pts)), 3):
+        (ax, ay), (bx, by), (cx, cy) = pts[i], pts[j], pts[k]
+        if (bx - ax) * (cy - ay) - (by - ay) * (cx - ax) > 0:
+            left.append((i, j, k))
+    return len(pts), left
+
+
+def build(n: int, anchored: bool, backend: str, cadical: Path | None, base=None, hamming: int | None = None):
     tri = {}
     for t in itertools.combinations(range(n), 3):
         tri[t] = len(tri) + 1
@@ -129,7 +142,7 @@ def build(n: int, anchored: bool, backend: str, cadical: Path | None):
     for s in itertools.combinations(range(n), 6):
         six[s] = offset + len(six) + 1
     offset += len(six)
-    solver = make_solver(backend, cadical, offset)
+    solver = make_solver(backend, cadical, offset + (len(tri) * (hamming or 0) + 8 if base is not None and hamming is not None else 0))
     counts = {}
 
     def add(kind, clause):
@@ -161,10 +174,44 @@ def build(n: int, anchored: bool, backend: str, cadical: Path | None):
             add("six_to", [-v, x])
     for u in itertools.combinations(range(n), 7):
         add("no_strong_seven", [-six[c] for c in itertools.combinations(u, 6)])
-    if anchored:
+    if anchored and base is None:
         for i, j in itertools.combinations(range(1, n), 2):
             add("anchor", [-tri[(0, i, j)]])
+    if base is not None and hamming is not None:
+        # at most ``hamming`` triples may differ from the base coloring (sequential counter)
+        base_left = set(base)
+        differ = [(-v if t in base_left else v) for t, v in tri.items()]   # literal true iff triple differs
+        card, offset = sinz_at_most(differ, hamming, offset + 1)
+        for c in card:
+            add("hamming", c)
+        offset -= 1
     return solver, tri, quad, five, six, counts, offset
+
+
+def sinz_at_most(lits, bound, next_var):
+    """Clauses forcing at most ``bound`` of ``lits`` true; returns (clauses, next free var)."""
+    n = len(lits)
+    clauses = []
+    if bound >= n:
+        return clauses, next_var
+    if bound == 0:
+        return [[-l] for l in lits], next_var
+    s = [[0] * (bound + 1) for _ in range(n)]
+    for i in range(n):
+        for j in range(1, bound + 1):
+            s[i][j] = next_var
+            next_var += 1
+    clauses.append([-lits[0], s[0][1]])
+    for j in range(2, bound + 1):
+        clauses.append([-s[0][j]])
+    for i in range(1, n):
+        clauses.append([-lits[i], s[i][1]])
+        clauses.append([-s[i - 1][1], s[i][1]])
+        for j in range(2, bound + 1):
+            clauses.append([-lits[i], -s[i - 1][j - 1], s[i][j]])
+            clauses.append([-s[i - 1][j], s[i][j]])
+        clauses.append([-lits[i], -s[i - 1][bound]])
+    return clauses, next_var
 
 
 def coloring_of(model, tri):
@@ -248,6 +295,11 @@ def main() -> int:
     parser.add_argument("--backend", choices=("auto", "pysat", "cadical"), default="auto")
     parser.add_argument("--cadical", type=Path, default=None)
     parser.add_argument("--halves-per-iteration", type=int, default=8)
+    parser.add_argument("--base-construction", type=Path, default=None,
+                        help="constructions JSON (scripts/baek_balko_constructions.py output) providing a base point set")
+    parser.add_argument("--base-name", default="ES(7,7,7)", help="record name in --base-construction")
+    parser.add_argument("--hamming", type=int, default=None,
+                        help="search only colorings differing from the base in at most this many triples (anchoring is then skipped)")
     parser.add_argument("--budget-seconds", type=float, default=1800)
     parser.add_argument("--max-iterations", type=int, default=10 ** 9)
     parser.add_argument("--output", type=Path, required=True)
@@ -258,9 +310,15 @@ def main() -> int:
     n = args.n
     target = (n + 1) // 2
     started = time.time()
-    solver, tri, quad, five, six, counts, variables = build(n, args.anchored, args.backend, args.cadical)
+    base = None
+    if args.base_construction is not None:
+        recs = {r["name"]: r for r in json.load(open(args.base_construction))["records"]}
+        n_base, base = base_coloring_from_points(recs[args.base_name]["points"], n_take=n)
+        assert n_base == n, f"base has {n_base} points, --n is {n}"
+    solver, tri, quad, five, six, counts, variables = build(n, args.anchored, args.backend, args.cadical, base=base, hamming=args.hamming)
     build_seconds = round(time.time() - started, 1)
-    print(json.dumps({"n": n, "anchored": args.anchored, "variables": variables, "clauses": counts,
+    print(json.dumps({"n": n, "anchored": args.anchored and base is None, "base": args.base_name if base is not None else None,
+                      "hamming": args.hamming, "variables": variables, "clauses": counts,
                       "build_seconds": build_seconds}), file=sys.stderr, flush=True)
     iterations = []
     hardest = None
@@ -273,7 +331,9 @@ def main() -> int:
         solve_seconds = round(time.time() - t0, 1)
         if not sat:
             result = "unsat"
-            print(json.dumps({"iteration": iteration, "verdict": "UNSAT", "note": "no anchored one-change coloring survives the learned halves" if args.anchored else "abstract-tier theorem at this n"}), file=sys.stderr, flush=True)
+            note = ("no strong-7-free one-change coloring within the Hamming ball lacks a strong-6-free half" if base is not None
+                    else "no anchored one-change coloring survives the learned halves" if args.anchored else "abstract-tier theorem at this n")
+            print(json.dumps({"iteration": iteration, "verdict": "UNSAT", "note": note}), file=sys.stderr, flush=True)
             break
         color = coloring_of(model, tri)
         strong6, strong = strong_six_sets(color, n, model, six)
@@ -303,11 +363,13 @@ def main() -> int:
         iterations.append(entry)
         print(json.dumps(entry), file=sys.stderr, flush=True)
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps({"n": n, "anchored": args.anchored, "target": target, "backend": args.backend,
+        args.output.write_text(json.dumps({"n": n, "anchored": args.anchored and base is None, "base": args.base_name if base is not None else None, "hamming": args.hamming,
+                                           "target": target, "backend": args.backend,
                                            "variables": variables, "clauses": counts, "result": "running",
                                            "iterations": iterations, "hardest": hardest}, indent=1) + "\n")
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps({"n": n, "anchored": args.anchored, "target": target, "backend": args.backend,
+    args.output.write_text(json.dumps({"n": n, "anchored": args.anchored and base is None, "base": args.base_name if base is not None else None, "hamming": args.hamming,
+                                       "target": target, "backend": args.backend,
                                        "variables": variables, "clauses": counts, "result": result,
                                        "seconds": round(time.time() - started, 1),
                                        "iterations": iterations, "hardest": hardest}, indent=1) + "\n")
