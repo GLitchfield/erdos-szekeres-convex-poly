@@ -12,10 +12,12 @@ In the window regime `T(a,u,k) = Σ_{j=k−a}^{u−2} C(k−2, j)` is the number
 subsets of `[k−2]` with at least `k−a` and at most `u−2` elements, equivalently
 binary strings of length `k−2` with at most `u−2` letters `L` and at most `a−2`
 letters `U`.  On the diagonal it is `2^{k−2}`; in the choose regime
-`C(a+u−4, a−2)` is the classical cup–cap count.  Two identities hold for all
-`2 ≤ a, u ≤ k` (checked numerically to `k = 15`):
+`C(a+u−4, a−2)` is the classical cup–cap count.  Two identities hold
+(checked numerically to `k = 15`):
 
-* Pascal: `T(a,u,k) = T(a−1,u,k−1) + T(a,u−1,k−1)`.
+* Pascal, for `3 ≤ a, u ≤ k`: `T(a,u,k) = T(a−1,u,k−1) + T(a,u−1,k−1)`
+  (at `a = u = 2` the left side is 1 and the right side 0, the one-vertex
+  convention).
 * Window split: for `a + u ≥ k + 3` and `k−u+1 ≤ d ≤ a−2`,
   `T(a,u,k) = T(a, k−d, k) + T(d+1, u, k)`: the coupling `d` of a deep-below
   split cuts the window `[k−a, u−2]` into `[k−a, k−d−2]` (the lower part,
