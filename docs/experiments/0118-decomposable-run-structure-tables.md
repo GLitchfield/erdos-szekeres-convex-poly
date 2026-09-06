@@ -286,6 +286,15 @@ runs), so the two-part maximum is a formula for the value, not a
 description of the structure.  What step 3 has to prove is that this
 recursion, applied with the context rules of experiment 0117 at every
 level, is additive; the depth-two signature tables of experiment 0119 are
-the test set, and `(4,6,6)` at threshold 11 is the next prediction to
-check (the formula gives 10, 6, 3 for the lower child with the sibling
-inside at couplings 1, 2, 3 and 8, 8, 5 for the upper child).
+the test set, and `(4,6,6)` at threshold 11 was the first prediction to check.
+
+**`(4,6,6)`, checked.**  The avoiding subclass has 2, 7, 39, 265, 1,658,
+7,974, 27,342, 60,246, **65,682**, 0 colorings at `n = 3..12` (19 min): the
+threshold 11 is exact with 65,682 extremal colorings.  The formula,
+written down before the run, predicted 10, 6, 3 for the lower child with
+the sibling inside at couplings 1, 2, 3 and 8, 8, 5 for the upper child;
+the tables give exactly those values, and all 74 existing entries of the
+case match the formula (`data/derived/decomposable-run-extremal-466-n12.json`).
+That makes eight parameter triples, 504 entries, no exception, including
+one window-regime case (`(4,6,6)`, `a + u = 10 > k + 3`) predicted in
+advance.
