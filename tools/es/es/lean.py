@@ -9,7 +9,7 @@ from pathlib import Path
 
 from es.build import BuildResult, run_guarded
 from es.config import Config
-from es.errors import LeanError
+from es.errors import LeanError, Refused
 from es.modules import Module, scan_modules
 
 
@@ -53,6 +53,8 @@ def run_extractor(
     bp_targets = cfg.build_targets("blueprint")
     bp_log = cfg.build_log_dir / f"blueprint-{time.strftime('%Y%m%d-%H%M%S')}.log"
     bp = run_guarded(cfg, [cfg.lake, "build", *bp_targets], log_path=bp_log, budget_min=cfg.core_budget_min * 2, force=force)
+    if bp.refused:
+        raise Refused(f"blueprint build refused before extraction ({bp.refused})")
     if not bp.ok:
         raise LeanError(f"blueprint build failed before extraction ({bp.summary()}):\n" + "\n".join(bp.tail))
     index_layers = set(cfg.extract_index_layers)
@@ -78,6 +80,8 @@ def run_extractor(
     log = cfg.build_log_dir / f"extract-{time.strftime('%Y%m%d-%H%M%S')}.log"
     res = run_guarded(cfg, argv, log_path=log, budget_min=budget_min or cfg.extract_budget_min,
                       memory_max=cfg.extract_memory_max, force=force, count_built=False)
+    if res.refused:
+        raise Refused(f"extractor refused ({res.refused}); set ES_EXTRACT_MEMORY_MAX to lower the cap once the peak is known")
     if not res.ok:
         raise LeanError(f"extractor failed ({res.summary()}):\n" + "\n".join(res.tail))
     try:

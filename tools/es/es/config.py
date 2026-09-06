@@ -289,7 +289,10 @@ class Config:
 
     @property
     def extract_memory_max(self) -> str:
-        return str(self.get("extract", "memory_max", default="36G"))
+        # ES_EXTRACT_MEMORY_MAX overrides the configured cap for one invocation (the guard
+        # needs cap + 6 GiB available; the extractor's measured peak is logged as an "extract" event).
+        env = os.environ.get("ES_EXTRACT_MEMORY_MAX")
+        return env if env else str(self.get("extract", "memory_max", default="36G"))
 
     @property
     def extract_budget_min(self) -> int:

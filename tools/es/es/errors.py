@@ -18,3 +18,7 @@ class CheckFailed(EsError):
 
 class LeanError(EsError):
     exit_code = 3
+
+
+class Refused(LeanError):
+    """The guarded runner declined to start (memory, or a compiler already running); nothing ran."""

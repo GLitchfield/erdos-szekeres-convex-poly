@@ -1,3 +1,4 @@
+import pytest
 import json
 
 from es.allowlist import uncovered
@@ -109,3 +110,40 @@ def test_extract_check_ignores_volatile_lines():
                            .replace("15341", "15343").replace('"scanned_constants": 4', '"scanned_constants": 0').replace('"scanned_modules": 2', '"scanned_modules": 0')
     assert _strip_volatile(committed) == _strip_volatile(regenerated)
     assert _strip_volatile(committed) != _strip_volatile(committed.replace('"nodes": [1]', '"nodes": [2]'))
+
+
+def test_node_add_keeps_module_when_extractor_refused(project, monkeypatch):
+    """A memory refusal is not a Lean failure: the module stays, and repeating the same
+    `es node add` (same rendered text) is accepted instead of 'already exists'."""
+    from es.commands import node as node_cmd
+    from es.context import Ctx
+    from es.errors import Refused, UsageError
+
+    ctx = Ctx.load(project)
+    calls = {"n": 0}
+
+    def fake_elab(ctx, module, budget=20):
+        return None
+
+    def fake_extract(ctx):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise Refused("extractor refused (only 1 GiB available)")
+        full = node_cmd.qualify(ctx.cfg, "bar_node")
+        return ({"nodes": [{"name": full, "type_hash": "h", "type_pp": "True", "status": "open", "module": "TBlueprint.A.BarNode"}],
+                 "destinations": [], "duplicate_problems": [], "problems": []}, [], [])
+
+    monkeypatch.setattr(node_cmd, "elaborate_module", fake_elab)
+    monkeypatch.setattr(node_cmd, "re_extract", fake_extract)
+    kwargs = dict(name="bar_node", ws="A", kind="formalization", type="True", description="bar", consumer="TCore.foo")
+    with pytest.raises(Refused):
+        node_cmd.run_add(ctx, **kwargs)
+    path = project / "TBlueprint" / "A" / "BarNode.lean"
+    assert path.exists(), "module must survive a refusal"
+    assert "TBlueprint.A.BarNode" in (project / "TBlueprint.lean").read_text()
+    # same content again: accepted and completes
+    res = node_cmd.run_add(ctx, **kwargs)
+    assert res.exit_code == 0
+    # different content: refused as an existing module
+    with pytest.raises(UsageError):
+        node_cmd.run_add(ctx, **(kwargs | {"description": "something else"}))

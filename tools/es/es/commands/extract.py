@@ -68,6 +68,8 @@ def run_extract(ctx: Ctx, *, check: bool = False, no_cache: bool = False, write:
             out = run_extractor(cfg, out=tmp / "nodes-raw.json", index=tmp / "index-raw.json", mods=mods, force=force, budget_min=budget, imports=imports)
             raw, index = out.nodes, out.index
             st.cache_put(th, raw, index)
+            st.event("extract", None, ctx.agent, {"seconds": out.result.seconds, "peak_mib": out.result.peak_mib,
+                                                  "memory_max": cfg.extract_memory_max, "tree": th[:12]})
     nodes, dests, problems = nodes_from_extract(cfg, raw)
     core_names = {r["name"] for r in index}
     compute(cfg, nodes, dests, core_names, claims=claims)

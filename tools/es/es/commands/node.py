@@ -8,7 +8,7 @@ from pathlib import Path
 from es import EXIT_CHECK_FAILED, EXIT_OK, EXIT_USAGE
 from es.build import run_guarded
 from es.context import Ctx
-from es.errors import CheckFailed, LeanError, UsageError
+from es.errors import CheckFailed, LeanError, UsageError, Refused
 from es.lock import lock_entry, read_lock, write_lock
 from es.modules import module_to_path
 from es.nodes import find_node, load_nodes_json, node_module_name, nodes_from_json, qualify
@@ -60,6 +60,8 @@ def elaborate_module(ctx: Ctx, module: str, budget: int = 20) -> None:
     cfg = ctx.cfg
     log = cfg.build_log_dir / f"elab-{time.strftime('%Y%m%d-%H%M%S')}-{module}.log"
     res = run_guarded(cfg, [cfg.lake, "build", module], log_path=log, budget_min=budget)
+    if res.refused:
+        raise Refused(f"{module} elaboration refused ({res.refused})")
     if not res.ok:
         raise LeanError(f"{module} failed to elaborate ({res.summary()}):\n" + "\n".join(res.tail))
 
@@ -159,8 +161,6 @@ def run_add(ctx: Ctx, name: str, ws: str, kind: str, type: str, description: str
     short = full.rsplit(".", 1)[-1]
     module = node_module_name(cfg, full, ws)
     path = cfg.root / module_to_path(module)
-    if path.exists() and not force:
-        raise UsageError(f"{path.relative_to(cfg.root)} already exists")
     tags = {"ws": ws, "kind": kind, "depends": [qualify(cfg, d) for d in (depends or [])],
             "consumer": qualify(cfg, consumer) if consumer else None, "dangling-ok": dangling_ok,
             "falsifier": falsifier, "measure": measure, "target": target}
@@ -174,12 +174,21 @@ def run_add(ctx: Ctx, name: str, ws: str, kind: str, type: str, description: str
             res.line("nearest existing declarations (check these are not the same statement):")
             res.human.extend(table([[h["name"], h["module"], (h["doc"] or "").splitlines()[0][:70] if h["doc"] else ""] for h in hits]))
     text = render_module(cfg, short=short, signature=type, docstring=doc, imp=import_ or cfg.node_default_import)
+    # Re-running the same add (for example after the extractor was refused for memory) is
+    # allowed when the module on disk is exactly what this call would write.
+    if path.exists() and not force and path.read_text() != text:
+        raise UsageError(f"{path.relative_to(cfg.root)} already exists with different content")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text)
     add_root_import(cfg, module)
     try:
         elaborate_module(ctx, module)
         payload, index, problems = re_extract(ctx)
+    except Refused as exc:
+        # Nothing ran: keep the elaborated module and the root import so the same command
+        # can be repeated once memory allows; no lock entry exists until then.
+        raise Refused(f"{exc}\nmodule kept at {path.relative_to(cfg.root)} (no lock entry yet); "
+                      f"repeat this exact `es node add` when memory allows") from exc
     except LeanError:
         path.unlink(missing_ok=True)
         remove_root_import(cfg, module)

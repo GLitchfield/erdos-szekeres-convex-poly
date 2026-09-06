@@ -153,6 +153,17 @@ harness). Do not run builds with a single thread as the old guard did; use Lake'
 defaults, and put a wall-clock budget on `ESCore` (config `build.core_budget_min`,
 default 10) as a regression guard against anything that forces a certificate rebuild.
 
+**Memory guard.** Every Lean invocation runs in a transient user cgroup with a
+`MemoryMax` from config, and is *refused* (nothing runs, exit 3) unless cap + 6 GiB
+is available. A refusal is reported as `es.errors.Refused`, a `LeanError` that
+`es node add` treats differently from an elaboration failure: the freshly written
+module and its root import are kept, no lock entry is written, and repeating the
+identical `es node add` later completes the registration (a re-run whose rendered
+module matches the file on disk is accepted; different content is still "already
+exists"). `ES_EXTRACT_MEMORY_MAX=<cap>` overrides `extract.memory_max` for one
+invocation; every fresh extractor run logs an `extract` event with its measured
+`peak_mib`, which is the number to size that cap from.
+
 **`sorry` policy.** The existing grep in `make test` must be narrowed to
 `ErdosSzekeres/` so that `ESBlueprint/` may contain `sorry`. Lean's own `sorry`
 warning is fine in `ESBlueprint`; CI treats it as expected there and as an error in
