@@ -1,0 +1,14 @@
+{
+ "case": "4,5,6",
+ "s": 5,
+ "colors": 10,
+ "threshold": 10,
+ "contexts": 437041,
+ "splits": 437040,
+ "leaves": 259460,
+ "dead": 152920,
+ "clauses": 15965260,
+ "sat": true,
+ "build_seconds": 11.5,
+ "seconds": 58.5
+}

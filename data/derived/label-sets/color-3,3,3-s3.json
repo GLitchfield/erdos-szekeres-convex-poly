@@ -1,0 +1,14 @@
+{
+ "case": "3,3,3",
+ "s": 3,
+ "colors": 2,
+ "threshold": 2,
+ "contexts": 37,
+ "splits": 36,
+ "leaves": 16,
+ "dead": 14,
+ "clauses": 264,
+ "sat": true,
+ "build_seconds": 0.0,
+ "seconds": 0.0
+}

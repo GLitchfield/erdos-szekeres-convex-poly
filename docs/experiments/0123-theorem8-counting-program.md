@@ -95,3 +95,56 @@ partition, as the additivity tests did for counts.
 ## Reproduction
 
     python3 scripts/decomposable_path_lemma_test.py --max-n 7 --output data/derived/decomposable-path-lemma-n7.json
+
+## 4. The computations (same evening)
+
+**Rule-based label sets fail at depth one.**  `scripts/decomposable_label_sets.py`
+gives every single-run context the cylinder `{#L(free) ≤ cl−1, #U(free) ≤ pl−1}` with
+just enough fixed positions for the choose regime (letters from the sides of the
+outermost levels) and every multi-run context the union over its partitions; at
+`(4,4,5)`, `(4,5,5)` with three child letters the parts' sets are not inside the
+parent's (10 and 12 containment failures), because a part entering the choose regime
+fixes a letter its window-regime parent never fixed.  The fixed letters depend on the
+split history, so no rule reading only the context's limits and levels works.
+
+**Existence, by SAT.**  A consistent system of label sets exists iff the leaf
+contexts (one child letter, positive limits) reachable from the root by any chain
+of partitions can be colored with `T` colors so that no split has both parts
+reaching leaves of the same color (`scripts/decomposable_label_coloring.py`; the
+reachability closure encodes the sets).  At `s = T+1` child letters, over every
+partition (any interleaving), both orientations and all couplings
+(`data/derived/label-sets/color-*.json`):
+
+| case | s | contexts | leaves | `T` colors | `T−1` colors |
+|---|---|---|---|---|---|
+| (3,3,3), (3,3,4) | 3 | 37, 121 | 16, 64 | SAT | UNSAT |
+| (3,4,4), (3,4,5), (3,4,6) | 4 | 1,625 / 5,053 / 11,505 | 606 / 2,355 / 5,956 | SAT | UNSAT |
+| (4,4,4), (3,5,5), (3,5,6) | 5 | 25,721 / 96,985 / 305,329 | 8,524 / 32,496 / 124,792 | SAT | UNSAT |
+| (4,4,5), (4,5,5), (4,5,6) | 5 (< T+1) | 133,381 / 135,361 / 437,041 | 63,072 / 67,899 / 259,460 | SAT | — |
+
+So the context-level injection exists in every case tried, and `T` is exactly the
+number of labels it needs: with `T−1` labels some full partition tree with `T`
+live leaves refutes it, which is the tightness of the threshold.  Since the
+coloring subsumes the count statement (a tree with `T+1` live leaves would need
+`T+1` colors), this also verifies the all-partition recursion `≤ T` at these sizes.
+
+**What the sets must depend on.**  `scripts/decomposable_label_rule_sat.py`
+asks for label sets that are a function of a feature vector of the context, with
+containment and disjointness at every split and at most `T` labels at the root.
+With the whole context as the feature (the bare conjecture, sets consistent across
+all occurrences of a context) it is SAT at every `s = T+1` case above.  Coarsening
+a single-run context to its limits `(n, cl, pl)`, or to limits plus level sides, or
+plus sibling maxima, is UNSAT already at `(3,4,5)`; coarsening to limits plus the
+*word* (positions and sides of the external letters, maxima dropped) stays SAT in
+every case run.  So the label set of a run is determined by where the external
+letters lie, not by the sibling maxima beyond their effect on the limits.
+
+The solver's sets are not canonical (it fills unconstrained contexts freely), so
+the rule itself is not read off yet; pinning the root to the canonical window
+(`--root-window`) is satisfiable and is the starting point for extracting one.
+
+## Reproduction
+
+    python3 scripts/decomposable_label_coloring.py --case 3,5,6 --s 5            # T colors
+    python3 scripts/decomposable_label_coloring.py --case 3,5,6 --s 5 --colors 3
+    python3 scripts/decomposable_label_rule_sat.py --case 3,4,5 --s 4 --features word --root-window --output out.json
