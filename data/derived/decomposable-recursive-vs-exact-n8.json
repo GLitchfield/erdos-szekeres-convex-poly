@@ -1,0 +1,26 @@
+{
+ "4,4,5": {
+  "threshold": 6,
+  "signatures": 42,
+  "F_minus_E": {
+   "0": 42
+  },
+  "mismatches": []
+ },
+ "4,5,5": {
+  "threshold": 7,
+  "signatures": 504,
+  "F_minus_E": {
+   "0": 504
+  },
+  "mismatches": []
+ },
+ "5,5,5": {
+  "threshold": 8,
+  "signatures": 8078,
+  "F_minus_E": {
+   "0": 8078
+  },
+  "mismatches": []
+ }
+}
