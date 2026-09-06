@@ -8,6 +8,24 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundAdditive"
   },
+  "ErdosSzekeres.ctx_bound_additive_multi_run": {
+    "type_hash": "b9572285e41a575b",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le 2 σ.numRuns →\n      ∀ (keep : List Nat),\n        (∀ (p : Nat), List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n          Ne keep List.nil →\n            instLTNat.lt keep.length σ.childPositions.length →\n              ∀ (d : Nat),\n                instLENat.le 1 d →\n                  instLENat.le d (instHSub.hSub σ.k 2) →\n                    And\n                      (instLENat.le\n                        (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                          (σ.part\n                              (List.filter\n                                (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                σ.childPositions)\n                              ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                        σ.bound)\n                      (instLENat.le\n                        (instHAdd.hAdd\n                          (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                          (σ.part\n                              (List.filter\n                                (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                σ.childPositions)\n                              ErdosSzekeres.Ctx.Side.lower d).bound)\n                        σ.bound)",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-06",
+    "kind": "conjecture",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundAdditiveMultiRun"
+  },
+  "ErdosSzekeres.ctx_bound_additive_single_run": {
+    "type_hash": "c8ace8d25e135c94",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le σ.numRuns 1 →\n      ∀ (keep : List Nat),\n        (∀ (p : Nat), List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n          Ne keep List.nil →\n            instLTNat.lt keep.length σ.childPositions.length →\n              ∀ (d : Nat),\n                instLENat.le 1 d →\n                  instLENat.le d (instHSub.hSub σ.k 2) →\n                    And\n                      (instLENat.le\n                        (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                          (σ.part\n                              (List.filter\n                                (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                σ.childPositions)\n                              ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                        σ.bound)\n                      (instLENat.le\n                        (instHAdd.hAdd\n                          (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                          (σ.part\n                              (List.filter\n                                (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                σ.childPositions)\n                              ErdosSzekeres.Ctx.Side.lower d).bound)\n                        σ.bound)",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-06",
+    "kind": "conjecture",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundAdditiveSingleRun"
+  },
   "ErdosSzekeres.ctx_bound_antitone": {
     "type_hash": "86c99d58d3980c2a",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (l m : Nat),\n  instLENat.le (σ.withMaximum l (instHAdd.hAdd m 1)).bound (σ.withMaximum l m).bound",
@@ -16,6 +34,15 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundAntitone"
+  },
+  "ErdosSzekeres.ctx_bound_cut_le": {
+    "type_hash": "b222a8dce9b03fde",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  instLENat.le 2 σ.numRuns →\n    ∀ (block : List Nat),\n      List.instMembership.mem σ.blocks block →\n        ∀ (d : Nat),\n          instLENat.le 1 d →\n            instLENat.le d (instHSub.hSub σ.k 2) →\n              And\n                (instLENat.le\n                  (instHAdd.hAdd (σ.part block ErdosSzekeres.Ctx.Side.lower d).bound\n                    (σ.part\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem block p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.upper (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                  σ.bound)\n                (instLENat.le\n                  (instHAdd.hAdd\n                    (σ.part block ErdosSzekeres.Ctx.Side.upper\n                        (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                    (σ.part\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem block p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.lower d).bound)\n                  σ.bound)",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-06",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundCutLe"
   },
   "ErdosSzekeres.ctx_card_le_bound": {
     "type_hash": "1ba3114105c3f39a",

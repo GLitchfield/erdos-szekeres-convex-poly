@@ -1,4 +1,6 @@
 import ErdosSzekeres.DecomposableContext
+import ESBlueprint.B.CtxBoundAdditiveSingleRun
+import ESBlueprint.B.CtxBoundAdditiveMultiRun
 
 namespace ErdosSzekeres
 
@@ -9,6 +11,8 @@ namespace ErdosSzekeres
 @consumer ErdosSzekeres.ctx_card_le_bound
 @falsifier ctx_bound_additive.py -/
 theorem ctx_bound_additive (σ : Ctx.Context) (hwf : σ.WellFormed) (keep : List ℕ) (hkeep : ∀ p ∈ keep, p ∈ σ.childPositions) (hne : keep ≠ []) (hall : keep.length < σ.childPositions.length) (d : ℕ) (hd : 1 ≤ d) (hdk : d ≤ σ.k - 2) : (σ.part keep Ctx.Side.lower d).bound + (σ.part (σ.childPositions.filter (fun p => p ∉ keep)) Ctx.Side.upper (σ.k - 1 - d)).bound ≤ σ.bound ∧ (σ.part keep Ctx.Side.upper (σ.k - 1 - d)).bound + (σ.part (σ.childPositions.filter (fun p => p ∉ keep)) Ctx.Side.lower d).bound ≤ σ.bound := by
-  sorry
+  rcases Nat.lt_or_ge σ.numRuns 2 with h | h
+  · exact ctx_bound_additive_single_run σ hwf (by omega) keep hkeep hne hall d hd hdk
+  · exact ctx_bound_additive_multi_run σ hwf h keep hkeep hne hall d hd hdk
 
 end ErdosSzekeres

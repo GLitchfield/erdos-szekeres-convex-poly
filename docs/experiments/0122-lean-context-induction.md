@@ -103,10 +103,24 @@ the two maxima.  The level-one join term is `cupmax + capmax ≤ k−1` (cup ∪
 strong).  The two `Satisfies` conclusions instantiate it with `P = IsCupSet`,
 `param = u` (lower) and `P = IsCapSet`, `param = a` (upper).
 
+## Additivity, decomposed (evening)
+
+`ctx_bound_additive` is now derived (`ESBlueprint/B/CtxBoundAdditive.lean`) from
+two conjecture nodes with the same falsifier, split on the number of runs:
+
+| node | content |
+|---|---|
+| `ctx_bound_cut_le` | **proved**: with at least two runs, every interval cut with every coupling is one of the terms of the recursion's maximum, and the recursion is monotone in its fuel (`boundFuel_le_succ`), so the parts, which have fewer child letters, are evaluated with enough fuel. |
+| `ctx_bound_additive_single_run` | conjecture: a single-run context has `bound = base` (the threshold with the run's internal limits); every partition of the run and every coupling gives part bounds summing to at most it.  This is the Baek–Balko one-level inequality carried along with the full positional context. |
+| `ctx_bound_additive_multi_run` | conjecture: with at least two runs, an interleaved (non-interval) partition is dominated by the maximum over interval cuts, the exchange argument of 0121. |
+
+So the induction's only remaining gaps are these two, both verified by the
+additivity tests (0121, 0122) and by the falsifier.
+
 ## What remains for Workstream B
 
-- `ctx_bound_additive`: the open lemma (exchange argument of 0121).  With it,
-  `ctx_card_le_bound` is unconditional.
+- `ctx_bound_additive_single_run` and `ctx_bound_additive_multi_run` (above).
+  With them, `ctx_card_le_bound` is unconditional.
 - `decomposableStateUpper_all` from `ctx_card_le_bound` at `Context.root`.
 - Shared helper lemmas now live in the core module
   `ErdosSzekeres/DecomposableContextLemmas.lean` (the core cannot import
