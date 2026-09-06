@@ -121,6 +121,11 @@ cut, both orientations, every coupling:
 
 ADDITIVITY_MORE
 
+**Monotonicity (lemma 2).**  `scripts/decomposable_monotonicity_test.py`:
+raising any one sibling maximum by one never increases `F`, on the same
+contexts: 5,272 comparisons each at `(4,4,5)`, `(4,5,5)`, `(5,5,5)` and
+10,404 at `(4,5,6)`, no violation.
+
 So on every abstract context in range, the best interleaved split never
 beats the best stacked cut.  This is lemma 3 of the induction sketched in
 the discussion of 6 September: with the context-transfer lemma (experiment
