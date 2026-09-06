@@ -113,3 +113,26 @@ python3 scripts/decomposable_additivity_test.py --case 4,4,5 --s-max 4 --e-max 3
 
 Inputs: experiments 0117 to 0120.  The k = 6 runs need up to 28 GiB for the
 memoization table.
+
+## Addendum, 7 September: interval cuts restore additivity at (5,5,6)
+
+With the interval-cut recursion `F2` in place of `F`, the additivity test
+at (5,5,6) on all contexts with up to four child letters and two external
+levels, the set that contains every one of the 624 violating contexts of
+section 4 (they have three letters), finds **no violation**: 4,315
+contexts, 2,747 nonzero, 20,310 interleaved partitions, 17 minutes
+(`data/derived/decomposable-additivity-556-s4e2-F2.json`).  `F2` agrees
+with the exact values on all 42 and 504 deep signatures of `(4,4,5)` and
+`(4,5,5)` and on 150 sampled signatures of `(5,5,5)`; the full `(5,5,5)`
+comparison and the five-letter `(5,5,6)` run exceed 28 GiB of memoization
+in Python and were not completed.
+
+So the picture after the three items is: the induction hypothesis is the
+recursion with interval cuts (a part may be any contiguous block of the
+child, in either orientation, coupled through the sibling maxima); it is
+exact on every context computed at `k = 5` and on the `k = 6` contexts where
+the stacked recursion fails; and its additivity, the one open lemma, holds
+on every abstract context tested, including the `k = 6` contexts that
+defeat the stacked form.  The exchange map of section 1 says which cut to
+take: one of the four boundary positions in the better orientation, and,
+by section 4, an interior block when the lower part is sandwiched.
