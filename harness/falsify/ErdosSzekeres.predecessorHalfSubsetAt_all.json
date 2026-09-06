@@ -1,13 +1,13 @@
 {
  "node": "ErdosSzekeres.predecessorHalfSubsetAt_all",
  "falsifier": "predecessor_half_constructions.py",
- "falsifier_sha256": "c4036614c250771196bb1ba9d1b95dca70f23a977ccc825ad5f6158719511884",
+ "falsifier_sha256": "9e6d6bcd8aa6de3a198fc7110a85379cf44adc944d76b00f291f3205fd9176e5",
  "dataset": "harness/dataset",
  "statement_type_hash": "a18a0a755e1ad825",
  "result": "pass",
  "exit_code": 0,
- "seconds": 527.5,
- "at": "2026-09-05T20:46:19Z",
+ "seconds": 777.3,
+ "at": "2026-09-06T00:31:02Z",
  "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
  "witness": {
   "node": "ErdosSzekeres.predecessorHalfSubsetAt_all",
@@ -708,10 +708,17 @@
    "cegar": {
     "n": 25,
     "result": "budget",
-    "iterations": 12,
+    "iterations": 15,
     "hardest_max_strong_six_free": 15,
     "target": 13,
-    "seconds": 316.2
+    "seconds": 314.9
+   },
+   "hamming": {
+    "base": "ES(7,7,7)",
+    "radius": 8,
+    "result": "unsat",
+    "iterations": 1,
+    "seconds": 264.7
    }
   },
   "failures": [],

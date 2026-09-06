@@ -1,6 +1,8 @@
 {
  "n": 25,
  "anchored": true,
+ "base": null,
+ "hamming": null,
  "target": 13,
  "backend": "auto",
  "variables": 245180,
@@ -16,115 +18,142 @@
   "anchor": 276
  },
  "result": "budget",
- "seconds": 316.2,
+ "seconds": 314.9,
  "iterations": [
   {
    "iteration": 1,
-   "solve_seconds": 27.1,
+   "solve_seconds": 21.6,
    "strong_six_sets": 1620,
    "halves_found": 8,
-   "elapsed": 29.9,
+   "elapsed": 24.0,
    "max_strong_six_free": 16,
    "learned_clauses_total": 8
   },
   {
    "iteration": 2,
-   "solve_seconds": 26.9,
+   "solve_seconds": 21.6,
    "strong_six_sets": 1127,
    "halves_found": 8,
-   "elapsed": 56.9,
+   "elapsed": 45.6,
    "max_strong_six_free": 16,
    "learned_clauses_total": 16
   },
   {
    "iteration": 3,
-   "solve_seconds": 23.8,
+   "solve_seconds": 19.2,
    "strong_six_sets": 3254,
    "halves_found": 8,
-   "elapsed": 80.8,
+   "elapsed": 65.0,
    "max_strong_six_free": 16,
    "learned_clauses_total": 24
   },
   {
    "iteration": 4,
-   "solve_seconds": 24.6,
+   "solve_seconds": 19.3,
    "strong_six_sets": 2305,
    "halves_found": 8,
-   "elapsed": 105.5,
+   "elapsed": 84.4,
    "max_strong_six_free": 16,
    "learned_clauses_total": 32
   },
   {
    "iteration": 5,
-   "solve_seconds": 24.3,
+   "solve_seconds": 19.4,
    "strong_six_sets": 2308,
    "halves_found": 8,
-   "elapsed": 129.9,
+   "elapsed": 103.8,
    "max_strong_six_free": 15,
    "learned_clauses_total": 40
   },
   {
    "iteration": 6,
-   "solve_seconds": 27.3,
+   "solve_seconds": 21.4,
    "strong_six_sets": 2292,
    "halves_found": 8,
-   "elapsed": 157.2,
+   "elapsed": 125.3,
    "max_strong_six_free": 15,
    "learned_clauses_total": 48
   },
   {
    "iteration": 7,
-   "solve_seconds": 26.7,
+   "solve_seconds": 20.9,
    "strong_six_sets": 1515,
    "halves_found": 8,
-   "elapsed": 184.1,
+   "elapsed": 146.4,
    "max_strong_six_free": 16,
    "learned_clauses_total": 56
   },
   {
    "iteration": 8,
-   "solve_seconds": 27.3,
+   "solve_seconds": 20.7,
    "strong_six_sets": 4050,
    "halves_found": 8,
-   "elapsed": 211.5,
+   "elapsed": 167.2,
    "max_strong_six_free": 15,
    "learned_clauses_total": 64
   },
   {
    "iteration": 9,
-   "solve_seconds": 27.1,
+   "solve_seconds": 19.0,
    "strong_six_sets": 1107,
    "halves_found": 8,
-   "elapsed": 238.8,
+   "elapsed": 186.3,
    "max_strong_six_free": 16,
    "learned_clauses_total": 72
   },
   {
    "iteration": 10,
-   "solve_seconds": 27.1,
+   "solve_seconds": 21.1,
    "strong_six_sets": 1955,
    "halves_found": 8,
-   "elapsed": 266.0,
+   "elapsed": 207.5,
    "max_strong_six_free": 16,
    "learned_clauses_total": 80
   },
   {
    "iteration": 11,
-   "solve_seconds": 26.1,
+   "solve_seconds": 21.5,
    "strong_six_sets": 1798,
    "halves_found": 8,
-   "elapsed": 292.1,
+   "elapsed": 229.1,
    "max_strong_six_free": 16,
    "learned_clauses_total": 88
   },
   {
    "iteration": 12,
-   "solve_seconds": 23.9,
+   "solve_seconds": 21.4,
    "strong_six_sets": 1860,
    "halves_found": 8,
-   "elapsed": 316.1,
+   "elapsed": 250.5,
    "max_strong_six_free": 16,
    "learned_clauses_total": 96
+  },
+  {
+   "iteration": 13,
+   "solve_seconds": 21.3,
+   "strong_six_sets": 1793,
+   "halves_found": 8,
+   "elapsed": 271.9,
+   "max_strong_six_free": 16,
+   "learned_clauses_total": 104
+  },
+  {
+   "iteration": 14,
+   "solve_seconds": 21.1,
+   "strong_six_sets": 2197,
+   "halves_found": 8,
+   "elapsed": 293.1,
+   "max_strong_six_free": 16,
+   "learned_clauses_total": 112
+  },
+  {
+   "iteration": 15,
+   "solve_seconds": 21.7,
+   "strong_six_sets": 3473,
+   "halves_found": 8,
+   "elapsed": 314.9,
+   "max_strong_six_free": 15,
+   "learned_clauses_total": 120
   }
  ],
  "hardest": {
