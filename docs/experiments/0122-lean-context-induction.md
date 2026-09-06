@@ -117,11 +117,26 @@ two conjecture nodes with the same falsifier, split on the number of runs:
 So the induction's only remaining gaps are these two, both verified by the
 additivity tests (0121, 0122) and by the falsifier.
 
+## The seed theorem, derived
+
+`decomposableStateUpper_all` (Baek–Balko Theorem 8 for all parameters, the B seed
+node) is now derived from `ctx_card_le_bound` at the root context
+(`ESBlueprint/B/DecomposableStateUpperAll.lean`): a set with no `u`-cup, no `a`-cap
+and no strong `k`-set satisfies `Context.root a u k s.card` (`satisfies_root`), the
+root is well formed, has one run, and its bound is the classical threshold
+(`root_bound_le`, via `baseOf_le_threshold`); the degenerate `a = 1` / `u = 1`
+cases are the one-vertex chains.  So the complete chain is
+
+    decomposableStateUpper_all ⇐ ctx_card_le_bound
+      ⇐ ctx_satisfies_of_deepBelowSplit (proved)
+      ∧ ctx_bound_additive ⇐ ctx_bound_additive_single_run ∧ ctx_bound_additive_multi_run,
+
+with everything kernel-checked except the two conjectures.
+
 ## What remains for Workstream B
 
 - `ctx_bound_additive_single_run` and `ctx_bound_additive_multi_run` (above).
-  With them, `ctx_card_le_bound` is unconditional.
-- `decomposableStateUpper_all` from `ctx_card_le_bound` at `Context.root`.
+  With them, `ctx_card_le_bound` and the seed theorem are unconditional.
 - Shared helper lemmas now live in the core module
   `ErdosSzekeres/DecomposableContextLemmas.lean` (the core cannot import
   ESBlueprint, and several nodes use them).
