@@ -139,6 +139,22 @@ plus sibling maxima, is UNSAT already at `(3,4,5)`; coarsening to limits plus th
 every case run.  So the label set of a run is determined by where the external
 letters lie, not by the sibling maxima beyond their effect on the limits.
 
+
+**Feature-rule runs, complete** (`data/derived/label-sets/rule-*.json`; classes = distinct feature vectors):
+
+| case | s | context | word | limits | sides | maxima |
+|---|---|---|---|---|---|---|
+| 3,3,3 | 3 | SAT (37) | SAT (37) | — | — | — |
+| 3,3,4 | 3 | SAT (121) | SAT (43) | — | — | — |
+| 3,4,4 | 4 | SAT (1625) | SAT (642) | — | — | — |
+| 3,4,5 | 4 | SAT (5053) | SAT (814) | — | — | — |
+| 3,4,6 | 4 | SAT (11505) | SAT (992) | — | — | — |
+| 3,5,5 | 5 | SAT (96985) | SAT (14832) | — | — | — |
+| 3,5,6 | 5 | SAT (305329) | SAT (25183) | — | — | — |
+| 4,4,4 | 5 | SAT (25721) | SAT (11371) | — | — | — |
+| 4,4,5 | 5 | SAT (133381) | SAT (19777) | — | — | — |
+| 4,5,5 | 5 | SAT (135361) | SAT (24617) | — | — | — |
+
 The solver's sets are not canonical (it fills unconstrained contexts freely), so
 the rule itself is not read off yet; pinning the root to the canonical window
 (`--root-window`) is satisfiable and is the starting point for extracting one.
