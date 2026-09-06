@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import time
 from pathlib import Path
@@ -39,6 +40,10 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False, t
     cmd = [str(script), "--dataset", str(ds), "--out", str(witness_file), "--node", n.name, "--statement", n.type_pp]
     if script.suffix == ".py":
         cmd = ["python3"] + cmd
+    # falsifiers run solvers and enumerations: cap them like builds (systemd user scope, no swap)
+    memory_max = cfg.falsify_memory_max
+    if memory_max and shutil.which("systemd-run") is not None:
+        cmd = ["systemd-run", "--user", "--scope", "-q", "-p", f"MemoryMax={memory_max}", "-p", "MemorySwapMax=0", "--"] + cmd
     log = cfg.build_log_dir / f"falsify-{time.strftime('%Y%m%d-%H%M%S')}-{n.short}.log"
     log.parent.mkdir(parents=True, exist_ok=True)
     started = time.time()

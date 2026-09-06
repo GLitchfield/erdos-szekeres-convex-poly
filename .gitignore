@@ -35,3 +35,4 @@ harness/*.tmp
 
 # materialized by `es extract` from tools/es/lean/Extract.lean.tmpl
 ESBlueprint/Extract.lean
+tools/decomp_enum/enum_avoid

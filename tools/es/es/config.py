@@ -330,6 +330,12 @@ class Config:
         return int(self.get("falsify", "timeout_min", default=60))
 
     @property
+    def falsify_memory_max(self) -> str | None:
+        """cgroup MemoryMax for falsifier runs (e.g. "8G"); empty or missing = unguarded."""
+        value = self.get("falsify", "memory_max", default="")
+        return str(value) or None
+
+    @property
     def max_parallel_builds(self) -> int:
         return int(self.get("jobs", "max_parallel_builds", default=1))
 

@@ -131,6 +131,7 @@ falsifiers_dir = "harness/falsifiers"
 dataset_dir = "harness/dataset"
 results_dir = "harness/falsify"
 timeout_min = 60
+memory_max = "24G"                     # falsifiers run SAT solvers and enumerations: same guard as builds
 
 [jobs]
 max_parallel_builds = 1
