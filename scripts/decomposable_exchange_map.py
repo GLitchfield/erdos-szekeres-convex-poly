@@ -53,11 +53,19 @@ def main() -> None:
     parser.add_argument("--e-max", type=int, default=2)
     parser.add_argument("--levels", type=int, default=2)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--recursion", choices=("F", "F2"), default="F",
+                        help="F2: interval cuts; adds the rules 'block = span of L' and 'block = span of U'")
+    parser.add_argument("--cache-size", type=int, default=None)
     args = parser.parse_args()
     a, u, k = (int(x) for x in args.case.split(","))
-    F = make_F(a, u, k)
+    import decomposable_recursive_formula as drf
+    if args.cache_size:
+        drf.CACHE_SIZE = args.cache_size
+    F = drf.make_F2(a, u, k) if args.recursion == "F2" else make_F(a, u, k)
     started = time.time()
     rules = ["before first U-run", "after last L-run", "before first L-run", "after last U-run"]
+    if args.recursion == "F2":
+        rules += ["block = span of L", "block = span of U"]
     sanity_fail = 0
     covered = Counter(); partitions = 0; uncovered = []
     base_contexts = 0
@@ -107,6 +115,22 @@ def main() -> None:
                 t = min(max(t, 1), p - 1)      # clamp into the valid cut range
                 if max(cut_value(F, word, maxima, t, p, k, True), cut_value(F, word, maxima, t, p, k, False)) >= V:
                     covered[name] += 1; any_cover = True
+            if args.recursion == "F2":
+                # interval rules: the block is the span (letters between first and last) of one part
+                for name, part in (("block = span of L", L), ("block = span of U", U)):
+                    lo, hi = min(part), max(part)
+                    block = frozenset(i for i in s_pos if lo <= i <= hi); rest = frozenset(s_pos) - block
+                    if not rest:
+                        continue
+                    W = 0
+                    for dp in range(1, k - 1):
+                        c = k - 1 - dp
+                        for (sb, sr) in (("lower", "upper"), ("upper", "lower")):
+                            wb, mb = child(word, maxima, block, sb, dp if sb == "lower" else c); wr, mr = child(word, maxima, rest, sr, c if sr == "upper" else dp)
+                            vb = F(wb, mb); vr = F(wr, mr) if vb else 0
+                            if vb and vr: W = max(W, vb + vr)
+                    if W >= V:
+                        covered[name] += 1; any_cover = True
             if any_cover:
                 union_covered += 1
             else:
@@ -115,7 +139,7 @@ def main() -> None:
                     uncovered.append({"word": ["S" if w == "S" else f"{w[0]}{'L' if w[1]=='lower' else 'U'}" for w in word],
                                       "maxima": list(maxima), "L": sorted(L), "U": sorted(U), "V": V, "F": value,
                                       "cuts": {f"t={t}{'L' if pl else 'U'}": cut_value(F, word, maxima, t, p, k, pl) for t in range(1, p) for pl in (True, False)}})
-    out = {"case": args.case, "single_run_contexts_skipped": base_contexts, "partitions": partitions, "additivity_failures": sanity_fail, "coverage": {r: covered[r] for r in rules}, "union_coverage": union_covered,
+    out = {"case": args.case, "recursion": args.recursion, "single_run_contexts_skipped": base_contexts, "partitions": partitions, "additivity_failures": sanity_fail, "coverage": {r: covered[r] for r in rules}, "union_coverage": union_covered,
            "by_alternations": dict(sorted(by_alternations.items())), "uncovered_by_alternations": dict(sorted(by_alternations_uncovered.items())),
            "uncovered_examples": uncovered, "seconds": round(time.time() - started, 1)}
     args.output.parent.mkdir(parents=True, exist_ok=True)

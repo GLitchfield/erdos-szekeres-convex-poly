@@ -177,3 +177,11 @@ all 5,874 extremal colorings of the compiled class contain 12,724 distinct
 signatures, every one attained; the stacked recursion is exact on 12,716 and
 short on 8 (four by one, four by two), the sandwich contexts; the
 interval-cut comparison on the same table is in progress.
+
+**Addendum 5, 7 September: the interval-cut recursion never overestimates
+where checked.**  Against the depth-one tables of all nine cases (926
+entries with a placed sibling) `F2` equals the exact value on every entry,
+never above, never below; and it is monotone in each sibling maximum
+(9,444 comparisons at `(4,4,5)`, `(4,5,5)`, `(5,5,5)`, no violation).  So
+lemma 2 holds for `F2` as it did for `F`, and `F2` is exact on every
+depth-one context of the nine cases and every deep context at `k = 5`.
