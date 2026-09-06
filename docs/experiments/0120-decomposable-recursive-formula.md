@@ -71,3 +71,58 @@ python3 scripts/decomposable_recursive_formula.py data/derived/decomposable-dept
 ```
 
 A few seconds per case.  Inputs: experiments 0117, 0119.
+
+## Addendum, 6 September: two advance predictions, and the coupling restated
+
+**The coupling.**  The recursion as first written carried, besides the two
+new sibling maxima, an explicit cap on each part's own chains.  The abstract
+additivity test (below) found two contexts at `(4,5,5)` where that version
+exceeded the parent by one: an explicit cap on a part's cups does not shrink
+when the part is cut again and its prefix's cups are extended by its own
+suffix.  The correct and simpler form carries the coupling only through the
+sibling maxima: the lower part sees a sibling of longest cap `d'`, the upper
+part a sibling of longest cup `k − 1 − d'`, and the join rule of experiment
+0117 then bounds every chain of each part, including under later cuts.  That
+form is still exact on all 8,624 deep signatures and all 870 depth-one
+contexts, and the two violations disappear.  In the induction this is the
+observation that a part whose own cups are at most `c` satisfies the
+constraints of a sibling cap `k − 1 − c`, so the single-parameter form
+suffices together with monotonicity of `F` in the sibling maxima.
+
+**`(5,5,6)` at threshold 14.**  The avoiding subclass was enumerated by the
+compiled enumerator `tools/decomp_enum/enum_avoid.c` (pair loops bucketed
+by chain maxima, finished classes pruned to records whose longest cup or cap
+is at most `k − 3`, the only ones the coupling can reuse): 2, 8, 60, 590,
+5,974, 54,480, 409,794, 2,335,568, 8,975,214, 19,776,612, 20,071,608,
+**11,967,720**, 0 colorings at `n = 3..15`, in 23 minutes at 36 GiB.  The
+threshold 14 is exact with 11,967,720 extremal colorings.  The recursion's
+predictions for the depth-one tables were committed before the enumeration
+(`data/derived/decomposable-recursive-predictions-556-467.json`): all 56
+predicted entries match the tables computed from the class
+(`data/derived/decomposable-run-extremal-556-n15.json`, 54 min), including
+13, 10, 4 for the sibling strictly inside at couplings 1, 2, 3 and
+10, 10, 4, 1 for one outer sibling.  With `(4,6,6)` this is the second
+advance prediction confirmed, now nine parameter triples in all.
+
+**Abstract additivity.**  `scripts/decomposable_additivity_test.py`: for every
+abstract context with up to five child vertices and up to two external
+vertices at up to two levels with all sibling maxima, every partition of the
+child's vertices into a lower and an upper part that is not a run-boundary
+cut, both orientations, every coupling:
+
+| case | contexts | nonzero | interleaved partitions | violations |
+|---|---|---|---|---|
+| (4,4,5) | 4,168 | 2,124 | 31,708 | 0 |
+| (4,5,5) | 4,168 | 2,124 | 31,708 | 0 |
+| (5,4,5) | 4,168 | 2,124 | 31,708 | 0 |
+| (5,5,5) | 4,168 | 2,124 | 31,708 | 0 |
+| (4,5,6) | 7,220 | 4,408 | 66,828 | 0 |
+| (5,4,6) | 7,220 | 4,408 | 66,828 | 0 |
+
+ADDITIVITY_MORE
+
+So on every abstract context in range, the best interleaved split never
+beats the best stacked cut.  This is lemma 3 of the induction sketched in
+the discussion of 6 September: with the context-transfer lemma (experiment
+0117) and monotonicity, it is the inductive step, and it is the one
+statement that still needs a proof for all contexts.
