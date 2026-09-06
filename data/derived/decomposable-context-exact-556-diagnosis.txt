@@ -1,0 +1,6 @@
+class loaded {1: 1, 2: 1, 3: 2, 4: 8, 5: 60, 6: 590, 7: 5974, 8: 54480, 9: 409794, 10: 2335568, 11: 8975214, 12: 19776612, 13: 20071608, 14: 11967720}
+{"word": ["S", "1L", "2U", "S", "S"], "maxima": [1, 1], "F_parent": 9, "E_parent": 12, "split_value_F": 12}
+{"split": "L upper", "d'": 2, "child_L": {"word": ["1U", "2L", "3U", "S", "1U"], "maxima": [3, 1, 1], "F": 3, "E": 3}, "child_U": {"word": ["S", "2L", "3U", "1L", "S"], "maxima": [2, 1, 1], "F": 9, "E": 9}}
+{"word": ["S", "1U", "2L", "S", "S"], "maxima": [1, 1], "F_parent": 9, "E_parent": 12, "split_value_F": 12}
+{"split": "L upper", "d'": 2, "child_L": {"word": ["1U", "2U", "3L", "S", "1U"], "maxima": [3, 1, 1], "F": 3, "E": 3}, "child_U": {"word": ["S", "2U", "3L", "1L", "S"], "maxima": [2, 1, 1], "F": 9, "E": 9}}
+rc=0

@@ -81,6 +81,48 @@ def child_signature(word, maxima, keep_runs, side_of_child, sibling_max):
     return tuple(new_word), (sibling_max,) + tuple(maxima)
 
 
+def make_F2(a, u, k):
+    """Interval-cut recursion: like F, but a cut may take any contiguous block of the child's
+    letters as one part (a sandwich when the block is interior), with the rest as the other
+    part; both orientations and all couplings.  Single runs are the base case as in F."""
+    from decomposable_additivity_test import child as child_letters
+
+    @lru_cache(maxsize=None)
+    def F2(word, maxima):
+        p, cup_limit, cap_limit = limits_from_signature(word, maxima, a, u, k)
+        s_pos = [i for i, w in enumerate(word) if w == "S"]
+        if p == 1 and len(s_pos) == 1:
+            cl, pl = int(cup_limit[0][0]), int(cap_limit[0][0])
+            if min(cl, pl) < 1:
+                return 0
+            return T(pl + 1, cl + 1, k) if min(cl, pl) >= 2 else 1
+        best = 0
+        if p == 1:
+            # a single run with several letters: as one structure it is the base threshold
+            cl, pl = int(cup_limit[0][0]), int(cap_limit[0][0])
+            if min(cl, pl) >= 1:
+                best = T(pl + 1, cl + 1, k) if min(cl, pl) >= 2 else 1
+        n = len(s_pos)
+        for i in range(n):
+            for j in range(i, n):
+                if i == 0 and j == n - 1:
+                    continue
+                block = frozenset(s_pos[i:j + 1]); rest = frozenset(s_pos) - block
+                for dp in range(1, k - 1):
+                    c = k - 1 - dp
+                    for (side_b, side_r) in (("lower", "upper"), ("upper", "lower")):
+                        wb, mb = child_letters(word, maxima, block, side_b, dp if side_b == "lower" else c)
+                        vb = F2(wb, mb)
+                        if not vb:
+                            continue
+                        wr, mr = child_letters(word, maxima, rest, side_r, c if side_r == "upper" else dp)
+                        vr = F2(wr, mr)
+                        if vr:
+                            best = max(best, vb + vr)
+        return best
+    return F2
+
+
 def make_F(a, u, k):
     """F(word, maxima): the coupling of a cut is carried entirely by the two new sibling maxima,
     d' for the prefix's view of the suffix and k-1-d' for the suffix's view of the prefix; the

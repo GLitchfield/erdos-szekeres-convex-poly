@@ -25,7 +25,8 @@ the base threshold).
 | (4,4,5) | 20,736 | 20,736 | 20,736 | 20,736 | 20,736 | 20,736 |
 | (4,5,5) | 20,736 | 20,651 | 20,651 | 20,651 | 20,651 | 20,736 |
 | (5,5,5) | 20,736 | 20,736 | 20,736 | 20,736 | 20,736 | 20,736 |
-EXCHANGE_K6
+| (4,5,6) | 47,224 | 47,174 | 47,174 | 47,174 | 47,174 | 47,224 |
+| (5,4,6) | 47,224 | 47,174 | 47,174 | 47,174 | 47,174 | 47,224 |
 
 The rule positions were first tried without clamping and with a fixed
 orientation each; then they missed 15 % of the partitions, all of them
@@ -63,7 +64,44 @@ vertices), and (5,5,6) at two levels:
 | case | contexts | nonzero | interleaved partitions | violations |
 |---|---|---|---|---|
 | (4,4,5), 3 levels | 101,163 | 24,297 | 179,354 | 0 |
-ADDITIVITY_MORE
+| (4,5,5), 3 levels | 101,163 | 26,033 | 192,510 | 0 |
+| (5,5,5), 3 levels | 101,163 | 27,785 | 205,794 | 0 |
+| (5,5,6), 2 levels | 7,220 | 4,408 | 66,828 | **624** |
+
+## 4. The (5,5,6) violations: the stacked recursion is not exact at k = 6
+
+The 624 violations at (5,5,6) all have the same shape, for instance the
+context `S 1L 2U S S` with sibling maxima (1, 1): one child vertex, then an
+external vertex of the level-1 sibling (the child lower there) and one of
+the level-2 sibling (the child upper there), then two child vertices.  The
+recursion gives 9; the split with the lower part taken from inside the
+second run gives 12.  `scripts/decomposable_context_exact.py` computed the
+exact extremal value of this context from the compiled (5,5,6) class
+(`data/derived/decomposable-context-exact-556-diagnosis.txt`): **12**, and
+the two children's exact values equal their recursion values (3 and 9).  So
+this is not a failure of additivity of the exact function, which is
+tautological, but a failure of `F`: at (5,5,6) the stacked recursion
+underestimates some contexts by three.  The extremal structure there has
+the lower part strictly inside the upper part's span, a sandwich, which no
+cut at a run boundary can produce; at `k = 5` such splits never beat a
+stacked cut, at `k = 6` they do.
+
+The repair is to admit interval cuts: one part any contiguous block of the
+child's letters, the other the rest, both orientations, all couplings
+(`make_F2` in `scripts/decomposable_recursive_formula.py`).  On the two
+violating contexts it gives 12; on the smallest 342 deep signatures of the
+`k = 5` cases it still agrees with the exact values.  Its full comparison
+with the 8,624 deep signatures and its additivity at (5,5,6) and (4,5,6)
+are running; see the addendum.
+
+Consequences for the proof.  The induction hypothesis cannot be the
+stacked recursion; whatever bound is used must allow sandwich splits at
+every level, which is the same phenomenon that defeats the published
+scalar induction, now located precisely: it appears first at `k = 6`, at
+depth two, in a context with one sibling above and one below.  The exchange
+argument of section 1 must then be stated for interval cuts, and the
+additivity lemma becomes: the best partition of any context is dominated
+by the best interval partition.
 
 ## Reproduction
 

@@ -73,9 +73,14 @@ def main() -> None:
     parser.add_argument("--e-max", type=int, default=2)
     parser.add_argument("--levels", type=int, default=2)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--recursion", choices=("F", "F2"), default="F", help="F: cuts at run boundaries; F2: interval cuts (sandwiches allowed)")
     args = parser.parse_args()
     a, u, k = (int(x) for x in args.case.split(","))
-    F = make_F(a, u, k)
+    if args.recursion == "F2":
+        from decomposable_recursive_formula import make_F2
+        F = make_F2(a, u, k)
+    else:
+        F = make_F(a, u, k)
     started = time.time()
     stats = {"contexts": 0, "nonzero_contexts": 0, "partitions": 0, "violations": 0, "slack_histogram": {}}
     violations = []
@@ -119,7 +124,7 @@ def main() -> None:
                                        "maxima": list(maxima), "F": value, "L": sorted(L), "U": sorted(U), "best_split": best})
     stats["slack_histogram"] = dict(sorted(stats["slack_histogram"].items()))
     stats["seconds"] = round(time.time() - started, 1)
-    out = {"case": args.case, "s_max": args.s_max, "e_max": args.e_max, "levels": args.levels, "stats": stats, "violations": violations}
+    out = {"case": args.case, "recursion": args.recursion, "s_max": args.s_max, "e_max": args.e_max, "levels": args.levels, "stats": stats, "violations": violations}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=1) + "\n")
     print(json.dumps({"case": args.case, **stats}), file=sys.stderr)
