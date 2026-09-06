@@ -1,0 +1,23 @@
+{
+ "case": "4,4,5",
+ "s_max": 5,
+ "e_max": 2,
+ "levels": 2,
+ "stats": {
+  "contexts": 4168,
+  "nonzero_contexts": 2124,
+  "partitions": 31708,
+  "violations": 0,
+  "slack_histogram": {
+   "0": 7210,
+   "1": 7216,
+   "2": 8400,
+   "3": 7088,
+   "4": 1472,
+   "5": 320,
+   "6": 2
+  },
+  "seconds": 78.6
+ },
+ "violations": []
+}

@@ -119,7 +119,19 @@ cut, both orientations, every coupling:
 | (4,5,6) | 7,220 | 4,408 | 66,828 | 0 |
 | (5,4,6) | 7,220 | 4,408 | 66,828 | 0 |
 
-ADDITIVITY_MORE
+| (4,6,6) | 7,220 | 4,408 | 66,828 | 0 |
+
+and with up to six child vertices:
+
+| case | contexts | nonzero | interleaved partitions | violations |
+|---|---|---|---|---|
+| (4,4,5) | 6,395 | 3,095 | 89,910 | 0 |
+| (4,5,5) | 6,395 | 3,095 | 89,910 | 0 |
+| (5,5,5) | 6,395 | 3,095 | 89,910 | 0 |
+
+In all, 627,046 interleaved partitions across seven parameter triples, no
+violation (`data/derived/decomposable-additivity-*.json`; 15 to 20 minutes
+per case at k = 6, and up to 28 GiB for the memoization table).
 
 **Monotonicity (lemma 2).**  `scripts/decomposable_monotonicity_test.py`:
 raising any one sibling maximum by one never increases `F`, on the same
