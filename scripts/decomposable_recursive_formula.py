@@ -82,11 +82,14 @@ def child_signature(word, maxima, keep_runs, side_of_child, sibling_max):
 
 
 def make_F(a, u, k):
+    """F(word, maxima): the coupling of a cut is carried entirely by the two new sibling maxima,
+    d' for the prefix's view of the suffix and k-1-d' for the suffix's view of the prefix; the
+    join rule of experiment 0117 then bounds every chain of each part (an explicit cap on a
+    part's own chains would have to shrink under the part's own later cuts, and is redundant
+    once the cup bound of the lower part is k-1-d')."""
     @lru_cache(maxsize=None)
-    def F(word, maxima, cup_cap, cap_cap):
+    def F(word, maxima):
         p, cup_limit, cap_limit = limits_from_signature(word, maxima, a, u, k)
-        cup_limit = np.minimum(cup_limit, cup_cap)
-        cap_limit = np.minimum(cap_limit, cap_cap)
         if p == 1:
             cl, pl = int(cup_limit[0][0]), int(cap_limit[0][0])
             if min(cl, pl) < 1:
@@ -95,23 +98,23 @@ def make_F(a, u, k):
         best = 0
         for t in range(1, p):
             prefix = frozenset(range(t)); suffix = frozenset(range(t, p))
-            for c in range(1, k):
-                for dp in range(1, k):
-                    if c + dp > k - 1:
-                        continue
-                    # orientation 1: prefix lower (cups <= c), suffix upper (caps <= dp)
-                    w1, m1 = child_signature(word, maxima, prefix, "lower", dp)
+            for dp in range(1, k - 1):
+                c = k - 1 - dp
+                # orientation 1: prefix lower (sees the suffix's longest cap d'), suffix upper (sees cup c)
+                w1, m1 = child_signature(word, maxima, prefix, "lower", dp)
+                v1 = F(w1, m1)
+                if v1:
                     w2, m2 = child_signature(word, maxima, suffix, "upper", c)
-                    v1 = F(w1, m1, min(cup_cap, c), cap_cap)
-                    v2 = F(w2, m2, cup_cap, min(cap_cap, dp)) if v1 else 0
-                    if v1 and v2:
+                    v2 = F(w2, m2)
+                    if v2:
                         best = max(best, v1 + v2)
-                    # orientation 2: prefix upper (caps <= dp), suffix lower (cups <= c)
-                    w1, m1 = child_signature(word, maxima, prefix, "upper", c)
+                # orientation 2: prefix upper (sees the suffix's longest cup c), suffix lower (sees cap d')
+                w1, m1 = child_signature(word, maxima, prefix, "upper", c)
+                v1 = F(w1, m1)
+                if v1:
                     w2, m2 = child_signature(word, maxima, suffix, "lower", dp)
-                    v1 = F(w1, m1, cup_cap, min(cap_cap, dp))
-                    v2 = F(w2, m2, min(cup_cap, c), cap_cap) if v1 else 0
-                    if v1 and v2:
+                    v2 = F(w2, m2)
+                    if v2:
                         best = max(best, v1 + v2)
         return best
     return F
@@ -131,7 +134,7 @@ def main() -> None:
         mism = []
         for r in t["rows"]:
             word = parse_word(r["word"]); maxima = tuple(r["sibling_maxima"])
-            f = F(word, maxima, 99, 99)
+            f = F(word, maxima)
             diffs[f - r["E"]] += 1
             if f != r["E"] and len(mism) < 40:
                 mism.append({"word": "".join(r["word"]), "maxima": r["sibling_maxima"], "runs": r["runs"], "E": r["E"], "F": f,

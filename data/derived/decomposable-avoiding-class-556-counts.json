@@ -1,0 +1,26 @@
+{
+ "case": [
+  5,
+  5,
+  6
+ ],
+ "threshold": 14,
+ "counts": {
+  "3": 2,
+  "4": 8,
+  "5": 60,
+  "6": 590,
+  "7": 5974,
+  "8": 54480,
+  "9": 409794,
+  "10": 2335568,
+  "11": 8975214,
+  "12": 19776612,
+  "13": 20071608,
+  "14": 11967720,
+  "15": 0
+ },
+ "wall_clock": "23:11.77",
+ "max_rss_gib": 35.9,
+ "tool": "tools/decomp_enum/enum_avoid (bucketed by chain maxima, classes pruned to chain maximum <= k-3)"
+}
