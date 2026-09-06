@@ -48,7 +48,8 @@ def _strip_volatile(text: str) -> str:
 
 
 def run_extract(ctx: Ctx, *, check: bool = False, no_cache: bool = False, write: bool = True, force: bool = False,
-                budget: int | None = None, imports: list[str] | None = None) -> tuple[dict, list, list[str]]:
+                budget: int | None = None, imports: list[str] | None = None, memory_max: str | None = None,
+                script: Path | None = None) -> tuple[dict, list, list[str]]:
     """Run (or reuse) the extractor; return (nodes payload, index, problems)."""
     cfg = ctx.cfg
     mods = scan_modules(cfg)
@@ -65,11 +66,14 @@ def run_extract(ctx: Ctx, *, check: bool = False, no_cache: bool = False, write:
         if raw is None:
             tmp = cfg.es_home / "tmp"
             tmp.mkdir(parents=True, exist_ok=True)
-            out = run_extractor(cfg, out=tmp / "nodes-raw.json", index=tmp / "index-raw.json", mods=mods, force=force, budget_min=budget, imports=imports)
+            out = run_extractor(cfg, out=tmp / ("nodes-raw.json" if not imports else "nodes-targeted.json"),
+                                index=tmp / ("index-raw.json" if not imports else "index-targeted.json"),
+                                mods=mods, force=force, budget_min=budget, imports=imports, memory_max=memory_max, script=script)
             raw, index = out.nodes, out.index
             st.cache_put(th, raw, index)
             st.event("extract", None, ctx.agent, {"seconds": out.result.seconds, "peak_mib": out.result.peak_mib,
-                                                  "memory_max": cfg.extract_memory_max, "tree": th[:12]})
+                                                  "memory_max": memory_max or cfg.extract_memory_max, "tree": th[:12],
+                                                  "imports": imports})
     nodes, dests, problems = nodes_from_extract(cfg, raw)
     core_names = {r["name"] for r in index}
     compute(cfg, nodes, dests, core_names, claims=claims)

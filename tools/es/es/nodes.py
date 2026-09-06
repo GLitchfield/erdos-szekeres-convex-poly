@@ -307,6 +307,17 @@ def find_node(cfg: Config, name: str, nodes: list[Node] | None = None) -> Node:
     for n in nodes:
         if n.short == name:
             return n
+    # A node registered from a targeted extract has a lock entry (with its module) before
+    # the next full `es extract` puts it into nodes.json: answer from the lock meanwhile.
+    lock = read_lock(cfg.lock_file)
+    for key, entry in lock.items():
+        if key in (name, full) or key.rsplit(".", 1)[-1] == name:
+            if entry.get("module"):
+                return Node(name=key, module=entry["module"], type_pp=entry.get("type_pp", ""),
+                            type_hash=entry.get("type_hash", ""), sorry=True, axioms=[], nonstandard_axioms=[],
+                            deps_actual=[], description="(not yet in nodes.json; run `es extract`)",
+                            tags={"ws": entry.get("ws", "?"), "kind": entry.get("kind", "formalization")},
+                            status="proposed")
     raise UsageError(f"unknown node {name}")
 
 

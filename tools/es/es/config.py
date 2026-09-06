@@ -299,6 +299,16 @@ class Config:
         return int(self.get("extract", "budget_min", default=120))
 
     @property
+    def extract_targeted_memory_max(self) -> str:
+        """Cap for a targeted extract (one node module and its import closure only)."""
+        return str(self.get("extract", "targeted_memory_max", default="12G"))
+
+    @property
+    def extract_targeted_max_olean_gib(self) -> float:
+        """Largest import closure (project olean bytes) a targeted extract may attempt under that cap."""
+        return float(self.get("extract", "targeted_max_olean_gib", default=4))
+
+    @property
     def extract_index_layers(self) -> list[str]:
         return [str(x) for x in self.get("extract", "index_layers", default=[self.core_layer])]
 

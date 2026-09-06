@@ -45,12 +45,14 @@ def run_extractor(
     no_taint: bool = False,
     budget_min: float | None = None,
     force: bool = False,
+    memory_max: str | None = None,
 ) -> ExtractOutput:
     script = materialize(cfg, script, imports)
     mods = mods if mods is not None else scan_modules(cfg)
     # Keep the blueprint oleans current so the environment reflects the node sources
     # (adding a node changes the root's imports; editing a proof changes its olean).
-    bp_targets = cfg.build_targets("blueprint")
+    # A targeted run (explicit imports) only needs those modules built.
+    bp_targets = list(imports) if imports else cfg.build_targets("blueprint")
     bp_log = cfg.build_log_dir / f"blueprint-{time.strftime('%Y%m%d-%H%M%S')}.log"
     bp = run_guarded(cfg, [cfg.lake, "build", *bp_targets], log_path=bp_log, budget_min=cfg.core_budget_min * 2, force=force)
     if bp.refused:
@@ -79,7 +81,7 @@ def run_extractor(
         argv += ["--import", m]
     log = cfg.build_log_dir / f"extract-{time.strftime('%Y%m%d-%H%M%S')}.log"
     res = run_guarded(cfg, argv, log_path=log, budget_min=budget_min or cfg.extract_budget_min,
-                      memory_max=cfg.extract_memory_max, force=force, count_built=False)
+                      memory_max=memory_max or cfg.extract_memory_max, force=force, count_built=False)
     if res.refused:
         raise Refused(f"extractor refused ({res.refused}); set ES_EXTRACT_MEMORY_MAX to lower the cap once the peak is known")
     if not res.ok:

@@ -10,7 +10,7 @@ from es.build import run_guarded
 from es.context import Ctx
 from es.errors import CheckFailed, LeanError, UsageError, Refused
 from es.lock import lock_entry, read_lock, write_lock
-from es.modules import module_to_path
+from es.modules import module_to_path, scan_modules, transitive_closure
 from es.nodes import find_node, load_nodes_json, node_module_name, nodes_from_json, qualify
 from es.output import Result, table
 from es.spec import Arg, CommandSpec, command
@@ -64,6 +64,37 @@ def elaborate_module(ctx: Ctx, module: str, budget: int = 20) -> None:
         raise Refused(f"{module} elaboration refused ({res.refused})")
     if not res.ok:
         raise LeanError(f"{module} failed to elaborate ({res.summary()}):\n" + "\n".join(res.tail))
+
+
+def closure_olean_gib(cfg, module: str) -> float:
+    """Project olean bytes (all `.olean*` parts) in the import closure of ``module``."""
+    mods = scan_modules(cfg)
+    lib = cfg.root / ".lake" / "build" / "lib" / "lean"
+    total = 0
+    for m in transitive_closure(mods, [module]):
+        base = lib / module_to_path(m).with_suffix("")
+        for f in base.parent.glob(base.name + ".olean*"):
+            total += f.stat().st_size
+    return total / 2**30
+
+
+def targeted_extract(ctx: Ctx, module: str):
+    """Extract over ``module`` and its import closure only, under the targeted cap.
+
+    Used when the full extractor is refused for memory: enough to hash the new statement
+    and write its lock entry. The duplicate check is then limited to the closure, and
+    nodes.json is not rewritten (the next full `es extract` does both)."""
+    from es.commands.extract import run_extract
+
+    cfg = ctx.cfg
+    gib = closure_olean_gib(cfg, module)
+    if gib > cfg.extract_targeted_max_olean_gib:
+        raise Refused(f"import closure of {module} holds {gib:.1f} GiB of oleans; "
+                      f"above extract.targeted_max_olean_gib = {cfg.extract_targeted_max_olean_gib}")
+    tmp = cfg.es_home / "tmp"
+    tmp.mkdir(parents=True, exist_ok=True)
+    return run_extract(ctx, no_cache=True, write=False, imports=[module],
+                       memory_max=cfg.extract_targeted_memory_max, script=tmp / "ExtractTargeted.lean")
 
 
 def re_extract(ctx: Ctx):
@@ -181,9 +212,17 @@ def run_add(ctx: Ctx, name: str, ws: str, kind: str, type: str, description: str
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text)
     add_root_import(cfg, module)
+    targeted = False
     try:
         elaborate_module(ctx, module)
-        payload, index, problems = re_extract(ctx)
+        try:
+            payload, index, problems = re_extract(ctx)
+        except Refused as exc:
+            # The full extractor cannot start (memory). Hash the statement from this module's
+            # import closure alone; the full extract runs later.
+            res.line(f"full extract refused ({exc}); falling back to a targeted extract of {module}")
+            payload, index, problems = targeted_extract(ctx, module)
+            targeted = True
     except Refused as exc:
         # Nothing ran: keep the elaborated module and the root import so the same command
         # can be repeated once memory allows; no lock entry exists until then.
@@ -202,15 +241,20 @@ def run_add(ctx: Ctx, name: str, ws: str, kind: str, type: str, description: str
     if dup and not force:
         path.unlink(missing_ok=True)
         remove_root_import(cfg, module)
-        re_extract(ctx)
+        if not targeted:
+            re_extract(ctx)
         raise CheckFailed("refused: " + "; ".join(dup))
     lock = read_lock(cfg.lock_file)
     lock[full] = lock_entry(node["type_hash"], node["type_pp"], approved_by or ctx.agent, kind, ws) | {"module": module}
     write_lock(cfg.lock_file, lock)
-    re_extract(ctx)
+    if not targeted:
+        re_extract(ctx)
     with Store(cfg) as st:
-        st.event("node-added", full, ctx.agent, {"module": module, "kind": kind, "ws": ws})
+        st.event("node-added", full, ctx.agent, {"module": module, "kind": kind, "ws": ws, "targeted": targeted})
     res.line(f"added {full} in {path.relative_to(cfg.root)} (status {node['status']}); lock entry written")
+    if targeted:
+        res.line(f"targeted extract: duplicate check covered only the import closure of {module}; "
+                 f"nodes.json/status.md not updated; run `es extract` when memory allows")
     for p in payload.get("problems", []):
         if p.startswith(full):
             res.line(f"  note: {p}")

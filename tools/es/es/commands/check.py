@@ -32,8 +32,17 @@ def run(ctx: Ctx, name: str, budget: int | None = None, async_: bool = False, fo
             st.event("check-failed", n.name, ctx.agent, {"seconds": build.seconds})
         return res
     from es.commands.extract import run_extract
+    from es.commands.node import targeted_extract
+    from es.errors import Refused
 
-    payload, index, problems = run_extract(ctx, force=force)
+    targeted = False
+    try:
+        payload, index, problems = run_extract(ctx, force=force)
+    except Refused as exc:
+        # The full extractor cannot start (memory): judge the node from its import closure.
+        res.line(f"full extract refused ({exc}); targeted extract of {n.module}")
+        payload, index, problems = targeted_extract(ctx, n.module)
+        targeted = True
     node = next((x for x in payload["nodes"] if x["name"] == n.name), None)
     if node is None:
         res.line(f"{n.name} not found after extract")
@@ -48,7 +57,9 @@ def run(ctx: Ctx, name: str, budget: int | None = None, async_: bool = False, fo
         st.event("check", n.name, ctx.agent, {"outcome": outcome, "seconds": time.time() - started})
         if node["status"] == "closed":
             st.record_attempt(n.name, ctx.agent, "closed", note="es check")
-    res.payload = {"node": node, "build_seconds": build.seconds, "build_peak_mib": build.peak_mib}
+    if targeted:
+        res.line("targeted extract: nodes.json/status.md not updated; run `es extract` when memory allows")
+    res.payload = {"node": node, "build_seconds": build.seconds, "build_peak_mib": build.peak_mib, "targeted": targeted}
     res.exit_code = EXIT_OK
     return res
 

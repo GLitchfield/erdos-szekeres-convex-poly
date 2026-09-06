@@ -114,36 +114,50 @@ def test_extract_check_ignores_volatile_lines():
 
 def test_node_add_keeps_module_when_extractor_refused(project, monkeypatch):
     """A memory refusal is not a Lean failure: the module stays, and repeating the same
-    `es node add` (same rendered text) is accepted instead of 'already exists'."""
+    `es node add` (same rendered text) is accepted instead of 'already exists'. When the
+    full extract is refused but a targeted one runs, the lock entry is written from it."""
     from es.commands import node as node_cmd
     from es.context import Ctx
     from es.errors import Refused, UsageError
+    from es.lock import read_lock
 
     ctx = Ctx.load(project)
-    calls = {"n": 0}
+    full = node_cmd.qualify(ctx.cfg, "bar_node")
+    payload = ({"nodes": [{"name": full, "type_hash": "h", "type_pp": "True", "status": "open", "module": "TBlueprint.A.BarNode"}],
+                "destinations": [], "duplicate_problems": [], "problems": []}, [], [])
+    state = {"full": "refuse", "targeted": "refuse", "targeted_calls": 0}
 
     def fake_elab(ctx, module, budget=20):
         return None
 
-    def fake_extract(ctx):
-        calls["n"] += 1
-        if calls["n"] == 1:
+    def fake_full(ctx):
+        if state["full"] == "refuse":
             raise Refused("extractor refused (only 1 GiB available)")
-        full = node_cmd.qualify(ctx.cfg, "bar_node")
-        return ({"nodes": [{"name": full, "type_hash": "h", "type_pp": "True", "status": "open", "module": "TBlueprint.A.BarNode"}],
-                 "destinations": [], "duplicate_problems": [], "problems": []}, [], [])
+        return payload
+
+    def fake_targeted(ctx, module):
+        state["targeted_calls"] += 1
+        if state["targeted"] == "refuse":
+            raise Refused("targeted extract refused")
+        return payload
 
     monkeypatch.setattr(node_cmd, "elaborate_module", fake_elab)
-    monkeypatch.setattr(node_cmd, "re_extract", fake_extract)
+    monkeypatch.setattr(node_cmd, "re_extract", fake_full)
+    monkeypatch.setattr(node_cmd, "targeted_extract", fake_targeted)
     kwargs = dict(name="bar_node", ws="A", kind="formalization", type="True", description="bar", consumer="TCore.foo")
+    # both refused: module kept, no lock entry
     with pytest.raises(Refused):
         node_cmd.run_add(ctx, **kwargs)
     path = project / "TBlueprint" / "A" / "BarNode.lean"
     assert path.exists(), "module must survive a refusal"
     assert "TBlueprint.A.BarNode" in (project / "TBlueprint.lean").read_text()
-    # same content again: accepted and completes
+    assert full not in read_lock(ctx.cfg.lock_file)
+    # same content again, targeted extract now possible: registered from the closure
+    state["targeted"] = "ok"
     res = node_cmd.run_add(ctx, **kwargs)
-    assert res.exit_code == 0
+    assert res.exit_code == 0 and state["targeted_calls"] == 2
+    assert full in read_lock(ctx.cfg.lock_file)
+    assert any("targeted extract" in line for line in res.human)
     # different content: refused as an existing module
     with pytest.raises(UsageError):
         node_cmd.run_add(ctx, **(kwargs | {"description": "something else"}))

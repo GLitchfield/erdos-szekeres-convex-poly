@@ -160,9 +160,16 @@ is available. A refusal is reported as `es.errors.Refused`, a `LeanError` that
 module and its root import are kept, no lock entry is written, and repeating the
 identical `es node add` later completes the registration (a re-run whose rendered
 module matches the file on disk is accepted; different content is still "already
-exists"). `ES_EXTRACT_MEMORY_MAX=<cap>` overrides `extract.memory_max` for one
-invocation; every fresh extractor run logs an `extract` event with its measured
-`peak_mib`, which is the number to size that cap from.
+exists"). When only the full extract is refused, `es node add` falls back to a
+*targeted* extract over the new module's import closure alone (cap
+`extract.targeted_memory_max`, default 12G; attempted only if the closure holds at most
+`extract.targeted_max_olean_gib` of project oleans, default 4): enough to hash the
+statement and write the lock entry. The duplicate check is then limited to that closure
+and `nodes.json`/`status.md` are not rewritten; the next full `es extract` does both.
+`ES_EXTRACT_MEMORY_MAX=<cap>` overrides `extract.memory_max` for one invocation; every
+fresh extractor run logs an `extract` event with its measured `peak_mib`. Note that the
+cgroup counts the page cache of mmap'd oleans, so a capped full extract (the root imports
+every certificate) thrashes at the cap rather than failing: run it when the machine is free.
 
 **`sorry` policy.** The existing grep in `make test` must be narrowed to
 `ErdosSzekeres/` so that `ESBlueprint/` may contain `sorry`. Lean's own `sorry`
