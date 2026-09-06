@@ -172,7 +172,7 @@ def main() -> None:
     parser.add_argument("--recursion", choices=("F", "F2"), default="F")
     parser.add_argument("--shard", default=None, help="i/N: only every N-th row starting at i")
     parser.add_argument("--cache-size", type=int, default=None)
-    parser.add_argument("--cases", default=None, help="comma-separated subset of cases")
+    parser.add_argument("--cases", default=None, help="semicolon-separated subset of cases, e.g. 5,5,5;4,5,5")
     args = parser.parse_args()
     global CACHE_SIZE
     if args.cache_size:
@@ -181,7 +181,7 @@ def main() -> None:
     d = json.load(open(args.tables))
     result = {}
     for case, t in d["cases"].items():
-        if args.cases and case not in args.cases.split(","):
+        if args.cases and case not in args.cases.split(";"):
             continue
         a, u, k = (int(x) for x in case.split(","))
         F = make_F2(a, u, k) if args.recursion == "F2" else make_F(a, u, k)
