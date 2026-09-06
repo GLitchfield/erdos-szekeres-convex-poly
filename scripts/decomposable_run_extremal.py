@@ -63,13 +63,39 @@ def main() -> None:
     parser.add_argument("--cases", default="4,4,5;4,5,5;5,4,5;5,5,5;4,4,6;4,5,6")
     parser.add_argument("--max-runs", type=int, default=4)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--class-dir", type=Path, default=None,
+                        help="directory of class_<n>.bin records written by tools/decomp_enum/enum_avoid (one case)")
     parser.add_argument("--avoiding", action="store_true",
                         help="enumerate only the (a,u,k)-avoiding subclass of the single case given (hereditary; exact), "
                              "which reaches thresholds beyond the full class's n <= 9")
     args = parser.parse_args()
     started = time.time()
     data = {}
-    if args.avoiding:
+    if args.class_dir is not None:
+        MASKW = 9   # tools/decomp_enum/enum_avoid.c: MAXN 16, C(16,3) = 560 bits -> 9 words
+        for m in range(1, args.max_n + 1):
+            f = args.class_dir / f"class_{m}.bin"
+            if m <= 2:
+                # the enumerator writes n >= 3 only; one and two vertices are the empty coloring
+                t = np.triu(np.full((m, m), 2, dtype=np.int8)); np.fill_diagonal(t, 1)
+                data[m] = (t[None], t[None].copy(), np.array([m], dtype=np.int8))
+                continue
+            if not f.exists():
+                data[m] = (np.zeros((0, m, m), dtype=np.int8), np.zeros((0, m, m), dtype=np.int8), np.zeros(0, dtype=np.int8))
+                continue
+            raw = np.fromfile(f, dtype=np.uint8)
+            # record layout: MASKW*8 bytes mask, m*m cupT, m*m capT, 4 tail bytes
+            rec = MASKW * 8 + 2 * m * m + 4
+            assert raw.size % rec == 0, f"{f}: {raw.size} bytes is not a multiple of the record size {rec}"
+            count = raw.size // rec
+            recs = raw.reshape(count, rec)
+            cups = recs[:, MASKW * 8: MASKW * 8 + m * m].astype(np.int8).reshape(count, m, m)
+            caps = recs[:, MASKW * 8 + m * m: MASKW * 8 + 2 * m * m].astype(np.int8).reshape(count, m, m)
+            strong = recs[:, -4].astype(np.int8)
+            data[m] = (cups, caps, strong)
+        print(f"class records loaded: { {m: len(data[m][2]) for m in data} }", file=sys.stderr, flush=True)
+        classes = None
+    elif args.avoiding:
         from decomposable_avoiding_class import enumerate_avoiding
         cases = args.cases.split(";")
         assert len(cases) == 1, "--avoiding takes exactly one case"
@@ -87,7 +113,7 @@ def main() -> None:
     else:
         classes, tindex = enumerate_class(args.max_n, progress=False)
     for m in range(1, args.max_n + 1):
-        if args.avoiding:
+        if args.avoiding or args.class_dir is not None:
             break
         idx = tindex[m]
         masks = sorted(classes[m])
