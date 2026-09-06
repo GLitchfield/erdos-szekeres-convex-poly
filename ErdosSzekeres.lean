@@ -60,6 +60,7 @@ public import ErdosSzekeres.HalfPureSingletonFanFin10
 public import ErdosSzekeres.PrimeTwoDeletionCounterexample
 public import ErdosSzekeres.PrimeMutationPositiveControl
 public import ErdosSzekeres.DecomposableRealization
+public import ErdosSzekeres.DecomposableContext
 public import ErdosSzekeres.TripleColoringRealizability
 public import ErdosSzekeres.RingelNineNonrealizable
 public import ErdosSzekeres.Duality

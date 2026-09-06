@@ -99,12 +99,14 @@ def make_F2(a, u, k):
             if min(cl, pl) < 1:
                 return 0
             return T(pl + 1, cl + 1, k) if min(cl, pl) >= 2 else 1
-        best = 0
         if p == 1:
-            # a single run with several letters: as one structure it is the base threshold
+            # a single run is the base case (the Lean `bound` convention): the classical
+            # threshold with the run's internal parameters, no cuts inside the run
             cl, pl = int(cup_limit[0][0]), int(cap_limit[0][0])
-            if min(cl, pl) >= 1:
-                best = T(pl + 1, cl + 1, k) if min(cl, pl) >= 2 else 1
+            if min(cl, pl) < 1:
+                return 0
+            return T(pl + 1, cl + 1, k) if min(cl, pl) >= 2 else 1
+        best = 0
         n = len(s_pos)
         for i in range(n):
             for j in range(i, n):
