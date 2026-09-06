@@ -71,10 +71,14 @@ def closure_olean_gib(cfg, module: str) -> float:
     mods = scan_modules(cfg)
     lib = cfg.root / ".lake" / "build" / "lib" / "lean"
     total = 0
+    # exact paths, not a glob per module: a closure of thousands of certificate modules
+    # against a directory of tens of thousands of files made the glob quadratic
     for m in transitive_closure(mods, [module]):
         base = lib / module_to_path(m).with_suffix("")
-        for f in base.parent.glob(base.name + ".olean*"):
-            total += f.stat().st_size
+        for suffix in (".olean", ".olean.hash", ".olean.private", ".olean.server", ".ilean"):
+            f = base.with_name(base.name + suffix)
+            if f.exists():
+                total += f.stat().st_size
     return total / 2**30
 
 
