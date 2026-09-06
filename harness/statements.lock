@@ -1,4 +1,40 @@
 {
+  "ErdosSzekeres.ctx_bound_additive": {
+    "type_hash": "193826ccbb035ddd",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (keep : List Nat),\n      (∀ (p : Nat), List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n        Ne keep List.nil →\n          instLTNat.lt keep.length σ.childPositions.length →\n            ∀ (d : Nat),\n              instLENat.le 1 d →\n                instLENat.le d (instHSub.hSub σ.k 2) →\n                  And\n                    (instLENat.le\n                      (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                        (σ.part\n                            (List.filter\n                              (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                              σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                      σ.bound)\n                    (instLENat.le\n                      (instHAdd.hAdd\n                        (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                        (σ.part\n                            (List.filter\n                              (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                              σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.lower d).bound)\n                      σ.bound)",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-06",
+    "kind": "conjecture",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundAdditive"
+  },
+  "ErdosSzekeres.ctx_bound_antitone": {
+    "type_hash": "86c99d58d3980c2a",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (l m : Nat),\n  instLENat.le (σ.withMaximum l (instHAdd.hAdd m 1)).bound (σ.withMaximum l m).bound",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-06",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundAntitone"
+  },
+  "ErdosSzekeres.ctx_card_le_bound": {
+    "type_hash": "1ba3114105c3f39a",
+    "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {S : Finset (Fin n)}\n  (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ErdosSzekeres.IsDecomposableOn χ S →\n      ErdosSzekeres.Ctx.Satisfies χ S σ → instLENat.le S.card σ.bound",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-06",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxCardLeBound"
+  },
+  "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit": {
+    "type_hash": "518bec9af5817021",
+    "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {S lower upper : Finset (Fin n)}\n  (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ErdosSzekeres.Ctx.Satisfies χ S σ →\n      ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n        Eq (Finset.instUnion.union lower upper) S →\n          lower.Nonempty →\n            upper.Nonempty →\n              And\n                (ErdosSzekeres.Ctx.Satisfies χ lower\n                  (σ.part (σ.positionsOf S lower) ErdosSzekeres.Ctx.Side.lower\n                    (ErdosSzekeres.Ctx.chainMax χ upper Bool.false)))\n                (ErdosSzekeres.Ctx.Satisfies χ upper\n                  (σ.part (σ.positionsOf S upper) ErdosSzekeres.Ctx.Side.upper\n                    (ErdosSzekeres.Ctx.chainMax χ lower Bool.true)))",
+    "approved_by": "fable (provisional; Gavin to confirm via CODEOWNERS review)",
+    "approved_at": "2026-09-06",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxSatisfiesOfDeepBelowSplit"
+  },
   "ErdosSzekeres.decomposableStateUpper_all": {
     "type_hash": "a5d6767d0f8a1d2e",
     "type_pp": "∀ (a u k : Nat),\n  instLENat.le 1 a →\n    instLENat.le 1 u →\n      instLENat.le a k → instLENat.le u k → ErdosSzekeres.DecomposableStateUpper a u k",

@@ -3,3 +3,7 @@
 import ESBlueprint.E.PredecessorHalfSubsetAtAll
 import ESBlueprint.B.DecomposableStateUpperAll
 import ESBlueprint.C.EtvCapFiveAll
+import ESBlueprint.B.CtxCardLeBound
+import ESBlueprint.B.CtxSatisfiesOfDeepBelowSplit
+import ESBlueprint.B.CtxBoundAntitone
+import ESBlueprint.B.CtxBoundAdditive
