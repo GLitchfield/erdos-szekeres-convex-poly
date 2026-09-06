@@ -1,0 +1,22 @@
+{
+ "case": "5,5,5",
+ "single_run_contexts_skipped": 844,
+ "partitions": 20736,
+ "additivity_failures": 0,
+ "coverage": {
+  "before first U-run": 20736,
+  "after last L-run": 20736,
+  "before first L-run": 20736,
+  "after last U-run": 20736
+ },
+ "union_coverage": 20736,
+ "by_alternations": {
+  "1": 4880,
+  "2": 9488,
+  "3": 5248,
+  "4": 1120
+ },
+ "uncovered_by_alternations": {},
+ "uncovered_examples": [],
+ "seconds": 57.2
+}
