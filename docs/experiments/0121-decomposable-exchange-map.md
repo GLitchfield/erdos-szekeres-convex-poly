@@ -160,3 +160,20 @@ recursion below the exact value on 4 of them, by one or two, so the sandwich
 effect is present at `(4,5,6)` as well as `(5,5,6)`; the full `(4,5,6)`,
 `(4,5,7)` and sampled `(5,5,6)` tables with both recursions are running
 (`scripts/decomposable_deep_tables_compiled.py`).
+
+**Addendum 4, 7 September: three levels and k = 7.**  Interval-cut
+additivity on contexts with up to three external levels (up to three
+external vertices, up to four child vertices), sharded:
+
+| case | contexts | nonzero | interleaved partitions | violations |
+|---|---|---|---|---|
+| (4,4,5), 3 levels | 101,163 | 24,297 | 179,354 | 0 |
+| (4,5,5), 3 levels | 101,163 | 26,033 | 192,510 | 0 |
+| (5,5,5), 3 levels | 101,163 | 27,785 | 205,794 | 0 |
+| (4,5,7), 2 levels | 6,633 | 4,637 | 34,314 | 0 |
+
+The first `k = 7` case passes.  At `(4,5,6)`, the deep signature tables from
+all 5,874 extremal colorings of the compiled class contain 12,724 distinct
+signatures, every one attained; the stacked recursion is exact on 12,716 and
+short on 8 (four by one, four by two), the sandwich contexts; the
+interval-cut comparison on the same table is in progress.
