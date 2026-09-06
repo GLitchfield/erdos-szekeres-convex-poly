@@ -81,13 +81,16 @@ def child_signature(word, maxima, keep_runs, side_of_child, sibling_max):
     return tuple(new_word), (sibling_max,) + tuple(maxima)
 
 
+CACHE_SIZE = None   # None = unbounded; a shard driver sets e.g. 3_000_000 to bound memory
+
+
 def make_F2(a, u, k):
     """Interval-cut recursion: like F, but a cut may take any contiguous block of the child's
     letters as one part (a sandwich when the block is interior), with the rest as the other
     part; both orientations and all couplings.  Single runs are the base case as in F."""
     from decomposable_additivity_test import child as child_letters
 
-    @lru_cache(maxsize=None)
+    @lru_cache(maxsize=CACHE_SIZE)
     def F2(word, maxima):
         p, cup_limit, cap_limit = limits_from_signature(word, maxima, a, u, k)
         s_pos = [i for i, w in enumerate(word) if w == "S"]
@@ -166,23 +169,36 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("tables", type=Path)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--recursion", choices=("F", "F2"), default="F")
+    parser.add_argument("--shard", default=None, help="i/N: only every N-th row starting at i")
+    parser.add_argument("--cache-size", type=int, default=None)
+    parser.add_argument("--cases", default=None, help="comma-separated subset of cases")
     args = parser.parse_args()
+    global CACHE_SIZE
+    if args.cache_size:
+        CACHE_SIZE = args.cache_size
+    shard_i, shard_n = (int(x) for x in args.shard.split("/")) if args.shard else (0, 1)
     d = json.load(open(args.tables))
     result = {}
     for case, t in d["cases"].items():
+        if args.cases and case not in args.cases.split(","):
+            continue
         a, u, k = (int(x) for x in case.split(","))
-        F = make_F(a, u, k)
+        F = make_F2(a, u, k) if args.recursion == "F2" else make_F(a, u, k)
         diffs = Counter()
         mism = []
-        for r in t["rows"]:
+        for row_index, r in enumerate(t["rows"]):
+            if row_index % shard_n != shard_i:
+                continue
             word = parse_word(r["word"]); maxima = tuple(r["sibling_maxima"])
             f = F(word, maxima)
             diffs[f - r["E"]] += 1
             if f != r["E"] and len(mism) < 40:
                 mism.append({"word": "".join(r["word"]), "maxima": r["sibling_maxima"], "runs": r["runs"], "E": r["E"], "F": f,
                              "cup_limit": r["cup_limit"], "cap_limit": r["cap_limit"]})
-        result[case] = {"threshold": t["threshold"], "signatures": len(t["rows"]), "F_minus_E": dict(sorted(diffs.items())), "mismatches": mism}
-        print(json.dumps({"case": case, "signatures": len(t["rows"]), "F_minus_E": dict(sorted(diffs.items()))}), file=sys.stderr, flush=True)
+        result[case] = {"threshold": t["threshold"], "signatures": sum(diffs.values()), "F_minus_E": dict(sorted(diffs.items())), "mismatches": mism,
+                        "recursion": args.recursion, "shard": args.shard}
+        print(json.dumps({"case": case, "signatures": sum(diffs.values()), "recursion": args.recursion, "shard": args.shard, "F_minus_E": dict(sorted(diffs.items()))}), file=sys.stderr, flush=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=1) + "\n")
 
