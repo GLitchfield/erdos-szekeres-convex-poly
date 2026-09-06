@@ -147,7 +147,7 @@ letters lie, not by the sibling maxima beyond their effect on the limits.
 | 3,3,3 | 3 | SAT (37) | SAT (37) | — | — | — |
 | 3,3,4 | 3 | SAT (121) | SAT (43) | — | — | — |
 | 3,4,4 | 4 | SAT (1625) | SAT (642) | — | — | — |
-| 3,4,5 | 4 | SAT (5053) | SAT (814) | — | — | — |
+| 3,4,5 | 4 | SAT (5053) | SAT (814) | UNSAT (269) | UNSAT (307) | UNSAT (689) |
 | 3,4,6 | 4 | SAT (11505) | SAT (992) | — | — | — |
 | 3,5,5 | 5 | SAT (96985) | SAT (14832) | — | — | — |
 | 3,5,6 | 5 | SAT (305329) | SAT (25183) | — | — | — |

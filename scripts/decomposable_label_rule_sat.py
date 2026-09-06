@@ -126,6 +126,8 @@ def main() -> None:
               "contexts": len(contexts), "feature_classes": nphi, "leaves": len(leaves), "clauses": len(clauses),
               "sat": sat, "seconds": round(time.time() - started, 1)}
     print(json.dumps(result), flush=True)
+    if args.output and not sat:
+        args.output.write_text(json.dumps(result, indent=1) + "\n")
     if sat and args.output:
         pos = set()
         for line in proc.stdout.splitlines():
