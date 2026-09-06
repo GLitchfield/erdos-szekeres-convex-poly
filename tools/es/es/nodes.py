@@ -313,11 +313,20 @@ def find_node(cfg: Config, name: str, nodes: list[Node] | None = None) -> Node:
     for key, entry in lock.items():
         if key in (name, full) or key.rsplit(".", 1)[-1] == name:
             if entry.get("module"):
+                # tags come from the module's docstring (the extractor's record is not available yet)
+                tags: dict = {"ws": entry.get("ws", "?"), "kind": entry.get("kind", "formalization")}
+                desc = "(not yet in nodes.json; run `es extract`)"
+                src = cfg.root / module_to_path(entry["module"])
+                if src.exists():
+                    m = re.search(r"/--(.*?)-/", src.read_text(errors="replace"), re.S)
+                    if m:
+                        t = parse_docstring(m.group(1))
+                        if t.is_node:
+                            tags = dict(t.tags) | {"ws": tags["ws"], "kind": tags["kind"]}
+                            desc = t.description
                 return Node(name=key, module=entry["module"], type_pp=entry.get("type_pp", ""),
                             type_hash=entry.get("type_hash", ""), sorry=True, axioms=[], nonstandard_axioms=[],
-                            deps_actual=[], description="(not yet in nodes.json; run `es extract`)",
-                            tags={"ws": entry.get("ws", "?"), "kind": entry.get("kind", "formalization")},
-                            status="proposed")
+                            deps_actual=[], description=desc, tags=tags, status="proposed")
     raise UsageError(f"unknown node {name}")
 
 

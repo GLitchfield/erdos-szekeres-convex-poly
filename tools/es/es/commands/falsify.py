@@ -75,8 +75,14 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False, t
         if result == "counterexample":
             st.record_attempt(n.name, ctx.agent, "refuted", note="falsifier counterexample")
     from es.commands.extract import run_extract
-    run_extract(ctx)
+    from es.errors import Refused
+
     res = Result()
+    try:
+        run_extract(ctx)
+    except Refused as exc:
+        # the result is recorded; nodes.json/status.md pick it up at the next full extract
+        res.line(f"nodes.json not refreshed ({exc}); run `es extract` when memory allows")
     res.line(f"{n.name}: falsifier {n.falsifier} -> {result} (rc={rc}, {seconds:.0f}s); log {log}")
     if result in ("pass", "counterexample"):
         res.line(f"recorded {out_file.relative_to(cfg.root)}")
