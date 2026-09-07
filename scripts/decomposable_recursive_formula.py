@@ -84,10 +84,15 @@ def child_signature(word, maxima, keep_runs, side_of_child, sibling_max):
 CACHE_SIZE = None   # None = unbounded; a shard driver sets e.g. 3_000_000 to bound memory
 
 
-def make_F2(a, u, k):
+def make_F2(a, u, k, *, include_zero_children=False):
     """Interval-cut recursion: like F, but a cut may take any contiguous block of the child's
     letters as one part (a sandwich when the block is interior), with the rest as the other
-    part; both orientations and all couplings.  Single runs are the base case as in F."""
+    part; both orientations and all couplings.  Single runs are the base case as in F.
+
+    The historical F2 drops a cut when either child has value zero.  Set
+    include_zero_children=True for the sum used by Ctx.Context.boundFuel in Lean.
+    Keeping the historical default preserves the meaning of existing F2 experiments.
+    """
     from decomposable_additivity_test import child as child_letters
 
     @lru_cache(maxsize=CACHE_SIZE)
@@ -118,11 +123,11 @@ def make_F2(a, u, k):
                     for (side_b, side_r) in (("lower", "upper"), ("upper", "lower")):
                         wb, mb = child_letters(word, maxima, block, side_b, dp if side_b == "lower" else c)
                         vb = F2(wb, mb)
-                        if not vb:
+                        if not include_zero_children and not vb:
                             continue
                         wr, mr = child_letters(word, maxima, rest, side_r, c if side_r == "upper" else dp)
                         vr = F2(wr, mr)
-                        if vr:
+                        if include_zero_children or vr:
                             best = max(best, vb + vr)
         return best
     return F2

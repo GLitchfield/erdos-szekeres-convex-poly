@@ -11,12 +11,15 @@ from es.spec import Arg, CommandSpec, command
 from es.store import Store
 
 
-def run(ctx: Ctx, name: str, budget: int | None = None, async_: bool = False, force: bool = False) -> Result:
+def run(ctx: Ctx, name: str, budget: int | None = None, async_: bool = False, force: bool = False,
+        targeted: bool = False) -> Result:
     cfg = ctx.cfg
     n = find_node(cfg, name)
     if async_:
         from es.jobs import submit
         argv = ["check", n.name] + ([f"--budget={budget}"] if budget else [])
+        if targeted:
+            argv.append("--targeted")
         job = submit(cfg, kind="check", node=n.name, argv=argv, agent=ctx.agent, budget_min=budget)
         return Result(EXIT_OK, {"job": job}, [f"submitted job {job['id']}"])
     log = cfg.build_log_dir / f"check-{time.strftime('%Y%m%d-%H%M%S')}-{n.short}.log"
@@ -35,14 +38,16 @@ def run(ctx: Ctx, name: str, budget: int | None = None, async_: bool = False, fo
     from es.commands.node import targeted_extract
     from es.errors import Refused
 
-    targeted = False
-    try:
-        payload, index, problems = run_extract(ctx, force=force)
-    except Refused as exc:
-        # The full extractor cannot start (memory): judge the node from its import closure.
-        res.line(f"full extract refused ({exc}); targeted extract of {n.module}")
+    if targeted:
         payload, index, problems = targeted_extract(ctx, n.module)
-        targeted = True
+    else:
+        try:
+            payload, index, problems = run_extract(ctx, force=force)
+        except Refused as exc:
+            # The full extractor cannot start (memory): judge the node from its import closure.
+            res.line(f"full extract refused ({exc}); targeted extract of {n.module}")
+            payload, index, problems = targeted_extract(ctx, n.module)
+            targeted = True
     node = next((x for x in payload["nodes"] if x["name"] == n.name), None)
     if node is None:
         res.line(f"{n.name} not found after extract")
@@ -67,4 +72,5 @@ def run(ctx: Ctx, name: str, budget: int | None = None, async_: bool = False, fo
 command(CommandSpec(name="check", cli=["check"], long_running=True,
                     help="Build only the node's module, re-extract, and report sorry-free / axioms / build time.", run=run,
                     args=[Arg("name", "node name", positional=True, required=True), Arg("budget", "wall-clock budget in minutes", "int"),
-                          Arg("async_", "submit as a background job", "bool"), Arg("force", "run even if another lean compiler is running", "bool")]))
+                          Arg("async_", "submit as a background job", "bool"), Arg("force", "run even if another lean compiler is running", "bool"),
+                          Arg("targeted", "extract only this node's import closure; do not rewrite the full index", "bool")]))

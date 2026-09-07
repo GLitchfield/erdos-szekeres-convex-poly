@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Falsifier for the additivity conjecture of the context recursion (Workstream B node
-ctx_bound_additive): scripts/decomposable_additivity_test.py with interval cuts on the
+ctx_bound_additive): scripts/decomposable_additivity_test.py with Lean's interval cuts on the
 abstract contexts of a few cases (up to four child letters, two external levels).
+Zero-valued children and parents are included, as in the Lean statement.
 Exit 0: no violation; exit 2: a context and partition whose two part bounds exceed the
 parent's bound (witness in --out); other: error.
 """
@@ -22,20 +23,20 @@ def main() -> int:
     ap.add_argument("--out")
     ap.add_argument("--node")
     ap.add_argument("--statement")
-    ap.add_argument("--cases", default="4,4,5;4,5,5;5,4,5;4,5,6")
+    ap.add_argument("--cases", default="3,3,3;3,3,4;4,4,5;4,5,5;5,4,5;4,5,6")
     ap.add_argument("--s-max", type=int, default=4)
     ap.add_argument("--e-max", type=int, default=2)
     ap.add_argument("--levels", type=int, default=2)
     a = ap.parse_args()
     tmp = Path(a.dataset or ROOT / "harness" / "dataset") / "ctx_bound_additive"
     tmp.mkdir(parents=True, exist_ok=True)
-    summary = {"node": a.node, "cases": {}}
+    summary = {"node": a.node, "recursion": "lean", "cases": {}}
     violations = []
     for case in a.cases.split(";"):
-        out = tmp / f"add-{case.replace(',', '')}-s{a.s_max}e{a.e_max}l{a.levels}-F2.json"
+        out = tmp / f"add-{case.replace(',', '')}-s{a.s_max}e{a.e_max}l{a.levels}-lean.json"
         proc = subprocess.run([sys.executable, str(ROOT / "scripts" / "decomposable_additivity_test.py"), "--case", case,
                                "--s-max", str(a.s_max), "--e-max", str(a.e_max), "--levels", str(a.levels),
-                               "--recursion", "F2", "--cache-size", "1500000", "--output", str(out)],
+                               "--recursion", "lean", "--cache-size", "1500000", "--output", str(out)],
                               capture_output=True, text=True, cwd=ROOT)
         if proc.returncode != 0:
             print(proc.stderr[-2000:], file=sys.stderr)

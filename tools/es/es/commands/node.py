@@ -182,7 +182,8 @@ def run_show(ctx: Ctx, name: str) -> Result:
 def run_add(ctx: Ctx, name: str, ws: str, kind: str, type: str, description: str, depends: list[str] | None = None,
             consumer: str | None = None, dangling_ok: str | None = None, falsifier: str | None = None,
             approved_by: str | None = None, measure: str | None = None, target: str | None = None,
-            import_: str | None = None, force: bool = False, no_search: bool = False) -> Result:
+            import_: str | None = None, force: bool = False, no_search: bool = False,
+            targeted: bool = False) -> Result:
     cfg = ctx.cfg
     if ws not in cfg.workstreams:
         raise UsageError(f"unknown workstream {ws}; configured: {', '.join(cfg.workstreams)}")
@@ -216,17 +217,19 @@ def run_add(ctx: Ctx, name: str, ws: str, kind: str, type: str, description: str
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text)
     add_root_import(cfg, module)
-    targeted = False
     try:
         elaborate_module(ctx, module)
-        try:
-            payload, index, problems = re_extract(ctx)
-        except Refused as exc:
-            # The full extractor cannot start (memory). Hash the statement from this module's
-            # import closure alone; the full extract runs later.
-            res.line(f"full extract refused ({exc}); falling back to a targeted extract of {module}")
+        if targeted:
             payload, index, problems = targeted_extract(ctx, module)
-            targeted = True
+        else:
+            try:
+                payload, index, problems = re_extract(ctx)
+            except Refused as exc:
+                # The full extractor cannot start (memory). Hash the statement from this module's
+                # import closure alone; the full extract runs later.
+                res.line(f"full extract refused ({exc}); falling back to a targeted extract of {module}")
+                payload, index, problems = targeted_extract(ctx, module)
+                targeted = True
     except Refused as exc:
         # Nothing ran: keep the elaborated module and the root import so the same command
         # can be repeated once memory allows; no lock entry exists until then.
@@ -396,6 +399,7 @@ command(CommandSpec(
         Arg("import_", "module the node file imports (default from config)"),
         Arg("force", "overwrite an existing module / keep an exact duplicate", "bool"),
         Arg("no_search", "skip the near-duplicate search", "bool"),
+        Arg("targeted", "extract only the new node's import closure; do not rewrite the full index", "bool"),
     ],
 ))
 command(CommandSpec(
