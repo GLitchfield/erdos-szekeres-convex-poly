@@ -89,6 +89,17 @@ def main() -> None:
                                 else:
                                     base_p = F(*child(word, maxima, frozenset([p]), "upper", k - 1 - d2))
                                     w2, m2 = child(word, maxima, rest, "lower", d2)
+                                pos2 = [i for i, w in enumerate(w2) if w == "S"]
+                                ridx2 = run_index(w2)
+                                single_run = len({ridx2[q] for q in pos2}) <= 1
+                                if single_run:
+                                    # the residual is a single run: its bound is its base, and any partition of it
+                                    # is dominated by that base (single-run additivity), so compare with the base
+                                    b2 = F(w2, m2)
+                                    if base_p + b2 >= v:
+                                        found[end, side_kind, d2, "base"] = base_p + b2
+                                        stats[f"b{nb}_via_single_run_base"] += 1
+                                    continue
                                 for d3 in range(1, k - 1):
                                     # the partition K \ {p} of σ' in the same orientation
                                     v2 = value(F, w2, m2, keep2, o, d3, k)
@@ -104,6 +115,7 @@ def main() -> None:
                     stats[f"b{nb}_own_side_same_d_both"] += any(sk == "own" and d2 == d and d3 == d for (_, sk, d2, d3) in found)
                     stats[f"b{nb}_swap_side_needed"] += not any(sk == "own" for (_, sk, _, _) in found)
                     stats[f"b{nb}_same_d_both"] += any(d2 == d and d3 == d for (_, _, d2, d3) in found)
+                    stats[f"b{nb}_needs_single_run_base"] += all(d3 == "base" for (_, _, _, d3) in found)
                     stats[f"b{nb}_first_works"] += any(e == "first" for (e, _, _, _) in found)
                     stats[f"b{nb}_last_works"] += any(e == "last" for (e, _, _, _) in found)
                     if not any(sk == "own" for (_, sk, _, _) in found) and len(examples[f"b{nb}_swap_needed"]) < 8:

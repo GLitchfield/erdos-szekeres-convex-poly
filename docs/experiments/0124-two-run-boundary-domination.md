@@ -129,6 +129,29 @@ Induction on the number of child positions, exchanging one end position at a tim
    this is additivity for two-run contexts.  The general statement (any number of runs)
    should follow the same induction with the number of runs as a secondary measure.
 
+4. **Dependency structure after the strip tests (evening).**  With the stripped end free
+   to take either side (v3, k = 5 and 6, up to four letters, two levels), the step
+   `V_σ(K, o, d) ≤ base({p}) + V_{σ'}(K ∖ {p}, o, d₃)` holds for every four-block split
+   in all four cases and for every three-block split except 64 at (5,5,6), all of the form
+   `S 1L 2U S S S` with the kept block strictly inside the second run.  There the
+   dominating cut is the run cut `{0} | {3, 4, 5}`, whose residual is a *single* run: what
+   continues the induction is `bound(σ') = base(σ') ≥ V_{σ'}(K ∖ {p})`, single-run
+   additivity for a sandwich, not the same partition.  So the two-run lemma decomposes as
+
+   - the **strip lemma** for residuals with two runs (a level-swap comparison between
+     "cut K first, strip p inside a part" and "strip p first, cut K inside the rest"),
+   - **single-run sandwich additivity** (`ctx_bound_additive_single_run` restricted to
+     interior blocks; Codex's singleton-ended draft is the first case),
+   - induction on the number of child positions, with `ctx_bound_cut_le` and the closed
+     prefix/suffix node at the bottom;
+
+   and the end-cut normal form (`ctx_bound_attained_by_end_cut`) is the same strip lemma
+   applied to interval partitions.  The strip lemma is where the Lean work starts: its two
+   sides differ only in the levels of two letter groups (the stripped position and the
+   other part) and in the maxima the couplings assign, which is a finite comparison of
+   `leftExt`/`rightExt`/`joinExt` values that the existing `part_*` and `withMaximum`
+   lemmas of `DecomposableContextLemmas` can express.
+
 ## Reproduction
 
 ```console
