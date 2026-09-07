@@ -175,6 +175,8 @@ def main() -> None:
     parser.add_argument("--shard", default=None, help="i/N: only every N-th row starting at i")
     parser.add_argument("--cache-size", type=int, default=None)
     parser.add_argument("--cases", default=None, help="semicolon-separated subset of cases, e.g. 5,5,5;4,5,5")
+    parser.add_argument("--checkpoint", type=int, default=0,
+                        help="write <output>.partial.json every N rows and resume from it if present (0 = off)")
     args = parser.parse_args()
     global CACHE_SIZE
     if args.cache_size:
@@ -182,6 +184,11 @@ def main() -> None:
     shard_i, shard_n = (int(x) for x in args.shard.split("/")) if args.shard else (0, 1)
     d = json.load(open(args.tables))
     result = {}
+    partial_path = args.output.with_suffix(".partial.json")
+    partial = {}
+    if args.checkpoint and partial_path.exists():
+        partial = json.loads(partial_path.read_text())
+        print(json.dumps({"resume": str(partial_path), "cases": {c: v["done"] for c, v in partial.items()}}), file=sys.stderr, flush=True)
     for case, t in d["cases"].items():
         if args.cases and case not in args.cases.split(";"):
             continue
@@ -189,8 +196,18 @@ def main() -> None:
         F = make_F2(a, u, k) if args.recursion == "F2" else make_F(a, u, k)
         diffs = Counter()
         mism = []
+        done = 0
+        if case in partial:
+            # the rows are processed in order, so a checkpoint is a prefix of this shard's rows
+            diffs = Counter({int(x): n for x, n in partial[case]["F_minus_E"].items()})
+            mism = partial[case]["mismatches"]
+            done = partial[case]["done"]
+        processed = 0
         for row_index, r in enumerate(t["rows"]):
             if row_index % shard_n != shard_i:
+                continue
+            processed += 1
+            if processed <= done:
                 continue
             word = parse_word(r["word"]); maxima = tuple(r["sibling_maxima"])
             f = F(word, maxima)
@@ -198,11 +215,21 @@ def main() -> None:
             if f != r["E"] and len(mism) < 40:
                 mism.append({"word": "".join(r["word"]), "maxima": r["sibling_maxima"], "runs": r["runs"], "E": r["E"], "F": f,
                              "cup_limit": r["cup_limit"], "cap_limit": r["cap_limit"]})
+            if args.checkpoint and processed % args.checkpoint == 0:
+                partial[case] = {"done": processed, "F_minus_E": dict(sorted(diffs.items())), "mismatches": mism}
+                partial_path.parent.mkdir(parents=True, exist_ok=True)
+                tmp = partial_path.with_suffix(".tmp")
+                tmp.write_text(json.dumps(partial) + "\n")
+                tmp.replace(partial_path)
+                print(json.dumps({"case": case, "checkpoint": processed, "F_minus_E": dict(sorted(diffs.items()))}), file=sys.stderr, flush=True)
         result[case] = {"threshold": t["threshold"], "signatures": sum(diffs.values()), "F_minus_E": dict(sorted(diffs.items())), "mismatches": mism,
                         "recursion": args.recursion, "shard": args.shard}
+        partial[case] = {"done": processed, "F_minus_E": dict(sorted(diffs.items())), "mismatches": mism}
         print(json.dumps({"case": case, "signatures": sum(diffs.values()), "recursion": args.recursion, "shard": args.shard, "F_minus_E": dict(sorted(diffs.items()))}), file=sys.stderr, flush=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=1) + "\n")
+    if args.checkpoint and partial_path.exists():
+        partial_path.unlink()
 
 
 if __name__ == "__main__":

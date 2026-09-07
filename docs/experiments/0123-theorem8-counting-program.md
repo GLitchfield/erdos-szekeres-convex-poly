@@ -236,3 +236,50 @@ rules on `(3,4,5)`; the free-letter shape is satisfiable, so a rule exists.
 
 The backbone for `(4,4,5)` at five letters is being computed (capped) for the next
 round; it contains two-letter classes with window slack, which `(3,4,5)` lacks.
+
+## 7. The (4,4,5) backbone: the local rule search saturates (2026-09-07)
+
+The backbone of the `(4,4,5)` instance at five letters
+(`data/derived/label-sets/tight/backbone-4,4,5-s5.json`: 6,407 single-run
+classes, 34,071 solves, 4.0 h under a 4 GiB cap) gives 2,871 forced classes,
+1,982 with two feasible tuples, 540 with three, 472 with four and 542 with five;
+the dead-letter counts are 0 to 3.  Three findings close the local-rule line.
+
+*More losses than dead letters.*  In 318 classes the run lost more units than it
+has dead letters, e.g. `1L1L2U2US|2|2` lost one cup unit and one cap unit but has
+`f₀ = 1`, forced to `U`.  So beyond the order, a rule has to say which losses are
+dead, and the root window decides part of it: at `(3,4,5)` no label has two `U`,
+which is why `S2U2U1L` (two cap units lost) is `LUL` and not `UUL`.
+
+*No function of the loss events.*  Grouping the classes by a feature and
+intersecting the feasible sets of each group is a necessary condition for any rule
+that is a function of the feature (`scripts` in the scratchpad of the day; the test
+is instantaneous).  The limits alone conflict in 4 of 9 groups; the full multiset of
+loss events with letter, level, kind, distance, run side and child side conflicts in
+106 of 3,107 groups (`S1U2L3U3U|2|1` is `LU`, `S2L1U3U3U|2|1` is `UL`: same events,
+the level-1 and level-2 letters exchanged in position); erasing the levels from the
+word conflicts in 224 of 353 groups.  Only the word itself is conflict-free.  The
+event-ordering search of §6 gives at most 5,451 of 6,407 (85 %), with "outer level
+first" the only feature that matters (every refinement ties); purely positional
+orders are worse (3,961).
+
+*Why: the letter position is a cut depth, and the order is global.*  In the tight
+regime a cut fixes one letter for each part (`L` for the part that lost a cup unit,
+`U` for the other), and Pascal's rule is exactly this split.  The levels of a leaf's
+word record the cut order (`part` makes the new letters level 1 and shifts the
+rest), so "outer level first" is the cut order, and that is why it is right most of
+the time.  It is not always right because a multi-run context must contain the
+unions of *all* its interval cuts at once, and the SAT reconciles those through
+choices that interleave the letters of different levels.  For the inequality
+`Σ_leaves T ≤ T(root)` along one cut tree, tree-dependent prefixes suffice; a
+*context-determined* label set, which is what `ctx_card_le_bound` consumes as a
+bound function, needs the global reconciliation, and no local rule expresses it.
+
+Consequences.  The dead-letter program stops here: the labeling exists (§4), its
+shape is known (§5), and its letters are a global, not a local, choice.  What remains
+for the two conjectures is the exchange argument of experiment 0121 §1 for interval
+cuts, stated for the recursion directly; the label sets were a route to it, not a
+shortcut around it.  The one cheap formal step available now is the boundary case of
+`ctx_bound_additive_single_run` (the kept part a prefix or suffix of the run, both
+parts single-run), which is the Pascal identity plus the window split of §1 once the
+part limits are computed.
