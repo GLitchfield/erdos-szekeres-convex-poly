@@ -1,0 +1,61 @@
+{
+ "node": "ErdosSzekeres.ctx_bound_adjacent_letter_contraction",
+ "falsifier": "ctx_adjacent_contraction.py",
+ "falsifier_sha256": "326faa68dba76df7a1b389ac35e32db0fda849e10a38f2e1d78fa72c627581b8",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "47a7b5a7a4069e70",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 22.1,
+ "at": "2026-09-07T22:28:29Z",
+ "agent": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+ "witness": {
+  "scope": "Deterministic samples with 2..4 children, <=2 externals, <=2 levels",
+  "recursion": "lean",
+  "include_unused_levels": true,
+  "exhaustive": false,
+  "cases": [
+   {
+    "parameters": [
+     4,
+     4,
+     5
+    ],
+    "stats": {
+     "contexts": 227,
+     "nonzero": 211,
+     "child_comparisons": 372,
+     "external_comparisons": 33
+    }
+   },
+   {
+    "parameters": [
+     4,
+     5,
+     6
+    ],
+    "stats": {
+     "contexts": 255,
+     "nonzero": 247,
+     "child_comparisons": 423,
+     "external_comparisons": 31
+    }
+   },
+   {
+    "parameters": [
+     5,
+     5,
+     6
+    ],
+    "stats": {
+     "contexts": 255,
+     "nonzero": 247,
+     "child_comparisons": 423,
+     "external_comparisons": 31
+    }
+   }
+  ],
+  "counterexample": null,
+  "seconds": 21.570780854002805
+ }
+}
