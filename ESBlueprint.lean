@@ -21,3 +21,7 @@ import ESBlueprint.B.CtxBoundTwoRunBoundaryDomination
 import ESBlueprint.B.CtxBoundAttainedByEndCut
 import ESBlueprint.B.CtxBoundPrefixSuffixDomination
 import ESBlueprint.B.CtxBoundAdditiveSandwichSingletonEnds
+import ESBlueprint.F.DecomposableExtremalInsertion
+import ESBlueprint.F.DecomposableExtremalInsertionDichotomy
+import ESBlueprint.B.CtxBoundAdjacentLetterContraction
+import ESBlueprint.B.CtxBoundAdjacentLetterContractionCounterexample

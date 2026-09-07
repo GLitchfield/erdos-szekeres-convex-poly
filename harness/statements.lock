@@ -63,6 +63,24 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundAdditiveSingleRunBoundary"
   },
+  "ErdosSzekeres.ctx_bound_adjacent_letter_contraction": {
+    "type_hash": "47a7b5a7a4069e70",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (left right : List ErdosSzekeres.Ctx.Letter) (letter : ErdosSzekeres.Ctx.Letter),\n      Eq σ.word\n          (instHAppendOfAppend.hAppend\n            (instHAppendOfAppend.hAppend left (List.cons letter (List.cons letter List.nil)))\n            right) →\n        Eq σ.bound\n          { a := σ.a, u := σ.u, k := σ.k,\n              word :=\n                instHAppendOfAppend.hAppend\n                  (instHAppendOfAppend.hAppend left (List.cons letter List.nil)) right,\n              maxima := σ.maxima }.bound",
+    "approved_by": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+    "approved_at": "2026-09-07",
+    "kind": "conjecture",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundAdjacentLetterContraction"
+  },
+  "ErdosSzekeres.ctx_bound_adjacent_letter_contraction_counterexample": {
+    "type_hash": "a2406241d44ddf61",
+    "type_pp": "Not\n  (∀ (σ : ErdosSzekeres.Ctx.Context),\n    σ.WellFormed →\n      ∀ (left right : List ErdosSzekeres.Ctx.Letter) (letter : ErdosSzekeres.Ctx.Letter),\n        Eq σ.word\n            (instHAppendOfAppend.hAppend\n              (instHAppendOfAppend.hAppend left (List.cons letter (List.cons letter List.nil)))\n              right) →\n          Eq σ.bound\n            { a := σ.a, u := σ.u, k := σ.k,\n                word :=\n                  instHAppendOfAppend.hAppend\n                    (instHAppendOfAppend.hAppend left (List.cons letter List.nil)) right,\n                maxima := σ.maxima }.bound)",
+    "approved_by": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+    "approved_at": "2026-09-07",
+    "kind": "refutation",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundAdjacentLetterContractionCounterexample"
+  },
   "ErdosSzekeres.ctx_bound_antitone": {
     "type_hash": "86c99d58d3980c2a",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (l m : Nat),\n  instLENat.le (σ.withMaximum l (instHAdd.hAdd m 1)).bound (σ.withMaximum l m).bound",
@@ -179,6 +197,24 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.DecomposableStateUpperAll"
+  },
+  "ErdosSzekeres.decomposable_extremal_insertion": {
+    "type_hash": "426bd48e657492b6",
+    "type_pp": "∀ {k n : Nat},\n  instLENat.le 4 k →\n    ∀ {χ : ErdosSzekeres.TripleColoring n},\n      ErdosSzekeres.IsSweepRealizable χ →\n        ∀ (S : Finset (Fin n)),\n          ErdosSzekeres.IsDecomposableOn χ S →\n            Eq S.card (instHPow.hPow 2 (instHSub.hSub k 2)) →\n              Not (ErdosSzekeres.ContainsStrongPolygonSet χ S k) →\n                ∀ (q : Fin n),\n                  Not (SetLike.instMembership.mem S q) →\n                    ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instInsert.insert q S) k",
+    "approved_by": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+    "approved_at": "2026-09-07",
+    "kind": "conjecture",
+    "ws": "F",
+    "module": "ESBlueprint.F.DecomposableExtremalInsertion"
+  },
+  "ErdosSzekeres.decomposable_extremal_insertion_dichotomy": {
+    "type_hash": "b6275e002c4b8f13",
+    "type_pp": "∀ {n k : Nat} {χ : ErdosSzekeres.TripleColoring n} {S : Finset (Fin n)} {q : Fin n},\n  instLENat.le 4 k →\n    ErdosSzekeres.DecomposableExactUpperAt (instHSub.hSub k 1) →\n      ErdosSzekeres.IsSweepRealizable χ →\n        ErdosSzekeres.IsDecomposableOn χ S →\n          Eq S.card (instHPow.hPow 2 (instHSub.hSub k 2)) →\n            Not (SetLike.instMembership.mem S q) →\n              Not (ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instInsert.insert q S) k) →\n                Or\n                  (And\n                    (Eq (Finset.filter (fun x => instLTFin.lt x q) S).card\n                      (instHPow.hPow 2 (instHSub.hSub k 3)))\n                    (Eq (Finset.filter (fun x => instLTFin.lt q x) S).card\n                      (instHPow.hPow 2 (instHSub.hSub k 3))))\n                  (Exists fun P =>\n                    And (Finset.instHasSubset.Subset P S)\n                      (And (Eq P.card (instHSub.hSub k 1))\n                        (And (ErdosSzekeres.IsStrongPolygonSet χ P)\n                          (And\n                            (Or (∀ (x : Fin n), SetLike.instMembership.mem P x → instLTFin.lt x q)\n                              (∀ (x : Fin n), SetLike.instMembership.mem P x → instLTFin.lt q x))\n                            (Not\n                              (ErdosSzekeres.IsStrongPolygonSet χ\n                                (Finset.instInsert.insert q P)))))))",
+    "approved_by": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+    "approved_at": "2026-09-07",
+    "kind": "formalization",
+    "ws": "F",
+    "module": "ESBlueprint.F.DecomposableExtremalInsertionDichotomy"
   },
   "ErdosSzekeres.erdosSzekeresConjecture_of_predecessorHalfSubsetAt_all": {
     "type_hash": "e734cdc1e3931ff0",

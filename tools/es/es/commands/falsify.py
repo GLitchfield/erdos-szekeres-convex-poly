@@ -17,7 +17,8 @@ from es.spec import Arg, CommandSpec, command
 from es.store import Store
 
 
-def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False, timeout: int | None = None) -> Result:
+def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False,
+        timeout: int | None = None, targeted: bool = False) -> Result:
     cfg = ctx.cfg
     n = find_node(cfg, name)
     if not n.falsifier:
@@ -28,6 +29,8 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False, t
     if async_:
         from es.jobs import submit
         argv = ["falsify", n.name] + ([f"--dataset={dataset}"] if dataset else [])
+        if targeted:
+            argv.append("--targeted")
         job = submit(cfg, kind="falsify", node=n.name, argv=argv, agent=ctx.agent, budget_min=timeout or cfg.falsify_timeout_min)
         return Result(EXIT_OK, {"job": job}, [f"submitted job {job['id']}"])
     ds = Path(dataset).resolve() if dataset else cfg.dataset_dir
@@ -79,7 +82,12 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False, t
 
     res = Result()
     try:
-        run_extract(ctx)
+        if targeted:
+            from es.commands.node import targeted_extract
+            targeted_extract(ctx, n.module)
+            res.line("targeted extraction: full index not refreshed")
+        else:
+            run_extract(ctx)
     except Refused as exc:
         # the result is recorded; nodes.json/status.md pick it up at the next full extract
         res.line(f"nodes.json not refreshed ({exc}); run `es extract` when memory allows")
@@ -88,7 +96,7 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False, t
         res.line(f"recorded {out_file.relative_to(cfg.root)}")
     if witness and result == "counterexample":
         res.line("witness: " + json.dumps(witness)[:500])
-    res.payload = {"record": record, "log": str(log)}
+    res.payload = {"record": record, "log": str(log), "targeted": targeted}
     res.exit_code = EXIT_OK if result == "pass" else (EXIT_CHECK_FAILED if result == "counterexample" else EXIT_LEAN)
     return res
 
@@ -96,4 +104,5 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False, t
 command(CommandSpec(name="falsify", cli=["falsify"], long_running=True,
                     help="Run a node's falsifier (exit 0 pass, 2 counterexample with witness) and record the result under harness/falsify/.", run=run,
                     args=[Arg("name", "node name", positional=True, required=True), Arg("dataset", "dataset directory (default from config)"),
-                          Arg("async_", "submit as a background job", "bool"), Arg("timeout", "minutes", "int")]))
+                          Arg("async_", "submit as a background job", "bool"), Arg("timeout", "minutes", "int"),
+                          Arg("targeted", "extract only this node's import closure; leave the full index unchanged", "bool")]))

@@ -324,9 +324,19 @@ def find_node(cfg: Config, name: str, nodes: list[Node] | None = None) -> Node:
                         if t.is_node:
                             tags = dict(t.tags) | {"ws": tags["ws"], "kind": tags["kind"]}
                             desc = t.description
-                return Node(name=key, module=entry["module"], type_pp=entry.get("type_pp", ""),
+                provisional = Node(name=key, module=entry["module"], type_pp=entry.get("type_pp", ""),
                             type_hash=entry.get("type_hash", ""), sorry=True, axioms=[], nonstandard_axioms=[],
                             deps_actual=[], description=desc, tags=tags, status="proposed")
+                # Targeted falsification records evidence without replacing the full index.
+                # Recompute readiness here so a newly registered conjecture can be claimed.
+                index = json.loads(cfg.index_json.read_text()) if cfg.index_json.exists() else []
+                evidence = read_falsify_results(cfg)
+                record = evidence.get(key)
+                if record and record.get("statement_type_hash") != provisional.type_hash:
+                    evidence.pop(key)
+                compute(cfg, nodes + [provisional], [], {r["name"] for r in index},
+                        falsify=evidence)
+                return provisional
     raise UsageError(f"unknown node {name}")
 
 
