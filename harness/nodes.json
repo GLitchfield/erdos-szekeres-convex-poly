@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-07T22:37:39Z",
- "git_sha": "44bf7e04cfa9039c0311bc34bfbb3c38540d314a",
+ "generated_at": "2026-09-07T22:46:21Z",
+ "git_sha": "d331a6b635fc8ce254525f483e0a0cefb7d9f155",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15363,
- "tree_hash": "95426b2f12b0e93b",
+ "tree_hash": "6b9e2e89c57c7fa9",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -702,10 +702,14 @@
     "ErdosSzekeres.Ctx.Context.part_rest_childPositions_length_lt_of_mem_blocks",
     "ErdosSzekeres.Ctx.Context.exists_run_start_pos",
     "ErdosSzekeres.Ctx.Context.boundFuel_stable",
+    "ErdosSzekeres.Ctx.Context.exists_take_drop_of_mem_blocks",
+    "ErdosSzekeres.ctx_end_block_cut_le",
     "ErdosSzekeres.foldl_max_mem",
     "ErdosSzekeres.ctx_cut_le_end_cut",
+    "ErdosSzekeres.ctx_interior_cut_le_end_cut",
     "ErdosSzekeres.Ctx.Context.part_childPositions_length_lt_of_mem_blocks",
     "ErdosSzekeres.Ctx.Context.boundFuel_eq_bound",
+    "ErdosSzekeres.Ctx.Context.part_congr",
     "ErdosSzekeres.exists_mem_eq_getD_max?"
    ],
    "status": "claimed",

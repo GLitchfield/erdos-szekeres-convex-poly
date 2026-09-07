@@ -138,7 +138,90 @@ theorem three_le_k_of_two_runs {σ : Context} (hwf : σ.WellFormed) (hruns : 2 �
     have := hwf.2.2.2.2.1 m hm
     omega
 
+/-! ### Parts depend on the kept list only through membership of child positions -/
+
+theorem part_congr (σ : Context) {keep₁ keep₂ : List ℕ} (s : Side) (m : ℕ)
+    (h : ∀ p ∈ σ.childPositions, p ∈ keep₁ ↔ p ∈ keep₂) : σ.part keep₁ s m = σ.part keep₂ s m := by
+  unfold part
+  congr 1
+  apply List.map_congr_left
+  intro p hp
+  cases hl : σ.letterAt p with
+  | child =>
+    have hpc : p ∈ σ.childPositions := by
+      unfold childPositions
+      exact List.mem_filter.2 ⟨hp, by simp [hl]⟩
+    simp [h p hpc]
+  | ext l s' => rfl
+
+/-- The block of a cut, as a window of the child positions. -/
+theorem exists_take_drop_of_mem_blocks {σ : Context} {block : List ℕ} (hb : block ∈ σ.blocks) :
+    ∃ i l, i < σ.childPositions.length ∧ l < σ.childPositions.length - i ∧
+      block = (σ.childPositions.drop i).take (l + 1) := by
+  unfold blocks at hb
+  simp only [List.mem_filter, List.mem_flatMap, List.mem_range, List.mem_map, decide_eq_true_eq] at hb
+  obtain ⟨⟨i, hi, l, hl, rfl⟩, _⟩ := hb
+  exact ⟨i, l, hi, hl, rfl⟩
+
 end Ctx.Context
+
+/-- Interior cuts: the block is neither the first nor the last child position alone, nor the
+complement of one of them.  Every such cut is dominated by an end cut in one of the two forms;
+this is the strip inequality (experiment 0124 §4). -/
+theorem ctx_interior_cut_le_end_cut (σ : Ctx.Context) (hwf : σ.WellFormed) (hruns : 2 ≤ σ.numRuns)
+    (block : List ℕ) (hb : block ∈ σ.blocks)
+    (hfirst : ∀ p₀, σ.childPositions.head? = some p₀ →
+      ¬ (∀ p ∈ σ.childPositions, p ∈ block ↔ p = p₀) ∧ ¬ (∀ p ∈ σ.childPositions, p ∈ block ↔ p ≠ p₀))
+    (hlast : ∀ pₙ, σ.childPositions.getLast? = some pₙ →
+      ¬ (∀ p ∈ σ.childPositions, p ∈ block ↔ p = pₙ) ∧ ¬ (∀ p ∈ σ.childPositions, p ∈ block ↔ p ≠ pₙ))
+    (d : ℕ) (hd : 1 ≤ d) (hdk : d ≤ σ.k - 2) (v : ℕ)
+    (hv : v = (σ.part block Ctx.Side.lower d).bound +
+        (σ.part (σ.childPositions.filter (fun p => p ∉ block)) Ctx.Side.upper (σ.k - 1 - d)).bound ∨
+      v = (σ.part block Ctx.Side.upper (σ.k - 1 - d)).bound +
+        (σ.part (σ.childPositions.filter (fun p => p ∉ block)) Ctx.Side.lower d).bound) :
+    ∃ p ∈ σ.childPositions, ((∀ q ∈ σ.childPositions, p ≤ q) ∨ (∀ q ∈ σ.childPositions, q ≤ p)) ∧
+      ∃ d', 1 ≤ d' ∧ d' ≤ σ.k - 2 ∧
+        (v ≤ (σ.part [p] Ctx.Side.lower d').bound +
+            (σ.part (σ.childPositions.filter (fun q => q ≠ p)) Ctx.Side.upper (σ.k - 1 - d')).bound ∨
+          v ≤ (σ.part [p] Ctx.Side.upper (σ.k - 1 - d')).bound +
+            (σ.part (σ.childPositions.filter (fun q => q ≠ p)) Ctx.Side.lower d').bound) := by
+  sorry
+
+/-- A cut whose block is, by membership, the first (or last) child position alone or its complement
+is itself an end cut in one of the two forms. -/
+theorem ctx_end_block_cut_le (σ : Ctx.Context) (block : List ℕ) (p : ℕ) (hp : p ∈ σ.childPositions)
+    (hend : (∀ q ∈ σ.childPositions, p ≤ q) ∨ (∀ q ∈ σ.childPositions, q ≤ p))
+    (hblock : (∀ q ∈ σ.childPositions, q ∈ block ↔ q = p) ∨ (∀ q ∈ σ.childPositions, q ∈ block ↔ q ≠ p))
+    (d : ℕ) (hd : 1 ≤ d) (hdk : d ≤ σ.k - 2) (v : ℕ)
+    (hv : v = (σ.part block Ctx.Side.lower d).bound +
+        (σ.part (σ.childPositions.filter (fun p => p ∉ block)) Ctx.Side.upper (σ.k - 1 - d)).bound ∨
+      v = (σ.part block Ctx.Side.upper (σ.k - 1 - d)).bound +
+        (σ.part (σ.childPositions.filter (fun p => p ∉ block)) Ctx.Side.lower d).bound) :
+    ∃ p ∈ σ.childPositions, ((∀ q ∈ σ.childPositions, p ≤ q) ∨ (∀ q ∈ σ.childPositions, q ≤ p)) ∧
+      ∃ d', 1 ≤ d' ∧ d' ≤ σ.k - 2 ∧
+        (v ≤ (σ.part [p] Ctx.Side.lower d').bound +
+            (σ.part (σ.childPositions.filter (fun q => q ≠ p)) Ctx.Side.upper (σ.k - 1 - d')).bound ∨
+          v ≤ (σ.part [p] Ctx.Side.upper (σ.k - 1 - d')).bound +
+            (σ.part (σ.childPositions.filter (fun q => q ≠ p)) Ctx.Side.lower d').bound) := by
+  refine ⟨p, hp, hend, d, hd, hdk, ?_⟩
+  rcases hblock with hsame | hcompl
+  · -- the block is the singleton {p}: the cut is the end cut itself
+    have h1 : ∀ s m, σ.part block s m = σ.part [p] s m := fun s m =>
+      part_congr σ s m fun q hq => by simp [hsame q hq]
+    have h2 : ∀ s m, σ.part (σ.childPositions.filter (fun q => q ∉ block)) s m =
+        σ.part (σ.childPositions.filter (fun q => q ≠ p)) s m := fun s m =>
+      part_congr σ s m fun q hq => by simp [List.mem_filter, hq, hsame q hq]
+    rcases hv with rfl | rfl
+    · left; rw [h1, h2]
+    · right; rw [h1, h2]
+  · -- the block is everything but p: the cut is the end cut with the roles exchanged
+    have h1 : ∀ s m, σ.part block s m = σ.part (σ.childPositions.filter (fun q => q ≠ p)) s m := fun s m =>
+      part_congr σ s m fun q hq => by simp [List.mem_filter, hq, hcompl q hq]
+    have h2 : ∀ s m, σ.part (σ.childPositions.filter (fun q => q ∉ block)) s m = σ.part [p] s m := fun s m =>
+      part_congr σ s m fun q hq => by simp [List.mem_filter, hq, hcompl q hq]
+    rcases hv with rfl | rfl
+    · right; rw [h1, h2, Nat.add_comm]
+    · left; rw [h1, h2, Nat.add_comm]
 
 /-- The content: every interval cut of a context with at least two runs is dominated by a cut that
 isolates the first or the last child position, on some side at some coupling. -/
@@ -154,7 +237,52 @@ theorem ctx_cut_le_end_cut (σ : Ctx.Context) (hwf : σ.WellFormed) (hruns : 2 �
             (σ.part (σ.childPositions.filter (fun q => q ≠ p)) Ctx.Side.upper (σ.k - 1 - d')).bound ∨
           v ≤ (σ.part [p] Ctx.Side.upper (σ.k - 1 - d')).bound +
             (σ.part (σ.childPositions.filter (fun q => q ≠ p)) Ctx.Side.lower d').bound) := by
-  sorry
+  have hlen : 2 ≤ σ.childPositions.length := le_trans hruns (numRuns_le_length σ)
+  have hsorted := childPositions_pairwise σ
+  obtain ⟨p₀, hp₀⟩ : ∃ p₀, σ.childPositions.head? = some p₀ := by
+    cases h : σ.childPositions with
+    | nil => rw [h] at hlen; simp at hlen
+    | cons x xs => exact ⟨x, rfl⟩
+  obtain ⟨pₙ, hpₙ⟩ : ∃ pₙ, σ.childPositions.getLast? = some pₙ := by
+    cases h : σ.childPositions with
+    | nil => rw [h] at hlen; simp at hlen
+    | cons x xs => exact ⟨(x :: xs).getLast (by simp), List.getLast?_eq_some_getLast (by simp)⟩
+  have hp₀mem : p₀ ∈ σ.childPositions := List.mem_of_mem_head? hp₀
+  have hpₙmem : pₙ ∈ σ.childPositions := List.mem_of_mem_getLast? hpₙ
+  have hp₀le : ∀ q ∈ σ.childPositions, p₀ ≤ q := by
+    intro q hq
+    cases h : σ.childPositions with
+    | nil => rw [h] at hq; simp at hq
+    | cons x xs =>
+      rw [h] at hp₀ hq hsorted
+      simp only [List.head?_cons, Option.some.injEq] at hp₀
+      subst hp₀
+      rcases List.mem_cons.1 hq with rfl | hq
+      · exact le_rfl
+      · exact le_of_lt ((List.pairwise_cons.1 hsorted).1 q hq)
+  have hpₙge : ∀ q ∈ σ.childPositions, q ≤ pₙ := by
+    intro q hq
+    have hsplit := List.dropLast_append_getLast (l := σ.childPositions) (by
+      intro h; rw [h] at hlen; simp at hlen)
+    rw [List.getLast?_eq_some_getLast (by intro h; rw [h] at hlen; simp at hlen), Option.some.injEq] at hpₙ
+    rw [← hsplit, hpₙ] at hq hsorted
+    rw [List.pairwise_append] at hsorted
+    rcases List.mem_append.1 hq with hq | hq
+    · exact le_of_lt (hsorted.2.2 q hq _ (List.mem_singleton_self _))
+    · rw [List.mem_singleton] at hq; rw [hq]
+  by_cases hE : (∀ q ∈ σ.childPositions, q ∈ block ↔ q = p₀) ∨ (∀ q ∈ σ.childPositions, q ∈ block ↔ q ≠ p₀)
+  · exact ctx_end_block_cut_le σ block p₀ hp₀mem (Or.inl hp₀le) hE d hd hdk v hv
+  by_cases hE' : (∀ q ∈ σ.childPositions, q ∈ block ↔ q = pₙ) ∨ (∀ q ∈ σ.childPositions, q ∈ block ↔ q ≠ pₙ)
+  · exact ctx_end_block_cut_le σ block pₙ hpₙmem (Or.inr hpₙge) hE' d hd hdk v hv
+  · refine ctx_interior_cut_le_end_cut σ hwf hruns block hb ?_ ?_ d hd hdk v hv
+    · intro q hq
+      rw [hp₀, Option.some.injEq] at hq
+      subst hq
+      exact ⟨fun h => hE (Or.inl h), fun h => hE (Or.inr h)⟩
+    · intro q hq
+      rw [hpₙ, Option.some.injEq] at hq
+      subst hq
+      exact ⟨fun h => hE' (Or.inl h), fun h => hE' (Or.inr h)⟩
 
 /-- End-cut normal form for the context bound (experiment 0124 §2c): for a well-formed context with at least two child runs, the bound, which is the maximum over all interval cuts, is attained by a cut that isolates the first or the last child position, on some side at some admissible coupling. Interior blocks never win. Consequences: bound has a recursion over end cuts only, every cut tree normalizes to a sequence of end strips, and the exchange lemma behind additivity (the two-run boundary domination) becomes a commutation of two end strips. Evidence: every one of the 2,600 contexts with two or three runs and nonzero bound at k = 6 with up to four letters and two levels; the falsifier re-checks five cases.
 @node
