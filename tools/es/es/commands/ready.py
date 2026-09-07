@@ -25,7 +25,10 @@ def run(ctx: Ctx, ws: str | None = None, kind: str | None = None) -> Result:
         if kind and n.kind != kind:
             continue
         out.append(n)
+    from es.commands.status import stale_lines
     res = Result()
+    for line in stale_lines(cfg, nodes):
+        res.line(line)
     if not out:
         res.line("no ready nodes")
     res.human.extend(table([[n.ws, n.name, n.kind, days_open(n.opened), n.consumer or n.tags.get("dangling-ok", "")] for n in out], ["ws", "node", "kind", "days", "consumer"]))

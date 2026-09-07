@@ -13,6 +13,7 @@ from es.commands import (  # noqa: F401
     jobs,
     layers,
     lock,
+    log,
     node,
     note,
     ready,

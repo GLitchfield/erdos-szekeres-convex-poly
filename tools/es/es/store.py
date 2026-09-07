@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS extract_cache (
 CREATE TABLE IF NOT EXISTS jobs (
   id TEXT PRIMARY KEY, kind TEXT NOT NULL, node TEXT, argv TEXT NOT NULL, cwd TEXT NOT NULL,
   status TEXT NOT NULL, exit_code INTEGER, created_at REAL NOT NULL, started_at REAL, finished_at REAL,
-  log_path TEXT, budget_min INTEGER, agent TEXT, pid INTEGER, result_json TEXT);
+  log_path TEXT, budget_min INTEGER, agent TEXT, pid INTEGER, result_json TEXT,
+  why TEXT, memory_max TEXT, outputs TEXT, peak_mib INTEGER, seconds REAL);
 CREATE TABLE IF NOT EXISTS attempts (
   id INTEGER PRIMARY KEY, node TEXT NOT NULL, agent TEXT, started_at REAL, ended_at REAL, outcome TEXT, note TEXT);
 CREATE TABLE IF NOT EXISTS events (
@@ -27,6 +28,9 @@ CREATE INDEX IF NOT EXISTS jobs_status ON jobs(status);
 CREATE INDEX IF NOT EXISTS attempts_node ON attempts(node);
 CREATE INDEX IF NOT EXISTS events_at ON events(at);
 """
+
+# columns added after the first release; older databases are migrated on open
+JOB_COLUMNS = {"why": "TEXT", "memory_max": "TEXT", "outputs": "TEXT", "peak_mib": "INTEGER", "seconds": "REAL"}
 
 FTS_SCHEMA = """
 CREATE VIRTUAL TABLE IF NOT EXISTS search USING fts5(name, module, kind, doc, type_pp, tokenize='unicode61');
@@ -42,6 +46,7 @@ class Store:
         self.conn = sqlite3.connect(self.path, timeout=30)
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(SCHEMA)
+        self._migrate()
         try:
             self.conn.executescript(FTS_SCHEMA)
             self.fts = True
@@ -55,6 +60,13 @@ class Store:
     def __exit__(self, *exc) -> None:
         self.conn.commit()
         self.conn.close()
+
+    def _migrate(self) -> None:
+        have = {r[1] for r in self.conn.execute("PRAGMA table_info(jobs)")}
+        for col, typ in JOB_COLUMNS.items():
+            if col not in have:
+                self.conn.execute(f"ALTER TABLE jobs ADD COLUMN {col} {typ}")
+        self.conn.commit()
 
     def table_counts(self) -> dict[str, int]:
         out = {}
@@ -70,8 +82,24 @@ class Store:
         )
         self.conn.commit()
 
-    def events_since(self, since: float) -> list[sqlite3.Row]:
-        return self.conn.execute("SELECT * FROM events WHERE at >= ? ORDER BY at", (since,)).fetchall()
+    def events_since(self, since: float, agent: str | None = None, node: str | None = None,
+                     kinds: list[str] | None = None) -> list[sqlite3.Row]:
+        q = "SELECT * FROM events WHERE at >= ?"
+        params: list[Any] = [since]
+        if agent:
+            q += " AND agent = ?"
+            params.append(agent)
+        if node:
+            q += " AND node = ?"
+            params.append(node)
+        if kinds:
+            q += " AND kind IN (" + ",".join("?" for _ in kinds) + ")"
+            params.extend(kinds)
+        return self.conn.execute(q + " ORDER BY at", params).fetchall()
+
+    def log(self, text: str, node: str | None, agent: str | None) -> None:
+        """A free-text journal entry: what an agent is doing and why."""
+        self.event("log", node, agent, {"text": text})
 
     # ---- claims -----------------------------------------------------------
     def purge_expired_claims(self) -> int:
@@ -98,18 +126,25 @@ class Store:
         self.event("claim", node, agent, note)
         return self.claims()[node]
 
-    def release(self, node: str, agent: str | None, outcome: str = "abandoned") -> bool:
+    def release(self, node: str, agent: str | None, outcome: str = "abandoned", note: str | None = None) -> bool:
         row = self.conn.execute("SELECT * FROM claims WHERE node = ?", (node,)).fetchone()
         if row is None:
             return False
         self.conn.execute("DELETE FROM claims WHERE node = ?", (node,))
         self.conn.execute(
-            "UPDATE attempts SET ended_at = ?, outcome = ? WHERE node = ? AND ended_at IS NULL",
-            (time.time(), outcome, node),
+            "UPDATE attempts SET ended_at = ?, outcome = ?, note = COALESCE(?, note) WHERE node = ? AND ended_at IS NULL",
+            (time.time(), outcome, note, node),
         )
         self.conn.commit()
-        self.event("release", node, agent or row["agent"], outcome)
+        self.event("release", node, agent or row["agent"], {"outcome": outcome, "note": note})
         return True
+
+    def latest_attempts(self) -> dict[str, dict]:
+        """The most recent ended attempt per node (what happened to it last)."""
+        out: dict[str, dict] = {}
+        for r in self.conn.execute("SELECT * FROM attempts WHERE ended_at IS NOT NULL ORDER BY ended_at"):
+            out[r["node"]] = dict(r)
+        return out
 
     # ---- attempts ---------------------------------------------------------
     def record_attempt(self, node: str, agent: str | None, outcome: str, note: str | None = None, started_at: float | None = None) -> None:
@@ -174,6 +209,10 @@ class Store:
             rows = self.conn.execute("SELECT * FROM jobs WHERE status = ? ORDER BY created_at DESC LIMIT ?", (status, limit)).fetchall()
         else:
             rows = self.conn.execute("SELECT * FROM jobs ORDER BY created_at DESC LIMIT ?", (limit,)).fetchall()
+        return [dict(r) for r in rows]
+
+    def live_jobs(self) -> list[dict]:
+        rows = self.conn.execute("SELECT * FROM jobs WHERE status IN ('queued', 'running') ORDER BY created_at").fetchall()
         return [dict(r) for r in rows]
 
     def next_queued_job(self) -> dict | None:

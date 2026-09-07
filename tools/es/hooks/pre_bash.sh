@@ -9,6 +9,19 @@ try:
     d=json.load(sys.stdin); print(d.get("tool_input",{}).get("command",""))
 except Exception:
     print("")' 2>/dev/null)"
+# Compute launched outside the harness is invisible to other agents and to the memory
+# budget (two WSL crashes): `systemd-run` and `nohup` are only allowed through `es`
+# itself (`es job run --why ... --out ... -- <command>` records purpose, cap, outputs, peak).
+printf '%s' "$cmd" | python3 -c 'import re,sys
+c=sys.stdin.read()
+bare = re.search(r"(?:^|[;&|(]\s*)(?:systemd-run|nohup)\b", c)
+via_es = re.search(r"(?:bin/es|\bes)\s+(?:job\s+run|extract|build|check|falsify|worker)\b", c)
+sys.exit(2 if bare and not via_es else 0)'
+if [ $? -eq 2 ]; then
+  echo "blocked: launch compute through the harness so other agents can see it and the memory budget holds:" >&2
+  echo "  es job run --why \"<purpose>\" --out <runs/... or data/...> [--node <node>] [--mem 2G] -- <command>" >&2
+  exit 2
+fi
 # Only a real invocation counts: `git [global options] commit|push` at the start of a
 # command segment (not the words inside a heredoc, a message, or a file being written).
 printf '%s' "$cmd" | python3 -c 'import re,sys

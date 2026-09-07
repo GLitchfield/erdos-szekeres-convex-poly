@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-07T13:54:47Z",
- "git_sha": "187aba0a05a9172f438e967f1407d31b95464663",
+ "generated_at": "2026-09-07T14:22:04Z",
+ "git_sha": "e0f25c625026f3c4778a9a7e344258c465520746",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15353,
- "tree_hash": "f25c8ab90ff33c04",
+ "tree_hash": "3e98d81b9953aeed",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15349,
-  "scanned_constants": 44,
-  "scanned_modules": 4
+  "cached_modules": 15353,
+  "scanned_constants": 0,
+  "scanned_modules": 0
  },
  "nodes": [
   {
@@ -177,13 +177,94 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "proposed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
    ],
-   "falsify": null,
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_additive_multi_run",
+    "falsifier": "ctx_bound_additive.py",
+    "falsifier_sha256": "50f9f84fe718167386ab757835d7ffacfb999ae069686fd9666d3d2a472a6e93",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "b9572285e41a575b",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 521.4,
+    "at": "2026-09-07T14:13:59Z",
+    "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_bound_additive_multi_run",
+     "cases": {
+      "4,4,5": {
+       "contexts": 2493,
+       "nonzero_contexts": 1353,
+       "partitions": 9986,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 2990,
+        "1": 3044,
+        "2": 2416,
+        "3": 1280,
+        "4": 224,
+        "5": 32
+       },
+       "seconds": 73.0
+      },
+      "4,5,5": {
+       "contexts": 2493,
+       "nonzero_contexts": 1353,
+       "partitions": 9986,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 3950,
+        "1": 2900,
+        "2": 1828,
+        "3": 780,
+        "4": 380,
+        "5": 128,
+        "6": 20
+       },
+       "seconds": 76.9
+      },
+      "5,4,5": {
+       "contexts": 2493,
+       "nonzero_contexts": 1353,
+       "partitions": 9986,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 3950,
+        "1": 2900,
+        "2": 1828,
+        "3": 780,
+        "4": 380,
+        "5": 128,
+        "6": 20
+       },
+       "seconds": 79.4
+      },
+      "4,5,6": {
+       "contexts": 4315,
+       "nonzero_contexts": 2747,
+       "partitions": 20310,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 10090,
+        "1": 4502,
+        "2": 2862,
+        "3": 1360,
+        "4": 1004,
+        "5": 440,
+        "6": 36,
+        "7": 16
+       },
+       "seconds": 283.8
+      }
+     },
+     "violations": []
+    }
+   },
    "lock_ok": true,
    "opened": "2026-09-06"
   },
@@ -216,13 +297,94 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "proposed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
    ],
-   "falsify": null,
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_additive_single_run",
+    "falsifier": "ctx_bound_additive.py",
+    "falsifier_sha256": "50f9f84fe718167386ab757835d7ffacfb999ae069686fd9666d3d2a472a6e93",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "c8ace8d25e135c94",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 530.6,
+    "at": "2026-09-07T14:04:53Z",
+    "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_bound_additive_single_run",
+     "cases": {
+      "4,4,5": {
+       "contexts": 2493,
+       "nonzero_contexts": 1353,
+       "partitions": 9986,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 2990,
+        "1": 3044,
+        "2": 2416,
+        "3": 1280,
+        "4": 224,
+        "5": 32
+       },
+       "seconds": 74.3
+      },
+      "4,5,5": {
+       "contexts": 2493,
+       "nonzero_contexts": 1353,
+       "partitions": 9986,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 3950,
+        "1": 2900,
+        "2": 1828,
+        "3": 780,
+        "4": 380,
+        "5": 128,
+        "6": 20
+       },
+       "seconds": 76.2
+      },
+      "5,4,5": {
+       "contexts": 2493,
+       "nonzero_contexts": 1353,
+       "partitions": 9986,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 3950,
+        "1": 2900,
+        "2": 1828,
+        "3": 780,
+        "4": 380,
+        "5": 128,
+        "6": 20
+       },
+       "seconds": 77.9
+      },
+      "4,5,6": {
+       "contexts": 4315,
+       "nonzero_contexts": 2747,
+       "partitions": 20310,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 10090,
+        "1": 4502,
+        "2": 2862,
+        "3": 1360,
+        "4": 1004,
+        "5": 440,
+        "6": 36,
+        "7": 16
+       },
+       "seconds": 293.8
+      }
+     },
+     "violations": []
+    }
+   },
    "lock_ok": true,
    "opened": "2026-09-06"
   },

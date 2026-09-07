@@ -1,7 +1,12 @@
 # Working rules (es harness)
 
-- Project state comes from `es status`; do not read docs/wayfinder to learn what is open.
-- Pick work with `es ready`; run `es claim <node>` before starting and `es release <node>` if you stop.
+These rules are the same for every agent (Claude Code, Codex, a human); `AGENTS.md`
+carries the identical list and a test keeps the two in sync.
+
+- Project state comes from `es status`; do not read docs/wayfinder to learn what is open. If `es status` says the index is stale, run `es extract` before choosing work.
+- Pick work with `es ready`; run `es claim <node> --why "<what you intend to do>"` before starting. When you stop, `es release <node> --outcome closed|partial|blocked|abandoned|refuted --note "<what was done, what stopped you>"`; a claim that merely expires is recorded as abandoned.
+- Every command that runs longer than a minute (Python enumerations, SAT solvers, sweeps, anything under `nohup` or `systemd-run`) goes through `es job run --why "<purpose>" --out <runs/... or data/...> [--node <node>] [--mem 2G] -- <command>`. It records purpose, cap, outputs, agent and measured peak, enforces the memory budget in `harness/config.toml` `[jobs]`, and is what other agents see in `es status` and `es journal`. Results belong under `runs/` or `data/`, never in a session scratch directory.
+- Before a decision that changes the plan (a conjecture split, a dead end, a method change), write it down: `es log "<what and why>" [--node <node>]`. `es journal --since 24h` is the trail another agent reads after `es status`.
 - New statements go only in ESBlueprint via `es node add`. Never edit a statement by hand; use `es node restate`.
 - Before writing any lemma, run `es search "<what it says>"` and cite the result in the PR.
 - One node per branch, named `node/<Name>`. A PR closes exactly one node and edits no statements.

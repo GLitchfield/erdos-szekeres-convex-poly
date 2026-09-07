@@ -125,6 +125,7 @@ missing_destinations = "error"
 
 [claims]
 ttl_hours = 12
+require_why = true                     # `es claim --why "..."`: the intent is shown in `es status`
 
 [falsify]
 falsifiers_dir = "harness/falsifiers"
@@ -136,6 +137,11 @@ memory_max = "24G"                     # falsifiers run SAT solvers and enumerat
 [jobs]
 max_parallel_builds = 1
 max_parallel_falsifiers = 2
+memory_budget = "30G"                  # sum of the caps of live jobs (`es job run`, async build/check/falsify);
+                                       # the host has 64 GB, Windows keeps ~25 GB, so the VM should not exceed ~30 GB
+default_memory_max = "2G"              # cap for `es job run` when --mem is not given
+run_margin_gib = 2                     # `es job run` needs cap + margin GiB available when submitted
+output_roots = ["runs", "data"]        # `es job run --out` paths must lie under one of these
 
 [node]
 default_import = "ErdosSzekeres"       # narrower imports keep `es check` fast; override per node with --import

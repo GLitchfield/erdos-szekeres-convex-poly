@@ -435,20 +435,54 @@ CREATE TABLE extract_cache (tree_hash TEXT PRIMARY KEY, nodes_json TEXT NOT NULL
 CREATE TABLE jobs (id TEXT PRIMARY KEY, kind TEXT NOT NULL, node TEXT, argv TEXT NOT NULL, cwd TEXT NOT NULL,
                    status TEXT NOT NULL,           -- queued | running | done | failed | killed
                    exit_code INTEGER, created_at REAL NOT NULL, started_at REAL, finished_at REAL,
-                   log_path TEXT, budget_min INTEGER, agent TEXT);
+                   log_path TEXT, budget_min INTEGER, agent TEXT, pid INTEGER, result_json TEXT,
+                   why TEXT, memory_max TEXT, outputs TEXT, peak_mib INTEGER, seconds REAL);  -- kind = run (§8.4)
 CREATE TABLE attempts (id INTEGER PRIMARY KEY, node TEXT NOT NULL, agent TEXT, started_at REAL, ended_at REAL,
-                       outcome TEXT);              -- closed | abandoned | refuted | expired
+                       outcome TEXT, note TEXT);   -- closed | partial | blocked | abandoned | refuted | expired
+CREATE TABLE events (id INTEGER PRIMARY KEY, at REAL NOT NULL, kind TEXT NOT NULL, node TEXT, agent TEXT, detail TEXT);
 CREATE INDEX jobs_status ON jobs(status);
 ```
 
-`tree_hash` = `git rev-parse HEAD^{tree}` plus a hash of uncommitted changes to
-`ESBlueprint/**` and `ErdosSzekeres/**`, so the cache is valid per working tree state.
+`tree_hash` = the committed tree ids of the state directories (`git rev-parse HEAD:<dir>`
+for `ESBlueprint/**`, `ErdosSzekeres/**`, …) plus a hash of uncommitted changes under them,
+so the cache is valid per working-tree state of those directories and a commit that only
+touches notes, scripts or data does not force the extractor (36 GiB) to run again.
 
 ### 8.3 Agent identity
 
 `ES_AGENT` env var; default `<user>@<host>:<parent-pid>`. Claude Code sessions should
 set `ES_AGENT` in the SessionStart hook to something stable for the session
 (e.g. `claude-code:<session-id>` if available, else the hook's parent pid).
+
+### 8.4 Audit trail (2026-09-07)
+
+Several agents work in one checkout and one database, so everything an agent does that
+another agent could duplicate, wait for, or be starved by is recorded where the harness
+can show it, and the harness checks it rather than asking for prose:
+
+- **Intent on claims.** `es claim --why` is mandatory (`[claims] require_why`); the text is
+  the claim's `note` and appears in the `claimed by / last attempt` column of `es status`.
+  `es release --outcome closed|partial|blocked|abandoned|refuted` needs `--note` for the
+  three unfinished outcomes; the note lands on the attempt. An unclaimed open node whose
+  last attempt ended within 14 days shows `(expired|partial|blocked|abandoned <date> <agent>: <note>)`
+  so the next agent knows whether to continue or restart.
+- **One door for compute.** `es job run --why … --out … [--node] [--mem] [--budget] [--cpu] -- <command>`
+  is the only sanctioned way to run anything longer than a minute. The job row keeps the
+  command, purpose, node, cap, output paths, agent, and after the run the measured peak
+  (cgroup `memory.peak`), seconds and exit status; `es status` lists live jobs; the
+  pre-bash hook blocks `systemd-run`/`nohup` that do not go through `es`. Submission is
+  refused when the caps of live jobs plus the new one exceed `[jobs] memory_budget`, when
+  fewer than cap + `run_margin_gib` GiB are available, or when an output path is not under
+  `[jobs] output_roots` (results must be findable, not in a scratch directory). Synchronous
+  `es check`/`es falsify`/`es build` runs are not job rows and are not counted against the
+  budget; they are short and run under their own caps.
+- **A journal.** `es log "<text>" [--node]` writes a free-text event; `es journal --since 24h
+  [--agent] [--node] [--kind]` merges claims, releases, expiries, jobs (submitted/finished
+  with peak and seconds), falsifier runs, extracts, log entries and git commits into one
+  timeline. It is what an agent reads after `es status`.
+- **Loud staleness.** `es status` and `es ready` compare `statements.lock` with `nodes.json`
+  and print `index is stale: N node(s) … run es extract` when nodes were added since the
+  last full extract (the index showed 3 nodes while the lock held 13 for a day before this).
 
 ---
 
@@ -468,7 +502,7 @@ name and a JSON schema mirroring its arguments.
 | `es node add` | `--name`, `--ws`, `--kind`, `--type "<Lean type>"`, `--description`, `--depends a,b`, `--consumer c` or `--dangling-ok "reason"`, `--falsifier f`, `--approved-by who` | Runs `es search` on description and type and refuses exact type-hash duplicates (needs a quick elaboration: writes the module, runs `lake build ESBlueprint.<Mod>`, then `es extract` on it); writes `ESBlueprint/<WS>/<Name>.lean` from a template with `sorry`; adds the import to `ESBlueprint.lean`; adds the lock entry (approval is the human running this or the CODEOWNERS review of the PR). | duplicate; statement fails to elaborate; missing required tags |
 | `es node restate <name>` | `--type`, `--approved-by`, `--reason` | Rewrites the statement in place, updates the lock, appends to `restatements.md`. The only sanctioned way to change a statement. | node claimed by someone else; elaboration fails |
 | `es node retire <name>` | `--reason`, `--as-refutation` | Deletes the module (or rewrites as `¬`-node), removes from `ESBlueprint.lean`, appends to `retired.md`, records an attempt outcome. | — |
-| `es claim <name>` / `es release <name>` | `--agent`, `--note` | Insert/delete claim; expired claims are purged on every command. Claiming a `proposed` conjecture is refused until `es falsify` passed. | already claimed by another live agent; not ready (override with `--force`, logged) |
+| `es claim <name>` / `es release <name>` | `--why` (claim, required), `--outcome` + `--note` (release), `--agent` | Insert/delete claim; expired claims are purged on every command and recorded as `expired` attempts. Claiming a `proposed` conjecture is refused until `es falsify` passed. | already claimed by another live agent; not ready (override with `--force`, logged) |
 | `es search <query>` | `--type-hash H`, `--limit N`, `--ns` | Full-text (SQLite FTS5 over `index.json` + `nodes.json`: names, docstrings, `type_pp`). Returns name, module, one-line docstring, score. | — |
 | `es check <name>` | `--async`, `--budget MIN` | Builds only the node's module (`lake build ESBlueprint.<Mod>`), runs a targeted extract, reports sorry-free / axioms / build time; records an attempt. `--async` submits a job. | build fails; budget exceeded |
 | `es falsify <name>` | `--async`, `--dataset PATH` | Runs the node's falsifier with `dataset_dir` on argv; exit 0 = pass, 2 = counterexample (falsifier must write `harness/falsify/<node>.json` with the witness), other = error. Records result. | falsifier missing; error exit |
@@ -476,7 +510,10 @@ name and a JSON schema mirroring its arguments.
 | `es audit` | `--changed` (only declarations whose modules changed vs `origin/main`) | Axiom audit over blueprint nodes + `destinations.txt` against the allowlist. | uncovered axiom |
 | `es layers` | | Parses `import` lines of every module in the three layers; checks the order in config and the certificate-consumer allowlist; checks nothing imports `ESBlueprint` from ESCore; checks `ESBlueprint.lean` imports every node module. | violation |
 | `es build <target>` | `core\|blueprint\|certs\|node <name>`, `--budget MIN`, `--async` | Wraps `lake build` with wall-clock budget and a summary line (modules built, seconds). | build fails; budget exceeded |
-| `es job list\|status\|log\|cancel` | `<id>` | Job table access. `es worker` runs the loop (foreground; run under tmux/systemd-user). | — |
+| `es job run -- <command>` | `--why`, `--out` (required), `--node`, `--mem`, `--budget`, `--cpu`, `--queue` | Runs any command as a recorded job in the guarded scope (§8.4): purpose, cap, outputs, agent, peak and seconds in the job table; enforces the memory budget. | budget or availability exceeded; output outside `runs/`/`data/` |
+| `es job list\|status\|log\|cancel` | `<id>` | Job table access (list shows cap, peak, agent, why). `es worker` runs the loop (foreground; run under tmux/systemd-user); `es job exec <id>` is the internal runner. | — |
+| `es log <text>` | `--node` | Free-text journal entry under the agent id. | — |
+| `es journal` | `--since 24h`, `--agent`, `--node`, `--kind`, `--limit`, `--no-commits` | Timeline of claims, releases, jobs, falsifier runs, extracts, log entries and commits. | — |
 | `es note` | `--since DATE` | Weekly note from status diffs and the attempts table: nodes opened/closed/refuted/retired, attempts, allowlist and lock changes, job time spent. Writes `docs/notes/<ISO-week>.md` with a `## Judgment` section left empty for the human. | — |
 | `es doctor` | | Checks toolchain, `lake` presence, config validity, DB schema, that `.lake/build` has certificate oleans, cache health. | any check fails |
 
@@ -532,21 +569,20 @@ return the `--json` payload. Register in `.mcp.json`:
 `session_start.sh`: exports `ES_AGENT`, runs `es status --brief` and prints it (Claude
 Code injects hook stdout as context). `pre_bash.sh`: reads the tool input JSON from
 stdin; if the command contains `git commit` or `git push`, runs `es layers && es extract --check && es audit --changed`
-and exits non-zero (blocking the tool call) on failure.
+and exits non-zero (blocking the tool call) on failure; if it launches `systemd-run` or
+`nohup` outside an `es` command, it is blocked with a pointer to `es job run` (§8.4).
 
-### 10.3 CLAUDE.md (replace the current long form; AGENTS.md rewritten to match in M6)
+### 10.3 CLAUDE.md and AGENTS.md
 
-```
-# Working rules (es harness)
-- Project state comes from `es status`; do not read docs/wayfinder to learn what is open.
-- Pick work with `es ready`; run `es claim <node>` before starting and `es release` if you stop.
-- New statements go only in ESBlueprint via `es node add`. Never edit a statement by hand; use `es node restate`.
-- Before writing any lemma, run `es search "<what it says>"` and cite the result in the PR.
-- One node per branch, named node/<Name>. A PR closes exactly one node and edits no statements.
-- Never add an axiom, `native_decide`, or `sorry` outside ESBlueprint without an allowlist entry.
-- Generated certificate modules live in ErdosSzekeres/Certificates and are only regenerated by scripts/generate_*.py.
-- Do not write tickets; `es note` writes the weekly note.
-```
+`CLAUDE.md` holds the working rules; `AGENTS.md` (read by Codex and other tools) carries the
+identical rule list under a short project header, and `tools/es/tests/test_audit_trail.py`
+fails when the two lists differ. The rules, as of 2026-09-07: state from `es status` (run
+`es extract` when it says the index is stale); `es ready`, `es claim --why`, `es release
+--outcome --note`; every command longer than a minute through `es job run`; `es log` before a
+decision that changes the plan; statements only via `es node add`/`restate`; `es search`
+before writing a lemma; one node per branch; no unallowlisted axioms; generated certificate
+modules only from the generators; `es note` for the weekly note; builds through `es build`/
+`es check`; git metadata in `.git-data`.
 
 ### 10.4 CI (`.github/workflows/ci.yml`)
 

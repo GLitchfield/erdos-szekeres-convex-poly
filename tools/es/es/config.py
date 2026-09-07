@@ -353,6 +353,30 @@ class Config:
         return int(self.get("jobs", "max_parallel_builds", default=1))
 
     @property
+    def claims_require_why(self) -> bool:
+        """`es claim` needs --why (what the agent intends to do)."""
+        return bool(self.get("claims", "require_why", default=True))
+
+    @property
+    def jobs_memory_budget(self) -> str:
+        """Sum of the memory caps of live jobs (queued or running) may not exceed this."""
+        return str(self.get("jobs", "memory_budget", default="30G"))
+
+    @property
+    def jobs_default_memory_max(self) -> str:
+        return str(self.get("jobs", "default_memory_max", default="2G"))
+
+    @property
+    def jobs_run_margin_gib(self) -> float:
+        """`es job run` needs cap + margin GiB available at submission."""
+        return float(self.get("jobs", "run_margin_gib", default=2))
+
+    @property
+    def jobs_output_roots(self) -> list[str]:
+        """Directories (relative to the root) under which `es job run --out` paths must lie."""
+        return [str(x) for x in self.get("jobs", "output_roots", default=["runs", "data"])]
+
+    @property
     def node_default_import(self) -> str:
         return str(self.get("node", "default_import", default=self.core_root_module))
 

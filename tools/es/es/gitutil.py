@@ -38,10 +38,17 @@ def head_sha(cfg: Config) -> str:
 
 
 def tree_hash(cfg: Config, dirs: list[str]) -> str:
-    """HEAD tree hash mixed with the content of uncommitted changes under ``dirs``."""
+    """Hash of the committed trees of ``dirs`` mixed with the content of uncommitted changes under them.
+
+    Only those directories enter the key (not the whole HEAD tree), so commits that touch
+    notes, scripts or data do not invalidate the extract cache and force a full extractor run."""
     h = hashlib.sha256()
     try:
-        h.update(git(cfg, "rev-parse", "HEAD^{tree}").strip().encode())
+        for d in dirs:
+            try:
+                h.update(git(cfg, "rev-parse", f"HEAD:{d}").strip().encode())
+            except RuntimeError:
+                h.update(f"absent:{d}".encode())
         status = git(cfg, "status", "--porcelain", "--untracked-files=all", "--", *dirs)
     except (RuntimeError, OSError):
         # no git: hash every file under dirs

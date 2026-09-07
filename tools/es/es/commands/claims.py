@@ -11,9 +11,12 @@ from es.spec import Arg, CommandSpec, command
 from es.store import Store
 
 
-def run_claim(ctx: Ctx, name: str, agent: str | None = None, note: str | None = None, force: bool = False) -> Result:
+def run_claim(ctx: Ctx, name: str, why: str | None = None, agent: str | None = None, note: str | None = None, force: bool = False) -> Result:
     cfg = ctx.cfg
     agent = agent or ctx.agent
+    why = (why or note or "").strip() or None
+    if cfg.claims_require_why and not why:
+        raise CheckFailed("--why is required: say what you intend to do with the node (shown in `es status`)")
     n = find_node(cfg, name)
     with Store(cfg) as st:
         existing = st.claims().get(n.name)
@@ -26,26 +29,34 @@ def run_claim(ctx: Ctx, name: str, agent: str | None = None, note: str | None = 
             if not force:
                 raise CheckFailed(f"{n.name} is not ready ({why}); use --force to claim anyway")
             st.event("claim-forced", n.name, agent, why)
-        claim = st.claim(n.name, agent, cfg.claim_ttl_hours, note)
-    return Result(EXIT_OK, {"claim": claim}, [f"claimed {n.name} for {agent} until {time.strftime('%Y-%m-%d %H:%M', time.localtime(claim['expires_at']))}"])
+        claim = st.claim(n.name, agent, cfg.claim_ttl_hours, why)
+    return Result(EXIT_OK, {"claim": claim}, [f"claimed {n.name} for {agent} until {time.strftime('%Y-%m-%d %H:%M', time.localtime(claim['expires_at']))}"
+                                              + (f": {why}" if why else "")])
 
 
-def run_release(ctx: Ctx, name: str, agent: str | None = None, outcome: str = "abandoned") -> Result:
+OUTCOMES = ["closed", "partial", "blocked", "abandoned", "refuted"]
+
+
+def run_release(ctx: Ctx, name: str, outcome: str, note: str | None = None, agent: str | None = None) -> Result:
     cfg = ctx.cfg
     n = find_node(cfg, name)
+    note = (note or "").strip() or None
     # releasing a node that is already sorry-free is not an abandoned attempt
-    if outcome == "abandoned" and n.status in ("closed", "merged"):
+    if outcome in ("abandoned", "partial") and n.status in ("closed", "merged"):
         outcome = "closed"
+    if outcome in ("partial", "blocked", "abandoned") and not note:
+        raise CheckFailed(f"--note is required with --outcome {outcome}: say what was done and what stopped you, for the next agent")
     with Store(cfg) as st:
-        ok = st.release(n.name, agent or ctx.agent, outcome=outcome)
+        ok = st.release(n.name, agent or ctx.agent, outcome=outcome, note=note)
     if not ok:
         return Result(EXIT_CHECK_FAILED, {"released": False}, [f"{n.name} was not claimed"])
-    return Result(EXIT_OK, {"released": True}, [f"released {n.name} ({outcome})"])
+    return Result(EXIT_OK, {"released": True, "outcome": outcome, "note": note}, [f"released {n.name} ({outcome}" + (f": {note}" if note else "") + ")"])
 
 
-command(CommandSpec(name="claim", cli=["claim"], help="Claim a ready node for this agent (12 h by default).", run=run_claim,
-                    args=[Arg("name", "node name", positional=True, required=True), Arg("agent", "agent id (default: ES_AGENT)"),
-                          Arg("note", "free text"), Arg("force", "claim a node that is not ready (logged)", "bool")]))
-command(CommandSpec(name="release", cli=["release"], help="Release a claim.", run=run_release,
-                    args=[Arg("name", "node name", positional=True, required=True), Arg("agent", "agent id"),
-                          Arg("outcome", "abandoned | closed | refuted", default="abandoned", choices=["abandoned", "closed", "refuted"])]))
+command(CommandSpec(name="claim", cli=["claim"], help="Claim a ready node for this agent (12 h by default); --why records the intent shown in `es status`.", run=run_claim,
+                    args=[Arg("name", "node name", positional=True, required=True), Arg("why", "what you intend to do (required unless [claims] require_why = false)"),
+                          Arg("agent", "agent id (default: ES_AGENT)"), Arg("note", "alias of --why"), Arg("force", "claim a node that is not ready (logged)", "bool")]))
+command(CommandSpec(name="release", cli=["release"], help="Release a claim with an outcome; partial/blocked/abandoned need --note (what was done, what stopped you).", run=run_release,
+                    args=[Arg("name", "node name", positional=True, required=True),
+                          Arg("outcome", "closed | partial | blocked | abandoned | refuted", required=True, choices=OUTCOMES),
+                          Arg("note", "what was done and what remains"), Arg("agent", "agent id")]))

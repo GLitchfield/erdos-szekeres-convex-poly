@@ -23,8 +23,9 @@ def state_dirs(cfg) -> list[str]:
     if val:
         return [str(x) for x in val]
     dirs = [cfg.blueprint_namespace, str(cfg.blueprint_root.relative_to(cfg.root))]
-    # harness inputs that change the computed state
-    for p in (cfg.root / "harness" / "config.toml", cfg.destinations_file, cfg.allowlist_file, cfg.lock_file, cfg.falsify_results_dir):
+    # harness inputs the *extractor* reads (the lock, allowlist, falsifier results and config
+    # only feed the status computation, which runs on every call from the cached raw output)
+    for p in (cfg.destinations_file,):
         try:
             dirs.append(str(p.relative_to(cfg.root)))
         except ValueError:
