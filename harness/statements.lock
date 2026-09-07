@@ -53,6 +53,25 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundCutLe"
   },
+  "ErdosSzekeres.ctx_bound_exchange_orientation_counterexample": {
+    "type_hash": "4ea2c28581a4ed10",
+    "type_pp": "have σ :=\n  { a := 4, u := 4, k := 5,\n    word :=\n      List.cons ErdosSzekeres.Ctx.Letter.child\n        (List.cons (ErdosSzekeres.Ctx.Letter.ext 1 ErdosSzekeres.Ctx.Side.lower)\n          (List.cons ErdosSzekeres.Ctx.Letter.child\n            (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))),\n    maxima := List.cons 1 List.nil };\nhave keep := List.cons 0 (List.cons 3 List.nil);\nhave lowerValue := fun block =>\n  instHAdd.hAdd (σ.part block ErdosSzekeres.Ctx.Side.lower 1).bound\n    (σ.part\n        (List.filter (fun p => Decidable.decide (Not (List.instMembership.mem block p)))\n          σ.childPositions)\n        ErdosSzekeres.Ctx.Side.upper 3).bound;\nhave upperValue := fun block =>\n  instHAdd.hAdd (σ.part block ErdosSzekeres.Ctx.Side.upper 3).bound\n    (σ.part\n        (List.filter (fun p => Decidable.decide (Not (List.instMembership.mem block p)))\n          σ.childPositions)\n        ErdosSzekeres.Ctx.Side.lower 1).bound;\nAnd σ.WellFormed\n  (And (Eq σ.childPositions (List.cons 0 (List.cons 2 (List.cons 3 List.nil))))\n    (And (Eq σ.numRuns 2)\n      (And (Not (List.instMembership.mem σ.blocks keep))\n        (And (Eq (lowerValue keep) 5)\n          (And\n            (∀ (block : List Nat),\n              List.instMembership.mem σ.blocks block → instLENat.le (lowerValue block) 4)\n            (And\n              (Exists fun block =>\n                And (List.instMembership.mem σ.blocks block) (Eq (upperValue block) 5))\n              (Eq σ.bound 5)))))))",
+    "approved_by": "codex:01a07c5a-4a94-7173-865c-d990c69ab997-exchange",
+    "approved_at": "2026-09-07",
+    "kind": "refutation",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundExchangeOrientationCounterexample",
+    "retired": "2026-09-07"
+  },
+  "ErdosSzekeres.ctx_bound_interval_or_complement_le": {
+    "type_hash": "d367a5a75bcd623a",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  instLENat.le 2 σ.numRuns →\n    ∀ (keep : List Nat),\n      Or (List.instMembership.mem σ.blocks keep)\n          (List.instMembership.mem σ.blocks\n            (List.filter (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n              σ.childPositions)) →\n        ∀ (d : Nat),\n          instLENat.le 1 d →\n            instLENat.le d (instHSub.hSub σ.k 2) →\n              And\n                (instLENat.le\n                  (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                    (σ.part\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.upper (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                  σ.bound)\n                (instLENat.le\n                  (instHAdd.hAdd\n                    (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                        (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                    (σ.part\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.lower d).bound)\n                  σ.bound)",
+    "approved_by": "codex:01a07c5a-4a94-7173-865c-d990c69ab997-exchange",
+    "approved_at": "2026-09-07",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundIntervalOrComplementLe"
+  },
   "ErdosSzekeres.ctx_bound_zero_child_regression": {
     "type_hash": "252d53ad6dd214d2",
     "type_pp": "have σ :=\n  { a := 3, u := 3, k := 3,\n    word :=\n      List.cons ErdosSzekeres.Ctx.Letter.child\n        (List.cons (ErdosSzekeres.Ctx.Letter.ext 1 ErdosSzekeres.Ctx.Side.lower)\n          (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)),\n    maxima := List.cons 1 List.nil };\nAnd σ.WellFormed\n  (And (Eq (σ.part (List.cons 0 List.nil) ErdosSzekeres.Ctx.Side.lower 1).bound 0)\n    (And (Eq (σ.part (List.cons 2 List.nil) ErdosSzekeres.Ctx.Side.upper 1).bound 1)\n      (Eq σ.bound 1)))",
