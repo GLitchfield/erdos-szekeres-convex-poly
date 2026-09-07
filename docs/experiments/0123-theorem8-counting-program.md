@@ -164,3 +164,47 @@ the rule itself is not read off yet; pinning the root to the canonical window
     python3 scripts/decomposable_label_coloring.py --case 3,5,6 --s 5            # T colors
     python3 scripts/decomposable_label_coloring.py --case 3,5,6 --s 5 --colors 3
     python3 scripts/decomposable_label_rule_sat.py --case 3,4,5 --s 4 --features word --root-window --output out.json
+
+## 5. The shape of the label sets (2026-09-07, after a second OOM)
+
+All runs below are `scripts/decomposable_label_rule_sat.py` on the four cases
+`(3,4,5) s=4`, `(4,4,5) s=5`, `(4,5,5) s=5`, `(5,5,5) s=5`, root pinned to the
+canonical window, every run under an 8 GB cgroup (the unconstrained SAT runs of the
+previous evening took WSL down); the run index is
+`data/derived/label-sets/tight/index.json`.
+
+* **Every single-run label set can be a cylinder window**: fixed letters on some
+  positions, `#L(free) ≤ ℓ`, `#U(free) ≤ υ` with `ℓ ≤ cl−1`, `υ ≤ pl−1`.  With the
+  sets allowed to be unions of such cylinders this is SAT even when the cylinder may
+  depend only on the run limits and per-level (side, left-flag, right-flag); with a
+  *single* cylinder per class it needs the word (positions and sides of all external
+  letters): SAT with word features, UNSAT with per-level counts.
+* **The fixed positions can be a prefix** (SAT everywhere with word features).
+* **Sizes.**  Demanding exactly the threshold `T(pl+1, cl+1, k)` labels for every
+  single-run context is consistent for `(3,4,5)`, `(4,4,5)`, for `(4,5,5)` up to
+  three levels and for `(5,5,5)` only at one level; deeper contexts must sometimes
+  own fewer labels than the recursion's base value (the base is an upper bound, not
+  a capacity).  Demanding `min(n, T)` instead is inconsistent: a context's set is the
+  set of labels its vertices may carry, not a count of vertices.
+* **The canonical shape** `f₀ = max(0, (k−2) − (cl−1) − (pl−1))` fixed positions as a
+  prefix, budgets exactly `(cl−1, pl−1)`, is SAT with the letters left free (both
+  `(3,4,5)` and `(4,4,5)`).  So only the fixed *letters* are unknown.  Eight simple
+  rules for them (sides of the levels in inner, outer, nearest-letter or
+  farthest-letter order, padded with L or U) are all UNSAT already at `(3,4,5)`;
+  the letters depend on the split history in a way none of these orders captures.
+  The backbone (which letter tuples are feasible per context, and which are forced)
+  is being computed for `(3,4,5)`.
+
+**Reading.**  In the window regime the two parts of a cut are separated by counts
+alone: the lower part has `#L ≤ cl_A − 1`, the upper `#U ≤ pl_R − 1`, and these are
+disjoint exactly when `cl_A + pl_R ≤ k−1`, the coupling.  A context needs dead
+(fixed) positions precisely when `cl + pl ≤ k−1`, i.e. when the strong-set bound is
+slack for it, and then a maximal strong set through one of its vertices has fewer
+than `k−1` vertices.  This suggests the semantic label: for a vertex `v`, a
+canonical maximal strong set through `v`, encoded by which of its other vertices
+lie on the cup side (`L`) and which on the cap side (`U`), the count constraints
+`#L ≤ u−2`, `#U ≤ a−2` being exactly that a cup has at most `u−1` and a cap at most
+`a−1` vertices, with the deficiency to `k−2` filled by letters that record how the
+budget was lost.  Distinct vertices in different parts of a split then differ by
+the coupling; the letters of the dead positions are what has to make vertices in
+the same part differ, and that is the open part of the rule.

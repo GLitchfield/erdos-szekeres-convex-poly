@@ -1,0 +1,13 @@
+{
+ "case": "5,5,5",
+ "s": 5,
+ "features": "flags",
+ "colors": 8,
+ "threshold": 8,
+ "contexts": 137341,
+ "feature_classes": 11827,
+ "leaves": 72726,
+ "clauses": 1976044,
+ "sat": true,
+ "seconds": 11.9
+}
