@@ -152,6 +152,15 @@
     "ws": "F",
     "module": "ESBlueprint.F.DecomposableExtremalInsertion"
   },
+  "ErdosSzekeres.decomposable_extremal_insertion_dichotomy": {
+    "type_hash": "b6275e002c4b8f13",
+    "type_pp": "∀ {n k : Nat} {χ : ErdosSzekeres.TripleColoring n} {S : Finset (Fin n)} {q : Fin n},\n  instLENat.le 4 k →\n    ErdosSzekeres.DecomposableExactUpperAt (instHSub.hSub k 1) →\n      ErdosSzekeres.IsSweepRealizable χ →\n        ErdosSzekeres.IsDecomposableOn χ S →\n          Eq S.card (instHPow.hPow 2 (instHSub.hSub k 2)) →\n            Not (SetLike.instMembership.mem S q) →\n              Not (ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instInsert.insert q S) k) →\n                Or\n                  (And\n                    (Eq (Finset.filter (fun x => instLTFin.lt x q) S).card\n                      (instHPow.hPow 2 (instHSub.hSub k 3)))\n                    (Eq (Finset.filter (fun x => instLTFin.lt q x) S).card\n                      (instHPow.hPow 2 (instHSub.hSub k 3))))\n                  (Exists fun P =>\n                    And (Finset.instHasSubset.Subset P S)\n                      (And (Eq P.card (instHSub.hSub k 1))\n                        (And (ErdosSzekeres.IsStrongPolygonSet χ P)\n                          (And\n                            (Or (∀ (x : Fin n), SetLike.instMembership.mem P x → instLTFin.lt x q)\n                              (∀ (x : Fin n), SetLike.instMembership.mem P x → instLTFin.lt q x))\n                            (Not\n                              (ErdosSzekeres.IsStrongPolygonSet χ\n                                (Finset.instInsert.insert q P)))))))",
+    "approved_by": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+    "approved_at": "2026-09-07",
+    "kind": "formalization",
+    "ws": "F",
+    "module": "ESBlueprint.F.DecomposableExtremalInsertionDichotomy"
+  },
   "ErdosSzekeres.erdosSzekeresConjecture_of_predecessorHalfSubsetAt_all": {
     "type_hash": "e734cdc1e3931ff0",
     "type_pp": "(∀ (j : Nat), instLENat.le 4 j → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n  ErdosSzekeres.ErdosSzekeresConjecture",

@@ -19,3 +19,4 @@ import ESBlueprint.B.CtxBoundSameSizeExchangeCounterexample
 import ESBlueprint.B.CtxBoundThreeWayBaseAllocation
 import ESBlueprint.B.CtxBoundTwoRunBoundaryDomination
 import ESBlueprint.F.DecomposableExtremalInsertion
+import ESBlueprint.F.DecomposableExtremalInsertionDichotomy
