@@ -22,3 +22,4 @@ import ESBlueprint.F.DecomposableExtremalInsertion
 import ESBlueprint.F.DecomposableExtremalInsertionDichotomy
 import ESBlueprint.B.CtxBoundAdjacentLetterContraction
 import ESBlueprint.B.CtxBoundAdjacentLetterContractionCounterexample
+import ESBlueprint.B.CtxBoundExternalLetterContraction
