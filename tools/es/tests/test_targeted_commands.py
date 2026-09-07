@@ -68,3 +68,74 @@ def test_targeted_check_is_preserved_when_queued(cfg, monkeypatch):
     monkeypatch.setattr(jobs, "submit", submit)
     check.run(Ctx(cfg), "foo_node", async_=True, targeted=True)
     assert "--targeted" in submitted[0]["argv"]
+
+
+def test_targeted_falsify_records_result_without_full_extraction(cfg, monkeypatch):
+    import json
+    from es.commands import extract, falsify, node
+
+    declaration = SimpleNamespace(name="TCore.foo_node", module="TBlueprint.A.Foo",
+                                  short="foo_node", falsifier="probe.py",
+                                  type_pp="True", type_hash="hash")
+    cfg.falsifiers_dir.mkdir(parents=True, exist_ok=True)
+    (cfg.falsifiers_dir / "probe.py").write_text("raise SystemExit(0)\n")
+    monkeypatch.setattr(falsify, "find_node", lambda *_: declaration)
+    monkeypatch.setattr(falsify.shutil, "which", lambda *_: None)
+    seen = []
+
+    def targeted(ctx, module):
+        seen.append(module)
+        return {}, [], []
+
+    def forbidden(*_args, **_kwargs):
+        raise AssertionError("a targeted falsifier must not extract the full environment")
+
+    monkeypatch.setattr(node, "targeted_extract", targeted)
+    monkeypatch.setattr(extract, "run_extract", forbidden)
+    result = falsify.run(Ctx(cfg), declaration.name, targeted=True)
+    assert result.exit_code == 0
+    assert result.payload["targeted"]
+    assert seen == [declaration.module]
+    assert not cfg.nodes_json.exists()
+    record = json.loads((cfg.falsify_results_dir / (declaration.name + ".json")).read_text())
+    assert record["result"] == "pass"
+    assert record["statement_type_hash"] == declaration.type_hash
+
+
+def test_targeted_falsify_is_preserved_when_queued(cfg, monkeypatch):
+    from es.commands import falsify
+    from es import jobs
+
+    declaration = SimpleNamespace(name="TCore.foo_node", falsifier="probe.py")
+    cfg.falsifiers_dir.mkdir(parents=True, exist_ok=True)
+    (cfg.falsifiers_dir / "probe.py").write_text("raise SystemExit(0)\n")
+    monkeypatch.setattr(falsify, "find_node", lambda *_: declaration)
+    submitted = []
+
+    def submit(_cfg, **kwargs):
+        submitted.append(kwargs)
+        return {"id": "test-job"}
+
+    monkeypatch.setattr(jobs, "submit", submit)
+    falsify.run(Ctx(cfg), declaration.name, async_=True, targeted=True)
+    assert "--targeted" in submitted[0]["argv"]
+
+
+def test_targeted_conjecture_readiness_uses_matching_falsifier_result(cfg):
+    import json
+    from es.nodes import find_node
+
+    cfg.lock_file.write_text(json.dumps({"TCore.fresh": {
+        "module": "TBlueprint.A.Fresh", "kind": "conjecture", "ws": "A",
+        "type_hash": "current", "type_pp": "True"}}))
+    assert not find_node(cfg, "fresh", nodes=[]).ready
+    cfg.falsify_results_dir.mkdir(parents=True, exist_ok=True)
+    result = cfg.falsify_results_dir / "TCore.fresh.json"
+    result.write_text(json.dumps({"node": "TCore.fresh", "result": "pass",
+                                 "statement_type_hash": "old"}))
+    assert not find_node(cfg, "fresh", nodes=[]).ready
+    result.write_text(json.dumps({"node": "TCore.fresh", "result": "pass",
+                                 "statement_type_hash": "current"}))
+    found = find_node(cfg, "fresh", nodes=[])
+    assert found.status == "open" and found.ready
+    assert not cfg.nodes_json.exists()

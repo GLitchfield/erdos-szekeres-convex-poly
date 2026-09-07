@@ -143,6 +143,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.DecomposableStateUpperAll"
   },
+  "ErdosSzekeres.decomposable_extremal_insertion": {
+    "type_hash": "426bd48e657492b6",
+    "type_pp": "∀ {k n : Nat},\n  instLENat.le 4 k →\n    ∀ {χ : ErdosSzekeres.TripleColoring n},\n      ErdosSzekeres.IsSweepRealizable χ →\n        ∀ (S : Finset (Fin n)),\n          ErdosSzekeres.IsDecomposableOn χ S →\n            Eq S.card (instHPow.hPow 2 (instHSub.hSub k 2)) →\n              Not (ErdosSzekeres.ContainsStrongPolygonSet χ S k) →\n                ∀ (q : Fin n),\n                  Not (SetLike.instMembership.mem S q) →\n                    ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instInsert.insert q S) k",
+    "approved_by": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+    "approved_at": "2026-09-07",
+    "kind": "conjecture",
+    "ws": "F",
+    "module": "ESBlueprint.F.DecomposableExtremalInsertion"
+  },
   "ErdosSzekeres.erdosSzekeresConjecture_of_predecessorHalfSubsetAt_all": {
     "type_hash": "e734cdc1e3931ff0",
     "type_pp": "(∀ (j : Nat), instLENat.le 4 j → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n  ErdosSzekeres.ErdosSzekeresConjecture",
