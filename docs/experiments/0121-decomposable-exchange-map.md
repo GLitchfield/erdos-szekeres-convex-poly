@@ -185,3 +185,17 @@ never above, never below; and it is monotone in each sibling maximum
 (9,444 comparisons at `(4,4,5)`, `(4,5,5)`, `(5,5,5)`, no violation).  So
 lemma 2 holds for `F2` as it did for `F`, and `F2` is exact on every
 depth-one context of the nine cases and every deep context at `k = 5`.
+
+**Addendum 5, 7 September: `F2` is exact on the real deep `(4,5,6)` contexts.**  The
+12,724 deep signatures taken from the compiled `(4,5,6)` class (the `deep-456` table of
+`scripts/decomposable_deep_tables_compiled.py`, every subtree context of the extremal
+colorings) were compared with the interval-cut recursion on all 12,672 rows with at most
+six child letters: **`F2 − E = 0` on every one**
+(`data/derived/decomposable-recursive-F2-vs-exact-456-deep.json`; twelve `es job run`
+shards at 2 GiB caps, checkpointed every ten rows after the morning's WSL restart lost the
+first attempt).  The 52 rows with seven or eight child letters are excluded: the
+recursion's interval-cut enumeration stalls on them for over an hour each and needs a
+better memoization key before they can be run.  Together with the `k = 5` tables this is
+the evidence that `bound` (the Lean transcription of `F2`) is the exact child count on
+every real context computed so far, so the additivity conjectures are about the true
+extremal function, not about a loose bound.

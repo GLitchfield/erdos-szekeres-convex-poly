@@ -18,9 +18,11 @@ workspace-write mode, can write them; `~/.es/erdos-szekeres` is a symlink to the
 directory. If the database is still not writable, read commands (`es status`, `es ready`,
 `es journal`, `es job list`, `es node show`, `es search`) work and write commands (`es claim`,
 `es release`, `es log`, `es job run`, `es node add`) refuse with a message saying so.
-`es job run`, `es build` and `es check` also need the systemd user bus (`systemd-run --user`)
-to create the memory-guarded scope; a sandbox that hides `/run/user/<uid>/bus` gets a refusal,
-not an unguarded run.
+`es job run` needs the systemd user bus (`systemd-run --user`) to create the memory-guarded
+scope; from a sandbox that hides `/run/user/<uid>/bus` the job is queued instead, and an
+`es worker` started from an unsandboxed shell runs queued jobs one at a time (`es job status
+<id>` to follow, `es job requeue <id>` after a failure). `es build` and `es check` need the bus
+directly.
 
 **Working rules.** The list below is identical to `CLAUDE.md` (a test in `tools/es/tests`
 fails if they drift); edit both together.

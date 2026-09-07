@@ -6,7 +6,7 @@ from datetime import datetime
 from es import EXIT_OK
 from es.context import Ctx
 from es.lock import read_lock
-from es.nodes import days_open, dests_from_json, load_nodes_json, nodes_from_json
+from es.nodes import compute, days_open, dests_from_json, load_nodes_json, nodes_from_json
 from es.output import Result, table
 from es.spec import Arg, CommandSpec, command
 from es.store import Store
@@ -34,6 +34,23 @@ def stale_lines(cfg, nodes) -> list[str]:
         return []
     shown = ", ".join(m.rsplit(".", 1)[-1] for m in missing[:6]) + ("…" if len(missing) > 6 else "")
     return [f"index is stale: {len(missing)} node(s) in statements.lock are not indexed ({shown}); run `es extract`"]
+
+
+def load_live(cfg, claims: dict[str, dict]):
+    """nodes.json with status, readiness and falsifier state recomputed from the live claims table,
+    the falsifier results and the lock, so `es status`/`es ready` do not show a claim that ended
+    (or a falsifier that passed) after the last extract."""
+    import json
+    data = load_nodes_json(cfg)
+    nodes = nodes_from_json(data)
+    dests = dests_from_json(data)
+    try:
+        core_names = {r.get("name") for r in json.loads(cfg.index_json.read_text())} if cfg.index_json.exists() else set()
+    except (OSError, ValueError):
+        core_names = set()
+    if core_names:
+        compute(cfg, nodes, dests, core_names, claims=claims)
+    return data, nodes, dests
 
 
 def _short(text, n: int) -> str:
@@ -76,18 +93,18 @@ def burn_down(cfg, weeks: int = 8) -> list[dict]:
 
 def run(ctx: Ctx, brief: bool = False, ws: str | None = None) -> Result:
     cfg = ctx.cfg
-    data = load_nodes_json(cfg)
-    nodes = nodes_from_json(data)
-    dests = dests_from_json(data)
     with Store(cfg) as st:
         claims = st.claims()
         latest = st.latest_attempts()
         live = st.live_jobs()
+    data, nodes, dests = load_live(cfg, claims)
     stale = stale_lines(cfg, nodes)
     for n in nodes:
         n.claim = claims.get(n.name)
         if n.claim and n.status == "open":
             n.status = "claimed"
+    indexed = {n.name for n in nodes}
+    elsewhere = {k: v for k, v in claims.items() if k not in indexed}
     if ws:
         nodes = [n for n in nodes if n.ws == ws]
     res = Result()
@@ -113,6 +130,11 @@ def run(ctx: Ctx, brief: bool = False, ws: str | None = None) -> Result:
     if brief:
         rows = [r for r in rows if r[3] not in ("closed", "merged", "retired", "refuted")][:18]
     res.human.extend(table(rows, ["ws", "node", "kind", "status", "ready", "claimed by / last attempt", "days", "falsifier"]))
+    if elsewhere:
+        res.line("")
+        res.line(f"claims on {len(elsewhere)} node(s) not in this index (added on another branch or worktree; they appear here once merged and extracted):")
+        res.human.extend(table([[k.rsplit(".", 1)[-1], _short(v.get("agent"), 40), _short(v.get("note"), 70)] for k, v in sorted(elsewhere.items())],
+                               ["node", "agent", "why"]))
     if live:
         from es.commands.jobs import JOB_HEADERS, job_rows
         res.line("")
@@ -129,6 +151,7 @@ def run(ctx: Ctx, brief: bool = False, ws: str | None = None) -> Result:
     res.payload = {"generated_at": data.get("generated_at"), "git_sha": data.get("git_sha"), "counts": counts, "stale": stale,
                    "nodes": [n.to_json() | {"claim": n.claim, "days_open": days_open(n.opened), "last_attempt": latest.get(n.name)} for n in nodes],
                    "destinations": [d.to_json() for d in dests], "problems": problems, "jobs_live": live,
+                   "claims_elsewhere": elsewhere,
                    "burn_down": None if brief else burn_down(cfg)}
     res.exit_code = EXIT_OK
     return res

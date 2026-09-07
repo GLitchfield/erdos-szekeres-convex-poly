@@ -58,6 +58,27 @@ def lean_compilers_running() -> int:
     return count
 
 
+_BUS_OK: bool | None = None
+
+
+def bus_available(timeout_s: float = 10.0) -> bool:
+    """Can this process create a transient user scope?  Sandboxes (Codex workspace-write) hide the
+    systemd user bus: `systemd-run` then fails with "Failed to connect to bus".  Cached per process."""
+    global _BUS_OK
+    if _BUS_OK is not None:
+        return _BUS_OK
+    if shutil.which("systemd-run") is None:
+        _BUS_OK = False
+        return False
+    try:
+        proc = subprocess.run(["systemd-run", "--user", "--scope", "-q", "-p", "MemoryMax=64M", "--", "true"],
+                              capture_output=True, text=True, timeout=timeout_s)
+        _BUS_OK = proc.returncode == 0
+    except (OSError, subprocess.TimeoutExpired):
+        _BUS_OK = False
+    return _BUS_OK
+
+
 def available_gib() -> float:
     try:
         for line in Path("/proc/meminfo").read_text().splitlines():

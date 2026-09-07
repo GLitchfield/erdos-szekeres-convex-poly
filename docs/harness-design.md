@@ -479,7 +479,10 @@ can show it, and the harness checks it rather than asking for prose:
   pre-bash hook blocks `systemd-run`/`nohup` that do not go through `es`. Submission is
   refused when the caps of live jobs plus the new one exceed `[jobs] memory_budget`, when
   fewer than cap + `run_margin_gib` GiB are available, or when an output path is not under
-  `[jobs] output_roots` (results must be findable, not in a scratch directory). Synchronous
+  `[jobs] output_roots` (results must be findable, not in a scratch directory). A submitter
+  that cannot create a guarded scope (a sandbox without the systemd user bus, e.g. Codex)
+  gets the job *queued*; `es worker`, started once from an unsandboxed shell, runs queued
+  jobs one at a time; `es job requeue <id>` puts a failed job back. Synchronous
   `es check`/`es falsify`/`es build` runs are not job rows and are not counted against the
   budget; they are short and run under their own caps.
 - **A journal.** `es log "<text>" [--node]` writes a free-text event; `es journal --since 24h

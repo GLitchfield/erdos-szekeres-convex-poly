@@ -14,7 +14,7 @@ import time
 import uuid
 from pathlib import Path
 
-from es.build import _mem_gib, available_gib, run_guarded
+from es.build import _mem_gib, available_gib, bus_available, run_guarded
 from es.config import Config
 from es.errors import CheckFailed
 from es.store import Store
@@ -88,6 +88,9 @@ def submit_run(cfg: Config, *, command: list[str], why: str, outputs: list[str],
     if not outs:
         raise CheckFailed("--out is required: where the results will be written (under " + ", ".join(cfg.jobs_output_roots) + "/)")
     cap = _mem_gib(memory_max)
+    for o in outs:
+        # the job writes here; create the directory so a script that only opens the file works
+        (cfg.root / o).parent.mkdir(parents=True, exist_ok=True)
     with Store(cfg) as st:
         live = st.live_jobs()
     used = live_memory_gib(cfg, live)
@@ -110,10 +113,17 @@ def submit_run(cfg: Config, *, command: list[str], why: str, outputs: list[str],
     }
     if cpu_cores:
         job["result_json"] = json.dumps({"cpu_cores": cpu_cores})
+    # a process that cannot create a guarded scope (a sandbox without the systemd user bus)
+    # leaves the job queued for an `es worker` running outside the sandbox
+    job["queued_for_worker"] = False
+    if not queue and cfg.build_guard and not bus_available():
+        queue = True
+        job["queued_for_worker"] = True
+    row = {k: v for k, v in job.items() if k != "queued_for_worker"}
     with Store(cfg) as st:
-        st.job_insert(job)
+        st.job_insert(row)
         st.event("job-submitted", node, agent, {"id": job_id, "kind": "run", "why": job["why"], "memory_max": memory_max,
-                                                "outputs": outs, "command": command})
+                                                "outputs": outs, "command": command, "queued": queue})
     if not queue:
         spawn_runner(cfg, job_id)
     return job
@@ -179,7 +189,7 @@ def _run_command_job(cfg: Config, job: dict, argv: list[str]) -> dict:
     status = "done" if res.rc == 0 and not res.budget_exceeded else ("killed" if res.budget_exceeded else "failed")
     result = {"rc": res.rc, "seconds": round(res.seconds, 1), "peak_mib": res.peak_mib, "oom_kills": res.oom_kills,
               "budget_exceeded": res.budget_exceeded, "outputs_present": present, "outputs_missing": [o for o in outputs if o not in present],
-              "tail": res.tail[-5:]}
+              "refused": res.refused, "tail": res.tail[-5:]}
     with Store(cfg) as st:
         st.job_update(job["id"], status=status, exit_code=res.rc, finished_at=time.time(), peak_mib=res.peak_mib,
                       seconds=round(res.seconds, 1), result_json=json.dumps(result))
@@ -191,6 +201,10 @@ def _run_command_job(cfg: Config, job: dict, argv: list[str]) -> dict:
 
 
 def worker_loop(cfg: Config, poll_s: float = 5.0, once: bool = False) -> None:
+    if cfg.build_guard and not bus_available():
+        raise CheckFailed("this process cannot reach the systemd user bus, so it cannot run guarded jobs; start `es worker` from an unsandboxed shell")
+    with Store(cfg) as st:
+        st.event("worker-started", None, os.environ.get("ES_AGENT"), {"pid": os.getpid()})
     while True:
         with Store(cfg) as st:
             job = st.next_queued_job()

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from es import EXIT_OK
 from es.context import Ctx
-from es.nodes import days_open, load_nodes_json, nodes_from_json
+from es.nodes import days_open
 from es.output import Result, table
 from es.spec import Arg, CommandSpec, command
 from es.store import Store
@@ -10,10 +10,10 @@ from es.store import Store
 
 def run(ctx: Ctx, ws: str | None = None, kind: str | None = None) -> Result:
     cfg = ctx.cfg
-    data = load_nodes_json(cfg)
-    nodes = nodes_from_json(data)
+    from es.commands.status import load_live
     with Store(cfg) as st:
         claims = st.claims()
+    data, nodes, _dests = load_live(cfg, claims)
     out = []
     for n in nodes:
         if claims.get(n.name):

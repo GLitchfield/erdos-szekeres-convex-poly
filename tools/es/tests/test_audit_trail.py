@@ -42,13 +42,14 @@ def test_job_run_records_command_purpose_outputs_and_resources(cfg, monkeypatch)
     from es.jobs import run_job, submit_run
     monkeypatch.setattr("es.jobs.available_gib", lambda: 100.0)
     (cfg.root / "runs").mkdir()
-    job = submit_run(cfg, command=[sys.executable, "-c", "open('runs/out.txt','w').write('1')"], why="write a marker",
-                     outputs=["runs/out.txt"], agent="tester", node=None, memory_max="1G", queue=True)
-    assert job["kind"] == "run" and job["why"] == "write a marker" and json.loads(job["outputs"]) == ["runs/out.txt"]
+    job = submit_run(cfg, command=[sys.executable, "-c", "open('runs/sub/out.txt','w').write('1')"], why="write a marker",
+                     outputs=["runs/sub/out.txt"], agent="tester", node=None, memory_max="1G", queue=True)
+    assert (cfg.root / "runs" / "sub").is_dir()
+    assert job["kind"] == "run" and job["why"] == "write a marker" and json.loads(job["outputs"]) == ["runs/sub/out.txt"]
     done = run_job(cfg, job["id"])
     assert done["status"] == "done" and done["exit_code"] == 0 and done["seconds"] is not None
     result = json.loads(done["result_json"])
-    assert result["outputs_present"] == ["runs/out.txt"] and result["outputs_missing"] == []
+    assert result["outputs_present"] == ["runs/sub/out.txt"] and result["outputs_missing"] == []
     with Store(cfg) as st:
         kinds = [(e["kind"], json.loads(e["detail"])) for e in st.events_since(0) if e["kind"].startswith("job-")]
     assert kinds[0][0] == "job-submitted" and kinds[0][1]["why"] == "write a marker"
@@ -196,3 +197,61 @@ def test_es_home_from_config_is_inside_the_checkout(cfg, monkeypatch):
     assert cfg2.db_path.parent == cfg2.es_home
     monkeypatch.setenv("ES_HOME", str(cfg.root / "elsewhere"))
     assert load_config(cfg.root).es_home == cfg.root / "elsewhere" / "testproj"
+
+
+def test_job_run_queues_when_the_bus_is_unreachable(cfg, monkeypatch, capsys):
+    from es.jobs import submit_run
+    monkeypatch.setattr("es.jobs.available_gib", lambda: 100.0)
+    monkeypatch.setattr("es.jobs.bus_available", lambda: False)
+    toml = cfg.root / "harness" / "config.toml"
+    toml.write_text(toml.read_text().replace("guard = false", "guard = true"))
+    from es.config import load_config
+    cfg2 = load_config(cfg.root)
+    job = submit_run(cfg2, command=["true"], why="from a sandbox", outputs=["runs/s"], agent="codex:1")
+    assert job["status"] == "queued" and job["queued_for_worker"]
+    write_index(cfg2)
+    rc, out = run(["job", "requeue", job["id"]], capsys)
+    assert rc != 0  # still queued
+    with Store(cfg2) as st:
+        st.job_update(job["id"], status="failed", exit_code=1)
+    rc, out = run(["job", "requeue", job["id"][:15]], capsys)
+    assert rc == 0
+    with Store(cfg2) as st:
+        assert st.job(job["id"])["status"] == "queued"
+
+
+def test_status_uses_live_claims_and_lists_claims_on_unindexed_nodes(cfg, capsys):
+    from es.errors import UsageError
+    write_index(cfg)
+    with Store(cfg) as st:
+        st.claim("TCore.a", "agent-x", ttl_hours=1, note="prove it")
+        st.claim("TCore.on_a_branch", "agent-y", ttl_hours=1, note="new node in a worktree")
+    # the index was written before the claim; status must still show the claim, and the release after it
+    rc, out = run(["status"], capsys)
+    assert "agent-x: prove it" in out and "claimed" in out
+    assert "not in this index" in out and "on_a_branch" in out and "agent-y" in out
+    rc, out = run(["ready"], capsys)
+    assert "TCore.a" not in out
+    with Store(cfg) as st:
+        st.release("TCore.a", "agent-x", outcome="partial", note="half")
+    rc, out = run(["status"], capsys)
+    assert "(partial" in out and "agent-x: prove it" not in out
+    rc, out = run(["ready"], capsys)
+    assert "TCore.a" in out
+    with Store(cfg) as st:
+        with pytest.raises(UsageError, match="unexpanded"):
+            st.log("x", None, "codex:${CODEX_THREAD_ID:-x}")
+
+
+def test_forced_claim_keeps_its_purpose(cfg, capsys):
+    write_index(cfg, names=("TCore.a", "TCore.b"))
+    import json
+    data = json.loads(cfg.nodes_json.read_text())
+    for rec in data["nodes"]:
+        if rec["name"] == "TCore.b":
+            rec["ready"], rec["blocked_by"] = False, ["TCore.a"]
+    cfg.nodes_json.write_text(json.dumps(data))
+    rc, out = run(["claim", "TCore.b", "--why", "prove it anyway", "--force"], capsys)
+    assert rc == 0
+    with Store(cfg) as st:
+        assert st.claims()["TCore.b"]["note"] == "prove it anyway"

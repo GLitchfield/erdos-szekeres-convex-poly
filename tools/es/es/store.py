@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from es.config import Config
-from es.errors import ReadOnly
+from es.errors import ReadOnly, UsageError
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS claims (
@@ -116,6 +116,8 @@ class Store:
     # ---- events -----------------------------------------------------------
     def event(self, kind: str, node: str | None = None, agent: str | None = None, detail: Any = None) -> None:
         self._writable()
+        if agent and ("$" in agent or "{" in agent or "}" in agent):
+            raise UsageError(f"ES_AGENT={agent!r} looks like an unexpanded shell variable; export a literal id such as codex:<thread id>")
         self.conn.execute(
             "INSERT INTO events(at, kind, node, agent, detail) VALUES (?,?,?,?,?)",
             (time.time(), kind, node, agent, json.dumps(detail, default=str) if detail is not None else None),

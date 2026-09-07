@@ -25,10 +25,10 @@ def run_claim(ctx: Ctx, name: str, why: str | None = None, agent: str | None = N
         if n.status == "proposed" and n.kind == "conjecture":
             raise CheckFailed(f"{n.name} is a conjecture whose falsifier has not passed; run `es falsify {n.short}` first")
         if not n.ready and not existing:
-            why = "blocked by " + ", ".join(n.blocked_by) if n.blocked_by else f"status {n.status}"
+            reason = "blocked by " + ", ".join(n.blocked_by) if n.blocked_by else f"status {n.status}"
             if not force:
-                raise CheckFailed(f"{n.name} is not ready ({why}); use --force to claim anyway")
-            st.event("claim-forced", n.name, agent, why)
+                raise CheckFailed(f"{n.name} is not ready ({reason}); use --force to claim anyway")
+            st.event("claim-forced", n.name, agent, {"reason": reason, "why": why})
         claim = st.claim(n.name, agent, cfg.claim_ttl_hours, why)
     return Result(EXIT_OK, {"claim": claim}, [f"claimed {n.name} for {agent} until {time.strftime('%Y-%m-%d %H:%M', time.localtime(claim['expires_at']))}"
                                               + (f": {why}" if why else "")])

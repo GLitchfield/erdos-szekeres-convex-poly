@@ -56,7 +56,25 @@ def run_run(ctx: Ctx, command: list[str], why: str, out: list[str], node: str | 
         node = find_node(ctx.cfg, node).name
     job = submit_run(ctx.cfg, command=list(command), why=why, outputs=list(out), agent=ctx.agent, node=node, memory_max=mem,
                      budget_min=budget, cpu_cores=cpu, queue=queue)
+    if job.get("queued_for_worker"):
+        return Result(EXIT_OK, {"job": job}, [f"queued {job['id']} (cap {job['memory_max']}): this process cannot reach the systemd user bus "
+                                              f"(sandbox), so an `es worker` running outside it will execute the job; `es job status {job['id'][:15]}` to follow"])
+    if job["status"] == "queued":
+        return Result(EXIT_OK, {"job": job}, [f"queued {job['id']} (cap {job['memory_max']}) for `es worker`"])
     return Result(EXIT_OK, {"job": job}, [f"submitted {job['id']} (cap {job['memory_max']}, log {job['log_path']}); `es job status {job['id'][:15]}` to follow"])
+
+
+def run_requeue(ctx: Ctx, id: str) -> Result:
+    """Put a failed or killed job back in the queue (same command, cap and outputs) for `es worker`."""
+    with Store(ctx.cfg) as st:
+        job = st.job(id)
+        if job is None:
+            raise UsageError(f"unknown job {id}")
+        if job["status"] in ("queued", "running"):
+            return Result(EXIT_CHECK_FAILED, {"job": job}, [f"{job['id']} is {job['status']}"])
+        st.job_update(job["id"], status="queued", exit_code=None, started_at=None, finished_at=None, pid=None, peak_mib=None, seconds=None)
+        st.event("job-requeued", job.get("node"), ctx.agent, {"id": job["id"], "previous": job["status"]})
+    return Result(EXIT_OK, {"job": job["id"]}, [f"requeued {job['id']} for `es worker`"])
 
 
 def run_status(ctx: Ctx, id: str) -> Result:
@@ -135,6 +153,8 @@ command(CommandSpec(name="job_run", cli=["job", "run"],
                           Arg("node", "node the job serves, if any"), Arg("mem", "cgroup MemoryMax, e.g. 2G (default from config)"),
                           Arg("budget", "wall-clock budget in minutes", "int"), Arg("cpu", "CPU quota in cores", "int"),
                           Arg("queue", "queue for `es worker` instead of starting now", "bool")]))
+command(CommandSpec(name="job_requeue", cli=["job", "requeue"], help="Put a failed or killed job back in the queue for `es worker`.", run=run_requeue,
+                    args=[Arg("id", "job id (prefix ok)", positional=True, required=True)]))
 command(CommandSpec(name="job_exec", cli=["job", "exec"], help="Execute one queued job in the foreground (used by the detached runner).", run=run_exec, mcp=False,
                     args=[Arg("id", "job id", positional=True, required=True)]))
 command(CommandSpec(name="worker", cli=["worker"], help="Run queued jobs one at a time (foreground; run under tmux/systemd-user).", run=run_worker, mcp=False,
