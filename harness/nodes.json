@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-07T15:09:30Z",
- "git_sha": "7efec37f4bdffec7e0a7c2b40cc412e3db807b80",
+ "generated_at": "2026-09-07T16:20:12Z",
+ "git_sha": "446b6135a6b0358b719c81b71b8cb8631479b763",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15353,
- "tree_hash": "3e98d81b9953aeed",
+ "modules": 15358,
+ "tree_hash": "b7522bd7291639bc",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15353,
+  "cached_modules": 15357,
   "scanned_constants": 0,
-  "scanned_modules": 0
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -57,8 +57,8 @@
     "ErdosSzekeres.ctx_bound_additive_multi_run"
    ],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -269,6 +269,134 @@
    "opened": "2026-09-06"
   },
   {
+   "name": "ErdosSzekeres.ctx_bound_additive_prefix_suffix",
+   "module": "ESBlueprint.B.CtxBoundAdditivePrefixSuffix",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Context-bound additivity for a nonempty contiguous run split into a nonempty prefix and suffix, with arbitrary well-formed external context, both orientations and every admissible coupling. Supplies the boundary case of single-run additivity.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_single_run"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (b l r : Nat),\n      Eq σ.childPositions (List.range' b (instHAdd.hAdd l r)) →\n        instLTNat.lt 0 l →\n          instLTNat.lt 0 r →\n            ∀ (d : Nat),\n              instLENat.le 1 d →\n                instLENat.le d (instHSub.hSub σ.k 2) →\n                  And\n                    (instLENat.le\n                      (instHAdd.hAdd (σ.part (List.range' b l) ErdosSzekeres.Ctx.Side.lower d).bound\n                        (σ.part (List.range' (instHAdd.hAdd b l) r) ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                      σ.bound)\n                    (instLENat.le\n                      (instHAdd.hAdd\n                        (σ.part (List.range' b l) ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                        (σ.part (List.range' (instHAdd.hAdd b l) r) ErdosSzekeres.Ctx.Side.lower\n                            d).bound)\n                      σ.bound)",
+   "type_hash": "9878c1ec6060b981",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_2",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_3",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_4",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_5",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_6",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_7",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_8",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_9",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_10",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_11",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_12",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_13",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_14",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_15",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_16",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_17",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_18",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_19",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_20",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_21",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_22",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_23",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_24",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_25",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_26",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_27",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_28",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_29",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_30",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_31",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_32",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_33",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_34",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_35",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_36",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_37",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_38",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._simp_1_39",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_40",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_41",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_42",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_44",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_45",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._simp_1_47",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_48",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_49",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "_private.ESBlueprint.B.CtxBoundAdditivePrefixSuffix.0.ErdosSzekeres.Ctx.Context.leftStep.match_1.splitter",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.leftExt_eq",
+    "ErdosSzekeres.Ctx.Context.foldl_leftStep_part_map",
+    "ErdosSzekeres.Ctx.Context.rightExt_eq",
+    "ErdosSzekeres.Ctx.Context.foldl_rightStep_part_map",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_52",
+    "ErdosSzekeres.Ctx.Context.foldl_rightStep_count",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_53",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_54",
+    "ErdosSzekeres.Ctx.Context.foldl_leftStep_count",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_55",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_zero",
+    "ErdosSzekeres.Ctx.Context.chainExt_le_joinExt",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_56",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_succ",
+    "ErdosSzekeres.Ctx.Context.le_joinExt_of_mem_levelsOn",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_57",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_58",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_59",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_60",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_61",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_62",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_63",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix.match_1_64",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._simp_1_66",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_67",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_68",
+    "ErdosSzekeres.Ctx.Context.chainExt_part_other",
+    "ErdosSzekeres.Ctx.Context.joinExt_part_other",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_69",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_70",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_71",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_72",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_73",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_74",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_75",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_76",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_77",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_78",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_79",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix._proof_1_80"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-07"
+  },
+  {
    "name": "ErdosSzekeres.ctx_bound_additive_single_run",
    "module": "ESBlueprint.B.CtxBoundAdditiveSingleRun",
    "ws": "B",
@@ -297,8 +425,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "claimed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -389,6 +517,71 @@
    "opened": "2026-09-06"
   },
   {
+   "name": "ErdosSzekeres.ctx_bound_additive_single_run_boundary",
+   "module": "ESBlueprint.B.CtxBoundAdditiveSingleRunBoundary",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Boundary additivity in the original single-run context API: a nonempty child set with at most one run is a contiguous interval, so every proper prefix or suffix partition is covered by ctx_bound_additive_prefix_suffix.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_bound_additive_prefix_suffix"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_single_run"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le σ.numRuns 1 →\n      ∀ (keep : List Nat),\n        (∀ (p : Nat), List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n          Ne keep List.nil →\n            instLTNat.lt keep.length σ.childPositions.length →\n              Or (keep.IsPrefix σ.childPositions) (keep.IsSuffix σ.childPositions) →\n                ∀ (d : Nat),\n                  instLENat.le 1 d →\n                    instLENat.le d (instHSub.hSub σ.k 2) →\n                      And\n                        (instLENat.le\n                          (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                            (σ.part\n                                (List.filter\n                                  (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                  σ.childPositions)\n                                ErdosSzekeres.Ctx.Side.upper\n                                (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                          σ.bound)\n                        (instLENat.le\n                          (instHAdd.hAdd\n                            (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                                (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                            (σ.part\n                                (List.filter\n                                  (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                  σ.childPositions)\n                                ErdosSzekeres.Ctx.Side.lower d).bound)\n                          σ.bound)",
+   "type_hash": "6688f3869b146650",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_1",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_2",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._simp_1_3",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._simp_1_4",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._simp_1_5",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._simp_1_6",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_7",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_8",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_9",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_10",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_11",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_12",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._simp_1_13",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_14",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_15",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_16",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_17",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_18",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_19",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_20",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_21",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_22",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_23",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_24",
+    "ErdosSzekeres.ctx_bound_additive_single_run_boundary._proof_1_25"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-07"
+  },
+  {
    "name": "ErdosSzekeres.ctx_bound_antitone",
    "module": "ESBlueprint.B.CtxBoundAntitone",
    "ws": "B",
@@ -474,6 +667,81 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_interval_or_complement_le",
+   "module": "ESBlueprint.B.CtxBoundIntervalOrComplementLe",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every partition for which either the kept child positions or their filtered complement is an interval block is covered by the interval recursion. Choosing the interval side as the recursive block and normalizing the double complement handles arbitrary block size and both orientations, leaving only partitions with neither side an interval for the multi-run exchange argument.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_bound_cut_le"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_multi_run"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  instLENat.le 2 σ.numRuns →\n    ∀ (keep : List Nat),\n      Or (List.instMembership.mem σ.blocks keep)\n          (List.instMembership.mem σ.blocks\n            (List.filter (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n              σ.childPositions)) →\n        ∀ (d : Nat),\n          instLENat.le 1 d →\n            instLENat.le d (instHSub.hSub σ.k 2) →\n              And\n                (instLENat.le\n                  (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                    (σ.part\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.upper (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                  σ.bound)\n                (instLENat.le\n                  (instHAdd.hAdd\n                    (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                        (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                    (σ.part\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.lower d).bound)\n                  σ.bound)",
+   "type_hash": "d367a5a75bcd623a",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_bound_cut_le"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_cut_le"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_zero_child_regression",
+   "module": "ESBlueprint.B.CtxBoundZeroChildRegression",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A well-formed context at (3,3,3) whose interval recurrence retains a zero-child cut with positive sibling. This certifies the zero-bound case omitted by the historical Python F2 recursion and guards the exact additivity falsifier.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "dangling-ok": "Executable regression for the context-additivity falsifier: the historical positive-child recurrence assigns zero to this context, whereas Lean retains its 0+1 cut."
+   },
+   "tag_errors": [],
+   "type_pp": "have σ :=\n  { a := 3, u := 3, k := 3,\n    word :=\n      List.cons ErdosSzekeres.Ctx.Letter.child\n        (List.cons (ErdosSzekeres.Ctx.Letter.ext 1 ErdosSzekeres.Ctx.Side.lower)\n          (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)),\n    maxima := List.cons 1 List.nil };\nAnd σ.WellFormed\n  (And (Eq (σ.part (List.cons 0 List.nil) ErdosSzekeres.Ctx.Side.lower 1).bound 0)\n    (And (Eq (σ.part (List.cons 2 List.nil) ErdosSzekeres.Ctx.Side.upper 1).bound 1)\n      (Eq σ.bound 1)))",
+   "type_hash": "252d53ad6dd214d2",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_zero_child_regression._proof_1_1"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-07"
   },
   {
    "name": "ErdosSzekeres.ctx_card_le_bound",
@@ -624,6 +892,41 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_unused_level_regression",
+   "module": "ESBlueprint.B.CtxUnusedLevelRegression",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "An unused external level still contributes its sibling maximum to the Lean join limit. A well-formed two-child context with no external letters has bound one; omitting its unused level incorrectly gives two. Regression for the exact additivity falsifier domain.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "dangling-ok": "Executable regression for Lean/Python context semantics: WellFormed permits unused levels in maxima, which the earlier Python limit computation skipped."
+   },
+   "tag_errors": [],
+   "type_pp": "have σ :=\n  { a := 3, u := 3, k := 3,\n    word :=\n      List.cons ErdosSzekeres.Ctx.Letter.child (List.cons ErdosSzekeres.Ctx.Letter.child List.nil),\n    maxima := List.cons 1 List.nil };\nAnd σ.WellFormed\n  (And (Eq (σ.extPositions 1) List.nil)\n    (And (Eq (σ.cupLimit 0 0) 1) (And (Eq (σ.capLimit 0 0) 2) (Eq σ.bound 1))))",
+   "type_hash": "a93e26cd529c58c4",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_unused_level_regression._proof_1_1"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-07"
   },
   {
    "name": "ErdosSzekeres.decomposableStateUpper_all",

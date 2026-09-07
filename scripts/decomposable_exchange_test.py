@@ -67,6 +67,7 @@ def main():
     parser.add_argument("--e-max", type=int, default=2)
     parser.add_argument("--levels", type=int, default=2)
     parser.add_argument("--max-contexts", type=int, default=0)
+    parser.add_argument("--runs", default="2", help="child runs of the contexts to test: 1, 2, 3, ... or 'any' (default 2)")
     parser.add_argument("--true-crossing-only", action="store_true",
                         help="require that neither side of the partition is an interval block")
     parser.add_argument("--include-unused-levels", action="store_true",
@@ -84,6 +85,12 @@ def main():
         "any_block_fixed_coupling",
         "any_block_same_orientation",
         "any_interval_cut",
+        # deterministic candidates (a Lean proof needs a specific cut): the hull of the kept
+        # part, or of the rest, as the block; same orientation; same or any coupling
+        "hull_keep_same_coupling",
+        "hull_keep_any_coupling",
+        "hull_rest_any_coupling",
+        "hulls_any_coupling",
     )
     stats = {"contexts": 0, "splits": 0, "failures": {name: 0 for name in names}}
     examples = {name: [] for name in names}
@@ -96,7 +103,8 @@ def main():
     for word, maxima in context_iter:
         child_positions = [i for i, w in enumerate(word) if w == "S"]
         ridx = run_index(word)
-        if len({ridx[p] for p in child_positions}) != 2:
+        nruns = len({ridx[p] for p in child_positions})
+        if args.runs != "any" and nruns != int(args.runs):
             continue
         if args.max_contexts and stats["contexts"] >= args.max_contexts:
             break
@@ -107,6 +115,7 @@ def main():
             for block in blocks for orientation in ("lower", "upper")
             for d in range(1, k - 1)
         }
+        cut_table_blocks = set(blocks)
         for mask in range(1, (1 << len(child_positions)) - 1):
             keep = frozenset(p for j, p in enumerate(child_positions) if mask >> j & 1)
             rest = frozenset(child_positions) - keep
@@ -139,6 +148,20 @@ def main():
                      orientation2, d2)
                     for block in blocks for orientation2 in ("lower", "upper")
                     for d2 in range(1, k - 1)]
+                hull_keep = frozenset(p for p in child_positions if min(keep) <= p <= max(keep))
+                hull_rest = frozenset(p for p in child_positions if min(rest) <= p <= max(rest))
+                hulls = [h for h in (hull_keep, hull_rest) if h in cut_table_blocks]
+                candidates["hull_keep_same_coupling"] = [
+                    (cut_table[hull_keep, orientation, d], hull_keep, orientation, d)] if hull_keep in cut_table_blocks else [(-1, hull_keep, orientation, d)]
+                candidates["hull_keep_any_coupling"] = [
+                    (cut_table[hull_keep, orientation, d2], hull_keep, orientation, d2)
+                    for d2 in range(1, k - 1)] if hull_keep in cut_table_blocks else [(-1, hull_keep, orientation, d)]
+                candidates["hull_rest_any_coupling"] = [
+                    (cut_table[hull_rest, orientation, d2], hull_rest, orientation, d2)
+                    for d2 in range(1, k - 1)] if hull_rest in cut_table_blocks else [(-1, hull_rest, orientation, d)]
+                candidates["hulls_any_coupling"] = [
+                    (cut_table[h, o2, d2], h, o2, d2)
+                    for h in hulls for o2 in ("lower", "upper") for d2 in range(1, k - 1)] or [(-1, hull_keep, orientation, d)]
                 for name, values in candidates.items():
                     best = max(values, key=lambda x: x[0])
                     if best[0] < target:
@@ -156,8 +179,8 @@ def main():
                             })
     result = {"case": args.case, "parameters": vars(args) | {"output": str(args.output)},
               "stats": stats, "examples": examples,
-              "scope": ("two child runs with literal unused-level semantics"
-                        if args.include_unused_levels else "two child runs with occupied levels"),
+              "scope": (f"{args.runs} child run(s) with literal unused-level semantics"
+                        if args.include_unused_levels else f"{args.runs} child run(s) with occupied levels"),
               "interpretation": "finite evidence only; splits count oriented coupling cases"}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n")
