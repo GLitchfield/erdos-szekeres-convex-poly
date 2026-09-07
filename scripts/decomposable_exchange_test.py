@@ -70,6 +70,9 @@ def main():
     parser.add_argument("--runs", default="2", help="child runs of the contexts to test: 1, 2, 3, ... or 'any' (default 2)")
     parser.add_argument("--true-crossing-only", action="store_true",
                         help="require that neither side of the partition is an interval block")
+    parser.add_argument("--all-partitions", action="store_true",
+                        help="also test partitions whose kept part or rest is an interior block (sandwiches); "
+                             "only partitions that are themselves a prefix/suffix cut are skipped")
     parser.add_argument("--include-unused-levels", action="store_true",
                         help="enumerate maxima levels that have no external letter (literal Lean domain)")
     parser.add_argument("--output", type=Path, required=True)
@@ -126,13 +129,18 @@ def main():
         n_pos = len(child_positions)
         boundary_blocks = [frozenset(child_positions[:j]) for j in range(1, n_pos)] + [frozenset(child_positions[j:]) for j in range(1, n_pos)]
         end_blocks = [frozenset(child_positions[:1]), frozenset(child_positions[-1:])]
+        boundary_set = set(boundary_blocks)
         for mask in range(1, (1 << len(child_positions)) - 1):
             keep = frozenset(p for j, p in enumerate(child_positions) if mask >> j & 1)
             rest = frozenset(child_positions) - keep
-            if keep in blocks:
-                continue
-            if args.true_crossing_only and rest in blocks:
-                continue
+            if args.all_partitions:
+                if keep in boundary_set or rest in boundary_set:
+                    continue  # the partition is a prefix/suffix cut itself
+            else:
+                if keep in blocks:
+                    continue
+                if args.true_crossing_only and rest in blocks:
+                    continue
             for orientation, d in itertools.product(("lower", "upper"), range(1, k - 1)):
                 stats["splits"] += 1
                 target = split_value(F, word, maxima, keep, orientation, d, k)

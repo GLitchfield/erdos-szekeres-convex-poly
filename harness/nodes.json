@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-07T16:20:12Z",
- "git_sha": "446b6135a6b0358b719c81b71b8cb8631479b763",
+ "generated_at": "2026-09-07T20:34:53Z",
+ "git_sha": "e0d02d74720eacb02152a16c10ad1a218781be6c",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15358,
- "tree_hash": "b7522bd7291639bc",
+ "modules": 15360,
+ "tree_hash": "01c7cec10ebd46a2",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15357,
+  "cached_modules": 15359,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -57,8 +57,8 @@
     "ErdosSzekeres.ctx_bound_additive_multi_run"
    ],
    "helpers": [],
-   "status": "claimed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -66,80 +66,90 @@
    "falsify": {
     "node": "ErdosSzekeres.ctx_bound_additive",
     "falsifier": "ctx_bound_additive.py",
-    "falsifier_sha256": "50f9f84fe718167386ab757835d7ffacfb999ae069686fd9666d3d2a472a6e93",
+    "falsifier_sha256": "aed046c83ec3d32514156cc09a248911ca2b11c9d4801696578816105e52c540",
     "dataset": "harness/dataset",
     "statement_type_hash": "193826ccbb035ddd",
     "result": "pass",
     "exit_code": 0,
-    "seconds": 616.6,
-    "at": "2026-09-06T21:31:24Z",
+    "seconds": 1310.5,
+    "at": "2026-09-07T16:43:13Z",
     "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
     "witness": {
      "node": "ErdosSzekeres.ctx_bound_additive",
+     "recursion": "lean",
+     "domain": "well_formed",
      "cases": {
-      "4,4,5": {
-       "contexts": 2493,
-       "nonzero_contexts": 1353,
-       "partitions": 9986,
+      "3,3,3": {
+       "contexts": 515,
+       "nonzero_contexts": 189,
+       "partitions": 4614,
        "violations": 0,
        "slack_histogram": {
-        "0": 2990,
-        "1": 3044,
-        "2": 2416,
-        "3": 1280,
-        "4": 224,
-        "5": 32
+        "0": 3558,
+        "1": 1056
        },
-       "seconds": 87.4
+       "seconds": 1.0
+      },
+      "3,3,4": {
+       "contexts": 1873,
+       "nonzero_contexts": 1165,
+       "partitions": 16818,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 12930,
+        "1": 3848,
+        "2": 40
+       },
+       "seconds": 29.4
+      },
+      "4,4,5": {
+       "contexts": 4077,
+       "nonzero_contexts": 3423,
+       "partitions": 36634,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 34750,
+        "1": 1860,
+        "2": 24
+       },
+       "seconds": 165.7
       },
       "4,5,5": {
-       "contexts": 2493,
-       "nonzero_contexts": 1353,
-       "partitions": 9986,
+       "contexts": 4077,
+       "nonzero_contexts": 3423,
+       "partitions": 36634,
        "violations": 0,
        "slack_histogram": {
-        "0": 3950,
-        "1": 2900,
-        "2": 1828,
-        "3": 780,
-        "4": 380,
-        "5": 128,
-        "6": 20
+        "0": 34858,
+        "1": 1760,
+        "2": 16
        },
-       "seconds": 90.8
+       "seconds": 180.7
       },
       "5,4,5": {
-       "contexts": 2493,
-       "nonzero_contexts": 1353,
-       "partitions": 9986,
+       "contexts": 4077,
+       "nonzero_contexts": 3423,
+       "partitions": 36634,
        "violations": 0,
        "slack_histogram": {
-        "0": 3950,
-        "1": 2900,
-        "2": 1828,
-        "3": 780,
-        "4": 380,
-        "5": 128,
-        "6": 20
+        "0": 34934,
+        "1": 1688,
+        "2": 12
        },
-       "seconds": 96.3
+       "seconds": 196.5
       },
       "4,5,6": {
-       "contexts": 4315,
-       "nonzero_contexts": 2747,
-       "partitions": 20310,
+       "contexts": 7127,
+       "nonzero_contexts": 6303,
+       "partitions": 64062,
        "violations": 0,
        "slack_histogram": {
-        "0": 10090,
-        "1": 4502,
-        "2": 2862,
-        "3": 1360,
-        "4": 1004,
-        "5": 440,
-        "6": 36,
-        "7": 16
+        "0": 61410,
+        "1": 2556,
+        "2": 66,
+        "3": 30
        },
-       "seconds": 330.9
+       "seconds": 717.5
       }
      },
      "violations": []
@@ -186,80 +196,90 @@
    "falsify": {
     "node": "ErdosSzekeres.ctx_bound_additive_multi_run",
     "falsifier": "ctx_bound_additive.py",
-    "falsifier_sha256": "50f9f84fe718167386ab757835d7ffacfb999ae069686fd9666d3d2a472a6e93",
+    "falsifier_sha256": "aed046c83ec3d32514156cc09a248911ca2b11c9d4801696578816105e52c540",
     "dataset": "harness/dataset",
     "statement_type_hash": "b9572285e41a575b",
     "result": "pass",
     "exit_code": 0,
-    "seconds": 521.4,
-    "at": "2026-09-07T14:13:59Z",
+    "seconds": 1340.5,
+    "at": "2026-09-07T17:28:44Z",
     "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
     "witness": {
      "node": "ErdosSzekeres.ctx_bound_additive_multi_run",
+     "recursion": "lean",
+     "domain": "well_formed",
      "cases": {
-      "4,4,5": {
-       "contexts": 2493,
-       "nonzero_contexts": 1353,
-       "partitions": 9986,
+      "3,3,3": {
+       "contexts": 515,
+       "nonzero_contexts": 189,
+       "partitions": 4614,
        "violations": 0,
        "slack_histogram": {
-        "0": 2990,
-        "1": 3044,
-        "2": 2416,
-        "3": 1280,
-        "4": 224,
-        "5": 32
+        "0": 3558,
+        "1": 1056
        },
-       "seconds": 73.0
+       "seconds": 1.5
+      },
+      "3,3,4": {
+       "contexts": 1873,
+       "nonzero_contexts": 1165,
+       "partitions": 16818,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 12930,
+        "1": 3848,
+        "2": 40
+       },
+       "seconds": 39.5
+      },
+      "4,4,5": {
+       "contexts": 4077,
+       "nonzero_contexts": 3423,
+       "partitions": 36634,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 34750,
+        "1": 1860,
+        "2": 24
+       },
+       "seconds": 193.5
       },
       "4,5,5": {
-       "contexts": 2493,
-       "nonzero_contexts": 1353,
-       "partitions": 9986,
+       "contexts": 4077,
+       "nonzero_contexts": 3423,
+       "partitions": 36634,
        "violations": 0,
        "slack_histogram": {
-        "0": 3950,
-        "1": 2900,
-        "2": 1828,
-        "3": 780,
-        "4": 380,
-        "5": 128,
-        "6": 20
+        "0": 34858,
+        "1": 1760,
+        "2": 16
        },
-       "seconds": 76.9
+       "seconds": 191.3
       },
       "5,4,5": {
-       "contexts": 2493,
-       "nonzero_contexts": 1353,
-       "partitions": 9986,
+       "contexts": 4077,
+       "nonzero_contexts": 3423,
+       "partitions": 36634,
        "violations": 0,
        "slack_histogram": {
-        "0": 3950,
-        "1": 2900,
-        "2": 1828,
-        "3": 780,
-        "4": 380,
-        "5": 128,
-        "6": 20
+        "0": 34934,
+        "1": 1688,
+        "2": 12
        },
-       "seconds": 79.4
+       "seconds": 190.9
       },
       "4,5,6": {
-       "contexts": 4315,
-       "nonzero_contexts": 2747,
-       "partitions": 20310,
+       "contexts": 7127,
+       "nonzero_contexts": 6303,
+       "partitions": 64062,
        "violations": 0,
        "slack_histogram": {
-        "0": 10090,
-        "1": 4502,
-        "2": 2862,
-        "3": 1360,
-        "4": 1004,
-        "5": 440,
-        "6": 36,
-        "7": 16
+        "0": 61410,
+        "1": 2556,
+        "2": 66,
+        "3": 30
        },
-       "seconds": 283.8
+       "seconds": 704.5
       }
      },
      "violations": []
@@ -434,80 +454,90 @@
    "falsify": {
     "node": "ErdosSzekeres.ctx_bound_additive_single_run",
     "falsifier": "ctx_bound_additive.py",
-    "falsifier_sha256": "50f9f84fe718167386ab757835d7ffacfb999ae069686fd9666d3d2a472a6e93",
+    "falsifier_sha256": "aed046c83ec3d32514156cc09a248911ca2b11c9d4801696578816105e52c540",
     "dataset": "harness/dataset",
     "statement_type_hash": "c8ace8d25e135c94",
     "result": "pass",
     "exit_code": 0,
-    "seconds": 530.6,
-    "at": "2026-09-07T14:04:53Z",
+    "seconds": 1346.4,
+    "at": "2026-09-07T17:06:02Z",
     "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
     "witness": {
      "node": "ErdosSzekeres.ctx_bound_additive_single_run",
+     "recursion": "lean",
+     "domain": "well_formed",
      "cases": {
-      "4,4,5": {
-       "contexts": 2493,
-       "nonzero_contexts": 1353,
-       "partitions": 9986,
+      "3,3,3": {
+       "contexts": 515,
+       "nonzero_contexts": 189,
+       "partitions": 4614,
        "violations": 0,
        "slack_histogram": {
-        "0": 2990,
-        "1": 3044,
-        "2": 2416,
-        "3": 1280,
-        "4": 224,
-        "5": 32
+        "0": 3558,
+        "1": 1056
        },
-       "seconds": 74.3
+       "seconds": 1.5
+      },
+      "3,3,4": {
+       "contexts": 1873,
+       "nonzero_contexts": 1165,
+       "partitions": 16818,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 12930,
+        "1": 3848,
+        "2": 40
+       },
+       "seconds": 39.4
+      },
+      "4,4,5": {
+       "contexts": 4077,
+       "nonzero_contexts": 3423,
+       "partitions": 36634,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 34750,
+        "1": 1860,
+        "2": 24
+       },
+       "seconds": 192.6
       },
       "4,5,5": {
-       "contexts": 2493,
-       "nonzero_contexts": 1353,
-       "partitions": 9986,
+       "contexts": 4077,
+       "nonzero_contexts": 3423,
+       "partitions": 36634,
        "violations": 0,
        "slack_histogram": {
-        "0": 3950,
-        "1": 2900,
-        "2": 1828,
-        "3": 780,
-        "4": 380,
-        "5": 128,
-        "6": 20
+        "0": 34858,
+        "1": 1760,
+        "2": 16
        },
-       "seconds": 76.2
+       "seconds": 191.6
       },
       "5,4,5": {
-       "contexts": 2493,
-       "nonzero_contexts": 1353,
-       "partitions": 9986,
+       "contexts": 4077,
+       "nonzero_contexts": 3423,
+       "partitions": 36634,
        "violations": 0,
        "slack_histogram": {
-        "0": 3950,
-        "1": 2900,
-        "2": 1828,
-        "3": 780,
-        "4": 380,
-        "5": 128,
-        "6": 20
+        "0": 34934,
+        "1": 1688,
+        "2": 12
        },
-       "seconds": 77.9
+       "seconds": 192.6
       },
       "4,5,6": {
-       "contexts": 4315,
-       "nonzero_contexts": 2747,
-       "partitions": 20310,
+       "contexts": 7127,
+       "nonzero_contexts": 6303,
+       "partitions": 64062,
        "violations": 0,
        "slack_histogram": {
-        "0": 10090,
-        "1": 4502,
-        "2": 2862,
-        "3": 1360,
-        "4": 1004,
-        "5": 440,
-        "6": 36,
-        "7": 16
+        "0": 61410,
+        "1": 2556,
+        "2": 66,
+        "3": 30
        },
-       "seconds": 293.8
+       "seconds": 709.2
       }
      },
      "violations": []
@@ -698,6 +728,130 @@
    ],
    "deps_actual": [
     "ErdosSzekeres.ctx_bound_cut_le"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_same_size_exchange_counterexample",
+   "module": "ESBlueprint.B.CtxBoundSameSizeExchangeCounterexample",
+   "ws": "B",
+   "kind": "refutation",
+   "description": "A genuine alternating partition of a two-run context beats every interval competitor that preserves its cardinality, orientation, and coupling simultaneously. Both the kept side and its complement are noninterval. This explicit witness rules out that restricted exchange rule; it does not refute unrestricted exchange or context additivity.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "refutation",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_multi_run"
+   },
+   "tag_errors": [],
+   "type_pp": "have σ :=\n  { a := 4, u := 4, k := 5,\n    word :=\n      List.cons ErdosSzekeres.Ctx.Letter.child\n        (List.cons ErdosSzekeres.Ctx.Letter.child\n          (List.cons (ErdosSzekeres.Ctx.Letter.ext 1 ErdosSzekeres.Ctx.Side.lower)\n            (List.cons ErdosSzekeres.Ctx.Letter.child\n              (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))),\n    maxima := List.cons 1 List.nil };\nhave keep := List.cons 0 (List.cons 3 List.nil);\nhave value := fun block =>\n  instHAdd.hAdd (σ.part block ErdosSzekeres.Ctx.Side.upper 1).bound\n    (σ.part\n        (List.filter (fun p => Decidable.decide (Not (List.instMembership.mem block p)))\n          σ.childPositions)\n        ErdosSzekeres.Ctx.Side.lower 3).bound;\nAnd σ.WellFormed\n  (And (Eq σ.childPositions (List.cons 0 (List.cons 1 (List.cons 3 (List.cons 4 List.nil)))))\n    (And (Eq σ.numRuns 2)\n      (And (Not (List.instMembership.mem σ.blocks keep))\n        (And\n          (Not\n            (List.instMembership.mem σ.blocks\n              (List.filter (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                σ.childPositions)))\n          (And (Eq keep.length 2)\n            (And (Eq (value keep) 4)\n              (∀ (block : List Nat),\n                List.instMembership.mem σ.blocks block →\n                  Eq block.length keep.length → instLENat.le (value block) 3)))))))",
+   "type_hash": "f927fd18680f3854",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_same_size_exchange_counterexample._proof_1_1"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_three_way_base_allocation",
+   "module": "ESBlueprint.B.CtxBoundThreeWayBaseAllocation",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Two three-term threshold allocations for a sandwich with singleton outer children. Nested two-part allocations, with an adjusted intermediate coupling, bound both orientations for arbitrary natural limits and all admissible couplings. Includes zero limits and endpoint couplings. This is the reusable arithmetic component; the context extension inequalities remain a separate obligation.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_single_run"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (cl pl k d e : Nat),\n  instLENat.le cl (instHSub.hSub k 1) →\n    instLENat.le pl (instHSub.hSub k 1) →\n      instLENat.le 1 d →\n        instLENat.le d (instHSub.hSub k 2) →\n          instLENat.le 1 e →\n            instLENat.le e (instHSub.hSub k 2) →\n              have B := ErdosSzekeres.Ctx.Context.baseOf;\n              And\n                (instLENat.le\n                  (instHAdd.hAdd\n                    (instHAdd.hAdd\n                      (B\n                        (instMinNat.min\n                          (instMinNat.min (instHSub.hSub cl 1)\n                            (instHSub.hSub (instHSub.hSub k 1) e))\n                          (instHSub.hSub (instHSub.hSub k 2) d))\n                        pl k)\n                      (B (instMinNat.min (instHSub.hSub cl 1) (instHSub.hSub (instHSub.hSub k 1) d))\n                        (instMinNat.min (instHSub.hSub pl 1) e) k))\n                    (B cl (instMinNat.min (instHSub.hSub pl 2) d) k))\n                  (B cl pl k))\n                (instLENat.le\n                  (instHAdd.hAdd\n                    (instHAdd.hAdd\n                      (B cl\n                        (instMinNat.min (instMinNat.min (instHSub.hSub pl 1) e) (instHSub.hSub d 1))\n                        k)\n                      (B (instMinNat.min (instHSub.hSub cl 1) (instHSub.hSub (instHSub.hSub k 1) e))\n                        (instMinNat.min (instHSub.hSub pl 1) d) k))\n                    (B (instMinNat.min (instHSub.hSub cl 2) (instHSub.hSub (instHSub.hSub k 1) d))\n                      pl k))\n                  (B cl pl k))",
+   "type_hash": "b8dcc4311f83a29e",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_1",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_2",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_3",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_4",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_5",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_6",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_7",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_8",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_9",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_10",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_11",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_12",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_13",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_14",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_15",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_16",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_17",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_18",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_19",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_20",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_21",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_22",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_23",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_24",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_25",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_26",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_27",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_28",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_29",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_30",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_31",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_32",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_33",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_34",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_35",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_36",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_37",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_38",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_39",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_40",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_41",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_42",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_43",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_44",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_45",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_46",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_47",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_48",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_49",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_50",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_51",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_52",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_53",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_54",
+    "ErdosSzekeres.ctx_bound_three_way_base_allocation._proof_1_55"
    ],
    "helpers": [],
    "status": "closed",

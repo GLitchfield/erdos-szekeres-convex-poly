@@ -59,6 +59,23 @@ def live_memory_gib(cfg: Config, jobs: list[dict]) -> float:
     return sum(job_memory_gib(cfg, j) for j in jobs)
 
 
+def budget_problem(cfg: Config, cap: float, memory_max: str, running: list[dict] | None = None) -> str | None:
+    """Why a job with cap ``cap`` GiB cannot start now (None if it can): the summed caps of running
+    jobs plus this one must stay under [jobs] memory_budget, and cap + margin GiB must be available."""
+    if running is None:
+        with Store(cfg) as st:
+            running = [j for j in st.live_jobs() if j["status"] in ("running", "starting")]
+    used = live_memory_gib(cfg, running)
+    budget = _mem_gib(cfg.jobs_memory_budget)
+    if used + cap > budget:
+        names = ", ".join(f"{j['id']} ({j.get('memory_max') or j['kind']})" for j in running)
+        return f"memory budget: {used:.0f} GiB of caps already running ({names}) + {cap:.0f} GiB > budget {budget:.0f} GiB"
+    avail = available_gib()
+    if avail < cap + cfg.jobs_run_margin_gib:
+        return f"only {avail:.0f} GiB available; a {memory_max} job needs {cap + cfg.jobs_run_margin_gib:.0f} GiB"
+    return None
+
+
 def check_outputs(cfg: Config, outputs: list[str]) -> list[str]:
     """Normalize `--out` paths and refuse any outside the configured output roots."""
     roots = cfg.jobs_output_roots
@@ -91,17 +108,14 @@ def submit_run(cfg: Config, *, command: list[str], why: str, outputs: list[str],
     for o in outs:
         # the job writes here; create the directory so a script that only opens the file works
         (cfg.root / o).parent.mkdir(parents=True, exist_ok=True)
-    with Store(cfg) as st:
-        live = st.live_jobs()
-    used = live_memory_gib(cfg, live)
     budget = _mem_gib(cfg.jobs_memory_budget)
-    if used + cap > budget:
-        names = ", ".join(f"{j['id']} ({j.get('memory_max') or j['kind']})" for j in live)
-        raise CheckFailed(f"memory budget: {used:.0f} GiB of caps already live ({names}) + {cap:.0f} GiB > budget {budget:.0f} GiB; "
-                          "wait, cancel a job, or lower --mem")
-    avail = available_gib()
-    if avail < cap + cfg.jobs_run_margin_gib:
-        raise CheckFailed(f"only {avail:.0f} GiB available; a {memory_max} job needs {cap + cfg.jobs_run_margin_gib:.0f} GiB")
+    if cap > budget:
+        raise CheckFailed(f"--mem {memory_max} exceeds the memory budget {cfg.jobs_memory_budget}")
+    if not queue:
+        # a job started now must fit; a queued one is started by `es worker` when it fits
+        problem = budget_problem(cfg, cap, memory_max)
+        if problem:
+            raise CheckFailed(problem + "; wait, cancel a job, lower --mem, or --queue it for `es worker`")
     job_id = time.strftime("%Y%m%d-%H%M%S-") + uuid.uuid4().hex[:6]
     log_dir = cfg.build_log_dir
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -144,7 +158,7 @@ def run_job(cfg: Config, job_id: str) -> dict:
         job = st.job(job_id)
         if job is None:
             raise ValueError(f"unknown job {job_id}")
-        if job["status"] not in ("queued",):
+        if job["status"] not in ("queued", "starting"):
             return job
         st.job_update(job["id"], status="running", started_at=time.time(), pid=os.getpid())
     argv = json.loads(job["argv"])
@@ -200,19 +214,38 @@ def _run_command_job(cfg: Config, job: dict, argv: list[str]) -> dict:
         return st.job(job["id"]) or job
 
 
+def worker_start_fitting(cfg: Config, spawn=None) -> list[str]:
+    """Start every queued job that fits the memory budget right now (oldest first, a small job may
+    pass a large one).  Each starts in a detached runner, so several run at once.  Returns the ids."""
+    spawn = spawn or spawn_runner
+    started: list[str] = []
+    with Store(cfg) as st:
+        live = st.live_jobs()
+    running = [j for j in live if j["status"] in ("running", "starting")]
+    queued = sorted((j for j in live if j["status"] == "queued"), key=lambda j: j["created_at"])
+    for job in queued:
+        cap = job_memory_gib(cfg, job)
+        if budget_problem(cfg, cap, job.get("memory_max") or "", running):
+            continue
+        with Store(cfg) as st:
+            st.job_update(job["id"], status="starting")
+            st.event("job-started", job.get("node"), os.environ.get("ES_AGENT"), {"id": job["id"], "by": "worker"})
+        spawn(cfg, job["id"])
+        running.append(job)
+        started.append(job["id"])
+    return started
+
+
 def worker_loop(cfg: Config, poll_s: float = 5.0, once: bool = False) -> None:
     if cfg.build_guard and not bus_available():
         raise CheckFailed("this process cannot reach the systemd user bus, so it cannot run guarded jobs; start `es worker` from an unsandboxed shell")
     with Store(cfg) as st:
         st.event("worker-started", None, os.environ.get("ES_AGENT"), {"pid": os.getpid()})
     while True:
-        with Store(cfg) as st:
-            job = st.next_queued_job()
-        if job is None:
-            if once:
-                return
-            time.sleep(poll_s)
-            continue
-        run_job(cfg, job["id"])
+        try:
+            worker_start_fitting(cfg)
+        except Exception as exc:  # a transient database error must not stop the worker
+            print(f"worker: {exc}", file=sys.stderr, flush=True)
         if once:
             return
+        time.sleep(poll_s)

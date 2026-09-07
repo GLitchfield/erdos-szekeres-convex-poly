@@ -231,8 +231,12 @@ class Store:
             "INSERT OR REPLACE INTO extract_cache(tree_hash, nodes_json, index_json, created_at) VALUES (?,?,?,?)",
             (tree_hash, json.dumps(nodes), json.dumps(index), time.time()),
         )
-        # keep the cache small
-        self.conn.execute("DELETE FROM extract_cache WHERE tree_hash NOT IN (SELECT tree_hash FROM extract_cache ORDER BY created_at DESC LIMIT 5)")
+        # keep the cache small, but never let targeted (per-node) entries evict the full-environment
+        # ones: those cost a 36 GiB extractor run and gate every commit (`es extract --check`)
+        self.conn.execute("DELETE FROM extract_cache WHERE tree_hash LIKE '%+%' AND tree_hash NOT IN "
+                          "(SELECT tree_hash FROM extract_cache WHERE tree_hash LIKE '%+%' ORDER BY created_at DESC LIMIT 20)")
+        self.conn.execute("DELETE FROM extract_cache WHERE tree_hash NOT LIKE '%+%' AND tree_hash NOT IN "
+                          "(SELECT tree_hash FROM extract_cache WHERE tree_hash NOT LIKE '%+%' ORDER BY created_at DESC LIMIT 5)")
         self.conn.commit()
 
     def cache_clear(self) -> None:
@@ -266,7 +270,7 @@ class Store:
         return [dict(r) for r in rows]
 
     def live_jobs(self) -> list[dict]:
-        rows = self.conn.execute("SELECT * FROM jobs WHERE status IN ('queued', 'running') ORDER BY created_at").fetchall()
+        rows = self.conn.execute("SELECT * FROM jobs WHERE status IN ('queued', 'starting', 'running') ORDER BY created_at").fetchall()
         return [dict(r) for r in rows]
 
     def next_queued_job(self) -> dict | None:

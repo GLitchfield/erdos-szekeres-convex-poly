@@ -194,8 +194,9 @@ six child letters: **`F2 − E = 0` on every one**
 (`data/derived/decomposable-recursive-F2-vs-exact-456-deep.json`; twelve `es job run`
 shards at 2 GiB caps, checkpointed every ten rows after the morning's WSL restart lost the
 first attempt).  The 52 rows with seven or eight child letters are excluded: the
-recursion's interval-cut enumeration stalls on them for over an hour each and needs a
-better memoization key before they can be run.  Together with the `k = 5` tables this is
+recursion's interval-cut enumeration stalls on them for over an hour each (one eight-letter
+row with an unbounded memo table passed 8 GiB in six minutes) and needs a canonical
+memoization key or a compiled evaluator before they can be run.  Together with the `k = 5` tables this is
 the evidence that `bound` (the Lean transcription of `F2`) is the exact child count on
 every real context computed so far, so the additivity conjectures are about the true
 extremal function, not about a loose bound.
@@ -221,7 +222,41 @@ extended with deterministic candidates; `runs/experiments/20260907-exchange/`,
 So a crossing partition is always dominated by an interval cut that keeps *either* the
 orientation *or* the coupling, never necessarily both, and the block is not the hull of
 either side: in the recorded failures the rescuing cut is a singleton prefix or suffix at
-the same coupling.  The prefix/suffix candidates (any length, with the same coupling, the
-same orientation, or both free) are being tested next, at k = 5 and on the four k = 6
-cases with up to four letters; the statement that survives is the exchange lemma to
-formalize, and it reduces both additivity conjectures to the closed prefix/suffix node.
+the same coupling.
+
+*k = 6, with prefix/suffix candidates.*  The four k = 6 cases (4,5,6), (5,4,6), (5,5,6),
+(4,6,6) with up to four letters (4,315 contexts, 33,296 oriented crossing splits each):
+
+| candidate | (4,5,6) | (5,4,6) | (5,5,6) | (4,6,6) |
+|---|---|---|---|---|
+| any block, same orientation and coupling | 10 | 10 | 4 | 8 |
+| prefix or suffix block, same orientation and coupling | 20 | 20 | 8 | 16 |
+| prefix or suffix block, same coupling, orientation free | 20 | 20 | 8 | 16 |
+| **prefix or suffix block, same orientation, coupling free** | **0** | **0** | **0** | **0** |
+| prefix or suffix block, both free | 0 | 0 | 0 | 0 |
+| any block, same coupling, orientation free | 0 | 0 | 0 | 0 |
+
+So the exchange lemma to formalize is: *every partition of a context with a genuine
+crossing, in orientation `o` at coupling `d`, is dominated by a prefix or suffix cut in
+the same orientation `o` at some coupling `d'`.*  A typical failure of the same-coupling
+version is `S 2L S 1L S S` with maxima (1, 1), keep {0, 4}, upper, `d = 3`: the partition
+is worth 7, the best prefix/suffix cut at `d = 3` is worth 6, and the prefix {0} at
+`d = 2` is worth 8.  Prefix and suffix cuts are exactly the closed node
+`ctx_bound_additive_prefix_suffix` (single runs) and interval cuts of
+`ctx_bound_cut_le` (several runs), so this lemma plus `ctx_bound_interval_or_complement_le`
+would close both additivity conjectures for crossing partitions.
+
+*All partitions, sandwiches included.*  Re-run with `--all-partitions` (every partition
+that is not itself a prefix/suffix cut, so interior blocks and their complements count),
+the same candidate has **zero failures** on every case tested: (4,4,5), (4,5,5), (5,5,5)
+with up to five letters (288,408 oriented partitions each) and (4,5,6), (5,4,6), (5,5,6),
+(4,6,6) with up to four letters (155,472 each); the same-coupling version fails 4,804 to
+14,832 times per case, mostly on sandwiches.  So the statement covers the single-run
+sandwich as well: *every partition of a context that is not a prefix or suffix cut is
+dominated by a prefix or suffix cut in the same orientation at some coupling*; with the
+closed prefix/suffix and interval-cut nodes it is the whole of both additivity
+conjectures.  The two-run restriction of it is registered as the node
+`ctx_bound_two_run_boundary_domination` with the falsifier
+`harness/falsifiers/ctx_two_run_boundary.py` (Gavin and Codex's proposal, 7 September);
+`scripts/decomposable_two_run_domination.py` records which prefix/suffix cut and which
+coupling do the dominating, starting with the A-B-A-B membership pattern.

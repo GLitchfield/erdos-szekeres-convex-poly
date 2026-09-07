@@ -55,3 +55,12 @@ def test_cache_roundtrip(cfg):
         st.cache_put("t1", {"a": 1}, [{"b": 2}])
         assert st.cache_get("t1") == ({"a": 1}, [{"b": 2}])
         assert st.cache_get("nope") is None
+
+
+def test_targeted_cache_entries_do_not_evict_full_ones(cfg):
+    with Store(cfg) as st:
+        st.cache_put("full1", {"a": 1}, [])
+        for i in range(12):
+            st.cache_put(f"t{i}+Mod{i}", {"t": i}, [])
+        assert st.cache_get("full1") == ({"a": 1}, [])
+        assert st.cache_get("t0+Mod0") == ({"t": 0}, [])

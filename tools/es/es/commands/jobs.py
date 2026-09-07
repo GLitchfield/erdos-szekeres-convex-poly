@@ -137,7 +137,7 @@ def run_worker(ctx: Ctx, once: bool = False) -> Result:
 
 
 command(CommandSpec(name="job_list", cli=["job", "list"], help="List jobs.", run=run_list,
-                    args=[Arg("status", "filter by status", choices=["queued", "running", "done", "failed", "killed"]), Arg("limit", "max rows", "int", default=20)]))
+                    args=[Arg("status", "filter by status", choices=["queued", "starting", "running", "done", "failed", "killed"]), Arg("limit", "max rows", "int", default=20)]))
 command(CommandSpec(name="job_status", cli=["job", "status"], help="Job status and (when finished) its JSON result.", run=run_status,
                     args=[Arg("id", "job id (prefix ok)", positional=True, required=True)]))
 command(CommandSpec(name="job_log", cli=["job", "log"], help="Tail of a job's log.", run=run_log,
@@ -157,5 +157,5 @@ command(CommandSpec(name="job_requeue", cli=["job", "requeue"], help="Put a fail
                     args=[Arg("id", "job id (prefix ok)", positional=True, required=True)]))
 command(CommandSpec(name="job_exec", cli=["job", "exec"], help="Execute one queued job in the foreground (used by the detached runner).", run=run_exec, mcp=False,
                     args=[Arg("id", "job id", positional=True, required=True)]))
-command(CommandSpec(name="worker", cli=["worker"], help="Run queued jobs one at a time (foreground; run under tmux/systemd-user).", run=run_worker, mcp=False,
-                    args=[Arg("once", "run at most one job then exit", "bool")]))
+command(CommandSpec(name="worker", cli=["worker"], help="Start queued jobs whenever they fit the memory budget, several at once (foreground; run under systemd-user).", run=run_worker, mcp=False,
+                    args=[Arg("once", "one pass over the queue, then exit", "bool")]))

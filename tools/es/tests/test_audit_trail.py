@@ -77,12 +77,21 @@ def test_job_run_enforces_memory_budget(cfg, monkeypatch):
     toml.write_text(toml.read_text() + '\n[jobs]\nmemory_budget = "3G"\n')
     cfg2 = load_config(cfg.root)
     monkeypatch.setattr("es.jobs.available_gib", lambda: 100.0)
-    first = submit_run(cfg2, command=["true"], why="first", outputs=["runs/a"], agent="tester", memory_max="2G", queue=True)
+    monkeypatch.setattr("es.jobs.bus_available", lambda: True)
+    monkeypatch.setattr("es.jobs.spawn_runner", lambda cfg_, jid: None)
+    first = submit_run(cfg2, command=["true"], why="first", outputs=["runs/a"], agent="tester", memory_max="2G")
+    with Store(cfg2) as st:
+        st.job_update(first["id"], status="running")
     with pytest.raises(CheckFailed, match="memory budget") as exc:
-        submit_run(cfg2, command=["true"], why="second", outputs=["runs/b"], agent="tester", memory_max="2G", queue=True)
+        submit_run(cfg2, command=["true"], why="second", outputs=["runs/b"], agent="tester", memory_max="2G")
     assert first["id"] in str(exc.value)
-    small = submit_run(cfg2, command=["true"], why="third", outputs=["runs/c"], agent="tester", memory_max="1G", queue=True)
-    assert small["status"] == "queued"
+    small = submit_run(cfg2, command=["true"], why="third", outputs=["runs/c"], agent="tester", memory_max="1G")
+    assert small["status"] == "queued"  # inserted queued; the runner flips it to running
+    # a queued submission is accepted even when it does not fit now
+    waiting = submit_run(cfg2, command=["true"], why="fourth", outputs=["runs/d"], agent="tester", memory_max="2G", queue=True)
+    assert waiting["status"] == "queued"
+    with pytest.raises(CheckFailed, match="exceeds the memory budget"):
+        submit_run(cfg2, command=["true"], why="huge", outputs=["runs/e"], agent="tester", memory_max="9G", queue=True)
 
 
 def test_claim_needs_why_and_release_needs_outcome_note(cfg, capsys):
@@ -269,3 +278,24 @@ def test_worktree_shares_the_primary_checkout_state(cfg, monkeypatch, tmp_path):
     assert primary_root(wt) == cfg.root
     assert load_config(wt).es_home == (cfg.root / ".es" / "testproj").resolve()
     assert load_config(cfg.root).es_home == (cfg.root / ".es" / "testproj").resolve()
+
+
+def test_worker_starts_queued_jobs_within_the_budget(cfg, monkeypatch):
+    from es.config import load_config
+    from es.jobs import submit_run, worker_start_fitting
+    toml = cfg.root / "harness" / "config.toml"
+    toml.write_text(toml.read_text() + '\n[jobs]\nmemory_budget = "5G"\n')
+    cfg2 = load_config(cfg.root)
+    monkeypatch.setattr("es.jobs.available_gib", lambda: 100.0)
+    a = submit_run(cfg2, command=["true"], why="a", outputs=["runs/a"], agent="t", memory_max="3G", queue=True)
+    b = submit_run(cfg2, command=["true"], why="b", outputs=["runs/b"], agent="t", memory_max="3G", queue=True)
+    c = submit_run(cfg2, command=["true"], why="c", outputs=["runs/c"], agent="t", memory_max="2G", queue=True)
+    spawned = []
+    started = worker_start_fitting(cfg2, spawn=lambda cfg_, jid: spawned.append(jid))
+    # a (3G) fits, b (3G) would exceed 5G, c (2G) fits next to a
+    assert started == [a["id"], c["id"]] and spawned == started
+    with Store(cfg2) as st:
+        assert st.job(b["id"])["status"] == "queued" and st.job(a["id"])["status"] == "starting"
+    # queued submission is allowed even when it does not fit now
+    big = submit_run(cfg2, command=["true"], why="d", outputs=["runs/d"], agent="t", memory_max="4G", queue=True)
+    assert big["status"] == "queued"
