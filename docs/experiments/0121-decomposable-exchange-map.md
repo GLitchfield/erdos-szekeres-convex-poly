@@ -199,3 +199,29 @@ better memoization key before they can be run.  Together with the `k = 5` tables
 the evidence that `bound` (the Lean transcription of `F2`) is the exact child count on
 every real context computed so far, so the additivity conjectures are about the true
 extremal function, not about a loose bound.
+
+**Addendum 6, 7 September: the exchange rule, exhaustively at k = 5.**  With the
+interval-cut recursion in its literal Lean form (zero-valued children included), every
+context with up to five child letters and two external levels, any number of runs, and
+every oriented, coupled partition in which neither side is an interval (a *genuine
+crossing*) was compared with the interval cuts of the same context
+(`scripts/decomposable_exchange_test.py --runs any --true-crossing-only`, Codex's script
+extended with deterministic candidates; `runs/experiments/20260907-exchange/`,
+4,168 contexts and 114,912 oriented splits per case at (4,4,5), (4,5,5), (5,4,5), (5,5,5)):
+
+| candidate cut that must dominate the crossing partition | failures (4,4,5) | (4,5,5) | (5,4,5) | (5,5,5) |
+|---|---|---|---|---|
+| same block size, same orientation, same coupling | 488 | 791 | 791 | 832 |
+| any block, same orientation and coupling | 268 | 478 | 478 | 720 |
+| any block, same coupling (orientation free) | **0** | **0** | **0** | **0** |
+| any block, same orientation (coupling free) | **0** | **0** | **0** | **0** |
+| hull of the kept part, any coupling | 12,786 | 11,683 | 11,683 | 10,166 |
+| either hull, any orientation and coupling | 96 | 0 | 0 | 0 |
+
+So a crossing partition is always dominated by an interval cut that keeps *either* the
+orientation *or* the coupling, never necessarily both, and the block is not the hull of
+either side: in the recorded failures the rescuing cut is a singleton prefix or suffix at
+the same coupling.  The prefix/suffix candidates (any length, with the same coupling, the
+same orientation, or both free) are being tested next, at k = 5 and on the four k = 6
+cases with up to four letters; the statement that survives is the exchange lemma to
+formalize, and it reduces both additivity conjectures to the closed prefix/suffix node.

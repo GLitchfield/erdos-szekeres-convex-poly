@@ -1,80 +1,90 @@
 {
  "node": "ErdosSzekeres.ctx_bound_additive_multi_run",
  "falsifier": "ctx_bound_additive.py",
- "falsifier_sha256": "50f9f84fe718167386ab757835d7ffacfb999ae069686fd9666d3d2a472a6e93",
+ "falsifier_sha256": "aed046c83ec3d32514156cc09a248911ca2b11c9d4801696578816105e52c540",
  "dataset": "harness/dataset",
  "statement_type_hash": "b9572285e41a575b",
  "result": "pass",
  "exit_code": 0,
- "seconds": 521.4,
- "at": "2026-09-07T14:13:59Z",
+ "seconds": 1340.5,
+ "at": "2026-09-07T17:28:44Z",
  "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
  "witness": {
   "node": "ErdosSzekeres.ctx_bound_additive_multi_run",
+  "recursion": "lean",
+  "domain": "well_formed",
   "cases": {
-   "4,4,5": {
-    "contexts": 2493,
-    "nonzero_contexts": 1353,
-    "partitions": 9986,
+   "3,3,3": {
+    "contexts": 515,
+    "nonzero_contexts": 189,
+    "partitions": 4614,
     "violations": 0,
     "slack_histogram": {
-     "0": 2990,
-     "1": 3044,
-     "2": 2416,
-     "3": 1280,
-     "4": 224,
-     "5": 32
+     "0": 3558,
+     "1": 1056
     },
-    "seconds": 73.0
+    "seconds": 1.5
+   },
+   "3,3,4": {
+    "contexts": 1873,
+    "nonzero_contexts": 1165,
+    "partitions": 16818,
+    "violations": 0,
+    "slack_histogram": {
+     "0": 12930,
+     "1": 3848,
+     "2": 40
+    },
+    "seconds": 39.5
+   },
+   "4,4,5": {
+    "contexts": 4077,
+    "nonzero_contexts": 3423,
+    "partitions": 36634,
+    "violations": 0,
+    "slack_histogram": {
+     "0": 34750,
+     "1": 1860,
+     "2": 24
+    },
+    "seconds": 193.5
    },
    "4,5,5": {
-    "contexts": 2493,
-    "nonzero_contexts": 1353,
-    "partitions": 9986,
+    "contexts": 4077,
+    "nonzero_contexts": 3423,
+    "partitions": 36634,
     "violations": 0,
     "slack_histogram": {
-     "0": 3950,
-     "1": 2900,
-     "2": 1828,
-     "3": 780,
-     "4": 380,
-     "5": 128,
-     "6": 20
+     "0": 34858,
+     "1": 1760,
+     "2": 16
     },
-    "seconds": 76.9
+    "seconds": 191.3
    },
    "5,4,5": {
-    "contexts": 2493,
-    "nonzero_contexts": 1353,
-    "partitions": 9986,
+    "contexts": 4077,
+    "nonzero_contexts": 3423,
+    "partitions": 36634,
     "violations": 0,
     "slack_histogram": {
-     "0": 3950,
-     "1": 2900,
-     "2": 1828,
-     "3": 780,
-     "4": 380,
-     "5": 128,
-     "6": 20
+     "0": 34934,
+     "1": 1688,
+     "2": 12
     },
-    "seconds": 79.4
+    "seconds": 190.9
    },
    "4,5,6": {
-    "contexts": 4315,
-    "nonzero_contexts": 2747,
-    "partitions": 20310,
+    "contexts": 7127,
+    "nonzero_contexts": 6303,
+    "partitions": 64062,
     "violations": 0,
     "slack_histogram": {
-     "0": 10090,
-     "1": 4502,
-     "2": 2862,
-     "3": 1360,
-     "4": 1004,
-     "5": 440,
-     "6": 36,
-     "7": 16
+     "0": 61410,
+     "1": 2556,
+     "2": 66,
+     "3": 30
     },
-    "seconds": 283.8
+    "seconds": 704.5
    }
   },
   "violations": []

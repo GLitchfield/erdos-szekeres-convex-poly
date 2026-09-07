@@ -91,6 +91,13 @@ def main():
         "hull_keep_any_coupling",
         "hull_rest_any_coupling",
         "hulls_any_coupling",
+        # boundary cuts: the block is a prefix or a suffix of the child positions (any length);
+        # the k=5 runs showed the rescuing cut is usually a short prefix or suffix
+        "prefix_suffix_same_parameters",
+        "prefix_suffix_same_coupling",
+        "prefix_suffix_same_orientation",
+        "prefix_suffix_any",
+        "end_singleton_same_coupling",
     )
     stats = {"contexts": 0, "splits": 0, "failures": {name: 0 for name in names}}
     examples = {name: [] for name in names}
@@ -116,6 +123,9 @@ def main():
             for d in range(1, k - 1)
         }
         cut_table_blocks = set(blocks)
+        n_pos = len(child_positions)
+        boundary_blocks = [frozenset(child_positions[:j]) for j in range(1, n_pos)] + [frozenset(child_positions[j:]) for j in range(1, n_pos)]
+        end_blocks = [frozenset(child_positions[:1]), frozenset(child_positions[-1:])]
         for mask in range(1, (1 << len(child_positions)) - 1):
             keep = frozenset(p for j, p in enumerate(child_positions) if mask >> j & 1)
             rest = frozenset(child_positions) - keep
@@ -159,6 +169,16 @@ def main():
                 candidates["hull_rest_any_coupling"] = [
                     (cut_table[hull_rest, orientation, d2], hull_rest, orientation, d2)
                     for d2 in range(1, k - 1)] if hull_rest in cut_table_blocks else [(-1, hull_rest, orientation, d)]
+                candidates["prefix_suffix_same_parameters"] = [
+                    (cut_table[b, orientation, d], b, orientation, d) for b in boundary_blocks]
+                candidates["prefix_suffix_same_coupling"] = [
+                    (cut_table[b, o2, d], b, o2, d) for b in boundary_blocks for o2 in ("lower", "upper")]
+                candidates["prefix_suffix_same_orientation"] = [
+                    (cut_table[b, orientation, d2], b, orientation, d2) for b in boundary_blocks for d2 in range(1, k - 1)]
+                candidates["prefix_suffix_any"] = [
+                    (cut_table[b, o2, d2], b, o2, d2) for b in boundary_blocks for o2 in ("lower", "upper") for d2 in range(1, k - 1)]
+                candidates["end_singleton_same_coupling"] = [
+                    (cut_table[b, o2, d], b, o2, d) for b in end_blocks for o2 in ("lower", "upper")]
                 candidates["hulls_any_coupling"] = [
                     (cut_table[h, o2, d2], h, o2, d2)
                     for h in hulls for o2 in ("lower", "upper") for d2 in range(1, k - 1)] or [(-1, hull_keep, orientation, d)]
