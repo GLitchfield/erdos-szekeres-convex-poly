@@ -22,3 +22,7 @@ class LeanError(EsError):
 
 class Refused(LeanError):
     """The guarded runner declined to start (memory, or a compiler already running); nothing ran."""
+
+
+class ReadOnly(UsageError):
+    """The harness database cannot be written from this process (sandbox or permissions)."""

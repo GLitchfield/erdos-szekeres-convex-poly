@@ -155,3 +155,32 @@ def test_agents_md_rules_match_claude_md():
     assert claude == agents, "AGENTS.md rule list differs from CLAUDE.md: edit both"
     for cmd in ("es job run", "es claim", "es release", "es log", "es journal"):
         assert any(cmd in line for line in claude), f"rules do not mention {cmd}"
+
+
+def test_read_only_database_serves_reads_and_refuses_writes(cfg, capsys):
+    """A sandboxed agent (Codex workspace-write) can read the shared state; writes fail with the fix spelled out."""
+    import os
+    from es.errors import EsError
+    write_index(cfg)
+    with Store(cfg) as st:
+        st.claim("TCore.a", "other-agent", ttl_hours=1, note="theirs")
+    db = cfg.db_path
+    os.chmod(db, 0o444)
+    os.chmod(db.parent, 0o555)
+    try:
+        with Store(cfg) as st:
+            assert st.readonly
+            assert st.claims()["TCore.a"]["agent"] == "other-agent"
+            with pytest.raises(EsError, match="read-only"):
+                st.log("x", None, "me")
+        rc, out = run(["status"], capsys)
+        assert rc == 0 and "other-agent: theirs" in out
+        rc, out = run(["journal", "--since", "1h", "--no-commits"], capsys)
+        assert rc == 0 and "theirs" in out
+        rc, out = run(["log", "trying to write from a sandbox"], capsys)
+        assert rc == 2
+    finally:
+        os.chmod(db.parent, 0o755)
+        os.chmod(db, 0o644)
+    with Store(cfg) as st:
+        assert not st.readonly

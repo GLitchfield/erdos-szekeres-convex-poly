@@ -166,6 +166,10 @@ def run_guarded(
     text = log_path.read_text(errors="replace")
     built = sum(1 for line in text.splitlines() if "Built " in line) if count_built else 0
     tail = text.splitlines()[-15:]
+    if use_guard and rc != 0 and any(m in text for m in ("Failed to connect to bus", "Failed to start transient scope")):
+        return BuildResult(rc, seconds, 0, str(log_path), argv, refused=(
+            "cannot create a memory-guarded scope from this process (the systemd user bus is unreachable: a sandbox?); "
+            "run this from an unsandboxed shell, or one that can reach /run/user/<uid>/bus"), tail=tail)
     return BuildResult(rc, seconds, built, str(log_path), argv, budget_exceeded, ooms, peak, tail=tail)
 
 

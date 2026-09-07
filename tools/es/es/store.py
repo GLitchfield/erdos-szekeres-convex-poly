@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from es.config import Config
+from es.errors import ReadOnly
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS claims (
@@ -42,23 +43,61 @@ class Store:
     def __init__(self, cfg: Config, path: Path | None = None):
         self.cfg = cfg
         self.path = path or cfg.db_path
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.conn = sqlite3.connect(self.path, timeout=30)
-        self.conn.row_factory = sqlite3.Row
-        self.conn.executescript(SCHEMA)
-        self._migrate()
+        self.readonly = False
         try:
-            self.conn.executescript(FTS_SCHEMA)
-            self.fts = True
-        except sqlite3.OperationalError:
-            self.fts = False
-        self.purge_expired_claims()
+            self.path.parent.mkdir(parents=True, exist_ok=True)
+        except OSError:
+            pass
+        try:
+            self.conn = sqlite3.connect(self.path, timeout=30)
+            self.conn.row_factory = sqlite3.Row
+            # a real write: sandboxes (Codex workspace-write, read-only mounts) let the file open
+            # but refuse the first write, which used to surface as "attempt to write a readonly database"
+            version = self.conn.execute("PRAGMA user_version").fetchone()[0]
+            self.conn.execute(f"PRAGMA user_version = {int(version)}")
+            self.conn.executescript(SCHEMA)
+            self._migrate()
+        except sqlite3.OperationalError as exc:
+            msg = str(exc).lower()
+            if "readonly" not in msg and "read-only" not in msg and "unable to open" not in msg:
+                raise
+            try:
+                self.conn.close()
+            except Exception:
+                pass
+            try:
+                self.conn = sqlite3.connect(f"file:{self.path}?mode=ro", uri=True, timeout=30)
+                self.conn.row_factory = sqlite3.Row
+                self.conn.execute("SELECT 1 FROM sqlite_master LIMIT 1").fetchall()
+            except sqlite3.OperationalError as exc2:
+                raise ReadOnly(self._readonly_message() + f" ({exc2})") from exc2
+            self.readonly = True
+        if self.readonly:
+            self.fts = bool(self.conn.execute("SELECT 1 FROM sqlite_master WHERE name = 'search'").fetchone())
+        else:
+            try:
+                self.conn.executescript(FTS_SCHEMA)
+                self.fts = True
+            except sqlite3.OperationalError:
+                self.fts = False
+            self.purge_expired_claims()
+
+    def _readonly_message(self) -> str:
+        home = self.path.parent.parent
+        return (f"harness database {self.path} is read-only from this process (sandbox or permissions): read commands work, "
+                f"writes do not. Allow writes to {home} (Codex: add it to [sandbox_workspace_write] writable_roots in ~/.codex/config.toml), "
+                f"or point ES_HOME at a writable directory that every agent shares")
+
+    def _writable(self) -> None:
+        if self.readonly:
+            raise ReadOnly(self._readonly_message())
 
     def __enter__(self) -> "Store":
         return self
 
     def __exit__(self, *exc) -> None:
-        self.conn.commit()
+        if not self.readonly:
+            self.conn.commit()
         self.conn.close()
 
     def _migrate(self) -> None:
@@ -76,6 +115,7 @@ class Store:
 
     # ---- events -----------------------------------------------------------
     def event(self, kind: str, node: str | None = None, agent: str | None = None, detail: Any = None) -> None:
+        self._writable()
         self.conn.execute(
             "INSERT INTO events(at, kind, node, agent, detail) VALUES (?,?,?,?,?)",
             (time.time(), kind, node, agent, json.dumps(detail, default=str) if detail is not None else None),
@@ -103,6 +143,8 @@ class Store:
 
     # ---- claims -----------------------------------------------------------
     def purge_expired_claims(self) -> int:
+        if self.readonly:
+            return 0
         now = time.time()
         rows = self.conn.execute("SELECT node, agent FROM claims WHERE expires_at < ?", (now,)).fetchall()
         for r in rows:
@@ -113,9 +155,13 @@ class Store:
         return len(rows)
 
     def claims(self) -> dict[str, dict]:
+        if self.readonly:
+            # expired claims are purged on every writable open; a read-only reader filters them here
+            return {r["node"]: dict(r) for r in self.conn.execute("SELECT * FROM claims WHERE expires_at >= ?", (time.time(),)).fetchall()}
         return {r["node"]: dict(r) for r in self.conn.execute("SELECT * FROM claims").fetchall()}
 
     def claim(self, node: str, agent: str, ttl_hours: float, note: str | None = None) -> dict:
+        self._writable()
         now = time.time()
         self.conn.execute(
             "INSERT OR REPLACE INTO claims(node, agent, claimed_at, expires_at, note) VALUES (?,?,?,?,?)",
@@ -127,6 +173,7 @@ class Store:
         return self.claims()[node]
 
     def release(self, node: str, agent: str | None, outcome: str = "abandoned", note: str | None = None) -> bool:
+        self._writable()
         row = self.conn.execute("SELECT * FROM claims WHERE node = ?", (node,)).fetchone()
         if row is None:
             return False
@@ -148,6 +195,7 @@ class Store:
 
     # ---- attempts ---------------------------------------------------------
     def record_attempt(self, node: str, agent: str | None, outcome: str, note: str | None = None, started_at: float | None = None) -> None:
+        self._writable()
         now = time.time()
         open_row = self.conn.execute("SELECT id FROM attempts WHERE node = ? AND ended_at IS NULL ORDER BY id DESC LIMIT 1", (node,)).fetchone()
         if open_row is not None:
@@ -176,6 +224,7 @@ class Store:
         return json.loads(row["nodes_json"]), json.loads(row["index_json"])
 
     def cache_put(self, tree_hash: str, nodes: dict, index: list) -> None:
+        self._writable()
         self.conn.execute(
             "INSERT OR REPLACE INTO extract_cache(tree_hash, nodes_json, index_json, created_at) VALUES (?,?,?,?)",
             (tree_hash, json.dumps(nodes), json.dumps(index), time.time()),
@@ -185,17 +234,20 @@ class Store:
         self.conn.commit()
 
     def cache_clear(self) -> None:
+        self._writable()
         self.conn.execute("DELETE FROM extract_cache")
         self.conn.commit()
 
     # ---- jobs -------------------------------------------------------------
     def job_insert(self, job: dict) -> None:
+        self._writable()
         cols = ",".join(job.keys())
         marks = ",".join("?" for _ in job)
         self.conn.execute(f"INSERT INTO jobs({cols}) VALUES ({marks})", tuple(job.values()))
         self.conn.commit()
 
     def job_update(self, job_id: str, **fields: Any) -> None:
+        self._writable()
         sets = ",".join(f"{k} = ?" for k in fields)
         self.conn.execute(f"UPDATE jobs SET {sets} WHERE id = ?", (*fields.values(), job_id))
         self.conn.commit()
@@ -221,6 +273,7 @@ class Store:
 
     # ---- search -----------------------------------------------------------
     def search_rebuild(self, records: list[dict], stamp: str) -> None:
+        self._writable()
         if not self.fts:
             return
         self.conn.execute("DELETE FROM search")

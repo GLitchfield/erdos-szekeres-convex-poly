@@ -11,6 +11,16 @@ derives what is open, claimed and closed from the compiled Lean environment.
 SessionStart hook; other tools set it themselves, e.g. `ES_AGENT=codex:<id>`). Every claim, job,
 log entry and falsifier run is recorded under that id.
 
+**Harness state and sandboxes.** The shared database, logs and extract cache live in
+`~/.es/<project id>/` (outside the checkout, so worktrees share them). A sandboxed tool must be
+allowed to write there: Codex users add `/home/<user>/.es` to `[sandbox_workspace_write]
+writable_roots` in `~/.codex/config.toml`. Without that, read commands (`es status`, `es ready`,
+`es journal`, `es job list`, `es node show`, `es search`) still work and write commands
+(`es claim`, `es release`, `es log`, `es job run`, `es node add`) refuse with a message.
+`es job run`, `es build` and `es check` also need the systemd user bus (`systemd-run --user`)
+to create the memory-guarded scope; a sandbox that hides `/run/user/<uid>/bus` gets a refusal,
+not an unguarded run.
+
 **Working rules.** The list below is identical to `CLAUDE.md` (a test in `tools/es/tests`
 fails if they drift); edit both together.
 
