@@ -3,6 +3,7 @@
 ctx_bound_additive): scripts/decomposable_additivity_test.py with Lean's interval cuts on the
 abstract contexts of a few cases (up to four child letters, two external levels).
 Zero-valued children and parents are included, as in the Lean statement.
+Unused levels in maxima are included with Lean's default lower side.
 Exit 0: no violation; exit 2: a context and partition whose two part bounds exceed the
 parent's bound (witness in --out); other: error.
 """
@@ -30,10 +31,10 @@ def main() -> int:
     a = ap.parse_args()
     tmp = Path(a.dataset or ROOT / "harness" / "dataset") / "ctx_bound_additive"
     tmp.mkdir(parents=True, exist_ok=True)
-    summary = {"node": a.node, "recursion": "lean", "cases": {}}
+    summary = {"node": a.node, "recursion": "lean", "domain": "well_formed", "cases": {}}
     violations = []
     for case in a.cases.split(";"):
-        out = tmp / f"add-{case.replace(',', '')}-s{a.s_max}e{a.e_max}l{a.levels}-lean.json"
+        out = tmp / f"add-{case.replace(',', '')}-s{a.s_max}e{a.e_max}l{a.levels}-lean-wf.json"
         proc = subprocess.run([sys.executable, str(ROOT / "scripts" / "decomposable_additivity_test.py"), "--case", case,
                                "--s-max", str(a.s_max), "--e-max", str(a.e_max), "--levels", str(a.levels),
                                "--recursion", "lean", "--cache-size", "1500000", "--output", str(out)],
