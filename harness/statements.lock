@@ -35,6 +35,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundAdditiveSingleRun"
   },
+  "ErdosSzekeres.ctx_bound_additive_single_run_boundary": {
+    "type_hash": "6688f3869b146650",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le σ.numRuns 1 →\n      ∀ (keep : List Nat),\n        (∀ (p : Nat), List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n          Ne keep List.nil →\n            instLTNat.lt keep.length σ.childPositions.length →\n              Or (keep.IsPrefix σ.childPositions) (keep.IsSuffix σ.childPositions) →\n                ∀ (d : Nat),\n                  instLENat.le 1 d →\n                    instLENat.le d (instHSub.hSub σ.k 2) →\n                      And\n                        (instLENat.le\n                          (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                            (σ.part\n                                (List.filter\n                                  (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                  σ.childPositions)\n                                ErdosSzekeres.Ctx.Side.upper\n                                (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                          σ.bound)\n                        (instLENat.le\n                          (instHAdd.hAdd\n                            (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                                (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                            (σ.part\n                                (List.filter\n                                  (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                  σ.childPositions)\n                                ErdosSzekeres.Ctx.Side.lower d).bound)\n                          σ.bound)",
+    "approved_by": "user-approved parallel work item 3",
+    "approved_at": "2026-09-07",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundAdditiveSingleRunBoundary"
+  },
   "ErdosSzekeres.ctx_bound_antitone": {
     "type_hash": "86c99d58d3980c2a",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (l m : Nat),\n  instLENat.le (σ.withMaximum l (instHAdd.hAdd m 1)).bound (σ.withMaximum l m).bound",
