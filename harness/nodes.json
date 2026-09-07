@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-07T20:34:53Z",
- "git_sha": "e0d02d74720eacb02152a16c10ad1a218781be6c",
+ "generated_at": "2026-09-07T20:43:00Z",
+ "git_sha": "f79dec0ec83565f9dd7e8efc8c8d1ae63aba331c",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15360,
- "tree_hash": "01c7cec10ebd46a2",
+ "modules": 15361,
+ "tree_hash": "0d28625901618381",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15359,
+  "cached_modules": 15360,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -861,6 +861,52 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_two_run_boundary_domination",
+   "module": "ESBlueprint.B.CtxBoundTwoRunBoundaryDomination",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "Boundary domination for two-run contexts (Gavin and Codex, 7 September): for a well-formed context with exactly two child runs, every nonempty proper partition of the child positions, in either orientation and at any admissible coupling d, is dominated by a prefix or suffix cut in the same orientation at some admissible coupling d'. With ctx_bound_cut_le this gives additivity for every two-run context. Changing the coupling is essential: keeping d has counterexamples (ctx_bound_same_size_exchange_counterexample). Evidence: zero failures of the candidate on every partition of every context up to five letters at k = 5 and four letters at k = 6, all run counts (experiment 0121 addendum 6); the falsifier re-checks the two-run case. First milestone: the A-B-A-B membership pattern.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "depends": [
+     "ErdosSzekeres.ctx_bound_cut_le",
+     "ErdosSzekeres.ctx_bound_additive_prefix_suffix"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_multi_run",
+    "falsifier": "ctx_two_run_boundary.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    Eq σ.numRuns 2 →\n      ∀ (keep : List Nat),\n        (∀ (p : Nat), List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n          Ne keep List.nil →\n            instLTNat.lt keep.length σ.childPositions.length →\n              ∀ (d : Nat),\n                instLENat.le 1 d →\n                  instLENat.le d (instHSub.hSub σ.k 2) →\n                    And\n                      (Exists fun I =>\n                        Exists fun d' =>\n                          And\n                            (Exists fun j =>\n                              And (instLTNat.lt 0 j)\n                                (And (instLTNat.lt j σ.childPositions.length)\n                                  (Or (Eq I (List.take j σ.childPositions))\n                                    (Eq I (List.drop j σ.childPositions)))))\n                            (And (instLENat.le 1 d')\n                              (And (instLENat.le d' (instHSub.hSub σ.k 2))\n                                (instLENat.le\n                                  (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                                    (σ.part\n                                        (List.filter\n                                          (fun p =>\n                                            Decidable.decide (Not (List.instMembership.mem keep p)))\n                                          σ.childPositions)\n                                        ErdosSzekeres.Ctx.Side.upper\n                                        (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                                  (instHAdd.hAdd (σ.part I ErdosSzekeres.Ctx.Side.lower d').bound\n                                    (σ.part\n                                        (List.filter\n                                          (fun p =>\n                                            Decidable.decide (Not (List.instMembership.mem I p)))\n                                          σ.childPositions)\n                                        ErdosSzekeres.Ctx.Side.upper\n                                        (instHSub.hSub (instHSub.hSub σ.k 1) d')).bound)))))\n                      (Exists fun I =>\n                        Exists fun d' =>\n                          And\n                            (Exists fun j =>\n                              And (instLTNat.lt 0 j)\n                                (And (instLTNat.lt j σ.childPositions.length)\n                                  (Or (Eq I (List.take j σ.childPositions))\n                                    (Eq I (List.drop j σ.childPositions)))))\n                            (And (instLENat.le 1 d')\n                              (And (instLENat.le d' (instHSub.hSub σ.k 2))\n                                (instLENat.le\n                                  (instHAdd.hAdd\n                                    (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                                        (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                                    (σ.part\n                                        (List.filter\n                                          (fun p =>\n                                            Decidable.decide (Not (List.instMembership.mem keep p)))\n                                          σ.childPositions)\n                                        ErdosSzekeres.Ctx.Side.lower d).bound)\n                                  (instHAdd.hAdd\n                                    (σ.part I ErdosSzekeres.Ctx.Side.upper\n                                        (instHSub.hSub (instHSub.hSub σ.k 1) d')).bound\n                                    (σ.part\n                                        (List.filter\n                                          (fun p =>\n                                            Decidable.decide (Not (List.instMembership.mem I p)))\n                                          σ.childPositions)\n                                        ErdosSzekeres.Ctx.Side.lower d').bound)))))",
+   "type_hash": "a1f44cf711ed45d4",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_bound_cut_le",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix"
+   ],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "proposed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_zero_child_regression",
