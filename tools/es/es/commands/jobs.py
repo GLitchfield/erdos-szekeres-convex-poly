@@ -59,7 +59,7 @@ def run_run(ctx: Ctx, command: list[str], why: str, out: list[str], node: str | 
     if job.get("queued_for_worker"):
         return Result(EXIT_OK, {"job": job}, [f"queued {job['id']} (cap {job['memory_max']}): this process cannot reach the systemd user bus "
                                               f"(sandbox), so an `es worker` running outside it will execute the job; `es job status {job['id'][:15]}` to follow"])
-    if job["status"] == "queued":
+    if queue:
         return Result(EXIT_OK, {"job": job}, [f"queued {job['id']} (cap {job['memory_max']}) for `es worker`"])
     return Result(EXIT_OK, {"job": job}, [f"submitted {job['id']} (cap {job['memory_max']}, log {job['log_path']}); `es job status {job['id'][:15]}` to follow"])
 
