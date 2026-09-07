@@ -184,3 +184,15 @@ def test_read_only_database_serves_reads_and_refuses_writes(cfg, capsys):
         os.chmod(db, 0o644)
     with Store(cfg) as st:
         assert not st.readonly
+
+
+def test_es_home_from_config_is_inside_the_checkout(cfg, monkeypatch):
+    from es.config import load_config
+    monkeypatch.delenv("ES_HOME", raising=False)
+    toml = cfg.root / "harness" / "config.toml"
+    toml.write_text(toml.read_text().replace('id = "testproj"', 'id = "testproj"\nes_home = ".es"'))
+    cfg2 = load_config(cfg.root)
+    assert cfg2.es_home == (cfg.root / ".es" / "testproj").resolve()
+    assert cfg2.db_path.parent == cfg2.es_home
+    monkeypatch.setenv("ES_HOME", str(cfg.root / "elsewhere"))
+    assert load_config(cfg.root).es_home == cfg.root / "elsewhere" / "testproj"

@@ -427,7 +427,13 @@ entries whose `reaches` contains the declaration (or `"*"`). CODEOWNERS protects
 `certificate_consumers.txt`, `restatements.md`, `retired.md`, `status.md` (generated
 but committed), `falsify/*.json` (generated, committed: falsifier results are evidence).
 
-### 8.2 SQLite — `~/.es/<project.id>/es.db` (never inside a checkout; shared by worktrees)
+### 8.2 SQLite — `<es_home>/<project.id>/es.db`
+
+`es_home` is `ES_HOME` if set, else `[project] es_home` in `config.toml` (relative to the
+root), else `~/.es`. This project keeps it at `.es/` inside the checkout (gitignored) because
+sandboxed agents (Codex in workspace-write mode) may write only the checkout and `/tmp`;
+`~/.es/erdos-szekeres` is a symlink to it so a second checkout sharing `~/.es` sees the same
+state. The database is never committed.
 
 ```sql
 CREATE TABLE claims (node TEXT PRIMARY KEY, agent TEXT NOT NULL, claimed_at REAL NOT NULL, expires_at REAL NOT NULL, note TEXT);

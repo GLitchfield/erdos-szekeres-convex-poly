@@ -2,7 +2,9 @@
 # Everything project-specific lives here; tools/es/ is generic.
 
 [project]
-id = "erdos-szekeres"                  # keys ~/.es/<id>/es.db and the taint cache
+id = "erdos-szekeres"                  # keys <es_home>/<id>/es.db and the taint cache
+es_home = ".es"                        # harness state inside the checkout (gitignored): sandboxed agents (Codex
+                                       # workspace-write) may only write here; ~/.es/erdos-szekeres is a symlink to it
 blueprint_namespace = "ESBlueprint"    # module prefix of node modules
 blueprint_root = "ESBlueprint.lean"
 core_namespace = "ErdosSzekeres"       # Lean namespace of node declarations and of the core library

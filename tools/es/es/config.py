@@ -390,8 +390,15 @@ class Config:
     # ---- home --------------------------------------------------------------
     @property
     def es_home(self) -> Path:
+        """Where the database, logs, extract cache and taint cache live: ES_HOME, else
+        `[project] es_home` (relative to the root, so a sandboxed agent that may only write
+        the checkout can write it), else ~/.es; always suffixed with the project id."""
         base = os.environ.get("ES_HOME")
-        home = Path(base).expanduser() if base else Path.home() / ".es"
+        if base:
+            home = Path(base).expanduser()
+        else:
+            val = self.get("project", "es_home")
+            home = (self.root / str(val)).resolve() if val else Path.home() / ".es"
         return home / self.project_id
 
     @property

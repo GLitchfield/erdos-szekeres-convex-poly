@@ -1,5 +1,6 @@
 # Machine-local research activity
 runs/*
+.es/
 !runs/.gitkeep
 
 # This managed checkout mounts `.git` read-only, so local Git metadata lives

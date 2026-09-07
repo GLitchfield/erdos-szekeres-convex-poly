@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-09-07T14:22:04Z",
- "git_sha": "e0f25c625026f3c4778a9a7e344258c465520746",
+ "generated_at": "2026-09-07T15:09:30Z",
+ "git_sha": "7efec37f4bdffec7e0a7c2b40cc412e3db807b80",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15353,
  "tree_hash": "3e98d81b9953aeed",
@@ -297,8 +297,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
