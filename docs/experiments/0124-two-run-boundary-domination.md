@@ -77,6 +77,24 @@ whole bound of `σ`, while every end-singleton cut on the membership side is wor
 exhaustive scans say always exists in one of the four end-cut forms.  Probe v3 (queued)
 and the strip test with both sides decide which move the induction should take.
 
+## 2c. The bound is attained by an end cut (same day, evening)
+
+`scripts/decomposable_end_cut_normal_form.py` asks a question about the recursion alone:
+is `bound σ`, the maximum over *all* interval cuts, always attained by a cut that isolates
+the first or the last child position (either side, some coupling)?  At k = 6 on (4,5,6)
+and (5,5,6) with up to four child letters and two external levels, every context with two
+or three runs and a nonzero bound, 2,600 of them, has its bound attained by such an end
+cut (interior blocks never win).  If this holds in general, every cut tree normalizes to a
+sequence of end strips, `bound` has a recursion over end cuts only, and the exchange lemma
+becomes a commutation of two end strips: the partition tree strips an end of one part,
+the exchanged tree strips the same position at the root.  The k = 5 runs with up to five
+letters and the three-run contexts at larger sizes are queued.
+
+Whether one strip at the *global* end always suffices for the induction of §3 is what the
+both-sides strip test (v3) measures; with the end position confined to its membership
+side and two external levels it fails on 112 to 324 four-block splits per case, so the
+side has to be free.
+
 ## 3. Proof plan
 
 Induction on the number of child positions, exchanging one end position at a time.
