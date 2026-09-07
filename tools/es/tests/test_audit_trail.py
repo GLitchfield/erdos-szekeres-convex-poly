@@ -3,6 +3,7 @@ releases, the journal, the staleness warning, the hook, and the CLAUDE.md/AGENTS
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 import time
@@ -255,3 +256,16 @@ def test_forced_claim_keeps_its_purpose(cfg, capsys):
     assert rc == 0
     with Store(cfg) as st:
         assert st.claims()["TCore.b"]["note"] == "prove it anyway"
+
+
+def test_worktree_shares_the_primary_checkout_state(cfg, monkeypatch, tmp_path):
+    from es.config import load_config, primary_root
+    monkeypatch.delenv("ES_HOME", raising=False)
+    toml = cfg.root / "harness" / "config.toml"
+    toml.write_text(toml.read_text().replace('id = "testproj"', 'id = "testproj"\nes_home = ".es"'))
+    wt = tmp_path / "wt"
+    shutil.copytree(cfg.root, wt, ignore=shutil.ignore_patterns(".git"))
+    (wt / ".git").write_text(f"gitdir: {cfg.root}/.git/worktrees/wt\n")
+    assert primary_root(wt) == cfg.root
+    assert load_config(wt).es_home == (cfg.root / ".es" / "testproj").resolve()
+    assert load_config(cfg.root).es_home == (cfg.root / ".es" / "testproj").resolve()

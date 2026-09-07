@@ -13,6 +13,23 @@ from es.errors import ConfigError
 CONFIG_REL = Path("harness") / "config.toml"
 
 
+def primary_root(root: Path) -> Path:
+    """The main checkout for a git worktree (`.git` is a file naming `<main>/<gitdir>/worktrees/<name>`),
+    else ``root`` itself.  Harness state is shared per primary checkout, not per worktree."""
+    gitfile = root / ".git"
+    try:
+        if gitfile.is_file():
+            text = gitfile.read_text().strip()
+            if text.startswith("gitdir:"):
+                gd = Path(text[len("gitdir:"):].strip())
+                gd = gd if gd.is_absolute() else (root / gd).resolve()
+                if gd.parent.name == "worktrees":
+                    return gd.parent.parent.parent
+    except OSError:
+        pass
+    return root
+
+
 def find_root(start: Path | None = None) -> Path:
     env = os.environ.get("ES_PROJECT_ROOT")
     if env:
@@ -398,7 +415,8 @@ class Config:
             home = Path(base).expanduser()
         else:
             val = self.get("project", "es_home")
-            home = (self.root / str(val)).resolve() if val else Path.home() / ".es"
+            # relative to the primary checkout: a worktree shares the state of the checkout it belongs to
+            home = (primary_root(self.root) / str(val)).resolve() if val else Path.home() / ".es"
         return home / self.project_id
 
     @property

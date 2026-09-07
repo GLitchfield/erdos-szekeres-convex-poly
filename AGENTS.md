@@ -15,7 +15,10 @@ log entry and falsifier run is recorded under that id.
 `.es/erdos-szekeres/` inside the checkout (gitignored; `[project] es_home` in
 `harness/config.toml`), so an agent that may only write the workspace, such as Codex in
 workspace-write mode, can write them; `~/.es/erdos-szekeres` is a symlink to the same
-directory. If the database is still not writable, read commands (`es status`, `es ready`,
+directory. A git worktree shares the state of the checkout it belongs to (the path is
+resolved against the primary checkout), so claims, jobs and log entries made from a
+worktree land in the same journal; a worktree on a branch older than 2026-09-07 needs
+`.es/erdos-szekeres` symlinked to the primary checkout's copy by hand. If the database is still not writable, read commands (`es status`, `es ready`,
 `es journal`, `es job list`, `es node show`, `es search`) work and write commands (`es claim`,
 `es release`, `es log`, `es job run`, `es node add`) refuse with a message saying so.
 `es job run` needs the systemd user bus (`systemd-run --user`) to create the memory-guarded
