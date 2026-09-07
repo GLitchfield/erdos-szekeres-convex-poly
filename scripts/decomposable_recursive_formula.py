@@ -175,6 +175,8 @@ def main() -> None:
     parser.add_argument("--shard", default=None, help="i/N: only every N-th row starting at i")
     parser.add_argument("--cache-size", type=int, default=None)
     parser.add_argument("--cases", default=None, help="semicolon-separated subset of cases, e.g. 5,5,5;4,5,5")
+    parser.add_argument("--max-child", type=int, default=None, help="skip rows with more child letters than this")
+    parser.add_argument("--min-child", type=int, default=None, help="skip rows with fewer child letters than this")
     parser.add_argument("--checkpoint", type=int, default=0,
                         help="write <output>.partial.json every N rows and resume from it if present (0 = off)")
     args = parser.parse_args()
@@ -203,7 +205,10 @@ def main() -> None:
             mism = partial[case]["mismatches"]
             done = partial[case]["done"]
         processed = 0
-        for row_index, r in enumerate(t["rows"]):
+        rows = [r for r in t["rows"]
+                if (args.max_child is None or sum(1 for w in r["word"] if w == "S") <= args.max_child)
+                and (args.min_child is None or sum(1 for w in r["word"] if w == "S") >= args.min_child)]
+        for row_index, r in enumerate(rows):
             if row_index % shard_n != shard_i:
                 continue
             processed += 1
@@ -223,7 +228,8 @@ def main() -> None:
                 tmp.replace(partial_path)
                 print(json.dumps({"case": case, "checkpoint": processed, "F_minus_E": dict(sorted(diffs.items()))}), file=sys.stderr, flush=True)
         result[case] = {"threshold": t["threshold"], "signatures": sum(diffs.values()), "F_minus_E": dict(sorted(diffs.items())), "mismatches": mism,
-                        "recursion": args.recursion, "shard": args.shard}
+                        "recursion": args.recursion, "shard": args.shard, "skipped_rows": len(t["rows"]) - len(rows),
+                        "max_child": args.max_child, "min_child": args.min_child}
         partial[case] = {"done": processed, "F_minus_E": dict(sorted(diffs.items())), "mismatches": mism}
         print(json.dumps({"case": case, "signatures": sum(diffs.values()), "recursion": args.recursion, "shard": args.shard, "F_minus_E": dict(sorted(diffs.items()))}), file=sys.stderr, flush=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)

@@ -245,15 +245,17 @@ classes, 34,071 solves, 4.0 h under a 4 GiB cap) gives 2,871 forced classes,
 1,982 with two feasible tuples, 540 with three, 472 with four and 542 with five;
 the dead-letter counts are 0 to 3.  Three findings close the local-rule line.
 
-*More losses than dead letters.*  In 318 classes the run lost more units than it
-has dead letters, e.g. `1L1L2U2US|2|2` lost one cup unit and one cap unit but has
-`f₀ = 1`, forced to `U`.  So beyond the order, a rule has to say which losses are
-dead, and the root window decides part of it: at `(3,4,5)` no label has two `U`,
+*More losses than dead letters.*  At `(4,4,5)` the root has one unit of slack
+(`a + u − 4 = 4` against `k − 2 = 3`), so every class with a loss has exactly one more
+loss event than dead letters, e.g. `1L1L2U2US|2|2` lost one cup unit and one cap unit
+but has `f₀ = 1`, forced to `U`.  So beyond the order, a rule has to say which loss is
+absorbed, and the root window decides part of it: at `(3,4,5)` no label has two `U`,
 which is why `S2U2U1L` (two cap units lost) is `LUL` and not `UUL`.
 
 *No function of the loss events.*  Grouping the classes by a feature and
 intersecting the feasible sets of each group is a necessary condition for any rule
-that is a function of the feature (`scripts` in the scratchpad of the day; the test
+that is a function of the feature (`scripts/decomposable_label_backbone_analyze.py`,
+summary in `data/derived/label-sets/tight/backbone-4,4,5-s5-analysis.json`; the test
 is instantaneous).  The limits alone conflict in 4 of 9 groups; the full multiset of
 loss events with letter, level, kind, distance, run side and child side conflicts in
 106 of 3,107 groups (`S1U2L3U3U|2|1` is `LU`, `S2L1U3U3U|2|1` is `UL`: same events,

@@ -1,0 +1,101 @@
+{
+ "case": [
+  4,
+  4,
+  5
+ ],
+ "orders": [
+  [
+   5451,
+   "events: outer level first, then far",
+   "last"
+  ],
+  [
+   3961,
+   "letters: outer level first, then far",
+   "last"
+  ],
+  [
+   3796,
+   "letters: far to near, tie left",
+   "last"
+  ],
+  [
+   3550,
+   "letters: near to far, tie right",
+   "first"
+  ],
+  [
+   3467,
+   "letters: outer level first, then far",
+   "first"
+  ],
+  [
+   3446,
+   "letters: left to right",
+   "last"
+  ],
+  [
+   3414,
+   "letters: left to right",
+   "first"
+  ],
+  [
+   3351,
+   "events: outer level first, then far",
+   "first"
+  ],
+  [
+   3160,
+   "letters: far to near, tie left",
+   "first"
+  ],
+  [
+   3052,
+   "letters: near to far, tie right",
+   "last"
+  ]
+ ],
+ "coarsenings": [
+  {
+   "feature": "limits only (cl, pl)",
+   "groups": 9,
+   "conflicting": 4
+  },
+  {
+   "feature": "events (letter, level, kind, dist, runside, child) + limits",
+   "groups": 3107,
+   "conflicting": 106
+  },
+  {
+   "feature": "events (letter, level, kind, dist) + limits",
+   "groups": 2763,
+   "conflicting": 142
+  },
+  {
+   "feature": "events (letter, level, kind) + limits",
+   "groups": 207,
+   "conflicting": 72
+  },
+  {
+   "feature": "events (letter, level) + limits",
+   "groups": 117,
+   "conflicting": 52
+  },
+  {
+   "feature": "events (letter, pos, kind) + limits",
+   "groups": 787,
+   "conflicting": 394
+  },
+  {
+   "feature": "word with levels erased + limits",
+   "groups": 353,
+   "conflicting": 224
+  },
+  {
+   "feature": "word + limits (the class itself)",
+   "groups": 6407,
+   "conflicting": 0
+  }
+ ]
+}
