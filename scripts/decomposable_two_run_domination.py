@@ -98,6 +98,21 @@ def main() -> None:
                     stats["cut_before_first_keep_works"] += any(x[0] == "prefix" and x[1] == first_keep for x in dom) if first_keep > 0 else 0
                     stats["cut_after_last_keep_works"] += any(x[0] == "suffix" and x[1] == last_keep + 1 for x in dom) if last_keep < n - 1 else 0
                     stats["singleton_end_works"] += any(x[1] in (1, n - 1) for x in dom)
+                    # which end, at which coupling: the first position alone (prefix 1) or the last alone (suffix n-1)
+                    first_alone = [x for x in dom if x[0] == "prefix" and x[1] == 1]
+                    last_alone = [x for x in dom if x[0] == "suffix" and x[1] == n - 1]
+                    stats["first_alone_works"] += bool(first_alone)
+                    stats["last_alone_works"] += bool(last_alone)
+                    stats["first_alone_same_d"] += any(x[2] == d for x in first_alone)
+                    stats["last_alone_same_d"] += any(x[2] == d for x in last_alone)
+                    stats["some_end_alone_same_d"] += any(x[2] == d for x in first_alone + last_alone)
+                    if first_alone or last_alone:
+                        best_shift = min(abs(x[2] - d) for x in first_alone + last_alone)
+                        stats[f"end_alone_min_shift_{best_shift}"] += 1
+                        signs = {("+" if x[2] > d else "-" if x[2] < d else "0") for x in first_alone + last_alone if abs(x[2] - d) == best_shift}
+                        stats["end_alone_shift_sign_" + "".join(sorted(signs))] += 1
+                    # the kept part's own end: is the first kept position at an end of the child?
+                    stats["keep_touches_end"] += (first_keep == 0 or last_keep == n - 1)
                     stats["d_prime_le_d_works"] += any(x[2] <= d for x in dom)
                     stats["d_prime_ge_d_works"] += any(x[2] >= d for x in dom)
                     if not same_d and len(examples["needs_recoupling"]) < 12:
