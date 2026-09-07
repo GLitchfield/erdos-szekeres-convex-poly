@@ -1,0 +1,46 @@
+{
+ "node": "ErdosSzekeres.ctx_bound_additive_three_blocks",
+ "falsifier": "ctx_approved_sandwich.py",
+ "falsifier_sha256": "c06aff42a9959f86b3159bda985f9dd36b082a68f54d1e476267e07068e1e699",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "45248c571dd09384",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 23.8,
+ "at": "2026-09-07T23:57:31Z",
+ "agent": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+ "witness": {
+  "mode": "sandwich",
+  "recursion": "literal Lean",
+  "unused_levels": true,
+  "exhaustive": false,
+  "cases": [
+   {
+    "parameters": [
+     5,
+     5,
+     6
+    ],
+    "checks": 84
+   },
+   {
+    "parameters": [
+     4,
+     5,
+     6
+    ],
+    "checks": 84
+   },
+   {
+    "parameters": [
+     4,
+     4,
+     5
+    ],
+    "checks": 82
+   }
+  ],
+  "counterexample": null,
+  "seconds": 23.375922179002373
+ }
+}
