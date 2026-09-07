@@ -208,3 +208,31 @@ lie on the cup side (`L`) and which on the cap side (`U`), the count constraints
 budget was lost.  Distinct vertices in different parts of a split then differ by
 the coupling; the letters of the dead positions are what has to make vertices in
 the same part differ, and that is the open part of the rule.
+
+## 6. The dead letters: a near-rule and its exceptions (2026-09-07)
+
+With the shape fixed (`f₀` dead letters as a prefix, tight budgets), the backbone of
+the `(3,4,5)` instance (`data/derived/label-sets/tight/backbone-3,4,5-s4.json`,
+1,775 solves) gives for each of the 313 single-run classes the set of feasible
+dead-letter tuples: 226 classes have exactly one, 71 have two, 16 have three.
+
+Reading the forced tuples: every dead letter is a *loss event* of the run's limits
+relative to the root, `L` for a unit lost from the cup limit and `U` for a unit lost
+from the cap limit, and the letter order follows the geometry of the events.  Where
+two events come from two different levels each with a single letter, the event whose
+letter lies *farther* from the run comes first, ties going to the outer level.  A
+rule built on that (losses attributed level by level from the restricted limits,
+levels sorted by nearest-letter distance descending then level descending, each level's
+losses with its side letter first) reproduces a feasible tuple for 282 of the 313
+classes; the 31 exceptions are all three-letter, single-label contexts
+(`cl = pl = 1`) in which the loss letters of one level are *interleaved* with those of
+another, e.g. `S2U2U1L` (cup limit 1 through one extension loss and one join loss at
+level 1, cap limit 1 through level 2) is forced to `LUL`, not `LLU`.  So the unit of
+the rule is the loss *event*, not the level: extension losses carry the position of
+their letter, join losses (the sibling maximum) carry none, and their relative order is
+what remains to be found.  The eight orders by level alone, the block rule (losses
+grouped by level, outer first) and this distance rule are all unsatisfiable as exact
+rules on `(3,4,5)`; the free-letter shape is satisfiable, so a rule exists.
+
+The backbone for `(4,4,5)` at five letters is being computed (capped) for the next
+round; it contains two-letter classes with window slack, which `(3,4,5)` lacks.

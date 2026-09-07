@@ -88,7 +88,7 @@ def main() -> None:
     ap.add_argument("--single", action="store_true", help="with --cylinders: exactly one cylinder per class")
     ap.add_argument("--prefix", action="store_true", help="with --cylinders: fixed positions are a prefix 0..f-1")
     ap.add_argument("--tight-budgets", action="store_true", help="with --cylinders: budgets equal cl-1, pl-1")
-    ap.add_argument("--rule", choices=("inner", "outer", "near", "far", "free"), default=None,
+    ap.add_argument("--rule", default=None,
                     help="with --cylinders: force the fixed prefix letters to the sides of the levels in this order "
                          "(inner = level 1 first; outer = highest level first; near = level whose letter is nearest the run first; far = farthest first), tight budgets")
     ap.add_argument("--pad", default="L", help="with --rule: letter used when more fixed positions than levels")
@@ -153,6 +153,105 @@ def main() -> None:
             fx = max(0, m - ell - ups)
             choices = []
             shapes = []
+            if args.rule and args.rule.startswith("dist"):
+                # distance rule: levels sorted by (nearest letter distance to the run, descending; level descending);
+                # each level contributes its losses (L for cup loss, U for cap loss), side letter first
+                _, absorb = args.rule.split(":")
+                nlev = len(maxima)
+                side_at = {}
+                first = min(i_ for i_, w_ in enumerate(word) if w_ == "S")
+                last = max(i_ for i_, w_ in enumerate(word) if w_ == "S")
+                dist = {}
+                for i_, w_ in enumerate(word):
+                    if w_ != "S":
+                        side_at[w_[0]] = w_[1]
+                        d_ = first - i_ if i_ < first else i_ - last
+                        dist[w_[0]] = min(dist.get(w_[0], 10 ** 9), d_)
+                def limits_from_level(l0):
+                    w2 = tuple(w_ if w_ == "S" else (w_[0] - l0 + 1, w_[1]) for w_ in word if w_ == "S" or w_[0] >= l0)
+                    p2, cu, ca = limits_from_signature(w2, tuple(maxima[l0 - 1:]), a, u, k)
+                    return int(cu[0][0]), int(ca[0][0])
+                losses = {}
+                prev = (u - 1, a - 1)
+                for l0 in range(nlev, 0, -1):
+                    cur = limits_from_level(l0)
+                    losses[l0] = (max(0, prev[0] - cur[0]), max(0, prev[1] - cur[1]))
+                    prev = cur
+                order = sorted(losses, key=lambda l_: (-dist.get(l_, 0), -l_))
+                seq = ""
+                for l_ in order:
+                    dc, dp_ = losses[l_]
+                    seq += ("L" * dc + "U" * dp_) if side_at.get(l_, "lower") == "lower" else ("U" * dp_ + "L" * dc)
+                root_dead = max(0, (k + 2) - a - u)
+                seq = args.pad * root_dead + seq
+                letters = list(seq[:fx] if absorb == "tail" else seq[-fx:]) if fx else []
+                if len(letters) < fx:
+                    letters += [args.pad] * (fx - len(letters))
+                P = tuple(range(fx))
+                bits = tuple(1 if c_ == "L" else 0 for c_ in letters)
+                free = m - fx
+                members = set()
+                for x in range(nlab):
+                    if any(((x >> pos) & 1) != b for pos, b in zip(P, bits)):
+                        continue
+                    nL = sum((x >> pos) & 1 for pos in range(m) if pos not in P)
+                    nU = free - nL
+                    if nL <= ell and nU <= ups:
+                        members.add(x)
+                v = newvar()
+                choices.append((P, bits, v, members))
+                clauses.append([v])
+                for x in range(nlab):
+                    clauses.append([w(f_, x)] if x in members else [-w(f_, x)])
+                cylinder_choice[f_] = choices
+                continue
+            if args.rule and args.rule.startswith("block"):
+                # block rule: losses of the run's limits level by level, outermost first
+                _, absorb, order_in = args.rule.split(":")
+                nlev = len(maxima)
+                side_at = {}
+                for w_ in word:
+                    if w_ != "S":
+                        side_at[w_[0]] = w_[1]
+                def limits_from_level(l0):
+                    # keep only levels >= l0, relabel to 1.., maxima truncated
+                    w2 = tuple(w_ if w_ == "S" else (w_[0] - l0 + 1, w_[1]) for w_ in word if w_ == "S" or w_[0] >= l0)
+                    m2 = tuple(maxima[l0 - 1:])
+                    p2, cu, ca = limits_from_signature(w2, m2, a, u, k)
+                    return int(cu[0][0]), int(ca[0][0])
+                blocks = []
+                prev = (u - 1, a - 1)
+                for l0 in range(nlev, 0, -1):
+                    cur = limits_from_level(l0)
+                    dcup = max(0, prev[0] - cur[0]); dcap = max(0, prev[1] - cur[1])
+                    sideL = side_at.get(l0, "lower") == "lower"
+                    first, second = ("L" * dcup, "U" * dcap) if sideL else ("U" * dcap, "L" * dcup)
+                    blocks.append(first + second if order_in == "side" else second + first)
+                    prev = cur
+                seq = "".join(blocks)
+                root_dead = max(0, (k + 2) - a - u)
+                seq = args.pad * root_dead + seq
+                letters = list(seq[-fx:] if absorb == "outer" else seq[:fx]) if fx else []
+                if len(letters) < fx:
+                    letters += [args.pad] * (fx - len(letters))
+                P = tuple(range(fx))
+                bits = tuple(1 if c_ == "L" else 0 for c_ in letters)
+                free = m - fx
+                members = set()
+                for x in range(nlab):
+                    if any(((x >> pos) & 1) != b for pos, b in zip(P, bits)):
+                        continue
+                    nL = sum((x >> pos) & 1 for pos in range(m) if pos not in P)
+                    nU = free - nL
+                    if nL <= ell and nU <= ups:
+                        members.add(x)
+                v = newvar()
+                choices.append((P, bits, v, members))
+                clauses.append([v])
+                for x in range(nlab):
+                    clauses.append([w(f_, x)] if x in members else [-w(f_, x)])
+                cylinder_choice[f_] = choices
+                continue
             if args.rule:
                 side_at = {}
                 first = min(i_ for i_, w_ in enumerate(word) if w_ == "S")
