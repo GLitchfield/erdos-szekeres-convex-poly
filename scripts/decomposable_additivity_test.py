@@ -31,7 +31,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from decomposable_recursive_formula import make_F, run_index  # noqa: E402
 
 
-def contexts(s_max, e_max, levels, k):
+def contexts(s_max, e_max, levels, k, *, include_unused_levels=False):
     """Yield (word, maxima) with s S-letters and e external letters."""
     for s in range(2, s_max + 1):
         for e in range(0, e_max + 1):
@@ -39,7 +39,7 @@ def contexts(s_max, e_max, levels, k):
             for ext_positions in itertools.combinations(range(n), e):
                 for tags in itertools.product([(l, side) for l in range(1, levels + 1) for side in ("lower", "upper")], repeat=e):
                     present = sorted({t[0] for t in tags})
-                    if present != list(range(1, len(present) + 1)):
+                    if not include_unused_levels and present != list(range(1, len(present) + 1)):
                         continue                      # levels must be 1..L consecutively
                     # one side per level (a level is one split)
                     side_at = {}
@@ -52,8 +52,10 @@ def contexts(s_max, e_max, levels, k):
                     word = ["S"] * n
                     for pos, t in zip(ext_positions, tags):
                         word[pos] = t
-                    for maxima in itertools.product(range(1, k - 1), repeat=len(present)):
-                        yield tuple(word), tuple(maxima)
+                    depths = range(max(present, default=0), levels + 1) if include_unused_levels else [len(present)]
+                    for depth in depths:
+                        for maxima in itertools.product(range(1, k - 1), repeat=depth):
+                            yield tuple(word), tuple(maxima)
 
 
 def child(word, maxima, keep, side_of_child, sibling_max):
@@ -75,7 +77,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--recursion", choices=("F", "F2", "lean"), default="F",
                         help="F: run-boundary cuts; F2: interval cuts with positive children; "
-                             "lean: literal Lean interval recurrence, including zero children")
+                             "lean: literal Lean interval recurrence, including zero children and unused levels")
     parser.add_argument("--shard", default=None, help="i/N: test only every N-th context starting at i (independent shards, merge with --merge)")
     parser.add_argument("--cache-size", type=int, default=None, help="bound the recursion's memoization table (entries)")
     args = parser.parse_args()
@@ -93,7 +95,8 @@ def main() -> None:
     started = time.time()
     stats = {"contexts": 0, "nonzero_contexts": 0, "partitions": 0, "violations": 0, "slack_histogram": {}}
     violations = []
-    for index, (word, maxima) in enumerate(contexts(args.s_max, args.e_max, args.levels, k)):
+    for index, (word, maxima) in enumerate(contexts(
+            args.s_max, args.e_max, args.levels, k, include_unused_levels=include_zero_children)):
         if index % shard_n != shard_i:
             continue
         stats["contexts"] += 1
@@ -139,7 +142,10 @@ def main() -> None:
                                        "best_split": best, "witness": best_witness})
     stats["slack_histogram"] = dict(sorted(stats["slack_histogram"].items()))
     stats["seconds"] = round(time.time() - started, 1)
-    out = {"case": args.case, "recursion": args.recursion, "shard": args.shard, "s_max": args.s_max, "e_max": args.e_max, "levels": args.levels, "stats": stats, "violations": violations}
+    out = {"case": args.case, "recursion": args.recursion,
+           "domain": "well_formed" if include_zero_children else "occupied_levels",
+           "shard": args.shard, "s_max": args.s_max, "e_max": args.e_max,
+           "levels": args.levels, "stats": stats, "violations": violations}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=1) + "\n")
     print(json.dumps({"case": args.case, **stats}), file=sys.stderr)

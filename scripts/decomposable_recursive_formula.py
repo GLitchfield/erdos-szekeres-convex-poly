@@ -90,14 +90,16 @@ def make_F2(a, u, k, *, include_zero_children=False):
     part; both orientations and all couplings.  Single runs are the base case as in F.
 
     The historical F2 drops a cut when either child has value zero.  Set
-    include_zero_children=True for the sum used by Ctx.Context.boundFuel in Lean.
+    include_zero_children=True for the sum used by Ctx.Context.boundFuel in Lean,
+    including its full level domain and natural-number limit arithmetic.
     Keeping the historical default preserves the meaning of existing F2 experiments.
     """
     from decomposable_additivity_test import child as child_letters
 
     @lru_cache(maxsize=CACHE_SIZE)
     def F2(word, maxima):
-        p, cup_limit, cap_limit = limits_from_signature(word, maxima, a, u, k)
+        p, cup_limit, cap_limit = limits_from_signature(
+            word, maxima, a, u, k, lean=include_zero_children)
         s_pos = [i for i, w in enumerate(word) if w == "S"]
         if p == 1 and len(s_pos) == 1:
             cl, pl = int(cup_limit[0][0]), int(cap_limit[0][0])

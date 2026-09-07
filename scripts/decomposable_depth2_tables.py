@@ -52,8 +52,13 @@ def signature(chi, n, S, levels):
     return word, tuple(maxima)
 
 
-def limits_from_signature(word, maxima, a, u, k):
-    """Run structure and the cup/cap limit matrices by (run_i, run_j)."""
+def limits_from_signature(word, maxima, a, u, k, *, lean=False):
+    """Run structure and cup/cap limits by (run_i, run_j).
+
+    lean=True includes every level in maxima (an unused level has side lower),
+    uses unbounded integers, and truncates subtraction at zero, as Lean does.
+    The default preserves the historical table convention.
+    """
     # external sequence with gaps: runs of S are maximal blocks of 'S'
     runs = []          # list of (start_ext_index) : number of external vertices before the run
     ext = []           # tagged external vertices in order
@@ -66,8 +71,8 @@ def limits_from_signature(word, maxima, a, u, k):
         else:
             ext.append(w); count_ext += 1; in_run = False
     p = len(runs)
-    levels = sorted({w[0] for w in ext})
-    side_at = {}
+    levels = list(range(1, len(maxima) + 1)) if lean else sorted({w[0] for w in ext})
+    side_at = {level: "lower" for level in levels}
     for w in ext:
         side_at[w[0]] = w[1]
     positions = defaultdict(list)     # level -> external positions
@@ -102,14 +107,14 @@ def limits_from_signature(word, maxima, a, u, k):
         count = max(left_states.values()) + max(right_states.values())
         return count, max(best_strong, count)
 
-    cup_limit = np.zeros((p, p), dtype=np.int8)
-    cap_limit = np.zeros((p, p), dtype=np.int8)
+    cup_limit = np.zeros((p, p), dtype=object if lean else np.int8)
+    cap_limit = np.zeros((p, p), dtype=object if lean else np.int8)
     for i in range(p):
         for j in range(i, p):
             e, es = extension(i, j, "lower")
-            cup_limit[i][j] = min(u - 1 - e, k - 1 - es)
+            cup_limit[i][j] = max(0, min(u - 1 - e, k - 1 - es)) if lean else min(u - 1 - e, k - 1 - es)
             e, es = extension(i, j, "upper")
-            cap_limit[i][j] = min(a - 1 - e, k - 1 - es)
+            cap_limit[i][j] = max(0, min(a - 1 - e, k - 1 - es)) if lean else min(a - 1 - e, k - 1 - es)
     return p, cup_limit, cap_limit
 
 
