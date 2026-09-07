@@ -181,6 +181,19 @@ the cases), so the Lean proof of the interior case has to compare the two trees'
 with the residual's bound treated as a maximum, not follow the leaves one by one.
 That comparison is the open step.
 
+*Leaf by leaf* (`scripts/decomposable_strip_numeric.py`, first run at (4,4,5) with up to
+four letters and one level, 396 interior cuts): along the mirror strip the pair
+comparison `base(A) + base(E₁) ≤ base(E₂) + base(A')` holds for 820 of 936 strips and the
+residual comparison `bound(R') ≤ bound(R'')` for 800, both for 684; the mirror total holds
+for 744, so 60 totals hold without either part.  But allowing *any* root strip (either
+end, either side, any coupling, block recut at any coupling), every interior cut is
+dominated and 376 of 396 are dominated *termwise*, pair and residual both; the 20 others
+are dominated only through a single-run residual.  So the Lean proof can pick the strip
+existentially and prove two separate inequalities, a four-leaf numeric one and a
+residual one (two multi-run contexts with two letter groups at swapped levels, which is
+the normal form's induction), rather than one global comparison.  The k = 6 runs of this
+probe are queued; the four-leaf tuples it records are the input for the numeric lemma.
+
 ## Reproduction
 
 ```console
