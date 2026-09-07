@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-07T20:43:00Z",
- "git_sha": "f79dec0ec83565f9dd7e8efc8c8d1ae63aba331c",
+ "generated_at": "2026-09-07T20:58:06Z",
+ "git_sha": "292a210cb0c5f9a093d6fceadea18fe9201dadb3",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15361,
- "tree_hash": "0d28625901618381",
+ "tree_hash": "3dd6b81ba1d73441",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15360,
+  "cached_modules": 15361,
   "scanned_constants": 0,
-  "scanned_modules": 1
+  "scanned_modules": 0
  },
  "nodes": [
   {
@@ -898,15 +898,66 @@
    ],
    "deps_actual": [],
    "helpers": [],
-   "status": "proposed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
    ],
-   "falsify": null,
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_two_run_boundary_domination",
+    "falsifier": "ctx_two_run_boundary.py",
+    "falsifier_sha256": "2f26b58766d311b1d01f2ccce5474c5ebd8c00bdcbdf6a687902794ccec58380",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "a1f44cf711ed45d4",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 797.2,
+    "at": "2026-09-07T20:52:32Z",
+    "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_bound_two_run_boundary_domination",
+     "candidate": "prefix_suffix_same_orientation",
+     "recursion": "lean",
+     "runs": 2,
+     "partitions": "all but prefix/suffix cuts",
+     "cases": {
+      "4,4,5": {
+       "contexts": 1440,
+       "splits": 40320,
+       "failures": 0
+      },
+      "4,5,5": {
+       "contexts": 1440,
+       "splits": 40320,
+       "failures": 0
+      },
+      "5,4,5": {
+       "contexts": 1440,
+       "splits": 40320,
+       "failures": 0
+      },
+      "5,5,5": {
+       "contexts": 1440,
+       "splits": 40320,
+       "failures": 0
+      },
+      "4,5,6": {
+       "contexts": 2496,
+       "splits": 93184,
+       "failures": 0
+      },
+      "5,5,6": {
+       "contexts": 2496,
+       "splits": 93184,
+       "failures": 0
+      }
+     },
+     "violations": []
+    }
+   },
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-07"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_zero_child_regression",
