@@ -194,6 +194,23 @@ residual one (two multi-run contexts with two letter groups at swapped levels, w
 the normal form's induction), rather than one global comparison.  The k = 6 runs of this
 probe are queued; the four-leaf tuples it records are the input for the numeric lemma.
 
+*The unit transfer* (k = 5 and 6, up to four letters, two levels, 61,232 to 185,052
+mirror strips per case).  Along the mirror strip the four leaves' limits move by at most
+one unit, in a fixed pattern: on the strip's side the block `A` *loses* one unit and the
+singleton `E` *gains* one (for a lower strip the cap limit, for an upper strip the cup
+limit), and when the block's orientation differs from the strip's side the block keeps
+its limits or loses one on its own side while the singleton gains at most one.  The
+mechanism is a chain that can use the stripped position at the outer level in one tree
+and not in the other, so one unit of extension moves from the block's leaf to the
+singleton's.  The pair inequality `base(A) + base(E₁) ≤ base(E₂) + base(A')` is then a
+comparison of marginals: it fails exactly when the block loses a unit worth more than
+the singleton gains (at k = 5 every failure has the block losing one and the singleton
+gaining nothing, mostly because the singleton is worth zero on both sides; at k = 6 the
+block can lose up to four).  A large block can lose more than a singleton can gain, so
+no termwise numeric lemma holds for the mirror strip alone; the residual, or the strip at
+the other end, has to carry the difference.  What the existential v2 run measures is
+whether some root strip is always termwise.
+
 ## Reproduction
 
 ```console
