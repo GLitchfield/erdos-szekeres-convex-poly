@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-06T00:34:40Z",
- "git_sha": "aea88a3f2d17bfd0c1191746010474245030a09a",
+ "generated_at": "2026-09-07T13:54:47Z",
+ "git_sha": "187aba0a05a9172f438e967f1407d31b95464663",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15344,
- "tree_hash": "0effb332f83f4aed",
+ "modules": 15353,
+ "tree_hash": "f25c8ab90ff33c04",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,11 +19,450 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15344,
-  "scanned_constants": 0,
-  "scanned_modules": 0
+  "cached_modules": 15349,
+  "scanned_constants": 44,
+  "scanned_modules": 4
  },
  "nodes": [
+  {
+   "name": "ErdosSzekeres.ctx_bound_additive",
+   "module": "ESBlueprint.B.CtxBoundAdditive",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "Additivity of the context bound (the open lemma of the induction, experiments 0120-0121): for every well-formed context, every partition of its child letters into a kept part and the rest (any interleaving), both orientations and every coupling d, the two part bounds sum to at most the bound of the whole. Tested with no violation on about 1.5 million interleaved partitions over eight parameter triples, including the k = 6 contexts where run-boundary cuts alone fail.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "consumer": "ErdosSzekeres.ctx_card_le_bound",
+    "falsifier": "ctx_bound_additive.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (keep : List Nat),\n      (∀ (p : Nat), List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n        Ne keep List.nil →\n          instLTNat.lt keep.length σ.childPositions.length →\n            ∀ (d : Nat),\n              instLENat.le 1 d →\n                instLENat.le d (instHSub.hSub σ.k 2) →\n                  And\n                    (instLENat.le\n                      (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                        (σ.part\n                            (List.filter\n                              (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                              σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                      σ.bound)\n                    (instLENat.le\n                      (instHAdd.hAdd\n                        (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                        (σ.part\n                            (List.filter\n                              (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                              σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.lower d).bound)\n                      σ.bound)",
+   "type_hash": "193826ccbb035ddd",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_additive_single_run",
+    "ErdosSzekeres.ctx_bound_additive._proof_1_1",
+    "ErdosSzekeres.ctx_bound_additive_multi_run"
+   ],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_additive",
+    "falsifier": "ctx_bound_additive.py",
+    "falsifier_sha256": "50f9f84fe718167386ab757835d7ffacfb999ae069686fd9666d3d2a472a6e93",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "193826ccbb035ddd",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 616.6,
+    "at": "2026-09-06T21:31:24Z",
+    "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_bound_additive",
+     "cases": {
+      "4,4,5": {
+       "contexts": 2493,
+       "nonzero_contexts": 1353,
+       "partitions": 9986,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 2990,
+        "1": 3044,
+        "2": 2416,
+        "3": 1280,
+        "4": 224,
+        "5": 32
+       },
+       "seconds": 87.4
+      },
+      "4,5,5": {
+       "contexts": 2493,
+       "nonzero_contexts": 1353,
+       "partitions": 9986,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 3950,
+        "1": 2900,
+        "2": 1828,
+        "3": 780,
+        "4": 380,
+        "5": 128,
+        "6": 20
+       },
+       "seconds": 90.8
+      },
+      "5,4,5": {
+       "contexts": 2493,
+       "nonzero_contexts": 1353,
+       "partitions": 9986,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 3950,
+        "1": 2900,
+        "2": 1828,
+        "3": 780,
+        "4": 380,
+        "5": 128,
+        "6": 20
+       },
+       "seconds": 96.3
+      },
+      "4,5,6": {
+       "contexts": 4315,
+       "nonzero_contexts": 2747,
+       "partitions": 20310,
+       "violations": 0,
+       "slack_histogram": {
+        "0": 10090,
+        "1": 4502,
+        "2": 2862,
+        "3": 1360,
+        "4": 1004,
+        "5": 440,
+        "6": 36,
+        "7": 16
+       },
+       "seconds": 330.9
+      }
+     },
+     "violations": []
+    }
+   },
+   "lock_ok": true,
+   "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_additive_multi_run",
+   "module": "ESBlueprint.B.CtxBoundAdditiveMultiRun",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "Additivity of the context bound for a context with at least two runs, where the bound is the maximum over interval cuts: an arbitrary partition (any interleaving) is dominated by that maximum. For an interval partition this is ctx_bound_cut_le; the content is the exchange argument of experiment 0121 for interleaved partitions. The falsifier is the general additivity test, which covers this case.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "consumer": "ErdosSzekeres.ctx_bound_additive",
+    "falsifier": "ctx_bound_additive.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le 2 σ.numRuns →\n      ∀ (keep : List Nat),\n        (∀ (p : Nat), List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n          Ne keep List.nil →\n            instLTNat.lt keep.length σ.childPositions.length →\n              ∀ (d : Nat),\n                instLENat.le 1 d →\n                  instLENat.le d (instHSub.hSub σ.k 2) →\n                    And\n                      (instLENat.le\n                        (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                          (σ.part\n                              (List.filter\n                                (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                σ.childPositions)\n                              ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                        σ.bound)\n                      (instLENat.le\n                        (instHAdd.hAdd\n                          (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                          (σ.part\n                              (List.filter\n                                (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                σ.childPositions)\n                              ErdosSzekeres.Ctx.Side.lower d).bound)\n                        σ.bound)",
+   "type_hash": "b9572285e41a575b",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "proposed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_additive_single_run",
+   "module": "ESBlueprint.B.CtxBoundAdditiveSingleRun",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "Additivity of the context bound for a single-run context: the bound is the classical threshold with the run internal limits, and every partition of the run (any interleaving), both orientations and every coupling d, gives part bounds summing to at most it. This is the Baek-Balko one-level inequality with the full positional context (experiments 0118, 0120-0122); the falsifier is the general additivity test, which covers this case.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "consumer": "ErdosSzekeres.ctx_bound_additive",
+    "falsifier": "ctx_bound_additive.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le σ.numRuns 1 →\n      ∀ (keep : List Nat),\n        (∀ (p : Nat), List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n          Ne keep List.nil →\n            instLTNat.lt keep.length σ.childPositions.length →\n              ∀ (d : Nat),\n                instLENat.le 1 d →\n                  instLENat.le d (instHSub.hSub σ.k 2) →\n                    And\n                      (instLENat.le\n                        (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                          (σ.part\n                              (List.filter\n                                (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                σ.childPositions)\n                              ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                        σ.bound)\n                      (instLENat.le\n                        (instHAdd.hAdd\n                          (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                          (σ.part\n                              (List.filter\n                                (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                σ.childPositions)\n                              ErdosSzekeres.Ctx.Side.lower d).bound)\n                        σ.bound)",
+   "type_hash": "c8ace8d25e135c94",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "proposed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_antitone",
+   "module": "ESBlueprint.B.CtxBoundAntitone",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Monotonicity of the context bound in a sibling maximum: raising the longest chain of the sibling at any level does not increase the bound (every limit entering the recursion is antitone in the maxima). Tested on 9,444 comparisons (experiment 0121).",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_card_le_bound"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (l m : Nat),\n  instLENat.le (σ.withMaximum l (instHAdd.hAdd m 1)).bound (σ.withMaximum l m).bound",
+   "type_hash": "86c99d58d3980c2a",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_cut_le",
+   "module": "ESBlueprint.B.CtxBoundCutLe",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every interval cut of a context with at least two runs is dominated by its bound: the recursion takes the maximum over exactly these cuts, and the recursion is monotone in its fuel, so the parts (which have fewer child letters) are evaluated with enough fuel. This is the definitional half of additivity (experiment 0122).",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_multi_run"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  instLENat.le 2 σ.numRuns →\n    ∀ (block : List Nat),\n      List.instMembership.mem σ.blocks block →\n        ∀ (d : Nat),\n          instLENat.le 1 d →\n            instLENat.le d (instHSub.hSub σ.k 2) →\n              And\n                (instLENat.le\n                  (instHAdd.hAdd (σ.part block ErdosSzekeres.Ctx.Side.lower d).bound\n                    (σ.part\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem block p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.upper (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                  σ.bound)\n                (instLENat.le\n                  (instHAdd.hAdd\n                    (σ.part block ErdosSzekeres.Ctx.Side.upper\n                        (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                    (σ.part\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem block p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.lower d).bound)\n                  σ.bound)",
+   "type_hash": "b222a8dce9b03fde",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.Ctx.Context.mem_blocks",
+    "ErdosSzekeres.ctx_bound_cut_le._proof_1_1",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.Ctx.Context.length_filter_mem_le",
+    "ErdosSzekeres.ctx_bound_cut_le._proof_1_2",
+    "ErdosSzekeres.Ctx.Context.length_filter_not_mem_lt",
+    "ErdosSzekeres.ctx_bound_cut_le._proof_1_3",
+    "ErdosSzekeres.ctx_bound_cut_le._proof_1_4",
+    "ErdosSzekeres.ctx_bound_cut_le._simp_1_5",
+    "ErdosSzekeres.ctx_bound_cut_le._simp_1_6",
+    "ErdosSzekeres.ctx_bound_cut_le._simp_1_7",
+    "ErdosSzekeres.ctx_bound_cut_le._simp_1_8",
+    "ErdosSzekeres.Ctx.Context.bound_le_boundFuel"
+   ],
+   "helpers": [
+    "ErdosSzekeres.Ctx.Context.boundFuel_le_succ",
+    "ErdosSzekeres.Ctx.Context.bound_le_boundFuel",
+    "ErdosSzekeres.Ctx.Context.length_filter_not_mem_lt",
+    "ErdosSzekeres.Ctx.Context.length_filter_mem_le",
+    "ErdosSzekeres.Ctx.Context.mem_blocks",
+    "ErdosSzekeres.Ctx.Context.boundFuel_mono"
+   ],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_card_le_bound",
+   "module": "ESBlueprint.B.CtxCardLeBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The context induction (experiments 0117-0121): a decomposable coloring on S that satisfies the constraints of a well-formed context σ has at most bound σ vertices. Induction on IsDecomposableOn: split, transfer the context to both parts (ctx_satisfies_of_deepBelowSplit), apply the hypothesis, dominate the two-parameter coupling by the one-parameter one (ctx_bound_antitone), and finish with the additivity conjecture (ctx_bound_additive). At the root context this is DecomposableStateUpper for all parameters.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit",
+     "ErdosSzekeres.ctx_bound_antitone",
+     "ErdosSzekeres.ctx_bound_additive"
+    ],
+    "consumer": "ErdosSzekeres.decomposableStateUpper_all"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {S : Finset (Fin n)}\n  (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ErdosSzekeres.IsDecomposableOn χ S →\n      ErdosSzekeres.Ctx.Satisfies χ S σ → instLENat.le S.card σ.bound",
+   "type_hash": "1ba3114105c3f39a",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit",
+    "ErdosSzekeres.ctx_bound_antitone",
+    "ErdosSzekeres.ctx_bound_additive"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit",
+    "ErdosSzekeres.ctx_card_le_bound._proof_1_1",
+    "ErdosSzekeres.ctx_card_le_bound._proof_1_2",
+    "ErdosSzekeres.ctx_card_le_bound._proof_1_3",
+    "ErdosSzekeres.ctx_card_le_bound._proof_1_4",
+    "ErdosSzekeres.ctx_bound_additive",
+    "ErdosSzekeres.ctx_card_le_bound._proof_1_5"
+   ],
+   "helpers": [],
+   "status": "open",
+   "ready": false,
+   "blocked_by": [
+    "ErdosSzekeres.ctx_bound_additive"
+   ],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit",
+   "module": "ESBlueprint.B.CtxSatisfiesOfDeepBelowSplit",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Context transfer (experiment 0117, the union lemma): across a deep-below split of a child satisfying σ, the lower part satisfies σ with the upper part added as a level-1 sibling of longest cap capmax(upper), and the upper part satisfies σ with the lower part added as a level-1 sibling of longest cup cupmax(lower). Proved from the four-vertex law: mixed quadruples, chains extend by one vertex per side per level, strong sets join at one level. Verified on all 1,367,052 subtrees at n <= 8.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_card_le_bound"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {S lower upper : Finset (Fin n)}\n  (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ErdosSzekeres.Ctx.Satisfies χ S σ →\n      ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n        Eq (Finset.instUnion.union lower upper) S →\n          lower.Nonempty →\n            upper.Nonempty →\n              And\n                (ErdosSzekeres.Ctx.Satisfies χ lower\n                  (σ.part (σ.positionsOf S lower) ErdosSzekeres.Ctx.Side.lower\n                    (ErdosSzekeres.Ctx.chainMax χ upper Bool.false)))\n                (ErdosSzekeres.Ctx.Satisfies χ upper\n                  (σ.part (σ.positionsOf S upper) ErdosSzekeres.Ctx.Side.upper\n                    (ErdosSzekeres.Ctx.chainMax χ lower Bool.true)))",
+   "type_hash": "518bec9af5817021",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.Ctx.posOf",
+    "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit._proof_1_1",
+    "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit._proof_1_2",
+    "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit._proof_1_3",
+    "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit._proof_1_4",
+    "ErdosSzekeres.Ctx.exists_card_eq_chainMax",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.Ctx.Context.childPositions_filter_positionsOf",
+    "ErdosSzekeres.Ctx.Context.pos_part_eq",
+    "ErdosSzekeres.Ctx.card_add_ext_part_le",
+    "ErdosSzekeres.Ctx.isCupSet_union_of_extremes",
+    "ErdosSzekeres.Ctx.Context.chainExt_part_other",
+    "ErdosSzekeres.Ctx.Context.joinExt_part_other",
+    "ErdosSzekeres.Ctx.isCapSet_union_of_extremes"
+   ],
+   "helpers": [
+    "ErdosSzekeres.Ctx.Context.foldl_rightStep_part_map",
+    "ErdosSzekeres.Ctx.Context.chainExt_part_other",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.leftStep_part_succ",
+    "ErdosSzekeres.Ctx.Context.chainExt_le_joinExt",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_succ",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.leftExt_eq",
+    "ErdosSzekeres.Ctx.Context.pos_lt_pos_of_lt",
+    "ErdosSzekeres.Ctx.Context.rightStep_count",
+    "ErdosSzekeres.Ctx.Context.le_joinExt_of_mem_levelsOn",
+    "ErdosSzekeres.Ctx.Context.pos_le_pos_of_le",
+    "ErdosSzekeres.Ctx.Context.lt_of_pos_lt_pos",
+    "ErdosSzekeres.Ctx.Context.leftStep_count",
+    "ErdosSzekeres.Ctx.isCupSet_union_of_extremes",
+    "ErdosSzekeres.Ctx.Context.getElem?_length_filter_lt",
+    "ErdosSzekeres.Ctx.isCapSet_union_of_extremes",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.Ctx.Context.foldl_rightStep_count",
+    "ErdosSzekeres.Ctx.Context.rightExt_eq",
+    "ErdosSzekeres.Ctx.Context.rightStep_part_succ",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_other_zero",
+    "ErdosSzekeres.Ctx.Context.foldl_rightStep_part_le",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.Ctx.Context.leftExt_part_other",
+    "ErdosSzekeres.Ctx.Context.foldl_leftStep_part_le",
+    "ErdosSzekeres.Ctx.Context.foldl_leftStep_count",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.Ctx.posOf",
+    "ErdosSzekeres.Ctx.Context.pos_part_eq",
+    "ErdosSzekeres.Ctx.Context.childPositions_filter_positionsOf",
+    "ErdosSzekeres.Ctx.exists_card_eq_chainMax",
+    "ErdosSzekeres.Ctx.Context.joinExt_part_other",
+    "ErdosSzekeres.Ctx.Context.foldl_leftStep_part_map",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.Ctx.add_max_add_max_le",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_zero",
+    "ErdosSzekeres.Ctx.Context.positionsOf_pairwise_lt",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_other_succ",
+    "ErdosSzekeres.Ctx.card_add_ext_part_le",
+    "ErdosSzekeres.Ctx.Context.rightExt_part_other"
+   ],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-06"
+  },
   {
    "name": "ErdosSzekeres.decomposableStateUpper_all",
    "module": "ESBlueprint.B.DecomposableStateUpperAll",
@@ -51,10 +490,36 @@
     "sorryAx"
    ],
    "deps_declared": [],
-   "deps_actual": [],
-   "helpers": [],
-   "status": "open",
-   "ready": true,
+   "deps_actual": [
+    "ErdosSzekeres.decomposableStateUpper_all._proof_1_1",
+    "ErdosSzekeres.decomposableStateUpper_all._proof_1_2",
+    "ErdosSzekeres.decomposableStateUpper_all._proof_1_3",
+    "ErdosSzekeres.Ctx.satisfies_root",
+    "ErdosSzekeres.ctx_card_le_bound",
+    "ErdosSzekeres.Ctx.Context.root_wellFormed",
+    "ErdosSzekeres.Ctx.Context.root_bound_le",
+    "ErdosSzekeres.decomposableStateUpper_all._proof_1_4"
+   ],
+   "helpers": [
+    "ErdosSzekeres.Ctx.Context.root_capLimit",
+    "ErdosSzekeres.Ctx.Context.root_leftExt",
+    "ErdosSzekeres.Ctx.Context.root_rightExt",
+    "ErdosSzekeres.Ctx.Context.root_letterAt",
+    "ErdosSzekeres.Ctx.Context.root_childPositions",
+    "ErdosSzekeres.Ctx.Context.root_levelsOn",
+    "ErdosSzekeres.Ctx.Context.baseOf_le_threshold",
+    "ErdosSzekeres.Ctx.Context.root_cupLimit",
+    "ErdosSzekeres.Ctx.Context.root_wellFormed",
+    "ErdosSzekeres.Ctx.Context.root_chainExt",
+    "ErdosSzekeres.Ctx.Context.root_joinExt",
+    "ErdosSzekeres.Ctx.satisfies_root",
+    "ErdosSzekeres.Ctx.Context.root_bound_le",
+    "ErdosSzekeres.Ctx.Context.root_word_length",
+    "ErdosSzekeres.Ctx.Context.root_numRuns_le",
+    "ErdosSzekeres.Ctx.Context.root_k"
+   ],
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
