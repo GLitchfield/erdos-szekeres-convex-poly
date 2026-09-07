@@ -54,6 +54,7 @@ def main() -> None:
     F = drf.make_F2(a, u, k, include_zero_children=True)
     stats = collections.Counter()
     examples = collections.defaultdict(list)
+    cover_sets: list[frozenset] = []
     ncontexts = 0
     for word, maxima in contexts(args.s_max, args.e_max, args.levels, k):
         pos = [i for i, w in enumerate(word) if w == "S"]
@@ -113,13 +114,24 @@ def main() -> None:
                         stats["end_alone_shift_sign_" + "".join(sorted(signs))] += 1
                     # the kept part's own end: is the first kept position at an end of the child?
                     stats["keep_touches_end"] += (first_keep == 0 or last_keep == n - 1)
+                    # an end singleton or the run-boundary cut: enough for every split?
+                    stats["end_or_runboundary_works"] += bool(first_alone or last_alone or any(x[1] == run_cut_j for x in dom))
+                    # cut positions (prefix length j, either kind) that dominate this split, for a set cover per case
+                    cover_sets.append(frozenset(x[1] for x in dom))
+                    if not (first_alone or last_alone or any(x[1] == run_cut_j for x in dom)) and len(examples["needs_other_position"]) < 12:
+                        examples["needs_other_position"].append({"word": word, "maxima": list(maxima), "keep": sorted(keep), "o": o, "d": d, "value": v,
+                                                                 "dominating": sorted(dom)[:8], "run_boundary_j": run_cut_j, "n": n})
                     stats["d_prime_le_d_works"] += any(x[2] <= d for x in dom)
                     stats["d_prime_ge_d_works"] += any(x[2] >= d for x in dom)
                     if not same_d and len(examples["needs_recoupling"]) < 12:
                         examples["needs_recoupling"].append({"word": word, "maxima": list(maxima), "keep": sorted(keep), "o": o, "d": d, "value": v,
                                                              "dominating": sorted(dom)[:8], "run_boundary_j": run_cut_j})
+    # greedy set cover: how many distinct prefix lengths (relative to n) are needed so that every split is
+    # dominated by a cut at one of them; positions are recorded as (j, n) pairs
     out = {"case": args.case, "parameters": {"s_max": args.s_max, "e_max": args.e_max, "levels": args.levels, "blocks": args.blocks},
-           "two_run_contexts": ncontexts, "stats": dict(stats), "examples": examples}
+           "two_run_contexts": ncontexts, "stats": dict(stats), "examples": examples,
+           "splits_dominated_only_by_interior_cuts": sum(1 for cs in cover_sets if cs and not any(j in (1,) or j >= 0 and False for j in cs))}
+    out["splits_with_single_dominating_position"] = sum(1 for cs in cover_sets if len(cs) == 1)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=1, default=list) + "\n")
     print(json.dumps({"case": args.case, "contexts": ncontexts, **{k_: v for k_, v in stats.items()}}), file=sys.stderr)
