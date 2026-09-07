@@ -53,6 +53,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundAdjacentLetterContraction"
   },
+  "ErdosSzekeres.ctx_bound_adjacent_letter_contraction_counterexample": {
+    "type_hash": "a2406241d44ddf61",
+    "type_pp": "Not\n  (∀ (σ : ErdosSzekeres.Ctx.Context),\n    σ.WellFormed →\n      ∀ (left right : List ErdosSzekeres.Ctx.Letter) (letter : ErdosSzekeres.Ctx.Letter),\n        Eq σ.word\n            (instHAppendOfAppend.hAppend\n              (instHAppendOfAppend.hAppend left (List.cons letter (List.cons letter List.nil)))\n              right) →\n          Eq σ.bound\n            { a := σ.a, u := σ.u, k := σ.k,\n                word :=\n                  instHAppendOfAppend.hAppend\n                    (instHAppendOfAppend.hAppend left (List.cons letter List.nil)) right,\n                maxima := σ.maxima }.bound)",
+    "approved_by": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+    "approved_at": "2026-09-07",
+    "kind": "refutation",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundAdjacentLetterContractionCounterexample"
+  },
   "ErdosSzekeres.ctx_bound_antitone": {
     "type_hash": "86c99d58d3980c2a",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (l m : Nat),\n  instLENat.le (σ.withMaximum l (instHAdd.hAdd m 1)).bound (σ.withMaximum l m).bound",
