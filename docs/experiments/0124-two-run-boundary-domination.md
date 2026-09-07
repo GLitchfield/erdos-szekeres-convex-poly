@@ -152,6 +152,35 @@ Induction on the number of child positions, exchanging one end position at a tim
    `leftExt`/`rightExt`/`joinExt` values that the existing `part_*` and `withMaximum`
    lemmas of `DecomposableContextLemmas` can express.
 
+## 4. Lean status and the rule behind the interior case (evening)
+
+*Confirmed at k = 5.*  The end-cut normal form also holds on every context with up to five
+child letters and two levels at (4,4,5), (4,5,5), (5,5,5): all 2,540 contexts per case with
+two or three runs and a nonzero bound have their bound attained by an end cut.
+
+*What is proved in Lean* (`ESBlueprint/B/CtxBoundAttainedByEndCut.lean`, compiles, one
+`sorry`): a nonempty list attains its maximum; the recursion stabilizes once the fuel
+exceeds the child count (`boundFuel_eq_bound`), so the recursion's inner values are the
+parts' bounds; two runs force an external letter and hence `3 ≤ k`; and the node reduces
+to one helper, `ctx_cut_le_end_cut`: every interval cut of a context with at least two
+runs, in either orientation, is dominated by an end cut in one of the two forms of the
+statement.  Its end-block cases are list bookkeeping; its interior case is the strip
+inequality.
+
+*The rule behind the interior case*, from `scripts/decomposable_strip_rule.py` at
+(4,4,5), (4,5,6), (5,5,6) with up to four letters and two levels (20,520 to 47,488
+interior cuts per case): the root strip that *mirrors* the rest part's optimal first strip,
+same end, same side, same coupling, with the block's coupling unchanged in the residual,
+dominates 95.7 % of interior cuts.  Of the rest, 388 to 1,180 per case are dominated only
+through a single-run residual (the block cut inside the residual is then a single-run
+sandwich, and single-run additivity is what continues), and 44 cuts at (5,5,6), all
+`S 1L 2U S S S` with maxima (1, 1) and the block {4}, are dominated by no end strip that
+re-cuts the same block: the residual must be cut differently.  The mirror inequality is
+not term by term (each of its three leaf comparisons fails on its own in about a third of
+the cases), so the Lean proof of the interior case has to compare the two trees' totals
+with the residual's bound treated as a maximum, not follow the leaves one by one.
+That comparison is the open step.
+
 ## Reproduction
 
 ```console

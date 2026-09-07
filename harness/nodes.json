@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-07T21:46:30Z",
- "git_sha": "d1e34358124c8806d729793b8b7e5158884236bb",
+ "generated_at": "2026-09-07T22:37:39Z",
+ "git_sha": "44bf7e04cfa9039c0311bc34bfbb3c38540d314a",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15363,
- "tree_hash": "13c50f2848f0eb74",
+ "tree_hash": "95426b2f12b0e93b",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15362,
+  "cached_modules": 15363,
   "scanned_constants": 0,
-  "scanned_modules": 1
+  "scanned_modules": 0
  },
  "nodes": [
   {
@@ -676,17 +676,90 @@
    "deps_declared": [
     "ErdosSzekeres.ctx_bound_cut_le"
    ],
-   "deps_actual": [],
-   "helpers": [],
-   "status": "proposed",
+   "deps_actual": [
+    "ErdosSzekeres.Ctx.Context.three_le_k_of_two_runs",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._simp_1_1",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._simp_1_2",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._simp_1_3",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._simp_1_4",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._proof_1_5",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._proof_1_6",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._proof_1_7",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._proof_1_8",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._proof_1_9",
+    "ErdosSzekeres.exists_mem_eq_getD_max?",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._simp_1_10",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._simp_1_11",
+    "ErdosSzekeres.Ctx.Context.part_childPositions_length_lt_of_mem_blocks",
+    "ErdosSzekeres.Ctx.Context.part_rest_childPositions_length_lt_of_mem_blocks",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._proof_1_12",
+    "ErdosSzekeres.ctx_cut_le_end_cut",
+    "ErdosSzekeres.ctx_bound_attained_by_end_cut._proof_1_13",
+    "ErdosSzekeres.Ctx.Context.boundFuel_eq_bound"
+   ],
+   "helpers": [
+    "ErdosSzekeres.Ctx.Context.three_le_k_of_two_runs",
+    "ErdosSzekeres.Ctx.Context.part_rest_childPositions_length_lt_of_mem_blocks",
+    "ErdosSzekeres.Ctx.Context.exists_run_start_pos",
+    "ErdosSzekeres.Ctx.Context.boundFuel_stable",
+    "ErdosSzekeres.foldl_max_mem",
+    "ErdosSzekeres.ctx_cut_le_end_cut",
+    "ErdosSzekeres.Ctx.Context.part_childPositions_length_lt_of_mem_blocks",
+    "ErdosSzekeres.Ctx.Context.boundFuel_eq_bound",
+    "ErdosSzekeres.exists_mem_eq_getD_max?"
+   ],
+   "status": "claimed",
    "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
    ],
-   "falsify": null,
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut",
+    "falsifier": "ctx_end_cut_normal_form.py",
+    "falsifier_sha256": "4ac99cba07215ee9bf8d251462c4e7d08c29b8f81897cde33a2021f60db5ca0a",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "2fd91a6e1f19def7",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 1125.7,
+    "at": "2026-09-07T21:48:32Z",
+    "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut",
+     "recursion": "lean",
+     "cases": {
+      "4,4,5": {
+       "contexts": 1752,
+       "nonzero": 1400,
+       "end_attains": 1400
+      },
+      "4,5,5": {
+       "contexts": 1752,
+       "nonzero": 1400,
+       "end_attains": 1400
+      },
+      "5,5,5": {
+       "contexts": 1752,
+       "nonzero": 1400,
+       "end_attains": 1400
+      },
+      "4,5,6": {
+       "contexts": 3040,
+       "nonzero": 2600,
+       "end_attains": 2600
+      },
+      "5,5,6": {
+       "contexts": 3040,
+       "nonzero": 2600,
+       "end_attains": 2600
+      }
+     },
+     "violations": []
+    }
+   },
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-07"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_cut_le",
@@ -828,7 +901,7 @@
    ],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-07"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_same_size_exchange_counterexample",
