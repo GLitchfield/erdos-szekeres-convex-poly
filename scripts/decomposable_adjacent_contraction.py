@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Bounded falsifier for adjacent identical-letter contraction of context bounds.
 
-Samples contexts deterministically within each (children, externals, depth)
-bucket. This is finite evidence, not an exhaustive check of the conjecture.
+Checks the known counterexample before sampling contexts deterministically
+within each (children, externals, depth) bucket. This is finite evidence,
+not an exhaustive check of the conjecture.
 The evaluator is the literal Lean recurrence, including zero-valued children
 and unused external levels.
 """
@@ -11,6 +12,7 @@ from __future__ import annotations
 import argparse
 from collections import Counter, defaultdict
 import hashlib
+from itertools import chain
 import json
 from pathlib import Path
 import time
@@ -36,17 +38,22 @@ def run():
     drf.CACHE_SIZE = 60000
     started = time.monotonic()
     result = {
-        'scope': 'Deterministic samples with 2..4 children, <=2 externals, <=2 levels',
+        'scope': 'Known regression plus deterministic samples with 2..4 children, <=2 externals, <=2 levels',
         'recursion': 'lean',
         'include_unused_levels': True,
         'exhaustive': False,
         'cases': [],
         'counterexample': None,
     }
-    for a, u, k in [(4, 4, 5), (4, 5, 6), (5, 5, 6)]:
+    for a, u, k in [(5, 5, 6), (4, 4, 5), (4, 5, 6)]:
         bound = drf.make_F2(a, u, k, include_zero_children=True)
         stats = Counter()
-        for word, maxima in sampled_contexts(k):
+        # Two external levels between the child runs invalidate contraction.
+        # The earlier hash-based samples missed this well-formed context.
+        regressions = [
+            (('S', (1, 'lower'), (2, 'upper'), 'S', 'S'), (1, 1))
+        ] if (a, u, k) == (5, 5, 6) else []
+        for word, maxima in chain(regressions, sampled_contexts(k)):
             original = bound(word, maxima)
             stats['contexts'] += 1
             stats['nonzero'] += original > 0
