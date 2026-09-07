@@ -42,6 +42,29 @@ class InsertionProbeTest(unittest.TestCase):
         self.assertEqual(len(probe.hull_indices(points, range(4))), 3)
         self.assertIsNone(probe.convex_witness(points, 4))
 
+    def test_insertion_can_require_vertices_from_both_sweep_halves(self):
+        # The larger half has three vertices (> 2^(4-3)), but adding q to
+        # that half gives no quadrilateral. An endpoint-only insertion
+        # argument would miss the quadrilateral that uses the smaller half.
+        points = [(Fraction(0), Fraction(1)),
+                  (Fraction(7, 8), Fraction(31, 8)),
+                  (Fraction(9, 8), Fraction(33, 8)),
+                  (Fraction(2), Fraction(16))]
+        q = (Fraction(7, 16), Fraction(-695, 112))
+        self.assertTrue(bb.general_position(points + [q]))
+        self.assertIsNotNone(probe.decomposition_tree(points))
+        self.assertEqual(len(probe.hull_indices(points, range(4))), 3)
+        self.assertIsNone(probe.convex_witness(points, 4))
+        larger = [p for p in points if q[0] < p[0]] + [q]
+        self.assertEqual(len(larger), 4)
+        self.assertEqual(len(probe.hull_indices(larger, range(4))), 3)
+        self.assertIsNone(probe.convex_witness(larger, 4))
+        witness = probe.convex_witness(points + [q], 4)
+        self.assertIsNotNone(witness)
+        self.assertIn(4, witness)
+        self.assertTrue(any(points[i][0] < q[0] for i in witness if i < 4))
+        self.assertTrue(any(q[0] < points[i][0] for i in witness if i < 4))
+
 
 if __name__ == '__main__':
     unittest.main()
