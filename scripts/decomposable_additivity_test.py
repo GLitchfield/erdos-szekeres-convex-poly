@@ -73,7 +73,9 @@ def main() -> None:
     parser.add_argument("--e-max", type=int, default=2)
     parser.add_argument("--levels", type=int, default=2)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--recursion", choices=("F", "F2"), default="F", help="F: cuts at run boundaries; F2: interval cuts (sandwiches allowed)")
+    parser.add_argument("--recursion", choices=("F", "F2", "lean"), default="F",
+                        help="F: run-boundary cuts; F2: interval cuts with positive children; "
+                             "lean: literal Lean interval recurrence, including zero children")
     parser.add_argument("--shard", default=None, help="i/N: test only every N-th context starting at i (independent shards, merge with --merge)")
     parser.add_argument("--cache-size", type=int, default=None, help="bound the recursion's memoization table (entries)")
     args = parser.parse_args()
@@ -82,9 +84,10 @@ def main() -> None:
     if args.cache_size:
         import decomposable_recursive_formula as drf
         drf.CACHE_SIZE = args.cache_size
-    if args.recursion == "F2":
+    include_zero_children = args.recursion == "lean"
+    if args.recursion in ("F2", "lean"):
         from decomposable_recursive_formula import make_F2
-        F = make_F2(a, u, k)
+        F = make_F2(a, u, k, include_zero_children=include_zero_children)
     else:
         F = make_F(a, u, k)
     started = time.time()
@@ -95,9 +98,9 @@ def main() -> None:
             continue
         stats["contexts"] += 1
         value = F(word, maxima)
-        if value == 0:
+        if value == 0 and not include_zero_children:
             continue
-        stats["nonzero_contexts"] += 1
+        stats["nonzero_contexts"] += int(value != 0)
         s_pos = [i for i, w in enumerate(word) if w == "S"]
         runs = run_index(word)
         for r in range(1, 1 << len(s_pos)):
@@ -107,29 +110,33 @@ def main() -> None:
             U = frozenset(s_pos) - L
             # skip run-boundary cuts (they are F's own cuts)
             lr = {runs[i] for i in L}; ur = {runs[i] for i in U}
-            if not (lr & ur) and (max(lr) < min(ur) or max(ur) < min(lr)):
+            if not include_zero_children and not (lr & ur) and (max(lr) < min(ur) or max(ur) < min(lr)):
                 continue
             stats["partitions"] += 1
             best = 0
+            best_witness = None
             for dp in range(1, k - 1):
                 c = k - 1 - dp
                 # orientation 1: L lower (sees U's longest cap d'), U upper (sees L's longest cup c)
                 w1, m1 = child(word, maxima, L, "lower", dp); w2, m2 = child(word, maxima, U, "upper", c)
-                v1 = F(w1, m1); v2 = F(w2, m2) if v1 else 0
-                if v1 and v2:
-                    best = max(best, v1 + v2)
+                v1 = F(w1, m1); v2 = F(w2, m2) if include_zero_children or v1 else 0
+                if (include_zero_children or (v1 and v2)) and v1 + v2 > best:
+                    best = v1 + v2
+                    best_witness = {"d": dp, "side": "lower", "part_bounds": [v1, v2]}
                 # orientation 2: L upper, U lower
                 w1, m1 = child(word, maxima, L, "upper", c); w2, m2 = child(word, maxima, U, "lower", dp)
-                v1 = F(w1, m1); v2 = F(w2, m2) if v1 else 0
-                if v1 and v2:
-                    best = max(best, v1 + v2)
+                v1 = F(w1, m1); v2 = F(w2, m2) if include_zero_children or v1 else 0
+                if (include_zero_children or (v1 and v2)) and v1 + v2 > best:
+                    best = v1 + v2
+                    best_witness = {"d": dp, "side": "upper", "part_bounds": [v1, v2]}
             slack = value - best
             stats["slack_histogram"][slack] = stats["slack_histogram"].get(slack, 0) + 1
             if best > value:
                 stats["violations"] += 1
                 if len(violations) < 30:
                     violations.append({"word": ["S" if w == "S" else f"{w[0]}{'L' if w[1]=='lower' else 'U'}" for w in word],
-                                       "maxima": list(maxima), "F": value, "L": sorted(L), "U": sorted(U), "best_split": best})
+                                       "maxima": list(maxima), "F": value, "L": sorted(L), "U": sorted(U),
+                                       "best_split": best, "witness": best_witness})
     stats["slack_histogram"] = dict(sorted(stats["slack_histogram"].items()))
     stats["seconds"] = round(time.time() - started, 1)
     out = {"case": args.case, "recursion": args.recursion, "shard": args.shard, "s_max": args.s_max, "e_max": args.e_max, "levels": args.levels, "stats": stats, "violations": violations}
