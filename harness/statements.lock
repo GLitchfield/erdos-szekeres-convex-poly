@@ -1,4 +1,13 @@
 {
+  "ErdosSzekeres.ctx_base_child_letter_contraction": {
+    "type_hash": "2ed96bced717c713",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (left right : List ErdosSzekeres.Ctx.Letter),\n  Eq σ.word\n      (instHAppendOfAppend.hAppend\n        (instHAppendOfAppend.hAppend left\n          (List.cons ErdosSzekeres.Ctx.Letter.child\n            (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n        right) →\n    Eq σ.base\n      { a := σ.a, u := σ.u, k := σ.k,\n          word :=\n            instHAppendOfAppend.hAppend\n              (instHAppendOfAppend.hAppend left (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n              right,\n          maxima := σ.maxima }.base",
+    "approved_by": "user:2026-09-07 (supporting lemma for approved items 2 and 3)",
+    "approved_at": "2026-09-07",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBaseChildLetterContraction"
+  },
   "ErdosSzekeres.ctx_bound_additive": {
     "type_hash": "193826ccbb035ddd",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (keep : List Nat),\n      (∀ (p : Nat), List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n        Ne keep List.nil →\n          instLTNat.lt keep.length σ.childPositions.length →\n            ∀ (d : Nat),\n              instLENat.le 1 d →\n                instLENat.le d (instHSub.hSub σ.k 2) →\n                  And\n                    (instLENat.le\n                      (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                        (σ.part\n                            (List.filter\n                              (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                              σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                      σ.bound)\n                    (instLENat.le\n                      (instHAdd.hAdd\n                        (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                        (σ.part\n                            (List.filter\n                              (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                              σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.lower d).bound)\n                      σ.bound)",
