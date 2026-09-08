@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-08T21:59:51Z",
- "git_sha": "c8d3344942f8994526b1f2612ad2714bce76f48f",
+ "generated_at": "2026-09-08T22:15:13Z",
+ "git_sha": "ce19bac7267a6ae56b2f7d0adc6e67942b674769",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15414,
- "tree_hash": "e8263f16a4e76636",
+ "modules": 15415,
+ "tree_hash": "cffef4356122f30d",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15413,
+  "cached_modules": 15414,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -4251,6 +4251,63 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_sibling_maximum_upper_normalize",
+   "module": "ESBlueprint.B.CtxSiblingMaximumUpperNormalize",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Upper-bound normalization at an indexed sibling level. Absorb its maximum M into the global parameter on its side by capping that parameter at k-M, and truncate the active maxima to the younger prefix before the level. Retain the word and opposite global parameter. Every original cup/cap limit, every fuel approximation and the full recursive bound are at most the corresponding normalized value. Indexed membership alone suffices. This transports large-sibling cases to small-global-axis rank bounds without a run-length restriction.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (N : Nat),\n  List.instMembership.mem σ.levels N →\n    have M := σ.maximumAt N;\n    have τ :=\n      ErdosSzekeres.ctx_sibling_maximum_upper_normalize.match_1 (fun x => ErdosSzekeres.Ctx.Context)\n        (σ.sideAt N)\n        (fun _ =>\n          { a := σ.a, u := instMinNat.min σ.u (instHSub.hSub σ.k M), k := σ.k, word := σ.word,\n            maxima := List.take (instHSub.hSub N 1) σ.maxima })\n        fun _ =>\n        { a := instMinNat.min σ.a (instHSub.hSub σ.k M), u := σ.u, k := σ.k, word := σ.word,\n          maxima := List.take (instHSub.hSub N 1) σ.maxima };\n    And\n      (∀ (p q : Nat),\n        And (instLENat.le (σ.cupLimit p q) (τ.cupLimit p q))\n          (instLENat.le (σ.capLimit p q) (τ.capLimit p q)))\n      (And\n        (∀ (fuel : Nat),\n          instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n            (ErdosSzekeres.Ctx.Context.boundFuel fuel τ))\n        (instLENat.le σ.bound τ.bound))",
+   "type_hash": "538ff9dc3d65d005",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._proof_1_5",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._simp_1_6",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._simp_1_7",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._proof_1_8",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._proof_1_9",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._proof_1_10",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._simp_1_11",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._proof_1_12",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._proof_1_13",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.le_joinExt_of_mem_levelsOn",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._proof_1_14",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._proof_1_15",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._proof_1_16",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._simp_1_18",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._simp_1_19",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize._simp_1_20"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-08"
   },
   {
    "name": "ErdosSzekeres.ctx_single_run_descendant_bound_normalize",
