@@ -161,6 +161,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundIntervalOrComplementLe"
   },
+  "ErdosSzekeres.ctx_bound_le_sum_point_bases": {
+    "type_hash": "ffae000d27d19307",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  instLENat.le σ.bound\n    (List.map (fun p => ErdosSzekeres.Ctx.Context.baseOf (σ.cupLimit p p) (σ.capLimit p p) σ.k)\n        σ.childPositions).sum",
+    "approved_by": "user:2026-09-07 autonomous next round",
+    "approved_at": "2026-09-07",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundLeSumPointBases"
+  },
   "ErdosSzekeres.ctx_bound_opposite_level_swap": {
     "type_hash": "4c3a4b1fab691ae1",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    Ne (σ.extPositions 1) List.nil →\n      Ne (σ.extPositions 2) List.nil →\n        Ne (σ.sideAt 1) (σ.sideAt 2) →\n          Eq\n            { a := σ.a, u := σ.u, k := σ.k,\n                word :=\n                  List.map\n                    (fun x =>\n                      ErdosSzekeres.ctx_bound_opposite_level_swap.match_1\n                        (fun x => ErdosSzekeres.Ctx.Letter) x\n                        (fun _ => ErdosSzekeres.Ctx.Letter.child) fun l s =>\n                        ErdosSzekeres.Ctx.Letter.ext (ite (Eq l 1) 2 (ite (Eq l 2) 1 l)) s)\n                    σ.word,\n                maxima :=\n                  instHAppendOfAppend.hAppend\n                    (List.cons (σ.maximumAt 2) (List.cons (σ.maximumAt 1) List.nil))\n                    (List.drop 2 σ.maxima) }.bound\n            σ.bound",
