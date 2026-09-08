@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-08T16:06:31Z",
- "git_sha": "cf30e0a2d3eb0d34260e4f9930975ce6735db624",
+ "generated_at": "2026-09-08T18:58:58Z",
+ "git_sha": "a91a23691b9f15bcf831e472a02ae678e88c2c69",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15400,
- "tree_hash": "d3ffacb20fa861e1",
+ "modules": 15401,
+ "tree_hash": "4be9554ada1ac886",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15399,
+  "cached_modules": 15400,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -1165,8 +1165,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -3023,6 +3023,55 @@
     "ErdosSzekeres.Ctx.Context.foldl_rightStep_part_map",
     "ErdosSzekeres.ctx_part_opposite_limits_eq._proof_1_1",
     "ErdosSzekeres.Ctx.Context.part_maximumAt_succ"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_reverse_extension_transport",
+   "module": "ESBlueprint.B.CtxReverseExtensionTransport",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Reversing a well-formed context word preserves well-formedness, exchanges left and right extension counts, and transports cup and cap limits with the endpoints reversed. This supplies the capacity transport for reflecting the singleton-end sandwich argument; arbitrary external levels and unused maxima are retained.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    have ρ := { a := σ.a, u := σ.u, k := σ.k, word := σ.word.reverse, maxima := σ.maxima };\n    And ρ.WellFormed\n      (And\n        (∀ (s : ErdosSzekeres.Ctx.Side) (top p : Nat),\n          instLTNat.lt p σ.word.length →\n            And\n              (Eq (ρ.leftExt s top (instHSub.hSub (instHSub.hSub σ.word.length 1) p))\n                (σ.rightExt s top p))\n              (Eq (ρ.rightExt s top (instHSub.hSub (instHSub.hSub σ.word.length 1) p))\n                (σ.leftExt s top p)))\n        (∀ (p q : Nat),\n          instLTNat.lt p σ.word.length →\n            instLTNat.lt q σ.word.length →\n              And\n                (Eq\n                  (ρ.cupLimit (instHSub.hSub (instHSub.hSub σ.word.length 1) q)\n                    (instHSub.hSub (instHSub.hSub σ.word.length 1) p))\n                  (σ.cupLimit p q))\n                (Eq\n                  (ρ.capLimit (instHSub.hSub (instHSub.hSub σ.word.length 1) q)\n                    (instHSub.hSub (instHSub.hSub σ.word.length 1) p))\n                  (σ.capLimit p q))))",
+   "type_hash": "4d6c2aaed124fffe",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_reverse_extension_transport._proof_1_1",
+    "ErdosSzekeres.ctx_reverse_extension_transport._proof_1_2",
+    "ErdosSzekeres.ctx_reverse_extension_transport._simp_1_3",
+    "ErdosSzekeres.ctx_reverse_extension_transport.match_1_8",
+    "ErdosSzekeres.ctx_reverse_extension_transport.match_1_5",
+    "ErdosSzekeres.ctx_reverse_extension_transport._simp_1_10",
+    "ErdosSzekeres.ctx_reverse_extension_transport._proof_1_11",
+    "ErdosSzekeres.ctx_reverse_extension_transport._proof_1_12",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.leftExt_eq",
+    "ErdosSzekeres.Ctx.Context.rightExt_eq",
+    "ErdosSzekeres.ctx_reverse_extension_transport._proof_1_14",
+    "ErdosSzekeres.ctx_reverse_extension_transport._proof_1_15"
    ],
    "helpers": [],
    "status": "closed",
