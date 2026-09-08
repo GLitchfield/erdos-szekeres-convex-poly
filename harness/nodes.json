@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-08T20:25:00Z",
- "git_sha": "abf32d88edcc026b0dcca117fd3d39edfc4e67b4",
+ "generated_at": "2026-09-08T20:35:42Z",
+ "git_sha": "7a84da04da07113fc0a52b4d40ab578470f93cf9",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15407,
- "tree_hash": "c9e138aeca8f6917",
+ "modules": 15408,
+ "tree_hash": "c10d1dae766f3e95",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15406,
+  "cached_modules": 15407,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -2347,6 +2347,69 @@
    "deps_actual": [
     "ErdosSzekeres.ctx_bound_le_numRuns_of_unit_axis_limit.match_1",
     "ErdosSzekeres.ctx_unit_axis_active_region_potential"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+   "module": "ESBlueprint.B.CtxBoundLeOneOfLargeSiblingMaximum",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "An indexed sibling maximum at least k-2 bounds every fuel approximation and the full recursive context bound by one. A further split on that level side joins a removed child to the old maximum and annihilates every kept point capacity; the other part retains the large-maximum witness. Positive external labels suffice, with arbitrary child runs, unused levels, maxima and natural k. Supplies an unbounded-length estimate for saturated outer parts at extreme sandwich couplings.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (x l : Nat) (t : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt x) (ErdosSzekeres.Ctx.Letter.ext l t) → instLENat.le 1 l) →\n    ∀ (N : Nat),\n      List.instMembership.mem σ.levels N →\n        instLENat.le (instHSub.hSub σ.k 2) (σ.maximumAt N) →\n          And (∀ (fuel : Nat), instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 1)\n            (instLENat.le σ.bound 1)",
+   "type_hash": "e5512a3cecbab8a9",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum.match_1_1",
+    "ErdosSzekeres.ctx_part_limits_le",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_3",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_4",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_5",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.Ctx.Context.le_joinExt_of_mem_levelsOn",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_6",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_7",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_9",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_10",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_11",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._simp_1_12",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._simp_1_13",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._simp_1_14",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._simp_1_15",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_succ",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_16",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_17",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_18",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_19",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_20",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum._proof_1_21"
    ],
    "helpers": [],
    "status": "closed",
