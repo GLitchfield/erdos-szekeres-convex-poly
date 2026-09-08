@@ -221,7 +221,13 @@ cuts) or the opposite side (16,056), the two together covering all 19,504*.  So 
 interior helper can be proved by a case split on the side, with the pair inequality a
 four-leaf numeric lemma whose limits move by the unit transfer above, and the residual
 inequality a level-swap monotonicity for the two multi-run residuals; the single-run
-residual cases go through single-run additivity.  The k = 6 rule runs are queued.
+residual cases go through single-run additivity.  At k = 6 the same rule covers 45,150 of
+45,150 termwise cuts at (4,5,6) and 45,728 of 45,772 at (5,5,6); the 44 misses (again the
+`S 1L 2U S S S` family) have a termwise strip with the couplings shifted by one in opposite
+directions, `m + 1` at the root and `d − 1` for the block, so the complete rule is: same end,
+side mirrored or swapped, and couplings `(m, d)` or `(m + 1, d − 1)`.  The general
+prefix/suffix domination falsifier (`ctx_bound_prefix_suffix_domination`, six cases, all
+partitions, 28 minutes) passed.
 
 ## Reproduction
 
