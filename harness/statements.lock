@@ -341,6 +341,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxMixedExchangeOfOrderedLimits"
   },
+  "ErdosSzekeres.ctx_part_capacity_drop_in_clear_interval": {
+    "type_hash": "5f08c4b50fce3f8e",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (x l : Nat) (t : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt x) (ErdosSzekeres.Ctx.Letter.ext l t) → instLENat.le 1 l) →\n    ∀ (keep : List Nat) (s : ErdosSzekeres.Ctx.Side) (m p r : Nat),\n      List.instMembership.mem σ.childPositions p →\n        List.instMembership.mem keep p →\n          List.instMembership.mem σ.childPositions r →\n            Not (List.instMembership.mem keep r) →\n              ∀\n                (hclear :\n                  ∀ (l : Nat),\n                    List.instMembership.mem (σ.levelsOn s 0) l →\n                      ∀ (x : Nat),\n                        List.instMembership.mem (σ.extPositions l) x →\n                          Or (instLTNat.lt x (instMinNat.min p r))\n                            (instLTNat.lt (Nat.instMax.max p r) x)),\n                have τ := σ.part keep s m;\n                And (instLENat.le (instHAdd.hAdd (σ.chainExt s p p) 1) (τ.chainExt s p p))\n                  (And (instLENat.le (instHAdd.hAdd (σ.joinExt s p p) 1) (τ.joinExt s p p))\n                    (ErdosSzekeres.ctx_part_capacity_drop_in_clear_interval.match_1 σ p r\n                      (fun s hclear => Prop) s hclear\n                      (fun hclear =>\n                        instLENat.le (τ.cupLimit p p) (instHSub.hSub (σ.cupLimit p p) 1))\n                      fun hclear =>\n                      instLENat.le (τ.capLimit p p) (instHSub.hSub (σ.capLimit p p) 1)))",
+    "approved_by": "user:2026-09-08 timed autonomous lemma-driven Goal-mode pilot",
+    "approved_at": "2026-09-08",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxPartCapacityDropInClearInterval"
+  },
   "ErdosSzekeres.ctx_part_limits_le": {
     "type_hash": "760bee59c44abf5a",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (keep : List Nat) (s : ErdosSzekeres.Ctx.Side) (m p q : Nat),\n  And (instLENat.le ((σ.part keep s m).cupLimit p q) (σ.cupLimit p q))\n    (instLENat.le ((σ.part keep s m).capLimit p q) (σ.capLimit p q))",
