@@ -211,6 +211,18 @@ no termwise numeric lemma holds for the mirror strip alone; the residual, or the
 the other end, has to carry the difference.  What the existential v2 run measures is
 whether some root strip is always termwise.
 
+*A rule for the strip* (v2 and the rule search, (4,4,5) with up to four letters and two
+levels, 20,520 interior cuts).  Some root strip gives a termwise decomposition, pair and
+residual inequalities both holding, for 19,504 cuts; the other 1,016 are dominated only
+through a single-run residual.  Wherever a termwise strip exists, one is found by the
+rule *same end as the rest part's optimal strip, same coupling `m`, block coupling `d`
+unchanged, and the strip's side either the same as the rest part's (the mirror, 19,272
+cuts) or the opposite side (16,056), the two together covering all 19,504*.  So the
+interior helper can be proved by a case split on the side, with the pair inequality a
+four-leaf numeric lemma whose limits move by the unit transfer above, and the residual
+inequality a level-swap monotonicity for the two multi-run residuals; the single-run
+residual cases go through single-run additivity.  The k = 6 rule runs are queued.
+
 ## Reproduction
 
 ```console

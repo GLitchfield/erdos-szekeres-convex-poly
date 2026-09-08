@@ -93,6 +93,7 @@ def main() -> None:
                         # does ANY root strip (any end, side, coupling; block recut at any coupling) give a
                         # termwise decomposition, i.e. pair and residual inequalities both holding?
                         any_termwise = False; any_total = False
+                        witnesses = []  # (end, s_root, m_root, d_root, s_r, m_r) with pair and residual both holding
                         for e_any in (pos[0], pos[-1]):
                             for s_any in ("lower", "upper"):
                                 for m_any in range(1, k - 1):
@@ -115,9 +116,26 @@ def main() -> None:
                                                     continue
                                                 if bA + F(*E1x) <= F(*E2x) + F(*A2x) and F(*Rpx) <= F(*R2x):
                                                     any_termwise = True
+                                                    witnesses.append(("first" if e_any == pos[0] else "last", s_any, m_any, d_any, s_r, m_r))
                         stats["any_root_strip_dominates"] += any_total
                         stats["any_root_strip_termwise"] += any_termwise
                         stats["dominated_but_never_termwise"] += any_total and not any_termwise
+                        if witnesses:
+                            other = "upper" if o == "lower" else "lower"
+                            rule_hits = {
+                                "mirror (same side, same m, same d)": any(sr == s2 and mr == m2 and d2 == d for (_, s2, m2, d2, sr, mr) in witnesses),
+                                "swap side, same m, same d": any(sr != s2 and mr == m2 and d2 == d for (_, s2, m2, d2, sr, mr) in witnesses),
+                                "root side = block side o, same d": any(s2 == o and d2 == d for (_, s2, m2, d2, sr, mr) in witnesses),
+                                "root side = other side, same d": any(s2 == other and d2 == d for (_, s2, m2, d2, sr, mr) in witnesses),
+                                "same m, same d, any side": any(mr == m2 and d2 == d for (_, s2, m2, d2, sr, mr) in witnesses),
+                                "same d, any side and m": any(d2 == d for (_, s2, m2, d2, sr, mr) in witnesses),
+                                "m within 1, same d": any(abs(mr - m2) <= 1 and d2 == d for (_, s2, m2, d2, sr, mr) in witnesses),
+                                "mirror or swap side (same m, same d)": any(mr == m2 and d2 == d for (_, s2, m2, d2, sr, mr) in witnesses),
+                            }
+                            for name, hit in rule_hits.items():
+                                stats["rule: " + name] += hit
+                            if not rule_hits["same m, same d, any side"] and len(examples["rule_miss"]) < 10:
+                                examples["rule_miss"].append({"word": word, "maxima": list(maxima), "block": sorted(B), "o": o, "d": d, "witnesses": sorted(set(witnesses))[:8]})
                         # optimal end strips of R with a multi-run residual, in the rest part's own coordinates
                         found = False
                         for end, e in (("first", rpos[0]), ("last", rpos[-1])):
