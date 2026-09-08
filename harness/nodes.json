@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-08T23:41:22Z",
- "git_sha": "d21ef6f6c6ddfd8754fb21874c1119c3abe9a34a",
+ "generated_at": "2026-09-08T23:55:35Z",
+ "git_sha": "a92b960dae4a7c0955ea85e22db2b7eea1956c2b",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15421,
- "tree_hash": "857d05f7f630d65d",
+ "modules": 15422,
+ "tree_hash": "f209a5efe2967fe1",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15420,
+  "cached_modules": 15421,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -5100,6 +5100,64 @@
     "ErdosSzekeres.ctx_small_global_axis_rank_region_potential._simp_1_79",
     "ErdosSzekeres.ctx_small_global_axis_rank_region_potential._simp_1_80",
     "ErdosSzekeres.ctx_small_global_axis_rank_region_potential._simp_1_81"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_straddling_removed_marker_unit",
+   "module": "ESBlueprint.B.CtxStraddlingRemovedMarkerUnit",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Two removed children on opposite sides of an indexed old marker force unit point capacities in the same-axis kept part when that axis global parameter is at most four. The unit conclusion allows arbitrary kept sets. If the kept children are convex in child order and share a clear interval on the old marker axis, every fuel approximation and the full bound are at most one. Positive external labels suffice, with arbitrary new maxima, unused levels, empty kept sets and both axes. Supplies the unit contribution when the opposite part spans the old gap in the singleton-end sandwich obstruction.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (N x : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem (σ.extPositions N) x →\n          ∀ (keep : List Nat) (newMax y z : Nat),\n            List.instMembership.mem σ.childPositions y →\n              List.instMembership.mem σ.childPositions z →\n                Not (List.instMembership.mem keep y) →\n                  Not (List.instMembership.mem keep z) →\n                    instLTNat.lt y x →\n                      instLTNat.lt x z →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_straddling_removed_marker_unit.match_1 (fun x => Nat)\n                              (σ.sideAt N) (fun _ => σ.u) fun _ => σ.a)\n                            4 →\n                          have ρ := σ.part keep (σ.sideAt N) newMax;\n                          And\n                            (∀ (p : Nat),\n                              List.instMembership.mem ρ.childPositions p →\n                                instLENat.le\n                                  (ErdosSzekeres.ctx_straddling_removed_marker_unit.match_1\n                                    (fun x => Nat) (σ.sideAt N) (fun _ => ρ.cupLimit p p) fun _ =>\n                                    ρ.capLimit p p)\n                                  1)\n                            ((∀ (p : Nat),\n                                List.instMembership.mem σ.childPositions p →\n                                  List.instMembership.mem keep p →\n                                    ∀ (q : Nat),\n                                      List.instMembership.mem σ.childPositions q →\n                                        List.instMembership.mem keep q →\n                                          ∀ (r : Nat),\n                                            List.instMembership.mem σ.childPositions r →\n                                              instLENat.le (instMinNat.min p q) r →\n                                                instLENat.le r (Nat.instMax.max p q) →\n                                                  List.instMembership.mem keep r) →\n                              (∀ (p : Nat),\n                                  List.instMembership.mem σ.childPositions p →\n                                    List.instMembership.mem keep p →\n                                      ∀ (q : Nat),\n                                        List.instMembership.mem σ.childPositions q →\n                                          List.instMembership.mem keep q →\n                                            ∀ (j : Nat),\n                                              List.instMembership.mem (σ.levelsOn (σ.sideAt N) 0)\n                                                  j →\n                                                ∀ (w : Nat),\n                                                  List.instMembership.mem (σ.extPositions j) w →\n                                                    Or (instLTNat.lt w (instMinNat.min p q))\n                                                      (instLTNat.lt (Nat.instMax.max p q) w)) →\n                                And\n                                  (∀ (fuel : Nat),\n                                    instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel ρ) 1)\n                                  (instLENat.le ρ.bound 1))",
+   "type_hash": "c792eebcc0cb43b3",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit.match_1",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._simp_1_1",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_2",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_3",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_4",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_zero",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_5",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_6",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_7",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_8",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_9",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_10",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_11",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_14",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_15",
+    "ErdosSzekeres.ctx_bound_le_one_of_clear_unit_axis",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_16",
+    "ErdosSzekeres.ctx_straddling_removed_marker_unit._proof_1_17"
    ],
    "helpers": [],
    "status": "closed",
