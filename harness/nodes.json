@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-08T23:11:59Z",
- "git_sha": "d00f37d020932ecb816bf80ad3b6f6feb8bc5394",
+ "generated_at": "2026-09-08T23:23:59Z",
+ "git_sha": "d6ef86afdb569a2fadc37890a0d62bb0544c2efe",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15419,
- "tree_hash": "27294684a1c3bad6",
+ "modules": 15420,
+ "tree_hash": "8cd88babd5ccfd6a",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15418,
+  "cached_modules": 15419,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -3579,6 +3579,62 @@
     "ErdosSzekeres.ctx_mixed_exchange_of_ordered_limits._proof_1_6",
     "ErdosSzekeres.ctx_mixed_exchange_of_ordered_limits._proof_1_7",
     "ErdosSzekeres.ctx_bound_opposite_removals_commute"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_one_sided_part_boundary_budget",
+   "module": "ESBlueprint.B.CtxOneSidedPartBoundaryBudget",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "An opposite-side recursive part kept entirely on one side of an indexed older marker has a linear rank budget, with one unit deducted for a certified removed child on each side of every kept child. The older marker and all younger markers on its side satisfy the boundary geometry; the normalized marker-side global parameter is at most three. Covers arbitrary kept lists, new maxima, both directions and axes, zero losses and empty kept sets. Converts the quantitative boundary rank theorem into the concrete one-sided cut estimate needed for the unbounded sandwich obstruction.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (N x : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem (σ.extPositions N) x →\n          ∀ (keep : List Nat) (t : ErdosSzekeres.Ctx.Side),\n            Ne (σ.sideAt N) t →\n              ∀ (newMax : Nat) (rightward : Bool),\n                (∀ (p : Nat),\n                    List.instMembership.mem σ.childPositions p →\n                      List.instMembership.mem keep p →\n                        ite (Eq rightward Bool.true) (instLTNat.lt p x) (instLTNat.lt x p)) →\n                  (∀ (j : Nat),\n                      List.instMembership.mem (σ.levelsOn (σ.sideAt N) N) j →\n                        ∀ (p : Nat),\n                          List.instMembership.mem (σ.extPositions j) p →\n                            ite (Eq rightward Bool.true) (instLTNat.lt p x) (instLTNat.lt x p)) →\n                    instLENat.le\n                        (instMinNat.min\n                          (instHSub.hSub\n                            (ErdosSzekeres.ctx_one_sided_part_boundary_budget.match_1 (fun x => Nat)\n                              (σ.sideAt N) (fun _ => σ.u) fun _ => σ.a)\n                            1)\n                          (instHSub.hSub σ.k (σ.maximumAt N)))\n                        3 →\n                      ∀ (A B : Nat),\n                        instLENat.le A 1 →\n                          instLENat.le B 1 →\n                            (instLTNat.lt 0 A →\n                                ∀ (p : Nat),\n                                  List.instMembership.mem σ.childPositions p →\n                                    List.instMembership.mem keep p →\n                                      Exists fun q =>\n                                        And (List.instMembership.mem σ.childPositions q)\n                                          (And (Not (List.instMembership.mem keep q))\n                                            (instLTNat.lt q p))) →\n                              (instLTNat.lt 0 B →\n                                  ∀ (p : Nat),\n                                    List.instMembership.mem σ.childPositions p →\n                                      List.instMembership.mem keep p →\n                                        Exists fun q =>\n                                          And (List.instMembership.mem σ.childPositions q)\n                                            (And (Not (List.instMembership.mem keep q))\n                                              (instLTNat.lt p q))) →\n                                have ρ := σ.part keep t newMax;\n                                have budget :=\n                                  instHSub.hSub\n                                    (instHSub.hSub\n                                      (instHSub.hSub\n                                        (ErdosSzekeres.ctx_one_sided_part_boundary_budget.match_1\n                                          (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                        1)\n                                      A)\n                                    B;\n                                And\n                                  (∀ (fuel : Nat),\n                                    instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel ρ)\n                                      budget)\n                                  (instLENat.le ρ.bound budget)",
+   "type_hash": "e5414507f316c8fc",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget.match_1",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._simp_1_1",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._simp_1_2",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._simp_1_3",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._proof_1_4",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._proof_1_5",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._proof_1_6",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._proof_1_7",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._proof_1_9",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._simp_1_10",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._proof_1_11",
+    "ErdosSzekeres.ctx_one_sided_part_boundary_budget._proof_1_12",
+    "ErdosSzekeres.ctx_boundary_marker_rank_budget.match_1",
+    "ErdosSzekeres.ctx_boundary_marker_rank_budget"
    ],
    "helpers": [],
    "status": "closed",
