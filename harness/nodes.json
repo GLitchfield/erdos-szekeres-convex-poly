@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-08T20:52:02Z",
- "git_sha": "ca0ba576fe1001cc73fe02ad77d4d7ab568704bb",
+ "generated_at": "2026-09-08T21:01:09Z",
+ "git_sha": "fd297977d57572e15358b73ecc57c27f905c02a2",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15409,
- "tree_hash": "494ef08814c14b38",
+ "modules": 15410,
+ "tree_hash": "5a49a6bf30194fae",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15408,
+  "cached_modules": 15409,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -2430,6 +2430,45 @@
    "deps_declared": [],
    "deps_actual": [
     "ErdosSzekeres.ctx_bound_le_numRuns_of_unit_axis_limit.match_1",
+    "ErdosSzekeres.ctx_unit_axis_active_region_potential"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_le_one_of_clear_unit_axis",
+   "module": "ESBlueprint.B.CtxBoundLeOneOfClearUnitAxis",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A context with unit pointwise capacity on one axis has bound at most one when every pair of children has a clear interval on that axis. Allows arbitrarily many physical runs separated on the opposite side, empty child sets, and unused levels; positive external labels suffice. Consumes the active-region potential: all child marker labels agree, so there is at most one active region. Supplies the degenerate opposite-axis case in small-capacity interval-complement additivity.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (x l : Nat) (t : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt x) (ErdosSzekeres.Ctx.Letter.ext l t) → instLENat.le 1 l) →\n    ∀ (s : ErdosSzekeres.Ctx.Side),\n      (∀ (p : Nat),\n          List.instMembership.mem σ.childPositions p →\n            instLENat.le\n              (ErdosSzekeres.ctx_bound_le_one_of_clear_unit_axis.match_1 (fun s => Nat) s\n                (fun _ => σ.cupLimit p p) fun _ => σ.capLimit p p)\n              1) →\n        (∀ (p : Nat),\n            List.instMembership.mem σ.childPositions p →\n              ∀ (q : Nat),\n                List.instMembership.mem σ.childPositions q →\n                  ∀ (l : Nat),\n                    List.instMembership.mem (σ.levelsOn s 0) l →\n                      ∀ (x : Nat),\n                        List.instMembership.mem (σ.extPositions l) x →\n                          Or (instLTNat.lt x (instMinNat.min p q))\n                            (instLTNat.lt (Nat.instMax.max p q) x)) →\n          And (∀ (fuel : Nat), instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 1)\n            (instLENat.le σ.bound 1)",
+   "type_hash": "9c2c6a1a74e74db5",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_le_one_of_clear_unit_axis.match_1",
+    "ErdosSzekeres.ctx_bound_le_one_of_clear_unit_axis._simp_1_1",
+    "ErdosSzekeres.ctx_bound_le_one_of_clear_unit_axis._proof_1_2",
+    "ErdosSzekeres.ctx_bound_le_one_of_clear_unit_axis._proof_1_3",
     "ErdosSzekeres.ctx_unit_axis_active_region_potential"
    ],
    "helpers": [],
