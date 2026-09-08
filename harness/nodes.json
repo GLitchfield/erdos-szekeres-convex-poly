@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-08T23:23:59Z",
- "git_sha": "d6ef86afdb569a2fadc37890a0d62bb0544c2efe",
+ "generated_at": "2026-09-08T23:41:22Z",
+ "git_sha": "d21ef6f6c6ddfd8754fb21874c1119c3abe9a34a",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15420,
- "tree_hash": "8cd88babd5ccfd6a",
+ "modules": 15421,
+ "tree_hash": "857d05f7f630d65d",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15419,
+  "cached_modules": 15420,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -2796,6 +2796,63 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion",
+   "module": "ESBlueprint.B.CtxBoundMonoOfMarkerInclusion",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A recursive comparison principle for indexed marker inclusion. With common child pattern, word length, depth and k, preserving indexed level sides while deleting marker positions, lowering sibling maxima and increasing a/u can only increase all cup/cap limits and every fuel approximation of the recursive bound. Positive external labels in both contexts suffice. The proof transports extension witnesses by skipping unused levels and preserves the comparison through arbitrary parts, including empty new levels. Extends identical-word maximum domination and supports thinning external histories to essential markers in the unresolved sandwich and gap comparisons.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ τ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n        Eq (τ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n      instLENat.le σ.a τ.a →\n        instLENat.le σ.u τ.u →\n          Eq σ.k τ.k →\n            Eq σ.word.length τ.word.length →\n              (∀ (p : Nat),\n                  Iff (Eq (σ.letterAt p) ErdosSzekeres.Ctx.Letter.child)\n                    (Eq (τ.letterAt p) ErdosSzekeres.Ctx.Letter.child)) →\n                Eq σ.maxima.length τ.maxima.length →\n                  (∀ (j : Nat),\n                      List.instMembership.mem σ.levels j →\n                        And (Eq (τ.sideAt j) (σ.sideAt j))\n                          (And (List.instHasSubset.Subset (τ.extPositions j) (σ.extPositions j))\n                            (instLENat.le (τ.maximumAt j) (σ.maximumAt j)))) →\n                    And\n                      (∀ (p q : Nat),\n                        And (instLENat.le (σ.cupLimit p q) (τ.cupLimit p q))\n                          (instLENat.le (σ.capLimit p q) (τ.capLimit p q)))\n                      (And\n                        (∀ (fuel : Nat),\n                          instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                            (ErdosSzekeres.Ctx.Context.boundFuel fuel τ))\n                        (instLENat.le σ.bound τ.bound))",
+   "type_hash": "a7e307d70dbf463a",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_1",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_2",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_3",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_4",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_5",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_6",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_7",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_8",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_9",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_10",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._proof_1_11",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._simp_1_12",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._simp_1_13",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._simp_1_14",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion._simp_1_15"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-08"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_opposite_level_swap",
