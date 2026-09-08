@@ -267,4 +267,7 @@ context of `(4,5,6)` with up to four child letters and *three* external levels: 
 contexts, 6,012,910 interleaved partitions, **no violation**
 (`data/derived/decomposable-additivity-456-s4e3l3-lean.json`; eight `es job run` shards
 at 2 GiB, about 3.4 h each).  The k = 6 evidence so far had two external levels; this is
-the first three-level run at k = 6.
+the first three-level run at k = 6.  The same run at `(5,5,6)`, the case where sandwiches
+first defeat the stacked recursion, is also clean: 625,247 contexts, 443,022 nonzero,
+6,012,910 partitions, **no violation** (`data/derived/decomposable-additivity-556-s4e3l3-lean.json`,
+eight shards, 3.5 h each, finished 8 September 03:20).

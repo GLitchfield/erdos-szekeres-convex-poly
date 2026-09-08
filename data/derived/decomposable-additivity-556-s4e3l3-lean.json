@@ -1,0 +1,80 @@
+{
+ "case": "5,5,6",
+ "recursion": "lean (literal Lean recursion, zero-valued children kept)",
+ "s_max": 4,
+ "e_max": 3,
+ "levels": 3,
+ "shards": [
+  {
+   "shard": "0/8",
+   "contexts": 78156,
+   "nonzero_contexts": 61160,
+   "partitions": 751608,
+   "violations": 0,
+   "seconds": 12660.4
+  },
+  {
+   "shard": "1/8",
+   "contexts": 78156,
+   "nonzero_contexts": 51735,
+   "partitions": 751608,
+   "violations": 0,
+   "seconds": 12615.0
+  },
+  {
+   "shard": "2/8",
+   "contexts": 78156,
+   "nonzero_contexts": 45161,
+   "partitions": 751616,
+   "violations": 0,
+   "seconds": 12652.3
+  },
+  {
+   "shard": "3/8",
+   "contexts": 78156,
+   "nonzero_contexts": 66425,
+   "partitions": 751616,
+   "violations": 0,
+   "seconds": 12652.6
+  },
+  {
+   "shard": "4/8",
+   "contexts": 78156,
+   "nonzero_contexts": 58122,
+   "partitions": 751616,
+   "violations": 0,
+   "seconds": 12639.1
+  },
+  {
+   "shard": "5/8",
+   "contexts": 78156,
+   "nonzero_contexts": 50286,
+   "partitions": 751620,
+   "violations": 0,
+   "seconds": 12605.4
+  },
+  {
+   "shard": "6/8",
+   "contexts": 78156,
+   "nonzero_contexts": 40537,
+   "partitions": 751620,
+   "violations": 0,
+   "seconds": 12613.7
+  },
+  {
+   "shard": "7/8",
+   "contexts": 78155,
+   "nonzero_contexts": 69596,
+   "partitions": 751606,
+   "violations": 0,
+   "seconds": 12804.2
+  }
+ ],
+ "totals": {
+  "contexts": 625247,
+  "nonzero_contexts": 443022,
+  "partitions": 6012910,
+  "violations": 0
+ },
+ "jobs": "es job run, eight shards at 2 GiB caps, 2026-09-07/08, about 3.5 h each"
+}
