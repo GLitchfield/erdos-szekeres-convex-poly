@@ -53,6 +53,48 @@ strictly inside the other, the two-run sandwich), e.g. `S 1L S S` with maxima (1
 `d = 2` are worth 9.  The k = 5 runs with up to five letters and a refined probe (which
 end, which sign of the shift) are in `runs/experiments/20260907-exchange/tworun-*.json`.
 
+## 2b. The stripping step, tested (same day, later)
+
+`scripts/decomposable_strip_end_test.py` tests the induction step directly: cut the first
+or last child position `p` off as a singleton, on the side its membership gives it (the
+kept side if `p ∈ K`, the other side otherwise) or on the opposite side, at some coupling
+`d₂`, and compare `V_σ(K, o, d)` with `base({p}) + V_{σ'}(K ∖ {p}, o, d₃)`, the value of
+the *same* partition in the reduced context `σ'`.  At (4,4,5) with up to four letters and
+one level, with `p` on its membership side:
+
+| pattern | splits | step holds | with `d₂ = d₃ = d` |
+|---|---|---|---|
+| A-B-A-B (4 blocks) | 216 | 216 | 216 |
+| 3 blocks (a sandwich) | 792 | 784 | 620 |
+
+So for A-B-A-B the induction step is exactly as hoped, with the original coupling on both
+sides (a first version that put `p` on the kept side regardless of membership failed 4
+times: membership decides the side).  For three blocks it fails in eight cases, e.g.
+`S S 1L S S` with maxima (1), keep {1}, upper, `d = 1`: the partition is worth 5, the
+whole bound of `σ`, while every end-singleton cut on the membership side is worth at most
+4 = 1 + 3.  Two things can rescue such a case: the cut at the run boundary `{0, 1} | {3, 4}`
+(both parts single runs), or the end singleton on the *opposite* side, which the
+exhaustive scans say always exists in one of the four end-cut forms.  Probe v3 (queued)
+and the strip test with both sides decide which move the induction should take.
+
+## 2c. The bound is attained by an end cut (same day, evening)
+
+`scripts/decomposable_end_cut_normal_form.py` asks a question about the recursion alone:
+is `bound σ`, the maximum over *all* interval cuts, always attained by a cut that isolates
+the first or the last child position (either side, some coupling)?  At k = 6 on (4,5,6)
+and (5,5,6) with up to four child letters and two external levels, every context with two
+or three runs and a nonzero bound, 2,600 of them, has its bound attained by such an end
+cut (interior blocks never win).  If this holds in general, every cut tree normalizes to a
+sequence of end strips, `bound` has a recursion over end cuts only, and the exchange lemma
+becomes a commutation of two end strips: the partition tree strips an end of one part,
+the exchanged tree strips the same position at the root.  The k = 5 runs with up to five
+letters and the three-run contexts at larger sizes are queued.
+
+Whether one strip at the *global* end always suffices for the induction of §3 is what the
+both-sides strip test (v3) measures; with the end position confined to its membership
+side and two external levels it fails on 112 to 324 four-block splits per case, so the
+side has to be free.
+
 ## 3. Proof plan
 
 Induction on the number of child positions, exchanging one end position at a time.
@@ -68,15 +110,124 @@ Induction on the number of child positions, exchanging one end position at a tim
    `p₁` off that leaf costs at most the threshold difference that the new external letter
    at `p₁` charges to the rest, which is the Pascal step of the prefix/suffix node
    (`ctx_bound_additive_prefix_suffix`) applied inside the part.  The data say this never
-   needs a change of coupling, so the induction can carry `d` unchanged.
+   needs a change of coupling, so the induction can carry `d` unchanged, provided the
+   stripped position keeps its own side (§2b).  Stripping an end of a four-block pattern
+   whose end block is a singleton produces a three-block pattern, so milestone A rests on
+   milestone B.
 2. **Milestone B (three blocks).**  When one side is an interior block of the other, the
-   end cut needs `d' = d ± 1`; the probe's shift-sign statistic will say which, and the
-   candidate identity is the window split `T(a,u,k) = T(a,k−d,k) + T(d+1,u,k)` of 0123 §1
-   moved by one unit.
+   single strip on the membership side is not always enough (§2b); the run-boundary cut,
+   whose parts are single runs, or the end singleton on the opposite side rescues the
+   failures.  The step to prove there is a comparison of leaf values, the three-way base
+   allocation (`ctx_bound_three_way_base_allocation`, closed) composed with the
+   prefix/suffix Pascal step, once the leaves' limits under the sandwich tree are shown to
+   be no better than under the exchanged tree; that monotonicity of limits under
+   re-rooting a cut tree is the lemma still missing.  The shift statistics show recoupling
+   by one in both directions, so the coupling has to be chosen from the leaves, not by a
+   fixed rule.
 3. **Assembly.**  Milestones A and B cover every partition of a two-run context that is
    not itself a prefix/suffix cut (two blocks are exactly those); with `ctx_bound_cut_le`
    this is additivity for two-run contexts.  The general statement (any number of runs)
    should follow the same induction with the number of runs as a secondary measure.
+
+4. **Dependency structure after the strip tests (evening).**  With the stripped end free
+   to take either side (v3, k = 5 and 6, up to four letters, two levels), the step
+   `V_σ(K, o, d) ≤ base({p}) + V_{σ'}(K ∖ {p}, o, d₃)` holds for every four-block split
+   in all four cases and for every three-block split except 64 at (5,5,6), all of the form
+   `S 1L 2U S S S` with the kept block strictly inside the second run.  There the
+   dominating cut is the run cut `{0} | {3, 4, 5}`, whose residual is a *single* run: what
+   continues the induction is `bound(σ') = base(σ') ≥ V_{σ'}(K ∖ {p})`, single-run
+   additivity for a sandwich, not the same partition.  So the two-run lemma decomposes as
+
+   - the **strip lemma** for residuals with two runs (a level-swap comparison between
+     "cut K first, strip p inside a part" and "strip p first, cut K inside the rest"),
+   - **single-run sandwich additivity** (`ctx_bound_additive_single_run` restricted to
+     interior blocks; Codex's singleton-ended draft is the first case),
+   - induction on the number of child positions, with `ctx_bound_cut_le` and the closed
+     prefix/suffix node at the bottom;
+
+   and the end-cut normal form (`ctx_bound_attained_by_end_cut`) is the same strip lemma
+   applied to interval partitions.  The strip lemma is where the Lean work starts: its two
+   sides differ only in the levels of two letter groups (the stripped position and the
+   other part) and in the maxima the couplings assign, which is a finite comparison of
+   `leftExt`/`rightExt`/`joinExt` values that the existing `part_*` and `withMaximum`
+   lemmas of `DecomposableContextLemmas` can express.
+
+## 4. Lean status and the rule behind the interior case (evening)
+
+*Confirmed at k = 5.*  The end-cut normal form also holds on every context with up to five
+child letters and two levels at (4,4,5), (4,5,5), (5,5,5): all 2,540 contexts per case with
+two or three runs and a nonzero bound have their bound attained by an end cut.
+
+*What is proved in Lean* (`ESBlueprint/B/CtxBoundAttainedByEndCut.lean`, compiles, one
+`sorry`): a nonempty list attains its maximum; the recursion stabilizes once the fuel
+exceeds the child count (`boundFuel_eq_bound`), so the recursion's inner values are the
+parts' bounds; two runs force an external letter and hence `3 ≤ k`; and the node reduces
+to one helper, `ctx_cut_le_end_cut`: every interval cut of a context with at least two
+runs, in either orientation, is dominated by an end cut in one of the two forms of the
+statement.  Its end-block cases are list bookkeeping; its interior case is the strip
+inequality.
+
+*The rule behind the interior case*, from `scripts/decomposable_strip_rule.py` at
+(4,4,5), (4,5,6), (5,5,6) with up to four letters and two levels (20,520 to 47,488
+interior cuts per case): the root strip that *mirrors* the rest part's optimal first strip,
+same end, same side, same coupling, with the block's coupling unchanged in the residual,
+dominates 95.7 % of interior cuts.  Of the rest, 388 to 1,180 per case are dominated only
+through a single-run residual (the block cut inside the residual is then a single-run
+sandwich, and single-run additivity is what continues), and 44 cuts at (5,5,6), all
+`S 1L 2U S S S` with maxima (1, 1) and the block {4}, are dominated by no end strip that
+re-cuts the same block: the residual must be cut differently.  The mirror inequality is
+not term by term (each of its three leaf comparisons fails on its own in about a third of
+the cases), so the Lean proof of the interior case has to compare the two trees' totals
+with the residual's bound treated as a maximum, not follow the leaves one by one.
+That comparison is the open step.
+
+*Leaf by leaf* (`scripts/decomposable_strip_numeric.py`, first run at (4,4,5) with up to
+four letters and one level, 396 interior cuts): along the mirror strip the pair
+comparison `base(A) + base(E₁) ≤ base(E₂) + base(A')` holds for 820 of 936 strips and the
+residual comparison `bound(R') ≤ bound(R'')` for 800, both for 684; the mirror total holds
+for 744, so 60 totals hold without either part.  But allowing *any* root strip (either
+end, either side, any coupling, block recut at any coupling), every interior cut is
+dominated and 376 of 396 are dominated *termwise*, pair and residual both; the 20 others
+are dominated only through a single-run residual.  So the Lean proof can pick the strip
+existentially and prove two separate inequalities, a four-leaf numeric one and a
+residual one (two multi-run contexts with two letter groups at swapped levels, which is
+the normal form's induction), rather than one global comparison.  The k = 6 runs of this
+probe are queued; the four-leaf tuples it records are the input for the numeric lemma.
+
+*The unit transfer* (k = 5 and 6, up to four letters, two levels, 61,232 to 185,052
+mirror strips per case).  Along the mirror strip the four leaves' limits move by at most
+one unit, in a fixed pattern: on the strip's side the block `A` *loses* one unit and the
+singleton `E` *gains* one (for a lower strip the cap limit, for an upper strip the cup
+limit), and when the block's orientation differs from the strip's side the block keeps
+its limits or loses one on its own side while the singleton gains at most one.  The
+mechanism is a chain that can use the stripped position at the outer level in one tree
+and not in the other, so one unit of extension moves from the block's leaf to the
+singleton's.  The pair inequality `base(A) + base(E₁) ≤ base(E₂) + base(A')` is then a
+comparison of marginals: it fails exactly when the block loses a unit worth more than
+the singleton gains (at k = 5 every failure has the block losing one and the singleton
+gaining nothing, mostly because the singleton is worth zero on both sides; at k = 6 the
+block can lose up to four).  A large block can lose more than a singleton can gain, so
+no termwise numeric lemma holds for the mirror strip alone; the residual, or the strip at
+the other end, has to carry the difference.  What the existential v2 run measures is
+whether some root strip is always termwise.
+
+*A rule for the strip* (v2 and the rule search, (4,4,5) with up to four letters and two
+levels, 20,520 interior cuts).  Some root strip gives a termwise decomposition, pair and
+residual inequalities both holding, for 19,504 cuts; the other 1,016 are dominated only
+through a single-run residual.  Wherever a termwise strip exists, one is found by the
+rule *same end as the rest part's optimal strip, same coupling `m`, block coupling `d`
+unchanged, and the strip's side either the same as the rest part's (the mirror, 19,272
+cuts) or the opposite side (16,056), the two together covering all 19,504*.  So the
+interior helper can be proved by a case split on the side, with the pair inequality a
+four-leaf numeric lemma whose limits move by the unit transfer above, and the residual
+inequality a level-swap monotonicity for the two multi-run residuals; the single-run
+residual cases go through single-run additivity.  At k = 6 the same rule covers 45,150 of
+45,150 termwise cuts at (4,5,6) and 45,728 of 45,772 at (5,5,6); the 44 misses (again the
+`S 1L 2U S S S` family) have a termwise strip with the couplings shifted by one in opposite
+directions, `m + 1` at the root and `d − 1` for the block, so the complete rule is: same end,
+side mirrored or swapped, and couplings `(m, d)` or `(m + 1, d − 1)`.  The general
+prefix/suffix domination falsifier (`ctx_bound_prefix_suffix_domination`, six cases, all
+partitions, 28 minutes) passed.
 
 ## Reproduction
 

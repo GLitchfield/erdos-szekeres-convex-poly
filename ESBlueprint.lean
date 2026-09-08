@@ -18,6 +18,9 @@ import ESBlueprint.B.CtxBoundIntervalOrComplementLe
 import ESBlueprint.B.CtxBoundSameSizeExchangeCounterexample
 import ESBlueprint.B.CtxBoundThreeWayBaseAllocation
 import ESBlueprint.B.CtxBoundTwoRunBoundaryDomination
+import ESBlueprint.B.CtxBoundAttainedByEndCut
+import ESBlueprint.B.CtxBoundPrefixSuffixDomination
+import ESBlueprint.B.CtxBoundAdditiveSandwichSingletonEnds
 import ESBlueprint.F.DecomposableExtremalInsertion
 import ESBlueprint.F.DecomposableExtremalInsertionDichotomy
 import ESBlueprint.B.CtxBoundAdjacentLetterContraction
@@ -25,3 +28,4 @@ import ESBlueprint.B.CtxBoundAdjacentLetterContractionCounterexample
 import ESBlueprint.B.CtxBoundExternalLetterContraction
 import ESBlueprint.B.CtxBaseChildLetterContraction
 import ESBlueprint.B.CtxUniformContractionMatchingCutFailure
+import ESBlueprint.B.CtxBoundAdditiveThreeBlocksOfUniformContraction

@@ -260,3 +260,11 @@ conjectures.  The two-run restriction of it is registered as the node
 `harness/falsifiers/ctx_two_run_boundary.py` (Gavin and Codex's proposal, 7 September);
 `scripts/decomposable_two_run_domination.py` records which prefix/suffix cut and which
 coupling do the dominating, starting with the A-B-A-B membership pattern.
+
+**Addendum 7, 7 September: three external levels at k = 6.**  Interval-cut additivity in
+the literal Lean recursion (zero-valued children kept, unused levels included) on every
+context of `(4,5,6)` with up to four child letters and *three* external levels: 625,247
+contexts, 6,012,910 interleaved partitions, **no violation**
+(`data/derived/decomposable-additivity-456-s4e3l3-lean.json`; eight `es job run` shards
+at 2 GiB, about 3.4 h each).  The k = 6 evidence so far had two external levels; this is
+the first three-level run at k = 6.

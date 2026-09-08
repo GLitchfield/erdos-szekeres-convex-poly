@@ -1,0 +1,52 @@
+{
+ "node": "ErdosSzekeres.ctx_bound_prefix_suffix_domination",
+ "falsifier": "ctx_prefix_suffix_domination.py",
+ "falsifier_sha256": "07ad3d02339c29e3cd17aef24248467f3e6758676d3e24d79a7b053033c3816d",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "dab0805effb44b48",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 1684.5,
+ "at": "2026-09-08T00:08:52Z",
+ "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
+ "witness": {
+  "node": "ErdosSzekeres.ctx_bound_prefix_suffix_domination",
+  "candidate": "prefix_suffix_same_orientation",
+  "recursion": "lean",
+  "runs": "any",
+  "partitions": "all but prefix/suffix cuts",
+  "cases": {
+   "4,4,5": {
+    "contexts": 2493,
+    "splits": 67308,
+    "failures": 0
+   },
+   "4,5,5": {
+    "contexts": 2493,
+    "splits": 67308,
+    "failures": 0
+   },
+   "5,4,5": {
+    "contexts": 2493,
+    "splits": 67308,
+    "failures": 0
+   },
+   "5,5,5": {
+    "contexts": 2493,
+    "splits": 67308,
+    "failures": 0
+   },
+   "4,5,6": {
+    "contexts": 4315,
+    "splits": 155472,
+    "failures": 0
+   },
+   "5,5,6": {
+    "contexts": 4315,
+    "splits": 155472,
+    "failures": 0
+   }
+  },
+  "violations": []
+ }
+}

@@ -1,0 +1,3038 @@
+{
+  "case": "5,5,5",
+  "parameters": {
+    "case": "5,5,5",
+    "s_max": 4,
+    "e_max": 2,
+    "levels": 2,
+    "max_contexts": 0,
+    "runs": "any",
+    "true_crossing_only": false,
+    "all_partitions": true,
+    "include_unused_levels": false,
+    "output": "/home/gavin/git/erdos-szekeres-convex-poly/harness/dataset/ctx_prefix_suffix_domination/domination-555-s4e2l2.json",
+    "cache_size": 1500000
+  },
+  "stats": {
+    "contexts": 2493,
+    "splits": 67308,
+    "failures": {
+      "same_size_same_parameters": 2358,
+      "any_block_same_parameters": 2072,
+      "any_block_fixed_coupling": 0,
+      "any_block_same_orientation": 0,
+      "any_interval_cut": 0,
+      "hull_keep_same_coupling": 26624,
+      "hull_keep_any_coupling": 26464,
+      "hull_rest_any_coupling": 27960,
+      "hulls_any_coupling": 0,
+      "prefix_suffix_same_parameters": 4144,
+      "prefix_suffix_same_coupling": 4144,
+      "prefix_suffix_same_orientation": 0,
+      "prefix_suffix_any": 0,
+      "end_singleton_same_coupling": 4144
+    }
+  },
+  "examples": {
+    "same_size_same_parameters": [
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "1L",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          0,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "S",
+          "1L",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          0,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 4,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "S",
+          "1L",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          0,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "S",
+          "1U",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          0,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "1U",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          0,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "1U",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          0,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 4,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      }
+    ],
+    "any_block_same_parameters": [
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "1L",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          0
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "S",
+          "1L",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          0
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 4,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "S",
+          "1L",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          0
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "S",
+          "1U",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          0
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "1U",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          0
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "1U",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          0,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          0
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 4,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      }
+    ],
+    "any_block_fixed_coupling": [],
+    "any_block_same_orientation": [],
+    "any_interval_cut": [],
+    "hull_keep_same_coupling": [
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 5,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 5,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 1,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 7,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 7,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 4,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 2,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "upper",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 7,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      }
+    ],
+    "hull_keep_any_coupling": [
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 5,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 5,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 1,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          0,
+          2
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 7,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 7,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 4,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 2,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "upper",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 7,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      }
+    ],
+    "hull_rest_any_coupling": [
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          1
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 5,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          1
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          1
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          1
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 1,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          1
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 8,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [],
+        "parent_bound": 8,
+        "keep": [
+          1
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 5,
+        "best": -1,
+        "best_block": [
+          0,
+          1,
+          2
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 8,
+        "rescue_block": [
+          0
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 2,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 7,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 7,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "upper",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 7,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 4,
+        "best": -1,
+        "best_block": [
+          1,
+          2,
+          3
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      }
+    ],
+    "hulls_any_coupling": [],
+    "prefix_suffix_same_parameters": [
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "upper",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "upper",
+        "best_d": 1,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "upper",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "upper",
+        "best_d": 3,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      }
+    ],
+    "prefix_suffix_same_coupling": [
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      }
+    ],
+    "prefix_suffix_same_orientation": [],
+    "prefix_suffix_any": [],
+    "end_singleton_same_coupling": [
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 2
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 1,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 1,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 1,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1L",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 3
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          1
+        ],
+        "parent_bound": 7,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 7,
+        "best": 5,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 7,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          2
+        ],
+        "orientation": "lower",
+        "d": 3,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 2,
+        "target": 4,
+        "best": 3,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 2,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      },
+      {
+        "word": [
+          "1U",
+          "S",
+          "S",
+          "S"
+        ],
+        "maxima": [
+          2
+        ],
+        "parent_bound": 4,
+        "keep": [
+          1,
+          3
+        ],
+        "orientation": "upper",
+        "d": 3,
+        "target": 3,
+        "best": 2,
+        "best_block": [
+          1
+        ],
+        "best_orientation": "lower",
+        "best_d": 3,
+        "rescue": 4,
+        "rescue_block": [
+          1
+        ],
+        "rescue_orientation": "lower",
+        "rescue_d": 1
+      }
+    ]
+  },
+  "scope": "any child run(s) with occupied levels",
+  "interpretation": "finite evidence only; splits count oriented coupling cases"
+}
