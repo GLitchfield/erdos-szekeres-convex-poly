@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T05:59:46Z",
- "git_sha": "252760b2242c6a78b8682b7392b394abd4d343d1",
+ "generated_at": "2026-09-09T06:12:12Z",
+ "git_sha": "697b4a86474f79012fbf5248a4a022d8b75136ec",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15444,
- "tree_hash": "66788d1f5553d400",
+ "modules": 15445,
+ "tree_hash": "0c3d05b0944d2c89",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15443,
+  "cached_modules": 15444,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -5568,6 +5568,59 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_part_pruning_history_transport",
+   "module": "ESBlueprint.B.CtxPartPruningHistoryTransport",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Exact pruning transport for a context part. Replace removed children by positive unindexed external letters, preserving all indexed history, side lists, pure extension traces and endpoint capacities; the active support is exactly the retained subset. Every fuel approximation of the part and its full bound are at most those of this pruned original-history context, by erasing the newly added level. No global-capacity, activity, interval, nonempty, or coupling restrictions are needed. Exposes the pruning construction used locally in zero-capacity comparison, adding exact active-support and all-fuel transport for reuse. Removes the inactive-companion induction obstruction in the one-level exterior potential proof: apply the prior-fuel hypothesis to the pruned context, whose occupied-zone and rank sets only decrease.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (keep : List Nat) (v : ErdosSzekeres.Ctx.Side) (m : Nat),\n      have τ :=\n        { a := σ.a, u := σ.u, k := σ.k,\n          word :=\n            List.map\n              (fun p =>\n                ErdosSzekeres.ctx_part_pruning_history_transport.match_1\n                  (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt p)\n                  (fun _ =>\n                    ite (List.instMembership.mem keep p) ErdosSzekeres.Ctx.Letter.child\n                      (ErdosSzekeres.Ctx.Letter.ext (instHAdd.hAdd σ.maxima.length 1) v))\n                  fun j s => ErdosSzekeres.Ctx.Letter.ext j s)\n              (List.range σ.word.length),\n          maxima := σ.maxima };\n      have active := fun ρ =>\n        Finset.filter\n          (fun p => And (instLTNat.lt 0 (ρ.cupLimit p p)) (instLTNat.lt 0 (ρ.capLimit p p)))\n          ρ.childPositions.toFinset;\n      And\n        (∀ (p j : Nat) (s : ErdosSzekeres.Ctx.Side),\n          Eq (τ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j s) → instLENat.le 1 j)\n        (And\n          (Eq τ.childPositions\n            (List.filter (fun x => Decidable.decide (List.instMembership.mem keep x))\n              σ.childPositions))\n          (And\n            (∀ (j : Nat),\n              List.instMembership.mem σ.levels j →\n                And (Eq (τ.extPositions j) (σ.extPositions j)) (Eq (τ.sideAt j) (σ.sideAt j)))\n            (And\n              (∀ (s : ErdosSzekeres.Ctx.Side) (top : Nat), Eq (τ.levelsOn s top) (σ.levelsOn s top))\n              (And\n                (∀ (s : ErdosSzekeres.Ctx.Side) (top p : Nat),\n                  And (Eq (τ.leftExt s top p) (σ.leftExt s top p))\n                    (Eq (τ.rightExt s top p) (σ.rightExt s top p)))\n                (And\n                  (∀ (p q : Nat),\n                    And (Eq (τ.cupLimit p q) (σ.cupLimit p q))\n                      (Eq (τ.capLimit p q) (σ.capLimit p q)))\n                  (And\n                    (Eq (active τ)\n                      (Finset.filter (fun x => List.instMembership.mem keep x) (active σ)))\n                    (And\n                      (∀ (fuel : Nat),\n                        instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel (σ.part keep v m))\n                          (ErdosSzekeres.Ctx.Context.boundFuel fuel τ))\n                      (instLENat.le (σ.part keep v m).bound τ.bound))))))))",
+   "type_hash": "467a24955fa74392",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._proof_1_2",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._proof_1_3",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._proof_1_4",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._simp_1_5",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._simp_1_6",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._proof_1_7",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._proof_1_9",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_erase_level_bound_mono.match_1",
+    "ErdosSzekeres.ctx_erase_level_bound_mono",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._proof_1_14",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._proof_1_15",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._simp_1_16",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._simp_1_17",
+    "ErdosSzekeres.ctx_part_pruning_history_transport._simp_1_18"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_part_tracked_rank_reservation",
