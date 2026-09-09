@@ -323,6 +323,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundLeOneOfClearUnitAxis"
   },
+  "ErdosSzekeres.ctx_bound_le_one_of_common_singleton_rank": {
+    "type_hash": "bc11e8e891f68d0b",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (r : Nat),\n      (∀ (p : Nat),\n          List.instMembership.mem σ.childPositions p →\n            instLTNat.lt 0 (σ.cupLimit p p) →\n              instLTNat.lt 0 (σ.capLimit p p) →\n                And (Eq (instHAdd.hAdd (σ.leftExt s 0 p) 1) r)\n                  (Eq (instHAdd.hAdd r (σ.rightExt s 0 p))\n                    (ErdosSzekeres.ctx_bound_le_one_of_common_singleton_rank.match_1 (fun s => Nat)\n                      s (fun _ => instHSub.hSub σ.u 1) fun _ => instHSub.hSub σ.a 1))) →\n        And (∀ (fuel : Nat), instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 1)\n          (And (instLENat.le σ.bound 1)\n            (∀ (keep : List Nat) (newMax q : Nat),\n              List.instMembership.mem σ.childPositions q →\n                instLTNat.lt 0 (σ.cupLimit q q) →\n                  instLTNat.lt 0 (σ.capLimit q q) →\n                    Not (List.instMembership.mem keep q) →\n                      And\n                        (∀ (fuel : Nat),\n                          Eq (ErdosSzekeres.Ctx.Context.boundFuel fuel (σ.part keep s newMax)) 0)\n                        (Eq (σ.part keep s newMax).bound 0)))",
+    "approved_by": "user:2026-09-08 timed autonomous lemma-driven Goal-mode pilot",
+    "approved_at": "2026-09-08",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundLeOneOfCommonSingletonRank"
+  },
   "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum": {
     "type_hash": "e5512a3cecbab8a9",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (x l : Nat) (t : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt x) (ErdosSzekeres.Ctx.Letter.ext l t) → instLENat.le 1 l) →\n    ∀ (N : Nat),\n      List.instMembership.mem σ.levels N →\n        instLENat.le (instHSub.hSub σ.k 2) (σ.maximumAt N) →\n          And (∀ (fuel : Nat), instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 1)\n            (instLENat.le σ.bound 1)",
