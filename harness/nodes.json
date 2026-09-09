@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T07:12:04Z",
- "git_sha": "e71d990fea6aa83d11599ed6c3d69abdd3a6d995",
+ "generated_at": "2026-09-09T07:26:08Z",
+ "git_sha": "ccb5eb632e03c96d43953ebf94550e567f0c0aa2",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15448,
- "tree_hash": "af148245c9c000a9",
+ "modules": 15449,
+ "tree_hash": "118286270a19f676",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15447,
+  "cached_modules": 15448,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -177,6 +177,56 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_active_uniform_rank_exterior_bound",
+   "module": "ESBlueprint.B.CtxActiveUniformRankExteriorBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Active-only strict doubled-rank bound for positive-label contexts with chosen global at most four and an actual indexed chosen marker. Chosen capacity at least two and uniform opposite pure extension traces are required only at children whose two point capacities are positive. Every fuel approximation and the full recursive bound are at most twice the resulting common rank-interval cardinality minus one. Inactive children may occur anywhere with arbitrary traces and capacities; older histories, maxima, unbounded exterior sizes and empty active support are allowed. Original-history pruning preserves all indexed data and point capacities, while the actual chosen marker bounds the surviving chosen capacities by two. The checked zero-capacity marker comparison transports the original bound to this pruned context, where the full uniform-source theorem applies. Removes inactive-source restrictions from the uniform-rank capacity-three estimate toward the singleton-end sandwich obstruction.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N x : Nat),\n          List.instMembership.mem σ.levels N →\n            Eq (σ.sideAt N) s →\n              List.instMembership.mem (σ.extPositions N) x →\n                instLENat.le\n                    ((fun v =>\n                        ErdosSzekeres.ctx_active_uniform_rank_exterior_bound.match_1 (fun v => Nat)\n                          v (fun _ => σ.u) fun _ => σ.a)\n                      s)\n                    4 →\n                  ∀ (L R : Nat),\n                    (∀ (r : Nat),\n                        List.instMembership.mem σ.childPositions r →\n                          instLTNat.lt 0 (σ.cupLimit r r) →\n                            instLTNat.lt 0 (σ.capLimit r r) →\n                              instLENat.le 2\n                                ((fun v =>\n                                    ErdosSzekeres.ctx_active_uniform_rank_exterior_bound.match_1\n                                      (fun v => Nat) v (fun _ => σ.cupLimit r r) fun _ =>\n                                      σ.capLimit r r)\n                                  s)) →\n                      (∀ (r : Nat),\n                          List.instMembership.mem σ.childPositions r →\n                            instLTNat.lt 0 (σ.cupLimit r r) →\n                              instLTNat.lt 0 (σ.capLimit r r) →\n                                And (Eq (σ.leftExt t 0 r) L) (Eq (σ.rightExt t 0 r) R)) →\n                        have global := fun ρ v =>\n                          ErdosSzekeres.ctx_active_uniform_rank_exterior_bound.match_1\n                            (fun v => Nat) v (fun _ => ρ.u) fun _ => ρ.a;\n                        have sourceRanks :=\n                          Finset.Icc (instHAdd.hAdd L 1)\n                            (instHSub.hSub (instHSub.hSub (global σ t) 1) R);\n                        And\n                          (∀ (fuel : Nat),\n                            instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                              (instHSub.hSub (instHMul.hMul 2 sourceRanks.card) 1))\n                          (instLENat.le σ.bound\n                            (instHSub.hSub (instHMul.hMul 2 sourceRanks.card) 1))",
+   "type_hash": "cb4a05f182e79127",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_active_uniform_rank_exterior_bound.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_active_uniform_rank_exterior_bound._proof_1_2",
+    "ErdosSzekeres.ctx_active_uniform_rank_exterior_bound._proof_1_3",
+    "ErdosSzekeres.ctx_active_uniform_rank_exterior_bound._proof_1_5",
+    "ErdosSzekeres.ctx_active_uniform_rank_exterior_bound._proof_1_6",
+    "ErdosSzekeres.ctx_active_uniform_rank_exterior_bound.match_1_7",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_active_uniform_rank_exterior_bound._proof_1_10",
+    "ErdosSzekeres.ctx_active_uniform_rank_exterior_bound._proof_1_11",
+    "ErdosSzekeres.ctx_bound_mono_of_zero_capacity_marker_inclusion",
+    "ErdosSzekeres.ctx_uniform_rank_exterior_bound.match_1",
+    "ErdosSzekeres.ctx_uniform_rank_exterior_bound"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_active_unit_axis_three_zone_potential",
