@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T16:24:30Z",
- "git_sha": "d319c6204b867eee13adc9bad0d21b3b6b8da8c8",
+ "generated_at": "2026-09-09T16:38:17Z",
+ "git_sha": "dd6777f7843647346df9dc51215515d26b054f34",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15462,
- "tree_hash": "c99a75151d92d39e",
+ "modules": 15463,
+ "tree_hash": "9164792c2e8ac45b",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15461,
+  "cached_modules": 15462,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -5810,6 +5810,61 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile",
+   "module": "ESBlueprint.B.CtxNonunitStraddlingCapacityProfile",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Exact chosen-capacity profile forced by two nonunit children straddling an actual chosen marker under chosen global at most four. The global parameter equals four, every child in either exterior marker region has chosen capacity exactly two, and every child in the interior region has chosen capacity at most one. Neither opposite activity nor positivity is needed; opposite-axis history, unused levels and maxima remain arbitrary. Combines the unique actual chosen-level reduction with exact limits within a chosen-axis marker region. Eliminates mixed exterior unit/nonunit capacities from the remaining strict rank-pair collision recurrence: the only possible active unit zone is the interior.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N x p q : Nat),\n  List.instMembership.mem σ.levels N →\n    Eq (σ.sideAt N) s →\n      List.instMembership.mem (σ.extPositions N) x →\n        List.instMembership.mem σ.childPositions p →\n          List.instMembership.mem σ.childPositions q →\n            instLENat.le 2\n                (ErdosSzekeres.ctx_nonunit_straddling_capacity_profile.match_1 (fun s => Nat) s\n                  (fun _ => σ.cupLimit p p) fun _ => σ.capLimit p p) →\n              instLENat.le 2\n                  (ErdosSzekeres.ctx_nonunit_straddling_capacity_profile.match_1 (fun s => Nat) s\n                    (fun _ => σ.cupLimit q q) fun _ => σ.capLimit q q) →\n                instLTNat.lt p x →\n                  instLTNat.lt x q →\n                    instLENat.le\n                        (ErdosSzekeres.ctx_nonunit_straddling_capacity_profile.match_1\n                          (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                        4 →\n                      have global :=\n                        ErdosSzekeres.ctx_nonunit_straddling_capacity_profile.match_1 (fun s => Nat)\n                          s (fun _ => σ.u) fun _ => σ.a;\n                      have capacity := fun r =>\n                        ErdosSzekeres.ctx_nonunit_straddling_capacity_profile.match_1 (fun s => Nat)\n                          s (fun _ => σ.cupLimit r r) fun _ => σ.capLimit r r;\n                      have markers :=\n                        (σ.levelsOn s 0).toFinset.biUnion fun j => (σ.extPositions j).toFinset;\n                      have label := fun r =>\n                        ite (Finset.filter (fun x => instLTNat.lt x r) markers).Nonempty\n                          (ite (Finset.filter (fun x => instLTNat.lt r x) markers).Nonempty 1 2) 0;\n                      And (Eq global 4)\n                        (∀ (r : Nat),\n                          List.instMembership.mem σ.childPositions r →\n                            And (Or (Eq (label r) 0) (Eq (label r) 2) → Eq (capacity r) 2)\n                              (Eq (label r) 1 → instLENat.le (capacity r) 1))",
+   "type_hash": "172268196399b497",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_1",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_2",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_3",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_4",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_5",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_6",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_8",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_7",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_9",
+    "ErdosSzekeres.ctx_axis_region_limits_exact.match_1",
+    "ErdosSzekeres.ctx_axis_region_limits_exact",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_11",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_10",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_12",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_13",
+    "ErdosSzekeres.ctx_nonunit_straddling_capacity_profile._proof_1_14"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level",
