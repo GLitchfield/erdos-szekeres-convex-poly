@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T18:03:48Z",
- "git_sha": "b152b8755537c0ddaff45712f650fcebf3f6a45f",
+ "generated_at": "2026-09-09T18:16:50Z",
+ "git_sha": "22b42088a3f607a77bc99f40d3e850c969aec8c0",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15469,
- "tree_hash": "46a4b611e96805f6",
+ "modules": 15470,
+ "tree_hash": "70e47448da17fe26",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15468,
+  "cached_modules": 15469,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -6455,6 +6455,55 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations",
+   "module": "ESBlueprint.B.CtxPartBoundRankPairEndReservations",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "With a preserved actual marker on the side opposite a cut and chosen global at most four, bound every fuel and the full recursive part by the source rank-pair budget after reserving endpoint rows and columns for source-active removed children outside the active part. The exact union is charged without loss; if the part has active children, the separate left and right rank-union charges lose at most one. Uses the actual-marker rank-pair potential and the end-reservation theorem, without activity assumptions on untracked children or restrictions on old maxima.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N x : Nat),\n          List.instMembership.mem σ.levels N →\n            Eq (σ.sideAt N) t →\n              List.instMembership.mem (σ.extPositions N) x →\n                instLENat.le\n                    (ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations.match_1 (fun t => Nat)\n                      t (fun _ => σ.u) fun _ => σ.a)\n                    4 →\n                  ∀ (keep : List Nat) (m : Nat) (L R : Finset Nat),\n                    have τ := σ.part keep s m;\n                    have global := fun ρ =>\n                      ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations.match_1 (fun s => Nat)\n                        s (fun _ => ρ.u) fun _ => ρ.a;\n                    have active := fun ρ =>\n                      Finset.filter\n                        (fun p =>\n                          And (instLTNat.lt 0 (ρ.cupLimit p p)) (instLTNat.lt 0 (ρ.capLimit p p)))\n                        ρ.childPositions.toFinset;\n                    have interval := fun ρ p =>\n                      Finset.Icc (instHAdd.hAdd (ρ.leftExt s 0 p) 1)\n                        (instHSub.hSub (instHSub.hSub (global ρ) 1) (ρ.rightExt s 0 p));\n                    have pairs := fun ρ p =>\n                      Finset.filter (fun z => instLENat.le z.fst z.snd)\n                        ((interval ρ p).product (interval ρ p));\n                    have sourcePairs := (active σ).biUnion (pairs σ);\n                    have rows :=\n                      L.biUnion fun p =>\n                        (Finset.instSingleton.singleton (instHAdd.hAdd (σ.leftExt s 0 p) 1)).product\n                          (interval σ p);\n                    have columns :=\n                      R.biUnion fun p =>\n                        (interval σ p).product\n                          (Finset.instSingleton.singleton\n                            (instHSub.hSub (instHSub.hSub (global σ) 1) (σ.rightExt s 0 p)));\n                    have reserved := Finset.instUnion.union rows columns;\n                    have leftRanks := L.biUnion (interval σ);\n                    have rightRanks := R.biUnion (interval σ);\n                    (∀ (p : Nat),\n                        SetLike.instMembership.mem L p →\n                          And (SetLike.instMembership.mem (active σ) p)\n                            (Not (List.instMembership.mem keep p))) →\n                      (∀ (p : Nat),\n                          SetLike.instMembership.mem R p →\n                            And (SetLike.instMembership.mem (active σ) p)\n                              (Not (List.instMembership.mem keep p))) →\n                        (∀ (p : Nat),\n                            SetLike.instMembership.mem L p →\n                              ∀ (q : Nat),\n                                SetLike.instMembership.mem (active τ) q → instLTNat.lt p q) →\n                          (∀ (p : Nat),\n                              SetLike.instMembership.mem R p →\n                                ∀ (q : Nat),\n                                  SetLike.instMembership.mem (active τ) q → instLTNat.lt q p) →\n                            And\n                              (∀ (fuel : Nat),\n                                instLENat.le\n                                  (instHAdd.hAdd (ErdosSzekeres.Ctx.Context.boundFuel fuel τ)\n                                    reserved.card)\n                                  sourcePairs.card)\n                              (And\n                                (instLENat.le (instHAdd.hAdd τ.bound reserved.card)\n                                  sourcePairs.card)\n                                ((active τ).Nonempty →\n                                  And\n                                    (∀ (fuel : Nat),\n                                      instLENat.le\n                                        (instHAdd.hAdd\n                                          (instHAdd.hAdd\n                                            (ErdosSzekeres.Ctx.Context.boundFuel fuel τ)\n                                            leftRanks.card)\n                                          rightRanks.card)\n                                        (instHAdd.hAdd sourcePairs.card 1))\n                                    (instLENat.le\n                                      (instHAdd.hAdd (instHAdd.hAdd τ.bound leftRanks.card)\n                                        rightRanks.card)\n                                      (instHAdd.hAdd sourcePairs.card 1))))",
+   "type_hash": "6d94168ee4ab3ff2",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations.match_1",
+    "ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations._proof_1_1",
+    "ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations._proof_1_2",
+    "ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations._proof_1_3",
+    "ErdosSzekeres.ctx_part_limits_le",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations._simp_1_4",
+    "ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations._simp_1_5",
+    "ErdosSzekeres.ctx_one_level_rank_pair_potential_bound",
+    "ErdosSzekeres.ctx_part_tracked_rank_pair_end_reservations.match_1",
+    "ErdosSzekeres.ctx_part_tracked_rank_pair_end_reservations",
+    "ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations._proof_1_6",
+    "ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations._proof_1_7"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_part_capacity_drop_in_clear_interval",
