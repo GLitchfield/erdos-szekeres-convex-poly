@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T15:18:38Z",
- "git_sha": "90c9e7b210b7cf9cea4ee21352210a5c2dd64363",
+ "generated_at": "2026-09-09T15:34:32Z",
+ "git_sha": "0ce55ee4f2f3c5a092c320387a2703f6fba756ac",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15457,
- "tree_hash": "9b85ac4f1310cdf2",
+ "modules": 15458,
+ "tree_hash": "c2296bca727e3b13",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15456,
+  "cached_modules": 15457,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -6305,6 +6305,51 @@
     "ErdosSzekeres.ctx_part_pruning_history_transport._simp_1_16",
     "ErdosSzekeres.ctx_part_pruning_history_transport._simp_1_17",
     "ErdosSzekeres.ctx_part_pruning_history_transport._simp_1_18"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_part_tracked_rank_pair_reservation",
+   "module": "ESBlueprint.B.CtxPartTrackedRankPairReservation",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Distinct endpoint-pair reservations for arbitrary removed source-active children, with tracked active supports and arbitrary positive indexed history. The pair potential is the union of all ordered pairs lying in one active child's available pure-rank interval on a selected axis. Every removed witness reserves its lower/upper endpoint pair: retained children on its right exclude the lower endpoint, and retained children on its left exclude the upper endpoint. All distinct reserved pairs lie in the source pair union and are absent from the part pair union, yielding the corresponding cardinal decrease and strict decrease for any nonempty removed witness set. Unlike individual-rank reservations, no common left/right orientation is needed, so this covers retained children straddling a removed witness. Supplies a concrete missing measure for the prospective quadratic higher-capacity potential; does not assert that the pair potential already bounds the full recursion.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (keep : List Nat) (m : Nat) (F Q P : Finset Nat),\n      (∀ (p : Nat),\n          SetLike.instMembership.mem F p →\n            And (List.instMembership.mem σ.childPositions p)\n              (And (instLTNat.lt 0 (σ.cupLimit p p)) (instLTNat.lt 0 (σ.capLimit p p)))) →\n        (∀ (q : Nat),\n            SetLike.instMembership.mem Q q →\n              And (List.instMembership.mem (σ.part keep s m).childPositions q)\n                (And (instLTNat.lt 0 ((σ.part keep s m).cupLimit q q))\n                  (instLTNat.lt 0 ((σ.part keep s m).capLimit q q)))) →\n          Finset.instHasSubset.Subset Q F →\n            (∀ (p : Nat),\n                SetLike.instMembership.mem P p →\n                  And (SetLike.instMembership.mem F p) (Not (List.instMembership.mem keep p))) →\n              have global := fun ρ v =>\n                ErdosSzekeres.ctx_part_tracked_rank_pair_reservation.match_1 (fun v => Nat) v\n                  (fun _ => ρ.u) fun _ => ρ.a;\n              have interval := fun ρ p =>\n                Finset.Icc (instHAdd.hAdd (ρ.leftExt s 0 p) 1)\n                  (instHSub.hSub (instHSub.hSub (global ρ s) 1) (ρ.rightExt s 0 p));\n              have pairs := fun ρ p =>\n                Finset.filter (fun z => instLENat.le z.fst z.snd)\n                  ((interval ρ p).product (interval ρ p));\n              have sourcePairs := F.biUnion (pairs σ);\n              have partPairs := Q.biUnion (pairs (σ.part keep s m));\n              have reserved :=\n                Finset.image\n                  (fun p =>\n                    { fst := instHAdd.hAdd (σ.leftExt s 0 p) 1,\n                      snd := instHSub.hSub (instHSub.hSub (global σ s) 1) (σ.rightExt s 0 p) })\n                  P;\n              And (Finset.instHasSubset.Subset reserved sourcePairs)\n                (And\n                  (Finset.instHasSubset.Subset partPairs\n                    (Finset.instSDiff.sdiff sourcePairs reserved))\n                  (And (instLENat.le (instHAdd.hAdd partPairs.card reserved.card) sourcePairs.card)\n                    (P.Nonempty → instLTNat.lt partPairs.card sourcePairs.card)))",
+   "type_hash": "a9bfb2593611f7be",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_part_tracked_rank_pair_reservation.match_1",
+    "ErdosSzekeres.ctx_part_tracked_rank_pair_reservation._simp_1_1",
+    "ErdosSzekeres.ctx_part_tracked_rank_pair_reservation._proof_1_3",
+    "ErdosSzekeres.ctx_part_tracked_rank_pair_reservation._proof_1_4",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_part_tracked_rank_pair_reservation._simp_1_5",
+    "ErdosSzekeres.ctx_part_tracked_rank_reservation.match_1",
+    "ErdosSzekeres.ctx_part_tracked_rank_reservation",
+    "ErdosSzekeres.ctx_part_tracked_rank_pair_reservation._simp_1_7",
+    "ErdosSzekeres.ctx_part_tracked_rank_pair_reservation._simp_1_8",
+    "ErdosSzekeres.ctx_part_tracked_rank_pair_reservation._proof_1_9"
    ],
    "helpers": [],
    "status": "closed",
