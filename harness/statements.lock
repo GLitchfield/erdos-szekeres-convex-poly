@@ -1137,6 +1137,15 @@
     "ws": "E",
     "module": "ESBlueprint.E.PredecessorHalfSubsetAtAll"
   },
+  "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges": {
+    "type_hash": "764e4da6da9517e",
+    "type_pp": "∀ (colors : Finset Nat) (ranks : Nat → Finset Nat) (pairs : Finset (Prod Nat Nat)),\n  (∀ (c : Nat),\n      SetLike.instMembership.mem colors c →\n        ∀ (d : Nat), SetLike.instMembership.mem colors d → Ne c d → Disjoint (ranks c) (ranks d)) →\n    (∀ (c : Nat),\n        SetLike.instMembership.mem colors c →\n          ∀ (a : Nat),\n            SetLike.instMembership.mem (ranks c) a →\n              SetLike.instMembership.mem pairs { fst := a, snd := a }) →\n      (∀ (c : Nat),\n          SetLike.instMembership.mem colors c →\n            ∀ (a : Nat),\n              SetLike.instMembership.mem (ranks c) a →\n                (Exists fun b => And (SetLike.instMembership.mem (ranks c) b) (instLTNat.lt a b)) →\n                  SetLike.instMembership.mem pairs { fst := a, snd := instHAdd.hAdd a 1 }) →\n        instLENat.le (colors.sum fun c => instHSub.hSub (instHMul.hMul 2 (ranks c).card) 1)\n          pairs.card",
+    "approved_by": "user:2026-09-08 timed autonomous lemma-driven Goal-mode pilot",
+    "approved_at": "2026-09-09",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.RankPairCardGeSumDisjointGroupCharges"
+  },
   "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all": {
     "type_hash": "ee88bf4ffda45548",
     "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
