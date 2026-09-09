@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T23:19:29Z",
- "git_sha": "9807dcab54af331158adeee46c979d3351f9712c",
+ "generated_at": "2026-09-09T23:36:12Z",
+ "git_sha": "df6338b735b2df203ecd9fae4e616380bdfd4a4c",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15484,
- "tree_hash": "52875386169a5a29",
+ "modules": 15485,
+ "tree_hash": "d823acc751fe315c",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15483,
+  "cached_modules": 15484,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -5473,6 +5473,47 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_chain_one_children_exterior_of_two_levels",
+   "module": "ESBlueprint.B.CtxChainOneChildrenExteriorOfTwoLevels",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Two distinct actual indexed levels on one axis put all children whose pure chosen chain extension is at most one in a common exterior region beyond every indexed chosen marker. The orientation is fixed by positions on the younger and older levels. No global parameter, k, capacity, positivity or activity hypothesis is needed. An auxiliary context with global four and a sufficiently large k permits reuse of the existing nonunit geometry without changing word or history. Supports the maximal chosen-capacity-three case at global five.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N M x y : Nat),\n  List.instMembership.mem σ.levels N →\n    List.instMembership.mem σ.levels M →\n      instLTNat.lt N M →\n        Eq (σ.sideAt N) s →\n          Eq (σ.sideAt M) s →\n            List.instMembership.mem (σ.extPositions N) x →\n              List.instMembership.mem (σ.extPositions M) y →\n                Or\n                  (And (instLTNat.lt x y)\n                    (∀ (p : Nat),\n                      List.instMembership.mem σ.childPositions p →\n                        instLENat.le (σ.chainExt s p p) 1 →\n                          ∀ (j : Nat),\n                            List.instMembership.mem (σ.levelsOn s 0) j →\n                              ∀ (z : Nat),\n                                List.instMembership.mem (σ.extPositions j) z → instLTNat.lt z p))\n                  (And (instLTNat.lt y x)\n                    (∀ (p : Nat),\n                      List.instMembership.mem σ.childPositions p →\n                        instLENat.le (σ.chainExt s p p) 1 →\n                          ∀ (j : Nat),\n                            List.instMembership.mem (σ.levelsOn s 0) j →\n                              ∀ (z : Nat),\n                                List.instMembership.mem (σ.extPositions j) z → instLTNat.lt p z))",
+   "type_hash": "80c9bfbc67b10c16",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_chain_one_children_exterior_of_two_levels.match_1_1",
+    "ErdosSzekeres.ctx_chain_one_children_exterior_of_two_levels._proof_1_3",
+    "ErdosSzekeres.ctx_chain_one_children_exterior_of_two_levels._proof_1_4",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels.match_1",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels",
+    "ErdosSzekeres.ctx_chain_one_children_exterior_of_two_levels._proof_1_5",
+    "ErdosSzekeres.ctx_chain_one_children_exterior_of_two_levels._proof_1_6"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_chain_one_straddling_unique_axis_level",
