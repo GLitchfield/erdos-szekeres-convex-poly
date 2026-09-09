@@ -120,3 +120,4 @@ import ESBlueprint.B.CtxPartEqualEndpointInteriorRanks
 import ESBlueprint.B.CtxNonunitStraddlingUniqueAxisLevel
 import ESBlueprint.B.CtxAxisRegionLimitsExact
 import ESBlueprint.B.CtxNonunitStraddlingCapacityProfile
+import ESBlueprint.B.CtxAxisCapacityIntervalLowerBound
