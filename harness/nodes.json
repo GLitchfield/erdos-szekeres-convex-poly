@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T20:04:11Z",
- "git_sha": "91dc6cfe256a7044d641d909a1f78cd6edbfc494",
+ "generated_at": "2026-09-09T20:22:05Z",
+ "git_sha": "fd72e926e7b5e260b66e190508623e9ec45270f0",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15472,
- "tree_hash": "15a7b301935826b4",
+ "modules": 15473,
+ "tree_hash": "3da5314173df6ab2",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15471,
+  "cached_modules": 15472,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -9523,6 +9523,63 @@
    "deps_actual": [
     "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges._proof_1_1",
     "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges._proof_1_2"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.rank_row_column_union_card_eq_group_charges",
+   "module": "ESBlueprint.B.RankRowColumnUnionCardEqGroupCharges",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Exact finite row-and-column reservation count for interval endpoints ordered around a common pivot. Left intervals have both endpoints below the pivot coordinates; right intervals have both endpoints above them. Group left rows by their lower endpoint and right columns by their upper endpoint, merging the two pivot groups precisely when the row and column unions intersect. Every ordinary group contributes its rank-union cardinality; the merged group contributes twice its rank-union cardinality minus one. Empty intervals and extra empty colors are allowed. This supplies the finite counting step for a youngest-marker context reservation potential and a subsequent no-marker rank-pair induction, without extending the run-group decomposition to capacity three.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (L R : Finset Nat) (lo hi : Nat → Nat) (a b : Nat),\n  (∀ (p : Nat),\n      SetLike.instMembership.mem L p → And (instLENat.le (lo p) a) (instLENat.le (hi p) b)) →\n    (∀ (p : Nat),\n        SetLike.instMembership.mem R p → And (instLENat.le a (lo p)) (instLENat.le b (hi p))) →\n      ∀ (colors : Finset Nat),\n        have I := fun p => Finset.Icc (lo p) (hi p);\n        have rows := L.biUnion fun p => (Finset.instSingleton.singleton (lo p)).product (I p);\n        have columns := R.biUnion fun p => (I p).product (Finset.instSingleton.singleton (hi p));\n        let merge := Not (Disjoint rows columns);\n        have leftColor := fun p =>\n          ite (And merge (Eq (lo p) a)) 0 (instHAdd.hAdd (instHMul.hMul 2 (lo p)) 1);\n        have rightColor := fun p =>\n          ite (And merge (Eq (hi p) b)) 0 (instHAdd.hAdd (instHMul.hMul 2 (hi p)) 2);\n        have ranks := fun c =>\n          Finset.instUnion.union ((Finset.filter (fun p => Eq (leftColor p) c) L).biUnion I)\n            ((Finset.filter (fun p => Eq (rightColor p) c) R).biUnion I);\n        (∀ (p : Nat),\n            SetLike.instMembership.mem L p → SetLike.instMembership.mem colors (leftColor p)) →\n          (∀ (p : Nat),\n              SetLike.instMembership.mem R p → SetLike.instMembership.mem colors (rightColor p)) →\n            Eq (Finset.instUnion.union rows columns).card\n              (colors.sum fun c =>\n                ite (Eq c 0) (instHSub.hSub (instHMul.hMul 2 (ranks c).card) 1) (ranks c).card)",
+   "type_hash": "1da3e913a805c0b0",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._simp_1_1",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._simp_1_2",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._simp_1_3",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_4",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_5",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_6",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_7",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_8",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_9",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_10",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_11",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_12",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_13",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_14",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_15",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_16",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_17",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_18",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_19",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_20",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_21",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._simp_1_22",
+    "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_23"
    ],
    "helpers": [],
    "status": "closed",
