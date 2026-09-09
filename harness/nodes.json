@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T04:47:12Z",
- "git_sha": "01bf4eefa2f1f1e36866f49008fe33a8929980d6",
+ "generated_at": "2026-09-09T05:05:36Z",
+ "git_sha": "d822b0402aea21592effe3264a0ca07d26fba642",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15440,
- "tree_hash": "3de558c1c76190c8",
+ "modules": 15441,
+ "tree_hash": "0c208f204da52146",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15439,
+  "cached_modules": 15440,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -4916,6 +4916,62 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound",
+   "module": "ESBlueprint.B.CtxNonunitPartCompanionExteriorRankBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A nonunit child retained by a chosen-axis part forces every removed source child into the opposite exterior of all old chosen markers, assuming only one actual indexed source marker and chosen global at most four. The nonunit witness may be inactive, and the kept set and two new maxima are arbitrary. The complementary opposite-axis part has every fuel approximation and its full bound controlled by its exact active opposite pure-rank union. Two-level exterior orientation is applied in the chosen part after insertion of the new level; the youngest actual chosen marker supplies the active-boundary rank estimate in the companion. Removes the exterior-companion case from the one-level separate-exterior-rank potential toward the singleton-end sandwich proof.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N x : Nat),\n          List.instMembership.mem σ.levels N →\n            Eq (σ.sideAt N) s →\n              List.instMembership.mem (σ.extPositions N) x →\n                instLENat.le\n                    ((fun v =>\n                        ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound.match_1\n                          (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n                      s)\n                    4 →\n                  ∀ (keep : List Nat) (m n p q : Nat),\n                    List.instMembership.mem (σ.part keep s m).childPositions p →\n                      instLENat.le 2\n                          ((fun v =>\n                              ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound.match_1\n                                (fun v => Nat) v (fun _ => (σ.part keep s m).cupLimit p p) fun _ =>\n                                (σ.part keep s m).capLimit p p)\n                            s) →\n                        List.instMembership.mem σ.childPositions q →\n                          Not (List.instMembership.mem keep q) →\n                            have otherPart :=\n                              σ.part\n                                (List.filter\n                                  (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                  σ.childPositions)\n                                t n;\n                            have global := fun ρ v =>\n                              ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound.match_1\n                                (fun v => Nat) v (fun _ => ρ.u) fun _ => ρ.a;\n                            have active :=\n                              Finset.filter\n                                (fun r =>\n                                  And (instLTNat.lt 0 (otherPart.cupLimit r r))\n                                    (instLTNat.lt 0 (otherPart.capLimit r r)))\n                                otherPart.childPositions.toFinset;\n                            have ranks :=\n                              active.biUnion fun r =>\n                                Finset.Icc (instHAdd.hAdd (otherPart.leftExt t 0 r) 1)\n                                  (instHSub.hSub (instHSub.hSub (global otherPart t) 1)\n                                    (otherPart.rightExt t 0 r));\n                            And\n                              (Exists fun rightward =>\n                                And\n                                  (∀ (j : Nat),\n                                    List.instMembership.mem (σ.levelsOn s 0) j →\n                                      ∀ (z : Nat),\n                                        List.instMembership.mem (σ.extPositions j) z →\n                                          ite (Eq rightward Bool.true) (instLTNat.lt z p)\n                                            (instLTNat.lt p z))\n                                  (∀ (r : Nat),\n                                    List.instMembership.mem σ.childPositions r →\n                                      Not (List.instMembership.mem keep r) →\n                                        ∀ (j : Nat),\n                                          List.instMembership.mem (σ.levelsOn s 0) j →\n                                            ∀ (z : Nat),\n                                              List.instMembership.mem (σ.extPositions j) z →\n                                                ite (Eq rightward Bool.true) (instLTNat.lt r z)\n                                                  (instLTNat.lt z r)))\n                              (And\n                                (∀ (fuel : Nat),\n                                  instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel otherPart)\n                                    ranks.card)\n                                (instLENat.le otherPart.bound ranks.card))",
+   "type_hash": "3d8e6c179fc3a09d",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound.match_1",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._simp_1_1",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_2",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_3",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_4",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._simp_1_6",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels.match_1",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_7",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_8",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_9",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_10",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_11",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_12",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_other_zero",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_13",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound._proof_1_14",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_union_bound.match_1",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_union_bound"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_nonunit_part_unit_rank_potential_drop",
