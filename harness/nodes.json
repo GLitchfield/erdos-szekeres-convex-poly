@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T15:58:32Z",
- "git_sha": "015e83a8f46facc07961fcf42af86141e7a7cdee",
+ "generated_at": "2026-09-09T16:11:44Z",
+ "git_sha": "f9985129b0f50c659b6abdb233d99b64a3bd72bd",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15460,
- "tree_hash": "ba554ad8bab666f4",
+ "modules": 15461,
+ "tree_hash": "a06443594cb13b92",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15459,
+  "cached_modules": 15460,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -5770,6 +5770,56 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level",
+   "module": "ESBlueprint.B.CtxNonunitStraddlingUniqueAxisLevel",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Nonunit children straddling an actual chosen-axis marker force all actual indexed markers on that axis to use that same level and to lie strictly between the two children, when the chosen global parameter is at most four. Other indexed levels may be unused, opposite-axis history and maxima are arbitrary, and no positivity or opposite-activity premise is required. Uses the two-level exterior orientation theorem to exclude a second actual chosen level and greedy one-step extensions to trap every chosen marker between the witnesses. Reduces the remaining exterior rank-pair collision saving to a single actual chosen-axis level, without erasing or simplifying opposite-axis history.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N x p q : Nat),\n  List.instMembership.mem σ.levels N →\n    Eq (σ.sideAt N) s →\n      List.instMembership.mem (σ.extPositions N) x →\n        List.instMembership.mem σ.childPositions p →\n          List.instMembership.mem σ.childPositions q →\n            instLENat.le 2\n                (ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level.match_1 (fun s => Nat) s\n                  (fun _ => σ.cupLimit p p) fun _ => σ.capLimit p p) →\n              instLENat.le 2\n                  (ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level.match_1 (fun s => Nat) s\n                    (fun _ => σ.cupLimit q q) fun _ => σ.capLimit q q) →\n                instLTNat.lt p x →\n                  instLTNat.lt x q →\n                    instLENat.le\n                        (ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level.match_1\n                          (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                        4 →\n                      ∀ (j : Nat),\n                        List.instMembership.mem (σ.levelsOn s 0) j →\n                          ∀ (y : Nat),\n                            List.instMembership.mem (σ.extPositions j) y →\n                              And (Eq j N) (And (instLTNat.lt p y) (instLTNat.lt y q))",
+   "type_hash": "587988591e2bcddd",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level._proof_1_1",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level._proof_1_2",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level._proof_1_3",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level._proof_1_4",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels.match_1",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level._proof_1_5",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level._proof_1_6",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level._proof_1_7",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level._proof_1_8",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level._proof_1_9",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level._proof_1_10"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_oldest_axis_maximum_erase_normalize",
