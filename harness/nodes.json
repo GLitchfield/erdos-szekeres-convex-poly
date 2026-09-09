@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T17:37:57Z",
- "git_sha": "57e63c7f89a0a535c30e4e8b0200632019005cc4",
+ "generated_at": "2026-09-09T17:50:26Z",
+ "git_sha": "0d488b07ecb253026016c5f798424010f5b2f2ad",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15467,
- "tree_hash": "0ab4e868b8538034",
+ "modules": 15468,
+ "tree_hash": "a41abdc088223e60",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15466,
+  "cached_modules": 15467,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -9240,6 +9240,42 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-05"
+  },
+  {
+   "name": "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges",
+   "module": "ESBlueprint.B.RankPairCardGeSumDisjointGroupCharges",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For finitely many pairwise disjoint natural-rank groups, a pair set containing every rank diagonal and the successor pair starting at every nonmaximal group rank has cardinality at least the sum of twice each group size minus one. Empty groups contribute zero. Supplies an explicit disjoint reservation matching the doubled-rank bound of each original-history pruned context.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (colors : Finset Nat) (ranks : Nat → Finset Nat) (pairs : Finset (Prod Nat Nat)),\n  (∀ (c : Nat),\n      SetLike.instMembership.mem colors c →\n        ∀ (d : Nat), SetLike.instMembership.mem colors d → Ne c d → Disjoint (ranks c) (ranks d)) →\n    (∀ (c : Nat),\n        SetLike.instMembership.mem colors c →\n          ∀ (a : Nat),\n            SetLike.instMembership.mem (ranks c) a →\n              SetLike.instMembership.mem pairs { fst := a, snd := a }) →\n      (∀ (c : Nat),\n          SetLike.instMembership.mem colors c →\n            ∀ (a : Nat),\n              SetLike.instMembership.mem (ranks c) a →\n                (Exists fun b => And (SetLike.instMembership.mem (ranks c) b) (instLTNat.lt a b)) →\n                  SetLike.instMembership.mem pairs { fst := a, snd := instHAdd.hAdd a 1 }) →\n        instLENat.le (colors.sum fun c => instHSub.hSub (instHMul.hMul 2 (ranks c).card) 1)\n          pairs.card",
+   "type_hash": "764e4da6da9517e",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges._proof_1_1",
+    "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges._proof_1_2"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.etvCapFive_all",
