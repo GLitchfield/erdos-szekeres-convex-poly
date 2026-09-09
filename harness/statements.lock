@@ -35,6 +35,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxActiveUnitAxisThreeZonePotential"
   },
+  "ErdosSzekeres.ctx_axis_region_limits_exact": {
+    "type_hash": "858d5a01505e3502",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (p q : Nat)\n  (hregion :\n    ∀ (j : Nat),\n      List.instMembership.mem (σ.levelsOn s 0) j →\n        ∀ (z : Nat),\n          List.instMembership.mem (σ.extPositions j) z →\n            And (Iff (instLTNat.lt z p) (instLTNat.lt z q))\n              (Iff (instLTNat.lt p z) (instLTNat.lt q z))),\n  And\n    (∀ (top : Nat),\n      And (Eq (σ.leftExt s top p) (σ.leftExt s top q))\n        (Eq (σ.rightExt s top p) (σ.rightExt s top q)))\n    (And (Eq (σ.chainExt s p p) (σ.chainExt s q q))\n      (And (Eq (σ.joinExt s p p) (σ.joinExt s q q))\n        (ErdosSzekeres.ctx_axis_region_limits_exact.match_1 σ p q (fun s hregion => Prop) s hregion\n          (fun hregion => Eq (σ.cupLimit p p) (σ.cupLimit q q)) fun hregion =>\n          Eq (σ.capLimit p p) (σ.capLimit q q))))",
+    "approved_by": "user:2026-09-08 timed autonomous lemma-driven Goal-mode pilot",
+    "approved_at": "2026-09-09",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxAxisRegionLimitsExact"
+  },
   "ErdosSzekeres.ctx_base_child_letter_contraction": {
     "type_hash": "2ed96bced717c713",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (left right : List ErdosSzekeres.Ctx.Letter),\n  Eq σ.word\n      (instHAppendOfAppend.hAppend\n        (instHAppendOfAppend.hAppend left\n          (List.cons ErdosSzekeres.Ctx.Letter.child\n            (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n        right) →\n    Eq σ.base\n      { a := σ.a, u := σ.u, k := σ.k,\n          word :=\n            instHAppendOfAppend.hAppend\n              (instHAppendOfAppend.hAppend left (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n              right,\n          maxima := σ.maxima }.base",
