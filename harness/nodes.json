@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T22:00:38Z",
- "git_sha": "4a3c72a8197a3bf61a17b9f79f70d281ae81819d",
+ "generated_at": "2026-09-09T22:16:58Z",
+ "git_sha": "b143dd3551836ed375c4607a19a4f41dbba7b9dd",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15479,
- "tree_hash": "b540b1438f1c2589",
+ "modules": 15480,
+ "tree_hash": "6b1905be808c772f",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -21,7 +21,7 @@
  "taint": {
   "cached_modules": 15479,
   "scanned_constants": 0,
-  "scanned_modules": 0
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -3746,6 +3746,53 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three",
+   "module": "ESBlueprint.B.CtxBoundLeInactivePruneCapacityThree",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Deleting all inactive children by original-history pruning cannot lower the full context bound when every original child has minimum point capacity at most three. Every source fuel approximation is bounded by the full pruned bound. Positive labels suffice, empty active support is included, and all indexed history is preserved. Activity is constant on each physical child run, so the capacity-three run-group decomposition separates live and dead children; the dead group vanishes by the sum-of-point-bases bound. Removes the capacity-two-only deletion dependency in prospective active boundary rank-pair estimates.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    (∀ (p : Nat),\n        List.instMembership.mem σ.childPositions p →\n          instLENat.le (instMinNat.min (σ.cupLimit p p) (σ.capLimit p p)) 3) →\n      have keep :=\n        List.filter\n          (fun p =>\n            Decidable.decide\n              (And (instLTNat.lt 0 (σ.cupLimit p p)) (instLTNat.lt 0 (σ.capLimit p p))))\n          σ.childPositions;\n      have τ :=\n        { a := σ.a, u := σ.u, k := σ.k,\n          word :=\n            List.map\n              (fun p =>\n                ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three.match_1\n                  (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt p)\n                  (fun _ =>\n                    ite (List.instMembership.mem keep p) ErdosSzekeres.Ctx.Letter.child\n                      (ErdosSzekeres.Ctx.Letter.ext (instHAdd.hAdd σ.maxima.length 1)\n                        ErdosSzekeres.Ctx.Side.lower))\n                  fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n              (List.range σ.word.length),\n          maxima := σ.maxima };\n      And (∀ (fuel : Nat), instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) τ.bound)\n        (instLENat.le σ.bound τ.bound)",
+   "type_hash": "2371985f49b76d50",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three.match_1",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three._proof_1_2",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three._proof_1_3",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three._proof_1_4",
+    "ErdosSzekeres.ctx_axis_region_limits_exact.match_1",
+    "ErdosSzekeres.ctx_axis_region_limits_exact",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three._proof_1_5",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three._proof_1_6",
+    "ErdosSzekeres.ctx_bound_le_sum_point_bases",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three.match_1",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_le_numRuns_of_unit_axis_limit",
