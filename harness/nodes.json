@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T15:46:00Z",
- "git_sha": "ddf204c37950dd9e3bd6a7cb00d0b6c357d0f5bf",
+ "generated_at": "2026-09-09T15:58:32Z",
+ "git_sha": "015e83a8f46facc07961fcf42af86141e7a7cdee",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15459,
- "tree_hash": "fb53898cf89824be",
+ "modules": 15460,
+ "tree_hash": "ba554ad8bab666f4",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15458,
+  "cached_modules": 15459,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -6175,6 +6175,63 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks",
+   "module": "ESBlueprint.B.CtxPartEqualEndpointInteriorRanks",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Localize a coincident left/right rank-pair reservation. Removed source-active witnesses on opposite sides of a tracked active part have equal source rank-interval endpoints. Every tracked source interval then equals that common interval, while the corresponding part interval lies strictly inside it. The part rank union has cardinal at most the common width minus two, and nonempty tracked activity forces the common interval to contain at least three ranks. Allows arbitrary positive histories, global parameters, kept sets and new maxima. Describes the unique row-column overlap regime of the rank-pair reservation approach and excludes narrow collision intervals from the remaining recursive overlap-saving obstruction.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (keep : List Nat) (m : Nat) (F Q : Finset Nat) (p q : Nat),\n      (∀ (r : Nat),\n          SetLike.instMembership.mem F r →\n            And (List.instMembership.mem σ.childPositions r)\n              (And (instLTNat.lt 0 (σ.cupLimit r r)) (instLTNat.lt 0 (σ.capLimit r r)))) →\n        (∀ (r : Nat),\n            SetLike.instMembership.mem Q r →\n              And (List.instMembership.mem (σ.part keep s m).childPositions r)\n                (And (instLTNat.lt 0 ((σ.part keep s m).cupLimit r r))\n                  (instLTNat.lt 0 ((σ.part keep s m).capLimit r r)))) →\n          Finset.instHasSubset.Subset Q F →\n            SetLike.instMembership.mem F p →\n              SetLike.instMembership.mem F q →\n                Not (List.instMembership.mem keep p) →\n                  Not (List.instMembership.mem keep q) →\n                    (∀ (r : Nat), SetLike.instMembership.mem Q r → instLTNat.lt p r) →\n                      (∀ (r : Nat), SetLike.instMembership.mem Q r → instLTNat.lt r q) →\n                        Eq (σ.leftExt s 0 p) (σ.leftExt s 0 q) →\n                          Eq\n                              (instHSub.hSub\n                                (instHSub.hSub\n                                  ((fun v =>\n                                      ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks.match_1\n                                        (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n                                    s)\n                                  1)\n                                (σ.rightExt s 0 p))\n                              (instHSub.hSub\n                                (instHSub.hSub\n                                  ((fun v =>\n                                      ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks.match_1\n                                        (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n                                    s)\n                                  1)\n                                (σ.rightExt s 0 q)) →\n                            have global := fun ρ v =>\n                              ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks.match_1\n                                (fun v => Nat) v (fun _ => ρ.u) fun _ => ρ.a;\n                            have interval := fun ρ r =>\n                              Finset.Icc (instHAdd.hAdd (ρ.leftExt s 0 r) 1)\n                                (instHSub.hSub (instHSub.hSub (global ρ s) 1) (ρ.rightExt s 0 r));\n                            have lo := instHAdd.hAdd (σ.leftExt s 0 p) 1;\n                            have hi :=\n                              instHSub.hSub (instHSub.hSub (global σ s) 1) (σ.rightExt s 0 p);\n                            have interior := Finset.Icc (instHAdd.hAdd lo 1) (instHSub.hSub hi 1);\n                            have partRanks := Q.biUnion (interval (σ.part keep s m));\n                            And\n                              (∀ (r : Nat),\n                                SetLike.instMembership.mem Q r →\n                                  And (Eq (interval σ r) (interval σ p))\n                                    (Finset.instHasSubset.Subset (interval (σ.part keep s m) r)\n                                      interior))\n                              (And (Finset.instHasSubset.Subset partRanks interior)\n                                (And\n                                  (instLENat.le partRanks.card\n                                    (instHSub.hSub (instHSub.hSub hi lo) 1))\n                                  (Q.Nonempty → instLENat.le (instHAdd.hAdd lo 2) hi)))",
+   "type_hash": "7450a73ca78cf16a",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_1",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_2",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_3",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_4",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_5",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_6",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_7",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_8",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_10",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_11",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_12",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_13",
+    "ErdosSzekeres.ctx_part_tracked_rank_reservation.match_1",
+    "ErdosSzekeres.ctx_part_tracked_rank_reservation",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_15",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_16",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_17",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_18",
+    "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks._proof_1_19"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_part_limits_le",
