@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T16:51:29Z",
- "git_sha": "071267d915e7a5fa1203627b096412db81b2dc26",
+ "generated_at": "2026-09-09T17:10:45Z",
+ "git_sha": "832d4863c9c6f4434e5c1714cfd111a76401f392",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15464,
- "tree_hash": "6f6e9455eaa0be4b",
+ "modules": 15465,
+ "tree_hash": "6f5da2f4d75f3360",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15463,
+  "cached_modules": 15464,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -6748,6 +6748,57 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness",
+   "module": "ESBlueprint.B.CtxPrunePartProjectionOfRemovedWitness",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Pruning a context part to a tracked group is dominated by taking the same part after pruning the source group, provided the group has a removed child. Preserves the sibling maximum and proves endpoint capacity, every-fuel and full-bound comparisons. The witness fixes the side of the new level; the proof uses indexed marker inclusion, since removed children outside the group contribute extra source markers. Supplies recursive cut projection for a proposed sum of bounds over groups constant on child runs; no sum theorem is asserted here.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (support keep : List Nat) (v : ErdosSzekeres.Ctx.Side) (m q : Nat),\n      List.instMembership.mem σ.childPositions q →\n        List.instMembership.mem support q →\n          Not (List.instMembership.mem keep q) →\n            have prune := fun ρ =>\n              { a := ρ.a, u := ρ.u, k := ρ.k,\n                word :=\n                  List.map\n                    (fun p =>\n                      ErdosSzekeres.ctx_prune_part_projection_of_removed_witness.match_1\n                        (fun x => ErdosSzekeres.Ctx.Letter) (ρ.letterAt p)\n                        (fun _ =>\n                          ite (List.instMembership.mem support p) ErdosSzekeres.Ctx.Letter.child\n                            (ErdosSzekeres.Ctx.Letter.ext (instHAdd.hAdd ρ.maxima.length 1)\n                              ErdosSzekeres.Ctx.Side.lower))\n                        fun j s => ErdosSzekeres.Ctx.Letter.ext j s)\n                    (List.range ρ.word.length),\n                maxima := ρ.maxima };\n            have A := prune (σ.part keep v m);\n            have B := (prune σ).part keep v m;\n            And\n              (∀ (p q : Nat),\n                And (instLENat.le (A.cupLimit p q) (B.cupLimit p q))\n                  (instLENat.le (A.capLimit p q) (B.capLimit p q)))\n              (And\n                (∀ (fuel : Nat),\n                  instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel A)\n                    (ErdosSzekeres.Ctx.Context.boundFuel fuel B))\n                (instLENat.le A.bound B.bound))",
+   "type_hash": "bbbd80fb7e487577",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness.match_1",
+    "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness._proof_1_2",
+    "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness._proof_1_3",
+    "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness._proof_1_4",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness._proof_1_5",
+    "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness._proof_1_6",
+    "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness._proof_1_7",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness._proof_1_8",
+    "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness._proof_1_9",
+    "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness._proof_1_10",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_reverse_extension_transport",
