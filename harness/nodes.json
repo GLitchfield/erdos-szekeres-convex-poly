@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T16:38:17Z",
- "git_sha": "dd6777f7843647346df9dc51215515d26b054f34",
+ "generated_at": "2026-09-09T16:51:29Z",
+ "git_sha": "071267d915e7a5fa1203627b096412db81b2dc26",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15463,
- "tree_hash": "9164792c2e8ac45b",
+ "modules": 15464,
+ "tree_hash": "6f6e9455eaa0be4b",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15462,
+  "cached_modules": 15463,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -299,6 +299,63 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound",
+   "module": "ESBlueprint.B.CtxAxisCapacityIntervalLowerBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "An endpoint interpolation lower bound for a chosen point capacity: for p<=r<=q, the sum of the two endpoint capacities is at most the middle capacity plus the chosen global parameter minus one. No positivity, child membership, well-formedness, maximum or history restrictions are needed. Greedy extension monotonicity and cutoff inclusion bound the middle pure-chain and sibling-join constraints by the left endpoint constraints plus the right endpoint left extension; positive right capacity pays that extension. At chosen global at most four, two nonunit endpoints therefore force every intermediate chosen point capacity to be positive. Together with the straddling capacity profile, this determines interior capacity exactly one and rules out hidden chosen-axis zero-capacity gaps in the remaining collision source.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (p r q : Nat),\n  instLENat.le p r →\n    instLENat.le r q →\n      have global :=\n        ErdosSzekeres.ctx_axis_capacity_interval_lower_bound.match_1 (fun s => Nat) s (fun _ => σ.u)\n          fun _ => σ.a;\n      have capacity := fun z =>\n        ErdosSzekeres.ctx_axis_capacity_interval_lower_bound.match_1 (fun s => Nat) s\n          (fun _ => σ.cupLimit z z) fun _ => σ.capLimit z z;\n      instLENat.le (instHAdd.hAdd (capacity p) (capacity q))\n        (instHAdd.hAdd (capacity r) (instHSub.hSub global 1))",
+   "type_hash": "afc36f9894426a73",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_1",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_2",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_3",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_4",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_5",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_6",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_7",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_8",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_9",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_10",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_11",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_12",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_13",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_14",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_15",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_16",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_17",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_18",
+    "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound._proof_1_19"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_axis_region_limits_exact",
