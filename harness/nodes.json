@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T16:11:44Z",
- "git_sha": "f9985129b0f50c659b6abdb233d99b64a3bd72bd",
+ "generated_at": "2026-09-09T16:24:30Z",
+ "git_sha": "d319c6204b867eee13adc9bad0d21b3b6b8da8c8",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15461,
- "tree_hash": "a06443594cb13b92",
+ "modules": 15462,
+ "tree_hash": "c99a75151d92d39e",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15460,
+  "cached_modules": 15461,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -299,6 +299,46 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_axis_region_limits_exact",
+   "module": "ESBlueprint.B.CtxAxisRegionLimitsExact",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Exact equality of all chosen-axis endpoint extensions and point limits at positions having the same order relation to every actual indexed marker on that axis. Covers every history cutoff, pure chain extension, sibling-join extension and the selected cup or cap limit. Opposite-axis letters, inactive or unused levels, maxima and global parameters are arbitrary; neither positivity nor child membership is required. Greedy folds agree until their first common marker, after which their states coincide. Allows the two exterior nonunit witnesses in the remaining collision-saving case to determine capacities throughout their respective chosen-axis regions, even when opposite-axis markers separate children into different runs.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (p q : Nat)\n  (hregion :\n    ∀ (j : Nat),\n      List.instMembership.mem (σ.levelsOn s 0) j →\n        ∀ (z : Nat),\n          List.instMembership.mem (σ.extPositions j) z →\n            And (Iff (instLTNat.lt z p) (instLTNat.lt z q))\n              (Iff (instLTNat.lt p z) (instLTNat.lt q z))),\n  And\n    (∀ (top : Nat),\n      And (Eq (σ.leftExt s top p) (σ.leftExt s top q))\n        (Eq (σ.rightExt s top p) (σ.rightExt s top q)))\n    (And (Eq (σ.chainExt s p p) (σ.chainExt s q q))\n      (And (Eq (σ.joinExt s p p) (σ.joinExt s q q))\n        (ErdosSzekeres.ctx_axis_region_limits_exact.match_1 σ p q (fun s hregion => Prop) s hregion\n          (fun hregion => Eq (σ.cupLimit p p) (σ.cupLimit q q)) fun hregion =>\n          Eq (σ.capLimit p p) (σ.capLimit q q))))",
+   "type_hash": "858d5a01505e3502",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.Ctx.Context.leftExt_eq",
+    "ErdosSzekeres.Ctx.Context.rightExt_eq",
+    "ErdosSzekeres.ctx_axis_region_limits_exact.match_1"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_base_child_letter_contraction",
