@@ -620,6 +620,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxCardLeBound"
   },
+  "ErdosSzekeres.ctx_chain_one_children_exterior_of_two_levels": {
+    "type_hash": "80c9bfbc67b10c16",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N M x y : Nat),\n  List.instMembership.mem σ.levels N →\n    List.instMembership.mem σ.levels M →\n      instLTNat.lt N M →\n        Eq (σ.sideAt N) s →\n          Eq (σ.sideAt M) s →\n            List.instMembership.mem (σ.extPositions N) x →\n              List.instMembership.mem (σ.extPositions M) y →\n                Or\n                  (And (instLTNat.lt x y)\n                    (∀ (p : Nat),\n                      List.instMembership.mem σ.childPositions p →\n                        instLENat.le (σ.chainExt s p p) 1 →\n                          ∀ (j : Nat),\n                            List.instMembership.mem (σ.levelsOn s 0) j →\n                              ∀ (z : Nat),\n                                List.instMembership.mem (σ.extPositions j) z → instLTNat.lt z p))\n                  (And (instLTNat.lt y x)\n                    (∀ (p : Nat),\n                      List.instMembership.mem σ.childPositions p →\n                        instLENat.le (σ.chainExt s p p) 1 →\n                          ∀ (j : Nat),\n                            List.instMembership.mem (σ.levelsOn s 0) j →\n                              ∀ (z : Nat),\n                                List.instMembership.mem (σ.extPositions j) z → instLTNat.lt p z))",
+    "approved_by": "user:2026-09-09 fresh 12-hour autonomous lemma-driven research run",
+    "approved_at": "2026-09-09",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxChainOneChildrenExteriorOfTwoLevels"
+  },
   "ErdosSzekeres.ctx_chain_one_straddling_unique_axis_level": {
     "type_hash": "3d07f1b5bade1583",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N x p q : Nat),\n  List.instMembership.mem σ.levels N →\n    Eq (σ.sideAt N) s →\n      List.instMembership.mem (σ.extPositions N) x →\n        List.instMembership.mem σ.childPositions p →\n          List.instMembership.mem σ.childPositions q →\n            instLTNat.lt p x →\n              instLTNat.lt x q →\n                instLENat.le (σ.chainExt s p p) 1 →\n                  instLENat.le (σ.chainExt s q q) 1 →\n                    ∀ (j : Nat),\n                      List.instMembership.mem (σ.levelsOn s 0) j →\n                        ∀ (y : Nat),\n                          List.instMembership.mem (σ.extPositions j) y →\n                            And (Eq j N) (And (instLTNat.lt p y) (instLTNat.lt y q))",
