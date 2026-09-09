@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T17:10:45Z",
- "git_sha": "832d4863c9c6f4434e5c1714cfd111a76401f392",
+ "generated_at": "2026-09-09T17:23:34Z",
+ "git_sha": "a5efa166903f1c0b62d91cb381c6a045f9636fe0",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15465,
- "tree_hash": "6f5da2f4d75f3360",
+ "modules": 15466,
+ "tree_hash": "f1f52752df7ab106",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15464,
+  "cached_modules": 15465,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -6748,6 +6748,53 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained",
+   "module": "ESBlueprint.B.CtxPrunePartBoundOfAllTrackedRetained",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "If all tracked source children are kept, pruning the part to that tracked group is dominated by pruning the original source to the group, at every fuel and for the full bound. Covers empty groups and arbitrary sibling maxima under positive labels. Erases the new level and compares unindexed marker sides through exact indexed histories. Handles groups lying entirely within one side of a cut in the proposed run-group decomposition.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (support keep : List Nat) (v : ErdosSzekeres.Ctx.Side) (m : Nat),\n      (∀ (p : Nat),\n          List.instMembership.mem σ.childPositions p →\n            List.instMembership.mem support p → List.instMembership.mem keep p) →\n        have prune := fun ρ =>\n          { a := ρ.a, u := ρ.u, k := ρ.k,\n            word :=\n              List.map\n                (fun p =>\n                  ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained.match_1\n                    (fun x => ErdosSzekeres.Ctx.Letter) (ρ.letterAt p)\n                    (fun _ =>\n                      ite (List.instMembership.mem support p) ErdosSzekeres.Ctx.Letter.child\n                        (ErdosSzekeres.Ctx.Letter.ext (instHAdd.hAdd ρ.maxima.length 1)\n                          ErdosSzekeres.Ctx.Side.lower))\n                    fun j s => ErdosSzekeres.Ctx.Letter.ext j s)\n                (List.range ρ.word.length),\n            maxima := ρ.maxima };\n        And\n          (∀ (fuel : Nat),\n            instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel (prune (σ.part keep v m)))\n              (ErdosSzekeres.Ctx.Context.boundFuel fuel (prune σ)))\n          (instLENat.le (prune (σ.part keep v m)).bound (prune σ).bound)",
+   "type_hash": "67d28a822fc84d21",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained._proof_1_2",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion",
+    "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained._proof_1_3",
+    "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained._proof_1_4",
+    "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained._proof_1_5",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_erase_level_bound_mono.match_1",
+    "ErdosSzekeres.ctx_erase_level_bound_mono",
+    "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained._proof_1_7",
+    "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained._proof_1_8"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_prune_part_projection_of_removed_witness",
