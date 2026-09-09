@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T22:35:07Z",
- "git_sha": "a252375883f9d8e9e2cf84014d82c777f6fe320b",
+ "generated_at": "2026-09-09T22:48:54Z",
+ "git_sha": "b96cb9fb512a78b862a4247da01cb23eca1003a5",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15481,
- "tree_hash": "31902d9994ad039e",
+ "modules": 15482,
+ "tree_hash": "7a0c46d5009faf49",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15480,
+  "cached_modules": 15481,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -5473,6 +5473,44 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_chain_one_straddling_unique_axis_level",
+   "module": "ESBlueprint.B.CtxChainOneStraddlingUniqueAxisLevel",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "An actual chosen-axis marker straddled by two children whose chosen pure chain extensions are at most one forces every actual indexed chosen-axis marker to use the same level and lie strictly between those children. No global-capacity, k, positivity or activity premise is required. Reuses the earlier nonunit/global-four geometric theorem in an auxiliary context with unchanged word and history, globals four and an enlarged k that makes both witness capacities at least two. Isolates the pure geometry needed for maximal-capacity witnesses in higher-degree rank potentials.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N x p q : Nat),\n  List.instMembership.mem σ.levels N →\n    Eq (σ.sideAt N) s →\n      List.instMembership.mem (σ.extPositions N) x →\n        List.instMembership.mem σ.childPositions p →\n          List.instMembership.mem σ.childPositions q →\n            instLTNat.lt p x →\n              instLTNat.lt x q →\n                instLENat.le (σ.chainExt s p p) 1 →\n                  instLENat.le (σ.chainExt s q q) 1 →\n                    ∀ (j : Nat),\n                      List.instMembership.mem (σ.levelsOn s 0) j →\n                        ∀ (y : Nat),\n                          List.instMembership.mem (σ.extPositions j) y →\n                            And (Eq j N) (And (instLTNat.lt p y) (instLTNat.lt y q))",
+   "type_hash": "3d07f1b5bade1583",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_chain_one_straddling_unique_axis_level.match_1_1",
+    "ErdosSzekeres.ctx_chain_one_straddling_unique_axis_level._proof_1_3",
+    "ErdosSzekeres.ctx_chain_one_straddling_unique_axis_level._proof_1_4",
+    "ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_cut_potential_drop_of_nonunit_companion",
