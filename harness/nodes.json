@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T01:55:49Z",
- "git_sha": "e598ec44622b20b0f39e520c559e2c1ad1cd8568",
+ "generated_at": "2026-09-09T02:12:17Z",
+ "git_sha": "3d2ec33de754ed4371129dd6588e2baf36df07ea",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15429,
- "tree_hash": "a1c7d3e0c2c3783f",
+ "modules": 15430,
+ "tree_hash": "25702c800a6199a8",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15428,
+  "cached_modules": 15429,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -4193,6 +4193,62 @@
     "ErdosSzekeres.ctx_mixed_exchange_of_ordered_limits._proof_1_6",
     "ErdosSzekeres.ctx_mixed_exchange_of_ordered_limits._proof_1_7",
     "ErdosSzekeres.ctx_bound_opposite_removals_commute"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels",
+   "module": "ESBlueprint.B.CtxNonunitChildrenExteriorOfTwoLevels",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Two actual indexed levels on an axis with global parameter at most four force all nonunit children into one common exterior marker region. For levels N<M witnessed at positions x,y, every child with chosen capacity at least two lies beyond every indexed chosen marker in the direction from x to y. Includes inactive children, arbitrary maxima, unused levels, multiple marker positions at a level, and arbitrary external labels without a positivity premise. Two-step greedy extension witnesses exclude the wrong exterior; one marker on each side excludes the interior. Orients the nonunit rank contribution in the singleton-end sandwich mixed potential.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N M x y : Nat),\n  List.instMembership.mem σ.levels N →\n    List.instMembership.mem σ.levels M →\n      instLTNat.lt N M →\n        Eq (σ.sideAt N) s →\n          Eq (σ.sideAt M) s →\n            List.instMembership.mem (σ.extPositions N) x →\n              List.instMembership.mem (σ.extPositions M) y →\n                instLENat.le\n                    (ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels.match_1\n                      (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                    4 →\n                  Or\n                    (And (instLTNat.lt x y)\n                      (∀ (p : Nat),\n                        List.instMembership.mem σ.childPositions p →\n                          instLENat.le 2\n                              (ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels.match_1\n                                (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ =>\n                                σ.capLimit p p) →\n                            ∀ (j : Nat),\n                              List.instMembership.mem (σ.levelsOn s 0) j →\n                                ∀ (z : Nat),\n                                  List.instMembership.mem (σ.extPositions j) z → instLTNat.lt z p))\n                    (And (instLTNat.lt y x)\n                      (∀ (p : Nat),\n                        List.instMembership.mem σ.childPositions p →\n                          instLENat.le 2\n                              (ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels.match_1\n                                (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ =>\n                                σ.capLimit p p) →\n                            ∀ (j : Nat),\n                              List.instMembership.mem (σ.levelsOn s 0) j →\n                                ∀ (z : Nat),\n                                  List.instMembership.mem (σ.extPositions j) z → instLTNat.lt p z))",
+   "type_hash": "d87a0942b2e6b092",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_1",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._simp_1_2",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._simp_1_3",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._simp_1_4",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_5",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_6",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_7",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_8",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_9",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_10",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_11",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_12",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_13",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_14",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_15",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_16",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_17",
+    "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels._proof_1_18"
    ],
    "helpers": [],
    "status": "closed",
