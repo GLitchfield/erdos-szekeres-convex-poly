@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-09T14:29:02Z",
- "git_sha": "e388ed789c593a6adb95de44d513e79e79f2a43f",
+ "generated_at": "2026-09-09T14:45:21Z",
+ "git_sha": "b995e16d77b891e2748273cee7cc401ef3e10cba",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15454,
- "tree_hash": "b605e024dcc8721d",
+ "modules": 15455,
+ "tree_hash": "11cdf1ad5624813c",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15453,
+  "cached_modules": 15454,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -7130,6 +7130,66 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_single_level_companion_maximum_bound",
+   "module": "ESBlueprint.B.CtxSingleLevelCompanionMaximumBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A sibling-maximum bound for the complementary opposite-axis part of a context with one actual indexed chosen level and chosen global at most four. With nonempty kept and removed child witnesses, every fuel approximation and the full complementary bound are at most twice k-n-1 minus one, where n is the new complementary sibling maximum. If the retained witness has chosen capacity at least two, the complementary bound sharpens to k-n-1. Maxima, child pattern, repeated and unindexed positive markers are arbitrary; no coupling or opposite-global assumption is needed. Oldest-axis normalization preserves the original chosen marker while absorbing the new opposite maximum; the nonunit companion exterior geometry supplies the sharper boundary estimate. Provides the two companion charges needed for the critical saturated capacity-three bound.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (r j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt r) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    Eq σ.maxima.length 1 →\n      ∀ (s t : ErdosSzekeres.Ctx.Side),\n        Ne s t →\n          ∀ (x : Nat),\n            Eq (σ.sideAt 1) s →\n              List.instMembership.mem (σ.extPositions 1) x →\n                instLENat.le\n                    (ErdosSzekeres.ctx_single_level_companion_maximum_bound.match_1 (fun s => Nat) s\n                      (fun _ => σ.u) fun _ => σ.a)\n                    4 →\n                  ∀ (keep : List Nat) (m n p q : Nat),\n                    List.instMembership.mem (σ.part keep s m).childPositions p →\n                      List.instMembership.mem σ.childPositions q →\n                        Not (List.instMembership.mem keep q) →\n                          have B :=\n                            σ.part\n                              (List.filter\n                                (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                σ.childPositions)\n                              t n;\n                          have budget := instHSub.hSub (instHSub.hSub σ.k n) 1;\n                          And\n                            (∀ (fuel : Nat),\n                              instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel B)\n                                (instHSub.hSub (instHMul.hMul 2 budget) 1))\n                            (And (instLENat.le B.bound (instHSub.hSub (instHMul.hMul 2 budget) 1))\n                              (instLENat.le 2\n                                  (ErdosSzekeres.ctx_single_level_companion_maximum_bound.match_1\n                                    (fun s => Nat) s (fun _ => (σ.part keep s m).cupLimit p p)\n                                    fun _ => (σ.part keep s m).capLimit p p) →\n                                And\n                                  (∀ (fuel : Nat),\n                                    instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel B)\n                                      budget)\n                                  (instLENat.le B.bound budget)))",
+   "type_hash": "f07042ca7ce6e16c",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound.match_1",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_1",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_2",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_3",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._simp_1_4",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound.match_1_6",
+    "ErdosSzekeres.ctx_oldest_axis_maximum_erase_normalize.match_1",
+    "ErdosSzekeres.ctx_oldest_axis_maximum_erase_normalize.match_3",
+    "ErdosSzekeres.ctx_oldest_axis_maximum_erase_normalize",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_8",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_10",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_11",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_13",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_14",
+    "ErdosSzekeres.ctx_one_level_refined_potential_bound.match_1",
+    "ErdosSzekeres.ctx_one_level_refined_potential_bound",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound.match_1",
+    "ErdosSzekeres.ctx_nonunit_part_companion_exterior_rank_bound",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_15",
+    "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_16",
+    "ErdosSzekeres.ctx_boundary_marker_rank_budget_all_history.match_1",
+    "ErdosSzekeres.ctx_boundary_marker_rank_budget_all_history"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
   },
   {
    "name": "ErdosSzekeres.ctx_single_run_descendant_bound_normalize",
