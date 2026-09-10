@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-10T00:32:13Z",
- "git_sha": "ba706e005fd6450e9d7acd47a0a4807394121035",
+ "generated_at": "2026-09-10T00:50:13Z",
+ "git_sha": "1886726572bddc7a907664c498e89d58e851491c",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15488,
- "tree_hash": "b6d31e52d18e425e",
+ "modules": 15489,
+ "tree_hash": "ec31b4d700af89d3",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15487,
+  "cached_modules": 15488,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -10862,6 +10862,49 @@
     "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_21",
     "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._simp_1_22",
     "ErdosSzekeres.rank_row_column_union_card_eq_group_charges._proof_1_23"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.rank_triple_face_interval_union_card_sq",
+   "module": "ESBlueprint.B.RankTripleFaceIntervalUnionCardSq",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Exact square cardinality of the union of the two ordered-triple faces anchored at the endpoints of a finite natural-number interval. Left faces fix the first coordinate to the lower endpoint; right faces fix the last to the upper endpoint. Their intersection has one triple for each middle rank, so the union has the square of the interval cardinality. Empty intervals are included. Supplies the finite pivot charge for a prospective higher-capacity context reservation potential; no recursive context estimate is assumed.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (a b : Nat),\n  have I := Finset.Icc a b;\n  have pairs := Finset.filter (fun z => instLENat.le z.fst z.snd) (I.product I);\n  have rows := (Finset.instSingleton.singleton a).product pairs;\n  have columns := Finset.image (fun z => { fst := z.fst, snd := { fst := z.snd, snd := b } }) pairs;\n  Eq (Finset.instUnion.union rows columns).card (instHPow.hPow I.card 2)",
+   "type_hash": "34491746cc63d559",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.rank_triple_face_interval_union_card_sq._simp_1_1",
+    "ErdosSzekeres.rank_triple_face_interval_union_card_sq._simp_1_2",
+    "ErdosSzekeres.rank_triple_face_interval_union_card_sq._simp_1_3",
+    "ErdosSzekeres.rank_triple_face_interval_union_card_sq._simp_1_4",
+    "ErdosSzekeres.rank_triple_face_interval_union_card_sq._simp_1_5",
+    "ErdosSzekeres.rank_triple_face_interval_union_card_sq._simp_1_6",
+    "ErdosSzekeres.rank_triple_face_interval_union_card_sq._proof_1_7",
+    "ErdosSzekeres.rank_triple_face_interval_union_card_sq._proof_1_8",
+    "ErdosSzekeres.rank_triple_face_interval_union_card_sq._proof_1_9"
    ],
    "helpers": [],
    "status": "closed",
