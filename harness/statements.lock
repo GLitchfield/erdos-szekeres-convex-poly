@@ -1335,6 +1335,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.RankTripleFaceIntervalUnionCardSq"
   },
+  "ErdosSzekeres.rank_triple_face_union_card_eq_group_charges": {
+    "type_hash": "48c44eb83224944e",
+    "type_pp": "∀ (L R : Finset Nat) (lo hi : Nat → Nat) (a b : Nat),\n  (∀ (p : Nat),\n      SetLike.instMembership.mem L p → And (instLENat.le (lo p) a) (instLENat.le (hi p) b)) →\n    (∀ (p : Nat),\n        SetLike.instMembership.mem R p → And (instLENat.le a (lo p)) (instLENat.le b (hi p))) →\n      ∀ (colors : Finset Nat),\n        have I := fun p => Finset.Icc (lo p) (hi p);\n        have pairs := fun S => Finset.filter (fun z => instLENat.le z.fst z.snd) (S.product S);\n        have rows :=\n          L.biUnion fun p => (Finset.instSingleton.singleton (lo p)).product (pairs (I p));\n        have columns :=\n          R.biUnion fun p =>\n            Finset.image (fun z => { fst := z.fst, snd := { fst := z.snd, snd := hi p } })\n              (pairs (I p));\n        let merge := Not (Disjoint rows columns);\n        have leftColor := fun p =>\n          ite (And merge (Eq (lo p) a)) 0 (instHAdd.hAdd (instHMul.hMul 2 (lo p)) 1);\n        have rightColor := fun p =>\n          ite (And merge (Eq (hi p) b)) 0 (instHAdd.hAdd (instHMul.hMul 2 (hi p)) 2);\n        have ranks := fun c =>\n          Finset.instUnion.union ((Finset.filter (fun p => Eq (leftColor p) c) L).biUnion I)\n            ((Finset.filter (fun p => Eq (rightColor p) c) R).biUnion I);\n        (∀ (p : Nat),\n            SetLike.instMembership.mem L p → SetLike.instMembership.mem colors (leftColor p)) →\n          (∀ (p : Nat),\n              SetLike.instMembership.mem R p → SetLike.instMembership.mem colors (rightColor p)) →\n            Eq (Finset.instUnion.union rows columns).card\n              (colors.sum fun c =>\n                ite (Eq c 0) (instHPow.hPow (ranks c).card 2) (pairs (ranks c)).card)",
+    "approved_by": "user:2026-09-09 fresh 12-hour autonomous lemma-driven research run",
+    "approved_at": "2026-09-09",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.RankTripleFaceUnionCardEqGroupCharges"
+  },
   "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all": {
     "type_hash": "ee88bf4ffda45548",
     "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
