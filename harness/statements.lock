@@ -1326,6 +1326,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.RankRowColumnUnionCardEqGroupCharges"
   },
+  "ErdosSzekeres.rank_triple_face_interval_union_card_sq": {
+    "type_hash": "34491746cc63d559",
+    "type_pp": "∀ (a b : Nat),\n  have I := Finset.Icc a b;\n  have pairs := Finset.filter (fun z => instLENat.le z.fst z.snd) (I.product I);\n  have rows := (Finset.instSingleton.singleton a).product pairs;\n  have columns := Finset.image (fun z => { fst := z.fst, snd := { fst := z.snd, snd := b } }) pairs;\n  Eq (Finset.instUnion.union rows columns).card (instHPow.hPow I.card 2)",
+    "approved_by": "user:2026-09-09 fresh 12-hour autonomous lemma-driven research run",
+    "approved_at": "2026-09-09",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.RankTripleFaceIntervalUnionCardSq"
+  },
   "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all": {
     "type_hash": "ee88bf4ffda45548",
     "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
