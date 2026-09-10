@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-10T20:18:26Z",
- "git_sha": "dfcfa031809b4cce60f34103081d9a1c33f8886c",
+ "generated_at": "2026-09-10T20:38:19Z",
+ "git_sha": "02d38751a0082aa4a740f193413a3a08dd40fba5",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15530,
- "tree_hash": "c92d8a1a940fbaae",
+ "modules": 15531,
+ "tree_hash": "79d168b36406572b",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15529,
+  "cached_modules": 15530,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -14586,6 +14586,45 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_youngest_marker_triple_face_potential",
+   "module": "ESBlueprint.B.CtxYoungestMarkerTripleFacePotential",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Remove the anchored-square premise from the youngest-marker ordered-triple face bound. The unconditional actual-marker rank-square potential now pays the merged endpoint group in the checked triple-face reduction; the original-history row and column rank faces bound every fuel approximation and the full context. Positive physical labels, distinct axes, chosen global at most five, and an actual chosen marker at level N. Every younger indexed chosen level has no actual positions. Other history, maxima, inactive children and physical barriers may be arbitrary. No anchored-square or recursive-bound premise remains.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N x : Nat),\n          List.instMembership.mem σ.levels N →\n            Eq (σ.sideAt N) s →\n              List.instMembership.mem (σ.extPositions N) x →\n                instLENat.le\n                    (ErdosSzekeres.ctx_youngest_marker_triple_face_potential.match_1 (fun s => Nat)\n                      s (fun _ => σ.u) fun _ => σ.a)\n                    5 →\n                  (∀ (j : Nat),\n                      List.instMembership.mem (σ.levelsOn s N) j → Eq (σ.extPositions j) List.nil) →\n                    have global :=\n                      ErdosSzekeres.ctx_youngest_marker_triple_face_potential.match_1 (fun t => Nat)\n                        t (fun _ => σ.u) fun _ => σ.a;\n                    have active :=\n                      Finset.filter\n                        (fun p =>\n                          And (instLTNat.lt 0 (σ.cupLimit p p)) (instLTNat.lt 0 (σ.capLimit p p)))\n                        σ.childPositions.toFinset;\n                    have interval := fun p =>\n                      Finset.Icc (instHAdd.hAdd (σ.leftExt t 0 p) 1)\n                        (instHSub.hSub (instHSub.hSub global 1) (σ.rightExt t 0 p));\n                    have pairs := fun S =>\n                      Finset.filter (fun z => instLENat.le z.fst z.snd) (S.product S);\n                    have rows :=\n                      (Finset.filter (fun p => instLTNat.lt p x) active).biUnion fun p =>\n                        (Finset.instSingleton.singleton (instHAdd.hAdd (σ.leftExt t 0 p) 1)).product\n                          (pairs (interval p));\n                    have columns :=\n                      (Finset.filter (fun p => instLTNat.lt x p) active).biUnion fun p =>\n                        Finset.image\n                          (fun z =>\n                            { fst := z.fst,\n                              snd :=\n                                { fst := z.snd,\n                                  snd :=\n                                    instHSub.hSub (instHSub.hSub global 1) (σ.rightExt t 0 p) } })\n                          (pairs (interval p));\n                    And\n                      (∀ (fuel : Nat),\n                        instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                          (Finset.instUnion.union rows columns).card)\n                      (instLENat.le σ.bound (Finset.instUnion.union rows columns).card)",
+   "type_hash": "2472243470795539",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_youngest_marker_triple_face_potential.match_1",
+    "ErdosSzekeres.ctx_youngest_marker_triple_face_bound_of_anchored_square",
+    "ErdosSzekeres.ctx_youngest_marker_triple_face_bound_of_anchored_square.match_1",
+    "ErdosSzekeres.ctx_actual_marker_rank_square_potential.match_1",
+    "ErdosSzekeres.ctx_actual_marker_rank_square_potential"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-10"
   },
   {
    "name": "ErdosSzekeres.decomposableStateUpper_all",
