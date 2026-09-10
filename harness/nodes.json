@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-10T01:30:11Z",
- "git_sha": "f4df9204bc46a653268e26edf79b3ea52bd8b737",
+ "generated_at": "2026-09-10T01:51:24Z",
+ "git_sha": "aa55f85505946d2bf6dd4c97290ae5f9052180e0",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15491,
- "tree_hash": "1aafe353c6350ad5",
+ "modules": 15492,
+ "tree_hash": "1ecc0ae18e5f8495",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15490,
+  "cached_modules": 15491,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -10892,6 +10892,50 @@
    "deps_actual": [
     "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges._proof_1_1",
     "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges._proof_1_2"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner",
+   "module": "ESBlueprint.B.RankPairClippedIntervalUnionMissingCorner",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Exact ordered-pair saving for two endpoint-clipped overlapping integer intervals. For a<b, the union of ordered pairs from [a,b-1] and [a+1,b] is the ordered-pair set of [a,b] with exactly its extreme corner (a,b) erased. Consequently adding the left triangular charge to this union charge gives the full interval-cardinality square minus one, expressed without subtraction as an equality after adding one. This is the precise one-unit counting saving proposed for an internal interval cut whose complement straddles the chosen pivot. The contextual cut classification remains a separate proof task.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (a b : Nat),\n  instLTNat.lt a b →\n    have I := Finset.Icc a b;\n    have L := Finset.Icc a (instHSub.hSub b 1);\n    have R := Finset.Icc (instHAdd.hAdd a 1) b;\n    have pairs := fun S => Finset.filter (fun z => instLENat.le z.fst z.snd) (S.product S);\n    And (Eq (Finset.instUnion.union (pairs L) (pairs R)) ((pairs I).erase { fst := a, snd := b }))\n      (Eq\n        (instHAdd.hAdd\n          (instHAdd.hAdd (pairs L).card (Finset.instUnion.union (pairs L) (pairs R)).card) 1)\n        (instHPow.hPow I.card 2))",
+   "type_hash": "dcc984e48d27dc8e",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner._simp_1_1",
+    "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner._simp_1_2",
+    "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner._simp_1_3",
+    "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner._simp_1_4",
+    "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner._simp_1_5",
+    "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner._proof_1_6",
+    "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner._proof_1_7",
+    "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner._proof_1_8",
+    "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner._proof_1_9",
+    "ErdosSzekeres.rank_pair_clipped_interval_union_missing_corner._proof_1_10"
    ],
    "helpers": [],
    "status": "closed",
