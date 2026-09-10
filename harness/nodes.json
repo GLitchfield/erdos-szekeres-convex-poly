@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-10T03:13:32Z",
- "git_sha": "89c72aa862c38073cc8bba83decc23c7ecc9eff4",
+ "generated_at": "2026-09-10T03:32:44Z",
+ "git_sha": "b4985eb2917931b6b40f7a4bf401bb026b063d1a",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15496,
- "tree_hash": "d4d93b84315d9b04",
+ "modules": 15497,
+ "tree_hash": "46e3bcca05741644",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15495,
+  "cached_modules": 15496,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -9907,6 +9907,65 @@
     "ErdosSzekeres.ctx_small_global_opposite_maximum_binomial_bound._proof_1_12",
     "ErdosSzekeres.ctx_small_global_axis_rank_pair_potential.match_1",
     "ErdosSzekeres.ctx_small_global_axis_rank_pair_potential"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound",
+   "module": "ESBlueprint.B.CtxSmallOppositeGlobalMarkerSquareBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The marker square estimate for opposite global at most four and chosen global at most five, using any actual chosen marker. Bounds every fuel and the full recursive context by the square of the opposite global minus one. Allows arbitrary maxima, older histories, inactive children, and positive unindexed markers. Covers opposite widths zero through three without a youngest-marker or bare-history assumption, supplying the small-width base of the remaining bare-marker square problem.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N x : Nat),\n          List.instMembership.mem σ.levels N →\n            Eq (σ.sideAt N) s →\n              List.instMembership.mem (σ.extPositions N) x →\n                instLENat.le\n                    (ErdosSzekeres.ctx_small_opposite_global_marker_square_bound.match_1\n                      (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                    5 →\n                  instLENat.le\n                      (ErdosSzekeres.ctx_small_opposite_global_marker_square_bound.match_1\n                        (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                      4 →\n                    have w :=\n                      instHSub.hSub\n                        (ErdosSzekeres.ctx_small_opposite_global_marker_square_bound.match_1\n                          (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                        1;\n                    And\n                      (∀ (fuel : Nat),\n                        instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                          (instHPow.hPow w 2))\n                      (instLENat.le σ.bound (instHPow.hPow w 2))",
+   "type_hash": "63a4770900d645b3",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_1",
+    "ErdosSzekeres.ctx_small_global_axis_rank_pair_potential.match_1",
+    "ErdosSzekeres.ctx_small_global_axis_rank_pair_potential",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._simp_1_2",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._simp_1_3",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_5",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_7",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_8",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_9",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_10",
+    "ErdosSzekeres.ctx_bound_le_one_of_common_singleton_rank",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_11",
+    "ErdosSzekeres.ctx_small_global_axis_rank_region_potential.match_1",
+    "ErdosSzekeres.ctx_small_global_axis_rank_region_potential",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_12",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_13",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_14",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_16",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_17",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_18",
+    "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound._proof_1_19"
    ],
    "helpers": [],
    "status": "closed",
