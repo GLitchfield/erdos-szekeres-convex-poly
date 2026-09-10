@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-10T02:12:20Z",
- "git_sha": "bd0ccf0fba273028df5fa641965c7ce01aea76f4",
+ "generated_at": "2026-09-10T02:27:17Z",
+ "git_sha": "02eff613f00022cfa301b6918b3d1f3e3e90e1a8",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15493,
- "tree_hash": "f2bb54db9079d878",
+ "modules": 15494,
+ "tree_hash": "296387c7d54bb257",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15492,
+  "cached_modules": 15493,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -8846,6 +8846,63 @@
     "ErdosSzekeres.ctx_separating_marker_retained_boundary_rank_union_bound._simp_1_21",
     "ErdosSzekeres.ctx_active_boundary_marker_rank_union_bound.match_1",
     "ErdosSzekeres.ctx_active_boundary_marker_rank_union_bound"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound",
+   "module": "ESBlueprint.B.CtxSeparatingMarkerRetainedLevelDoubledRankBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A doubled opposite-rank-union bound for a context with a separating marker at chosen global at most five and any distinct surviving actual marker on the same axis. Every source child is active; the retained marker can be younger or older and need not itself be a boundary. Erase the separator with a one-unit chosen-global reduction, transport the entire opposite history, and apply the checked global-four actual-marker potential. Bounds every recursive fuel and the full value by twice the exact source rank-union cardinality minus one. This is a reusable adjacent-zone charge after suitable occurrence pruning; no general global-five square bound is asserted.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (N x : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem (σ.extPositions N) x →\n          ∀ (rightward : Bool),\n            (∀ (p : Nat),\n                List.instMembership.mem σ.childPositions p →\n                  ite (Eq rightward Bool.true) (instLTNat.lt p x) (instLTNat.lt x p)) →\n              (∀ (j : Nat),\n                  List.instMembership.mem (σ.levelsOn (σ.sideAt N) N) j →\n                    ∀ (p : Nat),\n                      List.instMembership.mem (σ.extPositions j) p →\n                        ite (Eq rightward Bool.true) (instLTNat.lt p x) (instLTNat.lt x p)) →\n                (∀ (j : Nat),\n                    List.instMembership.mem (σ.levelsOn (σ.sideAt N) 0) j →\n                      instLTNat.lt N j →\n                        ∀ (p : Nat),\n                          List.instMembership.mem (σ.extPositions j) p →\n                            ite (Eq rightward Bool.true) (instLTNat.lt x p) (instLTNat.lt p x)) →\n                  ∀ (I y : Nat),\n                    List.instMembership.mem σ.levels I →\n                      Ne I N →\n                        Eq (σ.sideAt I) (σ.sideAt N) →\n                          List.instMembership.mem (σ.extPositions I) y →\n                            (∀ (p : Nat),\n                                List.instMembership.mem σ.childPositions p →\n                                  And (instLTNat.lt 0 (σ.cupLimit p p))\n                                    (instLTNat.lt 0 (σ.capLimit p p))) →\n                              ∀ (t : ErdosSzekeres.Ctx.Side),\n                                Ne (σ.sideAt N) t →\n                                  instLENat.le\n                                      (ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound.match_1\n                                        (fun x => Nat) (σ.sideAt N) (fun _ => σ.u) fun _ => σ.a)\n                                      5 →\n                                    have budget :=\n                                      instHSub.hSub\n                                        (ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound.match_1\n                                          (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                        1;\n                                    have active :=\n                                      Finset.filter\n                                        (fun p =>\n                                          And (instLTNat.lt 0 (σ.cupLimit p p))\n                                            (instLTNat.lt 0 (σ.capLimit p p)))\n                                        σ.childPositions.toFinset;\n                                    have ranks :=\n                                      active.biUnion fun p =>\n                                        Finset.Icc (instHAdd.hAdd (σ.leftExt t 0 p) 1)\n                                          (instHSub.hSub budget (σ.rightExt t 0 p));\n                                    And\n                                      (∀ (fuel : Nat),\n                                        instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                                          (instHSub.hSub (instHMul.hMul 2 ranks.card) 1))\n                                      (instLENat.le σ.bound\n                                        (instHSub.hSub (instHMul.hMul 2 ranks.card) 1))",
+   "type_hash": "27f748272002be80",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound.match_1",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound.match_1_1",
+    "ErdosSzekeres.ctx_separating_marker_erase_normalize.match_1",
+    "ErdosSzekeres.ctx_separating_marker_erase_normalize.match_3",
+    "ErdosSzekeres.ctx_separating_marker_erase_normalize",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._simp_1_3",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._simp_1_4",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_5",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_6",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_7",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_8",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_9",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_10",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_11",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_12",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_13",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_14",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._proof_1_17",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._simp_1_18",
+    "ErdosSzekeres.ctx_separating_marker_retained_level_doubled_rank_bound._simp_1_19",
+    "ErdosSzekeres.ctx_one_level_refined_potential_bound.match_1",
+    "ErdosSzekeres.ctx_one_level_refined_potential_bound"
    ],
    "helpers": [],
    "status": "closed",
