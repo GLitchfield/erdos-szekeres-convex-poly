@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-10T01:51:24Z",
- "git_sha": "aa55f85505946d2bf6dd4c97290ae5f9052180e0",
+ "generated_at": "2026-09-10T02:12:20Z",
+ "git_sha": "bd0ccf0fba273028df5fa641965c7ce01aea76f4",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15492,
- "tree_hash": "1ecc0ae18e5f8495",
+ "modules": 15493,
+ "tree_hash": "f2bb54db9079d878",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15491,
+  "cached_modules": 15492,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -8963,6 +8963,54 @@
     "ErdosSzekeres.ctx_single_level_companion_maximum_bound._proof_1_16",
     "ErdosSzekeres.ctx_boundary_marker_rank_budget_all_history.match_1",
     "ErdosSzekeres.ctx_boundary_marker_rank_budget_all_history"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono",
+   "module": "ESBlueprint.B.CtxSingleLevelOccurrencePruneBoundMono",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Prune occurrences of one indexed level while retaining an actual witness and assigning every retained occurrence its original indexed sideAt. Replace removed positions with unindexed letters, preserving the child pattern and all parameters/maxima. Exposes positive labels, exact filtered positions on that level, unchanged other indexed positions and sides, unchanged opposite-axis pure traces at every cutoff, and endpoint/fuel/full bound monotonicity. Packages the existing marker-inclusion comparison for clipping distant new-level occurrences before a boundary normalization. Canonical retained tags and the retained-witness hypothesis ensure sideAt does not change, even for raw contexts with inconsistent occurrence tags.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (N : Nat),\n      List.instMembership.mem σ.levels N →\n        ∀ (keep : List Nat) (w : Nat),\n          List.instMembership.mem (σ.extPositions N) w →\n            List.instMembership.mem keep w →\n              have τ :=\n                { a := σ.a, u := σ.u, k := σ.k,\n                  word :=\n                    List.map\n                      (fun p =>\n                        ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono.match_1\n                          (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt p)\n                          (fun _ => ErdosSzekeres.Ctx.Letter.child) fun j v =>\n                          ite (Eq j N)\n                            (ite (List.instMembership.mem keep p)\n                              (ErdosSzekeres.Ctx.Letter.ext N (σ.sideAt N))\n                              (ErdosSzekeres.Ctx.Letter.ext (instHAdd.hAdd σ.maxima.length 1) v))\n                            (ErdosSzekeres.Ctx.Letter.ext j v))\n                      (List.range σ.word.length),\n                  maxima := σ.maxima };\n              And\n                (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n                  Eq (τ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j)\n                (And (Eq τ.childPositions σ.childPositions)\n                  (And\n                    (∀ (j : Nat),\n                      List.instMembership.mem σ.levels j →\n                        And (Eq (τ.sideAt j) (σ.sideAt j))\n                          (And (Eq (τ.maximumAt j) (σ.maximumAt j))\n                            (Eq (τ.extPositions j)\n                              (ite (Eq j N)\n                                (List.filter\n                                  (fun x => Decidable.decide (List.instMembership.mem keep x))\n                                  (σ.extPositions j))\n                                (σ.extPositions j)))))\n                    (And\n                      (∀ (t : ErdosSzekeres.Ctx.Side),\n                        Ne (σ.sideAt N) t →\n                          ∀ (top p : Nat),\n                            And (Eq (τ.leftExt t top p) (σ.leftExt t top p))\n                              (Eq (τ.rightExt t top p) (σ.rightExt t top p)))\n                      (And\n                        (∀ (p q : Nat),\n                          And (instLENat.le (σ.cupLimit p q) (τ.cupLimit p q))\n                            (instLENat.le (σ.capLimit p q) (τ.capLimit p q)))\n                        (And\n                          (∀ (fuel : Nat),\n                            instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                              (ErdosSzekeres.Ctx.Context.boundFuel fuel τ))\n                          (instLENat.le σ.bound τ.bound))))))",
+   "type_hash": "b3b9d6904795695b",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono.match_1",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono._proof_1_2",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono._proof_1_3",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono._proof_1_4",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono._proof_1_5",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono._simp_1_6",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono._simp_1_7",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono._proof_1_8",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono._proof_1_9",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono.match_1_12",
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1"
    ],
    "helpers": [],
    "status": "closed",
