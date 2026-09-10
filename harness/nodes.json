@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-10T16:53:27Z",
- "git_sha": "869f87e1d5d195c02c83cbdd31c4d883aa65f2cc",
+ "generated_at": "2026-09-10T17:10:14Z",
+ "git_sha": "04a323d7fa99bedc72f059f65f47c99262039d3a",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15520,
- "tree_hash": "c0605f71f21bb132",
+ "modules": 15521,
+ "tree_hash": "fedac66529bc2719",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15519,
+  "cached_modules": 15520,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -11045,6 +11045,61 @@
     "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three.match_1",
     "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three",
     "ErdosSzekeres.ctx_two_marker_between_internal_interval_cut_potential_bound._proof_1_81"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-10"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound",
+   "module": "ESBlueprint.B.CtxTwoMarkerEndpointCutPotentialBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Classify every opposite-kept endpoint against both actual chosen markers and apply the unconditional surrounding, inward, outward or between cut bounds. No recursive premise or opposite-history restriction remains.\nPositive labels, chosen global at most five, opposite width at least two, and two actual indexed chosen positions containing all chosen positions. A nonempty opposite-kept endpoint with a complementary child witness; arbitrary opposite history, maxima and inactive children. No recursive potential premise.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound.match_1\n                              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                            5 →\n                          (∀ (j : Nat),\n                              List.instMembership.mem (σ.levelsOn s 0) j →\n                                ∀ (p : Nat),\n                                  List.instMembership.mem (σ.extPositions j) p →\n                                    Or (Eq p x) (Eq p y)) →\n                            instLENat.le 2\n                                (instHSub.hSub\n                                  (ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound.match_1\n                                    (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                  1) →\n                              ∀ (keep : List Nat) (q₀ l m n : Nat),\n                                List.instMembership.mem keep q₀ →\n                                  (∀ (p : Nat),\n                                      List.instMembership.mem keep p →\n                                        List.instMembership.mem σ.childPositions p) →\n                                    List.instMembership.mem σ.childPositions l →\n                                      Not (List.instMembership.mem keep l) →\n                                        ∀ (endpoint : Bool),\n                                          (∀ (p : Nat),\n                                              List.instMembership.mem keep p →\n                                                ∀ (q : Nat),\n                                                  List.instMembership.mem σ.childPositions q →\n                                                    Not (List.instMembership.mem keep q) →\n                                                      ite (Eq endpoint Bool.true) (instLTNat.lt q p)\n                                                        (instLTNat.lt p q)) →\n                                            have w :=\n                                              instHSub.hSub\n                                                (ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound.match_1\n                                                  (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                                1;\n                                            have rest :=\n                                              List.filter\n                                                (fun x =>\n                                                  Decidable.decide\n                                                    (Not (List.instMembership.mem keep x)))\n                                                σ.childPositions;\n                                            And\n                                              (∀ (f g : Nat),\n                                                instLENat.le\n                                                  (instHAdd.hAdd\n                                                    (ErdosSzekeres.Ctx.Context.boundFuel f\n                                                      (σ.part rest s m))\n                                                    (ErdosSzekeres.Ctx.Context.boundFuel g\n                                                      (σ.part keep t n)))\n                                                  (instHSub.hSub\n                                                    (instHAdd.hAdd ((instHAdd.hAdd w 1).choose 2) w)\n                                                    1))\n                                              (instLENat.le\n                                                (instHAdd.hAdd (σ.part rest s m).bound\n                                                  (σ.part keep t n).bound)\n                                                (instHSub.hSub\n                                                  (instHAdd.hAdd ((instHAdd.hAdd w 1).choose 2) w)\n                                                  1))",
+   "type_hash": "5ced480f4bd569b2",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound.match_1",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_1",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_2",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_3",
+    "ErdosSzekeres.ctx_two_marker_surrounding_endpoint_cut_unconditional_bound",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_4",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_5",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_6",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_7",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_8",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_9",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_10",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_11",
+    "ErdosSzekeres.ctx_boundary_marker_inward_endpoint_cut_triangular_bound.match_1",
+    "ErdosSzekeres.ctx_boundary_marker_inward_endpoint_cut_triangular_bound",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_endpoint_cut_potential_bound",
+    "ErdosSzekeres.ctx_two_marker_older_exterior_endpoint_cut_potential_bound",
+    "ErdosSzekeres.ctx_two_marker_endpoint_cut_potential_bound._proof_1_12",
+    "ErdosSzekeres.ctx_two_marker_between_endpoint_cut_doubled_rank_bound.match_1",
+    "ErdosSzekeres.ctx_two_marker_between_endpoint_cut_doubled_rank_bound"
    ],
    "helpers": [],
    "status": "closed",
