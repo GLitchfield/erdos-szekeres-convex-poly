@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-12T21:20:18Z",
- "git_sha": "00ead8c27f02bd2e54739c953e56bb88473bb3c4",
+ "generated_at": "2026-09-12T21:30:48Z",
+ "git_sha": "c1a84ee17dd1eaac0a71ecf6eb347aeeaf86c961",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15550,
- "tree_hash": "cea76f1b03cdff59",
+ "modules": 15551,
+ "tree_hash": "34fd19247c5d8ada",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15549,
+  "cached_modules": 15550,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -1026,7 +1026,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-12"
   },
   {
    "name": "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound",
@@ -7933,6 +7933,60 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound",
+   "module": "ESBlueprint.B.CtxLargeChosenMaximumBracketedPartUnitBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Bound an internally bracketed chosen part by one when an original indexed chosen maximum is at least k-4. Normalize that original maximum after taking the part: the chosen global becomes at most four, and the new level-one boundary witnesses survive. The checked bracketed-child theorem then gives the shared unit bound. Positive physical labels and an indexed level on the chosen axis with maximum at least k-4. All retained source children lie strictly between two complementary source children. The new maximum is arbitrary. No original global bound, opposite-width bound, actual occurrence at the selected old level, history-depth restriction, convexity or legal-maximum coupling is required. Physical external positions are preserved.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (N : Nat),\n      List.instMembership.mem σ.levels N →\n        Eq (σ.sideAt N) s →\n          instLENat.le (instHSub.hSub σ.k 4) (σ.maximumAt N) →\n            ∀ (keep : List Nat) (m l r : Nat),\n              List.instMembership.mem σ.childPositions l →\n                List.instMembership.mem σ.childPositions r →\n                  Not (List.instMembership.mem keep l) →\n                    Not (List.instMembership.mem keep r) →\n                      (∀ (p : Nat),\n                          List.instMembership.mem σ.childPositions p →\n                            List.instMembership.mem keep p →\n                              And (instLTNat.lt l p) (instLTNat.lt p r)) →\n                        And\n                          (∀ (fuel : Nat),\n                            instLENat.le\n                              (ErdosSzekeres.Ctx.Context.boundFuel fuel (σ.part keep s m)) 1)\n                          (instLENat.le (σ.part keep s m).bound 1)",
+   "type_hash": "9925c887f6d1dfc4",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound._proof_1_1",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound._proof_1_2",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound._proof_1_3",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound.match_1_4",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize.match_1",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound._simp_1_9",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound._simp_1_10",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound._proof_1_11",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound._proof_1_12",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound._proof_1_13",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound._proof_1_15",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound._proof_1_16",
+    "ErdosSzekeres.ctx_bracketed_children_unit_bound.match_1",
+    "ErdosSzekeres.ctx_bracketed_children_unit_bound",
+    "ErdosSzekeres.Ctx.Context.part_childPositions"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_mixed_axis_clear_unit_cover_potential",
