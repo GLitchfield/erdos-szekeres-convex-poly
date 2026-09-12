@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-12T21:05:48Z",
- "git_sha": "7fc9cfe4c1564002d2b586041f788c688797d37d",
+ "generated_at": "2026-09-12T21:20:18Z",
+ "git_sha": "00ead8c27f02bd2e54739c953e56bb88473bb3c4",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15549,
- "tree_hash": "6bc09fdd089bdaff",
+ "modules": 15550,
+ "tree_hash": "cea76f1b03cdff59",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15548,
+  "cached_modules": 15549,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -960,6 +960,73 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-10"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential",
+   "module": "ESBlueprint.B.CtxActualMarkerSaturatedLinearPotential",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Extend the saturated linear bound 2*k-4 to every positive context with chosen global at most four, opposite global at most k, and an actual chosen marker. Arbitrary indexed levels other than the retained marker are erased using the checked bound monotonicity theorem; physical external barriers remain. The depth induction ends at the checked one-level saturated theorem. Positive physical labels, distinct axes, chosen global at most four, opposite global at most k and k at least four. At least one actual indexed chosen marker is required. Arbitrary history on both axes, repeated occurrences, maxima, inactive children and unindexed physical barriers are allowed. No one-level, youngest-marker, empty-history, recursive-potential or cut-bound premise.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N x : Nat),\n          List.instMembership.mem σ.levels N →\n            Eq (σ.sideAt N) s →\n              List.instMembership.mem (σ.extPositions N) x →\n                instLENat.le\n                    (ErdosSzekeres.ctx_actual_marker_saturated_linear_potential.match_1\n                      (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                    4 →\n                  instLENat.le\n                      (ErdosSzekeres.ctx_actual_marker_saturated_linear_potential.match_1\n                        (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                      σ.k →\n                    instLENat.le 4 σ.k →\n                      And\n                        (∀ (fuel : Nat),\n                          instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                            (instHSub.hSub (instHMul.hMul 2 σ.k) 4))\n                        (instLENat.le σ.bound (instHSub.hSub (instHMul.hMul 2 σ.k) 4))",
+   "type_hash": "a6c2ebb7d0aabbe6",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential.match_1",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential.match_1_1",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._simp_1_3",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._simp_1_4",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_5",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_6",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_7",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_9",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_10",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_11",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_12",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_13",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_14",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_15",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_16",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_17",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_20",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_21",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_22",
+    "ErdosSzekeres.ctx_single_level_saturated_linear_bound",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_23",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_24",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_25",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_26",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_27",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_28",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_29",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_30",
+    "ErdosSzekeres.ctx_erase_level_bound_mono.match_1",
+    "ErdosSzekeres.ctx_erase_level_bound_mono",
+    "ErdosSzekeres.Ctx.Context.boundFuel_eq_bound",
+    "ErdosSzekeres.Ctx.Context.boundFuel_mono",
+    "ErdosSzekeres.ctx_actual_marker_saturated_linear_potential._proof_1_31"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound",
@@ -12742,7 +12809,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-12"
   },
   {
    "name": "ErdosSzekeres.ctx_two_actual_marker_sharp_potential_arbitrary_history",
