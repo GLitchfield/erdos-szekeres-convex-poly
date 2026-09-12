@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-12T21:30:48Z",
- "git_sha": "c1a84ee17dd1eaac0a71ecf6eb347aeeaf86c961",
+ "generated_at": "2026-09-12T21:45:22Z",
+ "git_sha": "f3973fc5855fb3eec5d3a16d59811c6785381544",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15551,
- "tree_hash": "34fd19247c5d8ada",
+ "modules": 15552,
+ "tree_hash": "3d3103b2c048dd6f",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15550,
+  "cached_modules": 15551,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -7986,7 +7986,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-12"
   },
   {
    "name": "ErdosSzekeres.ctx_mixed_axis_clear_unit_cover_potential",
@@ -12775,6 +12775,75 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-10"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound",
+   "module": "ESBlueprint.B.CtxThinThreeRankWindowBracketedCutSaturatedLinearBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Bound both fuel approximations and the full cut sum by 2*k-4 for an internally bracketed chosen part. The source has empty indexed opposite history, an indexed chosen maximum at least k-4, and every active pure chosen interval has at most two ranks inside a common window of three consecutive ranks. Positive coupled sibling maxima sum to k-1. There is no source global-cap restriction, chosen-history depth or occurrence restriction, convexity requirement, or recursive potential premise. The large original maximum makes the chosen part unit; normalize the opposite companion while preserving chosen rank traces, and pay its thin-rectangle cover from the coupled maximum. This removes the chosen-internal-cut case in the prospective three-rank saturation saving; the other geometries remain open.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t),\n      Eq (σ.levelsOn t 0) List.nil →\n        ∀ (N : Nat),\n          List.instMembership.mem σ.levels N →\n            ∀ (hNs : Eq (σ.sideAt N) s),\n              instLENat.le (instHSub.hSub σ.k 4) (σ.maximumAt N) →\n                ∀ (L : Nat)\n                  (hthin :\n                    ∀ (p : Nat),\n                      List.instMembership.mem σ.childPositions p →\n                        instLTNat.lt 0 (σ.cupLimit p p) →\n                          instLTNat.lt 0 (σ.capLimit p p) →\n                            instLENat.le\n                              (instHSub.hSub\n                                (instHSub.hSub\n                                  (ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound.match_1\n                                    σ t N (fun s hne hNs => Nat) s hne hNs (fun hne hNs => σ.u)\n                                    fun hne hNs => σ.a)\n                                  1)\n                                (σ.rightExt s 0 p))\n                              (instHAdd.hAdd (σ.leftExt s 0 p) 2)),\n                  (∀ (p : Nat),\n                      List.instMembership.mem σ.childPositions p →\n                        instLTNat.lt 0 (σ.cupLimit p p) →\n                          instLTNat.lt 0 (σ.capLimit p p) →\n                            And (instLENat.le L (instHAdd.hAdd (σ.leftExt s 0 p) 1))\n                              (instLENat.le\n                                (instHSub.hSub\n                                  (instHSub.hSub\n                                    (ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound.match_3\n                                      σ t N (fun s hne hNs hthin => Nat) s hne hNs hthin\n                                      (fun hne hNs hthin => σ.u) fun hne hNs hthin => σ.a)\n                                    1)\n                                  (σ.rightExt s 0 p))\n                                (instHAdd.hAdd L 2))) →\n                    ∀ (keep : List Nat) (q₀ l r m n : Nat),\n                      List.instMembership.mem σ.childPositions q₀ →\n                        List.instMembership.mem keep q₀ →\n                          List.instMembership.mem σ.childPositions l →\n                            List.instMembership.mem σ.childPositions r →\n                              Not (List.instMembership.mem keep l) →\n                                Not (List.instMembership.mem keep r) →\n                                  (∀ (p : Nat),\n                                      List.instMembership.mem σ.childPositions p →\n                                        List.instMembership.mem keep p →\n                                          And (instLTNat.lt l p) (instLTNat.lt p r)) →\n                                    instLENat.le 1 m →\n                                      instLENat.le 1 n →\n                                        Eq (instHAdd.hAdd m n) (instHSub.hSub σ.k 1) →\n                                          have rest :=\n                                            List.filter\n                                              (fun x =>\n                                                Decidable.decide\n                                                  (Not (List.instMembership.mem keep x)))\n                                              σ.childPositions;\n                                          And\n                                            (∀ (f g : Nat),\n                                              instLENat.le\n                                                (instHAdd.hAdd\n                                                  (ErdosSzekeres.Ctx.Context.boundFuel f\n                                                    (σ.part keep s m))\n                                                  (ErdosSzekeres.Ctx.Context.boundFuel g\n                                                    (σ.part rest t n)))\n                                                (instHSub.hSub (instHMul.hMul 2 σ.k) 4))\n                                            (instLENat.le\n                                              (instHAdd.hAdd (σ.part keep s m).bound\n                                                (σ.part rest t n).bound)\n                                              (instHSub.hSub (instHMul.hMul 2 σ.k) 4))",
+   "type_hash": "51bce9de126a41d6",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound.match_1",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound.match_3",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound.match_1_1",
+    "ErdosSzekeres.ctx_large_chosen_maximum_bracketed_part_unit_bound",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._simp_1_3",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_zero",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound.match_1_4",
+    "ErdosSzekeres.ctx_oldest_axis_maximum_erase_normalize.match_1",
+    "ErdosSzekeres.ctx_oldest_axis_maximum_erase_normalize.match_3",
+    "ErdosSzekeres.ctx_oldest_axis_maximum_erase_normalize",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_7",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_8",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound.match_1_9",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_11",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_12",
+    "ErdosSzekeres.ctx_thin_rank_rectangle_context_cover_potential.match_3",
+    "ErdosSzekeres.ctx_thin_rank_rectangle_context_cover_potential",
+    "ErdosSzekeres.ctx_thin_rank_rectangle_context_cover_potential.match_1",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_14",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_15",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_16",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_17",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_18",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_19",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_20",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_21",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_22",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_23",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_24",
+    "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound._proof_1_25"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_two_actual_marker_saturated_nonunit_bracketed_cut_bound",
