@@ -203,3 +203,4 @@ import ESBlueprint.B.CtxActualMarkerCompanionMaximumBound
 import ESBlueprint.B.CtxActualMarkerQuadraticPenultimateCutBound
 import ESBlueprint.B.CtxActualMarkerQuadraticLargeNonunitCutBound
 import ESBlueprint.B.CtxActualMarkerNextBandLowMaximumNonunitCutBound
+import ESBlueprint.B.CtxSmallMaximaActiveCapacityTwoLinearPotential

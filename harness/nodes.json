@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-12T20:17:24Z",
- "git_sha": "79915a2228156bcca26feb5b8761d57b12855b27",
+ "generated_at": "2026-09-12T20:29:48Z",
+ "git_sha": "7e9775111b13c0f86ed25d4ee8a600151d9ea5a2",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15546,
- "tree_hash": "c82728b5b1f18291",
+ "modules": 15547,
+ "tree_hash": "1e9eaece3aaa9126",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15545,
+  "cached_modules": 15546,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -783,7 +783,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-12"
   },
   {
    "name": "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound",
@@ -12180,6 +12180,59 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential",
+   "module": "ESBlueprint.B.CtxSmallMaximaActiveCapacityTwoLinearPotential",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Bound every fuel approximation and the full context by three opposite widths minus two when chosen global is at most five, every chosen maximum is at most k-5, and active chosen point capacities are at most two. Cutoff inclusion proves that these capacities equal their pure chain capacities; the thin rectangle cover then applies. Positive physical labels, distinct axes, chosen global at most five, k at least five and opposite width at least one. Every indexed chosen-axis maximum is at most k-5, and every active chosen point capacity is at most two. Arbitrary history depth, marker positions, inactive children and opposite maxima. No actual-marker, recursive-potential or cut-bound premise.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        instLENat.le\n            (ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential.match_1\n              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n            5 →\n          instLENat.le 5 σ.k →\n            (∀ (j : Nat),\n                List.instMembership.mem (σ.levelsOn s 0) j →\n                  instLENat.le (σ.maximumAt j) (instHSub.hSub σ.k 5)) →\n              (∀ (p : Nat),\n                  List.instMembership.mem σ.childPositions p →\n                    instLTNat.lt 0 (σ.cupLimit p p) →\n                      instLTNat.lt 0 (σ.capLimit p p) →\n                        instLENat.le\n                          (ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential.match_1\n                            (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ => σ.capLimit p p)\n                          2) →\n                instLENat.le 1\n                    (instHSub.hSub\n                      (ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential.match_1\n                        (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                      1) →\n                  have w :=\n                    instHSub.hSub\n                      (ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential.match_1\n                        (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                      1;\n                  And\n                    (∀ (fuel : Nat),\n                      instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                        (instHSub.hSub (instHMul.hMul 3 w) 2))\n                    (instLENat.le σ.bound (instHSub.hSub (instHMul.hMul 3 w) 2))",
+   "type_hash": "e5d444c7fa6ed5e6",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_1",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_2",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential.match_1_3",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_6",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_7",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_8",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_9",
+    "ErdosSzekeres.ctx_thin_rank_rectangle_context_cover_potential.match_3",
+    "ErdosSzekeres.ctx_thin_rank_rectangle_context_cover_potential",
+    "ErdosSzekeres.ctx_thin_rank_rectangle_context_cover_potential.match_1",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_10",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_11",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_12",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_13",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_14",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential._proof_1_15"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound",
