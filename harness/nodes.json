@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-12T19:59:25Z",
- "git_sha": "aec9a3062977d7fe27defcb2f81c9f2e3abffa04",
+ "generated_at": "2026-09-12T20:17:24Z",
+ "git_sha": "79915a2228156bcca26feb5b8761d57b12855b27",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15545,
- "tree_hash": "ec96983e2e0ad8dd",
+ "modules": 15546,
+ "tree_hash": "c82728b5b1f18291",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15544,
+  "cached_modules": 15545,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -718,6 +718,74 @@
    "opened": "2026-09-10"
   },
   {
+   "name": "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound",
+   "module": "ESBlueprint.B.CtxActualMarkerNextBandLowMaximumNonunitCutBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Use the checked sharp arbitrary-history two-marker potential on the chosen part and the companion triangle on the opposite part. For chosen maximum m<=k-6, the resulting sum is below the next-band quadratic target by at least k-6. No stronger saturated two-marker potential is assumed. Small opposite widths are handled locally by the checked small-global rank-region bound. Positive labels, distinct axes, any actual indexed chosen marker and chosen global at most five; arbitrary additional history and repeated markers. Opposite global at most k-1. Positive chosen maximum m<=k-6 and coupling m+n=k-1 imply k>=7 and n>=5. No lower opposite-width assumption. A retained child of chosen capacity at least three and a removed source child; arbitrary kept list. No exact-depth, youngest-marker, empty-history, convexity, singleton-end or recursive-potential premise. Only the next-band quadratic budget is concluded; m=k-5 and the top band remain separate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N x : Nat),\n          List.instMembership.mem σ.levels N →\n            Eq (σ.sideAt N) s →\n              List.instMembership.mem (σ.extPositions N) x →\n                instLENat.le\n                    (ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound.match_1\n                      (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                    5 →\n                  instLENat.le\n                      (ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound.match_1\n                        (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                      (instHSub.hSub σ.k 1) →\n                    ∀ (keep : List Nat) (m n p q : Nat),\n                      instLENat.le 1 m →\n                        instLENat.le m (instHSub.hSub σ.k 6) →\n                          Eq (instHAdd.hAdd m n) (instHSub.hSub σ.k 1) →\n                            List.instMembership.mem (σ.part keep s m).childPositions p →\n                              List.instMembership.mem σ.childPositions q →\n                                Not (List.instMembership.mem keep q) →\n                                  instLENat.le 3\n                                      (ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound.match_1\n                                        (fun s => Nat) s (fun _ => (σ.part keep s m).cupLimit p p)\n                                        fun _ => (σ.part keep s m).capLimit p p) →\n                                    have A := σ.part keep s m;\n                                    have B :=\n                                      σ.part\n                                        (List.filter\n                                          (fun x =>\n                                            Decidable.decide (Not (List.instMembership.mem keep x)))\n                                          σ.childPositions)\n                                        t n;\n                                    And\n                                      (∀ (f g : Nat),\n                                        instLENat.le\n                                          (instHAdd.hAdd (ErdosSzekeres.Ctx.Context.boundFuel f A)\n                                            (ErdosSzekeres.Ctx.Context.boundFuel g B))\n                                          (instHAdd.hAdd\n                                            (instHSub.hSub (instHPow.hPow (instHSub.hSub σ.k 2) 2)\n                                              (instHSub.hSub σ.k 2))\n                                            1))\n                                      (instLENat.le (instHAdd.hAdd A.bound B.bound)\n                                        (instHAdd.hAdd\n                                          (instHSub.hSub (instHPow.hPow (instHSub.hSub σ.k 2) 2)\n                                            (instHSub.hSub σ.k 2))\n                                          1))",
+   "type_hash": "d154e2ca1d43c93e",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound.match_1",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_1",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_2",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_3",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_4",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.ctx_two_actual_marker_sharp_potential_arbitrary_history.match_1",
+    "ErdosSzekeres.ctx_two_actual_marker_sharp_potential_arbitrary_history",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_5",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_6",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_7",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_8",
+    "ErdosSzekeres.ctx_actual_marker_companion_maximum_bound.match_1",
+    "ErdosSzekeres.ctx_actual_marker_companion_maximum_bound",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_9",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_10",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_11",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_12",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_13",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_14",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_17",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_16",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_15",
+    "ErdosSzekeres.Ctx.Context.boundFuel_eq_bound",
+    "ErdosSzekeres.Ctx.Context.boundFuel_mono",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_19",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_20",
+    "ErdosSzekeres.ctx_small_global_axis_rank_region_potential.match_1",
+    "ErdosSzekeres.ctx_small_global_axis_rank_region_potential",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_21",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_22",
+    "ErdosSzekeres.ctx_actual_marker_next_band_low_maximum_nonunit_cut_bound._proof_1_23"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound",
    "module": "ESBlueprint.B.CtxActualMarkerQuadraticLargeNonunitCutBound",
    "ws": "B",
@@ -789,7 +857,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-12"
   },
   {
    "name": "ErdosSzekeres.ctx_actual_marker_quadratic_penultimate_cut_bound",
