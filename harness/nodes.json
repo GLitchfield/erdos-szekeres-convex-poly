@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-12T19:27:04Z",
- "git_sha": "d309c299ce49f957b19efa6af6ef8f2317aece24",
+ "generated_at": "2026-09-12T19:59:25Z",
+ "git_sha": "aec9a3062977d7fe27defcb2f81c9f2e3abffa04",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15544,
- "tree_hash": "8cb44cf9c9bfb663",
+ "modules": 15545,
+ "tree_hash": "ec96983e2e0ad8dd",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15543,
+  "cached_modules": 15544,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -718,6 +718,80 @@
    "opened": "2026-09-10"
   },
   {
+   "name": "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound",
+   "module": "ESBlueprint.B.CtxActualMarkerQuadraticLargeNonunitCutBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Remove exact source depth: any selected actual chosen marker and arbitrary other history suffice, using the actual-marker companion theorem. Remove the retained-capacity-at-least-three and new-chosen-maximum-at-least-k-4 cut regime of the remaining one-level quadratic obstruction. Normalize the chosen part to global four and apply the actual-marker companion triangle; prove the top and next capacity-band polynomial budgets. Positive labels, any actual indexed chosen marker, arbitrary additional history, distinct axes and chosen global at most five. Opposite global at most k and k at least five. A retained child of chosen capacity at least three and a removed source child; arbitrary kept list, positive coupled maxima m+n=k-1, and m at least k-4. The sharper second conclusion assumes opposite global at most k-1. No source-maximum restriction, singleton-end geometry or recursive potential premise. This is a cut estimate. Lower new chosen maxima and retained capacities below three remain unresolved for the whole one-level quadratic potential. No exact-depth, youngest-marker or empty-history premise.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (r j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt r) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N x : Nat),\n          List.instMembership.mem σ.levels N →\n            Eq (σ.sideAt N) s →\n              List.instMembership.mem (σ.extPositions N) x →\n                instLENat.le\n                    (ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound.match_1\n                      (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                    5 →\n                  instLENat.le\n                      (ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound.match_1\n                        (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                      σ.k →\n                    instLENat.le 5 σ.k →\n                      ∀ (keep : List Nat) (m n p q : Nat),\n                        instLENat.le 1 m →\n                          instLENat.le 1 n →\n                            Eq (instHAdd.hAdd m n) (instHSub.hSub σ.k 1) →\n                              instLENat.le (instHSub.hSub σ.k 4) m →\n                                List.instMembership.mem (σ.part keep s m).childPositions p →\n                                  List.instMembership.mem σ.childPositions q →\n                                    Not (List.instMembership.mem keep q) →\n                                      instLENat.le 3\n                                          (ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound.match_1\n                                            (fun s => Nat) s\n                                            (fun _ => (σ.part keep s m).cupLimit p p) fun _ =>\n                                            (σ.part keep s m).capLimit p p) →\n                                        have A := σ.part keep s m;\n                                        have B :=\n                                          σ.part\n                                            (List.filter\n                                              (fun x =>\n                                                Decidable.decide\n                                                  (Not (List.instMembership.mem keep x)))\n                                              σ.childPositions)\n                                            t n;\n                                        And\n                                          (instLENat.le (instHAdd.hAdd A.bound B.bound)\n                                            (instHAdd.hAdd\n                                              (instHSub.hSub (instHPow.hPow (instHSub.hSub σ.k 1) 2)\n                                                (instHMul.hMul 3 (instHSub.hSub σ.k 1)))\n                                              4))\n                                          (instLENat.le\n                                              (ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound.match_1\n                                                (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                              (instHSub.hSub σ.k 1) →\n                                            instLENat.le (instHAdd.hAdd A.bound B.bound)\n                                              (instHAdd.hAdd\n                                                (instHSub.hSub\n                                                  (instHPow.hPow (instHSub.hSub σ.k 2) 2)\n                                                  (instHSub.hSub σ.k 2))\n                                                1))",
+   "type_hash": "c74fadf6c947afec",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound.match_1",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_1",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_2",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_3",
+    "ErdosSzekeres.ctx_small_global_axis_rank_pair_potential.match_1",
+    "ErdosSzekeres.ctx_small_global_axis_rank_pair_potential",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_4",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_5",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_6",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_7",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_8",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_9",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.Ctx.Context.le_joinExt_of_mem_levelsOn",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_10",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_11",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_12",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_13",
+    "ErdosSzekeres.ctx_actual_marker_companion_maximum_bound.match_1",
+    "ErdosSzekeres.ctx_actual_marker_companion_maximum_bound",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_14",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound.match_1_15",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_18",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_19",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize.match_1",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize",
+    "ErdosSzekeres.ctx_small_global_axis_saturated_triangle_bound",
+    "ErdosSzekeres.ctx_small_global_axis_saturated_triangle_bound.match_1",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_20",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_21",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_22",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_23",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_24",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_25",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_26",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_27",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_28",
+    "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound._proof_1_29"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_actual_marker_quadratic_penultimate_cut_bound",
    "module": "ESBlueprint.B.CtxActualMarkerQuadraticPenultimateCutBound",
    "ws": "B",
@@ -772,7 +846,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-12"
   },
   {
    "name": "ErdosSzekeres.ctx_actual_marker_rank_square_potential",
