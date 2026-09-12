@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-12T20:29:48Z",
- "git_sha": "7e9775111b13c0f86ed25d4ee8a600151d9ea5a2",
+ "generated_at": "2026-09-12T20:50:11Z",
+ "git_sha": "f34621e312104e139acc554b61e5b50f1047cf54",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15547,
- "tree_hash": "1e9eaece3aaa9126",
+ "modules": 15548,
+ "tree_hash": "6599885075ffa7f8",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15546,
+  "cached_modules": 15547,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -11307,6 +11307,72 @@
    "opened": "2026-09-09"
   },
   {
+   "name": "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound",
+   "module": "ESBlueprint.B.CtxSingleLevelQuadraticSmallCapacityCutBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For a positive exact-depth-one source with an actual chosen marker, chosen global at most five, opposite global between two and k, and k at least six, prove both critical quadratic cut budgets when the new chosen maximum is at most k-5 and all active chosen-part capacities are at most two. The old source maximum is unrestricted: a small old maximum permits the thin linear potential, while a large one can be normalized and leaves an actual new marker in a global-four depth-one context. The opposite companion square then pays the top budget (k-1)^2-3(k-1)+4 and next budget (k-2)^2-(k-2)+1. The kept list is arbitrary; new maxima are positive and coupled. There is no recursive premise. Cuts with a capacity-three retained witness remain separate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (r j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt r) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    Eq σ.maxima.length 1 →\n      ∀ (s t : ErdosSzekeres.Ctx.Side),\n        Ne s t →\n          ∀ (x : Nat),\n            Eq (σ.sideAt 1) s →\n              List.instMembership.mem (σ.extPositions 1) x →\n                instLENat.le\n                    (ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound.match_1\n                      (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                    5 →\n                  instLENat.le\n                      (ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound.match_1\n                        (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                      σ.k →\n                    instLENat.le 2\n                        (ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound.match_1\n                          (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a) →\n                      instLENat.le 6 σ.k →\n                        ∀ (keep : List Nat) (m n p q : Nat),\n                          instLENat.le 1 m →\n                            instLENat.le 1 n →\n                              Eq (instHAdd.hAdd m n) (instHSub.hSub σ.k 1) →\n                                instLENat.le m (instHSub.hSub σ.k 5) →\n                                  List.instMembership.mem (σ.part keep s m).childPositions p →\n                                    List.instMembership.mem σ.childPositions q →\n                                      Not (List.instMembership.mem keep q) →\n                                        (∀ (r : Nat),\n                                            List.instMembership.mem (σ.part keep s m).childPositions\n                                                r →\n                                              instLTNat.lt 0 ((σ.part keep s m).cupLimit r r) →\n                                                instLTNat.lt 0 ((σ.part keep s m).capLimit r r) →\n                                                  ((fun r => instLENat) r).le\n                                                    (ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound.match_1\n                                                      (fun s => Nat) s\n                                                      (fun _ => (σ.part keep s m).cupLimit r r)\n                                                      fun _ => (σ.part keep s m).capLimit r r)\n                                                    2) →\n                                          have A := σ.part keep s m;\n                                          have B :=\n                                            σ.part\n                                              (List.filter\n                                                (fun x =>\n                                                  Decidable.decide\n                                                    (Not (List.instMembership.mem keep x)))\n                                                σ.childPositions)\n                                              t n;\n                                          And\n                                            (instLENat.le (instHAdd.hAdd A.bound B.bound)\n                                              (instHAdd.hAdd\n                                                (instHSub.hSub\n                                                  (instHPow.hPow (instHSub.hSub σ.k 1) 2)\n                                                  (instHMul.hMul 3 (instHSub.hSub σ.k 1)))\n                                                4))\n                                            (instLENat.le\n                                                (ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound.match_1\n                                                  (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                                (instHSub.hSub σ.k 1) →\n                                              instLENat.le (instHAdd.hAdd A.bound B.bound)\n                                                (instHAdd.hAdd\n                                                  (instHSub.hSub\n                                                    (instHPow.hPow (instHSub.hSub σ.k 2) 2)\n                                                    (instHSub.hSub σ.k 2))\n                                                  1))",
+   "type_hash": "98f42b841d3308cb",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound.match_1",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_1",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_2",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_3",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.ctx_actual_marker_companion_maximum_bound.match_1",
+    "ErdosSzekeres.ctx_actual_marker_companion_maximum_bound",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_4",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_5",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential.match_1",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_6",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_7",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_8",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound.match_1_9",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_13",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_14",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize.match_1",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize",
+    "ErdosSzekeres.ctx_single_level_saturated_linear_bound",
+    "ErdosSzekeres.ctx_single_level_saturated_linear_bound.match_1",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_15",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_16",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_17",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_18",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_19",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_20",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_21",
+    "ErdosSzekeres.ctx_single_level_quadratic_small_capacity_cut_bound._proof_1_22"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_single_level_saturated_linear_bound",
    "module": "ESBlueprint.B.CtxSingleLevelSaturatedLinearBound",
    "ws": "B",
@@ -12232,7 +12298,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-12"
   },
   {
    "name": "ErdosSzekeres.ctx_small_opposite_global_marker_square_bound",
