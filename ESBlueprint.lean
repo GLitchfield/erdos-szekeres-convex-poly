@@ -219,3 +219,4 @@ import ESBlueprint.B.CtxThinFourRankNextBandPotential
 import ESBlueprint.B.CtxThinFourRankTopBandChosenInternalCutBound
 import ESBlueprint.B.CtxThinFourRankTopBandEndpointCutBound
 import ESBlueprint.B.CtxThinFourRankTopBandOppositeInternalCutBound
+import ESBlueprint.B.CtxThinFourRankTopBandPotential
