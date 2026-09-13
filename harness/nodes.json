@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T17:54:45Z",
- "git_sha": "bcbbee1249d9c66dea5f28c9225b77ceb569f1a7",
+ "generated_at": "2026-09-13T18:11:57Z",
+ "git_sha": "568ff924729532f56d5970bc49a58fd6d4935871",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15568,
- "tree_hash": "ae2e818f51817fd8",
+ "modules": 15569,
+ "tree_hash": "5084625d71161872",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15567,
+  "cached_modules": 15568,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -8307,6 +8307,77 @@
    "opened": "2026-09-12"
   },
   {
+   "name": "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history",
+   "module": "ESBlueprint.B.CtxNonmonotoneTripleSaturatedPotentialArbitraryOppositeHistory",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Remove the empty opposite indexed-history restriction from the nonmonotone-triple saturated potential. Retain three actual chosen markers in nonmonotone age/spatial order and a chosen maximum at least k-4 while erasing opposite levels using checked bound monotonicity; the clear-history endpoint is the existing saturated potential. Positive physical labels, distinct axes, chosen global at most five, opposite global at most k, and k at least five remain explicit. Top and next bounds are 3k-8 and 3k-9 for all fuel and the full bound. All additional chosen and opposite history, maxima, inactive children, and positive unindexed barriers are allowed. The large chosen maximum and nonmonotone geometry remain substantive assumptions; this does not close the general parent. Search evidence: runs/sol-trial-20260913/search-arbitrary-opposite.json.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (J N M z x y : Nat),\n          List.instMembership.mem σ.levels J →\n            List.instMembership.mem σ.levels N →\n              List.instMembership.mem σ.levels M →\n                instLTNat.lt J N →\n                  instLTNat.lt N M →\n                    Eq (σ.sideAt J) s →\n                      Eq (σ.sideAt N) s →\n                        Eq (σ.sideAt M) s →\n                          List.instMembership.mem (σ.extPositions J) z →\n                            List.instMembership.mem (σ.extPositions N) x →\n                              List.instMembership.mem (σ.extPositions M) y →\n                                Or (And (instLTNat.lt z x) (instLTNat.lt y x))\n                                    (And (instLTNat.lt x z) (instLTNat.lt x y)) →\n                                  instLENat.le\n                                      (ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history.match_1\n                                        (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                                      5 →\n                                    instLENat.le\n                                        (ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history.match_1\n                                          (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                        σ.k →\n                                      instLENat.le 5 σ.k →\n                                        ∀ (R : Nat),\n                                          List.instMembership.mem σ.levels R →\n                                            Eq (σ.sideAt R) s →\n                                              instLENat.le (instHSub.hSub σ.k 4) (σ.maximumAt R) →\n                                                And\n                                                  (∀ (fuel : Nat),\n                                                    instLENat.le\n                                                      (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                                                      (instHSub.hSub (instHMul.hMul 3 σ.k) 8))\n                                                  (And\n                                                    (instLENat.le σ.bound\n                                                      (instHSub.hSub (instHMul.hMul 3 σ.k) 8))\n                                                    (instLENat.le\n                                                        (ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history.match_1\n                                                          (fun t => Nat) t (fun _ => σ.u) fun _ =>\n                                                          σ.a)\n                                                        (instHSub.hSub σ.k 1) →\n                                                      And\n                                                        (∀ (fuel : Nat),\n                                                          instLENat.le\n                                                            (ErdosSzekeres.Ctx.Context.boundFuel\n                                                              fuel σ)\n                                                            (instHSub.hSub (instHMul.hMul 3 σ.k) 9))\n                                                        (instLENat.le σ.bound\n                                                          (instHSub.hSub (instHMul.hMul 3 σ.k) 9))))",
+   "type_hash": "9b7a3bd32effef7c",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history.match_1",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history.match_1_1",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._simp_1_3",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._simp_1_4",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_5",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_6",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_7",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_8",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_9",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_10",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_11",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_12",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_13",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_14",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_15",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_16",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_19",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_20",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_21",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_23",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_24",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_25",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_26",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_27",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_28",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_29",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_30",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_31",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_32",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential.match_1",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_33",
+    "ErdosSzekeres.ctx_erase_level_bound_mono.match_1",
+    "ErdosSzekeres.ctx_erase_level_bound_mono",
+    "ErdosSzekeres.Ctx.Context.boundFuel_eq_bound",
+    "ErdosSzekeres.Ctx.Context.boundFuel_mono",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential_arbitrary_opposite_history._proof_1_34"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels",
    "module": "ESBlueprint.B.CtxNonunitChildrenExteriorOfTwoLevels",
    "ws": "B",
@@ -9780,7 +9851,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-13"
   },
   {
    "name": "ErdosSzekeres.ctx_part_opposite_limits_eq",
