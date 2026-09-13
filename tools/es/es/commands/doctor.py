@@ -60,6 +60,9 @@ def run(ctx: Ctx) -> Result:
     add("extract template", cfg.extract_template.exists(), str(cfg.extract_template))
     add("systemd-run guard", (not cfg.build_guard) or shutil.which("systemd-run") is not None, "guard enabled" if cfg.build_guard else "guard disabled")
     add("memory", available_gib() > 8, f"{available_gib():.0f} GiB available; {lean_compilers_running()} lean compiler(s) running")
+    from es.build import _mem_gib
+    add('full extraction admission', _mem_gib(cfg.extract_memory_max) <= _mem_gib(cfg.jobs_memory_budget),
+        f'effective extract cap {cfg.extract_memory_max}; shared budget {cfg.jobs_memory_budget}; use an explicit smaller stage cap after measuring its peak')
     for name, path in (("destinations", cfg.destinations_file), ("allowlist", cfg.allowlist_file), ("lock", cfg.lock_file)):
         add(name, path.exists(), str(path))
     script = cfg.extract_script

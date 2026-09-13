@@ -367,6 +367,9 @@ class Config:
 
     @property
     def max_parallel_builds(self) -> int:
+        primary = primary_root(self.root)
+        if primary != self.root:
+            return load_config(primary).max_parallel_builds
         return int(self.get("jobs", "max_parallel_builds", default=1))
 
     @property
@@ -377,6 +380,9 @@ class Config:
     @property
     def jobs_memory_budget(self) -> str:
         """Sum of the memory caps of live jobs (queued or running) may not exceed this."""
+        primary = primary_root(self.root)
+        if primary != self.root:
+            return load_config(primary).jobs_memory_budget
         return str(self.get("jobs", "memory_budget", default="30G"))
 
     @property

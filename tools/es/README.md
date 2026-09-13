@@ -6,16 +6,23 @@ and why: `docs/harness-implementation-2026-09-04.md`.
 
     tools/es/bin/es doctor            # toolchain, config, database, oleans, cache
     tools/es/bin/es status | ready    # the frontier / claimable nodes
+    tools/es/bin/es lib search "recursive bounds" # find reusable Python and workflows
+    tools/es/bin/es lib show research.recursive-bounds # API, example, semantics and source
     tools/es/bin/es node add ...      # new statement (elaborated, deduplicated, locked)
     tools/es/bin/es check <node>      # build the node module, re-extract, report sorry/axioms
     tools/es/bin/es build core        # memory-guarded, budgeted lake build
     tools/es/bin/es layers | audit    # import layering / axiom allowlist checks
     tools/es/bin/es lock refresh --all --reason "toolchain vX"   # re-approve unchanged statements after a toolchain bump
 
-Install for development: `uv venv tools/es/.venv && uv pip install -e "tools/es[test,mcp]"`,
+Install for development: `uv venv tools/es/.venv && uv pip install -e "tools/es[test,mcp,research]"`,
 then `pytest tools/es/tests`. The MCP server (`tools/es/bin/es-mcp`) is registered in
 `.mcp.json`; the Claude Code hooks in `.claude/settings.json`; the nightly check in
 `tools/es/systemd/` (`install.sh` enables a user timer at 03:00).
+
+Core commands and library discovery have no scientific dependencies. The optional
+`research` extra supplies NumPy for the retained recursive probes and their portable
+regression tests. See `harness/research/README.md` for adding an entry when a useful
+run-specific helper is promoted into the shared library.
 
 ## Things that cost hours to learn
 

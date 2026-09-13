@@ -19,4 +19,10 @@ from es.commands import (  # noqa: F401
     ready,
     search,
     status,
+    usage,
+    automation,
+    proof,
+    probe,
+    index,
+    library,
 )

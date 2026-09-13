@@ -31,7 +31,9 @@ CREATE INDEX IF NOT EXISTS events_at ON events(at);
 """
 
 # columns added after the first release; older databases are migrated on open
-JOB_COLUMNS = {"why": "TEXT", "memory_max": "TEXT", "outputs": "TEXT", "peak_mib": "INTEGER", "seconds": "REAL"}
+JOB_COLUMNS = {"why": "TEXT", "memory_max": "TEXT", "outputs": "TEXT", "peak_mib": "INTEGER", "seconds": "REAL",
+               "cancel_requested": "INTEGER NOT NULL DEFAULT 0", "process_start": "TEXT",
+               "heartbeat_at": "REAL", "lock_key": "TEXT", "operation_id": "TEXT", "stage_ordinal": "INTEGER", "scope_unit": "TEXT"}
 
 FTS_SCHEMA = """
 CREATE VIRTUAL TABLE IF NOT EXISTS search USING fts5(name, module, kind, doc, type_pp, tokenize='unicode61');
@@ -97,14 +99,32 @@ class Store:
 
     def __exit__(self, *exc) -> None:
         if not self.readonly:
-            self.conn.commit()
+            self.conn.rollback() if exc[0] else self.conn.commit()
         self.conn.close()
 
     def _migrate(self) -> None:
+        from es.automation_schema import SCHEMA as AUTOMATION_SCHEMA
+
+        # Back up once before introducing the automation tables. SQLite backup is consistent
+        # even with an existing worker; do not copy a live database file with shutil.
+        if not self.conn.execute("SELECT 1 FROM sqlite_master WHERE name='automation_meta'").fetchone():
+            self.conn.commit()
+            backup = self.path.parent / 'backups' / 'before-automation-v1.sqlite'
+            backup.parent.mkdir(parents=True, exist_ok=True)
+            if not backup.exists():
+                target = sqlite3.connect(backup)
+                try:
+                    self.conn.backup(target)
+                finally:
+                    target.close()
+        self.conn.executescript(AUTOMATION_SCHEMA)
+        self.conn.execute('BEGIN IMMEDIATE')
         have = {r[1] for r in self.conn.execute("PRAGMA table_info(jobs)")}
         for col, typ in JOB_COLUMNS.items():
             if col not in have:
                 self.conn.execute(f"ALTER TABLE jobs ADD COLUMN {col} {typ}")
+        if 'scope_unit' not in {r[1] for r in self.conn.execute('PRAGMA table_info(resource_leases)')}:
+            self.conn.execute('ALTER TABLE resource_leases ADD COLUMN scope_unit TEXT')
         self.conn.commit()
 
     def table_counts(self) -> dict[str, int]:
@@ -259,8 +279,13 @@ class Store:
         self.conn.commit()
 
     def job(self, job_id: str) -> dict | None:
-        row = self.conn.execute("SELECT * FROM jobs WHERE id = ? OR id LIKE ?", (job_id, job_id + "%")).fetchone()
-        return dict(row) if row else None
+        row = self.conn.execute("SELECT * FROM jobs WHERE id = ?", (job_id,)).fetchone()
+        if row:
+            return dict(row)
+        rows = self.conn.execute("SELECT * FROM jobs WHERE substr(id,1,?) = ?", (len(job_id), job_id)).fetchall()
+        if len(rows) > 1:
+            raise UsageError(f"ambiguous job prefix {job_id!r}; use the full job id")
+        return dict(rows[0]) if rows else None
 
     def jobs(self, status: str | None = None, limit: int = 50) -> list[dict]:
         if status:

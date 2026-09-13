@@ -34,6 +34,8 @@ def submit(cfg: Config, *, kind: str, node: str | None, argv: list[str], agent: 
         "id": job_id, "kind": kind, "node": node, "argv": json.dumps(argv), "cwd": str(cfg.root),
         "status": "queued", "exit_code": None, "created_at": time.time(), "started_at": None, "finished_at": None,
         "log_path": str(log_path), "budget_min": budget_min, "agent": agent, "pid": None, "result_json": None,
+        "memory_max": cfg.falsify_memory_max if kind == 'falsify' else cfg.build_memory_max,
+        "lock_key": 'worktree:' + str(cfg.root.resolve()),
     }
     with Store(cfg) as st:
         st.job_insert(job)
@@ -74,6 +76,61 @@ def budget_problem(cfg: Config, cap: float, memory_max: str, running: list[dict]
     if avail < cap + cfg.jobs_run_margin_gib:
         return f"only {avail:.0f} GiB available; a {memory_max} job needs {cap + cfg.jobs_run_margin_gib:.0f} GiB"
     return None
+
+
+def process_identity(pid: int | None) -> str | None:
+    try:
+        return Path(f'/proc/{pid}/stat').read_text().rsplit(')', 1)[1].split()[19]
+    except (OSError, IndexError):
+        return None
+
+
+def reserve_job(cfg, job_id, *, launching=False):
+    """Atomic admission across workers and direct runners; no automatic stale retry."""
+    with Store(cfg) as st:
+        st.conn.execute('BEGIN IMMEDIATE')
+        row = st.conn.execute('SELECT * FROM jobs WHERE id=?', (job_id,)).fetchone()
+        if row is None:
+            return False
+        job = dict(row)
+        allowed = ('queued',) if launching else ('queued', 'starting')
+        if job['status'] not in allowed or job.get('cancel_requested'):
+            return False
+        running = [dict(r) for r in st.conn.execute("SELECT * FROM jobs WHERE status IN ('starting','running','unknown_execution') AND id<>?", (job_id,))]
+        leases = [dict(r) for r in st.conn.execute('SELECT * FROM resource_leases')]
+        if job.get('lock_key') and any(r.get('lock_key') == job['lock_key'] for r in running):
+            return False
+        if job.get('lock_key') and any(r.get('lock_key') == job['lock_key'] for r in leases):
+            return False
+        builds = [r for r in running if r.get('kind') in ('build','check') or str(r.get('lock_key') or '').startswith('worktree:')]
+        if (job.get('kind') in ('build','check') or str(job.get('lock_key') or '').startswith('worktree:')) and len(builds) >= cfg.max_parallel_builds:
+            return False
+        cap = job_memory_gib(cfg, job)
+        if live_memory_gib(cfg, running) + cap + sum(r['memory_gib'] for r in leases) > _mem_gib(cfg.jobs_memory_budget):
+            return False
+        if cfg.build_guard and budget_problem(cfg, cap, job.get('memory_max') or '', running):
+            return False
+        st.conn.execute('UPDATE jobs SET status=?,started_at=COALESCE(started_at,?),pid=?,process_start=?,heartbeat_at=? WHERE id=?',
+                        ('starting' if launching else 'running', time.time(), None if launching else os.getpid(),
+                         None if launching else process_identity(os.getpid()), time.time(), job_id))
+        return True
+
+
+def request_cancel(cfg, job_id):
+    with Store(cfg) as st:
+        st.conn.execute('BEGIN IMMEDIATE')
+        job = st.job(job_id)
+        if job is None:
+            raise CheckFailed(f'unknown job {job_id}')
+        if job['status'] in ('done', 'failed', 'killed'):
+            return job
+        if job['status'] == 'queued':
+            st.conn.execute("UPDATE jobs SET status='killed',cancel_requested=1,finished_at=?,exit_code=130 WHERE id=?", (time.time(), job['id']))
+        else:
+            st.conn.execute('UPDATE jobs SET cancel_requested=1 WHERE id=?', (job['id'],))
+        st.conn.execute('INSERT INTO events(at,kind,node,agent,detail) VALUES (?,?,?,?,?)',
+                        (time.time(), 'job-cancel-requested', job.get('node'), os.environ.get('ES_AGENT'), json.dumps({'id':job['id']})))
+        return dict(st.conn.execute('SELECT * FROM jobs WHERE id=?', (job['id'],)).fetchone())
 
 
 def check_outputs(cfg: Config, outputs: list[str]) -> list[str]:
@@ -155,17 +212,30 @@ def spawn_runner(cfg: Config, job_id: str) -> None:
 
 def run_job(cfg: Config, job_id: str) -> dict:
     with Store(cfg) as st:
+        submitted = st.job(job_id)
+    if submitted is None:
+        raise CheckFailed(f'unknown job {job_id}')
+    job_id = submitted['id']
+    if Path(submitted['cwd']).resolve() != cfg.root.resolve():
+        from es.config import load_config
+        cfg = load_config(Path(submitted['cwd']).resolve())
+    if not reserve_job(cfg, job_id):
+        with Store(cfg) as st:
+            return st.job(job_id) or {}
+    with Store(cfg) as st:
         job = st.job(job_id)
         if job is None:
             raise ValueError(f"unknown job {job_id}")
-        if job["status"] not in ("queued", "starting"):
-            return job
-        st.job_update(job["id"], status="running", started_at=time.time(), pid=os.getpid())
     argv = json.loads(job["argv"])
     env = dict(os.environ)
     env["ES_PROJECT_ROOT"] = str(cfg.root)
     if job.get("agent"):
         env["ES_AGENT"] = job["agent"]
+    env['ES_JOB_ID'] = job['id']
+    env['ES_STAGE_MEMORY'] = job.get('memory_max') or cfg.build_memory_max
+    if job['kind'] == 'operation':
+        from es.operations import execute_stage
+        return execute_stage(cfg, job)
     if job["kind"] == "run":
         return _run_command_job(cfg, job, argv)
     with open(job["log_path"], "a") as log:
@@ -175,8 +245,8 @@ def run_job(cfg: Config, job_id: str) -> dict:
     try:
         text = Path(job["log_path"]).read_text()
         start = text.rfind("\n{")
-        if start >= 0:
-            result_json = text[start + 1 :]
+        if start >= 0 or text.lstrip().startswith('{'):
+            result_json = text[start + 1 :] if start >= 0 else text.strip()
             json.loads(result_json)
     except (OSError, json.JSONDecodeError):
         result_json = None
@@ -197,13 +267,17 @@ def _run_command_job(cfg: Config, job: dict, argv: list[str]) -> dict:
     # lean-compiler check, which is about lake builds, not about arbitrary commands
     res = run_guarded(cfg, argv, log_path=Path(job["log_path"]), budget_min=job.get("budget_min"),
                       memory_max=job.get("memory_max") or cfg.jobs_default_memory_max, cpu_quota_cores=cpu or 0,
-                      env_extra={"ES_AGENT": job.get("agent") or ""}, cwd=Path(job["cwd"]), force=True, count_built=False)
+                      env_extra={"ES_AGENT": job.get("agent") or "", 'ES_JOB_ID': job['id']}, cwd=Path(job["cwd"]), force=True, count_built=False,
+                      job_id=job['id'])
     outputs = json.loads(job.get("outputs") or "[]")
     present = [o for o in outputs if (cfg.root / o).exists()]
-    status = "done" if res.rc == 0 and not res.budget_exceeded else ("killed" if res.budget_exceeded else "failed")
+    with Store(cfg) as st:
+        cancelled = st.job(job['id']).get('cancel_requested')
+    status = 'killed' if cancelled else ("done" if res.rc == 0 and not res.budget_exceeded else ("killed" if res.budget_exceeded else "failed"))
+    if not res.termination_acknowledged: status = 'unknown_execution'
     result = {"rc": res.rc, "seconds": round(res.seconds, 1), "peak_mib": res.peak_mib, "oom_kills": res.oom_kills,
               "budget_exceeded": res.budget_exceeded, "outputs_present": present, "outputs_missing": [o for o in outputs if o not in present],
-              "refused": res.refused, "tail": res.tail[-5:]}
+              "refused": res.refused, "tail": res.tail[-5:], 'termination_acknowledged':res.termination_acknowledged}
     with Store(cfg) as st:
         st.job_update(job["id"], status=status, exit_code=res.rc, finished_at=time.time(), peak_mib=res.peak_mib,
                       seconds=round(res.seconds, 1), result_json=json.dumps(result))
@@ -226,11 +300,19 @@ def worker_start_fitting(cfg: Config, spawn=None) -> list[str]:
     for job in queued:
         cap = job_memory_gib(cfg, job)
         if budget_problem(cfg, cap, job.get("memory_max") or "", running):
+            # Reserve the next slot for an aged large job rather than allowing
+            # an endless stream of younger small jobs to starve it.
+            if cap <= _mem_gib(cfg.jobs_memory_budget) and time.time() - job['created_at'] > float(cfg.get('jobs','aging_seconds',default=300)):
+                break
             continue
-        with Store(cfg) as st:
-            st.job_update(job["id"], status="starting")
-            st.event("job-started", job.get("node"), os.environ.get("ES_AGENT"), {"id": job["id"], "by": "worker"})
-        spawn(cfg, job["id"])
+        if not reserve_job(cfg, job['id'], launching=True):
+            continue
+        try:
+            spawn(cfg, job["id"])
+        except Exception:
+            with Store(cfg) as st:
+                st.job_update(job['id'], status='queued', started_at=None)
+            raise
         running.append(job)
         started.append(job["id"])
     return started
@@ -243,6 +325,8 @@ def worker_loop(cfg: Config, poll_s: float = 5.0, once: bool = False) -> None:
         st.event("worker-started", None, os.environ.get("ES_AGENT"), {"pid": os.getpid()})
     while True:
         try:
+            from es.operations import advance
+            advance(cfg)
             worker_start_fitting(cfg)
         except Exception as exc:  # a transient database error must not stop the worker
             print(f"worker: {exc}", file=sys.stderr, flush=True)

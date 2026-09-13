@@ -19,6 +19,27 @@ def test_naming(cfg):
     assert node_module_name(cfg, "TCore.fin15_endpoint", "A") == "TBlueprint.A.Fin15Endpoint"
 
 
+def test_opened_dates_preserve_renames_and_uncommitted_files(cfg, project):
+    from es.gitutil import git
+    from es.nodes import opened_dates
+
+    identity = ("-c", "user.name=test", "-c", "user.email=test@example.invalid")
+    git(cfg, *identity, "commit", "--amend", "--no-edit", "--date=2000-01-01T12:00:00+00:00")
+    git(cfg, "mv", "TBlueprint/A/Foo.lean", "TBlueprint/A/Renamed.lean")
+    (project / "TBlueprint/A/New.lean").write_text("theorem new_node : True := trivial\n")
+    git(cfg, "add", "TBlueprint/A/New.lean")
+    git(cfg, *identity, "commit", "-m", "rename and add", "--date=2001-01-01T12:00:00+00:00")
+    (project / "TBlueprint/A/Draft.lean").write_text("theorem draft : True := trivial\n")
+    assert opened_dates(cfg, ["TBlueprint.A.New", "TBlueprint.A.Renamed",
+                              "TBlueprint.A.Draft", "TBlueprint.A.Missing", "TBlueprint.A.New"]) == {
+        "TBlueprint.A.New": "2001-01-01",
+        "TBlueprint.A.Renamed": "2000-01-01",
+        "TBlueprint.A.Draft": "uncommitted",
+        "TBlueprint.A.Missing": None,
+    }
+    assert opened_dates(cfg, []) == {}
+
+
 def test_ready_computation(cfg):
     a = mk("TCore.a")
     b = mk("TCore.b", deps=["TCore.a"])
