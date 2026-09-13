@@ -184,7 +184,13 @@ There is no measured recurring savings percentage yet.
 
 The installed Codex App Server can own a durable research goal in a separate session.
 The host records its thread, fixed model/effort, prompt artifact, usage window and absolute
-deadlines in the run directory. Submit it from the intended research checkout:
+deadlines in the run directory.
+
+The native goal has a 4,000-character limit including the host's execution contract;
+submission checks this before queuing a session. Keep the prompt compact and refer to
+a reviewed instruction file for longer research plans.
+
+Submit it from the intended research checkout:
 
 ```bash
 es run agent --out runs/sol-trial --prompt /absolute/path/research-prompt.md \
