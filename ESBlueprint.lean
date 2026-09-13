@@ -223,3 +223,4 @@ import ESBlueprint.B.CtxThinFourRankTopBandPotential
 import ESBlueprint.B.CtxNonmonotoneTripleSaturatedPotential
 import ESBlueprint.B.CtxPartPositiveLetters
 import ESBlueprint.B.CtxExtensionsLeZeroCutoff
+import ESBlueprint.B.CtxThinRankWindowsLinearPotential

@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T16:26:02Z",
- "git_sha": "0e35cc473daf38770ea60682a7f9bd01c2c16924",
+ "generated_at": "2026-09-13T17:27:28Z",
+ "git_sha": "8794dafa293260a642e8813c50982d6c4bcf4b56",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15566,
- "tree_hash": "bf5a1eac008ef780",
+ "modules": 15567,
+ "tree_hash": "fd64d2f48820d61b",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15565,
+  "cached_modules": 15566,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -4010,8 +4010,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -7856,7 +7856,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-13"
   },
   {
    "name": "ErdosSzekeres.ctx_internal_interval_cut_square_of_empty_opposite_history",
@@ -13902,6 +13902,47 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-10"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_thin_rank_windows_linear_potential",
+   "module": "ESBlueprint.B.CtxThinRankWindowsLinearPotential",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Bound every fuel approximation and the full context bound by (W-1)*(V-1)+1 when active chosen pure intervals have width at most two and the chosen and opposite rank intervals lie in fixed windows of widths W and V. Both windows may be translated. Positive physical labels and distinct axes suffice; history depth, sibling maxima, inactive children, global capacities and window widths are otherwise unrestricted. Packages the finite rank-union cardinality step of the rectangle cover potential for reuse in actual-marker and saturation comparisons, eliminating repeated one-cluster counting arguments. This is a reusable bound, not a proof of the unrestricted singleton-end parent. Search evidence: runs/sol-trial-20260913/search-window.json.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (L K W V : Nat)\n      (hthin :\n        ∀ (p : Nat),\n          List.instMembership.mem σ.childPositions p →\n            instLTNat.lt 0 (σ.cupLimit p p) →\n              instLTNat.lt 0 (σ.capLimit p p) →\n                instLENat.le\n                  (instHSub.hSub\n                    (instHSub.hSub\n                      (ErdosSzekeres.ctx_thin_rank_windows_linear_potential.match_1 t\n                        (fun s hne => Nat) s hne (fun hne => σ.u) fun hne => σ.a)\n                      1)\n                    (σ.rightExt s 0 p))\n                  (instHAdd.hAdd (σ.leftExt s 0 p) 2))\n      (hchosen :\n        ∀ (p : Nat),\n          List.instMembership.mem σ.childPositions p →\n            instLTNat.lt 0 (σ.cupLimit p p) →\n              instLTNat.lt 0 (σ.capLimit p p) →\n                And (instLENat.le L (instHAdd.hAdd (σ.leftExt s 0 p) 1))\n                  (instLTNat.lt\n                    (instHSub.hSub\n                      (instHSub.hSub\n                        (ErdosSzekeres.ctx_thin_rank_windows_linear_potential.match_3 σ t\n                          (fun s hne hthin => Nat) s hne hthin (fun hne hthin => σ.u)\n                          fun hne hthin => σ.a)\n                        1)\n                      (σ.rightExt s 0 p))\n                    (instHAdd.hAdd L W))),\n      (∀ (p : Nat),\n          List.instMembership.mem σ.childPositions p →\n            instLTNat.lt 0 (σ.cupLimit p p) →\n              instLTNat.lt 0 (σ.capLimit p p) →\n                And (instLENat.le K (instHAdd.hAdd (σ.leftExt t 0 p) 1))\n                  (instLTNat.lt\n                    (instHSub.hSub\n                      (instHSub.hSub\n                        (ErdosSzekeres.ctx_thin_rank_windows_linear_potential.match_5 σ s L W\n                          (fun t hne hthin hchosen => Nat) t hne hthin hchosen\n                          (fun hne hthin hchosen => σ.u) fun hne hthin hchosen => σ.a)\n                        1)\n                      (σ.rightExt t 0 p))\n                    (instHAdd.hAdd K V))) →\n        And\n          (∀ (fuel : Nat),\n            instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n              (instHAdd.hAdd (instHMul.hMul (instHSub.hSub W 1) (instHSub.hSub V 1)) 1))\n          (instLENat.le σ.bound\n            (instHAdd.hAdd (instHMul.hMul (instHSub.hSub W 1) (instHSub.hSub V 1)) 1))",
+   "type_hash": "4fdaa7b0485611b4",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_thin_rank_windows_linear_potential.match_1",
+    "ErdosSzekeres.ctx_thin_rank_windows_linear_potential.match_3",
+    "ErdosSzekeres.ctx_thin_rank_windows_linear_potential.match_5",
+    "ErdosSzekeres.ctx_thin_rank_windows_linear_potential.match_1_1",
+    "ErdosSzekeres.ctx_thin_rank_windows_linear_potential._simp_1_3",
+    "ErdosSzekeres.ctx_thin_rank_rectangle_context_cover_potential.match_3",
+    "ErdosSzekeres.ctx_thin_rank_rectangle_context_cover_potential"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound",
