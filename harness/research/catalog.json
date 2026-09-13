@@ -420,6 +420,32 @@
           "handoff"
         ]
       }
+    },
+    {
+      "id": "workflow.agent-run",
+      "kind": "workflow",
+      "title": "Bounded durable Sol research run",
+      "summary": "Run one Sol/xhigh native goal with fixed deadlines, guarded jobs, durable recovery and usage accounting.",
+      "keywords": [
+        "Sol",
+        "native goal",
+        "agent host",
+        "twelve hour",
+        "research run",
+        "resume",
+        "continuation"
+      ],
+      "api": "es run agent --out runs/RUN --prompt /absolute/prompt.md [--model gpt-5.6-sol --effort xhigh --hours 12]; es run agent-status runs/RUN; es run agent --out runs/RUN --resume",
+      "example": "es run agent --out runs/sol-trial --prompt /absolute/path/research-prompt.md --model gpt-5.6-sol --effort xhigh --hours 12\nes run agent-status runs/sol-trial",
+      "semantics": "The 2 GiB host owns a separate Codex native-goal session. A frozen research deadline permits one bounded finalization turn afterward. Resume is explicit and does not extend time; uncertain receipts are not automatically replayed. Job completion alone confers no theorem credit or current-client notification guarantee.",
+      "source": {
+        "path": "tools/es/es/agent_run.py",
+        "symbols": [
+          "submit_agent_run",
+          "status_agent_run",
+          "run_host"
+        ]
+      }
     }
   ]
 }
