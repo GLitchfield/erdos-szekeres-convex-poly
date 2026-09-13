@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T21:45:10Z",
- "git_sha": "97a14594ad6699cbc61464ca3bc244348d417ba3",
+ "generated_at": "2026-09-13T22:11:51Z",
+ "git_sha": "ff3b799d1ab8b1326f294edaddbb1a12dc5e18e3",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15574,
- "tree_hash": "ce89c17da6819873",
+ "modules": 15575,
+ "tree_hash": "d7ebb76a110d28e1",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15573,
+  "cached_modules": 15574,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -7910,6 +7910,67 @@
     "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum._proof_1_8",
     "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum._proof_1_10",
     "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum._proof_1_11"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-13"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two",
+   "module": "ESBlueprint.B.CtxExtremeNextCutOfSmallChosenMaximaCapacityTwo",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For an extreme chosen new maximum m=k-2, close the next quadratic cut whenever every source chosen-axis history maximum is at most k-5 and every active companion child has chosen-axis capacity at most two. The extreme part costs at most one; transporting the small maxima into the companion permits the checked small-maxima linear potential, and its 3w-2 bound fits the next quadratic budget for k at least six. Positive labels, distinct axes, chosen global at most five, opposite global between two and k-1, arbitrary kept lists, arbitrary opposite new maximum and every fuel approximation are explicit. Together with the large-history theorem, this reduces the extreme obstruction to an active companion capacity-three witness. Exact searches in runs/sol-12h/search-extreme-small-capacity-two.json and search-extreme-residual-capacity-three.json found no duplicate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_part_positive_letters",
+     "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+     "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        instLENat.le\n            (ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two.match_1\n              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n            5 →\n          instLENat.le 2\n              (ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two.match_1\n                (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a) →\n            instLENat.le\n                (ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two.match_1\n                  (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                (instHSub.hSub σ.k 1) →\n              instLENat.le 6 σ.k →\n                (∀ (j : Nat),\n                    List.instMembership.mem (σ.levelsOn s 0) j →\n                      instLENat.le (σ.maximumAt j) (instHSub.hSub σ.k 5)) →\n                  ∀ (keep : List Nat) (m n p : Nat),\n                    List.instMembership.mem (σ.part keep s m).childPositions p →\n                      Eq (instHAdd.hAdd m 2) σ.k →\n                        have A := σ.part keep s m;\n                        have B :=\n                          σ.part\n                            (List.filter\n                              (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                              σ.childPositions)\n                            t n;\n                        (∀ (q : Nat),\n                            List.instMembership.mem B.childPositions q →\n                              instLTNat.lt 0 (B.cupLimit q q) →\n                                instLTNat.lt 0 (B.capLimit q q) →\n                                  instLENat.le\n                                    (ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two.match_1\n                                      (fun s => Nat) s (fun _ => B.cupLimit q q) fun _ =>\n                                      B.capLimit q q)\n                                    2) →\n                          And\n                            (∀ (f g : Nat),\n                              instLENat.le\n                                (instHAdd.hAdd (ErdosSzekeres.Ctx.Context.boundFuel f A)\n                                  (ErdosSzekeres.Ctx.Context.boundFuel g B))\n                                (instHAdd.hAdd\n                                  (instHSub.hSub (instHPow.hPow (instHSub.hSub σ.k 2) 2)\n                                    (instHSub.hSub σ.k 2))\n                                  1))\n                            (instLENat.le (instHAdd.hAdd A.bound B.bound)\n                              (instHAdd.hAdd\n                                (instHSub.hSub (instHPow.hPow (instHSub.hSub σ.k 2) 2)\n                                  (instHSub.hSub σ.k 2))\n                                1))",
+   "type_hash": "fbc65905c807b3f7",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two.match_1",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two._proof_1_1",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two._simp_1_2",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two._proof_1_3",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential.match_1",
+    "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two._proof_1_4",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two._proof_1_5",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two._proof_1_6",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_small_chosen_maxima_capacity_two._proof_1_8"
    ],
    "helpers": [],
    "status": "closed",
