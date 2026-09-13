@@ -120,7 +120,7 @@ ESBlueprint = "ESBlueprint"
 [extract]
 script = "ESBlueprint/Extract.lean"    # materialized from tools/es/lean/Extract.lean.tmpl
 imports = ["ESBlueprint", "ErdosSzekeres"]
-memory_max = "36G"                     # the environment maps every olean; proof terms are read once, sequentially
+memory_max = "28G"                     # fits the shared 30G budget with a 2G agent host; full extraction remains guarded
 budget_min = 180
 index_layers = ["ESCore", "ESEncodings"]  # layers whose declarations go into index.json (certificates excluded)
 missing_destinations = "error"
@@ -147,3 +147,30 @@ output_roots = ["runs", "data"]        # `es job run --out` paths must lie under
 
 [node]
 default_import = "ErdosSzekeres"       # narrower imports keep `es check` fast; override per node with --import
+
+[automation]
+output_bytes = 4096
+
+[automation.delivery]
+# Inbox is durable. Current Codex CLI attachment has no verified callback.
+enabled = false
+
+[research.plugins.context_rank]
+module = "harness.research.context_rank"
+sources = ["harness/research/context_rank.py", "harness/research/primitives.py"]
+semantics = ["abstract-rank-strip-v1"]
+
+[research.plugins.recursive_cut]
+module = "harness.research.recursive_cut"
+sources = [
+  "harness/research/recursive_cut.py",
+  "harness/research/recursive.py",
+  "harness/research/primitives.py",
+  "scripts/decomposable_recursive_formula.py",
+  "scripts/decomposable_additivity_test.py",
+  "scripts/decomposable_depth2_tables.py",
+  "scripts/decomposable_context_functions.py",
+  "scripts/decomposable_run_extremal.py",
+  "scripts/enumerate_decomposable_colorings.py",
+]
+semantics = ["historical-f2-v1", "context-bound-zero-children-v1"]

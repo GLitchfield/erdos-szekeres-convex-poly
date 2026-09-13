@@ -8,6 +8,7 @@ dependencies = []
 [project.optional-dependencies]
 mcp = ["mcp>=2,<3"]
 test = ["pytest"]
+research = ["numpy"]
 
 [project.scripts]
 es = "es.cli:main"

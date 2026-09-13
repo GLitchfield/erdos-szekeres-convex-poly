@@ -41,7 +41,18 @@ def _make_tool(spec: CommandSpec):
         except EsError as exc:
             return {"ok": False, "exit_code": exc.exit_code, "error": str(exc)}
         payload = result.payload if isinstance(result.payload, dict) else {"result": result.payload}
-        return {"ok": result.exit_code == 0, "exit_code": result.exit_code, **payload, "text": "\n".join(result.human)}
+        from es.artifacts import compact
+        envelope = {"ok": result.exit_code == 0, "exit_code": result.exit_code, **payload}
+        # Keep human tables in CLI output; repeating them in MCP doubles retrieval cost.
+        if spec.name == 'artifact_show':
+            return envelope
+        returned = compact(ctx.cfg, envelope, int(ctx.cfg.get('automation', 'output_bytes', default=4096)))
+        from es.metrics import record
+        try:
+            record(ctx.cfg,ctx.agent,spec.name,{'payload':payload,'text':'\n'.join(result.human)},returned)
+        except (EsError,OSError,ValueError,TypeError):
+            pass
+        return returned
 
     tool.__name__ = spec.name
     tool.__doc__ = spec.help + "\n\n" + "\n".join(f"{a.name}: {a.help}" for a in spec.args)

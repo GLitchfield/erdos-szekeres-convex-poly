@@ -9,6 +9,10 @@ build order; section 13 is the acceptance checklist to report against.
 Companion documents in `docs/`: `research-plan-2026-09-03.md` (the workstreams the
 seed nodes come from) and `review-2026-09-03.md` (why the project needs this).
 
+Proposed automation extension: [Automation plan, 12 September 2026](automation-plan-2026-09-12.md)
+defines the staged workflow, completion-delivery, proof/probe, and usage-accounting work.
+It is a proposal; it does not describe features already implemented.
+
 ---
 
 ## 1. Background a fresh session needs
@@ -485,6 +489,15 @@ can show it, and the harness checks it rather than asking for prose:
   jobs one at a time; `es job requeue <id>` puts a failed job back. Synchronous
   `es check`/`es falsify`/`es build` runs are not job rows and are not counted against the
   budget; they are short and run under their own caps.
+- **Report completion.** Submitting a background job does not complete the agent's task.
+  Keep its reporting turn open and use `es job wait <id> --timeout 55` (also MCP `job_wait`).
+  Waiting is read-only, releases the database between observations, and returns a compact
+  `terminal` flag; a wait-window timeout neither cancels the job nor means it is finished.
+  A terminal job includes its exit code and output/log paths. Inspect these and report success,
+  failure, or a review gate without a user status request. The command's own exit zero means
+  the read succeeded, just as for `job status`; it does not mean the job or proof succeeded.
+  The CLI has no configured callback transport that wakes a closed reporting turn. A saved
+  checkpoint is for resumption after interruption, not an automatic notification mechanism.
 - **A journal.** `es log "<text>" [--node]` writes a free-text event; `es journal --since 24h
   [--agent] [--node] [--kind]` merges claims, releases, expiries, jobs (submitted/finished
   with peak and seconds), falsifier runs, extracts, log entries and git commits into one
@@ -521,6 +534,7 @@ name and a JSON schema mirroring its arguments.
 | `es build <target>` | `core\|blueprint\|certs\|node <name>`, `--budget MIN`, `--async` | Wraps `lake build` with wall-clock budget and a summary line (modules built, seconds). | build fails; budget exceeded |
 | `es job run -- <command>` | `--why`, `--out` (required), `--node`, `--mem`, `--budget`, `--cpu`, `--queue` | Runs any command as a recorded job in the guarded scope (§8.4): purpose, cap, outputs, agent, peak and seconds in the job table; enforces the memory budget. | budget or availability exceeded; output outside `runs/`/`data/` |
 | `es job list\|status\|log\|cancel` | `<id>` | Job table access (list shows cap, peak, agent, why). `es worker` runs the loop (foreground; run under tmux/systemd-user); `es job exec <id>` is the internal runner. | — |
+| `es job wait <id>` | `--timeout` (0–60 seconds; default 55) | Read-only bounded wait; returns `terminal`/`timed_out`, and exit code plus output paths on completion. Repeat while pending, then inspect and report. | unknown job; invalid timeout |
 | `es log <text>` | `--node` | Free-text journal entry under the agent id. | — |
 | `es journal` | `--since 24h`, `--agent`, `--node`, `--kind`, `--limit`, `--no-commits` | Timeline of claims, releases, jobs, falsifier runs, extracts, log entries and commits. | — |
 | `es note` | `--since DATE` | Weekly note from status diffs and the attempts table: nodes opened/closed/refuted/retired, attempts, allowlist and lock changes, job time spent. Writes `docs/notes/<ISO-week>.md` with a `## Judgment` section left empty for the human. | — |
@@ -827,3 +841,9 @@ Two rules for the rewrite: (1) no operational document may describe a state that
 `es status` also describes — the frontier has exactly one home; (2) every retired
 document keeps its git history and gets the banner, so an agent that stumbles on it
 learns it is superseded rather than obeying it.
+# Automation implementation
+
+The [automation operating guide](automation-implementation.md) documents the current
+durable operations, proof finalization, reusable probes, context artifacts and usage
+comparison commands. It distinguishes tested behavior from client-delivery, publication
+and incremental-index rollout gates. The compiled Lean environment remains authoritative.

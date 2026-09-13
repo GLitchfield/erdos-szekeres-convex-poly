@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "plugin": "recursive_cut",
+  "semantics": "context-bound-zero-children-v1",
+  "domain": "two-lower-marker-cut-family-v1",
+  "generator": {
+    "name": "extreme-next-deterministic-v1",
+    "split_rule": "nonempty-proper-child-subsets-with-geometry-v1",
+    "source": {
+      "a": 5,
+      "u": 5,
+      "k": 6,
+      "chosen_side": "lower",
+      "marker_side": "lower",
+      "marker_levels": [1, 2]
+    },
+    "child_counts": [2],
+    "maxima_values": [1],
+    "marker_orders": [[1, 2], [2, 1]]
+  },
+  "candidate": {
+    "name": "matched-coupling-budgets-v1",
+    "target": {"m": 4, "n": 1, "budget": 13},
+    "control": {"m": 2, "n": 3, "top_budget": 14, "next_budget": 13}
+  },
+  "evaluator": {"cache_size": 512, "per_case_seconds": 1},
+  "budget": {"cases": 2, "seconds": 5, "memory": "1G"},
+  "stop": "first_witness"
+}
