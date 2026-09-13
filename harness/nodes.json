@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T23:17:52Z",
- "git_sha": "34310609006dd62648b50f369a2b042d2069105a",
+ "generated_at": "2026-09-13T23:34:47Z",
+ "git_sha": "b4cdc3f27c0b2e993bd0a4c3c28016d08cc8a67b",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15577,
- "tree_hash": "83596e7f573c8344",
+ "modules": 15578,
+ "tree_hash": "1cb87a407405da65",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15576,
+  "cached_modules": 15577,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -7391,7 +7391,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-13"
   },
   {
    "name": "ErdosSzekeres.ctx_card_le_bound",
@@ -10573,6 +10573,48 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_point_limits_eq_of_child_interval",
+   "module": "ESBlueprint.B.CtxPointLimitsEqOfChildInterval",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Pointwise cup and cap limits are constant across an uninterrupted interval of physical child positions. With no external marker between the endpoints, every level filter seen by the left and right extension folds agrees; hence the pure extensions, joined extensions and both endpoint capacities agree. This supplies the canonical run-constant coloring by chosen capacity needed by the global-five capacity-three pruning decomposition. Exact search in runs/sol-12h/search-point-limits-child-interval.json found no duplicate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (p q : Nat),\n  List.instMembership.mem σ.childPositions p →\n    List.instMembership.mem σ.childPositions q →\n      instLENat.le p q →\n        (∀ (r : Nat),\n            instLENat.le p r → instLENat.le r q → List.instMembership.mem σ.childPositions r) →\n          And (Eq (σ.cupLimit p p) (σ.cupLimit q q)) (Eq (σ.capLimit p p) (σ.capLimit q q))",
+   "type_hash": "817ec12effbc65aa",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval._proof_1_1",
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval._proof_1_2",
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval._proof_1_4",
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval._proof_1_5",
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval._proof_1_6",
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval._proof_1_7",
+    "ErdosSzekeres.ctx_axis_region_limits_exact.match_1",
+    "ErdosSzekeres.ctx_axis_region_limits_exact"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained",
