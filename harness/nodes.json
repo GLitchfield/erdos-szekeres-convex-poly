@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T22:53:55Z",
- "git_sha": "34b6bd6cf67af3bcf312b96570aeb1e94a1f55f1",
+ "generated_at": "2026-09-13T23:17:52Z",
+ "git_sha": "34310609006dd62648b50f369a2b042d2069105a",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15576,
- "tree_hash": "f359fe8dca0a9fc9",
+ "modules": 15577,
+ "tree_hash": "83596e7f573c8344",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15575,
+  "cached_modules": 15576,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -6073,7 +6073,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-13"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion",
@@ -7349,6 +7349,49 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-10"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+   "module": "ESBlueprint.B.CtxCapacityThreeChildrenExteriorOfTwoLevelsGlobalFive",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "At global parameter at most five, two distinct actual indexed levels on one chosen axis force every child with chosen-axis capacity at least three into one common exterior marker region. Capacity at least three implies pure chosen chain extension at most one, so the existing chain-one exterior theorem supplies the orientation. This isolates the only maximal-capacity group in the residual six-extreme sandwich case. Exact search in runs/sol-12h/search-capacity-three-common-exterior-global-five.json found no duplicate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_chain_one_children_exterior_of_two_levels"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N M x y : Nat),\n  List.instMembership.mem σ.levels N →\n    List.instMembership.mem σ.levels M →\n      instLTNat.lt N M →\n        Eq (σ.sideAt N) s →\n          Eq (σ.sideAt M) s →\n            List.instMembership.mem (σ.extPositions N) x →\n              List.instMembership.mem (σ.extPositions M) y →\n                instLENat.le\n                    (ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1\n                      (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                    5 →\n                  Or\n                    (And (instLTNat.lt x y)\n                      (∀ (p : Nat),\n                        List.instMembership.mem σ.childPositions p →\n                          instLENat.le 3\n                              (ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1\n                                (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ =>\n                                σ.capLimit p p) →\n                            ∀ (j : Nat),\n                              List.instMembership.mem (σ.levelsOn s 0) j →\n                                ∀ (z : Nat),\n                                  List.instMembership.mem (σ.extPositions j) z → instLTNat.lt z p))\n                    (And (instLTNat.lt y x)\n                      (∀ (p : Nat),\n                        List.instMembership.mem σ.childPositions p →\n                          instLENat.le 3\n                              (ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1\n                                (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ =>\n                                σ.capLimit p p) →\n                            ∀ (j : Nat),\n                              List.instMembership.mem (σ.levelsOn s 0) j →\n                                ∀ (z : Nat),\n                                  List.instMembership.mem (σ.extPositions j) z → instLTNat.lt p z))",
+   "type_hash": "51b7811d43cb2b49",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_chain_one_children_exterior_of_two_levels"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five._proof_1_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five._proof_1_2",
+    "ErdosSzekeres.ctx_chain_one_children_exterior_of_two_levels"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_card_le_bound",
