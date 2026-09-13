@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T16:12:31Z",
- "git_sha": "4edfdb655f5589000541796ce1189992c0a32bfb",
+ "generated_at": "2026-09-13T16:26:02Z",
+ "git_sha": "0e35cc473daf38770ea60682a7f9bd01c2c16924",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15565,
- "tree_hash": "8a45e9a2832ade00",
+ "modules": 15566,
+ "tree_hash": "bf5a1eac008ef780",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15564,
+  "cached_modules": 15565,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -7826,6 +7826,39 @@
    "opened": "2026-09-08"
   },
   {
+   "name": "ErdosSzekeres.ctx_extensions_le_zero_cutoff",
+   "module": "ESBlueprint.B.CtxExtensionsLeZeroCutoff",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Both endpoint extensions at any history cutoff are bounded by their zero-cutoff values. Extracts repeated cutoff inclusion and maximum monotonicity proofs used by saturated context bounds.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_small_maxima_active_capacity_two_linear_potential"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (ρ : ErdosSzekeres.Ctx.Context) (v : ErdosSzekeres.Ctx.Side) (top z : Nat),\n  And (instLENat.le (ρ.leftExt v top z) (ρ.leftExt v 0 z))\n    (instLENat.le (ρ.rightExt v top z) (ρ.rightExt v 0 z))",
+   "type_hash": "e0bf293b9605b450",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_internal_interval_cut_square_of_empty_opposite_history",
    "module": "ESBlueprint.B.CtxInternalIntervalCutSquareOfEmptyOppositeHistory",
    "ws": "B",
@@ -9778,7 +9811,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-13"
   },
   {
    "name": "ErdosSzekeres.ctx_part_pruning_history_transport",
