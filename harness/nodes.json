@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T17:27:28Z",
- "git_sha": "8794dafa293260a642e8813c50982d6c4bcf4b56",
+ "generated_at": "2026-09-13T17:54:45Z",
+ "git_sha": "bcbbee1249d9c66dea5f28c9225b77ceb569f1a7",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15567,
- "tree_hash": "fd64d2f48820d61b",
+ "modules": 15568,
+ "tree_hash": "ae2e818f51817fd8",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15566,
+  "cached_modules": 15567,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -9734,6 +9734,55 @@
    "opened": "2026-09-07"
   },
   {
+   "name": "ErdosSzekeres.ctx_part_new_marker_nonmonotone_saturated_potential",
+   "module": "ESBlueprint.B.CtxPartNewMarkerNonmonotoneSaturatedPotential",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Turn the marker newly created by a context part and two transported old chosen markers in nonmonotone spatial order into the checked four-rank saturated potential. A removed source child becomes an actual chosen marker at level one, while source levels N<M become N+1<M+1. If either the new maximum or a source chosen maximum is at least k-4, then the part has the top-band bound 3k-8 and, when the opposite global is at most k-1, the next-band bound 3k-9. Positive source labels, distinct axes, clear source opposite indexed history, chosen global at most five, opposite global at most k, and k at least five are explicit. The kept set and new maximum are otherwise arbitrary. This is a direct consumer of the checked nonmonotone-triple potential for singleton-end sandwich cuts; it does not assert that every sandwich history contains such a triple. Search evidence and remaining obstruction: runs/sol-trial-20260913/obstruction-review.md.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (keep : List Nat) (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (m q N M x y : Nat),\n          List.instMembership.mem σ.childPositions q →\n            Not (List.instMembership.mem keep q) →\n              List.instMembership.mem σ.levels N →\n                List.instMembership.mem σ.levels M →\n                  instLTNat.lt N M →\n                    Eq (σ.sideAt N) s →\n                      Eq (σ.sideAt M) s →\n                        List.instMembership.mem (σ.extPositions N) x →\n                          List.instMembership.mem (σ.extPositions M) y →\n                            Or (And (instLTNat.lt q x) (instLTNat.lt y x))\n                                (And (instLTNat.lt x q) (instLTNat.lt x y)) →\n                              instLENat.le\n                                  (ErdosSzekeres.ctx_part_new_marker_nonmonotone_saturated_potential.match_1\n                                    (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                                  5 →\n                                Eq (σ.levelsOn t 0) List.nil →\n                                  instLENat.le\n                                      (ErdosSzekeres.ctx_part_new_marker_nonmonotone_saturated_potential.match_1\n                                        (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                      σ.k →\n                                    instLENat.le 5 σ.k →\n                                      Or (instLENat.le (instHSub.hSub σ.k 4) m)\n                                          (Exists fun R =>\n                                            And (List.instMembership.mem σ.levels R)\n                                              (And (Eq (σ.sideAt R) s)\n                                                (instLENat.le (instHSub.hSub σ.k 4)\n                                                  (σ.maximumAt R)))) →\n                                        have A := σ.part keep s m;\n                                        And\n                                          (∀ (fuel : Nat),\n                                            instLENat.le\n                                              (ErdosSzekeres.Ctx.Context.boundFuel fuel A)\n                                              (instHSub.hSub (instHMul.hMul 3 A.k) 8))\n                                          (And\n                                            (instLENat.le A.bound\n                                              (instHSub.hSub (instHMul.hMul 3 A.k) 8))\n                                            (instLENat.le\n                                                (ErdosSzekeres.ctx_part_new_marker_nonmonotone_saturated_potential.match_1\n                                                  (fun t => Nat) t (fun _ => A.u) fun _ => A.a)\n                                                (instHSub.hSub A.k 1) →\n                                              And\n                                                (∀ (fuel : Nat),\n                                                  instLENat.le\n                                                    (ErdosSzekeres.Ctx.Context.boundFuel fuel A)\n                                                    (instHSub.hSub (instHMul.hMul 3 A.k) 9))\n                                                (instLENat.le A.bound\n                                                  (instHSub.hSub (instHMul.hMul 3 A.k) 9))))",
+   "type_hash": "e9bc60742248bfa1",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_part_new_marker_nonmonotone_saturated_potential.match_1",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_other_zero",
+    "ErdosSzekeres.ctx_part_new_marker_nonmonotone_saturated_potential.match_1_1",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential",
+    "ErdosSzekeres.ctx_part_new_marker_nonmonotone_saturated_potential._proof_1_3",
+    "ErdosSzekeres.ctx_part_new_marker_nonmonotone_saturated_potential._proof_1_4",
+    "ErdosSzekeres.ctx_nonmonotone_triple_saturated_potential.match_1",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.ctx_part_new_marker_nonmonotone_saturated_potential._proof_1_5",
+    "ErdosSzekeres.ctx_part_new_marker_nonmonotone_saturated_potential._proof_1_6"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_part_opposite_limits_eq",
    "module": "ESBlueprint.B.CtxPartOppositeLimitsEq",
    "ws": "B",
@@ -13942,7 +13991,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-13"
   },
   {
    "name": "ErdosSzekeres.ctx_thin_three_rank_window_bracketed_cut_saturated_linear_bound",
