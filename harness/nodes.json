@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T19:53:32Z",
- "git_sha": "e5fe6001e648bf5c98f29e5c9a81e4dd062a84d0",
+ "generated_at": "2026-09-13T21:45:10Z",
+ "git_sha": "97a14594ad6699cbc61464ca3bc244348d417ba3",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15573,
- "tree_hash": "19ebc393b98afd4e",
+ "modules": 15574,
+ "tree_hash": "ce89c17da6819873",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15572,
+  "cached_modules": 15573,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -7859,6 +7859,68 @@
    "opened": "2026-09-13"
   },
   {
+   "name": "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum",
+   "module": "ESBlueprint.B.CtxExtremeNextCutOfLargeChosenHistoryMaximum",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For an extreme chosen new maximum m=k-2, any original chosen-axis sibling maximum at least k-4 forces the complementary part into global at most four after checked upper normalization. The extreme part costs at most one and the normalized companion satisfies the checked saturated triangle estimate, whose sum fits the next quadratic budget for k at least six. Positive labels, distinct axes, source opposite global at most k, arbitrary kept list, arbitrary opposite new maximum and every fuel approximation are explicit. No retained/removed witness, maximum coupling, marker occurrence, history-depth, nonmonotone geometry or recursive-potential premise is needed. This covers the k=6,m=4,n=1 next-band obstruction whenever some chosen-history maximum is at least two, leaving only the documented all-unit chosen-history case. Exact searches in runs/sol-12h/search-extreme-large-history.json, search-large-maximum-normalized-companion.json and search-extreme-part-companion.json found only a stricter straddling theorem and no duplicate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_part_positive_letters",
+     "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+     "ErdosSzekeres.ctx_sibling_maximum_upper_normalize",
+     "ErdosSzekeres.ctx_small_global_axis_saturated_triangle_bound"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t),\n      instLENat.le\n          (ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum.match_1 s\n            (fun t hne => Nat) t hne (fun hne => σ.u) fun hne => σ.a)\n          σ.k →\n        instLENat.le 6 σ.k →\n          ∀ (R : Nat),\n            List.instMembership.mem σ.levels R →\n              Eq (σ.sideAt R) s →\n                instLENat.le (instHSub.hSub σ.k 4) (σ.maximumAt R) →\n                  ∀ (keep : List Nat) (m n : Nat),\n                    Eq (instHAdd.hAdd m 2) σ.k →\n                      have A := σ.part keep s m;\n                      have B :=\n                        σ.part\n                          (List.filter\n                            (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                            σ.childPositions)\n                          t n;\n                      And\n                        (∀ (f g : Nat),\n                          instLENat.le\n                            (instHAdd.hAdd (ErdosSzekeres.Ctx.Context.boundFuel f A)\n                              (ErdosSzekeres.Ctx.Context.boundFuel g B))\n                            (instHAdd.hAdd\n                              (instHSub.hSub (instHPow.hPow (instHSub.hSub σ.k 2) 2)\n                                (instHSub.hSub σ.k 2))\n                              1))\n                        (instLENat.le (instHAdd.hAdd A.bound B.bound)\n                          (instHAdd.hAdd\n                            (instHSub.hSub (instHPow.hPow (instHSub.hSub σ.k 2) 2)\n                              (instHSub.hSub σ.k 2))\n                            1))",
+   "type_hash": "36daca55719fad9d",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize",
+    "ErdosSzekeres.ctx_small_global_axis_saturated_triangle_bound"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum.match_1",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum.match_1_1",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum._proof_1_3",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum._proof_1_5",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum._proof_1_6",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize.match_1",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize",
+    "ErdosSzekeres.ctx_small_global_axis_saturated_triangle_bound",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum._proof_1_8",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum._proof_1_10",
+    "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum._proof_1_11"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_internal_interval_cut_square_of_empty_opposite_history",
    "module": "ESBlueprint.B.CtxInternalIntervalCutSquareOfEmptyOppositeHistory",
    "ws": "B",
@@ -8250,7 +8312,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-13"
   },
   {
    "name": "ErdosSzekeres.ctx_nonmonotone_new_marker_low_maximum_cut_bound",
