@@ -180,6 +180,43 @@ There is no measured recurring savings percentage yet.
 
 ## Completion and recovery
 
+### Bounded Sol research host
+
+The installed Codex App Server can own a durable research goal in a separate session.
+The host records its thread, fixed model/effort, prompt artifact, usage window and absolute
+deadlines in the run directory. Submit it from the intended research checkout:
+
+```bash
+es run agent --out runs/sol-trial --prompt /absolute/path/research-prompt.md \
+  --model gpt-5.6-sol --effort xhigh --hours 12
+es run agent-status runs/sol-trial
+es job wait HOST_JOB_ID --timeout 55
+```
+
+The host reserves 2 GiB and uses the ordinary `es worker`. Research commands get independent
+guarded jobs; a 28 GiB extraction fits beside the host in the project's 30 GiB budget.
+Status reads do not call the model. The native goal supplies continuation in the same session;
+the host does not create a fresh model turn on each poll. Its state contains lifecycle and
+usage metadata, not conversation text or credentials.
+
+Research admission ends at the frozen deadline. If needed, exactly one report/finalization
+turn is permitted, with a further 30-minute hard stop. A terminal or failed host is not
+evidence of successful research: inspect the report, goal status, check receipts and usage
+coverage. Premature completion is recorded as such.
+
+After an interruption, inspect the host job and `agent-run.json`. Once the old host is
+confirmed stopped, resume the same run explicitly:
+
+```bash
+es run agent --out runs/sol-trial --resume
+```
+
+Resume preserves the thread, prompt, model, effort and original deadlines. It refuses a
+duplicate live host or an unknown thread-start receipt. A lost final-turn acknowledgement
+requires reconciliation; it is not retried automatically. No deadline or usage limit is
+silently extended. This separate host does not establish that the current interactive
+attachment can receive an unsolicited completion message.
+
 ```bash
 es inbox list
 es inbox claim --consumer CLIENT_CONNECTION_ID

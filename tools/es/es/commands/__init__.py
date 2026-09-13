@@ -25,4 +25,5 @@ from es.commands import (  # noqa: F401
     probe,
     index,
     library,
+    agent_run,
 )
