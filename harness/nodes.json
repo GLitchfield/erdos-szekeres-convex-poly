@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T00:53:10Z",
- "git_sha": "2ea7886d03003352950ed86b5e5ec2eac0212694",
+ "generated_at": "2026-09-13T16:12:31Z",
+ "git_sha": "4edfdb655f5589000541796ce1189992c0a32bfb",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15564,
- "tree_hash": "c514aa7a7ccb4c59",
+ "modules": 15565,
+ "tree_hash": "8a45e9a2832ade00",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15563,
+  "cached_modules": 15564,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -4010,8 +4010,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "claimed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -8271,7 +8271,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-12"
   },
   {
    "name": "ErdosSzekeres.ctx_nonunit_children_exterior_of_two_levels",
@@ -9742,6 +9742,43 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_part_positive_letters",
+   "module": "ESBlueprint.B.CtxPartPositiveLetters",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every external letter in a part has positive level, without an assumption on the original context. Extracts the repeated hPartPositive argument used by context cut bounds.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_actual_marker_quadratic_penultimate_cut_bound"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (ρ : ErdosSzekeres.Ctx.Context) (keep : List Nat) (v : ErdosSzekeres.Ctx.Side) (m x j : Nat)\n  (w : ErdosSzekeres.Ctx.Side),\n  Eq ((ρ.part keep v m).letterAt x) (ErdosSzekeres.Ctx.Letter.ext j w) → instLENat.le 1 j",
+   "type_hash": "5f01ea5d2aeb02a7",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_part_positive_letters._proof_1_1",
+    "ErdosSzekeres.ctx_part_positive_letters._proof_1_2",
+    "ErdosSzekeres.ctx_part_positive_letters._proof_1_3"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_part_pruning_history_transport",
