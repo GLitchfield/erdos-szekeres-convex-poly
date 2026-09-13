@@ -72,6 +72,20 @@ def test_hours_must_be_finite_and_positive(cfg, project, monkeypatch, hours):
         agent_run.submit_agent_run(cfg, agent="tester", out="runs/bad", prompt=str(prompt), hours=hours)
 
 
+def test_oversized_goal_is_rejected_before_job_submission(cfg, project, monkeypatch):
+    prompt = project / "long-prompt.md"
+    prompt.write_text("x" * 4001)
+    monkeypatch.setattr(agent_run.shutil, "which", lambda _name: "/bin/codex")
+
+    def unexpected(*_args, **_kwargs):
+        raise AssertionError("oversized goal must not create a host job")
+
+    monkeypatch.setattr(agent_run, "submit_run", unexpected)
+    with pytest.raises(UsageError, match="limit is 4000"):
+        agent_run.submit_agent_run(cfg, agent="tester", out="runs/oversized", prompt=str(prompt))
+    assert not (project / "runs/oversized" / agent_run.STATE_NAME).exists()
+
+
 def test_resume_refuses_unknown_thread_start_receipt(cfg, project, monkeypatch):
     out, _result, _captured = _submit(cfg, project, monkeypatch)
     path = out / agent_run.STATE_NAME

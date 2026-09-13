@@ -32,6 +32,7 @@ from es.store import Store
 STATE_NAME = "agent-run.json"
 LOCK_NAME = ".agent-run.lock"
 FINALIZATION_SECONDS = 30 * 60
+MAX_OBJECTIVE_CHARS = 4000  # installed Codex native-goal API, Unicode scalar count
 TERMINAL_GOALS = {"paused", "blocked", "usageLimited", "budgetLimited", "complete"}
 LIVE_JOB_STATES = {"queued", "starting", "running", "unknown_execution"}
 USAGE_KEYS = {
@@ -243,6 +244,18 @@ def submit_agent_run(
             "submissions": {},
             "progress": {"turns_started": 0, "turns_completed": 0, "denied_requests": 0},
         }
+        # Native goals have a smaller text limit than ordinary user messages.
+        # Validate before starting any session; use full microsecond UTC lengths.
+        preview = state | {"timing": {
+            key: "2000-01-01T00:00:00.123456Z"
+            for key in ("deadline_at", "finalization_start_at", "final_deadline_at")
+        }}
+        objective_chars = len(_objective(preview, data.decode("utf-8")))
+        if objective_chars > MAX_OBJECTIVE_CHARS:
+            raise UsageError(
+                f"goal with execution contract is {objective_chars} characters; limit is {MAX_OBJECTIVE_CHARS}. "
+                "Shorten the prompt or reference a reviewed instruction file. No session was started."
+            )
         _atomic_json(state_path, state)
 
     # queue=True closes the admission race between a sandboxed CLI and the external worker.
