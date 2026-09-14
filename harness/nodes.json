@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-14T00:10:36Z",
- "git_sha": "757593dfa376a545d41be56edde3240b0daf16f7",
+ "generated_at": "2026-09-14T00:44:53Z",
+ "git_sha": "247ba6f16335811425b24aa653de5867e08181cf",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15580,
- "tree_hash": "33111f557e54243d",
+ "modules": 15581,
+ "tree_hash": "b8d13b3ac4fa2776",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15579,
+  "cached_modules": 15580,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -1027,6 +1027,60 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-12"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound",
+   "module": "ESBlueprint.B.CtxAllActiveCapacityThreeTwoMarkerTriangleBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "If two actual levels occur on an axis of global at most five, no younger level on that axis has an actual occurrence, and every active child has chosen-axis capacity at least three, then the two-level exterior geometry makes the younger marker an active boundary. The exact active boundary ordered-rank-pair union is contained in the full opposite rank triangle, so every fuel approximation and the full bound are at most choose(opposite global,2). At opposite global five this is ten and closes the pure capacity-three part of the six-extreme companion obstruction; mixed capacity-two/capacity-three support remains. Exact searches in runs/sol-12h/search-all-active-capacity-three-two-marker-triangle.json found no duplicate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+     "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        (∀ (j : Nat),\n                            List.instMembership.mem (σ.levelsOn s N) j →\n                              Eq (σ.extPositions j) List.nil) →\n                          instLENat.le\n                              (ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound.match_1\n                                (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                              5 →\n                            (∀ (p : Nat),\n                                List.instMembership.mem σ.childPositions p →\n                                  instLTNat.lt 0 (σ.cupLimit p p) →\n                                    instLTNat.lt 0 (σ.capLimit p p) →\n                                      instLENat.le 3\n                                        (ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound.match_1\n                                          (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ =>\n                                          σ.capLimit p p)) →\n                              have global :=\n                                ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound.match_1\n                                  (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a;\n                              And\n                                (∀ (fuel : Nat),\n                                  instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                                    (global.choose 2))\n                                (instLENat.le σ.bound (global.choose 2))",
+   "type_hash": "bb1d97ae2bc298fd",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound.match_1",
+    "ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound._proof_1_1",
+    "ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound._proof_1_2",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound.match_1",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+    "ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound._proof_1_5",
+    "ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound._proof_1_6",
+    "ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound._proof_1_7",
+    "ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound._proof_1_8",
+    "ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound._proof_1_9",
+    "ErdosSzekeres.ctx_all_active_capacity_three_two_marker_triangle_bound._proof_1_10"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound",
@@ -7494,7 +7548,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-13"
   },
   {
    "name": "ErdosSzekeres.ctx_card_le_bound",
