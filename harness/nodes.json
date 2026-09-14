@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-13T23:53:24Z",
- "git_sha": "4789001b46b89b6f3096305fcd0701c0349f83f5",
+ "generated_at": "2026-09-14T00:10:36Z",
+ "git_sha": "757593dfa376a545d41be56edde3240b0daf16f7",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15579,
- "tree_hash": "571843275cf44761",
+ "modules": 15580,
+ "tree_hash": "33111f557e54243d",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15578,
+  "cached_modules": 15579,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -5878,7 +5878,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-13"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_le_sum_point_bases",
@@ -7446,6 +7446,55 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-13"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_capacity_three_pruning_exterior_of_two_levels_global_five",
+   "module": "ESBlueprint.B.CtxCapacityThreePruningExteriorOfTwoLevelsGlobalFive",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The canonical original-history pruning selected by chosen-axis capacity exactly three has precisely the source capacity-three children, and with two actual chosen levels at global at most five all of those children lie in one common exterior region in the pruning own preserved indexed history. Checked pruning transport supplies exact child support, levels and marker positions; the global-five capacity-three geometry supplies the orientation. This turns the residual high-capacity summand into a boundary-ready context. Exact searches in runs/sol-12h/search-capacity-three-pruning-exterior.json found no duplicate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+     "ErdosSzekeres.ctx_part_pruning_history_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (N M x y : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            Eq (σ.sideAt N) s →\n              Eq (σ.sideAt M) s →\n                List.instMembership.mem (σ.extPositions N) x →\n                  List.instMembership.mem (σ.extPositions M) y →\n                    instLENat.le\n                        (ErdosSzekeres.ctx_capacity_three_pruning_exterior_of_two_levels_global_five.match_3\n                          (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                        5 →\n                      have capacity := fun p =>\n                        ErdosSzekeres.ctx_capacity_three_pruning_exterior_of_two_levels_global_five.match_3\n                          (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ => σ.capLimit p p;\n                      have support :=\n                        List.filter (fun p => Decidable.decide (Eq (capacity p) 3))\n                          σ.childPositions;\n                      have group :=\n                        { a := σ.a, u := σ.u, k := σ.k,\n                          word :=\n                            List.map\n                              (fun p =>\n                                ErdosSzekeres.ctx_capacity_three_pruning_exterior_of_two_levels_global_five.match_1\n                                  (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt p)\n                                  (fun _ =>\n                                    ite (List.instMembership.mem support p)\n                                      ErdosSzekeres.Ctx.Letter.child\n                                      (ErdosSzekeres.Ctx.Letter.ext\n                                        (instHAdd.hAdd σ.maxima.length 1)\n                                        ErdosSzekeres.Ctx.Side.lower))\n                                  fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                              (List.range σ.word.length),\n                          maxima := σ.maxima };\n                      And\n                        (∀ (p : Nat),\n                          Iff (List.instMembership.mem group.childPositions p)\n                            (And (List.instMembership.mem σ.childPositions p) (Eq (capacity p) 3)))\n                        (Or\n                          (And (instLTNat.lt x y)\n                            (∀ (p : Nat),\n                              List.instMembership.mem group.childPositions p →\n                                ∀ (j : Nat),\n                                  List.instMembership.mem (group.levelsOn s 0) j →\n                                    ∀ (z : Nat),\n                                      List.instMembership.mem (group.extPositions j) z →\n                                        instLTNat.lt z p))\n                          (And (instLTNat.lt y x)\n                            (∀ (p : Nat),\n                              List.instMembership.mem group.childPositions p →\n                                ∀ (j : Nat),\n                                  List.instMembership.mem (group.levelsOn s 0) j →\n                                    ∀ (z : Nat),\n                                      List.instMembership.mem (group.extPositions j) z →\n                                        instLTNat.lt p z)))",
+   "type_hash": "c50ffcb4d1dc471b",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_part_pruning_history_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_capacity_three_pruning_exterior_of_two_levels_global_five.match_3",
+    "ErdosSzekeres.ctx_capacity_three_pruning_exterior_of_two_levels_global_five.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_capacity_three_pruning_exterior_of_two_levels_global_five._simp_1_3",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_capacity_three_pruning_exterior_of_two_levels_global_five._proof_1_4"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_card_le_bound",
