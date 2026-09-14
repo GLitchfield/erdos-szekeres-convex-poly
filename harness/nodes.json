@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-14T00:44:53Z",
- "git_sha": "247ba6f16335811425b24aa653de5867e08181cf",
+ "generated_at": "2026-09-14T01:08:17Z",
+ "git_sha": "d31f197feee1f2ad996a968de459b4c75458d7a6",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15581,
- "tree_hash": "b8d13b3ac4fa2776",
+ "modules": 15582,
+ "tree_hash": "c9d714c74731cede",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15580,
+  "cached_modules": 15581,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -1080,7 +1080,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-13"
   },
   {
    "name": "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound",
@@ -8450,6 +8450,60 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five",
+   "module": "ESBlueprint.B.CtxMixedCapacityChildrenMarkerSeparatedGlobalFive",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A chosen-capacity-three child and a chosen-capacity-at-most-two child are separated by an actual indexed marker when two actual chosen levels occur at global at most five. Capacity-three exterior geometry places every chosen marker on one side of the high child; exact marker-region capacity constancy then forces the low child across at least one marker. This provides an explicit split marker for the remaining mixed-capacity companion obstruction. Exact searches in runs/sol-12h/search-mixed-capacity-marker-separation.json found no duplicate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+     "ErdosSzekeres.ctx_axis_region_limits_exact"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N M x y p q : Nat),\n  List.instMembership.mem σ.levels N →\n    List.instMembership.mem σ.levels M →\n      instLTNat.lt N M →\n        Eq (σ.sideAt N) s →\n          Eq (σ.sideAt M) s →\n            List.instMembership.mem (σ.extPositions N) x →\n              List.instMembership.mem (σ.extPositions M) y →\n                instLENat.le\n                    (ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five.match_1\n                      (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                    5 →\n                  List.instMembership.mem σ.childPositions p →\n                    List.instMembership.mem σ.childPositions q →\n                      instLENat.le 3\n                          (ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five.match_1\n                            (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ => σ.capLimit p p) →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five.match_1\n                              (fun s => Nat) s (fun _ => σ.cupLimit q q) fun _ => σ.capLimit q q)\n                            2 →\n                          Exists fun j =>\n                            And (List.instMembership.mem (σ.levelsOn s 0) j)\n                              (Exists fun z =>\n                                And (List.instMembership.mem (σ.extPositions j) z)\n                                  (Or (And (instLTNat.lt p z) (instLTNat.lt z q))\n                                    (And (instLTNat.lt q z) (instLTNat.lt z p))))",
+   "type_hash": "d4dc7476208dbf2d",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_axis_region_limits_exact"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five.match_1",
+    "ErdosSzekeres.ctx_axis_region_limits_exact.match_1",
+    "ErdosSzekeres.ctx_axis_region_limits_exact",
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five._proof_1_1",
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five._proof_1_2",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five._proof_1_3",
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five._proof_1_4",
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five._proof_1_5",
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five._proof_1_6",
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five._proof_1_7",
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five._proof_1_8"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_mixed_clear_or_singleton_rank_cover_potential",
