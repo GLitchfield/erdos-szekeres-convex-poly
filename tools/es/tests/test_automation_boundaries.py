@@ -3,6 +3,7 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 from pathlib import Path
 import random
+import shutil
 import sys
 import time
 
@@ -387,15 +388,41 @@ def test_cli_global_json_is_not_lost_after_subcommand():
     assert build_parser().parse_args(['--json','job','list']).json
 
 
-def test_runner_uses_submitted_worktree_for_outputs(cfg):
-    from es.config import Config
+def test_runner_uses_submitted_worktree_for_nested_es(cfg, monkeypatch, tmp_path):
+    from es.config import load_config
     from es.jobs import submit_run,run_job
-    job=submit_run(cfg,command=[sys.executable,'-c','from pathlib import Path; Path("runs/output").mkdir(parents=True,exist_ok=True)'],why='output identity regression',outputs=['runs/output'],agent='tester',memory_max='1G',queue=True)
-    worker_cfg=Config(cfg.root/'other-worktree',cfg.raw)
+
+    worker_root=tmp_path/'other-worktree'
+    shutil.copytree(cfg.root,worker_root,ignore=shutil.ignore_patterns('.git'))
+    worker_cfg=load_config(worker_root)
+    monkeypatch.setenv('ES_PROJECT_ROOT',str(worker_root))
+    monkeypatch.setenv('ES_EXTRACT_MEMORY_MAX','512M')
+    output='runs/nested-env.json'
+    script=(
+        "import json,os,subprocess,sys;from pathlib import Path;"
+        "p=subprocess.run([sys.executable,'-m','es','--json','doctor'],capture_output=True,text=True);"
+        "Path('runs/nested-env.json').write_text(json.dumps({"
+        "'returncode':p.returncode,'stdout':p.stdout,'stderr':p.stderr,"
+        "'env':{k:os.environ.get(k) for k in "
+        "('ES_AGENT','ES_JOB_ID','ES_PROJECT_ROOT','ES_STAGE_MEMORY','ES_IN_GUARDED_STAGE','ES_EXTRACT_MEMORY_MAX')}}))"
+    )
+    job=submit_run(cfg,command=[sys.executable,'-c',script],why='nested es root regression',outputs=[output],agent='submitted-agent',memory_max='1G',queue=True)
     finished=run_job(worker_cfg,job['id'])
     result=json.loads(finished['result_json'])
     assert result['outputs_missing']==[]
-    assert result['outputs_present']==['runs/output']
+    assert result['outputs_present']==[output]
+    record=json.loads((cfg.root/output).read_text())
+    nested=json.loads(record['stdout'])
+    config=next(check for check in nested['checks'] if check['name']=='config')
+    assert config['detail']==str(cfg.root/'harness/config.toml')
+    assert record['env']=={
+        'ES_AGENT':'submitted-agent',
+        'ES_JOB_ID':job['id'],
+        'ES_PROJECT_ROOT':str(cfg.root),
+        'ES_STAGE_MEMORY':'1G',
+        'ES_IN_GUARDED_STAGE':'1',
+        'ES_EXTRACT_MEMORY_MAX':'36G',
+    }
 
 
 def test_missing_usage_is_unknown_and_conflicting_duplicate_rolls_back(cfg,tmp_path):

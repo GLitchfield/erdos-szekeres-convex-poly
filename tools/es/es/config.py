@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import shutil
 import tomllib
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -256,7 +257,15 @@ class Config:
     # ---- build -------------------------------------------------------------
     @property
     def lake(self) -> str:
-        return str(self.get("build", "lake", default="lake"))
+        configured = str(self.get("build", "lake", default="lake"))
+        # User services may omit elan's bin directory from PATH. Honor custom
+        # executables and PATH first; the standard elan shim remains portable
+        # across user home directories and selects this checkout's toolchain.
+        if configured == "lake" and shutil.which(configured) is None:
+            shim = Path.home() / ".elan" / "bin" / "lake"
+            if shim.is_file() and os.access(shim, os.X_OK):
+                return str(shim)
+        return configured
 
     @property
     def core_budget_min(self) -> int:

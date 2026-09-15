@@ -132,6 +132,36 @@ For Sol-led trials, do this review after the research window and count its maint
 cost separately as well as in all-in accounting. The preflight review for the first
 twelve-hour trial is `runs/sol-12h-20260913/REUSE-REVIEW.md`.
 
+### Findings from the first Sol-led run
+
+The September 13 trial stopped at the native account usage limit after 4 hours
+25 minutes of its planned twelve-hour window. Ten new Lean nodes passed all
+five finalization stages; the original parent obstruction remained open.
+See `runs/sol-12h-20260913/REPORT.md` for the receipts and separate cost totals.
+
+The post-run review includes inline job commands and changed tracked scripts,
+as well as files under the run directory. The finite probes reused the registered
+recursive evaluator. The cache-copy/trace-rebasing command remains an experiment:
+it lacks a general source-identity and invalidation contract and is not a shared
+cache API.
+
+Guarded command jobs now set their recorded checkout root and memory reservation
+for nested commands. Their extraction cap comes from that checkout's config,
+not a long-lived worker's inherited `ES_EXTRACT_MEMORY_MAX`. For a deliberate
+per-job override, put `env ES_EXTRACT_MEMORY_MAX=SIZE` in the submitted command.
+When the configured executable is `lake` and PATH does not resolve it, the harness
+uses the executable `~/.elan/bin/lake` shim if present; explicit executables and
+PATH entries retain precedence.
+
+Use `es lib show workflow.node-add` for registration requirements: targeted
+extraction still needs the configured build reservation (currently 20G), and a
+normal full extraction needs 28G. Use `es lib show workflow.jobs` for bounded
+execution and receipt handling. Harness Git calls disable automatic background
+maintenance. Direct Git job commands must likewise pass `-c gc.auto=0
+-c maintenance.auto=false`; otherwise a background child can leave a completed
+commit's reservation uncertain. Reconcile the stopped scope instead of replaying
+the commit. Restart long-lived workers after deploying harness code updates.
+
 ## Measuring future token savings
 
 Start a window before a bounded task and associate operations with the returned ID:

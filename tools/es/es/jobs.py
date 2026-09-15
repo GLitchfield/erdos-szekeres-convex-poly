@@ -263,11 +263,24 @@ def _run_command_job(cfg: Config, job: dict, argv: list[str]) -> dict:
         cpu = (json.loads(job.get("result_json") or "{}") or {}).get("cpu_cores")
     except json.JSONDecodeError:
         cpu = None
+    memory_max = job.get("memory_max") or cfg.jobs_default_memory_max
+    # A long-lived shared worker may have been started from another worktree or
+    # with a one-shot extractor override.  The guarded child belongs to this
+    # recorded job, so give nested `es` commands its root and reservation rather
+    # than inheriting the worker's process environment.
+    env = {
+        "ES_AGENT": job.get("agent") or "",
+        "ES_JOB_ID": job["id"],
+        "ES_PROJECT_ROOT": str(cfg.root),
+        "ES_STAGE_MEMORY": memory_max,
+        "ES_IN_GUARDED_STAGE": "1",
+        "ES_EXTRACT_MEMORY_MAX": str(cfg.get("extract", "memory_max", default="36G")),
+    }
     # the budget and availability were checked at submission; `force` skips the
     # lean-compiler check, which is about lake builds, not about arbitrary commands
     res = run_guarded(cfg, argv, log_path=Path(job["log_path"]), budget_min=job.get("budget_min"),
-                      memory_max=job.get("memory_max") or cfg.jobs_default_memory_max, cpu_quota_cores=cpu or 0,
-                      env_extra={"ES_AGENT": job.get("agent") or "", 'ES_JOB_ID': job['id']}, cwd=Path(job["cwd"]), force=True, count_built=False,
+                      memory_max=memory_max, cpu_quota_cores=cpu or 0, env_extra=env,
+                      cwd=Path(job["cwd"]), force=True, count_built=False,
                       job_id=job['id'])
     outputs = json.loads(job.get("outputs") or "[]")
     present = [o for o in outputs if (cfg.root / o).exists()]
