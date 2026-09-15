@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-15T21:11:21Z",
- "git_sha": "0bcc5b13a1eda77137927fbee38434caa7ec4910",
+ "generated_at": "2026-09-15T21:23:44Z",
+ "git_sha": "94a2d319400e20ad58b36c1b11d7ae6f581b7845",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15588,
- "tree_hash": "51215f3852f771f6",
+ "modules": 15589,
+ "tree_hash": "a214a4409ee7f37c",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15587,
+  "cached_modules": 15588,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -8724,6 +8724,67 @@
    "opened": "2026-09-08"
   },
   {
+   "name": "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget",
+   "module": "ESBlueprint.B.CtxNestedBoundaryMarkersRankBudget",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Normalize at an outer boundary marker, retain an inner same-side boundary marker, and charge uniform left and right opposite-axis rank reservations below the inner level. This standalone form replaces a repeatedly duplicated local argument in two-marker endpoint and internal-cut bounds. Positive labels, arbitrary histories, both directions and axes, inactive children, and zero residual budget remain explicit. Exact searches found no registered equivalent.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_boundary_marker_upper_normalize",
+     "ErdosSzekeres.ctx_boundary_marker_rank_budget"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (N J x y : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels J →\n          instLTNat.lt J N →\n            List.instMembership.mem (σ.extPositions N) x →\n              List.instMembership.mem (σ.extPositions J) y →\n                Eq (σ.sideAt J) (σ.sideAt N) →\n                  ∀ (outer inner : Bool),\n                    (∀ (p : Nat),\n                        List.instMembership.mem σ.childPositions p →\n                          ite (Eq outer Bool.true) (instLTNat.lt p x) (instLTNat.lt x p)) →\n                      (∀ (j : Nat),\n                          List.instMembership.mem (σ.levelsOn (σ.sideAt N) N) j →\n                            ∀ (p : Nat),\n                              List.instMembership.mem (σ.extPositions j) p →\n                                ite (Eq outer Bool.true) (instLTNat.lt p x) (instLTNat.lt x p)) →\n                        (∀ (p : Nat),\n                            List.instMembership.mem σ.childPositions p →\n                              ite (Eq inner Bool.true) (instLTNat.lt p y) (instLTNat.lt y p)) →\n                          (∀ (j : Nat),\n                              List.instMembership.mem (σ.levelsOn (σ.sideAt J) J) j →\n                                ∀ (p : Nat),\n                                  List.instMembership.mem (σ.extPositions j) p →\n                                    ite (Eq inner Bool.true) (instLTNat.lt p y)\n                                      (instLTNat.lt y p)) →\n                            ∀ (t : ErdosSzekeres.Ctx.Side),\n                              Ne (σ.sideAt N) t →\n                                instLENat.le\n                                    (ErdosSzekeres.ctx_nested_boundary_markers_rank_budget.match_1\n                                      (fun x => Nat) (σ.sideAt N) (fun _ => σ.u) fun _ => σ.a)\n                                    5 →\n                                  ∀ (A B : Nat),\n                                    (∀ (p : Nat),\n                                        List.instMembership.mem σ.childPositions p →\n                                          instLENat.le A (σ.leftExt t J p)) →\n                                      (∀ (p : Nat),\n                                          List.instMembership.mem σ.childPositions p →\n                                            instLENat.le B (σ.rightExt t J p)) →\n                                        have budget :=\n                                          instHSub.hSub\n                                            (instHSub.hSub\n                                              (instHSub.hSub\n                                                (ErdosSzekeres.ctx_nested_boundary_markers_rank_budget.match_1\n                                                  (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                                1)\n                                              A)\n                                            B;\n                                        And\n                                          (∀ (fuel : Nat),\n                                            instLENat.le\n                                              (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) budget)\n                                          (instLENat.le σ.bound budget)",
+   "type_hash": "dc1db0d8f73feb5c",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_boundary_marker_upper_normalize",
+    "ErdosSzekeres.ctx_boundary_marker_rank_budget"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget.match_1",
+    "ErdosSzekeres.ctx_boundary_marker_upper_normalize.match_1",
+    "ErdosSzekeres.ctx_boundary_marker_upper_normalize",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._simp_1_3",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._simp_1_4",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._proof_1_5",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._proof_1_6",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._proof_1_7",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._simp_1_8",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._proof_1_9",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._proof_1_10",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._proof_1_12",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._proof_1_13",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget._proof_1_14",
+    "ErdosSzekeres.ctx_boundary_marker_rank_budget.match_1",
+    "ErdosSzekeres.ctx_boundary_marker_rank_budget"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_nonmonotone_new_marker_cut_bound_except_six_extreme",
    "module": "ESBlueprint.B.CtxNonmonotoneNewMarkerCutBoundExceptSixExtreme",
    "ws": "B",
@@ -16441,7 +16502,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-15"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_internal_complement_cut_obstruction_classification",
