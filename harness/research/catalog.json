@@ -446,6 +446,59 @@
           "run_host"
         ]
       }
+    },
+    {
+      "id": "workflow.node-add",
+      "kind": "workflow",
+      "title": "Register and elaborate a Lean statement",
+      "summary": "Create a statement through the harness with a narrow import and enough memory for nested elaboration.",
+      "keywords": [
+        "node add",
+        "statement registration",
+        "elaborate",
+        "import closure",
+        "memory reservation",
+        "new lemma"
+      ],
+      "api": "es node add --name NAME --ws B --kind formalization --type SIGNATURE --description TEXT --consumer NODE --import MODULE [--targeted]",
+      "example": "es node add --help\n# Without the user bus, queue this command through es job run.\n# In this project use --mem 20G for --targeted; full extraction needs 28G.",
+      "semantics": "Node registration writes a sorry only in ESBlueprint and elaborates the statement before locking it. Search and claim first. The enclosing job must fit both build.memory_max and the selected extraction cap; --targeted narrows extraction, not the build reservation. It leaves the full frontier stale, so refresh before selecting further research. Use the smallest import closure that supplies the statement.",
+      "source": {
+        "path": "tools/es/es/commands/node.py",
+        "symbols": [
+          "run_add",
+          "elaborate_module",
+          "targeted_extract"
+        ]
+      }
+    },
+    {
+      "id": "workflow.jobs",
+      "kind": "workflow",
+      "title": "Guarded commands and terminal receipts",
+      "summary": "Run existing scripts with shared memory admission, job identity, declared outputs, bounded waits and cancellation.",
+      "keywords": [
+        "worker",
+        "job run",
+        "job wait",
+        "memory",
+        "command",
+        "environment",
+        "worktree",
+        "Python workflow",
+        "git commit"
+      ],
+      "api": "es job run --why PURPOSE --out runs/OUTPUT --mem SIZE -- COMMAND; es job wait JOB --timeout 55; es job status JOB",
+      "example": "es job run --why 'record interpreter version' --out runs/python-version.txt --mem 256M -- bash -c 'python3 --version > runs/python-version.txt'\nes job wait JOB_ID --timeout 55",
+      "semantics": "Submission is not completion. Inspect the terminal receipt including outputs_missing. Nested Lean commands need an enclosing reservation large enough for their configured build and extraction caps. For direct Git commands use -c gc.auto=0 -c maintenance.auto=false to keep automatic background maintenance from retaining the scope; unknown execution must be reconciled, never blindly retried.",
+      "source": {
+        "path": "tools/es/es/commands/jobs.py",
+        "symbols": [
+          "run_run",
+          "run_wait",
+          "run_status"
+        ]
+      }
     }
   ]
 }
