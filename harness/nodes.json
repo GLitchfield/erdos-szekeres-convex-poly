@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-15T23:28:22Z",
- "git_sha": "b1fde93c6815da81c92899968679b1e7dc4052c7",
+ "generated_at": "2026-09-15T23:44:32Z",
+ "git_sha": "0edb4ffd1e337072c2484cd5c65b008e80e023d7",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15597,
- "tree_hash": "1820dde899d7b46b",
+ "modules": 15598,
+ "tree_hash": "39e58053b38cb352",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15596,
+  "cached_modules": 15597,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -16938,7 +16938,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-15"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_internal_interval_cut_potential_bound",
@@ -19224,6 +19224,79 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-15"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound",
+   "module": "ESBlueprint.B.CtxTwoMarkerYoungerSurroundingInternalComplementCutTenBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "When the younger of exactly two chosen-axis markers is surrounded by a convex opposite kept interval, both independent-fuel and full internal-complement cut sums are at most ten at chosen and opposite globals at most five. The complement costs at most w+1 and the kept part costs at most choose(w-1,2)+(w-2) from the two unit boundary losses, while w≤4. Arbitrary histories, maxima, inactive children, and cut parameters remain explicit; no k or coupling premise is needed.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound",
+     "ErdosSzekeres.ctx_two_marker_triangular_linear_rank_budget"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound.match_1\n                              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                            5 →\n                          instLENat.le\n                              (ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound.match_1\n                                (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                              5 →\n                            (∀ (j : Nat),\n                                List.instMembership.mem (σ.levelsOn s 0) j →\n                                  ∀ (p : Nat),\n                                    List.instMembership.mem (σ.extPositions j) p →\n                                      Or (Eq p x) (Eq p y)) →\n                              instLENat.le 2\n                                  (instHSub.hSub\n                                    (ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound.match_1\n                                      (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                    1) →\n                                ∀ (keep : List Nat) (a b l r m n : Nat),\n                                  List.instMembership.mem keep a →\n                                    List.instMembership.mem keep b →\n                                      instLTNat.lt a x →\n                                        instLTNat.lt x b →\n                                          (∀ (p : Nat),\n                                              List.instMembership.mem keep p →\n                                                List.instMembership.mem σ.childPositions p) →\n                                            List.instMembership.mem σ.childPositions l →\n                                              List.instMembership.mem σ.childPositions r →\n                                                Not (List.instMembership.mem keep l) →\n                                                  Not (List.instMembership.mem keep r) →\n                                                    (∀ (p : Nat),\n                                                        List.instMembership.mem keep p →\n                                                          And (instLTNat.lt l p)\n                                                            (instLTNat.lt p r)) →\n                                                      (∀ (p : Nat),\n                                                          List.instMembership.mem keep p →\n                                                            ∀ (q : Nat),\n                                                              List.instMembership.mem keep q →\n                                                                ∀ (z : Nat),\n                                                                  List.instMembership.mem\n                                                                      σ.childPositions z →\n                                                                    instLENat.le p z →\n                                                                      instLENat.le z q →\n                                                                        List.instMembership.mem keep\n                                                                          z) →\n                                                        have rest :=\n                                                          List.filter\n                                                            (fun x =>\n                                                              Decidable.decide\n                                                                (Not\n                                                                  (List.instMembership.mem keep x)))\n                                                            σ.childPositions;\n                                                        And\n                                                          (∀ (f g : Nat),\n                                                            instLENat.le\n                                                              (instHAdd.hAdd\n                                                                (ErdosSzekeres.Ctx.Context.boundFuel\n                                                                  f (σ.part rest s m))\n                                                                (ErdosSzekeres.Ctx.Context.boundFuel\n                                                                  g (σ.part keep t n)))\n                                                              10)\n                                                          (instLENat.le\n                                                            (instHAdd.hAdd (σ.part rest s m).bound\n                                                              (σ.part keep t n).bound)\n                                                            10)",
+   "type_hash": "e8c50ab54e50e075",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound",
+    "ErdosSzekeres.ctx_two_marker_triangular_linear_rank_budget"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound.match_1",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._simp_1_1",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_2",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_3",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_4",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._simp_1_5",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_6",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_other_zero",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_zero",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_7",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_8",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_9",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_10",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound.match_1",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_11",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_12",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_13",
+    "ErdosSzekeres.ctx_two_marker_triangular_linear_rank_budget.match_1",
+    "ErdosSzekeres.ctx_two_marker_triangular_linear_rank_budget",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_14",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_15",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_16",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_17",
+    "ErdosSzekeres.ctx_two_marker_younger_surrounding_internal_complement_cut_ten_bound._proof_1_18"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_uniform_contraction_matching_cut_failure",
