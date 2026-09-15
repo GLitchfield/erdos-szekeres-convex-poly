@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-15T22:10:18Z",
- "git_sha": "8fea7aa543fce4472677d60055d83390c12d3812",
+ "generated_at": "2026-09-15T22:24:08Z",
+ "git_sha": "90d6415908d1031445554397cd35078c81ed0ddb",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15592,
- "tree_hash": "4f77904b7de79e9c",
+ "modules": 15593,
+ "tree_hash": "510891917db35d2f",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15591,
+  "cached_modules": 15592,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -7407,7 +7407,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-15"
   },
   {
    "name": "ErdosSzekeres.ctx_bracketed_children_unit_bound",
@@ -15594,6 +15594,63 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-12"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound",
+   "module": "ESBlueprint.B.CtxThreeOrderedMarkersExteriorUnitBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Three ordered actual markers on one axis force every active child in the exterior region beyond the oldest marker to share a singleton opposite rank, so the full recursive bound is at most one when that axis global is at most five. Both reflected orders, arbitrary histories, inactive children, maxima, and k remain explicit. This standalone theorem replaces a repeated local argument in younger-surrounded complement estimates; exact search found no registered equivalent.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_bound_le_one_of_common_singleton_rank"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (J N M a x y : Nat),\n      List.instMembership.mem σ.levels J →\n        List.instMembership.mem σ.levels N →\n          List.instMembership.mem σ.levels M →\n            instLTNat.lt J N →\n              instLTNat.lt N M →\n                Eq (σ.sideAt J) s →\n                  Eq (σ.sideAt N) s →\n                    Eq (σ.sideAt M) s →\n                      List.instMembership.mem (σ.extPositions J) a →\n                        List.instMembership.mem (σ.extPositions N) x →\n                          List.instMembership.mem (σ.extPositions M) y →\n                            instLENat.le\n                                (ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound.match_1\n                                  (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                                5 →\n                              Or\n                                  (And (instLTNat.lt a x)\n                                    (And (instLTNat.lt x y)\n                                      (∀ (p : Nat),\n                                        List.instMembership.mem σ.childPositions p →\n                                          instLTNat.lt p a)))\n                                  (And (instLTNat.lt y x)\n                                    (And (instLTNat.lt x a)\n                                      (∀ (p : Nat),\n                                        List.instMembership.mem σ.childPositions p →\n                                          instLTNat.lt a p))) →\n                                instLENat.le σ.bound 1",
+   "type_hash": "56e89398d7f95b25",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_bound_le_one_of_common_singleton_rank"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound.match_1",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._proof_1_1",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._proof_1_2",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._simp_1_3",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._simp_1_4",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._simp_1_5",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._proof_1_6",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._proof_1_7",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._proof_1_8",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._proof_1_9",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._proof_1_10",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._proof_1_11",
+    "ErdosSzekeres.ctx_bound_le_one_of_common_singleton_rank",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._proof_1_12",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound._proof_1_13"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_two_actual_marker_companion_maximum_bound",
