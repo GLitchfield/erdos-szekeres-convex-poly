@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-15T22:24:08Z",
- "git_sha": "90d6415908d1031445554397cd35078c81ed0ddb",
+ "generated_at": "2026-09-15T22:38:10Z",
+ "git_sha": "a4aeddab504b113bcbd7ae8ebd426b5af65abc62",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15593,
- "tree_hash": "510891917db35d2f",
+ "modules": 15594,
+ "tree_hash": "6c22a5d095678d04",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15592,
+  "cached_modules": 15593,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -13848,6 +13848,88 @@
    "opened": "2026-09-15"
   },
   {
+   "name": "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound",
+   "module": "ESBlueprint.B.CtxSurroundedYoungerMarkerComplementWidthPlusOneBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "When a younger chosen-axis marker lies between two occurrences of the only older relevant chosen level and every active child lies outside that interval, split the child runs at the younger marker. The exterior group has bound at most one by three ordered actual markers and the other group has the opposite width bound by a pruned nested-boundary argument, so every fuel approximation and the full recursive bound are at most opposite width plus one. Both marker orders, arbitrary histories, inactive children, maxima, and k remain explicit.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound",
+     "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono",
+     "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget",
+     "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three",
+     "ErdosSzekeres.ctx_part_pruning_history_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (J N M a b x y : Nat),\n          List.instMembership.mem σ.levels J →\n            List.instMembership.mem σ.levels N →\n              List.instMembership.mem σ.levels M →\n                instLTNat.lt J N →\n                  instLTNat.lt N M →\n                    Eq (σ.sideAt J) s →\n                      Eq (σ.sideAt N) s →\n                        Eq (σ.sideAt M) s →\n                          List.instMembership.mem (σ.extPositions J) a →\n                            List.instMembership.mem (σ.extPositions J) b →\n                              List.instMembership.mem (σ.extPositions N) x →\n                                List.instMembership.mem (σ.extPositions M) y →\n                                  instLTNat.lt a x →\n                                    instLTNat.lt x b →\n                                      (∀ (p : Nat),\n                                          List.instMembership.mem σ.childPositions p →\n                                            Or (instLTNat.lt p a) (instLTNat.lt b p)) →\n                                        (∀ (j : Nat),\n                                            List.instMembership.mem (σ.levelsOn s N) j →\n                                              ∀ (p : Nat),\n                                                List.instMembership.mem (σ.extPositions j) p →\n                                                  Eq j J) →\n                                          instLENat.le\n                                              (ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound.match_1\n                                                (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                                              5 →\n                                            have w :=\n                                              instHSub.hSub\n                                                (ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound.match_1\n                                                  (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                                1;\n                                            And\n                                              (∀ (fuel : Nat),\n                                                instLENat.le\n                                                  (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                                                  (instHAdd.hAdd w 1))\n                                              (instLENat.le σ.bound (instHAdd.hAdd w 1))",
+   "type_hash": "bee7b432732c042c",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three",
+    "ErdosSzekeres.ctx_part_pruning_history_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound.match_1_1",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_3",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_4",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_5",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_6",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_7",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_8",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_9",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_10",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_11",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_12",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_13",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono.match_1",
+    "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_14",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_15",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_16",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_17",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_18",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget.match_1",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_19",
+    "ErdosSzekeres.ctx_three_ordered_markers_exterior_unit_bound",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_20",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_21",
+    "ErdosSzekeres.ctx_surrounded_younger_marker_complement_width_plus_one_bound._proof_1_22",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three.match_1",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_thin_four_rank_next_band_chosen_internal_cut_bound",
    "module": "ESBlueprint.B.CtxThinFourRankNextBandChosenInternalCutBound",
    "ws": "B",
@@ -15650,7 +15732,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-15"
   },
   {
    "name": "ErdosSzekeres.ctx_two_actual_marker_companion_maximum_bound",
