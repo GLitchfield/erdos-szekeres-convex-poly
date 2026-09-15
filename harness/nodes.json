@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-15T19:48:41Z",
- "git_sha": "8ae570bbbc599feb2acd9568a7f9a269daf841e3",
+ "generated_at": "2026-09-15T20:06:58Z",
+ "git_sha": "29f32cfc26b3601c65c388d95a1c5e412d2a0e9b",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15584,
- "tree_hash": "d744aef67fcb857e",
+ "modules": 15585,
+ "tree_hash": "c0d79dcf6a627eba",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15583,
+  "cached_modules": 15584,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -5881,6 +5881,54 @@
    "opened": "2026-09-08"
   },
   {
+   "name": "ErdosSzekeres.ctx_bound_le_opposite_width_of_sibling_maximum_ge_k_minus_three",
+   "module": "ESBlueprint.B.CtxBoundLeOppositeWidthOfSiblingMaximumGeKMinusThree",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "If an indexed sibling maximum on the chosen side is at least k-3, checked upper normalization lowers that side to global width at most three; the exact small-global rank/region potential then bounds every fuel approximation and the full recursive bound by the opposite width minus one. Positive labels and distinct axes are explicit, while all other histories, maxima and child patterns remain arbitrary. This is the reusable m=3 endpoint-cut estimate for the exact k=6 obstruction. Exact search found no duplicate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_sibling_maximum_upper_normalize",
+     "ErdosSzekeres.ctx_small_global_axis_rank_region_potential"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (N : Nat),\n      List.instMembership.mem σ.levels N →\n        Eq (σ.sideAt N) s →\n          instLENat.le (instHSub.hSub σ.k 3) (σ.maximumAt N) →\n            And\n              (∀ (fuel : Nat),\n                instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                  (instHSub.hSub\n                    (ErdosSzekeres.ctx_bound_le_opposite_width_of_sibling_maximum_ge_k_minus_three.match_1\n                      s (fun t hne => Nat) t hne (fun hne => σ.u) fun hne => σ.a)\n                    1))\n              (instLENat.le σ.bound\n                (instHSub.hSub\n                  (ErdosSzekeres.ctx_bound_le_opposite_width_of_sibling_maximum_ge_k_minus_three.match_1\n                    s (fun t hne => Nat) t hne (fun hne => σ.u) fun hne => σ.a)\n                  1))",
+   "type_hash": "49fce5a95ee80938",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize",
+    "ErdosSzekeres.ctx_small_global_axis_rank_region_potential"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_le_opposite_width_of_sibling_maximum_ge_k_minus_three.match_1_1",
+    "ErdosSzekeres.ctx_bound_le_opposite_width_of_sibling_maximum_ge_k_minus_three._proof_1_4",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize.match_1",
+    "ErdosSzekeres.ctx_sibling_maximum_upper_normalize",
+    "ErdosSzekeres.ctx_small_global_axis_rank_region_potential.match_1",
+    "ErdosSzekeres.ctx_small_global_axis_rank_region_potential",
+    "ErdosSzekeres.ctx_bound_le_opposite_width_of_sibling_maximum_ge_k_minus_three.match_1"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_bound_le_sum_chosen_capacity_prunings_of_actual_marker_global_five",
    "module": "ESBlueprint.B.CtxBoundLeSumChosenCapacityPruningsOfActualMarkerGlobalFive",
    "ws": "B",
@@ -9804,7 +9852,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-15"
   },
   {
    "name": "ErdosSzekeres.ctx_oldest_axis_maximum_erase_normalize",
