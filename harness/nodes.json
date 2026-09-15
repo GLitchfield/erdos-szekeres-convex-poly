@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-15T23:44:32Z",
- "git_sha": "0edb4ffd1e337072c2484cd5c65b008e80e023d7",
+ "generated_at": "2026-09-15T23:57:49Z",
+ "git_sha": "3a2ad60dbf1edf03aa62cd0ad4c51282bf084fd9",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15598,
- "tree_hash": "39e58053b38cb352",
+ "modules": 15599,
+ "tree_hash": "f9fb63be8d383f20",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15597,
+  "cached_modules": 15598,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -19296,7 +19296,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-15"
   },
   {
    "name": "ErdosSzekeres.ctx_uniform_contraction_matching_cut_failure",
@@ -20363,6 +20363,77 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-10"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound",
+   "module": "ESBlueprint.B.CtxYoungestMiddleMarkerDoubledWidthBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Three ordered chosen-axis markers with empty chosen history below the oldest marker and opposite-facing history constraints around the two younger markers force a doubled opposite-width bound. Splitting active child runs at the oldest marker yields two pruned groups, each bounded by one opposite width through nested boundary markers; capacity-three recombination gives both every fuel approximation and the full recursive bound at most twice that width. Arbitrary opposite history, maxima, and inactive children remain explicit.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget",
+     "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three",
+     "ErdosSzekeres.ctx_part_pruning_history_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (J N M x y z : Nat),\n          List.instMembership.mem σ.levels J →\n            List.instMembership.mem σ.levels N →\n              List.instMembership.mem σ.levels M →\n                instLTNat.lt J N →\n                  instLTNat.lt N M →\n                    Eq (σ.sideAt J) s →\n                      Eq (σ.sideAt N) s →\n                        Eq (σ.sideAt M) s →\n                          List.instMembership.mem (σ.extPositions J) x →\n                            List.instMembership.mem (σ.extPositions N) y →\n                              List.instMembership.mem (σ.extPositions M) z →\n                                instLENat.le\n                                    (ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound.match_1\n                                      (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                                    5 →\n                                  (∀ (j : Nat),\n                                      List.instMembership.mem (σ.levelsOn s J) j →\n                                        Eq (σ.extPositions j) List.nil) →\n                                    ∀ (direction : Bool),\n                                      (∀ (j : Nat),\n                                          List.instMembership.mem (σ.levelsOn s N) j →\n                                            ∀ (p : Nat),\n                                              List.instMembership.mem (σ.extPositions j) p →\n                                                ite (Eq direction Bool.true) (instLTNat.lt y p)\n                                                  (instLTNat.lt p y)) →\n                                        (∀ (j : Nat),\n                                            List.instMembership.mem (σ.levelsOn s M) j →\n                                              ∀ (p : Nat),\n                                                List.instMembership.mem (σ.extPositions j) p →\n                                                  ite (Eq direction Bool.true) (instLTNat.lt p z)\n                                                    (instLTNat.lt z p)) →\n                                          have w :=\n                                            instHSub.hSub\n                                              (ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound.match_1\n                                                (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                              1;\n                                          And\n                                            (∀ (fuel : Nat),\n                                              instLENat.le\n                                                (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                                                (instHMul.hMul 2 w))\n                                            (instLENat.le σ.bound (instHMul.hMul 2 w))",
+   "type_hash": "eb6eaf448e109a42",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three",
+    "ErdosSzekeres.ctx_part_pruning_history_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound.match_1_1",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_3",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_4",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_5",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_6",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_7",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_8",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_9",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_10",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_11",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_12",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget.match_1",
+    "ErdosSzekeres.ctx_nested_boundary_markers_rank_budget",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_13",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_14",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_15",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_16",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_17",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_18",
+    "ErdosSzekeres.ctx_youngest_middle_marker_doubled_width_bound._proof_1_19",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three.match_1",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.decomposableStateUpper_all",
