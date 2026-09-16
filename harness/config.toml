@@ -152,8 +152,16 @@ default_import = "ErdosSzekeres"       # narrower imports keep `es check` fast; 
 output_bytes = 4096
 
 [automation.delivery]
-# Inbox is durable. Current Codex CLI attachment has no verified callback.
-enabled = false
+# Run notifications require a separately verified exact agent/thread binding.
+# Enabling the dispatcher does not certify the current interactive attachment.
+enabled = true
+
+[automation.monitor]
+# Ordinary-code polling has zero idle model requests. Only persistent scope
+# uncertainty or a terminal run is sent to the verified coordinator binding.
+unknown_execution_grace_seconds = 60
+provider_capacity_retries = 1           # fresh serverOverloaded only, frozen deadline; never quota/policy errors
+coordinator_output_target = 10000      # observational target, excludes separate final mathematical review
 
 [research.plugins.context_rank]
 module = "harness.research.context_rank"

@@ -437,7 +437,7 @@
       ],
       "api": "es run agent --out runs/RUN --prompt /absolute/prompt.md [--model gpt-5.6-sol --effort xhigh --hours 12]; es run agent-status runs/RUN; es run agent --out runs/RUN --resume",
       "example": "es run agent --out runs/sol-trial --prompt /absolute/path/research-prompt.md --model gpt-5.6-sol --effort xhigh --hours 12\nes run agent-status runs/sol-trial",
-      "semantics": "The 2 GiB host owns a separate Codex native-goal session. A frozen research deadline permits one bounded finalization turn afterward. Resume is explicit and does not extend time; uncertain receipts are not automatically replayed. A blocked goal can resume after a verified latest serverOverloaded turn before the original deadline, unless the goal changed afterward; other blockers stay blocked. Job completion alone confers no theorem credit or current-client notification guarantee.",
+      "semantics": "The 2 GiB host owns a separate Codex native-goal session. A frozen research deadline permits one bounded finalization turn afterward. The worker registers a run observer. Manual resume is explicit; a configured bounded automatic capacity-only retry requires fresh serverOverloaded evidence and rechecks the current goal before recovery. Neither route extends deadlines; uncertain receipts are not automatically replayed. Job completion alone confers no theorem credit or current-client notification guarantee.",
       "source": {
         "path": "tools/es/es/agent_run.py",
         "symbols": [
@@ -497,6 +497,85 @@
           "run_run",
           "run_wait",
           "run_status"
+        ]
+      }
+    },
+    {
+      "id": "workflow.run-monitor",
+      "kind": "workflow",
+      "title": "Run observation without model polling",
+      "summary": "Observe durable research jobs in the worker and escalate only a terminal run or persistent infrastructure blocker.",
+      "keywords": [
+        "monitor",
+        "Astra",
+        "polling",
+        "run progress",
+        "worker",
+        "capacity retry",
+        "completion"
+      ],
+      "api": "es run watch OUT; es run progress OUT [--follow 55]; es run observe; es run unwatch OUT",
+      "example": "es run progress runs/sol-trial\nes run progress runs/sol-trial --follow 55",
+      "semantics": "Native run submission registers automatically. Idle observations and individual compiler failures make no model requests. A configured bounded retry handles only a fresh provider capacity failure within the frozen deadline; it never resets pause, quota, cancellation or uncertain effects. Unwatch stops observation without cancelling compute or messages already queued. Unattended reporting requires a separately verified callback plus an available worker.",
+      "source": {
+        "path": "tools/es/es/run_monitor.py",
+        "symbols": [
+          "register",
+          "progress",
+          "tick",
+          "pause"
+        ]
+      }
+    },
+    {
+      "id": "workflow.run-review",
+      "kind": "workflow",
+      "title": "Final research accounting and code inventory",
+      "summary": "Collect deduplicated late usage, direct jobs, validation evidence and code review inventory in one immutable bundle.",
+      "keywords": [
+        "final review",
+        "run review",
+        "late usage",
+        "code inventory",
+        "inline Python",
+        "library promotion",
+        "accounting"
+      ],
+      "api": "es run review OUT [--artifact-root RUN_DIR]; build_review(cfg, out, compact_limit=4096, artifact_root=None)",
+      "example": "es run review runs/sol-trial/host --artifact-root runs/sol-trial",
+      "semantics": "Summary is bounded to 4096 bytes; full evidence is immutable. Usage includes finalization after the research window closes and reports source limits. Explicit artifact roots must contain the host directory under configured output roots; otherwise the inventory states its host-only coverage. Source hashes and sanitized inline commands support review; scripts are not executed. Operational success never grants theorem credit. Final mathematical review is always required, with code review flagged separately.",
+      "source": {
+        "path": "tools/es/es/run_review.py",
+        "symbols": [
+          "build_review"
+        ]
+      }
+    },
+    {
+      "id": "workflow.run-delivery",
+      "kind": "workflow",
+      "title": "Verified exact-thread completion callbacks",
+      "summary": "Verify the actual receiving Codex thread before submitting compact run-level events through its queue.",
+      "keywords": [
+        "callback",
+        "notification",
+        "delivery verify",
+        "exact thread",
+        "queue",
+        "completion",
+        "reconciliation"
+      ],
+      "api": "es delivery status; es delivery verify --thread UUID; es delivery confirm --challenge TOKEN; es delivery abandon-verification --thread UUID",
+      "example": "es delivery status\nes delivery verify --thread \"$CODEX_THREAD_ID\"\n# Confirm only the challenge actually received through this thread.",
+      "semantics": "Queue acceptance alone does not verify receipt. Confirmation requires the unchanged receiving CODEX_THREAD_ID and coordinator identity. Packets are at most 2048 bytes plus the event marker; full evidence stays in immutable artifacts. Events have a separate outbox from operation delivery. Uncertain submissions are never automatically retried; abandoning a verification invalidates its nonce but cannot cancel an already queued message. Transport configuration does not override the client model, permissions or quota.",
+      "source": {
+        "path": "tools/es/es/run_delivery.py",
+        "symbols": [
+          "request_verification",
+          "confirm_verification",
+          "emit",
+          "dispatch",
+          "status"
         ]
       }
     }

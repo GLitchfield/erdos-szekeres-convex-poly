@@ -388,3 +388,27 @@ def test_status_reads_compact_file_without_model_contact(cfg, project, monkeypat
     assert state["status"] == "queued"
     assert "source" not in state
     assert "codex_executable" not in state
+
+
+@pytest.mark.parametrize('new_status', ['paused', 'usageLimited', 'budgetLimited', 'complete'])
+def test_automatic_capacity_retry_rechecks_changed_goal_status(cfg, project, monkeypatch, new_status):
+    out, _, _ = _submit(cfg, project, monkeypatch)
+    host = agent_run.AgentHost(cfg, out, explicit_resume=True, capacity_only=True)
+    host.state.update(thread_id='thread-1', window_id='window-1', timing={
+        'deadline_at': agent_run._utc(time.time() + 600),
+        'finalization_start_at': agent_run._utc(time.time() + 300),
+        'final_deadline_at': agent_run._utc(time.time() + 2400)})
+    objective = agent_run._objective(host.state, host._prompt())
+    host._resumed_turn = {'status': 'failed', 'error_code': 'serverOverloaded', 'completed_at': 101}
+    class Client:
+        def request(self, method, params, timeout=30):
+            assert method == 'thread/goal/get', 'automatic recovery must not override a changed goal'
+            return {'goal': {'objective': objective, 'status': new_status, 'updatedAt': 100}}
+    host.client = Client()
+    host._ensure_goal()
+    assert host.state['goal']['status'] == new_status
+
+
+def test_automatic_recovery_host_command_keeps_restrictive_policy(cfg, project):
+    command = agent_run._host_command(cfg, project/'runs/test', True, capacity_only=True)
+    assert command[-2:] == ['--resume', '--capacity-only']

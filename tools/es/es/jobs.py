@@ -341,6 +341,8 @@ def worker_loop(cfg: Config, poll_s: float = 5.0, once: bool = False) -> None:
             from es.operations import advance
             advance(cfg)
             worker_start_fitting(cfg)
+            from es.run_monitor import tick
+            tick(cfg)
         except Exception as exc:  # a transient database error must not stop the worker
             print(f"worker: {exc}", file=sys.stderr, flush=True)
         if once:

@@ -39,6 +39,20 @@ def run_agent_status(ctx, out):
     return Result(0, state, [f"{state['status']} ({state['phase']}){suffix}"])
 
 
+def run_review(ctx, out, artifact_root=None):
+    from es.run_review import build_review
+
+    result = build_review(ctx.cfg, out, artifact_root=artifact_root)
+    counts = result.get("counts") or {}
+    artifact = result.get("artifact") or {}
+    return Result(
+        0,
+        result,
+        [f"reviewed {out}: {counts.get('jobs', 0)} research jobs, "
+         f"{counts.get('explicit_proof_receipts', 0)} explicit proof receipts; artifact {artifact.get('id', 'unavailable')}"]
+    )
+
+
 command(CommandSpec(
     "run_agent",
     ["run", "agent"],
@@ -61,4 +75,13 @@ command(CommandSpec(
     "Read compact state for a Codex native-goal run without contacting the model.",
     run_agent_status,
     [Arg("out", "existing run directory under runs/ or data/", positional=True, required=True)],
+))
+
+command(CommandSpec(
+    "run_review",
+    ["run", "review"],
+    "Create a bounded final review summary and immutable sanitized evidence for a native-goal run.",
+    run_review,
+    [Arg("out", "existing run directory under runs/ or data/", positional=True, required=True),
+     Arg("artifact_root", "explicit run artifact root containing the host out directory")],
 ))

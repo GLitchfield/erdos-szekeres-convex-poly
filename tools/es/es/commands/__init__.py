@@ -26,4 +26,6 @@ from es.commands import (  # noqa: F401
     index,
     library,
     agent_run,
+    monitor,
+    run_delivery,
 )
