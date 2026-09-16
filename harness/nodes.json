@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-16T01:23:16Z",
- "git_sha": "337e20db770baadde8ce35891e7317772e4c13b3",
+ "generated_at": "2026-09-16T01:36:55Z",
+ "git_sha": "8bda993d7748950498c75c6dbab2fb65f426fe47",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15605,
- "tree_hash": "8a1fab8ec8e34a08",
+ "modules": 15606,
+ "tree_hash": "739aed599c31241a",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15604,
+  "cached_modules": 15605,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -274,6 +274,66 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound",
+   "module": "ESBlueprint.B.CtxActiveSeparatingMarkerRetainedBoundaryRankUnionBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Prune inactive children from a capacity-three context, apply the all-active separating-marker retained-boundary rank-union theorem to the transported context, and pull the exact opposite-rank-set bound back to the source. This reusable wrapper retains arbitrary inactive children, maxima, opposite history, marker direction, and fuels.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_separating_marker_retained_boundary_rank_union_bound",
+     "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three",
+     "ErdosSzekeres.ctx_part_pruning_history_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (N x : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem (σ.extPositions N) x →\n          ∀ (rightward : Bool),\n            (∀ (p : Nat),\n                List.instMembership.mem σ.childPositions p →\n                  And (instLTNat.lt 0 (σ.cupLimit p p)) (instLTNat.lt 0 (σ.capLimit p p)) →\n                    ite (Eq rightward Bool.true) (instLTNat.lt p x) (instLTNat.lt x p)) →\n              (∀ (j : Nat),\n                  List.instMembership.mem (σ.levelsOn (σ.sideAt N) N) j →\n                    ∀ (p : Nat),\n                      List.instMembership.mem (σ.extPositions j) p →\n                        ite (Eq rightward Bool.true) (instLTNat.lt p x) (instLTNat.lt x p)) →\n                (∀ (j : Nat),\n                    List.instMembership.mem (σ.levelsOn (σ.sideAt N) 0) j →\n                      instLTNat.lt N j →\n                        ∀ (p : Nat),\n                          List.instMembership.mem (σ.extPositions j) p →\n                            ite (Eq rightward Bool.true) (instLTNat.lt x p) (instLTNat.lt p x)) →\n                  ∀ (I y : Nat),\n                    List.instMembership.mem σ.levels I →\n                      instLTNat.lt N I →\n                        Eq (σ.sideAt I) (σ.sideAt N) →\n                          List.instMembership.mem (σ.extPositions I) y →\n                            (∀ (j : Nat),\n                                List.instMembership.mem (σ.levelsOn (σ.sideAt N) I) j →\n                                  Ne j N →\n                                    ∀ (p : Nat),\n                                      List.instMembership.mem (σ.extPositions j) p →\n                                        ite (Eq rightward Bool.true) (instLTNat.lt p y)\n                                          (instLTNat.lt y p)) →\n                              ∀ (t : ErdosSzekeres.Ctx.Side),\n                                Ne (σ.sideAt N) t →\n                                  instLENat.le\n                                      (ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound.match_1\n                                        (fun x => Nat) (σ.sideAt N) (fun _ => σ.u) fun _ => σ.a)\n                                      5 →\n                                    have budget :=\n                                      instHSub.hSub\n                                        (ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound.match_1\n                                          (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                        1;\n                                    have active :=\n                                      Finset.filter\n                                        (fun p =>\n                                          And (instLTNat.lt 0 (σ.cupLimit p p))\n                                            (instLTNat.lt 0 (σ.capLimit p p)))\n                                        σ.childPositions.toFinset;\n                                    have ranks :=\n                                      active.biUnion fun p =>\n                                        Finset.Icc (instHAdd.hAdd (σ.leftExt t 0 p) 1)\n                                          (instHSub.hSub budget (σ.rightExt t 0 p));\n                                    And\n                                      (∀ (fuel : Nat),\n                                        instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                                          ranks.card)\n                                      (instLENat.le σ.bound ranks.card)",
+   "type_hash": "c27fd9318403908b",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_separating_marker_retained_boundary_rank_union_bound",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three",
+    "ErdosSzekeres.ctx_part_pruning_history_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound.match_1",
+    "ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound.match_1_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound._proof_1_3",
+    "ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound._proof_1_4",
+    "ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound._proof_1_5",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound._simp_1_6",
+    "ErdosSzekeres.ctx_separating_marker_retained_boundary_rank_union_bound.match_1",
+    "ErdosSzekeres.ctx_separating_marker_retained_boundary_rank_union_bound",
+    "ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound._simp_1_7",
+    "ErdosSzekeres.ctx_active_separating_marker_retained_boundary_rank_union_bound._simp_1_8",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three.match_1",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_active_two_boundary_marker_rank_union_bound",
@@ -15906,7 +15966,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-15"
   },
   {
    "name": "ErdosSzekeres.ctx_two_actual_marker_companion_maximum_bound",
