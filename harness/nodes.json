@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-16T18:33:47Z",
- "git_sha": "21d89b6d354cc09b1a3c2d0c05c4d08b8716f666",
+ "generated_at": "2026-09-16T18:49:05Z",
+ "git_sha": "4162fc7f55b5cd648c06727de2736c23b0bee5cb",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15610,
- "tree_hash": "27304a692b0534f9",
+ "modules": 15611,
+ "tree_hash": "bfb63e3b0135c473",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15609,
+  "cached_modules": 15610,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -17197,6 +17197,68 @@
    "opened": "2026-09-10"
   },
   {
+   "name": "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three",
+   "module": "ESBlueprint.B.CtxTwoMarkerInternalComplementCutSixBoundOfMaximumThree",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "At k six, any two-actual-marker internal-complement cut with complement maximum three has independent-fuel and full sums at most twelve, without a positional, convexity, or clear-history assumption. The complement costs at most four by sibling-maximum normalization and the retained double complement costs at most eight by the sharp companion theorem.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_bound_le_opposite_width_of_sibling_maximum_ge_k_minus_three",
+     "ErdosSzekeres.ctx_two_actual_marker_companion_maximum_bound",
+     "ErdosSzekeres.ctx_part_positive_letters"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three.match_1\n                              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                            5 →\n                          instLENat.le\n                              (ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three.match_1\n                                (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                              5 →\n                            ∀ (keep : List Nat) (q₀ l m n : Nat),\n                              List.instMembership.mem keep q₀ →\n                                (∀ (p : Nat),\n                                    List.instMembership.mem keep p →\n                                      List.instMembership.mem σ.childPositions p) →\n                                  List.instMembership.mem σ.childPositions l →\n                                    Not (List.instMembership.mem keep l) →\n                                      Eq σ.k 6 →\n                                        Eq (instHAdd.hAdd m n) (instHSub.hSub σ.k 1) →\n                                          Eq m 3 →\n                                            have rest :=\n                                              List.filter\n                                                (fun x =>\n                                                  Decidable.decide\n                                                    (Not (List.instMembership.mem keep x)))\n                                                σ.childPositions;\n                                            And\n                                              (∀ (f g : Nat),\n                                                instLENat.le\n                                                  (instHAdd.hAdd\n                                                    (ErdosSzekeres.Ctx.Context.boundFuel f\n                                                      (σ.part rest s m))\n                                                    (ErdosSzekeres.Ctx.Context.boundFuel g\n                                                      (σ.part keep t n)))\n                                                  12)\n                                              (instLENat.le\n                                                (instHAdd.hAdd (σ.part rest s m).bound\n                                                  (σ.part keep t n).bound)\n                                                12)",
+   "type_hash": "1e0176e552bc3606",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_bound_le_opposite_width_of_sibling_maximum_ge_k_minus_three",
+    "ErdosSzekeres.ctx_two_actual_marker_companion_maximum_bound",
+    "ErdosSzekeres.ctx_part_positive_letters"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three.match_1",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three._simp_1_1",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three._simp_1_2",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three._proof_1_3",
+    "ErdosSzekeres.ctx_bound_le_opposite_width_of_sibling_maximum_ge_k_minus_three.match_1",
+    "ErdosSzekeres.ctx_bound_le_opposite_width_of_sibling_maximum_ge_k_minus_three",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three._proof_1_4",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three._proof_1_5",
+    "ErdosSzekeres.Ctx.Context.part_congr",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three._simp_1_6",
+    "ErdosSzekeres.ctx_two_actual_marker_companion_maximum_bound",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three._proof_1_7",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three._proof_1_8",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_maximum_three._proof_1_9"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_bound_of_opposite_global_le_four",
    "module": "ESBlueprint.B.CtxTwoMarkerInternalComplementCutSixBoundOfOppositeGlobalLeFour",
    "ws": "B",
@@ -17398,7 +17460,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_middle_residual_classification",
