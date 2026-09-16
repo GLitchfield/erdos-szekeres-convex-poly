@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-16T01:08:26Z",
- "git_sha": "67d0847cc9d2664ecec68b4c6bb000a7c252db9c",
+ "generated_at": "2026-09-16T01:23:16Z",
+ "git_sha": "337e20db770baadde8ce35891e7317772e4c13b3",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15604,
- "tree_hash": "2f9e3e650cdcf64a",
+ "modules": 15605,
+ "tree_hash": "8a1fab8ec8e34a08",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15603,
+  "cached_modules": 15604,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -15819,6 +15819,96 @@
    "opened": "2026-09-15"
   },
   {
+   "name": "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound",
+   "module": "ESBlueprint.B.CtxThreeOrderedMarkersTriangularPlusOneBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Three ordered actual markers on one axis, with no younger history below the oldest marker, bound every fuel approximation and the full recursive context by the opposite triangular potential plus one. Splitting physical child runs at the oldest marker makes the exterior arm share a singleton rank forced by the three-marker chain, while the other arm is controlled by the complete rank-pair triangle; capacity-three recombination adds the two charges. Both monotone marker orientations, arbitrary opposite history, maxima, inactive children, and k remain explicit.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+     "ErdosSzekeres.ctx_bound_le_one_of_common_singleton_rank",
+     "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three",
+     "ErdosSzekeres.ctx_part_pruning_history_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (J N M x y z : Nat),\n          List.instMembership.mem σ.levels J →\n            List.instMembership.mem σ.levels N →\n              List.instMembership.mem σ.levels M →\n                instLTNat.lt J N →\n                  instLTNat.lt N M →\n                    Eq (σ.sideAt J) s →\n                      Eq (σ.sideAt N) s →\n                        Eq (σ.sideAt M) s →\n                          List.instMembership.mem (σ.extPositions J) x →\n                            List.instMembership.mem (σ.extPositions N) y →\n                              List.instMembership.mem (σ.extPositions M) z →\n                                instLENat.le\n                                    (ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound.match_1\n                                      (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                                    5 →\n                                  (∀ (j : Nat),\n                                      List.instMembership.mem (σ.levelsOn s J) j →\n                                        Eq (σ.extPositions j) List.nil) →\n                                    Or (And (instLTNat.lt x y) (instLTNat.lt y z))\n                                        (And (instLTNat.lt z y) (instLTNat.lt y x)) →\n                                      have w :=\n                                        instHSub.hSub\n                                          (ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound.match_1\n                                            (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                          1;\n                                      And\n                                        (∀ (fuel : Nat),\n                                          instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                                            (instHAdd.hAdd ((instHAdd.hAdd w 1).choose 2) 1))\n                                        (instLENat.le σ.bound\n                                          (instHAdd.hAdd ((instHAdd.hAdd w 1).choose 2) 1))",
+   "type_hash": "734db44d05ca3b63",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+    "ErdosSzekeres.ctx_bound_le_one_of_common_singleton_rank",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three",
+    "ErdosSzekeres.ctx_part_pruning_history_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_1",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_2",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._simp_1_3",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._simp_1_4",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._simp_1_5",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_6",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_7",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_8",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_9",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound.match_1_10",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_12",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_13",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_14",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_15",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_16",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_17",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_18",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_19",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_20",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_21",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_22",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_23",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_24",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound.match_1",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_25",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_26",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_27",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_28",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_29",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_30",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_31",
+    "ErdosSzekeres.ctx_bound_le_one_of_common_singleton_rank",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_32",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_33",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_34",
+    "ErdosSzekeres.ctx_three_ordered_markers_triangular_plus_one_bound._proof_1_35",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three.match_1",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_capacity_three"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_two_actual_marker_companion_maximum_bound",
    "module": "ESBlueprint.B.CtxTwoActualMarkerCompanionMaximumBound",
    "ws": "B",
@@ -17145,7 +17235,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-15"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_residual_classification",
