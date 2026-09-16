@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-16T19:32:46Z",
- "git_sha": "b6f27203ee701c1d9e7b24c1d38e9f9424dbda46",
+ "generated_at": "2026-09-16T20:03:22Z",
+ "git_sha": "2a50cc86c6cbe9260822df5566ab49d31b2b04b4",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15614,
- "tree_hash": "e71a9c5a5aa2df3a",
+ "modules": 15615,
+ "tree_hash": "03615506ffc40f3d",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15613,
+  "cached_modules": 15614,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -17596,7 +17596,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_internal_interval_cut_potential_bound",
@@ -19541,6 +19541,65 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-10"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker",
+   "module": "ESBlueprint.B.CtxTwoMarkerYoungerExteriorComplementMixedCapacitiesSeparatedByOlderMarker",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "In a younger-exterior chosen complement, the transported older marker separates every chosen-capacity-three child from every chosen-capacity-at-most-two child. This makes the high and low supports simultaneously boundary-ready despite the arbitrary convex level-one marker block.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five",
+     "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+     "ErdosSzekeres.ctx_part_positive_letters"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (N M x y : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            Eq (σ.sideAt N) s →\n              Eq (σ.sideAt M) s →\n                List.instMembership.mem (σ.extPositions N) x →\n                  List.instMembership.mem (σ.extPositions M) y →\n                    instLENat.le\n                        (ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker.match_1\n                          (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                        5 →\n                      (∀ (j : Nat),\n                          List.instMembership.mem (σ.levelsOn s 0) j →\n                            ∀ (p : Nat),\n                              List.instMembership.mem (σ.extPositions j) p → Or (Eq p x) (Eq p y)) →\n                        ∀ (keep : List Nat) (q₀ m : Nat),\n                          List.instMembership.mem keep q₀ →\n                            (∀ (p : Nat),\n                                List.instMembership.mem keep p →\n                                  List.instMembership.mem σ.childPositions p) →\n                              Or\n                                  (And (instLTNat.lt x y)\n                                    (∀ (p : Nat),\n                                      List.instMembership.mem keep p → instLTNat.lt p x))\n                                  (And (instLTNat.lt y x)\n                                    (∀ (p : Nat),\n                                      List.instMembership.mem keep p → instLTNat.lt x p)) →\n                                have rest :=\n                                  List.filter\n                                    (fun x =>\n                                      Decidable.decide (Not (List.instMembership.mem keep x)))\n                                    σ.childPositions;\n                                have α := σ.part rest s m;\n                                ∀ (p : Nat),\n                                  List.instMembership.mem α.childPositions p →\n                                    ∀ (q : Nat),\n                                      List.instMembership.mem α.childPositions q →\n                                        instLENat.le 3\n                                            (ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker.match_1\n                                              (fun s => Nat) s (fun _ => α.cupLimit p p) fun _ =>\n                                              α.capLimit p p) →\n                                          instLENat.le\n                                              (ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker.match_1\n                                                (fun s => Nat) s (fun _ => α.cupLimit q q) fun _ =>\n                                                α.capLimit q q)\n                                              2 →\n                                            Or\n                                              (And (instLTNat.lt x y)\n                                                (And (instLTNat.lt q y) (instLTNat.lt y p)))\n                                              (And (instLTNat.lt y x)\n                                                (And (instLTNat.lt p y) (instLTNat.lt y q)))",
+   "type_hash": "b864427f6fae914b",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_part_positive_letters"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker.match_1",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker._simp_1_1",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker._proof_1_2",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_zero",
+    "ErdosSzekeres.ctx_mixed_capacity_children_marker_separated_global_five",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker._proof_1_3",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker._proof_1_4",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker._proof_1_5",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker._proof_1_6",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker._proof_1_7"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_younger_exterior_endpoint_cut_potential_bound",
