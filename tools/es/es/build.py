@@ -273,8 +273,8 @@ def _run_guarded(
         return BuildResult(rc, seconds, 0, str(log_path), argv, refused=(
             "cannot create a memory-guarded scope from this process (the systemd user bus is unreachable: a sandbox?); "
             "run this from an unsandboxed shell, or one that can reach /run/user/<uid>/bus"), tail=tail)
-    from es.resources import scope_stopped
-    acknowledged = not use_guard or scope_stopped(unit+'.scope') is True
+    from es.resources import wait_scope_stopped
+    acknowledged = not use_guard or wait_scope_stopped(unit+'.scope') is True
     return BuildResult(rc, seconds, built, str(log_path), argv, budget_exceeded, ooms, peak, tail=tail, termination_acknowledged=acknowledged)
 
 
