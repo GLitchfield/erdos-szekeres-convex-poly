@@ -1,6 +1,7 @@
 """Reconcile reservations only after evidence that their process tree stopped."""
 import json
 import subprocess
+import time
 
 from es.artifacts import canonical
 from es.store import Store
@@ -11,9 +12,33 @@ def scope_stopped(unit):
     try:
         result = subprocess.run(['systemctl','--user','show',unit,'--property=ActiveState','--property=LoadState'],capture_output=True,text=True,timeout=5)
     except (OSError,subprocess.TimeoutExpired): return None
-    if result.returncode or 'ActiveState=' not in result.stdout: return None
     fields = dict(line.split('=',1) for line in result.stdout.splitlines() if '=' in line)
-    return fields.get('ActiveState') in ('inactive','failed') or fields.get('LoadState')=='not-found'
+    # A transient unit that systemd has already collected can be reported as
+    # not-found with a nonzero exit status.  The missing unit is still definite
+    # evidence that its cgroup is gone; other command failures remain unknown.
+    if fields.get('LoadState') == 'not-found':
+        return True
+    if result.returncode or 'ActiveState' not in fields:
+        return None
+    return fields['ActiveState'] in ('inactive','failed')
+
+
+def wait_scope_stopped(unit, timeout_s=5.0, poll_s=0.05):
+    """Wait briefly for systemd's asynchronous active-to-stopped transition.
+
+    An unavailable bus is not evidence about the cgroup, so return uncertainty
+    immediately.  A scope that stays active through the deadline is likewise
+    left for explicit reconciliation rather than releasing its reservation.
+    """
+    deadline = time.monotonic() + timeout_s
+    while True:
+        stopped = scope_stopped(unit)
+        if stopped is not False:
+            return stopped
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            return False
+        time.sleep(min(poll_s, remaining))
 
 
 def reconcile(cfg):

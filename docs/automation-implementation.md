@@ -253,6 +253,18 @@ requires reconciliation; it is not retried automatically. No deadline or usage l
 silently extended. This separate host does not establish that the current interactive
 attachment can receive an unsolicited completion message.
 
+An explicit resume can also recover a provider capacity failure before the original
+research deadline. The latest durable turn must have failed with `serverOverloaded`,
+and its completion must not precede the goal's latest update. Other blocked goals and
+quota failures remain blocked. The host stores the error code and lifecycle metadata,
+not the provider message, and records the recovery without changing the thread or deadline.
+
+After a guarded command exits, scope acknowledgement briefly polls systemd for delayed
+teardown. A collected transient unit (`LoadState=not-found`) is stopped evidence even
+when systemctl returns a nonzero status. An unreachable bus or a scope still active
+after the polling deadline preserves the reservation for explicit reconciliation;
+external effects are never replayed by that reconciliation.
+
 ```bash
 es inbox list
 es inbox claim --consumer CLIENT_CONNECTION_ID

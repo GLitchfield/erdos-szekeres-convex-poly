@@ -437,7 +437,7 @@
       ],
       "api": "es run agent --out runs/RUN --prompt /absolute/prompt.md [--model gpt-5.6-sol --effort xhigh --hours 12]; es run agent-status runs/RUN; es run agent --out runs/RUN --resume",
       "example": "es run agent --out runs/sol-trial --prompt /absolute/path/research-prompt.md --model gpt-5.6-sol --effort xhigh --hours 12\nes run agent-status runs/sol-trial",
-      "semantics": "The 2 GiB host owns a separate Codex native-goal session. A frozen research deadline permits one bounded finalization turn afterward. Resume is explicit and does not extend time; uncertain receipts are not automatically replayed. Job completion alone confers no theorem credit or current-client notification guarantee.",
+      "semantics": "The 2 GiB host owns a separate Codex native-goal session. A frozen research deadline permits one bounded finalization turn afterward. Resume is explicit and does not extend time; uncertain receipts are not automatically replayed. A blocked goal can resume after a verified latest serverOverloaded turn before the original deadline, unless the goal changed afterward; other blockers stay blocked. Job completion alone confers no theorem credit or current-client notification guarantee.",
       "source": {
         "path": "tools/es/es/agent_run.py",
         "symbols": [

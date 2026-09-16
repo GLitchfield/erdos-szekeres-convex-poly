@@ -189,8 +189,57 @@ def test_scope_stopped_requires_definite_systemd_state(monkeypatch):
     assert resources.scope_stopped('failed.scope') is True
     monkeypatch.setattr(resources.subprocess, 'run', lambda *args, **kwargs: result('ActiveState=active\nLoadState=loaded\n'))
     assert resources.scope_stopped('live.scope') is False
+    monkeypatch.setattr(resources.subprocess, 'run', lambda *args, **kwargs: result('ActiveState=inactive\nLoadState=not-found\n', returncode=4))
+    assert resources.scope_stopped('collected.scope') is True
     monkeypatch.setattr(resources.subprocess, 'run', lambda *args, **kwargs: result('', returncode=1))
     assert resources.scope_stopped('hidden-bus.scope') is None
+
+
+def test_wait_scope_stopped_acknowledges_delayed_teardown(monkeypatch):
+    states = iter([False, False, True])
+    monkeypatch.setattr(resources, 'scope_stopped', lambda unit: next(states))
+    monkeypatch.setattr(resources.time, 'sleep', lambda seconds: None)
+    assert resources.wait_scope_stopped('finishing.scope') is True
+
+
+def test_wait_scope_stopped_preserves_bus_uncertainty(monkeypatch):
+    calls = []
+    monkeypatch.setattr(resources, 'scope_stopped', lambda unit: calls.append(unit))
+    monkeypatch.setattr(resources.time, 'sleep', lambda seconds: pytest.fail('an unavailable bus must not be polled'))
+    assert resources.wait_scope_stopped('hidden-bus.scope') is None
+    assert calls == ['hidden-bus.scope']
+
+
+def test_wait_scope_stopped_does_not_acknowledge_live_scope(monkeypatch):
+    monkeypatch.setattr(resources, 'scope_stopped', lambda unit: False)
+    monkeypatch.setattr(resources.time, 'sleep', lambda seconds: pytest.fail('a zero deadline must not sleep'))
+    assert resources.wait_scope_stopped('live.scope', timeout_s=0) is False
+
+
+def test_guarded_success_waits_for_scope_teardown(cfg, monkeypatch):
+    from es import build
+
+    class FinishedProcess:
+        pid = 12345
+        returncode = 0
+
+        def wait(self, timeout=None):
+            return self.returncode
+
+    cfg.raw.setdefault('build', {})['guard'] = True
+    monkeypatch.setattr(build.shutil, 'which', lambda name: '/usr/bin/systemd-run')
+    monkeypatch.setattr(build.subprocess, 'Popen', lambda *args, **kwargs: FinishedProcess())
+    states = iter([False, True])
+    monkeypatch.setattr(resources, 'scope_stopped', lambda unit: next(states))
+    monkeypatch.setattr(resources.time, 'sleep', lambda seconds: None)
+
+    result = run_guarded(cfg, ['true'], log_path=cfg.root/'guarded-success.log',
+                         budget_min=1, memory_max='1G', force=True, count_built=False)
+
+    assert result.ok
+    assert result.termination_acknowledged is True
+    with Store(cfg) as st:
+        assert st.conn.execute('SELECT COUNT(*) FROM resource_leases').fetchone()[0] == 0
 
 
 def test_unknown_execution_reconcile_preserves_receipt(cfg, monkeypatch):
