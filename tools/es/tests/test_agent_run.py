@@ -228,6 +228,80 @@ def test_paused_goal_exits_research_wait_immediately(cfg, project, monkeypatch):
     assert host.state["status"] == "goal_paused"
 
 
+def test_blocked_notification_captures_later_provider_failure_receipt(cfg, project, monkeypatch):
+    out, _result, _captured = _submit(cfg, project, monkeypatch)
+    host = agent_run.AgentHost(cfg, out)
+    host.state.update(thread_id="thread-1", goal={"status": "blocked"})
+    host.state["timing"] = {"deadline_at": agent_run._utc(time.time() + 600)}
+    host.state["progress"]["active_turn_id"] = "turn-1"
+
+    class Client:
+        def request(self, method, params, timeout=30):
+            assert method == "thread/turns/list"
+            assert params["itemsView"] == "summary"
+            assert timeout == 5
+            return {"data": [{"id": "turn-1", "status": "failed", "completedAt": 123,
+                              "error": {"codexErrorInfo": "serverOverloaded", "message": "PRIVATE"},
+                              "items": [{"text": "PRIVATE"}]}]}
+
+    host.client = Client()
+    assert host._wait_research() == "blocked"
+    saved = json.loads((out / agent_run.STATE_NAME).read_text())
+    assert saved["progress"]["last_turn_error_code"] == "serverOverloaded"
+    assert "active_turn_id" not in saved["progress"]
+    assert "PRIVATE" not in json.dumps(saved)
+
+
+@pytest.mark.parametrize("code,expired,later_update,explicit,should_resume", [
+    ("serverOverloaded", False, False, True, True),
+    ("serverOverloaded", True, False, True, False),
+    ("serverOverloaded", False, True, True, False),
+    ("serverOverloaded", False, False, False, False),
+    ("usageLimitExceeded", False, False, True, False),
+    ("rateLimitExceeded", False, False, True, False),
+    ("misalignmentPolicyViolation", False, False, True, False),
+    (None, False, False, True, False),
+])
+def test_explicit_capacity_resume_requires_current_failure_and_frozen_deadline(
+    cfg, project, monkeypatch, code, expired, later_update, explicit, should_resume,
+):
+    out, _result, _captured = _submit(cfg, project, monkeypatch)
+    host = agent_run.AgentHost(cfg, out, explicit_resume=explicit)
+    completed = int(time.time()) - 10
+    host.state.update(thread_id="thread-1", window_id="window-1", timing={
+        "deadline_at": agent_run._utc(time.time() + (-1 if expired else 600)),
+        "finalization_start_at": agent_run._utc(time.time() + 300),
+        "final_deadline_at": agent_run._utc(time.time() + 2400),
+    })
+    timing = dict(host.state["timing"])
+    objective = agent_run._objective(host.state, host._prompt())
+    calls = []
+
+    class Client:
+        def request(self, method, params, timeout=30):
+            calls.append((method, params))
+            if method == "thread/resume":
+                return {"model": "gpt-5.6-sol", "reasoningEffort": "xhigh", "initialTurnsPage": {
+                    "data": [{"id": "turn-1", "status": "failed", "completedAt": completed,
+                              "error": {"codexErrorInfo": code}}]}}
+            if method == "thread/settings/update":
+                return {}
+            if method == "thread/goal/get":
+                return {"goal": {"objective": objective, "status": "blocked",
+                                 "updatedAt": completed + int(later_update)}}
+            assert method == "thread/goal/set" and should_resume
+            assert params == {"threadId": "thread-1", "status": "active"}
+            return {"goal": {"objective": objective, "status": "active"}}
+
+    host.client = Client()
+    host._resume_thread()
+    host._ensure_goal()
+    assert any(m == "thread/goal/set" for m, _ in calls) is should_resume
+    assert host.state["goal"]["status"] == ("active" if should_resume else "blocked")
+    assert host.state["timing"] == timing
+    assert bool(host.state.get("provider_recoveries")) is should_resume
+
+
 def test_goal_objective_is_canonical_across_resume(cfg, project, monkeypatch):
     out, _result, _captured = _submit(cfg, project, monkeypatch)
     host = agent_run.AgentHost(cfg, out)

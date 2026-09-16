@@ -318,6 +318,45 @@ class AgentHost:
         self.client_class = client_class
         self.client: CodexClient | None = None
         self._last_save_monotonic = 0.0
+        self._resumed_turn: dict | None = None
+
+    def _record_turn(self, turn: dict) -> dict:
+        """Keep lifecycle evidence only, never provider messages or turn items."""
+        error = turn.get("error")
+        code = error.get("codexErrorInfo") if isinstance(error, dict) else None
+        if isinstance(code, dict):
+            code = next(iter(code), None)
+        summary = {
+            "id": turn.get("id"), "status": turn.get("status"),
+            "error_code": code if isinstance(code, str) else None,
+            "completed_at": turn.get("completedAt"),
+        }
+        progress = self.state.setdefault("progress", {})
+        progress["last_turn_id"] = summary["id"]
+        progress["last_turn_status"] = summary["status"]
+        progress.pop("last_turn_error_code", None)
+        if summary["error_code"]:
+            progress["last_turn_error_code"] = summary["error_code"][:80]
+        if summary["status"] == "inProgress" and isinstance(summary["id"], str):
+            progress["active_turn_id"] = summary["id"]
+        elif summary["id"] == progress.get("active_turn_id"):
+            progress.pop("active_turn_id", None)
+        return summary
+
+    def _capture_terminal_turn(self) -> None:
+        # A blocked goal notification can precede turn/completed. Read the durable
+        # receipt before closing the connection, so provider failure is distinguishable
+        # from a mathematical blocker without retaining conversation text.
+        try:
+            page = self._request("thread/turns/list", {
+                "threadId": self.state["thread_id"], "limit": 1,
+                "sortDirection": "desc", "itemsView": "summary",
+            }, 5)
+            turns = page.get("data")
+            if isinstance(turns, list) and turns and isinstance(turns[0], dict):
+                self._record_turn(turns[0])
+        except (ProtocolError, TimeoutError, OSError) as exc:
+            self.state["terminal_receipt_error"] = _error_summary(exc, "turn_receipt_unavailable")
 
     def save(self) -> None:
         self.state["updated_at"] = _utc(time.time())
@@ -360,14 +399,7 @@ class AgentHost:
         elif method == "turn/completed":
             turn = params.get("turn") or {}
             if isinstance(turn, dict):
-                ident = turn.get("id")
-                progress["last_turn_id"] = ident
-                progress["last_turn_status"] = turn.get("status")
-                error = turn.get("error")
-                if isinstance(error, dict):
-                    progress["last_turn_error_code"] = str(error.get("codexErrorInfo") or error.get("type") or "failed")[:80]
-                if ident == progress.get("active_turn_id"):
-                    progress.pop("active_turn_id", None)
+                self._record_turn(turn)
                 progress["turns_completed"] = int(progress.get("turns_completed", 0)) + 1
                 changed = True
         elif method == "thread/status/changed":
@@ -484,10 +516,9 @@ class AgentHost:
             raise ProtocolError("thread/resume did not honor the frozen model and effort")
         page = result.get("initialTurnsPage") or {}
         turns = page.get("data") if isinstance(page, dict) else None
+        self._resumed_turn = None
         if isinstance(turns, list) and turns and isinstance(turns[0], dict):
-            latest = turns[0]
-            if latest.get("status") == "inProgress" and isinstance(latest.get("id"), str):
-                self.state.setdefault("progress", {})["active_turn_id"] = latest["id"]
+            self._resumed_turn = self._record_turn(turns[0])
         self._update_settings()
 
     def _prompt(self) -> str:
@@ -509,11 +540,27 @@ class AgentHost:
                 }
             status = existing.get("status")
             before_deadline = time.time() < _parse_utc(self.state["timing"]["deadline_at"])
-            if self.explicit_resume and before_deadline and status in {"paused", "usageLimited"}:
+            turn = self._resumed_turn or {}
+            # Only an explicitly resumed, freshly confirmed capacity failure may
+            # reactivate a blocked goal. Quota/policy errors and genuine blockers
+            # stay blocked; a later goal update also invalidates this evidence.
+            capacity_failure = (
+                status == "blocked" and turn.get("status") == "failed"
+                and turn.get("error_code") == "serverOverloaded"
+                and isinstance(turn.get("completed_at"), (int, float))
+                and isinstance(existing.get("updatedAt"), (int, float))
+                and turn["completed_at"] >= existing["updatedAt"]
+            )
+            if self.explicit_resume and before_deadline and (status in {"paused", "usageLimited"} or capacity_failure):
                 existing = self._request("thread/goal/set", {
                     "threadId": self.state["thread_id"], "status": "active",
                 }).get("goal")
                 self.state["goal"] = _goal_summary(existing)
+                if capacity_failure:
+                    self.state.setdefault("provider_recoveries", []).append({
+                        "at": _utc(time.time()), "turn_id": turn["id"],
+                        "error_code": "serverOverloaded", "explicit_resume": True,
+                    })
             self.state.update(status="running", phase="goal_active")
             self.save()
             return
@@ -550,6 +597,8 @@ class AgentHost:
                     self.state.update(status="premature_complete", phase="terminal_before_deadline")
                     self.save()
                     return "premature_complete"
+                if status == "blocked":
+                    self._capture_terminal_turn()
                 self.state.update(status="goal_" + status, phase="terminal_goal")
                 self.save()
                 return status
