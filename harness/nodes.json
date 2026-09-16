@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-16T18:19:32Z",
- "git_sha": "e75b479deda2343c60021ab5f427f2ce6852f455",
+ "generated_at": "2026-09-16T18:33:47Z",
+ "git_sha": "21d89b6d354cc09b1a3c2d0c05c4d08b8716f666",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15609,
- "tree_hash": "048f0c3f2d8ad09c",
+ "modules": 15610,
+ "tree_hash": "27304a692b0534f9",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15608,
+  "cached_modules": 15609,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -17355,6 +17355,52 @@
    "opened": "2026-09-15"
   },
   {
+   "name": "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_both_middle_residual_classification",
+   "module": "ESBlueprint.B.CtxTwoMarkerInternalComplementCutSixTopWidthBothMiddleResidualClassification",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "At k six and saturated opposite global five, every legal two-marker internal-complement cut has sum at most twelve unless the complement maximum is two or three, in either the older-surrounding or younger-exterior positional residual. This composes the existing top-width classifier with the younger-exterior extreme-maximum bound.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_middle_residual_classification",
+     "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_both_middle_residual_classification.match_1\n                              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                            5 →\n                          instLENat.le\n                              (ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_both_middle_residual_classification.match_1\n                                (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                              5 →\n                            Eq (σ.levelsOn t 0) List.nil →\n                              (∀ (j : Nat),\n                                  List.instMembership.mem (σ.levelsOn s 0) j →\n                                    ∀ (p : Nat),\n                                      List.instMembership.mem (σ.extPositions j) p →\n                                        Or (Eq p x) (Eq p y)) →\n                                instLENat.le 2\n                                    (instHSub.hSub\n                                      (ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_both_middle_residual_classification.match_1\n                                        (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                      1) →\n                                  ∀ (keep : List Nat) (q₀ l r m n : Nat),\n                                    List.instMembership.mem keep q₀ →\n                                      (∀ (p : Nat),\n                                          List.instMembership.mem keep p →\n                                            List.instMembership.mem σ.childPositions p) →\n                                        List.instMembership.mem σ.childPositions l →\n                                          List.instMembership.mem σ.childPositions r →\n                                            Not (List.instMembership.mem keep l) →\n                                              Not (List.instMembership.mem keep r) →\n                                                (∀ (p : Nat),\n                                                    List.instMembership.mem keep p →\n                                                      And (instLTNat.lt l p) (instLTNat.lt p r)) →\n                                                  (∀ (p : Nat),\n                                                      List.instMembership.mem keep p →\n                                                        ∀ (q : Nat),\n                                                          List.instMembership.mem keep q →\n                                                            ∀ (z : Nat),\n                                                              List.instMembership.mem\n                                                                  σ.childPositions z →\n                                                                instLENat.le p z →\n                                                                  instLENat.le z q →\n                                                                    List.instMembership.mem keep\n                                                                      z) →\n                                                    Eq σ.k 6 →\n                                                      instLENat.le 1 m →\n                                                        instLENat.le 1 n →\n                                                          Eq (instHAdd.hAdd m n)\n                                                              (instHSub.hSub σ.k 1) →\n                                                            have rest :=\n                                                              List.filter\n                                                                (fun x =>\n                                                                  Decidable.decide\n                                                                    (Not\n                                                                      (List.instMembership.mem keep\n                                                                        x)))\n                                                                σ.childPositions;\n                                                            Or\n                                                              (And\n                                                                (∀ (f g : Nat),\n                                                                  instLENat.le\n                                                                    (instHAdd.hAdd\n                                                                      (ErdosSzekeres.Ctx.Context.boundFuel\n                                                                        f (σ.part rest s m))\n                                                                      (ErdosSzekeres.Ctx.Context.boundFuel\n                                                                        g (σ.part keep t n)))\n                                                                    12)\n                                                                (instLENat.le\n                                                                  (instHAdd.hAdd\n                                                                    (σ.part rest s m).bound\n                                                                    (σ.part keep t n).bound)\n                                                                  12))\n                                                              (And\n                                                                (Eq\n                                                                  (ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_both_middle_residual_classification.match_1\n                                                                    (fun t => Nat) t (fun _ => σ.u)\n                                                                    fun _ => σ.a)\n                                                                  5)\n                                                                (And (Or (Eq m 2) (Eq m 3))\n                                                                  (Or\n                                                                    (Exists fun a =>\n                                                                      And\n                                                                        (List.instMembership.mem\n                                                                          keep a)\n                                                                        (Exists fun b =>\n                                                                          And\n                                                                            (List.instMembership.mem\n                                                                              keep b)\n                                                                            (And (instLTNat.lt a y)\n                                                                              (instLTNat.lt y b))))\n                                                                    (Or\n                                                                      (And (instLTNat.lt x y)\n                                                                        (∀ (p : Nat),\n                                                                          List.instMembership.mem\n                                                                              keep p →\n                                                                            instLTNat.lt p x))\n                                                                      (And (instLTNat.lt y x)\n                                                                        (∀ (p : Nat),\n                                                                          List.instMembership.mem\n                                                                              keep p →\n                                                                            instLTNat.lt x p))))))",
+   "type_hash": "77e9003bb7c320ec",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_middle_residual_classification",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_both_middle_residual_classification.match_1",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_middle_residual_classification.match_1",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_middle_residual_classification",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum",
+    "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_both_middle_residual_classification._proof_1_1"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_two_marker_internal_complement_cut_six_top_width_middle_residual_classification",
    "module": "ESBlueprint.B.CtxTwoMarkerInternalComplementCutSixTopWidthMiddleResidualClassification",
    "ws": "B",
@@ -19704,7 +19750,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_interval_cut_potential_bound",
