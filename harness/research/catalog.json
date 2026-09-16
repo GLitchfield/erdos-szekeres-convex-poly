@@ -490,7 +490,7 @@
       ],
       "api": "es job run --why PURPOSE --out runs/OUTPUT --mem SIZE -- COMMAND; es job wait JOB --timeout 55; es job status JOB",
       "example": "es job run --why 'record interpreter version' --out runs/python-version.txt --mem 256M -- bash -c 'python3 --version > runs/python-version.txt'\nes job wait JOB_ID --timeout 55",
-      "semantics": "Submission is not completion. Inspect the terminal receipt including outputs_missing. Nested Lean commands need an enclosing reservation large enough for their configured build and extraction caps. For direct Git commands use -c gc.auto=0 -c maintenance.auto=false to keep automatic background maintenance from retaining the scope; unknown execution must be reconciled, never blindly retried.",
+      "semantics": "Submission is not completion. Inspect the terminal receipt including outputs_missing; --out declares an artifact but does not redirect stdout. Prefer direct argv; a shell pipeline must enable pipefail so output capture cannot hide command failure. Nested Lean commands need an enclosing reservation large enough for their configured build and extraction caps. For direct Git commands use -c gc.auto=0 -c maintenance.auto=false to keep automatic background maintenance from retaining the scope; unknown execution must be reconciled, never blindly retried.",
       "source": {
         "path": "tools/es/es/commands/jobs.py",
         "symbols": [
