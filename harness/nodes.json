@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-16T18:05:25Z",
- "git_sha": "52e48fa26bf60734fc6f5383f0a3348ec1ee6d74",
+ "generated_at": "2026-09-16T18:19:32Z",
+ "git_sha": "e75b479deda2343c60021ab5f427f2ce6852f455",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15608,
- "tree_hash": "664c20d92a701753",
+ "modules": 15609,
+ "tree_hash": "048f0c3f2d8ad09c",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -21,7 +21,7 @@
  "taint": {
   "cached_modules": 15608,
   "scanned_constants": 0,
-  "scanned_modules": 0
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -19535,7 +19535,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_potential_bound",
@@ -19645,6 +19645,66 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-10"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum",
+   "module": "ESBlueprint.B.CtxTwoMarkerYoungerExteriorInternalComplementCutSixBoundOfExtremeMaximum",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "At k six, the younger-exterior internal-complement cut has independent-fuel and full sums at most twelve when the complement maximum is extreme. For m=1 the legal coupling makes the retained maximum four and hence its bound one; for m=4 the complement bound is one. The component theorem supplies the other exact charge. All classifier hypotheses, arbitrary original maxima, inactive children, and both legal maxima remain explicit.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_component_bounds",
+     "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+     "ErdosSzekeres.ctx_part_positive_letters"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum.match_1\n                              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                            5 →\n                          instLENat.le\n                              (ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum.match_1\n                                (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                              5 →\n                            Eq (σ.levelsOn t 0) List.nil →\n                              (∀ (j : Nat),\n                                  List.instMembership.mem (σ.levelsOn s 0) j →\n                                    ∀ (p : Nat),\n                                      List.instMembership.mem (σ.extPositions j) p →\n                                        Or (Eq p x) (Eq p y)) →\n                                instLENat.le 2\n                                    (instHSub.hSub\n                                      (ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum.match_1\n                                        (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                      1) →\n                                  ∀ (keep : List Nat) (q₀ l r m n : Nat),\n                                    List.instMembership.mem keep q₀ →\n                                      (∀ (p : Nat),\n                                          List.instMembership.mem keep p →\n                                            List.instMembership.mem σ.childPositions p) →\n                                        List.instMembership.mem σ.childPositions l →\n                                          List.instMembership.mem σ.childPositions r →\n                                            Not (List.instMembership.mem keep l) →\n                                              Not (List.instMembership.mem keep r) →\n                                                (∀ (p : Nat),\n                                                    List.instMembership.mem keep p →\n                                                      And (instLTNat.lt l p) (instLTNat.lt p r)) →\n                                                  Or\n                                                      (And (instLTNat.lt x y)\n                                                        (∀ (p : Nat),\n                                                          List.instMembership.mem keep p →\n                                                            instLTNat.lt p x))\n                                                      (And (instLTNat.lt y x)\n                                                        (∀ (p : Nat),\n                                                          List.instMembership.mem keep p →\n                                                            instLTNat.lt x p)) →\n                                                    (∀ (p : Nat),\n                                                        List.instMembership.mem keep p →\n                                                          ∀ (q : Nat),\n                                                            List.instMembership.mem keep q →\n                                                              ∀ (z : Nat),\n                                                                List.instMembership.mem\n                                                                    σ.childPositions z →\n                                                                  instLENat.le p z →\n                                                                    instLENat.le z q →\n                                                                      List.instMembership.mem keep\n                                                                        z) →\n                                                      Eq σ.k 6 →\n                                                        instLENat.le 1 m →\n                                                          instLENat.le 1 n →\n                                                            Eq (instHAdd.hAdd m n)\n                                                                (instHSub.hSub σ.k 1) →\n                                                              Or (Eq m 1) (Eq m 4) →\n                                                                have rest :=\n                                                                  List.filter\n                                                                    (fun x =>\n                                                                      Decidable.decide\n                                                                        (Not\n                                                                          (List.instMembership.mem\n                                                                            keep x)))\n                                                                    σ.childPositions;\n                                                                And\n                                                                  (∀ (f g : Nat),\n                                                                    instLENat.le\n                                                                      (instHAdd.hAdd\n                                                                        (ErdosSzekeres.Ctx.Context.boundFuel\n                                                                          f (σ.part rest s m))\n                                                                        (ErdosSzekeres.Ctx.Context.boundFuel\n                                                                          g (σ.part keep t n)))\n                                                                      12)\n                                                                  (instLENat.le\n                                                                    (instHAdd.hAdd\n                                                                      (σ.part rest s m).bound\n                                                                      (σ.part keep t n).bound)\n                                                                    12)",
+   "type_hash": "199744e9319d718b",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_component_bounds",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+    "ErdosSzekeres.ctx_part_positive_letters"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum.match_1",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_component_bounds.match_1",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_component_bounds",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum._simp_1_1",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum._proof_1_2",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum._proof_1_3",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum._proof_1_4",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum._proof_1_5",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum._proof_1_6",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum._proof_1_7",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum._proof_1_8",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum._proof_1_9",
+    "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_complement_cut_six_bound_of_extreme_maximum._proof_1_10"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_younger_exterior_internal_interval_cut_potential_bound",
