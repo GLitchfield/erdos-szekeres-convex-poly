@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-16T01:53:39Z",
- "git_sha": "f71a4cd38afca0c793b253181168618ca4eaf5f1",
+ "generated_at": "2026-09-16T02:07:58Z",
+ "git_sha": "031229cadb6e397ee6b4e679cad8bd579f4ef9b0",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15607,
- "tree_hash": "46400e9f4f7a0708",
+ "tree_hash": "ea7bef4ca32b0635",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15606,
+  "cached_modules": 15607,
   "scanned_constants": 0,
-  "scanned_modules": 1
+  "scanned_modules": 0
  },
  "nodes": [
   {
@@ -17398,7 +17398,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-15"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_internal_interval_cut_potential_bound",
