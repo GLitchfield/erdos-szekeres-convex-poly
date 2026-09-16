@@ -152,13 +152,15 @@ def _thread_config(state: dict) -> dict:
     }
 
 
-def _host_command(cfg: Config, out: Path, resume: bool) -> list[str]:
+def _host_command(cfg: Config, out: Path, resume: bool, capacity_only: bool = False) -> list[str]:
     # A shared worker can use another checkout's virtualenv/PYTHONPATH.  Load
     # the submitting checkout's host explicitly, including with system Python.
     command = ["/usr/bin/env", f"PYTHONPATH={cfg.root / 'tools' / 'es'}",
                sys.executable, "-m", "es.agent_run", "host", "--root", str(cfg.root), "--out", str(out)]
     if resume:
         command.append("--resume")
+    if capacity_only:
+        command.append('--capacity-only')
     return command
 
 
@@ -181,9 +183,12 @@ def submit_agent_run(
     effort: str | None = None,
     hours: float | None = None,
     resume: bool = False,
+    capacity_only: bool = False,
 ) -> dict:
     """Freeze a run request and queue its 2 GiB host."""
     out_path, out_rel = _output(cfg, out)
+    if capacity_only and not resume:
+        raise UsageError('capacity-only recovery requires an existing run')
     state_path = out_path / STATE_NAME
     if resume:
         state = _read_state(out_path)
@@ -238,12 +243,15 @@ def submit_agent_run(
             "hours": float(hours),
             "codex_executable": str(Path(codex_executable).resolve()),
             "researcher_agent": f"codex:agent-run-{uuid.uuid4().hex[:16]}",
+            "coordinator_agent": agent,
             "source": {"path": str(source), "artifact": prompt_ref, "sha256": prompt_ref["id"]},
             "host_job_ids": [],
             "resume_count": 0,
             "submissions": {},
             "progress": {"turns_started": 0, "turns_completed": 0, "denied_requests": 0},
         }
+        from es.gitutil import head_sha
+        state['baseline_commit'] = head_sha(cfg)
         # Native goals have a smaller text limit than ordinary user messages.
         # Validate before starting any session; use full microsecond UTC lengths.
         preview = state | {"timing": {
@@ -259,7 +267,7 @@ def submit_agent_run(
         _atomic_json(state_path, state)
 
     # queue=True closes the admission race between a sandboxed CLI and the external worker.
-    command = _host_command(cfg, out_path, resume)
+    command = _host_command(cfg, out_path, resume, capacity_only)
     try:
         job = submit_run(
             cfg,
@@ -283,6 +291,8 @@ def submit_agent_run(
     if resume:
         state["resume_count"] = int(state.get("resume_count", 0)) + 1
     _atomic_json(state_path, state)
+    from es.run_monitor import register
+    register(cfg, out_path, state.get('coordinator_agent', agent))
     return {"run": status_agent_run(cfg, out), "job": job}
 
 
@@ -309,12 +319,13 @@ def status_agent_run(cfg: Config, out: str | Path) -> dict:
 
 
 class AgentHost:
-    def __init__(self, cfg: Config, out: Path, *, explicit_resume: bool = False, client_class=CodexClient) -> None:
+    def __init__(self, cfg: Config, out: Path, *, explicit_resume: bool = False, capacity_only: bool = False, client_class=CodexClient) -> None:
         self.cfg = cfg
         self.out = out
         self.path = out / STATE_NAME
         self.state = _read_state(out)
         self.explicit_resume = explicit_resume
+        self.capacity_only = capacity_only
         self.client_class = client_class
         self.client: CodexClient | None = None
         self._last_save_monotonic = 0.0
@@ -334,6 +345,9 @@ class AgentHost:
         progress = self.state.setdefault("progress", {})
         progress["last_turn_id"] = summary["id"]
         progress["last_turn_status"] = summary["status"]
+        progress.pop('last_turn_completed_at', None)
+        if isinstance(summary['completed_at'], (int, float)) and not isinstance(summary['completed_at'], bool):
+            progress['last_turn_completed_at'] = summary['completed_at']
         progress.pop("last_turn_error_code", None)
         if summary["error_code"]:
             progress["last_turn_error_code"] = summary["error_code"][:80]
@@ -551,7 +565,8 @@ class AgentHost:
                 and isinstance(existing.get("updatedAt"), (int, float))
                 and turn["completed_at"] >= existing["updatedAt"]
             )
-            if self.explicit_resume and before_deadline and (status in {"paused", "usageLimited"} or capacity_failure):
+            if self.explicit_resume and before_deadline and (capacity_failure or
+                    (not self.capacity_only and status in {"paused", "usageLimited"})):
                 existing = self._request("thread/goal/set", {
                     "threadId": self.state["thread_id"], "status": "active",
                 }).get("goal")
@@ -830,7 +845,7 @@ class AgentHost:
             self.client = None
 
 
-def run_host(root: Path, out: Path, *, resume: bool = False, client_class=CodexClient) -> int:
+def run_host(root: Path, out: Path, *, resume: bool = False, capacity_only: bool = False, client_class=CodexClient) -> int:
     cfg = load_config(root)
     out_path, _ = _output(cfg, out)
     lock_path = out_path / LOCK_NAME
@@ -840,7 +855,7 @@ def run_host(root: Path, out: Path, *, resume: bool = False, client_class=CodexC
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
             raise CheckFailed(f"an agent host already owns {out_path}")
-        host = AgentHost(cfg, out_path, explicit_resume=resume, client_class=client_class)
+        host = AgentHost(cfg, out_path, explicit_resume=resume, capacity_only=capacity_only, client_class=client_class)
         previous: dict[int, Any] = {}
 
         def stop(signum, _frame):
@@ -862,9 +877,10 @@ def main(argv: list[str] | None = None) -> int:
     host.add_argument("--root", required=True, type=Path)
     host.add_argument("--out", required=True, type=Path)
     host.add_argument("--resume", action="store_true")
+    host.add_argument('--capacity-only', action='store_true')
     args = parser.parse_args(argv)
     try:
-        rc = run_host(args.root.resolve(), args.out, resume=args.resume)
+        rc = run_host(args.root.resolve(), args.out, resume=args.resume, capacity_only=args.capacity_only)
         cfg = load_config(args.root.resolve())
         print(json.dumps(status_agent_run(cfg, args.out), sort_keys=True), flush=True)
         return rc

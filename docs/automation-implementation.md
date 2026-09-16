@@ -288,8 +288,9 @@ and `enabled` fields, and a reachable control socket. `es delivery dispatch --th
 performs one dispatch for a configured binding; it preserves the thread's model/effort and
 permissions. It does not make an unattached CLI conversation observable or launch another
 agent. Continuous host integration and Claude delivery remain gated. The shipped project
-configuration leaves delivery disabled. **Do not promise an unsolicited completion message
-from the present CLI attachment.**
+configuration enables the delivery gate, but contains no legacy operation bindings. Native
+run callbacks use the separate verified binding described below. **Do not promise an
+unsolicited completion message from an unverified CLI attachment.**
 
 On 2026-09-13, a job-owned `codex app-server --stdio` test passed real success,
 failure, timeout and cancellation delivery. Its ordinary-code monitor made zero model
@@ -298,7 +299,81 @@ preserved delivery, and a deliberately lost turn-start acknowledgement reconcile
 history without a duplicate model turn. See
 `runs/automation-followup-20260913/delivery-live.json`. This verifies the separate test
 session, not wake-up of the current interactive attachment. The latter's proxy control
-socket was absent. Continuous host wiring remains an explicit integration gate.
+socket was absent. This does not verify the newer exact-thread queue transport either.
+
+## Run monitoring without Astra polling (2026-09-16)
+
+`es run agent` automatically registers its coordinator and output directory with the worker.
+`es worker` observes durable host/job state in Python: idle polls and individual failed Lean
+attempts issue zero model requests. Ordinary proof repair remains with Sol/xhigh. A terminal
+run or persistent infrastructure failure creates a compact event for Astra; a terminal run
+with unfinished child jobs is reported as blocked, not complete. Unknown execution retains
+its resource reservation until systemd confirms the scope stopped.
+
+The project permits one automatic recovery from a recorded provider capacity failure
+(`serverOverloaded`) before the original deadline. Both the observer and resumed host check
+the failure evidence. The same thread, prompt, model, effort and deadlines are preserved.
+Quota limits, user pauses, cancellation, and uncertain submissions are never reset by this
+recovery. Other blockers produce a review event. The run registry and outbox survive worker
+restarts; immutable event payloads prevent duplicate notifications after a crash.
+
+```bash
+es run watch runs/sol-trial               # needed only for an existing unregistered run
+es run progress runs/sol-trial            # human-readable status; no model request
+es run progress runs/sol-trial --follow 55
+es run unwatch runs/sol-trial             # pause observation; compute continues
+es run observe                          # one observer tick, normally performed by worker
+es delivery status                      # current ES_AGENT binding and outbox health
+es delivery verify --thread "$CODEX_THREAD_ID"
+```
+
+Verification queues one challenge through the installed `codex queue` command to the exact
+thread UUID. The receiving conversation must run the supplied `delivery confirm` command
+with its existing `CODEX_THREAD_ID` and coordinator identity. **Do not extract the challenge
+from the database to simulate receipt.** Queue acceptance alone never verifies a callback.
+Reconnecting to a different thread requires a new verification. The transport supplies no
+model, permission, quota, or sandbox overrides.
+
+Run callbacks have their own outbox and cannot consume legacy operation events. Packets are
+at most 2,048 bytes plus the event marker; complete evidence is preserved in immutable
+artifacts. Accepted queue submission means handed to the client, not that the agent has
+already reviewed the result. An ambiguous submission is retained and is not automatically
+retried. Inspect the actual client queue before deciding how to recover. To retire a failed
+verification explicitly, use `es delivery abandon-verification --thread UUID`, then request
+a fresh verification when the transport is available. Abandoning invalidates the old nonce;
+it cannot cancel a message already queued.
+
+`es run review OUT [--artifact-root RUN_DIR]` builds the final evidence bundle in ordinary
+code. It includes usage imported through finalization (including responses after the
+research window closed), direct researcher jobs and resources, unresolved jobs/claims,
+recorded validation evidence, changed tracked scripts, run scripts and inline commands.
+The compact summary is at most 4,096 bytes and links the full artifact. Prompts and raw
+transcripts are excluded; known credential patterns in command evidence are redacted.
+Exit zero does not establish a theorem. Astra must inspect the relevant compiled proof
+receipts and perform the mathematical and library reviews before reporting accepted work.
+If the original state does not record an artifact root, inventory defaults to the host
+directory and explicitly reports that limitation; use `--artifact-root` for parent artifacts.
+
+Record coordinator monitoring in a separate usage window with an observational target of
+10,000 output tokens (`es run begin LABEL --arm monitoring --budget 10000`). Final mathematical
+review and code maintenance use separate windows. This target is not a provider quota or
+an enforced stop. Future comparisons must include all of these windows plus setup and failed
+attempts; zero-model idle polling is tested behavior, not a measured all-in savings claim.
+
+**Restart:** CLI commands read the updated source on each invocation. Restart the long-running
+`es worker` once, from its normal WSL terminal/service, to load the new observer hook. For a
+foreground worker, stop that worker and run `tools/es/bin/es worker` again; do not kill its
+detached job scopes. Reconnect/restart the `es` MCP server to refresh its command registry.
+No Lean rebuild, database reset, or research-thread restart is required. Existing research
+worktrees must contain these harness changes to use the new commands themselves.
+
+**Live rollout status:** deterministic tests cover idle silence, run-only escalation, crash
+recovery, bounded packets and exact-thread verification. The September 16 attempt through
+the current interactive attachment returned `submission_uncertain`; no challenge was
+received and no binding was marked verified. A worker-side probe stayed queued and was
+cancelled before execution, leaving no pending test job.
+Current-client unattended reporting remains gated on a successful live challenge after
+the worker/client transport is available. Keep the reporting turn open until then.
 
 A dead runner retains its reservation as `unknown_execution`. Scope reconciliation releases
 capacity only after confirming the cgroup stopped. External effects still need review;
@@ -329,7 +404,7 @@ the latest test count and delayed-job result.
 
 The following gates remain open and are not advertised as deployed optimizations:
 
-* Actual client continuation on active/reconnected Codex or Claude, including a zero-model
+* Actual client continuation on the current/reconnected Codex or Claude, including a zero-model
   long-wait test through that client. A durable inbox or fake client is not this gate.
 * Authorized commit/push/PR publication, elaborated local-goal capture, and remote-provider
   receipt/cancellation adapters. The review workflow and CPU tactic portfolio are available.

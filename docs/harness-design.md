@@ -496,8 +496,11 @@ can show it, and the harness checks it rather than asking for prose:
   A terminal job includes its exit code and output/log paths. Inspect these and report success,
   failure, or a review gate without a user status request. The command's own exit zero means
   the read succeeded, just as for `job status`; it does not mean the job or proof succeeded.
-  The CLI has no configured callback transport that wakes a closed reporting turn. A saved
-  checkpoint is for resumption after interruption, not an automatic notification mechanism.
+  Native research runs now register an ordinary-code observer in `es worker`, with a separate
+  exact-thread callback challenge. Only a verified binding and an available worker allow the
+  coordinator to yield unattended; otherwise the reporting turn stays open. A saved checkpoint
+  is for resumption after interruption, not an automatic notification mechanism. See
+  `docs/automation-implementation.md` for commands, rollout status, and recovery limits.
 - **A journal.** `es log "<text>" [--node]` writes a free-text event; `es journal --since 24h
   [--agent] [--node] [--kind]` merges claims, releases, expiries, jobs (submitted/finished
   with peak and seconds), falsifier runs, extracts, log entries and git commits into one
