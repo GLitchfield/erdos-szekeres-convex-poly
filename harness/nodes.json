@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-16T22:26:56Z",
- "git_sha": "85392b3ce8b3a7356538025369fba9eb996a1913",
+ "generated_at": "2026-09-16T22:47:53Z",
+ "git_sha": "b35292cd4421375c959e5827da63862ae6bf2eb4",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15624,
- "tree_hash": "4e408b8812aae02f",
+ "modules": 15625,
+ "tree_hash": "37044820aaf9fe35",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15624,
+  "cached_modules": 15625,
   "scanned_constants": 0,
   "scanned_modules": 0
  },
@@ -17979,6 +17979,64 @@
    "opened": "2026-09-10"
   },
   {
+   "name": "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness",
+   "module": "ESBlueprint.B.CtxTwoMarkerLowCapacityPruningRankPairBoundOfHighWitness",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "With two exact chosen markers at global at most five and one chosen-capacity-three child, the canonical original-history pruning to all chosen-capacity-at-most-two children is bounded by its exact active opposite ordered-rank-pair union. The high witness places the entire low support and all younger chosen positions on one side of the older marker, so the active boundary pair theorem applies directly. Opposite global, k, maxima, inactivity, and pair-set cardinality remain unrestricted; this preserves the overlap information needed for a coupled mixed-support potential.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_mixed_capacity_children_separated_by_older_marker_global_five",
+     "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+     "ErdosSzekeres.ctx_part_pruning_history_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y high : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness.match_3\n                              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                            5 →\n                          (∀ (j : Nat),\n                              List.instMembership.mem (σ.levelsOn s 0) j →\n                                ∀ (z : Nat),\n                                  List.instMembership.mem (σ.extPositions j) z →\n                                    Or (Eq z x) (Eq z y)) →\n                            List.instMembership.mem σ.childPositions high →\n                              instLENat.le 3\n                                  (ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness.match_3\n                                    (fun s => Nat) s (fun _ => σ.cupLimit high high) fun _ =>\n                                    σ.capLimit high high) →\n                                have capacity := fun p =>\n                                  ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness.match_3\n                                    (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ =>\n                                    σ.capLimit p p;\n                                have support :=\n                                  List.filter\n                                    (fun p => Decidable.decide (instLENat.le (capacity p) 2))\n                                    σ.childPositions;\n                                have low :=\n                                  { a := σ.a, u := σ.u, k := σ.k,\n                                    word :=\n                                      List.map\n                                        (fun p =>\n                                          ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness.match_1\n                                            (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt p)\n                                            (fun _ =>\n                                              ite (List.instMembership.mem support p)\n                                                ErdosSzekeres.Ctx.Letter.child\n                                                (ErdosSzekeres.Ctx.Letter.ext\n                                                  (instHAdd.hAdd σ.maxima.length 1)\n                                                  ErdosSzekeres.Ctx.Side.lower))\n                                            fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                        (List.range σ.word.length),\n                                    maxima := σ.maxima };\n                                have global :=\n                                  ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness.match_3\n                                    (fun t => Nat) t (fun _ => low.u) fun _ => low.a;\n                                have active :=\n                                  Finset.filter\n                                    (fun p =>\n                                      And (instLTNat.lt 0 (low.cupLimit p p))\n                                        (instLTNat.lt 0 (low.capLimit p p)))\n                                    low.childPositions.toFinset;\n                                have interval := fun p =>\n                                  Finset.Icc (instHAdd.hAdd (low.leftExt t 0 p) 1)\n                                    (instHSub.hSub (instHSub.hSub global 1) (low.rightExt t 0 p));\n                                have pairs :=\n                                  active.biUnion fun p =>\n                                    Finset.filter (fun z => instLENat.le z.fst z.snd)\n                                      ((interval p).product (interval p));\n                                And\n                                  (∀ (fuel : Nat),\n                                    instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel low)\n                                      pairs.card)\n                                  (instLENat.le low.bound pairs.card)",
+   "type_hash": "c202af6df437385a",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_mixed_capacity_children_separated_by_older_marker_global_five",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+    "ErdosSzekeres.ctx_part_pruning_history_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness.match_3",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_1",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_2",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_3",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_4",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound.match_1",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_mixed_capacity_children_separated_by_older_marker_global_five",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_7",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_8"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_seven_bound_of_high_witness",
    "module": "ESBlueprint.B.CtxTwoMarkerLowCapacityPruningSevenBoundOfHighWitness",
    "ws": "B",
@@ -18036,7 +18094,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_nonunit_bracketed_part_cut_potential_bound",
