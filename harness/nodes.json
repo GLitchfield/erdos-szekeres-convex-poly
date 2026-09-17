@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-17T02:29:53Z",
- "git_sha": "135fac25ae9b9c65004218533747491fd413231a",
+ "generated_at": "2026-09-17T02:43:21Z",
+ "git_sha": "71b7db832c473bd5a9ed400481202003cb82bb33",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15635,
- "tree_hash": "9c8935e0d68ca7a6",
+ "modules": 15636,
+ "tree_hash": "b19a271e6f60f766",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15634,
+  "cached_modules": 15635,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -21435,7 +21435,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.ctx_uniform_contraction_matching_cut_failure",
@@ -22718,6 +22718,43 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.rank_pair_triangle_intersection_card_ge_three_of_two_common_ranks",
+   "module": "ESBlueprint.B.RankPairTriangleIntersectionCardGeThreeOfTwoCommonRanks",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "If two finite natural-rank sets share two distinct ranks, then their nondecreasing ordered-pair triangles share at least three pairs: the two diagonals and the sorted cross-pair. This amplifies two common ranks into the exact quadratic overlap needed by mixed-capacity collision counting.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (A B : Finset Nat) (r q : Nat),\n  Ne r q →\n    SetLike.instMembership.mem A r →\n      SetLike.instMembership.mem A q →\n        SetLike.instMembership.mem B r →\n          SetLike.instMembership.mem B q →\n            have pairs := fun S => Finset.filter (fun z => instLENat.le z.fst z.snd) (S.product S);\n            instLENat.le 3 (Finset.instInter.inter (pairs A) (pairs B)).card",
+   "type_hash": "b3f8d57c2f89ac3a",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.rank_pair_triangle_intersection_card_ge_three_of_two_common_ranks._simp_1_1",
+    "ErdosSzekeres.rank_pair_triangle_intersection_card_ge_three_of_two_common_ranks._simp_1_2",
+    "ErdosSzekeres.rank_pair_triangle_intersection_card_ge_three_of_two_common_ranks._proof_1_3"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.rank_row_column_union_card_eq_group_charges",
