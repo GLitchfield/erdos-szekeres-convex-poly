@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-17T02:13:09Z",
- "git_sha": "8c0ed5bb034e85e513e256276f125199e9cdfbde",
+ "generated_at": "2026-09-17T02:29:53Z",
+ "git_sha": "135fac25ae9b9c65004218533747491fd413231a",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15634,
- "tree_hash": "968898656d9dae1a",
+ "modules": 15635,
+ "tree_hash": "9c8935e0d68ca7a6",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15633,
+  "cached_modules": 15634,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -11812,7 +11812,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.ctx_reverse_extension_transport",
@@ -21375,6 +21375,67 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-15"
+  },
+  {
+   "name": "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals",
+   "module": "ESBlueprint.B.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Two distinct ordered-rank collisions, each witnessed across the same marker orientation, admit a common pair of original source intervals whose endpoints are chosen from the four witnesses; both collision coordinates and hence two distinct ranks lie in both intervals.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_pure_extensions_position_monotone"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (t : ErdosSzekeres.Ctx.Side) (G y : Nat) (z w : Prod Nat Nat)\n  (lowZ highZ lowW highW : Nat),\n  Ne z w →\n    have I := fun q =>\n      Finset.Icc (instHAdd.hAdd (σ.leftExt t 0 q) 1)\n        (instHSub.hSub (instHSub.hSub G 1) (σ.rightExt t 0 q));\n    SetLike.instMembership.mem (I lowZ) z.fst →\n      SetLike.instMembership.mem (I lowZ) z.snd →\n        SetLike.instMembership.mem (I highZ) z.fst →\n          SetLike.instMembership.mem (I highZ) z.snd →\n            SetLike.instMembership.mem (I lowW) w.fst →\n              SetLike.instMembership.mem (I lowW) w.snd →\n                SetLike.instMembership.mem (I highW) w.fst →\n                  SetLike.instMembership.mem (I highW) w.snd →\n                    Or\n                        (And (instLTNat.lt lowZ y)\n                          (And (instLTNat.lt y highZ)\n                            (And (instLTNat.lt lowW y) (instLTNat.lt y highW))))\n                        (And (instLTNat.lt highZ y)\n                          (And (instLTNat.lt y lowZ)\n                            (And (instLTNat.lt highW y) (instLTNat.lt y lowW)))) →\n                      Exists fun low =>\n                        Exists fun high =>\n                          And (Or (Eq low lowZ) (Eq low lowW))\n                            (And (Or (Eq high highZ) (Eq high highW))\n                              (And\n                                (Or (And (instLTNat.lt low y) (instLTNat.lt y high))\n                                  (And (instLTNat.lt high y) (instLTNat.lt y low)))\n                                (And (SetLike.instMembership.mem (I low) z.fst)\n                                  (And (SetLike.instMembership.mem (I low) z.snd)\n                                    (And (SetLike.instMembership.mem (I high) z.fst)\n                                      (And (SetLike.instMembership.mem (I high) z.snd)\n                                        (And (SetLike.instMembership.mem (I low) w.fst)\n                                          (And (SetLike.instMembership.mem (I low) w.snd)\n                                            (And (SetLike.instMembership.mem (I high) w.fst)\n                                              (And (SetLike.instMembership.mem (I high) w.snd)\n                                                (Exists fun r =>\n                                                  Exists fun r' =>\n                                                    And (Ne r r')\n                                                      (And (SetLike.instMembership.mem (I low) r)\n                                                        (And (SetLike.instMembership.mem (I high) r)\n                                                          (And\n                                                            (SetLike.instMembership.mem (I low) r')\n                                                            (SetLike.instMembership.mem (I high)\n                                                              r')))))))))))))))",
+   "type_hash": "de0b0cca7b251438",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_pure_extensions_position_monotone"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_pure_extensions_position_monotone",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._simp_1_1",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_2",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_3",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_4",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_5",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_6",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_7",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_8",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_9",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_10",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_11",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_12",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_13",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_14",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_15",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_16",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_17",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_18",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_19",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_20",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals._proof_1_21"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_uniform_contraction_matching_cut_failure",
