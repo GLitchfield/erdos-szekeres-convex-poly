@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-17T03:21:07Z",
- "git_sha": "c201c0c1d5f35bafe01802018c13a2cfe9df05dc",
+ "generated_at": "2026-09-17T04:00:47Z",
+ "git_sha": "12fdc631badb8c2182a28004cc120cd5b1a72bf9",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15638,
- "tree_hash": "4796b829e57e30d2",
+ "modules": 15639,
+ "tree_hash": "acd8e08828fb7257",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15637,
+  "cached_modules": 15638,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -844,6 +844,47 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-12"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_actual_marker_opposite_rank_interval_endpoint_exclusion",
+   "module": "ESBlueprint.B.CtxActualMarkerOppositeRankIntervalEndpointExclusion",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "An actual marker on the rank axis removes the lower extreme rank from every child interval to its right and the upper extreme rank from every child interval to its left. This exports the synthetic companion marker endpoint loss isolated by the bounded mixed-overlap falsifier.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (t : ErdosSzekeres.Ctx.Side) (N x p : Nat),\n  List.instMembership.mem σ.levels N →\n    ∀ (hNt : Eq (σ.sideAt N) t),\n      List.instMembership.mem (σ.extPositions N) x →\n        List.instMembership.mem σ.childPositions p →\n          have global :=\n            ErdosSzekeres.ctx_actual_marker_opposite_rank_interval_endpoint_exclusion.match_1 σ N\n              (fun t hNt => Nat) t hNt (fun hNt => σ.u) fun hNt => σ.a;\n          have interval :=\n            Finset.Icc (instHAdd.hAdd (σ.leftExt t 0 p) 1)\n              (instHSub.hSub (instHSub.hSub global 1) (σ.rightExt t 0 p));\n          Or\n            (And (instLTNat.lt x p)\n              (∀ (r : Nat), SetLike.instMembership.mem interval r → instLENat.le 2 r))\n            (And (instLTNat.lt p x)\n              (∀ (r : Nat),\n                SetLike.instMembership.mem interval r → instLENat.le (instHAdd.hAdd r 2) global))",
+   "type_hash": "a5cecb39bcbadb6d",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_actual_marker_opposite_rank_interval_endpoint_exclusion.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_actual_marker_opposite_rank_interval_endpoint_exclusion._proof_1_1",
+    "ErdosSzekeres.ctx_actual_marker_opposite_rank_interval_endpoint_exclusion._proof_1_2",
+    "ErdosSzekeres.ctx_actual_marker_opposite_rank_interval_endpoint_exclusion._proof_1_3"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_actual_marker_quadratic_large_nonunit_cut_bound",
@@ -8497,7 +8538,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.ctx_extreme_cut_six_small_history_mixed_capacity_residual_classification",
