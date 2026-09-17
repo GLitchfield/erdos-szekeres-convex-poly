@@ -1422,6 +1422,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxPrunePartProjectionOfRemovedWitness"
   },
+  "ErdosSzekeres.ctx_pure_extensions_position_monotone": {
+    "type_hash": "5152d30fbad865d6",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (v : ErdosSzekeres.Ctx.Side) (top p q : Nat),\n  instLENat.le p q →\n    And (instLENat.le (σ.leftExt v top p) (σ.leftExt v top q))\n      (instLENat.le (σ.rightExt v top q) (σ.rightExt v top p))",
+    "approved_by": "codex:agent-run-87535a41ec804a72",
+    "approved_at": "2026-09-16",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxPureExtensionsPositionMonotone"
+  },
   "ErdosSzekeres.ctx_reverse_extension_transport": {
     "type_hash": "4d6c2aaed124fffe",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    have ρ := { a := σ.a, u := σ.u, k := σ.k, word := σ.word.reverse, maxima := σ.maxima };\n    And ρ.WellFormed\n      (And\n        (∀ (s : ErdosSzekeres.Ctx.Side) (top p : Nat),\n          instLTNat.lt p σ.word.length →\n            And\n              (Eq (ρ.leftExt s top (instHSub.hSub (instHSub.hSub σ.word.length 1) p))\n                (σ.rightExt s top p))\n              (Eq (ρ.rightExt s top (instHSub.hSub (instHSub.hSub σ.word.length 1) p))\n                (σ.leftExt s top p)))\n        (∀ (p q : Nat),\n          instLTNat.lt p σ.word.length →\n            instLTNat.lt q σ.word.length →\n              And\n                (Eq\n                  (ρ.cupLimit (instHSub.hSub (instHSub.hSub σ.word.length 1) q)\n                    (instHSub.hSub (instHSub.hSub σ.word.length 1) p))\n                  (σ.cupLimit p q))\n                (Eq\n                  (ρ.capLimit (instHSub.hSub (instHSub.hSub σ.word.length 1) q)\n                    (instHSub.hSub (instHSub.hSub σ.word.length 1) p))\n                  (σ.capLimit p q))))",
