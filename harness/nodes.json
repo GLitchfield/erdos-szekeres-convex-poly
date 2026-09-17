@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-17T02:43:21Z",
- "git_sha": "71b7db832c473bd5a9ed400481202003cb82bb33",
+ "generated_at": "2026-09-17T03:07:39Z",
+ "git_sha": "9e00e6e36f901d344fa520fb118b62baa8d36c4a",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15636,
- "tree_hash": "b19a271e6f60f766",
+ "modules": 15637,
+ "tree_hash": "e22813c0ab208878",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15635,
+  "cached_modules": 15636,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -20565,6 +20565,64 @@
    "opened": "2026-09-10"
   },
   {
+   "name": "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three",
+   "module": "ESBlueprint.B.CtxTwoMarkerTwoPairCollisionIntersectionThree",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "In an exact two-marker chosen-global-five context, two distinct ordered pairs in the canonical low/high capacity-pruning pair intersection force that intersection to contain at least three pairs. Marker separation and interval monotonicity create two common ranks; their diagonals and sorted cross-pair lift back through exact pruning transport.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_marker_pair_collision_source_separated",
+     "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals",
+     "ErdosSzekeres.rank_pair_triangle_intersection_card_ge_three_of_two_common_ranks"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (N M x y : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            ∀ (hNs : Eq (σ.sideAt N) s) (hMs : Eq (σ.sideAt M) s),\n              List.instMembership.mem (σ.extPositions N) x →\n                List.instMembership.mem (σ.extPositions M) y →\n                  instLENat.le\n                      (ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three.match_1 σ\n                        N M (fun s hNs hMs => Nat) s hNs hMs (fun hNs hMs => σ.u) fun hNs hMs =>\n                        σ.a)\n                      5 →\n                    (∀ (j : Nat),\n                        List.instMembership.mem (σ.levelsOn s 0) j →\n                          ∀ (z : Nat),\n                            List.instMembership.mem (σ.extPositions j) z → Or (Eq z x) (Eq z y)) →\n                      have capacity := fun q =>\n                        ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three.match_3\n                          (fun s => Nat) s (fun _ => σ.cupLimit q q) fun _ => σ.capLimit q q;\n                      have color := fun q => ite (instLENat.le (capacity q) 2) 0 1;\n                      have support := fun c =>\n                        List.filter (fun q => Decidable.decide (Eq (color q) c)) σ.childPositions;\n                      have group := fun c =>\n                        { a := σ.a, u := σ.u, k := σ.k,\n                          word :=\n                            List.map\n                              (fun q =>\n                                ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three.match_5\n                                  (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt q)\n                                  (fun _ =>\n                                    ite (List.instMembership.mem (support c) q)\n                                      ErdosSzekeres.Ctx.Letter.child\n                                      (ErdosSzekeres.Ctx.Letter.ext\n                                        (instHAdd.hAdd σ.maxima.length 1)\n                                        ErdosSzekeres.Ctx.Side.lower))\n                                  fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                              (List.range σ.word.length),\n                          maxima := σ.maxima };\n                      have global :=\n                        ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three.match_3\n                          (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a;\n                      have active := fun c =>\n                        Finset.filter\n                          (fun q =>\n                            And (instLTNat.lt 0 ((group c).cupLimit q q))\n                              (instLTNat.lt 0 ((group c).capLimit q q)))\n                          (group c).childPositions.toFinset;\n                      have interval := fun c q =>\n                        Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 q) 1)\n                          (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 q));\n                      have pairs := fun c =>\n                        (active c).biUnion fun q =>\n                          Finset.filter (fun z => instLENat.le z.fst z.snd)\n                            ((interval c q).product (interval c q));\n                      ∀ (z : Prod Nat Nat),\n                        SetLike.instMembership.mem (Finset.instInter.inter (pairs 0) (pairs 1)) z →\n                          ∀ (w : Prod Nat Nat),\n                            SetLike.instMembership.mem (Finset.instInter.inter (pairs 0) (pairs 1))\n                                w →\n                              Ne z w →\n                                instLENat.le 3 (Finset.instInter.inter (pairs 0) (pairs 1)).card",
+   "type_hash": "a7cc2bb327b83ca5",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_marker_pair_collision_source_separated",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals",
+    "ErdosSzekeres.rank_pair_triangle_intersection_card_ge_three_of_two_common_ranks"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three.match_1",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three.match_3",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three.match_5",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three._simp_1_1",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three._simp_1_2",
+    "ErdosSzekeres.ctx_two_marker_pair_collision_source_separated.match_3",
+    "ErdosSzekeres.ctx_two_marker_pair_collision_source_separated.match_5",
+    "ErdosSzekeres.ctx_two_marker_pair_collision_source_separated",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three._proof_1_7",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three._proof_1_8",
+    "ErdosSzekeres.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three._proof_1_9",
+    "ErdosSzekeres.rank_pair_triangle_intersection_card_ge_three_of_two_common_ranks"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_two_marker_younger_exterior_complement_mixed_capacities_separated_by_older_marker",
    "module": "ESBlueprint.B.CtxTwoMarkerYoungerExteriorComplementMixedCapacitiesSeparatedByOlderMarker",
    "ws": "B",
@@ -22754,7 +22812,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.rank_row_column_union_card_eq_group_charges",
