@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-17T00:22:00Z",
- "git_sha": "627c262c9c71a7bfd8004d6f51a2f0e117ebce55",
+ "generated_at": "2026-09-17T00:34:21Z",
+ "git_sha": "c6ca74b38eb5c84e6e0803f92403c2509268fd73",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15630,
- "tree_hash": "c78a2766e75439a1",
+ "modules": 15631,
+ "tree_hash": "2bab74337da12f58",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15629,
+  "cached_modules": 15630,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -1883,6 +1883,52 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses",
+   "module": "ESBlueprint.B.CtxBinaryCapacityPairIntersectionSourceWitnesses",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For the canonical binary pruning of source children at chosen capacity two, every ordered pair shared by the active low and high pair unions has explicit source-active witnesses on both sides of the capacity split. Pruning transport identifies their point limits and opposite-rank intervals with the source, so both pair coordinates lie in both original-history intervals. This removes the pruning abstraction from the mixed-capacity collision residual.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_part_pruning_history_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      have capacity := fun q =>\n        ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses.match_1 (fun s => Nat)\n          s (fun _ => σ.cupLimit q q) fun _ => σ.capLimit q q;\n      have color := fun q => ite (instLENat.le (capacity q) 2) 0 1;\n      have support := fun c =>\n        List.filter (fun q => Decidable.decide (Eq (color q) c)) σ.childPositions;\n      have group := fun c =>\n        { a := σ.a, u := σ.u, k := σ.k,\n          word :=\n            List.map\n              (fun q =>\n                ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses.match_3\n                  (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt q)\n                  (fun _ =>\n                    ite (List.instMembership.mem (support c) q) ErdosSzekeres.Ctx.Letter.child\n                      (ErdosSzekeres.Ctx.Letter.ext (instHAdd.hAdd σ.maxima.length 1)\n                        ErdosSzekeres.Ctx.Side.lower))\n                  fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n              (List.range σ.word.length),\n          maxima := σ.maxima };\n      have global :=\n        ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses.match_1 (fun t => Nat)\n          t (fun _ => σ.u) fun _ => σ.a;\n      have active := fun c =>\n        Finset.filter\n          (fun q =>\n            And (instLTNat.lt 0 ((group c).cupLimit q q)) (instLTNat.lt 0 ((group c).capLimit q q)))\n          (group c).childPositions.toFinset;\n      have interval := fun c q =>\n        Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 q) 1)\n          (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 q));\n      have pairs := fun c =>\n        (active c).biUnion fun q =>\n          Finset.filter (fun z => instLENat.le z.fst z.snd) ((interval c q).product (interval c q));\n      have sourceInterval := fun q =>\n        Finset.Icc (instHAdd.hAdd (σ.leftExt t 0 q) 1)\n          (instHSub.hSub (instHSub.hSub global 1) (σ.rightExt t 0 q));\n      ∀ (z : Prod Nat Nat),\n        SetLike.instMembership.mem (Finset.instInter.inter (pairs 0) (pairs 1)) z →\n          Exists fun low =>\n            Exists fun high =>\n              And (List.instMembership.mem σ.childPositions low)\n                (And (instLTNat.lt 0 (σ.cupLimit low low))\n                  (And (instLTNat.lt 0 (σ.capLimit low low))\n                    (And (instLENat.le (capacity low) 2)\n                      (And (List.instMembership.mem σ.childPositions high)\n                        (And (instLTNat.lt 0 (σ.cupLimit high high))\n                          (And (instLTNat.lt 0 (σ.capLimit high high))\n                            (And (instLENat.le 3 (capacity high))\n                              (And (instLENat.le z.fst z.snd)\n                                (And (SetLike.instMembership.mem (sourceInterval low) z.fst)\n                                  (And (SetLike.instMembership.mem (sourceInterval low) z.snd)\n                                    (And (SetLike.instMembership.mem (sourceInterval high) z.fst)\n                                      (SetLike.instMembership.mem (sourceInterval high)\n                                        z.snd))))))))))))",
+   "type_hash": "82273b794f7a6210",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_part_pruning_history_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses.match_1",
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses.match_3",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses._simp_1_1",
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses._simp_1_2",
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses._proof_1_3"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_both_unit_parts_zone_budget",
@@ -8635,7 +8681,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum",
