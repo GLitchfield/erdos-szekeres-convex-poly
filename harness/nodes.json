@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-16T23:46:06Z",
- "git_sha": "ac94fa0b0bc9b3c706b4355e9c66ef6b6cb99e25",
+ "generated_at": "2026-09-17T00:07:39Z",
+ "git_sha": "2d1497d64fbc61e5ad941766b4ba95cbd19c4565",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15628,
- "tree_hash": "eded9d358dea8a47",
+ "modules": 15629,
+ "tree_hash": "73d86820828a186d",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15627,
+  "cached_modules": 15628,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -8518,6 +8518,70 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-16"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one",
+   "module": "ESBlueprint.B.CtxExtremeCutSixTwelveOfPairIntersectionOne",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For an extreme chosen-kept cut at k six, the chosen part has bound one. If the companion has a chosen-capacity-three witness and its canonical low/high active opposite ordered-rank-pair unions intersect in at most one pair, then the companion is at most eleven and every independent-fuel and full cut sum is at most twelve. This lifts the exact pair-overlap obstruction to the actual recurrence cut without a small-history hypothesis.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_intersection_one_eleven_bound",
+     "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+     "ErdosSzekeres.ctx_part_positive_letters"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (N M x y : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            ∀ (hNs : Eq (σ.sideAt N) s) (hMs : Eq (σ.sideAt M) s),\n              List.instMembership.mem (σ.extPositions N) x →\n                List.instMembership.mem (σ.extPositions M) y →\n                  ∀\n                    (hchosenGlobal :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_1 σ\n                          t N M (fun s hne hNs hMs => Nat) s hne hNs hMs (fun hne hNs hMs => σ.u)\n                          fun hne hNs hMs => σ.a)\n                        5)\n                    (hopposite :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_3 σ\n                          s N M hNs hMs (fun t hne hchosenGlobal => Nat) t hne hchosenGlobal\n                          (fun hne hchosenGlobal => σ.u) fun hne hchosenGlobal => σ.a)\n                        5)\n                    (hchosen :\n                      ∀ (j : Nat),\n                        List.instMembership.mem (σ.levelsOn s 0) j →\n                          ∀ (z : Nat),\n                            List.instMembership.mem (σ.extPositions j) z → Or (Eq z x) (Eq z y))\n                    (keep : List Nat) (m n p high : Nat)\n                    (hp : List.instMembership.mem (σ.part keep s m).childPositions p),\n                    Eq (instHAdd.hAdd m 2) σ.k →\n                      Eq σ.k 6 →\n                        ∀\n                          (hhighmem :\n                            List.instMembership.mem\n                              (σ.part\n                                  (List.filter\n                                    (fun x =>\n                                      Decidable.decide (Not (List.instMembership.mem keep x)))\n                                    σ.childPositions)\n                                  t n).childPositions\n                              high)\n                          (hhigh :\n                            instLENat.le 3\n                              (ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_5\n                                σ t N M x y keep m p\n                                (fun s hne hNs hMs hchosenGlobal hopposite hchosen hp => Nat) s hne\n                                hNs hMs hchosenGlobal hopposite hchosen hp\n                                (fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                                  (σ.part\n                                        (List.filter\n                                          (fun x =>\n                                            Decidable.decide (Not (List.instMembership.mem keep x)))\n                                          σ.childPositions)\n                                        t n).cupLimit\n                                    high high)\n                                fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                                (σ.part\n                                      (List.filter\n                                        (fun x =>\n                                          Decidable.decide (Not (List.instMembership.mem keep x)))\n                                        σ.childPositions)\n                                      t n).capLimit\n                                  high high)),\n                          have A := σ.part keep s m;\n                          have B :=\n                            σ.part\n                              (List.filter\n                                (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                σ.childPositions)\n                              t n;\n                          have capacity := fun q =>\n                            ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_7\n                              (fun s => Nat) s (fun _ => B.cupLimit q q) fun _ => B.capLimit q q;\n                          have color := fun q => ite (instLENat.le (capacity q) 2) 0 1;\n                          have support := fun c =>\n                            List.filter (fun q => Decidable.decide (Eq (color q) c))\n                              B.childPositions;\n                          have group := fun c =>\n                            { a := B.a, u := B.u, k := B.k,\n                              word :=\n                                List.map\n                                  (fun q =>\n                                    ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_9\n                                      (fun x => ErdosSzekeres.Ctx.Letter) (B.letterAt q)\n                                      (fun _ =>\n                                        ite (List.instMembership.mem (support c) q)\n                                          ErdosSzekeres.Ctx.Letter.child\n                                          (ErdosSzekeres.Ctx.Letter.ext\n                                            (instHAdd.hAdd B.maxima.length 1)\n                                            ErdosSzekeres.Ctx.Side.lower))\n                                      fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                  (List.range B.word.length),\n                              maxima := B.maxima };\n                          have global :=\n                            ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_11\n                              σ s N M x y hNs hMs hchosen keep m n p high hp\n                              (fun t hne hchosenGlobal hopposite hhighmem hhigh => Nat) t hne\n                              hchosenGlobal hopposite hhighmem hhigh\n                              (fun hne hchosenGlobal hopposite hhighmem hhigh => B.u)\n                              fun hne hchosenGlobal hopposite hhighmem hhigh => B.a;\n                          have active := fun c =>\n                            Finset.filter\n                              (fun q =>\n                                And (instLTNat.lt 0 ((group c).cupLimit q q))\n                                  (instLTNat.lt 0 ((group c).capLimit q q)))\n                              (group c).childPositions.toFinset;\n                          have interval := fun c q =>\n                            Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 q) 1)\n                              (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 q));\n                          have pairs := fun c =>\n                            (active c).biUnion fun q =>\n                              Finset.filter (fun z => instLENat.le z.fst z.snd)\n                                ((interval c q).product (interval c q));\n                          instLENat.le (Finset.instInter.inter (pairs 0) (pairs 1)).card 1 →\n                            And\n                              (∀ (f g : Nat),\n                                instLENat.le\n                                  (instHAdd.hAdd (ErdosSzekeres.Ctx.Context.boundFuel f A)\n                                    (ErdosSzekeres.Ctx.Context.boundFuel g B))\n                                  12)\n                              (instLENat.le (instHAdd.hAdd A.bound B.bound) 12)",
+   "type_hash": "f7274db185e85743",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_intersection_one_eleven_bound",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+    "ErdosSzekeres.ctx_part_positive_letters"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_1",
+    "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_3",
+    "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_5",
+    "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_7",
+    "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_9",
+    "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one.match_11",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one._simp_1_1",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_other_zero",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_intersection_one_eleven_bound.match_3",
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_intersection_one_eleven_bound.match_1",
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_intersection_one_eleven_bound",
+    "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one._proof_1_2",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one._proof_1_5",
+    "ErdosSzekeres.ctx_bound_le_one_of_large_sibling_maximum",
+    "ErdosSzekeres.ctx_extreme_cut_six_twelve_of_pair_intersection_one._proof_1_6"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_extreme_next_cut_of_large_chosen_history_maximum",
@@ -18213,7 +18277,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-16"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_overlap_excess_bound",
