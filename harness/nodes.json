@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-18T23:01:24Z",
- "git_sha": "118a8793ef2d40d6c84449b02eb89b9844507bbe",
+ "generated_at": "2026-09-18T23:16:31Z",
+ "git_sha": "a9a00120d906ba0302aad111b5bcca7a02ade6b2",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15646,
- "tree_hash": "462ed6899d358bf6",
+ "modules": 15648,
+ "tree_hash": "26e4b7257a9869d5",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15645,
+  "cached_modules": 15647,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -16758,6 +16758,57 @@
    "opened": "2026-09-13"
   },
   {
+   "name": "ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound",
+   "module": "ESBlueprint.B.CtxTwoActualMarkerOppositeBetweenActiveSeparatedCompanionElevenBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For an actual cut companion with a physical opposite level-one marker of maximum one, an active one-sided boundary for the low chosen-capacity pruning implies every-fuel and full B≤11.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound",
+     "ErdosSzekeres.ctx_part_positive_letters"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (r j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt r) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (N M x y : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            ∀ (hNs : Eq (σ.sideAt N) s) (hMs : Eq (σ.sideAt M) s),\n              List.instMembership.mem (σ.extPositions N) x →\n                List.instMembership.mem (σ.extPositions M) y →\n                  ∀\n                    (hchosenGlobal :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_1\n                          σ t N M (fun s hne hNs hMs => Nat) s hne hNs hMs (fun hne hNs hMs => σ.u)\n                          fun hne hNs hMs => σ.a)\n                        5)\n                    (hopposite :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_3\n                          σ s N M hNs hMs (fun t hne hchosenGlobal => Nat) t hne hchosenGlobal\n                          (fun hne hchosenGlobal => σ.u) fun hne hchosenGlobal => σ.a)\n                        5)\n                    (hchosen :\n                      ∀ (j : Nat),\n                        List.instMembership.mem (σ.levelsOn s 0) j →\n                          ∀ (z : Nat),\n                            List.instMembership.mem (σ.extPositions j) z → Or (Eq z x) (Eq z y))\n                    (keep : List Nat) (m n p high : Nat)\n                    (hp : List.instMembership.mem (σ.part keep s m).childPositions p),\n                    Eq n 1 →\n                      List.instMembership.mem\n                          (σ.part\n                              (List.filter\n                                (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                σ.childPositions)\n                              t n).childPositions\n                          high →\n                        instLENat.le 3\n                            (ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_5\n                              σ t N M x y keep m p\n                              (fun s hne hNs hMs hchosenGlobal hopposite hchosen hp => Nat) s hne\n                              hNs hMs hchosenGlobal hopposite hchosen hp\n                              (fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                                (σ.part\n                                      (List.filter\n                                        (fun x =>\n                                          Decidable.decide (Not (List.instMembership.mem keep x)))\n                                        σ.childPositions)\n                                      t n).cupLimit\n                                  high high)\n                              fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                              (σ.part\n                                    (List.filter\n                                      (fun x =>\n                                        Decidable.decide (Not (List.instMembership.mem keep x)))\n                                      σ.childPositions)\n                                    t n).capLimit\n                                high high) →\n                          Or (And (instLTNat.lt x p) (instLTNat.lt p y))\n                              (And (instLTNat.lt y p) (instLTNat.lt p x)) →\n                            have B :=\n                              σ.part\n                                (List.filter\n                                  (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                  σ.childPositions)\n                                t n;\n                            have capacity := fun q =>\n                              ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_7\n                                (fun s => Nat) s (fun _ => B.cupLimit q q) fun _ => B.capLimit q q;\n                            have color := fun q => ite (instLENat.le (capacity q) 2) 0 1;\n                            have support := fun c =>\n                              List.filter (fun q => Decidable.decide (Eq (color q) c))\n                                B.childPositions;\n                            have group := fun c =>\n                              { a := B.a, u := B.u, k := B.k,\n                                word :=\n                                  List.map\n                                    (fun q =>\n                                      ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_9\n                                        (fun x => ErdosSzekeres.Ctx.Letter) (B.letterAt q)\n                                        (fun _ =>\n                                          ite (List.instMembership.mem (support c) q)\n                                            ErdosSzekeres.Ctx.Letter.child\n                                            (ErdosSzekeres.Ctx.Letter.ext\n                                              (instHAdd.hAdd B.maxima.length 1)\n                                              ErdosSzekeres.Ctx.Side.lower))\n                                        fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                    (List.range B.word.length),\n                                maxima := B.maxima };\n                            Or\n                                (∀ (q : Nat),\n                                  List.instMembership.mem (group 0).childPositions q →\n                                    And (instLTNat.lt 0 ((group 0).cupLimit q q))\n                                        (instLTNat.lt 0 ((group 0).capLimit q q)) →\n                                      instLTNat.lt q p)\n                                (∀ (q : Nat),\n                                  List.instMembership.mem (group 0).childPositions q →\n                                    And (instLTNat.lt 0 ((group 0).cupLimit q q))\n                                        (instLTNat.lt 0 ((group 0).capLimit q q)) →\n                                      instLTNat.lt p q) →\n                              And\n                                (∀ (fuel : Nat),\n                                  instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel B) 11)\n                                (instLENat.le B.bound 11)",
+   "type_hash": "509c33dc811c2e9d",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound",
+    "ErdosSzekeres.ctx_part_positive_letters"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_1",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_3",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_5",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_7",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_9"
+   ],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_low_straddles",
    "module": "ESBlueprint.B.CtxTwoActualMarkerOppositeBetweenElevenOrLowStraddles",
    "ws": "B",
@@ -19780,6 +19831,63 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-16"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound",
+   "module": "ESBlueprint.B.CtxTwoMarkerOppositeBetweenActiveSeparatedCapacityElevenBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The two-marker low/high decomposition has bound eleven when the actual opposite marker lies to one side of every active child in the low-capacity pruning; inactive low children are harmless by the active low-five theorem.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary",
+     "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_six_bound_of_opposite_between",
+     "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five",
+     "ErdosSzekeres.ctx_point_limits_eq_of_child_interval"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y high L z : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound.match_3\n                              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                            5 →\n                          instLENat.le\n                              (ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound.match_3\n                                (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                              5 →\n                            (∀ (j : Nat),\n                                List.instMembership.mem (σ.levelsOn s 0) j →\n                                  ∀ (w : Nat),\n                                    List.instMembership.mem (σ.extPositions j) w →\n                                      Or (Eq w x) (Eq w y)) →\n                              List.instMembership.mem σ.childPositions high →\n                                instLENat.le 3\n                                    (ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound.match_3\n                                      (fun s => Nat) s (fun _ => σ.cupLimit high high) fun _ =>\n                                      σ.capLimit high high) →\n                                  List.instMembership.mem σ.levels L →\n                                    Eq (σ.sideAt L) t →\n                                      List.instMembership.mem (σ.extPositions L) z →\n                                        instLTNat.lt L M →\n                                          Or (And (instLTNat.lt x z) (instLTNat.lt z y))\n                                              (And (instLTNat.lt y z) (instLTNat.lt z x)) →\n                                            let capacity := fun p =>\n                                              ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound.match_3\n                                                (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ =>\n                                                σ.capLimit p p;\n                                            have color := fun p =>\n                                              ite (instLENat.le (capacity p) 2) 0 1;\n                                            have support := fun c =>\n                                              List.filter\n                                                (fun p => Decidable.decide (Eq (color p) c))\n                                                σ.childPositions;\n                                            have group := fun c =>\n                                              { a := σ.a, u := σ.u, k := σ.k,\n                                                word :=\n                                                  List.map\n                                                    (fun p =>\n                                                      ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound.match_1\n                                                        (fun x => ErdosSzekeres.Ctx.Letter)\n                                                        (σ.letterAt p)\n                                                        (fun _ =>\n                                                          ite\n                                                            (List.instMembership.mem (support c) p)\n                                                            ErdosSzekeres.Ctx.Letter.child\n                                                            (ErdosSzekeres.Ctx.Letter.ext\n                                                              (instHAdd.hAdd σ.maxima.length 1)\n                                                              ErdosSzekeres.Ctx.Side.lower))\n                                                        fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                                    (List.range σ.word.length),\n                                                maxima := σ.maxima };\n                                            Or\n                                                (∀ (q : Nat),\n                                                  List.instMembership.mem (group 0).childPositions\n                                                      q →\n                                                    And (instLTNat.lt 0 ((group 0).cupLimit q q))\n                                                        (instLTNat.lt 0 ((group 0).capLimit q q)) →\n                                                      instLTNat.lt q z)\n                                                (∀ (q : Nat),\n                                                  List.instMembership.mem (group 0).childPositions\n                                                      q →\n                                                    And (instLTNat.lt 0 ((group 0).cupLimit q q))\n                                                        (instLTNat.lt 0 ((group 0).capLimit q q)) →\n                                                      instLTNat.lt z q) →\n                                              And\n                                                (∀ (fuel : Nat),\n                                                  instLENat.le\n                                                    (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 11)\n                                                (instLENat.le σ.bound 11)",
+   "type_hash": "6940c82d63453292",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_six_bound_of_opposite_between",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five",
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound.match_3",
+    "ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound.match_1",
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five.match_1",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary.match_3",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary.match_1",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_six_bound_of_opposite_between.match_3",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_six_bound_of_opposite_between.match_1",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_six_bound_of_opposite_between",
+    "ErdosSzekeres.ctx_two_marker_opposite_between_active_separated_capacity_eleven_bound._proof_1_7"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-18"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_opposite_between_separated_capacity_eleven_bound",
