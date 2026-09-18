@@ -140,6 +140,12 @@ def _observe(cfg, key, record, now):
     # Replay the same immutable payload after a crash between outbox insertion
     # and recording the signal. Rebuilding a review would change its timestamp.
     flush_signal()
+    # A runner can disappear after its guarded command and cgroup have stopped
+    # but before it writes the terminal job row.  Reconcile only with both
+    # negative process identity and definite stopped-scope evidence so this
+    # observer can emit the terminal event without guessing that work ended.
+    from es.resources import reconcile_stale_jobs
+    reconcile_stale_jobs(cfg)
     path, _ = _output(cfg, record['out'])
     state = _read_state(path)
     snapshot = progress(cfg, path)

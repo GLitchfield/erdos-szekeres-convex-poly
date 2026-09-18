@@ -7,6 +7,9 @@ from es.artifacts import canonical
 from es.store import Store
 
 
+STALE_RUNNER_GRACE_SECONDS = 120
+
+
 def scope_stopped(unit):
     if not unit: return None
     try:
@@ -41,20 +44,24 @@ def wait_scope_stopped(unit, timeout_s=5.0, poll_s=0.05):
         time.sleep(min(poll_s, remaining))
 
 
-def reconcile(cfg):
+def _reconcile_rows(cfg, rows):
     from es.jobs import process_identity
-    with Store(cfg) as st:
-        leases = [dict(r) for r in st.conn.execute('SELECT * FROM resource_leases')]
-        jobs = [dict(r) for r in st.conn.execute("SELECT * FROM jobs WHERE status='unknown_execution'")]
     released=[]; uncertain=[]
-    for row in leases+jobs:
+    for row in rows:
+        status = row.get('status')
+        if status in ('starting', 'running'):
+            last_seen = row.get('heartbeat_at') or row.get('started_at') or row.get('created_at') or time.time()
+            if time.time() - last_seen < STALE_RUNNER_GRACE_SECONDS:
+                continue
         if row.get('pid') and process_identity(row['pid']) == row.get('process_start'):
             uncertain.append(row['id']); continue
         if scope_stopped(row.get('scope_unit')) is not True:
             uncertain.append(row['id']); continue
         with Store(cfg) as st:
             if 'memory_gib' in row:
-                st.conn.execute('DELETE FROM resource_leases WHERE id=?',(row['id'],))
+                changed = st.conn.execute(
+                    'DELETE FROM resource_leases WHERE id=? AND pid IS ? AND process_start IS ? AND scope_unit IS ?',
+                    (row['id'], row.get('pid'), row.get('process_start'), row.get('scope_unit'))).rowcount
             else:
                 try:
                     result = json.loads(row.get('result_json') or '{}')
@@ -63,7 +70,31 @@ def reconcile(cfg):
                 if not isinstance(result, dict):
                     result = {'prior_result': result}
                 result.update(execution_reconciled='scope_stopped', effects='require_review', termination_acknowledged=True)
-                st.conn.execute("UPDATE jobs SET status='failed',result_json=? WHERE id=? AND status='unknown_execution'",
-                                (canonical(result).decode(),row['id']))
-        released.append(row['id'])
+                if status in ('starting', 'running'):
+                    result['runner_reconciled_from'] = status
+                changed = st.conn.execute(
+                    "UPDATE jobs SET status='failed',finished_at=COALESCE(finished_at,?),exit_code=COALESCE(exit_code,1),result_json=? "
+                    "WHERE id=? AND status=? AND pid IS ? AND process_start IS ? AND scope_unit IS ? AND heartbeat_at IS ?",
+                    (time.time(), canonical(result).decode(), row['id'], status, row.get('pid'),
+                     row.get('process_start'), row.get('scope_unit'), row.get('heartbeat_at'))).rowcount
+        if changed:
+            released.append(row['id'])
+        else:
+            uncertain.append(row['id'])
     return {'released_reservations':released,'unknown_execution':uncertain,'external_effects_retried':False}
+
+
+def reconcile_stale_jobs(cfg):
+    """Terminalize stale job rows only after their runner and exact scope stopped."""
+    with Store(cfg) as st:
+        jobs = [dict(r) for r in st.conn.execute(
+            "SELECT * FROM jobs WHERE status IN ('starting','running')")]
+    return _reconcile_rows(cfg, jobs)
+
+
+def reconcile(cfg):
+    with Store(cfg) as st:
+        leases = [dict(r) for r in st.conn.execute('SELECT * FROM resource_leases')]
+        jobs = [dict(r) for r in st.conn.execute(
+            "SELECT * FROM jobs WHERE status IN ('starting','running','unknown_execution')")]
+    return _reconcile_rows(cfg, leases + jobs)

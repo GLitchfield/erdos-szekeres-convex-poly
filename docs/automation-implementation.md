@@ -310,6 +310,13 @@ run or persistent infrastructure failure creates a compact event for Astra; a te
 with unfinished child jobs is reported as blocked, not complete. Unknown execution retains
 its resource reservation until systemd confirms the scope stopped.
 
+An observer tick also repairs an ordinary `starting` or `running` host row when its
+heartbeat is stale, its recorded process identity is gone, and its exact recorded scope is
+definitely stopped. The terminal update compares the recorded status, PID, process start,
+scope and heartbeat, so a restarted or changed runner keeps its reservation. The lost
+receipt is recorded as failed and requiring review; reconciliation does not infer successful
+execution or replay any effect. The existing event key keeps the resulting callback one-shot.
+
 The project permits one automatic recovery from a recorded provider capacity failure
 (`serverOverloaded`) before the original deadline. Both the observer and resumed host check
 the failure evidence. The same thread, prompt, model, effort and deadlines are preserved.
@@ -368,12 +375,15 @@ No Lean rebuild, database reset, or research-thread restart is required. Existin
 worktrees must contain these harness changes to use the new commands themselves.
 
 **Live rollout status:** deterministic tests cover idle silence, run-only escalation, crash
-recovery, bounded packets and exact-thread verification. The September 16 attempt through
-the current interactive attachment returned `submission_uncertain`; no challenge was
-received and no binding was marked verified. A worker-side probe stayed queued and was
-cancelled before execution, leaving no pending test job.
-Current-client unattended reporting remains gated on a successful live challenge after
-the worker/client transport is available. Keep the reporting turn open until then.
+recovery, bounded packets and exact-thread verification. The September 16 twelve-hour trial
+had a verified exact-thread binding. Its native goal completed at 2026-09-17 05:09:15Z, but
+the outer job receipt remained `running`, so the observer did not emit at that time. Recovery
+confirmed the recorded runner absent and exact scope collected, reconciled only that wrapper
+receipt, and the worker delivered exactly one terminal event to the original coordinator
+about 19 hours late. This verifies end-to-end queue delivery and also documents the timing
+failure fixed by stale-host reconciliation. Evidence is in
+`runs/sol-12h-20260916/recovery/README.md`. Queue delivery still means handed to the client;
+the receiving coordinator must review and report the result.
 
 A dead runner retains its reservation as `unknown_execution`. Scope reconciliation releases
 capacity only after confirming the cgroup stopped. External effects still need review;

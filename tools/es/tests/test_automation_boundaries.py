@@ -286,6 +286,79 @@ def test_unknown_execution_reconcile_fails_closed_for_live_runner(cfg, monkeypat
     with Store(cfg) as st: assert st.job(job)['status']=='unknown_execution'
 
 
+def test_stale_running_job_reconciles_only_after_runner_and_scope_stop(cfg, monkeypatch):
+    from es import jobs
+
+    job = jobs.submit_run(cfg, command=['true'], why='test stale guarded runner',
+                          outputs=['runs/result'], agent='tester', memory_max='1G', queue=True)['id']
+    receipt = {'error': 'runner disappeared', 'artifact': {'id': 'receipt-1'}}
+    with Store(cfg) as st:
+        st.job_update(job, status='running', pid=1234, process_start='old',
+                      heartbeat_at=time.time()-300, scope_unit='stopped.scope',
+                      result_json=json.dumps(receipt))
+    monkeypatch.setattr(jobs, 'process_identity', lambda pid: 'old')
+    monkeypatch.setattr(resources, 'scope_stopped',
+                        lambda unit: pytest.fail('a live runner must not be reconciled'))
+    assert resources.reconcile(cfg)['released_reservations'] == []
+    with Store(cfg) as st:
+        assert st.job(job)['status'] == 'running'
+
+    monkeypatch.setattr(jobs, 'process_identity', lambda pid: None)
+    monkeypatch.setattr(resources, 'scope_stopped', lambda unit: False)
+    assert resources.reconcile(cfg)['unknown_execution'] == [job]
+    with Store(cfg) as st:
+        assert st.job(job)['status'] == 'running'
+
+    monkeypatch.setattr(resources, 'scope_stopped', lambda unit: unit == 'stopped.scope')
+
+    result = resources.reconcile(cfg)
+
+    assert result['released_reservations'] == [job]
+    with Store(cfg) as st:
+        reconciled = st.job(job)
+    assert reconciled['status'] == 'failed'
+    assert reconciled['exit_code'] == 1
+    assert reconciled['finished_at'] is not None
+    evidence = json.loads(reconciled['result_json'])
+    assert evidence == {
+        'artifact': {'id': 'receipt-1'},
+        'effects': 'require_review',
+        'error': 'runner disappeared',
+        'execution_reconciled': 'scope_stopped',
+        'runner_reconciled_from': 'running',
+        'termination_acknowledged': True,
+    }
+
+
+def test_stale_running_reconcile_preserves_restarted_runner(cfg, monkeypatch):
+    from es import jobs
+
+    job = jobs.submit_run(cfg, command=['true'], why='test runner restart race',
+                          outputs=['runs/result'], agent='tester', memory_max='1G', queue=True)['id']
+    with Store(cfg) as st:
+        st.job_update(job, status='running', pid=1234, process_start='old',
+                      heartbeat_at=time.time()-300, scope_unit='old.scope')
+    monkeypatch.setattr(jobs, 'process_identity', lambda pid: None)
+
+    def restart_during_scope_probe(unit):
+        with Store(cfg) as st:
+            st.job_update(job, pid=5678, process_start='new', heartbeat_at=time.time(),
+                          scope_unit='new.scope')
+        return True
+
+    monkeypatch.setattr(resources, 'scope_stopped', restart_during_scope_probe)
+    result = resources.reconcile_stale_jobs(cfg)
+
+    assert result['released_reservations'] == []
+    assert result['unknown_execution'] == [job]
+    with Store(cfg) as st:
+        preserved = st.job(job)
+    assert preserved['status'] == 'running'
+    assert preserved['pid'] == 5678
+    assert preserved['process_start'] == 'new'
+    assert preserved['scope_unit'] == 'new.scope'
+
+
 def test_cancel_accepts_legacy_stopped_scope_receipt(cfg):
     op=operations.submit(cfg,'tester',{'schema_version':1,'stages':[{'name':'work','action':'command','argv':['true'],'memory':'1G'}]})
     job=op['stages'][0]['job_id']
