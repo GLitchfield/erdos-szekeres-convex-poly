@@ -76,6 +76,29 @@ def test_terminal_signal_once_across_observer_restart(cfg, transport, monkeypatc
     assert event['review']['artifact']['id'] == 'receipt'
 
 
+def test_stale_stopped_host_is_reconciled_then_signalled_once(cfg, transport, monkeypatch):
+    from es import resources, run_review
+
+    monkeypatch.setattr(run_review, 'build_review', lambda *a: {'artifact': {'id': 'receipt'}})
+    out, _, host = make_run(cfg, state_status='complete')
+    with Store(cfg) as st:
+        st.job_update(host['id'], pid=1234, process_start='gone',
+                      heartbeat_at=time.time()-300, scope_unit='stopped.scope')
+    monkeypatch.setattr(jobs, 'process_identity', lambda pid: None)
+    monkeypatch.setattr(resources, 'scope_stopped', lambda unit: unit == 'stopped.scope')
+
+    for _ in range(4):
+        run_monitor.tick(cfg)
+
+    with Store(cfg) as st:
+        reconciled = st.job(host['id'])
+    assert reconciled['status'] == 'failed'
+    assert json.loads(reconciled['result_json'])['runner_reconciled_from'] == 'running'
+    assert run_monitor.progress(cfg, out)['host_terminal'] is True
+    assert len(transport[0]) == 1
+    assert next(iter(transport[0].values()))['type'] == 'run_terminal'
+
+
 def test_crash_after_outbox_insert_reuses_frozen_review(cfg, monkeypatch):
     from es import run_delivery, run_review
     make_run(cfg, host_status='done', state_status='complete')

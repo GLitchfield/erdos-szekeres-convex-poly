@@ -512,11 +512,13 @@
         "run progress",
         "worker",
         "capacity retry",
-        "completion"
+        "completion",
+        "stale runner",
+        "scope reconciliation"
       ],
       "api": "es run watch OUT; es run progress OUT [--follow 55]; es run observe; es run unwatch OUT",
-      "example": "es run progress runs/sol-trial\nes run progress runs/sol-trial --follow 55",
-      "semantics": "Native run submission registers automatically. Idle observations and individual compiler failures make no model requests. A configured bounded retry handles only a fresh provider capacity failure within the frozen deadline; it never resets pause, quota, cancellation or uncertain effects. Unwatch stops observation without cancelling compute or messages already queued. Unattended reporting requires a separately verified callback plus an available worker.",
+      "example": "es run progress runs/sol-trial\nes run progress runs/sol-trial --follow 55\nes run observe\nes delivery status",
+      "semantics": "Native run submission registers automatically. Idle observations and individual compiler failures make no model requests. If a host runner disappears after its recorded cgroup has definitely stopped, the observer reconciles the stale job row with a compare-and-set on the recorded runner identity and emits the terminal event once; a changed or live runner remains reserved. A configured bounded retry handles only a fresh provider capacity failure within the frozen deadline; it never resets pause, quota, cancellation or uncertain effects. Unwatch stops observation without cancelling compute or messages already queued. Unattended reporting requires a separately verified callback plus an available worker.",
       "source": {
         "path": "tools/es/es/run_monitor.py",
         "symbols": [
