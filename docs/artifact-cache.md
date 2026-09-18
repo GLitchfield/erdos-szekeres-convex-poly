@@ -10,7 +10,8 @@ in Lake's native local artifact cache.
 certificate layer.  It accepts these compiled facets: `.olean`,
 `.olean.server`, `.olean.private`, `.ilean`, `.ir`, `.c`, and `.bc`.  It never
 shares source files or mutable `.setup.json`, `.trace`, and `.hash` sidecars.
-Both checkouts must use the same project id, Lean toolchain, and filesystem.
+Both checkouts must use the same project id, Lean toolchain, filesystem, and
+harness database so every guarded writer honors the same storage reservations.
 Symlinks and other non-regular output files are rejected.
 
 The default mode is a verification-only dry run.  It reads every candidate in
@@ -67,3 +68,15 @@ a harness maintenance command holding the cache reservation; do not run
 deletes the configured cache directory.  Removing the cache directory would
 not remove already linked checkout files, but it would discard the canonical
 names and Lake's future-build mappings.
+
+After a reviewed migration, `[build.artifact_cache] enabled = true` in
+`harness/config.toml` enables those environment variables and reservations for
+guarded Lake builds. The optional `root` setting overrides the project/toolchain
+cache path. The first build may hash existing outputs to create native input
+mappings even when no modules need compilation.
+
+Hard links preserve each file's apparent size and ordinary checkout path. Separate
+directory-size measurements can therefore count shared blocks more than once.
+Use the migration's physical-block receipts and filesystem free-space change to
+assess savings; do not add independently measured checkout sizes as if every
+file still had its own storage.

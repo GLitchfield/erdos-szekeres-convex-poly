@@ -504,7 +504,7 @@
       "id": "workflow.immutable-artifact-sharing",
       "kind": "workflow",
       "title": "Verified immutable certificate artifact sharing",
-      "summary": "Deduplicate identical compiled certificate outputs across compatible checkouts using Lake's native immutable cache.",
+      "summary": "Deduplicate identical compiled certificate outputs across compatible checkouts sharing one harness database, using Lake's native immutable cache.",
       "keywords": [
         "storage",
         "disk deduplication",
