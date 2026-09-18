@@ -458,6 +458,47 @@ for `ESBlueprint/**`, `ErdosSzekeres/**`, …) plus a hash of uncommitted change
 so the cache is valid per working-tree state of those directories and a commit that only
 touches notes, scripts or data does not force the extractor (36 GiB) to run again.
 
+### 8.2.1 Build-storage maintenance
+
+Filesystem maintenance and guarded writers use the same exact storage reservations. A
+`worktree:<resolved-root>` key excludes builds and maintenance in that checkout; additional
+namespaces such as `artifact-cache:<resolved-root>` protect shared stores. A multi-root
+operation acquires every key in one SQLite transaction and commits before touching files.
+It counts as one operation toward `max_parallel_builds`. An enclosing running job may add a
+supplemental key without counting itself twice, and that lease inherits the job's cgroup so
+scope reconciliation can release it only after confirmed termination. A standalone process
+killed outside a guarded job can leave a conservative lease that needs explicit
+reconciliation.
+
+Lake 4.29.1 writes large, untracked `*.setup.json` snapshots under `.lake/build/ir` before
+real compilation. Cached builds and `lake setup-file` do not require those persisted files;
+the next real compile recreates the relevant snapshot. The cleanup command is dry-run by
+default:
+
+```bash
+es storage prune-setup --out runs/setup-audit
+# Inspect the manifest, then run a separately receipted application.
+es storage prune-setup --apply --out runs/setup-prune
+```
+
+The command accepts only the configured relative IR root under a real, nonsymlink checkout
+path. It records device, inode, mode, size, timestamps, link count and allocated blocks,
+fsyncs the manifest, revalidates the complete set, and unlinks through directory file
+descriptors with no symlink following. Receipts distinguish logical bytes removed from
+allocated blocks whose final hard link was removed and record partial effects if an unlink
+fails. Missing roots are an empty operation; changed files, replaced ancestors, malformed
+manifests and active Lean compilers cause refusal. Plugin and dynlib entries inside a setup
+snapshot are references; cleanup never touches their shared-library files. A pinned 4.29.1
+module/plugin smoke verified cached builds, `lake setup-file`, pre-failure regeneration and a
+successful rebuild after pruning; its receipt is under
+`runs/storage-optimization-20260917/plugin-smoke/`.
+
+`[build.setup_metadata_cleanup] enabled = true` adds the same deletion after a successful,
+fully acknowledged `lake build`, before its reservation is released. The hook selects only
+modules named by Lake's `Built` records. It never runs for extractors, arbitrary guarded
+commands, failed builds or uncertain termination. Production configuration remains opt-in;
+the standalone command and each build receipt expose the manifest and receipt paths.
+
 ### 8.3 Agent identity
 
 `ES_AGENT` env var; default `<user>@<host>:<parent-pid>`. Claude Code sessions should

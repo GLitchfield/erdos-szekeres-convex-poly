@@ -169,6 +169,8 @@ def test_project_catalog_exposes_promoted_research_boundary():
         "workflow.recursive-cut-probe",
         "workflow.context",
         "workflow.usage",
+        "workflow.setup-metadata-cleanup",
+        "workflow.immutable-artifact-sharing",
     }
     entries = library.load(ROOT)
     assert expected <= {item["id"] for item in entries}

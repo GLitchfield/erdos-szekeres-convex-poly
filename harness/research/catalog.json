@@ -501,6 +501,55 @@
       }
     },
     {
+      "id": "workflow.immutable-artifact-sharing",
+      "kind": "workflow",
+      "title": "Verified immutable certificate artifact sharing",
+      "summary": "Deduplicate identical compiled certificate outputs across compatible checkouts using Lake's native immutable cache.",
+      "keywords": [
+        "storage",
+        "disk deduplication",
+        "certificate artifacts",
+        "private proof bodies",
+        "hard links",
+        "Lake cache",
+        "SHA-256"
+      ],
+      "api": "es storage share --other CHECKOUT [--apply] [--cache PATH] [--receipt runs/FILE.jsonl] [--facet FACET]",
+      "example": "es job run --why \"verify immutable certificate duplicates\" --out runs/storage-share/audit.jsonl --mem 4G --budget 90 -- tools/es/bin/es storage share --other runs/worktrees/sol-12h-20260916 --receipt runs/storage-share/audit.jsonl\n# Add --apply to the inner command to adopt verified blobs.",
+      "semantics": "Requires a guarded job, compatible project/toolchain/filesystem, and generated certificate modules in both checkouts. The default is verification only. Full SHA-256 checks precede atomic hard-link adoption through the pinned Lake cache; sources and mutable setup/trace/hash sidecars are excluded. Both worktrees and the shared cache are reserved. Receipts separate logical duplicate bytes, eligible freed blocks and observed free-space change. Native input mappings are created only by ordinary guarded Lake builds, never synthesized from filenames. Rebuild detachment was tested on pinned Lean 4.29.1; unsupported toolchains are refused.",
+      "source": {
+        "path": "tools/es/es/artifact_cache.py",
+        "symbols": [
+          "share_certificates",
+          "atomic_adopt"
+        ]
+      }
+    },
+    {
+      "id": "workflow.setup-metadata-cleanup",
+      "kind": "workflow",
+      "title": "Audited Lake setup metadata cleanup",
+      "summary": "Inventory or prune Lake 4.29.1 setup spill files with exact-path manifests, inode revalidation and storage exclusion.",
+      "keywords": [
+        "Lake setup json",
+        "disk cleanup",
+        "storage maintenance",
+        "manifest",
+        "hard links",
+        "build cache"
+      ],
+      "api": "es storage prune-setup [--apply] [--out runs/DIRECTORY]",
+      "example": "es storage prune-setup --out runs/setup-audit\n# Inspect runs/setup-audit/manifest.json, then:\nes storage prune-setup --apply --out runs/setup-prune",
+      "semantics": "Dry-run is the default. The pinned Lake 4.29.1 contract scans only a real .lake/build/ir directory without symlink traversal, writes the manifest durably, revalidates every regular-file identity before unlinking, and reports logical removed bytes separately from allocated blocks actually made unreachable by hard-link counts. Automatic post-build cleanup considers only modules in successful acknowledged Lake Built records while its worktree reservation remains held. Plugin and dynlib paths inside a setup snapshot are references and are never removed. A killed standalone maintenance process may leave a conservative lease for explicit reconciliation; no bulk cleanup is implied by enabling the command.",
+      "source": {
+        "path": "tools/es/es/setup_metadata.py",
+        "symbols": [
+          "prune_setup_metadata",
+          "post_build_cleanup"
+        ]
+      }
+    },
+    {
       "id": "workflow.run-monitor",
       "kind": "workflow",
       "title": "Run observation without model polling",

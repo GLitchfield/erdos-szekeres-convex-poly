@@ -64,7 +64,8 @@ def run(ctx: Ctx, name: str, budget: int | None = None, async_: bool = False, fo
             st.record_attempt(n.name, ctx.agent, "closed", note="es check")
     if targeted:
         res.line("targeted extract: nodes.json/status.md not updated; run `es extract` when memory allows")
-    res.payload = {"node": node, "build_seconds": build.seconds, "build_peak_mib": build.peak_mib, "targeted": targeted}
+    res.payload = {"node": node, "build_seconds": build.seconds, "build_peak_mib": build.peak_mib,
+                   "setup_cleanup": getattr(build, "setup_cleanup", None), "targeted": targeted}
     res.exit_code = EXIT_OK
     return res
 

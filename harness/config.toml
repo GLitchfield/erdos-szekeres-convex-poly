@@ -105,6 +105,19 @@ batch_small = 6                        # independent small chain heads per lake 
 heavy_patterns = ["*CheckpointSegment*", "*CheckpointContext", "*CNFRaw*", "*CNFMid*"]  # always alone
 memory_max_retry = "30G"               # a single module that hits memory_max is retried once with this cap
 memory_max_final = "30G"               # the final parallel step (the root module maps every olean)
+
+[build.setup_metadata_cleanup]
+# Lake 4.29.1 leaves large untracked IR setup snapshots. Guarded successful
+# builds remove only their freshly written setup files and retain a receipt.
+enabled = true
+ir_dir = ".lake/build/ir"
+toolchain = "leanprover/lean4:v4.29.1"
+
+[build.artifact_cache]
+# Opt in only after controlled cache migration: an initial Lake cache write may
+# hash the full compiled closure. The default root is project/toolchain scoped.
+enabled = false
+
 [[build.memory_overrides]]             # modules known to need more than memory_max on their own
 pattern = "ErdosSzekeres.StructuralChargingNextState578UpperBracketFanCounterexample"
 memory_max = "28G"

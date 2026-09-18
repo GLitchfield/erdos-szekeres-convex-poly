@@ -301,6 +301,31 @@ class Config:
     def build_log_dir(self) -> Path:
         return self.es_home / "logs"
 
+    @property
+    def build_setup_cleanup_enabled(self) -> bool:
+        return bool(self.get("build", "setup_metadata_cleanup", "enabled", default=False))
+
+    @property
+    def build_setup_cleanup_ir_dir(self) -> Path:
+        value = str(self.get("build", "setup_metadata_cleanup", "ir_dir", default=".lake/build/ir"))
+        return Path(value)
+
+    @property
+    def build_setup_cleanup_toolchain(self) -> str:
+        return str(self.get("build", "setup_metadata_cleanup", "toolchain", default="leanprover/lean4:v4.29.1"))
+
+    @property
+    def build_artifact_cache_enabled(self) -> bool:
+        return bool(self.get("build", "artifact_cache", "enabled", default=False))
+
+    @property
+    def build_artifact_cache_root(self) -> Path | None:
+        value = self.get("build", "artifact_cache", "root")
+        if value is None or not str(value).strip():
+            return None
+        path = Path(str(value)).expanduser()
+        return path if path.is_absolute() else self.root / path
+
     # ---- extract -----------------------------------------------------------
     @property
     def extract_template(self) -> Path:
@@ -471,6 +496,11 @@ def validate(cfg: Config) -> list[str]:
             problems.append(f"[layers] blueprint={cfg.blueprint_layer} is not a layer")
         if cfg.core_layer not in names:
             problems.append(f"[layers] core={cfg.core_layer} is not a layer")
+    ir_dir = cfg.build_setup_cleanup_ir_dir
+    if ir_dir.is_absolute() or not ir_dir.parts or any(part in ("", ".", "..") for part in ir_dir.parts):
+        problems.append("[build.setup_metadata_cleanup] ir_dir must be a normalized relative path")
+    if cfg.build_setup_cleanup_enabled and not cfg.build_setup_cleanup_toolchain.strip():
+        problems.append("[build.setup_metadata_cleanup] toolchain must be nonempty when enabled")
     if problems:
         raise ConfigError("; ".join(problems))
     return problems

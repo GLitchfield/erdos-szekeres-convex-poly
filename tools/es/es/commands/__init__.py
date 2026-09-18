@@ -3,6 +3,7 @@
 from es.commands import (  # noqa: F401
     audit,
     build,
+    cache,
     certs,
     claims,
     check,
@@ -28,4 +29,5 @@ from es.commands import (  # noqa: F401
     agent_run,
     monitor,
     run_delivery,
+    setup_metadata,
 )
