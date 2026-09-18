@@ -13,13 +13,17 @@ from es.store import Store
 
 
 def stale_lines(cfg, nodes) -> list[str]:
-    """Warn when the statements lock knows nodes the index does not (added since the last full extract)."""
+    """Warn when active statement locks are absent from the extracted index."""
     try:
         lock = read_lock(cfg.lock_file)
     except ValueError:
         return []
     indexed = {n.name for n in nodes}
-    missing = sorted(k for k in lock if k not in indexed)
+    missing = sorted(
+        name
+        for name, entry in lock.items()
+        if name not in indexed and not (isinstance(entry, dict) and entry.get("retired"))
+    )
     if not missing:
         return []
     # lock entries of nodes that were closed and merged into the core stay in the lock;
