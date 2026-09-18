@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-18T22:23:29Z",
- "git_sha": "c1ce5c16112f9cbff7e512c934449e297ad3eeff",
+ "generated_at": "2026-09-18T23:01:24Z",
+ "git_sha": "118a8793ef2d40d6c84449b02eb89b9844507bbe",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15645,
- "tree_hash": "2e5fa3d898482385",
+ "modules": 15646,
+ "tree_hash": "462ed6899d358bf6",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15644,
+  "cached_modules": 15645,
   "scanned_constants": 0,
   "scanned_modules": 1
  },
@@ -18609,6 +18609,78 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-10"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary",
+   "module": "ESBlueprint.B.CtxTwoMarkerLowCapacityPruningFiveBoundOfActiveOppositeBoundary",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The two-marker low-capacity pruning has bound five when the actual opposite-axis marker lies to one side of every active low child; inactive low children are first removed without decreasing the source bound.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_mixed_capacity_children_separated_by_older_marker_global_five",
+     "ErdosSzekeres.ctx_boundary_retained_doubled_rank_budget",
+     "ErdosSzekeres.ctx_part_pruning_history_transport",
+     "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y high L z : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary.match_3\n                              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                            5 →\n                          instLENat.le\n                              (ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary.match_3\n                                (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                              5 →\n                            (∀ (j : Nat),\n                                List.instMembership.mem (σ.levelsOn s 0) j →\n                                  ∀ (w : Nat),\n                                    List.instMembership.mem (σ.extPositions j) w →\n                                      Or (Eq w x) (Eq w y)) →\n                              List.instMembership.mem σ.childPositions high →\n                                instLENat.le 3\n                                    (ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary.match_3\n                                      (fun s => Nat) s (fun _ => σ.cupLimit high high) fun _ =>\n                                      σ.capLimit high high) →\n                                  List.instMembership.mem σ.levels L →\n                                    Eq (σ.sideAt L) t →\n                                      List.instMembership.mem (σ.extPositions L) z →\n                                        instLTNat.lt L M →\n                                          have capacity := fun p =>\n                                            ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary.match_3\n                                              (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ =>\n                                              σ.capLimit p p;\n                                          have support :=\n                                            List.filter\n                                              (fun p =>\n                                                Decidable.decide (instLENat.le (capacity p) 2))\n                                              σ.childPositions;\n                                          have low :=\n                                            { a := σ.a, u := σ.u, k := σ.k,\n                                              word :=\n                                                List.map\n                                                  (fun p =>\n                                                    ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary.match_1\n                                                      (fun x => ErdosSzekeres.Ctx.Letter)\n                                                      (σ.letterAt p)\n                                                      (fun _ =>\n                                                        ite (List.instMembership.mem support p)\n                                                          ErdosSzekeres.Ctx.Letter.child\n                                                          (ErdosSzekeres.Ctx.Letter.ext\n                                                            (instHAdd.hAdd σ.maxima.length 1)\n                                                            ErdosSzekeres.Ctx.Side.lower))\n                                                      fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                                  (List.range σ.word.length),\n                                              maxima := σ.maxima };\n                                          Or\n                                              (∀ (q : Nat),\n                                                List.instMembership.mem low.childPositions q →\n                                                  And (instLTNat.lt 0 (low.cupLimit q q))\n                                                      (instLTNat.lt 0 (low.capLimit q q)) →\n                                                    instLTNat.lt q z)\n                                              (∀ (q : Nat),\n                                                List.instMembership.mem low.childPositions q →\n                                                  And (instLTNat.lt 0 (low.cupLimit q q))\n                                                      (instLTNat.lt 0 (low.capLimit q q)) →\n                                                    instLTNat.lt z q) →\n                                            And\n                                              (∀ (fuel : Nat),\n                                                instLENat.le\n                                                  (ErdosSzekeres.Ctx.Context.boundFuel fuel low) 5)\n                                              (instLENat.le low.bound 5)",
+   "type_hash": "6c083ced7a1a49ae",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_mixed_capacity_children_separated_by_older_marker_global_five",
+    "ErdosSzekeres.ctx_boundary_retained_doubled_rank_budget",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary.match_3",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_1",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_2",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three.match_1",
+    "ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._simp_1_3",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_4",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_5",
+    "ErdosSzekeres.ctx_boundary_retained_doubled_rank_budget.match_1",
+    "ErdosSzekeres.ctx_boundary_retained_doubled_rank_budget",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_6",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_7",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_8",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_9",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_10",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_11",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_mixed_capacity_children_separated_by_older_marker_global_five",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_12",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_active_opposite_boundary._proof_1_13"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-18"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_five_bound_of_opposite_boundary",
