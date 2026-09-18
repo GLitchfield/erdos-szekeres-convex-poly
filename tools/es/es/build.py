@@ -27,6 +27,7 @@ class BuildResult:
     refused: str | None = None
     tail: list[str] = field(default_factory=list)
     termination_acknowledged: bool = True
+    setup_cleanup: dict | None = None
 
     @property
     def ok(self) -> bool:
@@ -38,6 +39,8 @@ class BuildResult:
         status = "ok" if self.ok else ("budget exceeded" if self.budget_exceeded else (f"rc={self.rc} (scope stopped: memory cap hit, see `journalctl --user`)" if self.rc == -15 and not self.peak_mib else f"rc={self.rc}"))
         extra = f", peak {self.peak_mib} MiB" if self.peak_mib else ""
         extra += f", oom_kills={self.oom_kills}" if self.oom_kills else ""
+        if self.setup_cleanup:
+            extra += f", setup metadata {self.setup_cleanup.get('status', 'unknown')}"
         return f"{status}: {self.built} module(s) built in {self.seconds:.0f}s{extra}; log {self.log_path}"
 
 
@@ -102,12 +105,25 @@ def _mem_gib(spec: str) -> float:
 def run_guarded(cfg: Config, argv: list[str], **kwargs) -> BuildResult:
     """Account synchronous calls too; nested stages inherit their enclosing cgroup."""
     from es.store import Store
-    from es.jobs import process_identity, live_memory_gib
+    from es.jobs import live_memory_gib
     import copy
     job_id = kwargs.get('job_id') or os.environ.get('ES_JOB_ID')
     memory = kwargs.get('memory_max') or cfg.build_memory_max
     cap = _mem_gib(memory)
-    lease = None
+    reservation = None
+    is_lake_build = argv[:2] == [cfg.lake, 'build']
+    storage_targets = []
+    if is_lake_build and cfg.build_artifact_cache_enabled:
+        from es.artifact_cache import default_cache_root, reject_symlink_ancestors
+        from es.storage import StorageTarget
+
+        cache_root = cfg.build_artifact_cache_root or default_cache_root(cfg)
+        reject_symlink_ancestors(cache_root)
+        cache_root = Path(os.path.abspath(os.fspath(cache_root)))
+        storage_targets.append(StorageTarget('artifact-cache', cache_root))
+        env_extra = dict(kwargs.get('env_extra') or {})
+        env_extra.update(LAKE_ARTIFACT_CACHE='true', LAKE_CACHE_DIR=str(cache_root))
+        kwargs['env_extra'] = env_extra
     nested = os.environ.get('ES_IN_GUARDED_STAGE') == '1'
     if nested:
         outer_cap = os.environ.get('ES_STAGE_MEMORY', '0')
@@ -116,35 +132,58 @@ def run_guarded(cfg: Config, argv: list[str], **kwargs) -> BuildResult:
         cfg = copy.deepcopy(cfg)
         cfg.raw.setdefault('build', {})['guard'] = False
         kwargs['force'] = True
-    with Store(cfg) as st:
-        st.conn.execute('BEGIN IMMEDIATE')
-        if job_id:
-            job = st.job(job_id)
-            if not job or job['status'] != 'running':
-                return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused='enclosing job is not running')
-            reserved = job.get('memory_max') or cfg.build_memory_max
-            if cap > _mem_gib(reserved):
-                return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused=f'requested {memory} exceeds job reservation {reserved}')
-            kwargs['job_id'] = job_id
-        else:
-            jobs = [dict(r) for r in st.conn.execute("SELECT * FROM jobs WHERE status IN ('starting','running','unknown_execution')")]
-            leased = st.conn.execute('SELECT COALESCE(SUM(memory_gib),0) FROM resource_leases').fetchone()[0]
-            write_jobs = [j for j in jobs if str(j.get('lock_key') or '').startswith('worktree:')]
-            write_leases = st.conn.execute("SELECT COUNT(*) FROM resource_leases WHERE lock_key LIKE 'worktree:%'").fetchone()[0]
-            if len(write_jobs)+write_leases >= cfg.max_parallel_builds:
-                return BuildResult(125,0,0,str(kwargs['log_path']),argv,refused='worktree/build concurrency reservation is occupied')
-            if cap + live_memory_gib(cfg, jobs) + leased > _mem_gib(cfg.jobs_memory_budget):
-                return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused=f'{memory} cannot fit shared budget {cfg.jobs_memory_budget}')
-            lease = uuid.uuid4().hex
-            st.conn.execute('INSERT INTO resource_leases(id,job_id,pid,process_start,memory_gib,lock_key,created_at) VALUES (?,?,?,?,?,?,?)', (lease, None, os.getpid(), process_identity(os.getpid()), cap, 'worktree:' + str(cfg.root), time.time()))
+    try:
+        from es.storage import reserve_storage_in_transaction
+
+        with Store(cfg) as st:
+            st.conn.execute('BEGIN IMMEDIATE')
+            if job_id:
+                job = st.job(job_id)
+                if not job or job['status'] != 'running':
+                    return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused='enclosing job is not running')
+                reserved = job.get('memory_max') or cfg.build_memory_max
+                if cap > _mem_gib(reserved):
+                    return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused=f'requested {memory} exceeds job reservation {reserved}')
+                kwargs['job_id'] = job_id
+                # The outer scope of `es job run` guards arbitrary computation,
+                # not a worktree writer.  If that command starts a nested
+                # harness Lake build, the inner call acquires this target.
+                if job.get('kind') != 'run' or is_lake_build:
+                    reservation = reserve_storage_in_transaction(
+                        st, cfg, roots=[cfg.root], targets=storage_targets,
+                        reason='guarded command', owner_job_id=job_id
+                    )
+            else:
+                jobs = [dict(r) for r in st.conn.execute("SELECT * FROM jobs WHERE status IN ('starting','running','unknown_execution')")]
+                leased = st.conn.execute('SELECT COALESCE(SUM(memory_gib),0) FROM resource_leases').fetchone()[0]
+                if cap + live_memory_gib(cfg, jobs) + leased > _mem_gib(cfg.jobs_memory_budget):
+                    return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused=f'{memory} cannot fit shared budget {cfg.jobs_memory_budget}')
+                reservation = reserve_storage_in_transaction(
+                    st, cfg, roots=[cfg.root], targets=storage_targets,
+                    reason='guarded command', memory_gib=cap
+                )
+    except Exception as exc:
+        from es.errors import CheckFailed
+
+        if isinstance(exc, CheckFailed):
+            return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused=str(exc))
+        raise
     result = None
     try:
-        result = _run_guarded(cfg, argv, lease_id=lease, **kwargs)
+        result = _run_guarded(cfg, argv, lease_ids=reservation.lease_ids if reservation else (), **kwargs)
+        if result.ok and cfg.build_setup_cleanup_enabled and is_lake_build:
+            try:
+                from es.setup_metadata import post_build_cleanup
+
+                result.setup_cleanup = post_build_cleanup(cfg, Path(result.log_path))
+            except Exception as exc:
+                result.setup_cleanup = {'status': 'failed', 'error': f'{type(exc).__name__}: {exc}'}
         return result
     finally:
-        if lease and result and result.termination_acknowledged:
-            with Store(cfg) as st:
-                st.conn.execute('DELETE FROM resource_leases WHERE id=?', (lease,))
+        if reservation and result and result.termination_acknowledged:
+            from es.storage import release_storage_reservation
+
+            release_storage_reservation(cfg, reservation)
 
 
 def _run_guarded(
@@ -160,7 +199,7 @@ def _run_guarded(
     force: bool = False,
     count_built: bool = True,
     job_id: str | None = None,
-    lease_id: str | None = None,
+    lease_ids: tuple[str, ...] = (),
 ) -> BuildResult:
     """Run ``argv`` (a lake/lean command) inside a transient user cgroup with a memory cap."""
     memory_max = memory_max or cfg.build_memory_max
@@ -186,7 +225,12 @@ def _run_guarded(
         from es.store import Store
         with Store(cfg) as st:
             if job_id: st.conn.execute('UPDATE jobs SET scope_unit=? WHERE id=?',(unit+'.scope',job_id))
-            if lease_id: st.conn.execute('UPDATE resource_leases SET scope_unit=? WHERE id=?',(unit+'.scope',lease_id))
+            if lease_ids:
+                placeholders = ','.join('?' for _ in lease_ids)
+                st.conn.execute(
+                    f'UPDATE resource_leases SET scope_unit=? WHERE id IN ({placeholders})',
+                    (unit+'.scope', *lease_ids),
+                )
     stats = log_path.with_suffix(".stats")
     if use_guard:
         inner = (

@@ -102,8 +102,9 @@ def reserve_job(cfg, job_id, *, launching=False):
             return False
         if job.get('lock_key') and any(r.get('lock_key') == job['lock_key'] for r in leases):
             return False
-        builds = [r for r in running if r.get('kind') in ('build','check') or str(r.get('lock_key') or '').startswith('worktree:')]
-        if (job.get('kind') in ('build','check') or str(job.get('lock_key') or '').startswith('worktree:')) and len(builds) >= cfg.max_parallel_builds:
+        from es.storage import _worktree_owners
+        build_owners = _worktree_owners(running, leases)
+        if (job.get('kind') in ('build','check') or str(job.get('lock_key') or '').startswith('worktree:')) and len(build_owners) >= cfg.max_parallel_builds:
             return False
         cap = job_memory_gib(cfg, job)
         if live_memory_gib(cfg, running) + cap + sum(r['memory_gib'] for r in leases) > _mem_gib(cfg.jobs_memory_budget):
