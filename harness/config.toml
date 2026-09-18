@@ -114,9 +114,9 @@ ir_dir = ".lake/build/ir"
 toolchain = "leanprover/lean4:v4.29.1"
 
 [build.artifact_cache]
-# Opt in only after controlled cache migration: an initial Lake cache write may
-# hash the full compiled closure. The default root is project/toolchain scoped.
-enabled = false
+# Reviewed migration shares immutable certificate outputs through the pinned
+# Lake cache. Guarded builds hold its reservation and retain materialized paths.
+enabled = true
 
 [[build.memory_overrides]]             # modules known to need more than memory_max on their own
 pattern = "ErdosSzekeres.StructuralChargingNextState578UpperBracketFanCounterexample"

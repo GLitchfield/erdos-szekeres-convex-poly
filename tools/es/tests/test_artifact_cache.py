@@ -221,6 +221,18 @@ def test_receipt_repairs_torn_tail_before_resuming(tmp_path):
     assert resumed.adopted() == {("M", "olean.private")}
 
 
+def test_separate_harness_databases_cannot_claim_shared_storage_exclusion(cfg, tmp_path, monkeypatch):
+    other = _other_checkout(cfg, tmp_path)
+    monkeypatch.delenv("ES_HOME", raising=False)
+    cfg.raw["project"]["es_home"] = str(tmp_path / "primary-state")
+    config_path = other / "harness/config.toml"
+    config_path.write_text(config_path.read_text().replace(
+        "[project]", '[project]\nes_home = "other-state"', 1,
+    ))
+    with pytest.raises(CheckFailed, match="share the harness database"):
+        validate_roots(cfg, other)
+
+
 def test_toolchain_mismatch_fails_before_scanning(cfg, tmp_path):
     other = _other_checkout(cfg, tmp_path)
     (other / "lean-toolchain").write_text("leanprover/lean4:v4.28.0\n")
@@ -279,3 +291,82 @@ def test_native_writer_timeout_stops_process_group(cfg, tmp_path, monkeypatch):
             cfg, tmp_path / "cache", [(item, sha256_file(source))], tmp_path / "work", timeout_s=1,
         )
     assert any(call[:1] == ("killpg",) and call[2] == signal.SIGTERM for call in calls)
+
+
+def test_native_lake_cache_detaches_rebuild_and_restores_shared_private_artifact(cfg, tmp_path):
+    """Exercise Lake's own cache links across two real pinned-toolchain checkouts."""
+    cache = tmp_path / "cache"
+    project_a = tmp_path / "checkout-a"
+    project_b = tmp_path / "checkout-b"
+    lakefile = (
+        'name = "cache_fixture"\n'
+        'version = "0.1.0"\n'
+        'defaultTargets = ["Fixture"]\n'
+        'restoreAllArtifacts = true\n\n'
+        '[[lean_lib]]\nname = "Fixture"\n'
+    )
+
+    def source(private_value: int) -> str:
+        return (
+            "module\n\n@[expose] public section\n\n"
+            "public def fixtureValue : Nat := 41\n\n"
+            f"private def privatePayload : Nat := {private_value}\n\n"
+            "public theorem fixtureValue_eq : fixtureValue = 41 := rfl\n"
+        )
+
+    for project in (project_a, project_b):
+        project.mkdir()
+        (project / "lakefile.toml").write_text(lakefile)
+        (project / "lean-toolchain").write_text("leanprover/lean4:v4.29.1\n")
+        (project / "Fixture.lean").write_text(source(41))
+    cache.mkdir()
+
+    cached_env = os.environ.copy()
+    cached_env.update(LAKE_ARTIFACT_CACHE="true", LAKE_CACHE_DIR=str(cache))
+
+    def build(project: Path, env: dict[str, str]) -> str:
+        result = __import__("subprocess").run(
+            [cfg.lake, "build"], cwd=project, env=env, capture_output=True,
+            text=True, timeout=60,
+        )
+        assert result.returncode == 0, result.stdout + result.stderr
+        return result.stdout + result.stderr
+
+    def private_artifact(project: Path) -> Path:
+        path = project / ".lake/build/lib/lean/Fixture.olean.private"
+        assert path.is_file()
+        return path
+
+    build(project_a, cached_env)
+    artifact_a = private_artifact(project_a)
+    lake_hash = Path(str(artifact_a) + ".hash").read_text().strip()
+    blob = cache / "artifacts" / f"{lake_hash}.olean.private"
+    assert blob.is_file()
+    old_digest = sha256_file(blob)
+
+    build(project_b, cached_env)
+    artifact_b = private_artifact(project_b)
+    old_inode = _identity(blob).inode
+    assert _identity(artifact_a).inode == _identity(artifact_b).inode == old_inode
+    assert all(path.stat().st_mode & 0o222 == 0 for path in (artifact_a, artifact_b, blob))
+
+    (project_a / "Fixture.lean").write_text(source(42))
+    build(project_a, cached_env)
+    assert _identity(artifact_a).inode != old_inode
+    assert sha256_file(artifact_a) != old_digest
+    assert _identity(artifact_b).inode == _identity(blob).inode == old_inode
+    assert sha256_file(artifact_b) == sha256_file(blob) == old_digest
+
+    (project_a / "Fixture.lean").write_text(source(41))
+    build(project_a, cached_env)
+    assert _identity(artifact_a).inode == _identity(artifact_b).inode == _identity(blob).inode == old_inode
+
+    cache_disabled_env = cached_env.copy()
+    cache_disabled_env.pop("LAKE_CACHE_DIR")
+    cache_disabled_env["LAKE_ARTIFACT_CACHE"] = "false"
+    (project_a / "Fixture.lean").write_text(source(43))
+    build(project_a, cache_disabled_env)
+    assert _identity(artifact_a).inode != old_inode
+    assert sha256_file(artifact_a) != old_digest
+    assert _identity(artifact_b).inode == _identity(blob).inode == old_inode
+    assert sha256_file(artifact_b) == sha256_file(blob) == old_digest

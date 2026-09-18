@@ -141,6 +141,8 @@ def validate_roots(cfg: Config, other_root: Path) -> Config:
     other_cfg.root = other
     if cfg.project_id != other_cfg.project_id:
         raise CheckFailed(f"project mismatch: {cfg.project_id} != {other_cfg.project_id}")
+    if cfg.db_path.resolve() != other_cfg.db_path.resolve():
+        raise CheckFailed("checkouts must share the harness database so every writer honors the same storage reservations")
     primary_toolchain, _ = supported_toolchain(primary)
     other_toolchain, _ = supported_toolchain(other)
     if primary_toolchain != other_toolchain:
