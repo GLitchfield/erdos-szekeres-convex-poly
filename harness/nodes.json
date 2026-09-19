@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-18T23:31:10Z",
- "git_sha": "51aa39239a417ba3c755038ba44bb8a5f7daca4b",
+ "generated_at": "2026-09-18T23:44:17Z",
+ "git_sha": "c107566a5eba1c9208ba90dafe67c0a43d15d21f",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15649,
- "tree_hash": "f985ae651a06bed3",
+ "tree_hash": "75aee948f05102f0",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15648,
+  "cached_modules": 15649,
   "scanned_constants": 0,
-  "scanned_modules": 1
+  "scanned_modules": 0
  },
  "nodes": [
   {
@@ -16836,16 +16836,13 @@
    "tag_errors": [],
    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (r j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt r) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (N M x y : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            ∀ (hNs : Eq (σ.sideAt N) s) (hMs : Eq (σ.sideAt M) s),\n              List.instMembership.mem (σ.extPositions N) x →\n                List.instMembership.mem (σ.extPositions M) y →\n                  ∀\n                    (hchosenGlobal :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles.match_1\n                          σ t N M (fun s hne hNs hMs => Nat) s hne hNs hMs (fun hne hNs hMs => σ.u)\n                          fun hne hNs hMs => σ.a)\n                        5)\n                    (hopposite :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles.match_3\n                          σ s N M hNs hMs (fun t hne hchosenGlobal => Nat) t hne hchosenGlobal\n                          (fun hne hchosenGlobal => σ.u) fun hne hchosenGlobal => σ.a)\n                        5)\n                    (hchosen :\n                      ∀ (j : Nat),\n                        List.instMembership.mem (σ.levelsOn s 0) j →\n                          ∀ (z : Nat),\n                            List.instMembership.mem (σ.extPositions j) z → Or (Eq z x) (Eq z y))\n                    (keep : List Nat) (m n p high : Nat)\n                    (hp : List.instMembership.mem (σ.part keep s m).childPositions p),\n                    Eq n 1 →\n                      List.instMembership.mem\n                          (σ.part\n                              (List.filter\n                                (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                σ.childPositions)\n                              t n).childPositions\n                          high →\n                        instLENat.le 3\n                            (ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles.match_5\n                              σ t N M x y keep m p\n                              (fun s hne hNs hMs hchosenGlobal hopposite hchosen hp => Nat) s hne\n                              hNs hMs hchosenGlobal hopposite hchosen hp\n                              (fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                                (σ.part\n                                      (List.filter\n                                        (fun x =>\n                                          Decidable.decide (Not (List.instMembership.mem keep x)))\n                                        σ.childPositions)\n                                      t n).cupLimit\n                                  high high)\n                              fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                              (σ.part\n                                    (List.filter\n                                      (fun x =>\n                                        Decidable.decide (Not (List.instMembership.mem keep x)))\n                                      σ.childPositions)\n                                    t n).capLimit\n                                high high) →\n                          Or (And (instLTNat.lt x p) (instLTNat.lt p y))\n                              (And (instLTNat.lt y p) (instLTNat.lt p x)) →\n                            have B :=\n                              σ.part\n                                (List.filter\n                                  (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                  σ.childPositions)\n                                t n;\n                            have capacity := fun q =>\n                              ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles.match_7\n                                (fun s => Nat) s (fun _ => B.cupLimit q q) fun _ => B.capLimit q q;\n                            have support :=\n                              List.filter (fun q => Decidable.decide (instLENat.le (capacity q) 2))\n                                B.childPositions;\n                            have low :=\n                              { a := B.a, u := B.u, k := B.k,\n                                word :=\n                                  List.map\n                                    (fun q =>\n                                      ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles.match_9\n                                        (fun x => ErdosSzekeres.Ctx.Letter) (B.letterAt q)\n                                        (fun _ =>\n                                          ite (List.instMembership.mem support q)\n                                            ErdosSzekeres.Ctx.Letter.child\n                                            (ErdosSzekeres.Ctx.Letter.ext\n                                              (instHAdd.hAdd B.maxima.length 1)\n                                              ErdosSzekeres.Ctx.Side.lower))\n                                        fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                    (List.range B.word.length),\n                                maxima := B.maxima };\n                            And (List.instMembership.mem (B.extPositions 1) p)\n                              (And (Eq (B.maximumAt 1) 1)\n                                (Or\n                                  (And\n                                    (∀ (fuel : Nat),\n                                      instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel B) 11)\n                                    (instLENat.le B.bound 11))\n                                  (Exists fun q =>\n                                    And (List.instMembership.mem low.childPositions q)\n                                      (And (instLTNat.lt 0 (low.cupLimit q q))\n                                        (And (instLTNat.lt 0 (low.capLimit q q))\n                                          (Exists fun r =>\n                                            And (List.instMembership.mem low.childPositions r)\n                                              (And (instLTNat.lt 0 (low.cupLimit r r))\n                                                (And (instLTNat.lt 0 (low.capLimit r r))\n                                                  (And (instLTNat.lt q p)\n                                                    (instLTNat.lt p r))))))))))",
    "type_hash": "b747bf7346897310",
-   "sorry": true,
+   "sorry": false,
    "axioms": [
     "propext",
     "Classical.choice",
-    "Quot.sound",
-    "sorryAx"
+    "Quot.sound"
    ],
-   "nonstandard_axioms": [
-    "sorryAx"
-   ],
+   "nonstandard_axioms": [],
    "deps_declared": [
     "ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound",
     "ErdosSzekeres.ctx_part_positive_letters",
@@ -16856,18 +16853,28 @@
     "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles.match_3",
     "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles.match_5",
     "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles.match_7",
-    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles.match_9"
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles.match_9",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles._simp_1_1",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_7",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound.match_9",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_active_separated_companion_eleven_bound",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles._proof_1_6",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles._proof_1_7"
    ],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "closed",
+   "ready": false,
    "blocked_by": [],
-   "uncovered_axioms": [
-    "sorryAx"
-   ],
+   "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-18"
   },
   {
    "name": "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_low_straddles",
