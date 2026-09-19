@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-19T00:19:03Z",
- "git_sha": "aedc359a14ea255827ad83379b725abadd29fd3f",
+ "generated_at": "2026-09-19T00:43:45Z",
+ "git_sha": "162759952abd26fb6af44e7435caaf6f259c1e27",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15650,
- "tree_hash": "9df0748d700db1e5",
+ "modules": 15652,
+ "tree_hash": "d3c5aa7b2baf2fe0",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15649,
-  "scanned_constants": 0,
-  "scanned_modules": 1
+  "cached_modules": 15650,
+  "scanned_constants": 5,
+  "scanned_modules": 2
  },
  "nodes": [
   {
@@ -1018,6 +1018,56 @@
    "opened": "2026-09-12"
   },
   {
+   "name": "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound",
+   "module": "ESBlueprint.B.CtxActualMarkerRankPairUnionNineBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "An actual indexed marker on an axis of global at most five clips every active pure-rank interval away from one extreme endpoint, so the union of all ordered rank-pair triangles has cardinal at most nine.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_actual_marker_opposite_rank_interval_endpoint_exclusion"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (t : ErdosSzekeres.Ctx.Side) (N x : Nat),\n  List.instMembership.mem σ.levels N →\n    Eq (σ.sideAt N) t →\n      List.instMembership.mem (σ.extPositions N) x →\n        instLENat.le\n            (ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound.match_1 (fun t => Nat) t\n              (fun _ => σ.u) fun _ => σ.a)\n            5 →\n          have global :=\n            ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound.match_1 (fun t => Nat) t\n              (fun _ => σ.u) fun _ => σ.a;\n          have active :=\n            Finset.filter\n              (fun p => And (instLTNat.lt 0 (σ.cupLimit p p)) (instLTNat.lt 0 (σ.capLimit p p)))\n              σ.childPositions.toFinset;\n          have interval := fun p =>\n            Finset.Icc (instHAdd.hAdd (σ.leftExt t 0 p) 1)\n              (instHSub.hSub (instHSub.hSub global 1) (σ.rightExt t 0 p));\n          have pairs :=\n            active.biUnion fun p =>\n              Finset.filter (fun z => instLENat.le z.fst z.snd) ((interval p).product (interval p));\n          instLENat.le pairs.card 9",
+   "type_hash": "3f67407248201f20",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_actual_marker_opposite_rank_interval_endpoint_exclusion"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound.match_1",
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound._simp_1_1",
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound._simp_1_2",
+    "ErdosSzekeres.ctx_actual_marker_opposite_rank_interval_endpoint_exclusion.match_1",
+    "ErdosSzekeres.ctx_actual_marker_opposite_rank_interval_endpoint_exclusion",
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound._proof_1_4",
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound._proof_1_5",
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound._proof_1_6",
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound._proof_1_7",
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound._proof_1_8",
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound._proof_1_9"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-18"
+  },
+  {
    "name": "ErdosSzekeres.ctx_actual_marker_rank_square_potential",
    "module": "ESBlueprint.B.CtxActualMarkerRankSquarePotential",
    "ws": "B",
@@ -1970,6 +2020,55 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-16"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_binary_pruning_actual_marker_rank_pair_union_nine_bound",
+   "module": "ESBlueprint.B.CtxBinaryPruningActualMarkerRankPairUnionNineBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For an actual indexed marker on an axis of global at most five, the active ordered-rank-pair unions of any binary child pruning share the same source envelope and their union has cardinal at most nine.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound",
+     "ErdosSzekeres.ctx_part_pruning_history_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (t : ErdosSzekeres.Ctx.Side) (N x : Nat),\n      List.instMembership.mem σ.levels N →\n        Eq (σ.sideAt N) t →\n          List.instMembership.mem (σ.extPositions N) x →\n            instLENat.le\n                (ErdosSzekeres.ctx_binary_pruning_actual_marker_rank_pair_union_nine_bound.match_3\n                  (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                5 →\n              ∀ (color : Nat → Nat),\n                have support := fun c =>\n                  List.filter (fun p => Decidable.decide (Eq (color p) c)) σ.childPositions;\n                have group := fun c =>\n                  { a := σ.a, u := σ.u, k := σ.k,\n                    word :=\n                      List.map\n                        (fun p =>\n                          ErdosSzekeres.ctx_binary_pruning_actual_marker_rank_pair_union_nine_bound.match_1\n                            (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt p)\n                            (fun _ =>\n                              ite (List.instMembership.mem (support c) p)\n                                ErdosSzekeres.Ctx.Letter.child\n                                (ErdosSzekeres.Ctx.Letter.ext (instHAdd.hAdd σ.maxima.length 1)\n                                  ErdosSzekeres.Ctx.Side.lower))\n                            fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                        (List.range σ.word.length),\n                    maxima := σ.maxima };\n                have global :=\n                  ErdosSzekeres.ctx_binary_pruning_actual_marker_rank_pair_union_nine_bound.match_3\n                    (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a;\n                have active := fun c =>\n                  Finset.filter\n                    (fun p =>\n                      And (instLTNat.lt 0 ((group c).cupLimit p p))\n                        (instLTNat.lt 0 ((group c).capLimit p p)))\n                    (group c).childPositions.toFinset;\n                have interval := fun c p =>\n                  Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 p) 1)\n                    (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 p));\n                have pairs := fun c =>\n                  (active c).biUnion fun p =>\n                    Finset.filter (fun z => instLENat.le z.fst z.snd)\n                      ((interval c p).product (interval c p));\n                instLENat.le (Finset.instUnion.union (pairs 0) (pairs 1)).card 9",
+   "type_hash": "9939040e8d943905",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound",
+    "ErdosSzekeres.ctx_part_pruning_history_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_binary_pruning_actual_marker_rank_pair_union_nine_bound.match_3",
+    "ErdosSzekeres.ctx_binary_pruning_actual_marker_rank_pair_union_nine_bound.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_binary_pruning_actual_marker_rank_pair_union_nine_bound._simp_1_1",
+    "ErdosSzekeres.ctx_binary_pruning_actual_marker_rank_pair_union_nine_bound._simp_1_2",
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound.match_1",
+    "ErdosSzekeres.ctx_actual_marker_rank_pair_union_nine_bound"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_both_unit_parts_zone_budget",
