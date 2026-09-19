@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-19T01:06:56Z",
- "git_sha": "079e1afe14de265f99e4dca84b0d458f98ea0baf",
+ "generated_at": "2026-09-19T01:22:16Z",
+ "git_sha": "576337509b3b4c8305d41988567e6b35e7a42aeb",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15653,
- "tree_hash": "c487897bb21f0ea0",
+ "modules": 15654,
+ "tree_hash": "1a7cb611ecac19a5",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,7 +19,7 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15651,
+  "cached_modules": 15652,
   "scanned_constants": 15,
   "scanned_modules": 2
  },
@@ -17208,7 +17208,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-18"
   },
   {
    "name": "ErdosSzekeres.CtxTwoActualMarkerOppositeBoundaryCompanionNineBound",
@@ -18337,6 +18337,68 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-15"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between",
+   "module": "ESBlueprint.B.CtxTwoMarkerHighCapacityPairSupportTriangleOfOppositeBetween",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For the canonical high chosen-capacity pruning, an actual opposite marker between two chosen markers orients every active opposite-rank interval into one explicit three-rank window, so the entire high pair support lies in Q([2,4]) or Q([1,3]).",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+     "ErdosSzekeres.ctx_part_pruning_history_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (N M x y L z : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            ∀ (hNs : Eq (σ.sideAt N) s) (hMs : Eq (σ.sideAt M) s),\n              List.instMembership.mem (σ.extPositions N) x →\n                List.instMembership.mem (σ.extPositions M) y →\n                  ∀\n                    (hchosenGlobal :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_1\n                          σ t N M (fun s hne hNs hMs => Nat) s hne hNs hMs (fun hne hNs hMs => σ.u)\n                          fun hne hNs hMs => σ.a)\n                        5)\n                    (hopposite :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_3\n                          σ s N M hNs hMs (fun t hne hchosenGlobal => Nat) t hne hchosenGlobal\n                          (fun hne hchosenGlobal => σ.u) fun hne hchosenGlobal => σ.a)\n                        5),\n                    List.instMembership.mem σ.levels L →\n                      ∀ (hLt : Eq (σ.sideAt L) t),\n                        List.instMembership.mem (σ.extPositions L) z →\n                          Or (And (instLTNat.lt x z) (instLTNat.lt z y))\n                              (And (instLTNat.lt y z) (instLTNat.lt z x)) →\n                            have capacity := fun p =>\n                              ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_5\n                                (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ => σ.capLimit p p;\n                            have color := fun p => ite (instLENat.le (capacity p) 2) 0 1;\n                            have support := fun c =>\n                              List.filter (fun p => Decidable.decide (Eq (color p) c))\n                                σ.childPositions;\n                            have group := fun c =>\n                              { a := σ.a, u := σ.u, k := σ.k,\n                                word :=\n                                  List.map\n                                    (fun p =>\n                                      ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_7\n                                        (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt p)\n                                        (fun _ =>\n                                          ite (List.instMembership.mem (support c) p)\n                                            ErdosSzekeres.Ctx.Letter.child\n                                            (ErdosSzekeres.Ctx.Letter.ext\n                                              (instHAdd.hAdd σ.maxima.length 1)\n                                              ErdosSzekeres.Ctx.Side.lower))\n                                        fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                    (List.range σ.word.length),\n                                maxima := σ.maxima };\n                            have global :=\n                              ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_9\n                                σ s N M L hNs hMs (fun t hne hchosenGlobal hopposite hLt => Nat) t\n                                hne hchosenGlobal hopposite hLt\n                                (fun hne hchosenGlobal hopposite hLt => σ.u)\n                                fun hne hchosenGlobal hopposite hLt => σ.a;\n                            have active := fun c =>\n                              Finset.filter\n                                (fun p =>\n                                  And (instLTNat.lt 0 ((group c).cupLimit p p))\n                                    (instLTNat.lt 0 ((group c).capLimit p p)))\n                                (group c).childPositions.toFinset;\n                            have interval := fun c p =>\n                              Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 p) 1)\n                                (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 p));\n                            have Q := fun S =>\n                              Finset.filter (fun w => instLENat.le w.fst w.snd) (S.product S);\n                            have pairs := fun c => (active c).biUnion fun p => Q (interval c p);\n                            Or\n                              (And (instLTNat.lt x z)\n                                (And (instLTNat.lt z y)\n                                  (Finset.instHasSubset.Subset (pairs 1) (Q (Finset.Icc 2 4)))))\n                              (And (instLTNat.lt y z)\n                                (And (instLTNat.lt z x)\n                                  (Finset.instHasSubset.Subset (pairs 1) (Q (Finset.Icc 1 3)))))",
+   "type_hash": "7f299bb6d2c45346",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_part_pruning_history_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_1",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_3",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_5",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_7",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_9",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between._proof_1_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between._proof_1_2",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between._proof_1_3",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between._proof_1_4",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between._proof_1_5",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between._proof_1_6",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between._proof_1_7",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between._proof_1_8",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between._proof_1_9"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_six_bound_of_opposite_between",
