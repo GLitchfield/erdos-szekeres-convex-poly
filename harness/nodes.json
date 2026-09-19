@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-19T01:41:43Z",
- "git_sha": "3d00f65329d1d0016c8db9d68b68996f974f50c8",
+ "generated_at": "2026-09-19T14:10:06Z",
+ "git_sha": "eb421ac30725bf7b2b1155ac21dc745e2f9d994b",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15655,
- "tree_hash": "980063a4c64da033",
+ "modules": 15661,
+ "tree_hash": "9d83d6f89554e35b",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15653,
-  "scanned_constants": 14,
-  "scanned_modules": 2
+  "cached_modules": 15660,
+  "scanned_constants": 0,
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -2020,6 +2020,52 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-16"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_binary_capacity_pair_intersection_two_distinct_source_witnesses",
+   "module": "ESBlueprint.B.CtxBinaryCapacityPairIntersectionTwoDistinctSourceWitnesses",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "If the active low/high rank-pair intersection in the canonical binary capacity pruning has cardinality at least two, it contains two distinct ordered pairs, each equipped with explicit source-active low- and high-capacity witnesses whose original-history intervals contain both coordinates. This turns the exact companion residual from a cardinal obstruction into two concrete collision objects for the remaining geometric argument.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      have capacity := fun q =>\n        ErdosSzekeres.ctx_binary_capacity_pair_intersection_two_distinct_source_witnesses.match_1\n          (fun s => Nat) s (fun _ => σ.cupLimit q q) fun _ => σ.capLimit q q;\n      have color := fun q => ite (instLENat.le (capacity q) 2) 0 1;\n      have support := fun c =>\n        List.filter (fun q => Decidable.decide (Eq (color q) c)) σ.childPositions;\n      have group := fun c =>\n        { a := σ.a, u := σ.u, k := σ.k,\n          word :=\n            List.map\n              (fun q =>\n                ErdosSzekeres.ctx_binary_capacity_pair_intersection_two_distinct_source_witnesses.match_3\n                  (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt q)\n                  (fun _ =>\n                    ite (List.instMembership.mem (support c) q) ErdosSzekeres.Ctx.Letter.child\n                      (ErdosSzekeres.Ctx.Letter.ext (instHAdd.hAdd σ.maxima.length 1)\n                        ErdosSzekeres.Ctx.Side.lower))\n                  fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n              (List.range σ.word.length),\n          maxima := σ.maxima };\n      have global :=\n        ErdosSzekeres.ctx_binary_capacity_pair_intersection_two_distinct_source_witnesses.match_1\n          (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a;\n      have active := fun c =>\n        Finset.filter\n          (fun q =>\n            And (instLTNat.lt 0 ((group c).cupLimit q q)) (instLTNat.lt 0 ((group c).capLimit q q)))\n          (group c).childPositions.toFinset;\n      have interval := fun c q =>\n        Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 q) 1)\n          (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 q));\n      have pairs := fun c =>\n        (active c).biUnion fun q =>\n          Finset.filter (fun z => instLENat.le z.fst z.snd) ((interval c q).product (interval c q));\n      have sourceInterval := fun q =>\n        Finset.Icc (instHAdd.hAdd (σ.leftExt t 0 q) 1)\n          (instHSub.hSub (instHSub.hSub global 1) (σ.rightExt t 0 q));\n      have Witness := fun z =>\n        Exists fun low =>\n          Exists fun high =>\n            And (List.instMembership.mem σ.childPositions low)\n              (And (instLTNat.lt 0 (σ.cupLimit low low))\n                (And (instLTNat.lt 0 (σ.capLimit low low))\n                  (And (instLENat.le (capacity low) 2)\n                    (And (List.instMembership.mem σ.childPositions high)\n                      (And (instLTNat.lt 0 (σ.cupLimit high high))\n                        (And (instLTNat.lt 0 (σ.capLimit high high))\n                          (And (instLENat.le 3 (capacity high))\n                            (And (instLENat.le z.fst z.snd)\n                              (And (SetLike.instMembership.mem (sourceInterval low) z.fst)\n                                (And (SetLike.instMembership.mem (sourceInterval low) z.snd)\n                                  (And (SetLike.instMembership.mem (sourceInterval high) z.fst)\n                                    (SetLike.instMembership.mem (sourceInterval high)\n                                      z.snd))))))))))));\n      instLENat.le 2 (Finset.instInter.inter (pairs 0) (pairs 1)).card →\n        Exists fun z =>\n          And (SetLike.instMembership.mem (Finset.instInter.inter (pairs 0) (pairs 1)) z)\n            (Exists fun w =>\n              And (SetLike.instMembership.mem (Finset.instInter.inter (pairs 0) (pairs 1)) w)\n                (And (Ne z w) (And (Witness z) (Witness w))))",
+   "type_hash": "33d60660a23e6525",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_two_distinct_source_witnesses.match_1",
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_two_distinct_source_witnesses.match_3",
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses.match_1",
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses.match_3",
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_source_witnesses",
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_two_distinct_source_witnesses._proof_1_1",
+    "ErdosSzekeres.ctx_binary_capacity_pair_intersection_two_distinct_source_witnesses._proof_1_2"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-18"
   },
   {
    "name": "ErdosSzekeres.ctx_binary_pruning_actual_marker_rank_pair_union_nine_bound",
@@ -4310,8 +4356,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "claimed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -17090,7 +17136,74 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-18"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three",
+   "module": "ESBlueprint.B.CtxTwoActualMarkerOppositeBetweenElevenOrActiveStraddlePairIntersectionThree",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The actual opposite-between companion is bounded by eleven unless both globals equal five, active low-capacity children straddle its physical level-one marker, and the canonical low/high active rank-pair intersection has cardinality at least three. Two-marker collision amplification eliminates the exact-cardinality-two residual while retaining the marker occurrence, maximum one, every fuel, arbitrary histories, and both orientations.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_collisions",
+     "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three",
+     "ErdosSzekeres.ctx_part_positive_letters"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (r j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt r) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (N M x y : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            ∀ (hNs : Eq (σ.sideAt N) s) (hMs : Eq (σ.sideAt M) s),\n              List.instMembership.mem (σ.extPositions N) x →\n                List.instMembership.mem (σ.extPositions M) y →\n                  ∀\n                    (hchosenGlobal :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_1\n                          σ t N M (fun s hne hNs hMs => Nat) s hne hNs hMs (fun hne hNs hMs => σ.u)\n                          fun hne hNs hMs => σ.a)\n                        5)\n                    (hopposite :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_3\n                          σ s N M hNs hMs (fun t hne hchosenGlobal => Nat) t hne hchosenGlobal\n                          (fun hne hchosenGlobal => σ.u) fun hne hchosenGlobal => σ.a)\n                        5)\n                    (hchosen :\n                      ∀ (j : Nat),\n                        List.instMembership.mem (σ.levelsOn s 0) j →\n                          ∀ (z : Nat),\n                            List.instMembership.mem (σ.extPositions j) z → Or (Eq z x) (Eq z y))\n                    (keep : List Nat) (m n p high : Nat)\n                    (hp : List.instMembership.mem (σ.part keep s m).childPositions p),\n                    Eq n 1 →\n                      ∀\n                        (hhighmem :\n                          List.instMembership.mem\n                            (σ.part\n                                (List.filter\n                                  (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                  σ.childPositions)\n                                t n).childPositions\n                            high)\n                        (hhigh :\n                          instLENat.le 3\n                            (ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_5\n                              σ t N M x y keep m p\n                              (fun s hne hNs hMs hchosenGlobal hopposite hchosen hp => Nat) s hne\n                              hNs hMs hchosenGlobal hopposite hchosen hp\n                              (fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                                (σ.part\n                                      (List.filter\n                                        (fun x =>\n                                          Decidable.decide (Not (List.instMembership.mem keep x)))\n                                        σ.childPositions)\n                                      t n).cupLimit\n                                  high high)\n                              fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                              (σ.part\n                                    (List.filter\n                                      (fun x =>\n                                        Decidable.decide (Not (List.instMembership.mem keep x)))\n                                      σ.childPositions)\n                                    t n).capLimit\n                                high high)),\n                        Or (And (instLTNat.lt x p) (instLTNat.lt p y))\n                            (And (instLTNat.lt y p) (instLTNat.lt p x)) →\n                          have B :=\n                            σ.part\n                              (List.filter\n                                (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                σ.childPositions)\n                              t n;\n                          have capacity := fun q =>\n                            ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_7\n                              (fun s => Nat) s (fun _ => B.cupLimit q q) fun _ => B.capLimit q q;\n                          have color := fun q => ite (instLENat.le (capacity q) 2) 0 1;\n                          have support := fun c =>\n                            List.filter (fun q => Decidable.decide (Eq (color q) c))\n                              B.childPositions;\n                          have group := fun c =>\n                            { a := B.a, u := B.u, k := B.k,\n                              word :=\n                                List.map\n                                  (fun q =>\n                                    ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_9\n                                      (fun x => ErdosSzekeres.Ctx.Letter) (B.letterAt q)\n                                      (fun _ =>\n                                        ite (List.instMembership.mem (support c) q)\n                                          ErdosSzekeres.Ctx.Letter.child\n                                          (ErdosSzekeres.Ctx.Letter.ext\n                                            (instHAdd.hAdd B.maxima.length 1)\n                                            ErdosSzekeres.Ctx.Side.lower))\n                                      fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                  (List.range B.word.length),\n                              maxima := B.maxima };\n                          have global :=\n                            ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_11\n                              σ s N M x y hNs hMs hchosen keep m n p high hp\n                              (fun t hne hchosenGlobal hopposite hhighmem hhigh => Nat) t hne\n                              hchosenGlobal hopposite hhighmem hhigh\n                              (fun hne hchosenGlobal hopposite hhighmem hhigh => B.u)\n                              fun hne hchosenGlobal hopposite hhighmem hhigh => B.a;\n                          have active := fun c =>\n                            Finset.filter\n                              (fun q =>\n                                And (instLTNat.lt 0 ((group c).cupLimit q q))\n                                  (instLTNat.lt 0 ((group c).capLimit q q)))\n                              (group c).childPositions.toFinset;\n                          have interval := fun c q =>\n                            Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 q) 1)\n                              (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 q));\n                          have pairs := fun c =>\n                            (active c).biUnion fun q =>\n                              Finset.filter (fun z => instLENat.le z.fst z.snd)\n                                ((interval c q).product (interval c q));\n                          And (List.instMembership.mem (B.extPositions 1) p)\n                            (And (Eq (B.maximumAt 1) 1)\n                              (Or\n                                (And\n                                  (∀ (fuel : Nat),\n                                    instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel B) 11)\n                                  (instLENat.le B.bound 11))\n                                (And\n                                  (Eq\n                                    (ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_7\n                                      (fun s => Nat) s (fun _ => B.u) fun _ => B.a)\n                                    5)\n                                  (And\n                                    (Eq\n                                      (ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_7\n                                        (fun t => Nat) t (fun _ => B.u) fun _ => B.a)\n                                      5)\n                                    (And\n                                      (Exists fun q =>\n                                        And (SetLike.instMembership.mem (active 0) q)\n                                          (Exists fun r =>\n                                            And (SetLike.instMembership.mem (active 0) r)\n                                              (And (instLTNat.lt q p) (instLTNat.lt p r))))\n                                      (instLENat.le 3\n                                        (Finset.instInter.inter (pairs 0) (pairs 1)).card))))))",
+   "type_hash": "86ac3d472fb6dbef",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_collisions",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three",
+    "ErdosSzekeres.ctx_part_positive_letters"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_1",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_3",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_5",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_7",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_9",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_11",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_1_1",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_collisions.match_7",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_collisions.match_9",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_collisions.match_11",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_collisions.match_1",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_collisions.match_3",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_collisions.match_5",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_collisions",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three._proof_1_5",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_other_zero",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three.match_3",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three.match_5",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three._proof_1_6",
+    "ErdosSzekeres.ctx_two_marker_two_pair_collision_intersection_three.match_1"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-18"
   },
   {
    "name": "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_low_straddles",
@@ -17140,6 +17253,131 @@
     "ErdosSzekeres.ctx_part_pruning_history_transport",
     "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_low_straddles._proof_1_6",
     "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_low_straddles._proof_1_7"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-18"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support",
+   "module": "ESBlueprint.B.CtxTwoActualMarkerOppositeBetweenIntersectionThreeAndOrientedHighSupport",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Package the exact actual opposite-between companion residual together with its oriented high-capacity rank-pair support. Besides the transported physical level-one marker, maximum one, independent-fuel/full eleven alternative, exact global-five residual, active low straddle, and intersection cardinality at least three, the high support lies in Q([2,4]) or Q([1,3]) according to the physical order x<p<y or y<p<x.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three",
+     "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between",
+     "ErdosSzekeres.ctx_part_positive_letters"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (r j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt r) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (N M x y : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            ∀ (hNs : Eq (σ.sideAt N) s) (hMs : Eq (σ.sideAt M) s),\n              List.instMembership.mem (σ.extPositions N) x →\n                List.instMembership.mem (σ.extPositions M) y →\n                  ∀\n                    (hchosenGlobal :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_1\n                          σ t N M (fun s hne hNs hMs => Nat) s hne hNs hMs (fun hne hNs hMs => σ.u)\n                          fun hne hNs hMs => σ.a)\n                        5)\n                    (hopposite :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_3\n                          σ s N M hNs hMs (fun t hne hchosenGlobal => Nat) t hne hchosenGlobal\n                          (fun hne hchosenGlobal => σ.u) fun hne hchosenGlobal => σ.a)\n                        5)\n                    (hchosen :\n                      ∀ (j : Nat),\n                        List.instMembership.mem (σ.levelsOn s 0) j →\n                          ∀ (z : Nat),\n                            List.instMembership.mem (σ.extPositions j) z → Or (Eq z x) (Eq z y))\n                    (keep : List Nat) (m n p high : Nat)\n                    (hp : List.instMembership.mem (σ.part keep s m).childPositions p),\n                    Eq n 1 →\n                      ∀\n                        (hhighmem :\n                          List.instMembership.mem\n                            (σ.part\n                                (List.filter\n                                  (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                  σ.childPositions)\n                                t n).childPositions\n                            high)\n                        (hhigh :\n                          instLENat.le 3\n                            (ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_5\n                              σ t N M x y keep m p\n                              (fun s hne hNs hMs hchosenGlobal hopposite hchosen hp => Nat) s hne\n                              hNs hMs hchosenGlobal hopposite hchosen hp\n                              (fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                                (σ.part\n                                      (List.filter\n                                        (fun x =>\n                                          Decidable.decide (Not (List.instMembership.mem keep x)))\n                                        σ.childPositions)\n                                      t n).cupLimit\n                                  high high)\n                              fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                              (σ.part\n                                    (List.filter\n                                      (fun x =>\n                                        Decidable.decide (Not (List.instMembership.mem keep x)))\n                                      σ.childPositions)\n                                    t n).capLimit\n                                high high)),\n                        Or (And (instLTNat.lt x p) (instLTNat.lt p y))\n                            (And (instLTNat.lt y p) (instLTNat.lt p x)) →\n                          have B :=\n                            σ.part\n                              (List.filter\n                                (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                σ.childPositions)\n                              t n;\n                          have capacity := fun q =>\n                            ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_7\n                              (fun s => Nat) s (fun _ => B.cupLimit q q) fun _ => B.capLimit q q;\n                          have color := fun q => ite (instLENat.le (capacity q) 2) 0 1;\n                          have support := fun c =>\n                            List.filter (fun q => Decidable.decide (Eq (color q) c))\n                              B.childPositions;\n                          have group := fun c =>\n                            { a := B.a, u := B.u, k := B.k,\n                              word :=\n                                List.map\n                                  (fun q =>\n                                    ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_9\n                                      (fun x => ErdosSzekeres.Ctx.Letter) (B.letterAt q)\n                                      (fun _ =>\n                                        ite (List.instMembership.mem (support c) q)\n                                          ErdosSzekeres.Ctx.Letter.child\n                                          (ErdosSzekeres.Ctx.Letter.ext\n                                            (instHAdd.hAdd B.maxima.length 1)\n                                            ErdosSzekeres.Ctx.Side.lower))\n                                      fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                  (List.range B.word.length),\n                              maxima := B.maxima };\n                          have global :=\n                            ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_11\n                              σ s N M x y hNs hMs hchosen keep m n p high hp\n                              (fun t hne hchosenGlobal hopposite hhighmem hhigh => Nat) t hne\n                              hchosenGlobal hopposite hhighmem hhigh\n                              (fun hne hchosenGlobal hopposite hhighmem hhigh => B.u)\n                              fun hne hchosenGlobal hopposite hhighmem hhigh => B.a;\n                          have active := fun c =>\n                            Finset.filter\n                              (fun q =>\n                                And (instLTNat.lt 0 ((group c).cupLimit q q))\n                                  (instLTNat.lt 0 ((group c).capLimit q q)))\n                              (group c).childPositions.toFinset;\n                          have interval := fun c q =>\n                            Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 q) 1)\n                              (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 q));\n                          have Q := fun S =>\n                            Finset.filter (fun z => instLENat.le z.fst z.snd) (S.product S);\n                          have pairs := fun c => (active c).biUnion fun q => Q (interval c q);\n                          And\n                            (And (List.instMembership.mem (B.extPositions 1) p)\n                              (And (Eq (B.maximumAt 1) 1)\n                                (Or\n                                  (And\n                                    (∀ (fuel : Nat),\n                                      instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel B) 11)\n                                    (instLENat.le B.bound 11))\n                                  (And\n                                    (Eq\n                                      (ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_7\n                                        (fun s => Nat) s (fun _ => B.u) fun _ => B.a)\n                                      5)\n                                    (And\n                                      (Eq\n                                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_7\n                                          (fun t => Nat) t (fun _ => B.u) fun _ => B.a)\n                                        5)\n                                      (And\n                                        (Exists fun q =>\n                                          And (SetLike.instMembership.mem (active 0) q)\n                                            (Exists fun r =>\n                                              And (SetLike.instMembership.mem (active 0) r)\n                                                (And (instLTNat.lt q p) (instLTNat.lt p r))))\n                                        (instLENat.le 3\n                                          (Finset.instInter.inter (pairs 0) (pairs 1)).card)))))))\n                            (Or\n                              (And (instLTNat.lt x p)\n                                (And (instLTNat.lt p y)\n                                  (Finset.instHasSubset.Subset (pairs 1) (Q (Finset.Icc 2 4)))))\n                              (And (instLTNat.lt y p)\n                                (And (instLTNat.lt p x)\n                                  (Finset.instHasSubset.Subset (pairs 1) (Q (Finset.Icc 1 3))))))",
+   "type_hash": "863b30631e73a6",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between",
+    "ErdosSzekeres.ctx_part_positive_letters"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_1",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_3",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_5",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_7",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_9",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_11",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support.match_1_1",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_7",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_9",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_11",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_1",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_3",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three.match_5",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_straddle_pair_intersection_three",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_5",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_7",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_9",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_1",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between.match_3",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pair_support_triangle_of_opposite_between",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_intersection_three_and_oriented_high_support._proof_1_5"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-18"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound",
+   "module": "ESBlueprint.B.CtxTwoActualMarkerOppositeBetweenPairCardSumElevenBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For the actual opposite-between cut companion, an exact low/high active rank-pair cardinality sum at most eleven closes every fuel and the full companion bound while retaining the physical level-one marker and maximum one.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound",
+     "ErdosSzekeres.ctx_part_positive_letters"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (r j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt r) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (N M x y : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            ∀ (hNs : Eq (σ.sideAt N) s) (hMs : Eq (σ.sideAt M) s),\n              List.instMembership.mem (σ.extPositions N) x →\n                List.instMembership.mem (σ.extPositions M) y →\n                  ∀\n                    (hchosenGlobal :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_1\n                          σ t N M (fun s hne hNs hMs => Nat) s hne hNs hMs (fun hne hNs hMs => σ.u)\n                          fun hne hNs hMs => σ.a)\n                        5)\n                    (hopposite :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_3\n                          σ s N M hNs hMs (fun t hne hchosenGlobal => Nat) t hne hchosenGlobal\n                          (fun hne hchosenGlobal => σ.u) fun hne hchosenGlobal => σ.a)\n                        5)\n                    (hchosen :\n                      ∀ (j : Nat),\n                        List.instMembership.mem (σ.levelsOn s 0) j →\n                          ∀ (z : Nat),\n                            List.instMembership.mem (σ.extPositions j) z → Or (Eq z x) (Eq z y))\n                    (keep : List Nat) (m n p high : Nat)\n                    (hp : List.instMembership.mem (σ.part keep s m).childPositions p),\n                    Eq n 1 →\n                      ∀\n                        (hhighmem :\n                          List.instMembership.mem\n                            (σ.part\n                                (List.filter\n                                  (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                  σ.childPositions)\n                                t n).childPositions\n                            high)\n                        (hhigh :\n                          instLENat.le 3\n                            (ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_5\n                              σ t N M x y keep m p\n                              (fun s hne hNs hMs hchosenGlobal hopposite hchosen hp => Nat) s hne\n                              hNs hMs hchosenGlobal hopposite hchosen hp\n                              (fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                                (σ.part\n                                      (List.filter\n                                        (fun x =>\n                                          Decidable.decide (Not (List.instMembership.mem keep x)))\n                                        σ.childPositions)\n                                      t n).cupLimit\n                                  high high)\n                              fun hne hNs hMs hchosenGlobal hopposite hchosen hp =>\n                              (σ.part\n                                    (List.filter\n                                      (fun x =>\n                                        Decidable.decide (Not (List.instMembership.mem keep x)))\n                                      σ.childPositions)\n                                    t n).capLimit\n                                high high)),\n                        Or (And (instLTNat.lt x p) (instLTNat.lt p y))\n                            (And (instLTNat.lt y p) (instLTNat.lt p x)) →\n                          (have B :=\n                              σ.part\n                                (List.filter\n                                  (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                  σ.childPositions)\n                                t n;\n                            have capacity := fun q =>\n                              ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_7\n                                (fun s => Nat) s (fun _ => B.cupLimit q q) fun _ => B.capLimit q q;\n                            have color := fun q => ite (instLENat.le (capacity q) 2) 0 1;\n                            have support := fun c =>\n                              List.filter (fun q => Decidable.decide (Eq (color q) c))\n                                B.childPositions;\n                            have group := fun c =>\n                              { a := B.a, u := B.u, k := B.k,\n                                word :=\n                                  List.map\n                                    (fun q =>\n                                      ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_9\n                                        (fun x => ErdosSzekeres.Ctx.Letter) (B.letterAt q)\n                                        (fun _ =>\n                                          ite (List.instMembership.mem (support c) q)\n                                            ErdosSzekeres.Ctx.Letter.child\n                                            (ErdosSzekeres.Ctx.Letter.ext\n                                              (instHAdd.hAdd B.maxima.length 1)\n                                              ErdosSzekeres.Ctx.Side.lower))\n                                        fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                    (List.range B.word.length),\n                                maxima := B.maxima };\n                            have global :=\n                              ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_11\n                                σ s N M x y hNs hMs hchosen keep m n p high hp\n                                (fun t hne hchosenGlobal hopposite hhighmem hhigh => Nat) t hne\n                                hchosenGlobal hopposite hhighmem hhigh\n                                (fun hne hchosenGlobal hopposite hhighmem hhigh => B.u)\n                                fun hne hchosenGlobal hopposite hhighmem hhigh => B.a;\n                            have active := fun c =>\n                              Finset.filter\n                                (fun q =>\n                                  And (instLTNat.lt 0 ((group c).cupLimit q q))\n                                    (instLTNat.lt 0 ((group c).capLimit q q)))\n                                (group c).childPositions.toFinset;\n                            have interval := fun c q =>\n                              Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 q) 1)\n                                (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 q));\n                            have pairs := fun c =>\n                              (active c).biUnion fun q =>\n                                Finset.filter (fun z => instLENat.le z.fst z.snd)\n                                  ((interval c q).product (interval c q));\n                            instLENat.le (instHAdd.hAdd (pairs 0).card (pairs 1).card) 11) →\n                            have B :=\n                              σ.part\n                                (List.filter\n                                  (fun x => Decidable.decide (Not (List.instMembership.mem keep x)))\n                                  σ.childPositions)\n                                t n;\n                            And (List.instMembership.mem (B.extPositions 1) p)\n                              (And (Eq (B.maximumAt 1) 1)\n                                (And\n                                  (∀ (fuel : Nat),\n                                    instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel B) 11)\n                                  (instLENat.le B.bound 11)))",
+   "type_hash": "eb0b005237aa44a7",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound",
+    "ErdosSzekeres.ctx_part_positive_letters"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_1",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_3",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_5",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_7",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_9",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound.match_11",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound._simp_1_1",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_other_zero",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound._proof_1_4",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_pair_card_sum_eleven_bound._proof_1_5"
    ],
    "helpers": [],
    "status": "closed",
@@ -18459,6 +18697,67 @@
    "opened": "2026-09-18"
   },
   {
+   "name": "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness",
+   "module": "ESBlueprint.B.CtxTwoMarkerHighCapacityPruningRankPairBoundOfHighWitness",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "In an exact two-marker chosen-global-five context with a capacity-three witness, the canonical high-capacity pruning is bounded, for every fuel and in full, by the cardinality of its exact active opposite-rank pair support. This exports the sharp internal high-group estimate used by the mixed-overlap theorem so later collision classifications can use support cardinalities directly.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+     "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+     "ErdosSzekeres.ctx_part_pruning_history_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (N M x y high : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            ∀ (hNs : Eq (σ.sideAt N) s) (hMs : Eq (σ.sideAt M) s),\n              List.instMembership.mem (σ.extPositions N) x →\n                List.instMembership.mem (σ.extPositions M) y →\n                  ∀\n                    (hchosenGlobal :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness.match_1\n                          σ t N M (fun s hne hNs hMs => Nat) s hne hNs hMs (fun hne hNs hMs => σ.u)\n                          fun hne hNs hMs => σ.a)\n                        5)\n                    (hchosen :\n                      ∀ (j : Nat),\n                        List.instMembership.mem (σ.levelsOn s 0) j →\n                          ∀ (z : Nat),\n                            List.instMembership.mem (σ.extPositions j) z → Or (Eq z x) (Eq z y)),\n                    List.instMembership.mem σ.childPositions high →\n                      ∀\n                        (hhigh :\n                          instLENat.le 3\n                            (ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness.match_3\n                              σ t N M x y (fun s hne hNs hMs hchosenGlobal hchosen => Nat) s hne hNs\n                              hMs hchosenGlobal hchosen\n                              (fun hne hNs hMs hchosenGlobal hchosen => σ.cupLimit high high)\n                              fun hne hNs hMs hchosenGlobal hchosen => σ.capLimit high high)),\n                        have capacity := fun p =>\n                          ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness.match_5\n                            (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ => σ.capLimit p p;\n                        have color := fun p => ite (instLENat.le (capacity p) 2) 0 1;\n                        have support := fun c =>\n                          List.filter (fun p => Decidable.decide (Eq (color p) c)) σ.childPositions;\n                        have group := fun c =>\n                          { a := σ.a, u := σ.u, k := σ.k,\n                            word :=\n                              List.map\n                                (fun p =>\n                                  ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness.match_7\n                                    (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt p)\n                                    (fun _ =>\n                                      ite (List.instMembership.mem (support c) p)\n                                        ErdosSzekeres.Ctx.Letter.child\n                                        (ErdosSzekeres.Ctx.Letter.ext\n                                          (instHAdd.hAdd σ.maxima.length 1)\n                                          ErdosSzekeres.Ctx.Side.lower))\n                                    fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                (List.range σ.word.length),\n                            maxima := σ.maxima };\n                        have global :=\n                          ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness.match_9\n                            σ s N M x y high hNs hMs hchosen (fun t hne hchosenGlobal hhigh => Nat)\n                            t hne hchosenGlobal hhigh (fun hne hchosenGlobal hhigh => σ.u)\n                            fun hne hchosenGlobal hhigh => σ.a;\n                        have active := fun c =>\n                          Finset.filter\n                            (fun p =>\n                              And (instLTNat.lt 0 ((group c).cupLimit p p))\n                                (instLTNat.lt 0 ((group c).capLimit p p)))\n                            (group c).childPositions.toFinset;\n                        have interval := fun c p =>\n                          Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 p) 1)\n                            (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 p));\n                        have pairs := fun c =>\n                          (active c).biUnion fun p =>\n                            Finset.filter (fun z => instLENat.le z.fst z.snd)\n                              ((interval c p).product (interval c p));\n                        And\n                          (∀ (fuel : Nat),\n                            instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel (group 1))\n                              (pairs 1).card)\n                          (instLENat.le (group 1).bound (pairs 1).card)",
+   "type_hash": "1f2f39db9c8b772",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_part_pruning_history_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness.match_1",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness.match_3",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness.match_5",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness.match_7",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness.match_9",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_1",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_2",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_3",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five.match_1",
+    "ErdosSzekeres.ctx_capacity_three_children_exterior_of_two_levels_global_five",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound.match_1",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_4",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_5",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness._proof_1_6"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-18"
+  },
+  {
    "name": "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_six_bound_of_opposite_between",
    "module": "ESBlueprint.B.CtxTwoMarkerHighCapacityPruningSixBoundOfOppositeBetween",
    "ws": "B",
@@ -19394,6 +19693,63 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-16"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound",
+   "module": "ESBlueprint.B.CtxTwoMarkerMixedCapacityPairCardSumBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "In an exact two-marker chosen-global-five context with a capacity-three witness, the canonical binary low/high capacity pruning bounds every fuel approximation and the full context by the sum of the two exact active opposite-rank pair-support cardinalities. This exposes a direct support-size route to eleven independent of the coarser complete-triangle overlap estimate.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness",
+     "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness",
+     "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five",
+     "ErdosSzekeres.ctx_point_limits_eq_of_child_interval"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side) (hne : Ne s t) (N M x y high : Nat),\n      List.instMembership.mem σ.levels N →\n        List.instMembership.mem σ.levels M →\n          instLTNat.lt N M →\n            ∀ (hNs : Eq (σ.sideAt N) s) (hMs : Eq (σ.sideAt M) s),\n              List.instMembership.mem (σ.extPositions N) x →\n                List.instMembership.mem (σ.extPositions M) y →\n                  ∀\n                    (hchosenGlobal :\n                      instLENat.le\n                        (ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound.match_1 σ t\n                          N M (fun s hne hNs hMs => Nat) s hne hNs hMs (fun hne hNs hMs => σ.u)\n                          fun hne hNs hMs => σ.a)\n                        5)\n                    (hchosen :\n                      ∀ (j : Nat),\n                        List.instMembership.mem (σ.levelsOn s 0) j →\n                          ∀ (z : Nat),\n                            List.instMembership.mem (σ.extPositions j) z → Or (Eq z x) (Eq z y)),\n                    List.instMembership.mem σ.childPositions high →\n                      ∀\n                        (hhigh :\n                          instLENat.le 3\n                            (ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound.match_3\n                              σ t N M x y (fun s hne hNs hMs hchosenGlobal hchosen => Nat) s hne hNs\n                              hMs hchosenGlobal hchosen\n                              (fun hne hNs hMs hchosenGlobal hchosen => σ.cupLimit high high)\n                              fun hne hNs hMs hchosenGlobal hchosen => σ.capLimit high high)),\n                        have capacity := fun p =>\n                          ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound.match_5\n                            (fun s => Nat) s (fun _ => σ.cupLimit p p) fun _ => σ.capLimit p p;\n                        have color := fun p => ite (instLENat.le (capacity p) 2) 0 1;\n                        have support := fun c =>\n                          List.filter (fun p => Decidable.decide (Eq (color p) c)) σ.childPositions;\n                        have group := fun c =>\n                          { a := σ.a, u := σ.u, k := σ.k,\n                            word :=\n                              List.map\n                                (fun p =>\n                                  ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound.match_7\n                                    (fun x => ErdosSzekeres.Ctx.Letter) (σ.letterAt p)\n                                    (fun _ =>\n                                      ite (List.instMembership.mem (support c) p)\n                                        ErdosSzekeres.Ctx.Letter.child\n                                        (ErdosSzekeres.Ctx.Letter.ext\n                                          (instHAdd.hAdd σ.maxima.length 1)\n                                          ErdosSzekeres.Ctx.Side.lower))\n                                    fun j v => ErdosSzekeres.Ctx.Letter.ext j v)\n                                (List.range σ.word.length),\n                            maxima := σ.maxima };\n                        have global :=\n                          ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound.match_9 σ\n                            s N M x y high hNs hMs hchosen (fun t hne hchosenGlobal hhigh => Nat) t\n                            hne hchosenGlobal hhigh (fun hne hchosenGlobal hhigh => σ.u)\n                            fun hne hchosenGlobal hhigh => σ.a;\n                        have active := fun c =>\n                          Finset.filter\n                            (fun p =>\n                              And (instLTNat.lt 0 ((group c).cupLimit p p))\n                                (instLTNat.lt 0 ((group c).capLimit p p)))\n                            (group c).childPositions.toFinset;\n                        have interval := fun c p =>\n                          Finset.Icc (instHAdd.hAdd ((group c).leftExt t 0 p) 1)\n                            (instHSub.hSub (instHSub.hSub global 1) ((group c).rightExt t 0 p));\n                        have pairs := fun c =>\n                          (active c).biUnion fun p =>\n                            Finset.filter (fun z => instLENat.le z.fst z.snd)\n                              ((interval c p).product (interval c p));\n                        And\n                          (∀ (fuel : Nat),\n                            instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                              (instHAdd.hAdd (pairs 0).card (pairs 1).card))\n                          (instLENat.le σ.bound (instHAdd.hAdd (pairs 0).card (pairs 1).card))",
+   "type_hash": "6e2adec6f14c5cbe",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five",
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound.match_1",
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound.match_3",
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound.match_5",
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound.match_7",
+    "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_card_sum_bound.match_9",
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five.match_1",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness.match_3",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness.match_1",
+    "ErdosSzekeres.ctx_two_marker_low_capacity_pruning_rank_pair_bound_of_high_witness",
+    "ErdosSzekeres.ctx_two_marker_high_capacity_pruning_rank_pair_bound_of_high_witness"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-18"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_mixed_capacity_pair_intersection_one_eleven_bound",
