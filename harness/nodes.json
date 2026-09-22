@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-19T14:10:06Z",
- "git_sha": "eb421ac30725bf7b2b1155ac21dc745e2f9d994b",
+ "generated_at": "2026-09-22T20:14:24Z",
+ "git_sha": "ac5a9ba7556b5f5d0eb42a2c7458d18528083a01",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15661,
- "tree_hash": "9d83d6f89554e35b",
+ "modules": 15662,
+ "tree_hash": "623069f1721345ab",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15660,
+  "cached_modules": 15662,
   "scanned_constants": 0,
-  "scanned_modules": 1
+  "scanned_modules": 0
  },
  "nodes": [
   {
@@ -16960,6 +16960,99 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-18"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound",
+   "module": "ESBlueprint.B.CtxTwoActualMarkerOppositeBetweenCompanionElevenBound",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For the exact actual opposite-between cut companion, prove the sharp bound eleven directly, retaining the transported physical level-one marker, maximum one, the oriented capacity-three witness, arbitrary histories, both marker orientations, every fuel approximation, and the full recursive bound. Split physical child runs at the level-one marker. Since no indexed level lies below level one, each pruning is boundary-ready; the two ordered chosen-marker positions confine the resulting chosen-rank pair supports to complementary regions of cardinalities five and six. The maximum-one equality is retained explicitly in the boundary normalization. This stronger spatial decomposition needs neither the low/high pair-cardinality-sum premise nor the residual straddling and overlap assumptions.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five",
+     "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+     "ErdosSzekeres.ctx_part_pruning_history_transport",
+     "ErdosSzekeres.ctx_part_positive_letters"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (r j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt r) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound.match_1\n                              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                            5 →\n                          instLENat.le\n                              (ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound.match_1\n                                (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                              5 →\n                            (∀ (j : Nat),\n                                List.instMembership.mem (σ.levelsOn s 0) j →\n                                  ∀ (z : Nat),\n                                    List.instMembership.mem (σ.extPositions j) z →\n                                      Or (Eq z x) (Eq z y)) →\n                              ∀ (keep : List Nat) (m n p high : Nat),\n                                List.instMembership.mem (σ.part keep s m).childPositions p →\n                                  Eq n 1 →\n                                    List.instMembership.mem\n                                        (σ.part\n                                            (List.filter\n                                              (fun x =>\n                                                Decidable.decide\n                                                  (Not (List.instMembership.mem keep x)))\n                                              σ.childPositions)\n                                            t n).childPositions\n                                        high →\n                                      instLENat.le 3\n                                          (ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound.match_1\n                                            (fun s => Nat) s\n                                            (fun _ =>\n                                              (σ.part\n                                                    (List.filter\n                                                      (fun x =>\n                                                        Decidable.decide\n                                                          (Not (List.instMembership.mem keep x)))\n                                                      σ.childPositions)\n                                                    t n).cupLimit\n                                                high high)\n                                            fun _ =>\n                                            (σ.part\n                                                  (List.filter\n                                                    (fun x =>\n                                                      Decidable.decide\n                                                        (Not (List.instMembership.mem keep x)))\n                                                    σ.childPositions)\n                                                  t n).capLimit\n                                              high high) →\n                                        Or (And (instLTNat.lt x p) (instLTNat.lt p y))\n                                            (And (instLTNat.lt y p) (instLTNat.lt p x)) →\n                                          have B :=\n                                            σ.part\n                                              (List.filter\n                                                (fun x =>\n                                                  Decidable.decide\n                                                    (Not (List.instMembership.mem keep x)))\n                                                σ.childPositions)\n                                              t n;\n                                          And (List.instMembership.mem (B.extPositions 1) p)\n                                            (And (Eq (B.maximumAt 1) 1)\n                                              (And\n                                                (∀ (fuel : Nat),\n                                                  instLENat.le\n                                                    (ErdosSzekeres.Ctx.Context.boundFuel fuel B) 11)\n                                                (instLENat.le B.bound 11)))",
+   "type_hash": "921f91ce0bd5254e",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_part_positive_letters"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound.match_1",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound.match_1_1",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._simp_1_3",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_one",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.one_le_of_mem_levels",
+    "ErdosSzekeres.ctx_part_positive_letters",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_4",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._simp_1_5",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._simp_1_6",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_7",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_8",
+    "ErdosSzekeres.ctx_part_pruning_history_transport.match_1",
+    "ErdosSzekeres.ctx_part_pruning_history_transport",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_10",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_11",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_12",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_13",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound.match_1",
+    "ErdosSzekeres.ctx_active_boundary_marker_rank_pair_union_bound",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_16",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_17",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_18",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_19",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_20",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_21",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_22",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_23",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_24",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_25",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_26",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_27",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_28",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_29",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_30",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_31",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_32",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_33",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_34",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_35",
+    "ErdosSzekeres.ctx_two_actual_marker_opposite_between_companion_eleven_bound._proof_1_36",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five.match_1",
+    "ErdosSzekeres.ctx_bound_le_sum_run_group_prunings_of_actual_marker_global_five"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-22"
   },
   {
    "name": "ErdosSzekeres.ctx_two_actual_marker_opposite_between_eleven_or_active_low_straddles",
