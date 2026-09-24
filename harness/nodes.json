@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-23T13:56:46Z",
- "git_sha": "4f2b56fa307bec779a4fa33771faacc6eb126f0f",
+ "generated_at": "2026-09-24T03:24:10Z",
+ "git_sha": "a894a37f5f0a40d0e1c7bcc6df4ec13f66c6984e",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15664,
- "tree_hash": "3f4a8cf7bb04696f",
+ "modules": 15665,
+ "tree_hash": "26087ab4803863bb",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -19,9 +19,9 @@
   "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1"
  ],
  "taint": {
-  "cached_modules": 15663,
-  "scanned_constants": 16,
-  "scanned_modules": 1
+  "cached_modules": 15665,
+  "scanned_constants": 0,
+  "scanned_modules": 0
  },
  "nodes": [
   {
@@ -17990,15 +17990,15 @@
     "ErdosSzekeres.ctx_two_actual_marker_small_history_internal_chosen_kept_cut_six_bound._proof_1_14"
    ],
    "helpers": [],
-   "status": "claimed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
    ],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-23"
   },
   {
    "name": "ErdosSzekeres.ctx_two_boundary_marker_erase_normalize",
@@ -20483,6 +20483,51 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-15"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_eight_bound_of_opposite_global_le_four",
+   "module": "ESBlueprint.B.CtxTwoMarkerOlderExteriorInternalIntervalCutEightBoundOfOppositeGlobalLeFour",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For a convex internally bracketed chosen-kept interval exterior beyond the older of two actual chosen markers, opposite global at most four and opposite width at least two sharpen the full and independent-fuel cut sum to eight. This closes the nonsaturated opposite-global portion of the remaining k-six older-exterior obstruction.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_potential_bound"
+    ],
+    "consumer": "ErdosSzekeres.ctx_two_actual_marker_small_history_internal_chosen_kept_cut_six_bound"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        ∀ (N M x y : Nat),\n          List.instMembership.mem σ.levels N →\n            List.instMembership.mem σ.levels M →\n              instLTNat.lt N M →\n                Eq (σ.sideAt N) s →\n                  Eq (σ.sideAt M) s →\n                    List.instMembership.mem (σ.extPositions N) x →\n                      List.instMembership.mem (σ.extPositions M) y →\n                        instLENat.le\n                            (ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_eight_bound_of_opposite_global_le_four.match_1\n                              (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                            5 →\n                          (∀ (j : Nat),\n                              List.instMembership.mem (σ.levelsOn s 0) j →\n                                ∀ (z : Nat),\n                                  List.instMembership.mem (σ.extPositions j) z →\n                                    Or (Eq z x) (Eq z y)) →\n                            instLENat.le 2\n                                (instHSub.hSub\n                                  (ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_eight_bound_of_opposite_global_le_four.match_1\n                                    (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                  1) →\n                              instLENat.le\n                                  (ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_eight_bound_of_opposite_global_le_four.match_1\n                                    (fun t => Nat) t (fun _ => σ.u) fun _ => σ.a)\n                                  4 →\n                                ∀ (keep : List Nat) (q₀ l r m n : Nat),\n                                  List.instMembership.mem keep q₀ →\n                                    Or\n                                        (And (instLTNat.lt x y)\n                                          (∀ (p : Nat),\n                                            List.instMembership.mem keep p → instLTNat.lt y p))\n                                        (And (instLTNat.lt y x)\n                                          (∀ (p : Nat),\n                                            List.instMembership.mem keep p → instLTNat.lt p y)) →\n                                      (∀ (p : Nat),\n                                          List.instMembership.mem keep p →\n                                            List.instMembership.mem σ.childPositions p) →\n                                        List.instMembership.mem σ.childPositions l →\n                                          List.instMembership.mem σ.childPositions r →\n                                            Not (List.instMembership.mem keep l) →\n                                              Not (List.instMembership.mem keep r) →\n                                                (∀ (p : Nat),\n                                                    List.instMembership.mem keep p →\n                                                      And (instLTNat.lt l p) (instLTNat.lt p r)) →\n                                                  (∀ (p : Nat),\n                                                      List.instMembership.mem keep p →\n                                                        ∀ (q : Nat),\n                                                          List.instMembership.mem keep q →\n                                                            ∀ (z : Nat),\n                                                              List.instMembership.mem\n                                                                  σ.childPositions z →\n                                                                instLENat.le p z →\n                                                                  instLENat.le z q →\n                                                                    List.instMembership.mem keep\n                                                                      z) →\n                                                    have rest :=\n                                                      List.filter\n                                                        (fun x =>\n                                                          Decidable.decide\n                                                            (Not (List.instMembership.mem keep x)))\n                                                        σ.childPositions;\n                                                    And\n                                                      (∀ (f g : Nat),\n                                                        instLENat.le\n                                                          (instHAdd.hAdd\n                                                            (ErdosSzekeres.Ctx.Context.boundFuel f\n                                                              (σ.part keep s m))\n                                                            (ErdosSzekeres.Ctx.Context.boundFuel g\n                                                              (σ.part rest t n)))\n                                                          8)\n                                                      (instLENat.le\n                                                        (instHAdd.hAdd (σ.part keep s m).bound\n                                                          (σ.part rest t n).bound)\n                                                        8)",
+   "type_hash": "9c669577d23b4b44",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_potential_bound"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_eight_bound_of_opposite_global_le_four.match_1",
+    "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_eight_bound_of_opposite_global_le_four._proof_1_1",
+    "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_eight_bound_of_opposite_global_le_four._proof_1_2",
+    "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_eight_bound_of_opposite_global_le_four._proof_1_3",
+    "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_potential_bound.match_1",
+    "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_potential_bound"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_potential_bound",
