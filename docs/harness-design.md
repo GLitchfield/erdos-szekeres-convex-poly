@@ -545,7 +545,13 @@ can show it, and the harness checks it rather than asking for prose:
 - **A journal.** `es log "<text>" [--node]` writes a free-text event; `es journal --since 24h
   [--agent] [--node] [--kind]` merges claims, releases, expiries, jobs (submitted/finished
   with peak and seconds), falsifier runs, extracts, log entries and git commits into one
-  timeline. It is what an agent reads after `es status`.
+  timeline. It is what an agent reads after `es status`. Agents record every substantive
+  mathematical finding, including failed attempts that leave the plan unchanged, with the
+  exact assumptions, failure reason, and a job, receipt, or durable artifact reference.
+  Before a pause or handoff they link a research account under `runs/` from the journal;
+  the generated `es run handoff` bundle lists operations and usage but cannot supply the
+  mathematical interpretation. Read the relevant older journal history and latest
+  research handoff before choosing another attempt.
 - **Loud staleness.** `es status` and `es ready` compare `statements.lock` with `nodes.json`
   and print `index is stale: N node(s) … run es extract` when nodes were added since the
   last full extract (the index showed 3 nodes while the lock held 13 for a day before this).
@@ -649,7 +655,9 @@ fails when the two lists differ. The rules, as of 2026-09-07: state from `es sta
 decision that changes the plan; statements only via `es node add`/`restate`; `es search`
 before writing a lemma; one node per branch; no unallowlisted axioms; generated certificate
 modules only from the generators; `es note` for the weekly note; builds through `es build`/
-`es check`; git metadata in `.git-data`.
+`es check`; git metadata in `.git-data`. The current rules also require recording all
+research findings and failed approaches as they arise, linking durable evidence from
+`es log`, and writing a mathematical handoff before a pause or run close.
 
 ### 10.4 CI (`.github/workflows/ci.yml`)
 
