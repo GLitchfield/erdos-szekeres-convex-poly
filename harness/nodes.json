@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-24T03:24:10Z",
- "git_sha": "a894a37f5f0a40d0e1c7bcc6df4ec13f66c6984e",
+ "generated_at": "2026-09-28T18:05:12Z",
+ "git_sha": "65865d7ff06f7bf613aa22682c4e5d0bcab89338",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15665,
- "tree_hash": "26087ab4803863bb",
+ "modules": 15667,
+ "tree_hash": "2ef988d4fc8f9320",
  "nonstandard_axioms": [
   "lcCast",
   "Quot.lcInv",
@@ -20,8 +20,8 @@
  ],
  "taint": {
   "cached_modules": 15665,
-  "scanned_constants": 0,
-  "scanned_modules": 0
+  "scanned_constants": 16,
+  "scanned_modules": 2
  },
  "nodes": [
   {
@@ -5179,6 +5179,90 @@
    "opened": "2026-09-09"
   },
   {
+   "name": "ErdosSzekeres.ctx_bound_additive_three_blocks",
+   "module": "ESBlueprint.B.CtxBoundAdditiveThreeBlocks",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "Context-bound additivity for an arbitrary three-block partition of one contiguous child run: the two outer nonempty blocks form one part and the nonempty middle block forms the other. All three block lengths are arbitrary, with both orientations and every admissible coupling. The proposed proof reduces the outer runs to the proved singleton-ended sandwich using restricted contraction and external-letter invariance.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_single_run",
+    "falsifier": "ctx_approved_sandwich.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (b l m r : Nat),\n      Eq σ.childPositions (List.range' b (instHAdd.hAdd (instHAdd.hAdd l m) r)) →\n        instLTNat.lt 0 l →\n          instLTNat.lt 0 m →\n            instLTNat.lt 0 r →\n              ∀ (d : Nat),\n                instLENat.le 1 d →\n                  instLENat.le d (instHSub.hSub σ.k 2) →\n                    And\n                      (instLENat.le\n                        (instHAdd.hAdd\n                          (σ.part\n                              (instHAppendOfAppend.hAppend (List.range' b l)\n                                (List.range' (instHAdd.hAdd (instHAdd.hAdd b l) m) r))\n                              ErdosSzekeres.Ctx.Side.lower d).bound\n                          (σ.part (List.range' (instHAdd.hAdd b l) m) ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                        σ.bound)\n                      (instLENat.le\n                        (instHAdd.hAdd\n                          (σ.part\n                              (instHAppendOfAppend.hAppend (List.range' b l)\n                                (List.range' (instHAdd.hAdd (instHAdd.hAdd b l) m) r))\n                              ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                          (σ.part (List.range' (instHAdd.hAdd b l) m) ErdosSzekeres.Ctx.Side.lower\n                              d).bound)\n                        σ.bound)",
+   "type_hash": "45248c571dd09384",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_additive_three_blocks",
+    "falsifier": "ctx_approved_sandwich.py",
+    "falsifier_sha256": "c06aff42a9959f86b3159bda985f9dd36b082a68f54d1e476267e07068e1e699",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "45248c571dd09384",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 23.8,
+    "at": "2026-09-07T23:57:31Z",
+    "agent": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+    "witness": {
+     "mode": "sandwich",
+     "recursion": "literal Lean",
+     "unused_levels": true,
+     "exhaustive": false,
+     "cases": [
+      {
+       "parameters": [
+        5,
+        5,
+        6
+       ],
+       "checks": 84
+      },
+      {
+       "parameters": [
+        4,
+        5,
+        6
+       ],
+       "checks": 84
+      },
+      {
+       "parameters": [
+        4,
+        4,
+        5
+       ],
+       "checks": 82
+      }
+     ],
+     "counterexample": null,
+     "seconds": 23.375922179002373
+    }
+   },
+   "lock_ok": true,
+   "opened": "2026-09-07"
+  },
+  {
    "name": "ErdosSzekeres.ctx_bound_additive_three_blocks_of_uniform_contraction",
    "module": "ESBlueprint.B.CtxBoundAdditiveThreeBlocksOfUniformContraction",
    "ws": "B",
@@ -7132,6 +7216,90 @@
       }
      },
      "violations": []
+    }
+   },
+   "lock_ok": true,
+   "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_uniform_separator_contraction",
+   "module": "ESBlueprint.B.CtxBoundUniformSeparatorContraction",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "A context with two nonempty child runs separated entirely by copies of one level-one external letter has the same bound after shortening both child runs to singletons, provided all older external letters lie outside the two runs. Parameters, sibling maxima, and separator multiplicity stay fixed. This restricted conjecture is a proposed reduction for single-run sandwich additivity; unrestricted child contraction is false.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_single_run",
+    "falsifier": "ctx_approved_uniform.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (left right : List ErdosSzekeres.Ctx.Letter) (r m t : Nat) (side : ErdosSzekeres.Ctx.Side),\n      instLTNat.lt 0 r →\n        instLTNat.lt 0 m →\n          instLTNat.lt 0 t →\n            (∀ (x : ErdosSzekeres.Ctx.Letter),\n                List.instMembership.mem (instHAppendOfAppend.hAppend left right) x →\n                  Exists fun l =>\n                    Exists fun s =>\n                      And (instLENat.le 2 l) (Eq x (ErdosSzekeres.Ctx.Letter.ext l s))) →\n              Eq σ.word\n                  (instHAppendOfAppend.hAppend\n                    (instHAppendOfAppend.hAppend\n                      (instHAppendOfAppend.hAppend\n                        (instHAppendOfAppend.hAppend left\n                          (List.replicate r ErdosSzekeres.Ctx.Letter.child))\n                        (List.replicate m (ErdosSzekeres.Ctx.Letter.ext 1 side)))\n                      (List.replicate t ErdosSzekeres.Ctx.Letter.child))\n                    right) →\n                Eq σ.bound\n                  { a := σ.a, u := σ.u, k := σ.k,\n                      word :=\n                        instHAppendOfAppend.hAppend\n                          (instHAppendOfAppend.hAppend\n                            (instHAppendOfAppend.hAppend\n                              (instHAppendOfAppend.hAppend left\n                                (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                              (List.replicate m (ErdosSzekeres.Ctx.Letter.ext 1 side)))\n                            (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                          right,\n                      maxima := σ.maxima }.bound",
+   "type_hash": "4b3e67b06d755b0e",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_uniform_separator_contraction",
+    "falsifier": "ctx_approved_uniform.py",
+    "falsifier_sha256": "3562f5be26aaceeeb02fe659f36627057b15f1c1e2c194815d64601ad093e7d5",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "4b3e67b06d755b0e",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 23.7,
+    "at": "2026-09-07T23:55:16Z",
+    "agent": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+    "witness": {
+     "mode": "uniform",
+     "recursion": "literal Lean",
+     "unused_levels": true,
+     "exhaustive": false,
+     "cases": [
+      {
+       "parameters": [
+        5,
+        5,
+        6
+       ],
+       "checks": 84
+      },
+      {
+       "parameters": [
+        4,
+        5,
+        6
+       ],
+       "checks": 84
+      },
+      {
+       "parameters": [
+        4,
+        4,
+        5
+       ],
+       "checks": 82
+      }
+     ],
+     "counterexample": null,
+     "seconds": 23.213254834001418
     }
    },
    "lock_ok": true,
@@ -17990,8 +18158,8 @@
     "ErdosSzekeres.ctx_two_actual_marker_small_history_internal_chosen_kept_cut_six_bound._proof_1_14"
    ],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -20527,7 +20695,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-24"
   },
   {
    "name": "ErdosSzekeres.ctx_two_marker_older_exterior_internal_interval_cut_potential_bound",
