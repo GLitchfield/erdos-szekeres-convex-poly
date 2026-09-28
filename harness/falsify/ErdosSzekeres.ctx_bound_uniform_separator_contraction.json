@@ -1,0 +1,46 @@
+{
+ "node": "ErdosSzekeres.ctx_bound_uniform_separator_contraction",
+ "falsifier": "ctx_approved_uniform.py",
+ "falsifier_sha256": "3562f5be26aaceeeb02fe659f36627057b15f1c1e2c194815d64601ad093e7d5",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "4b3e67b06d755b0e",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 23.7,
+ "at": "2026-09-07T23:55:16Z",
+ "agent": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+ "witness": {
+  "mode": "uniform",
+  "recursion": "literal Lean",
+  "unused_levels": true,
+  "exhaustive": false,
+  "cases": [
+   {
+    "parameters": [
+     5,
+     5,
+     6
+    ],
+    "checks": 84
+   },
+   {
+    "parameters": [
+     4,
+     5,
+     6
+    ],
+    "checks": 84
+   },
+   {
+    "parameters": [
+     4,
+     4,
+     5
+    ],
+    "checks": 82
+   }
+  ],
+  "counterexample": null,
+  "seconds": 23.213254834001418
+ }
+}
