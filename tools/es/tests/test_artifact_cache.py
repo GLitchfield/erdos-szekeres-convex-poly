@@ -293,6 +293,7 @@ def test_native_writer_timeout_stops_process_group(cfg, tmp_path, monkeypatch):
     assert any(call[:1] == ("killpg",) and call[2] == signal.SIGTERM for call in calls)
 
 
+@pytest.mark.skipif(shutil.which("lake") is None, reason="Lake toolchain is required")
 def test_native_lake_cache_detaches_rebuild_and_restores_shared_private_artifact(cfg, tmp_path):
     """Exercise Lake's own cache links across two real pinned-toolchain checkouts."""
     cache = tmp_path / "cache"

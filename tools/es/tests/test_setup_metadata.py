@@ -194,6 +194,7 @@ def test_posthook_only_successful_acknowledged_lake_build(monkeypatch, cfg, tmp_
     assert (result.setup_cleanup is not None) is removed
 
 
+@pytest.mark.skipif(shutil.which("lake") is None, reason="Lake toolchain is required")
 def test_tiny_lake_recreates_pruned_setup_only_after_real_recompile(cfg, tmp_path):
     _enable(cfg)
     (cfg.root / "lakefile.toml").write_text(
@@ -216,6 +217,7 @@ def test_tiny_lake_recreates_pruned_setup_only_after_real_recompile(cfg, tmp_pat
     assert setup.is_file()
 
 
+@pytest.mark.skipif(shutil.which("lake") is None, reason="Lake toolchain is required")
 def test_native_module_plugin_setup_is_pruned_without_touching_shared_libraries(cfg, tmp_path):
     source_fixture = Path(__file__).parent / "fixtures" / "setup_plugin"
     root = tmp_path / "plugin"
