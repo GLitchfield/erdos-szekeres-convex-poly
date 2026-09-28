@@ -219,8 +219,27 @@ def run_add(ctx: Ctx, name: str, ws: str, kind: str, type: str, description: str
     add_root_import(cfg, module)
     try:
         elaborate_module(ctx, module)
+        incremental_reason: str | None = None
+
+        def closure_extract() -> tuple[dict, list, list[str]]:
+            """Targeted extraction; with a fingerprinted index, also merge this module into the
+            index in memory (reusing the cached targeted run) so the duplicate check covers every
+            node, not just the import closure."""
+            nonlocal incremental_reason
+            from es.commands.extract import NeedsFullExtract, run_incremental
+
+            out_payload, out_index, out_problems = targeted_extract(ctx, module)
+            try:
+                merged, _, _ = run_incremental(ctx, write=False, extra_modules=[module])
+            except NeedsFullExtract as exc:
+                incremental_reason = str(exc)
+                return out_payload, out_index, out_problems
+            global_dup = [p for p in merged.get("duplicate_problems", []) if full in p.split()]
+            dups = sorted(set(out_payload.get("duplicate_problems", [])) | set(global_dup))
+            return out_payload | {"duplicate_problems": dups}, out_index, out_problems
+
         if targeted:
-            payload, index, problems = targeted_extract(ctx, module)
+            payload, index, problems = closure_extract()
         else:
             try:
                 payload, index, problems = re_extract(ctx)
@@ -228,7 +247,7 @@ def run_add(ctx: Ctx, name: str, ws: str, kind: str, type: str, description: str
                 # The full extractor cannot start (memory). Hash the statement from this module's
                 # import closure alone; the full extract runs later.
                 res.line(f"full extract refused ({exc}); falling back to a targeted extract of {module}")
-                payload, index, problems = targeted_extract(ctx, module)
+                payload, index, problems = closure_extract()
                 targeted = True
     except Refused as exc:
         # Nothing ran: keep the elaborated module and the root import so the same command
@@ -244,7 +263,7 @@ def run_add(ctx: Ctx, name: str, ws: str, kind: str, type: str, description: str
         path.unlink(missing_ok=True)
         remove_root_import(cfg, module)
         raise LeanError(f"{full} did not appear in the extractor output; module {module}")
-    dup = [p for p in payload.get("duplicate_problems", []) if p.startswith(full + " ")]
+    dup = [p for p in payload.get("duplicate_problems", []) if full in p.split()]
     if dup and not force:
         path.unlink(missing_ok=True)
         remove_root_import(cfg, module)
@@ -256,12 +275,20 @@ def run_add(ctx: Ctx, name: str, ws: str, kind: str, type: str, description: str
     write_lock(cfg.lock_file, lock)
     if not targeted:
         re_extract(ctx)
+    elif incremental_reason is None:
+        from es.commands.extract import NeedsFullExtract, run_incremental
+        try:
+            run_incremental(ctx, extra_modules=[module])
+        except NeedsFullExtract as exc:  # the tree changed under us; leave the index for `es extract`
+            incremental_reason = str(exc)
     with Store(cfg) as st:
         st.event("node-added", full, ctx.agent, {"module": module, "kind": kind, "ws": ws, "targeted": targeted})
     res.line(f"added {full} in {path.relative_to(cfg.root)} (status {node['status']}); lock entry written")
-    if targeted:
+    if targeted and incremental_reason is None:
+        res.line("targeted extract; nodes.json/status.md updated incrementally (duplicate check covered every node)")
+    elif targeted:
         res.line(f"targeted extract: duplicate check covered only the import closure of {module}; "
-                 f"nodes.json/status.md not updated; run `es extract` when memory allows")
+                 f"nodes.json/status.md not updated ({incremental_reason})")
     for p in payload.get("problems", []):
         if p.startswith(full):
             res.line(f"  note: {p}")

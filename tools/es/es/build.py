@@ -240,7 +240,10 @@ def _run_guarded(
             "awk '/^oom_kill /{print $2}' \"$cg/memory.events\" 2>/dev/null || echo 0; } > \"$ES_STATS\"; "
             "exit $rc"
         )
-        props = ["-p", f"MemoryMax={memory_max}", "-p", "MemorySwapMax=0"]
+        # OOMPolicy=continue: when the kernel OOM-kills a compiler inside the scope, systemd must not
+        # stop the rest of the scope (its default for scopes), or the wrapper above dies before it
+        # records the peak and the kill, and the job reports rc=-15 with no OOM.
+        props = ["-p", f"MemoryMax={memory_max}", "-p", "MemorySwapMax=0", "-p", "OOMPolicy=continue"]
         if cpu_quota_cores:
             props += ["-p", f"CPUQuota={cpu_quota_cores * 100}%"]
         full = ["systemd-run", "--user", "--scope", "-q", f"--unit={unit}", *props, "--", "bash", "-c", inner, "_", *argv]
@@ -295,7 +298,8 @@ def _run_guarded(
                 rc = proc.wait()
     seconds = time.time() - start
     peak = ooms = 0
-    if stats.exists():
+    had_stats = stats.exists()
+    if had_stats:
         try:
             lines = stats.read_text().split()
             peak = int(lines[0]) // 1048576 if lines else 0
@@ -303,6 +307,8 @@ def _run_guarded(
         except (ValueError, OSError):
             pass
         stats.unlink(missing_ok=True)
+    if use_guard and rc != 0 and not had_stats:
+        ooms = max(ooms, scope_oom_kills(unit, since=start))
     if count_built and (rc == -15 or budget_exceeded):
         # the stopped scope's compilers take a few seconds to exit; do not let the next
         # invocation be refused for "a compiler is already running"
@@ -320,6 +326,26 @@ def _run_guarded(
     from es.resources import wait_scope_stopped
     acknowledged = not use_guard or wait_scope_stopped(unit+'.scope') is True
     return BuildResult(rc, seconds, built, str(log_path), argv, budget_exceeded, ooms, peak, tail=tail, termination_acknowledged=acknowledged)
+
+
+def scope_oom_kills(unit: str, *, since: float) -> int:
+    """1 when systemd's journal says the scope ended by an OOM kill, else 0.
+
+    The fallback for a scope stopped before its wrapper could write the stats file."""
+    try:
+        out = subprocess.run(["journalctl", "--user", "-u", f"{unit}.scope", "--since", f"@{int(since)}",
+                              "--no-pager", "-o", "cat"], capture_output=True, text=True, timeout=10).stdout
+    except (OSError, subprocess.SubprocessError):
+        return 0
+    return 1 if ("oom-kill" in out or "killed by the OOM killer" in out) else 0
+
+
+def build_reservation(cfg: Config) -> str:
+    """The largest cap one `es build` may request: its final parallel step, or a retry."""
+    caps = [cfg.build_memory_max,
+            str(cfg.get("build", "memory_max_retry", default="30G")),
+            str(cfg.get("build", "memory_max_final", default=cfg.get("build", "memory_max_retry", default="30G")))]
+    return max(caps, key=_mem_gib)
 
 
 def memory_for(cfg: Config, modules: list[str]) -> str:

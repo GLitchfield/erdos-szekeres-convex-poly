@@ -24,6 +24,17 @@ def _es_argv() -> list[str]:
     return [sys.executable, "-m", "es"]
 
 
+def _submit_reservation(cfg: Config, kind: str) -> str:
+    """Reserve what the queued command will request: a build's final step asks for the
+    final cap, so reserving only the per-module cap made it refuse itself inside its own job."""
+    if kind == "falsify":
+        return cfg.falsify_memory_max
+    if kind == "build":
+        from es.build import build_reservation
+        return build_reservation(cfg)
+    return cfg.build_memory_max
+
+
 def submit(cfg: Config, *, kind: str, node: str | None, argv: list[str], agent: str, budget_min: int | None = None,
            queue: bool = False) -> dict:
     job_id = time.strftime("%Y%m%d-%H%M%S-") + uuid.uuid4().hex[:6]
@@ -34,7 +45,7 @@ def submit(cfg: Config, *, kind: str, node: str | None, argv: list[str], agent: 
         "id": job_id, "kind": kind, "node": node, "argv": json.dumps(argv), "cwd": str(cfg.root),
         "status": "queued", "exit_code": None, "created_at": time.time(), "started_at": None, "finished_at": None,
         "log_path": str(log_path), "budget_min": budget_min, "agent": agent, "pid": None, "result_json": None,
-        "memory_max": cfg.falsify_memory_max if kind == 'falsify' else cfg.build_memory_max,
+        "memory_max": _submit_reservation(cfg, kind),
         "lock_key": 'worktree:' + str(cfg.root.resolve()),
     }
     with Store(cfg) as st:

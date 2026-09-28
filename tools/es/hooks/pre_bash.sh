@@ -39,7 +39,9 @@ if [ "$rebuild" = 1 ]; then
   echo "es: [certificate-rebuild] commit; extract consistency check skipped until the certificates are rebuilt" >&2
 else
   "$es" layers --base HEAD >/tmp/es-pre-bash.$$ 2>&1 || { echo "es layers failed:"; tail -20 /tmp/es-pre-bash.$$; fail=1; }
-  "$es" extract --check >>/tmp/es-pre-bash.$$ 2>&1 || { echo "es extract --check failed:"; tail -20 /tmp/es-pre-bash.$$; fail=1; }
+  # --changed: a commit that touches no index input and no index file passes at once; otherwise
+  # the check verifies by fingerprints without Lean, and only core changes need a full extraction.
+  "$es" extract --check --changed >>/tmp/es-pre-bash.$$ 2>&1 || { echo "es extract --check failed:"; tail -20 /tmp/es-pre-bash.$$; fail=1; }
 fi
 "$es" audit --changed >>/tmp/es-pre-bash.$$ 2>&1 || { echo "es audit --changed failed:"; tail -20 /tmp/es-pre-bash.$$; fail=1; }
 rm -f /tmp/es-pre-bash.$$

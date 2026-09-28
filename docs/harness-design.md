@@ -556,6 +556,58 @@ can show it, and the harness checks it rather than asking for prose:
   and print `index is stale: N node(s) … run es extract` when nodes were added since the
   last full extract (the index showed 3 nodes while the lock held 13 for a day before this).
 
+### 8.5 Incremental index (2026-09-28)
+
+A node's extractor record (statement, `sorry`, axioms, dependencies, tags) depends only on the
+sources in its import closure, the extractor and the extract configuration. Re-deriving the whole
+index from the whole compiled environment on every commit loaded every module, including 9,857
+certificate modules, into one 28–30 GiB process for a one-lemma change. It also meant a fresh
+worktree needed hours of cache restores before its first commit.
+
+- **Fingerprints.** Every full `es extract` writes `fingerprints` into `nodes.json`
+  (`tools/es/es/fingerprint.py`):
+  - `core` hashes, via git trees plus uncommitted changes, everything outside the blueprint
+    node modules: the core and certificate libraries, destinations, toolchain files, the
+    extractor template and the extract-relevant config sections;
+  - `blueprint` maps each blueprint module reachable from the root to a digest of the blueprint
+    sources in its import closure. Only blueprint imports are followed; `es layers` forbids core
+    modules from importing the blueprint.
+- **`es extract --incremental`** re-extracts only the modules whose fingerprints changed, in one
+  closure-sized extractor run under the targeted cap. It carries every other record over and
+  recomputes statuses, readiness, lock, duplicate and tag problems from the merged records. The
+  result equals a full extraction up to the volatile lines; the environment module count is
+  estimated and is volatile. It refuses (`NeedsFullExtract`) when `core` changed or the index
+  has no fingerprints.
+- **`es check --targeted` and `es node add --targeted`** now update `nodes.json` and `status.md`
+  this way. The merge reuses their targeted extraction from the cache (same tree hash and
+  import set), so it costs no second extractor run. `node add` gains a duplicate check over
+  every node, not just the new node's import closure.
+- **`es extract --check`**, which the commit hook runs:
+  - When all fingerprints match, it re-renders the index from the recorded records plus the
+    current lock, allowlist, falsifier results and claims, and compares. No Lean runs.
+  - When only blueprint modules changed, it names them and asks for `--incremental` instead of
+    starting a whole-blueprint build.
+  - Core changes (or an index without fingerprints) still take the full path.
+  - The nightly full extraction remains the backstop.
+  - The commit hook runs `es extract --check --changed`. A change that touches no extract state
+    directory, index file, lock, allowlist or falsifier result cannot make the index stale or
+    current, so it passes at once; tooling and docs commits no longer need a whole-blueprint
+    build. Without `--changed`, `--check` still answers "is the index current?".
+- **Cache fix.** A targeted extraction (`no_cache=True`) used to empty the whole extract cache,
+  evicting the full-environment entries that `cache_put` was written to protect. It now only
+  skips the lookup.
+- **Guard fixes.**
+  - Guarded scopes run with `OOMPolicy=continue`, so an OOM-killed compiler no longer makes
+    systemd stop the whole scope before the wrapper records the peak and the kill. Those jobs
+    used to report `rc=-15`, peak 0, 0 OOM kills. When stats are still missing, the journal is
+    consulted (`scope_oom_kills`).
+  - Queued `es build` jobs reserve the largest cap the build may request (`build_reservation`,
+    the final step), instead of the per-module cap their final step then exceeded ("requested
+    30G exceeds job reservation 20G").
+
+Adoption: the first full `es extract` with this code writes the fingerprints. Until then every
+path falls back to its previous behaviour.
+
 ---
 
 ## 9. Commands
