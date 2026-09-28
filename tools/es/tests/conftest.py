@@ -64,6 +64,10 @@ ttl_hours = 1
 
 @pytest.fixture
 def project(tmp_path, monkeypatch):
+    # These projects have independent databases. An outer research window or
+    # guarded job is not a valid identity in a test project's database.
+    for name in ("ES_WINDOW_ID", "ES_JOB_ID", "ES_STAGE_MEMORY", "ES_IN_GUARDED_STAGE", "ES_OPERATION_ID"):
+        monkeypatch.delenv(name, raising=False)
     root = tmp_path / "proj"
     (root / "harness").mkdir(parents=True)
     (root / "harness" / "config.toml").write_text(CONFIG)

@@ -9,6 +9,10 @@ build order; section 13 is the acceptance checklist to report against.
 Companion documents in `docs/`: `research-plan-2026-09-03.md` (the workstreams the
 seed nodes come from) and `review-2026-09-03.md` (why the project needs this).
 
+Proposed automation extension: [Automation plan, 12 September 2026](automation-plan-2026-09-12.md)
+defines the staged workflow, completion-delivery, proof/probe, and usage-accounting work.
+It is a proposal; it does not describe features already implemented.
+
 ---
 
 ## 1. Background a fresh session needs
@@ -454,6 +458,47 @@ for `ESBlueprint/**`, `ErdosSzekeres/**`, …) plus a hash of uncommitted change
 so the cache is valid per working-tree state of those directories and a commit that only
 touches notes, scripts or data does not force the extractor (36 GiB) to run again.
 
+### 8.2.1 Build-storage maintenance
+
+Filesystem maintenance and guarded writers use the same exact storage reservations. A
+`worktree:<resolved-root>` key excludes builds and maintenance in that checkout; additional
+namespaces such as `artifact-cache:<resolved-root>` protect shared stores. A multi-root
+operation acquires every key in one SQLite transaction and commits before touching files.
+It counts as one operation toward `max_parallel_builds`. An enclosing running job may add a
+supplemental key without counting itself twice, and that lease inherits the job's cgroup so
+scope reconciliation can release it only after confirmed termination. A standalone process
+killed outside a guarded job can leave a conservative lease that needs explicit
+reconciliation.
+
+Lake 4.29.1 writes large, untracked `*.setup.json` snapshots under `.lake/build/ir` before
+real compilation. Cached builds and `lake setup-file` do not require those persisted files;
+the next real compile recreates the relevant snapshot. The cleanup command is dry-run by
+default:
+
+```bash
+es storage prune-setup --out runs/setup-audit
+# Inspect the manifest, then run a separately receipted application.
+es storage prune-setup --apply --out runs/setup-prune
+```
+
+The command accepts only the configured relative IR root under a real, nonsymlink checkout
+path. It records device, inode, mode, size, timestamps, link count and allocated blocks,
+fsyncs the manifest, revalidates the complete set, and unlinks through directory file
+descriptors with no symlink following. Receipts distinguish logical bytes removed from
+allocated blocks whose final hard link was removed and record partial effects if an unlink
+fails. Missing roots are an empty operation; changed files, replaced ancestors, malformed
+manifests and active Lean compilers cause refusal. Plugin and dynlib entries inside a setup
+snapshot are references; cleanup never touches their shared-library files. A pinned 4.29.1
+module/plugin smoke verified cached builds, `lake setup-file`, pre-failure regeneration and a
+successful rebuild after pruning; its receipt is under
+`runs/storage-optimization-20260917/plugin-smoke/`.
+
+`[build.setup_metadata_cleanup] enabled = true` adds the same deletion after a successful,
+fully acknowledged `lake build`, before its reservation is released. The hook selects only
+modules named by Lake's `Built` records. It never runs for extractors, arbitrary guarded
+commands, failed builds or uncertain termination. Production configuration remains opt-in;
+the standalone command and each build receipt expose the manifest and receipt paths.
+
 ### 8.3 Agent identity
 
 `ES_AGENT` env var; default `<user>@<host>:<parent-pid>`. Claude Code sessions should
@@ -485,10 +530,28 @@ can show it, and the harness checks it rather than asking for prose:
   jobs one at a time; `es job requeue <id>` puts a failed job back. Synchronous
   `es check`/`es falsify`/`es build` runs are not job rows and are not counted against the
   budget; they are short and run under their own caps.
+- **Report completion.** Submitting a background job does not complete the agent's task.
+  Keep its reporting turn open and use `es job wait <id> --timeout 55` (also MCP `job_wait`).
+  Waiting is read-only, releases the database between observations, and returns a compact
+  `terminal` flag; a wait-window timeout neither cancels the job nor means it is finished.
+  A terminal job includes its exit code and output/log paths. Inspect these and report success,
+  failure, or a review gate without a user status request. The command's own exit zero means
+  the read succeeded, just as for `job status`; it does not mean the job or proof succeeded.
+  Native research runs now register an ordinary-code observer in `es worker`, with a separate
+  exact-thread callback challenge. Only a verified binding and an available worker allow the
+  coordinator to yield unattended; otherwise the reporting turn stays open. A saved checkpoint
+  is for resumption after interruption, not an automatic notification mechanism. See
+  `docs/automation-implementation.md` for commands, rollout status, and recovery limits.
 - **A journal.** `es log "<text>" [--node]` writes a free-text event; `es journal --since 24h
   [--agent] [--node] [--kind]` merges claims, releases, expiries, jobs (submitted/finished
   with peak and seconds), falsifier runs, extracts, log entries and git commits into one
-  timeline. It is what an agent reads after `es status`.
+  timeline. It is what an agent reads after `es status`. Agents record every substantive
+  mathematical finding, including failed attempts that leave the plan unchanged, with the
+  exact assumptions, failure reason, and a job, receipt, or durable artifact reference.
+  Before a pause or handoff they link a research account under `runs/` from the journal;
+  the generated `es run handoff` bundle lists operations and usage but cannot supply the
+  mathematical interpretation. Read the relevant older journal history and latest
+  research handoff before choosing another attempt.
 - **Loud staleness.** `es status` and `es ready` compare `statements.lock` with `nodes.json`
   and print `index is stale: N node(s) … run es extract` when nodes were added since the
   last full extract (the index showed 3 nodes while the lock held 13 for a day before this).
@@ -521,6 +584,7 @@ name and a JSON schema mirroring its arguments.
 | `es build <target>` | `core\|blueprint\|certs\|node <name>`, `--budget MIN`, `--async` | Wraps `lake build` with wall-clock budget and a summary line (modules built, seconds). | build fails; budget exceeded |
 | `es job run -- <command>` | `--why`, `--out` (required), `--node`, `--mem`, `--budget`, `--cpu`, `--queue` | Runs any command as a recorded job in the guarded scope (§8.4): purpose, cap, outputs, agent, peak and seconds in the job table; enforces the memory budget. | budget or availability exceeded; output outside `runs/`/`data/` |
 | `es job list\|status\|log\|cancel` | `<id>` | Job table access (list shows cap, peak, agent, why). `es worker` runs the loop (foreground; run under tmux/systemd-user); `es job exec <id>` is the internal runner. | — |
+| `es job wait <id>` | `--timeout` (0–60 seconds; default 55) | Read-only bounded wait; returns `terminal`/`timed_out`, and exit code plus output paths on completion. Repeat while pending, then inspect and report. | unknown job; invalid timeout |
 | `es log <text>` | `--node` | Free-text journal entry under the agent id. | — |
 | `es journal` | `--since 24h`, `--agent`, `--node`, `--kind`, `--limit`, `--no-commits` | Timeline of claims, releases, jobs, falsifier runs, extracts, log entries and commits. | — |
 | `es note` | `--since DATE` | Weekly note from status diffs and the attempts table: nodes opened/closed/refuted/retired, attempts, allowlist and lock changes, job time spent. Writes `docs/notes/<ISO-week>.md` with a `## Judgment` section left empty for the human. | — |
@@ -591,7 +655,9 @@ fails when the two lists differ. The rules, as of 2026-09-07: state from `es sta
 decision that changes the plan; statements only via `es node add`/`restate`; `es search`
 before writing a lemma; one node per branch; no unallowlisted axioms; generated certificate
 modules only from the generators; `es note` for the weekly note; builds through `es build`/
-`es check`; git metadata in `.git-data`.
+`es check`; git metadata in `.git-data`. The current rules also require recording all
+research findings and failed approaches as they arise, linking durable evidence from
+`es log`, and writing a mathematical handoff before a pause or run close.
 
 ### 10.4 CI (`.github/workflows/ci.yml`)
 
@@ -827,3 +893,9 @@ Two rules for the rewrite: (1) no operational document may describe a state that
 `es status` also describes — the frontier has exactly one home; (2) every retired
 document keeps its git history and gets the banner, so an agent that stumbles on it
 learns it is superseded rather than obeying it.
+# Automation implementation
+
+The [automation operating guide](automation-implementation.md) documents the current
+durable operations, proof finalization, reusable probes, context artifacts and usage
+comparison commands. It distinguishes tested behavior from client-delivery, publication
+and incremental-index rollout gates. The compiled Lean environment remains authoritative.

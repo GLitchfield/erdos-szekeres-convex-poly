@@ -10,7 +10,7 @@ from es.gitutil import head_sha, tree_hash
 from es.lean import run_extractor
 from es.lock import check_lock, read_lock
 from es.modules import scan_modules
-from es.nodes import compute, duplicates, nodes_from_extract, opened_date, render_status_md
+from es.nodes import compute, duplicates, nodes_from_extract, opened_dates, render_status_md
 from es.output import Result
 from es.spec import Arg, CommandSpec, command
 from es.store import Store
@@ -78,8 +78,9 @@ def run_extract(ctx: Ctx, *, check: bool = False, no_cache: bool = False, write:
     nodes, dests, problems = nodes_from_extract(cfg, raw)
     core_names = {r["name"] for r in index}
     compute(cfg, nodes, dests, core_names, claims=claims)
+    dates = opened_dates(cfg, [n.module for n in nodes])
     for n in nodes:
-        n.opened = opened_date(cfg, n.module)
+        n.opened = dates[n.module]
     lock = read_lock(cfg.lock_file)
     lock_problems = check_lock(lock, nodes)
     dup_problems = duplicates(nodes, index)

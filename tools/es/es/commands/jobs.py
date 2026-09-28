@@ -58,10 +58,10 @@ def run_run(ctx: Ctx, command: list[str], why: str, out: list[str], node: str | 
                      budget_min=budget, cpu_cores=cpu, queue=queue)
     if job.get("queued_for_worker"):
         return Result(EXIT_OK, {"job": job}, [f"queued {job['id']} (cap {job['memory_max']}): this process cannot reach the systemd user bus "
-                                              f"(sandbox), so an `es worker` running outside it will execute the job; `es job status {job['id'][:15]}` to follow"])
+                                              f"(sandbox), so an `es worker` running outside it will execute the job; `es job wait {job['id']}` to follow completion"])
     if queue:
-        return Result(EXIT_OK, {"job": job}, [f"queued {job['id']} (cap {job['memory_max']}) for `es worker`"])
-    return Result(EXIT_OK, {"job": job}, [f"submitted {job['id']} (cap {job['memory_max']}, log {job['log_path']}); `es job status {job['id'][:15]}` to follow"])
+        return Result(EXIT_OK, {"job": job}, [f"queued {job['id']} (cap {job['memory_max']}) for `es worker`; `es job wait {job['id']}` to follow completion"])
+    return Result(EXIT_OK, {"job": job}, [f"submitted {job['id']} (cap {job['memory_max']}, log {job['log_path']}); `es job wait {job['id']}` to follow completion"])
 
 
 def run_requeue(ctx: Ctx, id: str) -> Result:
@@ -70,9 +70,10 @@ def run_requeue(ctx: Ctx, id: str) -> Result:
         job = st.job(id)
         if job is None:
             raise UsageError(f"unknown job {id}")
-        if job["status"] in ("queued", "running"):
+        if job["status"] in ("queued", "starting", "running", "unknown_execution"):
             return Result(EXIT_CHECK_FAILED, {"job": job}, [f"{job['id']} is {job['status']}"])
-        st.job_update(job["id"], status="queued", exit_code=None, started_at=None, finished_at=None, pid=None, peak_mib=None, seconds=None)
+        st.job_update(job["id"], status="queued", exit_code=None, started_at=None, finished_at=None, pid=None, peak_mib=None, seconds=None,
+                      cancel_requested=0, process_start=None, heartbeat_at=None)
         st.event("job-requeued", job.get("node"), ctx.agent, {"id": job["id"], "previous": job["status"]})
     return Result(EXIT_OK, {"job": job["id"]}, [f"requeued {job['id']} for `es worker`"])
 
@@ -108,22 +109,43 @@ def run_log(ctx: Ctx, id: str, lines: int = 60) -> Result:
     return Result(EXIT_OK, {"job": job["id"], "log": tail}, tail or ["(empty log)"])
 
 
-def run_cancel(ctx: Ctx, id: str) -> Result:
-    cfg = ctx.cfg
-    with Store(cfg) as st:
-        job = st.job(id)
+def run_wait(ctx: Ctx, id: str, timeout: int = 55) -> Result:
+    """Wait without model polling, holding no database transaction between observations.
+
+    Like job status, exit zero means the read succeeded, not that the job succeeded.
+    A wait-window expiry leaves the job untouched and tells the caller to keep waiting.
+    """
+    if not 0 <= timeout <= 60:
+        raise UsageError("--timeout must be between 0 and 60 seconds")
+    deadline = time.monotonic() + timeout
+    while True:
+        with Store(ctx.cfg) as st:
+            job = st.job(id)
         if job is None:
             raise UsageError(f"unknown job {id}")
-        if job["status"] in ("done", "failed", "killed"):
-            return Result(EXIT_CHECK_FAILED, {"job": job}, [f"{job['id']} already {job['status']}"])
-        if job.get("pid"):
-            try:
-                os.killpg(os.getpgid(job["pid"]), signal.SIGTERM)
-            except (OSError, ProcessLookupError):
-                pass
-        st.job_update(job["id"], status="killed", finished_at=time.time())
-        st.event("job-killed", job.get("node"), ctx.agent, {"id": job["id"]})
-    return Result(EXIT_OK, {"job": job["id"]}, [f"killed {job['id']}"])
+        id = job["id"]  # resolve the prefix once, even if another job is submitted later
+        terminal = job["status"] in ("done", "failed", "killed")
+        remaining = deadline - time.monotonic()
+        if terminal or remaining <= 0:
+            payload = {"job_id": id, "status": job["status"], "terminal": terminal,
+                       "timed_out": not terminal}
+            if terminal:
+                payload.update(job_exit_code=job.get("exit_code"), log_path=job.get("log_path"),
+                               outputs=json.loads(job.get("outputs") or "[]"))
+                line = f"{id}: {job['status']} rc={job.get('exit_code')}; inspect outputs and report the result"
+            else:
+                line = f"{id}: {job['status']} (wait window expired; keep waiting)"
+            return Result(EXIT_OK, payload, [line])
+        time.sleep(min(1.0, remaining))
+
+
+def run_cancel(ctx: Ctx, id: str) -> Result:
+    from es.jobs import request_cancel
+    job = request_cancel(ctx.cfg, id)
+    acknowledged = job['status'] in ('done', 'failed', 'killed')
+    return Result(EXIT_OK, {'job_id': job['id'], 'status': job['status'], 'cancel_requested': True,
+                           'termination_acknowledged': acknowledged},
+                  [f"{job['id']}: " + ('terminal' if acknowledged else 'cancellation requested; awaiting worker acknowledgement')])
 
 
 def run_exec(ctx: Ctx, id: str) -> Result:
@@ -142,7 +164,12 @@ command(CommandSpec(name="job_status", cli=["job", "status"], help="Job status a
                     args=[Arg("id", "job id (prefix ok)", positional=True, required=True)]))
 command(CommandSpec(name="job_log", cli=["job", "log"], help="Tail of a job's log.", run=run_log,
                     args=[Arg("id", "job id (prefix ok)", positional=True, required=True), Arg("lines", "lines from the end", "int", default=60)]))
-command(CommandSpec(name="job_cancel", cli=["job", "cancel"], help="Kill a queued or running job.", run=run_cancel,
+command(CommandSpec(name="job_wait", cli=["job", "wait"],
+                    help="Wait up to 55 seconds for a terminal job state. Keep the reporting turn open, repeat while terminal=false, then inspect outputs and report success or failure. Does not wake a closed client or cancel the job.",
+                    run=run_wait,
+                    args=[Arg("id", "job id (prefix ok)", positional=True, required=True),
+                          Arg("timeout", "wait window in seconds (0–60); expiration is not job completion", "int", default=55)]))
+command(CommandSpec(name="job_cancel", cli=["job", "cancel"], help="Request cancellation; the owning worker acknowledges process termination.", run=run_cancel,
                     args=[Arg("id", "job id (prefix ok)", positional=True, required=True)]))
 command(CommandSpec(name="job_run", cli=["job", "run"],
                     help="Run a command as a recorded job: memory-guarded scope, purpose, node, cap, outputs, agent and measured peak are kept in the job table. Put the command after `--`.",

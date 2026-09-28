@@ -1,11 +1,11 @@
 # Machine-local research activity
 runs/*
-.es/
+.es
 !runs/.gitkeep
 
 # This managed checkout mounts `.git` read-only, so local Git metadata lives
 # here until the repository is cloned normally from GitHub.
-.git-data/
+.git-data
 
 # Python
 __pycache__/
@@ -14,7 +14,7 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 .venv/
-.lake/
+.lake
 lake-manifest.json
 
 # Editors and operating systems

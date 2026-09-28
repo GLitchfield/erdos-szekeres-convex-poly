@@ -1,0 +1,46 @@
+{
+ "node": "ErdosSzekeres.ctx_bound_external_letter_contraction",
+ "falsifier": "ctx_approved_external.py",
+ "falsifier_sha256": "e505342884d8070a90cbd5dee214a2c7286b6991ee7a78d6f2e4452d7bbf3b0c",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "e5206176d2d423c7",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 1.8,
+ "at": "2026-09-07T23:52:31Z",
+ "agent": "codex:01a07c5a-4a94-7173-865c-d990c69ab997",
+ "witness": {
+  "mode": "external",
+  "recursion": "literal Lean",
+  "unused_levels": true,
+  "exhaustive": false,
+  "cases": [
+   {
+    "parameters": [
+     5,
+     5,
+     6
+    ],
+    "checks": 143
+   },
+   {
+    "parameters": [
+     4,
+     5,
+     6
+    ],
+    "checks": 143
+   },
+   {
+    "parameters": [
+     4,
+     4,
+     5
+    ],
+    "checks": 143
+   }
+  ],
+  "counterexample": null,
+  "seconds": 1.4548947110015433
+ }
+}

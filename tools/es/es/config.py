@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import shutil
 import tomllib
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -256,7 +257,15 @@ class Config:
     # ---- build -------------------------------------------------------------
     @property
     def lake(self) -> str:
-        return str(self.get("build", "lake", default="lake"))
+        configured = str(self.get("build", "lake", default="lake"))
+        # User services may omit elan's bin directory from PATH. Honor custom
+        # executables and PATH first; the standard elan shim remains portable
+        # across user home directories and selects this checkout's toolchain.
+        if configured == "lake" and shutil.which(configured) is None:
+            shim = Path.home() / ".elan" / "bin" / "lake"
+            if shim.is_file() and os.access(shim, os.X_OK):
+                return str(shim)
+        return configured
 
     @property
     def core_budget_min(self) -> int:
@@ -291,6 +300,31 @@ class Config:
     @property
     def build_log_dir(self) -> Path:
         return self.es_home / "logs"
+
+    @property
+    def build_setup_cleanup_enabled(self) -> bool:
+        return bool(self.get("build", "setup_metadata_cleanup", "enabled", default=False))
+
+    @property
+    def build_setup_cleanup_ir_dir(self) -> Path:
+        value = str(self.get("build", "setup_metadata_cleanup", "ir_dir", default=".lake/build/ir"))
+        return Path(value)
+
+    @property
+    def build_setup_cleanup_toolchain(self) -> str:
+        return str(self.get("build", "setup_metadata_cleanup", "toolchain", default="leanprover/lean4:v4.29.1"))
+
+    @property
+    def build_artifact_cache_enabled(self) -> bool:
+        return bool(self.get("build", "artifact_cache", "enabled", default=False))
+
+    @property
+    def build_artifact_cache_root(self) -> Path | None:
+        value = self.get("build", "artifact_cache", "root")
+        if value is None or not str(value).strip():
+            return None
+        path = Path(str(value)).expanduser()
+        return path if path.is_absolute() else self.root / path
 
     # ---- extract -----------------------------------------------------------
     @property
@@ -367,6 +401,9 @@ class Config:
 
     @property
     def max_parallel_builds(self) -> int:
+        primary = primary_root(self.root)
+        if primary != self.root:
+            return load_config(primary).max_parallel_builds
         return int(self.get("jobs", "max_parallel_builds", default=1))
 
     @property
@@ -377,6 +414,9 @@ class Config:
     @property
     def jobs_memory_budget(self) -> str:
         """Sum of the memory caps of live jobs (queued or running) may not exceed this."""
+        primary = primary_root(self.root)
+        if primary != self.root:
+            return load_config(primary).jobs_memory_budget
         return str(self.get("jobs", "memory_budget", default="30G"))
 
     @property
@@ -456,6 +496,11 @@ def validate(cfg: Config) -> list[str]:
             problems.append(f"[layers] blueprint={cfg.blueprint_layer} is not a layer")
         if cfg.core_layer not in names:
             problems.append(f"[layers] core={cfg.core_layer} is not a layer")
+    ir_dir = cfg.build_setup_cleanup_ir_dir
+    if ir_dir.is_absolute() or not ir_dir.parts or any(part in ("", ".", "..") for part in ir_dir.parts):
+        problems.append("[build.setup_metadata_cleanup] ir_dir must be a normalized relative path")
+    if cfg.build_setup_cleanup_enabled and not cfg.build_setup_cleanup_toolchain.strip():
+        problems.append("[build.setup_metadata_cleanup] toolchain must be nonempty when enabled")
     if problems:
         raise ConfigError("; ".join(problems))
     return problems

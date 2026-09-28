@@ -105,6 +105,19 @@ batch_small = 6                        # independent small chain heads per lake 
 heavy_patterns = ["*CheckpointSegment*", "*CheckpointContext", "*CNFRaw*", "*CNFMid*"]  # always alone
 memory_max_retry = "30G"               # a single module that hits memory_max is retried once with this cap
 memory_max_final = "30G"               # the final parallel step (the root module maps every olean)
+
+[build.setup_metadata_cleanup]
+# Lake 4.29.1 leaves large untracked IR setup snapshots. Guarded successful
+# builds remove only their freshly written setup files and retain a receipt.
+enabled = true
+ir_dir = ".lake/build/ir"
+toolchain = "leanprover/lean4:v4.29.1"
+
+[build.artifact_cache]
+# Reviewed migration shares immutable certificate outputs through the pinned
+# Lake cache. Guarded builds hold its reservation and retain materialized paths.
+enabled = true
+
 [[build.memory_overrides]]             # modules known to need more than memory_max on their own
 pattern = "ErdosSzekeres.StructuralChargingNextState578UpperBracketFanCounterexample"
 memory_max = "28G"
@@ -120,7 +133,7 @@ ESBlueprint = "ESBlueprint"
 [extract]
 script = "ESBlueprint/Extract.lean"    # materialized from tools/es/lean/Extract.lean.tmpl
 imports = ["ESBlueprint", "ErdosSzekeres"]
-memory_max = "36G"                     # the environment maps every olean; proof terms are read once, sequentially
+memory_max = "28G"                     # fits the shared 30G budget with a 2G agent host; full extraction remains guarded
 budget_min = 180
 index_layers = ["ESCore", "ESEncodings"]  # layers whose declarations go into index.json (certificates excluded)
 missing_destinations = "error"
@@ -147,3 +160,38 @@ output_roots = ["runs", "data"]        # `es job run --out` paths must lie under
 
 [node]
 default_import = "ErdosSzekeres"       # narrower imports keep `es check` fast; override per node with --import
+
+[automation]
+output_bytes = 4096
+
+[automation.delivery]
+# Run notifications require a separately verified exact agent/thread binding.
+# Enabling the dispatcher does not certify the current interactive attachment.
+enabled = true
+
+[automation.monitor]
+# Ordinary-code polling has zero idle model requests. Only persistent scope
+# uncertainty or a terminal run is sent to the verified coordinator binding.
+unknown_execution_grace_seconds = 60
+provider_capacity_retries = 1           # fresh serverOverloaded only, frozen deadline; never quota/policy errors
+coordinator_output_target = 10000      # observational target, excludes separate final mathematical review
+
+[research.plugins.context_rank]
+module = "harness.research.context_rank"
+sources = ["harness/research/context_rank.py", "harness/research/primitives.py"]
+semantics = ["abstract-rank-strip-v1"]
+
+[research.plugins.recursive_cut]
+module = "harness.research.recursive_cut"
+sources = [
+  "harness/research/recursive_cut.py",
+  "harness/research/recursive.py",
+  "harness/research/primitives.py",
+  "scripts/decomposable_recursive_formula.py",
+  "scripts/decomposable_additivity_test.py",
+  "scripts/decomposable_depth2_tables.py",
+  "scripts/decomposable_context_functions.py",
+  "scripts/decomposable_run_extremal.py",
+  "scripts/enumerate_decomposable_colorings.py",
+]
+semantics = ["historical-f2-v1", "context-bound-zero-children-v1"]

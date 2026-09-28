@@ -1,0 +1,141 @@
+import ESBlueprint.B.CtxTwoActualMarkerCompanionMaximumBound
+import ESBlueprint.B.CtxSurroundedOlderMarkerComplementDoubledWidthBound
+
+set_option maxHeartbeats 2000000
+set_option maxRecDepth 15000
+
+namespace ErdosSzekeres
+
+open Ctx Ctx.Context
+
+/-- At k six, an internal cut whose kept interval surrounds the older of two actual chosen-axis markers has independent-fuel and full sums at most twelve when the complement maximum is two. The complement costs at most eight by the doubled-width theorem, while legal coupling makes the retained double complement maximum three and its sharp companion budget four.
+@node
+@ws B
+@kind formalization
+@depends ErdosSzekeres.ctx_surrounded_older_marker_complement_doubled_width_bound, ErdosSzekeres.ctx_two_actual_marker_companion_maximum_bound, ErdosSzekeres.ctx_part_positive_letters
+@consumer ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end -/
+theorem ctx_two_marker_older_surrounding_internal_complement_cut_six_bound_of_maximum_two (σ : Ctx.Context) (hpositive : ∀ p j v, σ.letterAt p = Ctx.Letter.ext j v → 1 ≤ j) (s t : Ctx.Side) (hne : s ≠ t) (N M x y : ℕ) (hN : N ∈ σ.levels) (hM : M ∈ σ.levels) (hNM : N < M) (hNs : σ.sideAt N = s) (hMs : σ.sideAt M = s) (hx : x ∈ σ.extPositions N) (hy : y ∈ σ.extPositions M) (hglobal : (match s with | Ctx.Side.lower => σ.u | Ctx.Side.upper => σ.a) ≤ 5) (hopposite : (match t with | Ctx.Side.lower => σ.u | Ctx.Side.upper => σ.a) ≤ 5) (hchosen : ∀ j ∈ σ.levelsOn s 0, ∀ p ∈ σ.extPositions j, p = x ∨ p = y) (keep : List ℕ) (a b l m n : ℕ) (ha : a ∈ keep) (hb : b ∈ keep) (hay : a < y) (hyb : y < b) (hkeep : ∀ p ∈ keep, p ∈ σ.childPositions) (hl : l ∈ σ.childPositions) (hlnot : l ∉ keep) (hconvex : ∀ p ∈ keep, ∀ q ∈ keep, ∀ z ∈ σ.childPositions, p ≤ z → z ≤ q → z ∈ keep) (hk : σ.k = 6) (hcoupling : m + n = σ.k - 1) (hmTwo : m = 2) : let rest := σ.childPositions.filter (· ∉ keep); (∀ f g, Ctx.Context.boundFuel f (σ.part rest s m) + Ctx.Context.boundFuel g (σ.part keep t n) ≤ 12) ∧ (σ.part rest s m).bound + (σ.part keep t n).bound ≤ 12 := by
+  classical
+  let w := (match t with | Side.lower => σ.u | Side.upper => σ.a) - 1
+  let rest := σ.childPositions.filter (· ∉ keep)
+  let α := σ.part rest s m
+  let β := σ.part keep t n
+  change (∀ f g, boundFuel f α + boundFuel g β ≤ 12) ∧ α.bound + β.bound ≤ 12
+  have hRest (p : ℕ) : p ∈ rest ↔ p ∈ σ.childPositions ∧ p ∉ keep := by
+    simp only [rest, List.mem_filter, decide_eq_true_eq]
+  have hChildα (p : ℕ) : p ∈ α.childPositions ↔ p ∈ rest := by
+    simp only [α, part_childPositions, rest, List.mem_filter, decide_eq_true_eq]
+    tauto
+  have hExtα (p : ℕ) : p ∈ α.extPositions 1 ↔
+      p ∈ σ.childPositions ∧ p ∈ keep := by
+    rw [part_extPositions_one hpositive]
+    simp only [rest, List.mem_filter, decide_eq_true_eq]
+    tauto
+  have hAα : a ∈ α.extPositions 1 := (hExtα a).mpr ⟨hkeep a ha, ha⟩
+  have hBα : b ∈ α.extPositions 1 := (hExtα b).mpr ⟨hkeep b hb, hb⟩
+  have hSideα : α.sideAt 1 = s := part_sideAt_one_of_mem hpositive rest s m hAα
+  have hPosα := ctx_part_positive_letters σ rest s m
+  have hOneα : 1 ∈ α.levels := by
+    simp only [α, part_levels, List.mem_cons, true_or]
+  have hNpos := one_le_of_mem_levels hN
+  have hMpos := one_le_of_mem_levels hM
+  have hNα : N + 1 ∈ α.levels := by
+    rw [part_levels]
+    exact List.mem_cons_of_mem _ (List.mem_map.mpr ⟨N, hN, rfl⟩)
+  have hMα : M + 1 ∈ α.levels := by
+    rw [part_levels]
+    exact List.mem_cons_of_mem _ (List.mem_map.mpr ⟨M, hM, rfl⟩)
+  have hNsα : α.sideAt (N + 1) = s :=
+    (part_sideAt_succ σ rest s m hNpos).trans hNs
+  have hMsα : α.sideAt (M + 1) = s :=
+    (part_sideAt_succ σ rest s m hMpos).trans hMs
+  have hXα : x ∈ α.extPositions (N + 1) := by
+    rw [part_extPositions_succ σ rest s m hNpos]
+    exact hx
+  have hYα : y ∈ α.extPositions (M + 1) := by
+    rw [part_extPositions_succ σ rest s m hMpos]
+    exact hy
+  have hAtLevel (j i p : ℕ) (hp : p ∈ σ.extPositions j)
+      (hp' : p ∈ σ.extPositions i) : j = i := by
+    have hj := (List.mem_filter.mp hp).2
+    have hi := (List.mem_filter.mp hp').2
+    cases hletter : σ.letterAt p <;> simp [hletter] at hj hi
+    omega
+  have hActual : ∀ j ∈ σ.levelsOn s 0, ∀ p ∈ σ.extPositions j,
+      (j = N ∧ p = x) ∨ (j = M ∧ p = y) := by
+    intro j hj p hp
+    rcases hchosen j hj p hp with hpx | hpy
+    · exact Or.inl ⟨hAtLevel j N x (by simpa only [hpx] using hp) hx, hpx⟩
+    · exact Or.inr ⟨hAtLevel j M y (by simpa only [hpy] using hp) hy, hpy⟩
+  have hAlphaActual : ∀ j ∈ α.levelsOn s 0, ∀ p ∈ α.extPositions j,
+      (j = 1 ∧ p ∈ keep) ∨ (j = N + 1 ∧ p = x) ∨ (j = M + 1 ∧ p = y) := by
+    intro j hj p hp
+    rw [part_levelsOn_self_zero hSideα] at hj
+    rcases List.mem_cons.mp hj with rfl | hj
+    · exact Or.inl ⟨rfl, ((hExtα p).mp hp).2⟩
+    · obtain ⟨i, hi, rfl⟩ := List.mem_map.mp hj
+      rw [part_extPositions_succ σ rest s m
+        (one_le_of_mem_levels (List.mem_filter.mp hi).1)] at hp
+      rcases hActual i hi p hp with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+      · exact Or.inr (Or.inl ⟨rfl, rfl⟩)
+      · exact Or.inr (Or.inr ⟨rfl, rfl⟩)
+  have hAlphaBelow (top j : ℕ) (hj : j ∈ α.levelsOn s top) :
+      j ∈ α.levelsOn s 0 ∧ (top = 0 ∨ j < top) := by
+    have hh := List.mem_filter.mp hj
+    have hp := of_decide_eq_true hh.2
+    exact ⟨List.mem_filter.mpr ⟨hh.1, by simp [hp.1]⟩, hp.2⟩
+  have hOutside : ∀ p ∈ α.childPositions, p < a ∨ b < p := by
+    intro p hp
+    have hh := (hRest p).mp ((hChildα p).mp hp)
+    by_contra h
+    have hpa : a ≤ p := by omega
+    have hpb : p ≤ b := by omega
+    exact hh.2 (hconvex a ha b hb p hh.1 hpa hpb)
+  have hBeforeN : ∀ j ∈ α.levelsOn s (N + 1), ∀ p ∈ α.extPositions j,
+      j = 1 := by
+    intro j hj p hp
+    have hj' := hAlphaBelow (N + 1) j hj
+    rcases hAlphaActual j hj'.1 p hp with ⟨hj1, _⟩ | ⟨hjN, _⟩ | ⟨hjM, _⟩
+    · exact hj1
+    · omega
+    · omega
+  have hBeforeM : ∀ j ∈ α.levelsOn s (M + 1), ∀ p ∈ α.extPositions j,
+      j = 1 ∨ (j = N + 1 ∧ p = x) := by
+    intro j hj p hp
+    have hj' := hAlphaBelow (M + 1) j hj
+    rcases hAlphaActual j hj'.1 p hp with ⟨hj1, _⟩ | ⟨hjN, hpx⟩ | ⟨hjM, _⟩
+    · exact Or.inl hj1
+    · exact Or.inr ⟨hjN, hpx⟩
+    · omega
+  have hOwn := ctx_surrounded_older_marker_complement_doubled_width_bound
+    α hPosα s t hne 1 (N + 1) (M + 1) a b x y hOneα hNα hMα
+    (by omega) (by omega) hSideα hNsα hMsα hAα hBα hXα hYα hay hyb
+    hOutside hBeforeN hBeforeM hglobal
+  change (∀ fuel, boundFuel fuel α ≤ 2 * w) ∧ α.bound ≤ 2 * w at hOwn
+  have hwUpper : w ≤ 4 := by
+    dsimp only [w]
+    cases t <;> simp only at hopposite ⊢ <;> omega
+  have hOwnEight : (∀ fuel, boundFuel fuel α ≤ 8) ∧ α.bound ≤ 8 :=
+    ⟨fun fuel => (hOwn.1 fuel).trans (by omega), hOwn.2.trans (by omega)⟩
+  have hDouble (v : Side) (c : ℕ) :
+      σ.part (σ.childPositions.filter (· ∉ rest)) v c = σ.part keep v c := by
+    apply part_congr
+    intro p hp
+    simp only [rest, List.mem_filter, decide_eq_true_eq, hp, true_and, not_not]
+  have hCompanion := ctx_two_actual_marker_companion_maximum_bound σ hpositive s t hne
+    N M x y hN hM hNM hNs hMs hx hy hglobal rest m n l a
+    ((hChildα l).mpr ((hRest l).mpr ⟨hl, hlnot⟩)) (hkeep a ha)
+    (by simp only [rest, List.mem_filter, decide_eq_true_eq, hkeep a ha,
+      true_and, not_true_eq_false, not_false_eq_true, ha])
+  rw [hDouble t n] at hCompanion
+  have hnThree : n = 3 := by omega
+  have hbudget : σ.k - n - 1 = 2 := by omega
+  have hBetaFour : (∀ fuel, boundFuel fuel β ≤ 4) ∧ β.bound ≤ 4 := by
+    change (∀ fuel, boundFuel fuel (σ.part keep t n) ≤ 4) ∧
+      (σ.part keep t n).bound ≤ 4
+    simpa only [hbudget] using hCompanion
+  exact ⟨
+    fun f g => (Nat.add_le_add (hOwnEight.1 f) (hBetaFour.1 g)).trans (by omega),
+    (Nat.add_le_add hOwnEight.2 hBetaFour.2).trans (by omega)⟩
+
+end ErdosSzekeres

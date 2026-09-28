@@ -26,10 +26,12 @@ class BuildResult:
     peak_mib: int = 0
     refused: str | None = None
     tail: list[str] = field(default_factory=list)
+    termination_acknowledged: bool = True
+    setup_cleanup: dict | None = None
 
     @property
     def ok(self) -> bool:
-        return self.rc == 0 and not self.budget_exceeded and self.refused is None
+        return self.rc == 0 and not self.budget_exceeded and self.refused is None and self.termination_acknowledged
 
     def summary(self) -> str:
         if self.refused:
@@ -37,6 +39,8 @@ class BuildResult:
         status = "ok" if self.ok else ("budget exceeded" if self.budget_exceeded else (f"rc={self.rc} (scope stopped: memory cap hit, see `journalctl --user`)" if self.rc == -15 and not self.peak_mib else f"rc={self.rc}"))
         extra = f", peak {self.peak_mib} MiB" if self.peak_mib else ""
         extra += f", oom_kills={self.oom_kills}" if self.oom_kills else ""
+        if self.setup_cleanup:
+            extra += f", setup metadata {self.setup_cleanup.get('status', 'unknown')}"
         return f"{status}: {self.built} module(s) built in {self.seconds:.0f}s{extra}; log {self.log_path}"
 
 
@@ -98,7 +102,91 @@ def _mem_gib(spec: str) -> float:
     return float(s) / 2**30
 
 
-def run_guarded(
+def run_guarded(cfg: Config, argv: list[str], **kwargs) -> BuildResult:
+    """Account synchronous calls too; nested stages inherit their enclosing cgroup."""
+    from es.store import Store
+    from es.jobs import live_memory_gib
+    import copy
+    job_id = kwargs.get('job_id') or os.environ.get('ES_JOB_ID')
+    memory = kwargs.get('memory_max') or cfg.build_memory_max
+    cap = _mem_gib(memory)
+    reservation = None
+    is_lake_build = argv[:2] == [cfg.lake, 'build']
+    storage_targets = []
+    if is_lake_build and cfg.build_artifact_cache_enabled:
+        from es.artifact_cache import default_cache_root, reject_symlink_ancestors
+        from es.storage import StorageTarget
+
+        cache_root = cfg.build_artifact_cache_root or default_cache_root(cfg)
+        reject_symlink_ancestors(cache_root)
+        cache_root = Path(os.path.abspath(os.fspath(cache_root)))
+        storage_targets.append(StorageTarget('artifact-cache', cache_root))
+        env_extra = dict(kwargs.get('env_extra') or {})
+        env_extra.update(LAKE_ARTIFACT_CACHE='true', LAKE_CACHE_DIR=str(cache_root))
+        kwargs['env_extra'] = env_extra
+    nested = os.environ.get('ES_IN_GUARDED_STAGE') == '1'
+    if nested:
+        outer_cap = os.environ.get('ES_STAGE_MEMORY', '0')
+        if cap > _mem_gib(outer_cap):
+            return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused=f'nested stage requests {memory} above enclosing cap {outer_cap}')
+        cfg = copy.deepcopy(cfg)
+        cfg.raw.setdefault('build', {})['guard'] = False
+        kwargs['force'] = True
+    try:
+        from es.storage import reserve_storage_in_transaction
+
+        with Store(cfg) as st:
+            st.conn.execute('BEGIN IMMEDIATE')
+            if job_id:
+                job = st.job(job_id)
+                if not job or job['status'] != 'running':
+                    return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused='enclosing job is not running')
+                reserved = job.get('memory_max') or cfg.build_memory_max
+                if cap > _mem_gib(reserved):
+                    return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused=f'requested {memory} exceeds job reservation {reserved}')
+                kwargs['job_id'] = job_id
+                # The outer scope of `es job run` guards arbitrary computation,
+                # not a worktree writer.  If that command starts a nested
+                # harness Lake build, the inner call acquires this target.
+                if job.get('kind') != 'run' or is_lake_build:
+                    reservation = reserve_storage_in_transaction(
+                        st, cfg, roots=[cfg.root], targets=storage_targets,
+                        reason='guarded command', owner_job_id=job_id
+                    )
+            else:
+                jobs = [dict(r) for r in st.conn.execute("SELECT * FROM jobs WHERE status IN ('starting','running','unknown_execution')")]
+                leased = st.conn.execute('SELECT COALESCE(SUM(memory_gib),0) FROM resource_leases').fetchone()[0]
+                if cap + live_memory_gib(cfg, jobs) + leased > _mem_gib(cfg.jobs_memory_budget):
+                    return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused=f'{memory} cannot fit shared budget {cfg.jobs_memory_budget}')
+                reservation = reserve_storage_in_transaction(
+                    st, cfg, roots=[cfg.root], targets=storage_targets,
+                    reason='guarded command', memory_gib=cap
+                )
+    except Exception as exc:
+        from es.errors import CheckFailed
+
+        if isinstance(exc, CheckFailed):
+            return BuildResult(125, 0, 0, str(kwargs['log_path']), argv, refused=str(exc))
+        raise
+    result = None
+    try:
+        result = _run_guarded(cfg, argv, lease_ids=reservation.lease_ids if reservation else (), **kwargs)
+        if result.ok and cfg.build_setup_cleanup_enabled and is_lake_build:
+            try:
+                from es.setup_metadata import post_build_cleanup
+
+                result.setup_cleanup = post_build_cleanup(cfg, Path(result.log_path))
+            except Exception as exc:
+                result.setup_cleanup = {'status': 'failed', 'error': f'{type(exc).__name__}: {exc}'}
+        return result
+    finally:
+        if reservation and result and result.termination_acknowledged:
+            from es.storage import release_storage_reservation
+
+            release_storage_reservation(cfg, reservation)
+
+
+def _run_guarded(
     cfg: Config,
     argv: list[str],
     *,
@@ -110,6 +198,8 @@ def run_guarded(
     cwd: Path | None = None,
     force: bool = False,
     count_built: bool = True,
+    job_id: str | None = None,
+    lease_ids: tuple[str, ...] = (),
 ) -> BuildResult:
     """Run ``argv`` (a lake/lean command) inside a transient user cgroup with a memory cap."""
     memory_max = memory_max or cfg.build_memory_max
@@ -127,8 +217,20 @@ def run_guarded(
         need = _mem_gib(memory_max) + 6
         if cfg.build_guard and available_gib() < need:
             return BuildResult(125, 0, 0, str(log_path), argv, refused=f"only {available_gib():.0f} GiB available; need {need:.0f} GiB for a {memory_max} guard")
-    use_guard = cfg.build_guard and shutil.which("systemd-run") is not None
+    if cfg.build_guard and shutil.which('systemd-run') is None:
+        return BuildResult(125,0,0,str(log_path),argv,refused='systemd-run is required for guarded execution')
+    use_guard = cfg.build_guard
     unit = f"es-{uuid.uuid4().hex[:10]}"
+    if use_guard:
+        from es.store import Store
+        with Store(cfg) as st:
+            if job_id: st.conn.execute('UPDATE jobs SET scope_unit=? WHERE id=?',(unit+'.scope',job_id))
+            if lease_ids:
+                placeholders = ','.join('?' for _ in lease_ids)
+                st.conn.execute(
+                    f'UPDATE resource_leases SET scope_unit=? WHERE id IN ({placeholders})',
+                    (unit+'.scope', *lease_ids),
+                )
     stats = log_path.with_suffix(".stats")
     if use_guard:
         inner = (
@@ -152,12 +254,36 @@ def run_guarded(
         log.write("$ " + " ".join(argv) + "\n")
         log.flush()
         proc = subprocess.Popen(full, stdout=log, stderr=subprocess.STDOUT, env=env, cwd=cwd or cfg.root, start_new_session=True)
+        cancelled = False
+        last_heartbeat = 0.0
         try:
-            rc = proc.wait(timeout=budget_s)
+            if job_id:
+                from es.store import Store
+                while proc.poll() is None:
+                    with Store(cfg) as st:
+                        row = st.job(job_id)
+                        cancelled = bool(row and row.get('cancel_requested'))
+                        if time.time()-last_heartbeat >= 5:
+                            last_heartbeat=time.time()
+                            st.job_update(job_id, heartbeat_at=last_heartbeat)
+                            if row and row.get('operation_id') and row.get('node'):
+                                operation=st.conn.execute('SELECT created_at,agent FROM operations WHERE id=?',(row['operation_id'],)).fetchone()
+                                if operation and last_heartbeat-operation['created_at'] < 86400:
+                                    st.conn.execute('UPDATE claims SET expires_at=MAX(expires_at,?) WHERE node=? AND agent=?',
+                                                    (min(last_heartbeat+3600,operation['created_at']+86400),row['node'],operation['agent']))
+                    if cancelled or (budget_s and time.time() - start >= budget_s):
+                        raise subprocess.TimeoutExpired(full, budget_s or 0)
+                    try:
+                        proc.wait(timeout=0.5)
+                    except subprocess.TimeoutExpired:
+                        pass
+                rc = proc.returncode
+            else:
+                rc = proc.wait(timeout=budget_s)
         except subprocess.TimeoutExpired:
-            budget_exceeded = True
+            budget_exceeded = not cancelled
             if use_guard:
-                subprocess.run(["systemctl", "--user", "stop", f"{unit}.scope"], capture_output=True)
+                subprocess.run(["systemctl", "--user", "stop", f"{unit}.scope"], capture_output=True, timeout=30)
             try:
                 os.killpg(proc.pid, 15)
             except OSError:
@@ -177,7 +303,7 @@ def run_guarded(
         except (ValueError, OSError):
             pass
         stats.unlink(missing_ok=True)
-    if rc == -15 or budget_exceeded:
+    if count_built and (rc == -15 or budget_exceeded):
         # the stopped scope's compilers take a few seconds to exit; do not let the next
         # invocation be refused for "a compiler is already running"
         for _ in range(60):
@@ -191,7 +317,9 @@ def run_guarded(
         return BuildResult(rc, seconds, 0, str(log_path), argv, refused=(
             "cannot create a memory-guarded scope from this process (the systemd user bus is unreachable: a sandbox?); "
             "run this from an unsandboxed shell, or one that can reach /run/user/<uid>/bus"), tail=tail)
-    return BuildResult(rc, seconds, built, str(log_path), argv, budget_exceeded, ooms, peak, tail=tail)
+    from es.resources import wait_scope_stopped
+    acknowledged = not use_guard or wait_scope_stopped(unit+'.scope') is True
+    return BuildResult(rc, seconds, built, str(log_path), argv, budget_exceeded, ooms, peak, tail=tail, termination_acknowledged=acknowledged)
 
 
 def memory_for(cfg: Config, modules: list[str]) -> str:

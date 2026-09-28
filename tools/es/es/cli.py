@@ -47,8 +47,9 @@ def build_parser() -> argparse.ArgumentParser:
     import es.commands  # noqa: F401  (registers commands)
 
     common = argparse.ArgumentParser(add_help=False)
-    common.add_argument("--json", action="store_true", help="emit JSON instead of tables")
-    common.add_argument("--root", help="project root (default: discover harness/config.toml upwards)")
+    common.add_argument("--json", action="store_true", default=argparse.SUPPRESS, help="emit JSON instead of tables")
+    common.add_argument("--root", default=argparse.SUPPRESS, help="project root (default: discover harness/config.toml upwards)")
+    common.add_argument("--full", action="store_true", default=argparse.SUPPRESS, help="explicitly fetch full output instead of an artifact reference")
     parser = argparse.ArgumentParser(prog="es", description="Blueprint harness: state derived from Lean.", parents=[common])
     parser.add_argument("--version", action="version", version=f"es {__version__}")
     sub = parser.add_subparsers(dest="cmd")
@@ -71,8 +72,9 @@ def build_parser() -> argparse.ArgumentParser:
 def dispatch(spec: CommandSpec, ns: argparse.Namespace) -> Result:
     from es.context import Ctx
 
-    root = Path(ns.root).resolve() if ns.root else None
-    ctx = Ctx.load(root, json_mode=ns.json)
+    root = Path(ns.root).resolve() if getattr(ns,'root',None) else None
+    ctx = Ctx.load(root, json_mode=getattr(ns,'json',False))
+    ctx.full_output = bool(getattr(ns,'full',False))
     kwargs = {}
     for a in spec.args:
         val = getattr(ns, a.name, a.default)
@@ -91,6 +93,8 @@ def dispatch(spec: CommandSpec, ns: argparse.Namespace) -> Result:
 def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     ns = parser.parse_args(argv)
+    for key, default in (('json',False),('root',None),('full',False)):
+        if not hasattr(ns,key): setattr(ns,key,default)
     spec = getattr(ns, "_spec", None)
     if spec is None:
         parser.print_help()
@@ -108,6 +112,29 @@ def main(argv: list[str] | None = None) -> int:
         res = Result(exit_code=EXIT_USAGE, payload={"error": f"{type(exc).__name__}: {exc}"}, human=[f"error: {exc}"])
         emit(res, ns.json, sys.stderr if not ns.json else sys.stdout)
         return EXIT_USAGE
+    original_output = {'payload':result.payload,'text':'\n'.join(result.human)}
+    if not ns.full and spec.name != 'artifact_show':
+        from es.artifacts import compact, put_json
+        from es.config import load_config
+        import json
+        cfg = load_config(Path(ns.root).resolve() if ns.root else None)
+        limit = int(cfg.get('automation','output_bytes',default=4096))
+        if ns.json and isinstance(result.payload,dict):
+            result.payload = compact(cfg,result.payload,limit)
+        elif len('\n'.join(result.human).encode()) > limit:
+            from es.errors import ReadOnly
+            try:
+                ref = put_json(cfg,{'payload':result.payload,'text':'\n'.join(result.human)},'command-detail-v1')
+                result.human = [f'Full {spec.name} output saved ({ref["bytes"]} bytes).',f'es artifact show {ref["id"]} --limit 4096  (or repeat with --full)']
+            except (OSError,ReadOnly):
+                pass  # Preserve read commands when no artifact can be written.
+    try:
+        from es.metrics import record
+        from es.context import Ctx
+        context=Ctx.load(Path(ns.root).resolve() if ns.root else None)
+        record(context.cfg,context.agent,spec.name,original_output,result.payload if ns.json else {'text':'\n'.join(result.human)})
+    except (EsError,OSError,ValueError,TypeError):
+        pass  # Delayed/missing metering never changes a completed command's outcome.
     emit(result, ns.json)
     return result.exit_code
 

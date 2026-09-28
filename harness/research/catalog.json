@@ -1,0 +1,634 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "research.recursive-bounds",
+      "kind": "primitive",
+      "title": "Recursive context-bound evaluator",
+      "summary": "Shared bounded-cache entry point for the retained interval-cut context evaluator with explicit semantics.",
+      "keywords": [
+        "recursive bounds",
+        "recursion",
+        "dynamic programming",
+        "memoized evaluator",
+        "context bound",
+        "interval cut",
+        "zero child",
+        "research primitive"
+      ],
+      "api": "evaluator(a, u, k, *, semantics, cache_size=16000) -> cached_bound(word, maxima)",
+      "example": "from harness.research.recursive import evaluator\nword = ('S', (1, 'lower'), 'S'); maxima = (1,)\nbound = evaluator(3, 3, 3, semantics='context-bound-zero-children-v1', cache_size=16000)(word, maxima)",
+      "semantics": "semantics is required: historical-f2-v1 drops zero-valued children, while context-bound-zero-children-v1 includes them and follows the intended Context.boundFuel arithmetic convention. This is a retained exploratory evaluator and is not a certificate of equivalence to Lean or a kernel-compiled proof.",
+      "source": {
+        "path": "harness/research/recursive.py",
+        "symbols": [
+          "evaluator"
+        ]
+      }
+    },
+    {
+      "id": "research.context-extension",
+      "kind": "primitive",
+      "title": "Context-side extension length",
+      "summary": "Computes the longest ordered extension through selected external levels on one side of a position.",
+      "keywords": [
+        "extension",
+        "context levels",
+        "external markers",
+        "left right chain",
+        "dynamic programming",
+        "rank primitive"
+      ],
+      "api": "extension(word, depth, side, p, left) -> int",
+      "example": "from harness.research.primitives import extension\nlength = extension(('S', (1, 'lower'), 'S'), 1, 'lower', 2, True)",
+      "semantics": "Starts with position p at length zero, scans levels 1..depth whose first marker has the requested side, and extends strictly left or right through their marker positions. It is exploratory rank-primitives-v1 arithmetic and establishes no Lean theorem.",
+      "source": {
+        "path": "harness/research/primitives.py",
+        "symbols": [
+          "extension"
+        ]
+      }
+    },
+    {
+      "id": "research.rank-clip-potential",
+      "kind": "primitive",
+      "title": "Rectangle rank clipping and potential",
+      "summary": "Clips interval rows to a chosen side and evaluates the retained edge/rectangle potential P.",
+      "keywords": [
+        "clip",
+        "P potential",
+        "rectangle rows",
+        "rank strip",
+        "interval family",
+        "partition potential"
+      ],
+      "api": "clip(rows, keep, axis) -> clipped_rows; P(rows) -> int",
+      "example": "from harness.research.primitives import P, clip\nrows = [(1, 2, 1, 3), (2, 3, 2, 4)]\nvalue = P(clip(rows, {0}, 0))",
+      "semantics": "Rows are four integer endpoints (x-low, x-high, y-low, y-high); axis is 0 or 1. clip retains indexed rows while tightening the selected axis from removed rows. P is the minimum of a sparse edge/unit count and a rectangular rank cap. These abstract intervals are not automatically geometric realizations or Lean proofs.",
+      "source": {
+        "path": "harness/research/primitives.py",
+        "symbols": [
+          "clip",
+          "P"
+        ]
+      }
+    },
+    {
+      "id": "research.context-part",
+      "kind": "primitive",
+      "title": "Child context construction",
+      "summary": "Builds one child row after a cut by retaining selected S positions and inserting a level-one sibling.",
+      "keywords": [
+        "part",
+        "child context",
+        "split",
+        "keep positions",
+        "sibling maximum",
+        "coupling"
+      ],
+      "api": "part(row, keep, side, m) -> child_row",
+      "example": "from harness.research.primitives import part\nrow = {'word': ('S', (1, 'lower'), 'S'), 'maxima': (1,), 'a': 4, 'u': 4, 'k': 5, 'chosen': 'lower'}\nchild = part(row, {0}, 'lower', 2)",
+      "semantics": "S positions in keep remain S; every other S becomes a new level-one external marker with the supplied side; prior external levels shift by one and m is prepended to maxima. Global a/u/k/chosen fields are copied unchanged. This constructs exploratory evaluator input, not a geometric witness.",
+      "source": {
+        "path": "harness/research/primitives.py",
+        "symbols": [
+          "part"
+        ]
+      }
+    },
+    {
+      "id": "research.ordered-cover",
+      "kind": "primitive",
+      "title": "Ordered rectangle cover bound",
+      "summary": "Computes the minimum additive rectangular cover bound over consecutive blocks.",
+      "keywords": [
+        "ordered cover",
+        "rectangle cover",
+        "dynamic programming",
+        "consecutive blocks",
+        "rank bound",
+        "cover cost"
+      ],
+      "api": "ordered_cover(record) -> int",
+      "example": "from harness.research.primitives import ordered_cover\nrecord = {'rectangles': [(0, 1, 2, 1, 3), (1, 2, 3, 2, 4)]}\nbound = ordered_cover(record)",
+      "semantics": "Each rectangle is (label, x-low, x-high, y-low, y-high). Dynamic programming partitions the ordered list into consecutive blocks and sums (|X|-1)(|Y|-1)+1 for each block. The value is an exploratory combinatorial bound, not proof credit.",
+      "source": {
+        "path": "harness/research/primitives.py",
+        "symbols": [
+          "ordered_cover"
+        ]
+      }
+    },
+    {
+      "id": "research.maximum-bounds",
+      "kind": "primitive",
+      "title": "Indexed-maximum candidate bounds",
+      "summary": "Returns every retained candidate bound triggered by a context row's indexed sibling maxima.",
+      "keywords": [
+        "maximum bounds",
+        "indexed maximum",
+        "saturation",
+        "thin history",
+        "candidate inequality",
+        "normalization"
+      ],
+      "api": "maximum_bounds(row) -> list[{bound, reason, level}]",
+      "example": "from harness.research.primitives import maximum_bounds\nrow = {'word': ((1, 'lower'), 'S'), 'maxima': (3,), 'a': 5, 'u': 5, 'k': 6, 'chosen': 'lower'}\ncandidates = maximum_bounds(row)",
+      "semantics": "Applies the retained k-2, k-3, k-4 and younger-marker formulas level by level, choosing the opposite global cap/cup parameter from the marker side. Returned inequalities are exploratory candidates and must be proved separately in Lean.",
+      "source": {
+        "path": "harness/research/primitives.py",
+        "symbols": [
+          "maximum_bounds"
+        ]
+      }
+    },
+    {
+      "id": "research.sole-opposite-normalize",
+      "kind": "primitive",
+      "title": "Sole opposite-level normalization",
+      "summary": "Normalizes a context whose only level opposite the chosen side is level one.",
+      "keywords": [
+        "sole opposite normalize",
+        "context normalization",
+        "remove level",
+        "chosen side",
+        "sibling history",
+        "maximum transfer"
+      ],
+      "api": "sole_opposite_normalize(row) -> normalized_row",
+      "example": "from harness.research.primitives import sole_opposite_normalize\nrow = {'word': ((1, 'upper'), 'S'), 'maxima': (2,), 'a': 5, 'u': 5, 'k': 6, 'chosen': 'lower'}\nnormalized = sole_opposite_normalize(row)",
+      "semantics": "Requires level one to be opposite chosen and every later level not opposite. It removes the first maximum, rotates level-one markers to the former maximum depth, decrements other marker levels, and tightens the corresponding a/u parameter to k-n. Preconditions are asserted; the transform is exploratory, not a proved equivalence.",
+      "source": {
+        "path": "harness/research/primitives.py",
+        "symbols": [
+          "sole_opposite_normalize"
+        ]
+      }
+    },
+    {
+      "id": "decomposable.context-limits",
+      "kind": "primitive",
+      "title": "Context signature constraint evaluator",
+      "summary": "Converts a tagged sweep word and sibling maxima into per-run cup and cap limits.",
+      "keywords": [
+        "context signature",
+        "cup cap limits",
+        "constraint evaluator",
+        "sweep word",
+        "sibling maxima",
+        "Lean semantics"
+      ],
+      "api": "limits_from_signature(word, maxima, a, u, k, *, lean=False) -> (run_count, cup_limits, cap_limits)",
+      "example": "sys.path.insert(0, 'scripts')\nfrom decomposable_depth2_tables import limits_from_signature\np, cups, caps = limits_from_signature(word, maxima, a, u, k, lean=True)",
+      "semantics": "The matrices bound chains spanning each ordered pair of child runs. lean=True includes unused levels, uses unbounded integers, and truncates subtraction at zero. This legacy exploratory calculation is not a kernel-compiled theorem or proof of equivalence to Lean.",
+      "source": {
+        "path": "scripts/decomposable_depth2_tables.py",
+        "symbols": [
+          "signature",
+          "limits_from_signature"
+        ]
+      }
+    },
+    {
+      "id": "decomposable.context-enumeration",
+      "kind": "primitive",
+      "title": "Abstract context and split enumeration",
+      "summary": "Generates bounded tagged contexts and constructs child signatures for arbitrary vertex splits.",
+      "keywords": [
+        "enumerate contexts",
+        "context generator",
+        "split child",
+        "additivity",
+        "tagged word",
+        "bounded exhaustive search"
+      ],
+      "api": "contexts(s_max, e_max, levels, k, *, include_unused_levels=False); child(word, maxima, keep, side_of_child, sibling_max)",
+      "example": "sys.path.insert(0, 'scripts')\nfrom decomposable_additivity_test import contexts, child\nfor word, maxima in contexts(4, 2, 2, 5): ...",
+      "semantics": "contexts yields finite abstract signatures with consecutive occupied levels by default. child retains selected S positions, turns the complement into a new level-one sibling, and shifts existing external levels. Enumeration output has no kernel proof credit.",
+      "source": {
+        "path": "scripts/decomposable_additivity_test.py",
+        "symbols": [
+          "contexts",
+          "child"
+        ]
+      }
+    },
+    {
+      "id": "decomposable.exact-context-bound",
+      "kind": "primitive",
+      "title": "Exact compiled-class context evaluator",
+      "summary": "Evaluates the largest compiled decomposable coloring satisfying one abstract context signature.",
+      "keywords": [
+        "exact bound",
+        "context evaluator",
+        "compiled class",
+        "brute force",
+        "recursive bound comparison",
+        "extremal"
+      ],
+      "api": "load_class(class_dir, max_n) -> tables; exact(tables, a, u, k, word, maxima, max_n) -> int",
+      "example": "sys.path.insert(0, 'scripts')\nfrom decomposable_context_exact import load_class, exact\ntables = load_class(class_dir, max_n); value = exact(tables, a, u, k, word, maxima, max_n)",
+      "semantics": "Searches generated class data from max_n downward and returns the first stored size meeting every per-run cup/cap limit and the strong-set limit; returns zero when no stored size qualifies. Compiled-class here means the enumerator's data format, not a Lean kernel-compiled proof.",
+      "source": {
+        "path": "scripts/decomposable_context_exact.py",
+        "symbols": [
+          "load_class",
+          "exact"
+        ]
+      }
+    },
+    {
+      "id": "decomposable.coloring-enumeration",
+      "kind": "primitive",
+      "title": "Exact decomposable coloring enumeration",
+      "summary": "Enumerates the abstract decomposable triple-coloring class and computes reusable chain profiles.",
+      "keywords": [
+        "decomposable colorings",
+        "exact enumeration",
+        "triple coloring",
+        "chain profile",
+        "threshold",
+        "one change"
+      ],
+      "api": "enumerate_class(max_n, progress=True) -> (classes, triple_indices); coloring_dict(mask, n, index); chain_profiles(coloring, n, left)",
+      "example": "sys.path.insert(0, 'scripts')\nfrom enumerate_decomposable_colorings import enumerate_class\nclasses, triple_indices = enumerate_class(7, progress=False)",
+      "semantics": "Builds labeled colorings recursively over every ordered nonempty bipartition, fixes crossing triples by the deep-below rule, and deduplicates bitmasks at each size. These Python enumeration results remain exploratory until represented and checked in Lean.",
+      "source": {
+        "path": "scripts/enumerate_decomposable_colorings.py",
+        "symbols": [
+          "triple_index",
+          "enumerate_class",
+          "coloring_dict",
+          "one_change",
+          "chain_profiles",
+          "strong_sizes",
+          "threshold"
+        ]
+      }
+    },
+    {
+      "id": "workflow.proof",
+      "kind": "workflow",
+      "title": "Captured proof checking and finite proving",
+      "summary": "Use the harness to freeze a proof span, check a candidate, or try the registered finite tactic portfolio.",
+      "keywords": [
+        "proof capture",
+        "proof check",
+        "proof prove",
+        "Lean candidate",
+        "kernel audit",
+        "tactics"
+      ],
+      "api": "es proof capture NODE [--start BYTE --end BYTE]; es proof check FIXTURE --body FILE; es proof prove FIXTURE [--tactics TACTIC]",
+      "example": "es proof capture ErdosSzekeres.someNode\nes proof check FIXTURE_ID --body runs/candidate.lean",
+      "semantics": "Capture freezes source and dependency identities. Checks run in an isolated pinned Lean environment and accept only a complete parent with the expected type and allowed axioms; prove uses a finite registered tactic portfolio.",
+      "source": {
+        "path": "tools/es/es/commands/proof.py",
+        "symbols": [
+          "capture",
+          "check",
+          "prove"
+        ]
+      }
+    },
+    {
+      "id": "workflow.node-finish",
+      "kind": "workflow",
+      "title": "Checked node finalization for review",
+      "summary": "Validate and insert a proof body, run targeted and full checks, audit it, and prepare one node for review.",
+      "keywords": [
+        "node finish",
+        "finish proof",
+        "finalize theorem",
+        "Lean review",
+        "full extract",
+        "proof acceptance"
+      ],
+      "api": "es node finish NODE --body FILE [--fixture FIXTURE] [--window WINDOW] [--extract-memory SIZE]",
+      "example": "es node finish ErdosSzekeres.someNode --body runs/candidate.lean --fixture FIXTURE_ID --window WINDOW_ID",
+      "semantics": "Runs the review-only finalization policy: preflight source checks, isolated candidate validation, insertion into the original node, targeted check, full extraction, and audit. Completion prepares review state; inspect the durable operation result before claiming theorem closure.",
+      "source": {
+        "path": "tools/es/es/finalize.py",
+        "symbols": [
+          "preflight",
+          "submit",
+          "run"
+        ]
+      }
+    },
+    {
+      "id": "workflow.probe",
+      "kind": "workflow",
+      "title": "Versioned bounded probe and witness replay",
+      "summary": "Run a registered finite research probe with source pinning, budgets, durable results, and witness replay.",
+      "keywords": [
+        "probe run",
+        "probe replay",
+        "bounded experiment",
+        "falsifier",
+        "witness",
+        "source hash"
+      ],
+      "api": "es probe run --spec SPEC.json [--window WINDOW]; es probe replay RESULT_ARTIFACT",
+      "example": "es probe run --spec runs/probe-spec.json --window WINDOW_ID\nes probe replay RESULT_ARTIFACT_ID",
+      "semantics": "Admission pins registered plugin sources and an explicit semantic version. Execution enforces finite case/time budgets; negative results receive no proof credit, and saved witnesses replay under the same source version.",
+      "source": {
+        "path": "tools/es/es/probes.py",
+        "symbols": [
+          "plugin",
+          "submit",
+          "load",
+          "execute",
+          "replay"
+        ]
+      }
+    },
+    {
+      "id": "workflow.recursive-cut-probe",
+      "kind": "workflow",
+      "title": "Bounded two-marker recursive-cut probe",
+      "summary": "Run or replay the registered deterministic two-lower-marker cut family through the shared recursive evaluator.",
+      "keywords": [
+        "recursive cut",
+        "two marker",
+        "extreme next",
+        "matched coupling budgets",
+        "bounded probe",
+        "witness replay",
+        "recursive bounds"
+      ],
+      "api": "es probe run --spec harness/research/examples/recursive-cut-small.json [--window WINDOW]; es probe replay RESULT_ARTIFACT",
+      "example": "es probe run --spec harness/research/examples/recursive-cut-small.json --window WINDOW_ID\nes probe replay RESULT_ARTIFACT_ID",
+      "semantics": "Uses plugin recursive_cut, domain two-lower-marker-cut-family-v1, generator extreme-next-deterministic-v1, split rule nonempty-proper-child-subsets-with-geometry-v1, and candidate matched-coupling-budgets-v1. Both registered recursion semantics are retained evaluators only: every result sets Lean equivalence, Lean refutation, and finite-negative proof credit to false.",
+      "source": {
+        "path": "harness/research/recursive_cut.py",
+        "symbols": [
+          "evaluate",
+          "replay"
+        ]
+      }
+    },
+    {
+      "id": "workflow.context",
+      "kind": "workflow",
+      "title": "Source-identified node context bundle",
+      "summary": "Retrieve compact theorem state, dependency signatures, recent outcomes, and an explicit freshness verdict.",
+      "keywords": [
+        "context bundle",
+        "node context",
+        "dependencies",
+        "freshness",
+        "research handoff",
+        "source identity"
+      ],
+      "api": "es context NODE [--previous BUNDLE_ARTIFACT]",
+      "example": "es context ErdosSzekeres.someNode\nes context ErdosSzekeres.someNode --previous PRIOR_BUNDLE_ID",
+      "semantics": "The bundle records the node, current source hash, selected compiled-index dependency signatures, recent events and operations. A previous bundle produces a compact delta; frontier_fresh remains explicit.",
+      "source": {
+        "path": "tools/es/es/bundles.py",
+        "symbols": [
+          "context"
+        ]
+      }
+    },
+    {
+      "id": "workflow.usage",
+      "kind": "workflow",
+      "title": "Research windows, usage accounting, and handoff",
+      "summary": "Record research windows, import exact local usage, compare matched work, and generate factual handoffs.",
+      "keywords": [
+        "usage sync",
+        "run begin",
+        "run end",
+        "run handoff",
+        "token accounting",
+        "research window",
+        "comparison"
+      ],
+      "api": "es run begin LABEL; es usage sync --window WINDOW; es run end WINDOW [--accepted N]; es run handoff --window WINDOW",
+      "example": "window=$(es run begin recursive-bound-audit)\nes usage sync --window \"$window\"\nes run end \"$window\" --accepted 1",
+      "semantics": "Usage is imported from recorded local response events without conversation text. Budgets are observational, comparisons require matched windows, and handoffs report durable operation state plus measured usage coverage.",
+      "source": {
+        "path": "tools/es/es/commands/usage.py",
+        "symbols": [
+          "sync",
+          "ingest",
+          "report",
+          "compare",
+          "begin",
+          "change",
+          "handoff"
+        ]
+      }
+    },
+    {
+      "id": "workflow.agent-run",
+      "kind": "workflow",
+      "title": "Bounded durable Sol research run",
+      "summary": "Run one Sol/xhigh native goal with fixed deadlines, guarded jobs, durable recovery and usage accounting.",
+      "keywords": [
+        "Sol",
+        "native goal",
+        "agent host",
+        "twelve hour",
+        "research run",
+        "resume",
+        "continuation"
+      ],
+      "api": "es run agent --out runs/RUN --prompt /absolute/prompt.md [--model gpt-5.6-sol --effort xhigh --hours 12]; es run agent-status runs/RUN; es run agent --out runs/RUN --resume",
+      "example": "es run agent --out runs/sol-trial --prompt /absolute/path/research-prompt.md --model gpt-5.6-sol --effort xhigh --hours 12\nes run agent-status runs/sol-trial",
+      "semantics": "The 2 GiB host owns a separate Codex native-goal session. A frozen research deadline permits one bounded finalization turn afterward. The worker registers a run observer. Manual resume is explicit; a configured bounded automatic capacity-only retry requires fresh serverOverloaded evidence and rechecks the current goal before recovery. Neither route extends deadlines; uncertain receipts are not automatically replayed. Job completion alone confers no theorem credit or current-client notification guarantee.",
+      "source": {
+        "path": "tools/es/es/agent_run.py",
+        "symbols": [
+          "submit_agent_run",
+          "status_agent_run",
+          "run_host"
+        ]
+      }
+    },
+    {
+      "id": "workflow.node-add",
+      "kind": "workflow",
+      "title": "Register and elaborate a Lean statement",
+      "summary": "Create a statement through the harness with a narrow import and enough memory for nested elaboration.",
+      "keywords": [
+        "node add",
+        "statement registration",
+        "elaborate",
+        "import closure",
+        "memory reservation",
+        "new lemma"
+      ],
+      "api": "es node add --name NAME --ws B --kind formalization --type SIGNATURE --description TEXT --consumer NODE --import MODULE [--targeted]",
+      "example": "es node add --help\n# Without the user bus, queue this command through es job run.\n# In this project use --mem 20G for --targeted; full extraction needs 28G.",
+      "semantics": "Node registration writes a sorry only in ESBlueprint and elaborates the statement before locking it. Search and claim first. The enclosing job must fit both build.memory_max and the selected extraction cap; --targeted narrows extraction, not the build reservation. It leaves the full frontier stale, so refresh before selecting further research. Use the smallest import closure that supplies the statement.",
+      "source": {
+        "path": "tools/es/es/commands/node.py",
+        "symbols": [
+          "run_add",
+          "elaborate_module",
+          "targeted_extract"
+        ]
+      }
+    },
+    {
+      "id": "workflow.jobs",
+      "kind": "workflow",
+      "title": "Guarded commands and terminal receipts",
+      "summary": "Run existing scripts with shared memory admission, job identity, declared outputs, bounded waits and cancellation.",
+      "keywords": [
+        "worker",
+        "job run",
+        "job wait",
+        "memory",
+        "command",
+        "environment",
+        "worktree",
+        "Python workflow",
+        "git commit"
+      ],
+      "api": "es job run --why PURPOSE --out runs/OUTPUT --mem SIZE -- COMMAND; es job wait JOB --timeout 55; es job status JOB",
+      "example": "es job run --why 'record interpreter version' --out runs/python-version.txt --mem 256M -- bash -c 'python3 --version > runs/python-version.txt'\nes job wait JOB_ID --timeout 55",
+      "semantics": "Submission is not completion. Inspect the terminal receipt including outputs_missing; --out declares an artifact but does not redirect stdout. Prefer direct argv; a shell pipeline must enable pipefail so output capture cannot hide command failure. Nested Lean commands need an enclosing reservation large enough for their configured build and extraction caps. For direct Git commands use -c gc.auto=0 -c maintenance.auto=false to keep automatic background maintenance from retaining the scope; unknown execution must be reconciled, never blindly retried.",
+      "source": {
+        "path": "tools/es/es/commands/jobs.py",
+        "symbols": [
+          "run_run",
+          "run_wait",
+          "run_status"
+        ]
+      }
+    },
+    {
+      "id": "workflow.immutable-artifact-sharing",
+      "kind": "workflow",
+      "title": "Verified immutable certificate artifact sharing",
+      "summary": "Deduplicate identical compiled certificate outputs across compatible checkouts sharing one harness database, using Lake's native immutable cache.",
+      "keywords": [
+        "storage",
+        "disk deduplication",
+        "certificate artifacts",
+        "private proof bodies",
+        "hard links",
+        "Lake cache",
+        "SHA-256"
+      ],
+      "api": "es storage share --other CHECKOUT [--apply] [--cache PATH] [--receipt runs/FILE.jsonl] [--facet FACET]",
+      "example": "es job run --why \"verify immutable certificate duplicates\" --out runs/storage-share/audit.jsonl --mem 4G --budget 90 -- tools/es/bin/es storage share --other runs/worktrees/sol-12h-20260916 --receipt runs/storage-share/audit.jsonl\n# Add --apply to the inner command to adopt verified blobs.",
+      "semantics": "Requires a guarded job, compatible project/toolchain/filesystem, and generated certificate modules in both checkouts. The default is verification only. Full SHA-256 checks precede atomic hard-link adoption through the pinned Lake cache; sources and mutable setup/trace/hash sidecars are excluded. Both worktrees and the shared cache are reserved. Receipts separate logical duplicate bytes, eligible freed blocks and observed free-space change. Native input mappings are created only by ordinary guarded Lake builds, never synthesized from filenames. Rebuild detachment was tested on pinned Lean 4.29.1; unsupported toolchains are refused.",
+      "source": {
+        "path": "tools/es/es/artifact_cache.py",
+        "symbols": [
+          "share_certificates",
+          "atomic_adopt"
+        ]
+      }
+    },
+    {
+      "id": "workflow.setup-metadata-cleanup",
+      "kind": "workflow",
+      "title": "Audited Lake setup metadata cleanup",
+      "summary": "Inventory or prune Lake 4.29.1 setup spill files with exact-path manifests, inode revalidation and storage exclusion.",
+      "keywords": [
+        "Lake setup json",
+        "disk cleanup",
+        "storage maintenance",
+        "manifest",
+        "hard links",
+        "build cache"
+      ],
+      "api": "es storage prune-setup [--apply] [--out runs/DIRECTORY]",
+      "example": "es storage prune-setup --out runs/setup-audit\n# Inspect runs/setup-audit/manifest.json, then:\nes storage prune-setup --apply --out runs/setup-prune",
+      "semantics": "Dry-run is the default. The pinned Lake 4.29.1 contract scans only a real .lake/build/ir directory without symlink traversal, writes the manifest durably, revalidates every regular-file identity before unlinking, and reports logical removed bytes separately from allocated blocks actually made unreachable by hard-link counts. Automatic post-build cleanup considers only modules in successful acknowledged Lake Built records while its worktree reservation remains held. Plugin and dynlib paths inside a setup snapshot are references and are never removed. A killed standalone maintenance process may leave a conservative lease for explicit reconciliation; no bulk cleanup is implied by enabling the command.",
+      "source": {
+        "path": "tools/es/es/setup_metadata.py",
+        "symbols": [
+          "prune_setup_metadata",
+          "post_build_cleanup"
+        ]
+      }
+    },
+    {
+      "id": "workflow.run-monitor",
+      "kind": "workflow",
+      "title": "Run observation without model polling",
+      "summary": "Observe durable research jobs in the worker and escalate only a terminal run or persistent infrastructure blocker.",
+      "keywords": [
+        "monitor",
+        "Astra",
+        "polling",
+        "run progress",
+        "worker",
+        "capacity retry",
+        "completion",
+        "stale runner",
+        "scope reconciliation"
+      ],
+      "api": "es run watch OUT; es run progress OUT [--follow 55]; es run observe; es run unwatch OUT",
+      "example": "es run progress runs/sol-trial\nes run progress runs/sol-trial --follow 55\nes run observe\nes delivery status",
+      "semantics": "Native run submission registers automatically. Idle observations and individual compiler failures make no model requests. If a host runner disappears after its recorded cgroup has definitely stopped, the observer reconciles the stale job row with a compare-and-set on the recorded runner identity and emits the terminal event once; a changed or live runner remains reserved. A configured bounded retry handles only a fresh provider capacity failure within the frozen deadline; it never resets pause, quota, cancellation or uncertain effects. Unwatch stops observation without cancelling compute or messages already queued. Unattended reporting requires a separately verified callback plus an available worker.",
+      "source": {
+        "path": "tools/es/es/run_monitor.py",
+        "symbols": [
+          "register",
+          "progress",
+          "tick",
+          "pause"
+        ]
+      }
+    },
+    {
+      "id": "workflow.run-review",
+      "kind": "workflow",
+      "title": "Final research accounting and code inventory",
+      "summary": "Collect deduplicated late usage, direct jobs, validation evidence and code review inventory in one immutable bundle.",
+      "keywords": [
+        "final review",
+        "run review",
+        "late usage",
+        "code inventory",
+        "inline Python",
+        "library promotion",
+        "accounting"
+      ],
+      "api": "es run review OUT [--artifact-root RUN_DIR]; build_review(cfg, out, compact_limit=4096, artifact_root=None)",
+      "example": "es run review runs/sol-trial/host --artifact-root runs/sol-trial",
+      "semantics": "Summary is bounded to 4096 bytes; full evidence is immutable. Usage includes finalization after the research window closes and reports source limits. Explicit artifact roots must contain the host directory under configured output roots; otherwise the inventory states its host-only coverage. Source hashes and sanitized inline commands support review; scripts are not executed. Operational success never grants theorem credit. Final mathematical review is always required, with code review flagged separately.",
+      "source": {
+        "path": "tools/es/es/run_review.py",
+        "symbols": [
+          "build_review"
+        ]
+      }
+    },
+    {
+      "id": "workflow.run-delivery",
+      "kind": "workflow",
+      "title": "Verified exact-thread completion callbacks",
+      "summary": "Verify the actual receiving Codex thread before submitting compact run-level events through its queue.",
+      "keywords": [
+        "callback",
+        "notification",
+        "delivery verify",
+        "exact thread",
+        "queue",
+        "completion",
+        "reconciliation"
+      ],
+      "api": "es delivery status; es delivery verify --thread UUID; es delivery confirm --challenge TOKEN; es delivery abandon-verification --thread UUID",
+      "example": "es delivery status\nes delivery verify --thread \"$CODEX_THREAD_ID\"\n# Confirm only the challenge actually received through this thread.",
+      "semantics": "Queue acceptance alone does not verify receipt. Confirmation requires the unchanged receiving CODEX_THREAD_ID and coordinator identity. Packets are at most 2048 bytes plus the event marker; full evidence stays in immutable artifacts. Events have a separate outbox from operation delivery. Uncertain submissions are never automatically retried; abandoning a verification invalidates its nonce but cannot cancel an already queued message. Transport configuration does not override the client model, permissions or quota.",
+      "source": {
+        "path": "tools/es/es/run_delivery.py",
+        "symbols": [
+          "request_verification",
+          "confirm_verification",
+          "emit",
+          "dispatch",
+          "status"
+        ]
+      }
+    }
+  ]
+}

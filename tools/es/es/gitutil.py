@@ -10,9 +10,12 @@ from es.config import Config
 
 
 def git_argv(cfg: Config) -> list[str]:
+    # A detached auto-maintenance child can outlive a guarded commit and leave
+    # its memory reservation in unknown_execution. Maintenance is a separate job.
+    command = ["git", "-c", "gc.auto=0", "-c", "maintenance.auto=false"]
     if cfg.git_dir is not None:
-        return ["git", f"--git-dir={cfg.git_dir}", f"--work-tree={cfg.root}"]
-    return ["git", "-C", str(cfg.root)]
+        return command + [f"--git-dir={cfg.git_dir}", f"--work-tree={cfg.root}"]
+    return command + ["-C", str(cfg.root)]
 
 
 def git(cfg: Config, *args: str, check: bool = True) -> str:

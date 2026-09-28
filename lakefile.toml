@@ -1,6 +1,9 @@
 name = "erdos_szekeres_convex_poly"
 version = "0.1.0"
 defaultTargets = ["ESCore"]
+# Keep every cached compiled facet at its normal build path for editors and the
+# harness.  Cache writes are enabled only by guarded commands via environment.
+restoreAllArtifacts = true
 
 # ESCore: the hand-written development rooted at ErdosSzekeres.lean, together with
 # the generated certificate modules it imports (they share the ErdosSzekeres.*

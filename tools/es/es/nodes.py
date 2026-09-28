@@ -413,6 +413,18 @@ def opened_date(cfg: Config, module: str) -> str | None:
     return "uncommitted" if (cfg.root / rel).exists() else None
 
 
+def opened_dates(cfg: Config, modules: list[str]) -> dict[str, str | None]:
+    """Run the same read-only history queries with at most four Git processes."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    names = list(dict.fromkeys(modules))
+    if not names:
+        return {}
+    with ThreadPoolExecutor(max_workers=min(4, len(names))) as executor:
+        dates = executor.map(lambda name: opened_date(cfg, name), names)
+        return dict(zip(names, dates))
+
+
 def days_open(opened: str | None) -> str:
     if not opened or opened == "uncommitted":
         return "new"
