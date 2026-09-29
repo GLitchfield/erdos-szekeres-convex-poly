@@ -1,44 +1,155 @@
 {
  "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut",
  "falsifier": "ctx_end_cut_normal_form.py",
- "falsifier_sha256": "4ac99cba07215ee9bf8d251462c4e7d08c29b8f81897cde33a2021f60db5ca0a",
+ "falsifier_sha256": "73a3b4c16589f31d3e7e4f1bc927f685d8ecb5df05c2f457a95e18eec2565866",
  "dataset": "harness/dataset",
  "statement_type_hash": "2fd91a6e1f19def7",
- "result": "pass",
- "exit_code": 0,
- "seconds": 1125.7,
- "at": "2026-09-07T21:48:32Z",
- "agent": "claude-code:ce104018-b720-4b7e-ae07-5750a6c0b4fe",
+ "result": "counterexample",
+ "exit_code": 2,
+ "seconds": 74.8,
+ "at": "2026-09-28T22:40:36Z",
+ "agent": "claude-code:17de3bb4-f81b-48a5-b73d-2d86b781322f",
  "witness": {
   "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut",
   "recursion": "lean",
   "cases": {
-   "4,4,5": {
+   "3,4,5": {
     "contexts": 1752,
-    "nonzero": 1400,
-    "end_attains": 1400
-   },
-   "4,5,5": {
-    "contexts": 1752,
-    "nonzero": 1400,
-    "end_attains": 1400
-   },
-   "5,5,5": {
-    "contexts": 1752,
-    "nonzero": 1400,
-    "end_attains": 1400
-   },
-   "4,5,6": {
-    "contexts": 3040,
-    "nonzero": 2600,
-    "end_attains": 2600
-   },
-   "5,5,6": {
-    "contexts": 3040,
-    "nonzero": 2600,
-    "end_attains": 2600
+    "nonzero": 1280,
+    "end_attains": 1256
    }
   },
-  "violations": []
+  "violations": [
+   {
+    "case": "3,4,5",
+    "examples": [
+     {
+      "word": [
+       [
+        1,
+        "lower"
+       ],
+       "S",
+       "S",
+       [
+        2,
+        "upper"
+       ],
+       "S",
+       "S"
+      ],
+      "maxima": [
+       3,
+       1
+      ],
+      "runs": 2,
+      "bound": 1,
+      "best_end": 0,
+      "best_boundary": 1,
+      "best_interior": 1
+     },
+     {
+      "word": [
+       [
+        1,
+        "lower"
+       ],
+       "S",
+       "S",
+       [
+        2,
+        "upper"
+       ],
+       "S",
+       "S"
+      ],
+      "maxima": [
+       3,
+       2
+      ],
+      "runs": 2,
+      "bound": 1,
+      "best_end": 0,
+      "best_boundary": 1,
+      "best_interior": 1
+     },
+     {
+      "word": [
+       [
+        2,
+        "lower"
+       ],
+       "S",
+       "S",
+       [
+        1,
+        "upper"
+       ],
+       "S",
+       "S"
+      ],
+      "maxima": [
+       1,
+       3
+      ],
+      "runs": 2,
+      "bound": 1,
+      "best_end": 0,
+      "best_boundary": 1,
+      "best_interior": 1
+     },
+     {
+      "word": [
+       [
+        2,
+        "lower"
+       ],
+       "S",
+       "S",
+       [
+        1,
+        "upper"
+       ],
+       "S",
+       "S"
+      ],
+      "maxima": [
+       2,
+       3
+      ],
+      "runs": 2,
+      "bound": 1,
+      "best_end": 0,
+      "best_boundary": 1,
+      "best_interior": 1
+     },
+     {
+      "word": [
+       "S",
+       [
+        1,
+        "lower"
+       ],
+       "S",
+       [
+        2,
+        "upper"
+       ],
+       "S",
+       "S"
+      ],
+      "maxima": [
+       3,
+       1
+      ],
+      "runs": 3,
+      "bound": 1,
+      "best_end": 0,
+      "best_boundary": 1,
+      "best_interior": 1
+     }
+    ]
+   }
+  ]
  }
 }

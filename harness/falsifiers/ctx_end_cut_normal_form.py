@@ -6,6 +6,10 @@ that isolates the first or the last child position (either side, some coupling).
 Runs scripts/decomposable_end_cut_normal_form.py (literal Lean recursion) on a few cases and
 fails when some context with a nonzero bound has every end cut strictly below the bound.
 Exit 0: no violation; exit 2: a context whose bound needs an interior block (witness in --out).
+
+(3,4,5) runs first: at a = 3 the statement is false (24 contexts at s <= 4, e.g. word
+`1L S S 2U S S` with maxima (3,1): bound 1, every end cut 0; kernel-checked in
+ctx_bound_attained_by_end_cut_counterexample). The scan stops at the first violating case.
 """
 from __future__ import annotations
 
@@ -24,7 +28,7 @@ def main() -> int:
     ap.add_argument("--out")
     ap.add_argument("--node")
     ap.add_argument("--statement")
-    ap.add_argument("--cases", default="4,4,5;4,5,5;5,5,5;4,5,6;5,5,6")
+    ap.add_argument("--cases", default="3,4,5;4,4,5;4,5,5;5,5,5;4,5,6;5,5,6")
     ap.add_argument("--s-max", type=int, default=4)
     ap.add_argument("--e-max", type=int, default=2)
     ap.add_argument("--levels", type=int, default=2)
@@ -48,6 +52,8 @@ def main() -> int:
         if s.get("end_attains", 0) < nonzero:
             violations.append({"case": case, "examples": d["examples"].get("boundary_only", [])[:5] + d["examples"].get("interior_only", [])[:5]})
         print(json.dumps({"case": case, **summary["cases"][case]}), file=sys.stderr, flush=True)
+        if violations:
+            break
     summary["violations"] = violations
     if a.out:
         Path(a.out).write_text(json.dumps(summary, indent=1) + "\n")
