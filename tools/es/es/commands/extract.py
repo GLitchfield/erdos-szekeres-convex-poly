@@ -225,6 +225,9 @@ def run_extract(ctx: Ctx, *, check: bool = False, no_cache: bool = False, write:
     cfg = ctx.cfg
     mods = scan_modules(cfg)
     th = fingerprint.extract_key(cfg) + ("" if not imports else "+" + ",".join(imports))
+    # Only a whole-environment index can be the base of later incremental updates. Fingerprint the
+    # sources before the (long) extractor run, so an edit made meanwhile shows up as stale.
+    fps = None if imports else fingerprint.current(cfg, mods)
     raw, index = _extract_raw(ctx, th=th, mods=mods, no_cache=no_cache, force=force, budget=budget,
                               imports=imports, memory_max=memory_max, script=script)
     nodes, dests, problems = nodes_from_extract(cfg, raw)
@@ -232,8 +235,6 @@ def run_extract(ctx: Ctx, *, check: bool = False, no_cache: bool = False, write:
         "toolchain": raw.get("toolchain"), "modules": raw.get("modules"), "tree_hash": th,
         "nonstandard_axioms": sorted(set(raw.get("nonstandard_axioms", []))), "taint": raw.get("taint", {}),
     }
-    # Only a whole-environment index can be the base of later incremental updates.
-    fps = None if imports else fingerprint.current(cfg, mods)
     payload, nodes_text, status_md, index_text, all_problems = assemble(
         ctx, nodes, dests, index, problems, meta, fingerprints=fps,
         mode="full" if not imports else "targeted " + ",".join(imports),

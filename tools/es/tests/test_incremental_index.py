@@ -317,6 +317,24 @@ def test_extractor_template_change_misses_the_cache(project, seeded, fake):
     assert extract_key(seeded.cfg) != before
 
 
+def test_edit_during_full_extraction_leaves_the_index_stale(project, seeded, fake, monkeypatch):
+    """Fingerprints describe the sources the extractor saw, not the tree after it finished."""
+    from es.commands import extract as extract_cmd
+    from es.commands.extract import fast_check, run_extract
+
+    inner = extract_cmd.run_extractor
+
+    def edited_meanwhile(cfg, **kwargs):
+        out = inner(cfg, **kwargs)
+        (project / "TBlueprint/A/Bar.lean").write_text(_bar(sorry=True))
+        return out
+
+    monkeypatch.setattr(extract_cmd, "run_extractor", edited_meanwhile)
+    run_extract(seeded, no_cache=True)
+    problems = fast_check(seeded)[2]
+    assert len(problems) == 1 and "TBlueprint.A.Bar" in problems[0]
+
+
 def test_check_changed_detects_deleted_index_files(project, seeded, fake):
     from es.commands.extract import run
 
