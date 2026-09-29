@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "axiom": "_private.ErdosSzekeres.CommonAnchorPermutationOrder.0.ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table._native.native_decide.ax_1_1",
+    "reaches": [
+      "ErdosSzekeres.CommonAnchorFin4State.fin4_permutation_reorder_table",
+      "ErdosSzekeres.CommonAnchorFin4State.reorderedOneChange"
+    ],
+    "justification": "native_decide finite table (ErdosSzekeres/CommonAnchorPermutationOrder.lean:130): 1,024 ten-bit pair/triple states times all 256 maps Fin 4 -> Fin 4, checked by compiled code, not by the kernel. Computational evidence only; common-anchor research code from 2026-09-03 with no downstream users. No audited node or destination theorem depends on it. Recorded as specified in docs/harness-design.md section 7.4 (that example names Lean.ofReduceBool and the wrong namespace; Lean 4.29 emits this per-declaration auxiliary axiom instead).",
+    "added_by": "gavin",
+    "added_at": "2026-09-28"
+  }
+]

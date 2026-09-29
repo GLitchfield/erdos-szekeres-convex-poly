@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-29T14:07:42Z",
- "git_sha": "afd0a1d75697bb00123901bfb38bd22da5fc26c0",
- "extract_mode": "incremental from 0679da689524: 1 re-extracted, 0 removed",
+ "generated_at": "2026-09-29T14:09:32Z",
+ "git_sha": "03d7d4acb42a2ce929b019746275d80e4d93d3a9",
+ "extract_mode": "incremental from afd0a1d75697: 0 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15670,
- "tree_hash": "992f4b9df58723cc.4560d6f33c43b8ee",
+ "tree_hash": "9db6e8c92830743e.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -6407,7 +6407,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-29"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_le_numRuns_of_unit_axis_limit",

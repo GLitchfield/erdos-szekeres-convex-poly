@@ -83,7 +83,7 @@ Nodes: closed 310, open 15, refuted 2.
 | `ErdosSzekeres.ctx_bound_external_letter_contraction` | conjecture | closed |  |  | pass | 2026-09-07 |
 | `ErdosSzekeres.ctx_bound_interval_or_complement_le` | formalization | closed |  |  | - | 2026-09-07 |
 | `ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three` | formalization | closed |  |  | - | 2026-09-09 |
-| `ErdosSzekeres.ctx_bound_le_merge_same_side_levels` | formalization | closed |  |  | - | uncommitted |
+| `ErdosSzekeres.ctx_bound_le_merge_same_side_levels` | formalization | closed |  |  | - | 2026-09-29 |
 | `ErdosSzekeres.ctx_bound_le_numRuns_of_unit_axis_limit` | formalization | closed |  |  | - | 2026-09-08 |
 | `ErdosSzekeres.ctx_bound_le_one_of_clear_unit_axis` | formalization | closed |  |  | - | 2026-09-08 |
 | `ErdosSzekeres.ctx_bound_le_one_of_common_singleton_rank` | formalization | closed |  |  | - | 2026-09-08 |
