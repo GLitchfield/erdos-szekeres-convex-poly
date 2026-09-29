@@ -684,6 +684,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundLeInactivePruneCapacityThree"
   },
+  "ErdosSzekeres.ctx_bound_le_merge_same_side_levels": {
+    "type_hash": "3db6cc13c593f0b0",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (l : Nat),\n      instLENat.le 1 l →\n        instLENat.le (instHAdd.hAdd l 1) σ.maxima.length →\n          Eq (σ.sideAt l) (σ.sideAt (instHAdd.hAdd l 1)) →\n            instLENat.le σ.bound\n              { a := σ.a, u := σ.u, k := σ.k,\n                  word :=\n                    List.map\n                      (fun x =>\n                        ErdosSzekeres.ctx_bound_le_merge_same_side_levels.match_1\n                          (fun x => ErdosSzekeres.Ctx.Letter) x\n                          (fun j s =>\n                            ite (instLENat.le j l) (ErdosSzekeres.Ctx.Letter.ext j s)\n                              (ErdosSzekeres.Ctx.Letter.ext (instHSub.hSub j 1) s))\n                          fun _ => ErdosSzekeres.Ctx.Letter.child)\n                      σ.word,\n                  maxima :=\n                    instHAppendOfAppend.hAppend\n                      (instHAppendOfAppend.hAppend (List.take (instHSub.hSub l 1) σ.maxima)\n                        (List.cons\n                          (Nat.instMax.max (σ.maximumAt l) (σ.maximumAt (instHAdd.hAdd l 1)))\n                          List.nil))\n                      (List.drop (instHAdd.hAdd l 1) σ.maxima) }.bound",
+    "approved_by": "Gavin (2026-09-28: register and prove MERGE)",
+    "approved_at": "2026-09-28",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundLeMergeSameSideLevels"
+  },
   "ErdosSzekeres.ctx_bound_le_numRuns_of_unit_axis_limit": {
     "type_hash": "5c31f62e107bcf6c",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (x l : Nat) (t : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt x) (ErdosSzekeres.Ctx.Letter.ext l t) → instLENat.le 1 l) →\n    ∀ (s : ErdosSzekeres.Ctx.Side),\n      (∀ (p : Nat),\n          List.instMembership.mem σ.childPositions p →\n            instLENat.le\n              (ErdosSzekeres.ctx_bound_le_numRuns_of_unit_axis_limit.match_1 (fun s => Nat) s\n                (fun _ => σ.cupLimit p p) fun _ => σ.capLimit p p)\n              1) →\n        And (∀ (fuel : Nat), instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) σ.numRuns)\n          (instLENat.le σ.bound σ.numRuns)",
