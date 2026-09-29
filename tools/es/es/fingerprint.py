@@ -91,19 +91,36 @@ def core_dirs(cfg: Config) -> list[str]:
     bp_dir = cfg.blueprint_namespace
     bp_root = str(cfg.blueprint_root.relative_to(cfg.root))
     dirs = [d for d in state_dirs(cfg) if d not in (bp_dir, bp_root) and not d.startswith(bp_dir + "/")]
-    dirs += [f for f in TOOLCHAIN_FILES if (cfg.root / f).exists()]
+    dirs += list(TOOLCHAIN_FILES)  # tree_hash marks absent ones, so a deletion also changes the hash
     return sorted(set(dirs))
 
 
-def core_fingerprint(cfg: Config) -> str:
+def extractor_digest(cfg: Config) -> str:
+    """The extractor template and the configuration sections the extraction reads."""
     h = hashlib.sha256()
-    h.update(tree_hash(cfg, core_dirs(cfg)).encode())
     template = cfg.extract_template
     if template.exists():
         h.update(hashlib.sha256(template.read_bytes()).hexdigest().encode())
     sections = {s: cfg.get(s) for s in EXTRACT_CONFIG_SECTIONS}
     h.update(json.dumps(sections, sort_keys=True, default=str).encode())
     return h.hexdigest()[:16]
+
+
+def core_fingerprint(cfg: Config) -> str:
+    h = hashlib.sha256()
+    h.update(tree_hash(cfg, core_dirs(cfg)).encode())
+    h.update(extractor_digest(cfg).encode())
+    return h.hexdigest()[:16]
+
+
+def extract_key(cfg: Config) -> str:
+    """Key of the extract cache: every input of the raw extractor output, not only the Lean trees.
+
+    Includes the toolchain files, the extractor template and the extract configuration, so a
+    toolchain or extractor change can never be answered from a stale cached extraction."""
+    from es.commands.extract import state_dirs
+
+    return tree_hash(cfg, sorted(set(state_dirs(cfg)) | set(TOOLCHAIN_FILES))) + "." + extractor_digest(cfg)
 
 
 def current(cfg: Config, mods: dict[str, Module] | None = None) -> dict:

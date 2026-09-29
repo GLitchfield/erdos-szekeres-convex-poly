@@ -6,8 +6,9 @@ from pathlib import Path
 
 from es import EXIT_CHECK_FAILED, EXIT_OK
 from es.context import Ctx
+from es.config import CONFIG_REL
 from es.errors import UsageError
-from es.gitutil import head_sha, tree_hash
+from es.gitutil import head_sha
 from es.lean import run_extractor
 from es.lock import check_lock, read_lock
 from es.modules import scan_modules
@@ -21,7 +22,7 @@ from es.store import Store
 STATE_DIRS = ("ESBlueprint", "ErdosSzekeres")  # overridden by config [extract] state_dirs
 
 
-def state_dirs(cfg) -> list[str]:
+def state_dirs(cfg, existing_only: bool = True) -> list[str]:
     val = cfg.get("extract", "state_dirs")
     if val:
         return [str(x) for x in val]
@@ -37,7 +38,7 @@ def state_dirs(cfg) -> list[str]:
         for p in layer.prefixes:
             dirs.append(p.replace(".", "/"))
             dirs.append(p.replace(".", "/") + ".lean")
-    return sorted({d for d in dirs if (cfg.root / d).exists()})
+    return sorted({d for d in dirs if not existing_only or (cfg.root / d).exists()})
 
 
 # Lines of nodes.json / status.md that change on every extraction or commit without
@@ -63,12 +64,71 @@ class NeedsFullExtract(UsageError):
     """The index cannot be updated incrementally; only a full `es extract` is trusted."""
 
 
+def declared_blueprint_axioms(cfg, raw: dict) -> dict[str, list[str]]:
+    """Axiom constants declared in blueprint modules (e.g. `native_decide` auxiliary axioms),
+    by module. The global `nonstandard_axioms` list is every non-standard axiom seen in the
+    environment, so these are the only entries a blueprint edit can add or remove."""
+    ns = cfg.blueprint_namespace
+    out: dict[str, set[str]] = {}
+    for rec in raw.get("declarations", []):
+        module = str(rec.get("module", ""))
+        if rec.get("kind") == "axiom" and (module == ns or module.startswith(ns + ".")):
+            out.setdefault(rec["module"], set()).add(rec["name"])
+    return {m: sorted(v) for m, v in sorted(out.items())}
+
+
+NODE_RECORD_KEYS = ("name", "module", "type_pp", "type_hash", "sorry", "axioms", "nonstandard_axioms",
+                    "deps_actual", "description", "tags", "tag_errors", "helpers")
+DEST_RECORD_KEYS = ("name", "module", "type_pp", "type_hash", "sorry", "axioms", "nonstandard_axioms", "description")
+
+
+def records_digest(payload: dict, index: list) -> str:
+    """Digest of the extractor-derived content of an index: the records, problems and metadata
+    that only an extraction can produce (statuses, dates and claims are recomputed on every read)."""
+    import hashlib
+
+    body = {
+        "nodes": [{k: n.get(k) for k in NODE_RECORD_KEYS} for n in payload.get("nodes", [])],
+        "destinations": [{k: d.get(k) for k in DEST_RECORD_KEYS} for d in payload.get("destinations", [])],
+        "problems": list(payload.get("problems", [])) + list(payload.get("warnings", [])),
+        "toolchain": payload.get("toolchain"),
+        "nonstandard_axioms": payload.get("nonstandard_axioms"),
+        "blueprint_axioms": payload.get("blueprint_axioms"),
+        "fingerprints": payload.get("fingerprints"),
+        "index": index,
+    }
+    return hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+
+
+def _attest(ctx: Ctx, payload: dict, index: list, mode: str) -> None:
+    """Record that an extraction on this machine produced this index content. Best effort: a
+    read-only database only costs later checks their no-Lean shortcut."""
+    fps = payload.get("fingerprints")
+    if fps is None:
+        return
+    fp = json.dumps(fps, sort_keys=True)
+    with Store(ctx.cfg) as st:
+        if not st.readonly:
+            st.attest_index(records_digest(payload, index), fp, mode, ctx.agent)
+
+
+def _require_attested(cfg, data: dict, index: list) -> None:
+    """Matching fingerprints prove the sources are unchanged, not that the records came from the
+    extractor: trust an index only if an extraction on this machine produced exactly this content."""
+    with Store(cfg) as st:
+        attested = st.index_attested(records_digest(data, index))
+    if not attested:
+        raise NeedsFullExtract("the index records are not attested by an extraction on this machine "
+                               "(edited by hand, merged, or produced elsewhere)")
+
+
 def _strip_volatile(text: str) -> str:
     return "\n".join(line for line in text.splitlines() if not line.lstrip().startswith(VOLATILE_PREFIXES))
 
 
 def assemble(ctx: Ctx, nodes: list[Node], dests, index: list, problems: list[str], meta: dict, *,
-             fingerprints: dict | None, mode: str, claims: dict | None = None) -> tuple[dict, str, str, str, list[str]]:
+             fingerprints: dict | None, mode: str, claims: dict | None = None,
+             blueprint_axioms: dict | None = None) -> tuple[dict, str, str, str, list[str]]:
     """Compute statuses and render the index files from extractor records.
 
     Shared by the full extraction, the incremental update and the no-Lean check, so that all
@@ -97,6 +157,7 @@ def assemble(ctx: Ctx, nodes: list[Node], dests, index: list, problems: list[str
         "duplicate_problems": dup_problems,
     }
     if fingerprints is not None:
+        payload["blueprint_axioms"] = blueprint_axioms or {}
         payload["fingerprints"] = fingerprints
     if str(cfg.get("extract", "missing_destinations", default="error")) == "warn":
         problems = [p for p in problems if not p.startswith("destination ")]
@@ -163,19 +224,22 @@ def run_extract(ctx: Ctx, *, check: bool = False, no_cache: bool = False, write:
 
     cfg = ctx.cfg
     mods = scan_modules(cfg)
-    th = tree_hash(cfg, state_dirs(cfg)) + ("" if not imports else "+" + ",".join(imports))
+    th = fingerprint.extract_key(cfg) + ("" if not imports else "+" + ",".join(imports))
     raw, index = _extract_raw(ctx, th=th, mods=mods, no_cache=no_cache, force=force, budget=budget,
                               imports=imports, memory_max=memory_max, script=script)
     nodes, dests, problems = nodes_from_extract(cfg, raw)
     meta = {
         "toolchain": raw.get("toolchain"), "modules": raw.get("modules"), "tree_hash": th,
-        "nonstandard_axioms": raw.get("nonstandard_axioms", []), "taint": raw.get("taint", {}),
+        "nonstandard_axioms": sorted(set(raw.get("nonstandard_axioms", []))), "taint": raw.get("taint", {}),
     }
     # Only a whole-environment index can be the base of later incremental updates.
     fps = None if imports else fingerprint.current(cfg, mods)
     payload, nodes_text, status_md, index_text, all_problems = assemble(
         ctx, nodes, dests, index, problems, meta, fingerprints=fps,
-        mode="full" if not imports else "targeted " + ",".join(imports))
+        mode="full" if not imports else "targeted " + ",".join(imports),
+        blueprint_axioms=declared_blueprint_axioms(cfg, raw))
+    if fps is not None:
+        _attest(ctx, payload, index, "full")
     stale = _compare(cfg, nodes_text, status_md, index_text) if check else []
     if write:
         _write(ctx, payload, index, nodes, th, nodes_text, status_md, index_text)
@@ -244,13 +308,15 @@ def run_incremental(ctx: Ctx, *, write: bool = True, force: bool = False, budget
     reason, stale, removed = fingerprint.diff(data.get("fingerprints"), now)
     if reason:
         raise NeedsFullExtract(reason)
+    index = json.loads(cfg.index_json.read_text()) if cfg.index_json.exists() else []
+    # every record not re-extracted is carried over, so the base must itself be extractor output
+    _require_attested(cfg, data, index)
     stale |= {m for m in extra_modules if m in now["blueprint"]}
     base_nodes = nodes_from_json(data)
-    index = json.loads(cfg.index_json.read_text()) if cfg.index_json.exists() else []
     new_nodes: list[Node] = []
     new_problems: list[str] = []
     raw_t: dict = {}
-    th_tree = tree_hash(cfg, state_dirs(cfg))
+    th_tree = fingerprint.extract_key(cfg)
     if stale:
         imports = sorted(stale)
         for m in imports:
@@ -272,8 +338,16 @@ def run_incremental(ctx: Ctx, *, write: bool = True, force: bool = False, budget
     problems = _merge_problems(base_raw_problems, base_nodes, new_problems, new_nodes, stale, removed,
                                sorted(now["blueprint"]))
     added = stale - set(data["fingerprints"]["blueprint"])
-    axioms = list(data.get("nonstandard_axioms", []))
-    axioms += [a for a in raw_t.get("nonstandard_axioms", []) if a not in axioms]
+    # The global list holds every non-standard axiom seen in the environment. A blueprint edit can
+    # only remove axioms declared in the replaced or removed modules; the targeted run (current
+    # sources, a sub-environment of the full one) supplies everything the new versions see.
+    base_declared: dict = dict(data.get("blueprint_axioms") or {})
+    obsolete = {a for m in stale | removed for a in base_declared.get(m, [])}
+    axioms = sorted((set(data.get("nonstandard_axioms", [])) - obsolete) | set(raw_t.get("nonstandard_axioms", [])))
+    new_declared = declared_blueprint_axioms(cfg, raw_t) if stale else {}
+    blueprint_axioms = {m: v for m, v in base_declared.items() if m not in stale and m not in removed}
+    blueprint_axioms.update({m: v for m, v in new_declared.items() if m in stale})
+    blueprint_axioms = dict(sorted(blueprint_axioms.items()))
     meta = {
         "toolchain": data.get("toolchain"),
         "modules": (data.get("modules") or 0) + len(added) - len(removed),
@@ -285,7 +359,8 @@ def run_incremental(ctx: Ctx, *, write: bool = True, force: bool = False, budget
     mode = f"incremental from {base_sha}: {len(stale)} re-extracted, {len(removed)} removed"
     dests = dests_from_json(data)
     payload, nodes_text, status_md, index_text, all_problems = assemble(
-        ctx, nodes, dests, index, problems, meta, fingerprints=now, mode=mode)
+        ctx, nodes, dests, index, problems, meta, fingerprints=now, mode=mode, blueprint_axioms=blueprint_axioms)
+    _attest(ctx, payload, index, "incremental")
     if write:
         _write(ctx, payload, index, nodes, th_tree, nodes_text, status_md, index_text)
         with Store(cfg) as st:
@@ -317,12 +392,14 @@ def fast_check(ctx: Ctx) -> tuple[dict, list, list[str]]:
         shown = ", ".join(changed[:6]) + (" …" if len(changed) > 6 else "")
         return data, index, [f"harness/nodes.json is stale for {len(changed)} blueprint module(s) ({shown}); "
                              "run `es extract --incremental` (re-extracts only those)"]
+    _require_attested(cfg, data, index)
     nodes = nodes_from_json(data)
     meta = {k: data.get(k) for k in ("toolchain", "modules", "tree_hash", "nonstandard_axioms", "taint")}
     problems = list(data.get("problems", [])) + list(data.get("warnings", []))
     payload, nodes_text, status_md, index_text, all_problems = assemble(
         ctx, nodes, dests_from_json(data), index, problems, meta,
-        fingerprints=data.get("fingerprints"), mode=str(data.get("extract_mode", "full")))
+        fingerprints=data.get("fingerprints"), mode=str(data.get("extract_mode", "full")),
+        blueprint_axioms=data.get("blueprint_axioms"))
     return payload, index, all_problems + _compare(cfg, nodes_text, status_md, index_text)
 
 
@@ -331,11 +408,19 @@ def index_inputs_changed(cfg) -> list[str]:
     status computation that differ from HEAD (staged, unstaged or untracked)."""
     from es.gitutil import git
 
-    paths = state_dirs(cfg) + [str(p.relative_to(cfg.root)) for p in
-                               (cfg.nodes_json, cfg.status_md, cfg.index_json, cfg.lock_file, cfg.allowlist_file,
-                                cfg.falsify_results_dir)
-                               if p.exists()]
-    out = git(cfg, "status", "--porcelain", "--untracked-files=all", "--", *paths, check=False)
+    from es import fingerprint
+
+    # Every input, whether or not it currently exists: a deleted index file or state directory is
+    # a change too (git status reports it as deleted).
+    files = [cfg.nodes_json, cfg.status_md, cfg.index_json, cfg.lock_file, cfg.allowlist_file,
+             cfg.falsify_results_dir, cfg.extract_template, cfg.root / CONFIG_REL]
+    paths = state_dirs(cfg, existing_only=False) + list(fingerprint.TOOLCHAIN_FILES)
+    for p in files:
+        try:
+            paths.append(str(p.relative_to(cfg.root)))
+        except ValueError:
+            pass  # e.g. an extractor template outside the project (covered by the fingerprints)
+    out = git(cfg, "status", "--porcelain", "--untracked-files=all", "--", *sorted(set(paths)), check=False)
     return [line[3:].strip() for line in out.splitlines() if line.strip()]
 
 

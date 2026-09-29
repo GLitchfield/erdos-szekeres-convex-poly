@@ -576,8 +576,14 @@ worktree needed hours of cache restores before its first commit.
   closure-sized extractor run under the targeted cap. It carries every other record over and
   recomputes statuses, readiness, lock, duplicate and tag problems from the merged records. The
   result equals a full extraction up to the volatile lines; the environment module count is
-  estimated and is volatile. It refuses (`NeedsFullExtract`) when `core` changed or the index
-  has no fingerprints.
+  estimated and is volatile. It refuses (`NeedsFullExtract`) when `core` changed, the index
+  has no fingerprints, or the base index is not attested (below).
+  - The global `nonstandard_axioms` list is every non-standard axiom declared in the
+    environment (the taint scan visits every module), so a blueprint edit can change it only
+    through axioms declared in blueprint modules, such as `native_decide` auxiliaries. The index
+    records those per module (`blueprint_axioms`). The update drops the ones declared in the
+    re-extracted or removed modules and adds what the closure run reports, so the list equals a
+    full extraction's. It is stored sorted, since the extractor emits it in scan order.
 - **`es check --targeted` and `es node add --targeted`** now update `nodes.json` and `status.md`
   this way. The merge reuses their targeted extraction from the cache (same tree hash and
   import set), so it costs no second extractor run. `node add` gains a duplicate check over
@@ -585,6 +591,13 @@ worktree needed hours of cache restores before its first commit.
 - **`es extract --check`**, which the commit hook runs:
   - When all fingerprints match, it re-renders the index from the recorded records plus the
     current lock, allowlist, falsifier results and claims, and compares. No Lean runs.
+  - **Attestation.** Fingerprints prove the sources are unchanged, not that the records came
+    from the extractor. Every full or incremental extraction records a digest of the
+    extractor-derived content it produced (records, problems, axioms, fingerprints, the core
+    index) in the local database (`index_attestations`; worktrees share the primary checkout's
+    database). The fingerprint check, and the incremental update's base, are trusted only when
+    their digest is attested. A hand-edited, textually merged or foreign `nodes.json` falls
+    back to the full check. A clone on another machine pays one full extraction.
   - When only blueprint modules changed, it names them and asks for `--incremental` instead of
     starting a whole-blueprint build.
   - Core changes (or an index without fingerprints) still take the full path.
@@ -592,12 +605,18 @@ worktree needed hours of cache restores before its first commit.
     `es extract --check --no-cache`, which skips the fingerprint shortcut, re-derives the whole
     index from the whole environment and compares it with the committed files.
   - The commit hook runs `es extract --check --changed`. A change that touches no extract state
-    directory, index file, lock, allowlist or falsifier result cannot make the index stale or
-    current, so it passes at once; tooling and docs commits no longer need a whole-blueprint
-    build. Without `--changed`, `--check` still answers "is the index current?".
-- **Cache fix.** A targeted extraction (`no_cache=True`) used to empty the whole extract cache,
-  evicting the full-environment entries that `cache_put` was written to protect. It now only
-  skips the lookup.
+    directory, index file, lock, allowlist, falsifier result, toolchain file, extractor template
+    or `harness/config.toml` cannot make the index stale or current, so it passes at once;
+    tooling and docs commits no longer need a whole-blueprint build. Paths are watched whether
+    or not they exist, so deleting an index file counts as a change. Without `--changed`,
+    `--check` still answers "is the index current?".
+- **Cache fixes.**
+  - A targeted extraction (`no_cache=True`) used to empty the whole extract cache, evicting the
+    full-environment entries that `cache_put` was written to protect. It now only skips the
+    lookup.
+  - The raw-output cache key (`fingerprint.extract_key`) covers the state directories, the
+    toolchain files, the extractor template and the extract config sections. It used to cover
+    the state directories only, so a toolchain or extractor change reused the old output.
 - **Guard fixes.**
   - Guarded scopes run with `OOMPolicy=continue`, so an OOM-killed compiler no longer makes
     systemd stop the whole scope before the wrapper records the peak and the kill. Those jobs

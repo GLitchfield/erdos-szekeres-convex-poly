@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS claims (
   node TEXT PRIMARY KEY, agent TEXT NOT NULL, claimed_at REAL NOT NULL, expires_at REAL NOT NULL, note TEXT);
 CREATE TABLE IF NOT EXISTS extract_cache (
   tree_hash TEXT PRIMARY KEY, nodes_json TEXT NOT NULL, index_json TEXT NOT NULL, created_at REAL NOT NULL);
+CREATE TABLE IF NOT EXISTS index_attestations (
+  digest TEXT PRIMARY KEY, fingerprint TEXT NOT NULL, mode TEXT, agent TEXT, created_at REAL NOT NULL);
 CREATE TABLE IF NOT EXISTS jobs (
   id TEXT PRIMARY KEY, kind TEXT NOT NULL, node TEXT, argv TEXT NOT NULL, cwd TEXT NOT NULL,
   status TEXT NOT NULL, exit_code INTEGER, created_at REAL NOT NULL, started_at REAL, finished_at REAL,
@@ -258,6 +260,25 @@ class Store:
         self.conn.execute("DELETE FROM extract_cache WHERE tree_hash NOT LIKE '%+%' AND tree_hash NOT IN "
                           "(SELECT tree_hash FROM extract_cache WHERE tree_hash NOT LIKE '%+%' ORDER BY created_at DESC LIMIT 5)")
         self.conn.commit()
+
+    # ---- index attestations ------------------------------------------------
+    def attest_index(self, digest: str, fingerprint: str, mode: str, agent: str | None) -> None:
+        """Record that an extraction on this machine produced index content with ``digest``."""
+        self._writable()
+        self.conn.execute(
+            "INSERT OR REPLACE INTO index_attestations(digest, fingerprint, mode, agent, created_at) VALUES (?,?,?,?,?)",
+            (digest, fingerprint, mode, agent, time.time()),
+        )
+        self.conn.execute("DELETE FROM index_attestations WHERE digest NOT IN "
+                          "(SELECT digest FROM index_attestations ORDER BY created_at DESC LIMIT 500)")
+        self.conn.commit()
+
+    def index_attested(self, digest: str) -> bool:
+        try:
+            row = self.conn.execute("SELECT 1 FROM index_attestations WHERE digest = ?", (digest,)).fetchone()
+        except sqlite3.OperationalError:  # a read-only database from before the table existed
+            return False
+        return row is not None
 
     def cache_clear(self) -> None:
         self._writable()

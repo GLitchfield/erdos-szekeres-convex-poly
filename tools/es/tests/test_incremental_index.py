@@ -231,15 +231,151 @@ def test_check_no_cache_forces_full_extraction(seeded, fake):
 
 
 def test_targeted_extract_keeps_full_cache_entries(seeded, fake):
-    from es.commands.extract import run_extract, state_dirs
-    from es.gitutil import tree_hash
+    from es.commands.extract import run_extract
+    from es.fingerprint import extract_key
     from es.store import Store
 
-    th = tree_hash(seeded.cfg, state_dirs(seeded.cfg))
+    th = extract_key(seeded.cfg)
     run_extract(seeded)  # full entry for th
     run_extract(seeded, no_cache=True, write=False, imports=["TBlueprint.A.Bar"])
     with Store(seeded.cfg) as st:
         assert st.cache_get(th) is not None, "a targeted run must not evict the full-environment entry"
+
+
+def _hand_edit_record(cfg) -> None:
+    import json
+
+    data = json.loads(cfg.nodes_json.read_text())
+    data["nodes"][0]["type_pp"] = "False (edited without the extractor)"
+    cfg.nodes_json.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
+
+
+def test_check_changed_rejects_hand_edited_record(project, seeded, fake):
+    """Matching fingerprints do not vouch for records the extractor never produced."""
+    from es.commands.extract import NeedsFullExtract, fast_check, run
+
+    _commit(project)
+    _hand_edit_record(seeded.cfg)
+    with pytest.raises(NeedsFullExtract, match="attested"):
+        fast_check(seeded)
+    res = run(seeded, check=True, changed=True)
+    assert res.exit_code != 0 and res.payload["mode"] == "full"
+    assert "harness/nodes.json is stale; run `es extract`" in res.payload["problems"]
+
+
+def test_incremental_refuses_hand_edited_base(project, seeded, fake):
+    """An incremental update carries unchanged records over, so it must not launder an edited base."""
+    from es.commands.extract import NeedsFullExtract, fast_check, run_incremental
+
+    _hand_edit_record(seeded.cfg)
+    (project / "TBlueprint/A/Bar.lean").write_text(_bar(sorry=True))
+    with pytest.raises(NeedsFullExtract, match="attested"):
+        run_incremental(seeded)
+    (project / "TBlueprint/A/Bar.lean").write_text(_bar(sorry=False))
+    with pytest.raises(NeedsFullExtract, match="attested"):
+        fast_check(seeded)  # nothing was attested on the way
+    assert fake == []
+
+
+def test_attested_index_survives_a_commit(project, seeded, fake):
+    from es.commands.extract import run
+
+    (project / "TBlueprint/A/Bar.lean").write_text(_bar(sorry=True))
+    assert run(seeded, incremental=True).exit_code == 0
+    _commit(project)
+    fake.clear()
+    res = run(seeded, check=True)
+    assert res.exit_code == 0 and res.payload["mode"] == "fingerprint" and fake == []
+
+
+def test_toolchain_change_reextracts_instead_of_reusing_the_cache(project, seeded, fake, monkeypatch):
+    from es.commands import extract as extract_cmd
+    from es.commands.extract import run
+
+    inner = extract_cmd.run_extractor
+
+    def toolchain_sensitive(cfg, **kwargs):
+        out = inner(cfg, **kwargs)
+        out.nodes["toolchain"] = (project / "lean-toolchain").read_text().strip()
+        return out
+
+    monkeypatch.setattr(extract_cmd, "run_extractor", toolchain_sensitive)
+    (project / "lean-toolchain").write_text("changed-toolchain\n")
+    res = run(seeded, check=True)
+    assert fake == [None], "a new toolchain must miss the raw-output cache"
+    assert res.exit_code != 0 and res.payload["mode"] == "full"
+
+
+def test_extractor_template_change_misses_the_cache(project, seeded, fake):
+    from es.fingerprint import extract_key
+
+    template = project / "harness" / "Extract.lean.tmpl"
+    template.write_text("-- one extractor\n")
+    seeded.cfg.raw.setdefault("extract", {})["template"] = "harness/Extract.lean.tmpl"
+    before = extract_key(seeded.cfg)
+    template.write_text("-- a different extractor\n")
+    assert extract_key(seeded.cfg) != before
+
+
+def test_check_changed_detects_deleted_index_files(project, seeded, fake):
+    from es.commands.extract import run
+
+    _commit(project)
+    for path in (seeded.cfg.nodes_json, seeded.cfg.status_md, seeded.cfg.index_json):
+        text = path.read_text()
+        path.unlink()
+        res = run(seeded, check=True, changed=True)
+        assert res.exit_code != 0 and res.payload["mode"] != "unchanged", path
+        path.write_text(text)
+    assert run(seeded, check=True, changed=True).payload["mode"] == "unchanged"
+
+
+@pytest.fixture
+def axiom_marker(project, fake, monkeypatch):
+    """Extend the fake extractor: `-- declares_axiom` in Foo declares a blueprint axiom, reported as
+    an axiom record of Foo and in the global list (as the real extractor reports a `native_decide`
+    auxiliary axiom)."""
+    from es.commands import extract as extract_cmd
+
+    inner = extract_cmd.run_extractor
+
+    def with_axiom(cfg, **kwargs):
+        out = inner(cfg, **kwargs)
+        in_env = any(d["module"] == "TBlueprint.A.Foo" for d in out.nodes["declarations"])
+        if in_env and "-- declares_axiom" in (project / "TBlueprint/A/Foo.lean").read_text():
+            out.nodes["declarations"].append({
+                "name": "TCore.foo_aux_ax", "module": "TBlueprint.A.Foo", "doc": "", "type_pp": "True",
+                "type_hash": "ax", "sorry": False, "axioms": ["TCore.foo_aux_ax"],
+                "nonstandard_axioms": ["TCore.foo_aux_ax"], "deps": [], "internal": True, "kind": "axiom"})
+            out.nodes["nonstandard_axioms"] = ["TCore.foo_aux_ax"] + out.nodes["nonstandard_axioms"]
+        return out
+
+    monkeypatch.setattr(extract_cmd, "run_extractor", with_axiom)
+
+
+@pytest.mark.parametrize("change", ["add", "remove", "remove-module"])
+def test_incremental_tracks_blueprint_declared_axioms(project, seeded, fake, axiom_marker, change):
+    import json
+
+    from es.commands.extract import fast_check, run_extract, run_incremental
+
+    if change != "add":
+        (project / "TBlueprint/A/Foo.lean").write_text(_foo() + "-- declares_axiom\n")
+        run_extract(seeded)
+    mods = {"TBlueprint.A.Foo": _foo() + ("-- declares_axiom\n" if change == "add" else ""),
+            "TBlueprint.A.Bar": _bar(sorry=False)}
+    if change == "remove-module":
+        del mods["TBlueprint.A.Foo"]
+        (project / "TBlueprint/A/Foo.lean").unlink()
+        mods["TBlueprint.A.Bar"] = _node("bar_node", typ="1 = 1", sorry=False)
+    _write_blueprint(project, mods)
+    run_incremental(seeded)
+    data = json.loads(seeded.cfg.nodes_json.read_text())
+    assert ("TCore.foo_aux_ax" in data["nonstandard_axioms"]) == (change == "add")
+    assert data["nonstandard_axioms"] == sorted(data["nonstandard_axioms"])
+    incremental = _files(seeded.cfg)
+    assert not [p for p in fast_check(seeded)[2] if "stale" in p]
+    assert incremental == _full_files(seeded), "incremental index must equal a full extraction"
 
 
 def test_node_add_targeted_updates_index_with_one_extractor_run(project, seeded, fake, monkeypatch):
