@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-29T14:02:37Z",
- "git_sha": "b76736c3fad78fea355f8c158ee08e57f0b4e021",
- "extract_mode": "incremental from 5c0a9a51459b: 1 re-extracted, 0 removed",
+ "generated_at": "2026-09-29T14:05:31Z",
+ "git_sha": "0679da689524ba4c5a8c0d29ebb214ada8d47794",
+ "extract_mode": "incremental from b76736c3fad7: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15668,
- "tree_hash": "b4ebc97cd6c7bc4d.4560d6f33c43b8ee",
+ "modules": 15669,
+ "tree_hash": "6057da2a61010890.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -5826,6 +5826,98 @@
    "blocked_by": [],
    "uncovered_axioms": [],
    "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-29"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_attained_by_end_cut_of_four_le",
+   "module": "ESBlueprint.B.CtxBoundAttainedByEndCutOfFourLe",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "End-cut normal form restricted to both global parameters at least four: for a well-formed context with at least two child runs and 4 <= a, 4 <= u, the bound is attained by a cut that isolates the first or the last child position, on some side at some admissible coupling. The unrestricted form ctx_bound_attained_by_end_cut is false at a = 3 (ctx_bound_attained_by_end_cut_counterexample) and, by the cap/cup mirror, at u = 3. Evidence: every multi-run context with at most four child letters and two external levels at (4,4,5), (4,5,5), (5,5,5), (4,5,6), (5,5,6), (4,6,6), (6,6,6), (4,5,7), (5,6,7) and (4,7,7) (Claude run claude-uniform-mechanism-20260928, Track A, END column). It keeps the end-strip route of experiment 0124 available above the small-capacity boundary.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "depends": [
+     "ErdosSzekeres.ctx_bound_cut_le"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_two_run_boundary_domination",
+    "falsifier": "ctx_end_cut_normal_form_four.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le 2 σ.numRuns →\n      instLENat.le 4 σ.a →\n        instLENat.le 4 σ.u →\n          Exists fun p =>\n            And (List.instMembership.mem σ.childPositions p)\n              (And\n                (Or (∀ (q : Nat), List.instMembership.mem σ.childPositions q → instLENat.le p q)\n                  (∀ (q : Nat), List.instMembership.mem σ.childPositions q → instLENat.le q p))\n                (Exists fun d =>\n                  And (instLENat.le 1 d)\n                    (And (instLENat.le d (instHSub.hSub σ.k 2))\n                      (Or\n                        (instLENat.le σ.bound\n                          (instHAdd.hAdd\n                            (σ.part (List.cons p List.nil) ErdosSzekeres.Ctx.Side.lower d).bound\n                            (σ.part\n                                (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                                ErdosSzekeres.Ctx.Side.upper\n                                (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound))\n                        (instLENat.le σ.bound\n                          (instHAdd.hAdd\n                            (σ.part (List.cons p List.nil) ErdosSzekeres.Ctx.Side.upper\n                                (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                            (σ.part\n                                (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                                ErdosSzekeres.Ctx.Side.lower d).bound))))))",
+   "type_hash": "90cbc8f14c117817",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_bound_cut_le"
+   ],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut_of_four_le",
+    "falsifier": "ctx_end_cut_normal_form_four.py",
+    "falsifier_sha256": "f3626fc09d8b02c2a851e34f803c653229952d3db72a0ed649b93e10c835a2a2",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "90cbc8f14c117817",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 814.6,
+    "at": "2026-09-28T23:19:22Z",
+    "agent": "claude-code:17de3bb4-f81b-48a5-b73d-2d86b781322f",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut_of_four_le",
+     "recursion": "lean",
+     "cases": {
+      "4,4,5": {
+       "contexts": 1752,
+       "nonzero": 1400,
+       "end_attains": 1400
+      },
+      "4,5,5": {
+       "contexts": 1752,
+       "nonzero": 1400,
+       "end_attains": 1400
+      },
+      "5,4,5": {
+       "contexts": 1752,
+       "nonzero": 1400,
+       "end_attains": 1400
+      },
+      "5,5,5": {
+       "contexts": 1752,
+       "nonzero": 1400,
+       "end_attains": 1400
+      },
+      "4,5,6": {
+       "contexts": 3040,
+       "nonzero": 2600,
+       "end_attains": 2600
+      },
+      "5,5,6": {
+       "contexts": 3040,
+       "nonzero": 2600,
+       "end_attains": 2600
+      }
+     },
+     "violations": []
+    }
+   },
    "lock_ok": true,
    "opened": "uncommitted"
   },
@@ -34944,6 +35036,7 @@
    "ESBlueprint.B.CtxBoundAntitone": "8159b546a8f609f0",
    "ESBlueprint.B.CtxBoundAttainedByEndCut": "4f9642fccc4720f0",
    "ESBlueprint.B.CtxBoundAttainedByEndCutCounterexample": "5629ead8dc76805f",
+   "ESBlueprint.B.CtxBoundAttainedByEndCutOfFourLe": "718597cde653a47c",
    "ESBlueprint.B.CtxBoundChildLetterExpansion": "52a0d923c0a338ef",
    "ESBlueprint.B.CtxBoundCutLe": "d8ff370f7bda299b",
    "ESBlueprint.B.CtxBoundExternalLetterContraction": "ee93b1ce7b1cdd48",

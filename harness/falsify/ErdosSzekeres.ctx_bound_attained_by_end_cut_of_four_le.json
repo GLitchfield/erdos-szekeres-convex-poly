@@ -1,0 +1,49 @@
+{
+ "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut_of_four_le",
+ "falsifier": "ctx_end_cut_normal_form_four.py",
+ "falsifier_sha256": "f3626fc09d8b02c2a851e34f803c653229952d3db72a0ed649b93e10c835a2a2",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "90cbc8f14c117817",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 814.6,
+ "at": "2026-09-28T23:19:22Z",
+ "agent": "claude-code:17de3bb4-f81b-48a5-b73d-2d86b781322f",
+ "witness": {
+  "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut_of_four_le",
+  "recursion": "lean",
+  "cases": {
+   "4,4,5": {
+    "contexts": 1752,
+    "nonzero": 1400,
+    "end_attains": 1400
+   },
+   "4,5,5": {
+    "contexts": 1752,
+    "nonzero": 1400,
+    "end_attains": 1400
+   },
+   "5,4,5": {
+    "contexts": 1752,
+    "nonzero": 1400,
+    "end_attains": 1400
+   },
+   "5,5,5": {
+    "contexts": 1752,
+    "nonzero": 1400,
+    "end_attains": 1400
+   },
+   "4,5,6": {
+    "contexts": 3040,
+    "nonzero": 2600,
+    "end_attains": 2600
+   },
+   "5,5,6": {
+    "contexts": 3040,
+    "nonzero": 2600,
+    "end_attains": 2600
+   }
+  },
+  "violations": []
+ }
+}
