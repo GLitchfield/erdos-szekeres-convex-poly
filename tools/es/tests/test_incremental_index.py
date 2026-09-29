@@ -222,6 +222,14 @@ def test_check_changed_passes_changes_that_touch_no_index_input(project, seeded,
     assert "--incremental" in "\n".join(res.payload["problems"])
 
 
+def test_check_no_cache_forces_full_extraction(seeded, fake):
+    """The nightly backstop (`--check --no-cache`) must re-derive the index, not trust fingerprints."""
+    from es.commands.extract import run
+
+    res = run(seeded, check=True, no_cache=True)
+    assert res.payload["mode"] == "full" and fake == [None] and res.exit_code == 0
+
+
 def test_targeted_extract_keeps_full_cache_entries(seeded, fake):
     from es.commands.extract import run_extract, state_dirs
     from es.gitutil import tree_hash

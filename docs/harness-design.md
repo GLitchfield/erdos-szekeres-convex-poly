@@ -588,7 +588,9 @@ worktree needed hours of cache restores before its first commit.
   - When only blueprint modules changed, it names them and asks for `--incremental` instead of
     starting a whole-blueprint build.
   - Core changes (or an index without fingerprints) still take the full path.
-  - The nightly full extraction remains the backstop.
+  - The nightly run (`tools/es/systemd/es-nightly.service`) is the backstop: it runs
+    `es extract --check --no-cache`, which skips the fingerprint shortcut, re-derives the whole
+    index from the whole environment and compares it with the committed files.
   - The commit hook runs `es extract --check --changed`. A change that touches no extract state
     directory, index file, lock, allowlist or falsifier result cannot make the index stale or
     current, so it passes at once; tooling and docs commits no longer need a whole-blueprint
