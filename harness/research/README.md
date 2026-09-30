@@ -46,3 +46,10 @@ standard-library AST parser, and checks every named symbol. A missing file,
 renamed symbol, malformed entry, or invalid source fails the command with the
 entry ID and stale reference. Update the catalog in the same change that
 renames or removes a listed symbol.
+
+`research.singleton-cuts` retains the singleton enumeration reused by the R13
+normal-form and exchange probes. Its example uses the compiled evaluator;
+run it through `es job run` as required by AGENTS.md. Both parts must contain
+a child. Zero values are retained, and the complementary maxima sum to k-1.
+The frozen diagnostic fixture is `examples/singleton-cuts-v1.json`; it gives
+no Lean proof of a normal form.

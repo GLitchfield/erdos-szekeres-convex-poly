@@ -161,6 +161,7 @@ def test_project_catalog_exposes_promoted_research_boundary():
         "research.context-extension",
         "research.rank-clip-potential",
         "research.context-part",
+        "research.singleton-cuts",
         "research.ordered-cover",
         "research.maximum-bounds",
         "research.sole-opposite-normalize",

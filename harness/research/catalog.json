@@ -123,6 +123,17 @@
       }
     },
     {
+      "id": "research.singleton-cuts",
+      "kind": "primitive",
+      "title": "Singleton context-cut values",
+      "summary": "Enumerates both orientations and every admissible coupling at each child, retaining zero-valued parts.",
+      "keywords": ["singleton", "cut", "coupling", "orientation", "normal form", "leaf", "context"],
+      "api": "singleton_cut_values(evaluate, row) -> list[(sum, position, side, sibling_maximum)]",
+      "example": "from harness.research.context_bound import compiled_evaluator\nfrom harness.research.singleton_cuts import singleton_cut_values\nrow = {'word': ('S', (1, 'lower'), 'S'), 'maxima': (1,), 'a': 4, 'u': 4, 'k': 5, 'chosen': 'lower'}\nF = compiled_evaluator(4, 4, 5, persistent=True)\ntry:\n    choices = singleton_cut_values(F, row)\nfinally:\n    F.close()",
+      "semantics": "Requires integer k>=3 and at least two S positions, a context row accepted by research.context-part, and a callback computing bounds at the row's a/u/k. Exposed callback globals must agree. Enumerates positions in increasing order and lower coupling d=1..k-2, then lower/d and upper/(k-1-d). Every sum is retained, even when one or both parts have value zero; errors including evaluator overflow propagate. The caller owns cache, resource guards and outputs. With the compiled evaluator results are diagnostic context-bound-zero-children-c-v1 arithmetic, not kernel proofs of singleton attainment. Retained source and checked-in values: R13 probes and harness/research/examples/singleton-cuts-v1.json.",
+      "source": {"path": "harness/research/singleton_cuts.py", "symbols": ["singleton_cut_values"]}
+    },
+    {
       "id": "research.ordered-cover",
       "kind": "primitive",
       "title": "Ordered rectangle cover bound",
