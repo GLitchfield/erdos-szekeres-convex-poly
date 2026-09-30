@@ -104,8 +104,18 @@ def dependencies_built(cfg, modules: list[str], mods) -> tuple[bool, str]:
     deps = sorted({i for m in modules if m in mods for i in mods[m].imports if i in mods and i not in modules})
     if not deps:
         return True, ""
+    argv = [cfg.lake, "build", "--no-build", *deps]
+    from es.build import bus_available
+    if cfg.build_guard and not bus_available():
+        # A sandbox (no systemd user bus) cannot open a guarded scope; this read-only trace check
+        # (~1 GiB, seconds) then runs directly, so a queued job is still sized, not given the full cap.
+        import subprocess
+        proc = subprocess.run(argv, cwd=cfg.root, capture_output=True, text=True)
+        if proc.returncode == 0:
+            return True, ""
+        return False, "a dependency needs a rebuild" if proc.returncode == 3 else f"lake --no-build rc={proc.returncode}"
     log = cfg.build_log_dir / f"nobuild-{time.strftime('%Y%m%d-%H%M%S')}-{modules[0]}.log"
-    res = run_guarded(cfg, [cfg.lake, "build", "--no-build", *deps], log_path=log, budget_min=2,
+    res = run_guarded(cfg, argv, log_path=log, budget_min=2,
                       memory_max=cfg.build_nobuild_memory_max, force=True, count_built=False)
     if res.ok:
         return True, ""

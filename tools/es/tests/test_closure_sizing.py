@@ -214,3 +214,24 @@ def test_async_targeted_check_reserves_the_sized_cap(cfg, monkeypatch):
     assert job["memory_max"] == "4G"
     full = check.run(Ctx(cfg), declaration.name, async_=True).payload["job"]
     assert full["memory_max"] == cfg.build_memory_max  # a full check still extracts everything
+
+
+def test_dependency_check_runs_directly_without_a_systemd_bus(cfg, monkeypatch):
+    """Sandboxed agents cannot open a guarded scope; the trace check must still size the cap."""
+    from types import SimpleNamespace
+
+    from es import build
+    from es.commands import node
+    from es.modules import scan_modules
+
+    monkeypatch.undo()  # the real dependencies_built
+    cfg.raw["build"]["guard"] = True
+    monkeypatch.setattr(build, "bus_available", lambda *_a, **_k: False)
+    monkeypatch.setattr(node, "run_guarded", lambda *_a, **_k: pytest.fail("no guarded scope without a bus"))
+    calls = []
+    import subprocess
+    monkeypatch.setattr(subprocess, "run", lambda argv, **kw: calls.append(argv) or SimpleNamespace(returncode=0))
+    assert node.dependencies_built(cfg, ["TBlueprint.A.Foo"], scan_modules(cfg)) == (True, "")
+    assert calls and calls[0][1:3] == ["build", "--no-build"]
+    monkeypatch.setattr(subprocess, "run", lambda argv, **kw: SimpleNamespace(returncode=3))
+    assert node.dependencies_built(cfg, ["TBlueprint.A.Foo"], scan_modules(cfg))[0] is False
