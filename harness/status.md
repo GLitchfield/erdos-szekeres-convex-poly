@@ -63,7 +63,7 @@ Nodes: claimed 2, closed 317, open 15, proposed 1, refuted 2.
 | `ErdosSzekeres.ctx_bound_additive_prefix_suffix` | formalization | closed |  |  | - | 2026-09-07 |
 | `ErdosSzekeres.ctx_bound_additive_sandwich_112` | formalization | closed |  |  | - | 2026-09-08 |
 | `ErdosSzekeres.ctx_bound_additive_sandwich_1m2` | formalization | closed |  |  | - | 2026-09-08 |
-| `ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end` | formalization | open | yes |  | - | 2026-09-07 |
+| `ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end` | formalization | claimed |  | ErdosSzekeres.ctx_bound_additive_single_run | - | 2026-09-07 |
 | `ErdosSzekeres.ctx_bound_additive_sandwich_singleton_ends` | formalization | closed |  |  | - | 2026-09-07 |
 | `ErdosSzekeres.ctx_bound_additive_saturated_interval_complement` | formalization | closed |  |  | - | 2026-09-08 |
 | `ErdosSzekeres.ctx_bound_additive_single_run` | conjecture | open | yes |  | pass | 2026-09-06 |
