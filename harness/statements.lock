@@ -684,6 +684,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundCutLe"
   },
+  "ErdosSzekeres.ctx_bound_ext_letter_deletion_mono_of_isolated_children": {
+    "type_hash": "41d377ff917bd9a1",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    (∀ (p : Nat),\n        List.instMembership.mem σ.childPositions p →\n          Not (List.instMembership.mem σ.childPositions (instHAdd.hAdd p 1))) →\n      ∀ (left right : List ErdosSzekeres.Ctx.Letter) (lev : Nat) (side : ErdosSzekeres.Ctx.Side),\n        Eq σ.word\n            (instHAppendOfAppend.hAppend\n              (instHAppendOfAppend.hAppend left\n                (List.cons (ErdosSzekeres.Ctx.Letter.ext lev side) List.nil))\n              right) →\n          List.instMembership.mem (instHAppendOfAppend.hAppend left right)\n              (ErdosSzekeres.Ctx.Letter.ext lev side) →\n            instLENat.le σ.bound\n              { a := σ.a, u := σ.u, k := σ.k, word := instHAppendOfAppend.hAppend left right,\n                  maxima := σ.maxima }.bound",
+    "approved_by": "claude-code:22c8132f-fa67-40ab-90d0-f8255f87797f",
+    "approved_at": "2026-09-30",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundExtLetterDeletionMonoOfIsolatedChildren"
+  },
   "ErdosSzekeres.ctx_bound_external_letter_contraction": {
     "type_hash": "e5206176d2d423c7",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (left right : List ErdosSzekeres.Ctx.Letter) (lev : Nat) (side : ErdosSzekeres.Ctx.Side),\n      Eq σ.word\n          (instHAppendOfAppend.hAppend\n            (instHAppendOfAppend.hAppend left\n              (List.cons (ErdosSzekeres.Ctx.Letter.ext lev side)\n                (List.cons (ErdosSzekeres.Ctx.Letter.ext lev side) List.nil)))\n            right) →\n        Eq σ.bound\n          { a := σ.a, u := σ.u, k := σ.k,\n              word :=\n                instHAppendOfAppend.hAppend\n                  (instHAppendOfAppend.hAppend left\n                    (List.cons (ErdosSzekeres.Ctx.Letter.ext lev side) List.nil))\n                  right,\n              maxima := σ.maxima }.bound",

@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T06:30:18Z",
- "git_sha": "f4f792681feff961ab7a6023492a80a19e60078d",
- "extract_mode": "full",
+ "generated_at": "2026-09-30T13:02:29Z",
+ "git_sha": "c53fb41da4635f2439a1a4c3ef2149adffd83050",
+ "extract_mode": "incremental from f4f792681fef: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15675,
- "tree_hash": "2b8277098601ebb9.4560d6f33c43b8ee",
+ "modules": 15676,
+ "tree_hash": "5106f3da7add18cb.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15674,
-  "scanned_constants": 0,
+  "cached_modules": 5356,
+  "scanned_constants": 1,
   "scanned_modules": 1
  },
  "nodes": [
@@ -4841,8 +4841,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -6338,6 +6338,53 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-06"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_ext_letter_deletion_mono_of_isolated_children",
+   "module": "ESBlueprint.B.CtxBoundExtLetterDeletionMonoOfIsolatedChildren",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "External-letter deletion monotonicity for contexts whose child letters are pairwise non-adjacent (every run a single child): deleting an external letter whose level keeps another letter cannot decrease the bound. The level-keeps-a-letter hypothesis is necessary (deleting the last letter of an upper level flips sideAt to lower and can add a join term). Proof route: replace the letter by an inert letter (ctx_bound_mono_of_marker_inclusion: limits and every fuel approximation only grow), then delete the inert letter by induction on fuel (limits unchanged, blocks and parts correspond); a merge to a single run can only produce two adjacent children, whose only cuts are prefix/suffix (ctx_bound_additive_prefix_suffix). Used with run contraction (C1) to shorten alternating partitions of a single run by two children (R7, runs/claude-comb-closedform-20260930). Evidence (compiled evaluator, diagnostic): 0 violations in 82,512 deletions over eight triples, 2-4 children (runs/claude-comb-closedform-20260930/d1/).",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion",
+     "ErdosSzekeres.ctx_bound_additive_prefix_suffix",
+     "ErdosSzekeres.decomposableThreshold_mono"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_single_run_alternating"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    (∀ (p : Nat),\n        List.instMembership.mem σ.childPositions p →\n          Not (List.instMembership.mem σ.childPositions (instHAdd.hAdd p 1))) →\n      ∀ (left right : List ErdosSzekeres.Ctx.Letter) (lev : Nat) (side : ErdosSzekeres.Ctx.Side),\n        Eq σ.word\n            (instHAppendOfAppend.hAppend\n              (instHAppendOfAppend.hAppend left\n                (List.cons (ErdosSzekeres.Ctx.Letter.ext lev side) List.nil))\n              right) →\n          List.instMembership.mem (instHAppendOfAppend.hAppend left right)\n              (ErdosSzekeres.Ctx.Letter.ext lev side) →\n            instLENat.le σ.bound\n              { a := σ.a, u := σ.u, k := σ.k, word := instHAppendOfAppend.hAppend left right,\n                  maxima := σ.maxima }.bound",
+   "type_hash": "41d377ff917bd9a1",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion",
+    "ErdosSzekeres.ctx_bound_additive_prefix_suffix",
+    "ErdosSzekeres.decomposableThreshold_mono"
+   ],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_external_letter_contraction",
@@ -35500,6 +35547,7 @@
    "ESBlueprint.B.CtxBoundChildLetterExpansion": "52a0d923c0a338ef",
    "ESBlueprint.B.CtxBoundChildRunContractionOfLevelOneSpan": "c554ffde3fd4d9dc",
    "ESBlueprint.B.CtxBoundCutLe": "d8ff370f7bda299b",
+   "ESBlueprint.B.CtxBoundExtLetterDeletionMonoOfIsolatedChildren": "3483555f7bcc285d",
    "ESBlueprint.B.CtxBoundExternalLetterContraction": "ee93b1ce7b1cdd48",
    "ESBlueprint.B.CtxBoundIntervalOrComplementLe": "159279d44710bb76",
    "ESBlueprint.B.CtxBoundLeInactivePruneCapacityThree": "92d22a0bcccb0bd6",
