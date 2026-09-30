@@ -90,3 +90,17 @@ def test_lock_refresh_only_when_statement_text_unchanged(cfg, capsys, monkeypatc
     assert rc == 1 and out["refreshed"] == ["TCore.a"]
     lock = json.loads((cfg.root / "harness" / "statements.lock").read_text())
     assert lock["TCore.a"]["type_hash"] == "new" and lock["TCore.b"]["type_hash"] == "old2"
+
+
+def test_mcp_tools_warn_when_the_server_code_is_stale(cfg, monkeypatch):
+    from es import mcp_server
+    from es.spec import REGISTRY
+    import es.commands  # noqa: F401
+
+    tool = mcp_server._make_tool(next(s for s in REGISTRY if s.name == "job_list"))
+    assert "stale_server" not in tool()
+    monkeypatch.setattr(mcp_server, "_LOADED_FINGERPRINT", (("jobs.py", 0, 0),))
+    out = tool()
+    assert "Reconnect the MCP server" in out["stale_server"] and out["ok"] is True
+    failing = mcp_server._make_tool(next(s for s in REGISTRY if s.name == "job_status"))
+    assert "stale_server" in failing(id="no-such-job")

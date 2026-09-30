@@ -93,3 +93,17 @@ def test_background_falsify_has_no_default_time_limit(cfg, monkeypatch):
 def test_submit_accepts_a_review_interval(cfg):
     job = submit(cfg, kind="check", node=None, argv=["check", "x"], agent="t", queue=True, review_min=7)
     assert job["review_min"] == 7
+
+
+def test_falsify_memory_cap_can_be_sized(cfg, monkeypatch):
+    from types import SimpleNamespace
+
+    from es.commands import falsify
+
+    node = SimpleNamespace(name="TCore.foo_node", falsifier="f.py", short="foo_node")
+    monkeypatch.setattr(falsify, "find_node", lambda *_: node)
+    (cfg.falsifiers_dir).mkdir(parents=True, exist_ok=True)
+    (cfg.falsifiers_dir / "f.py").write_text("print('ok')\n")
+    job = falsify.run(Ctx(cfg), node.name, async_=True, mem="2G").payload["job"]
+    assert job["memory_max"] == "2G" and "--mem=2G" in json.loads(job["argv"])
+    assert falsify.run(Ctx(cfg), node.name, async_=True).payload["job"]["memory_max"] == cfg.falsify_memory_max

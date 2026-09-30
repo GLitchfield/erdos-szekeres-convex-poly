@@ -32,6 +32,10 @@ from es.store import Store
 STATE_NAME = "agent-run.json"
 LOCK_NAME = ".agent-run.lock"
 FINALIZATION_SECONDS = 30 * 60
+# Written by the coordinator (`es run finish`) when the run's result is already closed and
+# reviewed: the host then treats the research deadline as reached and admits the single
+# finalization turn now, instead of holding its reservation until the frozen deadline.
+FINISH_REQUEST_NAME = "FINISH-REQUEST.json"
 MAX_OBJECTIVE_CHARS = 4000  # installed Codex native-goal API, Unicode scalar count
 TERMINAL_GOALS = {"paused", "blocked", "usageLimited", "budgetLimited", "complete"}
 LIVE_JOB_STATES = {"queued", "starting", "running", "unknown_execution"}
@@ -294,6 +298,22 @@ def submit_agent_run(
     from es.run_monitor import register
     register(cfg, out_path, state.get('coordinator_agent', agent))
     return {"run": status_agent_run(cfg, out), "job": job}
+
+
+def request_finish(cfg: Config, out: str | Path, *, agent: str, note: str) -> dict:
+    """Ask a running host to end research now and admit its finalization turn.
+
+    For a run whose result the coordinator has already verified (closed node, receipts
+    reviewed): the host otherwise idles until the frozen deadline holding its reservation."""
+    out_path, _ = _output(cfg, out)
+    if not note or not note.strip():
+        raise UsageError("--note is required: the verified result that makes further research unnecessary")
+    state = _read_state(out_path)
+    if state.get("status") in ("complete", "needs_finalization", "paused_by_user") or state.get("early_finish"):
+        raise CheckFailed(f"run {out_path} is {state.get('status')}: nothing to finish early")
+    request = {"at": _utc(time.time()), "agent": agent, "note": note.strip()[:500]}
+    _atomic_json(out_path / FINISH_REQUEST_NAME, request)
+    return {"out": str(out_path), "request": request, "status": state.get("status")}
 
 
 def status_agent_run(cfg: Config, out: str | Path) -> dict:
@@ -603,9 +623,35 @@ class AgentHost:
         goal = self.state.get("goal") or {}
         return goal.get("status") if isinstance(goal, dict) else None
 
+    def _finish_requested(self) -> bool:
+        """Apply a coordinator early-finish request: end research now, shorten the final window."""
+        path = self.out / FINISH_REQUEST_NAME
+        if self.state.get("early_finish") or not path.exists():
+            return bool(self.state.get("early_finish"))
+        try:
+            request = json.loads(path.read_text())
+        except (OSError, ValueError):
+            return False
+        if not isinstance(request, dict):
+            return False
+        now = time.time()
+        timing = self.state["timing"]
+        timing.setdefault("original_deadline_at", timing["deadline_at"])
+        timing.setdefault("original_final_deadline_at", timing.get("final_deadline_at", timing["deadline_at"]))
+        timing["deadline_at"] = _utc(now)
+        timing["final_deadline_at"] = _utc(min(_parse_utc(timing["original_final_deadline_at"]),
+                                               now + FINALIZATION_SECONDS))
+        self.state["early_finish"] = {"at": _utc(now), "requested_at": request.get("at"),
+                                      "agent": request.get("agent"), "note": str(request.get("note", ""))[:500]}
+        self.state.update(status="finish_requested", phase="early_finish")
+        self.save()
+        return True
+
     def _wait_research(self) -> str:
         deadline = _parse_utc(self.state["timing"]["deadline_at"])
         while time.time() < deadline:
+            if self._finish_requested():
+                return "deadline"
             status = self._goal_status()
             if status in TERMINAL_GOALS:
                 if status == "complete":
@@ -694,6 +740,9 @@ class AgentHost:
                 "runtimeWorkspaceRoots": [self.state["primary_root"], "/tmp"],
                 "turnTrigger": "goal-finalization",
                 "input": [{"type": "text", "text": (
+                    (f"The coordinator ended the research window early at {self.state['early_finish']['at']} "
+                     f"because the run's result is closed and reviewed ({self.state['early_finish']['note']}); "
+                     "treat this as the research deadline. " if self.state.get("early_finish") else "") +
                     "The research deadline has passed and the native goal is paused. Do no new research. "
                     "Use this single finalization turn to inspect the existing workspace and recorded es receipts, "
                     "finish only already-started checks when safe, and give the compact final report required by the "

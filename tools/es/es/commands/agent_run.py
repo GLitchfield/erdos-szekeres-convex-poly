@@ -39,6 +39,14 @@ def run_agent_status(ctx, out):
     return Result(0, state, [f"{state['status']} ({state['phase']}){suffix}"])
 
 
+def run_finish(ctx, out, note):
+    from es.agent_run import request_finish
+
+    result = request_finish(ctx.cfg, out, agent=ctx.agent, note=note)
+    return Result(0, result, [f"finish requested for {result['out']}: the host ends research within a minute "
+                              "and admits the single finalization turn (watch `es run agent-status`)"])
+
+
 def run_review(ctx, out, artifact_root=None):
     from es.run_review import build_review
 
@@ -84,4 +92,13 @@ command(CommandSpec(
     run_review,
     [Arg("out", "existing run directory under runs/ or data/", positional=True, required=True),
      Arg("artifact_root", "explicit run artifact root containing the host out directory")],
+))
+
+command(CommandSpec(
+    "run_finish",
+    ["run", "finish"],
+    "End a native-goal run's research window early (its result is closed and reviewed): the host admits the finalization turn now and releases its reservation.",
+    run_finish,
+    [Arg("out", "existing run directory under runs/ or data/", positional=True, required=True),
+     Arg("note", "the verified result that makes further research unnecessary", required=True)],
 ))

@@ -255,7 +255,17 @@ the host does not create a fresh model turn on each poll. Its state contains lif
 usage metadata, not conversation text or credentials.
 
 Research admission ends at the frozen deadline. If needed, exactly one report/finalization
-turn is permitted, with a further 30-minute hard stop. A terminal or failed host is not
+turn is permitted, with a further 30-minute hard stop. When the run's result is already closed
+and the coordinator has reviewed its receipts, `es run finish OUT --note "<verified result>"`
+ends research early: within a minute the host treats the deadline as reached, admits the single
+finalization turn (its prompt says why) and then releases its 2 GiB reservation, instead of
+idling until the frozen deadline. The original deadlines stay in the state as
+`original_deadline_at`/`original_final_deadline_at`. Hosts started before this change ignore the
+request; cancel their host job instead (the goal is paused cleanly).
+
+The `es` MCP server compares its loaded code with the checkout on every call and adds a
+`stale_server` field when `tools/es` has changed since it started: reconnect it (Claude Code
+`/mcp`) to get new commands and fixes. The `tools/es/bin/es` CLI always runs the current code. A terminal or failed host is not
 evidence of successful research: inspect the report, goal status, check receipts and usage
 coverage. Premature completion is recorded as such.
 

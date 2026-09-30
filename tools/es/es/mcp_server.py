@@ -21,6 +21,34 @@ from es.spec import REGISTRY, Arg, CommandSpec
 _PY_TYPES = {"str": str, "int": int, "float": float, "bool": bool, "list": list[str]}
 
 
+def _code_fingerprint() -> tuple:
+    """(path, mtime_ns, size) of every module of the `es` package: a long-lived server that
+    loaded older code is otherwise silent about commands and fixes it does not have."""
+    from pathlib import Path
+
+    package = Path(__file__).resolve().parent
+    out = []
+    for path in sorted(package.rglob("*.py")):
+        try:
+            st = path.stat()
+        except OSError:
+            continue
+        out.append((str(path.relative_to(package)), st.st_mtime_ns, st.st_size))
+    return tuple(out)
+
+
+_LOADED_FINGERPRINT = _code_fingerprint()
+_LOADED_AT = __import__("time").strftime("%Y-%m-%d %H:%M")
+
+
+def stale_warning() -> str | None:
+    if _code_fingerprint() == _LOADED_FINGERPRINT:
+        return None
+    return (f"this es MCP server runs harness code loaded at {_LOADED_AT}; tools/es has changed since. "
+            "Reconnect the MCP server (Claude Code: /mcp) to use the current commands and fixes; "
+            "the `tools/es/bin/es` CLI always runs the current code.")
+
+
 def _make_tool(spec: CommandSpec):
     params = []
     for a in spec.args:
@@ -39,10 +67,15 @@ def _make_tool(spec: CommandSpec):
             with redirect_stdout(buf):
                 result = spec.run(ctx, **{k: v for k, v in kwargs.items() if v is not None})
         except EsError as exc:
-            return {"ok": False, "exit_code": exc.exit_code, "error": str(exc)}
+            failure = {"ok": False, "exit_code": exc.exit_code, "error": str(exc)}
+            warning = stale_warning()
+            return failure | ({"stale_server": warning} if warning else {})
         payload = result.payload if isinstance(result.payload, dict) else {"result": result.payload}
         from es.artifacts import compact
         envelope = {"ok": result.exit_code == 0, "exit_code": result.exit_code, **payload}
+        warning = stale_warning()
+        if warning:
+            envelope = {"stale_server": warning, **envelope}
         # Keep human tables in CLI output; repeating them in MCP doubles retrieval cost.
         if spec.name == 'artifact_show':
             return envelope

@@ -18,7 +18,7 @@ from es.store import Store
 
 
 def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False,
-        timeout: int | None = None, targeted: bool = False) -> Result:
+        timeout: int | None = None, targeted: bool = False, mem: str | None = None) -> Result:
     cfg = ctx.cfg
     n = find_node(cfg, name)
     if not n.falsifier:
@@ -33,7 +33,10 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False,
         argv = ["falsify", n.name, f"--timeout={timeout or 0}"] + ([f"--dataset={dataset}"] if dataset else [])
         if targeted:
             argv.append("--targeted")
-        job = submit(cfg, kind="falsify", node=n.name, argv=argv, agent=ctx.agent, budget_min=timeout or None)
+        if mem:
+            argv.append(f"--mem={mem}")
+        job = submit(cfg, kind="falsify", node=n.name, argv=argv, agent=ctx.agent, budget_min=timeout or None,
+                     memory_max=mem)
         return Result(EXIT_OK, {"job": job}, [f"submitted job {job['id']}"])
     ds = Path(dataset).resolve() if dataset else cfg.dataset_dir
     out_dir = cfg.falsify_results_dir
@@ -46,7 +49,7 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False,
     if script.suffix == ".py":
         cmd = ["python3"] + cmd
     # falsifiers run solvers and enumerations: cap them like builds (systemd user scope, no swap)
-    memory_max = cfg.falsify_memory_max
+    memory_max = mem or cfg.falsify_memory_max
     if memory_max and shutil.which("systemd-run") is not None:
         cmd = ["systemd-run", "--user", "--scope", "-q", "-p", f"MemoryMax={memory_max}", "-p", "MemorySwapMax=0", "--"] + cmd
     log = cfg.build_log_dir / f"falsify-{time.strftime('%Y%m%d-%H%M%S')}-{n.short}.log"
@@ -113,4 +116,5 @@ command(CommandSpec(name="falsify", cli=["falsify"], long_running=True,
                     help="Run a node's falsifier (exit 0 pass, 2 counterexample with witness) and record the result under harness/falsify/.", run=run,
                     args=[Arg("name", "node name", positional=True, required=True), Arg("dataset", "dataset directory (default from config)"),
                           Arg("async_", "submit as a background job", "bool"), Arg("timeout", "synchronous time guard in minutes (default falsify.timeout_min); with --async only an explicit value limits the job, 0 = none", "int"),
+                          Arg("mem", "memory cap for this falsifier (default falsify.memory_max, sized for SAT solvers); a Python enumeration needs ~1-2G"),
                           Arg("targeted", "extract only this node's import closure; leave the full index unchanged", "bool")]))

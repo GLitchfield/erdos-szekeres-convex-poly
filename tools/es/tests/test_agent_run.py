@@ -412,3 +412,48 @@ def test_automatic_capacity_retry_rechecks_changed_goal_status(cfg, project, mon
 def test_automatic_recovery_host_command_keeps_restrictive_policy(cfg, project):
     command = agent_run._host_command(cfg, project/'runs/test', True, capacity_only=True)
     assert command[-2:] == ['--resume', '--capacity-only']
+
+
+def test_finish_request_ends_research_now_and_shortens_the_final_window(cfg, project, monkeypatch):
+    out, _result, _captured = _submit(cfg, project, monkeypatch)
+    host = agent_run.AgentHost(cfg, out)
+    far = time.time() + 8 * 3600
+    host.state["timing"] = {"deadline_at": agent_run._utc(far),
+                            "final_deadline_at": agent_run._utc(far + agent_run.FINALIZATION_SECONDS)}
+    host.state["goal"] = {"status": "active"}
+    monkeypatch.setattr(host, "save", lambda: None)
+    with pytest.raises(UsageError):
+        agent_run.request_finish(cfg, "runs/native", agent="coordinator", note=" ")
+    agent_run.request_finish(cfg, "runs/native", agent="coordinator", note="node closed; receipts reviewed")
+    assert host._wait_research() == "deadline"
+    timing = host.state["timing"]
+    assert agent_run._parse_utc(timing["deadline_at"]) <= time.time() + 1
+    assert agent_run._parse_utc(timing["final_deadline_at"]) <= time.time() + agent_run.FINALIZATION_SECONDS + 1
+    assert timing["original_deadline_at"] == agent_run._utc(far)
+    assert host.state["early_finish"]["note"] == "node closed; receipts reviewed"
+    assert host.state["status"] == "finish_requested"
+
+
+def test_early_finish_final_turn_says_why(cfg, project, monkeypatch):
+    out, _result, _captured = _submit(cfg, project, monkeypatch)
+    host = agent_run.AgentHost(cfg, out)
+    host.state.update(thread_id="thread-1", goal={"status": "paused"}, model="m", effort="xhigh",
+                      early_finish={"at": "2026-09-30T20:00:00Z", "note": "node closed"})
+    host.state["timing"] = {"final_deadline_at": agent_run._utc(time.time() + 600)}
+    texts = []
+
+    class Requests:
+        def request(self, method, params, timeout=30):
+            if method == "thread/goal/get":
+                return {"goal": {"status": "complete" if texts else "paused"}}
+            if method == "turn/start":
+                texts.append(params["input"][0]["text"])
+                return {"turn": {"id": "final-1"}}
+            raise AssertionError(method)
+
+    host.client = Requests()
+    monkeypatch.setattr(host, "save", lambda: None)
+    monkeypatch.setattr(host, "_wait_active_turn", lambda _until: None)
+    host.state.setdefault("progress", {})["last_turn_id"] = "final-1"
+    host._finalize()
+    assert texts and texts[0].startswith("The coordinator ended the research window early")
