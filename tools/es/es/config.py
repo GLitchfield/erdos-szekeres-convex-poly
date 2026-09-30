@@ -296,6 +296,30 @@ class Config:
         return str(self.get("build", "memory_max", default="20G"))
 
     @property
+    def build_elaborate_memory_base(self) -> str:
+        """Fixed part of the cap for building one small module (see `elaboration_memory_max`)."""
+        return str(self.get("build", "elaborate_memory_base", default="3G"))
+
+    @property
+    def build_elaborate_memory_per_olean_gib(self) -> float:
+        """GiB of cap per GiB of project oleans in the module's import closure."""
+        return float(self.get("build", "elaborate_memory_per_olean_gib", default=4))
+
+    @property
+    def build_elaborate_memory_min(self) -> str:
+        return str(self.get("build", "elaborate_memory_min", default="4G"))
+
+    @property
+    def build_nobuild_memory_max(self) -> str:
+        """Cap for `lake build --no-build` (is the closure current?); measured peak about 0.85 GiB."""
+        return str(self.get("build", "nobuild_memory_max", default="2G"))
+
+    @property
+    def commit_memory_max(self) -> str:
+        """Reservation for a queued `es node commit` job (git only)."""
+        return str(self.get("jobs", "commit_memory_max", default="1G"))
+
+    @property
     def build_cpu_quota(self) -> int:
         return int(self.get("build", "cpu_quota_cores", default=0))
 
@@ -369,6 +393,19 @@ class Config:
     def extract_targeted_memory_max(self) -> str:
         """Cap for a targeted extract (one node module and its import closure only)."""
         return str(self.get("extract", "targeted_memory_max", default="12G"))
+
+    @property
+    def extract_targeted_memory_base(self) -> str:
+        """Fixed part of a targeted extract's sized cap (measured peak about 2.2 GiB over a thin closure)."""
+        return str(self.get("extract", "targeted_memory_base", default="3G"))
+
+    @property
+    def extract_targeted_memory_per_olean_gib(self) -> float:
+        return float(self.get("extract", "targeted_memory_per_olean_gib", default=2))
+
+    @property
+    def extract_targeted_memory_min(self) -> str:
+        return str(self.get("extract", "targeted_memory_min", default="4G"))
 
     @property
     def extract_targeted_max_olean_gib(self) -> float:

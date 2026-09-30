@@ -166,9 +166,14 @@ When the configured executable is `lake` and PATH does not resolve it, the harne
 uses the executable `~/.elan/bin/lake` shim if present; explicit executables and
 PATH entries retain precedence.
 
-Use `es lib show workflow.node-add` for registration requirements: targeted
-extraction still needs the configured build reservation (currently 20G), and a
-normal full extraction needs 28G. Use `es lib show workflow.jobs` for bounded
+Use `es lib show workflow.node-add` for registration requirements: elaboration
+and targeted extraction reserve a cap sized to the module's import closure (4-5G
+for thin blueprint nodes, measured peaks under 1 GiB and 2.2 GiB), falling back to
+the full build reservation (currently 20G) when a dependency needs a rebuild or the
+sized run is OOM-killed; a normal full extraction needs 28G. A Codex sandbox cannot
+write `.git-data` (`index.lock` is read-only): commit a node with `es node commit
+<node> --message-file F`, which queues itself for `es worker` there and commits
+directly elsewhere (`es lib show workflow.node-commit`). Use `es lib show workflow.jobs` for bounded
 execution and receipt handling. Harness Git calls disable automatic background
 maintenance. Direct Git job commands must likewise pass `-c gc.auto=0
 -c maintenance.auto=false`; otherwise a background child can leave a completed

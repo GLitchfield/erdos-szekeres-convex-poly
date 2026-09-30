@@ -6,7 +6,7 @@ import time
 from pathlib import Path
 
 from es import EXIT_CHECK_FAILED, EXIT_OK, EXIT_USAGE
-from es.build import run_guarded
+from es.build import _mem_gib, run_guarded, run_guarded_retry
 from es.context import Ctx
 from es.errors import CheckFailed, LeanError, UsageError, Refused
 from es.lock import lock_entry, read_lock, write_lock
@@ -56,30 +56,95 @@ def render_module(cfg, *, short: str, signature: str, docstring: str, imp: str, 
 
 
 def elaborate_module(ctx: Ctx, module: str, budget: int = 20) -> None:
-    """`lake build <module>` under the guard; raise LeanError with the log tail on failure."""
+    """`lake build <module>` under the guard; raise LeanError with the log tail on failure.
+
+    The cap is sized to the module's import closure (`elaboration_memory_max`) and retried once
+    at build.memory_max if the kernel OOM-kills the smaller scope."""
     cfg = ctx.cfg
     log = cfg.build_log_dir / f"elab-{time.strftime('%Y%m%d-%H%M%S')}-{module}.log"
-    res = run_guarded(cfg, [cfg.lake, "build", module], log_path=log, budget_min=budget)
+    res = run_guarded_retry(cfg, [cfg.lake, "build", module], log_path=log, budget_min=budget,
+                            memory_max=elaboration_memory_max(cfg, [module]),
+                            retry_memory_max=cfg.build_memory_max)
     if res.refused:
         raise Refused(f"{module} elaboration refused ({res.refused})")
     if not res.ok:
         raise LeanError(f"{module} failed to elaborate ({res.summary()}):\n" + "\n".join(res.tail))
 
 
-def closure_olean_gib(cfg, module: str) -> float:
-    """Project olean bytes (all `.olean*` parts) in the import closure of ``module``."""
-    mods = scan_modules(cfg)
+_OLEAN_SUFFIXES = (".olean", ".olean.hash", ".olean.private", ".olean.server", ".ilean")
+
+
+def closure_stats(cfg, modules: list[str], mods=None) -> tuple[float, list[str]]:
+    """(project olean GiB, dependencies without an `.olean`) for the import closure of ``modules``.
+
+    The ``modules`` themselves are expected to be (re)built and are never listed as missing."""
+    mods = scan_modules(cfg) if mods is None else mods
     lib = cfg.root / ".lake" / "build" / "lib" / "lean"
     total = 0
+    missing: list[str] = []
     # exact paths, not a glob per module: a closure of thousands of certificate modules
     # against a directory of tens of thousands of files made the glob quadratic
-    for m in transitive_closure(mods, [module]):
+    for m in sorted(transitive_closure(mods, list(modules))):
         base = lib / module_to_path(m).with_suffix("")
-        for suffix in (".olean", ".olean.hash", ".olean.private", ".olean.server", ".ilean"):
+        for suffix in _OLEAN_SUFFIXES:
             f = base.with_name(base.name + suffix)
             if f.exists():
                 total += f.stat().st_size
-    return total / 2**30
+        if m not in modules and not base.with_name(base.name + ".olean").exists():
+            missing.append(m)
+    return total / 2**30, missing
+
+
+def dependencies_built(cfg, modules: list[str], mods) -> tuple[bool, str]:
+    """Whether Lake considers the project imports of ``modules`` up to date.
+
+    `lake build --no-build` exits 3 when a build is required; it compares content traces, which
+    file timestamps cannot (a checkout touches sources without changing them).  Anything but a
+    clean exit, including a refusal to start, counts as not built."""
+    deps = sorted({i for m in modules if m in mods for i in mods[m].imports if i in mods and i not in modules})
+    if not deps:
+        return True, ""
+    log = cfg.build_log_dir / f"nobuild-{time.strftime('%Y%m%d-%H%M%S')}-{modules[0]}.log"
+    res = run_guarded(cfg, [cfg.lake, "build", "--no-build", *deps], log_path=log, budget_min=2,
+                      memory_max=cfg.build_nobuild_memory_max, force=True, count_built=False)
+    if res.ok:
+        return True, ""
+    return False, res.refused or ("a dependency needs a rebuild" if res.rc == 3 else res.summary())
+
+
+def closure_olean_gib(cfg, module: str) -> float:
+    """Project olean bytes (all `.olean*` parts) in the import closure of ``module``."""
+    return closure_stats(cfg, [module])[0]
+
+
+def _closure_sized(cfg, gib: float, *, base: str, per_gib: float, floor: str, ceiling: str) -> str:
+    """ceil(base + per_gib * gib) GiB, clamped to [floor, ceiling]."""
+    import math
+
+    want = math.ceil(_mem_gib(base) + per_gib * gib)
+    return f"{int(min(max(want, _mem_gib(floor)), _mem_gib(ceiling)))}G"
+
+
+def elaboration_memory_max(cfg, modules: list[str], mods=None) -> str:
+    """Memory cap for `lake build` of small modules: sized to their import closure.
+
+    Blueprint nodes over a thin closure peak well under 1 GiB, and reserving build.memory_max
+    (sized for whole-library builds) for them kept the shared budget full.  Any dependency that
+    still needs a rebuild could be arbitrarily heavy, so then the full cap is used."""
+    mods = scan_modules(cfg) if mods is None else mods
+    gib, missing = closure_stats(cfg, modules, mods)
+    if missing or not dependencies_built(cfg, modules, mods)[0]:
+        return cfg.build_memory_max
+    return _closure_sized(cfg, gib, base=cfg.build_elaborate_memory_base,
+                          per_gib=cfg.build_elaborate_memory_per_olean_gib,
+                          floor=cfg.build_elaborate_memory_min, ceiling=cfg.build_memory_max)
+
+
+def targeted_extract_memory_max(cfg, gib: float) -> str:
+    """Memory cap for a targeted extract over a closure of ``gib`` GiB of project oleans."""
+    return _closure_sized(cfg, gib, base=cfg.extract_targeted_memory_base,
+                          per_gib=cfg.extract_targeted_memory_per_olean_gib,
+                          floor=cfg.extract_targeted_memory_min, ceiling=cfg.extract_targeted_memory_max)
 
 
 def targeted_extract(ctx: Ctx, module: str):
@@ -98,7 +163,9 @@ def targeted_extract(ctx: Ctx, module: str):
     tmp = cfg.es_home / "tmp"
     tmp.mkdir(parents=True, exist_ok=True)
     return run_extract(ctx, no_cache=True, write=False, imports=[module],
-                       memory_max=cfg.extract_targeted_memory_max, script=tmp / "ExtractTargeted.lean")
+                       memory_max=targeted_extract_memory_max(cfg, gib),
+                       build_memory_max=elaboration_memory_max(cfg, [module]),
+                       script=tmp / "ExtractTargeted.lean")
 
 
 def re_extract(ctx: Ctx):
@@ -403,6 +470,148 @@ def run_retire(ctx: Ctx, name: str, reason: str, as_refutation: bool = False, ap
     return Result(EXIT_OK, {"node": n.name, "outcome": outcome}, [f"{outcome} {n.name}; logged in {cfg.retired_file.relative_to(cfg.root)}"])
 
 
+# ---------------------------------------------------------------------------
+# commit
+
+
+def git_writable(cfg) -> bool:
+    """Whether this process can write the git metadata (a Codex sandbox mounts it read-only)."""
+    import os
+
+    from es.gitutil import git
+
+    gd = cfg.git_dir or Path(git(cfg, "rev-parse", "--absolute-git-dir").strip())
+    dirs = [gd]
+    common = gd / "commondir"
+    if common.is_file():
+        c = Path(common.read_text().strip())
+        dirs.append(c if c.is_absolute() else (gd / c).resolve())
+    for d in dirs:
+        probe = d / f".es-write-probe-{os.getpid()}"
+        try:
+            probe.touch()
+            probe.unlink()
+        except OSError:
+            return False
+    return True
+
+
+def node_commit_paths(cfg, n) -> list[Path]:
+    """The files one node's commit may carry: its module, the blueprint root import, the lock and
+    index records, and its falsifier with its recorded result."""
+    paths = [cfg.root / module_to_path(n.module), cfg.blueprint_root, cfg.lock_file, cfg.nodes_json,
+             cfg.status_md, cfg.index_json, cfg.falsify_results_dir / f"{n.name}.json"]
+    if n.falsifier:
+        paths.append(cfg.falsifiers_dir / n.falsifier)
+    return paths
+
+
+def _rel(cfg, p: Path) -> str:
+    return str(p.resolve().relative_to(cfg.root.resolve()))
+
+
+def _changed(cfg, rels: list[str]) -> list[str]:
+    from es.gitutil import git
+
+    out = git(cfg, "status", "--porcelain=v1", "-z", "--untracked-files=all", "--", *rels)
+    changed = []
+    for rec in out.split("\0"):
+        if len(rec) > 3:
+            changed.append(rec[3:])
+    return sorted(set(changed))
+
+
+def run_commit(ctx: Ctx, name: str, message: str | None = None, message_file: str | None = None,
+               include: list[str] | None = None, direct: bool = False) -> Result:
+    """Commit exactly one node's files on its `node/` branch.
+
+    A process that cannot write the git metadata (a Codex sandbox) queues the same command for
+    `es worker`, which runs outside the sandbox; ``direct`` is that job's own invocation."""
+    import uuid
+
+    from es.gitutil import git
+
+    cfg = ctx.cfg
+    n = find_node(cfg, name)
+    if message and message_file:
+        raise UsageError("give --message or --message-file, not both")
+    extra = []
+    for inc in include or []:
+        p = (cfg.root / inc).resolve()
+        if not any(p.is_relative_to((cfg.root / r).resolve()) for r in cfg.jobs_output_roots):
+            raise UsageError(f"--include {inc}: only research artifacts under "
+                             + ", ".join(r + "/" for r in cfg.jobs_output_roots) + " may ride along")
+        if not p.exists():
+            raise UsageError(f"--include {inc}: no such file")
+        extra.append(p)
+    if not direct and not git_writable(cfg):
+        from es.jobs import submit
+
+        tmp = cfg.es_home / "tmp"
+        tmp.mkdir(parents=True, exist_ok=True)
+        msg_path = tmp / f"commit-{uuid.uuid4().hex[:8]}.msg"
+        if message_file:
+            msg_path.write_text(Path(message_file).read_text())
+        elif message:
+            msg_path.write_text(message.rstrip("\n") + "\n")
+        argv = ["node", "commit", n.name, "--direct"]
+        if message or message_file:
+            argv += ["--message-file", str(msg_path)]
+        for p in extra:
+            argv += ["--include", _rel(cfg, p)]
+        job = submit(cfg, kind="commit", node=n.name, argv=argv, agent=ctx.agent, queue=True,
+                     memory_max=cfg.commit_memory_max, lock_key=f"git:{cfg.root.resolve()}")
+        return Result(EXIT_OK, {"job": job, "queued": True},
+                      [f"git metadata is read-only here; queued job {job['id']} for `es worker`",
+                       f"wait with `es job wait {job['id']}`; the job log names the commit"])
+    try:
+        branch = git(cfg, "symbolic-ref", "--short", "HEAD").strip()
+    except RuntimeError as exc:
+        raise UsageError(f"HEAD is not on a branch ({exc})") from exc
+    if branch == cfg.default_branch or not branch.startswith("node/"):
+        raise UsageError(f"on branch {branch}: node commits go on a `node/<Name>` branch, one node per branch")
+    staged = git(cfg, "diff", "--cached", "--name-only").split()
+    if staged:
+        raise UsageError("the index already holds staged changes (" + ", ".join(staged[:8])
+                         + "); commit or unstage them first so this commit carries only the node")
+    rels = [_rel(cfg, p) for p in node_commit_paths(cfg, n) if p.resolve().is_relative_to(cfg.root.resolve())]
+    rels += [_rel(cfg, p) for p in extra]
+    files = _changed(cfg, rels)
+    if not files:
+        raise UsageError(f"nothing to commit for {n.name} (checked: {', '.join(rels)})")
+    if message_file:
+        text = Path(message_file).read_text()
+    else:
+        text = (message or f"{n.short}: {n.status}").rstrip("\n") + "\n"
+    if not text.strip():
+        raise UsageError("empty commit message")
+    git(cfg, "add", "--", *files)
+    problems = git(cfg, "diff", "--cached", "--check", check=False)
+    if problems.strip():
+        git(cfg, "reset", "-q", "--", *files, check=False)
+        raise CheckFailed("whitespace problems; nothing committed:\n" + problems.strip())
+    tmp = cfg.es_home / "tmp"
+    tmp.mkdir(parents=True, exist_ok=True)
+    msg_path = tmp / f"commit-{uuid.uuid4().hex[:8]}.msg"
+    msg_path.write_text(text)
+    try:
+        git(cfg, "commit", "-q", "-F", str(msg_path))
+    except RuntimeError:
+        git(cfg, "reset", "-q", "--", *files, check=False)
+        raise
+    finally:
+        msg_path.unlink(missing_ok=True)
+    sha = git(cfg, "rev-parse", "HEAD").strip()
+    left = [f for f in _changed(cfg, ["."]) if f not in files]
+    with Store(cfg) as st:
+        st.event("node-commit", n.name, ctx.agent, {"sha": sha, "branch": branch, "files": files})
+    res = Result(EXIT_OK, {"sha": sha, "branch": branch, "files": files, "left_uncommitted": left},
+                 [f"committed {sha[:10]} on {branch}: " + ", ".join(files)])
+    if left:
+        res.line("left uncommitted: " + ", ".join(left[:12]) + (" ..." if len(left) > 12 else ""))
+    return res
+
+
 command(CommandSpec(name="node_show", cli=["node", "show"], help="Everything known about a node.", run=run_show,
                     args=[Arg("name", "node name (short or fully qualified)", positional=True, required=True)]))
 command(CommandSpec(
@@ -442,3 +651,13 @@ command(CommandSpec(
     args=[Arg("name", "node name", positional=True, required=True), Arg("reason", "why", required=True),
           Arg("as_refutation", "keep the module, negate the conclusion, kind=refutation", "bool"), Arg("approved_by", "who decided")],
 ))
+command(CommandSpec(
+    name="node_commit", cli=["node", "commit"],
+    help="Commit exactly one node's files (module, root import, lock/index records, falsifier) on its node/ branch; "
+         "queued for `es worker` when the git metadata is read-only (sandbox).",
+    run=run_commit,
+    args=[Arg("name", "node name", positional=True, required=True),
+          Arg("message", "commit message"),
+          Arg("message_file", "file holding the commit message"),
+          Arg("include", "extra research artifact to commit (under runs/ or data/); repeatable", "list"),
+          Arg("direct", "commit in this process even if git looks read-only (the queued job's own call)", "bool")]))

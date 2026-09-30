@@ -38,7 +38,11 @@ def _submit_reservation(cfg: Config, kind: str) -> str:
 
 
 def submit(cfg: Config, *, kind: str, node: str | None, argv: list[str], agent: str, budget_min: int | None = None,
-           queue: bool = False) -> dict:
+           queue: bool = False, memory_max: str | None = None, lock_key: str | None = None) -> dict:
+    """Record an `es` subcommand as a job (started now, or left queued for `es worker`).
+
+    ``memory_max`` overrides the reservation for the kind; ``lock_key`` the per-worktree
+    writer lock (a job holding `worktree:<root>` also takes one of the parallel build slots)."""
     job_id = time.strftime("%Y%m%d-%H%M%S-") + uuid.uuid4().hex[:6]
     log_dir = cfg.build_log_dir
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -47,8 +51,8 @@ def submit(cfg: Config, *, kind: str, node: str | None, argv: list[str], agent: 
         "id": job_id, "kind": kind, "node": node, "argv": json.dumps(argv), "cwd": str(cfg.root),
         "status": "queued", "exit_code": None, "created_at": time.time(), "started_at": None, "finished_at": None,
         "log_path": str(log_path), "budget_min": budget_min, "agent": agent, "pid": None, "result_json": None,
-        "memory_max": _submit_reservation(cfg, kind),
-        "lock_key": 'worktree:' + str(cfg.root.resolve()),
+        "memory_max": memory_max or _submit_reservation(cfg, kind),
+        "lock_key": lock_key or 'worktree:' + str(cfg.root.resolve()),
     }
     with Store(cfg) as st:
         st.job_insert(job)

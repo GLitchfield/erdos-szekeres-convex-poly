@@ -186,6 +186,25 @@ def run_guarded(cfg: Config, argv: list[str], **kwargs) -> BuildResult:
             release_storage_reservation(cfg, reservation)
 
 
+def run_guarded_retry(cfg: Config, argv: list[str], *, memory_max: str, retry_memory_max: str,
+                      **kwargs) -> BuildResult:
+    """`run_guarded` under a sized cap, once more under ``retry_memory_max`` if the kernel
+    OOM-killed the first scope.  A retry that cannot start (budget, enclosing job) returns the
+    first result with the refusal appended to its tail."""
+    res = run_guarded(cfg, argv, memory_max=memory_max, **kwargs)
+    if res.ok or res.refused or not res.oom_kills or _mem_gib(retry_memory_max) <= _mem_gib(memory_max):
+        return res
+    log = Path(kwargs["log_path"])
+    kwargs["log_path"] = log.with_name(f"{log.stem}-retry{log.suffix}")
+    again = run_guarded(cfg, argv, memory_max=retry_memory_max, **kwargs)
+    if again.refused:
+        res.tail = list(res.tail) + [f"es: OOM under the sized cap {memory_max}; retry under "
+                                     f"{retry_memory_max} refused ({again.refused})"]
+        return res
+    again.tail = [f"es: OOM under the sized cap {memory_max}; retried under {retry_memory_max}"] + list(again.tail)
+    return again
+
+
 def _run_guarded(
     cfg: Config,
     argv: list[str],

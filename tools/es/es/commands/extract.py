@@ -225,7 +225,8 @@ def _write(ctx: Ctx, payload: dict, index: list, nodes: list[Node], th: str,
 
 
 def _extract_raw(ctx: Ctx, *, th: str, mods, no_cache: bool, force: bool, budget: int | None,
-                 imports: list[str] | None, memory_max: str | None, script: Path | None) -> tuple[dict, list]:
+                 imports: list[str] | None, memory_max: str | None, script: Path | None,
+                 build_memory_max: str | None = None) -> tuple[dict, list]:
     """The extractor output for ``th``, from the cache or a fresh run (which is cached).
 
     ``no_cache`` skips the lookup but never empties the cache: a targeted run must not evict the
@@ -239,7 +240,9 @@ def _extract_raw(ctx: Ctx, *, th: str, mods, no_cache: bool, force: bool, budget
     tmp.mkdir(parents=True, exist_ok=True)
     out = run_extractor(cfg, out=tmp / ("nodes-raw.json" if not imports else "nodes-targeted.json"),
                         index=tmp / ("index-raw.json" if not imports else "index-targeted.json"),
-                        mods=mods, force=force, budget_min=budget, imports=imports, memory_max=memory_max, script=script)
+                        mods=mods, force=force, budget_min=budget, imports=imports, memory_max=memory_max, script=script,
+                        build_memory_max=build_memory_max,
+                        retry_memory_max=cfg.extract_targeted_memory_max if imports else None)
     with Store(cfg) as st:
         st.cache_put(th, out.nodes, out.index)
         st.event("extract", None, ctx.agent, {"seconds": out.result.seconds, "peak_mib": out.result.peak_mib,
@@ -250,8 +253,10 @@ def _extract_raw(ctx: Ctx, *, th: str, mods, no_cache: bool, force: bool, budget
 
 def run_extract(ctx: Ctx, *, check: bool = False, no_cache: bool = False, write: bool = True, force: bool = False,
                 budget: int | None = None, imports: list[str] | None = None, memory_max: str | None = None,
-                script: Path | None = None) -> tuple[dict, list, list[str]]:
-    """Run (or reuse) the extractor; return (nodes payload, index, problems)."""
+                script: Path | None = None, build_memory_max: str | None = None) -> tuple[dict, list, list[str]]:
+    """Run (or reuse) the extractor; return (nodes payload, index, problems).
+
+    ``build_memory_max`` caps the pre-extraction `lake build` of ``imports`` (a targeted run)."""
     from es import fingerprint
 
     cfg = ctx.cfg
@@ -261,7 +266,8 @@ def run_extract(ctx: Ctx, *, check: bool = False, no_cache: bool = False, write:
     # sources before the (long) extractor run, so an edit made meanwhile shows up as stale.
     fps = None if imports else fingerprint.current(cfg, mods)
     raw, index = _extract_raw(ctx, th=th, mods=mods, no_cache=no_cache, force=force, budget=budget,
-                              imports=imports, memory_max=memory_max, script=script)
+                              imports=imports, memory_max=memory_max, script=script,
+                              build_memory_max=build_memory_max)
     nodes, dests, problems = nodes_from_extract(cfg, raw)
     meta = {
         "toolchain": raw.get("toolchain"), "modules": raw.get("modules"), "tree_hash": th,
@@ -329,7 +335,8 @@ def run_incremental(ctx: Ctx, *, write: bool = True, force: bool = False, budget
 
     Raises `NeedsFullExtract` when the index has no fingerprints or the core inputs changed."""
     from es import fingerprint
-    from es.commands.node import closure_olean_gib
+    from es.commands.node import (closure_olean_gib, closure_stats, elaboration_memory_max,
+                                  targeted_extract_memory_max)
 
     cfg = ctx.cfg
     try:
@@ -357,10 +364,13 @@ def run_incremental(ctx: Ctx, *, write: bool = True, force: bool = False, budget
             if gib > cfg.extract_targeted_max_olean_gib:
                 raise NeedsFullExtract(f"import closure of {m} holds {gib:.1f} GiB of oleans; above "
                                        f"extract.targeted_max_olean_gib = {cfg.extract_targeted_max_olean_gib}")
+        closure_gib = closure_stats(cfg, imports, mods)[0]
         tmp = cfg.es_home / "tmp"
         tmp.mkdir(parents=True, exist_ok=True)
         raw_t, _ = _extract_raw(ctx, th=th_tree + "+" + ",".join(imports), mods=mods, no_cache=False, force=force,
-                                budget=budget, imports=imports, memory_max=cfg.extract_targeted_memory_max,
+                                budget=budget, imports=imports,
+                                memory_max=targeted_extract_memory_max(cfg, closure_gib),
+                                build_memory_max=elaboration_memory_max(cfg, imports, mods),
                                 script=tmp / "ExtractTargeted.lean")
         extracted, _, problems_t = nodes_from_extract(cfg, raw_t)
         new_nodes = [n for n in extracted if n.module in stale]

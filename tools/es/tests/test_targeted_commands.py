@@ -10,7 +10,7 @@ def test_targeted_check_never_requests_full_extraction(cfg, monkeypatch):
     checked = {"name": declaration.name, "sorry": False, "status": "closed", "axioms": [],
                "uncovered_axioms": [], "deps_declared": [], "deps_actual": []}
     monkeypatch.setattr(check, "find_node", lambda *_: declaration)
-    monkeypatch.setattr(check, "run_guarded", lambda *_args, **_kwargs:
+    monkeypatch.setattr(check, "run_guarded_retry", lambda *_args, **_kwargs:
                         SimpleNamespace(ok=True, seconds=0, peak_mib=0, summary=lambda: "ok"))
     seen = []
 

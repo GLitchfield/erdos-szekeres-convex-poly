@@ -3,7 +3,7 @@ from __future__ import annotations
 import time
 
 from es import EXIT_LEAN, EXIT_OK
-from es.build import run_guarded
+from es.build import run_guarded_retry
 from es.context import Ctx
 from es.nodes import find_node
 from es.output import Result
@@ -24,7 +24,11 @@ def run(ctx: Ctx, name: str, budget: int | None = None, async_: bool = False, fo
         return Result(EXIT_OK, {"job": job}, [f"submitted job {job['id']}"])
     log = cfg.build_log_dir / f"check-{time.strftime('%Y%m%d-%H%M%S')}-{n.short}.log"
     started = time.time()
-    build = run_guarded(cfg, [cfg.lake, "build", n.module], log_path=log, budget_min=budget, force=force)
+    from es.commands.node import elaboration_memory_max
+
+    build = run_guarded_retry(cfg, [cfg.lake, "build", n.module], log_path=log, budget_min=budget, force=force,
+                              memory_max=elaboration_memory_max(cfg, [n.module]),
+                              retry_memory_max=cfg.build_memory_max)
     res = Result()
     res.line(f"lake build {n.module}: {build.summary()}")
     if not build.ok:

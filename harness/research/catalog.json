@@ -484,14 +484,42 @@
         "new lemma"
       ],
       "api": "es node add --name NAME --ws B --kind formalization --type SIGNATURE --description TEXT --consumer NODE --import MODULE [--targeted]",
-      "example": "es node add --help\n# Without the user bus, queue this command through es job run.\n# In this project use --mem 20G for --targeted; full extraction needs 28G.",
-      "semantics": "Node registration writes a sorry only in ESBlueprint and elaborates the statement before locking it. Search and claim first. The enclosing job must fit both build.memory_max and the selected extraction cap; --targeted narrows extraction, not the build reservation. It leaves the full frontier stale, so refresh before selecting further research. Use the smallest import closure that supplies the statement.",
+      "example": "es node add --help\n# Without the user bus, queue this command through es job run.\n# The elaboration cap is sized to the import closure (4-5G for thin blueprint nodes);\n# the enclosing job must still fit a retry at build.memory_max (20G). Full extraction needs 28G.",
+      "semantics": "Node registration writes a sorry only in ESBlueprint and elaborates the statement before locking it. Search and claim first. Elaboration and the targeted extract run under caps sized to the module's import closure (elaboration_memory_max: 3G + 4 x closure olean GiB, floor 4G; targeted extract: 3G + 2 x GiB, floor 4G, ceiling extract.targeted_memory_max); a dependency without an olean, or one `lake build --no-build` reports stale, gets the full build.memory_max, and an OOM kill under the sized cap is retried once at the full cap. An enclosing job smaller than the full cap refuses that retry. It leaves the full frontier stale, so refresh before selecting further research. Use the smallest import closure that supplies the statement.",
       "source": {
         "path": "tools/es/es/commands/node.py",
         "symbols": [
           "run_add",
           "elaborate_module",
-          "targeted_extract"
+          "targeted_extract",
+          "elaboration_memory_max",
+          "targeted_extract_memory_max"
+        ]
+      }
+    },
+    {
+      "id": "workflow.node-commit",
+      "kind": "workflow",
+      "title": "Commit one node's files on its node branch",
+      "summary": "Stage exactly one node's module, root import, lock/index records and falsifier, check whitespace, and commit; from a sandbox the commit is queued for es worker.",
+      "keywords": [
+        "commit",
+        "git",
+        "node branch",
+        "sandbox",
+        "read-only git",
+        "index.lock",
+        "worker"
+      ],
+      "api": "es node commit NODE [--message TEXT | --message-file FILE] [--include runs/...]",
+      "example": "es node commit ctx_bound_reverse --message-file runs/r3/COMMIT.txt\n# In a Codex sandbox (read-only .git-data) this prints a queued job id:\nes job wait <id> --timeout 55",
+      "semantics": "Refuses unless HEAD is a node/ branch other than the default, and unless the index is empty beforehand. Stages only the node's files that changed (module, blueprint root, statements.lock, nodes.json, status.md, index.json, falsifier and its harness/falsify record) plus --include artifacts under runs/ or data/; runs git diff --cached --check and unstages on problems. When the git metadata is not writable it queues `es node commit --direct` as a 1G job of kind commit (lock git:<root>, not a build slot) for es worker. It never merges or pushes.",
+      "source": {
+        "path": "tools/es/es/commands/node.py",
+        "symbols": [
+          "run_commit",
+          "node_commit_paths",
+          "git_writable"
         ]
       }
     },

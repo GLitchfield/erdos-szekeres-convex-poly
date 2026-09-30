@@ -168,7 +168,19 @@ exists"). When only the full extract is refused, `es node add` falls back to a
 *targeted* extract over the new module's import closure alone (cap
 `extract.targeted_memory_max`, default 12G; attempted only if the closure holds at most
 `extract.targeted_max_olean_gib` of project oleans, default 4): enough to hash the
-statement and write the lock entry. The duplicate check is then limited to that closure
+statement and write the lock entry. The elaboration of a node module (`es node add`, `es check`,
+`es node restate/retire`, and the build before a targeted extract) runs under a cap sized
+to its import closure rather than `build.memory_max`, which is sized for whole-library
+builds: `build.elaborate_memory_base` + `build.elaborate_memory_per_olean_gib` × (closure
+olean GiB), floor `build.elaborate_memory_min` (defaults 3G, 4, 4G; thin blueprint nodes
+get 4–5G against measured peaks under 1 GiB). The targeted extractor is sized the same way
+(`extract.targeted_memory_base`/`_per_olean_gib`/`_min`, defaults 3G, 2, 4G; measured
+peak 2.2 GiB), capped at `extract.targeted_memory_max`. A dependency without an `.olean`,
+or one that `lake build --no-build` (a 2G guarded check, `build.nobuild_memory_max`)
+reports as needing a rebuild, could be arbitrarily heavy and gets the full cap; an OOM
+kill under a sized cap is retried once under the full cap (a retry the budget or an
+enclosing job cannot hold is reported with the original OOM). Queued `es check --async`
+jobs still reserve `build.memory_max`, so that retry fits inside them. The duplicate check is then limited to that closure
 and `nodes.json`/`status.md` are not rewritten; the next full `es extract` does both.
 `ES_EXTRACT_MEMORY_MAX=<cap>` overrides `extract.memory_max` for one invocation; every
 fresh extractor run logs an `extract` event with its measured `peak_mib`. Note that the
@@ -659,6 +671,7 @@ name and a JSON schema mirroring its arguments.
 | `es node show <name>` | | Everything known: statement, tags, declared vs actual deps, consumer and whether it compiles, lock entry, claim, falsifier result, last job. | unknown node |
 | `es node add` | `--name`, `--ws`, `--kind`, `--type "<Lean type>"`, `--description`, `--depends a,b`, `--consumer c` or `--dangling-ok "reason"`, `--falsifier f`, `--approved-by who` | Runs `es search` on description and type and refuses exact type-hash duplicates (needs a quick elaboration: writes the module, runs `lake build ESBlueprint.<Mod>`, then `es extract` on it); writes `ESBlueprint/<WS>/<Name>.lean` from a template with `sorry`; adds the import to `ESBlueprint.lean`; adds the lock entry (approval is the human running this or the CODEOWNERS review of the PR). | duplicate; statement fails to elaborate; missing required tags |
 | `es node restate <name>` | `--type`, `--approved-by`, `--reason` | Rewrites the statement in place, updates the lock, appends to `restatements.md`. The only sanctioned way to change a statement. | node claimed by someone else; elaboration fails |
+| `es node commit <name>` | `--message` or `--message-file`, repeatable `--include runs/...`, `--direct` | Commits exactly the node's changed files (module, `ESBlueprint.lean`, `statements.lock`, `nodes.json`, `status.md`, `index.json`, falsifier and its `falsify/` record, plus `--include` artifacts under `runs/`/`data/`) after `git diff --cached --check`. When the git metadata is read-only (a Codex sandbox) it queues itself as a 1G `commit` job (`--direct`) for `es worker` and prints the job id. Never merges or pushes. | HEAD not a `node/` branch or on the default branch; something already staged; nothing to commit; whitespace problems (nothing is left staged) |
 | `es node retire <name>` | `--reason`, `--as-refutation` | Deletes the module (or rewrites as `¬`-node), removes from `ESBlueprint.lean`, appends to `retired.md`, records an attempt outcome. | — |
 | `es claim <name>` / `es release <name>` | `--why` (claim, required), `--outcome` + `--note` (release), `--agent` | Insert/delete claim; expired claims are purged on every command and recorded as `expired` attempts. Claiming a `proposed` conjecture is refused until `es falsify` passed. A worktree release preserves cited `runs/...` files at the primary checkout's same paths without overwriting different content; unsafe/conflicting destinations fall back to immutable artifacts and do not block release. | already claimed by another live agent; not ready (override with `--force`, logged); cited evidence cannot be stored either at its safe primary path or in the artifact store |
 | `es search <query>` | `--type-hash H`, `--limit N`, `--ns` | Full-text (SQLite FTS5 over `index.json` + `nodes.json`: names, docstrings, `type_pp`). Returns name, module, one-line docstring, score. | — |
