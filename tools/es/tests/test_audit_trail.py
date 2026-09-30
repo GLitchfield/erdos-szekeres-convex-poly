@@ -280,6 +280,18 @@ def test_burn_down_deduplicates_release_close_and_index_transition(cfg):
     assert sum(row["closed"] for row in rows) == 2
 
 
+def test_burn_down_accepts_legacy_string_release_details(cfg):
+    """Releases before 2026-09-07 stored the bare outcome as a JSON string, not an object."""
+    from es.commands.status import burn_down
+
+    with Store(cfg) as st:
+        st.event("release", "TCore.old_closed", "tester", "closed")
+        st.event("release", "TCore.old_abandoned", "tester", "abandoned")
+        st.event("closed", "TCore.odd", "tester", ["not", "a", "dict"])
+    rows = burn_down(cfg, weeks=1)
+    assert sum(row["closed"] for row in rows) == 2
+
+
 def test_status_computes_burn_down_once(cfg, capsys, monkeypatch):
     import es.commands.status as status_cmd
 

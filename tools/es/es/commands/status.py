@@ -127,6 +127,9 @@ def burn_down(cfg, weeks: int = 8) -> list[dict]:
             detail = json.loads(e["detail"] or "{}")
         except (TypeError, ValueError):
             pass
+        if not isinstance(detail, dict):
+            # early releases (before 2026-09-07) stored the bare outcome string
+            detail = {"outcome": detail} if kind == "release" and isinstance(detail, str) else {}
         is_closure = (kind == "closed" or
                       (kind == "release" and detail.get("outcome") == "closed") or
                       (kind == "index-status" and detail.get("primary_checkout") is True and
