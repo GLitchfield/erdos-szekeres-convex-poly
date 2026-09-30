@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T16:37:05Z",
- "git_sha": "f55e3b9245ab20056598d7dfce8b8d88abd2a0b0",
- "extract_mode": "incremental from e2916095a350: 1 re-extracted, 0 removed",
+ "generated_at": "2026-09-30T17:01:57Z",
+ "git_sha": "857827d680fd52f622704d436fd7d1383bd7182c",
+ "extract_mode": "incremental from f55e3b9245ab: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15681,
- "tree_hash": "fe25ef115762ccf3.4560d6f33c43b8ee",
+ "tree_hash": "59797e961781bd1f.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5458,
-  "scanned_constants": 1,
+  "cached_modules": 5372,
+  "scanned_constants": 35,
   "scanned_modules": 1
  },
  "nodes": [
@@ -5714,8 +5714,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "claimed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -6645,13 +6645,37 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "proposed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
    ],
-   "falsify": null,
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
+    "falsifier": "ctx_one_level_root_run_contraction.py",
+    "falsifier_sha256": "1b3e539be3e9cf7d58bd75eab9895e57dcf461b6ec2d2885490f8f72f19fb5f4",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "94e83f4b24e9975d",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 1632.6,
+    "at": "2026-09-30T16:31:31Z",
+    "agent": "claude-code:22c8132f-fa67-40ab-90d0-f8255f87797f",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
+     "semantics": "context-bound-zero-children-c-v1",
+     "cases": {
+      "5": {
+       "checked": 1200
+      },
+      "6": {
+       "checked": 2304
+      }
+     },
+     "violations": []
+    }
+   },
    "lock_ok": true,
    "opened": "2026-09-30"
   },
@@ -8575,11 +8599,39 @@
     "sorryAx"
    ],
    "deps_declared": [],
-   "deps_actual": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction.match_1_1",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._simp_1_3",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_4",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_6",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_7",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_9",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._simp_1_10",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._simp_1_11",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._simp_1_12",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_13",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_14",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_15",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_16",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_17",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_18",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_19",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._simp_1_20",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_21",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_22",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_24",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_26",
+    "ErdosSzekeres.ctx_bound_part_run_contraction_of_one_level_root",
+    "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_27",
+    "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_28"
+   ],
    "helpers": [],
-   "status": "open",
-   "ready": true,
-   "blocked_by": [],
+   "status": "claimed",
+   "ready": false,
+   "blocked_by": [
+    "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root"
+   ],
    "uncovered_axioms": [
     "sorryAx"
    ],
@@ -36153,7 +36205,7 @@
    "ESBlueprint.B.CtxBoundSameSizeExchangeCounterexample": "2612ecec32f1128c",
    "ESBlueprint.B.CtxBoundThreeWayBaseAllocation": "565994f881d46e44",
    "ESBlueprint.B.CtxBoundTwoRunBoundaryDomination": "1e511271ad7fd4f2",
-   "ESBlueprint.B.CtxBoundUniformSeparatorContraction": "67baa26f141fa232",
+   "ESBlueprint.B.CtxBoundUniformSeparatorContraction": "1b5a654d606f7b0f",
    "ESBlueprint.B.CtxBoundZeroChildRegression": "a2e0cbb744194e5e",
    "ESBlueprint.B.CtxBoundaryMarkerEraseNormalize": "815e3ac85532341f",
    "ESBlueprint.B.CtxBoundaryMarkerFullRankBudget": "66d3d0f63a761c42",
