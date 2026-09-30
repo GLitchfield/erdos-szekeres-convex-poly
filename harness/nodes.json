@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T17:01:57Z",
- "git_sha": "857827d680fd52f622704d436fd7d1383bd7182c",
- "extract_mode": "incremental from f55e3b9245ab: 1 re-extracted, 0 removed",
+ "generated_at": "2026-09-30T18:11:24Z",
+ "git_sha": "807a4b89579908a87a9720c283ea0de77c1aa29c",
+ "extract_mode": "full",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15681,
- "tree_hash": "59797e961781bd1f.4560d6f33c43b8ee",
+ "tree_hash": "39023e99c9f0f825.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5372,
-  "scanned_constants": 35,
-  "scanned_modules": 1
+  "cached_modules": 15675,
+  "scanned_constants": 67,
+  "scanned_modules": 6
  },
  "nodes": [
   {
@@ -4358,11 +4358,26 @@
     "sorryAx"
    ],
    "deps_declared": [],
-   "deps_actual": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._simp_1_2",
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._proof_1_3",
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._proof_1_4",
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._proof_1_6",
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._simp_1_5",
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._simp_1_1",
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._proof_1_7",
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._proof_1_8",
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._proof_1_9",
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._simp_1_10",
+    "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end._proof_1_11",
+    "ErdosSzekeres.ctx_bound_additive_single_run"
+   ],
    "helpers": [],
    "status": "open",
-   "ready": true,
-   "blocked_by": [],
+   "ready": false,
+   "blocked_by": [
+    "ErdosSzekeres.ctx_bound_additive_single_run"
+   ],
    "uncovered_axioms": [
     "sorryAx"
    ],
@@ -4709,11 +4724,19 @@
     "sorryAx"
    ],
    "deps_declared": [],
-   "deps_actual": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_additive_single_run_of_part_contraction_and_alternating",
+    "ErdosSzekeres.ctx_bound_part_run_contraction_of_one_level_root",
+    "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
+    "ErdosSzekeres.ctx_bound_additive_single_run_alternating"
+   ],
    "helpers": [],
    "status": "open",
-   "ready": true,
-   "blocked_by": [],
+   "ready": false,
+   "blocked_by": [
+    "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
+    "ErdosSzekeres.ctx_bound_additive_single_run_alternating"
+   ],
    "uncovered_axioms": [
     "sorryAx"
    ],
@@ -5712,11 +5735,26 @@
     "sorryAx"
    ],
    "deps_declared": [],
-   "deps_actual": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._simp_1_2",
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._proof_1_3",
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._proof_1_4",
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._proof_1_6",
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._simp_1_5",
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._simp_1_1",
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._proof_1_7",
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._proof_1_8",
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._proof_1_9",
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._simp_1_10",
+    "ErdosSzekeres.ctx_bound_additive_three_blocks._proof_1_11",
+    "ErdosSzekeres.ctx_bound_additive_single_run"
+   ],
    "helpers": [],
    "status": "open",
-   "ready": true,
-   "blocked_by": [],
+   "ready": false,
+   "blocked_by": [
+    "ErdosSzekeres.ctx_bound_additive_single_run"
+   ],
    "uncovered_axioms": [
     "sorryAx"
    ],
@@ -8627,7 +8665,7 @@
     "ErdosSzekeres.ctx_bound_uniform_separator_contraction._proof_1_28"
    ],
    "helpers": [],
-   "status": "claimed",
+   "status": "open",
    "ready": false,
    "blocked_by": [
     "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root"
@@ -36137,7 +36175,7 @@
    "ESBlueprint.B.CtxBinaryCapacityPairIntersectionTwoDistinctSourceWitnesses": "5a40648810505680",
    "ESBlueprint.B.CtxBinaryPruningActualMarkerRankPairUnionNineBound": "5eff1534a5918574",
    "ESBlueprint.B.CtxBothUnitPartsZoneBudget": "0ad0a5c1d1c51c02",
-   "ESBlueprint.B.CtxBoundAdditive": "0f7b7ba3c708807a",
+   "ESBlueprint.B.CtxBoundAdditive": "b9b80183685d7501",
    "ESBlueprint.B.CtxBoundAdditiveCapacityThreeLowOuterMaximum": "3b063bb2113d6ac4",
    "ESBlueprint.B.CtxBoundAdditiveDisjointSingleRunSmallAxis": "412f0cd863ec64f4",
    "ESBlueprint.B.CtxBoundAdditiveIntervalComplementCapacityFourBelowSaturation": "3a8f0a8a4cd0bf4c",
@@ -36156,10 +36194,10 @@
    "ESBlueprint.B.CtxBoundAdditivePrefixSuffix": "3cb91a3ae8d05d2d",
    "ESBlueprint.B.CtxBoundAdditiveSandwich112": "c4599c7840858bd3",
    "ESBlueprint.B.CtxBoundAdditiveSandwich1m2": "c91a20473dd9c3e2",
-   "ESBlueprint.B.CtxBoundAdditiveSandwichOneSingletonEnd": "902dc23d4ef78e5f",
+   "ESBlueprint.B.CtxBoundAdditiveSandwichOneSingletonEnd": "f6ac43a8db37c38d",
    "ESBlueprint.B.CtxBoundAdditiveSandwichSingletonEnds": "fccd5991982128b4",
    "ESBlueprint.B.CtxBoundAdditiveSaturatedIntervalComplement": "bad676a945766dd3",
-   "ESBlueprint.B.CtxBoundAdditiveSingleRun": "3789bc3b6a7f72d8",
+   "ESBlueprint.B.CtxBoundAdditiveSingleRun": "18ea60ced2361104",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternating": "3b73309a3a08775d",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternatingOfPartContractionAndDeletion": "5e0cde5d18c6c4e2",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternatingOfRunContractionAndDeletion": "affdcc3d11fc80eb",
@@ -36168,7 +36206,7 @@
    "ESBlueprint.B.CtxBoundAdditiveSingleRunMinCapacityThree": "738863d3714e180b",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunOfPartContractionAndAlternating": "a6d680e1c91990b6",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunOfRunContractionAndAlternating": "ae6de9a0e49c3ed8",
-   "ESBlueprint.B.CtxBoundAdditiveThreeBlocks": "e31ee3451a4371e8",
+   "ESBlueprint.B.CtxBoundAdditiveThreeBlocks": "6e43ebf6073268ef",
    "ESBlueprint.B.CtxBoundAdditiveThreeBlocksOfUniformContraction": "2a268e74c5870499",
    "ESBlueprint.B.CtxBoundAdjacentLetterContraction": "6530736b100c1fb5",
    "ESBlueprint.B.CtxBoundAdjacentLetterContractionCounterexample": "94e35bec5353b7af",
@@ -36218,7 +36256,7 @@
    "ESBlueprint.B.CtxBracketedPivotComplementCutSquareOfBoundedBareSquare": "65b49f41ca245b18",
    "ESBlueprint.B.CtxCapacityThreeChildrenExteriorOfTwoLevelsGlobalFive": "3d525ac97bb878bc",
    "ESBlueprint.B.CtxCapacityThreePruningExteriorOfTwoLevelsGlobalFive": "3330e723446ae28b",
-   "ESBlueprint.B.CtxCardLeBound": "56da30f48b00be1d",
+   "ESBlueprint.B.CtxCardLeBound": "92d40126fddef7a1",
    "ESBlueprint.B.CtxChainOneChildrenExteriorOfTwoLevels": "40e71bc37df9f4e5",
    "ESBlueprint.B.CtxChainOneStraddlingUniqueAxisLevel": "67c2d1344460774c",
    "ESBlueprint.B.CtxChosenSiblingMaximumOppositeBinomialBound": "159a9afcc71211e6",
@@ -36429,7 +36467,7 @@
    "ESBlueprint.B.CtxYoungestMarkerTripleFaceBoundOfAnchoredSquare": "66c0eef7e530e32e",
    "ESBlueprint.B.CtxYoungestMarkerTripleFacePotential": "fc4bf92034952d74",
    "ESBlueprint.B.CtxYoungestMiddleMarkerDoubledWidthBound": "899e7b03d68cfbee",
-   "ESBlueprint.B.DecomposableStateUpperAll": "388ad3ce32009215",
+   "ESBlueprint.B.DecomposableStateUpperAll": "0ddd61758c00bf4a",
    "ESBlueprint.B.RankPairCardGeSumDisjointGroupCharges": "208cb2ee2289dc04",
    "ESBlueprint.B.RankPairClippedIntervalUnionMissingCorner": "7bc5c65fc1381ab2",
    "ESBlueprint.B.RankPairTriangleIntersectionCardGeThreeOfTwoCommonRanks": "a98b2bc1507b884f",
