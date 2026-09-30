@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T14:43:26Z",
- "git_sha": "154f506f47951237f69507c99bcb35c35cf497d1",
- "extract_mode": "incremental from e119567de105: 1 re-extracted, 0 removed",
+ "generated_at": "2026-09-30T15:18:16Z",
+ "git_sha": "501e0244c72776c9d9bf656ac6a0f0acf42f8a48",
+ "extract_mode": "incremental from 154f506f4795: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15677,
- "tree_hash": "009a384880951dea.4560d6f33c43b8ee",
+ "modules": 15678,
+ "tree_hash": "72a9afa31e465a10.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,7 +20,7 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5456,
+  "cached_modules": 5356,
   "scanned_constants": 1,
   "scanned_modules": 1
  },
@@ -4845,7 +4845,7 @@
     "ErdosSzekeres.ctx_bound_ext_letter_deletion_mono_of_isolated_children"
    ],
    "helpers": [],
-   "status": "claimed",
+   "status": "open",
    "ready": false,
    "blocked_by": [
     "ErdosSzekeres.ctx_bound_child_run_contraction_of_level_one_span"
@@ -6404,6 +6404,45 @@
    },
    "lock_ok": true,
    "opened": "2026-09-30"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
+   "module": "ESBlueprint.B.CtxBoundChildRunContractionOneLevelRoot",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "Run contraction for one external level over a bare root (C1r): in a context with parameters 1 <= a, u <= k, one level of maximum m in [1, k-2] and a word of child letters and level-one letters of one side, deleting one of two adjacent child letters leaves the bound unchanged. This is the normalized form of C1 as the single-run chain uses it: every part of a single-run context has the bound of such a context with (a, u) = (capLimit + 1, cupLimit + 1) of the run (ctx_single_run_descendant_bound_normalize), so C1 for parts of single-run contexts follows from this node (bridge node), and single-run additivity then depends only on it (R7, runs/claude-comb-closedform-20260930). Evidence (compiled evaluator, diagnostic): no C1 violation, and every separating cut dominated by a moved partition after re-optimizing the coupling, over all a, u, m, sides and ends with <= 5 children at k = 5, 6, 7 (runs/claude-comb-closedform-20260930/c1r).",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_single_run",
+    "falsifier": "ctx_one_level_root_run_contraction.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (a u k m : Nat),\n  instLENat.le 3 k →\n    instLENat.le 1 a →\n      instLENat.le a k →\n        instLENat.le 1 u →\n          instLENat.le u k →\n            instLENat.le 1 m →\n              instLENat.le m (instHSub.hSub k 2) →\n                ∀ (side : ErdosSzekeres.Ctx.Side) (left right : List ErdosSzekeres.Ctx.Letter),\n                  (∀ (x : ErdosSzekeres.Ctx.Letter),\n                      List.instMembership.mem (instHAppendOfAppend.hAppend left right) x →\n                        Or (Eq x ErdosSzekeres.Ctx.Letter.child)\n                          (Eq x (ErdosSzekeres.Ctx.Letter.ext 1 side))) →\n                    Eq\n                      { a := a, u := u, k := k,\n                          word :=\n                            instHAppendOfAppend.hAppend\n                              (instHAppendOfAppend.hAppend left\n                                (List.cons ErdosSzekeres.Ctx.Letter.child\n                                  (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n                              right,\n                          maxima := List.cons m List.nil }.bound\n                      { a := a, u := u, k := k,\n                          word :=\n                            instHAppendOfAppend.hAppend\n                              (instHAppendOfAppend.hAppend left\n                                (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                              right,\n                          maxima := List.cons m List.nil }.bound",
+   "type_hash": "94e83f4b24e9975d",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "proposed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_cut_le",
@@ -35739,6 +35778,7 @@
    "ESBlueprint.B.CtxBoundAttainedByEndCutOfFourLe": "718597cde653a47c",
    "ESBlueprint.B.CtxBoundChildLetterExpansion": "52a0d923c0a338ef",
    "ESBlueprint.B.CtxBoundChildRunContractionOfLevelOneSpan": "c554ffde3fd4d9dc",
+   "ESBlueprint.B.CtxBoundChildRunContractionOneLevelRoot": "c30c945d6275f65a",
    "ESBlueprint.B.CtxBoundCutLe": "d8ff370f7bda299b",
    "ESBlueprint.B.CtxBoundExtLetterDeletionMonoOfIsolatedChildren": "a254a62c9961e0e0",
    "ESBlueprint.B.CtxBoundExternalLetterContraction": "ee93b1ce7b1cdd48",
