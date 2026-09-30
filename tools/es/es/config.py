@@ -315,6 +315,12 @@ class Config:
         return str(self.get("build", "nobuild_memory_max", default="2G"))
 
     @property
+    def jobs_review_after_min(self) -> int:
+        """Minutes a job runs before its first progress review (`es job review`); a review
+        checkpoint never stops the job.  0 disables checkpoints."""
+        return int(self.get("jobs", "review_after_min", default=20))
+
+    @property
     def commit_memory_max(self) -> str:
         """Reservation for a queued `es node commit` job (git only)."""
         return str(self.get("jobs", "commit_memory_max", default="1G"))

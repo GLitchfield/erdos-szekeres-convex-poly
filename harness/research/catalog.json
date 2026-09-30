@@ -527,7 +527,7 @@
       "id": "workflow.jobs",
       "kind": "workflow",
       "title": "Guarded commands and terminal receipts",
-      "summary": "Run existing scripts with shared memory admission, job identity, declared outputs, bounded waits and cancellation.",
+      "summary": "Run existing scripts with shared memory admission, job identity, declared outputs, bounded waits, progress-review checkpoints and cancellation.",
       "keywords": [
         "worker",
         "job run",
@@ -537,17 +537,22 @@
         "environment",
         "worktree",
         "Python workflow",
-        "git commit"
+        "git commit",
+        "review",
+        "checkpoint",
+        "progress",
+        "timeout"
       ],
-      "api": "es job run --why PURPOSE --out runs/OUTPUT --mem SIZE -- COMMAND; es job wait JOB --timeout 55; es job status JOB",
+      "api": "es job run --why PURPOSE --out runs/OUTPUT --mem SIZE [--review MIN] -- COMMAND; es job wait JOB --timeout 55; es job review JOB --note TEXT [--next MIN]; es job status JOB",
       "example": "es job run --why 'record interpreter version' --out runs/python-version.txt --mem 256M -- bash -c 'python3 --version > runs/python-version.txt'\nes job wait JOB_ID --timeout 55",
-      "semantics": "Submission is not completion. Inspect the terminal receipt including outputs_missing; --out declares an artifact but does not redirect stdout. Prefer direct argv; a shell pipeline must enable pipefail so output capture cannot hide command failure. Nested Lean commands need an enclosing reservation large enough for their configured build and extraction caps. For direct Git commands use -c gc.auto=0 -c maintenance.auto=false to keep automatic background maintenance from retaining the scope; unknown execution must be reconciled, never blindly retried.",
+      "semantics": "Submission is not completion. Inspect the terminal receipt including outputs_missing; --out declares an artifact but does not redirect stdout. Never kill a research computation at a self-chosen time: time a small instance first, make the job print progress (done/total, rate) to its log or an --out file, and set --review from the estimate. When es job wait returns review_due, read the progress, estimate the time left, and record the decision with es job review (leave it; make it cheaper; or answer another way, keeping the question); a checkpoint never stops the job, and --budget kills only for a deadline the user set. A stopped or narrowed run is not a result: log its coverage and the follow-up. Prefer direct argv; a shell pipeline must enable pipefail so output capture cannot hide command failure. Nested Lean commands need an enclosing reservation large enough for their configured build and extraction caps. For direct Git commands use -c gc.auto=0 -c maintenance.auto=false to keep automatic background maintenance from retaining the scope; unknown execution must be reconciled, never blindly retried.",
       "source": {
         "path": "tools/es/es/commands/jobs.py",
         "symbols": [
           "run_run",
           "run_wait",
-          "run_status"
+          "run_status",
+          "run_review"
         ]
       }
     },

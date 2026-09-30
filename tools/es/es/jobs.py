@@ -37,8 +37,26 @@ def _submit_reservation(cfg: Config, kind: str) -> str:
     return cfg.build_memory_max
 
 
+def review_due_at(job: dict) -> float | None:
+    """When a running job's next progress review falls due (None: no checkpoint, or not started).
+
+    A checkpoint never stops the job: it asks the submitter to read the job's progress and
+    decide whether to leave it, make it cheaper, or get the answer another way."""
+    if job.get("review_at"):
+        return float(job["review_at"])
+    if job.get("review_min") and job.get("started_at"):
+        return float(job["started_at"]) + 60 * int(job["review_min"])
+    return None
+
+
+def review_due(job: dict, now: float | None = None) -> bool:
+    due = review_due_at(job)
+    return bool(due) and job.get("status") in ("running", "starting") and (now or time.time()) >= due
+
+
 def submit(cfg: Config, *, kind: str, node: str | None, argv: list[str], agent: str, budget_min: int | None = None,
-           queue: bool = False, memory_max: str | None = None, lock_key: str | None = None) -> dict:
+           queue: bool = False, memory_max: str | None = None, lock_key: str | None = None,
+           review_min: int | None = None) -> dict:
     """Record an `es` subcommand as a job (started now, or left queued for `es worker`).
 
     ``memory_max`` overrides the reservation for the kind; ``lock_key`` the per-worktree
@@ -53,6 +71,7 @@ def submit(cfg: Config, *, kind: str, node: str | None, argv: list[str], agent: 
         "log_path": str(log_path), "budget_min": budget_min, "agent": agent, "pid": None, "result_json": None,
         "memory_max": memory_max or _submit_reservation(cfg, kind),
         "lock_key": lock_key or 'worktree:' + str(cfg.root.resolve()),
+        "review_min": cfg.jobs_review_after_min if review_min is None else review_min,
     }
     with Store(cfg) as st:
         st.job_insert(job)
@@ -169,8 +188,11 @@ def check_outputs(cfg: Config, outputs: list[str]) -> list[str]:
 
 def submit_run(cfg: Config, *, command: list[str], why: str, outputs: list[str], agent: str, node: str | None = None,
                memory_max: str | None = None, budget_min: int | None = None, cpu_cores: int | None = None,
-               queue: bool = False) -> dict:
-    """Submit an arbitrary command as a guarded, recorded job."""
+               queue: bool = False, review_min: int | None = None) -> dict:
+    """Submit an arbitrary command as a guarded, recorded job.
+
+    ``budget_min`` kills the job at that wall-clock time: use it only for a deadline the user
+    set.  ``review_min`` (default [jobs] review_after_min) schedules progress reviews instead."""
     if not command:
         raise CheckFailed("no command given (put it after `--`)")
     if not why or not why.strip():
@@ -199,6 +221,7 @@ def submit_run(cfg: Config, *, command: list[str], why: str, outputs: list[str],
         "status": "queued", "exit_code": None, "created_at": time.time(), "started_at": None, "finished_at": None,
         "log_path": str(log_dir / f"job-{job_id}.log"), "budget_min": budget_min, "agent": agent, "pid": None, "result_json": None,
         "why": why.strip(), "memory_max": memory_max, "outputs": json.dumps(outs), "peak_mib": None, "seconds": None,
+        "review_min": cfg.jobs_review_after_min if review_min is None else review_min,
     }
     if cpu_cores:
         job["result_json"] = json.dumps({"cpu_cores": cpu_cores})

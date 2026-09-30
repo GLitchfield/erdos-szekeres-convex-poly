@@ -174,7 +174,8 @@ sized run is OOM-killed; a normal full extraction needs 28G. A Codex sandbox can
 write `.git-data` (`index.lock` is read-only): commit a node with `es node commit
 <node> --message-file F`, which queues itself for `es worker` there and commits
 directly elsewhere (`es lib show workflow.node-commit`). Use `es lib show workflow.jobs` for bounded
-execution and receipt handling. Harness Git calls disable automatic background
+execution, progress-review checkpoints (`es job review`; computations are reviewed, never
+killed at a self-chosen time) and receipt handling. Harness Git calls disable automatic background
 maintenance. Direct Git job commands must likewise pass `-c gc.auto=0
 -c maintenance.auto=false`; otherwise a background child can leave a completed
 commit's reservation uncertain. Reconcile the stopped scope instead of replaying

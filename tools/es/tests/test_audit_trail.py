@@ -327,6 +327,22 @@ def test_hook_blocks_bare_nohup_and_systemd_run():
     assert rc_for("ls -la; echo nohup_is_not_a_word_boundary_here") == 0
 
 
+def test_hook_blocks_self_chosen_timeout_wrappers():
+    hook = REPO / "tools" / "es" / "hooks" / "pre_bash.sh"
+
+    def rc_for(command: str) -> int:
+        return subprocess.run(["bash", str(hook)], input=json.dumps({"tool_input": {"command": command}}), text=True,
+                              capture_output=True).returncode
+
+    assert rc_for("timeout 100 python3 runs/probe.py --out runs/p.json") == 2
+    assert rc_for("cd runs/x; timeout 90 ../../tools/es/.venv/bin/python - <<'EOF'\nprint(1)\nEOF") == 2
+    assert rc_for("timeout -s KILL 5m python3 x.py") == 2
+    assert rc_for("tools/es/bin/es job run --why x --out runs/a -- timeout 3600 python3 x.py") == 2
+    assert rc_for("tools/es/bin/es job wait 20260930-080939-c79ae5 --timeout 55") == 0
+    assert rc_for("tools/es/bin/es falsify n --async --timeout 90") == 0
+    assert rc_for("echo 'no timeout here'; grep -n timeout_min harness/config.toml") == 0
+
+
 def test_agents_md_rules_match_claude_md():
     claude = [line for line in (REPO / "CLAUDE.md").read_text().splitlines() if line.startswith("- ")]
     agents = [line for line in (REPO / "AGENTS.md").read_text().splitlines() if line.startswith("- ")]

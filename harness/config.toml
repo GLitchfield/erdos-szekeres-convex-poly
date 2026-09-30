@@ -157,6 +157,7 @@ memory_budget = "30G"                  # sum of the caps of live jobs (`es job r
 default_memory_max = "2G"              # cap for `es job run` when --mem is not given
 run_margin_gib = 2                     # `es job run` needs cap + margin GiB available when submitted
 output_roots = ["runs", "data"]        # `es job run --out` paths must lie under one of these
+review_after_min = 20                  # first progress review of a running job (`es job review`); never stops it
 
 [node]
 default_import = "ErdosSzekeres"       # narrower imports keep `es check` fast; override per node with --import

@@ -547,7 +547,15 @@ can show it, and the harness checks it rather than asking for prose:
   gets the job *queued*; `es worker`, started once from an unsandboxed shell, runs queued
   jobs one at a time; a project-scoped `flock` makes a second live worker refuse to start,
   while stale lock-file contents after process death are harmless. `es job requeue <id>`
-  puts a failed job back. Synchronous
+  puts a failed job back. **Checkpoints, not deadlines:** research computations are never
+  killed at a self-chosen time. Every job gets a progress checkpoint `review_min` minutes after
+  it starts (`--review`, default `[jobs] review_after_min`); at a due checkpoint `es job wait`
+  returns `review_due`, and the submitter reads the job's progress, estimates the time left and
+  records the decision with `es job review` (leave it, make it cheaper, or get the answer
+  another way). `--budget` and a background falsifier's `--timeout` kill only when given
+  explicitly, for a deadline the user set; `es falsify --async` defaults to no limit. A
+  synchronous guard that fires (the sync falsify limit, a build or extract budget) is reported
+  as "not a result" and is rerun in the background. Synchronous
   `es check`/`es falsify`/`es build` runs are not job rows and are not counted against the
   budget; they are short and run under their own caps.
 - **Report completion.** Submitting a background job does not complete the agent's task.
@@ -681,9 +689,10 @@ name and a JSON schema mirroring its arguments.
 | `es audit` | `--changed` (only declarations whose modules changed vs `origin/main`) | Axiom audit over blueprint nodes + `destinations.txt` against the allowlist. | uncovered axiom |
 | `es layers` | | Parses `import` lines of every module in the three layers; checks the order in config and the certificate-consumer allowlist; checks nothing imports `ESBlueprint` from ESCore; checks `ESBlueprint.lean` imports every node module. | violation |
 | `es build <target>` | `core\|blueprint\|certs\|node <name>`, `--budget MIN`, `--async` | Wraps `lake build` with wall-clock budget and a summary line (modules built, seconds). | build fails; budget exceeded |
-| `es job run -- <command>` | `--why`, `--out` (required), `--node`, `--mem`, `--budget`, `--cpu`, `--queue` | Runs any command as a recorded job in the guarded scope (§8.4): purpose, cap, outputs, agent, peak and seconds in the job table; enforces the memory budget. | budget or availability exceeded; output outside `runs/`/`data/` |
+| `es job run -- <command>` | `--why`, `--out` (required), `--node`, `--mem`, `--review MIN`, `--budget`, `--cpu`, `--queue` | Runs any command as a recorded job in the guarded scope (§8.4): purpose, cap, outputs, agent, peak and seconds in the job table; enforces the memory budget. `--review` sets the first progress checkpoint (default `[jobs] review_after_min`, 0 = none); `--budget` is a wall-clock kill, used only for a deadline the user set. | budget or availability exceeded; output outside `runs/`/`data/` |
 | `es job list\|status\|log\|cancel` | `<id>` | Job table access (list shows cap, peak, agent, why). `es worker` runs the loop (foreground; run under tmux/systemd-user); `es job exec <id>` is the internal runner. | — |
-| `es job wait <id>` | `--timeout` (0–60 seconds; default 55) | Read-only bounded wait; returns `terminal`/`timed_out`, and exit code plus output paths on completion. Repeat while pending, then inspect and report. | unknown job; invalid timeout |
+| `es job wait <id>` | `--timeout` (0–60 seconds; default 55) | Read-only bounded wait; returns `terminal`/`timed_out`, and exit code plus output paths on completion; returns at once with `review_due` when a running job's progress checkpoint has passed. Repeat while pending, then inspect and report. |
+| `es job review <id>` | `--note` (required), `--next MIN` | Records a progress review of a running job (what fraction is done, rate, time left, and the decision: leave it, make it cheaper, or answer another way) as a `job-review` event and schedules the next checkpoint. Never stops the job; `es job list` marks overdue reviews REVIEW DUE. | job not queued or running; empty note | unknown job; invalid timeout |
 | `es log <text>` | `--node`, repeatable `--attach FILE` | Free-text journal entry under the agent id; attachments (relative to the caller's current directory, at most 16 MiB each) are copied into the immutable shared artifact store and their IDs recorded in the event. | an attachment is not a file or exceeds the cap; artifact storage is read-only |
 | `es journal` | `--since 24h`, `--agent`, `--node`, `--kind`, `--limit`, `--no-commits` | Timeline of claims, releases, jobs, falsifier runs, extracts, log entries and commits. | — |
 | `es note` | `--since DATE` | Weekly note from status diffs and the attempts table: nodes opened/closed/refuted/retired, attempts, allowlist and lock changes, job time spent. Writes `docs/notes/<ISO-week>.md` with a `## Judgment` section left empty for the human. | — |

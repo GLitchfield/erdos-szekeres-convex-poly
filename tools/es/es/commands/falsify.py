@@ -28,10 +28,12 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False,
         raise UsageError(f"falsifier {script.relative_to(cfg.root)} is missing")
     if async_:
         from es.jobs import submit
-        argv = ["falsify", n.name] + ([f"--dataset={dataset}"] if dataset else [])
+        # A background falsifier has no wall-clock limit unless one is given explicitly: it is
+        # reviewed at progress checkpoints (`es job review`) instead of being killed.
+        argv = ["falsify", n.name, f"--timeout={timeout or 0}"] + ([f"--dataset={dataset}"] if dataset else [])
         if targeted:
             argv.append("--targeted")
-        job = submit(cfg, kind="falsify", node=n.name, argv=argv, agent=ctx.agent, budget_min=timeout or cfg.falsify_timeout_min)
+        job = submit(cfg, kind="falsify", node=n.name, argv=argv, agent=ctx.agent, budget_min=timeout or None)
         return Result(EXIT_OK, {"job": job}, [f"submitted job {job['id']}"])
     ds = Path(dataset).resolve() if dataset else cfg.dataset_dir
     out_dir = cfg.falsify_results_dir
@@ -52,7 +54,10 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False,
     started = time.time()
     with open(log, "w") as lf:
         try:
-            proc = subprocess.run(cmd, cwd=cfg.root, stdout=lf, stderr=subprocess.STDOUT, timeout=(timeout or cfg.falsify_timeout_min) * 60,
+            # timeout 0 = no limit (background runs); otherwise the synchronous guard keeps the
+            # caller from blocking indefinitely.  Stopping at the guard is not a result.
+            limit = None if timeout == 0 else (timeout or cfg.falsify_timeout_min) * 60
+            proc = subprocess.run(cmd, cwd=cfg.root, stdout=lf, stderr=subprocess.STDOUT, timeout=limit,
                                   env=dict(os.environ, ES_PROJECT_ROOT=str(cfg.root)))
             rc = proc.returncode
         except subprocess.TimeoutExpired:
@@ -96,6 +101,9 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False,
         res.line(f"recorded {out_file.relative_to(cfg.root)}")
     if witness and result == "counterexample":
         res.line("witness: " + json.dumps(witness)[:500])
+    if result == "timeout":
+        res.line("stopped by the synchronous time guard: this is NOT a result and nothing was recorded. Rerun with "
+                 "--async (no time limit; reviewed at progress checkpoints), or make the falsifier cheaper; log what it covered.")
     res.payload = {"record": record, "log": str(log), "targeted": targeted}
     res.exit_code = EXIT_OK if result == "pass" else (EXIT_CHECK_FAILED if result == "counterexample" else EXIT_LEAN)
     return res
@@ -104,5 +112,5 @@ def run(ctx: Ctx, name: str, dataset: str | None = None, async_: bool = False,
 command(CommandSpec(name="falsify", cli=["falsify"], long_running=True,
                     help="Run a node's falsifier (exit 0 pass, 2 counterexample with witness) and record the result under harness/falsify/.", run=run,
                     args=[Arg("name", "node name", positional=True, required=True), Arg("dataset", "dataset directory (default from config)"),
-                          Arg("async_", "submit as a background job", "bool"), Arg("timeout", "minutes", "int"),
+                          Arg("async_", "submit as a background job", "bool"), Arg("timeout", "synchronous time guard in minutes (default falsify.timeout_min); with --async only an explicit value limits the job, 0 = none", "int"),
                           Arg("targeted", "extract only this node's import closure; leave the full index unchanged", "bool")]))

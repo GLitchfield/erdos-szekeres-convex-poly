@@ -35,7 +35,8 @@ CREATE INDEX IF NOT EXISTS events_at ON events(at);
 # columns added after the first release; older databases are migrated on open
 JOB_COLUMNS = {"why": "TEXT", "memory_max": "TEXT", "outputs": "TEXT", "peak_mib": "INTEGER", "seconds": "REAL",
                "cancel_requested": "INTEGER NOT NULL DEFAULT 0", "process_start": "TEXT",
-               "heartbeat_at": "REAL", "lock_key": "TEXT", "operation_id": "TEXT", "stage_ordinal": "INTEGER", "scope_unit": "TEXT"}
+               "heartbeat_at": "REAL", "lock_key": "TEXT", "operation_id": "TEXT", "stage_ordinal": "INTEGER", "scope_unit": "TEXT",
+               "review_min": "INTEGER", "review_at": "REAL"}
 
 FTS_SCHEMA = """
 CREATE VIRTUAL TABLE IF NOT EXISTS search USING fts5(name, module, kind, doc, type_pp, tokenize='unicode61');

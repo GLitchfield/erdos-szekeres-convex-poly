@@ -22,6 +22,19 @@ if [ $? -eq 2 ]; then
   echo "  es job run --why \"<purpose>\" --out <runs/... or data/...> [--node <node>] [--mem 2G] -- <command>" >&2
   exit 2
 fi
+# A research computation is reviewed at progress checkpoints, never killed at a self-chosen
+# time (CLAUDE.md / AGENTS.md): a `timeout N` wrapper at the start of a command segment is
+# refused.  Options named --timeout (e.g. `es job wait --timeout 55`) are not wrappers.
+printf '%s' "$cmd" | python3 -c 'import re,sys
+c=sys.stdin.read()
+sys.exit(2 if re.search(r"(?:^|[;&|(]\s*|\bthen\s+|\bdo\s+|--\s+)timeout\s+(?:(?:-\S+|[A-Z]+)\s+)*[\d.]+[smhd]?\s", c) else 0)'
+if [ $? -eq 2 ]; then
+  echo "blocked: do not kill a computation at a time limit you chose. If it is not measured to finish within a" >&2
+  echo "minute, run it as a job and review its progress at checkpoints:" >&2
+  echo "  es job run --why \"<purpose>\" --out <runs/...> [--review MIN] -- <command>; es job wait <id>; es job review <id> --note ..." >&2
+  echo "(a deadline the user set: es job run --budget MIN)" >&2
+  exit 2
+fi
 # Only a real invocation counts: `git [global options] commit|push` at the start of a
 # command segment (not the words inside a heredoc, a message, or a file being written).
 printf '%s' "$cmd" | python3 -c 'import re,sys
