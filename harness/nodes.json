@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T18:11:24Z",
- "git_sha": "807a4b89579908a87a9720c283ea0de77c1aa29c",
- "extract_mode": "full",
+ "generated_at": "2026-09-30T20:58:27Z",
+ "git_sha": "41cc0e4b58206008bde4af9b510b56b35dd3aa69",
+ "extract_mode": "incremental from 41cc0e4b5820: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15681,
- "tree_hash": "39023e99c9f0f825.4560d6f33c43b8ee",
+ "modules": 15682,
+ "tree_hash": "3f3d94133afefe32.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15675,
-  "scanned_constants": 67,
-  "scanned_modules": 6
+  "cached_modules": 5359,
+  "scanned_constants": 14,
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -6683,8 +6683,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -6697,9 +6697,9 @@
     "statement_type_hash": "94e83f4b24e9975d",
     "result": "pass",
     "exit_code": 0,
-    "seconds": 1632.6,
-    "at": "2026-09-30T16:31:31Z",
-    "agent": "claude-code:22c8132f-fa67-40ab-90d0-f8255f87797f",
+    "seconds": 1113.1,
+    "at": "2026-09-30T20:24:36Z",
+    "agent": "codex:agent-run-65158fed3cd841d2",
     "witness": {
      "node": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
      "semantics": "context-bound-zero-children-c-v1",
@@ -15482,6 +15482,51 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-08"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold",
+   "module": "ESBlueprint.B.CtxSingletonPartBoundEqThreshold",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every singleton child part has the explicit decomposable threshold value of its point cap and cup limits. Covers arbitrary raw contexts and sibling maxima, including zero and unit capacities, without a well-formedness assumption. Supplies the exact single-child T term for the one-level-root contraction exchange.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (p : Nat),\n  List.instMembership.mem σ.childPositions p →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (m : Nat),\n      Eq (σ.part (List.cons p List.nil) s m).bound\n        (ErdosSzekeres.decomposableThreshold\n          (instHAdd.hAdd ((σ.part (List.cons p List.nil) s m).capLimit p p) 1)\n          (instHAdd.hAdd ((σ.part (List.cons p List.nil) s m).cupLimit p p) 1) σ.k)",
+   "type_hash": "47f67af285e3e6f",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold._proof_1_2",
+    "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold._proof_1_3",
+    "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold._proof_1_4",
+    "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold._proof_1_5",
+    "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold._proof_1_6",
+    "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold._proof_1_7",
+    "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold._proof_1_8",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.Ctx.Context.bound.eq_1",
+    "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold._proof_1_11",
+    "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold._proof_1_13"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_small_global_axis_opposite_binomial_bound",
@@ -36342,6 +36387,7 @@
    "ESBlueprint.B.CtxSingleRunDescendantLeafBound": "e3b73b3ffe489592",
    "ESBlueprint.B.CtxSingleRunDescendantLimitsNormalize": "5f424de59fe5a92d",
    "ESBlueprint.B.CtxSingleRunPartLimitsExact": "7373ef06bd2de87e",
+   "ESBlueprint.B.CtxSingletonPartBoundEqThreshold": "469757a23cf6cf27",
    "ESBlueprint.B.CtxSmallGlobalAxisOppositeBinomialBound": "75dd42cc8470fa13",
    "ESBlueprint.B.CtxSmallGlobalAxisRankPairPotential": "9540779d234b9d12",
    "ESBlueprint.B.CtxSmallGlobalAxisRankRegionPotential": "0ed1ebaf932448fb",
