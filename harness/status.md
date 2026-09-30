@@ -83,6 +83,7 @@ Nodes: claimed 2, closed 318, open 16, refuted 2.
 | `ErdosSzekeres.ctx_bound_attained_by_end_cut` | conjecture | refuted |  |  | counterexample | 2026-09-07 |
 | `ErdosSzekeres.ctx_bound_attained_by_end_cut_counterexample` | refutation | closed |  |  | - | 2026-09-29 |
 | `ErdosSzekeres.ctx_bound_attained_by_end_cut_of_four_le` | conjecture | open | yes |  | pass | 2026-09-29 |
+| `ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children` | formalization | closed |  |  | - | uncommitted |
 | `ErdosSzekeres.ctx_bound_child_letter_expansion` | formalization | closed |  |  | - | 2026-09-07 |
 | `ErdosSzekeres.ctx_bound_child_run_contraction_of_level_one_span` | conjecture | open | yes |  | pass | 2026-09-30 |
 | `ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root` | conjecture | claimed |  |  | pass | 2026-09-30 |

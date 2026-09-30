@@ -684,6 +684,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundAttainedByEndCutOfFourLe"
   },
+  "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children": {
+    "type_hash": "bb154cfb31cbe29b",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  instLENat.le 3 σ.k →\n    instLENat.le 2 σ.numRuns →\n      instLENat.le σ.childPositions.length 3 →\n        Exists fun p =>\n          And (List.instMembership.mem σ.childPositions p)\n            (Exists fun d =>\n              And (instLENat.le 1 d)\n                (And (instLENat.le d (instHSub.hSub σ.k 2))\n                  (Or\n                    (Eq σ.bound\n                      (instHAdd.hAdd\n                        (σ.part (List.cons p List.nil) ErdosSzekeres.Ctx.Side.lower d).bound\n                        (σ.part (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound))\n                    (Eq σ.bound\n                      (instHAdd.hAdd\n                        (σ.part (List.cons p List.nil) ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                        (σ.part (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.lower d).bound)))))",
+    "approved_by": "codex:agent-run-65158fed3cd841d2",
+    "approved_at": "2026-09-30",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundAttainedBySingletonCutOfLeThreeChildren"
+  },
   "ErdosSzekeres.ctx_bound_child_letter_expansion": {
     "type_hash": "f75aa2f6b81c5884",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (left right : List ErdosSzekeres.Ctx.Letter),\n      Eq σ.word\n          (instHAppendOfAppend.hAppend\n            (instHAppendOfAppend.hAppend left\n              (List.cons ErdosSzekeres.Ctx.Letter.child\n                (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n            right) →\n        instLENat.le\n          { a := σ.a, u := σ.u, k := σ.k,\n              word :=\n                instHAppendOfAppend.hAppend\n                  (instHAppendOfAppend.hAppend left\n                    (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                  right,\n              maxima := σ.maxima }.bound\n          σ.bound",
