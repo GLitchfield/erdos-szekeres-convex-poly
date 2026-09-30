@@ -26,6 +26,9 @@ def branch(cfg):
     """A node branch with the node in the lock (as a targeted `es node add` leaves it) and edits
     to the node's files plus one unrelated file."""
     root = cfg.root
+    # the harness commits with the repository's identity (CI runners have no global one)
+    _git(root, "config", "user.email", "t@t")
+    _git(root, "config", "user.name", "t")
     cfg.nodes_json.write_text(json.dumps({"nodes": []}) + "\n")
     _git(root, "add", "harness/nodes.json")
     _git(root, "commit", "-q", "-m", "index")
@@ -116,10 +119,6 @@ def test_the_worker_runs_the_queued_commit(cfg, branch, monkeypatch):
     job = node.run_commit(Ctx(cfg), NODE, message="queued commit").payload["job"]
     monkeypatch.setenv("PYTHONPATH", str(Path(jobs.__file__).resolve().parents[1]) + os.pathsep
                        + os.environ.get("PYTHONPATH", ""))
-    monkeypatch.setenv("GIT_AUTHOR_NAME", "t")
-    monkeypatch.setenv("GIT_AUTHOR_EMAIL", "t@t")
-    monkeypatch.setenv("GIT_COMMITTER_NAME", "t")
-    monkeypatch.setenv("GIT_COMMITTER_EMAIL", "t@t")
     done = jobs.run_job(cfg, job["id"])
     assert done["status"] == "done", Path(done["log_path"]).read_text()
     assert _git(branch, "log", "-1", "--format=%s") == "queued commit\n"
