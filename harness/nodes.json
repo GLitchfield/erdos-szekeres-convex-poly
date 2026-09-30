@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T06:17:53Z",
- "git_sha": "bb999faff9f74f5af5314d60777ce25711d1f283",
- "extract_mode": "incremental from bd9b38b61914: 1 re-extracted, 0 removed",
+ "generated_at": "2026-09-30T06:20:21Z",
+ "git_sha": "fabfad6a7aefe993074d26eb14dce8d28781f3c2",
+ "extract_mode": "incremental from bb999faff9f7: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15673,
- "tree_hash": "82081188b23ec3ab.4560d6f33c43b8ee",
+ "modules": 15674,
+ "tree_hash": "585959286e001b48.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,7 +20,7 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5364,
+  "cached_modules": 5369,
   "scanned_constants": 0,
   "scanned_modules": 0
  },
@@ -5349,7 +5349,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-30"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_additive_three_blocks",
@@ -7621,6 +7621,84 @@
    },
    "lock_ok": true,
    "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_reverse",
+   "module": "ESBlueprint.B.CtxBoundReverse",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Reversing the word of any well-formed context preserves its recursive bound, with parameters, levels, sides and maxima unchanged. Supplies reflection for the singleton-end sandwich and future context-bound arguments; includes the empty and single-run cases.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_reverse_extension_transport"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_sandwich_one_singleton_end"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    Eq { a := σ.a, u := σ.u, k := σ.k, word := σ.word.reverse, maxima := σ.maxima }.bound σ.bound",
+   "type_hash": "4125616738b08f1d",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_reverse_extension_transport"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_1",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_2",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_3",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_4",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_5",
+    "ErdosSzekeres.ctx_bound_reverse.match_1_6",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_9",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_10",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_11",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_12",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_13",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_14",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_15",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_16",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_17",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_18",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_19",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_20",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_21",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_22",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_23",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_24",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_25",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_26",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_27",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_28",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_29",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_30",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_31",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_32",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_33",
+    "ErdosSzekeres.ctx_point_limits_eq_of_child_interval",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_34",
+    "ErdosSzekeres.ctx_reverse_extension_transport",
+    "ErdosSzekeres.ctx_bound_reverse._simp_1_35",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_36",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_37",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_38",
+    "ErdosSzekeres.ctx_bound_reverse._proof_1_39"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_same_size_exchange_counterexample",
@@ -35413,6 +35491,7 @@
    "ESBlueprint.B.CtxBoundOppositeLevelSwap": "78c604ca4dc9cdb8",
    "ESBlueprint.B.CtxBoundOppositeRemovalsCommute": "9077f44676d1448d",
    "ESBlueprint.B.CtxBoundPrefixSuffixDomination": "2d11bb8db5fe266b",
+   "ESBlueprint.B.CtxBoundReverse": "53e76d85d1871b4a",
    "ESBlueprint.B.CtxBoundSameSizeExchangeCounterexample": "2612ecec32f1128c",
    "ESBlueprint.B.CtxBoundThreeWayBaseAllocation": "565994f881d46e44",
    "ESBlueprint.B.CtxBoundTwoRunBoundaryDomination": "1e511271ad7fd4f2",
