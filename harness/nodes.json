@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T14:28:46Z",
- "git_sha": "e119567de105dcf0e4b00c77f3fa63b7c0cc2fdd",
- "extract_mode": "incremental from 73675e508748: 1 re-extracted, 0 removed",
+ "generated_at": "2026-09-30T14:43:26Z",
+ "git_sha": "154f506f47951237f69507c99bcb35c35cf497d1",
+ "extract_mode": "incremental from e119567de105: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15677,
- "tree_hash": "7856b0c1570c9980.4560d6f33c43b8ee",
+ "tree_hash": "009a384880951dea.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5367,
-  "scanned_constants": 0,
-  "scanned_modules": 0
+  "cached_modules": 5456,
+  "scanned_constants": 1,
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -4839,11 +4839,17 @@
     "sorryAx"
    ],
    "deps_declared": [],
-   "deps_actual": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_additive_single_run_alternating_of_run_contraction_and_deletion",
+    "ErdosSzekeres.ctx_bound_child_run_contraction_of_level_one_span",
+    "ErdosSzekeres.ctx_bound_ext_letter_deletion_mono_of_isolated_children"
+   ],
    "helpers": [],
-   "status": "open",
-   "ready": true,
-   "blocked_by": [],
+   "status": "claimed",
+   "ready": false,
+   "blocked_by": [
+    "ErdosSzekeres.ctx_bound_child_run_contraction_of_level_one_span"
+   ],
    "uncovered_axioms": [
     "sorryAx"
    ],
@@ -35717,7 +35723,7 @@
    "ESBlueprint.B.CtxBoundAdditiveSandwichSingletonEnds": "fccd5991982128b4",
    "ESBlueprint.B.CtxBoundAdditiveSaturatedIntervalComplement": "bad676a945766dd3",
    "ESBlueprint.B.CtxBoundAdditiveSingleRun": "3789bc3b6a7f72d8",
-   "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternating": "ac88029648a32b68",
+   "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternating": "2c0f565d93e7b116",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternatingOfRunContractionAndDeletion": "affdcc3d11fc80eb",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunBoundary": "68009ddee81309c9",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunMinCapacityFourBelowSaturation": "b7a9779ad3846f56",

@@ -1,4 +1,7 @@
 import ErdosSzekeres.DecomposableContext
+import ESBlueprint.B.CtxBoundChildRunContractionOfLevelOneSpan
+import ESBlueprint.B.CtxBoundExtLetterDeletionMonoOfIsolatedChildren
+import ESBlueprint.B.CtxBoundAdditiveSingleRunAlternatingOfRunContractionAndDeletion
 
 namespace ErdosSzekeres
 
@@ -9,6 +12,12 @@ namespace ErdosSzekeres
 @consumer ErdosSzekeres.ctx_bound_additive_single_run
 @falsifier ctx_bound_additive_single_run_alternating.py -/
 theorem ctx_bound_additive_single_run_alternating (σ : Ctx.Context) (hwf : σ.WellFormed) (hruns : σ.numRuns ≤ 1) (h2 : 2 ≤ σ.childPositions.length) (r : ℕ) (hr : r < 2) (d : ℕ) (hd : 1 ≤ d) (hdk : d ≤ σ.k - 2) : let keep := ((List.range σ.childPositions.length).filter (fun i => i % 2 = r)).map (fun i => σ.childPositions.getD i 0); (σ.part keep Ctx.Side.lower d).bound + (σ.part (σ.childPositions.filter (fun p => p ∉ keep)) Ctx.Side.upper (σ.k - 1 - d)).bound ≤ σ.bound ∧ (σ.part keep Ctx.Side.upper (σ.k - 1 - d)).bound + (σ.part (σ.childPositions.filter (fun p => p ∉ keep)) Ctx.Side.lower d).bound ≤ σ.bound := by
-  sorry
+  -- C3 from C1 (open) and DelMono (closed) through the closed reduction (R7-R9)
+  exact ctx_bound_additive_single_run_alternating_of_run_contraction_and_deletion
+    (fun τ hτ side left right hword hspan =>
+      ctx_bound_child_run_contraction_of_level_one_span τ hτ side left right hword hspan)
+    (fun τ hτ hiso left right lev side hword hother =>
+      ctx_bound_ext_letter_deletion_mono_of_isolated_children τ hτ hiso left right lev side hword hother)
+    σ hwf hruns h2 r hr d hd hdk
 
 end ErdosSzekeres
