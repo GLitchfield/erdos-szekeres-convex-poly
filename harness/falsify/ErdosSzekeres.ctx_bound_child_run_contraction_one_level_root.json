@@ -1,0 +1,25 @@
+{
+ "node": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
+ "falsifier": "ctx_one_level_root_run_contraction.py",
+ "falsifier_sha256": "1b3e539be3e9cf7d58bd75eab9895e57dcf461b6ec2d2885490f8f72f19fb5f4",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "94e83f4b24e9975d",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 1632.6,
+ "at": "2026-09-30T16:31:31Z",
+ "agent": "claude-code:22c8132f-fa67-40ab-90d0-f8255f87797f",
+ "witness": {
+  "node": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
+  "semantics": "context-bound-zero-children-c-v1",
+  "cases": {
+   "5": {
+    "checked": 1200
+   },
+   "6": {
+    "checked": 2304
+   }
+  },
+  "violations": []
+ }
+}
