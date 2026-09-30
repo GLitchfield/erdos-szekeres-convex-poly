@@ -699,6 +699,45 @@
           "status"
         ]
       }
+    },
+    {
+      "id": "research.signotope-cubes",
+      "kind": "primitive",
+      "title": "Signotope point-set cubes and Knuth cube-tree estimates",
+      "summary": "Legal rank-3 signotope patterns on point sets as SAT cubes (ETV triple numbering), reversal symmetry, and a solver-agnostic Knuth random-walk tree-size estimator for choosing a cube order and depth.",
+      "keywords": [
+        "cube and conquer",
+        "cubes",
+        "signotope",
+        "one-change",
+        "pattern",
+        "triple variable",
+        "ETV",
+        "SAT",
+        "reversal symmetry",
+        "symmetry breaking",
+        "Knuth estimator",
+        "tree size",
+        "split order",
+        "cube depth",
+        "python-sat"
+      ],
+      "api": "patterns_on(points) -> [pattern]; extensions(pattern, points, new) -> [new triples]; place(pattern, points); lits_of(pattern, N) -> [int]; triple_var(t, N) -> int; reverse(pattern, N); knuth_walk(order, roots, start_depth, survives, is_leaf, rng, max_depth=None) -> [step]; knuth_estimates(walks) -> dict",
+      "example": "from harness.research import signotope_cubes as sc\ncubes = [sc.lits_of(p, 27) for p in sc.patterns_on([13, 12, 14, 11, 15, 10])]  # 908 level-6 cubes, center-outward\n# survives = lambda p: <python-sat conf_budget(1) solve is not False>; is_leaf = lambda p, d: <20k-conflict attempt refutes>\nwalk = sc.knuth_walk(order, roots, 6, survives, is_leaf, random.Random(0))",
+      "semantics": "Patterns map sorted triples to bool; legality is only the one-change (rank-3 signotope) law on every 4-subset, so pattern counts on 1..7 points are 1,1,2,8,62,908,24698 (OEIS A006245, regression-tested). Cup/cap/convex-gon constraints are NOT applied: the caller filters with its CNF (e.g. a propagation test). triple_var matches scripts/generate_etv_tseitin_sat.py (1 + index in combinations(range(N),3), tested against the generator). reverse maps legal patterns to legal patterns and preserves cups/caps; whether it is a symmetry of a given CNF must be checked per encoding (verified for the ETV CNF in runs/etv-cc-20260930/verify_reversal.py). knuth_walk is Knuth's unbiased estimator: 10**log10_prod at the last step estimates the leaf count; single walks are heavy-tailed, so report medians with means. python-sat pitfalls: conf_budget(0) means no limit; CaDiCaL has no propagate(); keep each incremental solver on one cube point set (mixing sets was ~10x slower). Diagnostic tooling only; no proof output.",
+      "source": {
+        "path": "harness/research/signotope_cubes.py",
+        "symbols": [
+          "triple_var",
+          "extensions",
+          "patterns_on",
+          "place",
+          "lits_of",
+          "reverse",
+          "knuth_walk",
+          "knuth_estimates"
+        ]
+      }
     }
   ]
 }
