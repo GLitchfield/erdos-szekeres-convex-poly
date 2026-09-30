@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T06:09:16Z",
- "git_sha": "5d58845b64c80c52f843290e31fa573398ebdd9f",
- "extract_mode": "incremental from 5d58845b64c8: 1 re-extracted, 0 removed",
+ "generated_at": "2026-09-30T06:15:16Z",
+ "git_sha": "bd9b38b619140a91b1dcf221646ba7bfbc6b7268",
+ "extract_mode": "incremental from bd9b38b61914: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15671,
- "tree_hash": "c0b0c12a818a7b6a.4560d6f33c43b8ee",
+ "modules": 15672,
+ "tree_hash": "a9558e9bf004e146.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -4810,6 +4810,78 @@
    "opened": "2026-09-06"
   },
   {
+   "name": "ErdosSzekeres.ctx_bound_additive_single_run_alternating",
+   "module": "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternating",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "Alternating single-run additivity (C3; R1, runs/claude-comb-reduction-20260929): for a well-formed single-run context with at least two child letters, the partition keeping every second child position (starting at the first, r = 0, or the second, r = 1) satisfies the additivity inequality in both orientations at every admissible coupling. With run contraction under level-one spans (ctx_bound_child_run_contraction_of_level_one_span, C1) and ctx_bound_external_letter_contraction this gives ctx_bound_additive_single_run through ctx_bound_additive_single_run_of_run_contraction_and_alternating. Run lengths 2 and 3 are covered by the closed prefix/suffix and singleton-ended sandwich nodes. Evidence (compiled evaluator, diagnostic): 0 violations up to run length 10 in ten triples; comb part bounds are constant from run length 6 (runs/claude-comb-reduction-20260929/p6).",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_single_run",
+    "falsifier": "ctx_bound_additive_single_run_alternating.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le σ.numRuns 1 →\n      instLENat.le 2 σ.childPositions.length →\n        ∀ (r : Nat),\n          instLTNat.lt r 2 →\n            ∀ (d : Nat),\n              instLENat.le 1 d →\n                instLENat.le d (instHSub.hSub σ.k 2) →\n                  have keep :=\n                    List.map (fun i => σ.childPositions.getD i 0)\n                      (List.filter (fun i => Decidable.decide (Eq (instHMod.hMod i 2) r))\n                        (List.range σ.childPositions.length));\n                  And\n                    (instLENat.le\n                      (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                        (σ.part\n                            (List.filter\n                              (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                              σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                      σ.bound)\n                    (instLENat.le\n                      (instHAdd.hAdd\n                        (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                        (σ.part\n                            (List.filter\n                              (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                              σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.lower d).bound)\n                      σ.bound)",
+   "type_hash": "39ea931630dd0e57",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_additive_single_run_alternating",
+    "falsifier": "ctx_bound_additive_single_run_alternating.py",
+    "falsifier_sha256": "a5919a76939b46e4800dbe8c52fa620326bac6bf98b997d28fd687d818c01ecf",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "39ea931630dd0e57",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 11.1,
+    "at": "2026-09-30T06:13:31Z",
+    "agent": "claude-code:22c8132f-fa67-40ab-90d0-f8255f87797f",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_bound_additive_single_run_alternating",
+     "semantics": "context-bound-zero-children-v1",
+     "cases": {
+      "4,4,5": {
+       "checked": 648
+      },
+      "3,4,5": {
+       "checked": 630
+      },
+      "5,5,5": {
+       "checked": 642
+      },
+      "4,5,6": {
+       "checked": 912
+      },
+      "5,5,6": {
+       "checked": 904
+      }
+     },
+     "violations": []
+    }
+   },
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.ctx_bound_additive_single_run_boundary",
    "module": "ESBlueprint.B.CtxBoundAdditiveSingleRunBoundary",
    "ws": "B",
@@ -6108,7 +6180,7 @@
     }
    },
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-30"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_cut_le",
@@ -35206,6 +35278,7 @@
    "ESBlueprint.B.CtxBoundAdditiveSandwichSingletonEnds": "fccd5991982128b4",
    "ESBlueprint.B.CtxBoundAdditiveSaturatedIntervalComplement": "bad676a945766dd3",
    "ESBlueprint.B.CtxBoundAdditiveSingleRun": "3789bc3b6a7f72d8",
+   "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternating": "ac88029648a32b68",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunBoundary": "68009ddee81309c9",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunMinCapacityFourBelowSaturation": "b7a9779ad3846f56",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunMinCapacityThree": "738863d3714e180b",
