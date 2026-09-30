@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T20:58:27Z",
- "git_sha": "41cc0e4b58206008bde4af9b510b56b35dd3aa69",
- "extract_mode": "incremental from 41cc0e4b5820: 1 re-extracted, 0 removed",
+ "generated_at": "2026-09-30T23:50:49Z",
+ "git_sha": "a796ca2c67a86da5b50b5860b887eab160f6ad20",
+ "extract_mode": "incremental from a796ca2c67a8: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15682,
- "tree_hash": "3f3d94133afefe32.4560d6f33c43b8ee",
+ "modules": 15686,
+ "tree_hash": "dd6e3c82007573e8.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5359,
-  "scanned_constants": 14,
-  "scanned_modules": 1
+  "cached_modules": 5358,
+  "scanned_constants": 0,
+  "scanned_modules": 0
  },
  "nodes": [
   {
@@ -6466,6 +6466,59 @@
    "opened": "2026-09-29"
   },
   {
+   "name": "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children",
+   "module": "ESBlueprint.B.CtxBoundAttainedBySingletonCutOfLeThreeChildren",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Exact singleton-cut attainment for arbitrary raw contexts with at least two runs, k at least three and at most three children. Every proper interval block then has a singleton on one side; take a maximum recurrence witness, use fuel stability, and exchange the roles of complementary parts if necessary. No endpoint restriction or well-formedness assumption, and no use of the refuted general end-cut normal form. Supplies the small-arity base of the missing singleton reduction in the one-level-root run-contraction exchange route.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  instLENat.le 3 σ.k →\n    instLENat.le 2 σ.numRuns →\n      instLENat.le σ.childPositions.length 3 →\n        Exists fun p =>\n          And (List.instMembership.mem σ.childPositions p)\n            (Exists fun d =>\n              And (instLENat.le 1 d)\n                (And (instLENat.le d (instHSub.hSub σ.k 2))\n                  (Or\n                    (Eq σ.bound\n                      (instHAdd.hAdd\n                        (σ.part (List.cons p List.nil) ErdosSzekeres.Ctx.Side.lower d).bound\n                        (σ.part (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound))\n                    (Eq σ.bound\n                      (instHAdd.hAdd\n                        (σ.part (List.cons p List.nil) ErdosSzekeres.Ctx.Side.upper\n                            (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                        (σ.part (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                            ErdosSzekeres.Ctx.Side.lower d).bound)))))",
+   "type_hash": "bb154cfb31cbe29b",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._proof_1_1",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._simp_1_2",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._simp_1_3",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._simp_1_4",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._simp_1_5",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._simp_1_6",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._simp_1_7",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._proof_1_8",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._proof_1_9",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._proof_1_10",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._proof_1_12",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._proof_1_13",
+    "ErdosSzekeres.exists_mem_eq_getD_max?",
+    "ErdosSzekeres.Ctx.Context.part_childPositions_length_lt_of_mem_blocks",
+    "ErdosSzekeres.Ctx.Context.part_rest_childPositions_length_lt_of_mem_blocks",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._proof_1_14",
+    "ErdosSzekeres.Ctx.Context.boundFuel_eq_bound",
+    "ErdosSzekeres.Ctx.Context.part_congr",
+    "ErdosSzekeres.ctx_bound_attained_by_singleton_cut_of_le_three_children._proof_1_15"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-30"
+  },
+  {
    "name": "ErdosSzekeres.ctx_bound_child_letter_expansion",
    "module": "ESBlueprint.B.CtxBoundChildLetterExpansion",
    "ws": "B",
@@ -6697,9 +6750,9 @@
     "statement_type_hash": "94e83f4b24e9975d",
     "result": "pass",
     "exit_code": 0,
-    "seconds": 1113.1,
-    "at": "2026-09-30T20:24:36Z",
-    "agent": "codex:agent-run-65158fed3cd841d2",
+    "seconds": 1632.6,
+    "at": "2026-09-30T16:31:31Z",
+    "agent": "claude-code:22c8132f-fa67-40ab-90d0-f8255f87797f",
     "witness": {
      "node": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
      "semantics": "context-bound-zero-children-c-v1",
@@ -8756,6 +8809,46 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_zero_of_unit_global_axis",
+   "module": "ESBlueprint.B.CtxBoundZeroOfUnitGlobalAxis",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every recursive fuel approximation and the full context bound vanish when either global cap or cup parameter is at most one. Valid for arbitrary raw words, maxima and k, without well-formedness. Parts retain the zero global axis, and the defining recurrence sums zero bounds. Removes the a=1 or u=1 boundary in the one-level-root contraction C1r, whose hypotheses allow values outside Context.WellFormed.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  Or (instLENat.le σ.a 1) (instLENat.le σ.u 1) →\n    And (∀ (fuel : Nat), Eq (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 0) (Eq σ.bound 0)",
+   "type_hash": "3f2964484062c828",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_zero_of_unit_global_axis._proof_1_2",
+    "ErdosSzekeres.ctx_bound_zero_of_unit_global_axis._proof_1_4",
+    "ErdosSzekeres.ctx_bound_zero_of_unit_global_axis._simp_1_6",
+    "ErdosSzekeres.ctx_bound_zero_of_unit_global_axis._simp_1_7",
+    "ErdosSzekeres.ctx_bound_zero_of_unit_global_axis._simp_1_8",
+    "ErdosSzekeres.ctx_bound_zero_of_unit_global_axis._simp_1_9"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-30"
   },
   {
    "name": "ErdosSzekeres.ctx_boundary_marker_erase_normalize",
@@ -12197,6 +12290,64 @@
    "opened": "2026-09-09"
   },
   {
+   "name": "ErdosSzekeres.ctx_num_runs_child_letter_contraction",
+   "module": "ESBlueprint.B.CtxNumRunsChildLetterContraction",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Deleting one of two adjacent child letters preserves the number of child runs in any raw context. No well-formedness or parameter hypothesis is needed. Exposes the geometric position-map component of the closed child-letter expansion proof, so contraction reductions can transport both the single-run base branch and the multi-run cut hypothesis.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (left right : List ErdosSzekeres.Ctx.Letter),\n  Eq σ.word\n      (instHAppendOfAppend.hAppend\n        (instHAppendOfAppend.hAppend left\n          (List.cons ErdosSzekeres.Ctx.Letter.child\n            (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n        right) →\n    Eq σ.numRuns\n      { a := σ.a, u := σ.u, k := σ.k,\n          word :=\n            instHAppendOfAppend.hAppend\n              (instHAppendOfAppend.hAppend left (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n              right,\n          maxima := σ.maxima }.numRuns",
+   "type_hash": "87d38cf7fc07a108",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_1",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_2",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_3",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_4",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_5",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_6",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_7",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_8",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_9",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_10",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_11",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._simp_1_12",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._simp_1_13",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._simp_1_14",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_15",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_16",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_17",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_18",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_19",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_20",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._simp_1_21",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_22",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_23",
+    "ErdosSzekeres.ctx_num_runs_child_letter_contraction._proof_1_24"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-30"
+  },
+  {
    "name": "ErdosSzekeres.ctx_older_exterior_internal_complement_cut_potential_bound",
    "module": "ESBlueprint.B.CtxOlderExteriorInternalComplementCutPotentialBound",
    "ws": "B",
@@ -12834,6 +12985,205 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange",
+   "module": "ESBlueprint.B.CtxOneLevelRootSingletonBaseExchange",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "Localized singleton-base versus complement-part exchange for a multi-run one-level root containing an adjacent child pair. Delete the second copy and map the chosen singleton position across that deletion. Its explicit threshold T plus the complement bound is dominated by the same mapped singleton in the shorter root at some orientation and admissible coupling. Both leaf values are explicit thresholds; no contraction or all-cut bound hypothesis is assumed. Finite R13 probes pass, but deriving C1r from this local exchange remains a separate open obligation.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "consumer": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
+    "falsifier": "ctx_one_level_root_singleton_base_exchange.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (a u k m : Nat),\n  instLENat.le 3 k →\n    instLENat.le 1 a →\n      instLENat.le a k →\n        instLENat.le 1 u →\n          instLENat.le u k →\n            instLENat.le 1 m →\n              instLENat.le m (instHSub.hSub k 2) →\n                ∀ (side : ErdosSzekeres.Ctx.Side) (left right : List ErdosSzekeres.Ctx.Letter),\n                  (∀ (x : ErdosSzekeres.Ctx.Letter),\n                      List.instMembership.mem (instHAppendOfAppend.hAppend left right) x →\n                        Or (Eq x ErdosSzekeres.Ctx.Letter.child)\n                          (Eq x (ErdosSzekeres.Ctx.Letter.ext 1 side))) →\n                    have σ :=\n                      { a := a, u := u, k := k,\n                        word :=\n                          instHAppendOfAppend.hAppend\n                            (instHAppendOfAppend.hAppend left\n                              (List.cons ErdosSzekeres.Ctx.Letter.child\n                                (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n                            right,\n                        maxima := List.cons m List.nil };\n                    have ρ :=\n                      { a := a, u := u, k := k,\n                        word :=\n                          instHAppendOfAppend.hAppend\n                            (instHAppendOfAppend.hAppend left\n                              (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                            right,\n                        maxima := List.cons m List.nil };\n                    have opposite := fun s =>\n                      ErdosSzekeres.ctx_one_level_root_singleton_base_exchange.match_1\n                        (fun s => ErdosSzekeres.Ctx.Side) s (fun _ => ErdosSzekeres.Ctx.Side.upper)\n                        fun _ => ErdosSzekeres.Ctx.Side.lower;\n                    instLENat.le 2 σ.numRuns →\n                      ∀ (p : Nat),\n                        List.instMembership.mem σ.childPositions p →\n                          ∀ (s : ErdosSzekeres.Ctx.Side) (c : Nat),\n                            instLENat.le 1 c →\n                              instLENat.le c (instHSub.hSub k 2) →\n                                have q := ite (instLENat.le p left.length) p (instHSub.hSub p 1);\n                                Exists fun t =>\n                                  Exists fun d =>\n                                    And (instLENat.le 1 d)\n                                      (And (instLENat.le d (instHSub.hSub k 2))\n                                        (instLENat.le\n                                          (instHAdd.hAdd\n                                            (ErdosSzekeres.decomposableThreshold\n                                              (instHAdd.hAdd\n                                                ((σ.part (List.cons p List.nil) s c).capLimit p p)\n                                                1)\n                                              (instHAdd.hAdd\n                                                ((σ.part (List.cons p List.nil) s c).cupLimit p p)\n                                                1)\n                                              k)\n                                            (σ.part\n                                                (List.filter (fun r => Decidable.decide (Ne r p))\n                                                  σ.childPositions)\n                                                (opposite s)\n                                                (instHSub.hSub (instHSub.hSub k 1) c)).bound)\n                                          (instHAdd.hAdd\n                                            (ErdosSzekeres.decomposableThreshold\n                                              (instHAdd.hAdd\n                                                ((ρ.part (List.cons q List.nil) t d).capLimit q q)\n                                                1)\n                                              (instHAdd.hAdd\n                                                ((ρ.part (List.cons q List.nil) t d).cupLimit q q)\n                                                1)\n                                              k)\n                                            (ρ.part\n                                                (List.filter (fun r => Decidable.decide (Ne r q))\n                                                  ρ.childPositions)\n                                                (opposite t)\n                                                (instHSub.hSub (instHSub.hSub k 1) d)).bound)))",
+   "type_hash": "a68960f119792789",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange.match_1"
+   ],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange",
+    "falsifier": "ctx_one_level_root_singleton_base_exchange.py",
+    "falsifier_sha256": "63e77b47c4c31d3412a8841915ab30417d4dc2f4d6fb72cfe3d19f79569dfeaf",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "a68960f119792789",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 29.5,
+    "at": "2026-09-30T21:15:28Z",
+    "agent": "codex:agent-run-65158fed3cd841d2",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange",
+     "statement": "∀ (a u k m : Nat),\n  instLENat.le 3 k →\n    instLENat.le 1 a →\n      instLENat.le a k →\n        instLENat.le 1 u →\n          instLENat.le u k →\n            instLENat.le 1 m →\n              instLENat.le m (instHSub.hSub k 2) →\n                ∀ (side : ErdosSzekeres.Ctx.Side) (left right : List ErdosSzekeres.Ctx.Letter),\n                  (∀ (x : ErdosSzekeres.Ctx.Letter),\n                      List.instMembership.mem (instHAppendOfAppend.hAppend left right) x →\n                        Or (Eq x ErdosSzekeres.Ctx.Letter.child)\n                          (Eq x (ErdosSzekeres.Ctx.Letter.ext 1 side))) →\n                    have σ :=\n                      { a := a, u := u, k := k,\n                        word :=\n                          instHAppendOfAppend.hAppend\n                            (instHAppendOfAppend.hAppend left\n                              (List.cons ErdosSzekeres.Ctx.Letter.child\n                                (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n                            right,\n                        maxima := List.cons m List.nil };\n                    have ρ :=\n                      { a := a, u := u, k := k,\n                        word :=\n                          instHAppendOfAppend.hAppend\n                            (instHAppendOfAppend.hAppend left\n                              (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                            right,\n                        maxima := List.cons m List.nil };\n                    have opposite := fun s =>\n                      ErdosSzekeres.ctx_one_level_root_singleton_base_exchange.match_1\n                        (fun s => ErdosSzekeres.Ctx.Side) s (fun _ => ErdosSzekeres.Ctx.Side.upper)\n                        fun _ => ErdosSzekeres.Ctx.Side.lower;\n                    instLENat.le 2 σ.numRuns →\n                      ∀ (p : Nat),\n                        List.instMembership.mem σ.childPositions p →\n                          ∀ (s : ErdosSzekeres.Ctx.Side) (c : Nat),\n                            instLENat.le 1 c →\n                              instLENat.le c (instHSub.hSub k 2) →\n                                have q := ite (instLENat.le p left.length) p (instHSub.hSub p 1);\n                                Exists fun t =>\n                                  Exists fun d =>\n                                    And (instLENat.le 1 d)\n                                      (And (instLENat.le d (instHSub.hSub k 2))\n                                        (instLENat.le\n                                          (instHAdd.hAdd\n                                            (ErdosSzekeres.decomposableThreshold\n                                              (instHAdd.hAdd\n                                                ((σ.part (List.cons p List.nil) s c).capLimit p p)\n                                                1)\n                                              (instHAdd.hAdd\n                                                ((σ.part (List.cons p List.nil) s c).cupLimit p p)\n                                                1)\n                                              k)\n                                            (σ.part\n                                                (List.filter (fun r => Decidable.decide (Ne r p))\n                                                  σ.childPositions)\n                                                (opposite s)\n                                                (instHSub.hSub (instHSub.hSub k 1) c)).bound)\n                                          (instHAdd.hAdd\n                                            (ErdosSzekeres.decomposableThreshold\n                                              (instHAdd.hAdd\n                                                ((ρ.part (List.cons q List.nil) t d).capLimit q q)\n                                                1)\n                                              (instHAdd.hAdd\n                                                ((ρ.part (List.cons q List.nil) t d).cupLimit q q)\n                                                1)\n                                              k)\n                                            (ρ.part\n                                                (List.filter (fun r => Decidable.decide (Ne r q))\n                                                  ρ.childPositions)\n                                                (opposite t)\n                                                (instHSub.hSub (instHSub.hSub k 1) d)).bound)))",
+     "semantics": "context-bound-zero-children-c-v1",
+     "scope": [
+      {
+       "k": 5,
+       "parameters": [
+        [
+         1,
+         1
+        ],
+        [
+         1,
+         2
+        ],
+        [
+         1,
+         3
+        ],
+        [
+         1,
+         4
+        ],
+        [
+         1,
+         5
+        ],
+        [
+         2,
+         1
+        ],
+        [
+         2,
+         2
+        ],
+        [
+         2,
+         3
+        ],
+        [
+         2,
+         4
+        ],
+        [
+         2,
+         5
+        ],
+        [
+         3,
+         1
+        ],
+        [
+         3,
+         2
+        ],
+        [
+         3,
+         3
+        ],
+        [
+         3,
+         4
+        ],
+        [
+         3,
+         5
+        ],
+        [
+         4,
+         1
+        ],
+        [
+         4,
+         2
+        ],
+        [
+         4,
+         3
+        ],
+        [
+         4,
+         4
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         5,
+         1
+        ],
+        [
+         5,
+         2
+        ],
+        [
+         5,
+         3
+        ],
+        [
+         5,
+         4
+        ],
+        [
+         5,
+         5
+        ]
+       ],
+       "words": 48,
+       "maxima": [
+        1,
+        2,
+        3
+       ]
+      },
+      {
+       "k": 6,
+       "parameters": [
+        [
+         5,
+         5
+        ],
+        [
+         6,
+         6
+        ]
+       ],
+       "words": 48,
+       "maxima": [
+        1,
+        2,
+        3,
+        4
+       ]
+      }
+     ],
+     "max_children": 4,
+     "counts": {
+      "leaf_audits": 168592,
+      "roots": 3984,
+      "pairs": 4648,
+      "cuts": 106912
+     },
+     "seconds": 28.940138724999997,
+     "violations": []
+    }
+   },
+   "lock_ok": true,
+   "opened": "2026-09-30"
   },
   {
    "name": "ErdosSzekeres.ctx_one_sided_part_boundary_budget",
@@ -15526,7 +15876,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-30"
   },
   {
    "name": "ErdosSzekeres.ctx_small_global_axis_opposite_binomial_bound",
@@ -36259,6 +36609,7 @@
    "ESBlueprint.B.CtxBoundAttainedByEndCut": "4f9642fccc4720f0",
    "ESBlueprint.B.CtxBoundAttainedByEndCutCounterexample": "5629ead8dc76805f",
    "ESBlueprint.B.CtxBoundAttainedByEndCutOfFourLe": "718597cde653a47c",
+   "ESBlueprint.B.CtxBoundAttainedBySingletonCutOfLeThreeChildren": "ad3b59557e8f4e56",
    "ESBlueprint.B.CtxBoundChildLetterExpansion": "52a0d923c0a338ef",
    "ESBlueprint.B.CtxBoundChildRunContractionOfLevelOneSpan": "c554ffde3fd4d9dc",
    "ESBlueprint.B.CtxBoundChildRunContractionOneLevelRoot": "c30c945d6275f65a",
@@ -36290,6 +36641,7 @@
    "ESBlueprint.B.CtxBoundTwoRunBoundaryDomination": "1e511271ad7fd4f2",
    "ESBlueprint.B.CtxBoundUniformSeparatorContraction": "1b5a654d606f7b0f",
    "ESBlueprint.B.CtxBoundZeroChildRegression": "a2e0cbb744194e5e",
+   "ESBlueprint.B.CtxBoundZeroOfUnitGlobalAxis": "347211fedcbac545",
    "ESBlueprint.B.CtxBoundaryMarkerEraseNormalize": "815e3ac85532341f",
    "ESBlueprint.B.CtxBoundaryMarkerFullRankBudget": "66d3d0f63a761c42",
    "ESBlueprint.B.CtxBoundaryMarkerInwardEndpointCutTriangularBound": "112606ac547f1157",
@@ -36340,6 +36692,7 @@
    "ESBlueprint.B.CtxNonunitPartUnitRankPotentialDrop": "599aa580a20ad747",
    "ESBlueprint.B.CtxNonunitStraddlingCapacityProfile": "d300755778686292",
    "ESBlueprint.B.CtxNonunitStraddlingUniqueAxisLevel": "582cf91299b6968c",
+   "ESBlueprint.B.CtxNumRunsChildLetterContraction": "a62122593c362835",
    "ESBlueprint.B.CtxOlderExteriorInternalComplementCutPotentialBound": "f264bf10f4f9421c",
    "ESBlueprint.B.CtxOlderExteriorInternalComplementCutSixBound": "6a565e2f4742b8c1",
    "ESBlueprint.B.CtxOldestAxisMaximumEraseNormalize": "4c71cdf6f12f76c9",
@@ -36348,6 +36701,7 @@
    "ESBlueprint.B.CtxOneLevelExteriorPotentialBound": "9efe2e68d28c818f",
    "ESBlueprint.B.CtxOneLevelRankPairPotentialBound": "6977aed28b8d39a0",
    "ESBlueprint.B.CtxOneLevelRefinedPotentialBound": "29ef1678f039a028",
+   "ESBlueprint.B.CtxOneLevelRootSingletonBaseExchange": "5591e55dfb2af096",
    "ESBlueprint.B.CtxOneSidedPartBoundaryBudget": "c54ad19383b859d0",
    "ESBlueprint.B.CtxPartBoundRankPairEndReservations": "28d36d5e92c10afc",
    "ESBlueprint.B.CtxPartCapacityDropInClearInterval": "049fb450fd47eac8",
