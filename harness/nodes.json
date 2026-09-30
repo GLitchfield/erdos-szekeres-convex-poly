@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-29T14:09:32Z",
- "git_sha": "03d7d4acb42a2ce929b019746275d80e4d93d3a9",
- "extract_mode": "incremental from afd0a1d75697: 0 re-extracted, 0 removed",
+ "generated_at": "2026-09-30T06:09:16Z",
+ "git_sha": "5d58845b64c80c52f843290e31fa573398ebdd9f",
+ "extract_mode": "incremental from 5d58845b64c8: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15670,
- "tree_hash": "9db6e8c92830743e.4560d6f33c43b8ee",
+ "modules": 15671,
+ "tree_hash": "c0b0c12a818a7b6a.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,7 +20,7 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5360,
+  "cached_modules": 5357,
   "scanned_constants": 0,
   "scanned_modules": 0
  },
@@ -6036,6 +6036,79 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-07"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_child_run_contraction_of_level_one_span",
+   "module": "ESBlueprint.B.CtxBoundChildRunContractionOfLevelOneSpan",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "Run contraction under level-one spans (C1; R1, runs/claude-comb-reduction-20260929): if every letter strictly inside the child span of a well-formed context is a child letter or a level-one external letter of one fixed side, deleting one of two adjacent child letters leaves the bound unchanged. Repeated, every child run shortens to one letter; the two-run case is ctx_bound_uniform_separator_contraction. The unrestricted law is false (ctx_bound_adjacent_letter_contraction_counterexample, a level-two letter inside the span), and so are the adjacent-gap and level-count run-length laws (runs/claude-comb-reduction-20260929/p3, p5). Together with ctx_bound_additive_single_run_alternating (C3) it gives single-run additivity through ctx_bound_additive_single_run_of_run_contraction_and_alternating. Evidence (compiled evaluator, diagnostic): 97,487 contexts over twelve parameter triples with 0 mismatches, and 104,855 for the level-two generalization (runs/claude-comb-reduction-20260929/p1c.json, p1prime-*.json).",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_single_run",
+    "falsifier": "ctx_level_one_span_run_contraction.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (side : ErdosSzekeres.Ctx.Side) (left right : List ErdosSzekeres.Ctx.Letter),\n      Eq σ.word\n          (instHAppendOfAppend.hAppend\n            (instHAppendOfAppend.hAppend left\n              (List.cons ErdosSzekeres.Ctx.Letter.child\n                (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n            right) →\n        (∀ (i : Nat),\n            List.instMembership.mem σ.childPositions i →\n              ∀ (j : Nat),\n                List.instMembership.mem σ.childPositions j →\n                  ∀ (l : Nat),\n                    instLTNat.lt i l →\n                      instLTNat.lt l j →\n                        Or (Eq (σ.letterAt l) ErdosSzekeres.Ctx.Letter.child)\n                          (Eq (σ.letterAt l) (ErdosSzekeres.Ctx.Letter.ext 1 side))) →\n          Eq σ.bound\n            { a := σ.a, u := σ.u, k := σ.k,\n                word :=\n                  instHAppendOfAppend.hAppend\n                    (instHAppendOfAppend.hAppend left\n                      (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                    right,\n                maxima := σ.maxima }.bound",
+   "type_hash": "82941c9d93293e90",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_bound_child_run_contraction_of_level_one_span",
+    "falsifier": "ctx_level_one_span_run_contraction.py",
+    "falsifier_sha256": "c7fb75fd9ab14abbbc57da1cb7bdbccc364a5875b08e5f1c1fc31b84353e3c12",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "82941c9d93293e90",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 41.3,
+    "at": "2026-09-30T06:07:05Z",
+    "agent": "claude-code:22c8132f-fa67-40ab-90d0-f8255f87797f",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_bound_child_run_contraction_of_level_one_span",
+     "semantics": "context-bound-zero-children-v1",
+     "cases": {
+      "4,4,5": {
+       "checked": 120,
+       "available": 1974
+      },
+      "3,4,5": {
+       "checked": 120,
+       "available": 1981
+      },
+      "4,5,5": {
+       "checked": 120,
+       "available": 1975
+      },
+      "5,5,6": {
+       "checked": 120,
+       "available": 2055
+      }
+     },
+     "violations": []
+    }
+   },
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_cut_le",
@@ -35145,6 +35218,7 @@
    "ESBlueprint.B.CtxBoundAttainedByEndCutCounterexample": "5629ead8dc76805f",
    "ESBlueprint.B.CtxBoundAttainedByEndCutOfFourLe": "718597cde653a47c",
    "ESBlueprint.B.CtxBoundChildLetterExpansion": "52a0d923c0a338ef",
+   "ESBlueprint.B.CtxBoundChildRunContractionOfLevelOneSpan": "c554ffde3fd4d9dc",
    "ESBlueprint.B.CtxBoundCutLe": "d8ff370f7bda299b",
    "ESBlueprint.B.CtxBoundExternalLetterContraction": "ee93b1ce7b1cdd48",
    "ESBlueprint.B.CtxBoundIntervalOrComplementLe": "159279d44710bb76",
