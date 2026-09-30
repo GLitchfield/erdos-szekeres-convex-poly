@@ -41,7 +41,7 @@ command(
     CommandSpec(
         name="ready",
         cli=["ready"],
-        help="Open, unclaimed nodes whose declared dependencies are closed (and whose falsifier passed, for conjectures).",
+        help="Open, unclaimed nodes whose declared and Lean dependencies are closed (and whose falsifier passed, for conjectures).",
         run=run,
         args=[Arg("ws", "only this workstream"), Arg("kind", "only this kind", choices=["formalization", "conjecture", "refutation"])],
     )

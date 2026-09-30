@@ -28,7 +28,9 @@ headers and UTF-8 byte offsets into their complete diagnostic artifact, includin
 Lean's tagged `error(...)` messages. Explicit `--full` returns the raw full result.
 
 The command registry exposes these through CLI and MCP. Restart an already-running MCP
-server to load new tools. Restart the WSL worker on the updated code before submitting operations. The pilot found
+server to load new tools. Restart the WSL worker on the updated code before submitting operations. A
+project-scoped `flock` now refuses a second live worker and does not mistake stale lock-file
+contents for a live owner. The pilot found
 that a worker loaded before the upgrade can admit conflicting jobs and strand their newer
 runners in `starting`. Updated workers reserve admission atomically and run controller ticks;
 workflow stages also enqueue their own successors. Pilot evidence is in
@@ -39,6 +41,10 @@ When artifact storage is unavailable, compact read commands preserve their full 
 and explain why compaction was unavailable. New artifact files and the bounded directory
 hierarchy beneath the checkout are synced before a database reference is committed,
 including when directories already exist from an interrupted or concurrent writer.
+Journal attachments resolve relative paths from the caller's current directory and reject
+files over 16 MiB before artifact publication. Worktree release citations accept absolute
+and primary-relative worktree spellings; an unsafe or conflicting primary destination is
+recorded as an immutable artifact so the release itself can still conclude the claim.
 
 The 2026-09-13 follow-up also tests bounded Sol delegation for harness review,
 implementation, result analysis, and Lean candidate generation, with Astra assigning
@@ -47,10 +53,13 @@ subagents; the initial three inherited `max` and remain labeled that way. This i
 experimental routing preference, not a claim of measured goal-wide savings. Child
 usage and coordinator work must both be counted, with model-specific totals preserved.
 
-Extraction computes node opening dates with at most four concurrent read-only Git
-queries. It retains the existing rename-following semantics and does not cache dates
-across commits. A pilot sample produced identical dates in 5.82 seconds parallel
-versus 18.52 seconds serial; that sample is not a full-refresh speedup measurement.
+Extraction computes node opening dates in one reverse, merge-aware, rename-detecting Git
+history pass over the configured blueprint and core roots. Committed dates already present
+in the index are immutable cache entries; only missing or `uncommitted` modules are looked up
+on full and incremental extracts. This supersedes the earlier four-query parallel pilot and
+also discovers files first visible through merge commits. In a linked worktree, Git access
+uses that worktree's `.git` metadata pointer even when `[git] git_dir` names the primary
+checkout's metadata directory; history and `HEAD` therefore describe the active branch.
 
 ## Proof and search use
 
@@ -94,9 +103,13 @@ es probe replay RESULT_ARTIFACT_ID
 The shipped `context_rank` plugin requires `abstract-rank-strip-v1`, an explicit seed,
 case/time/memory bounds, `sorted_intervals`, and `clipped_potential`. Change a small registered
 candidate module to explore another potential; process launch, provenance, result storage
-and replay remain shared. The recursive compatibility factory requires either
-`historical-f2-v1` or `context-bound-zero-children-v1`. Its name is an implementation choice,
-not an equivalence theorem. The legacy scripts and their retained outputs remain intact.
+and replay remain shared. The recursive compatibility factory requires
+`historical-f2-v1`, `context-bound-zero-children-v1`, or the compiled
+`context-bound-zero-children-c-v1`. The compiled implementation is memoized, reports
+signed-64-bit overflow explicitly, and is cross-checked on a finite deterministic fixture;
+an in-flight C call is not preempted by the probe's Python `SIGALRM`, so its context shapes
+must remain independently bounded. None of these names or checks is an equivalence theorem.
+The legacy scripts and their retained outputs remain intact.
 
 ## Library reuse and recurring review
 

@@ -157,6 +157,7 @@ def test_cli_and_mcp_share_registered_commands(cfg, catalog, capsys):
 def test_project_catalog_exposes_promoted_research_boundary():
     expected = {
         "research.recursive-bounds",
+        "research.compiled-context-bound",
         "research.context-extension",
         "research.rank-clip-potential",
         "research.context-part",
@@ -186,6 +187,8 @@ def test_project_catalog_exposes_promoted_research_boundary():
     assert "not a certificate of equivalence to Lean" in recursive["semantics"]
 
     by_id = {item["id"]: item for item in entries}
+    assert by_id["research.compiled-context-bound"]["source"] == {
+        "path": "harness/research/context_bound.py", "symbols": ["compiled_evaluator"]}
     assert by_id["workflow.recursive-cut-probe"]["source"]["symbols"] == [
         "evaluate",
         "replay",

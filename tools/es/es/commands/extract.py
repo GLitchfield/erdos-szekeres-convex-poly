@@ -6,7 +6,7 @@ from pathlib import Path
 
 from es import EXIT_CHECK_FAILED, EXIT_OK
 from es.context import Ctx
-from es.config import CONFIG_REL
+from es.config import CONFIG_REL, primary_root
 from es.errors import UsageError
 from es.gitutil import head_sha
 from es.lean import run_extractor
@@ -79,7 +79,8 @@ def declared_blueprint_axioms(cfg, raw: dict) -> dict[str, list[str]]:
 
 NODE_RECORD_KEYS = ("name", "module", "type_pp", "type_hash", "sorry", "axioms", "nonstandard_axioms",
                     "deps_actual", "description", "tags", "tag_errors", "helpers")
-DEST_RECORD_KEYS = ("name", "module", "type_pp", "type_hash", "sorry", "axioms", "nonstandard_axioms", "description")
+DEST_RECORD_KEYS = ("name", "module", "type_pp", "type_hash", "sorry", "axioms", "nonstandard_axioms", "description",
+                    "deps_actual")
 
 
 def records_digest(payload: dict, index: list) -> str:
@@ -139,9 +140,27 @@ def assemble(ctx: Ctx, nodes: list[Node], dests, index: list, problems: list[str
             claims = st.claims()
     core_names = {r["name"] for r in index}
     compute(cfg, nodes, dests, core_names, claims=claims)
-    dates = opened_dates(cfg, [n.module for n in nodes])
+    # A committed introduction date is immutable.  Preserve it from the current
+    # index even when a full or targeted extraction has rebuilt the Node object;
+    # only new and formerly-uncommitted modules need another history scan.
+    cached_dates: dict[str, str] = {}
+    try:
+        for rec in load_nodes_json(cfg).get("nodes", []):
+            opened = rec.get("opened")
+            if opened and opened != "uncommitted":
+                cached_dates[rec["module"]] = opened
+    except (UsageError, OSError, json.JSONDecodeError, KeyError):
+        pass
     for n in nodes:
-        n.opened = dates[n.module]
+        if n.opened and n.opened != "uncommitted":
+            cached_dates[n.module] = n.opened
+        elif n.module in cached_dates:
+            n.opened = cached_dates[n.module]
+    refresh = [n.module for n in nodes if not n.opened or n.opened == "uncommitted"]
+    dates = opened_dates(cfg, refresh)
+    for n in nodes:
+        if n.module in dates:
+            n.opened = dates[n.module]
     lock = read_lock(cfg.lock_file)
     lock_problems = check_lock(lock, nodes)
     dup_problems = duplicates(nodes, index)
@@ -181,10 +200,23 @@ def _compare(cfg, nodes_text: str, status_md: str, index_text: str) -> list[str]
 def _write(ctx: Ctx, payload: dict, index: list, nodes: list[Node], th: str,
            nodes_text: str, status_md: str, index_text: str) -> None:
     cfg = ctx.cfg
+    extraction_root = cfg.root.resolve()
+    primary_checkout = extraction_root == primary_root(cfg.root).resolve()
+    previous: dict[str, str] = {}
+    try:
+        previous = {rec["name"]: rec.get("status") for rec in load_nodes_json(cfg).get("nodes", [])}
+    except (UsageError, OSError, json.JSONDecodeError, KeyError):
+        pass
     cfg.nodes_json.write_text(nodes_text)
     cfg.index_json.write_text(index_text)
     cfg.status_md.write_text(status_md)
     with Store(cfg) as st:
+        for n in nodes:
+            before = previous.get(n.name)
+            if before is not None and before != n.status:
+                st.event("index-status", n.name, ctx.agent,
+                         {"from": before, "to": n.status, "root": str(extraction_root),
+                          "primary_checkout": primary_checkout})
         records = list(index) + [
             {"name": n.name, "module": n.module, "kind": "node", "doc": n.description, "type_pp": n.type_pp} for n in nodes
         ]

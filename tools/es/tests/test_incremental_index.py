@@ -9,6 +9,7 @@ extraction writes (up to the volatile lines)."""
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 import subprocess
 
@@ -125,11 +126,64 @@ def test_full_extract_records_fingerprints(seeded):
     assert data["extract_mode"] == "full"
 
 
+@pytest.mark.parametrize("mode", ["full", "incremental"])
+def test_extract_refreshes_only_missing_or_uncommitted_opened_dates(seeded, monkeypatch, mode):
+    import json
+
+    from es.commands import extract as extract_cmd
+
+    data = json.loads(seeded.cfg.nodes_json.read_text())
+    for rec in data["nodes"]:
+        rec["opened"] = "2000-01-01" if rec["module"] == "TBlueprint.A.Foo" else "uncommitted"
+    seeded.cfg.nodes_json.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
+    calls = []
+
+    def dates(_cfg, modules):
+        calls.append(modules)
+        return {module: "2001-01-01" for module in modules}
+
+    monkeypatch.setattr(extract_cmd, "opened_dates", dates)
+    if mode == "full":
+        extract_cmd.run_extract(seeded, no_cache=True)
+    else:
+        extract_cmd.run_incremental(seeded)
+    assert calls == [["TBlueprint.A.Bar"]]
+    dates_by_module = {rec["module"]: rec["opened"]
+                       for rec in json.loads(seeded.cfg.nodes_json.read_text())["nodes"]}
+    assert dates_by_module == {"TBlueprint.A.Bar": "2001-01-01", "TBlueprint.A.Foo": "2000-01-01"}
+
+
 def test_fast_check_needs_no_lean_when_nothing_changed(seeded, fake):
     from es.commands.extract import fast_check
 
     _, _, problems = fast_check(seeded)
     assert problems == [] and fake == []
+
+
+def test_incremental_records_index_status_transition(project, seeded, monkeypatch):
+    import es.commands.extract as extract_cmd
+    from es.commands.extract import run_incremental
+    from es.store import Store
+
+    (project / "TBlueprint/A/Foo.lean").write_text(_foo(sorry=False))
+    run_incremental(seeded)
+    with Store(seeded.cfg) as st:
+        events = [dict(e) for e in st.events_since(0, node="TCore.foo_node", kinds=["index-status"])]
+    closures = [e for e in events if '"to": "closed"' in e["detail"]]
+    assert len(closures) == 1 and '"from": "open"' in closures[0]["detail"]
+    detail = json.loads(closures[0]["detail"])
+    assert detail["primary_checkout"] is True
+    assert detail["root"] == str(project.resolve())
+
+    monkeypatch.setattr(extract_cmd, "primary_root", lambda _root: project.parent / "primary")
+    (project / "TBlueprint/A/Foo.lean").write_text(_foo(sorry=True))
+    run_incremental(seeded)
+    with Store(seeded.cfg) as st:
+        events = [dict(e) for e in st.events_since(
+            0, node="TCore.foo_node", kinds=["index-status"])]
+    worktree_detail = json.loads(events[-1]["detail"])
+    assert worktree_detail["primary_checkout"] is False
+    assert worktree_detail["root"] == str(project.resolve())
 
 
 def test_fast_check_names_stale_modules_without_building(project, seeded, fake):
@@ -438,12 +492,31 @@ def test_scope_oom_kills_reads_the_journal(monkeypatch):
     assert build.scope_oom_kills("es-x", since=0) == 1
     monkeypatch.setattr(build.subprocess, "run", lambda *a, **k: Out("Started es-x.scope\n"))
     assert build.scope_oom_kills("es-x", since=0) == 0
+    monkeypatch.setattr(build.subprocess, "run", lambda *a, **k: Out(
+        "Started es-x.scope - command contains the text oom-kill but did not OOM.\n"))
+    assert build.scope_oom_kills("es-x", since=0) == 0
 
     def boom(*_a, **_k):
         raise OSError("no journalctl")
 
     monkeypatch.setattr(build.subprocess, "run", boom)
     assert build.scope_oom_kills("es-x", since=0) == 0
+
+
+def test_scope_accounting_reads_peak_and_oom_result(monkeypatch):
+    from es import build
+
+    class Out:
+        def __init__(self, text):
+            self.stdout = text
+
+    def run(argv, **_kwargs):
+        if argv[0] == "systemctl":
+            return Out("Result=oom-kill\nMemoryPeak=1610612736\n")
+        return Out("")
+
+    monkeypatch.setattr(build.subprocess, "run", run)
+    assert build.scope_accounting("es-x", since=0) == (1536, 1)
 
 
 def test_async_build_reserves_its_final_step(cfg, monkeypatch):

@@ -118,8 +118,7 @@ def run(ctx: Ctx, name: str, dry_run: bool = False, force: bool = False) -> Resu
     from es.commands.extract import run_extract
     run_extract(ctx)
     with Store(cfg) as st:
-        st.release(n.name, ctx.agent, outcome="closed")
-        st.record_attempt(n.name, ctx.agent, "closed", note="es close")
+        st.conclude_attempt(n.name, ctx.agent, "closed", note="es close")
         st.event("closed", n.name, ctx.agent, {"module": new_module})
     res.line(f"closed {n.name}: moved to {new_path.relative_to(cfg.root)}; imports rewritten in {len(touched)} file(s); consumer build {build.summary()}")
     if consumer:

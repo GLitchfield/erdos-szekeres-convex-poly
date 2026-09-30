@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T06:20:21Z",
- "git_sha": "fabfad6a7aefe993074d26eb14dce8d28781f3c2",
- "extract_mode": "incremental from bb999faff9f7: 1 re-extracted, 0 removed",
+ "generated_at": "2026-09-30T06:30:18Z",
+ "git_sha": "f4f792681feff961ab7a6023492a80a19e60078d",
+ "extract_mode": "full",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15674,
- "tree_hash": "585959286e001b48.4560d6f33c43b8ee",
+ "modules": 15675,
+ "tree_hash": "2b8277098601ebb9.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5369,
+  "cached_modules": 15674,
   "scanned_constants": 0,
-  "scanned_modules": 0
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -2267,8 +2267,11 @@
    ],
    "helpers": [],
    "status": "open",
-   "ready": true,
-   "blocked_by": [],
+   "ready": false,
+   "blocked_by": [
+    "ErdosSzekeres.ctx_bound_additive_single_run",
+    "ErdosSzekeres.ctx_bound_additive_multi_run"
+   ],
    "uncovered_axioms": [
     "sorryAx"
    ],
@@ -5521,7 +5524,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-07"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_adjacent_letter_contraction",
@@ -7698,7 +7701,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-30"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_same_size_exchange_counterexample",
@@ -13654,7 +13657,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-09-07"
   },
   {
    "name": "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit",
@@ -25683,8 +25686,10 @@
     "ErdosSzekeres.Ctx.Context.root_k"
    ],
    "status": "open",
-   "ready": true,
-   "blocked_by": [],
+   "ready": false,
+   "blocked_by": [
+    "ErdosSzekeres.ctx_card_le_bound"
+   ],
    "uncovered_axioms": [
     "sorryAx"
    ],
@@ -35132,6 +35137,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "D4: the classical all-`n` lower construction, as an actual planar\nsharpness witness of size `2^(n-2)`.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35148,6 +35154,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "The exact Erdős--Szekeres upper formula holds at `k = 6` throughout the\nabstract recursively decomposable class.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35164,6 +35171,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "The unconditional root closure lifts through the hereditary root\ntransition to the full decomposable `(4,8,8)` state.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35180,6 +35188,11 @@
    ],
    "nonstandard_axioms": [],
    "description": "The headline reduction: the predecessor-half property at every level j ≥ 4 gives the Erdős–Szekeres conjecture, both halves. Upper half: sweepExactUpperAt_of_predecessorHalfSubset_all then forcesConvexPolygon_of_sweepExactUpperAt; sharpness: classical_lower_sharpness.",
+   "deps_actual": [
+    "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt",
+    "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all",
+    "ErdosSzekeres.classical_lower_sharpness"
+   ],
    "uncovered_axioms": [],
    "merged_from": "ESBlueprint.A.ErdosSzekeresConjectureOfPredecessorHalfSubsetAtAll"
   },
@@ -35196,6 +35209,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "The happy-ending formula is exact at `n = 5`: nine points force a convex\npentagon, while eight points need not contain one.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35212,6 +35226,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35228,6 +35243,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "The happy-ending formula is exact at `n = 6`: seventeen points force a\nconvex hexagon, while sixteen points need not contain one.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35244,6 +35260,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35260,6 +35277,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "Through fourteen vertices, the elementary, Fin10, Fin11, and Fin13\npredecessor theorems supply a half-sized strong-five-free support.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35276,6 +35294,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "A sweep-model exact upper bound at k transfers to the planar statement: every general-position set of 2^(k-2)+1 points contains a convex k-gon. Route: exists_sweptPresentation, apply h to P.configuration.tripleColoring, then SweptPresentation.containsConvexSubset_iff_exists_isStrongPolygonOn.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": "ESBlueprint.A.ForcesConvexPolygonOfSweepExactUpperAt"
   },
@@ -35292,6 +35311,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "The kernel-checked seventeen-point upper bound for the happy-ending problem\nat six vertices.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35308,6 +35328,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "The explicit HMPT upper bound in published asymptotic form.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35324,6 +35345,9 @@
    ],
    "nonstandard_axioms": [],
    "description": "",
+   "deps_actual": [
+    "ErdosSzekeres.strongSixCardinalityCeiling"
+   ],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35340,6 +35364,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35356,6 +35381,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "The frozen positive-fraction threshold is bounded by one explicit power.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   },
@@ -35372,6 +35398,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "Predecessor-half subsets at every level from 4 to k give the sweep-model exact upper bound at k. Route: Nat.le_induction from sweepExactUpperAt_three and sweepExactUpperAt_of_predecessorHalfSubset.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": "ESBlueprint.A.SweepExactUpperAtOfPredecessorHalfSubsetAll"
   },
@@ -35388,6 +35415,7 @@
    ],
    "nonstandard_axioms": [],
    "description": "The explicit Tóth--Valtr uniform upper bound for planar point sets in\ngeneral position.",
+   "deps_actual": [],
    "uncovered_axioms": [],
    "merged_from": null
   }

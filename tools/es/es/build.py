@@ -297,6 +297,8 @@ def _run_guarded(
                 os.killpg(proc.pid, 9)
                 rc = proc.wait()
     seconds = time.time() - start
+    from es.resources import wait_scope_stopped
+    acknowledged = not use_guard or wait_scope_stopped(unit+'.scope') is True
     peak = ooms = 0
     had_stats = stats.exists()
     if had_stats:
@@ -307,8 +309,13 @@ def _run_guarded(
         except (ValueError, OSError):
             pass
         stats.unlink(missing_ok=True)
-    if use_guard and rc != 0 and not had_stats:
-        ooms = max(ooms, scope_oom_kills(unit, since=start))
+    # The wrapper that writes ES_STATS belongs to the guarded scope and can be
+    # killed with it.  Once systemd confirms teardown, its retained unit/journal
+    # data is the authoritative fallback for both peak memory and OOM outcome.
+    if use_guard and acknowledged:
+        scope_peak, scope_ooms = scope_accounting(unit, since=start)
+        peak = max(peak, scope_peak)
+        ooms = max(ooms, scope_ooms)
     if count_built and (rc == -15 or budget_exceeded):
         # the stopped scope's compilers take a few seconds to exit; do not let the next
         # invocation be refused for "a compiler is already running"
@@ -323,9 +330,27 @@ def _run_guarded(
         return BuildResult(rc, seconds, 0, str(log_path), argv, refused=(
             "cannot create a memory-guarded scope from this process (the systemd user bus is unreachable: a sandbox?); "
             "run this from an unsandboxed shell, or one that can reach /run/user/<uid>/bus"), tail=tail)
-    from es.resources import wait_scope_stopped
-    acknowledged = not use_guard or wait_scope_stopped(unit+'.scope') is True
     return BuildResult(rc, seconds, built, str(log_path), argv, budget_exceeded, ooms, peak, tail=tail, termination_acknowledged=acknowledged)
+
+
+def scope_accounting(unit: str, *, since: float) -> tuple[int, int]:
+    """Return ``(peak MiB, OOM kills)`` retained by a stopped systemd scope."""
+    peak = ooms = 0
+    try:
+        proc = subprocess.run(
+            ["systemctl", "--user", "show", f"{unit}.scope", "--property=Result", "--property=MemoryPeak"],
+            capture_output=True, text=True, timeout=10,
+        )
+        fields = dict(line.split("=", 1) for line in proc.stdout.splitlines() if "=" in line)
+        try:
+            peak = int(fields.get("MemoryPeak", "0")) // 1048576
+        except ValueError:
+            peak = 0
+        if fields.get("Result") == "oom-kill":
+            ooms = 1
+    except (OSError, subprocess.SubprocessError):
+        pass
+    return peak, max(ooms, scope_oom_kills(unit, since=since))
 
 
 def scope_oom_kills(unit: str, *, since: float) -> int:
@@ -337,7 +362,8 @@ def scope_oom_kills(unit: str, *, since: float) -> int:
                               "--no-pager", "-o", "cat"], capture_output=True, text=True, timeout=10).stdout
     except (OSError, subprocess.SubprocessError):
         return 0
-    return 1 if ("oom-kill" in out or "killed by the OOM killer" in out) else 0
+    return 1 if ("Failed with result 'oom-kill'" in out or
+                 "killed by the OOM killer" in out) else 0
 
 
 def build_reservation(cfg: Config) -> str:

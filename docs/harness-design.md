@@ -516,7 +516,13 @@ can show it, and the harness checks it rather than asking for prose:
   `es release --outcome closed|partial|blocked|abandoned|refuted` needs `--note` for the
   three unfinished outcomes; the note lands on the attempt. An unclaimed open node whose
   last attempt ended within 14 days shows `(expired|partial|blocked|abandoned <date> <agent>: <note>)`
-  so the next agent knows whether to continue or restart.
+  so the next agent knows whether to continue or restart. When a release note from a Git
+  worktree cites an existing `runs/...` file (including an absolute worktree path or its
+  primary-relative `runs/worktrees/<name>/runs/...` spelling), the harness publishes it at
+  the same path in the primary checkout before releasing the claim. If different content or
+  a symlink at any destination component makes that path unsafe, the bytes instead go to the
+  immutable artifact store and the release reports the artifact ID; an evidence-path conflict
+  never strands the claim. Missing cited files are reported.
 - **One door for compute.** `es job run --why … --out … [--node] [--mem] [--budget] [--cpu] -- <command>`
   is the only sanctioned way to run anything longer than a minute. The job row keeps the
   command, purpose, node, cap, output paths, agent, and after the run the measured peak
@@ -527,7 +533,9 @@ can show it, and the harness checks it rather than asking for prose:
   `[jobs] output_roots` (results must be findable, not in a scratch directory). A submitter
   that cannot create a guarded scope (a sandbox without the systemd user bus, e.g. Codex)
   gets the job *queued*; `es worker`, started once from an unsandboxed shell, runs queued
-  jobs one at a time; `es job requeue <id>` puts a failed job back. Synchronous
+  jobs one at a time; a project-scoped `flock` makes a second live worker refuse to start,
+  while stale lock-file contents after process death are harmless. `es job requeue <id>`
+  puts a failed job back. Synchronous
   `es check`/`es falsify`/`es build` runs are not job rows and are not counted against the
   budget; they are short and run under their own caps.
 - **Report completion.** Submitting a background job does not complete the agent's task.
@@ -542,7 +550,11 @@ can show it, and the harness checks it rather than asking for prose:
   coordinator to yield unattended; otherwise the reporting turn stays open. A saved checkpoint
   is for resumption after interruption, not an automatic notification mechanism. See
   `docs/automation-implementation.md` for commands, rollout status, and recovery limits.
-- **A journal.** `es log "<text>" [--node]` writes a free-text event; `es journal --since 24h
+- **A journal.** `es log "<text>" [--node] [--attach FILE ...]` writes a free-text event and
+  optionally publishes repeatable immutable attachments in the shared artifact store.
+  Relative attachment paths use the caller's current directory, and each attachment is
+  limited to 16 MiB;
+  `es journal --since 24h
   [--agent] [--node] [--kind]` merges claims, releases, expiries, jobs (submitted/finished
   with peak and seconds), falsifier runs, extracts, log entries and git commits into one
   timeline. It is what an agent reads after `es status`. Agents record every substantive
@@ -620,8 +632,9 @@ worktree needed hours of cache restores before its first commit.
 - **Guard fixes.**
   - Guarded scopes run with `OOMPolicy=continue`, so an OOM-killed compiler no longer makes
     systemd stop the whole scope before the wrapper records the peak and the kill. Those jobs
-    used to report `rc=-15`, peak 0, 0 OOM kills. When stats are still missing, the journal is
-    consulted (`scope_oom_kills`).
+    used to report `rc=-15`, peak 0, 0 OOM kills. After scope teardown, retained systemd
+    `Result`/`MemoryPeak` accounting and the unit journal are reconciled even when the in-scope
+    stats writer was killed (`scope_accounting`).
   - Queued `es build` jobs reserve the largest cap the build may request (`build_reservation`,
     the final step), instead of the per-module cap their final step then exceeded ("requested
     30G exceeds job reservation 20G").
@@ -641,13 +654,13 @@ name and a JSON schema mirroring its arguments.
 | Command | Arguments | Behaviour | Fails when |
 | --- | --- | --- | --- |
 | `es extract` | `--check`, `--no-cache` | Runs the extractor (via cache keyed on tree hash), parses tags, computes status, writes `nodes.json`, `index.json`, `status.md`. `--check`: also verifies the committed `status.md`/`index.json` are up to date and the lock matches. | extractor fails; `--check` finds stale files, lock mismatch, missing required tags, unknown workstream, duplicate type hashes among blueprint nodes, node with no consumer and no `@dangling-ok` |
-| `es status` | `--brief`, `--ws X` | Frontier grouped by workstream: name, kind, status, ready?, claimed by, days open, falsifier state; then burn-down (nodes closed per ISO week, attempts per week). `--brief` is ≤ 25 lines for the SessionStart hook. | — |
-| `es ready` | `--ws X`, `--kind K` | Open nodes whose declared deps are closed/merged or exist in ESCore, unclaimed, and (for conjectures) falsifier `pass`. | — |
+| `es status` | `--brief`, `--ws X` | Frontier grouped by workstream: name, kind, status, ready?, claimed by, days open, falsifier state; root-cone closed/open counts for audited destinations with extracted edges and consumer-free open or claimed roots; then deduplicated burn-down (node closures from close/release/primary-checkout index transitions and attempts per ISO week). Worktree-local index transitions remain journal evidence but do not alter shared burn-down. Current extraction does not emit usable destination-to-blueprint dependency edges, so edge-free destination entries are omitted rather than shown as misleading 0/0 cones; consumer-free root cones are the actionable coverage view. `--brief` is ≤ 25 lines for the SessionStart hook. | — |
+| `es ready` | `--ws X`, `--kind K` | Open nodes whose declared and indexed Lean dependencies are closed/merged (unknown actual helper names are ignored), unclaimed, and (for conjectures) falsifier `pass`. | — |
 | `es node show <name>` | | Everything known: statement, tags, declared vs actual deps, consumer and whether it compiles, lock entry, claim, falsifier result, last job. | unknown node |
 | `es node add` | `--name`, `--ws`, `--kind`, `--type "<Lean type>"`, `--description`, `--depends a,b`, `--consumer c` or `--dangling-ok "reason"`, `--falsifier f`, `--approved-by who` | Runs `es search` on description and type and refuses exact type-hash duplicates (needs a quick elaboration: writes the module, runs `lake build ESBlueprint.<Mod>`, then `es extract` on it); writes `ESBlueprint/<WS>/<Name>.lean` from a template with `sorry`; adds the import to `ESBlueprint.lean`; adds the lock entry (approval is the human running this or the CODEOWNERS review of the PR). | duplicate; statement fails to elaborate; missing required tags |
 | `es node restate <name>` | `--type`, `--approved-by`, `--reason` | Rewrites the statement in place, updates the lock, appends to `restatements.md`. The only sanctioned way to change a statement. | node claimed by someone else; elaboration fails |
 | `es node retire <name>` | `--reason`, `--as-refutation` | Deletes the module (or rewrites as `¬`-node), removes from `ESBlueprint.lean`, appends to `retired.md`, records an attempt outcome. | — |
-| `es claim <name>` / `es release <name>` | `--why` (claim, required), `--outcome` + `--note` (release), `--agent` | Insert/delete claim; expired claims are purged on every command and recorded as `expired` attempts. Claiming a `proposed` conjecture is refused until `es falsify` passed. | already claimed by another live agent; not ready (override with `--force`, logged) |
+| `es claim <name>` / `es release <name>` | `--why` (claim, required), `--outcome` + `--note` (release), `--agent` | Insert/delete claim; expired claims are purged on every command and recorded as `expired` attempts. Claiming a `proposed` conjecture is refused until `es falsify` passed. A worktree release preserves cited `runs/...` files at the primary checkout's same paths without overwriting different content; unsafe/conflicting destinations fall back to immutable artifacts and do not block release. | already claimed by another live agent; not ready (override with `--force`, logged); cited evidence cannot be stored either at its safe primary path or in the artifact store |
 | `es search <query>` | `--type-hash H`, `--limit N`, `--ns` | Full-text (SQLite FTS5 over `index.json` + `nodes.json`: names, docstrings, `type_pp`). Returns name, module, one-line docstring, score. | — |
 | `es check <name>` | `--async`, `--budget MIN` | Builds only the node's module (`lake build ESBlueprint.<Mod>`), runs a targeted extract, reports sorry-free / axioms / build time; records an attempt. `--async` submits a job. | build fails; budget exceeded |
 | `es falsify <name>` | `--async`, `--dataset PATH` | Runs the node's falsifier with `dataset_dir` on argv; exit 0 = pass, 2 = counterexample (falsifier must write `harness/falsify/<node>.json` with the witness), other = error. Records result. | falsifier missing; error exit |
@@ -658,7 +671,7 @@ name and a JSON schema mirroring its arguments.
 | `es job run -- <command>` | `--why`, `--out` (required), `--node`, `--mem`, `--budget`, `--cpu`, `--queue` | Runs any command as a recorded job in the guarded scope (§8.4): purpose, cap, outputs, agent, peak and seconds in the job table; enforces the memory budget. | budget or availability exceeded; output outside `runs/`/`data/` |
 | `es job list\|status\|log\|cancel` | `<id>` | Job table access (list shows cap, peak, agent, why). `es worker` runs the loop (foreground; run under tmux/systemd-user); `es job exec <id>` is the internal runner. | — |
 | `es job wait <id>` | `--timeout` (0–60 seconds; default 55) | Read-only bounded wait; returns `terminal`/`timed_out`, and exit code plus output paths on completion. Repeat while pending, then inspect and report. | unknown job; invalid timeout |
-| `es log <text>` | `--node` | Free-text journal entry under the agent id. | — |
+| `es log <text>` | `--node`, repeatable `--attach FILE` | Free-text journal entry under the agent id; attachments (relative to the caller's current directory, at most 16 MiB each) are copied into the immutable shared artifact store and their IDs recorded in the event. | an attachment is not a file or exceeds the cap; artifact storage is read-only |
 | `es journal` | `--since 24h`, `--agent`, `--node`, `--kind`, `--limit`, `--no-commits` | Timeline of claims, releases, jobs, falsifier runs, extracts, log entries and commits. | — |
 | `es note` | `--since DATE` | Weekly note from status diffs and the attempts table: nodes opened/closed/refuted/retired, attempts, allowlist and lock changes, job time spent. Writes `docs/notes/<ISO-week>.md` with a `## Judgment` section left empty for the human. | — |
 | `es doctor` | | Checks toolchain, `lake` presence, config validity, DB schema, that `.lake/build` has certificate oleans, cache health. | any check fails |
@@ -668,10 +681,14 @@ name and a JSON schema mirroring its arguments.
 ```
 ready(n) := status(n) == open
          ∧ no live claim
-         ∧ ∀ d ∈ deps_declared(n): d ∈ ESCore ∨ status(d) ∈ {closed, merged}
+         ∧ ∀ d ∈ (deps_declared(n) ∪ deps_actual(n)):
+               d ∉ indexed_nodes ∨ status(d) ∈ {closed, merged}
+         ∧ ∀ d ∈ deps_declared(n): d ∈ indexed_nodes ∪ ESCore ∪ destinations
          ∧ (kind(n) == conjecture → falsify_result(n) == pass)
 ```
-Dependencies that are themselves open blueprint nodes make `n` *blocked*; `es status`
+Declared or actual dependencies that are themselves open blueprint nodes make `n`
+*blocked*. Unknown declared names also block; unknown actual names are internal helpers and
+do not. `es status`
 lists the blocker.
 
 ### 9.2 Duplicate detection

@@ -3,6 +3,7 @@ releases, the journal, the staleness warning, the hook, and the CLAUDE.md/AGENTS
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -126,6 +127,118 @@ def test_log_and_journal(cfg, capsys):
     assert "nothing recorded" in out
 
 
+def test_log_repeatable_attachments_are_immutable_artifacts(cfg, capsys, monkeypatch):
+    import importlib
+
+    from es.artifacts import read
+
+    log_cmd = importlib.import_module("es.commands.log")
+    (cfg.root / "runs").mkdir(exist_ok=True)
+    first = cfg.root / "runs" / "first.txt"
+    second = cfg.root / "runs" / "second.txt"
+    first.write_bytes(b"first evidence")
+    second.write_bytes(b"second evidence")
+    monkeypatch.chdir(cfg.root)
+    rc, out = run(["log", "attached finding", "--attach", "runs/first.txt",
+                   "--attach", "runs/second.txt"], capsys)
+    assert rc == 0 and "attached artifact(s)" in out
+    with Store(cfg) as st:
+        event = dict(st.events_since(0, kinds=["log"])[-1])
+    detail = json.loads(event["detail"])
+    refs = detail["artifacts"]
+    assert [read(cfg, ref["id"]) for ref in refs] == [b"first evidence", b"second evidence"]
+    assert [ref["source"] for ref in refs] == ["runs/first.txt", "runs/second.txt"]
+
+    monkeypatch.setattr(log_cmd, "LOG_ATTACHMENT_MAX_BYTES", 4)
+    too_large = cfg.root / "runs" / "too-large.txt"
+    too_large.write_bytes(b"12345")
+    rc = main(["log", "oversized", "--attach", "runs/too-large.txt"])
+    captured = capsys.readouterr()
+    assert rc != 0
+    assert "attachment exceeds 4 bytes" in captured.err
+
+
+def test_release_preserves_cited_worktree_evidence_without_overwrite(cfg, tmp_path, monkeypatch):
+    import importlib
+
+    from es.artifacts import read
+    from es.commands.claims import run_release
+    from es.config import load_config
+    from es.context import Ctx
+
+    write_index(cfg)
+    wt = tmp_path / "runs" / "worktrees" / "wt"
+    shutil.copytree(cfg.root, wt, ignore=shutil.ignore_patterns(".git"))
+    (wt / ".git").write_text(f"gitdir: {cfg.root}/.git/worktrees/wt\n")
+    evidence = wt / "runs" / "handoff" / "FINDINGS.md"
+    evidence.parent.mkdir(parents=True)
+    evidence.write_text("durable finding\n")
+    evidence.chmod(0o640)
+    wt_cfg = load_config(wt)
+    with Store(wt_cfg) as st:
+        st.claim("TCore.a", "tester", ttl_hours=1, note="test preservation")
+    result = run_release(Ctx(cfg=wt_cfg, json_mode=False, agent="tester"), "TCore.a", "partial",
+                         note=f"see {evidence}")
+    primary_copy = cfg.root / "runs" / "handoff" / "FINDINGS.md"
+    assert primary_copy.read_text() == "durable finding\n"
+    assert primary_copy.stat().st_mode & 0o777 == 0o640
+    assert result.payload["evidence"]["copied"] == ["runs/handoff/FINDINGS.md"]
+
+    with Store(wt_cfg) as st:
+        st.claim("TCore.a", "tester", ttl_hours=1, note="test conflict")
+    evidence.write_text("different finding\n")
+    result = run_release(Ctx(cfg=wt_cfg, json_mode=False, agent="tester"), "TCore.a", "partial",
+                         note="see runs/worktrees/wt/runs/handoff/FINDINGS.md")
+    with Store(wt_cfg) as st:
+        assert "TCore.a" not in st.claims()
+    assert primary_copy.read_text() == "durable finding\n"
+    assert read(wt_cfg, result.payload["evidence"]["artifacts"][0]["id"]) == b"different finding\n"
+
+    evidence.write_text("durable finding\n")
+    primary_copy.unlink()
+    primary_copy.symlink_to(evidence)
+    with Store(wt_cfg) as st:
+        st.claim("TCore.a", "tester", ttl_hours=1, note="test final symlink")
+    result = run_release(Ctx(cfg=wt_cfg, json_mode=False, agent="tester"), "TCore.a", "partial",
+                         note="see runs/handoff/FINDINGS.md")
+    with Store(wt_cfg) as st:
+        assert "TCore.a" not in st.claims()
+    assert result.payload["evidence"]["artifacts"]
+
+    primary_copy.unlink()
+    primary_copy.parent.rmdir()
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    primary_copy.parent.symlink_to(outside, target_is_directory=True)
+    with Store(wt_cfg) as st:
+        st.claim("TCore.a", "tester", ttl_hours=1, note="test parent symlink")
+    result = run_release(Ctx(cfg=wt_cfg, json_mode=False, agent="tester"), "TCore.a", "partial",
+                         note="see runs/handoff/FINDINGS.md")
+    with Store(wt_cfg) as st:
+        assert "TCore.a" not in st.claims()
+    assert result.payload["evidence"]["artifacts"]
+    assert not (outside / "FINDINGS.md").exists()
+
+    primary_copy.parent.unlink()
+    primary_copy.parent.mkdir()
+    evidence.write_text("publication failed\n")
+    claims_cmd = importlib.import_module("es.commands.claims")
+
+    def unavailable(_source, _destination):
+        raise OSError("simulated publication failure")
+
+    monkeypatch.setattr(claims_cmd, "_publish_without_overwrite", unavailable)
+    with Store(wt_cfg) as st:
+        st.claim("TCore.a", "tester", ttl_hours=1, note="test publication failure")
+    result = run_release(Ctx(cfg=wt_cfg, json_mode=False, agent="tester"), "TCore.a", "partial",
+                         note="see runs/handoff/FINDINGS.md")
+    with Store(wt_cfg) as st:
+        assert "TCore.a" not in st.claims()
+    artifact = result.payload["evidence"]["artifacts"][0]
+    assert "simulated publication failure" in artifact["reason"]
+    assert read(wt_cfg, artifact["id"]) == b"publication failed\n"
+
+
 def test_status_and_ready_warn_when_lock_has_unindexed_nodes(cfg, capsys):
     write_index(cfg)
     lock = json.loads(cfg.lock_file.read_text())
@@ -144,6 +257,61 @@ def test_status_lists_live_jobs(cfg, capsys, monkeypatch):
     job = submit_run(cfg, command=["sleep", "0"], why="a sweep for the table", outputs=["runs/t"], agent="tester", queue=True)
     rc, out = run(["status"], capsys)
     assert "jobs live: 1" in out and "a sweep for the table" in out and job["id"] in out
+
+
+def test_burn_down_deduplicates_release_close_and_index_transition(cfg):
+    from es.commands.status import burn_down
+
+    with Store(cfg) as st:
+        st.claim("TCore.a", "tester", ttl_hours=1)
+        st.release("TCore.a", "tester", outcome="closed")
+        st.event("closed", "TCore.a", "tester")
+        st.event("index-status", "TCore.a", "tester",
+                 {"from": "open", "to": "closed", "primary_checkout": True})
+        st.event("index-status", "TCore.b", "tester",
+                 {"from": "open", "to": "closed", "primary_checkout": True})
+        st.event("index-status", "TCore.worktree_only", "tester",
+                 {"from": "open", "to": "closed", "primary_checkout": False})
+        st.event("index-status", "TCore.legacy_untagged", "tester",
+                 {"from": "open", "to": "closed"})
+        st.claim("TCore.c", "tester", ttl_hours=1)
+        st.release("TCore.c", "tester", outcome="partial")
+    rows = burn_down(cfg, weeks=1)
+    assert sum(row["closed"] for row in rows) == 2
+
+
+def test_status_computes_burn_down_once(cfg, capsys, monkeypatch):
+    import es.commands.status as status_cmd
+
+    write_index(cfg)
+    original = status_cmd.burn_down
+    calls = 0
+
+    def counted(*args, **kwargs):
+        nonlocal calls
+        calls += 1
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(status_cmd, "burn_down", counted)
+    rc, _ = run(["status"], capsys)
+    assert rc == 0
+    assert calls == 1
+
+
+def test_status_renders_consumer_free_root_cone(cfg, capsys):
+    write_index(cfg, names=("TCore.a", "TCore.root"))
+    data = json.loads(cfg.nodes_json.read_text())
+    for rec in data["nodes"]:
+        if rec["name"] == "TCore.a":
+            rec["status"] = "closed"
+        else:
+            rec["status"] = "open"
+            rec["tags"].pop("consumer")
+            rec["deps_actual"] = ["TCore.a"]
+    cfg.nodes_json.write_text(json.dumps(data))
+    rc, out = run(["status"], capsys)
+    assert rc == 0 and "root cones (indexed Lean dependencies" in out
+    assert "TCore.root" in out and "open root" in out
 
 
 def test_hook_blocks_bare_nohup_and_systemd_run():
@@ -280,6 +448,28 @@ def test_worktree_shares_the_primary_checkout_state(cfg, monkeypatch, tmp_path):
     assert load_config(cfg.root).es_home == (cfg.root / ".es" / "testproj").resolve()
 
 
+def test_configured_git_dir_uses_linked_worktree_metadata(cfg, monkeypatch, tmp_path):
+    from es.config import load_config
+    from es.gitutil import head_sha
+    from es.nodes import opened_dates
+
+    toml = cfg.root / "harness" / "config.toml"
+    toml.write_text(toml.read_text() + '\n[git]\ngit_dir = ".git-data"\n')
+    subprocess.run(["git", "-c", "user.email=t@t", "-c", "user.name=t", "add", "harness/config.toml"],
+                   cwd=cfg.root, check=True)
+    subprocess.run(["git", "-c", "user.email=t@t", "-c", "user.name=t", "commit", "-q", "-m", "configure git dir"],
+                   cwd=cfg.root, check=True)
+    wt = tmp_path / "configured-wt"
+    subprocess.run(["git", "worktree", "add", "-q", "-b", "configured-wt", str(wt)], cwd=cfg.root, check=True)
+
+    monkeypatch.setenv("ES_PROJECT_ROOT", str(wt))
+    wt_cfg = load_config(wt)
+    pointer = Path((wt / ".git").read_text().removeprefix("gitdir:").strip())
+    assert wt_cfg.git_dir == pointer
+    assert head_sha(wt_cfg) == subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=wt, text=True).strip()
+    assert opened_dates(wt_cfg, ["TBlueprint.A.Foo"])["TBlueprint.A.Foo"] != "uncommitted"
+
+
 def test_worker_starts_queued_jobs_within_the_budget(cfg, monkeypatch):
     from es.config import load_config
     from es.jobs import submit_run, worker_start_fitting
@@ -299,3 +489,49 @@ def test_worker_starts_queued_jobs_within_the_budget(cfg, monkeypatch):
     # queued submission is allowed even when it does not fit now
     big = submit_run(cfg2, command=["true"], why="d", outputs=["runs/d"], agent="t", memory_max="4G", queue=True)
     assert big["status"] == "queued"
+
+
+def test_worker_refuses_live_project_lock_but_ignores_stale_file(cfg, monkeypatch):
+    from es.jobs import worker_lock, worker_loop
+
+    monkeypatch.setattr("es.jobs.bus_available", lambda: True)
+    monkeypatch.setattr("es.jobs.worker_start_fitting", lambda cfg_: [])
+    monkeypatch.setattr("es.operations.advance", lambda cfg_: None)
+    monkeypatch.setattr("es.run_monitor.tick", lambda cfg_: None)
+
+    with worker_lock(cfg):
+        with pytest.raises(CheckFailed, match="another es worker is already running"):
+            worker_loop(cfg, once=True)
+
+    lock_path = cfg.es_home / "worker.lock"
+    lock_path.write_text("999999")
+    worker_loop(cfg, once=True)
+    assert lock_path.read_text() == str(os.getpid())
+
+
+def test_worker_lock_blocks_a_second_process_until_release(cfg):
+    from es.jobs import worker_lock
+
+    probe = """
+import sys
+from pathlib import Path
+from es.config import load_config
+from es.errors import CheckFailed
+from es.jobs import worker_lock
+
+try:
+    with worker_lock(load_config(Path(sys.argv[1]))):
+        pass
+except CheckFailed as exc:
+    print(exc, file=sys.stderr)
+    raise SystemExit(3)
+"""
+    with worker_lock(cfg):
+        blocked = subprocess.run(
+            [sys.executable, "-c", probe, str(cfg.root)], capture_output=True, text=True)
+    assert blocked.returncode == 3
+    assert "another es worker is already running" in blocked.stderr
+
+    released = subprocess.run(
+        [sys.executable, "-c", probe, str(cfg.root)], capture_output=True, text=True)
+    assert released.returncode == 0, released.stderr

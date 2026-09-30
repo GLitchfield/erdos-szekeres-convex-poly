@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "python_semantics": "context-bound-zero-children-v1",
+  "compiled_semantics": "context-bound-zero-children-c-v1",
+  "seed": 20260929,
+  "samples_per_case": 700,
+  "cases": [[4, 4, 5], [4, 5, 6], [5, 5, 6]],
+  "generator": {"s_min": 1, "s_max": 3, "external_max": 2, "depth_max": 3},
+  "end_cut_counterexample": {
+    "case": [3, 4, 5],
+    "word": [[1, "lower"], "S", "S", [2, "upper"], "S", "S"],
+    "maxima": [3, 1],
+    "expected_bound": 1
+  },
+  "semantic_caveat": "Cross-language finite regression evidence only; neither implementation is a Lean equivalence certificate or theorem."
+}

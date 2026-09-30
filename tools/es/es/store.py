@@ -161,9 +161,12 @@ class Store:
             params.extend(kinds)
         return self.conn.execute(q + " ORDER BY at", params).fetchall()
 
-    def log(self, text: str, node: str | None, agent: str | None) -> None:
+    def log(self, text: str, node: str | None, agent: str | None, artifacts: list[dict] | None = None) -> None:
         """A free-text journal entry: what an agent is doing and why."""
-        self.event("log", node, agent, {"text": text})
+        detail = {"text": text}
+        if artifacts:
+            detail["artifacts"] = artifacts
+        self.event("log", node, agent, detail)
 
     # ---- claims -----------------------------------------------------------
     def purge_expired_claims(self) -> int:
@@ -228,6 +231,23 @@ class Store:
             self.conn.execute("INSERT INTO attempts(node, agent, started_at, ended_at, outcome, note) VALUES (?,?,?,?,?,?)", (node, agent, started_at or now, now, outcome, note))
         self.conn.commit()
         self.event("attempt", node, agent, {"outcome": outcome, "note": note})
+
+    def conclude_attempt(self, node: str, agent: str | None, outcome: str, note: str | None = None) -> bool:
+        """Finish a claim attempt, or record one standalone outcome when unclaimed.
+
+        Returns whether an existing claim was released.  Terminal commands use
+        this instead of calling ``release`` and ``record_attempt`` in sequence,
+        which would create a second attempt after the first had just ended.
+        """
+        had_open_attempt = self.conn.execute(
+            "SELECT 1 FROM attempts WHERE node = ? AND ended_at IS NULL LIMIT 1", (node,)
+        ).fetchone() is not None
+        released = self.release(node, agent, outcome=outcome, note=note)
+        if not (released and had_open_attempt):
+            # No claim, or a live claim whose attempt was already ended by an
+            # intermediate check: this terminal operation is a new attempt.
+            self.record_attempt(node, agent, outcome, note=note)
+        return released
 
     def attempts(self, node: str | None = None, since: float | None = None) -> list[sqlite3.Row]:
         q = "SELECT * FROM attempts WHERE 1=1"

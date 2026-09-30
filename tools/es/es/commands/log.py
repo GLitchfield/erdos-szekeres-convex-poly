@@ -8,6 +8,7 @@ import json
 import re
 import time
 from datetime import datetime
+from pathlib import Path
 
 from es import EXIT_OK
 from es.context import Ctx
@@ -16,6 +17,9 @@ from es.gitutil import git
 from es.output import Result, table
 from es.spec import Arg, CommandSpec, command
 from es.store import Store
+
+
+LOG_ATTACHMENT_MAX_BYTES = 16 * 1024 * 1024
 
 
 def parse_since(spec: str | None, default: str = "24h") -> float:
@@ -55,7 +59,8 @@ def _detail(kind: str, raw: str | None) -> str:
     if kind == "job-killed":
         return f"job {d.get('id')} killed"
     if kind == "log":
-        return str(d.get("text", ""))
+        attached = ", ".join(a.get("id", "") for a in d.get("artifacts", []) if isinstance(a, dict))
+        return str(d.get("text", "")) + (f" [artifacts: {attached}]" if attached else "")
     if kind == "falsify":
         return f"falsifier {d.get('result')} (rc={d.get('rc')})"
     if kind == "extract":
@@ -66,16 +71,35 @@ def _detail(kind: str, raw: str | None) -> str:
     return ", ".join(f"{k}={v}" for k, v in d.items())
 
 
-def run_log(ctx: Ctx, text: str, node: str | None = None) -> Result:
+def run_log(ctx: Ctx, text: str, node: str | None = None, attach: list[str] | None = None) -> Result:
     cfg = ctx.cfg
     if node:
         from es.nodes import find_node
         node = find_node(cfg, node).name
     if not text.strip():
         raise UsageError("nothing to log")
+    from es.artifacts import put
+
+    attachments = []
+    for raw in attach or []:
+        path = Path(raw).expanduser()
+        path = path if path.is_absolute() else Path.cwd() / path
+        if not path.is_file():
+            raise UsageError(f"attachment is not a file: {raw}")
+        with path.open("rb") as source:
+            data = source.read(LOG_ATTACHMENT_MAX_BYTES + 1)
+        if len(data) > LOG_ATTACHMENT_MAX_BYTES:
+            raise UsageError(
+                f"attachment exceeds {LOG_ATTACHMENT_MAX_BYTES} bytes: {raw}")
+        ref = put(cfg, data, "log-attachment-v1")
+        attachments.append(ref | {"source": raw})
     with Store(cfg) as st:
-        st.log(text.strip(), node, ctx.agent)
-    return Result(EXIT_OK, {"logged": text.strip(), "node": node, "agent": ctx.agent}, [f"logged for {ctx.agent}" + (f" on {node}" if node else "")])
+        st.log(text.strip(), node, ctx.agent, artifacts=attachments)
+    human = [f"logged for {ctx.agent}" + (f" on {node}" if node else "")]
+    if attachments:
+        human.append("attached artifact(s): " + ", ".join(a["id"] for a in attachments))
+    return Result(EXIT_OK, {"logged": text.strip(), "node": node, "agent": ctx.agent,
+                            "artifacts": attachments}, human)
 
 
 def timeline(cfg, since: float, agent: str | None = None, node: str | None = None, kind: str | None = None,
@@ -123,7 +147,8 @@ def run_journal(ctx: Ctx, since: str | None = None, agent: str | None = None, no
 
 
 command(CommandSpec(name="log", cli=["log"], help="Journal entry: what you are doing and why (shown by `es journal`).", run=run_log,
-                    args=[Arg("text", "the entry", positional=True, required=True), Arg("node", "node it concerns, if any")]))
+                    args=[Arg("text", "the entry", positional=True, required=True), Arg("node", "node it concerns, if any"),
+                          Arg("attach", "file to copy into the immutable artifact store (repeatable)", "list")]))
 command(CommandSpec(name="journal", cli=["journal"],
                     help="Timeline of claims, releases, jobs, falsifier runs, extracts, log entries and commits: what every agent did, why, and with what resources.",
                     run=run_journal,

@@ -93,6 +93,7 @@ class Destination:
     axioms: list[str]
     nonstandard_axioms: list[str]
     description: str = ""
+    deps_actual: list[str] = field(default_factory=list)
     uncovered_axioms: list[str] = field(default_factory=list)
     merged_from: str | None = None
 
@@ -184,6 +185,7 @@ def nodes_from_extract(cfg: Config, raw: dict) -> tuple[list[Node], list[Destina
                 name=rec["name"], module=rec["module"], type_pp=rec["type_pp"], type_hash=rec["type_hash"],
                 sorry=bool(rec["sorry"]), axioms=list(rec.get("axioms", [])),
                 nonstandard_axioms=list(rec.get("nonstandard_axioms", [])), description=t.description,
+                deps_actual=list(rec.get("deps", [])),
             )
         )
     for missing in raw.get("missing_destinations", []):
@@ -231,13 +233,14 @@ def compute(cfg: Config, nodes: list[Node], dests: list[Destination], core_names
     # second pass: readiness
     for n in nodes:
         blocked = []
-        for d in n.deps_declared:
+        declared = set(n.deps_declared)
+        for d in dict.fromkeys(n.deps_declared + n.deps_actual):
             if d in by_name:
                 if by_name[d].status not in ("closed", "merged"):
                     blocked.append(d)
             elif d in core_names or d in dest_names:
                 continue
-            else:
+            elif d in declared:
                 blocked.append(f"{d} (unknown)")
         n.blocked_by = blocked
         n.ready = n.status == "open" and not n.claim and not blocked and (n.kind != "conjecture" or (n.falsify or {}).get("result") == "pass")
@@ -294,7 +297,11 @@ def nodes_from_json(data: dict) -> list[Node]:
 def dests_from_json(data: dict) -> list[Destination]:
     out = []
     for rec in data.get("destinations", []):
-        out.append(Destination(**{k: rec.get(k) for k in ("name", "module", "type_pp", "type_hash", "sorry", "axioms", "nonstandard_axioms", "description", "uncovered_axioms", "merged_from")}))
+        values = {k: rec.get(k) for k in ("name", "module", "type_pp", "type_hash", "sorry", "axioms",
+                                                  "nonstandard_axioms", "description", "deps_actual",
+                                                  "uncovered_axioms", "merged_from")}
+        values["deps_actual"] = values["deps_actual"] or []
+        out.append(Destination(**values))
     return out
 
 
@@ -401,28 +408,47 @@ def render_status_md(cfg: Config, nodes: list[Node], dests: list[Destination], p
 
 
 def opened_date(cfg: Config, module: str) -> str | None:
-    from es.gitutil import git
-
-    rel = str(module_to_path(module))
-    try:
-        out = git(cfg, "log", "--diff-filter=A", "--follow", "--format=%as", "--", rel, check=False).strip().splitlines()
-    except (RuntimeError, OSError):
-        return None
-    if out:
-        return out[-1]
-    return "uncommitted" if (cfg.root / rel).exists() else None
+    return opened_dates(cfg, [module]).get(module)
 
 
 def opened_dates(cfg: Config, modules: list[str]) -> dict[str, str | None]:
-    """Run the same read-only history queries with at most four Git processes."""
-    from concurrent.futures import ThreadPoolExecutor
+    """Find first-add dates for modules in one rename- and merge-aware history pass."""
+    from es.gitutil import git
 
     names = list(dict.fromkeys(modules))
     if not names:
         return {}
-    with ThreadPoolExecutor(max_workers=min(4, len(names))) as executor:
-        dates = executor.map(lambda name: opened_date(cfg, name), names)
-        return dict(zip(names, dates))
+    roots = []
+    for namespace in (cfg.blueprint_namespace, cfg.core_namespace):
+        rel = namespace.replace(".", "/")
+        for candidate in (rel, rel + ".lean"):
+            if (cfg.root / candidate).exists():
+                roots.append(candidate)
+    try:
+        history = git(cfg, "log", "--reverse", "-m", "-M", "--name-status", "--diff-filter=AR",
+                      "--format=@@ES-DATE@@%as", "--", *dict.fromkeys(roots), check=False)
+    except (RuntimeError, OSError):
+        history = ""
+    introduced: dict[str, str] = {}
+    date: str | None = None
+    for line in history.splitlines():
+        if line.startswith("@@ES-DATE@@"):
+            date = line.removeprefix("@@ES-DATE@@").strip() or None
+            continue
+        fields = line.split("\t")
+        if not date or not fields:
+            continue
+        if fields[0] == "A" and len(fields) == 2:
+            introduced.setdefault(fields[1], date)
+        elif fields[0].startswith("R") and len(fields) == 3:
+            # Keep the old name too: while walking a merge DAG, another parent
+            # can still contain it.  The new path inherits the oldest known date.
+            introduced.setdefault(fields[2], introduced.get(fields[1], date))
+    result = {}
+    for name in names:
+        rel = str(module_to_path(name))
+        result[name] = introduced.get(rel, "uncommitted" if (cfg.root / rel).exists() else None)
+    return result
 
 
 def days_open(opened: str | None) -> str:

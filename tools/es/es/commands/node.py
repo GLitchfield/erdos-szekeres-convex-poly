@@ -384,8 +384,7 @@ def run_retire(ctx: Ctx, name: str, reason: str, as_refutation: bool = False, ap
     append_log(cfg.retired_file, f"{outcome} {n.name}", {"reason": reason, "approved_by": approved_by or ctx.agent,
                                                           "statement": n.type_pp, "module": n.module, "kind": n.kind, "ws": n.ws})
     with Store(cfg) as st:
-        st.release(n.name, ctx.agent, outcome=outcome)
-        st.record_attempt(n.name, ctx.agent, outcome, note=reason)
+        st.conclude_attempt(n.name, ctx.agent, outcome, note=reason)
         st.event(outcome, n.name, ctx.agent, {"reason": reason})
     payload, index, problems = re_extract(ctx)
     if as_refutation:

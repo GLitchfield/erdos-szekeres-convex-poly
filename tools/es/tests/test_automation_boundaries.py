@@ -232,6 +232,7 @@ def test_guarded_success_waits_for_scope_teardown(cfg, monkeypatch):
     states = iter([False, True])
     monkeypatch.setattr(resources, 'scope_stopped', lambda unit: next(states))
     monkeypatch.setattr(resources.time, 'sleep', lambda seconds: None)
+    monkeypatch.setattr(build, 'scope_accounting', lambda unit, since: (0, 0))
 
     result = run_guarded(cfg, ['true'], log_path=cfg.root/'guarded-success.log',
                          budget_min=1, memory_max='1G', force=True, count_built=False)
@@ -240,6 +241,31 @@ def test_guarded_success_waits_for_scope_teardown(cfg, monkeypatch):
     assert result.termination_acknowledged is True
     with Store(cfg) as st:
         assert st.conn.execute('SELECT COUNT(*) FROM resource_leases').fetchone()[0] == 0
+
+
+def test_guarded_missing_stats_uses_stopped_scope_accounting(cfg, monkeypatch):
+    from es import build
+
+    class OomProcess:
+        pid = 12345
+        returncode = -15
+
+        def wait(self, timeout=None):
+            return self.returncode
+
+    cfg.raw.setdefault('build', {})['guard'] = True
+    log = cfg.root / 'guarded-oom.log'
+    monkeypatch.setattr(build.shutil, 'which', lambda name: '/usr/bin/systemd-run')
+    monkeypatch.setattr(build.subprocess, 'Popen', lambda *args, **kwargs: OomProcess())
+    monkeypatch.setattr(resources, 'wait_scope_stopped', lambda unit: True)
+    monkeypatch.setattr(build, 'scope_accounting', lambda unit, since: (1536, 1))
+
+    result = run_guarded(cfg, ['oom-command'], log_path=log, budget_min=1,
+                         memory_max='2G', force=True, count_built=False)
+
+    assert not log.with_suffix('.stats').exists()
+    assert result.rc == -15 and result.peak_mib == 1536 and result.oom_kills == 1
+    assert result.termination_acknowledged is True
 
 
 def test_unknown_execution_reconcile_preserves_receipt(cfg, monkeypatch):

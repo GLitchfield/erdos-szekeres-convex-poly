@@ -22,6 +22,24 @@ def test_claim_release_records_attempt(cfg):
         assert [a["outcome"] for a in st.attempts("TCore.b")] == ["abandoned"]
 
 
+def test_conclude_attempt_records_exactly_one_claimed_or_standalone_attempt(cfg):
+    with Store(cfg) as st:
+        st.claim("TCore.claimed", "agent1", ttl_hours=1)
+        assert st.conclude_attempt("TCore.claimed", "agent1", "closed", note="es close")
+        assert not st.conclude_attempt("TCore.standalone", "agent1", "retired", note="obsolete")
+        claimed = [dict(row) for row in st.attempts("TCore.claimed")]
+        standalone = [dict(row) for row in st.attempts("TCore.standalone")]
+        assert [(row["outcome"], row["note"]) for row in claimed] == [("closed", "es close")]
+        assert [(row["outcome"], row["note"]) for row in standalone] == [("retired", "obsolete")]
+
+        st.claim("TCore.checked", "agent1", ttl_hours=1)
+        st.record_attempt("TCore.checked", "agent1", "closed", note="es check")
+        assert st.conclude_attempt("TCore.checked", "agent1", "closed", note="es close")
+        checked = [dict(row) for row in st.attempts("TCore.checked")]
+        assert [(row["outcome"], row["note"]) for row in checked] == [
+            ("closed", "es check"), ("closed", "es close")]
+
+
 def test_two_agents_see_each_other(cfg):
     with Store(cfg) as st1:
         st1.claim("TCore.c", "agent1", ttl_hours=1)

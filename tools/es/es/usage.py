@@ -76,8 +76,8 @@ def ingest(cfg, source, window_id=None):
     goal_number = 0
     end_pending = False
     observed_operations = set()
-    with Store(cfg) as st:
-        for lineno, line in enumerate(path.open(), 1):
+    with path.open() as lines, Store(cfg) as st:
+        for lineno, line in enumerate(lines, 1):
             try:
                 event = json.loads(line)
             except json.JSONDecodeError:

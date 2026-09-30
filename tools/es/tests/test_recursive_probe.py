@@ -3,7 +3,11 @@ from __future__ import annotations
 from copy import deepcopy
 import importlib
 import json
+import math
+import os
 from pathlib import Path
+import random
+import shutil
 import time
 
 import pytest
@@ -120,6 +124,100 @@ def test_evaluator_factory_restores_legacy_cache_default():
     rec = evaluator(3, 3, 3, semantics="historical-f2-v1", cache_size=19)
     assert legacy.CACHE_SIZE is sentinel
     assert rec.cache_info().maxsize == 19
+
+
+@pytest.mark.skipif(shutil.which("cc") is None, reason="C compiler unavailable")
+def test_compiled_context_bound_matches_python_random_fixture():
+    from harness.research.recursive import evaluator
+
+    fixture = json.loads((EXAMPLES / "context-bound-c-v1.json").read_text())
+    rng = random.Random(fixture["seed"])
+    limits = fixture["generator"]
+    for a, u, k in fixture["cases"]:
+        python_bound = evaluator(a, u, k, semantics=fixture["python_semantics"], cache_size=100000)
+        compiled_bound = evaluator(a, u, k, semantics=fixture["compiled_semantics"], cache_size=16000)
+        for _ in range(fixture["samples_per_case"]):
+            s_count = rng.randint(limits["s_min"], limits["s_max"])
+            external_count = rng.randint(0, limits["external_max"])
+            depth = rng.randint(1 if external_count else 0, limits["depth_max"])
+            sides = {level: rng.choice(("lower", "upper")) for level in range(1, depth + 1)}
+            word = ["S"] * s_count
+            word += [(level := rng.randint(1, depth), sides[level]) for _ in range(external_count)]
+            rng.shuffle(word)
+            maxima = tuple(rng.randint(1, k - 2) for _ in range(depth))
+            word = tuple(word)
+            assert compiled_bound(word, maxima) == int(python_bound(word, maxima)), (a, u, k, word, maxima)
+    counterexample = fixture["end_cut_counterexample"]
+    word = tuple("S" if token == "S" else tuple(token) for token in counterexample["word"])
+    maxima = tuple(counterexample["maxima"])
+    a, u, k = counterexample["case"]
+    expected = counterexample["expected_bound"]
+    assert evaluator(a, u, k, semantics=fixture["python_semantics"])(word, maxima) == expected
+    assert evaluator(a, u, k, semantics=fixture["compiled_semantics"])(word, maxima) == expected
+    assert evaluator(a, u, k, semantics=fixture["compiled_semantics"], cache_size=1)(word, maxima) == expected
+    zero_word = ("S", (1, "lower"), "S", (2, "upper"), "S")
+    zero_maxima = (0, 0)
+    for a, u, k in fixture["cases"]:
+        expected = evaluator(a, u, k, semantics=fixture["python_semantics"])(zero_word, zero_maxima)
+        assert evaluator(a, u, k, semantics=fixture["compiled_semantics"])(zero_word, zero_maxima) == expected
+
+
+@pytest.mark.skipif(shutil.which("cc") is None, reason="C compiler unavailable")
+def test_compiled_evaluator_runs_through_registered_probe_interface():
+    from harness.research.recursive_cut import evaluate, replay
+
+    spec, _ = load_fixture()
+    python_result = evaluate(spec)
+    spec["semantics"] = "context-bound-zero-children-c-v1"
+    compiled_result = evaluate(spec)
+    assert compiled_result["outcome"] == python_result["outcome"]
+    assert compiled_result["stop_reason"] == python_result["stop_reason"]
+    assert compiled_result["coverage"] == python_result["coverage"]
+    assert compiled_result["sample_rows"] == python_result["sample_rows"]
+    assert compiled_result["cache"]["hits"] == 0
+    assert compiled_result["cache"]["misses"] > 0
+    assert compiled_result["cache"]["maxsize"] == spec["evaluator"]["cache_size"]
+    assert compiled_result["cache"]["currsize"] == 0
+    witness_spec = deepcopy(spec)
+    witness_spec["candidate"]["target"]["budget"] = 0
+    witness = evaluate(witness_spec)["witness"]
+    checked = replay(witness)
+    assert checked["replayed"] is True
+    assert checked["computed"]["target"]["sum"] == 7
+    assert checked["computed"]["control"]["sum"] == 7
+
+
+@pytest.mark.skipif(shutil.which("cc") is None, reason="C compiler unavailable")
+def test_compiled_context_bound_rejects_overflow_and_out_of_range_inputs():
+    import ctypes
+
+    from harness.research import context_bound
+    from harness.research.recursive import evaluator
+
+    with pytest.raises(ValueError, match="positive C integers"):
+        evaluator(1 << 40, 4, 5, semantics="context-bound-zero-children-c-v1")
+    # The public C API accepts a null maxima pointer exactly when its depth is zero.
+    word = (ctypes.c_int * 2)(0, 0)
+    out = ctypes.c_int64()
+    assert context_bound._load_library().es_context_bound(
+        3, 4, 5, word, 2, None, 0, 1, ctypes.byref(out)) == 0
+    exact = evaluator(35, 35, 67, semantics="context-bound-zero-children-c-v1")
+    assert exact(("S",), ()) == math.comb(66, 33)
+    bound = evaluator(36, 36, 69, semantics="context-bound-zero-children-c-v1")
+    with pytest.raises(OverflowError, match="signed 64-bit"):
+        bound(("S",), ())
+
+
+def test_compiled_context_bound_rejects_insecure_cache_directory(tmp_path, monkeypatch):
+    from harness.research import context_bound
+
+    directory = tmp_path / f"es-context-bound-{os.getuid()}"
+    directory.mkdir(mode=0o777)
+    directory.chmod(0o777)
+    monkeypatch.setattr(context_bound.tempfile, "gettempdir", lambda: str(tmp_path))
+    monkeypatch.setattr(context_bound, "_LIBRARY", None)
+    with pytest.raises(RuntimeError, match="unsafe.*cache directory"):
+        context_bound._load_library()
 
 
 def test_witness_replay_recomputes_both_couplings_and_rejects_tampering():

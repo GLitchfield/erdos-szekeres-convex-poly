@@ -74,11 +74,41 @@ def who(n, latest: dict, now: float) -> str:
     return ""
 
 
+def root_cones(nodes, dests) -> list[dict]:
+    """Dependency cones with known edges; omit destinations lacking extracted edges."""
+    by_name = {n.name: n for n in nodes}
+    roots = [("destination", d.name, d.deps_actual)
+             for d in sorted(dests, key=lambda d: d.name)
+             if any(dep in by_name for dep in d.deps_actual)]
+    roots += [("open root", n.name, n.deps_actual + n.deps_declared)
+              for n in sorted(nodes, key=lambda n: n.name)
+              if n.status in ("open", "claimed") and not n.consumer]
+    out = []
+    for kind, name, direct in roots:
+        seen: set[str] = set()
+        pending = list(direct)
+        while pending:
+            dep = pending.pop()
+            if dep == name or dep in seen or dep not in by_name:
+                continue
+            seen.add(dep)
+            node = by_name[dep]
+            pending.extend(node.deps_actual)
+            pending.extend(node.deps_declared)
+        closed = sum(by_name[n].status in ("closed", "merged") for n in seen)
+        out.append({"kind": kind, "name": name, "closed": closed, "open": len(seen) - closed,
+                    "nodes": sorted(seen)})
+    return out
+
+
 def burn_down(cfg, weeks: int = 8) -> list[dict]:
     with Store(cfg) as st:
         since = time.time() - weeks * 7 * 86400
         attempts = st.attempts(since=since)
-        events = st.events_since(since)
+        # Closure evidence is deduplicated by node across the full journal, so
+        # an `es close` event, its closed release, and an index transition count once.
+        events = st.events_since(
+            0, kinds=["closed", "release", "index-status", "refuted", "retired"])
     buckets: dict[str, dict[str, int]] = {}
 
     def week(ts: float) -> str:
@@ -88,10 +118,28 @@ def burn_down(cfg, weeks: int = 8) -> list[dict]:
     for a in attempts:
         b = buckets.setdefault(week(a["started_at"] or time.time()), {"attempts": 0, "closed": 0, "refuted": 0, "retired": 0})
         b["attempts"] += 1
+    closures: dict[str, float] = {}
     for e in events:
-        if e["kind"] in ("closed", "refuted", "retired"):
+        kind = e["kind"]
+        detail = {}
+        try:
+            import json
+            detail = json.loads(e["detail"] or "{}")
+        except (TypeError, ValueError):
+            pass
+        is_closure = (kind == "closed" or
+                      (kind == "release" and detail.get("outcome") == "closed") or
+                      (kind == "index-status" and detail.get("primary_checkout") is True and
+                       detail.get("to") in ("closed", "merged")))
+        if is_closure and e["node"]:
+            closures[e["node"]] = min(closures.get(e["node"], e["at"]), e["at"])
+        elif kind in ("refuted", "retired") and e["at"] >= since:
             b = buckets.setdefault(week(e["at"]), {"attempts": 0, "closed": 0, "refuted": 0, "retired": 0})
-            b[e["kind"]] += 1
+            b[kind] += 1
+    for at in closures.values():
+        if at >= since:
+            b = buckets.setdefault(week(at), {"attempts": 0, "closed": 0, "refuted": 0, "retired": 0})
+            b["closed"] += 1
     return [{"week": w, **c} for w, c in sorted(buckets.items())]
 
 
@@ -102,6 +150,8 @@ def run(ctx: Ctx, brief: bool = False, ws: str | None = None) -> Result:
         latest = st.latest_attempts()
         live = st.live_jobs()
     data, nodes, dests = load_live(cfg, claims)
+    cones = root_cones(nodes, dests)
+    bd = None if brief else burn_down(cfg)
     stale = stale_lines(cfg, nodes)
     for n in nodes:
         n.claim = claims.get(n.name)
@@ -148,7 +198,11 @@ def run(ctx: Ctx, brief: bool = False, ws: str | None = None) -> Result:
         bad = [d for d in dests if d.sorry or d.uncovered_axioms]
         res.line("")
         res.line(f"destinations: {len(dests)} audited" + (f", {len(bad)} with sorry or uncovered axioms: " + ", ".join(d.name for d in bad) if bad else ", all clean"))
-        bd = burn_down(cfg)
+        if cones:
+            res.line("")
+            res.line("root cones (indexed Lean dependencies; unfinished statuses count as open):")
+            res.human.extend(table([[c["kind"], c["name"], c["closed"], c["open"]] for c in cones],
+                                   ["kind", "root", "closed", "open"]))
         if bd:
             res.line("")
             res.human.extend(table([[b["week"], b["attempts"], b["closed"], b["refuted"], b["retired"]] for b in bd], ["week", "attempts", "closed", "refuted", "retired"]))
@@ -156,7 +210,8 @@ def run(ctx: Ctx, brief: bool = False, ws: str | None = None) -> Result:
                    "nodes": [n.to_json() | {"claim": n.claim, "days_open": days_open(n.opened), "last_attempt": latest.get(n.name)} for n in nodes],
                    "destinations": [d.to_json() for d in dests], "problems": problems, "jobs_live": live,
                    "claims_elsewhere": elsewhere,
-                   "burn_down": None if brief else burn_down(cfg)}
+                   "root_cones": cones,
+                   "burn_down": bd}
     res.exit_code = EXIT_OK
     return res
 

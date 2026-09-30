@@ -6,12 +6,14 @@ the memory-guarded scope with its purpose, cap, outputs and measured peak record
 
 from __future__ import annotations
 
+import fcntl
 import json
 import os
 import subprocess
 import sys
 import time
 import uuid
+from contextlib import contextmanager
 from pathlib import Path
 
 from es.build import _mem_gib, available_gib, bus_available, run_guarded
@@ -343,20 +345,49 @@ def worker_start_fitting(cfg: Config, spawn=None) -> list[str]:
     return started
 
 
+@contextmanager
+def worker_lock(cfg: Config):
+    """Hold the project-wide singleton lock for the lifetime of a worker.
+
+    The PID stored in the file is only diagnostic.  ``flock`` is released by the
+    kernel when a worker exits, so stale file contents after a crash never block
+    the next worker.
+    """
+    cfg.es_home.mkdir(parents=True, exist_ok=True)
+    path = cfg.es_home / "worker.lock"
+    with path.open("a+", encoding="utf-8") as handle:
+        try:
+            fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            handle.seek(0)
+            owner = handle.read().strip()
+            detail = f" (lock owner {owner})" if owner else ""
+            raise CheckFailed(f"another es worker is already running for this project{detail}") from None
+        handle.seek(0)
+        handle.truncate()
+        handle.write(str(os.getpid()))
+        handle.flush()
+        try:
+            yield
+        finally:
+            fcntl.flock(handle, fcntl.LOCK_UN)
+
+
 def worker_loop(cfg: Config, poll_s: float = 5.0, once: bool = False) -> None:
     if cfg.build_guard and not bus_available():
         raise CheckFailed("this process cannot reach the systemd user bus, so it cannot run guarded jobs; start `es worker` from an unsandboxed shell")
-    with Store(cfg) as st:
-        st.event("worker-started", None, os.environ.get("ES_AGENT"), {"pid": os.getpid()})
-    while True:
-        try:
-            from es.operations import advance
-            advance(cfg)
-            worker_start_fitting(cfg)
-            from es.run_monitor import tick
-            tick(cfg)
-        except Exception as exc:  # a transient database error must not stop the worker
-            print(f"worker: {exc}", file=sys.stderr, flush=True)
-        if once:
-            return
-        time.sleep(poll_s)
+    with worker_lock(cfg):
+        with Store(cfg) as st:
+            st.event("worker-started", None, os.environ.get("ES_AGENT"), {"pid": os.getpid()})
+        while True:
+            try:
+                from es.operations import advance
+                advance(cfg)
+                worker_start_fitting(cfg)
+                from es.run_monitor import tick
+                tick(cfg)
+            except Exception as exc:  # a transient database error must not stop the worker
+                print(f"worker: {exc}", file=sys.stderr, flush=True)
+            if once:
+                return
+            time.sleep(poll_s)

@@ -128,7 +128,23 @@ class Config:
     @property
     def git_dir(self) -> Path | None:
         val = self.get("git", "git_dir")
-        return self.root / val if val else None
+        if not val:
+            return None
+        # A linked worktree's .git file names its worktree-specific metadata
+        # directory.  Reusing a configured path relative to the primary
+        # checkout would either be absent here or, if symlinked, select the
+        # primary checkout's HEAD instead of this worktree's branch.
+        gitfile = self.root / ".git"
+        try:
+            if gitfile.is_file():
+                text = gitfile.read_text().strip()
+                if text.startswith("gitdir:"):
+                    path = Path(text[len("gitdir:"):].strip())
+                    return path if path.is_absolute() else (self.root / path).resolve()
+        except OSError:
+            pass
+        path = Path(str(val))
+        return path if path.is_absolute() else self.root / path
 
     @property
     def default_branch(self) -> str:

@@ -19,8 +19,9 @@ def test_naming(cfg):
     assert node_module_name(cfg, "TCore.fin15_endpoint", "A") == "TBlueprint.A.Fin15Endpoint"
 
 
-def test_opened_dates_preserve_renames_and_uncommitted_files(cfg, project):
+def test_opened_dates_preserve_renames_and_uncommitted_files(cfg, project, monkeypatch):
     from es.gitutil import git
+    from es import gitutil
     from es.nodes import opened_dates
 
     identity = ("-c", "user.name=test", "-c", "user.email=test@example.invalid")
@@ -29,14 +30,33 @@ def test_opened_dates_preserve_renames_and_uncommitted_files(cfg, project):
     (project / "TBlueprint/A/New.lean").write_text("theorem new_node : True := trivial\n")
     git(cfg, "add", "TBlueprint/A/New.lean")
     git(cfg, *identity, "commit", "-m", "rename and add", "--date=2001-01-01T12:00:00+00:00")
+    git(cfg, "switch", "-c", "topic")
+    (project / "TBlueprint/A/Merged.lean").write_text("theorem merged_node : True := trivial\n")
+    git(cfg, "add", "TBlueprint/A/Merged.lean")
+    git(cfg, *identity, "commit", "-m", "topic add", "--date=2002-01-01T12:00:00+00:00")
+    git(cfg, "switch", "main")
+    (project / "TCore/MainOnly.lean").write_text("theorem main_only : True := trivial\n")
+    git(cfg, "add", "TCore/MainOnly.lean")
+    git(cfg, *identity, "commit", "-m", "main add", "--date=2003-01-01T12:00:00+00:00")
+    git(cfg, *identity, "merge", "--no-ff", "topic", "-m", "merge topic")
     (project / "TBlueprint/A/Draft.lean").write_text("theorem draft : True := trivial\n")
-    assert opened_dates(cfg, ["TBlueprint.A.New", "TBlueprint.A.Renamed",
+    calls = []
+    real_git = gitutil.git
+
+    def counted_git(*args, **kwargs):
+        calls.append((args, kwargs))
+        return real_git(*args, **kwargs)
+
+    monkeypatch.setattr(gitutil, "git", counted_git)
+    assert opened_dates(cfg, ["TBlueprint.A.New", "TBlueprint.A.Renamed", "TBlueprint.A.Merged",
                               "TBlueprint.A.Draft", "TBlueprint.A.Missing", "TBlueprint.A.New"]) == {
         "TBlueprint.A.New": "2001-01-01",
         "TBlueprint.A.Renamed": "2000-01-01",
+        "TBlueprint.A.Merged": "2002-01-01",
         "TBlueprint.A.Draft": "uncommitted",
         "TBlueprint.A.Missing": None,
     }
+    assert len(calls) == 1
     assert opened_dates(cfg, []) == {}
 
 
@@ -46,13 +66,46 @@ def test_ready_computation(cfg):
     c = mk("TCore.c_closed", sorry=False)
     d = mk("TCore.d", deps=["TCore.c_closed", "TCore.core_thm"])
     e = mk("TCore.e", deps=["TCore.unknown_name"])
-    lock = {n.name: {"type_hash": n.type_hash} for n in (a, b, c, d, e)}
-    compute(cfg, [a, b, c, d, e], [], core_names={"TCore.core_thm"}, claims={}, falsify={}, lock=lock, allow=[])
+    f = mk("TCore.f_actual")
+    f.deps_actual = ["TCore.a", "TCore.internal_helper"]
+    lock = {n.name: {"type_hash": n.type_hash} for n in (a, b, c, d, e, f)}
+    compute(cfg, [a, b, c, d, e, f], [], core_names={"TCore.core_thm"}, claims={}, falsify={}, lock=lock, allow=[])
     assert a.status == "open" and a.ready
     assert b.status == "open" and not b.ready and b.blocked_by == ["TCore.a"]
     assert c.status == "closed"
     assert d.ready
     assert not e.ready and e.blocked_by == ["TCore.unknown_name (unknown)"]
+    assert not f.ready and f.blocked_by == ["TCore.a"]
+
+
+def test_root_cones_follow_declared_and_actual_indexed_dependencies(cfg):
+    from es.commands.status import root_cones
+
+    a = mk("TCore.a", sorry=False)
+    b = mk("TCore.b")
+    b.deps_actual = ["TCore.a", "TCore.internal_helper"]
+    root = mk("TCore.root", deps=["TCore.b"])
+    root.tags.pop("consumer")
+    lock = {n.name: {"type_hash": n.type_hash} for n in (a, b, root)}
+    dest = Destination(name="TCore.dest", module="TCore.Basic", type_pp="True", type_hash="d", sorry=False,
+                       axioms=[], nonstandard_axioms=[], deps_actual=["TCore.root"])
+    compute(cfg, [a, b, root], [dest], set(), claims={}, falsify={}, lock=lock, allow=[])
+    cones = {(c["kind"], c["name"]): c for c in root_cones([a, b, root], [dest])}
+    assert cones[("open root", "TCore.root")] | {"nodes": []} == {
+        "kind": "open root", "name": "TCore.root", "closed": 1, "open": 1, "nodes": []}
+    assert cones[("destination", "TCore.dest")]["closed"] == 1
+    assert cones[("destination", "TCore.dest")]["open"] == 2
+
+    dest.deps_actual = ["TCore.internal_helper"]
+    without_edges = {(c["kind"], c["name"]): c for c in root_cones([a, b, root], [dest])}
+    assert ("destination", "TCore.dest") not in without_edges
+    dest.deps_actual = ["TCore.root"]
+
+    compute(cfg, [a, b, root], [dest], set(),
+            claims={"TCore.root": {"agent": "tester"}}, falsify={}, lock=lock, allow=[])
+    assert root.status == "claimed"
+    claimed = {(c["kind"], c["name"]): c for c in root_cones([a, b, root], [dest])}
+    assert claimed[("open root", "TCore.root")]["nodes"] == ["TCore.a", "TCore.b"]
 
 
 def test_conjecture_needs_falsifier_pass_and_claims_block(cfg):
