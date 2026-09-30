@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T16:03:44Z",
- "git_sha": "e2916095a350fbccf3c4fdc120c67dfd6d68d802",
- "extract_mode": "incremental from 501e0244c727: 3 re-extracted, 0 removed",
+ "generated_at": "2026-09-30T16:37:05Z",
+ "git_sha": "f55e3b9245ab20056598d7dfce8b8d88abd2a0b0",
+ "extract_mode": "incremental from e2916095a350: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
  "modules": 15681,
- "tree_hash": "15c3383dac2f3785.4560d6f33c43b8ee",
+ "tree_hash": "fe25ef115762ccf3.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5381,
-  "scanned_constants": 0,
-  "scanned_modules": 0
+  "cached_modules": 5458,
+  "scanned_constants": 1,
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -4840,15 +4840,16 @@
    ],
    "deps_declared": [],
    "deps_actual": [
-    "ErdosSzekeres.ctx_bound_additive_single_run_alternating_of_run_contraction_and_deletion",
-    "ErdosSzekeres.ctx_bound_child_run_contraction_of_level_one_span",
+    "ErdosSzekeres.ctx_bound_additive_single_run_alternating_of_part_contraction_and_deletion",
+    "ErdosSzekeres.ctx_bound_part_run_contraction_of_one_level_root",
+    "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root",
     "ErdosSzekeres.ctx_bound_ext_letter_deletion_mono_of_isolated_children"
    ],
    "helpers": [],
    "status": "open",
    "ready": false,
    "blocked_by": [
-    "ErdosSzekeres.ctx_bound_child_run_contraction_of_level_one_span"
+    "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root"
    ],
    "uncovered_axioms": [
     "sorryAx"
@@ -5713,8 +5714,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -36107,7 +36108,7 @@
    "ESBlueprint.B.CtxBoundAdditiveSandwichSingletonEnds": "fccd5991982128b4",
    "ESBlueprint.B.CtxBoundAdditiveSaturatedIntervalComplement": "bad676a945766dd3",
    "ESBlueprint.B.CtxBoundAdditiveSingleRun": "3789bc3b6a7f72d8",
-   "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternating": "2c0f565d93e7b116",
+   "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternating": "3b73309a3a08775d",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternatingOfPartContractionAndDeletion": "5e0cde5d18c6c4e2",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunAlternatingOfRunContractionAndDeletion": "affdcc3d11fc80eb",
    "ESBlueprint.B.CtxBoundAdditiveSingleRunBoundary": "68009ddee81309c9",
