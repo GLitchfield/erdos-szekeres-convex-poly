@@ -179,8 +179,9 @@ peak 2.2 GiB), capped at `extract.targeted_memory_max`. A dependency without an 
 or one that `lake build --no-build` (a 2G guarded check, `build.nobuild_memory_max`)
 reports as needing a rebuild, could be arbitrarily heavy and gets the full cap; an OOM
 kill under a sized cap is retried once under the full cap (a retry the budget or an
-enclosing job cannot hold is reported with the original OOM). Queued `es check --async`
-jobs still reserve `build.memory_max`, so that retry fits inside them. The duplicate check is then limited to that closure
+enclosing job cannot hold is reported with the original OOM). A queued `es check --async
+--targeted` reserves the larger of the two sized caps (so an OOM retry at the full cap is
+refused inside it and reported); an untargeted async check still reserves `build.memory_max`. The duplicate check is then limited to that closure
 and `nodes.json`/`status.md` are not rewritten; the next full `es extract` does both.
 `ES_EXTRACT_MEMORY_MAX=<cap>` overrides `extract.memory_max` for one invocation; every
 fresh extractor run logs an `extract` event with its measured `peak_mib`. Note that the

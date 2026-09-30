@@ -200,3 +200,17 @@ def test_targeted_extract_sizes_the_build_and_the_extractor(cfg, monkeypatch):
     node.targeted_extract(Ctx(cfg), "TBlueprint.A.Foo")
     assert seen["memory_max"] == "4G" and seen["build_memory_max"] == "4G"
     assert seen["imports"] == ["TBlueprint.A.Foo"]
+
+
+def test_async_targeted_check_reserves_the_sized_cap(cfg, monkeypatch):
+    from es.commands import check
+
+    for m in CLOSURE:
+        _olean(cfg, m)
+    declaration = SimpleNamespace(name="TCore.foo_node", module="TBlueprint.A.Foo", short="foo_node")
+    monkeypatch.setattr(check, "find_node", lambda *_: declaration)
+    monkeypatch.setattr("es.jobs.spawn_runner", lambda *_a, **_k: None)
+    job = check.run(Ctx(cfg), declaration.name, async_=True, targeted=True).payload["job"]
+    assert job["memory_max"] == "4G"
+    full = check.run(Ctx(cfg), declaration.name, async_=True).payload["job"]
+    assert full["memory_max"] == cfg.build_memory_max  # a full check still extracts everything

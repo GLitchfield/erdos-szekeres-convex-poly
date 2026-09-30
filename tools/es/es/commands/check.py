@@ -18,9 +18,18 @@ def run(ctx: Ctx, name: str, budget: int | None = None, async_: bool = False, fo
     if async_:
         from es.jobs import submit
         argv = ["check", n.name] + ([f"--budget={budget}"] if budget else [])
+        memory_max = None
         if targeted:
             argv.append("--targeted")
-        job = submit(cfg, kind="check", node=n.name, argv=argv, agent=ctx.agent, budget_min=budget)
+            # size the queued reservation like the synchronous path (a node over a thin closure
+            # needs ~4-5G, not build.memory_max); an OOM retry at the full cap cannot fit inside
+            # this job and is then reported with the original OOM
+            from es.build import _mem_gib
+            from es.commands.node import closure_stats, elaboration_memory_max, targeted_extract_memory_max
+            memory_max = max(elaboration_memory_max(cfg, [n.module]),
+                             targeted_extract_memory_max(cfg, closure_stats(cfg, [n.module])[0]), key=_mem_gib)
+        job = submit(cfg, kind="check", node=n.name, argv=argv, agent=ctx.agent, budget_min=budget,
+                     memory_max=memory_max)
         return Result(EXIT_OK, {"job": job}, [f"submitted job {job['id']}"])
     log = cfg.build_log_dir / f"check-{time.strftime('%Y%m%d-%H%M%S')}-{n.short}.log"
     started = time.time()
