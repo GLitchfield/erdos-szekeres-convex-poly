@@ -10,6 +10,7 @@
 
 typedef struct {
     uint64_t hash;
+    size_t len;
     size_t depth;
     int *key;
     int64_t value;
@@ -24,13 +25,21 @@ typedef struct {
     int error;
 } EvalState;
 
-/* Public ctypes entry point. */
+/* Public ctypes entry points.  es_context_bound evaluates one context with a fresh memo;
+ * es_context_bound_new/eval/free keep one memo across calls for fixed (a, u, k), which
+ * returns the same values (the memo caches a pure function) far faster when many related
+ * contexts (for example the parts of one context) are evaluated. */
 int es_context_bound(int a, int u, int k, const int *word, size_t word_len,
                      const int *maxima, size_t depth, size_t cache_size,
                      int64_t *out);
+void *es_context_bound_new(int a, int u, int k, size_t cache_size);
+int es_context_bound_eval(void *handle, const int *word, size_t word_len,
+                          const int *maxima, size_t depth, int64_t *out);
+void es_context_bound_free(void *handle);
 
 static uint64_t hash_context(const int *word, size_t n, const int *maxima, size_t depth) {
     uint64_t h = 1469598103934665603ULL;
+    h ^= (uint64_t)n; h *= 1099511628211ULL;
     h ^= (uint64_t)depth; h *= 1099511628211ULL;
     for (size_t i = 0; i < n; ++i) {
         h ^= (uint32_t)word[i]; h *= 1099511628211ULL;
@@ -43,7 +52,7 @@ static uint64_t hash_context(const int *word, size_t n, const int *maxima, size_
 
 static int key_equal(const CacheEntry *entry, const int *word, size_t n,
                      const int *maxima, size_t depth) {
-    return entry->depth == depth &&
+    return entry->len == n && entry->depth == depth &&
            memcmp(entry->key, word, n * sizeof(int)) == 0 &&
            (depth == 0 || memcmp(entry->key + n, maxima, depth * sizeof(int)) == 0);
 }
@@ -75,7 +84,7 @@ static void cache_insert(EvalState *state, const int *word, const int *maxima,
     if (!key) { state->error = 2; return; }
     memcpy(key, word, state->word_len * sizeof(int));
     if (depth) memcpy(key + state->word_len, maxima, depth * sizeof(int));
-    state->cache[slot] = (CacheEntry){hash, depth, key, value, 1};
+    state->cache[slot] = (CacheEntry){hash, state->word_len, depth, key, value, 1};
     state->cache_count++;
 }
 
@@ -297,11 +306,8 @@ static int64_t bound(EvalState *state, const int *word, const int *maxima, size_
     return best;
 }
 
-/* 0 success; 1 bad scalar input; 2 allocation failure; 3 malformed context; 4 overflow. */
-int es_context_bound(int a, int u, int k, const int *word, size_t word_len,
-                     const int *maxima, size_t depth, size_t cache_size,
-                     int64_t *out) {
-    if (!word || !out || word_len == 0 || a < 1 || u < 1 || k < 3 || cache_size == 0) return 1;
+static int validate(const int *word, size_t word_len, const int *maxima, size_t depth) {
+    if (!word || word_len == 0) return 1;
     if (depth && !maxima) return 1;
     if (word_len > INT_MAX) return 1;
     size_t s_count = 0;
@@ -314,19 +320,59 @@ int es_context_bound(int a, int u, int k, const int *word, size_t word_len,
         if (level > INT_MAX - shift_limit) return 3;
     }
     for (size_t i = 0; i < depth; ++i) if (maxima[i] < 0) return 3;
+    return 0;
+}
+
+void *es_context_bound_new(int a, int u, int k, size_t cache_size) {
+    if (a < 1 || u < 1 || k < 3 || cache_size == 0 || cache_size > SIZE_MAX / 2) return NULL;
     size_t capacity = 1;
-    if (cache_size > SIZE_MAX / 2) return 1;
     while (capacity < cache_size * 2) {
-        if (capacity > SIZE_MAX / 2) return 1;
+        if (capacity > SIZE_MAX / 2) return NULL;
         capacity *= 2;
     }
-    EvalState state = {a, u, k, word_len, cache_size, 0, capacity, NULL, 0};
-    state.cache = calloc(capacity, sizeof(CacheEntry));
-    if (!state.cache) return 2;
-    int64_t result = bound(&state, word, maxima, depth);
-    for (size_t i = 0; i < capacity; ++i) free(state.cache[i].key);
-    free(state.cache);
-    if (state.error) return state.error;
+    EvalState *state = calloc(1, sizeof(EvalState));
+    if (!state) return NULL;
+    *state = (EvalState){a, u, k, 0, cache_size, 0, capacity, NULL, 0};
+    state->cache = calloc(capacity, sizeof(CacheEntry));
+    if (!state->cache) { free(state); return NULL; }
+    return state;
+}
+
+void es_context_bound_free(void *handle) {
+    EvalState *state = handle;
+    if (!state) return;
+    for (size_t i = 0; i < state->cache_capacity; ++i) free(state->cache[i].key);
+    free(state->cache);
+    free(state);
+}
+
+/* 0 success; 1 bad scalar input; 2 allocation failure; 3 malformed context; 4 overflow.
+ * Only fully evaluated subcontexts enter the memo (an error stops insertion), so an error in
+ * one call leaves the persistent memo correct for later calls. */
+int es_context_bound_eval(void *handle, const int *word, size_t word_len,
+                          const int *maxima, size_t depth, int64_t *out) {
+    EvalState *state = handle;
+    if (!state || !out) return 1;
+    int rc = validate(word, word_len, maxima, depth);
+    if (rc) return rc;
+    state->word_len = word_len;
+    state->error = 0;
+    int64_t result = bound(state, word, maxima, depth);
+    if (state->error) { rc = state->error; state->error = 0; return rc; }
     *out = result;
     return 0;
+}
+
+int es_context_bound(int a, int u, int k, const int *word, size_t word_len,
+                     const int *maxima, size_t depth, size_t cache_size,
+                     int64_t *out) {
+    if (!word || !out || word_len == 0 || a < 1 || u < 1 || k < 3 || cache_size == 0) return 1;
+    int rc = validate(word, word_len, maxima, depth);
+    if (rc) return rc;
+    if (cache_size > SIZE_MAX / 2) return 1;
+    void *state = es_context_bound_new(a, u, k, cache_size);
+    if (!state) return 2;
+    rc = es_context_bound_eval(state, word, word_len, maxima, depth, out);
+    es_context_bound_free(state);
+    return rc;
 }

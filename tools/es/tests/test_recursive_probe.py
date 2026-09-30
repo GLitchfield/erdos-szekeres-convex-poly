@@ -163,6 +163,40 @@ def test_compiled_context_bound_matches_python_random_fixture():
 
 
 @pytest.mark.skipif(shutil.which("cc") is None, reason="C compiler unavailable")
+def test_persistent_compiled_memo_returns_the_fresh_memo_values():
+    """One C memo across calls, over words of different lengths, a full cache, and after a
+    rejected call, must give exactly the one-shot values."""
+    from harness.research.context_bound import compiled_evaluator
+
+    fixture = json.loads((EXAMPLES / "context-bound-c-v1.json").read_text())
+    rng = random.Random(fixture["seed"] + 1)
+    limits = fixture["generator"]
+    for a, u, k in fixture["cases"]:
+        fresh = compiled_evaluator(a, u, k, cache_size=16000)
+        persistent = compiled_evaluator(a, u, k, cache_size=50000, persistent=True)
+        tiny = compiled_evaluator(a, u, k, cache_size=1, persistent=True)
+        seen = []
+        for _ in range(fixture["samples_per_case"]):
+            s_count = rng.randint(limits["s_min"], limits["s_max"])
+            external_count = rng.randint(0, limits["external_max"])
+            depth = rng.randint(1 if external_count else 0, limits["depth_max"])
+            sides = {level: rng.choice(("lower", "upper")) for level in range(1, depth + 1)}
+            w = ["S"] * s_count + [(level := rng.randint(1, depth), sides[level]) for _ in range(external_count)]
+            rng.shuffle(w)
+            w, maxima = tuple(w), tuple(rng.randint(1, k - 2) for _ in range(depth))
+            expected = fresh(w, maxima)
+            assert persistent(w, maxima) == expected == tiny(w, maxima), (a, u, k, w, maxima)
+            seen.append((w, maxima, expected))
+        with pytest.raises(ValueError):
+            persistent(((1, "lower"),), (1,))  # no child letter: rejected, memo untouched
+        for w, maxima, expected in seen:  # replay from the memo, words of mixed lengths
+            assert persistent(w, maxima) == expected
+        persistent.cache_clear()
+        assert persistent(*seen[0][:2]) == seen[0][2]
+        persistent.close()
+
+
+@pytest.mark.skipif(shutil.which("cc") is None, reason="C compiler unavailable")
 def test_compiled_evaluator_runs_through_registered_probe_interface():
     from harness.research.recursive_cut import evaluate, replay
 

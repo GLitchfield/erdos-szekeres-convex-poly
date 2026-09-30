@@ -32,16 +32,19 @@
       "title": "Compiled recursive context-bound evaluator",
       "summary": "Memoized C implementation of the zero-child interval-cut context recurrence, exposed through the shared evaluator factory.",
       "keywords": [
-        "compiled context bound",
         "C evaluator",
-        "memoized evaluator",
-        "zero child",
+        "compiled context bound",
+        "context bound",
         "interval cut",
-        "context bound"
+        "memoized evaluator",
+        "parts",
+        "persistent memo",
+        "speed",
+        "zero child"
       ],
-      "api": "compiled_evaluator(a, u, k, *, cache_size=16000) -> bound(word, maxima); shared API semantics context-bound-zero-children-c-v1",
-      "example": "python -m harness.research.context_bound --case 3,4,5 --word 1L,S,S,2U,S,S --maxima 3,1",
-      "semantics": "Implements the context-bound-zero-children-v1 arithmetic with all declared levels, truncated natural subtraction, zero-valued children retained, and per-call memoization. Exact signed 64-bit results are returned and larger results raise OverflowError. Compilation is cached in an owner-only system temporary directory. An in-flight C call is not preempted by the Python SIGALRM per-case timer, so probe shapes must remain independently bounded. Cross-language tests are finite diagnostic evidence only, not Lean proof credit.",
+      "api": "compiled_evaluator(a, u, k, *, cache_size=16000, persistent=False) -> bound(word, maxima); shared API semantics context-bound-zero-children-c-v1",
+      "example": "python -m harness.research.context_bound --case 3,4,5 --word 1L,S,S,2U,S,S --maxima 3,1\n# many related contexts (e.g. every part of one context): one C memo across calls, ~27x faster\nF = compiled_evaluator(5, 5, 6, cache_size=2_000_000, persistent=True)",
+      "semantics": "Implements the context-bound-zero-children-v1 arithmetic with all declared levels, truncated natural subtraction, zero-valued children retained, and per-call memoization. Exact signed 64-bit results are returned and larger results raise OverflowError. Compilation is cached in an owner-only system temporary directory. An in-flight C call is not preempted by the Python SIGALRM per-case timer, so probe shapes must remain independently bounded. Cross-language tests are finite diagnostic evidence only, not Lean proof credit. persistent=True keeps one C memo across calls for fixed (a, u, k) (word length is part of the key); values are identical to the per-call memo (regression test test_persistent_compiled_memo_returns_the_fresh_memo_values), the memo stops growing at cache_size entries, and close() or garbage collection frees it.",
       "source": {
         "path": "harness/research/context_bound.py",
         "symbols": [

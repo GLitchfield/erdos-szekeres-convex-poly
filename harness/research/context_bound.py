@@ -69,6 +69,15 @@ def _load_library():
             ctypes.POINTER(ctypes.c_int64),
         ]
         function.restype = ctypes.c_int
+        library.es_context_bound_new.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_size_t]
+        library.es_context_bound_new.restype = ctypes.c_void_p
+        library.es_context_bound_eval.argtypes = [
+            ctypes.c_void_p, ctypes.POINTER(ctypes.c_int), ctypes.c_size_t,
+            ctypes.POINTER(ctypes.c_int), ctypes.c_size_t, ctypes.POINTER(ctypes.c_int64),
+        ]
+        library.es_context_bound_eval.restype = ctypes.c_int
+        library.es_context_bound_free.argtypes = [ctypes.c_void_p]
+        library.es_context_bound_free.restype = None
         _LIBRARY = library
     return _LIBRARY
 
@@ -93,6 +102,62 @@ def _encode(word, maxima):
     if any(abs(value) > _C_INT_MAX - len(encoded) for value in encoded):
         raise ValueError("context levels exceed the compiled evaluator range")
     return encoded, maxima
+
+
+def _check_rc(rc):
+    if rc == 2:
+        raise MemoryError("compiled context-bound evaluator allocation failed")
+    if rc == 4:
+        raise OverflowError("compiled context-bound result exceeds signed 64-bit range")
+    if rc:
+        raise ValueError(f"compiled context-bound evaluator rejected the context (rc={rc})")
+
+
+class _PersistentEvaluator:
+    """One C memo kept across calls for fixed (a, u, k): identical values, shared subcontexts.
+
+    The memo holds at most ``cache_size`` entries (then stops inserting) and is freed with the
+    evaluator; each entry stores its word and maxima."""
+
+    def __init__(self, a: int, u: int, k: int, cache_size: int):
+        if (any(type(value) is not int or not 1 <= value <= _C_INT_MAX for value in (a, u)) or
+                type(k) is not int or not 3 <= k <= _C_INT_MAX):
+            raise ValueError("a and u must be positive C integers and k a C integer >= 3")
+        if type(cache_size) is not int or not 1 <= cache_size <= _C_SIZE_MAX // 4:
+            raise ValueError("cache_size must be a positive size_t integer")
+        self.a, self.u, self.k, self.cache_size = a, u, k, cache_size
+        self._misses = 0
+        self._library = _load_library()
+        self._handle = self._library.es_context_bound_new(a, u, k, cache_size)
+        if not self._handle:
+            raise MemoryError("compiled context-bound evaluator allocation failed")
+
+    def __call__(self, word, maxima):
+        encoded, maxima = _encode(word, maxima)
+        word_array = (ctypes.c_int * len(encoded))(*encoded)
+        maxima_array = (ctypes.c_int * len(maxima))(*maxima)
+        result = ctypes.c_int64()
+        self._misses += 1
+        _check_rc(self._library.es_context_bound_eval(self._handle, word_array, len(encoded),
+                                                      maxima_array, len(maxima), ctypes.byref(result)))
+        return int(result.value)
+
+    def close(self):
+        if getattr(self, "_handle", None):
+            self._library.es_context_bound_free(self._handle)
+            self._handle = None
+
+    def __del__(self):
+        self.close()
+
+    def cache_clear(self):
+        """Drop the persistent memo (values are unchanged; only speed is)."""
+        self.close()
+        self._handle = self._library.es_context_bound_new(self.a, self.u, self.k, self.cache_size)
+        self._misses = 0
+
+    def cache_info(self):
+        return _CacheInfo(hits=0, misses=self._misses, maxsize=self.cache_size, currsize=None)
 
 
 class _CompiledEvaluator:
@@ -133,8 +198,14 @@ class _CompiledEvaluator:
         return _CacheInfo(hits=0, misses=self._misses, maxsize=self.cache_size, currsize=0)
 
 
-def compiled_evaluator(a, u, k, *, cache_size=16000):
-    """Return a callable implementing ``context-bound-zero-children-c-v1``."""
+def compiled_evaluator(a, u, k, *, cache_size=16000, persistent=False):
+    """Return a callable implementing ``context-bound-zero-children-c-v1``.
+
+    ``persistent=True`` keeps one C memo across calls (same values; much faster when many
+    related contexts, such as the parts of one context, are evaluated).  Size ``cache_size``
+    for the workload: each entry keeps its word and maxima (tens of bytes)."""
+    if persistent:
+        return _PersistentEvaluator(a, u, k, cache_size)
     return _CompiledEvaluator(a, u, k, cache_size)
 
 
