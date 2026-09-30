@@ -164,6 +164,7 @@ Nodes: claimed 2, closed 318, open 16, refuted 2.
 | `ErdosSzekeres.ctx_nonunit_part_unit_rank_potential_drop` | formalization | closed |  |  | - | 2026-09-08 |
 | `ErdosSzekeres.ctx_nonunit_straddling_capacity_profile` | formalization | closed |  |  | - | 2026-09-09 |
 | `ErdosSzekeres.ctx_nonunit_straddling_unique_axis_level` | formalization | closed |  |  | - | 2026-09-09 |
+| `ErdosSzekeres.ctx_num_runs_child_letter_contraction` | formalization | closed |  |  | - | uncommitted |
 | `ErdosSzekeres.ctx_older_exterior_internal_complement_cut_potential_bound` | formalization | closed |  |  | - | 2026-09-10 |
 | `ErdosSzekeres.ctx_older_exterior_internal_complement_cut_six_bound` | formalization | closed |  |  | - | 2026-09-15 |
 | `ErdosSzekeres.ctx_oldest_axis_maximum_erase_normalize` | formalization | closed |  |  | - | 2026-09-08 |
