@@ -114,6 +114,7 @@ Nodes: claimed 2, closed 318, open 16, refuted 2.
 | `ErdosSzekeres.ctx_bound_two_run_boundary_domination` | conjecture | open | yes |  | pass | 2026-09-07 |
 | `ErdosSzekeres.ctx_bound_uniform_separator_contraction` | conjecture | open |  | ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root | pass | 2026-09-07 |
 | `ErdosSzekeres.ctx_bound_zero_child_regression` | formalization | closed |  |  | - | 2026-09-07 |
+| `ErdosSzekeres.ctx_bound_zero_of_unit_global_axis` | formalization | closed |  |  | - | uncommitted |
 | `ErdosSzekeres.ctx_boundary_marker_erase_normalize` | formalization | closed |  |  | - | 2026-09-08 |
 | `ErdosSzekeres.ctx_boundary_marker_full_rank_budget` | formalization | closed |  |  | - | 2026-09-08 |
 | `ErdosSzekeres.ctx_boundary_marker_inward_endpoint_cut_triangular_bound` | formalization | closed |  |  | - | 2026-09-10 |
