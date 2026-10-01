@@ -1,0 +1,39 @@
+{
+ "node": "ErdosSzekeres.ctx_one_level_root_bound_normal_form",
+ "falsifier": "ctx_one_level_root_normal_form.py",
+ "falsifier_sha256": "6d3176a4eee019882af95d0ee28de79935a109bea48a11b1358e9f0870fc5185",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "e0cedb9ee88cc591",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 14.9,
+ "at": "2026-10-01T15:52:38Z",
+ "agent": "codex:agent-run-cd0185da75604d4f",
+ "witness": {
+  "semantics": "context-bound-zero-children-c-v1",
+  "node": "ErdosSzekeres.ctx_one_level_root_bound_normal_form",
+  "run_clamp": "3 if a=2 or u=2, else 2",
+  "end_markers": "presence",
+  "cases": [],
+  "checked": 29520,
+  "violations": [],
+  "total": 29520,
+  "scope": {
+   "ks": [
+    3,
+    4
+   ],
+   "max_children": 4,
+   "end_multiplicities": [
+    0,
+    1,
+    2
+   ],
+   "separator_multiplicities": [
+    1,
+    2
+   ]
+  },
+  "seconds": 14.703461687997333
+ }
+}
