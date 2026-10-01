@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-01T02:55:58Z",
- "git_sha": "d95528c9f0924683e532bd7acd39f43f28b75d1f",
- "extract_mode": "full",
+ "generated_at": "2026-10-01T03:20:12Z",
+ "git_sha": "5847e155fa613d4d2311eaee86b4b094f630e9a4",
+ "extract_mode": "incremental from 5847e155fa61: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15689,
- "tree_hash": "8803e254cc26b1bd.4560d6f33c43b8ee",
+ "modules": 15690,
+ "tree_hash": "82e4f4059249bd74.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15689,
-  "scanned_constants": 0,
-  "scanned_modules": 0
+  "cached_modules": 5357,
+  "scanned_constants": 2,
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -3882,8 +3882,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "claimed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -7917,6 +7917,41 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-13"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_bound_maximal_segment_flip_exchange_of_zero_value",
+   "module": "ESBlueprint.B.CtxBoundMaximalSegmentFlipExchangeOfZeroValue",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Zero-value maximal-segment exchange: in any context with a nonempty child list and a legal coupling, a zero original partition value is dominated after toggling the first maximal homogeneous child-membership segment. No well-formedness, multi-run or interleaving assumption is needed. The proof constructs the maximal prefix by list induction and uses natural-number nonnegativity.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_additive_multi_run"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (keep : List Nat),\n  Ne σ.childPositions List.nil →\n    ∀ (d : Nat),\n      instLENat.le 1 d →\n        instLENat.le d (instHSub.hSub σ.k 2) →\n          ∀ (o : Bool),\n            Eq\n                (ite (Eq o Bool.true)\n                  (instHAdd.hAdd\n                    (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                        (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                    (σ.part\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.lower d).bound)\n                  (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                    (σ.part\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.upper\n                        (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound))\n                0 →\n              have value := fun K e b =>\n                ite (Eq b Bool.true)\n                  (instHAdd.hAdd\n                    (σ.part K ErdosSzekeres.Ctx.Side.upper\n                        (instHSub.hSub (instHSub.hSub σ.k 1) e)).bound\n                    (σ.part\n                        (List.filter (fun p => Decidable.decide (Not (List.instMembership.mem K p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.lower e).bound)\n                  (instHAdd.hAdd (σ.part K ErdosSzekeres.Ctx.Side.lower e).bound\n                    (σ.part\n                        (List.filter (fun p => Decidable.decide (Not (List.instMembership.mem K p)))\n                          σ.childPositions)\n                        ErdosSzekeres.Ctx.Side.upper\n                        (instHSub.hSub (instHSub.hSub σ.k 1) e)).bound);\n              Exists fun L =>\n                Exists fun S =>\n                  Exists fun R =>\n                    And\n                      (Eq σ.childPositions\n                        (instHAppendOfAppend.hAppend (instHAppendOfAppend.hAppend L S) R))\n                      (And (Ne S List.nil)\n                        (Exists fun c =>\n                          And\n                            (∀ (p : Nat),\n                              List.instMembership.mem S p →\n                                Eq (Decidable.decide (List.instMembership.mem keep p)) c)\n                            (And\n                              (∀ (p : Nat),\n                                Eq L.getLast? (Option.some p) →\n                                  Eq (Decidable.decide (List.instMembership.mem keep p)) c.not)\n                              (And\n                                (∀ (p : Nat),\n                                  Eq R.head? (Option.some p) →\n                                    Eq (Decidable.decide (List.instMembership.mem keep p)) c.not)\n                                (Exists fun e =>\n                                  And (instLENat.le 1 e)\n                                    (And (instLENat.le e (instHSub.hSub σ.k 2))\n                                      (Exists fun b =>\n                                        instLENat.le (value keep d o)\n                                          (value\n                                            (List.filter\n                                              (fun p =>\n                                                Decidable.decide\n                                                  (Or\n                                                    (And (List.instMembership.mem keep p)\n                                                      (Not (List.instMembership.mem S p)))\n                                                    (And (Not (List.instMembership.mem keep p))\n                                                      (List.instMembership.mem S p))))\n                                              σ.childPositions)\n                                            e b))))))))",
+   "type_hash": "29bcd1ac91431b68",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_maximal_segment_flip_exchange_of_zero_value._simp_1_1"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion",
@@ -36969,6 +37004,7 @@
    "ESBlueprint.B.CtxBoundLeSumRunGroupPrunings": "3ce1baa35a46a8dd",
    "ESBlueprint.B.CtxBoundLeSumRunGroupPruningsCapacityThree": "29441b7cb4b659ba",
    "ESBlueprint.B.CtxBoundLeSumRunGroupPruningsOfActualMarkerGlobalFive": "fd73a1fc1cdaf2d7",
+   "ESBlueprint.B.CtxBoundMaximalSegmentFlipExchangeOfZeroValue": "4de0dc60b69d0521",
    "ESBlueprint.B.CtxBoundMonoOfMarkerInclusion": "93b2489be4671974",
    "ESBlueprint.B.CtxBoundMonoOfZeroCapacityMarkerInclusion": "09a0fa973c699a25",
    "ESBlueprint.B.CtxBoundOppositeLevelSwap": "78c604ca4dc9cdb8",
