@@ -1,4 +1,7 @@
 import ErdosSzekeres.DecomposableContext
+import ESBlueprint.B.CtxOneLevelRootBoundAttainedBySingletonCut
+import ESBlueprint.B.CtxOneLevelRootSingletonBaseExchange
+import ESBlueprint.B.CtxBoundChildRunContractionOneLevelRootOfSingletonExchange
 
 namespace ErdosSzekeres
 
@@ -9,6 +12,19 @@ namespace ErdosSzekeres
 @consumer ErdosSzekeres.ctx_bound_additive_single_run
 @falsifier ctx_one_level_root_run_contraction.py -/
 theorem ctx_bound_child_run_contraction_one_level_root (a u k m : ℕ) (hk : 3 ≤ k) (ha : 1 ≤ a) (hak : a ≤ k) (hu : 1 ≤ u) (huk : u ≤ k) (hm : 1 ≤ m) (hmk : m ≤ k - 2) (side : Ctx.Side) (left right : List Ctx.Letter) (hletters : ∀ x ∈ left ++ right, x = Ctx.Letter.child ∨ x = Ctx.Letter.ext 1 side) : ({ a := a, u := u, k := k, word := left ++ [Ctx.Letter.child, Ctx.Letter.child] ++ right, maxima := [m] } : Ctx.Context).bound = ({ a := a, u := u, k := k, word := left ++ [Ctx.Letter.child] ++ right, maxima := [m] } : Ctx.Context).bound := by
-  sorry
+  classical
+  have hrootLetters : ∀ x ∈ left ++ [Ctx.Letter.child, Ctx.Letter.child] ++ right,
+      x = Ctx.Letter.child ∨ x = Ctx.Letter.ext 1 side := by
+    intro x hx
+    by_cases hc : x = Ctx.Letter.child
+    · exact Or.inl hc
+    · apply hletters x
+      simpa [hc, List.mem_append] using hx
+  exact ctx_bound_child_run_contraction_one_level_root_of_singleton_exchange
+    a u k m hk ha hak hu huk hm hmk side left right hletters
+    (ctx_one_level_root_bound_attained_by_singleton_cut a u k m hk ha hak hu huk hm hmk
+      side (left ++ [Ctx.Letter.child, Ctx.Letter.child] ++ right) hrootLetters)
+    (ctx_one_level_root_singleton_base_exchange a u k m hk ha hak hu huk hm hmk
+      side left right hletters)
 
 end ErdosSzekeres
