@@ -3704,5 +3704,14 @@
     "kind": "conjecture",
     "ws": "B",
     "module": "ESBlueprint.B.CtxOneLevelRootBoundNormalForm"
+  },
+  "ErdosSzekeres.ctx_bound_zero_of_bracketed_children_and_indexed_chosen_global_three": {
+    "type_hash": "ca893a8c2e474cd0",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N x y : Nat),\n  List.instMembership.mem σ.levels N →\n    Eq (σ.sideAt N) s →\n      List.instMembership.mem (σ.extPositions N) x →\n        List.instMembership.mem (σ.extPositions N) y →\n          (∀ (p : Nat),\n              List.instMembership.mem σ.childPositions p →\n                And (instLTNat.lt x p) (instLTNat.lt p y)) →\n            instLENat.le\n                (ErdosSzekeres.ctx_bound_zero_of_bracketed_children_and_indexed_chosen_global_three.match_1\n                  (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                3 →\n              And (∀ (fuel : Nat), Eq (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 0) (Eq σ.bound 0)",
+    "approved_by": "codex:agent-run-58eb8a64138d4dfc",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundZeroOfBracketedChildrenAndIndexedChosenGlobalThree"
   }
 }
