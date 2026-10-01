@@ -3659,5 +3659,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundLeTwoAndTwoLevelLeOneOfIndexedMarkerGlobalThree"
+  },
+  "ErdosSzekeres.ctx_outside_pair_single_run_complement_bound_agreement": {
+    "type_hash": "3bd69f1808f1dcb",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (left right : List ErdosSzekeres.Ctx.Letter),\n  Eq σ.word\n      (instHAppendOfAppend.hAppend\n        (instHAppendOfAppend.hAppend left\n          (List.cons ErdosSzekeres.Ctx.Letter.child\n            (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n        right) →\n    ∀ (p : Nat),\n      List.instMembership.mem σ.childPositions p →\n        Ne p left.length →\n          Ne p (instHAdd.hAdd left.length 1) →\n            ∀ (s : ErdosSzekeres.Ctx.Side) (c : Nat),\n              instLENat.le\n                  (σ.part (List.filter (fun r => Decidable.decide (Ne r p)) σ.childPositions) s\n                      c).numRuns\n                  1 →\n                have ρ :=\n                  { a := σ.a, u := σ.u, k := σ.k,\n                    word :=\n                      instHAppendOfAppend.hAppend\n                        (instHAppendOfAppend.hAppend left\n                          (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                        right,\n                    maxima := σ.maxima };\n                have q := ite (instLENat.le p left.length) p (instHSub.hSub p 1);\n                Eq\n                  (σ.part (List.filter (fun r => Decidable.decide (Ne r p)) σ.childPositions) s\n                      c).bound\n                  (ρ.part (List.filter (fun r => Decidable.decide (Ne r q)) ρ.childPositions) s\n                      c).bound",
+    "approved_by": "codex:agent-run-224277bce53348ad",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxOutsidePairSingleRunComplementBoundAgreement"
   }
 }
