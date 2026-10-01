@@ -3416,5 +3416,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundarySingletonMarkerEraseNormalizeExact"
+  },
+  "ErdosSzekeres.decomposableThreshold_capacity_pascal_left": {
+    "type_hash": "909643c533edfebe",
+    "type_pp": "∀ (a u k : Nat),\n  instLENat.le 3 a →\n    instLENat.le a k →\n      instLENat.le 2 u →\n        instLENat.le u k →\n          Eq (ErdosSzekeres.decomposableThreshold a u k)\n            (instHAdd.hAdd (ErdosSzekeres.decomposableThreshold (instHSub.hSub a 1) u k)\n              (ErdosSzekeres.decomposableThreshold a\n                (instMinNat.min (instHSub.hSub u 1) (instHAdd.hAdd (instHSub.hSub k a) 2)) k))",
+    "approved_by": "Gavin-R16",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.DecomposableThresholdCapacityPascalLeft"
   }
 }
