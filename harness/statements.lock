@@ -3740,5 +3740,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxOneLevelRootSingletonBaseExchangeOutsideSingleRun"
+  },
+  "ErdosSzekeres.ctx_part_bound_zero_of_unit_global_axis_and_removed_child": {
+    "type_hash": "59d3fffe846cf5be",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (x l : Nat) (t : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt x) (ErdosSzekeres.Ctx.Letter.ext l t) → instLENat.le 1 l) →\n    ∀ (s : ErdosSzekeres.Ctx.Side),\n      (ErdosSzekeres.ctx_part_bound_zero_of_unit_global_axis_and_removed_child.match_1\n          (fun s => Prop) s (fun _ => instLENat.le σ.u 2) fun _ => instLENat.le σ.a 2) →\n        ∀ (keep : List Nat) (m r : Nat),\n          List.instMembership.mem σ.childPositions r →\n            Not (List.instMembership.mem keep r) →\n              And\n                (∀ (p : Nat),\n                  List.instMembership.mem (σ.part keep s m).childPositions p →\n                    Eq\n                      (ErdosSzekeres.ctx_part_bound_zero_of_unit_global_axis_and_removed_child.match_1\n                        (fun s => Nat) s (fun _ => (σ.part keep s m).cupLimit p p) fun _ =>\n                        (σ.part keep s m).capLimit p p)\n                      0)\n                (Eq (σ.part keep s m).bound 0)",
+    "approved_by": "codex:agent-run-cd0185da75604d4f",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxPartBoundZeroOfUnitGlobalAxisAndRemovedChild"
   }
 }
