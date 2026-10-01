@@ -902,11 +902,15 @@
   "ErdosSzekeres.ctx_bound_le_two_of_small_global_axis_with_indexed_marker": {
     "type_hash": "a485f50bd2c84ea5",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side),\n      instLENat.le\n          (ErdosSzekeres.ctx_bound_le_two_of_small_global_axis_with_indexed_marker.match_1\n            (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n          3 →\n        ∀ (N x : Nat),\n          List.instMembership.mem (σ.levelsOn s 0) N →\n            List.instMembership.mem (σ.extPositions N) x →\n              And (∀ (fuel : Nat), instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 2)\n                (instLENat.le σ.bound 2)",
+  "ErdosSzekeres.ctx_bound_le_two_of_both_sides_near_saturated_sibling_maxima": {
+    "type_hash": "b09d329ab76bf18a",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (L U : Nat),\n      List.instMembership.mem (σ.levelsOn ErdosSzekeres.Ctx.Side.lower 0) L →\n        List.instMembership.mem (σ.levelsOn ErdosSzekeres.Ctx.Side.upper 0) U →\n          instLENat.le (instHSub.hSub σ.k 3) (σ.maximumAt L) →\n            instLENat.le (instHSub.hSub σ.k 3) (σ.maximumAt U) →\n              And (∀ (fuel : Nat), instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 2)\n                (instLENat.le σ.bound 2)",
     "approved_by": "codex:01a0f4ea-9d8c-7e21-9b26-ad1343695305",
     "approved_at": "2026-10-01",
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundLeTwoOfSmallGlobalAxisWithIndexedMarker"
+    "module": "ESBlueprint.B.CtxBoundLeTwoOfBothSidesNearSaturatedSiblingMaxima"
   },
   "ErdosSzekeres.ctx_bound_mono_of_marker_inclusion": {
     "type_hash": "a7e307d70dbf463a",
