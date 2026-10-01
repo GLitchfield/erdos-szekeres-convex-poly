@@ -92,6 +92,7 @@ Nodes: closed 324, open 20, refuted 2.
 | `ErdosSzekeres.ctx_bound_ext_letter_deletion_mono_of_isolated_children` | formalization | closed |  |  | - | 2026-09-30 |
 | `ErdosSzekeres.ctx_bound_external_letter_contraction` | conjecture | closed |  |  | pass | 2026-09-07 |
 | `ErdosSzekeres.ctx_bound_interval_or_complement_le` | formalization | closed |  |  | - | 2026-09-07 |
+| `ErdosSzekeres.ctx_bound_le_iff_all_interval_cuts_le` | formalization | closed |  |  | - | uncommitted |
 | `ErdosSzekeres.ctx_bound_le_inactive_prune_capacity_three` | formalization | closed |  |  | - | 2026-09-09 |
 | `ErdosSzekeres.ctx_bound_le_merge_same_side_levels` | formalization | closed |  |  | - | 2026-09-29 |
 | `ErdosSzekeres.ctx_bound_le_numRuns_of_unit_axis_limit` | formalization | closed |  |  | - | 2026-09-08 |
