@@ -3812,5 +3812,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxFirstChildSingletonBoundOneOfOppositeUnitAxis"
+  },
+  "ErdosSzekeres.ctx_two_unmarked_runs_bound_one_of_opposite_unit_axis": {
+    "type_hash": "97ffc56385043289",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (m : Nat),\n  Eq σ.maxima (List.cons m List.nil) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        (∀ (v : ErdosSzekeres.Ctx.Letter),\n            List.instMembership.mem σ.word v →\n              Or (Eq v ErdosSzekeres.Ctx.Letter.child) (Eq v (ErdosSzekeres.Ctx.Letter.ext 1 s))) →\n          Eq σ.word.head? (Option.some ErdosSzekeres.Ctx.Letter.child) →\n            Eq σ.word.getLast? (Option.some ErdosSzekeres.Ctx.Letter.child) →\n              Eq σ.numRuns 2 →\n                instLENat.le 3\n                    ((fun v =>\n                        ErdosSzekeres.ctx_two_unmarked_runs_bound_one_of_opposite_unit_axis.match_1\n                          (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n                      s) →\n                  instLENat.le\n                      ((fun v =>\n                          ErdosSzekeres.ctx_two_unmarked_runs_bound_one_of_opposite_unit_axis.match_1\n                            (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n                        s)\n                      σ.k →\n                    Eq\n                        ((fun v =>\n                            ErdosSzekeres.ctx_two_unmarked_runs_bound_one_of_opposite_unit_axis.match_1\n                              (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n                          t)\n                        2 →\n                      instLENat.le m (instHSub.hSub σ.k 3) → Eq σ.bound 1",
+    "approved_by": "codex:agent-run-cd0185da75604d4f",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxTwoUnmarkedRunsBoundOneOfOppositeUnitAxis"
   }
 }
