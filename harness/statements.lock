@@ -1657,11 +1657,15 @@
   "ErdosSzekeres.ctx_part_bound_zero_of_same_side_large_sibling_maximum": {
     "type_hash": "d913167a30e72df3",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (x l : Nat) (t : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt x) (ErdosSzekeres.Ctx.Letter.ext l t) → instLENat.le 1 l) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (N : Nat),\n      List.instMembership.mem (σ.levelsOn s 0) N →\n        instLENat.le (instHSub.hSub σ.k 2) (σ.maximumAt N) →\n          ∀ (keep : List Nat) (m r : Nat),\n            List.instMembership.mem σ.childPositions r →\n              Not (List.instMembership.mem keep r) → Eq (σ.part keep s m).bound 0",
+  "ErdosSzekeres.ctx_part_bound_zero_of_near_saturated_sibling_and_younger_boundary_marker": {
+    "type_hash": "b311114fc58a6f42",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (J M x : Nat),\n      List.instMembership.mem (σ.levelsOn s 0) J →\n        List.instMembership.mem (σ.levelsOn s 0) M →\n          instLTNat.lt J M →\n            List.instMembership.mem (σ.extPositions J) x →\n              Or (∀ (q : Nat), List.instMembership.mem σ.childPositions q → instLTNat.lt x q)\n                  (∀ (q : Nat), List.instMembership.mem σ.childPositions q → instLTNat.lt q x) →\n                instLENat.le (instHSub.hSub σ.k 3) (σ.maximumAt M) →\n                  ∀ (keep : List Nat) (m r : Nat),\n                    List.instMembership.mem σ.childPositions r →\n                      Not (List.instMembership.mem keep r) →\n                        And\n                          (∀ (p : Nat),\n                            List.instMembership.mem (σ.part keep s m).childPositions p →\n                              Eq\n                                (ErdosSzekeres.ctx_part_bound_zero_of_near_saturated_sibling_and_younger_boundary_marker.match_1\n                                  (fun s => Nat) s (fun _ => (σ.part keep s m).cupLimit p p)\n                                  fun _ => (σ.part keep s m).capLimit p p)\n                                0)\n                          (Eq (σ.part keep s m).bound 0)",
     "approved_by": "codex:01a0f4ea-9d8c-7e21-9b26-ad1343695305",
     "approved_at": "2026-10-01",
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxPartBoundZeroOfSameSideLargeSiblingMaximum"
+    "module": "ESBlueprint.B.CtxPartBoundZeroOfNearSaturatedSiblingAndYoungerBoundaryMarker"
   },
   "ErdosSzekeres.ctx_part_capacity_drop_in_clear_interval": {
     "type_hash": "5f08c4b50fce3f8e",
