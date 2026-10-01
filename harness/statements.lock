@@ -3803,5 +3803,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxInsidePairLeafThresholdMonoOfTwoRuns"
+  },
+  "ErdosSzekeres.ctx_first_child_singleton_bound_one_of_opposite_unit_axis": {
+    "type_hash": "65d4019b78e927",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (q j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt q) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (m : Nat),\n      Eq σ.maxima (List.cons m List.nil) →\n        ∀ (s t : ErdosSzekeres.Ctx.Side),\n          Ne s t →\n            Eq (σ.sideAt 1) s →\n              ∀ (p : Nat),\n                Eq σ.childPositions.head? (Option.some p) →\n                  instLENat.le 2 σ.numRuns →\n                    instLENat.le\n                        (instHAdd.hAdd 4\n                          (ite\n                            (Eq\n                              (List.filter (fun x => Decidable.decide (instLTNat.lt x p))\n                                (σ.extPositions 1))\n                              List.nil)\n                            0 1))\n                        ((fun v =>\n                            ErdosSzekeres.ctx_first_child_singleton_bound_one_of_opposite_unit_axis.match_1\n                              (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n                          s) →\n                      instLENat.le\n                          ((fun v =>\n                              ErdosSzekeres.ctx_first_child_singleton_bound_one_of_opposite_unit_axis.match_1\n                                (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n                            s)\n                          σ.k →\n                        Eq\n                            ((fun v =>\n                                ErdosSzekeres.ctx_first_child_singleton_bound_one_of_opposite_unit_axis.match_1\n                                  (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n                              t)\n                            2 →\n                          instLENat.le m (instHSub.hSub σ.k 3) →\n                            And (Eq (σ.part (List.cons p List.nil) s 1).bound 1) (Eq σ.bound 1)",
+    "approved_by": "codex:agent-run-cd0185da75604d4f",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxFirstChildSingletonBoundOneOfOppositeUnitAxis"
   }
 }
