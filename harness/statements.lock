@@ -180,6 +180,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxAllActiveCapacityThreeTwoMarkerTriangleBound"
   },
+  "ErdosSzekeres.ctx_all_unit_sibling_and_point_capacity_zero_counterexample": {
+    "type_hash": "155d945818456f0f",
+    "type_pp": "Exists fun σ =>\n  And σ.WellFormed\n    (And (Eq σ.a 4)\n      (And (Eq σ.u 4)\n        (And (Eq σ.k 4)\n          (And (Eq σ.maxima (List.cons 1 (List.cons 1 (List.cons 1 (List.cons 1 List.nil)))))\n            (And (Eq σ.childPositions (List.cons 2 (List.cons 5 List.nil)))\n              (And (instLENat.le 2 σ.numRuns)\n                (And (Eq σ.bound 0)\n                  (∀ (p : Nat),\n                    List.instMembership.mem σ.childPositions p →\n                      And (Eq (σ.cupLimit p p) 1) (Eq (σ.capLimit p p) 1)))))))))",
+    "approved_by": "codex:01a0f4ea-9d8c-7e21-9b26-ad1343695305",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxAllUnitSiblingAndPointCapacityZeroCounterexample"
+  },
   "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound": {
     "type_hash": "afc36f9894426a73",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (p r q : Nat),\n  instLENat.le p r →\n    instLENat.le r q →\n      have global :=\n        ErdosSzekeres.ctx_axis_capacity_interval_lower_bound.match_1 (fun s => Nat) s (fun _ => σ.u)\n          fun _ => σ.a;\n      have capacity := fun z =>\n        ErdosSzekeres.ctx_axis_capacity_interval_lower_bound.match_1 (fun s => Nat) s\n          (fun _ => σ.cupLimit z z) fun _ => σ.capLimit z z;\n      instLENat.le (instHAdd.hAdd (capacity p) (capacity q))\n        (instHAdd.hAdd (capacity r) (instHSub.hSub global 1))",
