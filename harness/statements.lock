@@ -3533,5 +3533,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundZeroOfIndexedMarkerAndGlobalAxisAtMostTwo"
+  },
+  "ErdosSzekeres.ctx_one_level_root_bound_le_absorbed_marker_budget_of_small_opposite_global": {
+    "type_hash": "60aa6950418d1bf6",
+    "type_pp": "∀ (A G k m : Nat),\n  instLENat.le A 3 →\n    ∀ (side : ErdosSzekeres.Ctx.Side) (word : List ErdosSzekeres.Ctx.Letter)\n      (hletters :\n        ∀ (z : ErdosSzekeres.Ctx.Letter),\n          List.instMembership.mem word z →\n            Or (Eq z ErdosSzekeres.Ctx.Letter.child) (Eq z (ErdosSzekeres.Ctx.Letter.ext 1 side)))\n      (hmarker : List.instMembership.mem word (ErdosSzekeres.Ctx.Letter.ext 1 side)),\n      have σ :=\n        {\n          a :=\n            ErdosSzekeres.ctx_one_level_root_bound_le_absorbed_marker_budget_of_small_opposite_global.match_1\n              word (fun side hletters hmarker => Nat) side hletters hmarker\n              (fun hletters hmarker => A) fun hletters hmarker => G,\n          u :=\n            ErdosSzekeres.ctx_one_level_root_bound_le_absorbed_marker_budget_of_small_opposite_global.match_1\n              word (fun side hletters hmarker => Nat) side hletters hmarker\n              (fun hletters hmarker => G) fun hletters hmarker => A,\n          k := k, word := word, maxima := List.cons m List.nil };\n      And\n        (∀ (fuel : Nat),\n          instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n            (instHSub.hSub (instMinNat.min G (instHSub.hSub k m)) 1))\n        (instLENat.le σ.bound (instHSub.hSub (instMinNat.min G (instHSub.hSub k m)) 1))",
+    "approved_by": "codex:agent-run-58eb8a64138d4dfc",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxOneLevelRootBoundLeAbsorbedMarkerBudgetOfSmallOppositeGlobal"
   }
 }
