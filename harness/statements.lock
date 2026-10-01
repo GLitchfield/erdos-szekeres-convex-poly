@@ -3785,5 +3785,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxPositiveBoundHasSameAxisSingleRunLeaf"
+  },
+  "ErdosSzekeres.ctx_bound_zero_of_protected_bracketed_child_and_opposite_unit_axis": {
+    "type_hash": "f5d6f67d88632043",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s t : ErdosSzekeres.Ctx.Side),\n      Ne s t →\n        instLENat.le\n            ((fun v =>\n                ErdosSzekeres.ctx_bound_zero_of_protected_bracketed_child_and_opposite_unit_axis.match_1\n                  (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n              s)\n            3 →\n          instLENat.le\n              ((fun v =>\n                  ErdosSzekeres.ctx_bound_zero_of_protected_bracketed_child_and_opposite_unit_axis.match_1\n                    (fun v => Nat) v (fun _ => σ.u) fun _ => σ.a)\n                t)\n              2 →\n            ∀ (N : Nat),\n              List.instMembership.mem (σ.levelsOn s 0) N →\n                ∀ (x r y : Nat),\n                  List.instMembership.mem (σ.extPositions N) x →\n                    List.instMembership.mem (σ.extPositions N) y →\n                      List.instMembership.mem σ.childPositions r →\n                        instLTNat.lt x r →\n                          instLTNat.lt r y →\n                            And (∀ (fuel : Nat), Eq (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 0)\n                              (Eq σ.bound 0)",
+    "approved_by": "codex:agent-run-cd0185da75604d4f",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundZeroOfProtectedBracketedChildAndOppositeUnitAxis"
   }
 }
