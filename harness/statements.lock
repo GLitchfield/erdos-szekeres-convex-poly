@@ -3560,5 +3560,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxFirstSingletonCutAttainsOfIndexedMarkerAndGlobalAxisAtMostTwo"
+  },
+  "ErdosSzekeres.ctx_bound_le_global_threshold_of_global_axis_at_most_five_below_saturation": {
+    "type_hash": "3e8c8349e1fab750",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    instLENat.le 1 σ.a →\n      instLENat.le 1 σ.u →\n        instLENat.le σ.a σ.k →\n          instLENat.le σ.u σ.k →\n            Or (instLENat.le σ.a 5) (instLENat.le σ.u 5) →\n              instLENat.le (instHAdd.hAdd σ.a σ.u) (instHAdd.hAdd σ.k 3) →\n                And\n                  (∀ (fuel : Nat),\n                    instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ)\n                      (ErdosSzekeres.decomposableThreshold σ.a σ.u σ.k))\n                  (instLENat.le σ.bound (ErdosSzekeres.decomposableThreshold σ.a σ.u σ.k))",
+    "approved_by": "codex:agent-run-58eb8a64138d4dfc",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundLeGlobalThresholdOfGlobalAxisAtMostFiveBelowSaturation"
   }
 }
