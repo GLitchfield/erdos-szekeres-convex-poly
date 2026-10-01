@@ -7,7 +7,7 @@ namespace ErdosSzekeres
 @ws B
 @kind conjecture
 @consumer ErdosSzekeres.ctx_bound_additive_multi_run
-@falsifier harness/falsifiers/ctx_bound_maximal_segment_flip.py -/
+@falsifier ctx_bound_maximal_segment_flip.py -/
 theorem ctx_bound_maximal_segment_flip_exchange (σ : Ctx.Context) (hwf : σ.WellFormed) (hruns : 2 ≤ σ.numRuns)
     (keep : List ℕ) (hkeep : ∀ p ∈ keep, p ∈ σ.childPositions)
     (hne : keep ≠ []) (hall : keep.length < σ.childPositions.length)
