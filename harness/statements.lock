@@ -3758,5 +3758,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxOneLevelSingleRunBoundNormalForm"
+  },
+  "ErdosSzekeres.ctx_two_level_unilateral_young_marker_extensions_exact": {
+    "type_hash": "88855bc6fde5dd3d",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (m : Nat),\n  Eq σ.maxima (List.cons 1 (List.cons m List.nil)) →\n    ∀ (s : ErdosSzekeres.Ctx.Side),\n      Eq (σ.sideAt 1) s →\n        Eq (σ.sideAt 2) s →\n          ∀ (p : Nat),\n            Ne (σ.extPositions 1) List.nil →\n              (∀ (x : Nat), List.instMembership.mem (σ.extPositions 1) x → instLTNat.lt p x) →\n                have left :=\n                  ite\n                    (Eq\n                      (List.filter (fun x => Decidable.decide (instLTNat.lt x p))\n                        (σ.extPositions 2))\n                      List.nil)\n                    0 1;\n                have right :=\n                  ite\n                    (Exists fun x =>\n                      And (List.instMembership.mem (σ.extPositions 1) x)\n                        (Exists fun y =>\n                          And (List.instMembership.mem (σ.extPositions 2) y) (instLTNat.lt x y)))\n                    2 1;\n                And (Eq (σ.leftExt s 0 p) left)\n                  (And (Eq (σ.rightExt s 0 p) right)\n                    (And\n                      (Eq (σ.joinExt s p p)\n                        (Nat.instMax.max (instHAdd.hAdd left right) (instHAdd.hAdd m 1)))\n                      (∀ (t : ErdosSzekeres.Ctx.Side),\n                        Ne t s → And (Eq (σ.chainExt t p p) 0) (Eq (σ.joinExt t p p) 0))))",
+    "approved_by": "codex:agent-run-cd0185da75604d4f",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxTwoLevelUnilateralYoungMarkerExtensionsExact"
   }
 }
