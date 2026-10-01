@@ -3794,5 +3794,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundZeroOfProtectedBracketedChildAndOppositeUnitAxis"
+  },
+  "ErdosSzekeres.ctx_inside_pair_leaf_threshold_mono_of_two_runs": {
+    "type_hash": "ca8c8fa7a2e9b812",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    ∀ (left right : List ErdosSzekeres.Ctx.Letter),\n      Eq σ.word\n          (instHAppendOfAppend.hAppend\n            (instHAppendOfAppend.hAppend left\n              (List.cons ErdosSzekeres.Ctx.Letter.child\n                (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n            right) →\n        instLENat.le 2 σ.numRuns →\n          ∀ (p : Nat),\n            List.instMembership.mem σ.childPositions p →\n              Or (Eq p left.length) (Eq p (instHAdd.hAdd left.length 1)) →\n                ∀ (s : ErdosSzekeres.Ctx.Side) (c : Nat),\n                  instLENat.le 1 c →\n                    instLENat.le c (instHSub.hSub σ.k 2) →\n                      have ρ :=\n                        { a := σ.a, u := σ.u, k := σ.k,\n                          word :=\n                            instHAppendOfAppend.hAppend\n                              (instHAppendOfAppend.hAppend left\n                                (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                              right,\n                          maxima := σ.maxima };\n                      have q := left.length;\n                      instLENat.le\n                        (ErdosSzekeres.decomposableThreshold\n                          (instHAdd.hAdd ((σ.part (List.cons p List.nil) s c).capLimit p p) 1)\n                          (instHAdd.hAdd ((σ.part (List.cons p List.nil) s c).cupLimit p p) 1) σ.k)\n                        (ErdosSzekeres.decomposableThreshold\n                          (instHAdd.hAdd ((ρ.part (List.cons q List.nil) s c).capLimit q q) 1)\n                          (instHAdd.hAdd ((ρ.part (List.cons q List.nil) s c).cupLimit q q) 1) σ.k)",
+    "approved_by": "codex:agent-run-224277bce53348ad",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxInsidePairLeafThresholdMonoOfTwoRuns"
   }
 }
