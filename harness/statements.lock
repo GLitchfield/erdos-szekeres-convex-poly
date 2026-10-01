@@ -3434,5 +3434,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundaryAdjacentSameSideMarkerMergeNormalizeExact"
+  },
+  "ErdosSzekeres.ctx_one_level_root_both_marked_point_threshold_lower": {
+    "type_hash": "3cc8ecb823117d12",
+    "type_pp": "∀ (A G k m : Nat),\n  instLENat.le 3 k →\n    instLENat.le 3 A →\n      instLENat.le A k →\n        instLENat.le 4 G →\n          instLENat.le G k →\n            instLENat.le 1 m →\n              instLENat.le m (instHSub.hSub k 2) →\n                ∀ (side : ErdosSzekeres.Ctx.Side) (word : List ErdosSzekeres.Ctx.Letter)\n                  (hletters :\n                    ∀ (z : ErdosSzekeres.Ctx.Letter),\n                      List.instMembership.mem word z →\n                        Or (Eq z ErdosSzekeres.Ctx.Letter.child)\n                          (Eq z (ErdosSzekeres.Ctx.Letter.ext 1 side)))\n                  (hfirst : Eq word.head? (Option.some (ErdosSzekeres.Ctx.Letter.ext 1 side)))\n                  (hlast : Eq word.getLast? (Option.some (ErdosSzekeres.Ctx.Letter.ext 1 side))),\n                  List.instMembership.mem word ErdosSzekeres.Ctx.Letter.child →\n                    have σ :=\n                      {\n                        a :=\n                          ErdosSzekeres.ctx_one_level_root_both_marked_point_threshold_lower.match_1\n                            word (fun side hletters hfirst hlast => Nat) side hletters hfirst hlast\n                            (fun hletters hfirst hlast => A) fun hletters hfirst hlast => G,\n                        u :=\n                          ErdosSzekeres.ctx_one_level_root_both_marked_point_threshold_lower.match_1\n                            word (fun side hletters hfirst hlast => Nat) side hletters hfirst hlast\n                            (fun hletters hfirst hlast => G) fun hletters hfirst hlast => A,\n                        k := k, word := word, maxima := List.cons m List.nil };\n                    instLENat.le\n                      (ErdosSzekeres.decomposableThreshold A\n                        (instMinNat.min (instHSub.hSub G 2) (instHSub.hSub k m)) k)\n                      σ.bound",
+    "approved_by": "codex:agent-run-58eb8a64138d4dfc",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxOneLevelRootBothMarkedPointThresholdLower"
   }
 }
