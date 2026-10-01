@@ -1812,11 +1812,15 @@
   "ErdosSzekeres.ctx_positive_bound_attained_by_interval_cut": {
     "type_hash": "df2c9a14de04cd68",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  instLENat.le 2 σ.numRuns →\n    instLTNat.lt 0 σ.bound →\n      Exists fun block =>\n        And (List.instMembership.mem σ.blocks block)\n          (Exists fun d =>\n            And (instLENat.le 1 d)\n              (And (instLENat.le d (instHSub.hSub σ.k 2))\n                (Or\n                  (Eq σ.bound\n                    (instHAdd.hAdd (σ.part block ErdosSzekeres.Ctx.Side.lower d).bound\n                      (σ.part\n                          (List.filter\n                            (fun p => Decidable.decide (Not (List.instMembership.mem block p)))\n                            σ.childPositions)\n                          ErdosSzekeres.Ctx.Side.upper\n                          (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound))\n                  (Eq σ.bound\n                    (instHAdd.hAdd\n                      (σ.part block ErdosSzekeres.Ctx.Side.upper\n                          (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                      (σ.part\n                          (List.filter\n                            (fun p => Decidable.decide (Not (List.instMembership.mem block p)))\n                            σ.childPositions)\n                          ErdosSzekeres.Ctx.Side.lower d).bound)))))",
+  "ErdosSzekeres.ctx_positive_part_forces_unsaturated_same_side_history": {
+    "type_hash": "b4e207f3ada8ea51",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    instLENat.le 3 σ.k →\n      ∀ (keep : List Nat) (s : ErdosSzekeres.Ctx.Side) (m r : Nat),\n        List.instMembership.mem σ.childPositions r →\n          Not (List.instMembership.mem keep r) →\n            instLTNat.lt 0 (σ.part keep s m).bound →\n              ∀ (N : Nat),\n                List.instMembership.mem (σ.levelsOn s 0) N →\n                  instLENat.le (σ.maximumAt N) (instHSub.hSub σ.k 3)",
     "approved_by": "codex:01a0f4ea-9d8c-7e21-9b26-ad1343695305",
     "approved_at": "2026-10-01",
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxPositiveBoundAttainedByIntervalCut"
+    "module": "ESBlueprint.B.CtxPositivePartForcesUnsaturatedSameSideHistory"
   },
   "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained": {
     "type_hash": "67d28a822fc84d21",
