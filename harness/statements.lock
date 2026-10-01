@@ -3596,5 +3596,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxOneLevelRootExposedEndSingletonCutAttainsOfSmallEffectiveAxisRange"
+  },
+  "ErdosSzekeres.ctx_one_level_root_global_end_singleton_selector_counterexample": {
+    "type_hash": "62563e2427e2be55",
+    "type_pp": "have σ :=\n  { a := 2, u := 3, k := 4,\n    word :=\n      List.cons ErdosSzekeres.Ctx.Letter.child\n        (List.cons ErdosSzekeres.Ctx.Letter.child\n          (List.cons (ErdosSzekeres.Ctx.Letter.ext 1 ErdosSzekeres.Ctx.Side.lower)\n            (List.cons ErdosSzekeres.Ctx.Letter.child\n              (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))),\n    maxima := List.cons 1 List.nil };\nAnd σ.WellFormed\n  (And (Eq σ.numRuns 2)\n    (And (Eq σ.childPositions (List.cons 0 (List.cons 1 (List.cons 3 (List.cons 4 List.nil)))))\n      (And (Eq σ.bound 1)\n        (And\n          (∀ (p : Nat),\n            Or (Eq σ.childPositions.head? (Option.some p))\n                (Eq σ.childPositions.getLast? (Option.some p)) →\n              ∀ (d : Nat),\n                instLENat.le 1 d →\n                  instLENat.le d (instHSub.hSub σ.k 2) →\n                    And\n                      (Eq\n                        (instHAdd.hAdd\n                          (σ.part (List.cons p List.nil) ErdosSzekeres.Ctx.Side.lower d).bound\n                          (σ.part\n                              (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                              ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                        0)\n                      (Eq\n                        (instHAdd.hAdd\n                          (σ.part (List.cons p List.nil) ErdosSzekeres.Ctx.Side.upper\n                              (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                          (σ.part\n                              (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                              ErdosSzekeres.Ctx.Side.lower d).bound)\n                        0))\n          (Eq\n            (instHAdd.hAdd\n              (ErdosSzekeres.decomposableThreshold\n                (instHAdd.hAdd\n                  ((σ.part (List.cons 1 List.nil) ErdosSzekeres.Ctx.Side.upper 2).capLimit 1 1) 1)\n                (instHAdd.hAdd\n                  ((σ.part (List.cons 1 List.nil) ErdosSzekeres.Ctx.Side.upper 2).cupLimit 1 1) 1)\n                4)\n              (σ.part (List.filter (fun q => Decidable.decide (Ne q 1)) σ.childPositions)\n                  ErdosSzekeres.Ctx.Side.lower 1).bound)\n            1)))))",
+    "approved_by": "codex:agent-run-58eb8a64138d4dfc",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxOneLevelRootGlobalEndSingletonSelectorCounterexample"
   }
 }
