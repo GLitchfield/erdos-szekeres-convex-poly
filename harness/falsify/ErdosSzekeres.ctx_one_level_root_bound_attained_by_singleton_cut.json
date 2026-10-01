@@ -1,0 +1,171 @@
+{
+ "node": "ErdosSzekeres.ctx_one_level_root_bound_attained_by_singleton_cut",
+ "falsifier": "ctx_one_level_root_singleton_attainment.py",
+ "falsifier_sha256": "a61dec0655a949e01ae7329b4e975a922ea152eb441c5d1a42d3ff68d1323192",
+ "dataset": "harness/dataset",
+ "statement_type_hash": "81be57bce6e33074",
+ "result": "pass",
+ "exit_code": 0,
+ "seconds": 29.4,
+ "at": "2026-10-01T00:12:04Z",
+ "agent": "codex:01a0f4c8-720d-7fe2-afe2-0052a6bdd4b4",
+ "witness": {
+  "node": "ErdosSzekeres.ctx_one_level_root_bound_attained_by_singleton_cut",
+  "statement": "∀ (a u k m : Nat),\n  instLENat.le 3 k →\n    instLENat.le 1 a →\n      instLENat.le a k →\n        instLENat.le 1 u →\n          instLENat.le u k →\n            instLENat.le 1 m →\n              instLENat.le m (instHSub.hSub k 2) →\n                ∀ (side : ErdosSzekeres.Ctx.Side) (word : List ErdosSzekeres.Ctx.Letter),\n                  (∀ (x : ErdosSzekeres.Ctx.Letter),\n                      List.instMembership.mem word x →\n                        Or (Eq x ErdosSzekeres.Ctx.Letter.child)\n                          (Eq x (ErdosSzekeres.Ctx.Letter.ext 1 side))) →\n                    have σ :=\n                      { a := a, u := u, k := k, word := word, maxima := List.cons m List.nil };\n                    have opposite := fun s =>\n                      ErdosSzekeres.ctx_one_level_root_bound_attained_by_singleton_cut.match_1\n                        (fun s => ErdosSzekeres.Ctx.Side) s (fun _ => ErdosSzekeres.Ctx.Side.upper)\n                        fun _ => ErdosSzekeres.Ctx.Side.lower;\n                    instLENat.le 2 σ.numRuns →\n                      Exists fun p =>\n                        And (List.instMembership.mem σ.childPositions p)\n                          (Exists fun s =>\n                            Exists fun c =>\n                              And (instLENat.le 1 c)\n                                (And (instLENat.le c (instHSub.hSub k 2))\n                                  (instLENat.le σ.bound\n                                    (instHAdd.hAdd\n                                      (ErdosSzekeres.decomposableThreshold\n                                        (instHAdd.hAdd\n                                          ((σ.part (List.cons p List.nil) s c).capLimit p p) 1)\n                                        (instHAdd.hAdd\n                                          ((σ.part (List.cons p List.nil) s c).cupLimit p p) 1)\n                                        k)\n                                      (σ.part\n                                          (List.filter (fun r => Decidable.decide (Ne r p))\n                                            σ.childPositions)\n                                          (opposite s)\n                                          (instHSub.hSub (instHSub.hSub k 1) c)).bound))))",
+  "semantics": "context-bound-zero-children-c-v1",
+  "args": {
+   "dataset": "/home/gavin/git/erdos-szekeres-convex-poly/runs/worktrees/main-integration-20260928/harness/dataset",
+   "out": "/home/gavin/git/erdos-szekeres-convex-poly/.es/erdos-szekeres/tmp/witness-ctx_one_level_root_bound_attained_by_singleton_cut.json",
+   "node": "ErdosSzekeres.ctx_one_level_root_bound_attained_by_singleton_cut",
+   "statement": "∀ (a u k m : Nat),\n  instLENat.le 3 k →\n    instLENat.le 1 a →\n      instLENat.le a k →\n        instLENat.le 1 u →\n          instLENat.le u k →\n            instLENat.le 1 m →\n              instLENat.le m (instHSub.hSub k 2) →\n                ∀ (side : ErdosSzekeres.Ctx.Side) (word : List ErdosSzekeres.Ctx.Letter),\n                  (∀ (x : ErdosSzekeres.Ctx.Letter),\n                      List.instMembership.mem word x →\n                        Or (Eq x ErdosSzekeres.Ctx.Letter.child)\n                          (Eq x (ErdosSzekeres.Ctx.Letter.ext 1 side))) →\n                    have σ :=\n                      { a := a, u := u, k := k, word := word, maxima := List.cons m List.nil };\n                    have opposite := fun s =>\n                      ErdosSzekeres.ctx_one_level_root_bound_attained_by_singleton_cut.match_1\n                        (fun s => ErdosSzekeres.Ctx.Side) s (fun _ => ErdosSzekeres.Ctx.Side.upper)\n                        fun _ => ErdosSzekeres.Ctx.Side.lower;\n                    instLENat.le 2 σ.numRuns →\n                      Exists fun p =>\n                        And (List.instMembership.mem σ.childPositions p)\n                          (Exists fun s =>\n                            Exists fun c =>\n                              And (instLENat.le 1 c)\n                                (And (instLENat.le c (instHSub.hSub k 2))\n                                  (instLENat.le σ.bound\n                                    (instHAdd.hAdd\n                                      (ErdosSzekeres.decomposableThreshold\n                                        (instHAdd.hAdd\n                                          ((σ.part (List.cons p List.nil) s c).capLimit p p) 1)\n                                        (instHAdd.hAdd\n                                          ((σ.part (List.cons p List.nil) s c).cupLimit p p) 1)\n                                        k)\n                                      (σ.part\n                                          (List.filter (fun r => Decidable.decide (Ne r p))\n                                            σ.childPositions)\n                                          (opposite s)\n                                          (instHSub.hSub (instHSub.hSub k 1) c)).bound))))",
+   "ks": "5,6",
+   "max_runs": 4,
+   "max_len": 2,
+   "max_children": 4,
+   "timing_only": false
+  },
+  "scope": [
+   {
+    "k": 5,
+    "parameters": [
+     [
+      1,
+      1
+     ],
+     [
+      1,
+      2
+     ],
+     [
+      1,
+      3
+     ],
+     [
+      1,
+      4
+     ],
+     [
+      1,
+      5
+     ],
+     [
+      2,
+      1
+     ],
+     [
+      2,
+      2
+     ],
+     [
+      2,
+      3
+     ],
+     [
+      2,
+      4
+     ],
+     [
+      2,
+      5
+     ],
+     [
+      3,
+      1
+     ],
+     [
+      3,
+      2
+     ],
+     [
+      3,
+      3
+     ],
+     [
+      3,
+      4
+     ],
+     [
+      3,
+      5
+     ],
+     [
+      4,
+      1
+     ],
+     [
+      4,
+      2
+     ],
+     [
+      4,
+      3
+     ],
+     [
+      4,
+      4
+     ],
+     [
+      4,
+      5
+     ],
+     [
+      5,
+      1
+     ],
+     [
+      5,
+      2
+     ],
+     [
+      5,
+      3
+     ],
+     [
+      5,
+      4
+     ],
+     [
+      5,
+      5
+     ]
+    ],
+    "words": 72,
+    "maxima": [
+     1,
+     2,
+     3
+    ],
+    "total": 5400
+   },
+   {
+    "k": 6,
+    "parameters": [
+     [
+      5,
+      5
+     ],
+     [
+      6,
+      6
+     ]
+    ],
+    "words": 72,
+    "maxima": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "total": 576
+   }
+  ],
+  "counts": {
+   "leaf_audits": 127472,
+   "roots": 5976,
+   "cuts": 127472
+  },
+  "seconds": 28.77472650600248,
+  "violations": [],
+  "complete": true
+ }
+}
