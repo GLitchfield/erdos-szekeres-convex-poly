@@ -315,7 +315,9 @@ def _run_command_job(cfg: Config, job: dict, argv: list[str]) -> dict:
         "ES_PROJECT_ROOT": str(cfg.root),
         "ES_STAGE_MEMORY": memory_max,
         "ES_IN_GUARDED_STAGE": "1",
-        "ES_EXTRACT_MEMORY_MAX": str(cfg.get("extract", "memory_max", default="36G")),
+        # cleared, not set to the configured cap: an empty value means "use the config", which keeps a
+        # worker's one-shot override out of the job without pinning the sized full-extract attempt
+        "ES_EXTRACT_MEMORY_MAX": "",
     }
     # the budget and availability were checked at submission; `force` skips the
     # lean-compiler check, which is about lake builds, not about arbitrary commands

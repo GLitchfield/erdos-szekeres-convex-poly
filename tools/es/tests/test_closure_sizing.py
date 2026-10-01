@@ -274,3 +274,11 @@ def test_full_extract_builds_a_stale_blueprint_first(cfg, monkeypatch, tmp_path)
 def test_extract_memory_env_pins_both_full_extract_attempts(cfg, monkeypatch):
     monkeypatch.setenv("ES_EXTRACT_MEMORY_MAX", "18G")
     assert cfg.extract_full_memory_max == "18G" and cfg.extract_memory_max == "18G"
+
+
+def test_a_job_environment_does_not_pin_the_full_extract(cfg, monkeypatch):
+    # jobs clear ES_EXTRACT_MEMORY_MAX (empty = use the config); job 20260930-212743-8b9be5 was refused
+    # when the runner set it to the configured cap, which pinned the first attempt at 28G
+    monkeypatch.setenv("ES_EXTRACT_MEMORY_MAX", "")
+    assert cfg.extract_full_memory_max == str(cfg.get("extract", "full_memory_max", default="12G"))
+    assert cfg.extract_memory_max == str(cfg.get("extract", "memory_max", default="36G"))

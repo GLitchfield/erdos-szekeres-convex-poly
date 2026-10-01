@@ -569,7 +569,7 @@ def test_runner_uses_submitted_worktree_for_nested_es(cfg, monkeypatch, tmp_path
         'ES_PROJECT_ROOT':str(cfg.root),
         'ES_STAGE_MEMORY':'1G',
         'ES_IN_GUARDED_STAGE':'1',
-        'ES_EXTRACT_MEMORY_MAX':'36G',
+        'ES_EXTRACT_MEMORY_MAX':'',  # cleared: the worker's 512M does not leak and the config decides
     }
 
 
