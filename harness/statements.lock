@@ -1660,11 +1660,15 @@
   "ErdosSzekeres.ctx_part_bound_le_two_of_same_side_near_saturated_sibling_maximum": {
     "type_hash": "ddc27f83ce3f07b5",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (N : Nat),\n      List.instMembership.mem (σ.levelsOn s 0) N →\n        instLENat.le (instHSub.hSub σ.k 3) (σ.maximumAt N) →\n          ∀ (keep : List Nat) (m r : Nat),\n            List.instMembership.mem σ.childPositions r →\n              Not (List.instMembership.mem keep r) →\n                And\n                  (∀ (fuel : Nat),\n                    instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel (σ.part keep s m)) 2)\n                  (instLENat.le (σ.part keep s m).bound 2)",
+  "ErdosSzekeres.ctx_part_bound_le_two_of_near_saturated_old_and_fresh_maxima": {
+    "type_hash": "a7a22e44827d4efb",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (x j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt x) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (N : Nat),\n      List.instMembership.mem σ.levels N →\n        instLENat.le (instHSub.hSub σ.k 3) (σ.maximumAt N) →\n          ∀ (keep : List Nat) (v : ErdosSzekeres.Ctx.Side) (m r : Nat),\n            instLENat.le (instHSub.hSub σ.k 3) m →\n              List.instMembership.mem σ.childPositions r →\n                Not (List.instMembership.mem keep r) →\n                  And\n                    (∀ (fuel : Nat),\n                      instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel (σ.part keep v m)) 2)\n                    (instLENat.le (σ.part keep v m).bound 2)",
     "approved_by": "codex:01a0f4ea-9d8c-7e21-9b26-ad1343695305",
     "approved_at": "2026-10-01",
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxPartBoundLeTwoOfSameSideNearSaturatedSiblingMaximum"
+    "module": "ESBlueprint.B.CtxPartBoundLeTwoOfNearSaturatedOldAndFreshMaxima"
   },
   "ErdosSzekeres.ctx_part_bound_rank_pair_end_reservations": {
     "type_hash": "6d94168ee4ab3ff2",
