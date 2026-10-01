@@ -1,4 +1,6 @@
 import ErdosSzekeres.DecomposableContextLemmas
+import ESBlueprint.B.CtxBoundAdditiveMultiRunOfMaximalSegmentFlipExchange
+import ESBlueprint.B.CtxBoundMaximalSegmentFlipExchange
 
 namespace ErdosSzekeres
 
@@ -9,6 +11,9 @@ namespace ErdosSzekeres
 @consumer ErdosSzekeres.ctx_bound_additive
 @falsifier ctx_bound_additive.py -/
 theorem ctx_bound_additive_multi_run (σ : Ctx.Context) (hwf : σ.WellFormed) (hruns : 2 ≤ σ.numRuns) (keep : List ℕ) (hkeep : ∀ p ∈ keep, p ∈ σ.childPositions) (hne : keep ≠ []) (hall : keep.length < σ.childPositions.length) (d : ℕ) (hd : 1 ≤ d) (hdk : d ≤ σ.k - 2) : (σ.part keep Ctx.Side.lower d).bound + (σ.part (σ.childPositions.filter (fun p => p ∉ keep)) Ctx.Side.upper (σ.k - 1 - d)).bound ≤ σ.bound ∧ (σ.part keep Ctx.Side.upper (σ.k - 1 - d)).bound + (σ.part (σ.childPositions.filter (fun p => p ∉ keep)) Ctx.Side.lower d).bound ≤ σ.bound := by
-  sorry
+  exact ctx_bound_additive_multi_run_of_maximal_segment_flip_exchange σ hwf hruns
+    (fun K hK hn hl hi hc e he hek b _ ↦
+      ctx_bound_maximal_segment_flip_exchange σ hwf hruns K hK hn hl hi hc e he hek b)
+    keep hkeep hne hall d hd hdk
 
 end ErdosSzekeres
