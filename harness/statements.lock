@@ -3848,5 +3848,14 @@
     "kind": "conjecture",
     "ws": "B",
     "module": "ESBlueprint.B.CtxOneLevelRootSingletonBaseExchangeOutsideMultirunSourceOppositeThree"
+  },
+  "ErdosSzekeres.ctx_one_level_root_bound_normal_form_of_axis_two_or_saturated": {
+    "type_hash": "1933d0914d56fe0c",
+    "type_pp": "∀ (a u k m : Nat),\n  instLENat.le 3 k →\n    instLENat.le 1 a →\n      instLENat.le a k →\n        instLENat.le 1 u →\n          instLENat.le u k →\n            instLENat.le 1 m →\n              instLENat.le m (instHSub.hSub k 2) →\n                ∀ (side : ErdosSzekeres.Ctx.Side) (word : List ErdosSzekeres.Ctx.Letter),\n                  (∀ (x : ErdosSzekeres.Ctx.Letter),\n                      List.instMembership.mem word x →\n                        Or (Eq x ErdosSzekeres.Ctx.Letter.child)\n                          (Eq x (ErdosSzekeres.Ctx.Letter.ext 1 side))) →\n                    Or (Eq a 2) (Or (Eq u 2) (Eq m (instHSub.hSub k 2))) →\n                      have σ :=\n                        { a := a, u := u, k := k, word := word, maxima := List.cons m List.nil };\n                      have r := instMinNat.min σ.numRuns (ite (Or (Eq a 2) (Eq u 2)) 3 2);\n                      have marker := ErdosSzekeres.Ctx.Letter.ext 1 side;\n                      have normalWord :=\n                        instHAppendOfAppend.hAppend\n                          (instHAppendOfAppend.hAppend\n                            (ite (Eq word.head? (Option.some marker)) (List.cons marker List.nil)\n                              List.nil)\n                            (List.intersperse marker\n                              (List.replicate r ErdosSzekeres.Ctx.Letter.child)))\n                          (ite (Eq word.getLast? (Option.some marker)) (List.cons marker List.nil)\n                            List.nil);\n                      Eq σ.bound\n                        { a := σ.a, u := σ.u, k := σ.k, word := normalWord,\n                            maxima := σ.maxima }.bound",
+    "approved_by": "codex:agent-run-cd0185da75604d4f",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxOneLevelRootBoundNormalFormOfAxisTwoOrSaturated"
   }
 }
