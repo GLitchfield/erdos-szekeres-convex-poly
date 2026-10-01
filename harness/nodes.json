@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-01T02:55:58Z",
- "git_sha": "d95528c9f0924683e532bd7acd39f43f28b75d1f",
- "extract_mode": "full",
+ "generated_at": "2026-10-01T17:19:36Z",
+ "git_sha": "5847e155fa613d4d2311eaee86b4b094f630e9a4",
+ "extract_mode": "incremental from 5847e155fa61: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15689,
- "tree_hash": "8803e254cc26b1bd.4560d6f33c43b8ee",
+ "modules": 15690,
+ "tree_hash": "92b2b436e7d7eeff.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,7 +20,7 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15689,
+  "cached_modules": 5361,
   "scanned_constants": 0,
   "scanned_modules": 0
  },
@@ -3882,8 +3882,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "claimed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -6740,7 +6740,7 @@
     "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange"
    ],
    "helpers": [],
-   "status": "open",
+   "status": "claimed",
    "ready": false,
    "blocked_by": [
     "ErdosSzekeres.ctx_one_level_root_bound_attained_by_singleton_cut",
@@ -13317,8 +13317,8 @@
     "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange.match_1"
    ],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -13484,6 +13484,227 @@
    },
    "lock_ok": true,
    "opened": "2026-09-30"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange_inside_pair",
+   "module": "ESBlueprint.B.CtxOneLevelRootSingletonBaseExchangeInsidePair",
+   "ws": "B",
+   "kind": "conjecture",
+   "description": "Inside-pair residual of the localized singleton-base and complement exchange X. All original legal root and cut hypotheses remain, with positive global axes, old chosen axis at least three, and p equal to one of the adjacent doubled child positions. Unit-axis and old-chosen-at-most-two cases are closed separately. Leaf monotonicity alone does not allocate the complement; the joint legal side/coupling exchange remains open.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "conjecture",
+    "depends": [
+     "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold"
+    ],
+    "consumer": "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange",
+    "falsifier": "ctx_one_level_root_singleton_base_exchange_residuals.py"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (a u k m : Nat),\n  instLENat.le 3 k →\n    instLENat.le 1 a →\n      instLENat.le a k →\n        instLENat.le 1 u →\n          instLENat.le u k →\n            instLENat.le 1 m →\n              instLENat.le m (instHSub.hSub k 2) →\n                instLENat.le 2 a →\n                  instLENat.le 2 u →\n                    ∀ (side : ErdosSzekeres.Ctx.Side),\n                      instLENat.le 3\n                          (ErdosSzekeres.ctx_one_level_root_singleton_base_exchange_inside_pair.match_1\n                            (fun side => Nat) side (fun _ => u) fun _ => a) →\n                        ∀ (left right : List ErdosSzekeres.Ctx.Letter),\n                          (∀ (x : ErdosSzekeres.Ctx.Letter),\n                              List.instMembership.mem (instHAppendOfAppend.hAppend left right) x →\n                                Or (Eq x ErdosSzekeres.Ctx.Letter.child)\n                                  (Eq x (ErdosSzekeres.Ctx.Letter.ext 1 side))) →\n                            have σ :=\n                              { a := a, u := u, k := k,\n                                word :=\n                                  instHAppendOfAppend.hAppend\n                                    (instHAppendOfAppend.hAppend left\n                                      (List.cons ErdosSzekeres.Ctx.Letter.child\n                                        (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n                                    right,\n                                maxima := List.cons m List.nil };\n                            have ρ :=\n                              { a := a, u := u, k := k,\n                                word :=\n                                  instHAppendOfAppend.hAppend\n                                    (instHAppendOfAppend.hAppend left\n                                      (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                                    right,\n                                maxima := List.cons m List.nil };\n                            have opposite := fun s =>\n                              ErdosSzekeres.ctx_one_level_root_singleton_base_exchange_inside_pair.match_1\n                                (fun s => ErdosSzekeres.Ctx.Side) s\n                                (fun _ => ErdosSzekeres.Ctx.Side.upper) fun _ =>\n                                ErdosSzekeres.Ctx.Side.lower;\n                            instLENat.le 2 σ.numRuns →\n                              ∀ (p : Nat),\n                                List.instMembership.mem σ.childPositions p →\n                                  ∀ (s : ErdosSzekeres.Ctx.Side) (c : Nat),\n                                    instLENat.le 1 c →\n                                      instLENat.le c (instHSub.hSub k 2) →\n                                        Or (Eq p left.length) (Eq p (instHAdd.hAdd left.length 1)) →\n                                          have q :=\n                                            ite (instLENat.le p left.length) p (instHSub.hSub p 1);\n                                          Exists fun t =>\n                                            Exists fun d =>\n                                              And (instLENat.le 1 d)\n                                                (And (instLENat.le d (instHSub.hSub k 2))\n                                                  (instLENat.le\n                                                    (instHAdd.hAdd\n                                                      (ErdosSzekeres.decomposableThreshold\n                                                        (instHAdd.hAdd\n                                                          ((σ.part (List.cons p List.nil) s\n                                                                c).capLimit\n                                                            p p)\n                                                          1)\n                                                        (instHAdd.hAdd\n                                                          ((σ.part (List.cons p List.nil) s\n                                                                c).cupLimit\n                                                            p p)\n                                                          1)\n                                                        k)\n                                                      (σ.part\n                                                          (List.filter\n                                                            (fun r => Decidable.decide (Ne r p))\n                                                            σ.childPositions)\n                                                          (opposite s)\n                                                          (instHSub.hSub (instHSub.hSub k 1)\n                                                            c)).bound)\n                                                    (instHAdd.hAdd\n                                                      (ErdosSzekeres.decomposableThreshold\n                                                        (instHAdd.hAdd\n                                                          ((ρ.part (List.cons q List.nil) t\n                                                                d).capLimit\n                                                            q q)\n                                                          1)\n                                                        (instHAdd.hAdd\n                                                          ((ρ.part (List.cons q List.nil) t\n                                                                d).cupLimit\n                                                            q q)\n                                                          1)\n                                                        k)\n                                                      (ρ.part\n                                                          (List.filter\n                                                            (fun r => Decidable.decide (Ne r q))\n                                                            ρ.childPositions)\n                                                          (opposite t)\n                                                          (instHSub.hSub (instHSub.hSub k 1)\n                                                            d)).bound)))",
+   "type_hash": "2adfcbcf557a959b",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_singleton_part_bound_eq_threshold"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange_inside_pair.match_1"
+   ],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": {
+    "node": "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange_inside_pair",
+    "falsifier": "ctx_one_level_root_singleton_base_exchange_residuals.py",
+    "falsifier_sha256": "31c6b7e5006fe16c506f3c48a4e1bd4e9a568460ae5c9980a97f541fbedb765d",
+    "dataset": "harness/dataset",
+    "statement_type_hash": "2adfcbcf557a959b",
+    "result": "pass",
+    "exit_code": 0,
+    "seconds": 300.2,
+    "at": "2026-10-01T17:16:05Z",
+    "agent": "codex:agent-run-224277bce53348ad",
+    "witness": {
+     "node": "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange_inside_pair",
+     "statement": "∀ (a u k m : Nat),\n  instLENat.le 3 k →\n    instLENat.le 1 a →\n      instLENat.le a k →\n        instLENat.le 1 u →\n          instLENat.le u k →\n            instLENat.le 1 m →\n              instLENat.le m (instHSub.hSub k 2) →\n                instLENat.le 2 a →\n                  instLENat.le 2 u →\n                    ∀ (side : ErdosSzekeres.Ctx.Side),\n                      instLENat.le 3\n                          (ErdosSzekeres.ctx_one_level_root_singleton_base_exchange_inside_pair.match_1\n                            (fun side => Nat) side (fun _ => u) fun _ => a) →\n                        ∀ (left right : List ErdosSzekeres.Ctx.Letter),\n                          (∀ (x : ErdosSzekeres.Ctx.Letter),\n                              List.instMembership.mem (instHAppendOfAppend.hAppend left right) x →\n                                Or (Eq x ErdosSzekeres.Ctx.Letter.child)\n                                  (Eq x (ErdosSzekeres.Ctx.Letter.ext 1 side))) →\n                            have σ :=\n                              { a := a, u := u, k := k,\n                                word :=\n                                  instHAppendOfAppend.hAppend\n                                    (instHAppendOfAppend.hAppend left\n                                      (List.cons ErdosSzekeres.Ctx.Letter.child\n                                        (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))\n                                    right,\n                                maxima := List.cons m List.nil };\n                            have ρ :=\n                              { a := a, u := u, k := k,\n                                word :=\n                                  instHAppendOfAppend.hAppend\n                                    (instHAppendOfAppend.hAppend left\n                                      (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))\n                                    right,\n                                maxima := List.cons m List.nil };\n                            have opposite := fun s =>\n                              ErdosSzekeres.ctx_one_level_root_singleton_base_exchange_inside_pair.match_1\n                                (fun s => ErdosSzekeres.Ctx.Side) s\n                                (fun _ => ErdosSzekeres.Ctx.Side.upper) fun _ =>\n                                ErdosSzekeres.Ctx.Side.lower;\n                            instLENat.le 2 σ.numRuns →\n                              ∀ (p : Nat),\n                                List.instMembership.mem σ.childPositions p →\n                                  ∀ (s : ErdosSzekeres.Ctx.Side) (c : Nat),\n                                    instLENat.le 1 c →\n                                      instLENat.le c (instHSub.hSub k 2) →\n                                        Or (Eq p left.length) (Eq p (instHAdd.hAdd left.length 1)) →\n                                          have q :=\n                                            ite (instLENat.le p left.length) p (instHSub.hSub p 1);\n                                          Exists fun t =>\n                                            Exists fun d =>\n                                              And (instLENat.le 1 d)\n                                                (And (instLENat.le d (instHSub.hSub k 2))\n                                                  (instLENat.le\n                                                    (instHAdd.hAdd\n                                                      (ErdosSzekeres.decomposableThreshold\n                                                        (instHAdd.hAdd\n                                                          ((σ.part (List.cons p List.nil) s\n                                                                c).capLimit\n                                                            p p)\n                                                          1)\n                                                        (instHAdd.hAdd\n                                                          ((σ.part (List.cons p List.nil) s\n                                                                c).cupLimit\n                                                            p p)\n                                                          1)\n                                                        k)\n                                                      (σ.part\n                                                          (List.filter\n                                                            (fun r => Decidable.decide (Ne r p))\n                                                            σ.childPositions)\n                                                          (opposite s)\n                                                          (instHSub.hSub (instHSub.hSub k 1)\n                                                            c)).bound)\n                                                    (instHAdd.hAdd\n                                                      (ErdosSzekeres.decomposableThreshold\n                                                        (instHAdd.hAdd\n                                                          ((ρ.part (List.cons q List.nil) t\n                                                                d).capLimit\n                                                            q q)\n                                                          1)\n                                                        (instHAdd.hAdd\n                                                          ((ρ.part (List.cons q List.nil) t\n                                                                d).cupLimit\n                                                            q q)\n                                                          1)\n                                                        k)\n                                                      (ρ.part\n                                                          (List.filter\n                                                            (fun r => Decidable.decide (Ne r q))\n                                                            ρ.childPositions)\n                                                          (opposite t)\n                                                          (instHSub.hSub (instHSub.hSub k 1)\n                                                            d)).bound)))",
+     "domain": "inside",
+     "semantics": "context-bound-zero-children-c-v1",
+     "scope": [
+      {
+       "k": 3,
+       "parameters": [
+        [
+         2,
+         2
+        ],
+        [
+         2,
+         3
+        ],
+        [
+         3,
+         2
+        ],
+        [
+         3,
+         3
+        ]
+       ],
+       "words": 72,
+       "maxima": [
+        1
+       ]
+      },
+      {
+       "k": 4,
+       "parameters": [
+        [
+         2,
+         2
+        ],
+        [
+         2,
+         3
+        ],
+        [
+         2,
+         4
+        ],
+        [
+         3,
+         2
+        ],
+        [
+         3,
+         3
+        ],
+        [
+         3,
+         4
+        ],
+        [
+         4,
+         2
+        ],
+        [
+         4,
+         3
+        ],
+        [
+         4,
+         4
+        ]
+       ],
+       "words": 72,
+       "maxima": [
+        1,
+        2
+       ]
+      },
+      {
+       "k": 5,
+       "parameters": [
+        [
+         2,
+         2
+        ],
+        [
+         2,
+         3
+        ],
+        [
+         2,
+         4
+        ],
+        [
+         2,
+         5
+        ],
+        [
+         3,
+         2
+        ],
+        [
+         3,
+         3
+        ],
+        [
+         3,
+         4
+        ],
+        [
+         3,
+         5
+        ],
+        [
+         4,
+         2
+        ],
+        [
+         4,
+         3
+        ],
+        [
+         4,
+         4
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         5,
+         2
+        ],
+        [
+         5,
+         3
+        ],
+        [
+         5,
+         4
+        ],
+        [
+         5,
+         5
+        ]
+       ],
+       "words": 72,
+       "maxima": [
+        1,
+        2,
+        3
+       ]
+      }
+     ],
+     "max_children": 5,
+     "counts": {
+      "leaf_audits": 235520,
+      "roots": 5040,
+      "pairs": 7280,
+      "excluded_cuts": 109120,
+      "selected_cuts": 55744
+     },
+     "seconds": 299.60304782999447,
+     "violations": []
+    }
+   },
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_one_sided_part_boundary_budget",
@@ -37043,6 +37264,7 @@
    "ESBlueprint.B.CtxOneLevelRefinedPotentialBound": "29ef1678f039a028",
    "ESBlueprint.B.CtxOneLevelRootBoundAttainedBySingletonCut": "9f05281c9cab8c3c",
    "ESBlueprint.B.CtxOneLevelRootSingletonBaseExchange": "5591e55dfb2af096",
+   "ESBlueprint.B.CtxOneLevelRootSingletonBaseExchangeInsidePair": "95e08b41c8ea1024",
    "ESBlueprint.B.CtxOneSidedPartBoundaryBudget": "c54ad19383b859d0",
    "ESBlueprint.B.CtxPartBoundRankPairEndReservations": "28d36d5e92c10afc",
    "ESBlueprint.B.CtxPartCapacityDropInClearInterval": "049fb450fd47eac8",
