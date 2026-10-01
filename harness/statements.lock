@@ -1032,11 +1032,15 @@
   "ErdosSzekeres.ctx_bound_zero_of_both_sides_large_sibling_maxima": {
     "type_hash": "e59de0037a53548d",
     "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (x l : Nat) (t : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt x) (ErdosSzekeres.Ctx.Letter.ext l t) → instLENat.le 1 l) →\n    instLENat.le 2 σ.numRuns →\n      ∀ (L U : Nat),\n        List.instMembership.mem (σ.levelsOn ErdosSzekeres.Ctx.Side.lower 0) L →\n          List.instMembership.mem (σ.levelsOn ErdosSzekeres.Ctx.Side.upper 0) U →\n            instLENat.le (instHSub.hSub σ.k 2) (σ.maximumAt L) →\n              instLENat.le (instHSub.hSub σ.k 2) (σ.maximumAt U) → Eq σ.bound 0",
+  "ErdosSzekeres.ctx_bound_zero_of_both_sides_near_saturated_boundary_histories": {
+    "type_hash": "c152a4d63bf7a6eb",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    instLENat.le 2 σ.numRuns →\n      (∀ (s : ErdosSzekeres.Ctx.Side),\n          Exists fun J =>\n            Exists fun M =>\n              Exists fun x =>\n                And (List.instMembership.mem (σ.levelsOn s 0) J)\n                  (And (List.instMembership.mem (σ.levelsOn s 0) M)\n                    (And (instLTNat.lt J M)\n                      (And (List.instMembership.mem (σ.extPositions J) x)\n                        (And\n                          (Or\n                            (∀ (q : Nat),\n                              List.instMembership.mem σ.childPositions q → instLTNat.lt x q)\n                            (∀ (q : Nat),\n                              List.instMembership.mem σ.childPositions q → instLTNat.lt q x))\n                          (instLENat.le (instHSub.hSub σ.k 3) (σ.maximumAt M))))))) →\n        Eq σ.bound 0",
     "approved_by": "codex:01a0f4ea-9d8c-7e21-9b26-ad1343695305",
     "approved_at": "2026-10-01",
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxBoundZeroOfBothSidesLargeSiblingMaxima"
+    "module": "ESBlueprint.B.CtxBoundZeroOfBothSidesNearSaturatedBoundaryHistories"
   },
   "ErdosSzekeres.ctx_bound_zero_of_unit_global_axis": {
     "type_hash": "3f2964484062c828",
