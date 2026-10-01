@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-09-30T23:50:49Z",
- "git_sha": "a796ca2c67a86da5b50b5860b887eab160f6ad20",
+ "generated_at": "2026-10-01T00:02:13Z",
+ "git_sha": "132c614c595db7a2b0ce0638279854e90c9ffec6",
  "extract_mode": "incremental from a796ca2c67a8: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15686,
- "tree_hash": "dd6e3c82007573e8.4560d6f33c43b8ee",
+ "modules": 15687,
+ "tree_hash": "bb3cd045cf7cafb3.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -6736,8 +6736,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "claimed",
-   "ready": false,
+   "status": "open",
+   "ready": true,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -15365,6 +15365,45 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-09-09"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_single_level_limits_exact",
+   "module": "ESBlueprint.B.CtxSingleLevelLimitsExact",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Exact endpoint extension and capacity formulas for any raw context with one indexed sibling level and global parameters at most k. On the level's selected side, joinExt is max(chainExt,m), so the chosen limit is min(global-1-chainExt,k-1-m); opposite chain/join vanish and its limit is otherglobal-1. No child membership, well-formedness, physical uniformity or sibling-maximum-range hypotheses. Supplies explicit root capacities for singleton base exchange and capacity-ordered normal-form research.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.ctx_bound_child_run_contraction_one_level_root"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (m : Nat),\n  Eq σ.maxima (List.cons m List.nil) →\n    instLENat.le σ.a σ.k →\n      instLENat.le σ.u σ.k →\n        ∀ (s : ErdosSzekeres.Ctx.Side) (hs : Eq (σ.sideAt 1) s) (p q : Nat),\n          And (Eq (σ.joinExt s p q) (Nat.instMax.max (σ.chainExt s p q) m))\n            (ErdosSzekeres.ctx_single_level_limits_exact.match_1 σ (fun s hs => Prop) s hs\n              (fun hs =>\n                And (Eq (σ.chainExt ErdosSzekeres.Ctx.Side.upper p q) 0)\n                  (And (Eq (σ.joinExt ErdosSzekeres.Ctx.Side.upper p q) 0)\n                    (And\n                      (Eq (σ.cupLimit p q)\n                        (instMinNat.min\n                          (instHSub.hSub (instHSub.hSub σ.u 1)\n                            (σ.chainExt ErdosSzekeres.Ctx.Side.lower p q))\n                          (instHSub.hSub (instHSub.hSub σ.k 1) m)))\n                      (Eq (σ.capLimit p q) (instHSub.hSub σ.a 1)))))\n              fun hs =>\n              And (Eq (σ.chainExt ErdosSzekeres.Ctx.Side.lower p q) 0)\n                (And (Eq (σ.joinExt ErdosSzekeres.Ctx.Side.lower p q) 0)\n                  (And\n                    (Eq (σ.capLimit p q)\n                      (instMinNat.min\n                        (instHSub.hSub (instHSub.hSub σ.a 1)\n                          (σ.chainExt ErdosSzekeres.Ctx.Side.upper p q))\n                        (instHSub.hSub (instHSub.hSub σ.k 1) m)))\n                    (Eq (σ.cupLimit p q) (instHSub.hSub σ.u 1)))))",
+   "type_hash": "27c5ffa48b789810",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_single_level_limits_exact.match_1",
+    "ErdosSzekeres.ctx_single_level_limits_exact._proof_1_3",
+    "ErdosSzekeres.ctx_single_level_limits_exact._proof_1_4",
+    "ErdosSzekeres.ctx_single_level_limits_exact._proof_1_5",
+    "ErdosSzekeres.ctx_single_level_limits_exact._proof_1_6"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-09-30"
   },
   {
    "name": "ErdosSzekeres.ctx_single_level_occurrence_prune_bound_mono",
@@ -36734,6 +36773,7 @@
    "ESBlueprint.B.CtxSharedRankBareMarkerUpperNormalize": "e2d65551f896fc5d",
    "ESBlueprint.B.CtxSiblingMaximumUpperNormalize": "6cacc130a3c6ab25",
    "ESBlueprint.B.CtxSingleLevelCompanionMaximumBound": "2ab8a4de51c52c13",
+   "ESBlueprint.B.CtxSingleLevelLimitsExact": "658c5007e4af56b2",
    "ESBlueprint.B.CtxSingleLevelOccurrencePruneBoundMono": "5e1579b29a619bbb",
    "ESBlueprint.B.CtxSingleLevelQuadraticSmallCapacityCutBound": "cd0572398254f549",
    "ESBlueprint.B.CtxSingleLevelSaturatedLinearBound": "86babc6bc1ac0ba7",
