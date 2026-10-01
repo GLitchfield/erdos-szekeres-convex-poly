@@ -134,8 +134,8 @@ ESBlueprint = "ESBlueprint"
 script = "ESBlueprint/Extract.lean"    # materialized from tools/es/lean/Extract.lean.tmpl
 imports = ["ESBlueprint", "ErdosSzekeres"]
 memory_max = "28G"                     # leaves 12G of the shared 40G budget for agent hosts and small jobs; full extraction remains guarded
-full_memory_max = "12G"                # first-attempt cap of a full extract: ~120 recorded runs peaked ~5.3 GiB (page cache included);
-                                       # an OOM kill retries once at memory_max; ES_EXTRACT_MEMORY_MAX pins both
+# full_memory_max (first-attempt cap of a full extract) is deliberately unset, so it equals memory_max: a 14G
+# attempt thrashed on the mmapped 118.5 GiB olean closure (60+ min against 8-10 min, no OOM kill to trigger a retry)
 budget_min = 180
 index_layers = ["ESCore", "ESEncodings"]  # layers whose declarations go into index.json (certificates excluded)
 missing_destinations = "error"

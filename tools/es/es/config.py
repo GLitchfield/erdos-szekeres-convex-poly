@@ -393,12 +393,19 @@ class Config:
 
     @property
     def extract_full_memory_max(self) -> str:
-        """Sized first-attempt cap for a full extract. Over ~120 recorded full extracts the steady-state
-        peak (cgroup memory.peak, page cache included) was about 5.3 GiB; the rare cold runs that
-        rebuild heavy modules reached the full cap. An OOM kill under this cap is retried once at
-        `extract_memory_max`. ES_EXTRACT_MEMORY_MAX pins both attempts to one cap."""
+        """First-attempt cap of a full extract; defaults to `extract_memory_max` (no sizing).
+
+        Measured 2026-09-30: the extractor maps the import closure's oleans (118.5 GiB, certificates
+        included) and walks the whole environment. Under a 14G scope it held ~5.3 GiB anon plus ~9.3 GiB
+        file cache and thrashed (785M file refaults, 60+ min against 8-10 min). Page-cache thrash causes
+        no OOM kill, so an OOM retry never fires. Older memory.peak readings near 5.3 GiB left out
+        olean pages charged to other cgroups. Set [extract] full_memory_max only from a measured
+        no-thrash run. ES_EXTRACT_MEMORY_MAX pins both attempts."""
         env = os.environ.get("ES_EXTRACT_MEMORY_MAX")
-        return env if env else str(self.get("extract", "full_memory_max", default="12G"))
+        if env:
+            return env
+        val = self.get("extract", "full_memory_max", default=None)
+        return str(val) if val else self.extract_memory_max
 
     @property
     def extract_budget_min(self) -> int:

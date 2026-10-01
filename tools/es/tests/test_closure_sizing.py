@@ -280,5 +280,6 @@ def test_a_job_environment_does_not_pin_the_full_extract(cfg, monkeypatch):
     # jobs clear ES_EXTRACT_MEMORY_MAX (empty = use the config); job 20260930-212743-8b9be5 was refused
     # when the runner set it to the configured cap, which pinned the first attempt at 28G
     monkeypatch.setenv("ES_EXTRACT_MEMORY_MAX", "")
-    assert cfg.extract_full_memory_max == str(cfg.get("extract", "full_memory_max", default="12G"))
     assert cfg.extract_memory_max == str(cfg.get("extract", "memory_max", default="36G"))
+    # full_memory_max unset: the first attempt is the full cap (a sized 14G attempt thrashed on page cache)
+    assert cfg.extract_full_memory_max == cfg.extract_memory_max
