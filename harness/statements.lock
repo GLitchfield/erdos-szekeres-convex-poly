@@ -3605,5 +3605,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxOneLevelRootGlobalEndSingletonSelectorCounterexample"
+  },
+  "ErdosSzekeres.ctx_multi_run_zero_and_first_singleton_attains_of_both_globals_at_most_two": {
+    "type_hash": "40a056f1851d356b",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    instLENat.le σ.a 2 →\n      instLENat.le σ.u 2 →\n        instLENat.le 2 σ.numRuns →\n          And (∀ (fuel : Nat), Eq (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 0)\n            (And (Eq σ.bound 0)\n              (instLENat.le 3 σ.k →\n                Exists fun p =>\n                  And (Eq σ.childPositions.head? (Option.some p))\n                    (And (List.instMembership.mem σ.childPositions p)\n                      (And (instLENat.le 1 (instHSub.hSub σ.k 2))\n                        (instLENat.le σ.bound\n                          (instHAdd.hAdd\n                            (ErdosSzekeres.decomposableThreshold\n                              (instHAdd.hAdd\n                                ((σ.part (List.cons p List.nil) ErdosSzekeres.Ctx.Side.lower\n                                      1).capLimit\n                                  p p)\n                                1)\n                              (instHAdd.hAdd\n                                ((σ.part (List.cons p List.nil) ErdosSzekeres.Ctx.Side.lower\n                                      1).cupLimit\n                                  p p)\n                                1)\n                              σ.k)\n                            (σ.part\n                                (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                                ErdosSzekeres.Ctx.Side.upper\n                                (instHSub.hSub (instHSub.hSub σ.k 1) 1)).bound))))))",
+    "approved_by": "codex:agent-run-58eb8a64138d4dfc",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxMultiRunZeroAndFirstSingletonAttainsOfBothGlobalsAtMostTwo"
   }
 }
