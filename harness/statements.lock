@@ -1695,6 +1695,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxPartOppositeLimitsEq"
   },
+  "ErdosSzekeres.ctx_part_point_capacity_zero_of_near_saturated_sibling_and_removed_bracketing": {
+    "type_hash": "a3c70757ae7fc67c",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (x j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt x) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (N : Nat),\n      List.instMembership.mem (σ.levelsOn s 0) N →\n        instLENat.le (instHSub.hSub σ.k 3) (σ.maximumAt N) →\n          ∀ (keep : List Nat) (m p r t : Nat),\n            List.instMembership.mem σ.childPositions r →\n              Not (List.instMembership.mem keep r) →\n                List.instMembership.mem σ.childPositions t →\n                  Not (List.instMembership.mem keep t) →\n                    instLTNat.lt r p →\n                      instLTNat.lt p t →\n                        Eq\n                          (ErdosSzekeres.ctx_part_point_capacity_zero_of_near_saturated_sibling_and_removed_bracketing.match_1\n                            (fun s => Nat) s (fun _ => (σ.part keep s m).cupLimit p p) fun _ =>\n                            (σ.part keep s m).capLimit p p)\n                          0",
+    "approved_by": "codex:01a0f4ea-9d8c-7e21-9b26-ad1343695305",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxPartPointCapacityZeroOfNearSaturatedSiblingAndRemovedBracketing"
+  },
   "ErdosSzekeres.ctx_part_positive_letters": {
     "type_hash": "5f01ea5d2aeb02a7",
     "type_pp": "∀ (ρ : ErdosSzekeres.Ctx.Context) (keep : List Nat) (v : ErdosSzekeres.Ctx.Side) (m x j : Nat)\n  (w : ErdosSzekeres.Ctx.Side),\n  Eq ((ρ.part keep v m).letterAt x) (ErdosSzekeres.Ctx.Letter.ext j w) → instLENat.le 1 j",
