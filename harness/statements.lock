@@ -3749,5 +3749,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxPartBoundZeroOfUnitGlobalAxisAndRemovedChild"
+  },
+  "ErdosSzekeres.ctx_one_level_single_run_bound_normal_form": {
+    "type_hash": "30723e3b90f91c84",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (m : Nat),\n  Eq σ.maxima (List.cons m List.nil) →\n    ∀ (side : ErdosSzekeres.Ctx.Side),\n      (∀ (x : ErdosSzekeres.Ctx.Letter),\n          List.instMembership.mem σ.word x →\n            Or (Eq x ErdosSzekeres.Ctx.Letter.child) (Eq x (ErdosSzekeres.Ctx.Letter.ext 1 side))) →\n        instLENat.le σ.numRuns 1 →\n          have marker := ErdosSzekeres.Ctx.Letter.ext 1 side;\n          have normalWord :=\n            instHAppendOfAppend.hAppend\n              (instHAppendOfAppend.hAppend\n                (ite (Eq σ.word.head? (Option.some marker)) (List.cons marker List.nil) List.nil)\n                (List.intersperse marker (List.replicate σ.numRuns ErdosSzekeres.Ctx.Letter.child)))\n              (ite (Eq σ.word.getLast? (Option.some marker)) (List.cons marker List.nil) List.nil);\n          Eq σ.bound { a := σ.a, u := σ.u, k := σ.k, word := normalWord, maxima := σ.maxima }.bound",
+    "approved_by": "codex:agent-run-cd0185da75604d4f",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxOneLevelSingleRunBoundNormalForm"
   }
 }
