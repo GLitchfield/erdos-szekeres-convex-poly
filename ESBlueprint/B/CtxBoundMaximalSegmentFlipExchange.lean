@@ -1,5 +1,6 @@
 import ErdosSzekeres.DecomposableContextLemmas
 import ESBlueprint.B.CtxBoundMaximalSegmentFlipExchangeOfZeroValue
+import ESBlueprint.B.CtxInterleavedPartitionValueZeroOfKThree
 
 namespace ErdosSzekeres
 
@@ -51,7 +52,16 @@ theorem ctx_bound_maximal_segment_flip_exchange (σ : Ctx.Context) (hwf : σ.Wel
     exact ctx_bound_maximal_segment_flip_exchange_of_zero_value
       σ keep hps d hd hdk o hzero
   · have hpositive : 0 < original := Nat.pos_of_ne_zero hzero
-    -- Remaining R15 obligation: a dominating maximal-segment flip for positive value.
-    sorry
+    by_cases hk3 : σ.k = 3
+    · have hvalues := ctx_interleaved_partition_value_zero_of_k_three
+        σ hwf hruns hk3 keep hkeep hne hall hinter hco d hd hdk
+      have hvalueZero : original = 0 := by
+        cases o with
+        | false => exact hvalues.1
+        | true => exact hvalues.2
+      exact (hzero hvalueZero).elim
+    · have hk4 : 4 ≤ σ.k := by omega
+      -- Remaining R15 obligation: positive-value exchange with 4 ≤ σ.k.
+      sorry
 
 end ErdosSzekeres
