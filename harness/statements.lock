@@ -3551,5 +3551,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxOneLevelRootFirstSingletonCutAttainsOfNeitherMarkedOppositeGlobalThree"
+  },
+  "ErdosSzekeres.ctx_first_singleton_cut_attains_of_indexed_marker_and_global_axis_at_most_two": {
+    "type_hash": "904482967a5782bf",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (s : ErdosSzekeres.Ctx.Side) (N x : Nat),\n  List.instMembership.mem σ.levels N →\n    ∀ (hs : Eq (σ.sideAt N) s),\n      List.instMembership.mem (σ.extPositions N) x →\n        instLENat.le\n            (ErdosSzekeres.ctx_first_singleton_cut_attains_of_indexed_marker_and_global_axis_at_most_two.match_1\n              σ N (fun s hs => Nat) s hs (fun hs => σ.u) fun hs => σ.a)\n            2 →\n          instLENat.le 3 σ.k →\n            have opposite :=\n              ErdosSzekeres.ctx_first_singleton_cut_attains_of_indexed_marker_and_global_axis_at_most_two.match_3\n                (fun s => ErdosSzekeres.Ctx.Side) s (fun _ => ErdosSzekeres.Ctx.Side.upper) fun _ =>\n                ErdosSzekeres.Ctx.Side.lower;\n            instLENat.le 2 σ.numRuns →\n              Exists fun p =>\n                And (Eq σ.childPositions.head? (Option.some p))\n                  (And (List.instMembership.mem σ.childPositions p)\n                    (And (instLENat.le 1 (instHSub.hSub σ.k 2))\n                      (instLENat.le σ.bound\n                        (instHAdd.hAdd\n                          (ErdosSzekeres.decomposableThreshold\n                            (instHAdd.hAdd ((σ.part (List.cons p List.nil) s 1).capLimit p p) 1)\n                            (instHAdd.hAdd ((σ.part (List.cons p List.nil) s 1).cupLimit p p) 1)\n                            σ.k)\n                          (σ.part\n                              (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                              opposite (instHSub.hSub (instHSub.hSub σ.k 1) 1)).bound))))",
+    "approved_by": "codex:agent-run-58eb8a64138d4dfc",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxFirstSingletonCutAttainsOfIndexedMarkerAndGlobalAxisAtMostTwo"
   }
 }
