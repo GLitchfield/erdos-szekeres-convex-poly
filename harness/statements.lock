@@ -3650,5 +3650,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxOneLevelRootInsidePairLeafThresholdMono"
+  },
+  "ErdosSzekeres.ctx_bound_le_two_and_two_level_le_one_of_indexed_marker_global_three": {
+    "type_hash": "ab2d5aded2bc2e93",
+    "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (s : ErdosSzekeres.Ctx.Side) (N x : Nat),\n      List.instMembership.mem σ.levels N →\n        Eq (σ.sideAt N) s →\n          List.instMembership.mem (σ.extPositions N) x →\n            instLENat.le\n                (ErdosSzekeres.ctx_bound_le_two_and_two_level_le_one_of_indexed_marker_global_three.match_1\n                  (fun s => Nat) s (fun _ => σ.u) fun _ => σ.a)\n                3 →\n              And (∀ (fuel : Nat), instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 2)\n                (And (instLENat.le σ.bound 2)\n                  (∀ (M y : Nat),\n                    List.instMembership.mem σ.levels M →\n                      Ne N M →\n                        Eq (σ.sideAt M) s →\n                          List.instMembership.mem (σ.extPositions M) y →\n                            And\n                              (∀ (fuel : Nat),\n                                instLENat.le (ErdosSzekeres.Ctx.Context.boundFuel fuel σ) 1)\n                              (instLENat.le σ.bound 1)))",
+    "approved_by": "codex:agent-run-58eb8a64138d4dfc",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxBoundLeTwoAndTwoLevelLeOneOfIndexedMarkerGlobalThree"
   }
 }
