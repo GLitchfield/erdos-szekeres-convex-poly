@@ -1,4 +1,5 @@
 import ErdosSzekeres.DecomposableContextLemmas
+import ESBlueprint.B.CtxBoundMaximalSegmentFlipExchangeOfZeroValue
 
 namespace ErdosSzekeres
 
@@ -30,6 +31,27 @@ theorem ctx_bound_maximal_segment_flip_exchange (σ : Ctx.Context) (hwf : σ.Wel
           value keep d o ≤ value
             (σ.childPositions.filter (fun p ↦
               (p ∈ keep ∧ p ∉ S) ∨ (p ∉ keep ∧ p ∈ S))) e b := by
-  sorry
+  classical
+  dsimp only
+  let original :=
+    if o then
+      (σ.part keep Ctx.Side.upper (σ.k - 1 - d)).bound +
+        (σ.part (σ.childPositions.filter (fun p ↦ p ∉ keep)) Ctx.Side.lower d).bound
+    else
+      (σ.part keep Ctx.Side.lower d).bound +
+        (σ.part (σ.childPositions.filter (fun p ↦ p ∉ keep))
+          Ctx.Side.upper (σ.k - 1 - d)).bound
+  by_cases hzero : original = 0
+  · have hps : σ.childPositions ≠ [] := by
+      intro hnil
+      rcases keep with _ | ⟨p, ps⟩
+      · exact hne rfl
+      · have hp := hkeep p (List.mem_cons_self ..)
+        simp [hnil] at hp
+    exact ctx_bound_maximal_segment_flip_exchange_of_zero_value
+      σ keep hps d hd hdk o hzero
+  · have hpositive : 0 < original := Nat.pos_of_ne_zero hzero
+    -- Remaining R15 obligation: a dominating maximal-segment flip for positive value.
+    sorry
 
 end ErdosSzekeres
