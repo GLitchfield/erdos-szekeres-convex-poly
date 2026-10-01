@@ -235,3 +235,42 @@ def test_dependency_check_runs_directly_without_a_systemd_bus(cfg, monkeypatch):
     assert calls and calls[0][1:3] == ["build", "--no-build"]
     monkeypatch.setattr(subprocess, "run", lambda argv, **kw: SimpleNamespace(returncode=3))
     assert node.dependencies_built(cfg, ["TBlueprint.A.Foo"], scan_modules(cfg))[0] is False
+
+
+def _fake_extractor(calls):
+    def fake_retry(cfg_, argv, **kw):
+        calls.append(("extract", kw["memory_max"], kw["retry_memory_max"]))
+        Path(argv[argv.index("--out") + 1]).write_text("{}")
+        Path(argv[argv.index("--index") + 1]).write_text("[]")
+        return _result()
+    return fake_retry
+
+
+def test_full_extract_skips_a_current_build_and_sizes_the_extractor(cfg, monkeypatch, tmp_path):
+    from es import lean
+
+    calls = []
+    monkeypatch.setattr(lean, "_targets_current", lambda cfg_, targets: True)
+    monkeypatch.setattr(lean, "run_guarded", lambda *_a, **_k: pytest.fail("no full-cap build when Lake reports current"))
+    monkeypatch.setattr(lean, "run_guarded_retry", _fake_extractor(calls))
+    monkeypatch.delenv("ES_EXTRACT_MEMORY_MAX", raising=False)
+    lean.run_extractor(cfg, out=tmp_path / "n.json", index=tmp_path / "i.json", mods={})
+    # measured steady-state peak ~5.3 GiB: first attempt at the sized cap, one OOM retry at the configured cap
+    assert calls == [("extract", cfg.extract_full_memory_max, cfg.extract_memory_max)]
+
+
+def test_full_extract_builds_a_stale_blueprint_first(cfg, monkeypatch, tmp_path):
+    from es import lean
+
+    calls = []
+    monkeypatch.setattr(lean, "_targets_current", lambda cfg_, targets: False)
+    monkeypatch.setattr(lean, "run_guarded", lambda cfg_, argv, **kw: calls.append(("build", argv[1])) or _result())
+    monkeypatch.setattr(lean, "run_guarded_retry", _fake_extractor(calls))
+    monkeypatch.delenv("ES_EXTRACT_MEMORY_MAX", raising=False)
+    lean.run_extractor(cfg, out=tmp_path / "n.json", index=tmp_path / "i.json", mods={})
+    assert calls[0] == ("build", "build") and calls[1][0] == "extract"
+
+
+def test_extract_memory_env_pins_both_full_extract_attempts(cfg, monkeypatch):
+    monkeypatch.setenv("ES_EXTRACT_MEMORY_MAX", "18G")
+    assert cfg.extract_full_memory_max == "18G" and cfg.extract_memory_max == "18G"

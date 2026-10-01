@@ -133,7 +133,9 @@ ESBlueprint = "ESBlueprint"
 [extract]
 script = "ESBlueprint/Extract.lean"    # materialized from tools/es/lean/Extract.lean.tmpl
 imports = ["ESBlueprint", "ErdosSzekeres"]
-memory_max = "28G"                     # fits the shared 30G budget with a 2G agent host; full extraction remains guarded
+memory_max = "28G"                     # leaves 12G of the shared 40G budget for agent hosts and small jobs; full extraction remains guarded
+full_memory_max = "12G"                # first-attempt cap of a full extract: ~120 recorded runs peaked ~5.3 GiB (page cache included);
+                                       # an OOM kill retries once at memory_max; ES_EXTRACT_MEMORY_MAX pins both
 budget_min = 180
 index_layers = ["ESCore", "ESEncodings"]  # layers whose declarations go into index.json (certificates excluded)
 missing_destinations = "error"
@@ -150,10 +152,11 @@ timeout_min = 60
 memory_max = "24G"                     # falsifiers run SAT solvers and enumerations: same guard as builds
 
 [jobs]
-max_parallel_builds = 1
+max_parallel_builds = 2                # memory admission still serializes large builds (two 20G builds do not fit)
 max_parallel_falsifiers = 2
-memory_budget = "30G"                  # sum of the caps of live jobs (`es job run`, async build/check/falsify);
-                                       # the host has 64 GB, Windows keeps ~25 GB, so the VM should not exceed ~30 GB
+memory_budget = "40G"                  # sum of the caps of live jobs (`es job run`, async build/check/falsify);
+                                       # raised from 30G on 2026-09-30 (user-approved): .wslconfig gives the VM 48 GB,
+                                       # non-job processes use ~1-5 GB, and measured peaks sit well below the caps
 default_memory_max = "2G"              # cap for `es job run` when --mem is not given
 run_margin_gib = 2                     # `es job run` needs cap + margin GiB available when submitted
 output_roots = ["runs", "data"]        # `es job run --out` paths must lie under one of these

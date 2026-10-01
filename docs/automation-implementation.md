@@ -76,7 +76,12 @@ es node finish NODE --body runs/my-work/body.txt --policy review --extract-memor
 
 The returned fixture and operation IDs are the inputs to subsequent commands. Supply an
 explicit extraction cap when needed based on measured peaks. The primary configured default
-is 28G, which fits the shared 30G budget alongside a 2G agent host. The harness reports
+is 28G, which leaves 12G of the shared 40G budget for agent hosts and small jobs. A full extract
+first runs the extractor under `[extract] full_memory_max` (12G; ~120 recorded full extracts peaked
+near 5.3 GiB, page cache included) and retries once at the full cap only after an OOM kill; when
+`lake build --no-build` reports the blueprint current, the no-op pre-extraction build is skipped
+instead of reserving the 20G build cap. The `node finish` pipeline reserves the sized cap for its
+full-extract stage. The harness reports
 `blocked_resource` for requests that cannot fit; a stage override remains inside the shared cap.
 
 Capture automatically recognizes ordinary generated theorem modules. `--start` and `--end`

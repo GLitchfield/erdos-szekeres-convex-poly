@@ -246,7 +246,7 @@ def _extract_raw(ctx: Ctx, *, th: str, mods, no_cache: bool, force: bool, budget
     with Store(cfg) as st:
         st.cache_put(th, out.nodes, out.index)
         st.event("extract", None, ctx.agent, {"seconds": out.result.seconds, "peak_mib": out.result.peak_mib,
-                                              "memory_max": memory_max or cfg.extract_memory_max, "tree": th[:12],
+                                              "memory_max": memory_max or (cfg.extract_full_memory_max if not imports else cfg.extract_memory_max), "tree": th[:12],
                                               "imports": imports})
     return out.nodes, out.index
 

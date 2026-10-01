@@ -392,6 +392,15 @@ class Config:
         return env if env else str(self.get("extract", "memory_max", default="36G"))
 
     @property
+    def extract_full_memory_max(self) -> str:
+        """Sized first-attempt cap for a full extract. Over ~120 recorded full extracts the steady-state
+        peak (cgroup memory.peak, page cache included) was about 5.3 GiB; the rare cold runs that
+        rebuild heavy modules reached the full cap. An OOM kill under this cap is retried once at
+        `extract_memory_max`. ES_EXTRACT_MEMORY_MAX pins both attempts to one cap."""
+        env = os.environ.get("ES_EXTRACT_MEMORY_MAX")
+        return env if env else str(self.get("extract", "full_memory_max", default="12G"))
+
+    @property
     def extract_budget_min(self) -> int:
         return int(self.get("extract", "budget_min", default=120))
 

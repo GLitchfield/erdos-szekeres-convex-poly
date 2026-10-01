@@ -46,7 +46,7 @@ def submit(cfg, agent, name, body_path, *, fixture_id=None, window=None, policy=
     stages = [
         {'name':'candidate', 'action':'proof_check', 'memory':cfg.build_memory_max, 'minutes':20},
         {'name':'original-source', 'action':'node_check', 'memory':max((cfg.build_memory_max, cfg.extract_targeted_memory_max), key=lambda m: __import__('es.build', fromlist=['_mem_gib'])._mem_gib(m)), 'minutes':30},
-        {'name':'full-extract', 'action':'node_extract', 'memory':extract_memory or cfg.extract_memory_max, 'minutes':cfg.extract_budget_min},
+        {'name':'full-extract', 'action':'node_extract', 'memory':extract_memory or cfg.extract_full_memory_max, 'minutes':cfg.extract_budget_min},
         {'name':'audits', 'action':'node_audit', 'memory':'2G', 'minutes':10},
         {'name':'review', 'action':'node_prepare', 'memory':'2G', 'minutes':5},
     ]

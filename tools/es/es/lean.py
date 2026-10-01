@@ -34,6 +34,20 @@ class ExtractOutput:
     result: BuildResult
 
 
+def _targets_current(cfg: Config, targets: list[str]) -> bool:
+    """Whether `lake build --no-build` reports ``targets`` up to date (exit 0). Lake compares content
+    traces; anything else, including a refusal to start, counts as not current."""
+    argv = [cfg.lake, "build", "--no-build", *targets]
+    from es.build import bus_available
+    if cfg.build_guard and not bus_available():
+        import subprocess
+        return subprocess.run(argv, cwd=cfg.root, capture_output=True, text=True).returncode == 0
+    log = cfg.build_log_dir / f"nobuild-{time.strftime('%Y%m%d-%H%M%S')}-blueprint.log"
+    res = run_guarded(cfg, argv, log_path=log, budget_min=2, memory_max=cfg.build_nobuild_memory_max,
+                      force=True, count_built=False)
+    return res.ok
+
+
 def run_extractor(
     cfg: Config,
     *,
@@ -64,12 +78,19 @@ def run_extractor(
         bp = run_guarded_retry(cfg, [cfg.lake, "build", *bp_targets], log_path=bp_log,
                                budget_min=cfg.core_budget_min * 2, force=force,
                                memory_max=build_memory_max, retry_memory_max=cfg.build_memory_max)
+    elif not imports and _targets_current(cfg, bp_targets):
+        # A full extract over an already-built blueprint: Lake confirms every trace, so the
+        # pre-extraction build would be a no-op that still reserves the full build cap.
+        bp = None
     else:
         bp = run_guarded(cfg, [cfg.lake, "build", *bp_targets], log_path=bp_log, budget_min=cfg.core_budget_min * 2, force=force)
-    if bp.refused:
+    if bp is not None and bp.refused:
         raise Refused(f"blueprint build refused before extraction ({bp.refused})")
-    if not bp.ok:
+    if bp is not None and not bp.ok:
         raise LeanError(f"blueprint build failed before extraction ({bp.summary()}):\n" + "\n".join(bp.tail))
+    if not imports and memory_max is None and retry_memory_max is None:
+        # Full extract: first attempt at the measured-peak cap, one OOM retry at the configured cap.
+        memory_max, retry_memory_max = cfg.extract_full_memory_max, cfg.extract_memory_max
     index_layers = set(cfg.extract_index_layers)
     index_modules = sorted(m.name for m in mods.values() if m.layer in index_layers and not m.generated)
     tmp = cfg.es_home / "tmp"

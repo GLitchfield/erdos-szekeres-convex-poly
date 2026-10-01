@@ -309,7 +309,7 @@ results_dir = "harness/falsify"
 timeout_min = 60
 
 [jobs]
-max_parallel_builds = 1
+max_parallel_builds = 2
 max_parallel_falsifiers = 2
 ```
 
