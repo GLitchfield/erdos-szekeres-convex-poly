@@ -1,0 +1,8 @@
+{
+  "semantics": "Synthetic provenance regression data, not a compiled Lean proof or theorem receipt.",
+  "file": "TBlueprint/B/Pinned.lean",
+  "parent": "TCore.foo_node",
+  "type_hash": "1234567890abcdef",
+  "source": "import TCore\n\n-- UTF-8 byte offsets: ∧ λ\nnamespace TCore\n\ntheorem foo_node : True := by\n  trivial\n\nend TCore\n",
+  "body": "by\n  exact True.intro"
+}

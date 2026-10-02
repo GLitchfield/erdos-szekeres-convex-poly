@@ -342,6 +342,17 @@
       }
     },
     {
+      "id": "workflow.proof-source-identity",
+      "kind": "workflow",
+      "title": "Pinned proof source identity",
+      "summary": "Compare exact candidate bytes reconstructed from immutable proof artifacts with the source in an explicit Git commit.",
+      "keywords": ["proof receipt", "pinned commit", "source hash", "candidate identity"],
+      "api": "es proof identity RECEIPT --commit SHA; es.proofs.pinned_source_identity(cfg, receipt_id, commit)",
+      "example": "es proof identity RECEIPT --commit FULL_COMMIT_SHA",
+      "semantics": "Read-only metadata check in the fixture's captured worktree. Requires a recorded accepted candidate receipt with matching fixture parent/type and reconstructed source hash, then compares raw Git blob bytes at a full 40-character commit SHA. The current checkout may differ. No compiler runs, dependency or policy revalidation, frontier update, or theorem credit; compiler_rechecked=false and theorem_credit=not_inferred are explicit. Memory is bounded by captured source/body artifacts, and the Git blob size must match before reading it.",
+      "source": {"path": "tools/es/es/proofs.py", "symbols": ["pinned_source_identity"]}
+    },
+    {
       "id": "workflow.node-finish",
       "kind": "workflow",
       "title": "Checked node finalization for review",

@@ -150,6 +150,67 @@ def assembled(cfg, f, body):
     return source[:start] + body + source[end:]
 
 
+def pinned_source_identity(cfg, receipt_id: str, commit: str) -> dict:
+    """Compare a recorded accepted candidate with a commit, without compiling.
+
+    This checks immutable source identities only. It does not revalidate the
+    receipt's kernel result, dependencies, current policy, or frontier freshness.
+    The fixture must have been captured in this worktree; its present checkout
+    need not contain the file or match the recorded dependencies.
+    """
+    from pathlib import PurePosixPath
+    from es.gitutil import git, git_argv
+
+    if not isinstance(commit, str) or not re.fullmatch(r'[0-9a-fA-F]{40}', commit):
+        raise UsageError('supply a full 40-character commit SHA')
+    commit = commit.lower()
+    receipt = json.loads(read(cfg, receipt_id))
+    if (not isinstance(receipt, dict) or receipt.get('proof_accepted') is not True
+            or receipt.get('ok') is not True or receipt.get('outcome') != 'proof_accepted'):
+        raise UsageError('an accepted proof candidate receipt is required')
+    for key in ('fixture', 'body', 'candidate_source_hash'):
+        value = receipt.get(key)
+        if not isinstance(value, str) or not re.fullmatch(r'[0-9a-f]{64}', value):
+            raise UsageError(f'candidate receipt has no valid {key}')
+    f = fixture(cfg, receipt['fixture'])
+    audit = receipt.get('audit')
+    if (not isinstance(audit, dict) or not isinstance(audit.get('parent'), str)
+            or not audit.get('parent') or audit['parent'] != f.get('parent')
+            or not isinstance(audit.get('type_hash'), str) or not audit.get('type_hash')
+            or audit['type_hash'] != f.get('type_hash')):
+        raise UsageError('receipt parent/type does not match its captured fixture')
+    rel = f.get('file')
+    if not isinstance(rel, str):
+        raise UsageError('fixture has no relative Lean source path')
+    path = PurePosixPath(rel)
+    if path.is_absolute() or '..' in path.parts or path.suffix != '.lean':
+        raise UsageError('fixture has no relative Lean source path')
+    candidate = assembled(cfg, f, read(cfg, receipt['body']))
+    expected = hashlib.sha256(candidate).hexdigest()
+    if expected != receipt['candidate_source_hash']:
+        raise UsageError('candidate source hash does not match fixture/body artifacts')
+    try:
+        resolved = git(cfg, 'rev-parse', '--verify', commit + '^{commit}').strip()
+        if resolved != commit:
+            raise UsageError('supply the commit SHA itself, not another object')
+        size = int(git(cfg, 'cat-file', '-s', commit + ':' + rel).strip())
+    except (RuntimeError, ValueError) as exc:
+        raise UsageError(f'cannot read {rel} in commit {commit}') from exc
+    if size != len(candidate):
+        raise UsageError(f'committed source differs from candidate: {rel}')
+    # Raw bytes preserve line endings; Git's text wrapper deliberately is not
+    # used for the blob. The size check bounds this read by the captured source.
+    blob = subprocess.run(git_argv(cfg) + ['show', commit + ':' + rel], cwd=cfg.root,
+                          capture_output=True, check=False)
+    if blob.returncode or hashlib.sha256(blob.stdout).hexdigest() != expected:
+        raise UsageError(f'committed source differs from candidate: {rel}')
+    return {'schema_version': 1, 'kind': 'pinned-proof-source-identity-v1',
+            'receipt': receipt_id, 'fixture': receipt['fixture'], 'commit': commit,
+            'file': rel, 'parent': audit['parent'], 'type_hash': audit['type_hash'],
+            'source_sha256': expected, 'source_matches': True,
+            'compiler_rechecked': False, 'theorem_credit': 'not_inferred'}
+
+
 def sandbox(cfg, out):
     if not shutil.which('bwrap'):
         raise UsageError('proof isolation unavailable: bwrap is required; no unsafe fallback')

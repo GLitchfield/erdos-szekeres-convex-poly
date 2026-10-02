@@ -21,11 +21,17 @@ def prove(ctx, fixture, minutes=15, memory='4G', window=None, tactics=None):
         {'name':'native-portfolio', 'action':'proof_prove', 'fixture':fixture, 'minutes':minutes, 'memory':memory, 'tactics':tactics}]}, window_id=window))
 
 
+def identity(ctx, receipt, commit):
+    return result(ctx, proofs.pinned_source_identity(ctx.cfg, receipt, commit))
+
+
 command(CommandSpec('proof_capture',['proof','capture'],'Freeze an exact whole or local byte span; acceptance audits the complete parent.',capture,
     [Arg('name','registered node',positional=True,required=True),Arg('start','UTF-8 byte start','int'),Arg('end','exclusive UTF-8 byte end','int')]))
 common=[Arg('fixture','fixture artifact ID',positional=True,required=True),Arg('minutes','total worker minutes','int',default=15),Arg('memory','memory cap',default='4G'),Arg('window','usage window ID')]
 command(CommandSpec('proof_check',['proof','check'],'Queue an isolated original-source candidate check.',check,common+[Arg('body','proof body file',required=True)]))
 command(CommandSpec('proof_prove',['proof','prove'],'Try the finite native tactic route in the pinned project; neural/cloud off by default.',prove,common+[Arg('tactics','registered tactics in order','list')]))
+command(CommandSpec('proof_identity',['proof','identity'],'Compare recorded candidate source bytes with a pinned commit; does not compile or grant theorem credit.',identity,
+    [Arg('receipt','accepted candidate receipt artifact ID',positional=True,required=True),Arg('commit','full commit SHA',required=True)]))
 command(CommandSpec('node_finish',['node','finish'],'Validate, insert, check, fully extract, audit and prepare a proof for review.',
     lambda ctx,name,body,fixture=None,window=None,policy='review',extract_memory=None: result(ctx,finalize.submit(ctx.cfg,ctx.agent,name,body,fixture_id=fixture,window=window,policy=policy,extract_memory=extract_memory)),
     [Arg('name','registered node',positional=True,required=True),Arg('body','proof body file',required=True),Arg('fixture','captured fixture ID'),Arg('window','usage window ID'),Arg('policy','publication policy',default='review',choices=['review']),Arg('extract_memory','explicit full extraction cap; cannot exceed shared budget')]))
