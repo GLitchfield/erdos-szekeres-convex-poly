@@ -435,3 +435,4 @@ import ESBlueprint.B.DiagonalCupBlocksForce4kkOfFiveLe
 import ESBlueprint.B.SingletonLowerPascalTailGateFourDiagonalOfFiveLe
 import ESBlueprint.C.CardLeChooseOfOneChangeNoCapFourNoStrong
 import ESBlueprint.C.DecomposableStateUpperFourDiagonalOfGates
+import ESBlueprint.C.DecomposableStateUpperDiagonalFourOfGates

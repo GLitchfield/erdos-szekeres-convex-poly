@@ -3798,6 +3798,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.DecomposableStateUpperAll"
   },
+  "ErdosSzekeres.decomposableStateUpper_diagonal_four_of_gates": {
+    "type_hash": "9fbc31b5eb51b848",
+    "type_pp": "(∀ (k : Nat), instLENat.le 5 k → ErdosSzekeres.SingletonLowerPascalTailGate 4 k k) →\n  ∀ (k : Nat), instLENat.le 5 k → ErdosSzekeres.DecomposableStateUpper k 4 k",
+    "approved_by": "Gavin 2026-10-02 R21 brief optional color dual",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "C",
+    "module": "ESBlueprint.C.DecomposableStateUpperDiagonalFourOfGates"
+  },
   "ErdosSzekeres.decomposableStateUpper_four_diagonal_of_gates": {
     "type_hash": "8a8c8eaac2a011d3",
     "type_pp": "(∀ (k : Nat), instLENat.le 5 k → ErdosSzekeres.SingletonLowerPascalTailGate 4 k k) →\n  ∀ (k : Nat), instLENat.le 5 k → ErdosSzekeres.DecomposableStateUpper 4 k k",
