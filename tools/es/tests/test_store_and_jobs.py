@@ -82,3 +82,35 @@ def test_targeted_cache_entries_do_not_evict_full_ones(cfg):
             st.cache_put(f"t{i}+Mod{i}", {"t": i}, [])
         assert st.cache_get("full1") == ({"a": 1}, [])
         assert st.cache_get("t0+Mod0") == ({"t": 0}, [])
+
+
+def test_open_is_lock_free_once_schema_is_current(cfg):
+    """Steady-state opens take no write lock: WAL mode is on, the schema stamp is current, and an
+    open (with a read) succeeds while another connection holds an uncommitted write transaction."""
+    import sqlite3
+    from es.store import schema_stamp
+    with Store(cfg) as st:
+        assert st.conn.execute("PRAGMA journal_mode").fetchone()[0].lower() == "wal"
+        assert st.conn.execute("PRAGMA user_version").fetchone()[0] == schema_stamp()
+        st.log("first", None, "a")
+    writer = sqlite3.connect(cfg.db_path, timeout=1)
+    try:
+        writer.execute("BEGIN IMMEDIATE")
+        writer.execute("INSERT INTO events(at, kind) VALUES (0, 'held')")
+        reader = Store(cfg)
+        reader.conn.execute("PRAGMA busy_timeout = 200")
+        try:
+            assert not reader.readonly
+            kinds = [r["kind"] for r in reader.events_since(0)]
+            assert "log" in kinds and "held" not in kinds   # sees committed rows, not the open write
+        finally:
+            reader.conn.close()
+    finally:
+        writer.rollback()
+        writer.close()
+
+
+def test_expired_claim_purge_writes_only_when_something_expired(cfg):
+    with Store(cfg) as st:
+        assert st.purge_expired_claims() == 0
+        assert not st.conn.in_transaction

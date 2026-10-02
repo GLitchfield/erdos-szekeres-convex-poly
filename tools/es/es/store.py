@@ -44,6 +44,16 @@ CREATE TABLE IF NOT EXISTS search_meta (key TEXT PRIMARY KEY, value TEXT);
 """
 
 
+def schema_stamp() -> int:
+    """A positive 31-bit fingerprint of every schema this module creates or migrates.  It is stored in
+    PRAGMA user_version once the database is current, so an ordinary open can skip the schema scripts
+    and the migration transaction (each of which takes the write lock)."""
+    import zlib
+    from es.automation_schema import SCHEMA as AUTOMATION_SCHEMA
+    text = SCHEMA + AUTOMATION_SCHEMA + FTS_SCHEMA + json.dumps(JOB_COLUMNS, sort_keys=True) + "resource_leases.scope_unit"
+    return (zlib.crc32(text.encode()) & 0x7FFFFFFF) or 1
+
+
 class Store:
     def __init__(self, cfg: Config, path: Path | None = None):
         self.cfg = cfg
@@ -54,14 +64,28 @@ class Store:
         except OSError:
             pass
         try:
+            # sandboxes (Codex workspace-write, read-only mounts) let SQLite open the file but refuse the
+            # first write ("attempt to write a readonly database").  Detect that without a database
+            # write: a write-mode open of the file itself is refused there and takes no SQLite lock.
+            if self.path.exists():
+                try:
+                    with open(self.path, "ab"):
+                        pass
+                except OSError as exc:
+                    raise sqlite3.OperationalError(f"attempt to write a readonly database ({exc})") from exc
             self.conn = sqlite3.connect(self.path, timeout=30)
             self.conn.row_factory = sqlite3.Row
-            # a real write: sandboxes (Codex workspace-write, read-only mounts) let the file open
-            # but refuse the first write, which used to surface as "attempt to write a readonly database"
             version = self.conn.execute("PRAGMA user_version").fetchone()[0]
-            self.conn.execute(f"PRAGMA user_version = {int(version)}")
-            self.conn.executescript(SCHEMA)
-            self._migrate()
+            stamp = schema_stamp()
+            current = version == stamp
+            if not current:
+                # a real write probe on the (rare) schema path, as before
+                self.conn.execute(f"PRAGMA user_version = {int(version)}")
+                self.conn.commit()
+            self._enable_wal()
+            if not current:
+                self.conn.executescript(SCHEMA)
+                self._migrate()
         except sqlite3.OperationalError as exc:
             msg = str(exc).lower()
             if "readonly" not in msg and "read-only" not in msg and "unable to open" not in msg:
@@ -75,17 +99,45 @@ class Store:
                 self.conn.row_factory = sqlite3.Row
                 self.conn.execute("SELECT 1 FROM sqlite_master LIMIT 1").fetchall()
             except sqlite3.OperationalError as exc2:
-                raise ReadOnly(self._readonly_message() + f" ({exc2})") from exc2
+                # a WAL database needs its -shm file; a reader that may not create it (read-only
+                # directory, no live writer) can still read the checkpointed file without locking
+                try:
+                    self.conn.close()
+                except Exception:
+                    pass
+                try:
+                    self.conn = sqlite3.connect(f"file:{self.path}?mode=ro&immutable=1", uri=True)
+                    self.conn.row_factory = sqlite3.Row
+                    self.conn.execute("SELECT 1 FROM sqlite_master LIMIT 1").fetchall()
+                except sqlite3.OperationalError:
+                    raise ReadOnly(self._readonly_message() + f" ({exc2})") from exc2
             self.readonly = True
         if self.readonly:
             self.fts = bool(self.conn.execute("SELECT 1 FROM sqlite_master WHERE name = 'search'").fetchone())
+        elif current:
+            self.fts = bool(self.conn.execute("SELECT 1 FROM sqlite_master WHERE name = 'search'").fetchone())
+            self.purge_expired_claims()
         else:
             try:
                 self.conn.executescript(FTS_SCHEMA)
                 self.fts = True
             except sqlite3.OperationalError:
                 self.fts = False
+            if self.fts:
+                # only a fully current schema (FTS included) is stamped; otherwise retry next open
+                self.conn.execute(f"PRAGMA user_version = {stamp}")
+                self.conn.commit()
             self.purge_expired_claims()
+
+    def _enable_wal(self) -> None:
+        """Write-ahead logging lets readers proceed while one writer commits (the default rollback
+        journal blocks them).  The mode is persistent in the file; switching needs a brief exclusive
+        lock, so a busy database simply keeps its mode until a later open succeeds."""
+        try:
+            if self.conn.execute("PRAGMA journal_mode").fetchone()[0].lower() != "wal":
+                self.conn.execute("PRAGMA journal_mode=WAL")
+        except sqlite3.OperationalError:
+            pass
 
     def _readonly_message(self) -> str:
         home = self.path.parent.parent
@@ -175,6 +227,8 @@ class Store:
             return 0
         now = time.time()
         rows = self.conn.execute("SELECT node, agent FROM claims WHERE expires_at < ?", (now,)).fetchall()
+        if not rows:
+            return 0          # nothing expired: stay a reader (every es command opens the store)
         for r in rows:
             self.conn.execute("INSERT INTO attempts(node, agent, started_at, ended_at, outcome) SELECT node, agent, claimed_at, ?, 'expired' FROM claims WHERE node = ?", (now, r["node"]))
             self.conn.execute("INSERT INTO events(at, kind, node, agent) VALUES (?,?,?,?)", (now, "claim-expired", r["node"], r["agent"]))
