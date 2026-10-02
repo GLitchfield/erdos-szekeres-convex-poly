@@ -1,0 +1,222 @@
+{
+ "node": "ErdosSzekeres.ctx_bound_attained_by_singleton_cut",
+ "falsifier": "ctx_bound_singleton_attainment.py",
+ "falsifier_sha256": "a141f6763c80236099ce2ce78d1b5f078d83c845070622b76d9a6690a22fc681",
+ "dataset": "runs/r19-sol-20261002/PEEL.counterexample.json",
+ "statement_type_hash": "460265cf1251df69",
+ "result": "counterexample",
+ "exit_code": 2,
+ "seconds": 0.1,
+ "at": "2026-10-02T14:03:41Z",
+ "agent": "codex:01a0fc94-0467-7b90-823c-bce1e6fe6128",
+ "witness": {
+  "node": "ErdosSzekeres.ctx_bound_attained_by_singleton_cut",
+  "statement": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le 4 σ.a →\n      instLENat.le 4 σ.u →\n        instLENat.le 2 σ.numRuns →\n          instLENat.le 2 σ.bound →\n            Exists fun p =>\n              And (List.instMembership.mem σ.childPositions p)\n                (Exists fun s =>\n                  Exists fun c =>\n                    And (instLENat.le 1 c)\n                      (And (instLENat.le c (instHSub.hSub σ.k 2))\n                        (Eq σ.bound\n                          (instHAdd.hAdd (σ.part (List.cons p List.nil) s c).bound\n                            (σ.part\n                                (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                                (ErdosSzekeres.ctx_bound_attained_by_singleton_cut.match_1\n                                  (fun s => ErdosSzekeres.Ctx.Side) s\n                                  (fun _ => ErdosSzekeres.Ctx.Side.upper) fun _ =>\n                                  ErdosSzekeres.Ctx.Side.lower)\n                                (instHSub.hSub (instHSub.hSub σ.k 1) c)).bound))))",
+  "semantics": "context-bound-zero-children-c-v1",
+  "args": {
+   "dataset": "/home/gavin/git/erdos-szekeres-convex-poly/runs/worktrees/sol-12h-20260916/runs/r19-sol-20261002/PEEL.counterexample.json",
+   "out": "/home/gavin/git/erdos-szekeres-convex-poly/.es/erdos-szekeres/tmp/witness-ctx_bound_attained_by_singleton_cut.json",
+   "node": "ErdosSzekeres.ctx_bound_attained_by_singleton_cut",
+   "statement": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le 4 σ.a →\n      instLENat.le 4 σ.u →\n        instLENat.le 2 σ.numRuns →\n          instLENat.le 2 σ.bound →\n            Exists fun p =>\n              And (List.instMembership.mem σ.childPositions p)\n                (Exists fun s =>\n                  Exists fun c =>\n                    And (instLENat.le 1 c)\n                      (And (instLENat.le c (instHSub.hSub σ.k 2))\n                        (Eq σ.bound\n                          (instHAdd.hAdd (σ.part (List.cons p List.nil) s c).bound\n                            (σ.part\n                                (List.filter (fun q => Decidable.decide (Ne q p)) σ.childPositions)\n                                (ErdosSzekeres.ctx_bound_attained_by_singleton_cut.match_1\n                                  (fun s => ErdosSzekeres.Ctx.Side) s\n                                  (fun _ => ErdosSzekeres.Ctx.Side.upper) fun _ =>\n                                  ErdosSzekeres.Ctx.Side.lower)\n                                (instHSub.hSub (instHSub.hSub σ.k 1) c)).bound))))",
+   "ks": "5,6",
+   "depths": "1,2,3",
+   "children": 4,
+   "timing_only": false,
+   "timing_samples": 256
+  },
+  "family": "explicit-wellformed-context-rows-v1",
+  "counts": {
+   "rows": 1,
+   "eligible": 1,
+   "singleton_cuts": 24,
+   "violations": 1
+  },
+  "seconds": 0.003914798027835786,
+  "violations": [
+   {
+    "a": 4,
+    "u": 4,
+    "k": 5,
+    "word": [
+     [
+      3,
+      "upper"
+     ],
+     [
+      4,
+      "lower"
+     ],
+     "S",
+     "S",
+     [
+      1,
+      "lower"
+     ],
+     [
+      2,
+      "upper"
+     ],
+     "S",
+     "S"
+    ],
+    "maxima": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "chosen": "lower",
+    "bound": 2,
+    "best_singleton": 1,
+    "maximizers": [
+     [
+      1,
+      2,
+      "lower",
+      1
+     ],
+     [
+      1,
+      2,
+      "upper",
+      3
+     ],
+     [
+      1,
+      2,
+      "lower",
+      2
+     ],
+     [
+      1,
+      2,
+      "upper",
+      2
+     ],
+     [
+      1,
+      2,
+      "lower",
+      3
+     ],
+     [
+      1,
+      2,
+      "upper",
+      1
+     ],
+     [
+      1,
+      3,
+      "lower",
+      1
+     ],
+     [
+      1,
+      3,
+      "upper",
+      3
+     ],
+     [
+      1,
+      3,
+      "lower",
+      2
+     ],
+     [
+      1,
+      3,
+      "upper",
+      2
+     ],
+     [
+      1,
+      3,
+      "lower",
+      3
+     ],
+     [
+      1,
+      3,
+      "upper",
+      1
+     ],
+     [
+      1,
+      6,
+      "lower",
+      1
+     ],
+     [
+      1,
+      6,
+      "upper",
+      3
+     ],
+     [
+      1,
+      6,
+      "lower",
+      2
+     ],
+     [
+      1,
+      6,
+      "upper",
+      2
+     ],
+     [
+      1,
+      6,
+      "lower",
+      3
+     ],
+     [
+      1,
+      6,
+      "upper",
+      1
+     ],
+     [
+      1,
+      7,
+      "lower",
+      1
+     ],
+     [
+      1,
+      7,
+      "upper",
+      3
+     ],
+     [
+      1,
+      7,
+      "lower",
+      2
+     ],
+     [
+      1,
+      7,
+      "upper",
+      2
+     ],
+     [
+      1,
+      7,
+      "lower",
+      3
+     ],
+     [
+      1,
+      7,
+      "upper",
+      1
+     ]
+    ]
+   }
+  ],
+  "complete": true,
+  "diagnostic_only": true
+ }
+}
