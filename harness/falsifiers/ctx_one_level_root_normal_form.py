@@ -48,6 +48,7 @@ def words(side, children):
                         word.extend(["S"] * length)
                         if i < runs - 1:
                             word.extend([marker] * separators[i])
+                    word.extend([marker] * right)
                     yield tuple(word)
 
 
