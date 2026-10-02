@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-02T12:45:32Z",
- "git_sha": "2ea576083b6d6659489fbd6e9a9db6c4c1db87a0",
- "extract_mode": "full",
+ "generated_at": "2026-10-02T20:01:44Z",
+ "git_sha": "6e4d0e66274e9d3dd1ccdbacf9fd747deb5e1d14",
+ "extract_mode": "incremental from 6e4d0e66274e: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15775,
- "tree_hash": "1252d52edfeb547b.4560d6f33c43b8ee",
+ "modules": 15776,
+ "tree_hash": "f8ef5f60085285ce.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,11 +20,54 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15765,
-  "scanned_constants": 122,
-  "scanned_modules": 10
+  "cached_modules": 5356,
+  "scanned_constants": 5,
+  "scanned_modules": 1
  },
  "nodes": [
+  {
+   "name": "ErdosSzekeres.allTripleColors_eq_of_consecutive",
+   "module": "ESBlueprint.B.AllTripleColorsEqOfConsecutive",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Abstract H1: a fixed turn on every support-consecutive triple propagates to every triple under OneChange. The proof is induction on outer span and works for both cup and cap colors.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq"
+    ],
+    "dangling-ok": "Approved R20 reusable signotope helper, replaying the accepted uniform proof invariant for cap/cup layer and extension arguments; coupled a5 cut remains open"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {c : ErdosSzekeres.Turn},\n  ErdosSzekeres.OneChangeOn χ s →\n    (∀ (t : ErdosSzekeres.OrderedTriple n),\n        SetLike.instMembership.mem s t.i →\n          SetLike.instMembership.mem s t.j →\n            SetLike.instMembership.mem s t.k →\n              (∀ (x : Fin n),\n                  SetLike.instMembership.mem s x →\n                    instLTFin.lt t.i x → instLTFin.lt x t.j → False) →\n                (∀ (x : Fin n),\n                    SetLike.instMembership.mem s x →\n                      instLTFin.lt t.j x → instLTFin.lt x t.k → False) →\n                  Eq (χ t) c) →\n      ∀ (t : ErdosSzekeres.OrderedTriple n),\n        SetLike.instMembership.mem s t.i →\n          SetLike.instMembership.mem s t.j → SetLike.instMembership.mem s t.k → Eq (χ t) c",
+   "type_hash": "f2f0b04ce9926768",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.allTripleColors_eq_of_consecutive._proof_1_1",
+    "ErdosSzekeres.allTripleColors_eq_of_consecutive._proof_1_2",
+    "ErdosSzekeres.allTripleColors_eq_of_consecutive._proof_1_3",
+    "ErdosSzekeres.allTripleColors_eq_of_consecutive._proof_1_4"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
   {
    "name": "ErdosSzekeres.ctx_active_boundary_marker_rank_budget",
    "module": "ESBlueprint.B.CtxActiveBoundaryMarkerRankBudget",
@@ -95305,6 +95348,7 @@
  "fingerprints": {
   "core": "ec17558f1d57c79d",
   "blueprint": {
+   "ESBlueprint.B.AllTripleColorsEqOfConsecutive": "b87ec1d53fbb5baf",
    "ESBlueprint.B.CtxActiveBoundaryMarkerRankBudget": "ee707378f7c3696c",
    "ESBlueprint.B.CtxActiveBoundaryMarkerRankPairUnionBound": "d78d951df52a52ad",
    "ESBlueprint.B.CtxActiveBoundaryMarkerRankUnionBound": "54a6c193471f7eac",
