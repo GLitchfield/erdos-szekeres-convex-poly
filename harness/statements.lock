@@ -3857,5 +3857,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.CtxOneLevelRootBoundNormalFormOfAxisTwoOrSaturated"
+  },
+  "ErdosSzekeres.ctx_one_level_root_cut_complement_child_contraction_counterexample": {
+    "type_hash": "30efac7e8738996c",
+    "type_pp": "have σ :=\n  { a := 5, u := 5, k := 6,\n    word :=\n      List.cons ErdosSzekeres.Ctx.Letter.child\n        (List.cons ErdosSzekeres.Ctx.Letter.child\n          (List.cons (ErdosSzekeres.Ctx.Letter.ext 1 ErdosSzekeres.Ctx.Side.upper)\n            (List.cons ErdosSzekeres.Ctx.Letter.child\n              (List.cons ErdosSzekeres.Ctx.Letter.child List.nil)))),\n    maxima := List.cons 1 List.nil };\nhave block := List.cons 1 List.nil;\nhave rest :=\n  List.filter (fun p => Decidable.decide (Not (List.instMembership.mem block p))) σ.childPositions;\nhave ρ := σ.part rest ErdosSzekeres.Ctx.Side.lower (instHSub.hSub (instHSub.hSub σ.k 1) 4);\nhave τ :=\n  { a := ρ.a, u := ρ.u, k := ρ.k,\n    word := instHAppendOfAppend.hAppend (List.take 4 ρ.word) (List.drop 5 ρ.word),\n    maxima := ρ.maxima };\nAnd σ.WellFormed\n  (And\n    (∀ (v : ErdosSzekeres.Ctx.Letter),\n      List.instMembership.mem σ.word v →\n        Or (Eq v ErdosSzekeres.Ctx.Letter.child)\n          (Eq v (ErdosSzekeres.Ctx.Letter.ext 1 ErdosSzekeres.Ctx.Side.upper)))\n    (And (Eq σ.numRuns 2)\n      (And (List.instMembership.mem σ.blocks block)\n        (And (instLENat.le 1 4)\n          (And (instLENat.le 4 (instHSub.hSub σ.k 2))\n            (And (instLENat.le 1 (instHSub.hSub (instHSub.hSub σ.k 1) 4))\n              (And (instLENat.le (instHSub.hSub (instHSub.hSub σ.k 1) 4) (instHSub.hSub σ.k 2))\n                (And\n                  (Eq ρ.word\n                    (List.cons ErdosSzekeres.Ctx.Letter.child\n                      (List.cons (ErdosSzekeres.Ctx.Letter.ext 1 ErdosSzekeres.Ctx.Side.lower)\n                        (List.cons (ErdosSzekeres.Ctx.Letter.ext 2 ErdosSzekeres.Ctx.Side.upper)\n                          (List.cons ErdosSzekeres.Ctx.Letter.child\n                            (List.cons ErdosSzekeres.Ctx.Letter.child List.nil))))))\n                  (And (Eq ρ.maxima (List.cons 1 (List.cons 1 List.nil)))\n                    (And (Eq (ρ.letterAt 3) ErdosSzekeres.Ctx.Letter.child)\n                      (And (Eq (ρ.letterAt 4) ErdosSzekeres.Ctx.Letter.child)\n                        (And (Eq ρ.bound 12) (And (Eq τ.bound 9) (Ne ρ.bound τ.bound))))))))))))))",
+    "approved_by": "codex:agent-run-cd0185da75604d4f",
+    "approved_at": "2026-10-01",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxOneLevelRootCutComplementChildContractionCounterexample"
   }
 }
