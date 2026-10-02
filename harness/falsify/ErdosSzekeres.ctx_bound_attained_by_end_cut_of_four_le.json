@@ -1,49 +1,505 @@
 {
  "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut_of_four_le",
  "falsifier": "ctx_end_cut_normal_form_four.py",
- "falsifier_sha256": "f3626fc09d8b02c2a851e34f803c653229952d3db72a0ed649b93e10c835a2a2",
+ "falsifier_sha256": "eba1b4e8fd7a6bc666e0d1497a099451dfbe3edbf37677064190a8ae5ed66535",
  "dataset": "harness/dataset",
  "statement_type_hash": "90cbc8f14c117817",
- "result": "pass",
- "exit_code": 0,
- "seconds": 814.6,
- "at": "2026-09-28T23:19:22Z",
- "agent": "claude-code:17de3bb4-f81b-48a5-b73d-2d86b781322f",
+ "result": "counterexample",
+ "exit_code": 2,
+ "seconds": 0.1,
+ "at": "2026-10-02T20:31:23Z",
+ "agent": "codex:01a0fc94-0467-7b90-823c-bce1e6fe6128",
  "witness": {
   "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut_of_four_le",
-  "recursion": "lean",
-  "cases": {
-   "4,4,5": {
-    "contexts": 1752,
-    "nonzero": 1400,
-    "end_attains": 1400
+  "recursion": "context-bound-zero-children-c-v1",
+  "scope": "two-fixed-R19-WellFormed-context-regressions-v1",
+  "diagnostic_only": true,
+  "checked": [
+   {
+    "a": 4,
+    "u": 4,
+    "k": 5,
+    "word": [
+     [
+      3,
+      "upper"
+     ],
+     [
+      4,
+      "lower"
+     ],
+     "S",
+     "S",
+     [
+      1,
+      "lower"
+     ],
+     [
+      2,
+      "upper"
+     ],
+     "S",
+     "S"
+    ],
+    "maxima": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "chosen": "lower",
+    "lean_receipt": "9159d9e9c8b436a7edd362410be34693c221562de3d85dcfca000cbb2c7ee3f5",
+    "bound": 2,
+    "best_end": 1,
+    "end_cuts": [
+     [
+      1,
+      2,
+      "lower",
+      1
+     ],
+     [
+      1,
+      2,
+      "upper",
+      3
+     ],
+     [
+      1,
+      2,
+      "lower",
+      2
+     ],
+     [
+      1,
+      2,
+      "upper",
+      2
+     ],
+     [
+      1,
+      2,
+      "lower",
+      3
+     ],
+     [
+      1,
+      2,
+      "upper",
+      1
+     ],
+     [
+      1,
+      7,
+      "lower",
+      1
+     ],
+     [
+      1,
+      7,
+      "upper",
+      3
+     ],
+     [
+      1,
+      7,
+      "lower",
+      2
+     ],
+     [
+      1,
+      7,
+      "upper",
+      2
+     ],
+     [
+      1,
+      7,
+      "lower",
+      3
+     ],
+     [
+      1,
+      7,
+      "upper",
+      1
+     ]
+    ]
    },
-   "4,5,5": {
-    "contexts": 1752,
-    "nonzero": 1400,
-    "end_attains": 1400
-   },
-   "5,4,5": {
-    "contexts": 1752,
-    "nonzero": 1400,
-    "end_attains": 1400
-   },
-   "5,5,5": {
-    "contexts": 1752,
-    "nonzero": 1400,
-    "end_attains": 1400
-   },
-   "4,5,6": {
-    "contexts": 3040,
-    "nonzero": 2600,
-    "end_attains": 2600
-   },
-   "5,5,6": {
-    "contexts": 3040,
-    "nonzero": 2600,
-    "end_attains": 2600
+   {
+    "a": 5,
+    "u": 5,
+    "k": 6,
+    "word": [
+     "S",
+     "S",
+     "S",
+     [
+      1,
+      "lower"
+     ],
+     [
+      3,
+      "lower"
+     ],
+     [
+      2,
+      "lower"
+     ],
+     "S"
+    ],
+    "maxima": [
+     1,
+     1,
+     1
+    ],
+    "chosen": "lower",
+    "lean_receipt": "37353e1f739a6742ee72aa641913fdcf267f1bdadc569e67d87be88a4f097f51",
+    "bound": 8,
+    "best_end": 7,
+    "end_cuts": [
+     [
+      2,
+      0,
+      "lower",
+      1
+     ],
+     [
+      6,
+      0,
+      "upper",
+      4
+     ],
+     [
+      5,
+      0,
+      "lower",
+      2
+     ],
+     [
+      7,
+      0,
+      "upper",
+      3
+     ],
+     [
+      7,
+      0,
+      "lower",
+      3
+     ],
+     [
+      7,
+      0,
+      "upper",
+      2
+     ],
+     [
+      7,
+      0,
+      "lower",
+      4
+     ],
+     [
+      4,
+      0,
+      "upper",
+      1
+     ],
+     [
+      5,
+      6,
+      "lower",
+      1
+     ],
+     [
+      5,
+      6,
+      "upper",
+      4
+     ],
+     [
+      6,
+      6,
+      "lower",
+      2
+     ],
+     [
+      6,
+      6,
+      "upper",
+      3
+     ],
+     [
+      7,
+      6,
+      "lower",
+      3
+     ],
+     [
+      7,
+      6,
+      "upper",
+      2
+     ],
+     [
+      4,
+      6,
+      "lower",
+      4
+     ],
+     [
+      4,
+      6,
+      "upper",
+      1
+     ]
+    ]
    }
-  },
-  "violations": []
+  ],
+  "violations": [
+   {
+    "a": 4,
+    "u": 4,
+    "k": 5,
+    "word": [
+     [
+      3,
+      "upper"
+     ],
+     [
+      4,
+      "lower"
+     ],
+     "S",
+     "S",
+     [
+      1,
+      "lower"
+     ],
+     [
+      2,
+      "upper"
+     ],
+     "S",
+     "S"
+    ],
+    "maxima": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "chosen": "lower",
+    "lean_receipt": "9159d9e9c8b436a7edd362410be34693c221562de3d85dcfca000cbb2c7ee3f5",
+    "bound": 2,
+    "best_end": 1,
+    "end_cuts": [
+     [
+      1,
+      2,
+      "lower",
+      1
+     ],
+     [
+      1,
+      2,
+      "upper",
+      3
+     ],
+     [
+      1,
+      2,
+      "lower",
+      2
+     ],
+     [
+      1,
+      2,
+      "upper",
+      2
+     ],
+     [
+      1,
+      2,
+      "lower",
+      3
+     ],
+     [
+      1,
+      2,
+      "upper",
+      1
+     ],
+     [
+      1,
+      7,
+      "lower",
+      1
+     ],
+     [
+      1,
+      7,
+      "upper",
+      3
+     ],
+     [
+      1,
+      7,
+      "lower",
+      2
+     ],
+     [
+      1,
+      7,
+      "upper",
+      2
+     ],
+     [
+      1,
+      7,
+      "lower",
+      3
+     ],
+     [
+      1,
+      7,
+      "upper",
+      1
+     ]
+    ]
+   },
+   {
+    "a": 5,
+    "u": 5,
+    "k": 6,
+    "word": [
+     "S",
+     "S",
+     "S",
+     [
+      1,
+      "lower"
+     ],
+     [
+      3,
+      "lower"
+     ],
+     [
+      2,
+      "lower"
+     ],
+     "S"
+    ],
+    "maxima": [
+     1,
+     1,
+     1
+    ],
+    "chosen": "lower",
+    "lean_receipt": "37353e1f739a6742ee72aa641913fdcf267f1bdadc569e67d87be88a4f097f51",
+    "bound": 8,
+    "best_end": 7,
+    "end_cuts": [
+     [
+      2,
+      0,
+      "lower",
+      1
+     ],
+     [
+      6,
+      0,
+      "upper",
+      4
+     ],
+     [
+      5,
+      0,
+      "lower",
+      2
+     ],
+     [
+      7,
+      0,
+      "upper",
+      3
+     ],
+     [
+      7,
+      0,
+      "lower",
+      3
+     ],
+     [
+      7,
+      0,
+      "upper",
+      2
+     ],
+     [
+      7,
+      0,
+      "lower",
+      4
+     ],
+     [
+      4,
+      0,
+      "upper",
+      1
+     ],
+     [
+      5,
+      6,
+      "lower",
+      1
+     ],
+     [
+      5,
+      6,
+      "upper",
+      4
+     ],
+     [
+      6,
+      6,
+      "lower",
+      2
+     ],
+     [
+      6,
+      6,
+      "upper",
+      3
+     ],
+     [
+      7,
+      6,
+      "lower",
+      3
+     ],
+     [
+      7,
+      6,
+      "upper",
+      2
+     ],
+     [
+      4,
+      6,
+      "lower",
+      4
+     ],
+     [
+      4,
+      6,
+      "upper",
+      1
+     ]
+    ]
+   }
+  ],
+  "seconds": 0.008534332999261096
  }
 }
