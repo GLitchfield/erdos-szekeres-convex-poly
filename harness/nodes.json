@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-02T12:45:32Z",
- "git_sha": "2ea576083b6d6659489fbd6e9a9db6c4c1db87a0",
+ "generated_at": "2026-10-02T17:54:11Z",
+ "git_sha": "6e4d0e66274e9d3dd1ccdbacf9fd747deb5e1d14",
  "extract_mode": "full",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15775,
- "tree_hash": "1252d52edfeb547b.4560d6f33c43b8ee",
+ "modules": 15776,
+ "tree_hash": "40658f8bb688ffba.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15765,
-  "scanned_constants": 122,
-  "scanned_modules": 10
+  "cached_modules": 15774,
+  "scanned_constants": 55,
+  "scanned_modules": 2
  },
  "nodes": [
   {
@@ -85576,6 +85576,97 @@
    "opened": "2026-10-01"
   },
   {
+   "name": "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le",
+   "module": "ESBlueprint.B.DiagonalCupBlocksForce4kkOfFiveLe",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Uniform ordered two-cup-block theorem from the cup-plus-one-apex shape and canonical deletion of the second left and second-to-last right points, valid for every OneChange coloring and every k at least five.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.diagonalCupBlocksForce4kk_five",
+     "ErdosSzekeres.FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn"
+    ],
+    "consumer": "ErdosSzekeres.singletonLowerPascalTailGate_four_diagonal_of_cupBlocks"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {k : Nat}, instLENat.le 5 k → ErdosSzekeres.DiagonalCupBlocksForce4kk k",
+   "type_hash": "7b9515ee94a1f04b",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_five",
+    "ErdosSzekeres.FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_1",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_2",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_3",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_4",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_5",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_6",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_8",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_10",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_11",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_12",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_14",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_15",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_16",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_17",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_18",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_19",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_20",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_21",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_22",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_23",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_24",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_25",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_26",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_27",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_28",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_29",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_30",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_31",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_32",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_33",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_34",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_36",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_35",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_39",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._simp_1_38",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_40",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_41",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_42",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_43",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_44",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_45",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_46",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_47",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_48",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_49",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_50",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_51",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_52",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_53",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le._proof_1_54"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges",
    "module": "ESBlueprint.B.RankPairCardGeSumDisjointGroupCharges",
    "ws": "B",
@@ -95726,6 +95817,7 @@
    "ESBlueprint.B.CtxYoungestMiddleMarkerDoubledWidthBound": "899e7b03d68cfbee",
    "ESBlueprint.B.DecomposableStateUpperAll": "614f6c48c0469bc6",
    "ESBlueprint.B.DecomposableThresholdCapacityPascalLeft": "86871726fc1e8409",
+   "ESBlueprint.B.DiagonalCupBlocksForce4kkOfFiveLe": "67b2ff9d88d3e47e",
    "ESBlueprint.B.RankPairCardGeSumDisjointGroupCharges": "208cb2ee2289dc04",
    "ESBlueprint.B.RankPairClippedIntervalUnionMissingCorner": "7bc5c65fc1381ab2",
    "ESBlueprint.B.RankPairTriangleIntersectionCardGeThreeOfTwoCommonRanks": "a98b2bc1507b884f",
