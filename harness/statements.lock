@@ -3919,6 +3919,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.RankTripleFaceUnionCardEqGroupCharges"
   },
+  "ErdosSzekeres.singletonLowerPascalTailGate_four_diagonal_of_five_le": {
+    "type_hash": "5ef1de5a24229d34",
+    "type_pp": "∀ {k : Nat}, instLENat.le 5 k → ErdosSzekeres.SingletonLowerPascalTailGate 4 k k",
+    "approved_by": "codex:agent-run-67caffbfbf804ebf",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.SingletonLowerPascalTailGateFourDiagonalOfFiveLe"
+  },
   "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all": {
     "type_hash": "ee88bf4ffda45548",
     "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
