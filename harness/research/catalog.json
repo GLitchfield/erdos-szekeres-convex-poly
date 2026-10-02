@@ -909,6 +909,35 @@
           "partition_sat"
         ]
       }
+    },
+    {
+      "id": "research.lean-proof-dependencies",
+      "kind": "primitive",
+      "title": "Lean proof type/value dependency audit",
+      "summary": "Observational transitive constant closure, declaration-owner identity, and generated/certificate classification through the existing module catalog.",
+      "keywords": [
+        "Lean proof",
+        "type and value",
+        "dependency trace",
+        "certificate modules",
+        "generated modules",
+        "declaration owner",
+        "axioms",
+        "unsafe constants",
+        "observational audit"
+      ],
+      "api": "lean_command(cfg, module, declaration, output) -> argv (submit through es job run); classify_trace(cfg, raw_trace) -> dict; receipt(cfg, trace_path) -> dict; python -m es.proof_dependencies --trace FILE --out FILE",
+      "example": "es job run --why \"inspect compiled proof dependencies\" --out runs/proof-dependency-demo --mem 6G --review 2 -- env PYTHONPATH=tools/es /usr/bin/python3 harness/research/examples/proof_dependencies_demo.py --out runs/proof-dependency-demo\n# Follow the returned job with es job wait ID --timeout 55; inspect trace.json and receipt.json only after terminal success.",
+      "semantics": "The Lean helper tools/es/lean/TraceProofDependencies.lean follows ConstantInfo.getUsedConstantsAsSet through every reachable type/value, including opaque values, constructors and recursor families. It records the actual owning module of the root separately from its import entry. Runtime progress uses the imported-constant count only as an upper bound on unknown reachable work. Classification delegates to scan_modules and configured layer prefixes, retaining unknown project modules, nonstandard axioms and unsafe constants. Project source/olean hashes identify the declaration owner, but do not attest source-to-olean correspondence or grant theorem acceptance/frontier freshness. Original-source es checks remain necessary. Legacy traces without owner capture are refused; originals remain durable. The CLI only reads/hashes existing traces and does not launch Lean. The runnable example requires guarded es job context; 6G is a measured thin-closure example cap, not a universal guarantee.",
+      "source": {
+        "path": "tools/es/es/proof_dependencies.py",
+        "symbols": [
+          "lean_command",
+          "classify_trace",
+          "receipt",
+          "main"
+        ]
+      }
     }
   ]
 }

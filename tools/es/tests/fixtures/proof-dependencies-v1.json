@@ -1,0 +1,26 @@
+{
+  "owner_differs_from_import": {
+    "schema_version": 1,
+    "module": "TCore.Consumer",
+    "root": "TCore.foo",
+    "root_module": "TCore.Basic",
+    "semantics": "transitive type-and-value constant closure; observational",
+    "reachable_constants": 5,
+    "imported_constant_upper_bound": 100,
+    "modules": ["TCore.Basic", "Init.Core"],
+    "axioms": ["propext"],
+    "unsafe_constants": []
+  },
+  "referenced_obstructions": {
+    "schema_version": 1,
+    "module": "TCore.Consumer",
+    "root": "TCore.foo",
+    "root_module": "TCore.Basic",
+    "semantics": "transitive type-and-value constant closure; observational",
+    "reachable_constants": 12,
+    "imported_constant_upper_bound": 100,
+    "modules": ["TCore.Basic", "TCore.Chunk000", "TCore.Unknown", "TBlueprint.Unknown", "Init.Core"],
+    "axioms": ["propext", "sorryAx"],
+    "unsafe_constants": ["TCore.runtime"]
+  }
+}
