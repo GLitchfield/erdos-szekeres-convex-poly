@@ -1,0 +1,14 @@
+{
+  "semantics": "Complete ordered triple colorings; lexicographic triple bitmask, 1 is cup. Root masks denote lower parts and do not certify child decomposability.",
+  "cases": [
+    {"name": "cup triple", "n": 3, "mask": 1, "roots": [2, 3, 6]},
+    {"name": "cap triple", "n": 3, "mask": 0, "roots": [1, 4, 5]},
+    {
+      "name": "R25 two hard roots",
+      "n": 8,
+      "mask": 8936839165773790,
+      "roots": [4, 247],
+      "source": "runs/r25-sol-20261003/root-choice-audit.json; independent all254 mixed-triple cuts, job20261003-144249-133f80"
+    }
+  ]
+}

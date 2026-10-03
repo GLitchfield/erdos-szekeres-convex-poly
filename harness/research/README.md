@@ -88,3 +88,12 @@ es job run --why "endpoint profile example" --out runs/endpoint-profiles-demo.js
   --mem 2G -- bash -c 'PYTHONPATH=. python3 \
   harness/research/examples/endpoint_profiles_demo.py > runs/endpoint-profiles-demo.json'
 ```
+
+`decomposable.root-cuts` enumerates valid lower parts of an ordered triple
+coloring root through a vertex implication graph. Its SCC order has width at
+most two, so all roots are unions of one or two principal reachability sets.
+It accepts complete Boolean colorings, including those that fail one-change:
+a root cut alone does not certify hereditary decomposability. The retained
+source is the R25 root-graph investigation; tests compare every arbitrary
+coloring through five points against the direct mixed-triple rule. Run the
+solver-free example `examples/root_cuts_demo.py` through a guarded `es` job.
