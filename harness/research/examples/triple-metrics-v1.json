@@ -1,0 +1,22 @@
+{
+  "semantics": "Complete ordered Boolean triple colorings, 1 cup. Bitmasks index lexicographic triples; padded binary labels use the first differing coordinate and the middle point's zero bit for cup. Metrics check all triples/quadruples, not consecutive turns. Diagnostic only.",
+  "cases": [
+    {"name": "non-one-change consecutive-turn trap", "n": 4, "mask": 9, "metrics": [3, 3], "strong": 3},
+    {"name": "R25 root-choice witness", "n": 8, "mask": 8936839165773790, "metrics": [4, 4], "strong": 5, "cores": [[3, 6], [2, 7]], "source": "root-choice-audit.json, job144249-133f80"},
+    {
+      "name": "R25 literal tight Pascal root",
+      "n": 11,
+      "labels": ["100000", "101000", "010000", "000000", "101100", "101110", "111000", "110100", "110010", "110001", "110000"],
+      "metrics": [5, 4], "strong": 6, "cores": [[6, 10], [3, 5]],
+      "queries": [{"mask": 972, "metrics": [4, 3], "strong": 4}, {"mask": 1075, "metrics": [3, 4], "strong": 4}, {"mask": 108, "metrics": [3, 3], "strong": 4}],
+      "source": "pascal-band-gluing-v3.json, job180727-cff0e9"
+    },
+    {
+      "name": "R25 isolated positive-bottom supplied partition",
+      "n": 13,
+      "labels": ["011111000000", "011100100000", "011000000000", "011110000000", "011101000000", "011100000000", "110000000000", "000000000000", "101000000000", "010000000000", "010100000000", "100000000000", "101100000000"],
+      "metrics": [4, 4], "strong": 5, "cap_core": [5, 7],
+      "source": "positive-bottom-isolation-certificate.json records[0], job160248-98a861"
+    }
+  ]
+}

@@ -2,6 +2,17 @@
   "schema_version": 1,
   "entries": [
     {
+      "id": "research.triple-metrics",
+      "kind": "primitive",
+      "title": "Exact complete-triple finite metrics",
+      "summary": "Solver-free cup, cap, strong-set maxima and maximum-chain endpoints on every requested subset.",
+      "keywords": ["complete triple coloring", "all triples", "monochromatic subsets", "cup cap metrics", "strong quadruples", "endpoint extrema", "finite evaluator", "independent certificate"],
+      "api": "FiniteTripleColoring(colors, n); metrics(mask=None); extrema(mask, want); maximal_chain_masks(mask, want); strong_number(mask=None); monochromatic_masks(want); strong_masks()",
+      "example": "from harness.research.triple_metrics import FiniteTripleColoring\nI = FiniteTripleColoring({(0, 1, 2): True}, 3)\nI.metrics()  # (3, 2)\nI.strong_number()  # 3\n# Runnable: python3 harness/research/examples/triple_metrics_demo.py",
+      "semantics": "Complete mapping of increasing integer triples on range(n) to actual bool (True cup); actual nonnegative integer n, including empty maps below3. Copies input and validates the same strict contract as root-cuts. Arbitrary colorings accepted: no one-change, realizability or decomposability assumption. Checks EVERY triple for monochromatic chains and EVERY quadruple's two strong equalities; does not substitute consecutive-turn DP. Subset bitmask is an actual integer in range(2**n), None means full. Empty maxima zero and empty endpoint sets; returned masks sorted by decreasing(size,mask), immutable tuples/frozensets. Exponential small-instance evaluator, worst-case O(2**n*n**4) time/O(2**n) stored masks; strong masks computed lazily. No SAT, execution, storage or Lean proof layer; caller owns guards. Retained R25 original sources and diagnostic n4/n8/n11/n13 fixtures.",
+      "source": {"path": "harness/research/triple_metrics.py", "symbols": ["validate_coloring", "FiniteTripleColoring"]}
+    },
+    {
       "id": "decomposable.root-cuts",
       "kind": "primitive",
       "title": "Polynomial ordered triple-coloring root cuts",

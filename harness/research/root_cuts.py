@@ -14,26 +14,10 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from itertools import combinations
-from math import comb
+from .triple_metrics import validate_coloring
 
 Triple = tuple[int, int, int]
 Profile = tuple[tuple[int, ...], tuple[int, ...], tuple[int, ...]]
-
-
-def _validate(colors: Mapping[Triple, bool], n: int) -> None:
-    if type(n) is not int or n < 0:
-        raise ValueError("n must be a nonnegative integer (not bool)")
-    if not isinstance(colors, Mapping):
-        raise TypeError("colors must be a mapping of ordered triples to bool")
-    if len(colors) != (comb(n, 3) if n >= 3 else 0):
-        raise ValueError("colors must contain exactly all triples on range(n)")
-    for triple, cup in colors.items():
-        if (not isinstance(triple, tuple) or len(triple) != 3
-                or any(type(x) is not int for x in triple)
-                or not 0 <= triple[0] < triple[1] < triple[2] < n):
-            raise ValueError("keys must be ordered integer triples in range(n)")
-        if type(cup) is not bool:
-            raise ValueError("colors must be bool: True is cup, False is cap")
 
 
 def graph_profile(colors: Mapping[Triple, bool], n: int) -> Profile:
@@ -45,7 +29,7 @@ def graph_profile(colors: Mapping[Triple, bool], n: int) -> Profile:
     operations and O(n^2) bits for graph tables, besides the supplied input.
     SCCs are ordered by their smallest vertex, not topologically.
     """
-    _validate(colors, n)
+    validate_coloring(colors, n)
     adjacency = [1 << x for x in range(n)]
     for (a, b, c), cup in colors.items():
         if cup:

@@ -97,3 +97,15 @@ a root cut alone does not certify hereditary decomposability. The retained
 source is the R25 root-graph investigation; tests compare every arbitrary
 coloring through five points against the direct mixed-triple rule. Run the
 solver-free example `examples/root_cuts_demo.py` through a guarded `es` job.
+
+`research.triple-metrics` retains the R25 solver-free exact finite evaluator.
+It checks every triple of a monochromatic chain and every defining quadruple
+of a strong set, including arbitrary colorings that fail one-change. It
+supports repeated subset metrics and ALL maximum-chain endpoint extrema;
+empty maxima are zero with empty endpoint sets. Construction and lazy strong
+evaluation enumerate subsets, so this is exponential small-instance code,
+not the consecutive-turn dynamic program or a decomposition/Lean certificate.
+Input is copied and strictly validated using the same contract as root cuts.
+The self-contained `examples/triple-metrics-v1.json` preserves the non-one-
+change trap and R25 n8/n11/n13 witnesses. Run `examples/triple_metrics_demo.py`
+through `es job run`; the primitive owns no execution or storage workflow.
