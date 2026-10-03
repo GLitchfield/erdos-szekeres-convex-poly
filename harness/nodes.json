@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T12:48:54Z",
- "git_sha": "1cb1c58802cab020dc335eba4ace60d27007af1b",
- "extract_mode": "full",
+ "generated_at": "2026-10-03T12:56:31Z",
+ "git_sha": "9db1872a8a1dedd11a24ea740af48eaed5ef0dc6",
+ "extract_mode": "incremental from 9db1872a8a1d: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15827,
- "tree_hash": "216f2776ec72d92e.4560d6f33c43b8ee",
+ "modules": 15828,
+ "tree_hash": "69e9521ed1be9d1c.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15825,
-  "scanned_constants": 1,
-  "scanned_modules": 2
+  "cached_modules": 5360,
+  "scanned_constants": 13,
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -266,6 +266,53 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup",
+   "module": "ESBlueprint.B.CardLeChooseOfOneChangeNoCapNoCup",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The classical all-triples binomial cup-cap bound under the one-change signotope law for all cap and cup parameters at least two, proved by the generic cap-start peel and Pascal induction.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "dangling-ok": "R23 generic counting foundation for the six singleton gate"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n c v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  instLENat.le 2 c →\n    instLENat.le 2 v →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ s c) →\n          Not (ErdosSzekeres.ContainsCupSet χ s v) →\n            instLENat.le s.card ((instHSub.hSub (instHAdd.hAdd c v) 4).choose (instHSub.hSub c 2))",
+   "type_hash": "6e4f3d0cdd9013a5",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._simp_1_1",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._simp_1_2",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_3",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_4",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_5",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_6",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_7",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_8",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_9",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_10",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_11",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_12"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.card_le_mul_of_oneChange_gap_no_capFive_straddled_cups",
@@ -88480,7 +88527,7 @@
    ],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.singletonUpperPascalTailGate_diag_five_of_six_le_of_inputs",
@@ -98723,6 +98770,7 @@
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCup": "fccad9f565ffead7",
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCupNoStrong": "205b6b9580e346f1",
    "ESBlueprint.B.CardLeChooseOfOneChangeNoCapFourNoCup": "3f4f4db5fd7d7fc9",
+   "ESBlueprint.B.CardLeChooseOfOneChangeNoCapNoCup": "c320b06897c8db88",
    "ESBlueprint.B.CardLeMulOfOneChangeGapNoCapFiveStraddledCups": "035b2b0aecd75fde",
    "ESBlueprint.B.CardLeSquareOfOneChangeGapNoCapFiveNoCup": "751ccd9040518208",
    "ESBlueprint.B.CardLeTwoChooseAddOneOfDecomposableGapDeepSplitNoCapFiveNoStrongOfInputs": "355e7522b384b992",

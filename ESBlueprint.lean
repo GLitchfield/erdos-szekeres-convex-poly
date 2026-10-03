@@ -483,3 +483,4 @@ import ESBlueprint.B.SingletonUpperPascalTailGateDiagFiveOfSixLeOfInputs
 import ESBlueprint.B.ExistsCapStartPeelOfOneChangeNoCapSuccNoCup
 import ESBlueprint.B.DecomposableThresholdSixPredPredOfSevenLe
 import ESBlueprint.B.SingletonLowerPascalTailGateSixPredPredOfSevenLe
+import ESBlueprint.B.CardLeChooseOfOneChangeNoCapNoCup
