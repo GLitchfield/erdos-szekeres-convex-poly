@@ -3942,6 +3942,15 @@
     "ws": "C",
     "module": "ESBlueprint.C.DecomposableStateUpperFourDiagonalOfGates"
   },
+  "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at": {
+    "type_hash": "c60bdf6056d69a2",
+    "type_pp": "∀ {k : Nat},\n  instLENat.le 2 k →\n    (∀ (a u : Nat),\n        instLENat.le 4 a →\n          instLENat.le 4 u →\n            instLTNat.lt a k →\n              instLENat.le u k →\n                instLENat.le (instHAdd.hAdd k 4) (instHAdd.hAdd a u) →\n                  ErdosSzekeres.SingletonLowerPascalTailGate a u k) →\n      ∀ (a u : Nat), ErdosSzekeres.DecomposableStateUpper a u k",
+    "approved_by": "Gavin 2026-10-02 (\"any other lean work you can get done\")",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.DecomposableStateUpperOfLowerGatesAt"
+  },
   "ErdosSzekeres.decomposableThreshold_capacity_pascal_left": {
     "type_hash": "909643c533edfebe",
     "type_pp": "∀ (a u k : Nat),\n  instLENat.le 3 a →\n    instLENat.le a k →\n      instLENat.le 2 u →\n        instLENat.le u k →\n          Eq (ErdosSzekeres.decomposableThreshold a u k)\n            (instHAdd.hAdd (ErdosSzekeres.decomposableThreshold (instHSub.hSub a 1) u k)\n              (ErdosSzekeres.decomposableThreshold a\n                (instMinNat.min (instHSub.hSub u 1) (instHAdd.hAdd (instHSub.hSub k a) 2)) k))",

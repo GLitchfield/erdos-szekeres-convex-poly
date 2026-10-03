@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T00:59:12Z",
- "git_sha": "30c6792c2c9fcbcbfb403711b49b848733f4bc7c",
+ "generated_at": "2026-10-03T02:16:58Z",
+ "git_sha": "fd27c53240fcff6bcd4d4f87c1dd6cd1204867e7",
  "extract_mode": "full",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15796,
- "tree_hash": "54f0b593b07d4560.4560d6f33c43b8ee",
+ "modules": 15797,
+ "tree_hash": "8930d96a4b317324.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15795,
-  "scanned_constants": 0,
+  "cached_modules": 15796,
+  "scanned_constants": 8,
   "scanned_modules": 1
  },
  "nodes": [
@@ -86467,6 +86467,56 @@
    "opened": "2026-09-05"
   },
   {
+   "name": "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at",
+   "module": "ESBlueprint.B.DecomposableStateUpperOfLowerGatesAt",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Gate assembly for Theorem 8 at a fixed strong-polygon parameter k: if the singleton lower Pascal-tail gate holds at every active state (a,u,k) with a < k, then every decomposable state (a,u,k) is bounded by the Baek-Balko threshold. Strong induction on a+u: the classic regime by Erdős-Szekeres on the decomposable carrier, parameters above k by threshold monotonicity, and active states through the interior Pascal-tail shell with colour-dual upper gates.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.criticalRootImpossible_of_predecessors_interior_pascal_tail_gates",
+     "ErdosSzekeres.singletonUpperPascalTailGate_iff_lower_dual",
+     "ErdosSzekeres.containsCapSet_or_containsCupSet_of_choose_lt"
+    ],
+    "consumer": "ErdosSzekeres.decomposableStateUpper_all"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {k : Nat},\n  instLENat.le 2 k →\n    (∀ (a u : Nat),\n        instLENat.le 4 a →\n          instLENat.le 4 u →\n            instLTNat.lt a k →\n              instLENat.le u k →\n                instLENat.le (instHAdd.hAdd k 4) (instHAdd.hAdd a u) →\n                  ErdosSzekeres.SingletonLowerPascalTailGate a u k) →\n      ∀ (a u : Nat), ErdosSzekeres.DecomposableStateUpper a u k",
+   "type_hash": "c60bdf6056d69a2",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.criticalRootImpossible_of_predecessors_interior_pascal_tail_gates",
+    "ErdosSzekeres.singletonUpperPascalTailGate_iff_lower_dual",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_choose_lt"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at._proof_1_1",
+    "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at._proof_1_2",
+    "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at._proof_1_3",
+    "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at._proof_1_4",
+    "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at._proof_1_5",
+    "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at._proof_1_6",
+    "_private.ESBlueprint.B.DecomposableStateUpperOfLowerGatesAt.0.ErdosSzekeres.decomposableStateUpper_of_classic_aux"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.decomposableThreshold_capacity_pascal_left",
    "module": "ESBlueprint.B.DecomposableThresholdCapacityPascalLeft",
    "ws": "B",
@@ -97418,6 +97468,7 @@
    "ESBlueprint.B.CtxYoungestMarkerTripleFacePotential": "fc4bf92034952d74",
    "ESBlueprint.B.CtxYoungestMiddleMarkerDoubledWidthBound": "899e7b03d68cfbee",
    "ESBlueprint.B.DecomposableStateUpperAll": "614f6c48c0469bc6",
+   "ESBlueprint.B.DecomposableStateUpperOfLowerGatesAt": "44e236682ce95876",
    "ESBlueprint.B.DecomposableThresholdCapacityPascalLeft": "86871726fc1e8409",
    "ESBlueprint.B.DecomposableThresholdSplitAttained": "78dbe5073a2af056",
    "ESBlueprint.B.DecomposableThresholdSplitLe": "f9325e14b9da599f",
