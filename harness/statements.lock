@@ -4072,6 +4072,15 @@
     "merged_module": "ErdosSzekeres.Closed.A.ForcesConvexPolygonOfSweepExactUpperAt",
     "merged_at": "2026-09-05"
   },
+  "ErdosSzekeres.isCupSet_iff_not_containsCapSet_three": {
+    "type_hash": "87c897e89483d3ac",
+    "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  Iff (ErdosSzekeres.IsCupSet χ s) (Not (ErdosSzekeres.ContainsCapSet χ s 3))",
+    "approved_by": "R22 audited basic fact F1",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.IsCupSetIffNotContainsCapSetThree"
+  },
   "ErdosSzekeres.isMonochromaticSet_of_oneChange_consecutive": {
     "type_hash": "f2f0b04ce9926768",
     "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {c : ErdosSzekeres.Turn},\n  ErdosSzekeres.OneChangeOn χ s →\n    (∀ (t : ErdosSzekeres.OrderedTriple n),\n        SetLike.instMembership.mem s t.i →\n          SetLike.instMembership.mem s t.j →\n            SetLike.instMembership.mem s t.k →\n              (∀ (x : Fin n),\n                  SetLike.instMembership.mem s x →\n                    instLTFin.lt t.i x → instLTFin.lt x t.j → False) →\n                (∀ (x : Fin n),\n                    SetLike.instMembership.mem s x →\n                      instLTFin.lt t.j x → instLTFin.lt x t.k → False) →\n                  Eq (χ t) c) →\n      ∀ (t : ErdosSzekeres.OrderedTriple n),\n        SetLike.instMembership.mem s t.i →\n          SetLike.instMembership.mem s t.j → SetLike.instMembership.mem s t.k → Eq (χ t) c",
