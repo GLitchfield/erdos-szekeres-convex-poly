@@ -4072,6 +4072,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.IsMonochromaticSetOfOneChangeConsecutive"
   },
+  "ErdosSzekeres.monochromaticSet_insert_max_of_oneChange": {
+    "type_hash": "ebd3b03f70e15ea8",
+    "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {c : ErdosSzekeres.Turn}\n  {x a b : Fin n},\n  SetLike.instMembership.mem s a →\n    SetLike.instMembership.mem s b →\n      ∀ (hab : instLTFin.lt a b) (hbx : instLTFin.lt b x),\n        (∀ (y : Fin n), SetLike.instMembership.mem s y → instLEFin.le y b) →\n          (∀ (y : Fin n), SetLike.instMembership.mem s y → instLTFin.lt y b → instLEFin.le y a) →\n            (∀ (t : ErdosSzekeres.OrderedTriple n),\n                SetLike.instMembership.mem s t.i →\n                  SetLike.instMembership.mem s t.j →\n                    SetLike.instMembership.mem s t.k → Eq (χ t) c) →\n              ErdosSzekeres.OneChangeOn χ (Finset.instInsert.insert x s) →\n                Eq (χ { i := a, j := b, k := x, hij := hab, hjk := hbx }) c →\n                  ∀ (t : ErdosSzekeres.OrderedTriple n),\n                    SetLike.instMembership.mem (Finset.instInsert.insert x s) t.i →\n                      SetLike.instMembership.mem (Finset.instInsert.insert x s) t.j →\n                        SetLike.instMembership.mem (Finset.instInsert.insert x s) t.k → Eq (χ t) c",
+    "approved_by": "R22 audited proof toolkit",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.MonochromaticSetInsertMaxOfOneChange"
+  },
   "ErdosSzekeres.monochromaticSet_insert_min_of_oneChange": {
     "type_hash": "e71a2eb6309d502d",
     "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {c : ErdosSzekeres.Turn}\n  {x a b : Fin n},\n  SetLike.instMembership.mem s a →\n    SetLike.instMembership.mem s b →\n      ∀ (hab : instLTFin.lt a b) (hxa : instLTFin.lt x a),\n        (∀ (y : Fin n), SetLike.instMembership.mem s y → instLEFin.le a y) →\n          (∀ (y : Fin n), SetLike.instMembership.mem s y → instLTFin.lt a y → instLEFin.le b y) →\n            (∀ (t : ErdosSzekeres.OrderedTriple n),\n                SetLike.instMembership.mem s t.i →\n                  SetLike.instMembership.mem s t.j →\n                    SetLike.instMembership.mem s t.k → Eq (χ t) c) →\n              ErdosSzekeres.OneChangeOn χ (Finset.instInsert.insert x s) →\n                Eq (χ { i := x, j := a, k := b, hij := hxa, hjk := hab }) c →\n                  ∀ (t : ErdosSzekeres.OrderedTriple n),\n                    SetLike.instMembership.mem (Finset.instInsert.insert x s) t.i →\n                      SetLike.instMembership.mem (Finset.instInsert.insert x s) t.j →\n                        SetLike.instMembership.mem (Finset.instInsert.insert x s) t.k → Eq (χ t) c",
