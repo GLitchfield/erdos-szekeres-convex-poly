@@ -4190,5 +4190,14 @@
     "module": "ESBlueprint.A.SweepExactUpperAtOfPredecessorHalfSubsetAll",
     "merged_module": "ErdosSzekeres.Closed.A.SweepExactUpperAtOfPredecessorHalfSubsetAll",
     "merged_at": "2026-09-05"
+  },
+  "ErdosSzekeres.twoCupBlocks_card_and_extensions_of_oneChange_no_capFour_no_cup": {
+    "type_hash": "dac186281844e9ad",
+    "type_pp": "∀ {n u : Nat} {χ : ErdosSzekeres.TripleColoring n} {P Q : Finset (Fin n)},\n  instLENat.le 2 u →\n    ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union P Q) →\n      (∀ (x : Fin n),\n          SetLike.instMembership.mem P x →\n            ∀ (y : Fin n), SetLike.instMembership.mem Q y → instLTFin.lt x y) →\n        ErdosSzekeres.IsCupSet χ P →\n          ErdosSzekeres.IsCupSet χ Q →\n            Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union P Q) 4) →\n              Not (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union P Q) u) →\n                And\n                  (instLENat.le (instHAdd.hAdd P.card Q.card) (instHSub.hSub (instHMul.hMul 2 u) 3))\n                  (∀ (p q : Fin n),\n                    SetLike.instMembership.mem P p →\n                      SetLike.instMembership.mem Q q →\n                        (∀ (x : Fin n), SetLike.instMembership.mem P x → instLEFin.le x p) →\n                          (∀ (y : Fin n), SetLike.instMembership.mem Q y → instLEFin.le q y) →\n                            And\n                              (Or (ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert q P))\n                                (ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert p Q)))\n                              (And\n                                (Eq P.card (instHSub.hSub u 1) →\n                                  ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert p Q))\n                                (Eq Q.card (instHSub.hSub u 1) →\n                                  ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert q P))))",
+    "approved_by": "R22 audited Lemma3",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.TwoCupBlocksCardAndExtensionsOfOneChangeNoCapFourNoCup"
   }
 }
