@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T12:26:02Z",
- "git_sha": "6ae26b5d2543198ddd1b7bed7574827f72c02595",
- "extract_mode": "incremental from 6ae26b5d2543: 1 re-extracted, 0 removed",
+ "generated_at": "2026-10-03T12:30:24Z",
+ "git_sha": "e9d72dc51b48feb3e18189b2582af988c5eb920a",
+ "extract_mode": "incremental from e9d72dc51b48: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15825,
- "tree_hash": "e78da95a18354316.4560d6f33c43b8ee",
+ "modules": 15826,
+ "tree_hash": "34e6895cc95c47f3.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,7 +20,7 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5359,
+  "cached_modules": 5354,
   "scanned_constants": 14,
   "scanned_modules": 1
  },
@@ -87294,6 +87294,53 @@
    "opened": "2026-10-03"
   },
   {
+   "name": "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le",
+   "module": "ESBlueprint.B.DecomposableThresholdSixPredPredOfSevenLe",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "At every k at least seven the six predecessor-predecessor Pascal window equals its lower tail plus the audited two-side cubic bound, with all three window terms untruncated.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "dangling-ok": "R23 six singleton gate reservoir arithmetic"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {k : Nat},\n  instLENat.le 7 k →\n    Eq (ErdosSzekeres.decomposableThreshold 6 (instHSub.hSub k 2) k)\n      (instHAdd.hAdd (instHAdd.hAdd ((instHSub.hSub k 3).choose 4) ((instHSub.hSub k 1).choose 3))\n        ((instHSub.hSub k 3).choose 3))",
+   "type_hash": "761c42a05a5c1f69",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_1",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_2",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_3",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_4",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_5",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_6",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_7",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_8",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_9",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_10",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_11",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_12",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_13"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.decomposableThreshold_split_attained",
    "module": "ESBlueprint.B.DecomposableThresholdSplitAttained",
    "ws": "B",
@@ -87602,7 +87649,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.exists_cupStartLayers_of_oneChange_no_capFour",
@@ -99080,6 +99127,7 @@
    "ESBlueprint.B.DecomposableStateUpperOfLowerGatesAt": "44e236682ce95876",
    "ESBlueprint.B.DecomposableThresholdCapacityPascalLeft": "86871726fc1e8409",
    "ESBlueprint.B.DecomposableThresholdFivePredOfSixLe": "3d39910f88c8515d",
+   "ESBlueprint.B.DecomposableThresholdSixPredPredOfSevenLe": "8857e0a3d947d529",
    "ESBlueprint.B.DecomposableThresholdSplitAttained": "78dbe5073a2af056",
    "ESBlueprint.B.DecomposableThresholdSplitLe": "f9325e14b9da599f",
    "ESBlueprint.B.DeepSplitTwoEndpointExtensions": "3bd58b2538e6a777",
