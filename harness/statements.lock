@@ -72,6 +72,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCupNoStrong"
   },
+  "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup": {
+    "type_hash": "5ac6eb3a799efa21",
+    "type_pp": "∀ {n v : Nat} {χ : ErdosSzekeres.TripleColoring n} {X Y Z : Finset (Fin n)},\n  instLENat.le 3 v →\n    ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union (Finset.instUnion.union X Y) Z) →\n      (∀ (x : Fin n),\n          SetLike.instMembership.mem X x →\n            ∀ (y : Fin n), SetLike.instMembership.mem Y y → instLTFin.lt x y) →\n        (∀ (y : Fin n),\n            SetLike.instMembership.mem Y y →\n              ∀ (z : Fin n), SetLike.instMembership.mem Z z → instLTFin.lt y z) →\n          (∀ (x : Fin n),\n              SetLike.instMembership.mem X x →\n                ∀ (z : Fin n), SetLike.instMembership.mem Z z → instLTFin.lt x z) →\n            Not (ErdosSzekeres.ContainsCapSet χ X 4) →\n              Not (ErdosSzekeres.ContainsCapSet χ Y 4) →\n                Not (ErdosSzekeres.ContainsCapSet χ Z 4) →\n                  Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union X Y) 5) →\n                    Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union Y Z) 5) →\n                      Not\n                          (ErdosSzekeres.ContainsCapSet χ\n                            (Finset.instUnion.union (Finset.instUnion.union X Y) Z) 6) →\n                        Not\n                            (ErdosSzekeres.ContainsCupSet χ\n                              (Finset.instUnion.union (Finset.instUnion.union X Y) Z) v) →\n                          And\n                            (instLENat.le\n                              (Finset.instUnion.union (Finset.instUnion.union X Y) Z).card\n                              (instHAdd.hAdd (v.choose 2)\n                                (instHMul.hMul 2 ((instHSub.hSub v 1).choose 2))))\n                            (ErdosSzekeres.IsCupSet χ X →\n                              instLENat.le\n                                (Finset.instUnion.union (Finset.instUnion.union X Y) Z).card\n                                (instHAdd.hAdd\n                                  (instHAdd.hAdd (v.choose 2) ((instHSub.hSub v 1).choose 2))\n                                  (instHSub.hSub v 2)))",
+    "approved_by": "codex:agent-run-6b3abc23e58d4be6",
+    "approved_at": "2026-10-03",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CardLeChooseAddTwoChooseOfOneChangeThreeBlocksNoCapSixNoCup"
+  },
   "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_cup": {
     "type_hash": "5bd4ab7b285da66a",
     "type_pp": "∀ {n v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  ErdosSzekeres.OneChangeOn χ s →\n    Not (ErdosSzekeres.ContainsCapSet χ s 4) →\n      Not (ErdosSzekeres.ContainsCupSet χ s v) → instLENat.le s.card (v.choose 2)",

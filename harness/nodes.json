@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T13:23:38Z",
- "git_sha": "08ab08f0b1dbce4072299f26822237c0b58317e6",
- "extract_mode": "incremental from 08ab08f0b1db: 1 re-extracted, 0 removed",
+ "generated_at": "2026-10-03T13:29:04Z",
+ "git_sha": "7806d5c4f63648e9f6c18e6c9f12e88dc5f53c87",
+ "extract_mode": "incremental from 7806d5c4f636: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15832,
- "tree_hash": "910e39f26577cc7b.4560d6f33c43b8ee",
+ "modules": 15833,
+ "tree_hash": "23434c60089ca47f.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5360,
-  "scanned_constants": 7,
+  "cached_modules": 5364,
+  "scanned_constants": 12,
   "scanned_modules": 1
  },
  "nodes": [
@@ -314,6 +314,54 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup",
+   "module": "ESBlueprint.B.CardLeChooseAddTwoChooseOfOneChangeThreeBlocksNoCapSixNoCup",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Audited L3 and L3-cup bounds for three ordered four-cap-free blocks, adjacent five-cap-free unions and six-cap-free total. A common-endpoint extension combines the five-cap start family and second four-cap start family into one smaller-cup-free piece.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.singletonLowerPascalTailGate_six_pred_pred_of_seven_le"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n v : Nat} {χ : ErdosSzekeres.TripleColoring n} {X Y Z : Finset (Fin n)},\n  instLENat.le 3 v →\n    ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union (Finset.instUnion.union X Y) Z) →\n      (∀ (x : Fin n),\n          SetLike.instMembership.mem X x →\n            ∀ (y : Fin n), SetLike.instMembership.mem Y y → instLTFin.lt x y) →\n        (∀ (y : Fin n),\n            SetLike.instMembership.mem Y y →\n              ∀ (z : Fin n), SetLike.instMembership.mem Z z → instLTFin.lt y z) →\n          (∀ (x : Fin n),\n              SetLike.instMembership.mem X x →\n                ∀ (z : Fin n), SetLike.instMembership.mem Z z → instLTFin.lt x z) →\n            Not (ErdosSzekeres.ContainsCapSet χ X 4) →\n              Not (ErdosSzekeres.ContainsCapSet χ Y 4) →\n                Not (ErdosSzekeres.ContainsCapSet χ Z 4) →\n                  Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union X Y) 5) →\n                    Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union Y Z) 5) →\n                      Not\n                          (ErdosSzekeres.ContainsCapSet χ\n                            (Finset.instUnion.union (Finset.instUnion.union X Y) Z) 6) →\n                        Not\n                            (ErdosSzekeres.ContainsCupSet χ\n                              (Finset.instUnion.union (Finset.instUnion.union X Y) Z) v) →\n                          And\n                            (instLENat.le\n                              (Finset.instUnion.union (Finset.instUnion.union X Y) Z).card\n                              (instHAdd.hAdd (v.choose 2)\n                                (instHMul.hMul 2 ((instHSub.hSub v 1).choose 2))))\n                            (ErdosSzekeres.IsCupSet χ X →\n                              instLENat.le\n                                (Finset.instUnion.union (Finset.instUnion.union X Y) Z).card\n                                (instHAdd.hAdd\n                                  (instHAdd.hAdd (v.choose 2) ((instHSub.hSub v 1).choose 2))\n                                  (instHSub.hSub v 2)))",
+   "type_hash": "5ac6eb3a799efa21",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_1",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_2",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_3",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_4",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_5",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_6",
+    "ErdosSzekeres.containsCupSet_succ_or_containsCapSet_succ_of_oneChange_common_endpoint",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_7",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_8",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_cup",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_9",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_10",
+    "ErdosSzekeres.card_le_choose_add_two_choose_of_oneChange_three_blocks_no_capSix_no_cup._proof_1_11"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_cup",
@@ -897,7 +945,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.ctx_absent_flank_swap_counterexample",
@@ -98940,6 +98988,7 @@
    "ESBlueprint.B.CardLeChooseAddOfDecomposableOrderedCupPrefixNoCapFiveNoStrongOfInputs": "e375a2cfaa90182f",
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCup": "fccad9f565ffead7",
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCupNoStrong": "205b6b9580e346f1",
+   "ESBlueprint.B.CardLeChooseAddTwoChooseOfOneChangeThreeBlocksNoCapSixNoCup": "8e69e5bc8abd3397",
    "ESBlueprint.B.CardLeChooseOfOneChangeNoCapFourNoCup": "3f4f4db5fd7d7fc9",
    "ESBlueprint.B.CardLeChooseOfOneChangeNoCapNoCup": "c320b06897c8db88",
    "ESBlueprint.B.CardLeMulOfOneChangeGapNoCapFiveStraddledCups": "035b2b0aecd75fde",
