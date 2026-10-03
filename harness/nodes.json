@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T13:29:04Z",
- "git_sha": "7806d5c4f63648e9f6c18e6c9f12e88dc5f53c87",
- "extract_mode": "incremental from 7806d5c4f636: 1 re-extracted, 0 removed",
+ "generated_at": "2026-10-03T13:34:37Z",
+ "git_sha": "7fffcb47aea740a7c876ce67f37553284d8a30b1",
+ "extract_mode": "incremental from 7fffcb47aea7: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15833,
- "tree_hash": "23434c60089ca47f.4560d6f33c43b8ee",
+ "modules": 15834,
+ "tree_hash": "53e8d71cf514830c.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5364,
-  "scanned_constants": 12,
+  "cached_modules": 5360,
+  "scanned_constants": 6,
   "scanned_modules": 1
  },
  "nodes": [
@@ -361,7 +361,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_cup",
@@ -88148,6 +88148,45 @@
    "opened": "2026-10-03"
   },
   {
+   "name": "ErdosSzekeres.marker_straddle_turn_core",
+   "module": "ESBlueprint.B.MarkerStraddleTurnCore",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Audited marker Lemma 7 at the level of eight points and their turns. Opposing cup endpoints, saturation turns, marker-forbidden bridge cups and blocked cap extensions force a four-point sequence with two changes. The contradiction is independent of endpoint-cap cardinalities.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.singletonLowerPascalTailGate_six_pred_pred_of_seven_le"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {p e f r c₁ c₂ d₂ d₃ : Fin n},\n  ErdosSzekeres.OneChangeOn χ s →\n    SetLike.instMembership.mem s p →\n      SetLike.instMembership.mem s e →\n        SetLike.instMembership.mem s f →\n          SetLike.instMembership.mem s r →\n            SetLike.instMembership.mem s c₁ →\n              SetLike.instMembership.mem s c₂ →\n                SetLike.instMembership.mem s d₂ →\n                  SetLike.instMembership.mem s d₃ →\n                    ∀ (hpe : instLTFin.lt p e),\n                      instLTFin.lt e f →\n                        ∀ (hfr : instLTFin.lt f r) (hc12 : instLTFin.lt c₁ c₂)\n                          (hc2f : instLTFin.lt c₂ f) (hed2 : instLTFin.lt e d₂)\n                          (hd23 : instLTFin.lt d₂ d₃) (hc2d2 : instLTFin.lt c₂ d₂),\n                          Eq (χ { i := e, j := d₂, k := d₃, hij := hed2, hjk := hd23 })\n                              ErdosSzekeres.Turn.left →\n                            Eq (χ { i := c₁, j := c₂, k := f, hij := hc12, hjk := hc2f })\n                                ErdosSzekeres.Turn.left →\n                              (∀ (x : Fin n),\n                                  SetLike.instMembership.mem s x →\n                                    ∀ (hxe : instLTFin.lt x e),\n                                      Eq (χ { i := x, j := e, k := d₂, hij := hxe, hjk := hed2 })\n                                        ErdosSzekeres.Turn.right) →\n                                (∀ (y : Fin n),\n                                    SetLike.instMembership.mem s y →\n                                      ∀ (hfy : instLTFin.lt f y),\n                                        Eq (χ { i := c₂, j := f, k := y, hij := hc2f, hjk := hfy })\n                                          ErdosSzekeres.Turn.right) →\n                                  (∀ (hc2e : instLTFin.lt c₂ e),\n                                      Eq (χ { i := c₁, j := c₂, k := e, hij := hc12, hjk := hc2e })\n                                        ErdosSzekeres.Turn.right) →\n                                    (∀ (hfd2 : instLTFin.lt f d₂),\n                                        Eq\n                                          (χ { i := f, j := d₂, k := d₃, hij := hfd2, hjk := hd23 })\n                                          ErdosSzekeres.Turn.right) →\n                                      Not\n                                          (And\n                                            (Eq\n                                              (χ\n                                                { i := c₁, j := c₂, k := d₂, hij := hc12,\n                                                  hjk := hc2d2 })\n                                              ErdosSzekeres.Turn.left)\n                                            (Eq\n                                              (χ\n                                                { i := c₂, j := d₂, k := d₃, hij := hc2d2,\n                                                  hjk := hd23 })\n                                              ErdosSzekeres.Turn.left)) →\n                                        (∀ (hec2 : instLTFin.lt e c₂),\n                                            Ne\n                                              (χ\n                                                { i := p, j := e, k := c₂, hij := hpe,\n                                                  hjk := hec2 })\n                                              ErdosSzekeres.Turn.right) →\n                                          (∀ (hd2f : instLTFin.lt d₂ f),\n                                              Ne\n                                                (χ\n                                                  { i := d₂, j := f, k := r, hij := hd2f,\n                                                    hjk := hfr })\n                                                ErdosSzekeres.Turn.right) →\n                                            False",
+   "type_hash": "c147047e303865c",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.marker_straddle_turn_core._proof_1_1",
+    "ErdosSzekeres.marker_straddle_turn_core._proof_1_2",
+    "ErdosSzekeres.marker_straddle_turn_core._proof_1_3",
+    "ErdosSzekeres.marker_straddle_turn_core._proof_1_4",
+    "ErdosSzekeres.marker_straddle_turn_core._proof_1_5"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.monochromaticSet_insert_max_of_oneChange",
    "module": "ESBlueprint.B.MonochromaticSetInsertMaxOfOneChange",
    "ws": "B",
@@ -99446,6 +99485,7 @@
    "ESBlueprint.B.IsMonochromaticSetOfOneChangeConsecutive": "aa76254d18bdaff0",
    "ESBlueprint.B.IsStrongPolygonSetUnionOfCupCapCommonExtremes": "65bd89d84bf67132",
    "ESBlueprint.B.MarkerCupEndpointsNoCapThreeOnOneSide": "d2fde46e7b63b8de",
+   "ESBlueprint.B.MarkerStraddleTurnCore": "52fe3b9aa35cad96",
    "ESBlueprint.B.MonochromaticSetInsertMaxOfOneChange": "c4428b395417ebe9",
    "ESBlueprint.B.MonochromaticSetInsertMinOfOneChange": "665ece9f1f8e56ac",
    "ESBlueprint.B.RankPairCardGeSumDisjointGroupCharges": "208cb2ee2289dc04",
