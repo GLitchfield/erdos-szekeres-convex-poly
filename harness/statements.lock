@@ -27,6 +27,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals"
   },
+  "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_cup": {
+    "type_hash": "5bd4ab7b285da66a",
+    "type_pp": "∀ {n v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  ErdosSzekeres.OneChangeOn χ s →\n    Not (ErdosSzekeres.ContainsCapSet χ s 4) →\n      Not (ErdosSzekeres.ContainsCupSet χ s v) → instLENat.le s.card (v.choose 2)",
+    "approved_by": "R22 audited Lemma1 triangular count",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CardLeChooseOfOneChangeNoCapFourNoCup"
+  },
   "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_strong": {
     "type_hash": "17d2458e770c2e45",
     "type_pp": "∀ {n k : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  instLENat.le 3 k →\n    ErdosSzekeres.OneChangeOn χ s →\n      Not (ErdosSzekeres.ContainsCapSet χ s 4) →\n        Not (ErdosSzekeres.ContainsStrongPolygonSet χ s k) →\n          instLENat.le s.card (instHAdd.hAdd 1 ((instHSub.hSub k 1).choose 2))",
