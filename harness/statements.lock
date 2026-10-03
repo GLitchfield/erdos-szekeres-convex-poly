@@ -4297,6 +4297,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.SingletonLowerPascalTailGateFourDiagonalOfFiveLe"
   },
+  "ErdosSzekeres.singletonUpperPascalTailGate_pred_five_of_six_le": {
+    "type_hash": "f3116a1be4927653",
+    "type_pp": "∀ {k : Nat}, instLENat.le 6 k → ErdosSzekeres.SingletonUpperPascalTailGate (instHSub.hSub k 1) 5 k",
+    "approved_by": "codex:agent-run-c94853b9754648ba",
+    "approved_at": "2026-10-03",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.SingletonUpperPascalTailGatePredFiveOfSixLe"
+  },
   "ErdosSzekeres.sweepExactUpperAt_of_predecessorHalfSubset_all": {
     "type_hash": "ee88bf4ffda45548",
     "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    (∀ (j : Nat), instLENat.le 4 j → instLENat.le j k → ErdosSzekeres.PredecessorHalfSubsetAt j) →\n      ErdosSzekeres.SweepExactUpperAt k",
