@@ -4068,6 +4068,15 @@
     "ws": "F",
     "module": "ESBlueprint.F.DecomposableExtremalInsertionDichotomy"
   },
+  "ErdosSzekeres.deepSplit_two_endpoint_extensions": {
+    "type_hash": "c0597e18a9e9b81e",
+    "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {A B : Finset (Fin n)},\n  ErdosSzekeres.HasDeepBelowSplit χ A B →\n    And\n      (∀ (C : Finset (Fin n)),\n        Finset.instHasSubset.Subset C A →\n          ErdosSzekeres.IsCupSet χ C →\n            ∀ (x y : Fin n),\n              SetLike.instMembership.mem B x →\n                SetLike.instMembership.mem B y →\n                  instLTFin.lt x y →\n                    (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt x z) →\n                      (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt z y) →\n                        ErdosSzekeres.IsCupSet χ\n                          (Finset.instInsert.insert x (Finset.instInsert.insert y C)))\n      (∀ (C : Finset (Fin n)),\n        Finset.instHasSubset.Subset C B →\n          ErdosSzekeres.IsCapSet χ C →\n            ∀ (x y : Fin n),\n              SetLike.instMembership.mem A x →\n                SetLike.instMembership.mem A y →\n                  instLTFin.lt x y →\n                    (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt x z) →\n                      (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt z y) →\n                        ErdosSzekeres.IsCapSet χ\n                          (Finset.instInsert.insert x (Finset.instInsert.insert y C)))",
+    "approved_by": "codex:agent-run-c94853b9754648ba",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.DeepSplitTwoEndpointExtensions"
+  },
   "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le": {
     "type_hash": "7b9515ee94a1f04b",
     "type_pp": "∀ {k : Nat}, instLENat.le 5 k → ErdosSzekeres.DiagonalCupBlocksForce4kk k",

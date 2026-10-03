@@ -473,3 +473,4 @@ import ESBlueprint.B.ReverseColorSetInvariants
 import ESBlueprint.B.CardLeTwoChooseOfOneChangeGapDeepSplitNoCapFiveNoCupNoStrong
 import ESBlueprint.B.SingletonLowerPascalTailGateFiveDiagOfSixLeOfInputs
 import ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCup
+import ESBlueprint.B.DeepSplitTwoEndpointExtensions
