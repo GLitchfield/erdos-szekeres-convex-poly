@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T13:34:37Z",
- "git_sha": "7fffcb47aea740a7c876ce67f37553284d8a30b1",
- "extract_mode": "incremental from 7fffcb47aea7: 1 re-extracted, 0 removed",
+ "generated_at": "2026-10-03T13:40:50Z",
+ "git_sha": "b8c7a30194cb2ef0aabc1548d2698a8eceaba70a",
+ "extract_mode": "incremental from b8c7a30194cb: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15834,
- "tree_hash": "53e8d71cf514830c.4560d6f33c43b8ee",
+ "modules": 15835,
+ "tree_hash": "6873ffdc8782f9b9.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5360,
-  "scanned_constants": 6,
+  "cached_modules": 5361,
+  "scanned_constants": 33,
   "scanned_modules": 1
  },
  "nodes": [
@@ -88148,6 +88148,75 @@
    "opened": "2026-10-03"
   },
   {
+   "name": "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side",
+   "module": "ESBlueprint.B.MarkerCupEndpointsNoEndpointCapOnOneSide",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Generalized strong marker endpoint exclusion: with a-cap-free left side, b-cap-free right side, no m+1 cup and every m-cup straddling a marker, either no (a-1)-cap ends at a first m-cup endpoint or no (b-1)-cap begins at a last endpoint. Derives all abstract marker-core premises from actual cup witnesses and saturation, without global six-cap exclusion.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.singletonLowerPascalTailGate_six_pred_pred_of_seven_le"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n a b m : Nat} {χ : ErdosSzekeres.TripleColoring n} {s E F : Finset (Fin n)} {q h : Fin n},\n  instLENat.le 3 a →\n    instLENat.le 3 b →\n      instLENat.le 3 m →\n        Not (SetLike.instMembership.mem s q) →\n          ErdosSzekeres.OneChangeOn χ s →\n            Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt x q) s) a) →\n              Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt q x) s) b) →\n                Not (ErdosSzekeres.ContainsCupSet χ s (instHAdd.hAdd m 1)) →\n                  (∀ (C : Finset (Fin n)),\n                      Finset.instHasSubset.Subset C s →\n                        Eq C.card m →\n                          ErdosSzekeres.IsCupSet χ C →\n                            And\n                              (Exists fun x =>\n                                And (SetLike.instMembership.mem C x) (instLTFin.lt x h))\n                              (Exists fun y =>\n                                And (SetLike.instMembership.mem C y) (instLTFin.lt h y))) →\n                    (∀ (e : Fin n),\n                        SetLike.instMembership.mem E e →\n                          Exists fun C =>\n                            And (Finset.instHasSubset.Subset C s)\n                              (And (Eq C.card m)\n                                (And (ErdosSzekeres.IsCupSet χ C)\n                                  (And (SetLike.instMembership.mem C e)\n                                    (∀ (x : Fin n),\n                                      SetLike.instMembership.mem C x → instLEFin.le e x))))) →\n                      (∀ (f : Fin n),\n                          SetLike.instMembership.mem F f →\n                            Exists fun C =>\n                              And (Finset.instHasSubset.Subset C s)\n                                (And (Eq C.card m)\n                                  (And (ErdosSzekeres.IsCupSet χ C)\n                                    (And (SetLike.instMembership.mem C f)\n                                      (∀ (x : Fin n),\n                                        SetLike.instMembership.mem C x → instLEFin.le x f))))) →\n                        Or\n                          (Not\n                            (Exists fun K =>\n                              Exists fun e =>\n                                And (Finset.instHasSubset.Subset K s)\n                                  (And (Eq K.card (instHSub.hSub a 1))\n                                    (And (ErdosSzekeres.IsCapSet χ K)\n                                      (And (SetLike.instMembership.mem K e)\n                                        (And (SetLike.instMembership.mem E e)\n                                          (∀ (x : Fin n),\n                                            SetLike.instMembership.mem K x → instLEFin.le x e)))))))\n                          (Not\n                            (Exists fun K =>\n                              Exists fun f =>\n                                And (Finset.instHasSubset.Subset K s)\n                                  (And (Eq K.card (instHSub.hSub b 1))\n                                    (And (ErdosSzekeres.IsCapSet χ K)\n                                      (And (SetLike.instMembership.mem K f)\n                                        (And (SetLike.instMembership.mem F f)\n                                          (∀ (x : Fin n),\n                                            SetLike.instMembership.mem K x → instLEFin.le f x)))))))",
+   "type_hash": "8a2844f6ddc77431",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_1",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_2",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_3",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_4",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_5",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_6",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_7",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_8",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_9",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_10",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_11",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_12",
+    "ErdosSzekeres.monochromaticSet_insert_min_of_oneChange",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_13",
+    "ErdosSzekeres.monochromaticSet_insert_max_of_oneChange",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_14",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_15",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_16",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_17",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_18",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_19",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_20",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_21",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_22",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_23",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_24",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_25",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_26",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_27",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_28",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_29",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_30",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_31",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side._proof_1_32",
+    "ErdosSzekeres.marker_straddle_turn_core"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.marker_straddle_turn_core",
    "module": "ESBlueprint.B.MarkerStraddleTurnCore",
    "ws": "B",
@@ -88184,7 +88253,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.monochromaticSet_insert_max_of_oneChange",
@@ -99485,6 +99554,7 @@
    "ESBlueprint.B.IsMonochromaticSetOfOneChangeConsecutive": "aa76254d18bdaff0",
    "ESBlueprint.B.IsStrongPolygonSetUnionOfCupCapCommonExtremes": "65bd89d84bf67132",
    "ESBlueprint.B.MarkerCupEndpointsNoCapThreeOnOneSide": "d2fde46e7b63b8de",
+   "ESBlueprint.B.MarkerCupEndpointsNoEndpointCapOnOneSide": "c12392412777258f",
    "ESBlueprint.B.MarkerStraddleTurnCore": "52fe3b9aa35cad96",
    "ESBlueprint.B.MonochromaticSetInsertMaxOfOneChange": "c4428b395417ebe9",
    "ESBlueprint.B.MonochromaticSetInsertMinOfOneChange": "665ece9f1f8e56ac",
