@@ -456,3 +456,4 @@ import ESBlueprint.B.DecomposableStateUpperOfLowerGatesAt
 import ESBlueprint.B.SingletonLowerPascalTailGateFivePredOfSixLe
 import ESBlueprint.B.DecomposableThresholdFivePredOfSixLe
 import ESBlueprint.B.IsMonochromaticSetOfOneChangeConsecutive
+import ESBlueprint.B.MonochromaticSetInsertMinOfOneChange
