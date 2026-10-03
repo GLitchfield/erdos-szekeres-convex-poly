@@ -4216,6 +4216,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.RankTripleFaceUnionCardEqGroupCharges"
   },
+  "ErdosSzekeres.reverseColor_set_invariants": {
+    "type_hash": "493d24070fe3ae02",
+    "type_pp": "∀ {n : Nat} (χ : ErdosSzekeres.TripleColoring n),\n  And\n    (∀ (s : Finset (Fin n)),\n      Iff (ErdosSzekeres.OneChangeOn χ s)\n        (ErdosSzekeres.OneChangeOn (ErdosSzekeres.reverseColor χ) (Finset.image Fin.rev s)))\n    (And\n      (∀ (s : Finset (Fin n)),\n        Iff (ErdosSzekeres.IsCupSet χ s)\n          (ErdosSzekeres.IsCupSet (ErdosSzekeres.reverseColor χ) (Finset.image Fin.rev s)))\n      (And\n        (∀ (s : Finset (Fin n)),\n          Iff (ErdosSzekeres.IsCapSet χ s)\n            (ErdosSzekeres.IsCapSet (ErdosSzekeres.reverseColor χ) (Finset.image Fin.rev s)))\n        (And\n          (∀ (s : Finset (Fin n)),\n            Iff (ErdosSzekeres.IsStrongPolygonSet χ s)\n              (ErdosSzekeres.IsStrongPolygonSet (ErdosSzekeres.reverseColor χ)\n                (Finset.image Fin.rev s)))\n          (And\n            (∀ (s : Finset (Fin n)) (k : Nat),\n              Iff (ErdosSzekeres.ContainsCupSet χ s k)\n                (ErdosSzekeres.ContainsCupSet (ErdosSzekeres.reverseColor χ)\n                  (Finset.image Fin.rev s) k))\n            (And\n              (∀ (s : Finset (Fin n)) (k : Nat),\n                Iff (ErdosSzekeres.ContainsCapSet χ s k)\n                  (ErdosSzekeres.ContainsCapSet (ErdosSzekeres.reverseColor χ)\n                    (Finset.image Fin.rev s) k))\n              (And\n                (∀ (s : Finset (Fin n)) (k : Nat),\n                  Iff (ErdosSzekeres.ContainsStrongPolygonSet χ s k)\n                    (ErdosSzekeres.ContainsStrongPolygonSet (ErdosSzekeres.reverseColor χ)\n                      (Finset.image Fin.rev s) k))\n                (And\n                  (∀ (A B : Finset (Fin n)),\n                    Iff (ErdosSzekeres.HasDeepBelowSplit χ A B)\n                      (ErdosSzekeres.HasDeepBelowSplit (ErdosSzekeres.reverseColor χ)\n                        (Finset.image Fin.rev A) (Finset.image Fin.rev B)))\n                  (∀ (s : Finset (Fin n)),\n                    Iff (ErdosSzekeres.IsDecomposableOn χ s)\n                      (ErdosSzekeres.IsDecomposableOn (ErdosSzekeres.reverseColor χ)\n                        (Finset.image Fin.rev s))))))))))",
+    "approved_by": "R22 audited root reflection and reusable arbitrary-set transport",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.ReverseColorSetInvariants"
+  },
   "ErdosSzekeres.singletonLowerPascalTailGate_five_pred_of_six_le": {
     "type_hash": "d717e6e0c539a549",
     "type_pp": "∀ {k : Nat}, instLENat.le 6 k → ErdosSzekeres.SingletonLowerPascalTailGate 5 (instHSub.hSub k 1) k",
