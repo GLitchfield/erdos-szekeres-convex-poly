@@ -4034,6 +4034,15 @@
     "ws": "C",
     "module": "ESBlueprint.C.EtvCapFiveAll"
   },
+  "ErdosSzekeres.exists_cupStartLayers_of_oneChange_no_capFour": {
+    "type_hash": "c6db8e8bf151a0ab",
+    "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  ErdosSzekeres.OneChangeOn χ s →\n    Not (ErdosSzekeres.ContainsCapSet χ s 4) →\n      Exists fun β =>\n        And\n          (∀ (x : Fin n),\n            SetLike.instMembership.mem s x →\n              Exists fun C =>\n                And (Finset.instHasSubset.Subset C s)\n                  (And (SetLike.instMembership.mem C x)\n                    (And (ErdosSzekeres.IsCupSet χ C)\n                      (And (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le x y)\n                        (Eq C.card (β x))))))\n          (And\n            (∀ (x : Fin n),\n              SetLike.instMembership.mem s x →\n                ∀ (C : Finset (Fin n)),\n                  Finset.instHasSubset.Subset C s →\n                    SetLike.instMembership.mem C x →\n                      ErdosSzekeres.IsCupSet χ C →\n                        (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le x y) →\n                          instLENat.le C.card (β x))\n            (∀ (j : Nat),\n              And (ErdosSzekeres.IsCupSet χ (Finset.filter (fun x => Eq (β x) j) s))\n                (instLENat.le (Finset.filter (fun x => Eq (β x) j) s).card j)))",
+    "approved_by": "R22 audited Lemma1 and Lemma6 toolkit",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.ExistsCupStartLayersOfOneChangeNoCapFour"
+  },
   "ErdosSzekeres.forcesConvexPolygon_of_sweepExactUpperAt": {
     "type_hash": "de5bf55bf587cb09",
     "type_pp": "∀ (k : Nat),\n  instLENat.le 3 k →\n    ErdosSzekeres.SweepExactUpperAt k →\n      ErdosSzekeres.ForcesConvexPolygon k (instHAdd.hAdd (instHPow.hPow 2 (instHSub.hSub k 2)) 1)",
