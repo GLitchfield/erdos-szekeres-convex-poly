@@ -451,3 +451,4 @@ import ESBlueprint.B.CtxK6RemainingBudgetCostCounterexample
 import ESBlueprint.B.CtxK6UniqueMiddleSingletonAttainment
 import ESBlueprint.B.CtxK6ActualHistoryWitness
 import ESBlueprint.B.CtxAbsentFlankSwapCounterexample
+import ESBlueprint.B.CtxSatisfiesArbitraryPartCounterexample
