@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T12:04:54Z",
- "git_sha": "3f6e9272d2e122edfcef9c57db160187e85ce290",
- "extract_mode": "full",
+ "generated_at": "2026-10-03T12:26:02Z",
+ "git_sha": "6ae26b5d2543198ddd1b7bed7574827f72c02595",
+ "extract_mode": "incremental from 6ae26b5d2543: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15824,
- "tree_hash": "00ff264c9d1d4129.4560d6f33c43b8ee",
+ "modules": 15825,
+ "tree_hash": "e78da95a18354316.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15823,
-  "scanned_constants": 0,
+  "cached_modules": 5359,
+  "scanned_constants": 14,
   "scanned_modules": 1
  },
  "nodes": [
@@ -87556,6 +87556,55 @@
    "opened": "2026-10-02"
   },
   {
+   "name": "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup",
+   "module": "ESBlueprint.B.ExistsCapStartPeelOfOneChangeNoCapSuccNoCup",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The first points of c-caps peel a one-change set avoiding (c+1)-caps and v-cups into a c-cap-free complement and a start set avoiding (v-1)-cups. This common extension argument underlies the audited cap-six Z-lemmas.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "dangling-ok": "R23 audited (6,k-2,k) gate lemma layer"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n c v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  instLENat.le 2 c →\n    instLENat.le 2 v →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ s (instHAdd.hAdd c 1)) →\n          Not (ErdosSzekeres.ContainsCupSet χ s v) →\n            Exists fun Z =>\n              And (Finset.instHasSubset.Subset Z s)\n                (And\n                  (∀ (x : Fin n),\n                    Iff (SetLike.instMembership.mem Z x)\n                      (And (SetLike.instMembership.mem s x)\n                        (Exists fun C =>\n                          And (Finset.instHasSubset.Subset C s)\n                            (And (Eq C.card c)\n                              (And (ErdosSzekeres.IsCapSet χ C)\n                                (And (SetLike.instMembership.mem C x)\n                                  (∀ (y : Fin n),\n                                    SetLike.instMembership.mem C y → instLEFin.le x y)))))))\n                  (And (Not (ErdosSzekeres.ContainsCapSet χ (Finset.instSDiff.sdiff s Z) c))\n                    (Not (ErdosSzekeres.ContainsCupSet χ Z (instHSub.hSub v 1)))))",
+   "type_hash": "7a3d81dee5638d0b",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_1",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._simp_1_2",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._simp_1_3",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_4",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_5",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_6",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_7",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_8",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_9",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_10",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_11",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_12",
+    "ErdosSzekeres.monochromaticSet_insert_max_of_oneChange",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_13",
+    "ErdosSzekeres.monochromaticSet_insert_min_of_oneChange"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.exists_cupStartLayers_of_oneChange_no_capFour",
    "module": "ESBlueprint.B.ExistsCupStartLayersOfOneChangeNoCapFour",
    "ws": "B",
@@ -99035,6 +99084,7 @@
    "ESBlueprint.B.DecomposableThresholdSplitLe": "f9325e14b9da599f",
    "ESBlueprint.B.DeepSplitTwoEndpointExtensions": "3bd58b2538e6a777",
    "ESBlueprint.B.DiagonalCupBlocksForce4kkOfFiveLe": "67b2ff9d88d3e47e",
+   "ESBlueprint.B.ExistsCapStartPeelOfOneChangeNoCapSuccNoCup": "25354ba858410a51",
    "ESBlueprint.B.ExistsCupStartLayersOfOneChangeNoCapFour": "386879e89235d937",
    "ESBlueprint.B.IsCupSetIffNotContainsCapSetThree": "bc713fe5ebf3503f",
    "ESBlueprint.B.IsMonochromaticSetOfOneChangeConsecutive": "aa76254d18bdaff0",
