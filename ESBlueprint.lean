@@ -454,3 +454,4 @@ import ESBlueprint.B.CtxAbsentFlankSwapCounterexample
 import ESBlueprint.B.CtxSatisfiesArbitraryPartCounterexample
 import ESBlueprint.B.DecomposableStateUpperOfLowerGatesAt
 import ESBlueprint.B.SingletonLowerPascalTailGateFivePredOfSixLe
+import ESBlueprint.B.DecomposableThresholdFivePredOfSixLe
