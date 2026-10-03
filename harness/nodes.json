@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T13:01:38Z",
- "git_sha": "bad5a94efe907f9d19352826904be0df34d8cdb9",
- "extract_mode": "incremental from bad5a94efe90: 1 re-extracted, 0 removed",
+ "generated_at": "2026-10-03T13:10:24Z",
+ "git_sha": "60bae7a83376f216b4baca5edcd7819b9270bbe5",
+ "extract_mode": "incremental from 60bae7a83376: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15829,
- "tree_hash": "5e94cb08697ddcdd.4560d6f33c43b8ee",
+ "modules": 15830,
+ "tree_hash": "a17c785e47208332.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -21,10 +21,53 @@
  ],
  "taint": {
   "cached_modules": 5361,
-  "scanned_constants": 6,
+  "scanned_constants": 8,
   "scanned_modules": 1
  },
  "nodes": [
+  {
+   "name": "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_asymmetric_gap_no_capSix_no_cup",
+   "module": "ESBlueprint.B.CardLeChooseAddChooseOfOneChangeAsymmetricGapNoCapSixNoCup",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The audited asymmetric ZR bound for four-cap-free left and five-cap-free right gap sides in a six-cap-free one-change set, together with the sharper linear start-set bound when the left side is a cup.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.singletonLowerPascalTailGate_six_pred_pred_of_seven_le"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {q : Fin n},\n  instLENat.le 2 v →\n    Not (SetLike.instMembership.mem s q) →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt x q) s) 4) →\n          Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt q x) s) 5) →\n            Not (ErdosSzekeres.ContainsCapSet χ s 6) →\n              Not (ErdosSzekeres.ContainsCupSet χ s v) →\n                And\n                  (instLENat.le s.card\n                    (instHAdd.hAdd ((instHAdd.hAdd v 1).choose 3) ((instHSub.hSub v 1).choose 2)))\n                  (ErdosSzekeres.IsCupSet χ (Finset.filter (fun x => instLTFin.lt x q) s) →\n                    instLENat.le s.card\n                      (instHAdd.hAdd ((instHAdd.hAdd v 1).choose 3) (instHSub.hSub v 2)))",
+   "type_hash": "3b86d68cec1b72c3",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_asymmetric_gap_no_capSix_no_cup._proof_1_1",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_asymmetric_gap_no_capSix_no_cup._proof_1_2",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_asymmetric_gap_no_capSix_no_cup._proof_1_3",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_asymmetric_gap_no_capSix_no_cup._proof_1_4",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_asymmetric_gap_no_capSix_no_cup._proof_1_5",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_asymmetric_gap_no_capSix_no_cup._proof_1_6",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_asymmetric_gap_no_capSix_no_cup._proof_1_7"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
   {
    "name": "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_gap_no_capSix_no_cup",
    "module": "ESBlueprint.B.CardLeChooseAddChooseOfOneChangeGapNoCapSixNoCup",
@@ -64,7 +107,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.card_le_choose_add_of_decomposable_ordered_cup_prefix_no_capFive_no_strong_of_inputs",
@@ -98807,6 +98850,7 @@
  "fingerprints": {
   "core": "ec17558f1d57c79d",
   "blueprint": {
+   "ESBlueprint.B.CardLeChooseAddChooseOfOneChangeAsymmetricGapNoCapSixNoCup": "2ac4b8c07d8a8cf6",
    "ESBlueprint.B.CardLeChooseAddChooseOfOneChangeGapNoCapSixNoCup": "5b596b3211423b33",
    "ESBlueprint.B.CardLeChooseAddOfDecomposableOrderedCupPrefixNoCapFiveNoStrongOfInputs": "e375a2cfaa90182f",
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCup": "fccad9f565ffead7",
