@@ -2529,6 +2529,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxSatisfiesOfDeepBelowSplit"
   },
+  "ErdosSzekeres.ctx_satisfies_of_limits_le": {
+    "type_hash": "5d843bb0f86f57b0",
+    "type_pp": "∀ {n : Nat} (χ : ErdosSzekeres.TripleColoring n) (S : Finset (Fin n))\n  (σ τ : ErdosSzekeres.Ctx.Context),\n  Eq σ.childPositions τ.childPositions →\n    instLENat.le σ.k τ.k →\n      (∀ (p : Nat),\n          List.instMembership.mem σ.childPositions p →\n            ∀ (q : Nat),\n              List.instMembership.mem σ.childPositions q →\n                And (instLENat.le (σ.cupLimit p q) (τ.cupLimit p q))\n                  (instLENat.le (σ.capLimit p q) (τ.capLimit p q))) →\n        ErdosSzekeres.Ctx.Satisfies χ S σ → ErdosSzekeres.Ctx.Satisfies χ S τ",
+    "approved_by": "Gavin R19 verification 2026-10-02",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CtxSatisfiesOfLimitsLe"
+  },
   "ErdosSzekeres.ctx_satisfies_pair_limits": {
     "type_hash": "d7e27cb0f6fc2611",
     "type_pp": "∀ {n : Nat} (χ : ErdosSzekeres.TripleColoring n) (S : Finset (Fin n))\n  (σ : ErdosSzekeres.Ctx.Context),\n  ErdosSzekeres.Ctx.Satisfies χ S σ →\n    ∀ (p q : Nat),\n      List.instMembership.mem σ.childPositions p →\n        List.instMembership.mem σ.childPositions q →\n          instLTNat.lt p q → And (instLENat.le 2 (σ.cupLimit p q)) (instLENat.le 2 (σ.capLimit p q))",
