@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T13:19:18Z",
- "git_sha": "531f795cbb90671fcfa4751a1e1e32ef3c0c1b93",
- "extract_mode": "incremental from 531f795cbb90: 1 re-extracted, 0 removed",
+ "generated_at": "2026-10-03T13:23:38Z",
+ "git_sha": "08ab08f0b1dbce4072299f26822237c0b58317e6",
+ "extract_mode": "incremental from 08ab08f0b1db: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15831,
- "tree_hash": "8f4f0a4f02e37f3c.4560d6f33c43b8ee",
+ "modules": 15832,
+ "tree_hash": "910e39f26577cc7b.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5362,
-  "scanned_constants": 8,
+  "cached_modules": 5360,
+  "scanned_constants": 7,
   "scanned_modules": 1
  },
  "nodes": [
@@ -535,7 +535,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.card_le_two_choose_add_one_of_decomposable_gap_deepSplit_no_capFive_no_strong_of_inputs",
@@ -856,6 +856,48 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.containsCupSet_succ_or_containsCapSet_succ_of_oneChange_common_endpoint",
+   "module": "ESBlueprint.B.ContainsCupSetSuccOrContainsCapSetSuccOfOneChangeCommonEndpoint",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A cup ending where a cap starts can extend one of them under the one-change law; the nearest points adjacent to their common endpoint decide the extension. This is the overlap invariant used to count the L3 first-point layers.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.singletonLowerPascalTailGate_six_pred_pred_of_seven_le"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {P C : Finset (Fin n)} {z : Fin n},\n  ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union P C) →\n    instLENat.le 2 P.card →\n      instLENat.le 2 C.card →\n        SetLike.instMembership.mem P z →\n          SetLike.instMembership.mem C z →\n            ErdosSzekeres.IsCupSet χ P →\n              ErdosSzekeres.IsCapSet χ C →\n                (∀ (x : Fin n), SetLike.instMembership.mem P x → instLEFin.le x z) →\n                  (∀ (x : Fin n), SetLike.instMembership.mem C x → instLEFin.le z x) →\n                    Or\n                      (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union P C)\n                        (instHAdd.hAdd P.card 1))\n                      (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union P C)\n                        (instHAdd.hAdd C.card 1))",
+   "type_hash": "e6dfd0cd7e387aa5",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.containsCupSet_succ_or_containsCapSet_succ_of_oneChange_common_endpoint._proof_1_1",
+    "ErdosSzekeres.containsCupSet_succ_or_containsCapSet_succ_of_oneChange_common_endpoint._proof_1_2",
+    "ErdosSzekeres.containsCupSet_succ_or_containsCapSet_succ_of_oneChange_common_endpoint._proof_1_3",
+    "ErdosSzekeres.containsCupSet_succ_or_containsCapSet_succ_of_oneChange_common_endpoint._proof_1_4",
+    "ErdosSzekeres.containsCupSet_succ_or_containsCapSet_succ_of_oneChange_common_endpoint._proof_1_5",
+    "ErdosSzekeres.monochromaticSet_insert_max_of_oneChange",
+    "ErdosSzekeres.containsCupSet_succ_or_containsCapSet_succ_of_oneChange_common_endpoint._proof_1_6",
+    "ErdosSzekeres.monochromaticSet_insert_min_of_oneChange"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.ctx_absent_flank_swap_counterexample",
@@ -98906,6 +98948,7 @@
    "ESBlueprint.B.CardLeTwoChooseAddOneOfDecomposableGapDeepSplitNoCapFiveNoStrongOfInputs": "355e7522b384b992",
    "ESBlueprint.B.CardLeTwoChooseOfOneChangeGapDeepSplitNoCapFiveNoCupNoStrong": "8064dd3b57698630",
    "ESBlueprint.B.CardLtChooseOfOrderedCupPrefixNoCapFiveNoCupNoStrong": "60d269f0d9b53024",
+   "ESBlueprint.B.ContainsCupSetSuccOrContainsCapSetSuccOfOneChangeCommonEndpoint": "da41b6f7ac3c9eec",
    "ESBlueprint.B.CtxAbsentFlankSwapCounterexample": "cac8408294cb110b",
    "ESBlueprint.B.CtxActiveBoundaryMarkerRankBudget": "ee707378f7c3696c",
    "ESBlueprint.B.CtxActiveBoundaryMarkerRankPairUnionBound": "d78d951df52a52ad",
