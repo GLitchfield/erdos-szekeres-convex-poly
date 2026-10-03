@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T13:40:50Z",
- "git_sha": "b8c7a30194cb2ef0aabc1548d2698a8eceaba70a",
- "extract_mode": "incremental from b8c7a30194cb: 1 re-extracted, 0 removed",
+ "generated_at": "2026-10-03T13:49:10Z",
+ "git_sha": "a6d600a9465670daac6d205772c1159bf61371aa",
+ "extract_mode": "incremental from a6d600a94656: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15835,
- "tree_hash": "6873ffdc8782f9b9.4560d6f33c43b8ee",
+ "modules": 15836,
+ "tree_hash": "c824fbc6435a1b40.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5361,
-  "scanned_constants": 33,
+  "cached_modules": 5367,
+  "scanned_constants": 7,
   "scanned_modules": 1
  },
  "nodes": [
@@ -699,6 +699,49 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.card_le_two_choose_cubic_of_oneChange_gap_no_capSix_straddled_cups",
+   "module": "ESBlueprint.B.CardLeTwoChooseCubicOfOneChangeGapNoCapSixStraddledCups",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Audited Marker6 cardinal bound with the required global six-cap exclusion retained. A complete first or last m-cup endpoint family is four-cap-free by strong marker exclusion, has at most choose(m,2) points and hits every m-cup. Z6 bounds its complement; Pascal gives two choose(m+1,3).",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.singletonLowerPascalTailGate_six_pred_pred_of_seven_le"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n m : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {q h : Fin n},\n  instLENat.le 3 m →\n    Not (SetLike.instMembership.mem s q) →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt x q) s) 5) →\n          Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt q x) s) 5) →\n            Not (ErdosSzekeres.ContainsCapSet χ s 6) →\n              Not (ErdosSzekeres.ContainsCupSet χ s (instHAdd.hAdd m 1)) →\n                (∀ (C : Finset (Fin n)),\n                    Finset.instHasSubset.Subset C s →\n                      Eq C.card m →\n                        ErdosSzekeres.IsCupSet χ C →\n                          And\n                            (Exists fun x =>\n                              And (SetLike.instMembership.mem C x) (instLTFin.lt x h))\n                            (Exists fun y =>\n                              And (SetLike.instMembership.mem C y) (instLTFin.lt h y))) →\n                  instLENat.le s.card (instHMul.hMul 2 ((instHAdd.hAdd m 1).choose 3))",
+   "type_hash": "24241293e3c69ea4",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.card_le_two_choose_cubic_of_oneChange_gap_no_capSix_straddled_cups._proof_1_1",
+    "ErdosSzekeres.card_le_two_choose_cubic_of_oneChange_gap_no_capSix_straddled_cups._proof_1_2",
+    "ErdosSzekeres.card_le_two_choose_cubic_of_oneChange_gap_no_capSix_straddled_cups._proof_1_3",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_cup",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_gap_no_capSix_no_cup",
+    "ErdosSzekeres.card_le_two_choose_cubic_of_oneChange_gap_no_capSix_straddled_cups._proof_1_4",
+    "ErdosSzekeres.card_le_two_choose_cubic_of_oneChange_gap_no_capSix_straddled_cups._proof_1_5",
+    "ErdosSzekeres.markerCupEndpoints_no_endpoint_cap_on_one_side",
+    "ErdosSzekeres.card_le_two_choose_cubic_of_oneChange_gap_no_capSix_straddled_cups._proof_1_6"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.card_le_two_choose_of_oneChange_gap_deepSplit_no_capFive_no_cup_no_strong",
@@ -88214,7 +88257,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.marker_straddle_turn_core",
@@ -99103,6 +99146,7 @@
    "ESBlueprint.B.CardLeSquareOfOneChangeGapNoCapFiveNoCup": "751ccd9040518208",
    "ESBlueprint.B.CardLeThetaOfOneChangeThreeBlocksNoCapFiveNoCup": "93d0fa9ff8f7ca13",
    "ESBlueprint.B.CardLeTwoChooseAddOneOfDecomposableGapDeepSplitNoCapFiveNoStrongOfInputs": "355e7522b384b992",
+   "ESBlueprint.B.CardLeTwoChooseCubicOfOneChangeGapNoCapSixStraddledCups": "a055646f14a7f085",
    "ESBlueprint.B.CardLeTwoChooseOfOneChangeGapDeepSplitNoCapFiveNoCupNoStrong": "8064dd3b57698630",
    "ESBlueprint.B.CardLtChooseOfOrderedCupPrefixNoCapFiveNoCupNoStrong": "60d269f0d9b53024",
    "ESBlueprint.B.ContainsCupSetSuccOrContainsCapSetSuccOfOneChangeCommonEndpoint": "da41b6f7ac3c9eec",
