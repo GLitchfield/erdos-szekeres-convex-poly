@@ -72,6 +72,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CardLeSquareOfOneChangeGapNoCapFiveNoCup"
   },
+  "ErdosSzekeres.card_le_two_choose_of_oneChange_gap_deepSplit_no_capFive_no_cup_no_strong": {
+    "type_hash": "cc7ef1f85cc93f23",
+    "type_pp": "∀ {n k : Nat} {χ : ErdosSzekeres.TripleColoring n} {A B : Finset (Fin n)} {q : Fin n},\n  instLENat.le 6 k →\n    A.Nonempty →\n      B.Nonempty →\n        ErdosSzekeres.HasDeepBelowSplit χ A B →\n          Not (SetLike.instMembership.mem (Finset.instUnion.union A B) q) →\n            ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union A B) →\n              Not\n                  (ErdosSzekeres.ContainsCapSet χ\n                    (Finset.filter (fun x => instLTFin.lt x q) (Finset.instUnion.union A B)) 4) →\n                Not\n                    (ErdosSzekeres.ContainsCapSet χ\n                      (Finset.filter (fun x => instLTFin.lt q x) (Finset.instUnion.union A B)) 4) →\n                  Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union A B) 5) →\n                    Not\n                        (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union A B)\n                          (instHSub.hSub k 1)) →\n                      Not\n                          (ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instUnion.union A B)\n                            k) →\n                        instLENat.le (Finset.instUnion.union A B).card\n                          (instHAdd.hAdd ((instHSub.hSub k 1).choose 2)\n                            ((instHSub.hSub k 3).choose 2))",
+    "approved_by": "R22 audited TheoremA root argument with explicit genuine-root hypotheses",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CardLeTwoChooseOfOneChangeGapDeepSplitNoCapFiveNoCupNoStrong"
+  },
   "ErdosSzekeres.card_lt_choose_of_ordered_cup_prefix_no_capFive_no_cup_no_strong": {
     "type_hash": "939b6726111fb00e",
     "type_pp": "∀ {n m : Nat} {χ : ErdosSzekeres.TripleColoring n} {Z W : Finset (Fin n)},\n  instLENat.le 4 m →\n    (∀ (x : Fin n),\n        SetLike.instMembership.mem Z x →\n          ∀ (y : Fin n), SetLike.instMembership.mem W y → instLTFin.lt x y) →\n      Eq Z.card (instHSub.hSub m 2) →\n        ErdosSzekeres.IsCupSet χ Z →\n          ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union Z W) →\n            Not (ErdosSzekeres.ContainsCapSet χ W 4) →\n              Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union Z W) 5) →\n                Not (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union Z W) m) →\n                  Not\n                      (ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instUnion.union Z W)\n                        (instHAdd.hAdd m 1)) →\n                    instLTNat.lt W.card (m.choose 2)",

@@ -470,3 +470,4 @@ import ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCupNoStrong
 import ESBlueprint.B.MarkerCupEndpointsNoCapThreeOnOneSide
 import ESBlueprint.B.CardLeMulOfOneChangeGapNoCapFiveStraddledCups
 import ESBlueprint.B.ReverseColorSetInvariants
+import ESBlueprint.B.CardLeTwoChooseOfOneChangeGapDeepSplitNoCapFiveNoCupNoStrong
