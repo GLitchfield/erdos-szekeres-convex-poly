@@ -46,6 +46,13 @@ carries the identical list and a test keeps the two in sync.
   report and research handoff states the current proof idea for the target (or says plainly that there
   is none), what was learned about why the statement is true, and the obstacle every attempt hits.
   Closed-helper counts, node counts and narrowings are bookkeeping, not evidence of progress.
+- The goal is a proof of the general statement. Specific cases (small parameters, single instances,
+  SAT runs, Lean for special instances) are worth doing only as deliberate tools for finding that
+  generalization, never as progress in themselves. Keep a living general-picture document under `runs/`
+  (current general conjecture, proof shape, open questions, each with the specific computation that would
+  answer it). Before commissioning a case, name the open question it answers and how each outcome would
+  change the conjecture; if no outcome would, do not run it. After it, record what it taught about the
+  general mechanism. The coordinator owns the synthesis; delegated runs supply cases and checks.
 - A narrowing is not a result by itself. A trial's Done criterion is closing or refuting its target; a
   reduction to narrower conjectures counts only together with a stated reason the new statements should
   be easier (a proof idea or a structural explanation). Otherwise report it as bookkeeping and keep the
