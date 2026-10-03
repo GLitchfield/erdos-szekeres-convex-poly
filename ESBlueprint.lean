@@ -462,3 +462,4 @@ import ESBlueprint.B.CardLeChooseOfOneChangeNoCapFourNoCup
 import ESBlueprint.B.MonochromaticSetInsertMaxOfOneChange
 import ESBlueprint.B.CardLeSquareOfOneChangeGapNoCapFiveNoCup
 import ESBlueprint.B.TwoCupBlocksCardAndExtensionsOfOneChangeNoCapFourNoCup
+import ESBlueprint.B.ThreeCupBlocksCardLeOfOneChangeNoCapFourNoCup
