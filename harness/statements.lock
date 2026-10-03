@@ -54,6 +54,15 @@
     "ws": "C",
     "module": "ESBlueprint.C.CardLeChooseOfOneChangeNoCapFourNoStrong"
   },
+  "ErdosSzekeres.card_le_mul_of_oneChange_gap_no_capFive_straddled_cups": {
+    "type_hash": "bdd23fc3926df984",
+    "type_pp": "∀ {n m : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {q h : Fin n},\n  instLENat.le 3 m →\n    Not (SetLike.instMembership.mem s q) →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt x q) s) 4) →\n          Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt q x) s) 4) →\n            Not (ErdosSzekeres.ContainsCapSet χ s 5) →\n              Not (ErdosSzekeres.ContainsCupSet χ s (instHAdd.hAdd m 1)) →\n                (∀ (C : Finset (Fin n)),\n                    Finset.instHasSubset.Subset C s →\n                      Eq C.card m →\n                        ErdosSzekeres.IsCupSet χ C →\n                          And\n                            (Exists fun x =>\n                              And (SetLike.instMembership.mem C x) (instLTFin.lt x h))\n                            (Exists fun y =>\n                              And (SetLike.instMembership.mem C y) (instLTFin.lt h y))) →\n                  instLENat.le s.card (instHMul.hMul m (instHSub.hSub m 1))",
+    "approved_by": "R22 audited Lemma5 marker bound",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CardLeMulOfOneChangeGapNoCapFiveStraddledCups"
+  },
   "ErdosSzekeres.card_le_square_of_oneChange_gap_no_capFive_no_cup": {
     "type_hash": "f31fe859cac77f54",
     "type_pp": "∀ {n v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {q : Fin n},\n  instLENat.le 2 v →\n    Not (SetLike.instMembership.mem s q) →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt x q) s) 4) →\n          Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt q x) s) 4) →\n            Not (ErdosSzekeres.ContainsCapSet χ s 5) →\n              Not (ErdosSzekeres.ContainsCupSet χ s v) →\n                instLENat.le s.card (instHPow.hPow (instHSub.hSub v 1) 2)",
