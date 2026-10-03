@@ -1,7 +1,7 @@
 """All deep-below root cuts of a complete ordered triple coloring.
 
 Retained source: runs/r25-sol-20261003/root_cut_graph.py; paper argument in
-BDL-OBSTRUCTION.md section39. True means cup. This is diagnostic arithmetic,
+BDL-OBSTRUCTION.md sections39/64. True means cup. This is diagnostic arithmetic,
 not a Lean certificate that the coloring or the children are decomposable.
 
 A cup triple directs its endpoints to its middle, a cap directs its middle
@@ -9,6 +9,9 @@ to both endpoints. Lower root parts are exactly proper nonempty successor-
 closed vertex sets. The SCC order has width at most two: any three allegedly
 incomparable components have a triple giving an arrow between two of them.
 Thus every root is the union of at most two principal reachability sets.
+Every SCC transversal is strong. Its internal cup representatives collapse
+to one component, and its internal cap representatives do likewise; hence
+any complete coloring has at most four SCCs and four proper root cuts.
 """
 from __future__ import annotations
 
@@ -61,7 +64,8 @@ def root_masks(colors: Mapping[Triple, bool], n: int) -> tuple[int, ...]:
     """Return every proper nonempty valid lower root part, as sorted bitmasks.
 
     Exact for arbitrary complete Boolean triple colorings; a listed root's
-    children need not themselves be decomposable. There are O(n^2) candidates.
+    children need not themselves be decomposable. There are at most four roots;
+    the one/two-principal candidate family also has constant size.
     """
     _, reachability, components = graph_profile(colors, n)
     principals = {reachability[(C & -C).bit_length() - 1] for C in components}

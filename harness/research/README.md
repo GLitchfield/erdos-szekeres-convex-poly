@@ -92,10 +92,16 @@ es job run --why "endpoint profile example" --out runs/endpoint-profiles-demo.js
 `decomposable.root-cuts` enumerates valid lower parts of an ordered triple
 coloring root through a vertex implication graph. Its SCC order has width at
 most two, so all roots are unions of one or two principal reachability sets.
+Every component transversal is strong. Its interior cup representatives
+collapse to one component, and its interior cap representatives do likewise;
+hence there are at most four components and four roots for ANY complete
+coloring. The retained four-point diamond attains four roots.
 It accepts complete Boolean colorings, including those that fail one-change:
 a root cut alone does not certify hereditary decomposability. The retained
 source is the R25 root-graph investigation; tests compare every arbitrary
-coloring through five points against the direct mixed-triple rule. Run the
+coloring through five points against the direct mixed-triple rule and check
+every component transversal by the defining strong quadruples, including
+non-one-change inputs. Run the
 solver-free example `examples/root_cuts_demo.py` through a guarded `es` job.
 
 `research.triple-metrics` retains the R25 solver-free exact finite evaluator.

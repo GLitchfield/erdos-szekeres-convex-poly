@@ -3,6 +3,7 @@
   "cases": [
     {"name": "cup triple", "n": 3, "mask": 1, "roots": [2, 3, 6]},
     {"name": "cap triple", "n": 3, "mask": 0, "roots": [1, 4, 5]},
+    {"name": "sharp four-root diamond", "n": 4, "mask": 3, "roots": [2, 3, 10, 11]},
     {
       "name": "R25 two hard roots",
       "n": 8,

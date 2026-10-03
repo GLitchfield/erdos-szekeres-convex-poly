@@ -1,5 +1,5 @@
 """Independent mixed-triple fixtures for diagnostic root-cut arithmetic."""
-from itertools import combinations
+from itertools import combinations, product
 import json
 from pathlib import Path
 import sys
@@ -25,14 +25,28 @@ def test_every_arbitrary_coloring_through_five_matches_direct_root_semantics():
         triples = tuple(combinations(range(n), 3))
         for mask in range(1 << len(triples)):
             colors = {T: bool(mask >> i & 1) for i, T in enumerate(triples)}
-            assert root_masks(colors, n) == direct_roots(colors, n), (n, mask)
+            expected = direct_roots(colors, n)
+            assert root_masks(colors, n) == expected, (n, mask)
+            assert len(expected) <= 4, (n, mask, expected)
             adjacency, reachability, components = graph_profile(colors, n)
+            assert len(components) <= 4, (n, mask, components)
             assert sum(components) == (1 << n) - 1
             assert all(adjacency[x] & reachability[x] == adjacency[x] for x in range(n))
             representatives = [(C & -C).bit_length() - 1 for C in components]
             for triple in combinations(representatives, 3):
                 assert any(reachability[x] >> y & 1 or reachability[y] >> x & 1
                            for x, y in combinations(triple, 2))
+            # Independent strong predicate on EVERY component transversal.
+            choices = [tuple(x for x in range(n) if C >> x & 1) for C in components]
+            for selected in product(*choices):
+                for a, b, c, d in combinations(sorted(selected), 4):
+                    assert colors[a, b, c] == colors[a, b, d]
+                    assert colors[a, c, d] == colors[b, c, d]
+            for C in components:
+                if C.bit_count() >= 2:
+                    x = (C & -C).bit_length() - 1
+                    for y in representatives:
+                        assert reachability[x] >> y & 1 or reachability[y] >> x & 1
 
 
 def test_color_duality_complements_the_lower_parts():
