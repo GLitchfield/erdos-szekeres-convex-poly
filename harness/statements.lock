@@ -27,6 +27,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxTwoStraddlingPairCollisionsCommonWitnessIntervals"
   },
+  "ErdosSzekeres.card_le_choose_add_of_ordered_cup_prefix_no_capFive_no_cup": {
+    "type_hash": "596228c998f557ed",
+    "type_pp": "∀ {n m : Nat} {χ : ErdosSzekeres.TripleColoring n} {P Q : Finset (Fin n)},\n  instLENat.le 2 m →\n    (∀ (x : Fin n),\n        SetLike.instMembership.mem P x →\n          ∀ (y : Fin n), SetLike.instMembership.mem Q y → instLTFin.lt x y) →\n      ErdosSzekeres.IsCupSet χ P →\n        ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union P Q) →\n          Not (ErdosSzekeres.ContainsCapSet χ Q 4) →\n            Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union P Q) 5) →\n              Not (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union P Q) m) →\n                instLENat.le (instHAdd.hAdd P.card Q.card)\n                  (instHAdd.hAdd (m.choose 2) (instHSub.hSub m 2))",
+    "approved_by": "Gavin 2026-10-02 R22 audited Lemma7",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCup"
+  },
   "ErdosSzekeres.card_le_choose_add_of_ordered_cup_prefix_no_capFive_no_cup_no_strong": {
     "type_hash": "917aaf2dd72226f1",
     "type_pp": "∀ {n m : Nat} {χ : ErdosSzekeres.TripleColoring n} {P Q : Finset (Fin n)},\n  instLENat.le 4 m →\n    (∀ (x : Fin n),\n        SetLike.instMembership.mem P x →\n          ∀ (y : Fin n), SetLike.instMembership.mem Q y → instLTFin.lt x y) →\n      ErdosSzekeres.IsCupSet χ P →\n        ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union P Q) →\n          Not (ErdosSzekeres.ContainsCapSet χ Q 4) →\n            Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union P Q) 5) →\n              Not (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union P Q) m) →\n                Not\n                    (ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instUnion.union P Q)\n                      (instHAdd.hAdd m 1)) →\n                  instLENat.le (instHAdd.hAdd P.card Q.card)\n                    (instHAdd.hAdd (m.choose 2) (instHSub.hSub m 3))",
