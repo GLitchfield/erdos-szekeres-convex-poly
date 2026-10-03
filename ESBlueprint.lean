@@ -460,3 +460,4 @@ import ESBlueprint.B.MonochromaticSetInsertMinOfOneChange
 import ESBlueprint.B.ExistsCupStartLayersOfOneChangeNoCapFour
 import ESBlueprint.B.CardLeChooseOfOneChangeNoCapFourNoCup
 import ESBlueprint.B.MonochromaticSetInsertMaxOfOneChange
+import ESBlueprint.B.CardLeSquareOfOneChangeGapNoCapFiveNoCup

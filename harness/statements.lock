@@ -45,6 +45,15 @@
     "ws": "C",
     "module": "ESBlueprint.C.CardLeChooseOfOneChangeNoCapFourNoStrong"
   },
+  "ErdosSzekeres.card_le_square_of_oneChange_gap_no_capFive_no_cup": {
+    "type_hash": "f31fe859cac77f54",
+    "type_pp": "∀ {n v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {q : Fin n},\n  instLENat.le 2 v →\n    Not (SetLike.instMembership.mem s q) →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt x q) s) 4) →\n          Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt q x) s) 4) →\n            Not (ErdosSzekeres.ContainsCapSet χ s 5) →\n              Not (ErdosSzekeres.ContainsCupSet χ s v) →\n                instLENat.le s.card (instHPow.hPow (instHSub.hSub v 1) 2)",
+    "approved_by": "R22 audited proof Lemma2 on 2026-10-02",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CardLeSquareOfOneChangeGapNoCapFiveNoCup"
+  },
   "ErdosSzekeres.ctx_absent_flank_swap_counterexample": {
     "type_hash": "e95f3c86045ea3ce",
     "type_pp": "have σ :=\n  { a := 5, u := 5, k := 6,\n    word :=\n      List.cons ErdosSzekeres.Ctx.Letter.child (List.cons ErdosSzekeres.Ctx.Letter.child List.nil),\n    maxima := List.cons 1 (List.cons 2 List.nil) };\nhave M := Nat.instMax.max (σ.maximumAt 1) (instHAdd.hAdd 1 (σ.maximumAt 2));\nhave τ :=\n  { a := σ.a, u := σ.u, k := σ.k,\n    word :=\n      List.map\n        (fun x =>\n          ErdosSzekeres.ctx_absent_flank_swap_counterexample.match_1\n            (fun x => ErdosSzekeres.Ctx.Letter) x (fun _ => ErdosSzekeres.Ctx.Letter.child)\n            fun j s => ErdosSzekeres.Ctx.Letter.ext (ite (Eq j 1) 2 (ite (Eq j 2) 1 j)) s)\n        σ.word,\n    maxima :=\n      (σ.maxima.set 0 (ite (Eq (σ.sideAt 1) (σ.sideAt 2)) M (σ.maximumAt 2))).set 1\n        (ite (Eq (σ.sideAt 1) (σ.sideAt 2)) (instHSub.hSub M 1) (σ.maximumAt 1)) };\nAnd σ.WellFormed\n  (And τ.WellFormed\n    (And (instLENat.le 2 σ.maxima.length)\n      (And (Eq (σ.extPositions 1) List.nil)\n        (And (Eq (σ.extPositions 2) List.nil)\n          (And\n            (And\n              (∀ (p : Nat),\n                List.instMembership.mem (σ.extPositions 1) p →\n                  ∀ (q : Nat), List.instMembership.mem σ.childPositions q → instLTNat.lt p q)\n              (∀ (p : Nat),\n                List.instMembership.mem (σ.extPositions 2) p →\n                  ∀ (q : Nat), List.instMembership.mem σ.childPositions q → instLTNat.lt q p))\n            (And (Eq (σ.sideAt 1) (σ.sideAt 2))\n              (And (And (instLENat.le 1 (instHSub.hSub M 1)) (instLENat.le M (instHSub.hSub σ.k 2)))\n                (And (Eq σ.bound 10) (Eq τ.bound 4)))))))))",
