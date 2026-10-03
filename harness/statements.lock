@@ -4099,6 +4099,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.RankTripleFaceUnionCardEqGroupCharges"
   },
+  "ErdosSzekeres.singletonLowerPascalTailGate_five_pred_of_six_le": {
+    "type_hash": "d717e6e0c539a549",
+    "type_pp": "∀ {k : Nat}, instLENat.le 6 k → ErdosSzekeres.SingletonLowerPascalTailGate 5 (instHSub.hSub k 1) k",
+    "approved_by": "Gavin 2026-10-02 R22 reviewed brief",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.SingletonLowerPascalTailGateFivePredOfSixLe"
+  },
   "ErdosSzekeres.singletonLowerPascalTailGate_four_diagonal_of_five_le": {
     "type_hash": "5ef1de5a24229d34",
     "type_pp": "∀ {k : Nat}, instLENat.le 5 k → ErdosSzekeres.SingletonLowerPascalTailGate 4 k k",
