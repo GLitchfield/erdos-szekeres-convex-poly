@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T12:56:31Z",
- "git_sha": "9db1872a8a1dedd11a24ea740af48eaed5ef0dc6",
- "extract_mode": "incremental from 9db1872a8a1d: 1 re-extracted, 0 removed",
+ "generated_at": "2026-10-03T13:01:38Z",
+ "git_sha": "bad5a94efe907f9d19352826904be0df34d8cdb9",
+ "extract_mode": "incremental from bad5a94efe90: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15828,
- "tree_hash": "69e9521ed1be9d1c.4560d6f33c43b8ee",
+ "modules": 15829,
+ "tree_hash": "5e94cb08697ddcdd.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,11 +20,52 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5360,
-  "scanned_constants": 13,
+  "cached_modules": 5361,
+  "scanned_constants": 6,
   "scanned_modules": 1
  },
  "nodes": [
+  {
+   "name": "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_gap_no_capSix_no_cup",
+   "module": "ESBlueprint.B.CardLeChooseAddChooseOfOneChangeGapNoCapSixNoCup",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The audited Z6 bound for two five-cap-free gap sides of a six-cap-free one-change set avoiding v-cups, obtained by localizing first points of five-caps and applying the generic classical bound.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.singletonLowerPascalTailGate_six_pred_pred_of_seven_le"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {q : Fin n},\n  instLENat.le 2 v →\n    Not (SetLike.instMembership.mem s q) →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt x q) s) 5) →\n          Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt q x) s) 5) →\n            Not (ErdosSzekeres.ContainsCapSet χ s 6) →\n              Not (ErdosSzekeres.ContainsCupSet χ s v) →\n                instLENat.le s.card (instHAdd.hAdd ((instHAdd.hAdd v 1).choose 3) (v.choose 3))",
+   "type_hash": "253769f86d20a5ab",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_gap_no_capSix_no_cup._proof_1_1",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_gap_no_capSix_no_cup._proof_1_2",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_gap_no_capSix_no_cup._proof_1_3",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_gap_no_capSix_no_cup._proof_1_4",
+    "ErdosSzekeres.card_le_choose_add_choose_of_oneChange_gap_no_capSix_no_cup._proof_1_5"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
   {
    "name": "ErdosSzekeres.card_le_choose_add_of_decomposable_ordered_cup_prefix_no_capFive_no_strong_of_inputs",
    "module": "ESBlueprint.B.CardLeChooseAddOfDecomposableOrderedCupPrefixNoCapFiveNoStrongOfInputs",
@@ -312,7 +353,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.card_le_mul_of_oneChange_gap_no_capFive_straddled_cups",
@@ -88519,8 +88560,8 @@
    "deps_declared": [],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "claimed",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -98766,6 +98807,7 @@
  "fingerprints": {
   "core": "ec17558f1d57c79d",
   "blueprint": {
+   "ESBlueprint.B.CardLeChooseAddChooseOfOneChangeGapNoCapSixNoCup": "5b596b3211423b33",
    "ESBlueprint.B.CardLeChooseAddOfDecomposableOrderedCupPrefixNoCapFiveNoStrongOfInputs": "e375a2cfaa90182f",
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCup": "fccad9f565ffead7",
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCupNoStrong": "205b6b9580e346f1",
