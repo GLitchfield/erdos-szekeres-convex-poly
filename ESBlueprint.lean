@@ -467,3 +467,4 @@ import ESBlueprint.B.IsCupSetIffNotContainsCapSetThree
 import ESBlueprint.B.IsStrongPolygonSetUnionOfCupCapCommonExtremes
 import ESBlueprint.B.CardLtChooseOfOrderedCupPrefixNoCapFiveNoCupNoStrong
 import ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCupNoStrong
+import ESBlueprint.B.MarkerCupEndpointsNoCapThreeOnOneSide
