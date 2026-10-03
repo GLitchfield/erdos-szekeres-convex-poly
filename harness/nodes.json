@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T13:49:10Z",
- "git_sha": "a6d600a9465670daac6d205772c1159bf61371aa",
+ "generated_at": "2026-10-03T13:52:59Z",
+ "git_sha": "6008c8327606ea3a4d55b96fb5160a2a1ab84fd8",
  "extract_mode": "incremental from a6d600a94656: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15836,
- "tree_hash": "c824fbc6435a1b40.4560d6f33c43b8ee",
+ "modules": 15837,
+ "tree_hash": "55810d186e2b5dbc.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5367,
-  "scanned_constants": 7,
+  "cached_modules": 5368,
+  "scanned_constants": 1,
   "scanned_modules": 1
  },
  "nodes": [
@@ -362,6 +362,44 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.card_le_choose_cubic_of_oneChange_asymmetric_gap_straddled_cups",
+   "module": "ESBlueprint.B.CardLeChooseCubicOfOneChangeAsymmetricGapStraddledCups",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Audited paired asymmetric marker bounds with global six-cap exclusion retained. Strong WM endpoint exclusion gives a four-cap-free complete endpoint family of at most choose(m,2) points. Deleting it removes every m-cup; paired ZR bounds the complement, including the sharper cup-prefix variant.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.singletonLowerPascalTailGate_six_pred_pred_of_seven_le"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n m : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {q h : Fin n},\n  instLENat.le 3 m →\n    Not (SetLike.instMembership.mem s q) →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt x q) s) 4) →\n          Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt q x) s) 5) →\n            Not (ErdosSzekeres.ContainsCapSet χ s 6) →\n              Not (ErdosSzekeres.ContainsCupSet χ s (instHAdd.hAdd m 1)) →\n                (∀ (C : Finset (Fin n)),\n                    Finset.instHasSubset.Subset C s →\n                      Eq C.card m →\n                        ErdosSzekeres.IsCupSet χ C →\n                          And\n                            (Exists fun x =>\n                              And (SetLike.instMembership.mem C x) (instLTFin.lt x h))\n                            (Exists fun y =>\n                              And (SetLike.instMembership.mem C y) (instLTFin.lt h y))) →\n                  And\n                    (instLENat.le s.card\n                      (instHAdd.hAdd (instHAdd.hAdd (m.choose 2) ((instHAdd.hAdd m 1).choose 3))\n                        ((instHSub.hSub m 1).choose 2)))\n                    (ErdosSzekeres.IsCupSet χ (Finset.filter (fun x => instLTFin.lt x q) s) →\n                      instLENat.le s.card\n                        (instHAdd.hAdd (instHAdd.hAdd (m.choose 2) ((instHAdd.hAdd m 1).choose 3))\n                          (instHSub.hSub m 2)))",
+   "type_hash": "9e3423b55839fa99",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_cup",
@@ -741,7 +779,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.card_le_two_choose_of_oneChange_gap_deepSplit_no_capFive_no_cup_no_strong",
@@ -99140,6 +99178,7 @@
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCup": "fccad9f565ffead7",
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCupNoStrong": "205b6b9580e346f1",
    "ESBlueprint.B.CardLeChooseAddTwoChooseOfOneChangeThreeBlocksNoCapSixNoCup": "8e69e5bc8abd3397",
+   "ESBlueprint.B.CardLeChooseCubicOfOneChangeAsymmetricGapStraddledCups": "6ea860da8deceabb",
    "ESBlueprint.B.CardLeChooseOfOneChangeNoCapFourNoCup": "3f4f4db5fd7d7fc9",
    "ESBlueprint.B.CardLeChooseOfOneChangeNoCapNoCup": "c320b06897c8db88",
    "ESBlueprint.B.CardLeMulOfOneChangeGapNoCapFiveStraddledCups": "035b2b0aecd75fde",
