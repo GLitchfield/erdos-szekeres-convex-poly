@@ -1,0 +1,788 @@
+{
+  "schema_version": 1,
+  "diagnostic": true,
+  "rows": [
+    {
+      "name": "critical-cap-block",
+      "case": [
+        6,
+        5,
+        6
+      ],
+      "word": [
+        "S",
+        "1L",
+        "3L",
+        "2L",
+        "S",
+        "S",
+        "S"
+      ],
+      "maxima": [
+        1,
+        1,
+        1
+      ],
+      "parent": {
+        "caps": [
+          [
+            5,
+            5,
+            5,
+            5
+          ],
+          [
+            0,
+            5,
+            5,
+            5
+          ],
+          [
+            0,
+            0,
+            5,
+            5
+          ],
+          [
+            0,
+            0,
+            0,
+            5
+          ]
+        ],
+        "cups": [
+          [
+            2,
+            4,
+            4,
+            4
+          ],
+          [
+            0,
+            2,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            0,
+            2
+          ]
+        ],
+        "barriers": [
+          true,
+          false,
+          false
+        ],
+        "run_caps": [
+          [
+            5,
+            5
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "run_cups": [
+          [
+            2,
+            4
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "children": [
+        {
+          "keep": [
+            0
+          ],
+          "side": "upper",
+          "opposite_max": 4,
+          "expected": {
+            "caps": [
+              [
+                1
+              ]
+            ],
+            "cups": [
+              [
+                2
+              ]
+            ],
+            "barriers": []
+          }
+        },
+        {
+          "keep": [
+            0,
+            3
+          ],
+          "side": "upper",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                4,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "cups": [
+              [
+                2,
+                4
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "barriers": [
+              true
+            ]
+          }
+        },
+        {
+          "keep": [
+            0,
+            1
+          ],
+          "side": "lower",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                5,
+                5
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            "cups": [
+              [
+                2,
+                3
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "barriers": [
+              true
+            ]
+          }
+        },
+        {
+          "keep": [
+            2
+          ],
+          "side": "lower",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                5
+              ]
+            ],
+            "cups": [
+              [
+                0
+              ]
+            ],
+            "barriers": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "unused-levels",
+      "case": [
+        5,
+        5,
+        6
+      ],
+      "word": [
+        "S",
+        "2U",
+        "S",
+        "S"
+      ],
+      "maxima": [
+        2,
+        1,
+        3
+      ],
+      "parent": {
+        "caps": [
+          [
+            3,
+            4,
+            4
+          ],
+          [
+            0,
+            3,
+            3
+          ],
+          [
+            0,
+            0,
+            3
+          ]
+        ],
+        "cups": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ],
+        "barriers": [
+          true,
+          false
+        ],
+        "run_caps": [
+          [
+            3,
+            4
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "run_cups": [
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "children": [
+        {
+          "keep": [
+            0
+          ],
+          "side": "upper",
+          "opposite_max": 4,
+          "expected": {
+            "caps": [
+              [
+                1
+              ]
+            ],
+            "cups": [
+              [
+                2
+              ]
+            ],
+            "barriers": []
+          }
+        },
+        {
+          "keep": [
+            0,
+            2
+          ],
+          "side": "upper",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                3,
+                4
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "cups": [
+              [
+                2,
+                2
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "barriers": [
+              true
+            ]
+          }
+        },
+        {
+          "keep": [
+            0,
+            1
+          ],
+          "side": "lower",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                3,
+                4
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "cups": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "barriers": [
+              true
+            ]
+          }
+        },
+        {
+          "keep": [
+            1
+          ],
+          "side": "lower",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                3
+              ]
+            ],
+            "cups": [
+              [
+                0
+              ]
+            ],
+            "barriers": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "single-run",
+      "case": [
+        5,
+        5,
+        6
+      ],
+      "word": [
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "maxima": [],
+      "parent": {
+        "caps": [
+          [
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            0,
+            4,
+            4,
+            4
+          ],
+          [
+            0,
+            0,
+            4,
+            4
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ]
+        ],
+        "cups": [
+          [
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            0,
+            4,
+            4,
+            4
+          ],
+          [
+            0,
+            0,
+            4,
+            4
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ]
+        ],
+        "barriers": [
+          false,
+          false,
+          false
+        ],
+        "run_caps": [
+          [
+            4
+          ]
+        ],
+        "run_cups": [
+          [
+            4
+          ]
+        ]
+      },
+      "children": [
+        {
+          "keep": [
+            0
+          ],
+          "side": "upper",
+          "opposite_max": 4,
+          "expected": {
+            "caps": [
+              [
+                1
+              ]
+            ],
+            "cups": [
+              [
+                4
+              ]
+            ],
+            "barriers": []
+          }
+        },
+        {
+          "keep": [
+            0,
+            3
+          ],
+          "side": "upper",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                3,
+                4
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "cups": [
+              [
+                4,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "barriers": [
+              true
+            ]
+          }
+        },
+        {
+          "keep": [
+            0,
+            1
+          ],
+          "side": "lower",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                4,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "cups": [
+              [
+                3,
+                3
+              ],
+              [
+                0,
+                3
+              ]
+            ],
+            "barriers": [
+              false
+            ]
+          }
+        },
+        {
+          "keep": [
+            2
+          ],
+          "side": "lower",
+          "opposite_max": 4,
+          "expected": {
+            "caps": [
+              [
+                4
+              ]
+            ],
+            "cups": [
+              [
+                1
+              ]
+            ],
+            "barriers": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "inert-external-repeat",
+      "case": [
+        4,
+        4,
+        5
+      ],
+      "word": [
+        "1U",
+        "1U",
+        "S",
+        "S",
+        "2L",
+        "S"
+      ],
+      "maxima": [
+        1,
+        2
+      ],
+      "parent": {
+        "caps": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ],
+        "cups": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ],
+        "barriers": [
+          false,
+          true
+        ],
+        "run_caps": [
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "run_cups": [
+          [
+            2,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "children": [
+        {
+          "keep": [
+            0
+          ],
+          "side": "upper",
+          "opposite_max": 3,
+          "expected": {
+            "caps": [
+              [
+                1
+              ]
+            ],
+            "cups": [
+              [
+                2
+              ]
+            ],
+            "barriers": []
+          }
+        },
+        {
+          "keep": [
+            0,
+            2
+          ],
+          "side": "upper",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                1,
+                2
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "cups": [
+              [
+                2,
+                2
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "barriers": [
+              true
+            ]
+          }
+        },
+        {
+          "keep": [
+            0,
+            1
+          ],
+          "side": "lower",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                2,
+                2
+              ],
+              [
+                0,
+                2
+              ]
+            ],
+            "cups": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "barriers": [
+              false
+            ]
+          }
+        },
+        {
+          "keep": [
+            1
+          ],
+          "side": "lower",
+          "opposite_max": 1,
+          "expected": {
+            "caps": [
+              [
+                2
+              ]
+            ],
+            "cups": [
+              [
+                0
+              ]
+            ],
+            "barriers": []
+          }
+        }
+      ]
+    }
+  ],
+  "source_fixture_sha256": "b2e9a6ab62f15a0aec2dd0460b5af9687cb691df3fa3ba462cb73533628d6c75",
+  "source_fixture_path": "runs/r24-sol-20261003/endpoint-profile-golden-v1.json",
+  "legacy_signature_sha256": "1904177f5aafeb6f586dd24deda8108b0526f3741da2641f4c27ac9f09bb49b7",
+  "legacy_part_sha256": "d1517bee80f15101ccc6b4a196b65f6d2a9ad367943cdef401ede407d0ce26d6",
+  "producer_sha256": "56bc3df0c3080785b0793b20c6a3c71b5939d36b9da57f6f77560ed37e5de1f8",
+  "semantics": "Frozen independent original-signature child states. Finite regression evidence only; no Lean equivalence or unrestricted maximum claim."
+}

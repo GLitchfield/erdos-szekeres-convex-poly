@@ -69,3 +69,22 @@ reproduce them for n <= 7. Runnable examples: `examples/band_partitions_demo.py`
 and `examples/strong_gons_demo.py`. The SAT helpers need python-sat, which
 the `es` venv lacks, so their tests skip there. Everything here is diagnostic
 evidence, not Lean proof.
+
+`research.endpoint-slot-profiles` provides pure child endpoint refinement,
+run-to-slot expansion and marker-barrier restriction. It keeps every finite
+child slot and treats each removed slot as an opposite endpoint constraint;
+it does not contract runs or evaluate the unrestricted maximum. Public inputs
+are validated: square nonnegative integer upper-triangular matrices, distinct
+retained indices, legal capacity split and boolean barriers. The refinement
+formula has an extension-path hand derivation; its independent legacy-signature
+fixtures establish finite regression agreement, not a Lean equivalence theorem.
+Original R24 sources and the full160-state fixture remain under
+`runs/r24-sol-20261003/`; the checked-in fixture retains16 diagnostic states.
+
+Run the small example from the repository root:
+
+```text
+es job run --why "endpoint profile example" --out runs/endpoint-profiles-demo.json \
+  --mem 2G -- bash -c 'PYTHONPATH=. python3 \
+  harness/research/examples/endpoint_profiles_demo.py > runs/endpoint-profiles-demo.json'
+```

@@ -346,11 +346,21 @@
       "kind": "workflow",
       "title": "Pinned proof source identity",
       "summary": "Compare exact candidate bytes reconstructed from immutable proof artifacts with the source in an explicit Git commit.",
-      "keywords": ["proof receipt", "pinned commit", "source hash", "candidate identity"],
+      "keywords": [
+        "proof receipt",
+        "pinned commit",
+        "source hash",
+        "candidate identity"
+      ],
       "api": "es proof identity RECEIPT --commit SHA; es.proofs.pinned_source_identity(cfg, receipt_id, commit)",
       "example": "es proof identity RECEIPT --commit FULL_COMMIT_SHA",
       "semantics": "Read-only metadata check in the fixture's captured worktree. Requires a recorded accepted candidate receipt with matching fixture parent/type and reconstructed source hash, then compares raw Git blob bytes at a full 40-character commit SHA. The current checkout may differ. No compiler runs, dependency or policy revalidation, frontier update, or theorem credit; compiler_rechecked=false and theorem_credit=not_inferred are explicit. Memory is bounded by captured source/body artifacts, and the Git blob size must match before reading it.",
-      "source": {"path": "tools/es/es/proofs.py", "symbols": ["pinned_source_identity"]}
+      "source": {
+        "path": "tools/es/es/proofs.py",
+        "symbols": [
+          "pinned_source_identity"
+        ]
+      }
     },
     {
       "id": "workflow.node-finish",
@@ -947,6 +957,32 @@
           "classify_trace",
           "receipt",
           "main"
+        ]
+      }
+    },
+    {
+      "id": "research.endpoint-slot-profiles",
+      "kind": "primitive",
+      "title": "Finite-context endpoint slot refinement",
+      "summary": "Refines child cup/cap endpoint matrices and preserves original and converted-slot marker barriers.",
+      "keywords": [
+        "endpoint matrices",
+        "profile refinement",
+        "finite context",
+        "child slots",
+        "barriers",
+        "opposite endpoint gains",
+        "sufficient state"
+      ],
+      "api": "refine_slot_profile(caps, cups, keep, side, opposite_max, strong) -> (caps, cups); expand_run_profile(word, caps, cups) -> (caps, cups, barriers); child_slot_barriers(barriers, keep) -> barriers",
+      "example": "from harness.research.endpoint_profiles import refine_slot_profile\ncaps, cups = refine_slot_profile([[2, 3], [0, 2]], [[2, 3], [0, 2]], [0], 'lower', 1, 3)",
+      "semantics": "Pure immutable numerical transforms on square nonnegative integer upper-triangular matrices. Retained slot indices must be distinct, nonempty and proper for refinement; 1 <= opposite_max < strong. Expansion requires one matrix row per consecutive S run. Boolean barriers retain old markers and gaps made by converted slots. The formula has a hand extension-path derivation and independent legacy-signature regression fixtures, not a certificate of equivalence to Lean. It preserves finite slot resolution and does not compute unrestricted profile maxima or assume a T upper theorem. Runnable example: harness/research/examples/endpoint_profiles_demo.py; frozen fixture: harness/research/examples/endpoint-profiles-v1.json.",
+      "source": {
+        "path": "harness/research/endpoint_profiles.py",
+        "symbols": [
+          "refine_slot_profile",
+          "expand_run_profile",
+          "child_slot_barriers"
         ]
       }
     }

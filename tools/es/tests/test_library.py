@@ -169,6 +169,7 @@ def test_project_catalog_exposes_promoted_research_boundary():
         "research.lazy-strong-gons",
         "decomposable.label-sets",
         "decomposable.band-partitions",
+        "research.endpoint-slot-profiles",
         "workflow.proof",
         "workflow.node-finish",
         "workflow.probe",
