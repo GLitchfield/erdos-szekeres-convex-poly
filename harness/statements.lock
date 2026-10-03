@@ -4315,6 +4315,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.SingletonLowerPascalTailGateFourDiagonalOfFiveLe"
   },
+  "ErdosSzekeres.singletonLowerPascalTailGate_six_pred_pred_of_seven_le": {
+    "type_hash": "135fffe38adb53ba",
+    "type_pp": "∀ {k : Nat}, instLENat.le 7 k → ErdosSzekeres.SingletonLowerPascalTailGate 6 (instHSub.hSub k 2) k",
+    "approved_by": "Gavin 2026-10-02 R23 reviewed research brief",
+    "approved_at": "2026-10-03",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.SingletonLowerPascalTailGateSixPredPredOfSevenLe"
+  },
   "ErdosSzekeres.singletonUpperPascalTailGate_diag_five_of_six_le_of_inputs": {
     "type_hash": "f4788b174428c98",
     "type_pp": "(∀ (k : Nat), instLENat.le 5 k → ErdosSzekeres.DiagonalCupBlocksForce4kk k) →\n  (∀ {n k : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n      instLENat.le 3 k →\n        ErdosSzekeres.OneChangeOn χ s →\n          Not (ErdosSzekeres.ContainsCapSet χ s 4) →\n            Not (ErdosSzekeres.ContainsStrongPolygonSet χ s k) →\n              instLENat.le s.card (instHAdd.hAdd 1 ((instHSub.hSub k 1).choose 2))) →\n    ∀ {k : Nat}, instLENat.le 6 k → ErdosSzekeres.SingletonUpperPascalTailGate k 5 k",

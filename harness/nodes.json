@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T12:30:24Z",
- "git_sha": "e9d72dc51b48feb3e18189b2582af988c5eb920a",
- "extract_mode": "incremental from e9d72dc51b48: 1 re-extracted, 0 removed",
+ "generated_at": "2026-10-03T12:48:54Z",
+ "git_sha": "1cb1c58802cab020dc335eba4ace60d27007af1b",
+ "extract_mode": "full",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15826,
- "tree_hash": "34e6895cc95c47f3.4560d6f33c43b8ee",
+ "modules": 15827,
+ "tree_hash": "216f2776ec72d92e.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 5354,
-  "scanned_constants": 14,
-  "scanned_modules": 1
+  "cached_modules": 15825,
+  "scanned_constants": 1,
+  "scanned_modules": 2
  },
  "nodes": [
   {
@@ -87338,7 +87338,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.decomposableThreshold_split_attained",
@@ -88443,6 +88443,44 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-02"
+  },
+  {
+   "name": "ErdosSzekeres.singletonLowerPascalTailGate_six_pred_pred_of_seven_le",
+   "module": "ESBlueprint.B.SingletonLowerPascalTailGateSixPredPredOfSevenLe",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The audited decomposable singleton lower Pascal-tail gate at (6,k-2,k) for every k at least seven, proved by cap-start peeling, asymmetric markers and the exhaustive root-split cubic bound.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "consumer": "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {k : Nat}, instLENat.le 7 k → ErdosSzekeres.SingletonLowerPascalTailGate 6 (instHSub.hSub k 2) k",
+   "type_hash": "135fffe38adb53ba",
+   "sorry": true,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx"
+   ],
+   "nonstandard_axioms": [
+    "sorryAx"
+   ],
+   "deps_declared": [],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "open",
+   "ready": true,
+   "blocked_by": [],
+   "uncovered_axioms": [
+    "sorryAx"
+   ],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
   },
   {
    "name": "ErdosSzekeres.singletonUpperPascalTailGate_diag_five_of_six_le_of_inputs",
@@ -99150,6 +99188,7 @@
    "ESBlueprint.B.SingletonLowerPascalTailGateFiveDiagOfSixLeOfInputs": "446797c496571664",
    "ESBlueprint.B.SingletonLowerPascalTailGateFivePredOfSixLe": "519eb95a587ebff4",
    "ESBlueprint.B.SingletonLowerPascalTailGateFourDiagonalOfFiveLe": "350745d61526e6b2",
+   "ESBlueprint.B.SingletonLowerPascalTailGateSixPredPredOfSevenLe": "a9c84b79c1b3b2b6",
    "ESBlueprint.B.SingletonUpperPascalTailGateDiagFiveOfSixLeOfInputs": "bdd2d0d161744324",
    "ESBlueprint.B.SingletonUpperPascalTailGatePredFiveOfSixLe": "cbd4517f4e3e8fba",
    "ESBlueprint.B.ThreeCupBlocksCardLeOfDecomposableNoCapFourNoStrongOfPairBound": "d0749aa022635995",
