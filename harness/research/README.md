@@ -115,3 +115,18 @@ Input is copied and strictly validated using the same contract as root cuts.
 The self-contained `examples/triple-metrics-v1.json` preserves the non-one-
 change trap and R25 n8/n11/n13 witnesses. Run `examples/triple_metrics_demo.py`
 through `es job run`; the primitive owns no execution or storage workflow.
+
+`research.classical-pascal-labels` promotes the classical `univ.es_labels`
+recurrence repeatedly reused for R25 padding and sharp cored families.
+It returns an immutable tuple of prefix-free binary words with binomial
+cardinality; when either positive bound is1, it returns one empty word,
+so both actual chain maxima are1. It materializes the full construction
+and can hit recursion or memory limits at large parameters; callers own
+guarded execution. `decomposable.binary-label-coloring` decodes any finite
+prefix-free binary words in the given spatial order, checking malformed
+input before using the first varying coordinate and middle bit. It needs
+no solver import. The fixture `examples/binary-labels-v1.json` preserves
+the original classical words; complete-triple/quad tests check actual
+profiles independently of the label recursion. Run
+`examples/binary_labels_demo.py --out runs/OUTPUT.json` through `es job run`.
+Neither primitive is a Lean proof or an implementation of BDL/CD.

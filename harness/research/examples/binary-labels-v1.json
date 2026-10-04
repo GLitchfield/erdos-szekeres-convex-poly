@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "diagnostic": true,
+  "source": "R25 retained univ.es_labels c976410a2be047ec0263dc247a0f3230159bef85d349cd8d79c866b06d8f6426; complete-triple profiles, not Lean receipts",
+  "cases": [
+    {"cup": 1, "cap": 4, "labels": [""], "metrics": [1, 1], "strong": 1},
+    {"cup": 2, "cap": 4, "labels": ["0", "10", "110", "111"], "metrics": [2, 4], "strong": 4},
+    {"cup": 3, "cap": 3, "labels": ["00", "010", "011", "100", "101", "11"], "metrics": [3, 3], "strong": 4},
+    {"cup": 4, "cap": 2, "labels": ["000", "001", "01", "1"], "metrics": [4, 2], "strong": 4}
+  ]
+}

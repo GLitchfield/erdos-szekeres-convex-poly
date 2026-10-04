@@ -2,6 +2,28 @@
   "schema_version": 1,
   "entries": [
     {
+      "id": "research.classical-pascal-labels",
+      "kind": "primitive",
+      "title": "Classical Pascal cup-cap labels",
+      "summary": "Materializes immutable binary labels for the classical extremal decomposable cup-cap construction.",
+      "keywords": ["classical construction", "Pascal", "binomial", "extremal labels", "es_labels", "cup cap", "padding tail", "sharpness"],
+      "api": "classical_pascal_labels(cup, cap) -> tuple[str, ...]",
+      "example": "from harness.research.binary_labels import classical_pascal_labels\nclassical_pascal_labels(3, 3)  # ('00', '010', '011', '100', '101', '11')\n# Runnable: python3 harness/research/examples/binary_labels_demo.py",
+      "semantics": "Actual positive integer bounds only; bool and malformed values rejected. Returns prefix-free binary words in spatial order, size choose(cup+cap-2,cup-1). Under first-varying-middle-bit decoding cup/cap maxima equal the bounds when both are at least2; if either is1 the result is a singleton and both actual maxima are1. Old lower/left K(cup-1,cap) and new upper/right K(cup,cap-1) form the recursive root. Immutable materialized tuple; output size can be enormous and recursion depth cup+cap-2, so callers own guards and scale selection. No solver, storage, geometry coordinates or Lean certificate. Retains R25 univ.es_labels semantics used for padding and sharp cored families; original artifacts remain unchanged.",
+      "source": {"path": "harness/research/binary_labels.py", "symbols": ["classical_pascal_labels"]}
+    },
+    {
+      "id": "decomposable.binary-label-coloring",
+      "kind": "primitive",
+      "title": "Prefix-free binary label coloring",
+      "summary": "Decodes ordered binary labels into a complete Boolean triple coloring without a solver.",
+      "keywords": ["binary labels", "prefix free", "first varying coordinate", "middle bit", "triple coloring", "decoder", "decomposition"],
+      "api": "binary_label_coloring(labels) -> dict[tuple[int,int,int], bool]",
+      "example": "from harness.research.binary_labels import binary_label_coloring\nbinary_label_coloring(['1', '00', '01'])  # {(0, 1, 2): True}\n# Runnable: python3 harness/research/examples/binary_labels_demo.py",
+      "semantics": "Finite iterable of actual binary strings, copied in caller spatial order; lexicographic order not required. Bare str/bytes, nonstrings, nonbinary words, duplicates and any prefix relation are rejected. Empty input and singleton empty word are valid. For every increasing triple find its first varying coordinate; True cup iff the middle bit is0. Returns a complete actual-bool mapping on range(len(labels)); recursive binary prefix cuts explain decomposability, but this is diagnostic code and no Lean receipt. Work O(n^3*max_word_length) after prefix validation; no SAT, budget, result-storage or theorem layer. Retains the repeatedly reused R25 Coloring.from_labels semantics with an explicit prefix-free contract.",
+      "source": {"path": "harness/research/binary_labels.py", "symbols": ["binary_label_coloring"]}
+    },
+    {
       "id": "research.triple-metrics",
       "kind": "primitive",
       "title": "Exact complete-triple finite metrics",

@@ -9,6 +9,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 from harness.research.triple_metrics import FiniteTripleColoring
+from harness.research.binary_labels import binary_label_coloring
 
 
 def direct(colors, n, ground):
@@ -52,13 +53,7 @@ def fixture_colors(case):
     triples = tuple(combinations(range(case['n']), 3))
     if 'mask' in case:
         return {T: bool(case['mask'] >> i & 1) for i, T in enumerate(triples)}
-    labels = case['labels']
-    colors = {}
-    for T in triples:
-        coordinate = next(d for d in range(len(labels[0]))
-                          if len({labels[x][d] for x in T}) > 1)
-        colors[T] = labels[T[1]][coordinate] == '0'
-    return colors
+    return binary_label_coloring(case['labels'])
 
 
 def test_retained_research_fixtures():
