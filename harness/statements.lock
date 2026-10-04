@@ -4068,6 +4068,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.DecomposableThresholdSplitLe"
   },
+  "ErdosSzekeres.decomposable_coloring_pushforward_exists": {
+    "type_hash": "60a1f8b3519c97f6",
+    "type_pp": "∀ {m n : Nat} (χ : ErdosSzekeres.TripleColoring m) (f : OrderEmbedding (Fin m) (Fin n)),\n  Exists fun ψ =>\n    And (Eq (ψ.restrict f) χ)\n      (And\n        (∀ (S : Finset (Fin m)),\n          ErdosSzekeres.IsDecomposableOn χ S →\n            ErdosSzekeres.IsDecomposableOn ψ\n              (Finset.image ((instFunLikeOrderEmbedding (Fin m) (Fin n)).coe f) S))\n        (And\n          (∀ (S : Finset (Fin m)),\n            Iff (ErdosSzekeres.IsCupSet χ S)\n              (ErdosSzekeres.IsCupSet ψ\n                (Finset.image ((instFunLikeOrderEmbedding (Fin m) (Fin n)).coe f) S)))\n          (And\n            (∀ (S : Finset (Fin m)),\n              Iff (ErdosSzekeres.IsCapSet χ S)\n                (ErdosSzekeres.IsCapSet ψ\n                  (Finset.image ((instFunLikeOrderEmbedding (Fin m) (Fin n)).coe f) S)))\n            (And\n              (∀ (S : Finset (Fin m)) (k : Nat),\n                Iff (ErdosSzekeres.ContainsStrongPolygonSet χ S k)\n                  (ErdosSzekeres.ContainsStrongPolygonSet ψ\n                    (Finset.image ((instFunLikeOrderEmbedding (Fin m) (Fin n)).coe f) S) k))\n              (∀ (S : Finset (Fin m)),\n                Eq (Finset.image ((instFunLikeOrderEmbedding (Fin m) (Fin n)).coe f) S).card\n                  S.card)))))",
+    "approved_by": "codex:agent-run-bba24e194efe4125",
+    "approved_at": "2026-10-03",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.DecomposableColoringPushforwardExists"
+  },
   "ErdosSzekeres.decomposable_extremal_insertion": {
     "type_hash": "426bd48e657492b6",
     "type_pp": "∀ {k n : Nat},\n  instLENat.le 4 k →\n    ∀ {χ : ErdosSzekeres.TripleColoring n},\n      ErdosSzekeres.IsSweepRealizable χ →\n        ∀ (S : Finset (Fin n)),\n          ErdosSzekeres.IsDecomposableOn χ S →\n            Eq S.card (instHPow.hPow 2 (instHSub.hSub k 2)) →\n              Not (ErdosSzekeres.ContainsStrongPolygonSet χ S k) →\n                ∀ (q : Fin n),\n                  Not (SetLike.instMembership.mem S q) →\n                    ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instInsert.insert q S) k",
