@@ -127,11 +127,24 @@
       "kind": "primitive",
       "title": "Singleton context-cut values",
       "summary": "Enumerates both orientations and every admissible coupling at each child, retaining zero-valued parts.",
-      "keywords": ["singleton", "cut", "coupling", "orientation", "normal form", "leaf", "context"],
+      "keywords": [
+        "singleton",
+        "cut",
+        "coupling",
+        "orientation",
+        "normal form",
+        "leaf",
+        "context"
+      ],
       "api": "singleton_cut_values(evaluate, row) -> list[(sum, position, side, sibling_maximum)]",
       "example": "from harness.research.context_bound import compiled_evaluator\nfrom harness.research.singleton_cuts import singleton_cut_values\nrow = {'word': ('S', (1, 'lower'), 'S'), 'maxima': (1,), 'a': 4, 'u': 4, 'k': 5, 'chosen': 'lower'}\nF = compiled_evaluator(4, 4, 5, persistent=True)\ntry:\n    choices = singleton_cut_values(F, row)\nfinally:\n    F.close()",
       "semantics": "Requires integer k>=3 and at least two S positions, a context row accepted by research.context-part, and a callback computing bounds at the row's a/u/k. Exposed callback globals must agree. Enumerates positions in increasing order and lower coupling d=1..k-2, then lower/d and upper/(k-1-d). Every sum is retained, even when one or both parts have value zero; errors including evaluator overflow propagate. The caller owns cache, resource guards and outputs. With the compiled evaluator results are diagnostic context-bound-zero-children-c-v1 arithmetic, not kernel proofs of singleton attainment. Retained source and checked-in values: R13 probes and harness/research/examples/singleton-cuts-v1.json.",
-      "source": {"path": "harness/research/singleton_cuts.py", "symbols": ["singleton_cut_values"]}
+      "source": {
+        "path": "harness/research/singleton_cuts.py",
+        "symbols": [
+          "singleton_cut_values"
+        ]
+      }
     },
     {
       "id": "research.ordered-cover",
@@ -736,6 +749,127 @@
           "reverse",
           "knuth_walk",
           "knuth_estimates"
+        ]
+      }
+    },
+    {
+      "id": "research.cup-cap-chains",
+      "kind": "primitive",
+      "title": "Cup/cap chains and strong sets of a triple colouring",
+      "summary": "Longest chains, chain enumeration, per-edge and endpoint-pair chain tables with witnesses, maximum-chain cores (L*, R*), and the largest strong set via the cup+cap formula with a 4-point brute-force reference.",
+      "keywords": [
+        "cup",
+        "cap",
+        "chain",
+        "chains",
+        "longest chain",
+        "cup number",
+        "cap number",
+        "chain table",
+        "endpoint pair",
+        "strong set",
+        "strong number",
+        "convex position",
+        "IsStrongPolygonSet",
+        "chain core",
+        "maximum caps",
+        "one-change",
+        "signotope"
+      ],
+      "api": "longest_chain(cup, points, want) -> int; chains(cup, t, want, points) -> [tuple]; edge_chain_tables(cup, n, want) -> (end, start); longest_lr(cup, points, want) -> {(l, r): (length, chain)}; chain_core(cup, points, want) -> (L*, R*, max chains); strong_number(cup, points) -> int; strong_number_bruteforce(cup, points) -> int; is_strong(cup, points) -> bool; is_one_change(cup, points) -> bool",
+      "example": "from harness.research.chains import longest_chain, strong_number\ncup = {(0, 1, 2): True}  # sorted triple -> True = cup\nlongest_chain(cup, range(3), True), longest_chain(cup, range(3), False), strong_number(cup, range(3))  # (3, 2, 3)\n# python3 harness/research/examples/strong_gons_demo.py",
+      "semantics": "Points are integers in sweep order; cup maps each sorted triple to True (cup, left turn, set bit in decomposable.coloring-enumeration masks) or False (cap). A chain's consecutive triples all have its colour; sets of <= 2 points are both cups and caps (lengths 0, 1, 2), so a limit of 1 admits one point. Strong set = Lean IsStrongPolygonSet (4-point definition); sets of <= 3 points are strong. strong_number uses max(min(n,3), cup_lr + cap_lr - 2 over endpoint pairs), which equals the 4-point definition on one-change colourings (all 908 six-point signotopes and random decomposable sets regression-tested) and is NOT valid on arbitrary colourings; strong_number_bruteforce and is_strong hold for any colouring (exponential, small sets). chain_core gives L* = max first point and R* = min last point over the longest chains (interior core when L* < R*). Diagnostic computation only; no Lean proof.",
+      "source": {
+        "path": "harness/research/chains.py",
+        "symbols": [
+          "longest_chain",
+          "chains",
+          "edge_chain_tables",
+          "longest_lr",
+          "chain_core",
+          "strong_number",
+          "strong_number_bruteforce",
+          "is_strong",
+          "is_one_change"
+        ]
+      }
+    },
+    {
+      "id": "research.lazy-strong-gons",
+      "kind": "primitive",
+      "title": "Lazy strong-set (gon) witness and CEGAR two-colouring",
+      "summary": "Finds one strong set of an exact size without enumerating gons, and two-colours points so that neither class contains a strong size-set by adding gon clauses lazily to a SAT solver.",
+      "keywords": [
+        "gon",
+        "k-gon",
+        "strong set",
+        "find gon",
+        "witness",
+        "CEGAR",
+        "lazy clauses",
+        "two-colouring",
+        "two-coloring",
+        "bichromatic",
+        "monochromatic",
+        "PSL",
+        "memory-light",
+        "SAT",
+        "python-sat"
+      ],
+      "api": "find_gon(cup, points, size) -> sorted tuple | None; cegar_two_colouring(cup, points, hard, size) -> (blue, red) | None",
+      "example": "from harness.research.chains import find_gon, cegar_two_colouring\ngon = find_gon(s.cup, range(s.n), k - 1)  # None: no strong (k-1)-set in s\nres = cegar_two_colouring(s.cup, list(range(s.n)), hard_clauses, k - 1)  # SAT var p+1 true = blue",
+      "semantics": "find_gon pairs a longest cup and a longest cap with the same endpoints and trims interior points to the exact size; it is complete (None means no strong size-set) only on one-change colourings, regression-tested against strong_number_bruteforce on all 908 six-point signotopes, and raises ValueError if a cup and cap share an interior point. Memory O(|S|^2) per start point; about 31 MB per k=8 sample in runs/claude-hypergraph-20261003, versus one clause pair per gon. cegar_two_colouring needs python-sat (Cadical195): variable p+1 is point p (non-negative integers; true = blue); hard is the caller's clause list; while a colour class holds a size-gon it adds the clauses forbidding that gon to be monochromatic and re-solves; returns (blue, red) with both classes strong-size-free, or None when none exists (agreement with brute force over all 2^n colourings is regression-tested). Diagnostic only; no proof output.",
+      "source": {
+        "path": "harness/research/chains.py",
+        "symbols": [
+          "find_gon",
+          "cegar_two_colouring"
+        ]
+      }
+    },
+    {
+      "id": "decomposable.label-sets",
+      "kind": "primitive",
+      "title": "Decomposable sets as binary label trees",
+      "summary": "Builds decomposable colourings from prefix-free root-path labels, composes, splits and samples them, decides exact decomposability of any colouring, converts enumerator bitmasks, and evaluates decomposableThreshold.",
+      "keywords": [
+        "decomposable",
+        "decomposable set",
+        "labels",
+        "label tree",
+        "root split",
+        "deep-below split",
+        "Lemma M",
+        "random decomposable set",
+        "nested split",
+        "compose",
+        "decomposability",
+        "all splits",
+        "bitmask",
+        "threshold",
+        "T(a,u,k)",
+        "decomposableThreshold"
+      ],
+      "api": "DecomposableSet(labels) -> .n .cup .alpha .beta .strong .end .st, .longest(sub, want), .chains(t, want, sub), .cap_core(), .cup_core(), .root_split(); coloring_from_labels(labels); check_labels(labels); normalize_labels(labels); compose(A, B, lowerpos); root_split(labels); random_labels(n, rng); random_nested_labels(n, rng, pnest=0.6); all_splits(cup, pts); Decomposability(cup).dec(pts) / .splits(pts); coloring_from_mask(mask, n); mask_from_coloring(cup, n); decomposable_masks(max_n); threshold(a, u, k)",
+      "example": "from harness.research.decomposable_sets import DecomposableSet, random_nested_labels\ns = DecomposableSet(random_nested_labels(14, random.Random(2026)))\ns.alpha, s.beta, s.strong  # cup, cap and strong numbers: 5, 7, 8\n# python3 harness/research/examples/band_partitions_demo.py",
+      "semantics": "Decomposable = IsDecomposableOn (singleton, or nonempty lower A and upper B, interleaved arbitrarily, a triple meeting both is a cup iff its middle point is in A). Point p carries its root path ('0' lower, '1' upper); labels must be distinct and prefix-free (checked; SAT-decoded 0/1 tuples are normalised). Triple p<q<r is a cup iff the middle label has '0' where the three first differ. Label trees generate exactly the enumerated class on n <= 6, and Decomposability accepts exactly 718 of the 908 six-point signotopes (both regression-tested); it is exponential in |pts|. DecomposableSet keeps the attribute names of runs/claude-bandrule-20261003/bl.py S; chain conventions as research.cup-cap-chains (sets of <= 2 points are both cups and caps). decomposable_masks wraps decomposable.coloring-enumeration (class counts 2, 8, 62, 718, 10596 for n = 3..7 tested; 186888, 3816380 for n = 8, 9 from the audit). threshold mirrors Lean decomposableThreshold with truncated subtraction and equals the exact maximum (cap <= a-1, cup <= u-1, strong <= k-1) in all 139 cases decided by n <= 7 enumeration. Diagnostic only; no Lean proof.",
+      "source": {
+        "path": "harness/research/decomposable_sets.py",
+        "symbols": [
+          "DecomposableSet",
+          "coloring_from_labels",
+          "check_labels",
+          "normalize_labels",
+          "compose",
+          "root_split",
+          "random_labels",
+          "random_nested_labels",
+          "all_splits",
+          "Decomposability",
+          "coloring_from_mask",
+          "mask_from_coloring",
+          "decomposable_masks",
+          "threshold"
         ]
       }
     }
