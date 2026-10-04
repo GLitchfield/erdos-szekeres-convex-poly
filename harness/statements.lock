@@ -4086,6 +4086,15 @@
     "ws": "F",
     "module": "ESBlueprint.F.DecomposableExtremalInsertionDichotomy"
   },
+  "ErdosSzekeres.deepSplit_endpoint_constraints_iff": {
+    "type_hash": "1cf6dd851989965c",
+    "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {lower upper : Finset (Fin n)},\n  ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n    ∀ (cupAllowed capAllowed : Finset (Fin n) → Prop),\n      Iff\n        (And\n          (∀ (T : Finset (Fin n)),\n            Finset.instHasSubset.Subset T (Finset.instUnion.union lower upper) →\n              ErdosSzekeres.IsCupSet χ T → cupAllowed T)\n          (∀ (T : Finset (Fin n)),\n            Finset.instHasSubset.Subset T (Finset.instUnion.union lower upper) →\n              ErdosSzekeres.IsCapSet χ T → capAllowed T))\n        (And\n          (∀ (T : Finset (Fin n)),\n            Finset.instHasSubset.Subset T upper → ErdosSzekeres.IsCupSet χ T → cupAllowed T)\n          (And\n            (∀ (T : Finset (Fin n)),\n              Finset.instHasSubset.Subset T lower → ErdosSzekeres.IsCapSet χ T → capAllowed T)\n            (And\n              (∀ (C E : Finset (Fin n)),\n                Finset.instHasSubset.Subset C lower →\n                  Finset.instHasSubset.Subset E upper →\n                    ErdosSzekeres.IsCupSet χ C →\n                      (∀ (q : Fin n),\n                          SetLike.instMembership.mem E q →\n                            ErdosSzekeres.HasDeepBelowSplit.IsSweepEndpoint\n                              (Finset.instUnion.union C E) q) →\n                        cupAllowed (Finset.instUnion.union C E))\n              (∀ (C E : Finset (Fin n)),\n                Finset.instHasSubset.Subset C upper →\n                  Finset.instHasSubset.Subset E lower →\n                    ErdosSzekeres.IsCapSet χ C →\n                      (∀ (q : Fin n),\n                          SetLike.instMembership.mem E q →\n                            ErdosSzekeres.HasDeepBelowSplit.IsSweepEndpoint\n                              (Finset.instUnion.union C E) q) →\n                        capAllowed (Finset.instUnion.union C E)))))",
+    "approved_by": "codex:agent-run-bba24e194efe4125",
+    "approved_at": "2026-10-03",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.DeepSplitEndpointConstraintsIff"
+  },
   "ErdosSzekeres.deepSplit_strong_avoidance_iff": {
     "type_hash": "c70c7da9646129a5",
     "type_pp": "∀ {n s : Nat} {χ : ErdosSzekeres.TripleColoring n} {lower upper : Finset (Fin n)},\n  ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n    Iff\n      (Not\n        (ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instUnion.union lower upper)\n          (instHAdd.hAdd s 1)))\n      (And (Not (ErdosSzekeres.ContainsStrongPolygonSet χ lower (instHAdd.hAdd s 1)))\n        (And (Not (ErdosSzekeres.ContainsStrongPolygonSet χ upper (instHAdd.hAdd s 1)))\n          (∀ (C D : Finset (Fin n)),\n            Finset.instHasSubset.Subset C lower →\n              Finset.instHasSubset.Subset D upper →\n                ErdosSzekeres.IsCupSet χ C →\n                  ErdosSzekeres.IsCapSet χ D → instLENat.le (instHAdd.hAdd C.card D.card) s)))",
