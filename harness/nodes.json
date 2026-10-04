@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-04T02:21:05Z",
- "git_sha": "e8c61ed069bff77652ad004bd90a807cfc64bcf5",
+ "generated_at": "2026-10-04T03:06:50Z",
+ "git_sha": "daf3e6a669f717c3fc667b94b0b3943770fc734b",
  "extract_mode": "full",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15832,
- "tree_hash": "431e0228366df3f8.4560d6f33c43b8ee",
+ "modules": 15833,
+ "tree_hash": "5d705cbecce6fd20.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15830,
-  "scanned_constants": 1,
-  "scanned_modules": 2
+  "cached_modules": 15832,
+  "scanned_constants": 15,
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -87210,6 +87210,60 @@
    "opened": "2026-09-05"
   },
   {
+   "name": "ErdosSzekeres.decomposableStateUpper_all_of_bands",
+   "module": "ESBlueprint.B.DecomposableStateUpperAllOfBands",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Baek-Balko Theorem 8 for every decomposable state follows from the Band Decomposition Lemma: a decomposable set with no strong k-set, cup <= alpha and cap <= beta (alpha+beta >= k) splits into bands j in [k-1-beta, alpha-1] with no (j+2)-cup and no (k-j)-cap. Each band is bounded by the classical cup-cap theorem C(k-2,j), and the band bounds sum to the decomposable threshold.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup"
+    ],
+    "consumer": "ErdosSzekeres.decomposableStateUpper_all"
+   },
+   "tag_errors": [],
+   "type_pp": "(∀ {n k α β : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n    ErdosSzekeres.IsDecomposableOn χ s →\n      Not (ErdosSzekeres.ContainsStrongPolygonSet χ s k) →\n        Not (ErdosSzekeres.ContainsCupSet χ s (instHAdd.hAdd α 1)) →\n          Not (ErdosSzekeres.ContainsCapSet χ s (instHAdd.hAdd β 1)) →\n            instLENat.le k (instHAdd.hAdd α β) →\n              Exists fun b =>\n                And\n                  (∀ (x : Fin n),\n                    SetLike.instMembership.mem s x →\n                      And (instLENat.le (instHSub.hSub (instHSub.hSub k 1) β) (b x))\n                        (instLENat.le (b x) (instHSub.hSub α 1)))\n                  (∀ (j : Nat),\n                    instLTNat.lt j k →\n                      And\n                        (Not\n                          (ErdosSzekeres.ContainsCupSet χ (Finset.filter (fun x => Eq (b x) j) s)\n                            (instHAdd.hAdd j 2)))\n                        (Not\n                          (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => Eq (b x) j) s)\n                            (instHSub.hSub k j))))) →\n  ∀ (a u k : Nat),\n    instLENat.le 1 a →\n      instLENat.le 1 u →\n        instLENat.le a k → instLENat.le u k → ErdosSzekeres.DecomposableStateUpper a u k",
+   "type_hash": "db9078e612171f85",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_1",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_2",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._simp_1_3",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_5",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_6",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_7",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_8",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_9",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_12",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_11",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_10",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_13",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_4",
+    "ErdosSzekeres.decomposableStateUpper_all_of_bands._proof_1_14"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at",
    "module": "ESBlueprint.B.DecomposableStateUpperOfLowerGatesAt",
    "ws": "B",
@@ -99435,6 +99489,7 @@
    "ESBlueprint.B.CtxYoungestMiddleMarkerDoubledWidthBound": "899e7b03d68cfbee",
    "ESBlueprint.B.DecomposableColoringPushforwardExists": "8499bd019ff4f7bf",
    "ESBlueprint.B.DecomposableStateUpperAll": "614f6c48c0469bc6",
+   "ESBlueprint.B.DecomposableStateUpperAllOfBands": "568354981d4cf78a",
    "ESBlueprint.B.DecomposableStateUpperOfLowerGatesAt": "44e236682ce95876",
    "ESBlueprint.B.DecomposableThresholdCapacityPascalLeft": "86871726fc1e8409",
    "ESBlueprint.B.DecomposableThresholdFivePredOfSixLe": "3d39910f88c8515d",

@@ -488,3 +488,4 @@ import ESBlueprint.B.DecomposableThresholdLowerExists
 import ESBlueprint.B.ExistsCapStartPeelOfOneChangeNoCapSuccNoCup
 import ESBlueprint.B.CardLeChooseOfOneChangeNoCapNoCup
 import ESBlueprint.B.SingletonLowerPascalTailGateFiveDiagOfSixLe
+import ESBlueprint.B.DecomposableStateUpperAllOfBands

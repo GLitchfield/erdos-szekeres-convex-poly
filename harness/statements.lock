@@ -4014,6 +4014,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.DecomposableStateUpperAll"
   },
+  "ErdosSzekeres.decomposableStateUpper_all_of_bands": {
+    "type_hash": "db9078e612171f85",
+    "type_pp": "(∀ {n k α β : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n    ErdosSzekeres.IsDecomposableOn χ s →\n      Not (ErdosSzekeres.ContainsStrongPolygonSet χ s k) →\n        Not (ErdosSzekeres.ContainsCupSet χ s (instHAdd.hAdd α 1)) →\n          Not (ErdosSzekeres.ContainsCapSet χ s (instHAdd.hAdd β 1)) →\n            instLENat.le k (instHAdd.hAdd α β) →\n              Exists fun b =>\n                And\n                  (∀ (x : Fin n),\n                    SetLike.instMembership.mem s x →\n                      And (instLENat.le (instHSub.hSub (instHSub.hSub k 1) β) (b x))\n                        (instLENat.le (b x) (instHSub.hSub α 1)))\n                  (∀ (j : Nat),\n                    instLTNat.lt j k →\n                      And\n                        (Not\n                          (ErdosSzekeres.ContainsCupSet χ (Finset.filter (fun x => Eq (b x) j) s)\n                            (instHAdd.hAdd j 2)))\n                        (Not\n                          (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => Eq (b x) j) s)\n                            (instHSub.hSub k j))))) →\n  ∀ (a u k : Nat),\n    instLENat.le 1 a →\n      instLENat.le 1 u →\n        instLENat.le a k → instLENat.le u k → ErdosSzekeres.DecomposableStateUpper a u k",
+    "approved_by": "Gavin 2026-10-03 (evening plan item 5)",
+    "approved_at": "2026-10-03",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.DecomposableStateUpperAllOfBands"
+  },
   "ErdosSzekeres.decomposableStateUpper_diagonal_four_of_gates": {
     "type_hash": "9fbc31b5eb51b848",
     "type_pp": "(∀ (k : Nat), instLENat.le 5 k → ErdosSzekeres.SingletonLowerPascalTailGate 4 k k) →\n  ∀ (k : Nat), instLENat.le 5 k → ErdosSzekeres.DecomposableStateUpper k 4 k",
