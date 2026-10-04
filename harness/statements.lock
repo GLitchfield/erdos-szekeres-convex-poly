@@ -4086,6 +4086,15 @@
     "ws": "F",
     "module": "ESBlueprint.F.DecomposableExtremalInsertionDichotomy"
   },
+  "ErdosSzekeres.deepSplit_strong_avoidance_iff": {
+    "type_hash": "c70c7da9646129a5",
+    "type_pp": "∀ {n s : Nat} {χ : ErdosSzekeres.TripleColoring n} {lower upper : Finset (Fin n)},\n  ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n    Iff\n      (Not\n        (ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instUnion.union lower upper)\n          (instHAdd.hAdd s 1)))\n      (And (Not (ErdosSzekeres.ContainsStrongPolygonSet χ lower (instHAdd.hAdd s 1)))\n        (And (Not (ErdosSzekeres.ContainsStrongPolygonSet χ upper (instHAdd.hAdd s 1)))\n          (∀ (C D : Finset (Fin n)),\n            Finset.instHasSubset.Subset C lower →\n              Finset.instHasSubset.Subset D upper →\n                ErdosSzekeres.IsCupSet χ C →\n                  ErdosSzekeres.IsCapSet χ D → instLENat.le (instHAdd.hAdd C.card D.card) s)))",
+    "approved_by": "codex:agent-run-bba24e194efe4125",
+    "approved_at": "2026-10-03",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.DeepSplitStrongAvoidanceIff"
+  },
   "ErdosSzekeres.deepSplit_two_endpoint_extensions": {
     "type_hash": "c0597e18a9e9b81e",
     "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {A B : Finset (Fin n)},\n  ErdosSzekeres.HasDeepBelowSplit χ A B →\n    And\n      (∀ (C : Finset (Fin n)),\n        Finset.instHasSubset.Subset C A →\n          ErdosSzekeres.IsCupSet χ C →\n            ∀ (x y : Fin n),\n              SetLike.instMembership.mem B x →\n                SetLike.instMembership.mem B y →\n                  instLTFin.lt x y →\n                    (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt x z) →\n                      (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt z y) →\n                        ErdosSzekeres.IsCupSet χ\n                          (Finset.instInsert.insert x (Finset.instInsert.insert y C)))\n      (∀ (C : Finset (Fin n)),\n        Finset.instHasSubset.Subset C B →\n          ErdosSzekeres.IsCapSet χ C →\n            ∀ (x y : Fin n),\n              SetLike.instMembership.mem A x →\n                SetLike.instMembership.mem A y →\n                  instLTFin.lt x y →\n                    (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt x z) →\n                      (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt z y) →\n                        ErdosSzekeres.IsCapSet χ\n                          (Finset.instInsert.insert x (Finset.instInsert.insert y C)))",
