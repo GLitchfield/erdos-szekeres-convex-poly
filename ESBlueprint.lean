@@ -486,3 +486,4 @@ import ESBlueprint.B.DeepSplitProfileGluingExists
 import ESBlueprint.B.DecomposableColoringPushforwardExists
 import ESBlueprint.B.DecomposableThresholdLowerExists
 import ESBlueprint.B.ExistsCapStartPeelOfOneChangeNoCapSuccNoCup
+import ESBlueprint.B.CardLeChooseOfOneChangeNoCapNoCup

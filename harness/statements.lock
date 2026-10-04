@@ -72,6 +72,15 @@
     "ws": "C",
     "module": "ESBlueprint.C.CardLeChooseOfOneChangeNoCapFourNoStrong"
   },
+  "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup": {
+    "type_hash": "6e4f3d0cdd9013a5",
+    "type_pp": "∀ {n c v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  instLENat.le 2 c →\n    instLENat.le 2 v →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ s c) →\n          Not (ErdosSzekeres.ContainsCupSet χ s v) →\n            instLENat.le s.card ((instHSub.hSub (instHAdd.hAdd c v) 4).choose (instHSub.hSub c 2))",
+    "approved_by": "codex:agent-run-6b3abc23e58d4be6",
+    "approved_at": "2026-10-03",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CardLeChooseOfOneChangeNoCapNoCup"
+  },
   "ErdosSzekeres.card_le_mul_of_oneChange_gap_no_capFive_straddled_cups": {
     "type_hash": "bdd23fc3926df984",
     "type_pp": "∀ {n m : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {q h : Fin n},\n  instLENat.le 3 m →\n    Not (SetLike.instMembership.mem s q) →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt x q) s) 4) →\n          Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => instLTFin.lt q x) s) 4) →\n            Not (ErdosSzekeres.ContainsCapSet χ s 5) →\n              Not (ErdosSzekeres.ContainsCupSet χ s (instHAdd.hAdd m 1)) →\n                (∀ (C : Finset (Fin n)),\n                    Finset.instHasSubset.Subset C s →\n                      Eq C.card m →\n                        ErdosSzekeres.IsCupSet χ C →\n                          And\n                            (Exists fun x =>\n                              And (SetLike.instMembership.mem C x) (instLTFin.lt x h))\n                            (Exists fun y =>\n                              And (SetLike.instMembership.mem C y) (instLTFin.lt h y))) →\n                  instLENat.le s.card (instHMul.hMul m (instHSub.hSub m 1))",
