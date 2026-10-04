@@ -168,6 +168,7 @@ def test_project_catalog_exposes_promoted_research_boundary():
         "research.cup-cap-chains",
         "research.lazy-strong-gons",
         "decomposable.label-sets",
+        "decomposable.band-partitions",
         "workflow.proof",
         "workflow.node-finish",
         "workflow.probe",

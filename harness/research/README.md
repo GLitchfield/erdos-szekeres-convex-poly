@@ -53,3 +53,19 @@ run it through `es job run` as required by AGENTS.md. Both parts must contain
 a child. Zero values are retained, and the complementary maxima sum to k-1.
 The frozen diagnostic fixture is `examples/singleton-cuts-v1.json`; it gives
 no Lean proof of a normal form.
+
+`research.cup-cap-chains`, `research.lazy-strong-gons`, `decomposable.label-sets`
+and `decomposable.band-partitions` (modules `chains.py`, `decomposable_sets.py`,
+`band_partitions.py`) retain the chain, strong-set, label-tree and BDL
+band-partition helpers that the 3 Oct runs copied between directories
+(`bl.py`, `dec.py`, `sig.py`, `lightgon.py`); those run files are unchanged.
+All three modules share one convention: `cup[(i, j, k)]` is True for a cup,
+and sets of at most 2 points are both cups and caps. `strong_number` and
+`find_gon` assume a one-change colouring. Exact class enumeration stays in
+`decomposable.coloring-enumeration` and is reached through
+`decomposable_masks`. The frozen fixture `examples/band-partitions-v1.json`
+holds the audit's exhaustive per-n BDL, P, PF and P' counts. The tests
+reproduce them for n <= 7. Runnable examples: `examples/band_partitions_demo.py`
+and `examples/strong_gons_demo.py`. The SAT helpers need python-sat, which
+the `es` venv lacks, so their tests skip there. Everything here is diagnostic
+evidence, not Lean proof.

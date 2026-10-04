@@ -872,6 +872,43 @@
           "threshold"
         ]
       }
+    },
+    {
+      "id": "decomposable.band-partitions",
+      "kind": "primitive",
+      "title": "BDL band partitions: exact search, verifier, SAT cross-check",
+      "summary": "Enumerates or finds band partitions (band j: cup <= j+1, cap <= k-1-j) over the BDL range with optional per-point band restrictions, verifies them independently, and re-decides by SAT.",
+      "keywords": [
+        "band partition",
+        "bands",
+        "BDL",
+        "Band Decomposition Lemma",
+        "bdl range",
+        "P invariant",
+        "PF",
+        "bottom band",
+        "core",
+        "backtracking",
+        "partition verifier",
+        "SAT",
+        "python-sat",
+        "Theorem 8"
+      ],
+      "api": "bdl_range(alpha, beta, k) -> [j]; band_limits(j, k) -> (j+1, k-1-j); partitions(cup, points, k, bands, *, allowed=None, limit=None, first=False) -> [tuple]; find_partition(cup, points, k, bands, *, allowed=None) -> tuple | None; check_partition(cup, points, k, b, bands=None) -> bool; allowed_from_forbid(points, bands, forbid) -> {p: bands}; partition_sat(cup, points, k, bands, *, allowed=None) -> tuple | None",
+      "example": "from harness.research.band_partitions import bdl_range, find_partition, check_partition\nbands = bdl_range(s.alpha, s.beta, k)  # k-1-cap .. cup-1\nb = find_partition(s.cup, range(s.n), k, bands)  # b[p] = band of point p, or None\nassert b is None or check_partition(s.cup, range(s.n), k, b, bands)",
+      "semantics": "A band partition puts every point in a band j whose members have cup <= j+1 and cap <= k-1-j; with the chain convention that sets of <= 2 points are both cups and caps, only bands 0..k-2 can be used and bands 0 and k-2 hold at most one point. bdl_range(alpha, beta, k) = k-1-beta .. alpha-1; BDL asserts a partition in that range for decomposable X with strong(X) <= k-1 and cup+cap >= k (cup+cap = k is the one-band case). Results are tuples aligned with sorted(points) (b[p] for range(n)); bands are tried in the given order; allowed[p] restricts point p (allowed_from_forbid builds it from forbidden points per band, e.g. the P invariant's bottom band j0 = k-1-cap inside x <= L*). partitions is complete backtracking with incremental chain tables; check_partition recomputes every band from scratch; partition_sat (python-sat Cadical195, lazy import) is a second exact method that agrees with backtracking (regression-tested). Fixture examples/band-partitions-v1.json freezes the exhaustive audit counts (pairs, multi-band, P, PF, P', cores) for n <= 7, reproduced exactly; BDL holds on all decomposable colourings with n <= 9 per runs/claude-audit-bdl-20261003. Diagnostic computation, not a Lean proof of BDL.",
+      "source": {
+        "path": "harness/research/band_partitions.py",
+        "symbols": [
+          "bdl_range",
+          "band_limits",
+          "allowed_from_forbid",
+          "partitions",
+          "find_partition",
+          "check_partition",
+          "partition_sat"
+        ]
+      }
     }
   ]
 }

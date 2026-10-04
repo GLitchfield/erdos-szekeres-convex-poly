@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "source": "runs/claude-audit-bdl-20261003/exh8.txt (exh.py 8, es job 20261003-105702-6b6baa); colouring counts n=9 from bdl9_s{0,1}.txt (jobs 20261003-105939-ad34bd, 20261003-105939-048f66)",
+  "note": "Frozen diagnostic counts from the independent BDL audit (Python reference implementation, strong sets by the 4-point definition); no Lean theorem credit. For every decomposable colouring X on n points and every k with strong(X) <= k-1 and cup+cap >= k: pairs counts (X, k); one_band has cup+cap = k; pairs_multi have >= 2 BDL bands and every one has a band partition. cap_core counts multi-band pairs whose maximum caps have L* < R*; P_both: band partitions exist with the bottom band j0 = k-1-cap inside x <= L* and (separately) inside x >= R*. PF_first / PF_last: the bottom band fits inside the first / last points of the maximum caps. cup_core and P'_both are the colour-dual statements for the top band j1 = cup-1.",
+  "coloring_counts": {
+    "3": 2,
+    "4": 8,
+    "5": 62,
+    "6": 718,
+    "7": 10596,
+    "8": 186888,
+    "9": 3816380
+  },
+  "tested_max_n": 7,
+  "per_n": {
+    "3": {
+      "P'_both": 1,
+      "PF_first": 2,
+      "PF_last": 2,
+      "P_both": 1,
+      "cap_core": 1,
+      "colourings": 2,
+      "cup_core": 1,
+      "one_band": 2,
+      "pairs": 4,
+      "pairs_multi": 2
+    },
+    "4": {
+      "P'_both": 11,
+      "PF_first": 12,
+      "PF_last": 12,
+      "P_both": 11,
+      "cap_core": 11,
+      "colourings": 8,
+      "cup_core": 11,
+      "one_band": 8,
+      "pairs": 20,
+      "pairs_multi": 12
+    },
+    "5": {
+      "P'_both": 89,
+      "PF_first": 100,
+      "PF_last": 100,
+      "P_both": 89,
+      "cap_core": 89,
+      "colourings": 62,
+      "cup_core": 89,
+      "one_band": 62,
+      "pairs": 162,
+      "pairs_multi": 100
+    },
+    "6": {
+      "P'_both": 1159,
+      "PF_first": 1376,
+      "PF_last": 1376,
+      "P_both": 1159,
+      "cap_core": 1159,
+      "colourings": 718,
+      "cup_core": 1159,
+      "one_band": 718,
+      "pairs": 2094,
+      "pairs_multi": 1376
+    },
+    "7": {
+      "P'_both": 19257,
+      "PF_first": 21796,
+      "PF_last": 21796,
+      "P_both": 19257,
+      "cap_core": 19257,
+      "colourings": 10596,
+      "cup_core": 19257,
+      "one_band": 10596,
+      "pairs": 32392,
+      "pairs_multi": 21796
+    },
+    "8": {
+      "P'_both": 380863,
+      "PF_first": 419644,
+      "PF_last": 419644,
+      "P_both": 380863,
+      "cap_core": 380863,
+      "colourings": 186888,
+      "cup_core": 380863,
+      "one_band": 186888,
+      "pairs": 606532,
+      "pairs_multi": 419644
+    }
+  }
+}
