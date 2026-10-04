@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-03T12:04:54Z",
- "git_sha": "3f6e9272d2e122edfcef9c57db160187e85ce290",
+ "generated_at": "2026-10-04T02:21:05Z",
+ "git_sha": "e8c61ed069bff77652ad004bd90a807cfc64bcf5",
  "extract_mode": "full",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15824,
- "tree_hash": "00ff264c9d1d4129.4560d6f33c43b8ee",
+ "modules": 15832,
+ "tree_hash": "431e0228366df3f8.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15823,
-  "scanned_constants": 0,
-  "scanned_modules": 1
+  "cached_modules": 15830,
+  "scanned_constants": 1,
+  "scanned_modules": 2
  },
  "nodes": [
   {
@@ -257,6 +257,53 @@
    "deps_actual": [
     "ErdosSzekeres.exists_cupStartLayers_of_oneChange_no_capFour",
     "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_cup._proof_1_1"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup",
+   "module": "ESBlueprint.B.CardLeChooseOfOneChangeNoCapNoCup",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The classical all-triples binomial cup-cap bound under the one-change signotope law for all cap and cup parameters at least two, proved by the generic cap-start peel and Pascal induction.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "dangling-ok": "R23 generic counting foundation for the six singleton gate"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n c v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  instLENat.le 2 c →\n    instLENat.le 2 v →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ s c) →\n          Not (ErdosSzekeres.ContainsCupSet χ s v) →\n            instLENat.le s.card ((instHSub.hSub (instHAdd.hAdd c v) 4).choose (instHSub.hSub c 2))",
+   "type_hash": "6e4f3d0cdd9013a5",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._simp_1_1",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._simp_1_2",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_3",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_4",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_5",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_6",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_7",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_8",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_9",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_10",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_11",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_cap_no_cup._proof_1_12"
    ],
    "helpers": [],
    "status": "closed",
@@ -87058,6 +87105,44 @@
    "opened": "2026-09-15"
   },
   {
+   "name": "ErdosSzekeres.decomposable_coloring_pushforward_exists",
+   "module": "ESBlueprint.B.DecomposableColoringPushforwardExists",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every triple coloring extends along an increasing index embedding to an ambient coloring with exact restriction, preserving decomposable image supports, cup and cap predicates, strong-polygon existence at every size, and support cardinalities.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.containsStrongPolygonSet_image_restrict_iff"
+    ],
+    "dangling-ok": "General Q3 bridge from independent ordered child domains to the fixed ambient supports used by profile gluing; also needed to embed the smaller child in the general Q4 two-cap family construction. No closed maximum or endpoint-loss invariant is asserted."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {m n : Nat} (χ : ErdosSzekeres.TripleColoring m) (f : OrderEmbedding (Fin m) (Fin n)),\n  Exists fun ψ =>\n    And (Eq (ψ.restrict f) χ)\n      (And\n        (∀ (S : Finset (Fin m)),\n          ErdosSzekeres.IsDecomposableOn χ S →\n            ErdosSzekeres.IsDecomposableOn ψ\n              (Finset.image ((instFunLikeOrderEmbedding (Fin m) (Fin n)).coe f) S))\n        (And\n          (∀ (S : Finset (Fin m)),\n            Iff (ErdosSzekeres.IsCupSet χ S)\n              (ErdosSzekeres.IsCupSet ψ\n                (Finset.image ((instFunLikeOrderEmbedding (Fin m) (Fin n)).coe f) S)))\n          (And\n            (∀ (S : Finset (Fin m)),\n              Iff (ErdosSzekeres.IsCapSet χ S)\n                (ErdosSzekeres.IsCapSet ψ\n                  (Finset.image ((instFunLikeOrderEmbedding (Fin m) (Fin n)).coe f) S)))\n            (And\n              (∀ (S : Finset (Fin m)) (k : Nat),\n                Iff (ErdosSzekeres.ContainsStrongPolygonSet χ S k)\n                  (ErdosSzekeres.ContainsStrongPolygonSet ψ\n                    (Finset.image ((instFunLikeOrderEmbedding (Fin m) (Fin n)).coe f) S) k))\n              (∀ (S : Finset (Fin m)),\n                Eq (Finset.image ((instFunLikeOrderEmbedding (Fin m) (Fin n)).coe f) S).card\n                  S.card)))))",
+   "type_hash": "60a1f8b3519c97f6",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.containsStrongPolygonSet_image_restrict_iff"
+   ],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-03"
+  },
+  {
    "name": "ErdosSzekeres.decomposableStateUpper_all",
    "module": "ESBlueprint.B.DecomposableStateUpperAll",
    "ws": "B",
@@ -87112,7 +87197,7 @@
     "ErdosSzekeres.Ctx.Context.root_numRuns_le",
     "ErdosSzekeres.Ctx.Context.root_k"
    ],
-   "status": "open",
+   "status": "claimed",
    "ready": false,
    "blocked_by": [
     "ErdosSzekeres.ctx_card_le_bound"
@@ -87294,6 +87379,92 @@
    "opened": "2026-10-03"
   },
   {
+   "name": "ErdosSzekeres.decomposable_threshold_lower_exists",
+   "module": "ESBlueprint.B.DecomposableThresholdLowerExists",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every legal cap/cup/strong parameter has a decomposable sweep-realizable coloring attaining decomposableThreshold with cap and cup bounds and strong avoidance. Pascal and consecutive-window construction retaining decomposition; general lower leaf only.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.decomposable_coloring_pushforward_exists",
+     "ErdosSzekeres.IsDecomposableOn.of_agreeOnTriples",
+     "ErdosSzekeres.exists_deepComposition_coloring",
+     "ErdosSzekeres.IsStrongPolygonOn.card_le_of_crosses_deepSplit",
+     "ErdosSzekeres.IsDecomposable.isSweepRealizable"
+    ],
+    "dangling-ok": "General threshold lower leaf for virtual assigned-slot context-bound construction; upper threshold bound, joint slot placement and full B induction remain open. No finite-instance target or full maximum assertion."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (a u k : Nat),\n  instLENat.le 3 k →\n    instLENat.le 2 a →\n      instLENat.le 2 u →\n        instLENat.le a k →\n          instLENat.le u k →\n            Exists fun χ =>\n              And (ErdosSzekeres.IsDecomposable χ)\n                (And (ErdosSzekeres.IsSweepRealizable χ)\n                  (And\n                    (∀ (T : Finset (Fin (ErdosSzekeres.decomposableThreshold a u k))),\n                      ErdosSzekeres.IsCupSet χ T → instLENat.le T.card (instHSub.hSub u 1))\n                    (And\n                      (∀ (T : Finset (Fin (ErdosSzekeres.decomposableThreshold a u k))),\n                        ErdosSzekeres.IsCapSet χ T → instLENat.le T.card (instHSub.hSub a 1))\n                      (Not (ErdosSzekeres.ContainsStrongPolygonSet χ Finset.univ k)))))",
+   "type_hash": "a3f0da371108b910",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.decomposable_coloring_pushforward_exists",
+    "ErdosSzekeres.IsDecomposableOn.of_agreeOnTriples",
+    "ErdosSzekeres.exists_deepComposition_coloring",
+    "ErdosSzekeres.IsStrongPolygonOn.card_le_of_crosses_deepSplit",
+    "ErdosSzekeres.IsDecomposable.isSweepRealizable"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.decomposable_coloring_pushforward_exists",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._simp_1_1",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._simp_1_2",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._simp_1_3",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._simp_1_4",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_5",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_6",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_7",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_8",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_9",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_10",
+    "ErdosSzekeres.IsDecomposable.eq_1",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_12",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_13",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_14",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_15",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_16",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_17",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_18",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_19",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_20",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_21",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_22",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_23",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_24",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_25",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_26",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_27",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_28",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_29",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_30",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_31",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_32",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_33",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_34",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_35",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_36",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_37",
+    "ErdosSzekeres.decomposable_threshold_lower_exists._proof_1_38"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-03"
+  },
+  {
    "name": "ErdosSzekeres.decomposableThreshold_split_attained",
    "module": "ESBlueprint.B.DecomposableThresholdSplitAttained",
    "ws": "B",
@@ -87429,6 +87600,145 @@
    "opened": "2026-10-02"
   },
   {
+   "name": "ErdosSzekeres.deepSplit_endpoint_constraints_iff",
+   "module": "ESBlueprint.B.DeepSplitEndpointConstraintsIff",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "At any deep-below split, arbitrary cup/cap set predicates hold on the parent exactly when they hold on pure nongrowing-child chains and on growing-child chains augmented by opposite-child sweep endpoints of the entire union. Empty chains and children are retained; this is the exact chain-constraint component of profile gluing.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.HasDeepBelowSplit.upper_mem_cup_isSweepEndpoint",
+     "ErdosSzekeres.HasDeepBelowSplit.lower_mem_cap_isSweepEndpoint",
+     "ErdosSzekeres.isCupSet_dual_iff"
+    ],
+    "dangling-ok": "General endpoint-constraint equivalence required for R24 exact DS compatible-profile gluing; complements accepted strong coupling while joint sub-zone placement, occupancy and closed loss invariant remain open."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {lower upper : Finset (Fin n)},\n  ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n    ∀ (cupAllowed capAllowed : Finset (Fin n) → Prop),\n      Iff\n        (And\n          (∀ (T : Finset (Fin n)),\n            Finset.instHasSubset.Subset T (Finset.instUnion.union lower upper) →\n              ErdosSzekeres.IsCupSet χ T → cupAllowed T)\n          (∀ (T : Finset (Fin n)),\n            Finset.instHasSubset.Subset T (Finset.instUnion.union lower upper) →\n              ErdosSzekeres.IsCapSet χ T → capAllowed T))\n        (And\n          (∀ (T : Finset (Fin n)),\n            Finset.instHasSubset.Subset T upper → ErdosSzekeres.IsCupSet χ T → cupAllowed T)\n          (And\n            (∀ (T : Finset (Fin n)),\n              Finset.instHasSubset.Subset T lower → ErdosSzekeres.IsCapSet χ T → capAllowed T)\n            (And\n              (∀ (C E : Finset (Fin n)),\n                Finset.instHasSubset.Subset C lower →\n                  Finset.instHasSubset.Subset E upper →\n                    ErdosSzekeres.IsCupSet χ C →\n                      (∀ (q : Fin n),\n                          SetLike.instMembership.mem E q →\n                            ErdosSzekeres.HasDeepBelowSplit.IsSweepEndpoint\n                              (Finset.instUnion.union C E) q) →\n                        cupAllowed (Finset.instUnion.union C E))\n              (∀ (C E : Finset (Fin n)),\n                Finset.instHasSubset.Subset C upper →\n                  Finset.instHasSubset.Subset E lower →\n                    ErdosSzekeres.IsCapSet χ C →\n                      (∀ (q : Fin n),\n                          SetLike.instMembership.mem E q →\n                            ErdosSzekeres.HasDeepBelowSplit.IsSweepEndpoint\n                              (Finset.instUnion.union C E) q) →\n                        capAllowed (Finset.instUnion.union C E)))))",
+   "type_hash": "1cf6dd851989965c",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.HasDeepBelowSplit.upper_mem_cup_isSweepEndpoint",
+    "ErdosSzekeres.HasDeepBelowSplit.lower_mem_cap_isSweepEndpoint",
+    "ErdosSzekeres.isCupSet_dual_iff"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.deepSplit_endpoint_constraints_iff._proof_1_1",
+    "ErdosSzekeres.deepSplit_endpoint_constraints_iff._proof_1_2",
+    "ErdosSzekeres.deepSplit_endpoint_constraints_iff._simp_1_3",
+    "ErdosSzekeres.deepSplit_endpoint_constraints_iff._simp_1_4"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.deepSplit_profile_gluing_exists",
+   "module": "ESBlueprint.B.DeepSplitProfileGluingExists",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Independent decomposable child colorings on disjoint fixed ordered supports glue at exact cardinal sum when their pure and opposite-endpoint cup/cap predicates and every lower-cup/upper-cap strong coupling hold. The parent agrees on every child triple, is decomposable and obeys all chain predicates and strong avoidance.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.deepSplit_strong_avoidance_iff",
+     "ErdosSzekeres.deepSplit_endpoint_constraints_iff",
+     "ErdosSzekeres.IsDecomposableOn.of_agreeOnTriples",
+     "ErdosSzekeres.isStrongPolygonSet_congr_of_agreeOnTriples"
+    ],
+    "dangling-ok": "General sufficiency component of R24 exact DS compatible-profile max-plus law; fixed joint supports and independent child colors are allowed, while abstract joint placement, occupancy maxima and closed loss invariant remain separate obligations."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n s : Nat} (ψL ψU : ErdosSzekeres.TripleColoring n) {lower upper : Finset (Fin n)},\n  Disjoint lower upper →\n    ErdosSzekeres.IsDecomposableOn ψL lower →\n      ErdosSzekeres.IsDecomposableOn ψU upper →\n        Not (ErdosSzekeres.ContainsStrongPolygonSet ψL lower (instHAdd.hAdd s 1)) →\n          Not (ErdosSzekeres.ContainsStrongPolygonSet ψU upper (instHAdd.hAdd s 1)) →\n            ∀ (cupAllowed capAllowed : Finset (Fin n) → Prop),\n              (∀ (T : Finset (Fin n)),\n                  Finset.instHasSubset.Subset T upper →\n                    ErdosSzekeres.IsCupSet ψU T → cupAllowed T) →\n                (∀ (T : Finset (Fin n)),\n                    Finset.instHasSubset.Subset T lower →\n                      ErdosSzekeres.IsCapSet ψL T → capAllowed T) →\n                  (∀ (C E : Finset (Fin n)),\n                      Finset.instHasSubset.Subset C lower →\n                        Finset.instHasSubset.Subset E upper →\n                          ErdosSzekeres.IsCupSet ψL C →\n                            (∀ (q : Fin n),\n                                SetLike.instMembership.mem E q →\n                                  ErdosSzekeres.HasDeepBelowSplit.IsSweepEndpoint\n                                    (Finset.instUnion.union C E) q) →\n                              cupAllowed (Finset.instUnion.union C E)) →\n                    (∀ (C E : Finset (Fin n)),\n                        Finset.instHasSubset.Subset C upper →\n                          Finset.instHasSubset.Subset E lower →\n                            ErdosSzekeres.IsCapSet ψU C →\n                              (∀ (q : Fin n),\n                                  SetLike.instMembership.mem E q →\n                                    ErdosSzekeres.HasDeepBelowSplit.IsSweepEndpoint\n                                      (Finset.instUnion.union C E) q) →\n                                capAllowed (Finset.instUnion.union C E)) →\n                      (∀ (C D : Finset (Fin n)),\n                          Finset.instHasSubset.Subset C lower →\n                            Finset.instHasSubset.Subset D upper →\n                              ErdosSzekeres.IsCupSet ψL C →\n                                ErdosSzekeres.IsCapSet ψU D →\n                                  instLENat.le (instHAdd.hAdd C.card D.card) s) →\n                        Exists fun χ =>\n                          And (χ.AgreeOnTriples ψL lower)\n                            (And (χ.AgreeOnTriples ψU upper)\n                              (And (ErdosSzekeres.HasDeepBelowSplit χ lower upper)\n                                (And\n                                  (ErdosSzekeres.IsDecomposableOn χ\n                                    (Finset.instUnion.union lower upper))\n                                  (And\n                                    (Not\n                                      (ErdosSzekeres.ContainsStrongPolygonSet χ\n                                        (Finset.instUnion.union lower upper) (instHAdd.hAdd s 1)))\n                                    (And\n                                      (∀ (T : Finset (Fin n)),\n                                        Finset.instHasSubset.Subset T\n                                            (Finset.instUnion.union lower upper) →\n                                          ErdosSzekeres.IsCupSet χ T → cupAllowed T)\n                                      (And\n                                        (∀ (T : Finset (Fin n)),\n                                          Finset.instHasSubset.Subset T\n                                              (Finset.instUnion.union lower upper) →\n                                            ErdosSzekeres.IsCapSet χ T → capAllowed T)\n                                        (Eq (Finset.instUnion.union lower upper).card\n                                          (instHAdd.hAdd lower.card upper.card))))))))",
+   "type_hash": "e3f7f68984afcdfc",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.deepSplit_strong_avoidance_iff",
+    "ErdosSzekeres.deepSplit_endpoint_constraints_iff",
+    "ErdosSzekeres.IsDecomposableOn.of_agreeOnTriples",
+    "ErdosSzekeres.isStrongPolygonSet_congr_of_agreeOnTriples"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.deepSplit_strong_avoidance_iff",
+    "ErdosSzekeres.deepSplit_endpoint_constraints_iff"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.deepSplit_strong_avoidance_iff",
+   "module": "ESBlueprint.B.DeepSplitStrongAvoidanceIff",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "At an arbitrary deep-below split, avoidance of a strong (s+1)-polygon is equivalent to avoidance in each child and the cardinal coupling bound for every lower cup and upper cap. This includes empty chains and children and is the exact strong-coupling component of profile gluing.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.HasDeepBelowSplit.isStrongPolygonSet_iff_inter_cup_cap",
+     "ErdosSzekeres.HasDeepBelowSplit.containsStrongPolygonSet_of_cup_cap"
+    ],
+    "dangling-ok": "General strong-coupling component of R24 exact compatible-profile composition and construction induction; full endpoint-profile gluing and loss invariant remain separate open obligations."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n s : Nat} {χ : ErdosSzekeres.TripleColoring n} {lower upper : Finset (Fin n)},\n  ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n    Iff\n      (Not\n        (ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instUnion.union lower upper)\n          (instHAdd.hAdd s 1)))\n      (And (Not (ErdosSzekeres.ContainsStrongPolygonSet χ lower (instHAdd.hAdd s 1)))\n        (And (Not (ErdosSzekeres.ContainsStrongPolygonSet χ upper (instHAdd.hAdd s 1)))\n          (∀ (C D : Finset (Fin n)),\n            Finset.instHasSubset.Subset C lower →\n              Finset.instHasSubset.Subset D upper →\n                ErdosSzekeres.IsCupSet χ C →\n                  ErdosSzekeres.IsCapSet χ D → instLENat.le (instHAdd.hAdd C.card D.card) s)))",
+   "type_hash": "c70c7da9646129a5",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.HasDeepBelowSplit.isStrongPolygonSet_iff_inter_cup_cap",
+    "ErdosSzekeres.HasDeepBelowSplit.containsStrongPolygonSet_of_cup_cap"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.deepSplit_strong_avoidance_iff._proof_1_1",
+    "ErdosSzekeres.deepSplit_strong_avoidance_iff._simp_1_2",
+    "ErdosSzekeres.deepSplit_strong_avoidance_iff._simp_1_3",
+    "ErdosSzekeres.deepSplit_strong_avoidance_iff._proof_1_4"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-03"
+  },
+  {
    "name": "ErdosSzekeres.deepSplit_two_endpoint_extensions",
    "module": "ESBlueprint.B.DeepSplitTwoEndpointExtensions",
    "ws": "B",
@@ -87554,6 +87864,55 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-02"
+  },
+  {
+   "name": "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup",
+   "module": "ESBlueprint.B.ExistsCapStartPeelOfOneChangeNoCapSuccNoCup",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The first points of c-caps peel a one-change set avoiding (c+1)-caps and v-cups into a c-cap-free complement and a start set avoiding (v-1)-cups. This common extension argument underlies the audited cap-six Z-lemmas.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "dangling-ok": "R23 audited (6,k-2,k) gate lemma layer"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n c v : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  instLENat.le 2 c →\n    instLENat.le 2 v →\n      ErdosSzekeres.OneChangeOn χ s →\n        Not (ErdosSzekeres.ContainsCapSet χ s (instHAdd.hAdd c 1)) →\n          Not (ErdosSzekeres.ContainsCupSet χ s v) →\n            Exists fun Z =>\n              And (Finset.instHasSubset.Subset Z s)\n                (And\n                  (∀ (x : Fin n),\n                    Iff (SetLike.instMembership.mem Z x)\n                      (And (SetLike.instMembership.mem s x)\n                        (Exists fun C =>\n                          And (Finset.instHasSubset.Subset C s)\n                            (And (Eq C.card c)\n                              (And (ErdosSzekeres.IsCapSet χ C)\n                                (And (SetLike.instMembership.mem C x)\n                                  (∀ (y : Fin n),\n                                    SetLike.instMembership.mem C y → instLEFin.le x y)))))))\n                  (And (Not (ErdosSzekeres.ContainsCapSet χ (Finset.instSDiff.sdiff s Z) c))\n                    (Not (ErdosSzekeres.ContainsCupSet χ Z (instHSub.hSub v 1)))))",
+   "type_hash": "7a3d81dee5638d0b",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_1",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._simp_1_2",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._simp_1_3",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_4",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_5",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_6",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_7",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_8",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_9",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_10",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_11",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_12",
+    "ErdosSzekeres.monochromaticSet_insert_max_of_oneChange",
+    "ErdosSzekeres.exists_capStartPeel_of_oneChange_no_capSucc_no_cup._proof_1_13",
+    "ErdosSzekeres.monochromaticSet_insert_min_of_oneChange"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.exists_cupStartLayers_of_oneChange_no_capFour",
@@ -88159,6 +88518,52 @@
    "nonstandard_axioms": [],
    "deps_declared": [],
    "deps_actual": [],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.singletonLowerPascalTailGate_five_diag_of_six_le",
+   "module": "ESBlueprint.B.SingletonLowerPascalTailGateFiveDiagOfSixLe",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The decomposable (5,k,k) singleton lower Pascal-tail gate for every k >= 6, unconditionally: R22 gate singletonLowerPascalTailGate_five_diag_of_six_le_of_inputs with its two inputs supplied by the uniform two-cup-block lemma (R20) and the Baek single-set bound (R21).",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.singletonLowerPascalTailGate_five_diag_of_six_le_of_inputs",
+     "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le",
+     "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_strong"
+    ],
+    "consumer": "ErdosSzekeres.decomposableStateUpper_all"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {k : Nat}, instLENat.le 6 k → ErdosSzekeres.SingletonLowerPascalTailGate 5 k k",
+   "type_hash": "a62aee6b8ae6571f",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.singletonLowerPascalTailGate_five_diag_of_six_le_of_inputs",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_strong"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.singletonLowerPascalTailGate_five_diag_of_six_le_of_inputs",
+    "ErdosSzekeres.diagonalCupBlocksForce4kk_of_five_le",
+    "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_strong"
+   ],
    "helpers": [],
    "status": "closed",
    "ready": false,
@@ -98589,6 +98994,7 @@
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCup": "fccad9f565ffead7",
    "ESBlueprint.B.CardLeChooseAddOfOrderedCupPrefixNoCapFiveNoCupNoStrong": "205b6b9580e346f1",
    "ESBlueprint.B.CardLeChooseOfOneChangeNoCapFourNoCup": "3f4f4db5fd7d7fc9",
+   "ESBlueprint.B.CardLeChooseOfOneChangeNoCapNoCup": "c320b06897c8db88",
    "ESBlueprint.B.CardLeMulOfOneChangeGapNoCapFiveStraddledCups": "035b2b0aecd75fde",
    "ESBlueprint.B.CardLeSquareOfOneChangeGapNoCapFiveNoCup": "751ccd9040518208",
    "ESBlueprint.B.CardLeTwoChooseAddOneOfDecomposableGapDeepSplitNoCapFiveNoStrongOfInputs": "355e7522b384b992",
@@ -99027,14 +99433,20 @@
    "ESBlueprint.B.CtxYoungestMarkerTripleFaceBoundOfAnchoredSquare": "66c0eef7e530e32e",
    "ESBlueprint.B.CtxYoungestMarkerTripleFacePotential": "fc4bf92034952d74",
    "ESBlueprint.B.CtxYoungestMiddleMarkerDoubledWidthBound": "899e7b03d68cfbee",
+   "ESBlueprint.B.DecomposableColoringPushforwardExists": "8499bd019ff4f7bf",
    "ESBlueprint.B.DecomposableStateUpperAll": "614f6c48c0469bc6",
    "ESBlueprint.B.DecomposableStateUpperOfLowerGatesAt": "44e236682ce95876",
    "ESBlueprint.B.DecomposableThresholdCapacityPascalLeft": "86871726fc1e8409",
    "ESBlueprint.B.DecomposableThresholdFivePredOfSixLe": "3d39910f88c8515d",
+   "ESBlueprint.B.DecomposableThresholdLowerExists": "9b5831a9507049cf",
    "ESBlueprint.B.DecomposableThresholdSplitAttained": "78dbe5073a2af056",
    "ESBlueprint.B.DecomposableThresholdSplitLe": "f9325e14b9da599f",
+   "ESBlueprint.B.DeepSplitEndpointConstraintsIff": "b3bacbff8899d7bb",
+   "ESBlueprint.B.DeepSplitProfileGluingExists": "7cc81513de226717",
+   "ESBlueprint.B.DeepSplitStrongAvoidanceIff": "7b890c21c2526852",
    "ESBlueprint.B.DeepSplitTwoEndpointExtensions": "3bd58b2538e6a777",
    "ESBlueprint.B.DiagonalCupBlocksForce4kkOfFiveLe": "67b2ff9d88d3e47e",
+   "ESBlueprint.B.ExistsCapStartPeelOfOneChangeNoCapSuccNoCup": "25354ba858410a51",
    "ESBlueprint.B.ExistsCupStartLayersOfOneChangeNoCapFour": "386879e89235d937",
    "ESBlueprint.B.IsCupSetIffNotContainsCapSetThree": "bc713fe5ebf3503f",
    "ESBlueprint.B.IsMonochromaticSetOfOneChangeConsecutive": "aa76254d18bdaff0",
@@ -99049,6 +99461,7 @@
    "ESBlueprint.B.RankTripleFaceIntervalUnionCardSq": "e719691cb58e02d0",
    "ESBlueprint.B.RankTripleFaceUnionCardEqGroupCharges": "50dddc826f86260a",
    "ESBlueprint.B.ReverseColorSetInvariants": "6a569aa67f43b903",
+   "ESBlueprint.B.SingletonLowerPascalTailGateFiveDiagOfSixLe": "18859c6956a19170",
    "ESBlueprint.B.SingletonLowerPascalTailGateFiveDiagOfSixLeOfInputs": "446797c496571664",
    "ESBlueprint.B.SingletonLowerPascalTailGateFivePredOfSixLe": "519eb95a587ebff4",
    "ESBlueprint.B.SingletonLowerPascalTailGateFourDiagonalOfFiveLe": "350745d61526e6b2",
