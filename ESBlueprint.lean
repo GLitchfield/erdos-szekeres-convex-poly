@@ -484,3 +484,4 @@ import ESBlueprint.B.DeepSplitStrongAvoidanceIff
 import ESBlueprint.B.DeepSplitEndpointConstraintsIff
 import ESBlueprint.B.DeepSplitProfileGluingExists
 import ESBlueprint.B.DecomposableColoringPushforwardExists
+import ESBlueprint.B.DecomposableThresholdLowerExists
