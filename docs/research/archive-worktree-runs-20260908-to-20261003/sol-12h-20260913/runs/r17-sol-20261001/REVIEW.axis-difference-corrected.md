@@ -1,0 +1,15 @@
+# Corrected exact-difference selector certificate — pre-commit review
+
+Registered typef7180b99e755cad2 is unchanged. The statement is the corrected positive literal witness conjunction AND the exact negation of the unchanged wrong ec5d374bcc792fc2 candidate. Type-provenance artifact confirms that the negative proposition was copied verbatim; only four cap/cup numbers changed in the positive proposition.
+
+V1 complete-parent211824-9a0ba4 failed only on multiline record syntax in the negative branch. Positive facts compiled but the combined theorem was not accepted. V2 makes that record one line. Job212320-631dc5 accepted the complete parent in9.806s/2100MiB under4G, standard propext/Quot.sound/Classical.choice only. Bodyb66c2e87341ac3bf52d6baf157f7cedb7f401f870f0de8e3d9e747519fde4dfa; source19a207318e22f484c1154e7ffc89ac84f844d7c72d26bc1348de044a52cb3b2e; receiptb1da8a6b5fdccb87c8aa12b69066c63bf855760fcd677f3785ddc444b1f83fae.
+
+Positive branch verifies literal globals(4,5)/(5,6), same k6/m1/root geometry, axes capped3 and exact signed difference-1. Actual source leaf limits(2,2)/(3,2), source values7/14. Each root has its displayed legal rescue; no common side/coupling rescues both. The universal legal target assertion splits four natural couplings and two sides and uses kernel decide. No finite-table axiom, native_decide or unsafe evaluation. Negative branch assumes the exact original conjunction and contradicts its false first cap equality. It does not import or apply the wrong theorem's proof. This is a coarse-input selector obstruction, not a counterexample to X; actual leaf limits distinguish the roots.
+
+InserterV2 d7f59db75a7e7a6080e5669c61edaae3d1df4985454dbc737204c2943939939b reuses shared fixture/preflight/assembly, checks accepted parent identity/type/Std/body/source hashes and own claim, and atomically inserts only the captured body. Original targeted212627-d79a44 is pending20G. Actual Git commit, original closure audit and closed release remain required before thirteenth committed credit. Preserve wrong candidate88a7946f and release its claim refuted only with this compiled exact Neg evidence. Return exact Xff30 with both archives checked.
+
+All added code is fixed-row math or pinned workflow reuse. No general-purpose helper promotion is authorized in primary scripts. Sol self-review only; independent Astra review forbidden/deferred under the sole-model scope. Failed bodies and journal commands remain charged.
+
+Completed 2026-10-02T01:30:27.374696+00:00: original212627 passed53.0s2346MiB20G. Commit18daf925 verified exact five allowed paths/direct5847/clean/source19a20731. New claimclosed; original false claimrefuted through guarded212854; exactXff30/archives restored. Final13 auditor212910 passed0.5s26MiB1G. No outstanding check or claim.
+
+Guarded immutable-header provenance213804-7dd9af passed: exact original registered proposition is the new negative conjunct (whitespace only), positive changes exactly four leaf-limit constants. Shared whole_span/git/hash reuse. No new compiler or proof credit; accepted complete-parent/original Lean receipts remain authority.

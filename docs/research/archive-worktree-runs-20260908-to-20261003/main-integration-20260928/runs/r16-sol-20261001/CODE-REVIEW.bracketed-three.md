@@ -1,0 +1,38 @@
+# R16 bracketed chosen-three zero — Sol self-review
+
+Separate reviewwindow-410a5f1e364b4bb2 after researchwindow74782 endedaccepted1.
+IndependentAstra forbidden. Inspectedentire2728charbody andfull INLINE123039-b16343
+receipt. TwoactualindexedchosenmarkersbracketALLchildren, chosenG<=3, noother
+Pos/WF/k/opposite/run/history/maxconstraints. Emptychildsetincluded. Samelevel
+N and sideAtNs explicit; inertunindexed occurrences cannotserveaswitnesses.
+
+Exactaccepted15 left/rightfold witnesses reuse singletonlevelsublist actualmarkers.
+Newchain>=2 is sumofindependentleft/rightcounts. Natglobal<=3 forceschosenpoint0;
+rawsumPointdominationforcesfull0. Closedfuelmonotonicity/stability givesallfuel0.
+No empiricalevaluator/axiom/native_decide/sorry/newstatementhelperoutsideBlueprint.
+Receipt ca893a8c2e474cd0unchanged/locktrue/noholes/propext,Classical.choice,Quot.sound
+only; tag/uncovered/nonstandard/blockedby[]; depsclosed sumPoint/fuelmonotonicity/
+stability/coresteps. ImportedopenEndCutconstant notused.
+
+V1check122345-2b8f20 FAILED4.860137s573MiB4G solelyomittedfuelhelperimport,
+frozenbeforeexactimportrepair: failedsourceSHA4a8a5c28e95cf2ce4df6412421f57187e33287a0919dd772519662c82d29b03c,
+failedreceiptSHA617c3909160a5c817a62e44aafac2c350d4e8b30f1de0b00986aad13c69e6765.
+V2CLOSED4.576639413833618s576MiB4G, ordinarytargetedextract~60selapsed.
+FrozenBracketed-three.closed.leanSHAa4de3b0fd9b7e661cfd044f516cf8c3344c6abbb545e7af312ef31a84a2dfca5,
+INLINEreceiptfileSHAb54fb20f7120c279993d97224608c8ca4db7d80f697afa82da7e11cec8efe8b5.
+FileSHAisnotserverartifactID; fixtureaab235c72d19497fe79dd18f041247b9de4f871e80b0a810c7b3bbf4ea815dae.
+
+Registration120130-152844DONE140.7s2319MiB5G/noOOM/refusal/missingoutputs,
+normalclosureguardsintact. 8Gpredecessor115507-707995confirmedunstarted/cancelled
+acktruezeroresultafterresourcecheckpoint. Replacementqueued1120s inclDBlock;
+script/SQLscopeandfailedmetadata auditedseparately CODE-REVIEW.infrastructure-offline.md
+and windowaf0eae2fb0544c55. No guesseddispatch/lockcause asserted, no otherjob
+orworker/config/approval manipulation. Allpendingofflinefindings linkedonrecovery.
+
+No newresearchalgorithm/trackedworkflowcode; exacthelperreuse/pureLeanwrapper.
+Genericresource/readonlyCLIpromotiondeferredoutsideone-node/primary-editforbidden
+scope, alloriginalmetadataartifacts preserved. Proposedcrossedlevel/protectedchild/
+higherchosen leaf plans remainUNPROVED. Scopefilechecks exactacceptedbounds and
+29directapprovedparents;30parentverifiedaftercommit. Usageexplicitwindowconflict
+waslogged beforecorrection; historicalresponse reassignment forbidden. No saving
+claim, wholethread/late/overlap/directjobattributiongapexplicit.
