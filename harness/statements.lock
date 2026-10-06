@@ -4023,6 +4023,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.CtxYoungestMiddleMarkerDoubledWidthBound"
   },
+  "ErdosSzekeres.cupLayer_of_no_capFour": {
+    "type_hash": "732a647456a876b8",
+    "type_pp": "∀ {n j : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} (rank : Fin n → Nat),\n  ErdosSzekeres.OneChangeOn χ s →\n    Not (ErdosSzekeres.ContainsCapSet χ s 4) →\n      (∀ (x : Fin n),\n          SetLike.instMembership.mem s x →\n            Exists fun C =>\n              And (Finset.instHasSubset.Subset C s)\n                (And (Eq C.card (rank x))\n                  (And (ErdosSzekeres.IsCupSet χ C)\n                    (And (SetLike.instMembership.mem C x)\n                      (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x))))) →\n        (∀ (x : Fin n),\n            SetLike.instMembership.mem s x →\n              ∀ (C : Finset (Fin n)),\n                Finset.instHasSubset.Subset C s →\n                  ErdosSzekeres.IsCupSet χ C →\n                    SetLike.instMembership.mem C x →\n                      (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x) →\n                        instLENat.le C.card (rank x)) →\n          And (ErdosSzekeres.IsCupSet χ (Finset.filter (fun x => Eq (rank x) j) s))\n            (instLENat.le (Finset.filter (fun x => Eq (rank x) j) s).card j)",
+    "approved_by": "codex:agent-run-67caffbfbf804ebf",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.CupLayerOfNoCapFour"
+  },
   "ErdosSzekeres.decomposableStateUpper_all": {
     "type_hash": "a5d6767d0f8a1d2e",
     "type_pp": "∀ (a u k : Nat),\n  instLENat.le 1 a →\n    instLENat.le 1 u →\n      instLENat.le a k → instLENat.le u k → ErdosSzekeres.DecomposableStateUpper a u k",
