@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-02T12:45:32Z",
- "git_sha": "2ea576083b6d6659489fbd6e9a9db6c4c1db87a0",
- "extract_mode": "full",
+ "generated_at": "2026-10-02T23:36:12Z",
+ "git_sha": "6e4d0e66274e9d3dd1ccdbacf9fd747deb5e1d14",
+ "extract_mode": "incremental from 6e4d0e66274e: 1 re-extracted, 0 removed",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15775,
- "tree_hash": "1252d52edfeb547b.4560d6f33c43b8ee",
+ "modules": 15776,
+ "tree_hash": "e5556a7218b46c09.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,9 +20,9 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15765,
-  "scanned_constants": 122,
-  "scanned_modules": 10
+  "cached_modules": 5358,
+  "scanned_constants": 1,
+  "scanned_modules": 1
  },
  "nodes": [
   {
@@ -85576,6 +85576,44 @@
    "opened": "2026-10-01"
   },
   {
+   "name": "ErdosSzekeres.existsTwoCupBlockDeletionCounterexampleAtFour",
+   "module": "ESBlueprint.B.ExistsTwoCupBlockDeletionCounterexampleAtFour",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Explicit six-point3|3 cup-block counterexample to lowering Claim D growth to strong size four: OneChange, no four-cap and no strong five-set, while the strong four-set{0,2,3,5} avoids canonical deletion{1,4}. Its cup portion has three points and apex2. This certifies the documented induction threshold obstruction using finite kernel checking.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.RankProfileCollision.strongPolygonSetBool_eq_true_iff"
+    ],
+    "dangling-ok": "Approved R20 verification of the hand proof39-41 size-four exception and why the uniform induction uses a separate base at five. This is not a refutation of the proved diagonal theorem."
+   },
+   "tag_errors": [],
+   "type_pp": "Exists fun χ =>\n  And\n    (ErdosSzekeres.IsCupSet χ\n      (Finset.instInsert.insert 0 (Finset.instInsert.insert 1 (Finset.instSingleton.singleton 2))))\n    (And\n      (ErdosSzekeres.IsCupSet χ\n        (Finset.instInsert.insert 3\n          (Finset.instInsert.insert 4 (Finset.instSingleton.singleton 5))))\n      (And (ErdosSzekeres.OneChangeOn χ Finset.univ)\n        (And (Not (ErdosSzekeres.ContainsCapSet χ Finset.univ 4))\n          (And (Not (ErdosSzekeres.ContainsStrongPolygonSet χ Finset.univ 5))\n            (And\n              (ErdosSzekeres.IsStrongPolygonSet χ\n                (Finset.instInsert.insert 0\n                  (Finset.instInsert.insert 2\n                    (Finset.instInsert.insert 3 (Finset.instSingleton.singleton 5)))))\n              (And\n                (Eq\n                  (Finset.instInsert.insert 0\n                      (Finset.instInsert.insert 2\n                        (Finset.instInsert.insert 3 (Finset.instSingleton.singleton 5)))).card\n                  4)\n                (Disjoint\n                  (Finset.instInsert.insert 0\n                    (Finset.instInsert.insert 2\n                      (Finset.instInsert.insert 3 (Finset.instSingleton.singleton 5))))\n                  (Finset.instInsert.insert 1 (Finset.instSingleton.singleton 4)))))))))",
+   "type_hash": "87337c6475ab9e1e",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.RankProfileCollision.strongPolygonSetBool_eq_true_iff"
+   ],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "uncommitted"
+  },
+  {
    "name": "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges",
    "module": "ESBlueprint.B.RankPairCardGeSumDisjointGroupCharges",
    "ws": "B",
@@ -95726,6 +95764,7 @@
    "ESBlueprint.B.CtxYoungestMiddleMarkerDoubledWidthBound": "899e7b03d68cfbee",
    "ESBlueprint.B.DecomposableStateUpperAll": "614f6c48c0469bc6",
    "ESBlueprint.B.DecomposableThresholdCapacityPascalLeft": "86871726fc1e8409",
+   "ESBlueprint.B.ExistsTwoCupBlockDeletionCounterexampleAtFour": "906eb6b6adc29e3c",
    "ESBlueprint.B.RankPairCardGeSumDisjointGroupCharges": "208cb2ee2289dc04",
    "ESBlueprint.B.RankPairClippedIntervalUnionMissingCorner": "7bc5c65fc1381ab2",
    "ESBlueprint.B.RankPairTriangleIntersectionCardGeThreeOfTwoCommonRanks": "a98b2bc1507b884f",
