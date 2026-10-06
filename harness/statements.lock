@@ -4104,6 +4104,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.DecomposableThresholdFivePredOfSixLe"
   },
+  "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le": {
+    "type_hash": "761c42a05a5c1f69",
+    "type_pp": "∀ {k : Nat},\n  instLENat.le 7 k →\n    Eq (ErdosSzekeres.decomposableThreshold 6 (instHSub.hSub k 2) k)\n      (instHAdd.hAdd (instHAdd.hAdd ((instHSub.hSub k 3).choose 4) ((instHSub.hSub k 1).choose 3))\n        ((instHSub.hSub k 3).choose 3))",
+    "approved_by": "codex:agent-run-6b3abc23e58d4be6",
+    "approved_at": "2026-10-03",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.DecomposableThresholdSixPredPredOfSevenLe"
+  },
   "ErdosSzekeres.decomposableThreshold_split_attained": {
     "type_hash": "24b5d4c235fa6d6f",
     "type_pp": "∀ (a u k : Nat),\n  instLENat.le 3 a →\n    instLENat.le 3 u →\n      instLENat.le a k →\n        instLENat.le u k →\n          Exists fun d =>\n            And (instLENat.le 1 d)\n              (And (instLENat.le d (instHSub.hSub k 2))\n                (And (Eq d (instHSub.hSub a 2))\n                  (Eq\n                    (instHAdd.hAdd\n                      (ErdosSzekeres.decomposableThreshold a\n                        (instMinNat.min (instHSub.hSub u 1) (instHSub.hSub k d)) k)\n                      (ErdosSzekeres.decomposableThreshold\n                        (instMinNat.min (instHSub.hSub a 1) (instHAdd.hAdd d 1)) u k))\n                    (ErdosSzekeres.decomposableThreshold a u k))))",
