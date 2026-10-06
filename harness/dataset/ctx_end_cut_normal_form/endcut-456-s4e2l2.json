@@ -1,0 +1,22 @@
+{
+ "case": "4,5,6",
+ "parameters": {
+  "case": "4,5,6",
+  "s_max": 4,
+  "e_max": 2,
+  "levels": 2,
+  "cache_size": 1500000,
+  "output": "/home/gavin/git/erdos-szekeres-convex-poly/harness/dataset/ctx_end_cut_normal_form/endcut-456-s4e2l2.json"
+ },
+ "stats": {
+  "boundary_attains": 2600,
+  "contexts": 3040,
+  "end_attains": 2600,
+  "runs2_contexts": 2496,
+  "runs2_end_attains": 2136,
+  "runs3_contexts": 544,
+  "runs3_end_attains": 464,
+  "zero_bound": 440
+ },
+ "examples": {}
+}
