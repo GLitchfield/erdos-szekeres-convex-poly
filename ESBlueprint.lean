@@ -495,3 +495,4 @@ import ESBlueprint.B.StrongPolygonSetCapMiddlePartitionOfNoCapSucc
 import ESBlueprint.B.CupLayerOfNoCapFour
 import ESBlueprint.B.IsCupSetInsertOfTwoLeftVertices
 import ESBlueprint.B.IsCupSetInsertOfTwoRightVertices
+import ESBlueprint.B.IsCupSetInsertTwoLeftAndCard
