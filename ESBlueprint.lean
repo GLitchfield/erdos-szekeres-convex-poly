@@ -510,3 +510,4 @@ import ESBlueprint.B.StrongPolygonSetTwoCapMiddlesOfSideThreeCaps
 import ESBlueprint.B.ContainsCapSetOrContainsCupSetOfOneChangeChooseLt
 import ESBlueprint.B.TwoCapFreeSidesCardAddLeOfShortCups
 import ESBlueprint.B.NotContainsStrongPolygonSetOfNoCapSuccNoCup
+import ESBlueprint.B.DeepBelowNoStrongAfterDeleteIffChildAndRankDrop
