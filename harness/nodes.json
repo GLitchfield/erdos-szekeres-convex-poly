@@ -1,10 +1,10 @@
 {
- "generated_at": "2026-10-04T03:06:50Z",
- "git_sha": "daf3e6a669f717c3fc667b94b0b3943770fc734b",
+ "generated_at": "2026-10-06T15:21:33Z",
+ "git_sha": "cb11c1152a482dcb1bff912b1c453bb674274f45",
  "extract_mode": "full",
  "toolchain": "leanprover/lean4:v4.29.1",
- "modules": 15833,
- "tree_hash": "5d705cbecce6fd20.4560d6f33c43b8ee",
+ "modules": 15863,
+ "tree_hash": "da534d5790e5aa3b.4560d6f33c43b8ee",
  "nonstandard_axioms": [
   "Lean.ofReduceBool",
   "Lean.ofReduceNat",
@@ -20,8 +20,8 @@
   "sorryAx"
  ],
  "taint": {
-  "cached_modules": 15832,
-  "scanned_constants": 15,
+  "cached_modules": 15862,
+  "scanned_constants": 0,
   "scanned_modules": 1
  },
  "nodes": [
@@ -729,6 +729,63 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt",
+   "module": "ESBlueprint.B.ContainsCapSetOrContainsCupSetOfOneChangeChooseLt",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "The ordinary binomial cup-cap alternative on an arbitrary finite support under OneChange, without geometric realizability. Reuse the generic consecutive-chain recurrence and propagate consecutive colors through the four-point law.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.CupCap.cup_cap",
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq"
+    ],
+    "dangling-ok": "Approved R20 reusable all-arity counting bridge; replaces repeated fixed-size OneChange promotion recipes, while tight a5 polygon-dependent savings remain open."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n a u : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  ErdosSzekeres.OneChangeOn χ s →\n    instLENat.le 2 a →\n      instLENat.le 2 u →\n        instLTNat.lt ((instHSub.hSub (instHAdd.hAdd a u) 4).choose (instHSub.hSub a 2)) s.card →\n          Or (ErdosSzekeres.ContainsCapSet χ s a) (ErdosSzekeres.ContainsCupSet χ s u)",
+   "type_hash": "d4e0aff1d0b4a971",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.CupCap.cup_cap",
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_1",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_2",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_3",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_4",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._simp_1_5",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._simp_1_6",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_7",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_8",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_9",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_10",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_11",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_12",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_13",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_14",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_15",
+    "ErdosSzekeres.containsCapSet_or_containsCupSet_of_oneChange_choose_lt._proof_1_16"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
   },
   {
    "name": "ErdosSzekeres.ctx_absent_flank_swap_counterexample",
@@ -2068,6 +2125,66 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-01"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_assigned_limits_of_deepBelowSplit",
+   "module": "ESBlueprint.B.CtxAssignedLimitsOfDeepBelowSplit",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For any deep-below split with monotone assigned slot labels, distinct cross labels and explicit opposite-marker membership in the two context parts, complete child cup/cap endpoint limits and no strong k-set transfer to the parent. Includes empty chains and zero/one/two selected endpoints; root coupling follows from zero-gain limits. No wellformedness, occupancy, joint-placement or maximum hypothesis.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_part_endpoint_path_lifting",
+     "ErdosSzekeres.ctx_part_limits_le",
+     "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff",
+     "ErdosSzekeres.deepSplit_two_endpoint_extensions",
+     "ErdosSzekeres.deepSplit_strong_avoidance_iff"
+    ],
+    "dangling-ok": "General missing fixed-root assigned-slot transfer for virtual B constructions and exact endpoint-profile composition; stable placement and fuel induction remain separate general obligations, not finite cases or upper assertions."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} (σ : ErdosSzekeres.Ctx.Context),\n  instLENat.le 3 σ.k →\n    ∀ (keepL keepU : List Nat) (α β : Nat),\n      Eq (instHAdd.hAdd α β) (instHSub.hSub σ.k 1) →\n        ∀ {χ : ErdosSzekeres.TripleColoring n} {lower upper : Finset (Fin n)},\n          ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n            ∀ (z : Fin n → Nat),\n              Monotone z →\n                (∀ (p : Fin n),\n                    SetLike.instMembership.mem lower p →\n                      ∀ (q : Fin n), SetLike.instMembership.mem upper q → Ne (z p) (z q)) →\n                  Eq ((σ.part keepL ErdosSzekeres.Ctx.Side.lower β).sideAt 1)\n                      ErdosSzekeres.Ctx.Side.lower →\n                    Eq ((σ.part keepU ErdosSzekeres.Ctx.Side.upper α).sideAt 1)\n                        ErdosSzekeres.Ctx.Side.upper →\n                      (∀ (q : Fin n),\n                          SetLike.instMembership.mem upper q →\n                            List.instMembership.mem\n                              ((σ.part keepL ErdosSzekeres.Ctx.Side.lower β).extPositions 1)\n                              (z q)) →\n                        (∀ (p : Fin n),\n                            SetLike.instMembership.mem lower p →\n                              List.instMembership.mem\n                                ((σ.part keepU ErdosSzekeres.Ctx.Side.upper α).extPositions 1)\n                                (z p)) →\n                          have allowed := fun τ c T =>\n                            ∀ (p : Fin n),\n                              SetLike.instMembership.mem T p →\n                                ∀ (q : Fin n),\n                                  SetLike.instMembership.mem T q →\n                                    (∀ (i : Fin n),\n                                        SetLike.instMembership.mem T i → instLEFin.le p i) →\n                                      (∀ (i : Fin n),\n                                          SetLike.instMembership.mem T i → instLEFin.le i q) →\n                                        instLENat.le T.card\n                                          (ite (Eq c ErdosSzekeres.Turn.left)\n                                            (τ.cupLimit (z p) (z q)) (τ.capLimit (z p) (z q)));\n                          have bounded := fun τ S =>\n                            And\n                              (∀ (T : Finset (Fin n)),\n                                Finset.instHasSubset.Subset T S →\n                                  ErdosSzekeres.IsCupSet χ T → allowed τ ErdosSzekeres.Turn.left T)\n                              (∀ (T : Finset (Fin n)),\n                                Finset.instHasSubset.Subset T S →\n                                  ErdosSzekeres.IsCapSet χ T →\n                                    allowed τ ErdosSzekeres.Turn.right T);\n                          bounded (σ.part keepL ErdosSzekeres.Ctx.Side.lower β) lower →\n                            bounded (σ.part keepU ErdosSzekeres.Ctx.Side.upper α) upper →\n                              Not (ErdosSzekeres.ContainsStrongPolygonSet χ lower σ.k) →\n                                Not (ErdosSzekeres.ContainsStrongPolygonSet χ upper σ.k) →\n                                  And (bounded σ (Finset.instUnion.union lower upper))\n                                    (Not\n                                      (ErdosSzekeres.ContainsStrongPolygonSet χ\n                                        (Finset.instUnion.union lower upper) σ.k))",
+   "type_hash": "a89e497ebd1cfbea",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting",
+    "ErdosSzekeres.ctx_part_limits_le",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff",
+    "ErdosSzekeres.deepSplit_two_endpoint_extensions",
+    "ErdosSzekeres.deepSplit_strong_avoidance_iff"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_assigned_limits_of_deepBelowSplit.match_1_1",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting.match_1",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting",
+    "ErdosSzekeres.ctx_assigned_limits_of_deepBelowSplit._simp_1_3",
+    "ErdosSzekeres.deepSplit_two_endpoint_extensions",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff",
+    "ErdosSzekeres.ctx_part_limits_le",
+    "ErdosSzekeres.ctx_assigned_limits_of_deepBelowSplit._simp_1_4",
+    "ErdosSzekeres.ctx_assigned_limits_of_deepBelowSplit._proof_1_5",
+    "ErdosSzekeres.ctx_assigned_limits_of_deepBelowSplit._proof_1_6",
+    "ErdosSzekeres.ctx_assigned_limits_of_deepBelowSplit._proof_1_7",
+    "ErdosSzekeres.ctx_assigned_limits_of_deepBelowSplit._proof_1_8",
+    "ErdosSzekeres.deepSplit_strong_avoidance_iff"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
   },
   {
    "name": "ErdosSzekeres.ctx_axis_capacity_interval_lower_bound",
@@ -4888,6 +5005,75 @@
    "opened": "2026-09-30"
   },
   {
+   "name": "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange",
+   "module": "ESBlueprint.B.CtxBoundAdditiveMultiRunOfSingletonFlipExchange",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Conditional multi-run additivity from an explicit singleton-flip exchange hypothesis for the fixed context. Strong induction on the number of maximal membership segments in child order reduces an interior singleton by two segments or an end singleton by one; partitions with at most three segments have an interval side and are bounded by ctx_bound_cut_le. No proof of the exchange is assumed as a theorem. This conditional remains logically separate from the R15 singleton-existence obstruction at eight children.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_bound_cut_le",
+     "ErdosSzekeres.ctx_bound_interval_or_complement_le"
+    ],
+    "consumer": "ErdosSzekeres.ctx_bound_additive_multi_run",
+    "measure": "number of maximal membership segments in child order"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  σ.WellFormed →\n    instLENat.le 2 σ.numRuns →\n      (∀ (keep : List Nat),\n          (∀ (p : Nat),\n              List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n            Ne keep List.nil →\n              instLTNat.lt keep.length σ.childPositions.length →\n                Not\n                    (List.instMembership.mem σ.blocks\n                      (List.filter (fun p => Decidable.decide (List.instMembership.mem keep p))\n                        σ.childPositions)) →\n                  Not\n                      (List.instMembership.mem σ.blocks\n                        (List.filter\n                          (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                          σ.childPositions)) →\n                    ∀ (d : Nat),\n                      instLENat.le 1 d →\n                        instLENat.le d (instHSub.hSub σ.k 2) →\n                          ∀ (o : Bool),\n                            have value := fun K e b =>\n                              ite (Eq b Bool.true)\n                                (instHAdd.hAdd\n                                  (σ.part K ErdosSzekeres.Ctx.Side.upper\n                                      (instHSub.hSub (instHSub.hSub σ.k 1) e)).bound\n                                  (σ.part\n                                      (List.filter\n                                        (fun p =>\n                                          Decidable.decide (Not (List.instMembership.mem K p)))\n                                        σ.childPositions)\n                                      ErdosSzekeres.Ctx.Side.lower e).bound)\n                                (instHAdd.hAdd (σ.part K ErdosSzekeres.Ctx.Side.lower e).bound\n                                  (σ.part\n                                      (List.filter\n                                        (fun p =>\n                                          Decidable.decide (Not (List.instMembership.mem K p)))\n                                        σ.childPositions)\n                                      ErdosSzekeres.Ctx.Side.upper\n                                      (instHSub.hSub (instHSub.hSub σ.k 1) e)).bound);\n                            Exists fun i =>\n                              And\n                                (∀ (j : Fin σ.childPositions.length),\n                                  Or (Eq (instHAdd.hAdd j.val 1) i.val)\n                                      (Eq (instHAdd.hAdd i.val 1) j.val) →\n                                    Iff\n                                      (List.instMembership.mem keep\n                                        (Fin.instGetElemFinVal.getElem σ.childPositions j ⋯))\n                                      (Not\n                                        (List.instMembership.mem keep\n                                          (Fin.instGetElemFinVal.getElem σ.childPositions i ⋯))))\n                                (Exists fun e =>\n                                  And (instLENat.le 1 e)\n                                    (And (instLENat.le e (instHSub.hSub σ.k 2))\n                                      (Exists fun b =>\n                                        instLENat.le (value keep d o)\n                                          (value\n                                            (List.filter\n                                              (fun p =>\n                                                Decidable.decide\n                                                  (Or\n                                                    (And (List.instMembership.mem keep p)\n                                                      (Ne p\n                                                        (Fin.instGetElemFinVal.getElem\n                                                          σ.childPositions i ⋯)))\n                                                    (And (Not (List.instMembership.mem keep p))\n                                                      (Eq p\n                                                        (Fin.instGetElemFinVal.getElem\n                                                          σ.childPositions i ⋯)))))\n                                              σ.childPositions)\n                                            e b))))) →\n        ∀ (keep : List Nat),\n          (∀ (p : Nat),\n              List.instMembership.mem keep p → List.instMembership.mem σ.childPositions p) →\n            Ne keep List.nil →\n              instLTNat.lt keep.length σ.childPositions.length →\n                ∀ (d : Nat),\n                  instLENat.le 1 d →\n                    instLENat.le d (instHSub.hSub σ.k 2) →\n                      And\n                        (instLENat.le\n                          (instHAdd.hAdd (σ.part keep ErdosSzekeres.Ctx.Side.lower d).bound\n                            (σ.part\n                                (List.filter\n                                  (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                  σ.childPositions)\n                                ErdosSzekeres.Ctx.Side.upper\n                                (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound)\n                          σ.bound)\n                        (instLENat.le\n                          (instHAdd.hAdd\n                            (σ.part keep ErdosSzekeres.Ctx.Side.upper\n                                (instHSub.hSub (instHSub.hSub σ.k 1) d)).bound\n                            (σ.part\n                                (List.filter\n                                  (fun p => Decidable.decide (Not (List.instMembership.mem keep p)))\n                                  σ.childPositions)\n                                ErdosSzekeres.Ctx.Side.lower d).bound)\n                          σ.bound)",
+   "type_hash": "6aed220e454e290",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_bound_cut_le",
+    "ErdosSzekeres.ctx_bound_interval_or_complement_le"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_1",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_2",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_3",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_4",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_5",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._simp_1_6",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._simp_1_7",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._simp_1_8",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._simp_1_9",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_10",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_11",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_12",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_13",
+    "ErdosSzekeres.Ctx.Context.length_filter_mem_le",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_14",
+    "ErdosSzekeres.Ctx.Context.length_filter_not_mem_lt",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_15",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_16",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_17",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._simp_1_18",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._simp_1_19",
+    "ErdosSzekeres.ctx_bound_interval_or_complement_le",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_20",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_21",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_22",
+    "ErdosSzekeres.ctx_bound_additive_multi_run_of_singleton_flip_exchange._proof_1_23"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
    "name": "ErdosSzekeres.ctx_bound_additive_near_saturated_interval_complement",
    "module": "ESBlueprint.B.CtxBoundAdditiveNearSaturatedIntervalComplement",
    "ws": "B",
@@ -7311,8 +7497,8 @@
    ],
    "deps_actual": [],
    "helpers": [],
-   "status": "open",
-   "ready": true,
+   "status": "refuted",
+   "ready": false,
    "blocked_by": [],
    "uncovered_axioms": [
     "sorryAx"
@@ -7320,50 +7506,506 @@
    "falsify": {
     "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut_of_four_le",
     "falsifier": "ctx_end_cut_normal_form_four.py",
-    "falsifier_sha256": "f3626fc09d8b02c2a851e34f803c653229952d3db72a0ed649b93e10c835a2a2",
+    "falsifier_sha256": "eba1b4e8fd7a6bc666e0d1497a099451dfbe3edbf37677064190a8ae5ed66535",
     "dataset": "harness/dataset",
     "statement_type_hash": "90cbc8f14c117817",
-    "result": "pass",
-    "exit_code": 0,
-    "seconds": 814.6,
-    "at": "2026-09-28T23:19:22Z",
-    "agent": "claude-code:17de3bb4-f81b-48a5-b73d-2d86b781322f",
+    "result": "counterexample",
+    "exit_code": 2,
+    "seconds": 0.1,
+    "at": "2026-10-02T20:31:23Z",
+    "agent": "codex:01a0fc94-0467-7b90-823c-bce1e6fe6128",
     "witness": {
      "node": "ErdosSzekeres.ctx_bound_attained_by_end_cut_of_four_le",
-     "recursion": "lean",
-     "cases": {
-      "4,4,5": {
-       "contexts": 1752,
-       "nonzero": 1400,
-       "end_attains": 1400
+     "recursion": "context-bound-zero-children-c-v1",
+     "scope": "two-fixed-R19-WellFormed-context-regressions-v1",
+     "diagnostic_only": true,
+     "checked": [
+      {
+       "a": 4,
+       "u": 4,
+       "k": 5,
+       "word": [
+        [
+         3,
+         "upper"
+        ],
+        [
+         4,
+         "lower"
+        ],
+        "S",
+        "S",
+        [
+         1,
+         "lower"
+        ],
+        [
+         2,
+         "upper"
+        ],
+        "S",
+        "S"
+       ],
+       "maxima": [
+        1,
+        1,
+        1,
+        1
+       ],
+       "chosen": "lower",
+       "lean_receipt": "9159d9e9c8b436a7edd362410be34693c221562de3d85dcfca000cbb2c7ee3f5",
+       "bound": 2,
+       "best_end": 1,
+       "end_cuts": [
+        [
+         1,
+         2,
+         "lower",
+         1
+        ],
+        [
+         1,
+         2,
+         "upper",
+         3
+        ],
+        [
+         1,
+         2,
+         "lower",
+         2
+        ],
+        [
+         1,
+         2,
+         "upper",
+         2
+        ],
+        [
+         1,
+         2,
+         "lower",
+         3
+        ],
+        [
+         1,
+         2,
+         "upper",
+         1
+        ],
+        [
+         1,
+         7,
+         "lower",
+         1
+        ],
+        [
+         1,
+         7,
+         "upper",
+         3
+        ],
+        [
+         1,
+         7,
+         "lower",
+         2
+        ],
+        [
+         1,
+         7,
+         "upper",
+         2
+        ],
+        [
+         1,
+         7,
+         "lower",
+         3
+        ],
+        [
+         1,
+         7,
+         "upper",
+         1
+        ]
+       ]
       },
-      "4,5,5": {
-       "contexts": 1752,
-       "nonzero": 1400,
-       "end_attains": 1400
-      },
-      "5,4,5": {
-       "contexts": 1752,
-       "nonzero": 1400,
-       "end_attains": 1400
-      },
-      "5,5,5": {
-       "contexts": 1752,
-       "nonzero": 1400,
-       "end_attains": 1400
-      },
-      "4,5,6": {
-       "contexts": 3040,
-       "nonzero": 2600,
-       "end_attains": 2600
-      },
-      "5,5,6": {
-       "contexts": 3040,
-       "nonzero": 2600,
-       "end_attains": 2600
+      {
+       "a": 5,
+       "u": 5,
+       "k": 6,
+       "word": [
+        "S",
+        "S",
+        "S",
+        [
+         1,
+         "lower"
+        ],
+        [
+         3,
+         "lower"
+        ],
+        [
+         2,
+         "lower"
+        ],
+        "S"
+       ],
+       "maxima": [
+        1,
+        1,
+        1
+       ],
+       "chosen": "lower",
+       "lean_receipt": "37353e1f739a6742ee72aa641913fdcf267f1bdadc569e67d87be88a4f097f51",
+       "bound": 8,
+       "best_end": 7,
+       "end_cuts": [
+        [
+         2,
+         0,
+         "lower",
+         1
+        ],
+        [
+         6,
+         0,
+         "upper",
+         4
+        ],
+        [
+         5,
+         0,
+         "lower",
+         2
+        ],
+        [
+         7,
+         0,
+         "upper",
+         3
+        ],
+        [
+         7,
+         0,
+         "lower",
+         3
+        ],
+        [
+         7,
+         0,
+         "upper",
+         2
+        ],
+        [
+         7,
+         0,
+         "lower",
+         4
+        ],
+        [
+         4,
+         0,
+         "upper",
+         1
+        ],
+        [
+         5,
+         6,
+         "lower",
+         1
+        ],
+        [
+         5,
+         6,
+         "upper",
+         4
+        ],
+        [
+         6,
+         6,
+         "lower",
+         2
+        ],
+        [
+         6,
+         6,
+         "upper",
+         3
+        ],
+        [
+         7,
+         6,
+         "lower",
+         3
+        ],
+        [
+         7,
+         6,
+         "upper",
+         2
+        ],
+        [
+         4,
+         6,
+         "lower",
+         4
+        ],
+        [
+         4,
+         6,
+         "upper",
+         1
+        ]
+       ]
       }
-     },
-     "violations": []
+     ],
+     "violations": [
+      {
+       "a": 4,
+       "u": 4,
+       "k": 5,
+       "word": [
+        [
+         3,
+         "upper"
+        ],
+        [
+         4,
+         "lower"
+        ],
+        "S",
+        "S",
+        [
+         1,
+         "lower"
+        ],
+        [
+         2,
+         "upper"
+        ],
+        "S",
+        "S"
+       ],
+       "maxima": [
+        1,
+        1,
+        1,
+        1
+       ],
+       "chosen": "lower",
+       "lean_receipt": "9159d9e9c8b436a7edd362410be34693c221562de3d85dcfca000cbb2c7ee3f5",
+       "bound": 2,
+       "best_end": 1,
+       "end_cuts": [
+        [
+         1,
+         2,
+         "lower",
+         1
+        ],
+        [
+         1,
+         2,
+         "upper",
+         3
+        ],
+        [
+         1,
+         2,
+         "lower",
+         2
+        ],
+        [
+         1,
+         2,
+         "upper",
+         2
+        ],
+        [
+         1,
+         2,
+         "lower",
+         3
+        ],
+        [
+         1,
+         2,
+         "upper",
+         1
+        ],
+        [
+         1,
+         7,
+         "lower",
+         1
+        ],
+        [
+         1,
+         7,
+         "upper",
+         3
+        ],
+        [
+         1,
+         7,
+         "lower",
+         2
+        ],
+        [
+         1,
+         7,
+         "upper",
+         2
+        ],
+        [
+         1,
+         7,
+         "lower",
+         3
+        ],
+        [
+         1,
+         7,
+         "upper",
+         1
+        ]
+       ]
+      },
+      {
+       "a": 5,
+       "u": 5,
+       "k": 6,
+       "word": [
+        "S",
+        "S",
+        "S",
+        [
+         1,
+         "lower"
+        ],
+        [
+         3,
+         "lower"
+        ],
+        [
+         2,
+         "lower"
+        ],
+        "S"
+       ],
+       "maxima": [
+        1,
+        1,
+        1
+       ],
+       "chosen": "lower",
+       "lean_receipt": "37353e1f739a6742ee72aa641913fdcf267f1bdadc569e67d87be88a4f097f51",
+       "bound": 8,
+       "best_end": 7,
+       "end_cuts": [
+        [
+         2,
+         0,
+         "lower",
+         1
+        ],
+        [
+         6,
+         0,
+         "upper",
+         4
+        ],
+        [
+         5,
+         0,
+         "lower",
+         2
+        ],
+        [
+         7,
+         0,
+         "upper",
+         3
+        ],
+        [
+         7,
+         0,
+         "lower",
+         3
+        ],
+        [
+         7,
+         0,
+         "upper",
+         2
+        ],
+        [
+         7,
+         0,
+         "lower",
+         4
+        ],
+        [
+         4,
+         0,
+         "upper",
+         1
+        ],
+        [
+         5,
+         6,
+         "lower",
+         1
+        ],
+        [
+         5,
+         6,
+         "upper",
+         4
+        ],
+        [
+         6,
+         6,
+         "lower",
+         2
+        ],
+        [
+         6,
+         6,
+         "upper",
+         3
+        ],
+        [
+         7,
+         6,
+         "lower",
+         3
+        ],
+        [
+         7,
+         6,
+         "upper",
+         2
+        ],
+        [
+         4,
+         6,
+         "lower",
+         4
+        ],
+        [
+         4,
+         6,
+         "upper",
+         1
+        ]
+       ]
+      }
+     ],
+     "seconds": 0.008534332999261096
     }
    },
    "lock_ok": true,
@@ -72781,6 +73423,77 @@
    "opened": "2026-09-08"
   },
   {
+   "name": "ErdosSzekeres.ctx_part_endpoint_path_lifting",
+   "module": "ESBlueprint.B.CtxPartEndpointPathLifting",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Any raw context part lifts old pure and join paths by zero, one or two selected outer new-level markers; the new maximum is a join candidate. Positive child chain limits transfer to the parent at the selected endpoints and imply root coupling with the reserved sibling maximum. Explicit new-level side only; no wellformedness, coloring, occupancy or positive maximum hypothesis.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_pure_extensions_position_monotone"
+    ],
+    "dangling-ok": "General missing endpoint and coupling bridge for Q4 virtual assigned-slot B constructions and Q3 profile gluing; slot placement, threshold lower leaves and full B induction remain separate, with no finite-instance target or maximum assertion."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context) (keep : List Nat) (s : ErdosSzekeres.Ctx.Side) (m : Nat)\n  (hside : Eq ((σ.part keep s m).sideAt 1) s) (p q x y : Nat) (eL eR : Bool)\n  (hL :\n    ite (Eq eL Bool.true)\n      (And (instLTNat.lt x p) (List.instMembership.mem ((σ.part keep s m).extPositions 1) x))\n      (Eq x p))\n  (hR :\n    ite (Eq eR Bool.true)\n      (And (instLTNat.lt q y) (List.instMembership.mem ((σ.part keep s m).extPositions 1) y))\n      (Eq y q)),\n  have g := instHAdd.hAdd (ite (Eq eL Bool.true) 1 0) (ite (Eq eR Bool.true) 1 0);\n  And (instLENat.le (instHAdd.hAdd g (σ.chainExt s x y)) ((σ.part keep s m).chainExt s p q))\n    (And (instLENat.le (instHAdd.hAdd g (σ.joinExt s x y)) ((σ.part keep s m).joinExt s p q))\n      (And (instLENat.le m ((σ.part keep s m).joinExt s p q))\n        (∀ (r : Nat),\n          instLTNat.lt 0 r →\n            instLENat.le r\n                (ErdosSzekeres.ctx_part_endpoint_path_lifting.match_1 σ keep m p q x y eL eR\n                  (fun s hside hL hR => Nat) s hside hL hR\n                  (fun hside hL hR => (σ.part keep s m).cupLimit p q) fun hside hL hR =>\n                  (σ.part keep s m).capLimit p q) →\n              And\n                (instLENat.le (instHAdd.hAdd r g)\n                  (ErdosSzekeres.ctx_part_endpoint_path_lifting.match_1 σ keep m p q x y eL eR\n                    (fun s hside hL hR => Nat) s hside hL hR (fun hside hL hR => σ.cupLimit x y)\n                    fun hside hL hR => σ.capLimit x y))\n                (instLENat.le (instHAdd.hAdd r m) (instHSub.hSub σ.k 1)))))",
+   "type_hash": "5f51f6e3b493f420",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_pure_extensions_position_monotone"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting.match_1",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.Ctx.Context.leftExt_eq",
+    "ErdosSzekeres.Ctx.Context.foldl_leftStep_part_map",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.Ctx.Context.rightExt_eq",
+    "ErdosSzekeres.Ctx.Context.foldl_rightStep_part_map",
+    "ErdosSzekeres.ctx_pure_extensions_position_monotone",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.Ctx.Context.foldl_leftStep_count",
+    "ErdosSzekeres.Ctx.Context.foldl_rightStep_count",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_1",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_zero",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_2",
+    "ErdosSzekeres.Ctx.Context.chainExt_le_joinExt",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_3",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_succ",
+    "ErdosSzekeres.Ctx.Context.le_joinExt_of_mem_levelsOn",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_4",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_5",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_6",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_7",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_8",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting.match_1_9",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting.match_1_11",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_13",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_14",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_15",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_16",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_17",
+    "ErdosSzekeres.ctx_part_endpoint_path_lifting._proof_1_18"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
    "name": "ErdosSzekeres.ctx_part_equal_endpoint_interior_ranks",
    "module": "ESBlueprint.B.CtxPartEqualEndpointInteriorRanks",
    "ws": "B",
@@ -73594,6 +74307,83 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-01"
+  },
+  {
+   "name": "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two",
+   "module": "ESBlueprint.B.CtxProperPartZeroOfLargeSiblingMaximumAndOppositeGlobalTwo",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every fuel approximation and full bound of a proper part vanish when a raw positive-label context has an indexed sibling maximum at least k-2 and opposite global parameter at most two. A specified omitted source child makes the part proper; kept positions and new coupling are arbitrary. No multi-run, well-formedness, occupied-level or legal coupling premise. Exposes the checked internal proper-part argument of R16's closed high-maximum root theorem for reuse in both singleton and complementary source summands of X.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.ctx_bound_le_sum_point_bases",
+     "ErdosSzekeres.ctx_part_limits_le"
+    ],
+    "consumer": "ErdosSzekeres.ctx_one_level_root_singleton_base_exchange"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (σ : ErdosSzekeres.Ctx.Context),\n  (∀ (p j : Nat) (v : ErdosSzekeres.Ctx.Side),\n      Eq (σ.letterAt p) (ErdosSzekeres.Ctx.Letter.ext j v) → instLENat.le 1 j) →\n    ∀ (N : Nat),\n      List.instMembership.mem σ.levels N →\n        instLENat.le (instHSub.hSub σ.k 2) (σ.maximumAt N) →\n          instLENat.le\n              (ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two.match_1\n                (fun x => Nat) (σ.sideAt N) (fun _ => σ.a) fun _ => σ.u)\n              2 →\n            ∀ (keep : List Nat) (t : ErdosSzekeres.Ctx.Side) (m q : Nat),\n              List.instMembership.mem σ.childPositions q →\n                Not (List.instMembership.mem keep q) →\n                  And\n                    (∀ (fuel : Nat),\n                      Eq (ErdosSzekeres.Ctx.Context.boundFuel fuel (σ.part keep t m)) 0)\n                    (Eq (σ.part keep t m).bound 0)",
+   "type_hash": "5818b07d53e26989",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.ctx_bound_le_sum_point_bases",
+    "ErdosSzekeres.ctx_part_limits_le"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two.match_1",
+    "ErdosSzekeres.ctx_part_limits_le",
+    "ErdosSzekeres.Ctx.Context.part_levels",
+    "ErdosSzekeres.Ctx.Context.part_maximumAt_succ",
+    "ErdosSzekeres.Ctx.Context.part_childPositions",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_1",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._simp_1_3",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._simp_1_4",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._simp_1_5",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._simp_1_6",
+    "ErdosSzekeres.Ctx.Context.part_extPositions_one",
+    "ErdosSzekeres.Ctx.Context.part_levelsOn_self_succ",
+    "ErdosSzekeres.Ctx.Context.leftStep",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_7",
+    "ErdosSzekeres.Ctx.Context.leftStep.match_1",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_8",
+    "ErdosSzekeres.Ctx.Context.rightStep",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_9",
+    "ErdosSzekeres.Ctx.Context.le_joinExt_of_mem_levelsOn",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_10",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_11",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_12",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two.match_1_13",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_15",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_16",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_17",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_18",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_19",
+    "ErdosSzekeres.ctx_bound_le_sum_point_bases",
+    "ErdosSzekeres.Ctx.Context.boundFuel_eq_bound",
+    "ErdosSzekeres.Ctx.Context.boundFuel_mono",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_20",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._simp_1_21",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._simp_1_22",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._simp_1_24",
+    "ErdosSzekeres.ctx_proper_part_zero_of_large_sibling_maximum_and_opposite_global_two._proof_1_25"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
   },
   {
    "name": "ErdosSzekeres.ctx_prune_part_bound_of_all_tracked_retained",
@@ -87105,6 +87895,61 @@
    "opened": "2026-09-15"
   },
   {
+   "name": "ErdosSzekeres.cupLayer_of_no_capFour",
+   "module": "ESBlueprint.B.CupLayerOfNoCapFour",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "L1: in any OneChange coloring avoiding a four-cap, every fiber of an exact longest-ending-cup rank profile is a cup with at most its rank many points. The profile is specified by attained ending cups and maximality over all ending cups; no computational rank assumption is hidden.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.isMonochromaticChain_finFour_of_outer_eq"
+    ],
+    "dangling-ok": "Approved R20 reusable layer tool for cap-free sides in a≥5 two-side bounds and cross-gap layer arguments; coupled cut remains open"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n j : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} (rank : Fin n → Nat),\n  ErdosSzekeres.OneChangeOn χ s →\n    Not (ErdosSzekeres.ContainsCapSet χ s 4) →\n      (∀ (x : Fin n),\n          SetLike.instMembership.mem s x →\n            Exists fun C =>\n              And (Finset.instHasSubset.Subset C s)\n                (And (Eq C.card (rank x))\n                  (And (ErdosSzekeres.IsCupSet χ C)\n                    (And (SetLike.instMembership.mem C x)\n                      (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x))))) →\n        (∀ (x : Fin n),\n            SetLike.instMembership.mem s x →\n              ∀ (C : Finset (Fin n)),\n                Finset.instHasSubset.Subset C s →\n                  ErdosSzekeres.IsCupSet χ C →\n                    SetLike.instMembership.mem C x →\n                      (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x) →\n                        instLENat.le C.card (rank x)) →\n          And (ErdosSzekeres.IsCupSet χ (Finset.filter (fun x => Eq (rank x) j) s))\n            (instLENat.le (Finset.filter (fun x => Eq (rank x) j) s).card j)",
+   "type_hash": "732a647456a876b8",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.isMonochromaticChain_finFour_of_outer_eq"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.cupLayer_of_no_capFour._simp_1_1",
+    "ErdosSzekeres.cupLayer_of_no_capFour._simp_1_2",
+    "ErdosSzekeres.cupLayer_of_no_capFour._proof_1_3",
+    "ErdosSzekeres.cupLayer_of_no_capFour._proof_1_4",
+    "ErdosSzekeres.cupLayer_of_no_capFour._proof_1_5",
+    "ErdosSzekeres.cupLayer_of_no_capFour._proof_1_6",
+    "ErdosSzekeres.cupLayer_of_no_capFour._proof_1_7",
+    "ErdosSzekeres.cupLayer_of_no_capFour._simp_1_8",
+    "ErdosSzekeres.cupLayer_of_no_capFour._simp_1_9",
+    "ErdosSzekeres.cupLayer_of_no_capFour._proof_1_10",
+    "ErdosSzekeres.cupLayer_of_no_capFour._proof_1_11",
+    "ErdosSzekeres.cupLayer_of_no_capFour._proof_1_12",
+    "ErdosSzekeres.cupLayer_of_no_capFour._proof_1_13",
+    "ErdosSzekeres.cupLayer_of_no_capFour._proof_1_14"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
    "name": "ErdosSzekeres.decomposable_coloring_pushforward_exists",
    "module": "ESBlueprint.B.DecomposableColoringPushforwardExists",
    "ws": "B",
@@ -87197,7 +88042,7 @@
     "ErdosSzekeres.Ctx.Context.root_numRuns_le",
     "ErdosSzekeres.Ctx.Context.root_k"
    ],
-   "status": "claimed",
+   "status": "open",
    "ready": false,
    "blocked_by": [
     "ErdosSzekeres.ctx_card_le_bound"
@@ -87261,7 +88106,7 @@
    "uncovered_axioms": [],
    "falsify": null,
    "lock_ok": true,
-   "opened": "uncommitted"
+   "opened": "2026-10-03"
   },
   {
    "name": "ErdosSzekeres.decomposableStateUpper_of_lower_gates_at",
@@ -87519,6 +88364,53 @@
    "opened": "2026-10-03"
   },
   {
+   "name": "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le",
+   "module": "ESBlueprint.B.DecomposableThresholdSixPredPredOfSevenLe",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "At every k at least seven the six predecessor-predecessor Pascal window equals its lower tail plus the audited two-side cubic bound, with all three window terms untruncated.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "dangling-ok": "R23 six singleton gate reservoir arithmetic"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {k : Nat},\n  instLENat.le 7 k →\n    Eq (ErdosSzekeres.decomposableThreshold 6 (instHSub.hSub k 2) k)\n      (instHAdd.hAdd (instHAdd.hAdd ((instHSub.hSub k 3).choose 4) ((instHSub.hSub k 1).choose 3))\n        ((instHSub.hSub k 3).choose 3))",
+   "type_hash": "761c42a05a5c1f69",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_1",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_2",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_3",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_4",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_5",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_6",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_7",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_8",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_9",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_10",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_11",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_12",
+    "ErdosSzekeres.decomposableThreshold_six_pred_pred_of_seven_le._proof_1_13"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
    "name": "ErdosSzekeres.decomposableThreshold_split_attained",
    "module": "ESBlueprint.B.DecomposableThresholdSplitAttained",
    "ws": "B",
@@ -87654,6 +88546,51 @@
    "opened": "2026-10-02"
   },
   {
+   "name": "ErdosSzekeres.deepBelow_noStrong_after_delete_iff_child_and_rankDrop",
+   "module": "ESBlueprint.B.DeepBelowNoStrongAfterDeleteIffChildAndRankDrop",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Exact deletion criterion at a matched deep-below root: when lower cups have size at most u and upper caps at most a, deleting a set eliminates strong(u+a)-sets exactly when it eliminates them in each child and drops either the lower cup rank or upper cap rank. Crossing polygons form the Cartesian product of maximum chains; children may interleave.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.HasDeepBelowSplit.isStrongPolygonSet_iff_inter_cup_cap",
+     "ErdosSzekeres.HasDeepBelowSplit.containsStrongPolygonSet_of_cup_cap"
+    ],
+    "dangling-ok": "Approved R20 reusable a5 decomposition-tree hitting invariant suggested by the read a5b notes. This certifies the maximum-chain product obstruction, without asserting a tight cut exists."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n u a : Nat} {χ : ErdosSzekeres.TripleColoring n} {lower upper removed : Finset (Fin n)},\n  ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n    Not (ErdosSzekeres.ContainsCupSet χ lower (instHAdd.hAdd u 1)) →\n      Not (ErdosSzekeres.ContainsCapSet χ upper (instHAdd.hAdd a 1)) →\n        Iff\n          (Not\n            (ErdosSzekeres.ContainsStrongPolygonSet χ\n              (Finset.instSDiff.sdiff (Finset.instUnion.union lower upper) removed)\n              (instHAdd.hAdd u a)))\n          (And\n            (Not\n              (ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instSDiff.sdiff lower removed)\n                (instHAdd.hAdd u a)))\n            (And\n              (Not\n                (ErdosSzekeres.ContainsStrongPolygonSet χ (Finset.instSDiff.sdiff upper removed)\n                  (instHAdd.hAdd u a)))\n              (Or (Not (ErdosSzekeres.ContainsCupSet χ (Finset.instSDiff.sdiff lower removed) u))\n                (Not (ErdosSzekeres.ContainsCapSet χ (Finset.instSDiff.sdiff upper removed) a)))))",
+   "type_hash": "331d54a2d747be06",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.HasDeepBelowSplit.isStrongPolygonSet_iff_inter_cup_cap",
+    "ErdosSzekeres.HasDeepBelowSplit.containsStrongPolygonSet_of_cup_cap"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.deepBelow_noStrong_after_delete_iff_child_and_rankDrop._proof_1_1",
+    "ErdosSzekeres.deepBelow_noStrong_after_delete_iff_child_and_rankDrop.match_1_2",
+    "ErdosSzekeres.deepBelow_noStrong_after_delete_iff_child_and_rankDrop._proof_1_4",
+    "ErdosSzekeres.deepBelow_noStrong_after_delete_iff_child_and_rankDrop._proof_1_5"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
    "name": "ErdosSzekeres.deepSplit_endpoint_constraints_iff",
    "module": "ESBlueprint.B.DeepSplitEndpointConstraintsIff",
    "ws": "B",
@@ -87699,6 +88636,59 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff",
+   "module": "ESBlueprint.B.DeepSplitFiniteEndpointConstraintsIff",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For any deep split and arbitrary cup/cap predicates, all parent chain constraints are equivalent to pure child chains and explicit one or two exterior opposite-child endpoint insertions, including empty chains and children.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.deepSplit_two_endpoint_extensions",
+     "ErdosSzekeres.HasDeepBelowSplit.cup_inter_upper_card_le_two",
+     "ErdosSzekeres.HasDeepBelowSplit.upper_mem_cup_isSweepEndpoint"
+    ],
+    "dangling-ok": "General R24 Q3 finite gain criterion underlying endpoint matrix refinement; no extrema optimization, closed N formula or context-bound equivalence is asserted."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {lower upper : Finset (Fin n)},\n  ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n    ∀ (cupAllowed capAllowed : Finset (Fin n) → Prop),\n      Iff\n        (And\n          (∀ (T : Finset (Fin n)),\n            Finset.instHasSubset.Subset T (Finset.instUnion.union lower upper) →\n              ErdosSzekeres.IsCupSet χ T → cupAllowed T)\n          (∀ (T : Finset (Fin n)),\n            Finset.instHasSubset.Subset T (Finset.instUnion.union lower upper) →\n              ErdosSzekeres.IsCapSet χ T → capAllowed T))\n        (And\n          (And\n            (∀ (T : Finset (Fin n)),\n              Finset.instHasSubset.Subset T lower → ErdosSzekeres.IsCupSet χ T → cupAllowed T)\n            (And\n              (∀ (T : Finset (Fin n)),\n                Finset.instHasSubset.Subset T upper → ErdosSzekeres.IsCupSet χ T → cupAllowed T)\n              (And\n                (∀ (C : Finset (Fin n)),\n                  Finset.instHasSubset.Subset C lower →\n                    ErdosSzekeres.IsCupSet χ C →\n                      ∀ (q : Fin n),\n                        SetLike.instMembership.mem upper q →\n                          ErdosSzekeres.HasDeepBelowSplit.IsSweepEndpoint C q →\n                            cupAllowed (Finset.instInsert.insert q C))\n                (∀ (C : Finset (Fin n)),\n                  Finset.instHasSubset.Subset C lower →\n                    ErdosSzekeres.IsCupSet χ C →\n                      ∀ (x y : Fin n),\n                        SetLike.instMembership.mem upper x →\n                          SetLike.instMembership.mem upper y →\n                            instLTFin.lt x y →\n                              (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt x z) →\n                                (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt z y) →\n                                  cupAllowed\n                                    (Finset.instInsert.insert x (Finset.instInsert.insert y C))))))\n          (And\n            (∀ (T : Finset (Fin n)),\n              Finset.instHasSubset.Subset T upper → ErdosSzekeres.IsCapSet χ T → capAllowed T)\n            (And\n              (∀ (T : Finset (Fin n)),\n                Finset.instHasSubset.Subset T lower → ErdosSzekeres.IsCapSet χ T → capAllowed T)\n              (And\n                (∀ (C : Finset (Fin n)),\n                  Finset.instHasSubset.Subset C upper →\n                    ErdosSzekeres.IsCapSet χ C →\n                      ∀ (q : Fin n),\n                        SetLike.instMembership.mem lower q →\n                          ErdosSzekeres.HasDeepBelowSplit.IsSweepEndpoint C q →\n                            capAllowed (Finset.instInsert.insert q C))\n                (∀ (C : Finset (Fin n)),\n                  Finset.instHasSubset.Subset C upper →\n                    ErdosSzekeres.IsCapSet χ C →\n                      ∀ (x y : Fin n),\n                        SetLike.instMembership.mem lower x →\n                          SetLike.instMembership.mem lower y →\n                            instLTFin.lt x y →\n                              (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt x z) →\n                                (∀ (z : Fin n), SetLike.instMembership.mem C z → instLTFin.lt z y) →\n                                  capAllowed\n                                    (Finset.instInsert.insert x (Finset.instInsert.insert y C)))))))",
+   "type_hash": "c615cb8eb6de0c0e",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.deepSplit_two_endpoint_extensions",
+    "ErdosSzekeres.HasDeepBelowSplit.cup_inter_upper_card_le_two",
+    "ErdosSzekeres.HasDeepBelowSplit.upper_mem_cup_isSweepEndpoint"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.deepSplit_two_endpoint_extensions",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff._simp_1_1",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff._simp_1_2",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff._simp_1_3",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff._simp_1_4",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff._proof_1_5",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff._proof_1_6",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff._proof_1_7",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff._proof_1_8",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff._simp_1_9"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
   },
   {
    "name": "ErdosSzekeres.deepSplit_profile_gluing_exists",
@@ -87969,6 +88959,59 @@
    "opened": "2026-10-03"
   },
   {
+   "name": "ErdosSzekeres.existsCupExtension_of_side_three_caps",
+   "module": "ESBlueprint.B.ExistsCupExtensionOfSideThreeCaps",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Cup killing outside the side three-cap boundaries: a cup of at least three vertices whose left points end left three-caps and whose right points start right three-caps extends by one ambient point. Its first or last consecutive side pair forces an extending cup turn, since the opposite turn would make a forbidden side four-cap.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.isMonochromaticChain_finFour_of_outer_eq"
+    ],
+    "dangling-ok": "Approved R20 L3 formalization: local cup hitting explains the remaining strong-set shape; tight coupled E selection remains open."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right C : Finset (Fin n)},\n  (∀ (x : Fin n),\n      SetLike.instMembership.mem left x →\n        ∀ (y : Fin n), SetLike.instMembership.mem right y → instLTFin.lt x y) →\n    ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n      Not (ErdosSzekeres.ContainsCapSet χ left 4) →\n        Not (ErdosSzekeres.ContainsCapSet χ right 4) →\n          Finset.instHasSubset.Subset C (Finset.instUnion.union left right) →\n            ErdosSzekeres.IsCupSet χ C →\n              instLENat.le 3 C.card →\n                (∀ (x : Fin n),\n                    SetLike.instMembership.mem C x →\n                      SetLike.instMembership.mem left x →\n                        Exists fun a =>\n                          And (SetLike.instMembership.mem left a)\n                            (Exists fun b =>\n                              And (SetLike.instMembership.mem left b)\n                                (Exists fun hab =>\n                                  Exists fun hbx =>\n                                    Eq (χ { i := a, j := b, k := x, hij := hab, hjk := hbx })\n                                      ErdosSzekeres.Turn.right))) →\n                  (∀ (x : Fin n),\n                      SetLike.instMembership.mem C x →\n                        SetLike.instMembership.mem right x →\n                          Exists fun a =>\n                            And (SetLike.instMembership.mem right a)\n                              (Exists fun b =>\n                                And (SetLike.instMembership.mem right b)\n                                  (Exists fun hxa =>\n                                    Exists fun hab =>\n                                      Eq (χ { i := x, j := a, k := b, hij := hxa, hjk := hab })\n                                        ErdosSzekeres.Turn.right))) →\n                    Exists fun p =>\n                      And (SetLike.instMembership.mem (Finset.instUnion.union left right) p)\n                        (And (Not (SetLike.instMembership.mem C p))\n                          (And (ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert p C))\n                            (Eq (Finset.instInsert.insert p C).card (instHAdd.hAdd C.card 1))))",
+   "type_hash": "66fe1d2e96dd9a6a",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.isMonochromaticChain_finFour_of_outer_eq"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._simp_1_1",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._simp_1_2",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._proof_1_3",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._proof_1_4",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._proof_1_5",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._proof_1_6",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._proof_1_7",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._proof_1_8",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._proof_1_9",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._proof_1_10",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._proof_1_11",
+    "ErdosSzekeres.existsCupExtension_of_side_three_caps._proof_1_12"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
    "name": "ErdosSzekeres.exists_cupStartLayers_of_oneChange_no_capFour",
    "module": "ESBlueprint.B.ExistsCupStartLayersOfOneChangeNoCapFour",
    "ws": "B",
@@ -88016,6 +89059,111 @@
    "opened": "2026-10-03"
   },
   {
+   "name": "ErdosSzekeres.existsEndingAndStartingCupRankProfiles",
+   "module": "ESBlueprint.B.ExistsEndingAndStartingCupRankProfiles",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every finite support has exact longest ending and starting cup rank profiles, each attained by an endpoint-containing cup and maximal over all such cups. No OneChange or cap-free assumption is needed; finite endpoint-cup families contain the singleton and have cardinality maxima.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "dangling-ok": "Approved R20 reusable rank-profile foundation supplying the hypotheses of layer and cross-gap tools for a5 cases; coupled cut remains open"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  Exists fun endingRank =>\n    Exists fun startingRank =>\n      And\n        (∀ (x : Fin n),\n          SetLike.instMembership.mem s x →\n            Exists fun C =>\n              And (Finset.instHasSubset.Subset C s)\n                (And (Eq C.card (endingRank x))\n                  (And (ErdosSzekeres.IsCupSet χ C)\n                    (And (SetLike.instMembership.mem C x)\n                      (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x)))))\n        (And\n          (∀ (x : Fin n),\n            SetLike.instMembership.mem s x →\n              ∀ (C : Finset (Fin n)),\n                Finset.instHasSubset.Subset C s →\n                  ErdosSzekeres.IsCupSet χ C →\n                    SetLike.instMembership.mem C x →\n                      (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x) →\n                        instLENat.le C.card (endingRank x))\n          (And\n            (∀ (x : Fin n),\n              SetLike.instMembership.mem s x →\n                Exists fun C =>\n                  And (Finset.instHasSubset.Subset C s)\n                    (And (Eq C.card (startingRank x))\n                      (And (ErdosSzekeres.IsCupSet χ C)\n                        (And (SetLike.instMembership.mem C x)\n                          (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le x y)))))\n            (∀ (x : Fin n),\n              SetLike.instMembership.mem s x →\n                ∀ (C : Finset (Fin n)),\n                  Finset.instHasSubset.Subset C s →\n                    ErdosSzekeres.IsCupSet χ C →\n                      SetLike.instMembership.mem C x →\n                        (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le x y) →\n                          instLENat.le C.card (startingRank x))))",
+   "type_hash": "3b42bbf38ce81b7c",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [],
+   "deps_actual": [
+    "ErdosSzekeres.existsEndingAndStartingCupRankProfiles._proof_1_2",
+    "ErdosSzekeres.existsEndingAndStartingCupRankProfiles._simp_1_1"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion",
+   "module": "ESBlueprint.B.IsCupSetCrossGapRankRestrictedUnion",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Cross-gap A: ending-i left layers restricted by global starting upper rank j, together with starting-j right layers restricted by global ending upper rank i, form a cup. Both potential outer-cup insertions at a mixed cap turn violate a rank bound, contradicting the five-cap-free extension alternative.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.isMonochromaticChain_finFive_of_consecutive"
+    ],
+    "dangling-ok": "Approved R20 formalization of hand-proved a5 layer compatibility, with an explicit endpoint-extension invariant; coupled polygon deficiency remains open"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n i j : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right : Finset (Fin n)}\n  (ending starting globalEnding globalStarting : Fin n → Nat),\n  instLENat.le 2 i →\n    instLENat.le 2 j →\n      (∀ (x : Fin n),\n          SetLike.instMembership.mem left x →\n            ∀ (y : Fin n), SetLike.instMembership.mem right y → instLTFin.lt x y) →\n        ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n          Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union left right) 5) →\n            Not (ErdosSzekeres.ContainsCapSet χ left 4) →\n              Not (ErdosSzekeres.ContainsCapSet χ right 4) →\n                (∀ (x : Fin n),\n                    SetLike.instMembership.mem left x →\n                      Exists fun C =>\n                        And (Finset.instHasSubset.Subset C left)\n                          (And (Eq C.card (ending x))\n                            (And (ErdosSzekeres.IsCupSet χ C)\n                              (And (SetLike.instMembership.mem C x)\n                                (∀ (y : Fin n),\n                                  SetLike.instMembership.mem C y → instLEFin.le y x))))) →\n                  (∀ (x : Fin n),\n                      SetLike.instMembership.mem left x →\n                        ∀ (C : Finset (Fin n)),\n                          Finset.instHasSubset.Subset C left →\n                            ErdosSzekeres.IsCupSet χ C →\n                              SetLike.instMembership.mem C x →\n                                (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x) →\n                                  instLENat.le C.card (ending x)) →\n                    (∀ (x : Fin n),\n                        SetLike.instMembership.mem right x →\n                          Exists fun C =>\n                            And (Finset.instHasSubset.Subset C right)\n                              (And (Eq C.card (starting x))\n                                (And (ErdosSzekeres.IsCupSet χ C)\n                                  (And (SetLike.instMembership.mem C x)\n                                    (∀ (y : Fin n),\n                                      SetLike.instMembership.mem C y → instLEFin.le x y))))) →\n                      (∀ (x : Fin n),\n                          SetLike.instMembership.mem right x →\n                            ∀ (C : Finset (Fin n)),\n                              Finset.instHasSubset.Subset C right →\n                                ErdosSzekeres.IsCupSet χ C →\n                                  SetLike.instMembership.mem C x →\n                                    (∀ (y : Fin n),\n                                        SetLike.instMembership.mem C y → instLEFin.le x y) →\n                                      instLENat.le C.card (starting x)) →\n                        (∀ (x : Fin n),\n                            SetLike.instMembership.mem (Finset.instUnion.union left right) x →\n                              ∀ (C : Finset (Fin n)),\n                                Finset.instHasSubset.Subset C (Finset.instUnion.union left right) →\n                                  ErdosSzekeres.IsCupSet χ C →\n                                    SetLike.instMembership.mem C x →\n                                      (∀ (y : Fin n),\n                                          SetLike.instMembership.mem C y → instLEFin.le y x) →\n                                        instLENat.le C.card (globalEnding x)) →\n                          (∀ (x : Fin n),\n                              SetLike.instMembership.mem (Finset.instUnion.union left right) x →\n                                ∀ (C : Finset (Fin n)),\n                                  Finset.instHasSubset.Subset C\n                                      (Finset.instUnion.union left right) →\n                                    ErdosSzekeres.IsCupSet χ C →\n                                      SetLike.instMembership.mem C x →\n                                        (∀ (y : Fin n),\n                                            SetLike.instMembership.mem C y → instLEFin.le x y) →\n                                          instLENat.le C.card (globalStarting x)) →\n                            ErdosSzekeres.IsCupSet χ\n                              (Finset.instUnion.union\n                                (Finset.filter\n                                  (fun x =>\n                                    And (Eq (ending x) i) (instLENat.le (globalStarting x) j))\n                                  left)\n                                (Finset.filter\n                                  (fun x =>\n                                    And (Eq (starting x) j) (instLENat.le (globalEnding x) i))\n                                  right))",
+   "type_hash": "8b7d14044ef6dedb",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.isMonochromaticChain_finFive_of_consecutive"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._simp_1_1",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._simp_1_2",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_3",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_4",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_5",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_6",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_7",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._simp_1_8",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._simp_1_9",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_10",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_11",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_12",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_13",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_14",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_15",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_16",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_17",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_18",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_19",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_20",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_21",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_22",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_23",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_24",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_25",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_26",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_27",
+    "ErdosSzekeres.isCupSet_crossGapRankRestrictedUnion._proof_1_28"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
    "name": "ErdosSzekeres.isCupSet_iff_not_containsCapSet_three",
    "module": "ESBlueprint.B.IsCupSetIffNotContainsCapSetThree",
    "ws": "B",
@@ -88055,6 +89203,233 @@
    "opened": "2026-10-03"
   },
   {
+   "name": "ErdosSzekeres.isCupSet_insert_of_two_left_vertices",
+   "module": "ESBlueprint.B.IsCupSetInsertOfTwoLeftVertices",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "M1: a point of an ordered left cup can be inserted into an ambient cup whenever two selected left vertices lie above it. Those vertices shield all new consecutive triples; OneChange propagates the cup color to every triple. No cap-free assumption is needed.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.OneChangeOn.mono"
+    ],
+    "dangling-ok": "Approved R20 standalone cup-extension tool for general two-side arguments; local form already used in the uniform diagonal proof"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right C : Finset (Fin n)} {p a b : Fin n},\n  (∀ (u : Fin n),\n      SetLike.instMembership.mem left u →\n        ∀ (v : Fin n), SetLike.instMembership.mem right v → instLTFin.lt u v) →\n    ErdosSzekeres.IsCupSet χ left →\n      ErdosSzekeres.IsCupSet χ C →\n        ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n          Finset.instHasSubset.Subset C (Finset.instUnion.union left right) →\n            SetLike.instMembership.mem left p →\n              SetLike.instMembership.mem C a →\n                SetLike.instMembership.mem left a →\n                  SetLike.instMembership.mem C b →\n                    SetLike.instMembership.mem left b →\n                      instLTFin.lt p a →\n                        instLTFin.lt a b → ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert p C)",
+   "type_hash": "c005da92ee73f667",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.OneChangeOn.mono"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.isCupSet_insert_of_two_left_vertices._proof_1_1",
+    "ErdosSzekeres.isCupSet_insert_of_two_left_vertices._proof_1_2",
+    "ErdosSzekeres.isCupSet_insert_of_two_left_vertices._proof_1_3",
+    "ErdosSzekeres.isCupSet_insert_of_two_left_vertices._proof_1_4"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.isCupSet_insert_of_two_right_vertices",
+   "module": "ESBlueprint.B.IsCupSetInsertOfTwoRightVertices",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "M1 mirror: a point of an ordered right cup can be inserted into an ambient cup whenever two selected right vertices lie below it. Those vertices shield all new consecutive triples; OneChange propagates the cup color to every triple. No cap-free assumption is needed.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.OneChangeOn.mono"
+    ],
+    "dangling-ok": "Approved R20 standalone mirror cup-extension tool for general two-side arguments; local form already used in the uniform diagonal proof"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right C : Finset (Fin n)} {p a b : Fin n},\n  (∀ (u : Fin n),\n      SetLike.instMembership.mem left u →\n        ∀ (v : Fin n), SetLike.instMembership.mem right v → instLTFin.lt u v) →\n    ErdosSzekeres.IsCupSet χ right →\n      ErdosSzekeres.IsCupSet χ C →\n        ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n          Finset.instHasSubset.Subset C (Finset.instUnion.union left right) →\n            SetLike.instMembership.mem right p →\n              SetLike.instMembership.mem C a →\n                SetLike.instMembership.mem right a →\n                  SetLike.instMembership.mem C b →\n                    SetLike.instMembership.mem right b →\n                      instLTFin.lt a b →\n                        instLTFin.lt b p → ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert p C)",
+   "type_hash": "1f0b9577a357c8a2",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.OneChangeOn.mono"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.isCupSet_insert_of_two_right_vertices._proof_1_1",
+    "ErdosSzekeres.isCupSet_insert_of_two_right_vertices._proof_1_2",
+    "ErdosSzekeres.isCupSet_insert_of_two_right_vertices._proof_1_3",
+    "ErdosSzekeres.isCupSet_insert_of_two_right_vertices._proof_1_4"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.isCupSet_insert_or_insert_of_no_capFive",
+   "module": "ESBlueprint.B.IsCupSetInsertOrInsertOfNoCapFive",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A cap turn a<b<c in a OneChange five-cap-free support forces extension of at least one outer cup to b: an ending cup at a or a starting cup at c, each of size at least two. Refusal of both gives a predecessor/successor five-cap.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.isMonochromaticChain_finFive_of_consecutive"
+    ],
+    "dangling-ok": "Approved R20 reusable a5 structural tool explaining cross-gap layer compatibility through extension alternatives; coupled polygon deficiency remains open"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {s C D : Finset (Fin n)} {a b c : Fin n}\n  (hab : instLTFin.lt a b) (hbc : instLTFin.lt b c),\n  ErdosSzekeres.OneChangeOn χ s →\n    Not (ErdosSzekeres.ContainsCapSet χ s 5) →\n      Finset.instHasSubset.Subset C s →\n        Finset.instHasSubset.Subset D s →\n          SetLike.instMembership.mem s b →\n            ErdosSzekeres.IsCupSet χ C →\n              ErdosSzekeres.IsCupSet χ D →\n                SetLike.instMembership.mem C a →\n                  SetLike.instMembership.mem D c →\n                    (∀ (x : Fin n), SetLike.instMembership.mem C x → instLEFin.le x a) →\n                      (∀ (x : Fin n), SetLike.instMembership.mem D x → instLEFin.le c x) →\n                        instLENat.le 2 C.card →\n                          instLENat.le 2 D.card →\n                            Eq (χ { i := a, j := b, k := c, hij := hab, hjk := hbc })\n                                ErdosSzekeres.Turn.right →\n                              Or (ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert b C))\n                                (ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert b D))",
+   "type_hash": "14e3c3517accb78f",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.isMonochromaticChain_finFive_of_consecutive"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.isCupSet_insert_or_insert_of_no_capFive._proof_1_1",
+    "ErdosSzekeres.isCupSet_insert_or_insert_of_no_capFive._proof_1_2",
+    "ErdosSzekeres.isCupSet_insert_or_insert_of_no_capFive._proof_1_3",
+    "ErdosSzekeres.isCupSet_insert_or_insert_of_no_capFive._proof_1_4",
+    "ErdosSzekeres.isCupSet_insert_or_insert_of_no_capFive._simp_1_5",
+    "ErdosSzekeres.isCupSet_insert_or_insert_of_no_capFive._simp_1_6"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.isCupSet_insert_two_left_and_card",
+   "module": "ESBlueprint.B.IsCupSetInsertTwoLeftAndCard",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "M2: two new points of an ordered left cup below two selected left vertices extend an ambient cup by exactly two points. Apply the same-side shielding move twice; OneChange is the only ambient color condition, and absence from the original cup gives exact growth.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.OneChangeOn.mono"
+    ],
+    "dangling-ok": "Approved R20 standalone double-prefix cup-extension move with explicit growth, reusable for two-side strong-set extensions"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right C : Finset (Fin n)} {p q a b : Fin n},\n  (∀ (u : Fin n),\n      SetLike.instMembership.mem left u →\n        ∀ (v : Fin n), SetLike.instMembership.mem right v → instLTFin.lt u v) →\n    ErdosSzekeres.IsCupSet χ left →\n      ErdosSzekeres.IsCupSet χ C →\n        ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n          Finset.instHasSubset.Subset C (Finset.instUnion.union left right) →\n            SetLike.instMembership.mem left p →\n              SetLike.instMembership.mem left q →\n                SetLike.instMembership.mem C a →\n                  SetLike.instMembership.mem left a →\n                    SetLike.instMembership.mem C b →\n                      SetLike.instMembership.mem left b →\n                        instLTFin.lt p q →\n                          instLTFin.lt q a →\n                            instLTFin.lt a b →\n                              Not (SetLike.instMembership.mem C p) →\n                                Not (SetLike.instMembership.mem C q) →\n                                  And\n                                    (ErdosSzekeres.IsCupSet χ\n                                      (Finset.instInsert.insert p (Finset.instInsert.insert q C)))\n                                    (Eq\n                                      (Finset.instInsert.insert p\n                                          (Finset.instInsert.insert q C)).card\n                                      (instHAdd.hAdd C.card 2))",
+   "type_hash": "d62a250e6f1ffb0e",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.OneChangeOn.mono"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.isCupSet_insert_two_left_and_card._proof_1_1",
+    "ErdosSzekeres.isCupSet_insert_two_left_and_card._proof_1_2",
+    "ErdosSzekeres.isCupSet_insert_two_left_and_card._proof_1_3",
+    "ErdosSzekeres.isCupSet_insert_two_left_and_card._proof_1_4"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.isCupSet_insert_two_right_and_card",
+   "module": "ESBlueprint.B.IsCupSetInsertTwoRightAndCard",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "M2 mirror: two new points of an ordered right cup above two selected right vertices extend an ambient cup by exactly two points. Apply the same-side shielding move twice; OneChange is the only ambient color condition, and absence from the original cup gives exact growth.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.OneChangeOn.mono"
+    ],
+    "dangling-ok": "Approved R20 standalone double-suffix cup-extension move with explicit growth, reusable for two-side strong-set extensions"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right C : Finset (Fin n)} {p q a b : Fin n},\n  (∀ (u : Fin n),\n      SetLike.instMembership.mem left u →\n        ∀ (v : Fin n), SetLike.instMembership.mem right v → instLTFin.lt u v) →\n    ErdosSzekeres.IsCupSet χ right →\n      ErdosSzekeres.IsCupSet χ C →\n        ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n          Finset.instHasSubset.Subset C (Finset.instUnion.union left right) →\n            SetLike.instMembership.mem right p →\n              SetLike.instMembership.mem right q →\n                SetLike.instMembership.mem C a →\n                  SetLike.instMembership.mem right a →\n                    SetLike.instMembership.mem C b →\n                      SetLike.instMembership.mem right b →\n                        instLTFin.lt a b →\n                          instLTFin.lt b p →\n                            instLTFin.lt p q →\n                              Not (SetLike.instMembership.mem C p) →\n                                Not (SetLike.instMembership.mem C q) →\n                                  And\n                                    (ErdosSzekeres.IsCupSet χ\n                                      (Finset.instInsert.insert q (Finset.instInsert.insert p C)))\n                                    (Eq\n                                      (Finset.instInsert.insert q\n                                          (Finset.instInsert.insert p C)).card\n                                      (instHAdd.hAdd C.card 2))",
+   "type_hash": "6375458bcedfe290",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.OneChangeOn.mono"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.isCupSet_insert_two_right_and_card._proof_1_1",
+    "ErdosSzekeres.isCupSet_insert_two_right_and_card._proof_1_2",
+    "ErdosSzekeres.isCupSet_insert_two_right_and_card._proof_1_3",
+    "ErdosSzekeres.isCupSet_insert_two_right_and_card._proof_1_4"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
    "name": "ErdosSzekeres.isMonochromaticSet_of_oneChange_consecutive",
    "module": "ESBlueprint.B.IsMonochromaticSetOfOneChangeConsecutive",
    "ws": "B",
@@ -88091,6 +89466,46 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.isStrongPolygonSet_cup_union_cap_of_common_extremes",
+   "module": "ESBlueprint.B.IsStrongPolygonSetCupUnionCapOfCommonExtremes",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "General H3 converse: a cup and a cap sharing both extreme endpoints have a strong union under OneChange. Interior colors anchored at the endpoints determine all mixed triples; arbitrary numbers of cap-interior vertices are allowed. This reconstructs strong sets from two hulls without a cap-size bound or a realization assumption.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn",
+     "ErdosSzekeres.TurnSequenceAllowed"
+    ],
+    "dangling-ok": "R20 reusable multi-apex shape converse with explicit anchored-color proof idea in PROGRESS.md; coupled a5 cut remains open"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {C D : Finset (Fin n)} {l r : Fin n},\n  ErdosSzekeres.IsCupSet χ C →\n    ErdosSzekeres.IsCapSet χ D →\n      SetLike.instMembership.mem C l →\n        SetLike.instMembership.mem C r →\n          SetLike.instMembership.mem D l →\n            SetLike.instMembership.mem D r →\n              (∀ (x : Fin n),\n                  SetLike.instMembership.mem (Finset.instUnion.union C D) x → instLEFin.le l x) →\n                (∀ (x : Fin n),\n                    SetLike.instMembership.mem (Finset.instUnion.union C D) x → instLEFin.le x r) →\n                  instLTFin.lt l r →\n                    ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union C D) →\n                      ErdosSzekeres.IsStrongPolygonSet χ (Finset.instUnion.union C D)",
+   "type_hash": "c07e8cd85ed7d9af",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn",
+    "ErdosSzekeres.TurnSequenceAllowed"
+   ],
+   "deps_actual": [],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
   },
   {
    "name": "ErdosSzekeres.isStrongPolygonSet_union_of_cup_cap_common_extremes",
@@ -88269,6 +89684,237 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup",
+   "module": "ESBlueprint.B.NotContainsCapFourEndingCupLayerUnionLaterCup",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Strengthened cross-gap B: an exact ending-rank cup layer on a four-cap-free side joined to any ordered later cup has no four-cap under ambient OneChange and no five-cap. A hypothetical2|2 four-cap extends by a longest-cup predecessor to a five-cap.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.isMonochromaticChain_finFive_of_consecutive"
+    ],
+    "dangling-ok": "Approved R20 structural a5 tool permitting the proved uniform diagonal bound on layer/cup unions; right starting ranks are unnecessary, coupled cut remains open"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n j : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right : Finset (Fin n)}\n  (rank : Fin n → Nat),\n  (∀ (x : Fin n),\n      SetLike.instMembership.mem left x →\n        ∀ (y : Fin n), SetLike.instMembership.mem right y → instLTFin.lt x y) →\n    ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n      Not (ErdosSzekeres.ContainsCapSet χ left 4) →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union left right) 5) →\n          ErdosSzekeres.IsCupSet χ right →\n            (∀ (x : Fin n),\n                SetLike.instMembership.mem left x →\n                  Exists fun C =>\n                    And (Finset.instHasSubset.Subset C left)\n                      (And (Eq C.card (rank x))\n                        (And (ErdosSzekeres.IsCupSet χ C)\n                          (And (SetLike.instMembership.mem C x)\n                            (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x))))) →\n              (∀ (x : Fin n),\n                  SetLike.instMembership.mem left x →\n                    ∀ (C : Finset (Fin n)),\n                      Finset.instHasSubset.Subset C left →\n                        ErdosSzekeres.IsCupSet χ C →\n                          SetLike.instMembership.mem C x →\n                            (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x) →\n                              instLENat.le C.card (rank x)) →\n                Not\n                  (ErdosSzekeres.ContainsCapSet χ\n                    (Finset.instUnion.union (Finset.filter (fun x => Eq (rank x) j) left) right) 4)",
+   "type_hash": "74e49008b8f60c59",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.isMonochromaticChain_finFive_of_consecutive"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._simp_1_1",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._simp_1_2",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_3",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_4",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_5",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_6",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_7",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._simp_1_8",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._simp_1_9",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_10",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_11",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_12",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_13",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_14",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_15",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_16",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_17",
+    "ErdosSzekeres.notContainsCapFour_endingCupLayer_union_laterCup._proof_1_18"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ",
+   "module": "ESBlueprint.B.NotContainsCapSetEndingCupRankLayerOfNoCapSucc",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Exact ending-cup rank layers reduce the excluded cap size by one: equal first two ranks force a longest-cup predecessor cap-turn, extending any k-cap to a forbidden (k+1)-cap, uniformly for k≥2.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq"
+    ],
+    "dangling-ok": "Approved R20 reusable structural tools for general a≥5; cap-arity reduction explains the layer invariant, coupled polygon deficiency remains open"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n j k : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} (rank : Fin n → Nat),\n  instLENat.le 2 k →\n    ErdosSzekeres.OneChangeOn χ s →\n      Not (ErdosSzekeres.ContainsCapSet χ s (instHAdd.hAdd k 1)) →\n        (∀ (x : Fin n),\n            SetLike.instMembership.mem s x →\n              Exists fun C =>\n                And (Finset.instHasSubset.Subset C s)\n                  (And (Eq C.card (rank x))\n                    (And (ErdosSzekeres.IsCupSet χ C)\n                      (And (SetLike.instMembership.mem C x)\n                        (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x))))) →\n          (∀ (x : Fin n),\n              SetLike.instMembership.mem s x →\n                ∀ (C : Finset (Fin n)),\n                  Finset.instHasSubset.Subset C s →\n                    ErdosSzekeres.IsCupSet χ C →\n                      SetLike.instMembership.mem C x →\n                        (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x) →\n                          instLENat.le C.card (rank x)) →\n            Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => Eq (rank x) j) s) k)",
+   "type_hash": "1c666a869b5bd8c5",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._simp_1_1",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._simp_1_2",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_3",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_4",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_5",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_6",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_7",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_8",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_9",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_10",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_11",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_12",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_13",
+    "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ._proof_1_14"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.notContainsStrongPolygonSet_of_no_capSucc_no_cup",
+   "module": "ESBlueprint.B.NotContainsStrongPolygonSetOfNoCapSuccNoCup",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A support avoiding a(j+1)-cap and a u-cup avoids a strong polygon of u+j-2 points, for j,u at least two and without OneChange. Canonical cap-colored interiors consume at most j-2 vertices and leave a forbidden u-cup. This makes the a5 individual-side polygon bound automatic and isolates the crossing-set obstruction.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn"
+    ],
+    "dangling-ok": "Approved R20 reusable strong-set size interpretation for all cap bounds; proves why a5 polygon-dependent savings must involve crossing sets."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n j u : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  instLENat.le 2 j →\n    instLENat.le 2 u →\n      Not (ErdosSzekeres.ContainsCapSet χ s (instHAdd.hAdd j 1)) →\n        Not (ErdosSzekeres.ContainsCupSet χ s u) →\n          Not (ErdosSzekeres.ContainsStrongPolygonSet χ s (instHSub.hSub (instHAdd.hAdd u j) 2))",
+   "type_hash": "4f6d1fea8323ea84",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.notContainsStrongPolygonSet_of_no_capSucc_no_cup._proof_1_1",
+    "ErdosSzekeres.notContainsStrongPolygonSet_of_no_capSucc_no_cup._proof_1_2",
+    "ErdosSzekeres.notContainsStrongPolygonSet_of_no_capSucc_no_cup.match_1_3",
+    "ErdosSzekeres.notContainsStrongPolygonSet_of_no_capSucc_no_cup._proof_1_5",
+    "ErdosSzekeres.notContainsStrongPolygonSet_of_no_capSucc_no_cup._proof_1_6",
+    "ErdosSzekeres.notContainsStrongPolygonSet_of_no_capSucc_no_cup.match_1_7",
+    "ErdosSzekeres.notContainsStrongPolygonSet_of_no_capSucc_no_cup._proof_1_9"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ",
+   "module": "ESBlueprint.B.OrderedTwoSideSquareBoundOfNoCupSucc",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "An ordered union of two four-cap-free sides, with OneChange, no five-cap and cup size at most c, has at most c squared vertices. Exact endpoint rank fibers have triangular lower capacities; cross-gap compatibility makes the two top fibers share a single cup budget.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.isMonochromaticChain_finFive_of_consecutive"
+    ],
+    "dangling-ok": "Approved R20 reusable a5 structure: ordinary square bound has a rank-layer proof, while the polygon-dependent c-1 deficiency and coupled cut remain open."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n c : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right : Finset (Fin n)},\n  instLENat.le 2 c →\n    (∀ (x : Fin n),\n        SetLike.instMembership.mem left x →\n          ∀ (y : Fin n), SetLike.instMembership.mem right y → instLTFin.lt x y) →\n      ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union left right) 5) →\n          Not (ErdosSzekeres.ContainsCapSet χ left 4) →\n            Not (ErdosSzekeres.ContainsCapSet χ right 4) →\n              Not\n                  (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union left right)\n                    (instHAdd.hAdd c 1)) →\n                instLENat.le (Finset.instUnion.union left right).card (instHMul.hMul c c)",
+   "type_hash": "aec659557232639f",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.isMonochromaticChain_finFive_of_consecutive"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._simp_1_1",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._simp_1_2",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_3",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_4",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_5",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_6",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_7",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._simp_1_8",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._simp_1_9",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_10",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_11",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_12",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_13",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_14",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_15",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_16",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_17",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_18",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_19",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_20",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_21",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_22",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_23",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_24",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_25",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_26",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_27",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_28",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_29",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_30",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_31",
+    "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ._proof_1_32"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
   },
   {
    "name": "ErdosSzekeres.rank_pair_card_ge_sum_disjoint_group_charges",
@@ -88896,6 +90542,165 @@
    "opened": "2026-10-03"
   },
   {
+   "name": "ErdosSzekeres.startingCupLayer_of_no_capFour",
+   "module": "ESBlueprint.B.StartingCupLayerOfNoCapFour",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Starting-layer mirror of L1: under OneChange and no four-cap, each exact longest-starting-cup rank fiber is a cup with at most its rank many points. Profiles are explicitly attained and maximal over endpoint-containing starting cups.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.isMonochromaticChain_finFour_of_outer_eq"
+    ],
+    "dangling-ok": "Approved R20 reusable mirrored layer tool for both cap-free gap sides and cross-gap a5 arguments; coupled cut remains open"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n j : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} (rank : Fin n → Nat),\n  ErdosSzekeres.OneChangeOn χ s →\n    Not (ErdosSzekeres.ContainsCapSet χ s 4) →\n      (∀ (x : Fin n),\n          SetLike.instMembership.mem s x →\n            Exists fun C =>\n              And (Finset.instHasSubset.Subset C s)\n                (And (Eq C.card (rank x))\n                  (And (ErdosSzekeres.IsCupSet χ C)\n                    (And (SetLike.instMembership.mem C x)\n                      (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le x y))))) →\n        (∀ (x : Fin n),\n            SetLike.instMembership.mem s x →\n              ∀ (C : Finset (Fin n)),\n                Finset.instHasSubset.Subset C s →\n                  ErdosSzekeres.IsCupSet χ C →\n                    SetLike.instMembership.mem C x →\n                      (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le x y) →\n                        instLENat.le C.card (rank x)) →\n          And (ErdosSzekeres.IsCupSet χ (Finset.filter (fun x => Eq (rank x) j) s))\n            (instLENat.le (Finset.filter (fun x => Eq (rank x) j) s).card j)",
+   "type_hash": "d3a8de630d0f75e8",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.isMonochromaticChain_finFour_of_outer_eq"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._simp_1_1",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._simp_1_2",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._proof_1_3",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._proof_1_4",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._proof_1_5",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._proof_1_6",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._proof_1_7",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._simp_1_8",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._simp_1_9",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._proof_1_10",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._proof_1_11",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._proof_1_12",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._proof_1_13",
+    "ErdosSzekeres.startingCupLayer_of_no_capFour._proof_1_14"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.strongPolygonSet_capMiddle_partition_of_no_cap_succ",
+   "module": "ESBlueprint.B.StrongPolygonSetCapMiddlePartitionOfNoCapSucc",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Canonical shape of a strong set: the cap-colored interior middles together with the extreme endpoints form a cap, the complement of those middles forms a cup, and avoiding a cap of size j+1 bounds the interior cap middles by j−2. Middle determinacy alone suffices; no OneChange hypothesis is needed.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn"
+    ],
+    "dangling-ok": "Reusable strong-set normal form for the approved R20 a≥5 tools; future multi-apex extensions and cup-layer arguments, no uniform a5 bound claimed"
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n j : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {l r : Fin n},\n  instLENat.le 2 j →\n    SetLike.instMembership.mem s l →\n      SetLike.instMembership.mem s r →\n        instLTFin.lt l r →\n          (∀ (x : Fin n), SetLike.instMembership.mem s x → instLEFin.le l x) →\n            (∀ (x : Fin n), SetLike.instMembership.mem s x → instLEFin.le x r) →\n              ErdosSzekeres.IsStrongPolygonSet χ s →\n                Not (ErdosSzekeres.ContainsCapSet χ s (instHAdd.hAdd j 1)) →\n                  have capMiddle :=\n                    Finset.filter\n                      (fun x =>\n                        And (instLTFin.lt l x)\n                          (And (instLTFin.lt x r)\n                            (Eq (ErdosSzekeres.CupCap.totalColor χ l x r)\n                              ErdosSzekeres.Turn.right)))\n                      s;\n                  And (instLENat.le capMiddle.card (instHSub.hSub j 2))\n                    (And\n                      (ErdosSzekeres.IsCupSet χ\n                        (Finset.filter (fun x => Not (SetLike.instMembership.mem capMiddle x)) s))\n                      (ErdosSzekeres.IsCapSet χ\n                        (Finset.instInsert.insert l (Finset.instInsert.insert r capMiddle))))",
+   "type_hash": "875d3f763cb1a39a",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.strongPolygonSet_capMiddle_partition_of_no_cap_succ._proof_1_1",
+    "ErdosSzekeres.strongPolygonSet_capMiddle_partition_of_no_cap_succ._proof_1_2"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps",
+   "module": "ESBlueprint.B.StrongPolygonSetTwoCapMiddlesOfSideThreeCaps",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "A strong k-set supported by side three-caps has exactly two canonical cap-colored interior points, a cup of size k minus two and a four-cap sharing extrema, for k at least four. General strong-set shape bounds the cap interiors by two; any larger cup portion would grow by cup killing to a forbidden k-cup.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn",
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+     "ErdosSzekeres.isMonochromaticChain_finFour_of_outer_eq"
+    ],
+    "dangling-ok": "Approved R20 reusable a5 strong-set classification outside cup-killing boundaries; cross-gap four-cap hitting and tight coupled E budget remain open."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n k : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right s : Finset (Fin n)} {l r : Fin n},\n  instLENat.le 4 k →\n    (∀ (x : Fin n),\n        SetLike.instMembership.mem left x →\n          ∀ (y : Fin n), SetLike.instMembership.mem right y → instLTFin.lt x y) →\n      ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union left right) 5) →\n          Not (ErdosSzekeres.ContainsCapSet χ left 4) →\n            Not (ErdosSzekeres.ContainsCapSet χ right 4) →\n              Not (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union left right) k) →\n                Finset.instHasSubset.Subset s (Finset.instUnion.union left right) →\n                  Eq s.card k →\n                    ErdosSzekeres.IsStrongPolygonSet χ s →\n                      SetLike.instMembership.mem s l →\n                        SetLike.instMembership.mem s r →\n                          instLTFin.lt l r →\n                            (∀ (x : Fin n), SetLike.instMembership.mem s x → instLEFin.le l x) →\n                              (∀ (x : Fin n), SetLike.instMembership.mem s x → instLEFin.le x r) →\n                                (∀ (x : Fin n),\n                                    SetLike.instMembership.mem s x →\n                                      SetLike.instMembership.mem left x →\n                                        Exists fun a =>\n                                          And (SetLike.instMembership.mem left a)\n                                            (Exists fun b =>\n                                              And (SetLike.instMembership.mem left b)\n                                                (Exists fun hab =>\n                                                  Exists fun hbx =>\n                                                    Eq\n                                                      (χ\n                                                        { i := a, j := b, k := x, hij := hab,\n                                                          hjk := hbx })\n                                                      ErdosSzekeres.Turn.right))) →\n                                  (∀ (x : Fin n),\n                                      SetLike.instMembership.mem s x →\n                                        SetLike.instMembership.mem right x →\n                                          Exists fun a =>\n                                            And (SetLike.instMembership.mem right a)\n                                              (Exists fun b =>\n                                                And (SetLike.instMembership.mem right b)\n                                                  (Exists fun hxa =>\n                                                    Exists fun hab =>\n                                                      Eq\n                                                        (χ\n                                                          { i := x, j := a, k := b, hij := hxa,\n                                                            hjk := hab })\n                                                        ErdosSzekeres.Turn.right))) →\n                                    have B :=\n                                      Finset.filter\n                                        (fun x =>\n                                          And (instLTFin.lt l x)\n                                            (And (instLTFin.lt x r)\n                                              (Eq (ErdosSzekeres.CupCap.totalColor χ l x r)\n                                                ErdosSzekeres.Turn.right)))\n                                        s;\n                                    And (Eq B.card 2)\n                                      (And\n                                        (Eq\n                                          (Finset.filter\n                                              (fun x => Not (SetLike.instMembership.mem B x))\n                                              s).card\n                                          (instHSub.hSub k 2))\n                                        (And\n                                          (ErdosSzekeres.IsCupSet χ\n                                            (Finset.filter\n                                              (fun x => Not (SetLike.instMembership.mem B x)) s))\n                                          (And\n                                            (Eq\n                                              (Finset.instInsert.insert l\n                                                  (Finset.instInsert.insert r B)).card\n                                              4)\n                                            (ErdosSzekeres.IsCapSet χ\n                                              (Finset.instInsert.insert l\n                                                (Finset.instInsert.insert r B))))))",
+   "type_hash": "65e61fa9648a47ea",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.FinsetPolygon.isStrongPolygonSet_iff_isMiddleDeterminedOn",
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq",
+    "ErdosSzekeres.isMonochromaticChain_finFour_of_outer_eq"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_1",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_2",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._simp_1_3",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._simp_1_4",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_5",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_6",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_7",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_8",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_9",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_10",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_11",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_12",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_13",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_14",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps.match_1_15",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_17",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_18",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_19",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_20",
+    "ErdosSzekeres.strongPolygonSet_two_capMiddles_of_side_three_caps._proof_1_21"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
    "name": "ErdosSzekeres.threeCupBlocks_card_le_of_decomposable_no_capFour_no_strong_of_pair_bound",
    "module": "ESBlueprint.B.ThreeCupBlocksCardLeOfDecomposableNoCapFourNoStrongOfPairBound",
    "ws": "B",
@@ -89141,6 +90946,74 @@
    "opened": "2026-10-03"
   },
   {
+   "name": "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups",
+   "module": "ESBlueprint.B.TwoCapFreeSidesCardAddLeOfShortCups",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Uniform a5 easy-regime budget: under OneChange and no four-cap on either side, with global cup size at most c, both sides being one cup level short or either side being two levels short bounds their total by c squared minus c plus one. Ordinary triangular side capacities prove the exact budget without a polygon or gap-order assumption.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.CupCap.cup_cap",
+     "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq"
+    ],
+    "dangling-ok": "Approved R20 reusable formalization of documented a5 L2/C easy cases; explains why coupled polygon savings are needed only when both sides have(c-1)-cups and one has a c-cup."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n c : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right : Finset (Fin n)},\n  instLENat.le 3 c →\n    ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n      Not (ErdosSzekeres.ContainsCapSet χ left 4) →\n        Not (ErdosSzekeres.ContainsCapSet χ right 4) →\n          Not\n              (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union left right)\n                (instHAdd.hAdd c 1)) →\n            Or\n                (And (Not (ErdosSzekeres.ContainsCupSet χ left c))\n                  (Not (ErdosSzekeres.ContainsCupSet χ right c)))\n                (Or (Not (ErdosSzekeres.ContainsCupSet χ left (instHSub.hSub c 1)))\n                  (Not (ErdosSzekeres.ContainsCupSet χ right (instHSub.hSub c 1)))) →\n              instLENat.le (instHAdd.hAdd left.card right.card)\n                (instHAdd.hAdd (instHSub.hSub (instHMul.hMul c c) c) 1)",
+   "type_hash": "af4b26c8c8ac5e22",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.CupCap.cup_cap",
+    "ErdosSzekeres.TurnSequenceAllowed.all_eq_of_outer_eq"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_1",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_2",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_3",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_4",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._simp_1_5",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._simp_1_6",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_7",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_8",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_9",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_10",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_11",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_12",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_13",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_14",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_15",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_16",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_17",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_18",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_19",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_20",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_21",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_22",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_23",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_24",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_25",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_26",
+    "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups._proof_1_27"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
    "name": "ErdosSzekeres.twoCupBlocks_card_and_extensions_of_oneChange_no_capFour_no_cup",
    "module": "ESBlueprint.B.TwoCupBlocksCardAndExtensionsOfOneChangeNoCapFourNoCup",
    "ws": "B",
@@ -89192,6 +91065,394 @@
    "falsify": null,
    "lock_ok": true,
    "opened": "2026-10-03"
+  },
+  {
+   "name": "ErdosSzekeres.two_full_cap_blocks_context_history_extension",
+   "module": "ESBlueprint.B.TwoFullCapBlocksContextHistoryExtension",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every admissible two-full-cap core at p>=5 extends exactly to three actual upper singleton ancestors, preserving decomposition, realization and ranks, and satisfying the literal S^p 1L3L2L S^p context with maxima111.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.decomposable_coloring_pushforward_exists",
+     "ErdosSzekeres.deepSplit_profile_gluing_exists",
+     "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff",
+     "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit",
+     "ErdosSzekeres.IsDecomposable.isSweepRealizable"
+    ],
+    "dangling-ok": "General actual-reach interface for the persistent Q4 two-cap interval-root obstruction; any admissible core is retained, with no finite-instance node or B/backend-equivalence assertion."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (p : Nat),\n  instLENat.le 5 p →\n    ∀ (χ : ErdosSzekeres.TripleColoring (instHMul.hMul 2 p)),\n      ErdosSzekeres.IsDecomposable χ →\n        ErdosSzekeres.IsCapSet χ (Finset.filter (fun i => instLTNat.lt i.val p) Finset.univ) →\n          ErdosSzekeres.IsCapSet χ (Finset.filter (fun i => instLENat.le p i.val) Finset.univ) →\n            (∀ (T : Finset (Fin (instHMul.hMul 2 p))),\n                ErdosSzekeres.IsCupSet χ T → instLENat.le T.card 4) →\n              (∀ (T : Finset (Fin (instHMul.hMul 2 p))),\n                  ErdosSzekeres.IsCapSet χ T → instLENat.le T.card p) →\n                Not (ErdosSzekeres.ContainsStrongPolygonSet χ Finset.univ (instHAdd.hAdd p 1)) →\n                  have σ :=\n                    { a := instHAdd.hAdd p 1, u := 5, k := instHAdd.hAdd p 1,\n                      word :=\n                        instHAppendOfAppend.hAppend\n                          (instHAppendOfAppend.hAppend\n                            (List.replicate p ErdosSzekeres.Ctx.Letter.child)\n                            (List.cons (ErdosSzekeres.Ctx.Letter.ext 1 ErdosSzekeres.Ctx.Side.lower)\n                              (List.cons\n                                (ErdosSzekeres.Ctx.Letter.ext 3 ErdosSzekeres.Ctx.Side.lower)\n                                (List.cons\n                                  (ErdosSzekeres.Ctx.Letter.ext 2 ErdosSzekeres.Ctx.Side.lower)\n                                  List.nil))))\n                          (List.replicate p ErdosSzekeres.Ctx.Letter.child),\n                      maxima := List.cons 1 (List.cons 1 (List.cons 1 List.nil)) };\n                  And σ.WellFormed\n                    (Exists fun f =>\n                      And\n                        (∀ (i : Fin (instHMul.hMul 2 p)),\n                          Eq\n                            ((instFunLikeOrderEmbedding (Fin (instHMul.hMul 2 p))\n                                    (Fin (instHAdd.hAdd (instHMul.hMul 2 p) 3))).coe\n                                f i).val\n                            (ite (instLTNat.lt i.val p) i.val (instHAdd.hAdd i.val 3)))\n                        (Exists fun ψ =>\n                          And (Eq (ψ.restrict f) χ)\n                            (And (ErdosSzekeres.IsDecomposable ψ)\n                              (And (ErdosSzekeres.IsSweepRealizable ψ)\n                                (And\n                                  (∀ (T : Finset (Fin (instHAdd.hAdd (instHMul.hMul 2 p) 3))),\n                                    ErdosSzekeres.IsCupSet ψ T → instLENat.le T.card 4)\n                                  (And\n                                    (∀ (T : Finset (Fin (instHAdd.hAdd (instHMul.hMul 2 p) 3))),\n                                      ErdosSzekeres.IsCapSet ψ T → instLENat.le T.card p)\n                                    (And\n                                      (Not\n                                        (ErdosSzekeres.ContainsStrongPolygonSet ψ Finset.univ\n                                          (instHAdd.hAdd p 1)))\n                                      (And\n                                        (ErdosSzekeres.Ctx.Satisfies ψ\n                                          (Finset.image\n                                            ((instFunLikeOrderEmbedding (Fin (instHMul.hMul 2 p))\n                                                  (Fin (instHAdd.hAdd (instHMul.hMul 2 p) 3))).coe\n                                              f)\n                                            Finset.univ)\n                                          σ)\n                                        (Exists fun a =>\n                                          Exists fun b =>\n                                            Exists fun c =>\n                                              And (Eq a.val p)\n                                                (And (Eq b.val (instHAdd.hAdd p 1))\n                                                  (And (Eq c.val (instHAdd.hAdd p 2))\n                                                    (And\n                                                      (ErdosSzekeres.HasDeepBelowSplit ψ\n                                                        (Finset.image\n                                                          ((instFunLikeOrderEmbedding\n                                                                (Fin (instHMul.hMul 2 p))\n                                                                (Fin\n                                                                  (instHAdd.hAdd (instHMul.hMul 2 p)\n                                                                    3))).coe\n                                                            f)\n                                                          Finset.univ)\n                                                        (Finset.instSingleton.singleton a))\n                                                      (And\n                                                        (ErdosSzekeres.HasDeepBelowSplit ψ\n                                                          (Finset.instInsert.insert a\n                                                            (Finset.image\n                                                              ((instFunLikeOrderEmbedding\n                                                                    (Fin (instHMul.hMul 2 p))\n                                                                    (Fin\n                                                                      (instHAdd.hAdd\n                                                                        (instHMul.hMul 2 p) 3))).coe\n                                                                f)\n                                                              Finset.univ))\n                                                          (Finset.instSingleton.singleton c))\n                                                        (ErdosSzekeres.HasDeepBelowSplit ψ\n                                                          (Finset.instInsert.insert c\n                                                            (Finset.instInsert.insert a\n                                                              (Finset.image\n                                                                ((instFunLikeOrderEmbedding\n                                                                      (Fin (instHMul.hMul 2 p))\n                                                                      (Fin\n                                                                        (instHAdd.hAdd\n                                                                          (instHMul.hMul 2 p)\n                                                                          3))).coe\n                                                                  f)\n                                                                Finset.univ)))\n                                                          (Finset.instSingleton.singleton\n                                                            b)))))))))))))))",
+   "type_hash": "1c941c8bec8aa44a",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.decomposable_coloring_pushforward_exists",
+    "ErdosSzekeres.deepSplit_profile_gluing_exists",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff",
+    "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit",
+    "ErdosSzekeres.IsDecomposable.isSweepRealizable"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._simp_1_1",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._simp_1_2",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_3",
+    "ErdosSzekeres.deepSplit_profile_gluing_exists",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_4",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_5",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_6",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_7",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_8",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_9",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_10",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_11",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_12",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_13",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_15",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_14",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_18",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_17",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_16",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_19",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_20",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_21",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._simp_1_22",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._simp_1_23",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_24",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_25",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_26",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_27",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_28",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_29",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_30",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_31",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_32",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_33",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_34",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_35",
+    "ErdosSzekeres.decomposable_coloring_pushforward_exists",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_36",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_37",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_38",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_39",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_40",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_41",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_42",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_43",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_44",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_45",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_46",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_47",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_48",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_49",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_50",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_51",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_52",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_53",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_54",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_55",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_56",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_59",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_60",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_61",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_62",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_63",
+    "ErdosSzekeres.ctx_satisfies_of_deepBelowSplit",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_64",
+    "ErdosSzekeres.Ctx.Context.pos_part_eq",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._simp_1_65",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_71",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_72",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_73",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_74",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_75",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_76",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_77",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_78",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._proof_1_79",
+    "ErdosSzekeres.two_full_cap_blocks_context_history_extension._simp_1_80"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.two_full_cap_blocks_family_exists",
+   "module": "ESBlueprint.B.TwoFullCapBlocksFamilyExists",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "For every p at least two, construct a decomposable sweep-realizable coloring of two full ordered p-cap blocks with cap rank at most p, cup rank at most four and strong rank at most max(4,p); for p at least four every nonempty deep root has a four-cup and both interleaving gap witnesses.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.decomposable_coloring_pushforward_exists",
+     "ErdosSzekeres.deepSplit_profile_gluing_exists",
+     "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff",
+     "ErdosSzekeres.two_full_cap_blocks_root_noninterval",
+     "ErdosSzekeres.IsDecomposable.isSweepRealizable"
+    ],
+    "dangling-ok": "General attaining family needed for the persistent Q4 interval-root obstruction and the cup-four gate lower mechanism; induction bases are internal ingredients, with no standalone finite-instance target or closed context-bound equivalence."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ (p : Nat),\n  instLENat.le 2 p →\n    Exists fun χ =>\n      And (ErdosSzekeres.IsDecomposable χ)\n        (And (ErdosSzekeres.IsSweepRealizable χ)\n          (And\n            (ErdosSzekeres.IsCapSet χ (Finset.filter (fun i => instLTNat.lt i.val p) Finset.univ))\n            (And\n              (ErdosSzekeres.IsCapSet χ (Finset.filter (fun i => instLENat.le p i.val) Finset.univ))\n              (And\n                (∀ (T : Finset (Fin (instHMul.hMul 2 p))),\n                  ErdosSzekeres.IsCupSet χ T → instLENat.le T.card 4)\n                (And\n                  (∀ (T : Finset (Fin (instHMul.hMul 2 p))),\n                    ErdosSzekeres.IsCapSet χ T → instLENat.le T.card p)\n                  (And\n                    (Not\n                      (ErdosSzekeres.ContainsStrongPolygonSet χ Finset.univ\n                        (instHAdd.hAdd (Nat.instMax.max 4 p) 1)))\n                    (instLENat.le 4 p →\n                      ∀ (lower upper : Finset (Fin (instHMul.hMul 2 p))),\n                        Eq (Finset.instUnion.union lower upper) Finset.univ →\n                          lower.Nonempty →\n                            upper.Nonempty →\n                              ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n                                And (ErdosSzekeres.ContainsCupSet χ Finset.univ 4)\n                                  (And\n                                    (Exists fun x =>\n                                      Exists fun y =>\n                                        Exists fun z =>\n                                          And (SetLike.instMembership.mem lower x)\n                                            (And (SetLike.instMembership.mem upper y)\n                                              (And (SetLike.instMembership.mem lower z)\n                                                (And (instLTFin.lt x y) (instLTFin.lt y z)))))\n                                    (Exists fun x =>\n                                      Exists fun y =>\n                                        Exists fun z =>\n                                          And (SetLike.instMembership.mem upper x)\n                                            (And (SetLike.instMembership.mem lower y)\n                                              (And (SetLike.instMembership.mem upper z)\n                                                (And (instLTFin.lt x y)\n                                                  (instLTFin.lt y z)))))))))))))",
+   "type_hash": "13c4148cbefaef7f",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.decomposable_coloring_pushforward_exists",
+    "ErdosSzekeres.deepSplit_profile_gluing_exists",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval",
+    "ErdosSzekeres.IsDecomposable.isSweepRealizable"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_1",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_2",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._simp_1_3",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._simp_1_4",
+    "ErdosSzekeres.deepSplit_profile_gluing_exists",
+    "ErdosSzekeres.deepSplit_finite_endpoint_constraints_iff",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_5",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_6",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_7",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_8",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_9",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_10",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_11",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_12",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_13",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_14",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._simp_1_15",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._simp_1_16",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_17",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_18",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_19",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_20",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_21",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_22",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_23",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_24",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_25",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_26",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_27",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_28",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_29",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_30",
+    "ErdosSzekeres.deepSplit_two_endpoint_extensions",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_32",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_33",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_34",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_35",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_37",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_36",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_41",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_40",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_39",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_38",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_42",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_43",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_44",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_45",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_46",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_47",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_48",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_49",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_50",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_51",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_52",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_53",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_54",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_55",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_56",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_57",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._simp_1_58",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._simp_1_59",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_60",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_61",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_62",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_63",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_64",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_65",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_66",
+    "ErdosSzekeres.decomposable_coloring_pushforward_exists",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_67",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_68",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_69",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_70",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_71",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_72",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_73",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_74",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_75",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_76",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_77",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_78",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._simp_1_79",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_80",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_81",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_82",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_83",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_84",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_85",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_86",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_87",
+    "ErdosSzekeres.two_full_cap_blocks_family_exists._proof_1_88",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.two_full_cap_blocks_root_noninterval",
+   "module": "ESBlueprint.B.TwoFullCapBlocksRootNoninterval",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "Every nonempty deep-below root of two disjoint ordered full p-cap blocks, p>=4, avoiding a (p+1)-cap and a (p+1)-strong set contains a four-cup and both lower-upper-lower and upper-lower-upper sweep subsequences. The subsequences witness a gap in each root child, certifying the general forced noninterval root behind the R24 context-bound obstruction.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.two_full_cap_blocks_root_structure",
+     "ErdosSzekeres.HasDeepBelowSplit.lower_mem_cap_isSweepEndpoint"
+    ],
+    "dangling-ok": "General geometric obstruction needed for R24 persistent interval-root failure and the cup-three gate upper; later profile and B interfaces remain separate."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n p : Nat} {χ : ErdosSzekeres.TripleColoring n} {lower upper Z₀ Z₁ : Finset (Fin n)},\n  instLENat.le 4 p →\n    ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n      lower.Nonempty →\n        upper.Nonempty →\n          Disjoint Z₀ Z₁ →\n            Eq (Finset.instUnion.union Z₀ Z₁) (Finset.instUnion.union lower upper) →\n              (∀ (x : Fin n),\n                  SetLike.instMembership.mem Z₀ x →\n                    ∀ (y : Fin n), SetLike.instMembership.mem Z₁ y → instLTFin.lt x y) →\n                ErdosSzekeres.IsCapSet χ Z₀ →\n                  ErdosSzekeres.IsCapSet χ Z₁ →\n                    Eq Z₀.card p →\n                      Eq Z₁.card p →\n                        Not\n                            (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union lower upper)\n                              (instHAdd.hAdd p 1)) →\n                          Not\n                              (ErdosSzekeres.ContainsStrongPolygonSet χ\n                                (Finset.instUnion.union lower upper) (instHAdd.hAdd p 1)) →\n                            And\n                              (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union lower upper)\n                                4)\n                              (And\n                                (Exists fun x =>\n                                  Exists fun y =>\n                                    Exists fun z =>\n                                      And (SetLike.instMembership.mem lower x)\n                                        (And (SetLike.instMembership.mem upper y)\n                                          (And (SetLike.instMembership.mem lower z)\n                                            (And (instLTFin.lt x y) (instLTFin.lt y z)))))\n                                (Exists fun x =>\n                                  Exists fun y =>\n                                    Exists fun z =>\n                                      And (SetLike.instMembership.mem upper x)\n                                        (And (SetLike.instMembership.mem lower y)\n                                          (And (SetLike.instMembership.mem upper z)\n                                            (And (instLTFin.lt x y) (instLTFin.lt y z))))))",
+   "type_hash": "50cecd70f72957e5",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.two_full_cap_blocks_root_structure",
+    "ErdosSzekeres.HasDeepBelowSplit.lower_mem_cap_isSweepEndpoint"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.two_full_cap_blocks_root_structure",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._simp_1_1",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._simp_1_2",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_3",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_4",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_5",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._simp_1_6",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._simp_1_7",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_8",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_9",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_10",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_11",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_12",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_13",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_14",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_15",
+    "ErdosSzekeres.two_full_cap_blocks_root_noninterval._proof_1_16"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
+  },
+  {
+   "name": "ErdosSzekeres.two_full_cap_blocks_root_structure",
+   "module": "ESBlueprint.B.TwoFullCapBlocksRootStructure",
+   "ws": "B",
+   "kind": "formalization",
+   "description": "At a nonempty deep-below root splitting the union of two disjoint full p-cap blocks, avoiding both a (p+1)-cap and a (p+1)-strong set forces the lower child to have exactly two points in each block and be a four-cap; the upper child has 2p-4 points and cap rank exactly p-2. This is the general root mechanism behind the R24 persistent interval-normal-form obstruction; no sweep separation between the blocks is needed for the incidence conclusion.",
+   "tags": {
+    "node": "",
+    "ws": "B",
+    "kind": "formalization",
+    "depends": [
+     "ErdosSzekeres.HasDeepBelowSplit.cap_inter_lower_card_le_two",
+     "ErdosSzekeres.HasDeepBelowSplit.containsStrongPolygonSet_of_cup_cap"
+    ],
+    "dangling-ok": "Required general root structure for R24 two-cap-block exact capacity and persistent noninterval obstruction; geometric endpoint lemmas connect these incidences to the later interval exclusion."
+   },
+   "tag_errors": [],
+   "type_pp": "∀ {n p : Nat} {χ : ErdosSzekeres.TripleColoring n} {lower upper Z₀ Z₁ : Finset (Fin n)},\n  instLENat.le 4 p →\n    ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n      lower.Nonempty →\n        upper.Nonempty →\n          Disjoint Z₀ Z₁ →\n            Eq (Finset.instUnion.union Z₀ Z₁) (Finset.instUnion.union lower upper) →\n              ErdosSzekeres.IsCapSet χ Z₀ →\n                ErdosSzekeres.IsCapSet χ Z₁ →\n                  Eq Z₀.card p →\n                    Eq Z₁.card p →\n                      Not\n                          (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union lower upper)\n                            (instHAdd.hAdd p 1)) →\n                        Not\n                            (ErdosSzekeres.ContainsStrongPolygonSet χ\n                              (Finset.instUnion.union lower upper) (instHAdd.hAdd p 1)) →\n                          And (Eq (Finset.instInter.inter Z₀ lower).card 2)\n                            (And (Eq (Finset.instInter.inter Z₁ lower).card 2)\n                              (And (Eq lower.card 4)\n                                (And (ErdosSzekeres.IsCapSet χ lower)\n                                  (And (Eq upper.card (instHSub.hSub (instHMul.hMul 2 p) 4))\n                                    (And (ErdosSzekeres.ContainsCapSet χ upper (instHSub.hSub p 2))\n                                      (Not\n                                        (ErdosSzekeres.ContainsCapSet χ upper\n                                          (instHSub.hSub p 1))))))))",
+   "type_hash": "84e6237f7f3a6146",
+   "sorry": false,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "nonstandard_axioms": [],
+   "deps_declared": [
+    "ErdosSzekeres.HasDeepBelowSplit.cap_inter_lower_card_le_two",
+    "ErdosSzekeres.HasDeepBelowSplit.containsStrongPolygonSet_of_cup_cap"
+   ],
+   "deps_actual": [
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._simp_1_1",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._simp_1_2",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_3",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_4",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_5",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_6",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_7",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_8",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_9",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_10",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_11",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._simp_1_12",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._simp_1_13",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_14",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_15",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_16",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_17",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_18",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_19",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_20",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_21",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_22",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_23",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_24",
+    "ErdosSzekeres.two_full_cap_blocks_root_structure._proof_1_25"
+   ],
+   "helpers": [],
+   "status": "closed",
+   "ready": false,
+   "blocked_by": [],
+   "uncovered_axioms": [],
+   "falsify": null,
+   "lock_ok": true,
+   "opened": "2026-10-06"
   },
   {
    "name": "ErdosSzekeres.card_le_choose_of_oneChange_no_capFour_no_strong",
@@ -99054,6 +101315,7 @@
    "ESBlueprint.B.CardLeTwoChooseAddOneOfDecomposableGapDeepSplitNoCapFiveNoStrongOfInputs": "355e7522b384b992",
    "ESBlueprint.B.CardLeTwoChooseOfOneChangeGapDeepSplitNoCapFiveNoCupNoStrong": "8064dd3b57698630",
    "ESBlueprint.B.CardLtChooseOfOrderedCupPrefixNoCapFiveNoCupNoStrong": "60d269f0d9b53024",
+   "ESBlueprint.B.ContainsCapSetOrContainsCupSetOfOneChangeChooseLt": "028f0e27b7fd0704",
    "ESBlueprint.B.CtxAbsentFlankSwapCounterexample": "cac8408294cb110b",
    "ESBlueprint.B.CtxActiveBoundaryMarkerRankBudget": "ee707378f7c3696c",
    "ESBlueprint.B.CtxActiveBoundaryMarkerRankPairUnionBound": "d78d951df52a52ad",
@@ -99074,6 +101336,7 @@
    "ESBlueprint.B.CtxActualMarkerSaturatedLinearPotential": "a66a89d13fea3475",
    "ESBlueprint.B.CtxAllActiveCapacityThreeTwoMarkerTriangleBound": "b217c7fd7f27bee3",
    "ESBlueprint.B.CtxAllUnitSiblingAndPointCapacityZeroCounterexample": "cc428e92d06f3401",
+   "ESBlueprint.B.CtxAssignedLimitsOfDeepBelowSplit": "c0af37662a3a6905",
    "ESBlueprint.B.CtxAxisCapacityIntervalLowerBound": "71015810fc950b99",
    "ESBlueprint.B.CtxAxisRegionLimitsExact": "7ef6c558b00b0fea",
    "ESBlueprint.B.CtxBareTwoMarkerSharpPotential": "54e8424d5f4ece39",
@@ -99107,6 +101370,7 @@
    "ESBlueprint.B.CtxBoundAdditiveIntervalComplementSmallOuterAxis": "ed1f1db9442e5851",
    "ESBlueprint.B.CtxBoundAdditiveMultiRun": "3723748cdfb843c5",
    "ESBlueprint.B.CtxBoundAdditiveMultiRunOfMaximalSegmentFlipExchange": "0564b658a0687b2c",
+   "ESBlueprint.B.CtxBoundAdditiveMultiRunOfSingletonFlipExchange": "d3efa034eb15d06a",
    "ESBlueprint.B.CtxBoundAdditiveNearSaturatedIntervalComplement": "ab9f5ec9520ba8c5",
    "ESBlueprint.B.CtxBoundAdditivePrefixSuffix": "3cb91a3ae8d05d2d",
    "ESBlueprint.B.CtxBoundAdditiveSandwich112": "c4599c7840858bd3",
@@ -99307,6 +101571,7 @@
    "ESBlueprint.B.CtxPartBoundZeroOfSameSideLargeSiblingMaximum": "949853835e528d05",
    "ESBlueprint.B.CtxPartBoundZeroOfUnitGlobalAxisAndRemovedChild": "5859a4d9075afd2c",
    "ESBlueprint.B.CtxPartCapacityDropInClearInterval": "049fb450fd47eac8",
+   "ESBlueprint.B.CtxPartEndpointPathLifting": "f9532469eb05a140",
    "ESBlueprint.B.CtxPartEqualEndpointInteriorRanks": "a84a690524dafaea",
    "ESBlueprint.B.CtxPartLimitsLe": "667a1d6ec186ca82",
    "ESBlueprint.B.CtxPartNewMarkerNonmonotoneSaturatedPotential": "a807d74f60a48549",
@@ -99323,6 +101588,7 @@
    "ESBlueprint.B.CtxPositiveBoundAttainedByIntervalCut": "2658025138f179a8",
    "ESBlueprint.B.CtxPositiveBoundHasSameAxisSingleRunLeaf": "fba969ddfa6e21a7",
    "ESBlueprint.B.CtxPositivePartForcesUnsaturatedSameSideHistory": "20e501fa45ce3543",
+   "ESBlueprint.B.CtxProperPartZeroOfLargeSiblingMaximumAndOppositeGlobalTwo": "9a960b9a7c258483",
    "ESBlueprint.B.CtxPrunePartBoundOfAllTrackedRetained": "c7c9d6c0eff1e1b6",
    "ESBlueprint.B.CtxPrunePartProjectionOfRemovedWitness": "0d4270bc79b43b0f",
    "ESBlueprint.B.CtxPureExtensionsPositionMonotone": "7a03b303bf8acd1a",
@@ -99487,6 +101753,7 @@
    "ESBlueprint.B.CtxYoungestMarkerTripleFaceBoundOfAnchoredSquare": "66c0eef7e530e32e",
    "ESBlueprint.B.CtxYoungestMarkerTripleFacePotential": "fc4bf92034952d74",
    "ESBlueprint.B.CtxYoungestMiddleMarkerDoubledWidthBound": "899e7b03d68cfbee",
+   "ESBlueprint.B.CupLayerOfNoCapFour": "0dfba6b4e824a721",
    "ESBlueprint.B.DecomposableColoringPushforwardExists": "8499bd019ff4f7bf",
    "ESBlueprint.B.DecomposableStateUpperAll": "614f6c48c0469bc6",
    "ESBlueprint.B.DecomposableStateUpperAllOfBands": "568354981d4cf78a",
@@ -99494,21 +101761,37 @@
    "ESBlueprint.B.DecomposableThresholdCapacityPascalLeft": "86871726fc1e8409",
    "ESBlueprint.B.DecomposableThresholdFivePredOfSixLe": "3d39910f88c8515d",
    "ESBlueprint.B.DecomposableThresholdLowerExists": "9b5831a9507049cf",
+   "ESBlueprint.B.DecomposableThresholdSixPredPredOfSevenLe": "8857e0a3d947d529",
    "ESBlueprint.B.DecomposableThresholdSplitAttained": "78dbe5073a2af056",
    "ESBlueprint.B.DecomposableThresholdSplitLe": "f9325e14b9da599f",
+   "ESBlueprint.B.DeepBelowNoStrongAfterDeleteIffChildAndRankDrop": "99f1c3cb8b1ef7a9",
    "ESBlueprint.B.DeepSplitEndpointConstraintsIff": "b3bacbff8899d7bb",
+   "ESBlueprint.B.DeepSplitFiniteEndpointConstraintsIff": "e459bc9f235be0e8",
    "ESBlueprint.B.DeepSplitProfileGluingExists": "7cc81513de226717",
    "ESBlueprint.B.DeepSplitStrongAvoidanceIff": "7b890c21c2526852",
    "ESBlueprint.B.DeepSplitTwoEndpointExtensions": "3bd58b2538e6a777",
    "ESBlueprint.B.DiagonalCupBlocksForce4kkOfFiveLe": "67b2ff9d88d3e47e",
    "ESBlueprint.B.ExistsCapStartPeelOfOneChangeNoCapSuccNoCup": "25354ba858410a51",
+   "ESBlueprint.B.ExistsCupExtensionOfSideThreeCaps": "7e66b5d3a365d067",
    "ESBlueprint.B.ExistsCupStartLayersOfOneChangeNoCapFour": "386879e89235d937",
+   "ESBlueprint.B.ExistsEndingAndStartingCupRankProfiles": "5980d11abc1e1d36",
+   "ESBlueprint.B.IsCupSetCrossGapRankRestrictedUnion": "e3f2ebb5241a42f0",
    "ESBlueprint.B.IsCupSetIffNotContainsCapSetThree": "bc713fe5ebf3503f",
+   "ESBlueprint.B.IsCupSetInsertOfTwoLeftVertices": "0c91d79fc9453ca8",
+   "ESBlueprint.B.IsCupSetInsertOfTwoRightVertices": "fd4b211112defdf6",
+   "ESBlueprint.B.IsCupSetInsertOrInsertOfNoCapFive": "2e0e8ca0a10c8037",
+   "ESBlueprint.B.IsCupSetInsertTwoLeftAndCard": "6c89431622c809d4",
+   "ESBlueprint.B.IsCupSetInsertTwoRightAndCard": "463fc4980b4a8f76",
    "ESBlueprint.B.IsMonochromaticSetOfOneChangeConsecutive": "aa76254d18bdaff0",
+   "ESBlueprint.B.IsStrongPolygonSetCupUnionCapOfCommonExtremes": "9e495f120989edc7",
    "ESBlueprint.B.IsStrongPolygonSetUnionOfCupCapCommonExtremes": "65bd89d84bf67132",
    "ESBlueprint.B.MarkerCupEndpointsNoCapThreeOnOneSide": "d2fde46e7b63b8de",
    "ESBlueprint.B.MonochromaticSetInsertMaxOfOneChange": "c4428b395417ebe9",
    "ESBlueprint.B.MonochromaticSetInsertMinOfOneChange": "665ece9f1f8e56ac",
+   "ESBlueprint.B.NotContainsCapFourEndingCupLayerUnionLaterCup": "e9dda80099e13adf",
+   "ESBlueprint.B.NotContainsCapSetEndingCupRankLayerOfNoCapSucc": "b3ef79b5360b4fb5",
+   "ESBlueprint.B.NotContainsStrongPolygonSetOfNoCapSuccNoCup": "230b2f175071b7a1",
+   "ESBlueprint.B.OrderedTwoSideSquareBoundOfNoCupSucc": "7b50595b4efb5fb7",
    "ESBlueprint.B.RankPairCardGeSumDisjointGroupCharges": "208cb2ee2289dc04",
    "ESBlueprint.B.RankPairClippedIntervalUnionMissingCorner": "7bc5c65fc1381ab2",
    "ESBlueprint.B.RankPairTriangleIntersectionCardGeThreeOfTwoCommonRanks": "a98b2bc1507b884f",
@@ -99522,10 +101805,18 @@
    "ESBlueprint.B.SingletonLowerPascalTailGateFourDiagonalOfFiveLe": "350745d61526e6b2",
    "ESBlueprint.B.SingletonUpperPascalTailGateDiagFiveOfSixLeOfInputs": "bdd2d0d161744324",
    "ESBlueprint.B.SingletonUpperPascalTailGatePredFiveOfSixLe": "cbd4517f4e3e8fba",
+   "ESBlueprint.B.StartingCupLayerOfNoCapFour": "8425aa5ac3906ef9",
+   "ESBlueprint.B.StrongPolygonSetCapMiddlePartitionOfNoCapSucc": "d5a5f98ba229212a",
+   "ESBlueprint.B.StrongPolygonSetTwoCapMiddlesOfSideThreeCaps": "fbf90ad4c1d8f8a7",
    "ESBlueprint.B.ThreeCupBlocksCardLeOfDecomposableNoCapFourNoStrongOfPairBound": "d0749aa022635995",
    "ESBlueprint.B.ThreeCupBlocksCardLeOfOneChangeAdjacentNoCapFourNoStrongOfPairBounds": "f6115579d2e803f4",
    "ESBlueprint.B.ThreeCupBlocksCardLeOfOneChangeNoCapFourNoCup": "bf374034fbd4a773",
+   "ESBlueprint.B.TwoCapFreeSidesCardAddLeOfShortCups": "059cfb955e85f8a7",
    "ESBlueprint.B.TwoCupBlocksCardAndExtensionsOfOneChangeNoCapFourNoCup": "938306abc3b53b62",
+   "ESBlueprint.B.TwoFullCapBlocksContextHistoryExtension": "969f6e867b0f914f",
+   "ESBlueprint.B.TwoFullCapBlocksFamilyExists": "747918cb4975a213",
+   "ESBlueprint.B.TwoFullCapBlocksRootNoninterval": "e085e0c40040659a",
+   "ESBlueprint.B.TwoFullCapBlocksRootStructure": "96062a9aa1d7a889",
    "ESBlueprint.C.CardLeChooseOfOneChangeNoCapFourNoStrong": "2f9f149ad59de3cd",
    "ESBlueprint.C.DecomposableStateUpperDiagonalFourOfGates": "94dee58418c8f72f",
    "ESBlueprint.C.DecomposableStateUpperFourDiagonalOfGates": "1de71a45e7c856b4",
