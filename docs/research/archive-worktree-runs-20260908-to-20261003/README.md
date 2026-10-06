@@ -9,9 +9,10 @@ This directory keeps the Markdown write-ups of every run that lived in them:
 
 R21–R26 are already in `docs/research/archive-2026-09-28-to-10-05/sol-r2*`.
 
-- **Run data.** The full run data (3.4 GB: SAT outputs, receipts, JSON) is kept on local disk only, in the
-  git-ignored `runs/archive-worktrees-20261006/`. It is not in git. Compiled Lean build caches (122 GB) were
-  deleted; they are regenerable.
+- **Run data.** The small, irreplaceable part of the run data (scripts, Lean scratch, receipts, every result file
+  under 1 MB) is in `data/archive/worktree-runs-20261006-small.tar.gz`, 21 MB.
+  - The large regenerable outputs (about 3.2 GB) were deleted on 2026-10-06.
+  - The compiled Lean build caches (122 GB) were deleted as well.
 - **Deleted branches.** `deleted-branches-20261006.txt` lists the 220 local branches deleted that day, with tip
   SHAs.
   - 201 had all their content on main.

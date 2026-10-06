@@ -78,8 +78,9 @@ are validated: square nonnegative integer upper-triangular matrices, distinct
 retained indices, legal capacity split and boolean barriers. The refinement
 formula has an extension-path hand derivation; its independent legacy-signature
 fixtures establish finite regression agreement, not a Lean equivalence theorem.
-Original R24 sources and the full160-state fixture remain under
-`runs/r24-sol-20261003/`; the checked-in fixture retains16 diagnostic states.
+Original R24 sources (including the 160-state fixture generator) are archived in
+`data/archive/worktree-runs-20261006-small.tar.gz` under
+`archive-worktrees-20261006/sol-12h-20260916/runs/r24-sol-20261003/`; the checked-in fixture retains 16 diagnostic states.
 
 Run the small example from the repository root:
 
