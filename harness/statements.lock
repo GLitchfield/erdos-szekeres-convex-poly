@@ -4649,5 +4649,14 @@
     "kind": "formalization",
     "ws": "B",
     "module": "ESBlueprint.B.TwoCupBlocksCardAndExtensionsOfOneChangeNoCapFourNoCup"
+  },
+  "ErdosSzekeres.two_full_cap_blocks_root_structure": {
+    "type_hash": "84e6237f7f3a6146",
+    "type_pp": "∀ {n p : Nat} {χ : ErdosSzekeres.TripleColoring n} {lower upper Z₀ Z₁ : Finset (Fin n)},\n  instLENat.le 4 p →\n    ErdosSzekeres.HasDeepBelowSplit χ lower upper →\n      lower.Nonempty →\n        upper.Nonempty →\n          Disjoint Z₀ Z₁ →\n            Eq (Finset.instUnion.union Z₀ Z₁) (Finset.instUnion.union lower upper) →\n              ErdosSzekeres.IsCapSet χ Z₀ →\n                ErdosSzekeres.IsCapSet χ Z₁ →\n                  Eq Z₀.card p →\n                    Eq Z₁.card p →\n                      Not\n                          (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union lower upper)\n                            (instHAdd.hAdd p 1)) →\n                        Not\n                            (ErdosSzekeres.ContainsStrongPolygonSet χ\n                              (Finset.instUnion.union lower upper) (instHAdd.hAdd p 1)) →\n                          And (Eq (Finset.instInter.inter Z₀ lower).card 2)\n                            (And (Eq (Finset.instInter.inter Z₁ lower).card 2)\n                              (And (Eq lower.card 4)\n                                (And (ErdosSzekeres.IsCapSet χ lower)\n                                  (And (Eq upper.card (instHSub.hSub (instHMul.hMul 2 p) 4))\n                                    (And (ErdosSzekeres.ContainsCapSet χ upper (instHSub.hSub p 2))\n                                      (Not\n                                        (ErdosSzekeres.ContainsCapSet χ upper\n                                          (instHSub.hSub p 1))))))))",
+    "approved_by": "codex:agent-run-bba24e194efe4125",
+    "approved_at": "2026-10-03",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.TwoFullCapBlocksRootStructure"
   }
 }

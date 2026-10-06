@@ -512,3 +512,4 @@ import ESBlueprint.B.TwoCapFreeSidesCardAddLeOfShortCups
 import ESBlueprint.B.NotContainsStrongPolygonSetOfNoCapSuccNoCup
 import ESBlueprint.B.DeepBelowNoStrongAfterDeleteIffChildAndRankDrop
 import ESBlueprint.B.DecomposableThresholdSixPredPredOfSevenLe
+import ESBlueprint.B.TwoFullCapBlocksRootStructure
