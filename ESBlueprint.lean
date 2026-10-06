@@ -498,3 +498,4 @@ import ESBlueprint.B.IsCupSetInsertOfTwoRightVertices
 import ESBlueprint.B.IsCupSetInsertTwoLeftAndCard
 import ESBlueprint.B.IsCupSetInsertTwoRightAndCard
 import ESBlueprint.B.IsStrongPolygonSetCupUnionCapOfCommonExtremes
+import ESBlueprint.B.ExistsEndingAndStartingCupRankProfiles
