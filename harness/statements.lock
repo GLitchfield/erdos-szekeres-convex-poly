@@ -4261,6 +4261,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.IsCupSetInsertOfTwoLeftVertices"
   },
+  "ErdosSzekeres.isCupSet_insert_of_two_right_vertices": {
+    "type_hash": "1f0b9577a357c8a2",
+    "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right C : Finset (Fin n)} {p a b : Fin n},\n  (∀ (u : Fin n),\n      SetLike.instMembership.mem left u →\n        ∀ (v : Fin n), SetLike.instMembership.mem right v → instLTFin.lt u v) →\n    ErdosSzekeres.IsCupSet χ right →\n      ErdosSzekeres.IsCupSet χ C →\n        ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n          Finset.instHasSubset.Subset C (Finset.instUnion.union left right) →\n            SetLike.instMembership.mem right p →\n              SetLike.instMembership.mem C a →\n                SetLike.instMembership.mem right a →\n                  SetLike.instMembership.mem C b →\n                    SetLike.instMembership.mem right b →\n                      instLTFin.lt a b →\n                        instLTFin.lt b p → ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert p C)",
+    "approved_by": "codex:agent-run-67caffbfbf804ebf",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.IsCupSetInsertOfTwoRightVertices"
+  },
   "ErdosSzekeres.isMonochromaticSet_of_oneChange_consecutive": {
     "type_hash": "f2f0b04ce9926768",
     "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {c : ErdosSzekeres.Turn},\n  ErdosSzekeres.OneChangeOn χ s →\n    (∀ (t : ErdosSzekeres.OrderedTriple n),\n        SetLike.instMembership.mem s t.i →\n          SetLike.instMembership.mem s t.j →\n            SetLike.instMembership.mem s t.k →\n              (∀ (x : Fin n),\n                  SetLike.instMembership.mem s x →\n                    instLTFin.lt t.i x → instLTFin.lt x t.j → False) →\n                (∀ (x : Fin n),\n                    SetLike.instMembership.mem s x →\n                      instLTFin.lt t.j x → instLTFin.lt x t.k → False) →\n                  Eq (χ t) c) →\n      ∀ (t : ErdosSzekeres.OrderedTriple n),\n        SetLike.instMembership.mem s t.i →\n          SetLike.instMembership.mem s t.j → SetLike.instMembership.mem s t.k → Eq (χ t) c",
