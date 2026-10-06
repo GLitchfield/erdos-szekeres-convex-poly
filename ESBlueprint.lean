@@ -506,3 +506,4 @@ import ESBlueprint.B.IsCupSetInsertOrInsertOfNoCapFive
 import ESBlueprint.B.IsCupSetCrossGapRankRestrictedUnion
 import ESBlueprint.B.OrderedTwoSideSquareBoundOfNoCupSucc
 import ESBlueprint.B.ExistsCupExtensionOfSideThreeCaps
+import ESBlueprint.B.StrongPolygonSetTwoCapMiddlesOfSideThreeCaps
