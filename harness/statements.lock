@@ -4405,6 +4405,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.NotContainsCapSetEndingCupRankLayerOfNoCapSucc"
   },
+  "ErdosSzekeres.notContainsStrongPolygonSet_of_no_capSucc_no_cup": {
+    "type_hash": "4f6d1fea8323ea84",
+    "type_pp": "∀ {n j u : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)},\n  instLENat.le 2 j →\n    instLENat.le 2 u →\n      Not (ErdosSzekeres.ContainsCapSet χ s (instHAdd.hAdd j 1)) →\n        Not (ErdosSzekeres.ContainsCupSet χ s u) →\n          Not (ErdosSzekeres.ContainsStrongPolygonSet χ s (instHSub.hSub (instHAdd.hAdd u j) 2))",
+    "approved_by": "codex:agent-run-67caffbfbf804ebf",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.NotContainsStrongPolygonSetOfNoCapSuccNoCup"
+  },
   "ErdosSzekeres.orderedTwoSideSquareBound_of_no_cup_succ": {
     "type_hash": "aec659557232639f",
     "type_pp": "∀ {n c : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right : Finset (Fin n)},\n  instLENat.le 2 c →\n    (∀ (x : Fin n),\n        SetLike.instMembership.mem left x →\n          ∀ (y : Fin n), SetLike.instMembership.mem right y → instLTFin.lt x y) →\n      ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n        Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union left right) 5) →\n          Not (ErdosSzekeres.ContainsCapSet χ left 4) →\n            Not (ErdosSzekeres.ContainsCapSet χ right 4) →\n              Not\n                  (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union left right)\n                    (instHAdd.hAdd c 1)) →\n                instLENat.le (Finset.instUnion.union left right).card (instHMul.hMul c c)",
