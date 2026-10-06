@@ -4605,6 +4605,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.ThreeCupBlocksCardLeOfOneChangeNoCapFourNoCup"
   },
+  "ErdosSzekeres.twoCapFreeSides_card_add_le_of_short_cups": {
+    "type_hash": "af4b26c8c8ac5e22",
+    "type_pp": "∀ {n c : Nat} {χ : ErdosSzekeres.TripleColoring n} {left right : Finset (Fin n)},\n  instLENat.le 3 c →\n    ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union left right) →\n      Not (ErdosSzekeres.ContainsCapSet χ left 4) →\n        Not (ErdosSzekeres.ContainsCapSet χ right 4) →\n          Not\n              (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union left right)\n                (instHAdd.hAdd c 1)) →\n            Or\n                (And (Not (ErdosSzekeres.ContainsCupSet χ left c))\n                  (Not (ErdosSzekeres.ContainsCupSet χ right c)))\n                (Or (Not (ErdosSzekeres.ContainsCupSet χ left (instHSub.hSub c 1)))\n                  (Not (ErdosSzekeres.ContainsCupSet χ right (instHSub.hSub c 1)))) →\n              instLENat.le (instHAdd.hAdd left.card right.card)\n                (instHAdd.hAdd (instHSub.hSub (instHMul.hMul c c) c) 1)",
+    "approved_by": "codex:agent-run-67caffbfbf804ebf",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.TwoCapFreeSidesCardAddLeOfShortCups"
+  },
   "ErdosSzekeres.twoCupBlocks_card_and_extensions_of_oneChange_no_capFour_no_cup": {
     "type_hash": "dac186281844e9ad",
     "type_pp": "∀ {n u : Nat} {χ : ErdosSzekeres.TripleColoring n} {P Q : Finset (Fin n)},\n  instLENat.le 2 u →\n    ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union P Q) →\n      (∀ (x : Fin n),\n          SetLike.instMembership.mem P x →\n            ∀ (y : Fin n), SetLike.instMembership.mem Q y → instLTFin.lt x y) →\n        ErdosSzekeres.IsCupSet χ P →\n          ErdosSzekeres.IsCupSet χ Q →\n            Not (ErdosSzekeres.ContainsCapSet χ (Finset.instUnion.union P Q) 4) →\n              Not (ErdosSzekeres.ContainsCupSet χ (Finset.instUnion.union P Q) u) →\n                And\n                  (instLENat.le (instHAdd.hAdd P.card Q.card) (instHSub.hSub (instHMul.hMul 2 u) 3))\n                  (∀ (p q : Fin n),\n                    SetLike.instMembership.mem P p →\n                      SetLike.instMembership.mem Q q →\n                        (∀ (x : Fin n), SetLike.instMembership.mem P x → instLEFin.le x p) →\n                          (∀ (y : Fin n), SetLike.instMembership.mem Q y → instLEFin.le q y) →\n                            And\n                              (Or (ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert q P))\n                                (ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert p Q)))\n                              (And\n                                (Eq P.card (instHSub.hSub u 1) →\n                                  ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert p Q))\n                                (Eq Q.card (instHSub.hSub u 1) →\n                                  ErdosSzekeres.IsCupSet χ (Finset.instInsert.insert q P))))",
