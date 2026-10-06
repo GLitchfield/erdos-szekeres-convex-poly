@@ -505,3 +505,4 @@ import ESBlueprint.B.NotContainsCapSetEndingCupRankLayerOfNoCapSucc
 import ESBlueprint.B.IsCupSetInsertOrInsertOfNoCapFive
 import ESBlueprint.B.IsCupSetCrossGapRankRestrictedUnion
 import ESBlueprint.B.OrderedTwoSideSquareBoundOfNoCupSucc
+import ESBlueprint.B.ExistsCupExtensionOfSideThreeCaps
