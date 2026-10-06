@@ -4360,6 +4360,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.NotContainsCapFourEndingCupLayerUnionLaterCup"
   },
+  "ErdosSzekeres.notContainsCapSet_endingCupRankLayer_of_no_cap_succ": {
+    "type_hash": "1c666a869b5bd8c5",
+    "type_pp": "∀ {n j k : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} (rank : Fin n → Nat),\n  instLENat.le 2 k →\n    ErdosSzekeres.OneChangeOn χ s →\n      Not (ErdosSzekeres.ContainsCapSet χ s (instHAdd.hAdd k 1)) →\n        (∀ (x : Fin n),\n            SetLike.instMembership.mem s x →\n              Exists fun C =>\n                And (Finset.instHasSubset.Subset C s)\n                  (And (Eq C.card (rank x))\n                    (And (ErdosSzekeres.IsCupSet χ C)\n                      (And (SetLike.instMembership.mem C x)\n                        (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x))))) →\n          (∀ (x : Fin n),\n              SetLike.instMembership.mem s x →\n                ∀ (C : Finset (Fin n)),\n                  Finset.instHasSubset.Subset C s →\n                    ErdosSzekeres.IsCupSet χ C →\n                      SetLike.instMembership.mem C x →\n                        (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le y x) →\n                          instLENat.le C.card (rank x)) →\n            Not (ErdosSzekeres.ContainsCapSet χ (Finset.filter (fun x => Eq (rank x) j) s) k)",
+    "approved_by": "codex:agent-run-67caffbfbf804ebf",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.NotContainsCapSetEndingCupRankLayerOfNoCapSucc"
+  },
   "ErdosSzekeres.predecessorHalfSubsetAt_all": {
     "type_hash": "a18a0a755e1ad825",
     "type_pp": "∀ (k : Nat), instLENat.le 4 k → ErdosSzekeres.PredecessorHalfSubsetAt k",

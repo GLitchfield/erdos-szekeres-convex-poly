@@ -501,3 +501,4 @@ import ESBlueprint.B.IsStrongPolygonSetCupUnionCapOfCommonExtremes
 import ESBlueprint.B.ExistsEndingAndStartingCupRankProfiles
 import ESBlueprint.B.StartingCupLayerOfNoCapFour
 import ESBlueprint.B.NotContainsCapFourEndingCupLayerUnionLaterCup
+import ESBlueprint.B.NotContainsCapSetEndingCupRankLayerOfNoCapSucc
