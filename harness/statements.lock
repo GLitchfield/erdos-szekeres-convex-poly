@@ -4297,6 +4297,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.IsMonochromaticSetOfOneChangeConsecutive"
   },
+  "ErdosSzekeres.isStrongPolygonSet_cup_union_cap_of_common_extremes": {
+    "type_hash": "c07e8cd85ed7d9af",
+    "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {C D : Finset (Fin n)} {l r : Fin n},\n  ErdosSzekeres.IsCupSet χ C →\n    ErdosSzekeres.IsCapSet χ D →\n      SetLike.instMembership.mem C l →\n        SetLike.instMembership.mem C r →\n          SetLike.instMembership.mem D l →\n            SetLike.instMembership.mem D r →\n              (∀ (x : Fin n),\n                  SetLike.instMembership.mem (Finset.instUnion.union C D) x → instLEFin.le l x) →\n                (∀ (x : Fin n),\n                    SetLike.instMembership.mem (Finset.instUnion.union C D) x → instLEFin.le x r) →\n                  instLTFin.lt l r →\n                    ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union C D) →\n                      ErdosSzekeres.IsStrongPolygonSet χ (Finset.instUnion.union C D)",
+    "approved_by": "codex:agent-run-67caffbfbf804ebf",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.IsStrongPolygonSetCupUnionCapOfCommonExtremes"
+  },
   "ErdosSzekeres.isStrongPolygonSet_union_of_cup_cap_common_extremes": {
     "type_hash": "375bee3caa99c512",
     "type_pp": "∀ {n : Nat} {χ : ErdosSzekeres.TripleColoring n} {C D : Finset (Fin n)} {l r : Fin n},\n  instLTFin.lt l r →\n    SetLike.instMembership.mem C l →\n      SetLike.instMembership.mem C r →\n        SetLike.instMembership.mem D l →\n          SetLike.instMembership.mem D r →\n            (∀ (x : Fin n),\n                SetLike.instMembership.mem (Finset.instUnion.union C D) x →\n                  And (instLEFin.le l x) (instLEFin.le x r)) →\n              ErdosSzekeres.IsCupSet χ C →\n                ErdosSzekeres.IsCapSet χ D →\n                  ErdosSzekeres.OneChangeOn χ (Finset.instUnion.union C D) →\n                    And (ErdosSzekeres.IsStrongPolygonSet χ (Finset.instUnion.union C D))\n                      (Eq (Finset.instInter.inter C D)\n                        (Finset.instInsert.insert l (Finset.instSingleton.singleton r)))",
