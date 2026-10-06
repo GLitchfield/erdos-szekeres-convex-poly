@@ -4477,6 +4477,15 @@
     "ws": "B",
     "module": "ESBlueprint.B.SingletonUpperPascalTailGatePredFiveOfSixLe"
   },
+  "ErdosSzekeres.startingCupLayer_of_no_capFour": {
+    "type_hash": "d3a8de630d0f75e8",
+    "type_pp": "∀ {n j : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} (rank : Fin n → Nat),\n  ErdosSzekeres.OneChangeOn χ s →\n    Not (ErdosSzekeres.ContainsCapSet χ s 4) →\n      (∀ (x : Fin n),\n          SetLike.instMembership.mem s x →\n            Exists fun C =>\n              And (Finset.instHasSubset.Subset C s)\n                (And (Eq C.card (rank x))\n                  (And (ErdosSzekeres.IsCupSet χ C)\n                    (And (SetLike.instMembership.mem C x)\n                      (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le x y))))) →\n        (∀ (x : Fin n),\n            SetLike.instMembership.mem s x →\n              ∀ (C : Finset (Fin n)),\n                Finset.instHasSubset.Subset C s →\n                  ErdosSzekeres.IsCupSet χ C →\n                    SetLike.instMembership.mem C x →\n                      (∀ (y : Fin n), SetLike.instMembership.mem C y → instLEFin.le x y) →\n                        instLENat.le C.card (rank x)) →\n          And (ErdosSzekeres.IsCupSet χ (Finset.filter (fun x => Eq (rank x) j) s))\n            (instLENat.le (Finset.filter (fun x => Eq (rank x) j) s).card j)",
+    "approved_by": "codex:agent-run-67caffbfbf804ebf",
+    "approved_at": "2026-10-02",
+    "kind": "formalization",
+    "ws": "B",
+    "module": "ESBlueprint.B.StartingCupLayerOfNoCapFour"
+  },
   "ErdosSzekeres.strongPolygonSet_capMiddle_partition_of_no_cap_succ": {
     "type_hash": "875d3f763cb1a39a",
     "type_pp": "∀ {n j : Nat} {χ : ErdosSzekeres.TripleColoring n} {s : Finset (Fin n)} {l r : Fin n},\n  instLENat.le 2 j →\n    SetLike.instMembership.mem s l →\n      SetLike.instMembership.mem s r →\n        instLTFin.lt l r →\n          (∀ (x : Fin n), SetLike.instMembership.mem s x → instLEFin.le l x) →\n            (∀ (x : Fin n), SetLike.instMembership.mem s x → instLEFin.le x r) →\n              ErdosSzekeres.IsStrongPolygonSet χ s →\n                Not (ErdosSzekeres.ContainsCapSet χ s (instHAdd.hAdd j 1)) →\n                  have capMiddle :=\n                    Finset.filter\n                      (fun x =>\n                        And (instLTFin.lt l x)\n                          (And (instLTFin.lt x r)\n                            (Eq (ErdosSzekeres.CupCap.totalColor χ l x r)\n                              ErdosSzekeres.Turn.right)))\n                      s;\n                  And (instLENat.le capMiddle.card (instHSub.hSub j 2))\n                    (And\n                      (ErdosSzekeres.IsCupSet χ\n                        (Finset.filter (fun x => Not (SetLike.instMembership.mem capMiddle x)) s))\n                      (ErdosSzekeres.IsCapSet χ\n                        (Finset.instInsert.insert l (Finset.instInsert.insert r capMiddle))))",
