@@ -1,0 +1,29 @@
+{
+ "schema": "charts-v1",
+ "key": "00000000000000000000000000010011100011111111111110010001",
+ "n": 8,
+ "topes_up_to_sign": 29,
+ "expected_topes": 29,
+ "pentagon_free_charts": 1,
+ "hull_vertices": [
+  0,
+  1,
+  2,
+  7
+ ],
+ "resweep_listing_from_first_hull_vertex": [
+  0,
+  7,
+  6,
+  5,
+  4,
+  3,
+  2,
+  1
+ ],
+ "resweep_one_change_on_all_5_point_colourings": [
+  234,
+  234
+ ],
+ "labels_convex_count": 33
+}

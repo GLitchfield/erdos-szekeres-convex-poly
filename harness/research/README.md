@@ -131,3 +131,18 @@ the original classical words; complete-triple/quad tests check actual
 profiles independently of the label recursion. Run
 `examples/binary_labels_demo.py --out runs/OUTPUT.json` through `es job run`.
 Neither primitive is a Lean proof or an implementation of BDL/CD.
+
+`research.signotope-sat`, `research.charts` and `research.convexity-labels` (modules
+`signotope_sat.py`, `charts.py`, `convexity_labels.py`, promoted 2026-10-08) retain
+the SAT base that the 6–8 Oct runs copied five times (quad encoding of convex
+k-sets, cups, caps, the radial normal form and hull-vertex clauses of brief G), the
+circuit/chart/hull-vertex/re-sweep helpers of the tope probe and brief G, the
+colouring-key and prefix-closed enumeration helpers of brief F, and the convexity
+labelling ladder of the halving step-back with its frozen 7-point axiom system
+(`examples/convexity-axioms7-v1.json`, 20 patterns, cone lemma). Fixtures:
+`examples/signotope-sat-thresholds-v1.json` (ES(4), ES(5), cup–cap and ETV(5;4,5)
+thresholds), `examples/charts-v1.json`. All are diagnostic python-sat or DIMACS
+answers, never Lean. The chain-variable SAT encoding (`wsat.py`), the cube driver
+(`cubes.py`) and the one-point extension library (`extlib.py`) stay in their run
+directories: deferred, no second use yet.
+

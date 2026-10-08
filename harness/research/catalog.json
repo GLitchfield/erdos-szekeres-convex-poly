@@ -6,44 +6,103 @@
       "kind": "primitive",
       "title": "Classical Pascal cup-cap labels",
       "summary": "Materializes immutable binary labels for the classical extremal decomposable cup-cap construction.",
-      "keywords": ["classical construction", "Pascal", "binomial", "extremal labels", "es_labels", "cup cap", "padding tail", "sharpness"],
+      "keywords": [
+        "classical construction",
+        "Pascal",
+        "binomial",
+        "extremal labels",
+        "es_labels",
+        "cup cap",
+        "padding tail",
+        "sharpness"
+      ],
       "api": "classical_pascal_labels(cup, cap) -> tuple[str, ...]",
       "example": "from harness.research.binary_labels import classical_pascal_labels\nclassical_pascal_labels(3, 3)  # ('00', '010', '011', '100', '101', '11')\n# Runnable: python3 harness/research/examples/binary_labels_demo.py",
       "semantics": "Actual positive integer bounds only; bool and malformed values rejected. Returns prefix-free binary words in spatial order, size choose(cup+cap-2,cup-1). Under first-varying-middle-bit decoding cup/cap maxima equal the bounds when both are at least2; if either is1 the result is a singleton and both actual maxima are1. Old lower/left K(cup-1,cap) and new upper/right K(cup,cap-1) form the recursive root. Immutable materialized tuple; output size can be enormous and recursion depth cup+cap-2, so callers own guards and scale selection. No solver, storage, geometry coordinates or Lean certificate. Retains R25 univ.es_labels semantics used for padding and sharp cored families; original artifacts remain unchanged.",
-      "source": {"path": "harness/research/binary_labels.py", "symbols": ["classical_pascal_labels"]}
+      "source": {
+        "path": "harness/research/binary_labels.py",
+        "symbols": [
+          "classical_pascal_labels"
+        ]
+      }
     },
     {
       "id": "decomposable.binary-label-coloring",
       "kind": "primitive",
       "title": "Prefix-free binary label coloring",
       "summary": "Decodes ordered binary labels into a complete Boolean triple coloring without a solver.",
-      "keywords": ["binary labels", "prefix free", "first varying coordinate", "middle bit", "triple coloring", "decoder", "decomposition"],
+      "keywords": [
+        "binary labels",
+        "prefix free",
+        "first varying coordinate",
+        "middle bit",
+        "triple coloring",
+        "decoder",
+        "decomposition"
+      ],
       "api": "binary_label_coloring(labels) -> dict[tuple[int,int,int], bool]",
       "example": "from harness.research.binary_labels import binary_label_coloring\nbinary_label_coloring(['1', '00', '01'])  # {(0, 1, 2): True}\n# Runnable: python3 harness/research/examples/binary_labels_demo.py",
       "semantics": "Finite iterable of actual binary strings, copied in caller spatial order; lexicographic order not required. Bare str/bytes, nonstrings, nonbinary words, duplicates and any prefix relation are rejected. Empty input and singleton empty word are valid. For every increasing triple find its first varying coordinate; True cup iff the middle bit is0. Returns a complete actual-bool mapping on range(len(labels)); recursive binary prefix cuts explain decomposability, but this is diagnostic code and no Lean receipt. Work O(n^3*max_word_length) after prefix validation; no SAT, budget, result-storage or theorem layer. Retains the repeatedly reused R25 Coloring.from_labels semantics with an explicit prefix-free contract.",
-      "source": {"path": "harness/research/binary_labels.py", "symbols": ["binary_label_coloring"]}
+      "source": {
+        "path": "harness/research/binary_labels.py",
+        "symbols": [
+          "binary_label_coloring"
+        ]
+      }
     },
     {
       "id": "research.triple-metrics",
       "kind": "primitive",
       "title": "Exact complete-triple finite metrics",
       "summary": "Solver-free cup, cap, strong-set maxima and maximum-chain endpoints on every requested subset.",
-      "keywords": ["complete triple coloring", "all triples", "monochromatic subsets", "cup cap metrics", "strong quadruples", "endpoint extrema", "finite evaluator", "independent certificate"],
+      "keywords": [
+        "complete triple coloring",
+        "all triples",
+        "monochromatic subsets",
+        "cup cap metrics",
+        "strong quadruples",
+        "endpoint extrema",
+        "finite evaluator",
+        "independent certificate"
+      ],
       "api": "FiniteTripleColoring(colors, n); metrics(mask=None); extrema(mask, want); maximal_chain_masks(mask, want); strong_number(mask=None); monochromatic_masks(want); strong_masks()",
       "example": "from harness.research.triple_metrics import FiniteTripleColoring\nI = FiniteTripleColoring({(0, 1, 2): True}, 3)\nI.metrics()  # (3, 2)\nI.strong_number()  # 3\n# Runnable: python3 harness/research/examples/triple_metrics_demo.py",
       "semantics": "Complete mapping of increasing integer triples on range(n) to actual bool (True cup); actual nonnegative integer n, including empty maps below3. Copies input and validates the same strict contract as root-cuts. Arbitrary colorings accepted: no one-change, realizability or decomposability assumption. Checks EVERY triple for monochromatic chains and EVERY quadruple's two strong equalities; does not substitute consecutive-turn DP. Subset bitmask is an actual integer in range(2**n), None means full. Empty maxima zero and empty endpoint sets; returned masks sorted by decreasing(size,mask), immutable tuples/frozensets. Exponential small-instance evaluator, worst-case O(2**n*n**4) time/O(2**n) stored masks; strong masks computed lazily. No SAT, execution, storage or Lean proof layer; caller owns guards. Retained R25 original sources and diagnostic n4/n8/n11/n13 fixtures.",
-      "source": {"path": "harness/research/triple_metrics.py", "symbols": ["validate_coloring", "FiniteTripleColoring"]}
+      "source": {
+        "path": "harness/research/triple_metrics.py",
+        "symbols": [
+          "validate_coloring",
+          "FiniteTripleColoring"
+        ]
+      }
     },
     {
       "id": "decomposable.root-cuts",
       "kind": "primitive",
       "title": "Polynomial ordered triple-coloring root cuts",
       "summary": "Enumerates all valid deep-below root cuts; any complete ordered triple coloring has at most four.",
-      "keywords": ["decomposition roots", "root cut", "mixed triples", "implication graph", "successor closed", "SCC", "principal reachability", "width two", "strong transversal", "four components"],
+      "keywords": [
+        "decomposition roots",
+        "root cut",
+        "mixed triples",
+        "implication graph",
+        "successor closed",
+        "SCC",
+        "principal reachability",
+        "width two",
+        "strong transversal",
+        "four components"
+      ],
       "api": "graph_profile(colors, n) -> (adjacency, reachability, SCC masks); root_masks(colors, n) -> tuple[int, ...]",
       "example": "from harness.research.root_cuts import root_masks\nroot_masks({(0, 1, 2): True}, 3)  # (2, 3, 6)\n# Runnable: python3 harness/research/examples/root_cuts_demo.py",
       "semantics": "colors is a complete mapping of sorted integer triples on range(n) to actual bool (True cup), n an actual nonnegative int. Validates that contract, including the empty map at n<3; rejects incomplete/malformed inputs. Returns immutable tuples of vertex bitmasks in deterministic order; SCCs are ordered by smallest vertex. A root mask is nonempty, proper, and satisfies the DS rule on every mixed triple. Arbitrary complete colorings are accepted: one-change, realizability and hereditary decomposability are not checked, so a valid root does not certify its children. Every SCC transversal is strong; internal cup/cap representatives each collapse, so the condensation has at most four components and at most four proper roots. Width two still supplies all roots as one/two-principal unions after O(n^3) triple/bitset graph operations. Caller owns guarded execution and storage. Retained R25 source, sharp four-root diamond and exact arbitrary n<=5 direct-cut/transversal fixtures; diagnostic only, no Lean proof receipt.",
-      "source": {"path": "harness/research/root_cuts.py", "symbols": ["graph_profile", "root_masks"]}
+      "source": {
+        "path": "harness/research/root_cuts.py",
+        "symbols": [
+          "graph_profile",
+          "root_masks"
+        ]
+      }
     },
     {
       "id": "research.recursive-bounds",
@@ -1027,6 +1086,126 @@
           "refine_slot_profile",
           "expand_run_profile",
           "child_slot_barriers"
+        ]
+      }
+    },
+    {
+      "id": "research.signotope-sat",
+      "kind": "primitive",
+      "title": "Signotope SAT base: convex k-sets, cups, caps, radial normal form",
+      "summary": "Clause builder for one-change colourings on n points with no convex k-set, no m-cup, no m-cap, hull-vertex and radial-normal-form constraints; python-sat solve and blocking.",
+      "keywords": [
+        "SAT",
+        "signotope",
+        "one-change colouring",
+        "convex k-gon",
+        "strong set",
+        "cup",
+        "cap",
+        "ETV cell",
+        "threshold",
+        "radial normal form",
+        "hull vertex",
+        "quad encoding",
+        "blocking clause",
+        "CaDiCaL"
+      ],
+      "api": "SignotopeSAT(n).no_strong_set(k) / .no_cup(m) / .no_cap(m) / .radial_normal_form() / .hull_vertex(p) / .solve(assumptions=()) -> (bool, chi|None); threshold_instance(n, k=None, cup=None, cap=None, radial=False) -> SignotopeSAT",
+      "example": "from harness.research.signotope_sat import threshold_instance\nthreshold_instance(9, k=5).solve()[0]  # False: ES(5) = 9\n# Runnable: python3 harness/research/examples/signotope_sat_demo.py (fixture signotope-sat-thresholds-v1.json)",
+      "semantics": "Points 0..n-1 in sweep order; triple variables, True = cup; one-change clauses on every 4-set; convexity of a 4-set is an auxiliary variable equivalent to its pattern being 0000, 1111, 0011 or 1100; a strong k-set is forbidden by one clause per k-set over its 4-subsets (C(n,k) clauses, eager). radial_normal_form fixes every (0,x,y) a cup, WLOG for a question about one hull vertex (brief G lemma L2: every hull vertex is the first point of some presentation of the same chirotope); hull_vertex(p) encodes brief G lemma L1. Diagnostic python-sat answer, no proof log, no symmetry breaking, not Lean. The chain-variable encoding (wsat.py) stays in runs/claude-positive-split-20261007.",
+      "source": {
+        "path": "harness/research/signotope_sat.py",
+        "symbols": [
+          "SignotopeSAT",
+          "threshold_instance",
+          "key_of"
+        ]
+      }
+    },
+    {
+      "id": "research.charts",
+      "kind": "primitive",
+      "title": "Charts (topes), circuits, hull vertices, chart flips and radial re-sweeps",
+      "summary": "Circuits of a one-change colouring, its charts (acyclic reorientations), convexity per chart, hull vertices, the flip of a hull vertex across infinity, the radial order and re-sweep from a hull vertex; colouring keys, mirror, reflection and prefix-closed enumeration.",
+      "keywords": [
+        "chart",
+        "tope",
+        "circuit",
+        "reorientation",
+        "hull vertex",
+        "flip",
+        "antipode",
+        "radial order",
+        "re-sweep",
+        "projective",
+        "key",
+        "mirror",
+        "enumerate colourings",
+        "signotope",
+        "chirotope"
+      ],
+      "api": "circuits(n, chi) -> dict; topes(n, C) -> list; convex_sets_in_chart(n, C, s, k) -> list; inner_point(C, Q, s); hull_vertices(n, C, s=None) -> list; flip_chart(s, p); radial_order(n, chi, p) -> list; resweep(n, chi, p) -> (listing, chi2); key_of / parse_key / mirror / reflect / enumerate_colourings(nmax, ok)",
+      "example": "from harness.research import charts as ch\nn, chi = ch.parse_key(key); C = ch.circuits(n, chi); len(ch.topes(n, C)) == n*(n-1)//2 + 1\n# Runnable: python3 harness/research/examples/charts_demo.py (fixture charts-v1.json)",
+      "semantics": "chi maps sorted triples to True (cup); circuit of a<b<c<d is (chi(bcd), -chi(acd), chi(abd), -chi(abc)) with chi as +-1; a chart is a sign vector with no 4-set circuit sum +-4 (topes returns one of each antipodal pair, s[0] = +1); a 4-set is convex in chart s iff its circuit sum is 0, else the odd sign is its inner point; a k-set is convex iff all 4-subsets are. hull_vertices are points that are never inner; flipping a hull vertex gives the chart with that point moved across infinity. resweep lists p first then the radial order and recolours by orientation; it raises if the result is not one-change (p not a hull vertex). enumerate_colourings extends by harness.research.signotope_cubes and keeps every prefix satisfying ok. Exhaustive enumeration of topes is 2^(n-1) sign vectors: fine to n about 12. Diagnostic Python, not Lean.",
+      "source": {
+        "path": "harness/research/charts.py",
+        "symbols": [
+          "circuits",
+          "topes",
+          "convex_sets_in_chart",
+          "inner_point",
+          "hull_vertices",
+          "flip_chart",
+          "radial_order",
+          "resweep",
+          "key_of",
+          "parse_key",
+          "mirror",
+          "reflect",
+          "enumerate_colourings",
+          "orient"
+        ]
+      }
+    },
+    {
+      "id": "research.convexity-labels",
+      "kind": "primitive",
+      "title": "Convexity labellings, locality ladder and the 7-point axiom system",
+      "summary": "4-set labellings (convex or inner point), SAT instances for level-m local realizability with k-gon-freeness and no-halving clauses (python-sat or streamed DIMACS), realizability and locality profile of a labelling, and the frozen 20-pattern 7-point axiom system with the cone lemma.",
+      "keywords": [
+        "convexity labelling",
+        "inner point",
+        "locality",
+        "level m",
+        "local realizability",
+        "Grassmann-Pluecker",
+        "pseudo-configuration",
+        "halving",
+        "SPLIT",
+        "property B",
+        "axiom",
+        "cone lemma",
+        "7-point",
+        "DIMACS",
+        "CaDiCaL",
+        "hull3",
+        "symmetry breaking"
+      ],
+      "api": "labels_of(n, chi) -> dict; level_instance(k, n, m, gon_free=True, no_halving=True, hull3=False, hull=None) -> (enc, L); decode(L, model, n); label_assumptions(L, lam, F=None); realizable(m, lam) -> bool; locality_profile(n, lam, levels) -> dict; axioms7() -> dict; write_dimacs(k, n, m, out, hull3=, gon_free=, no_halving=) -> (vars, clauses); decode_dimacs(n, solver_output)",
+      "example": "from harness.research import convexity_labels as cl\nE, L = cl.level_instance(5, 8, 5, hull3=True)  # UNSAT: the k=5 halving is 5-point local\n# Runnable: python3 harness/research/examples/convexity_labels_demo.py (fixture convexity-axioms7-v1.json)",
+      "semantics": "A labelling gives each 4-set 'conv' or the name of its inner point; convex m-sets have all 4-subsets conv. Level m: every m-subset's labels come from a private acyclic rank-3 chirotope on it (3-term GP on 5-subsets, no alternating 4-pattern = realizability for m <= 8) linked by the circuit rule; subsets agree only on labels; level 4 is no constraint, level n a real configuration. gon_free forbids convex k-sets; no_halving forbids every partition into two (k-1)-gon-free halves of size n/2 (one clause per partition with gon auxiliaries, C(n-1, n/2-1) clauses). hull3 (points 0,1,2 never inner) is WLOG by relabelling; hull=h shards by hull size. write_dimacs streams the same instance to disk for a standalone solver (16 points at level 7 is about 25.6M clauses, 1.1 GB). Fixture facts (2026-10-08, diagnostic): the 7-point axiom system has exactly 20 patterns; ES(5) = 9 follows from 6-point patterns plus the cone lemma; SPLIT(6) on 16 points is not 6-point local. No proof log, not Lean.",
+      "source": {
+        "path": "harness/research/convexity_labels.py",
+        "symbols": [
+          "labels_of",
+          "level_instance",
+          "decode",
+          "label_assumptions",
+          "realizable",
+          "locality_profile",
+          "axioms7",
+          "write_dimacs",
+          "decode_dimacs"
         ]
       }
     }

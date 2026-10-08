@@ -1,0 +1,83 @@
+{
+ "schema": "signotope-sat-thresholds-v1",
+ "cases": [
+  {
+   "n": 5,
+   "k": 4,
+   "expect": "UNSAT",
+   "name": "ES(4)=5",
+   "observed": "UNSAT",
+   "seconds": 0.0
+  },
+  {
+   "n": 4,
+   "k": 4,
+   "expect": "SAT",
+   "name": "ES(4) lower",
+   "observed": "SAT",
+   "seconds": 0.0
+  },
+  {
+   "n": 9,
+   "k": 5,
+   "expect": "UNSAT",
+   "name": "ES(5)=9",
+   "observed": "UNSAT",
+   "seconds": 0.03
+  },
+  {
+   "n": 8,
+   "k": 5,
+   "expect": "SAT",
+   "name": "ES(5) lower",
+   "observed": "SAT",
+   "seconds": 0.0
+  },
+  {
+   "n": 7,
+   "cup": 4,
+   "cap": 4,
+   "expect": "UNSAT",
+   "name": "cup-cap f(4,4)=7",
+   "observed": "UNSAT",
+   "seconds": 0.0
+  },
+  {
+   "n": 6,
+   "cup": 4,
+   "cap": 4,
+   "expect": "SAT",
+   "name": "cup-cap lower",
+   "observed": "SAT",
+   "seconds": 0.0
+  },
+  {
+   "n": 8,
+   "k": 5,
+   "cup": 4,
+   "expect": "UNSAT",
+   "name": "ETV(5;4,5): bound 7",
+   "observed": "UNSAT",
+   "seconds": 0.0
+  },
+  {
+   "n": 7,
+   "k": 5,
+   "cup": 4,
+   "expect": "SAT",
+   "name": "ETV(5;4,5) lower",
+   "observed": "SAT",
+   "seconds": 0.0
+  },
+  {
+   "n": 8,
+   "k": 5,
+   "cup": 4,
+   "radial": true,
+   "expect": "UNSAT",
+   "name": "ETV(5;4,5) in radial normal form",
+   "observed": "UNSAT",
+   "seconds": 0.0
+  }
+ ]
+}
