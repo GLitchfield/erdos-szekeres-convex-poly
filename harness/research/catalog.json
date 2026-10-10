@@ -1,1213 +1,1293 @@
 {
-  "schema_version": 1,
-  "entries": [
-    {
-      "id": "research.classical-pascal-labels",
-      "kind": "primitive",
-      "title": "Classical Pascal cup-cap labels",
-      "summary": "Materializes immutable binary labels for the classical extremal decomposable cup-cap construction.",
-      "keywords": [
-        "classical construction",
-        "Pascal",
-        "binomial",
-        "extremal labels",
-        "es_labels",
-        "cup cap",
-        "padding tail",
-        "sharpness"
-      ],
-      "api": "classical_pascal_labels(cup, cap) -> tuple[str, ...]",
-      "example": "from harness.research.binary_labels import classical_pascal_labels\nclassical_pascal_labels(3, 3)  # ('00', '010', '011', '100', '101', '11')\n# Runnable: python3 harness/research/examples/binary_labels_demo.py",
-      "semantics": "Actual positive integer bounds only; bool and malformed values rejected. Returns prefix-free binary words in spatial order, size choose(cup+cap-2,cup-1). Under first-varying-middle-bit decoding cup/cap maxima equal the bounds when both are at least2; if either is1 the result is a singleton and both actual maxima are1. Old lower/left K(cup-1,cap) and new upper/right K(cup,cap-1) form the recursive root. Immutable materialized tuple; output size can be enormous and recursion depth cup+cap-2, so callers own guards and scale selection. No solver, storage, geometry coordinates or Lean certificate. Retains R25 univ.es_labels semantics used for padding and sharp cored families; original artifacts remain unchanged.",
-      "source": {
-        "path": "harness/research/binary_labels.py",
-        "symbols": [
-          "classical_pascal_labels"
-        ]
-      }
-    },
-    {
-      "id": "decomposable.binary-label-coloring",
-      "kind": "primitive",
-      "title": "Prefix-free binary label coloring",
-      "summary": "Decodes ordered binary labels into a complete Boolean triple coloring without a solver.",
-      "keywords": [
-        "binary labels",
-        "prefix free",
-        "first varying coordinate",
-        "middle bit",
-        "triple coloring",
-        "decoder",
-        "decomposition"
-      ],
-      "api": "binary_label_coloring(labels) -> dict[tuple[int,int,int], bool]",
-      "example": "from harness.research.binary_labels import binary_label_coloring\nbinary_label_coloring(['1', '00', '01'])  # {(0, 1, 2): True}\n# Runnable: python3 harness/research/examples/binary_labels_demo.py",
-      "semantics": "Finite iterable of actual binary strings, copied in caller spatial order; lexicographic order not required. Bare str/bytes, nonstrings, nonbinary words, duplicates and any prefix relation are rejected. Empty input and singleton empty word are valid. For every increasing triple find its first varying coordinate; True cup iff the middle bit is0. Returns a complete actual-bool mapping on range(len(labels)); recursive binary prefix cuts explain decomposability, but this is diagnostic code and no Lean receipt. Work O(n^3*max_word_length) after prefix validation; no SAT, budget, result-storage or theorem layer. Retains the repeatedly reused R25 Coloring.from_labels semantics with an explicit prefix-free contract.",
-      "source": {
-        "path": "harness/research/binary_labels.py",
-        "symbols": [
-          "binary_label_coloring"
-        ]
-      }
-    },
-    {
-      "id": "research.triple-metrics",
-      "kind": "primitive",
-      "title": "Exact complete-triple finite metrics",
-      "summary": "Solver-free cup, cap, strong-set maxima and maximum-chain endpoints on every requested subset.",
-      "keywords": [
-        "complete triple coloring",
-        "all triples",
-        "monochromatic subsets",
-        "cup cap metrics",
-        "strong quadruples",
-        "endpoint extrema",
-        "finite evaluator",
-        "independent certificate"
-      ],
-      "api": "FiniteTripleColoring(colors, n); metrics(mask=None); extrema(mask, want); maximal_chain_masks(mask, want); strong_number(mask=None); monochromatic_masks(want); strong_masks()",
-      "example": "from harness.research.triple_metrics import FiniteTripleColoring\nI = FiniteTripleColoring({(0, 1, 2): True}, 3)\nI.metrics()  # (3, 2)\nI.strong_number()  # 3\n# Runnable: python3 harness/research/examples/triple_metrics_demo.py",
-      "semantics": "Complete mapping of increasing integer triples on range(n) to actual bool (True cup); actual nonnegative integer n, including empty maps below3. Copies input and validates the same strict contract as root-cuts. Arbitrary colorings accepted: no one-change, realizability or decomposability assumption. Checks EVERY triple for monochromatic chains and EVERY quadruple's two strong equalities; does not substitute consecutive-turn DP. Subset bitmask is an actual integer in range(2**n), None means full. Empty maxima zero and empty endpoint sets; returned masks sorted by decreasing(size,mask), immutable tuples/frozensets. Exponential small-instance evaluator, worst-case O(2**n*n**4) time/O(2**n) stored masks; strong masks computed lazily. No SAT, execution, storage or Lean proof layer; caller owns guards. Retained R25 original sources and diagnostic n4/n8/n11/n13 fixtures.",
-      "source": {
-        "path": "harness/research/triple_metrics.py",
-        "symbols": [
-          "validate_coloring",
-          "FiniteTripleColoring"
-        ]
-      }
-    },
-    {
-      "id": "decomposable.root-cuts",
-      "kind": "primitive",
-      "title": "Polynomial ordered triple-coloring root cuts",
-      "summary": "Enumerates all valid deep-below root cuts; any complete ordered triple coloring has at most four.",
-      "keywords": [
-        "decomposition roots",
-        "root cut",
-        "mixed triples",
-        "implication graph",
-        "successor closed",
-        "SCC",
-        "principal reachability",
-        "width two",
-        "strong transversal",
-        "four components"
-      ],
-      "api": "graph_profile(colors, n) -> (adjacency, reachability, SCC masks); root_masks(colors, n) -> tuple[int, ...]",
-      "example": "from harness.research.root_cuts import root_masks\nroot_masks({(0, 1, 2): True}, 3)  # (2, 3, 6)\n# Runnable: python3 harness/research/examples/root_cuts_demo.py",
-      "semantics": "colors is a complete mapping of sorted integer triples on range(n) to actual bool (True cup), n an actual nonnegative int. Validates that contract, including the empty map at n<3; rejects incomplete/malformed inputs. Returns immutable tuples of vertex bitmasks in deterministic order; SCCs are ordered by smallest vertex. A root mask is nonempty, proper, and satisfies the DS rule on every mixed triple. Arbitrary complete colorings are accepted: one-change, realizability and hereditary decomposability are not checked, so a valid root does not certify its children. Every SCC transversal is strong; internal cup/cap representatives each collapse, so the condensation has at most four components and at most four proper roots. Width two still supplies all roots as one/two-principal unions after O(n^3) triple/bitset graph operations. Caller owns guarded execution and storage. Retained R25 source, sharp four-root diamond and exact arbitrary n<=5 direct-cut/transversal fixtures; diagnostic only, no Lean proof receipt.",
-      "source": {
-        "path": "harness/research/root_cuts.py",
-        "symbols": [
-          "graph_profile",
-          "root_masks"
-        ]
-      }
-    },
-    {
-      "id": "research.recursive-bounds",
-      "kind": "primitive",
-      "title": "Recursive context-bound evaluator",
-      "summary": "Shared bounded-cache entry point for the retained interval-cut context evaluator with explicit semantics.",
-      "keywords": [
-        "recursive bounds",
-        "recursion",
-        "dynamic programming",
-        "memoized evaluator",
-        "context bound",
-        "interval cut",
-        "zero child",
-        "research primitive"
-      ],
-      "api": "evaluator(a, u, k, *, semantics, cache_size=16000) -> cached_bound(word, maxima); compiled semantics: context-bound-zero-children-c-v1",
-      "example": "from harness.research.recursive import evaluator\nword = ('S', (1, 'lower'), 'S'); maxima = (1,)\nbound = evaluator(3, 3, 3, semantics='context-bound-zero-children-v1', cache_size=16000)(word, maxima)",
-      "semantics": "semantics is required: historical-f2-v1 drops zero-valued children, context-bound-zero-children-v1 includes them in Python, and context-bound-zero-children-c-v1 is the cross-checked compiled implementation of the same arithmetic convention. These are exploratory evaluators, not a certificate of equivalence to Lean or a kernel-compiled proof.",
-      "source": {
-        "path": "harness/research/recursive.py",
-        "symbols": [
-          "evaluator"
-        ]
-      }
-    },
-    {
-      "id": "research.compiled-context-bound",
-      "kind": "primitive",
-      "title": "Compiled recursive context-bound evaluator",
-      "summary": "Memoized C implementation of the zero-child interval-cut context recurrence, exposed through the shared evaluator factory.",
-      "keywords": [
-        "C evaluator",
-        "compiled context bound",
-        "context bound",
-        "interval cut",
-        "memoized evaluator",
-        "parts",
-        "persistent memo",
-        "speed",
-        "zero child"
-      ],
-      "api": "compiled_evaluator(a, u, k, *, cache_size=16000, persistent=False) -> bound(word, maxima); shared API semantics context-bound-zero-children-c-v1",
-      "example": "python -m harness.research.context_bound --case 3,4,5 --word 1L,S,S,2U,S,S --maxima 3,1\n# many related contexts (e.g. every part of one context): one C memo across calls, ~27x faster\nF = compiled_evaluator(5, 5, 6, cache_size=2_000_000, persistent=True)",
-      "semantics": "Implements the context-bound-zero-children-v1 arithmetic with all declared levels, truncated natural subtraction, zero-valued children retained, and per-call memoization. Exact signed 64-bit results are returned and larger results raise OverflowError. Compilation is cached in an owner-only system temporary directory. An in-flight C call is not preempted by the Python SIGALRM per-case timer, so probe shapes must remain independently bounded. Cross-language tests are finite diagnostic evidence only, not Lean proof credit. persistent=True keeps one C memo across calls for fixed (a, u, k) (word length is part of the key); values are identical to the per-call memo (regression test test_persistent_compiled_memo_returns_the_fresh_memo_values), the memo stops growing at cache_size entries, and close() or garbage collection frees it.",
-      "source": {
-        "path": "harness/research/context_bound.py",
-        "symbols": [
-          "compiled_evaluator"
-        ]
-      }
-    },
-    {
-      "id": "research.context-extension",
-      "kind": "primitive",
-      "title": "Context-side extension length",
-      "summary": "Computes the longest ordered extension through selected external levels on one side of a position.",
-      "keywords": [
-        "extension",
-        "context levels",
-        "external markers",
-        "left right chain",
-        "dynamic programming",
-        "rank primitive"
-      ],
-      "api": "extension(word, depth, side, p, left) -> int",
-      "example": "from harness.research.primitives import extension\nlength = extension(('S', (1, 'lower'), 'S'), 1, 'lower', 2, True)",
-      "semantics": "Starts with position p at length zero, scans levels 1..depth whose first marker has the requested side, and extends strictly left or right through their marker positions. It is exploratory rank-primitives-v1 arithmetic and establishes no Lean theorem.",
-      "source": {
-        "path": "harness/research/primitives.py",
-        "symbols": [
-          "extension"
-        ]
-      }
-    },
-    {
-      "id": "research.rank-clip-potential",
-      "kind": "primitive",
-      "title": "Rectangle rank clipping and potential",
-      "summary": "Clips interval rows to a chosen side and evaluates the retained edge/rectangle potential P.",
-      "keywords": [
-        "clip",
-        "P potential",
-        "rectangle rows",
-        "rank strip",
-        "interval family",
-        "partition potential"
-      ],
-      "api": "clip(rows, keep, axis) -> clipped_rows; P(rows) -> int",
-      "example": "from harness.research.primitives import P, clip\nrows = [(1, 2, 1, 3), (2, 3, 2, 4)]\nvalue = P(clip(rows, {0}, 0))",
-      "semantics": "Rows are four integer endpoints (x-low, x-high, y-low, y-high); axis is 0 or 1. clip retains indexed rows while tightening the selected axis from removed rows. P is the minimum of a sparse edge/unit count and a rectangular rank cap. These abstract intervals are not automatically geometric realizations or Lean proofs.",
-      "source": {
-        "path": "harness/research/primitives.py",
-        "symbols": [
-          "clip",
-          "P"
-        ]
-      }
-    },
-    {
-      "id": "research.context-part",
-      "kind": "primitive",
-      "title": "Child context construction",
-      "summary": "Builds one child row after a cut by retaining selected S positions and inserting a level-one sibling.",
-      "keywords": [
-        "part",
-        "child context",
-        "split",
-        "keep positions",
-        "sibling maximum",
-        "coupling"
-      ],
-      "api": "part(row, keep, side, m) -> child_row",
-      "example": "from harness.research.primitives import part\nrow = {'word': ('S', (1, 'lower'), 'S'), 'maxima': (1,), 'a': 4, 'u': 4, 'k': 5, 'chosen': 'lower'}\nchild = part(row, {0}, 'lower', 2)",
-      "semantics": "S positions in keep remain S; every other S becomes a new level-one external marker with the supplied side; prior external levels shift by one and m is prepended to maxima. Global a/u/k/chosen fields are copied unchanged. This constructs exploratory evaluator input, not a geometric witness.",
-      "source": {
-        "path": "harness/research/primitives.py",
-        "symbols": [
-          "part"
-        ]
-      }
-    },
-    {
-      "id": "research.singleton-cuts",
-      "kind": "primitive",
-      "title": "Singleton context-cut values",
-      "summary": "Enumerates both orientations and every admissible coupling at each child, retaining zero-valued parts.",
-      "keywords": [
-        "singleton",
-        "cut",
-        "coupling",
-        "orientation",
-        "normal form",
-        "leaf",
-        "context"
-      ],
-      "api": "singleton_cut_values(evaluate, row) -> list[(sum, position, side, sibling_maximum)]",
-      "example": "from harness.research.context_bound import compiled_evaluator\nfrom harness.research.singleton_cuts import singleton_cut_values\nrow = {'word': ('S', (1, 'lower'), 'S'), 'maxima': (1,), 'a': 4, 'u': 4, 'k': 5, 'chosen': 'lower'}\nF = compiled_evaluator(4, 4, 5, persistent=True)\ntry:\n    choices = singleton_cut_values(F, row)\nfinally:\n    F.close()",
-      "semantics": "Requires integer k>=3 and at least two S positions, a context row accepted by research.context-part, and a callback computing bounds at the row's a/u/k. Exposed callback globals must agree. Enumerates positions in increasing order and lower coupling d=1..k-2, then lower/d and upper/(k-1-d). Every sum is retained, even when one or both parts have value zero; errors including evaluator overflow propagate. The caller owns cache, resource guards and outputs. With the compiled evaluator results are diagnostic context-bound-zero-children-c-v1 arithmetic, not kernel proofs of singleton attainment. Retained source and checked-in values: R13 probes and harness/research/examples/singleton-cuts-v1.json.",
-      "source": {
-        "path": "harness/research/singleton_cuts.py",
-        "symbols": [
-          "singleton_cut_values"
-        ]
-      }
-    },
-    {
-      "id": "research.ordered-cover",
-      "kind": "primitive",
-      "title": "Ordered rectangle cover bound",
-      "summary": "Computes the minimum additive rectangular cover bound over consecutive blocks.",
-      "keywords": [
-        "ordered cover",
-        "rectangle cover",
-        "dynamic programming",
-        "consecutive blocks",
-        "rank bound",
-        "cover cost"
-      ],
-      "api": "ordered_cover(record) -> int",
-      "example": "from harness.research.primitives import ordered_cover\nrecord = {'rectangles': [(0, 1, 2, 1, 3), (1, 2, 3, 2, 4)]}\nbound = ordered_cover(record)",
-      "semantics": "Each rectangle is (label, x-low, x-high, y-low, y-high). Dynamic programming partitions the ordered list into consecutive blocks and sums (|X|-1)(|Y|-1)+1 for each block. The value is an exploratory combinatorial bound, not proof credit.",
-      "source": {
-        "path": "harness/research/primitives.py",
-        "symbols": [
-          "ordered_cover"
-        ]
-      }
-    },
-    {
-      "id": "research.maximum-bounds",
-      "kind": "primitive",
-      "title": "Indexed-maximum candidate bounds",
-      "summary": "Returns every retained candidate bound triggered by a context row's indexed sibling maxima.",
-      "keywords": [
-        "maximum bounds",
-        "indexed maximum",
-        "saturation",
-        "thin history",
-        "candidate inequality",
-        "normalization"
-      ],
-      "api": "maximum_bounds(row) -> list[{bound, reason, level}]",
-      "example": "from harness.research.primitives import maximum_bounds\nrow = {'word': ((1, 'lower'), 'S'), 'maxima': (3,), 'a': 5, 'u': 5, 'k': 6, 'chosen': 'lower'}\ncandidates = maximum_bounds(row)",
-      "semantics": "Applies the retained k-2, k-3, k-4 and younger-marker formulas level by level, choosing the opposite global cap/cup parameter from the marker side. Returned inequalities are exploratory candidates and must be proved separately in Lean.",
-      "source": {
-        "path": "harness/research/primitives.py",
-        "symbols": [
-          "maximum_bounds"
-        ]
-      }
-    },
-    {
-      "id": "research.sole-opposite-normalize",
-      "kind": "primitive",
-      "title": "Sole opposite-level normalization",
-      "summary": "Normalizes a context whose only level opposite the chosen side is level one.",
-      "keywords": [
-        "sole opposite normalize",
-        "context normalization",
-        "remove level",
-        "chosen side",
-        "sibling history",
-        "maximum transfer"
-      ],
-      "api": "sole_opposite_normalize(row) -> normalized_row",
-      "example": "from harness.research.primitives import sole_opposite_normalize\nrow = {'word': ((1, 'upper'), 'S'), 'maxima': (2,), 'a': 5, 'u': 5, 'k': 6, 'chosen': 'lower'}\nnormalized = sole_opposite_normalize(row)",
-      "semantics": "Requires level one to be opposite chosen and every later level not opposite. It removes the first maximum, rotates level-one markers to the former maximum depth, decrements other marker levels, and tightens the corresponding a/u parameter to k-n. Preconditions are asserted; the transform is exploratory, not a proved equivalence.",
-      "source": {
-        "path": "harness/research/primitives.py",
-        "symbols": [
-          "sole_opposite_normalize"
-        ]
-      }
-    },
-    {
-      "id": "decomposable.context-limits",
-      "kind": "primitive",
-      "title": "Context signature constraint evaluator",
-      "summary": "Converts a tagged sweep word and sibling maxima into per-run cup and cap limits.",
-      "keywords": [
-        "context signature",
-        "cup cap limits",
-        "constraint evaluator",
-        "sweep word",
-        "sibling maxima",
-        "Lean semantics"
-      ],
-      "api": "limits_from_signature(word, maxima, a, u, k, *, lean=False) -> (run_count, cup_limits, cap_limits)",
-      "example": "sys.path.insert(0, 'scripts')\nfrom decomposable_depth2_tables import limits_from_signature\np, cups, caps = limits_from_signature(word, maxima, a, u, k, lean=True)",
-      "semantics": "The matrices bound chains spanning each ordered pair of child runs. lean=True includes unused levels, uses unbounded integers, and truncates subtraction at zero. This legacy exploratory calculation is not a kernel-compiled theorem or proof of equivalence to Lean.",
-      "source": {
-        "path": "scripts/decomposable_depth2_tables.py",
-        "symbols": [
-          "signature",
-          "limits_from_signature"
-        ]
-      }
-    },
-    {
-      "id": "decomposable.context-enumeration",
-      "kind": "primitive",
-      "title": "Abstract context and split enumeration",
-      "summary": "Generates bounded tagged contexts and constructs child signatures for arbitrary vertex splits.",
-      "keywords": [
-        "enumerate contexts",
-        "context generator",
-        "split child",
-        "additivity",
-        "tagged word",
-        "bounded exhaustive search"
-      ],
-      "api": "contexts(s_max, e_max, levels, k, *, include_unused_levels=False); child(word, maxima, keep, side_of_child, sibling_max)",
-      "example": "sys.path.insert(0, 'scripts')\nfrom decomposable_additivity_test import contexts, child\nfor word, maxima in contexts(4, 2, 2, 5): ...",
-      "semantics": "contexts yields finite abstract signatures with consecutive occupied levels by default. child retains selected S positions, turns the complement into a new level-one sibling, and shifts existing external levels. Enumeration output has no kernel proof credit.",
-      "source": {
-        "path": "scripts/decomposable_additivity_test.py",
-        "symbols": [
-          "contexts",
-          "child"
-        ]
-      }
-    },
-    {
-      "id": "decomposable.exact-context-bound",
-      "kind": "primitive",
-      "title": "Exact compiled-class context evaluator",
-      "summary": "Evaluates the largest compiled decomposable coloring satisfying one abstract context signature.",
-      "keywords": [
-        "exact bound",
-        "context evaluator",
-        "compiled class",
-        "brute force",
-        "recursive bound comparison",
-        "extremal"
-      ],
-      "api": "load_class(class_dir, max_n) -> tables; exact(tables, a, u, k, word, maxima, max_n) -> int",
-      "example": "sys.path.insert(0, 'scripts')\nfrom decomposable_context_exact import load_class, exact\ntables = load_class(class_dir, max_n); value = exact(tables, a, u, k, word, maxima, max_n)",
-      "semantics": "Searches generated class data from max_n downward and returns the first stored size meeting every per-run cup/cap limit and the strong-set limit; returns zero when no stored size qualifies. Compiled-class here means the enumerator's data format, not a Lean kernel-compiled proof.",
-      "source": {
-        "path": "scripts/decomposable_context_exact.py",
-        "symbols": [
-          "load_class",
-          "exact"
-        ]
-      }
-    },
-    {
-      "id": "decomposable.coloring-enumeration",
-      "kind": "primitive",
-      "title": "Exact decomposable coloring enumeration",
-      "summary": "Enumerates the abstract decomposable triple-coloring class and computes reusable chain profiles.",
-      "keywords": [
-        "decomposable colorings",
-        "exact enumeration",
-        "triple coloring",
-        "chain profile",
-        "threshold",
-        "one change"
-      ],
-      "api": "enumerate_class(max_n, progress=True) -> (classes, triple_indices); coloring_dict(mask, n, index); chain_profiles(coloring, n, left)",
-      "example": "sys.path.insert(0, 'scripts')\nfrom enumerate_decomposable_colorings import enumerate_class\nclasses, triple_indices = enumerate_class(7, progress=False)",
-      "semantics": "Builds labeled colorings recursively over every ordered nonempty bipartition, fixes crossing triples by the deep-below rule, and deduplicates bitmasks at each size. These Python enumeration results remain exploratory until represented and checked in Lean.",
-      "source": {
-        "path": "scripts/enumerate_decomposable_colorings.py",
-        "symbols": [
-          "triple_index",
-          "enumerate_class",
-          "coloring_dict",
-          "one_change",
-          "chain_profiles",
-          "strong_sizes",
-          "threshold"
-        ]
-      }
-    },
-    {
-      "id": "workflow.proof",
-      "kind": "workflow",
-      "title": "Captured proof checking and finite proving",
-      "summary": "Use the harness to freeze a proof span, check a candidate, or try the registered finite tactic portfolio.",
-      "keywords": [
-        "proof capture",
-        "proof check",
-        "proof prove",
-        "Lean candidate",
-        "kernel audit",
-        "tactics"
-      ],
-      "api": "es proof capture NODE [--start BYTE --end BYTE]; es proof check FIXTURE --body FILE; es proof prove FIXTURE [--tactics TACTIC]",
-      "example": "es proof capture ErdosSzekeres.someNode\nes proof check FIXTURE_ID --body runs/candidate.lean",
-      "semantics": "Capture freezes source and dependency identities. Checks run in an isolated pinned Lean environment and accept only a complete parent with the expected type and allowed axioms; prove uses a finite registered tactic portfolio.",
-      "source": {
-        "path": "tools/es/es/commands/proof.py",
-        "symbols": [
-          "capture",
-          "check",
-          "prove"
-        ]
-      }
-    },
-    {
-      "id": "workflow.proof-source-identity",
-      "kind": "workflow",
-      "title": "Pinned proof source identity",
-      "summary": "Compare exact candidate bytes reconstructed from immutable proof artifacts with the source in an explicit Git commit.",
-      "keywords": [
-        "proof receipt",
-        "pinned commit",
-        "source hash",
-        "candidate identity"
-      ],
-      "api": "es proof identity RECEIPT --commit SHA; es.proofs.pinned_source_identity(cfg, receipt_id, commit)",
-      "example": "es proof identity RECEIPT --commit FULL_COMMIT_SHA",
-      "semantics": "Read-only metadata check in the fixture's captured worktree. Requires a recorded accepted candidate receipt with matching fixture parent/type and reconstructed source hash, then compares raw Git blob bytes at a full 40-character commit SHA. The current checkout may differ. No compiler runs, dependency or policy revalidation, frontier update, or theorem credit; compiler_rechecked=false and theorem_credit=not_inferred are explicit. Memory is bounded by captured source/body artifacts, and the Git blob size must match before reading it.",
-      "source": {
-        "path": "tools/es/es/proofs.py",
-        "symbols": [
-          "pinned_source_identity"
-        ]
-      }
-    },
-    {
-      "id": "workflow.node-finish",
-      "kind": "workflow",
-      "title": "Checked node finalization for review",
-      "summary": "Validate and insert a proof body, run targeted and full checks, audit it, and prepare one node for review.",
-      "keywords": [
-        "node finish",
-        "finish proof",
-        "finalize theorem",
-        "Lean review",
-        "full extract",
-        "proof acceptance"
-      ],
-      "api": "es node finish NODE --body FILE [--fixture FIXTURE] [--window WINDOW] [--extract-memory SIZE]",
-      "example": "es node finish ErdosSzekeres.someNode --body runs/candidate.lean --fixture FIXTURE_ID --window WINDOW_ID",
-      "semantics": "Runs the review-only finalization policy: preflight source checks, isolated candidate validation, insertion into the original node, targeted check, full extraction, and audit. Completion prepares review state; inspect the durable operation result before claiming theorem closure.",
-      "source": {
-        "path": "tools/es/es/finalize.py",
-        "symbols": [
-          "preflight",
-          "submit",
-          "run"
-        ]
-      }
-    },
-    {
-      "id": "workflow.probe",
-      "kind": "workflow",
-      "title": "Versioned bounded probe and witness replay",
-      "summary": "Run a registered finite research probe with source pinning, budgets, durable results, and witness replay.",
-      "keywords": [
-        "probe run",
-        "probe replay",
-        "bounded experiment",
-        "falsifier",
-        "witness",
-        "source hash"
-      ],
-      "api": "es probe run --spec SPEC.json [--window WINDOW]; es probe replay RESULT_ARTIFACT",
-      "example": "es probe run --spec runs/probe-spec.json --window WINDOW_ID\nes probe replay RESULT_ARTIFACT_ID",
-      "semantics": "Admission pins registered plugin sources and an explicit semantic version. Execution enforces finite case/time budgets; negative results receive no proof credit, and saved witnesses replay under the same source version.",
-      "source": {
-        "path": "tools/es/es/probes.py",
-        "symbols": [
-          "plugin",
-          "submit",
-          "load",
-          "execute",
-          "replay"
-        ]
-      }
-    },
-    {
-      "id": "workflow.recursive-cut-probe",
-      "kind": "workflow",
-      "title": "Bounded two-marker recursive-cut probe",
-      "summary": "Run or replay the registered deterministic two-lower-marker cut family through the shared recursive evaluator.",
-      "keywords": [
-        "recursive cut",
-        "two marker",
-        "extreme next",
-        "matched coupling budgets",
-        "bounded probe",
-        "witness replay",
-        "recursive bounds"
-      ],
-      "api": "es probe run --spec harness/research/examples/recursive-cut-small.json [--window WINDOW]; es probe replay RESULT_ARTIFACT",
-      "example": "es probe run --spec harness/research/examples/recursive-cut-small.json --window WINDOW_ID\nes probe replay RESULT_ARTIFACT_ID",
-      "semantics": "Uses plugin recursive_cut, domain two-lower-marker-cut-family-v1, generator extreme-next-deterministic-v1, split rule nonempty-proper-child-subsets-with-geometry-v1, and candidate matched-coupling-budgets-v1. Both registered recursion semantics are retained evaluators only: every result sets Lean equivalence, Lean refutation, and finite-negative proof credit to false.",
-      "source": {
-        "path": "harness/research/recursive_cut.py",
-        "symbols": [
-          "evaluate",
-          "replay"
-        ]
-      }
-    },
-    {
-      "id": "workflow.context",
-      "kind": "workflow",
-      "title": "Source-identified node context bundle",
-      "summary": "Retrieve compact theorem state, dependency signatures, recent outcomes, and an explicit freshness verdict.",
-      "keywords": [
-        "context bundle",
-        "node context",
-        "dependencies",
-        "freshness",
-        "research handoff",
-        "source identity"
-      ],
-      "api": "es context NODE [--previous BUNDLE_ARTIFACT]",
-      "example": "es context ErdosSzekeres.someNode\nes context ErdosSzekeres.someNode --previous PRIOR_BUNDLE_ID",
-      "semantics": "The bundle records the node, current source hash, selected compiled-index dependency signatures, recent events and operations. A previous bundle produces a compact delta; frontier_fresh remains explicit.",
-      "source": {
-        "path": "tools/es/es/bundles.py",
-        "symbols": [
-          "context"
-        ]
-      }
-    },
-    {
-      "id": "workflow.usage",
-      "kind": "workflow",
-      "title": "Research windows, usage accounting, and handoff",
-      "summary": "Record research windows, import exact local usage, compare matched work, and generate factual handoffs.",
-      "keywords": [
-        "usage sync",
-        "run begin",
-        "run end",
-        "run handoff",
-        "token accounting",
-        "research window",
-        "comparison"
-      ],
-      "api": "es run begin LABEL; es usage sync --window WINDOW; es run end WINDOW [--accepted N]; es run handoff --window WINDOW",
-      "example": "window=$(es run begin recursive-bound-audit)\nes usage sync --window \"$window\"\nes run end \"$window\" --accepted 1",
-      "semantics": "Usage is imported from recorded local response events without conversation text. Budgets are observational, comparisons require matched windows, and handoffs report durable operation state plus measured usage coverage.",
-      "source": {
-        "path": "tools/es/es/commands/usage.py",
-        "symbols": [
-          "sync",
-          "ingest",
-          "report",
-          "compare",
-          "begin",
-          "change",
-          "handoff"
-        ]
-      }
-    },
-    {
-      "id": "workflow.agent-run",
-      "kind": "workflow",
-      "title": "Bounded durable Sol research run",
-      "summary": "Run one Sol/xhigh native goal with fixed deadlines, guarded jobs, durable recovery and usage accounting.",
-      "keywords": [
-        "Sol",
-        "native goal",
-        "agent host",
-        "twelve hour",
-        "research run",
-        "resume",
-        "continuation"
-      ],
-      "api": "es run agent --out runs/RUN --prompt /absolute/prompt.md [--model gpt-5.6-sol --effort xhigh --hours 12]; es run agent-status runs/RUN; es run agent --out runs/RUN --resume",
-      "example": "es run agent --out runs/sol-trial --prompt /absolute/path/research-prompt.md --model gpt-5.6-sol --effort xhigh --hours 12\nes run agent-status runs/sol-trial",
-      "semantics": "The 2 GiB host owns a separate Codex native-goal session. A frozen research deadline permits one bounded finalization turn afterward. The worker registers a run observer. Manual resume is explicit; a configured bounded automatic capacity-only retry requires fresh serverOverloaded evidence and rechecks the current goal before recovery. Neither route extends deadlines; uncertain receipts are not automatically replayed. Job completion alone confers no theorem credit or current-client notification guarantee.",
-      "source": {
-        "path": "tools/es/es/agent_run.py",
-        "symbols": [
-          "submit_agent_run",
-          "status_agent_run",
-          "run_host"
-        ]
-      }
-    },
-    {
-      "id": "workflow.node-add",
-      "kind": "workflow",
-      "title": "Register and elaborate a Lean statement",
-      "summary": "Create a statement through the harness with a narrow import and enough memory for nested elaboration.",
-      "keywords": [
-        "node add",
-        "statement registration",
-        "elaborate",
-        "import closure",
-        "memory reservation",
-        "new lemma"
-      ],
-      "api": "es node add --name NAME --ws B --kind formalization --type SIGNATURE --description TEXT --consumer NODE --import MODULE [--targeted]",
-      "example": "es node add --help\n# Without the user bus, queue this command through es job run.\n# The elaboration cap is sized to the import closure (4-5G for thin blueprint nodes);\n# the enclosing job must still fit a retry at build.memory_max (20G). Full extraction needs 28G.",
-      "semantics": "Node registration writes a sorry only in ESBlueprint and elaborates the statement before locking it. Search and claim first. Elaboration and the targeted extract run under caps sized to the module's import closure (elaboration_memory_max: 3G + 4 x closure olean GiB, floor 4G; targeted extract: 3G + 2 x GiB, floor 4G, ceiling extract.targeted_memory_max); a dependency without an olean, or one `lake build --no-build` reports stale, gets the full build.memory_max, and an OOM kill under the sized cap is retried once at the full cap. An enclosing job smaller than the full cap refuses that retry. It leaves the full frontier stale, so refresh before selecting further research. Use the smallest import closure that supplies the statement.",
-      "source": {
-        "path": "tools/es/es/commands/node.py",
-        "symbols": [
-          "run_add",
-          "elaborate_module",
-          "targeted_extract",
-          "elaboration_memory_max",
-          "targeted_extract_memory_max"
-        ]
-      }
-    },
-    {
-      "id": "workflow.node-commit",
-      "kind": "workflow",
-      "title": "Commit one node's files on its node branch",
-      "summary": "Stage exactly one node's module, root import, lock/index records and falsifier, check whitespace, and commit; from a sandbox the commit is queued for es worker.",
-      "keywords": [
-        "commit",
-        "git",
-        "node branch",
-        "sandbox",
-        "read-only git",
-        "index.lock",
-        "worker"
-      ],
-      "api": "es node commit NODE [--message TEXT | --message-file FILE] [--include runs/...]",
-      "example": "es node commit ctx_bound_reverse --message-file runs/r3/COMMIT.txt\n# In a Codex sandbox (read-only .git-data) this prints a queued job id:\nes job wait <id> --timeout 55",
-      "semantics": "Refuses unless HEAD is a node/ branch other than the default, and unless the index is empty beforehand. Stages only the node's files that changed (module, blueprint root, statements.lock, nodes.json, status.md, index.json, falsifier and its harness/falsify record) plus --include artifacts under runs/ or data/; runs git diff --cached --check and unstages on problems. When the git metadata is not writable it queues `es node commit --direct` as a 1G job of kind commit (lock git:<root>, not a build slot) for es worker. It never merges or pushes.",
-      "source": {
-        "path": "tools/es/es/commands/node.py",
-        "symbols": [
-          "run_commit",
-          "node_commit_paths",
-          "git_writable"
-        ]
-      }
-    },
-    {
-      "id": "workflow.jobs",
-      "kind": "workflow",
-      "title": "Guarded commands and terminal receipts",
-      "summary": "Run existing scripts with shared memory admission, job identity, declared outputs, bounded waits, progress-review checkpoints and cancellation.",
-      "keywords": [
-        "worker",
-        "job run",
-        "job wait",
-        "memory",
-        "command",
-        "environment",
-        "worktree",
-        "Python workflow",
-        "git commit",
-        "review",
-        "checkpoint",
-        "progress",
-        "timeout"
-      ],
-      "api": "es job run --why PURPOSE --out runs/OUTPUT --mem SIZE [--review MIN] -- COMMAND; es job wait JOB --timeout 55; es job review JOB --note TEXT [--next MIN]; es job status JOB",
-      "example": "es job run --why 'record interpreter version' --out runs/python-version.txt --mem 256M -- bash -c 'python3 --version > runs/python-version.txt'\nes job wait JOB_ID --timeout 55",
-      "semantics": "Submission is not completion. Inspect the terminal receipt including outputs_missing; --out declares an artifact but does not redirect stdout. Never kill a research computation at a self-chosen time: time a small instance first, make the job print progress (done/total, rate) to its log or an --out file, and set --review from the estimate. When es job wait returns review_due, read the progress, estimate the time left, and record the decision with es job review (leave it; make it cheaper; or answer another way, keeping the question); a checkpoint never stops the job, and --budget kills only for a deadline the user set. A stopped or narrowed run is not a result: log its coverage and the follow-up. Prefer direct argv; a shell pipeline must enable pipefail so output capture cannot hide command failure. Nested Lean commands need an enclosing reservation large enough for their configured build and extraction caps. For direct Git commands use -c gc.auto=0 -c maintenance.auto=false to keep automatic background maintenance from retaining the scope; unknown execution must be reconciled, never blindly retried.",
-      "source": {
-        "path": "tools/es/es/commands/jobs.py",
-        "symbols": [
-          "run_run",
-          "run_wait",
-          "run_status",
-          "run_review"
-        ]
-      }
-    },
-    {
-      "id": "workflow.immutable-artifact-sharing",
-      "kind": "workflow",
-      "title": "Verified immutable certificate artifact sharing",
-      "summary": "Deduplicate identical compiled certificate outputs across compatible checkouts sharing one harness database, using Lake's native immutable cache.",
-      "keywords": [
-        "storage",
-        "disk deduplication",
-        "certificate artifacts",
-        "private proof bodies",
-        "hard links",
-        "Lake cache",
-        "SHA-256"
-      ],
-      "api": "es storage share --other CHECKOUT [--apply] [--cache PATH] [--receipt runs/FILE.jsonl] [--facet FACET]",
-      "example": "es job run --why \"verify immutable certificate duplicates\" --out runs/storage-share/audit.jsonl --mem 4G --budget 90 -- tools/es/bin/es storage share --other runs/worktrees/sol-12h-20260916 --receipt runs/storage-share/audit.jsonl\n# Add --apply to the inner command to adopt verified blobs.",
-      "semantics": "Requires a guarded job, compatible project/toolchain/filesystem, and generated certificate modules in both checkouts. The default is verification only. Full SHA-256 checks precede atomic hard-link adoption through the pinned Lake cache; sources and mutable setup/trace/hash sidecars are excluded. Both worktrees and the shared cache are reserved. Receipts separate logical duplicate bytes, eligible freed blocks and observed free-space change. Native input mappings are created only by ordinary guarded Lake builds, never synthesized from filenames. Rebuild detachment was tested on pinned Lean 4.29.1; unsupported toolchains are refused.",
-      "source": {
-        "path": "tools/es/es/artifact_cache.py",
-        "symbols": [
-          "share_certificates",
-          "atomic_adopt"
-        ]
-      }
-    },
-    {
-      "id": "workflow.setup-metadata-cleanup",
-      "kind": "workflow",
-      "title": "Audited Lake setup metadata cleanup",
-      "summary": "Inventory or prune Lake 4.29.1 setup spill files with exact-path manifests, inode revalidation and storage exclusion.",
-      "keywords": [
-        "Lake setup json",
-        "disk cleanup",
-        "storage maintenance",
-        "manifest",
-        "hard links",
-        "build cache"
-      ],
-      "api": "es storage prune-setup [--apply] [--out runs/DIRECTORY]",
-      "example": "es storage prune-setup --out runs/setup-audit\n# Inspect runs/setup-audit/manifest.json, then:\nes storage prune-setup --apply --out runs/setup-prune",
-      "semantics": "Dry-run is the default. The pinned Lake 4.29.1 contract scans only a real .lake/build/ir directory without symlink traversal, writes the manifest durably, revalidates every regular-file identity before unlinking, and reports logical removed bytes separately from allocated blocks actually made unreachable by hard-link counts. Automatic post-build cleanup considers only modules in successful acknowledged Lake Built records while its worktree reservation remains held. Plugin and dynlib paths inside a setup snapshot are references and are never removed. A killed standalone maintenance process may leave a conservative lease for explicit reconciliation; no bulk cleanup is implied by enabling the command.",
-      "source": {
-        "path": "tools/es/es/setup_metadata.py",
-        "symbols": [
-          "prune_setup_metadata",
-          "post_build_cleanup"
-        ]
-      }
-    },
-    {
-      "id": "workflow.run-monitor",
-      "kind": "workflow",
-      "title": "Run observation without model polling",
-      "summary": "Observe durable research jobs in the worker and escalate only a terminal run or persistent infrastructure blocker.",
-      "keywords": [
-        "monitor",
-        "Astra",
-        "polling",
-        "run progress",
-        "worker",
-        "capacity retry",
-        "completion",
-        "stale runner",
-        "scope reconciliation"
-      ],
-      "api": "es run watch OUT; es run progress OUT [--follow 55]; es run observe; es run unwatch OUT",
-      "example": "es run progress runs/sol-trial\nes run progress runs/sol-trial --follow 55\nes run observe\nes delivery status",
-      "semantics": "Native run submission registers automatically. Idle observations and individual compiler failures make no model requests. If a host runner disappears after its recorded cgroup has definitely stopped, the observer reconciles the stale job row with a compare-and-set on the recorded runner identity and emits the terminal event once; a changed or live runner remains reserved. A configured bounded retry handles only a fresh provider capacity failure within the frozen deadline; it never resets pause, quota, cancellation or uncertain effects. Unwatch stops observation without cancelling compute or messages already queued. Unattended reporting requires a separately verified callback plus an available worker.",
-      "source": {
-        "path": "tools/es/es/run_monitor.py",
-        "symbols": [
-          "register",
-          "progress",
-          "tick",
-          "pause"
-        ]
-      }
-    },
-    {
-      "id": "workflow.run-review",
-      "kind": "workflow",
-      "title": "Final research accounting and code inventory",
-      "summary": "Collect deduplicated late usage, direct jobs, validation evidence and code review inventory in one immutable bundle.",
-      "keywords": [
-        "final review",
-        "run review",
-        "late usage",
-        "code inventory",
-        "inline Python",
-        "library promotion",
-        "accounting"
-      ],
-      "api": "es run review OUT [--artifact-root RUN_DIR]; build_review(cfg, out, compact_limit=4096, artifact_root=None)",
-      "example": "es run review runs/sol-trial/host --artifact-root runs/sol-trial",
-      "semantics": "Summary is bounded to 4096 bytes; full evidence is immutable. Usage includes finalization after the research window closes and reports source limits. Explicit artifact roots must contain the host directory under configured output roots; otherwise the inventory states its host-only coverage. Source hashes and sanitized inline commands support review; scripts are not executed. Operational success never grants theorem credit. Final mathematical review is always required, with code review flagged separately.",
-      "source": {
-        "path": "tools/es/es/run_review.py",
-        "symbols": [
-          "build_review"
-        ]
-      }
-    },
-    {
-      "id": "workflow.run-delivery",
-      "kind": "workflow",
-      "title": "Verified exact-thread completion callbacks",
-      "summary": "Verify the actual receiving Codex thread before submitting compact run-level events through its queue.",
-      "keywords": [
-        "callback",
-        "notification",
-        "delivery verify",
-        "exact thread",
-        "queue",
-        "completion",
-        "reconciliation"
-      ],
-      "api": "es delivery status; es delivery verify --thread UUID; es delivery confirm --challenge TOKEN; es delivery abandon-verification --thread UUID",
-      "example": "es delivery status\nes delivery verify --thread \"$CODEX_THREAD_ID\"\n# Confirm only the challenge actually received through this thread.",
-      "semantics": "Queue acceptance alone does not verify receipt. Confirmation requires the unchanged receiving CODEX_THREAD_ID and coordinator identity. Packets are at most 2048 bytes plus the event marker; full evidence stays in immutable artifacts. Events have a separate outbox from operation delivery. Uncertain submissions are never automatically retried; abandoning a verification invalidates its nonce but cannot cancel an already queued message. Transport configuration does not override the client model, permissions or quota.",
-      "source": {
-        "path": "tools/es/es/run_delivery.py",
-        "symbols": [
-          "request_verification",
-          "confirm_verification",
-          "emit",
-          "dispatch",
-          "status"
-        ]
-      }
-    },
-    {
-      "id": "research.signotope-cubes",
-      "kind": "primitive",
-      "title": "Signotope point-set cubes and Knuth cube-tree estimates",
-      "summary": "Legal rank-3 signotope patterns on point sets as SAT cubes (ETV triple numbering), reversal symmetry, and a solver-agnostic Knuth random-walk tree-size estimator for choosing a cube order and depth.",
-      "keywords": [
-        "cube and conquer",
-        "cubes",
-        "signotope",
-        "one-change",
-        "pattern",
-        "triple variable",
-        "ETV",
-        "SAT",
-        "reversal symmetry",
-        "symmetry breaking",
-        "Knuth estimator",
-        "tree size",
-        "split order",
-        "cube depth",
-        "python-sat"
-      ],
-      "api": "patterns_on(points) -> [pattern]; extensions(pattern, points, new) -> [new triples]; place(pattern, points); lits_of(pattern, N) -> [int]; triple_var(t, N) -> int; reverse(pattern, N); knuth_walk(order, roots, start_depth, survives, is_leaf, rng, max_depth=None) -> [step]; knuth_estimates(walks) -> dict",
-      "example": "from harness.research import signotope_cubes as sc\ncubes = [sc.lits_of(p, 27) for p in sc.patterns_on([13, 12, 14, 11, 15, 10])]  # 908 level-6 cubes, center-outward\n# survives = lambda p: <python-sat conf_budget(1) solve is not False>; is_leaf = lambda p, d: <20k-conflict attempt refutes>\nwalk = sc.knuth_walk(order, roots, 6, survives, is_leaf, random.Random(0))",
-      "semantics": "Patterns map sorted triples to bool; legality is only the one-change (rank-3 signotope) law on every 4-subset, so pattern counts on 1..7 points are 1,1,2,8,62,908,24698 (OEIS A006245, regression-tested). Cup/cap/convex-gon constraints are NOT applied: the caller filters with its CNF (e.g. a propagation test). triple_var matches scripts/generate_etv_tseitin_sat.py (1 + index in combinations(range(N),3), tested against the generator). reverse maps legal patterns to legal patterns and preserves cups/caps; whether it is a symmetry of a given CNF must be checked per encoding (verified for the ETV CNF in runs/etv-cc-20260930/verify_reversal.py). knuth_walk is Knuth's unbiased estimator: 10**log10_prod at the last step estimates the leaf count; single walks are heavy-tailed, so report medians with means. python-sat pitfalls: conf_budget(0) means no limit; CaDiCaL has no propagate(); keep each incremental solver on one cube point set (mixing sets was ~10x slower). Diagnostic tooling only; no proof output.",
-      "source": {
-        "path": "harness/research/signotope_cubes.py",
-        "symbols": [
-          "triple_var",
-          "extensions",
-          "patterns_on",
-          "place",
-          "lits_of",
-          "reverse",
-          "knuth_walk",
-          "knuth_estimates"
-        ]
-      }
-    },
-    {
-      "id": "research.cup-cap-chains",
-      "kind": "primitive",
-      "title": "Cup/cap chains and strong sets of a triple colouring",
-      "summary": "Longest chains, chain enumeration, per-edge and endpoint-pair chain tables with witnesses, maximum-chain cores (L*, R*), and the largest strong set via the cup+cap formula with a 4-point brute-force reference.",
-      "keywords": [
-        "cup",
-        "cap",
-        "chain",
-        "chains",
-        "longest chain",
-        "cup number",
-        "cap number",
-        "chain table",
-        "endpoint pair",
-        "strong set",
-        "strong number",
-        "convex position",
-        "IsStrongPolygonSet",
-        "chain core",
-        "maximum caps",
-        "one-change",
-        "signotope"
-      ],
-      "api": "longest_chain(cup, points, want) -> int; chains(cup, t, want, points) -> [tuple]; edge_chain_tables(cup, n, want) -> (end, start); longest_lr(cup, points, want) -> {(l, r): (length, chain)}; chain_core(cup, points, want) -> (L*, R*, max chains); strong_number(cup, points) -> int; strong_number_bruteforce(cup, points) -> int; is_strong(cup, points) -> bool; is_one_change(cup, points) -> bool",
-      "example": "from harness.research.chains import longest_chain, strong_number\ncup = {(0, 1, 2): True}  # sorted triple -> True = cup\nlongest_chain(cup, range(3), True), longest_chain(cup, range(3), False), strong_number(cup, range(3))  # (3, 2, 3)\n# python3 harness/research/examples/strong_gons_demo.py",
-      "semantics": "Points are integers in sweep order; cup maps each sorted triple to True (cup, left turn, set bit in decomposable.coloring-enumeration masks) or False (cap). A chain's consecutive triples all have its colour; sets of <= 2 points are both cups and caps (lengths 0, 1, 2), so a limit of 1 admits one point. Strong set = Lean IsStrongPolygonSet (4-point definition); sets of <= 3 points are strong. strong_number uses max(min(n,3), cup_lr + cap_lr - 2 over endpoint pairs), which equals the 4-point definition on one-change colourings (all 908 six-point signotopes and random decomposable sets regression-tested) and is NOT valid on arbitrary colourings; strong_number_bruteforce and is_strong hold for any colouring (exponential, small sets). chain_core gives L* = max first point and R* = min last point over the longest chains (interior core when L* < R*). Diagnostic computation only; no Lean proof.",
-      "source": {
-        "path": "harness/research/chains.py",
-        "symbols": [
-          "longest_chain",
-          "chains",
-          "edge_chain_tables",
-          "longest_lr",
-          "chain_core",
-          "strong_number",
-          "strong_number_bruteforce",
-          "is_strong",
-          "is_one_change"
-        ]
-      }
-    },
-    {
-      "id": "research.lazy-strong-gons",
-      "kind": "primitive",
-      "title": "Lazy strong-set (gon) witness and CEGAR two-colouring",
-      "summary": "Finds one strong set of an exact size without enumerating gons, and two-colours points so that neither class contains a strong size-set by adding gon clauses lazily to a SAT solver.",
-      "keywords": [
-        "gon",
-        "k-gon",
-        "strong set",
-        "find gon",
-        "witness",
-        "CEGAR",
-        "lazy clauses",
-        "two-colouring",
-        "two-coloring",
-        "bichromatic",
-        "monochromatic",
-        "PSL",
-        "memory-light",
-        "SAT",
-        "python-sat"
-      ],
-      "api": "find_gon(cup, points, size) -> sorted tuple | None; cegar_two_colouring(cup, points, hard, size) -> (blue, red) | None",
-      "example": "from harness.research.chains import find_gon, cegar_two_colouring\ngon = find_gon(s.cup, range(s.n), k - 1)  # None: no strong (k-1)-set in s\nres = cegar_two_colouring(s.cup, list(range(s.n)), hard_clauses, k - 1)  # SAT var p+1 true = blue",
-      "semantics": "find_gon pairs a longest cup and a longest cap with the same endpoints and trims interior points to the exact size; it is complete (None means no strong size-set) only on one-change colourings, regression-tested against strong_number_bruteforce on all 908 six-point signotopes, and raises ValueError if a cup and cap share an interior point. Memory O(|S|^2) per start point; about 31 MB per k=8 sample in runs/claude-hypergraph-20261003, versus one clause pair per gon. cegar_two_colouring needs python-sat (Cadical195): variable p+1 is point p (non-negative integers; true = blue); hard is the caller's clause list; while a colour class holds a size-gon it adds the clauses forbidding that gon to be monochromatic and re-solves; returns (blue, red) with both classes strong-size-free, or None when none exists (agreement with brute force over all 2^n colourings is regression-tested). Diagnostic only; no proof output.",
-      "source": {
-        "path": "harness/research/chains.py",
-        "symbols": [
-          "find_gon",
-          "cegar_two_colouring"
-        ]
-      }
-    },
-    {
-      "id": "decomposable.label-sets",
-      "kind": "primitive",
-      "title": "Decomposable sets as binary label trees",
-      "summary": "Builds decomposable colourings from prefix-free root-path labels, composes, splits and samples them, decides exact decomposability of any colouring, converts enumerator bitmasks, and evaluates decomposableThreshold.",
-      "keywords": [
-        "decomposable",
-        "decomposable set",
-        "labels",
-        "label tree",
-        "root split",
-        "deep-below split",
-        "Lemma M",
-        "random decomposable set",
-        "nested split",
-        "compose",
-        "decomposability",
-        "all splits",
-        "bitmask",
-        "threshold",
-        "T(a,u,k)",
-        "decomposableThreshold"
-      ],
-      "api": "DecomposableSet(labels) -> .n .cup .alpha .beta .strong .end .st, .longest(sub, want), .chains(t, want, sub), .cap_core(), .cup_core(), .root_split(); coloring_from_labels(labels); check_labels(labels); normalize_labels(labels); compose(A, B, lowerpos); root_split(labels); random_labels(n, rng); random_nested_labels(n, rng, pnest=0.6); all_splits(cup, pts); Decomposability(cup).dec(pts) / .splits(pts); coloring_from_mask(mask, n); mask_from_coloring(cup, n); decomposable_masks(max_n); threshold(a, u, k)",
-      "example": "from harness.research.decomposable_sets import DecomposableSet, random_nested_labels\ns = DecomposableSet(random_nested_labels(14, random.Random(2026)))\ns.alpha, s.beta, s.strong  # cup, cap and strong numbers: 5, 7, 8\n# python3 harness/research/examples/band_partitions_demo.py",
-      "semantics": "Decomposable = IsDecomposableOn (singleton, or nonempty lower A and upper B, interleaved arbitrarily, a triple meeting both is a cup iff its middle point is in A). Point p carries its root path ('0' lower, '1' upper); labels must be distinct and prefix-free (checked; SAT-decoded 0/1 tuples are normalised). Triple p<q<r is a cup iff the middle label has '0' where the three first differ. Label trees generate exactly the enumerated class on n <= 6, and Decomposability accepts exactly 718 of the 908 six-point signotopes (both regression-tested); it is exponential in |pts|. DecomposableSet keeps the attribute names of runs/claude-bandrule-20261003/bl.py S; chain conventions as research.cup-cap-chains (sets of <= 2 points are both cups and caps). decomposable_masks wraps decomposable.coloring-enumeration (class counts 2, 8, 62, 718, 10596 for n = 3..7 tested; 186888, 3816380 for n = 8, 9 from the audit). threshold mirrors Lean decomposableThreshold with truncated subtraction and equals the exact maximum (cap <= a-1, cup <= u-1, strong <= k-1) in all 139 cases decided by n <= 7 enumeration. Diagnostic only; no Lean proof.",
-      "source": {
-        "path": "harness/research/decomposable_sets.py",
-        "symbols": [
-          "DecomposableSet",
-          "coloring_from_labels",
-          "check_labels",
-          "normalize_labels",
-          "compose",
-          "root_split",
-          "random_labels",
-          "random_nested_labels",
-          "all_splits",
-          "Decomposability",
-          "coloring_from_mask",
-          "mask_from_coloring",
-          "decomposable_masks",
-          "threshold"
-        ]
-      }
-    },
-    {
-      "id": "decomposable.band-partitions",
-      "kind": "primitive",
-      "title": "BDL band partitions: exact search, verifier, SAT cross-check",
-      "summary": "Enumerates or finds band partitions (band j: cup <= j+1, cap <= k-1-j) over the BDL range with optional per-point band restrictions, verifies them independently, and re-decides by SAT.",
-      "keywords": [
-        "band partition",
-        "bands",
-        "BDL",
-        "Band Decomposition Lemma",
-        "bdl range",
-        "P invariant",
-        "PF",
-        "bottom band",
-        "core",
-        "backtracking",
-        "partition verifier",
-        "SAT",
-        "python-sat",
-        "Theorem 8"
-      ],
-      "api": "bdl_range(alpha, beta, k) -> [j]; band_limits(j, k) -> (j+1, k-1-j); partitions(cup, points, k, bands, *, allowed=None, limit=None, first=False) -> [tuple]; find_partition(cup, points, k, bands, *, allowed=None) -> tuple | None; check_partition(cup, points, k, b, bands=None) -> bool; allowed_from_forbid(points, bands, forbid) -> {p: bands}; partition_sat(cup, points, k, bands, *, allowed=None) -> tuple | None",
-      "example": "from harness.research.band_partitions import bdl_range, find_partition, check_partition\nbands = bdl_range(s.alpha, s.beta, k)  # k-1-cap .. cup-1\nb = find_partition(s.cup, range(s.n), k, bands)  # b[p] = band of point p, or None\nassert b is None or check_partition(s.cup, range(s.n), k, b, bands)",
-      "semantics": "A band partition puts every point in a band j whose members have cup <= j+1 and cap <= k-1-j; with the chain convention that sets of <= 2 points are both cups and caps, only bands 0..k-2 can be used and bands 0 and k-2 hold at most one point. bdl_range(alpha, beta, k) = k-1-beta .. alpha-1; BDL asserts a partition in that range for decomposable X with strong(X) <= k-1 and cup+cap >= k (cup+cap = k is the one-band case). Results are tuples aligned with sorted(points) (b[p] for range(n)); bands are tried in the given order; allowed[p] restricts point p (allowed_from_forbid builds it from forbidden points per band, e.g. the P invariant's bottom band j0 = k-1-cap inside x <= L*). partitions is complete backtracking with incremental chain tables; check_partition recomputes every band from scratch; partition_sat (python-sat Cadical195, lazy import) is a second exact method that agrees with backtracking (regression-tested). Fixture examples/band-partitions-v1.json freezes the exhaustive audit counts (pairs, multi-band, P, PF, P', cores) for n <= 7, reproduced exactly; BDL holds on all decomposable colourings with n <= 9 per runs/claude-audit-bdl-20261003. Diagnostic computation, not a Lean proof of BDL.",
-      "source": {
-        "path": "harness/research/band_partitions.py",
-        "symbols": [
-          "bdl_range",
-          "band_limits",
-          "allowed_from_forbid",
-          "partitions",
-          "find_partition",
-          "check_partition",
-          "partition_sat"
-        ]
-      }
-    },
-    {
-      "id": "research.lean-proof-dependencies",
-      "kind": "primitive",
-      "title": "Lean proof type/value dependency audit",
-      "summary": "Observational transitive constant closure, declaration-owner identity, and generated/certificate classification through the existing module catalog.",
-      "keywords": [
-        "Lean proof",
-        "type and value",
-        "dependency trace",
-        "certificate modules",
-        "generated modules",
-        "declaration owner",
-        "axioms",
-        "unsafe constants",
-        "observational audit"
-      ],
-      "api": "lean_command(cfg, module, declaration, output) -> argv (submit through es job run); classify_trace(cfg, raw_trace) -> dict; receipt(cfg, trace_path) -> dict; python -m es.proof_dependencies --trace FILE --out FILE",
-      "example": "es job run --why \"inspect compiled proof dependencies\" --out runs/proof-dependency-demo --mem 6G --review 2 -- env PYTHONPATH=tools/es /usr/bin/python3 harness/research/examples/proof_dependencies_demo.py --out runs/proof-dependency-demo\n# Follow the returned job with es job wait ID --timeout 55; inspect trace.json and receipt.json only after terminal success.",
-      "semantics": "The Lean helper tools/es/lean/TraceProofDependencies.lean follows ConstantInfo.getUsedConstantsAsSet through every reachable type/value, including opaque values, constructors and recursor families. It records the actual owning module of the root separately from its import entry. Runtime progress uses the imported-constant count only as an upper bound on unknown reachable work. Classification delegates to scan_modules and configured layer prefixes, retaining unknown project modules, nonstandard axioms and unsafe constants. Project source/olean hashes identify the declaration owner, but do not attest source-to-olean correspondence or grant theorem acceptance/frontier freshness. Original-source es checks remain necessary. Legacy traces without owner capture are refused; originals remain durable. The CLI only reads/hashes existing traces and does not launch Lean. The runnable example requires guarded es job context; 6G is a measured thin-closure example cap, not a universal guarantee.",
-      "source": {
-        "path": "tools/es/es/proof_dependencies.py",
-        "symbols": [
-          "lean_command",
-          "classify_trace",
-          "receipt",
-          "main"
-        ]
-      }
-    },
-    {
-      "id": "research.endpoint-slot-profiles",
-      "kind": "primitive",
-      "title": "Finite-context endpoint slot refinement",
-      "summary": "Refines child cup/cap endpoint matrices and preserves original and converted-slot marker barriers.",
-      "keywords": [
-        "endpoint matrices",
-        "profile refinement",
-        "finite context",
-        "child slots",
-        "barriers",
-        "opposite endpoint gains",
-        "sufficient state"
-      ],
-      "api": "refine_slot_profile(caps, cups, keep, side, opposite_max, strong) -> (caps, cups); expand_run_profile(word, caps, cups) -> (caps, cups, barriers); child_slot_barriers(barriers, keep) -> barriers",
-      "example": "from harness.research.endpoint_profiles import refine_slot_profile\ncaps, cups = refine_slot_profile([[2, 3], [0, 2]], [[2, 3], [0, 2]], [0], 'lower', 1, 3)",
-      "semantics": "Pure immutable numerical transforms on square nonnegative integer upper-triangular matrices. Retained slot indices must be distinct, nonempty and proper for refinement; 1 <= opposite_max < strong. Expansion requires one matrix row per consecutive S run. Boolean barriers retain old markers and gaps made by converted slots. The formula has a hand extension-path derivation and independent legacy-signature regression fixtures, not a certificate of equivalence to Lean. It preserves finite slot resolution and does not compute unrestricted profile maxima or assume a T upper theorem. Runnable example: harness/research/examples/endpoint_profiles_demo.py; frozen fixture: harness/research/examples/endpoint-profiles-v1.json.",
-      "source": {
-        "path": "harness/research/endpoint_profiles.py",
-        "symbols": [
-          "refine_slot_profile",
-          "expand_run_profile",
-          "child_slot_barriers"
-        ]
-      }
-    },
-    {
-      "id": "research.signotope-sat",
-      "kind": "primitive",
-      "title": "Signotope SAT base: convex k-sets, cups, caps, radial normal form",
-      "summary": "Clause builder for one-change colourings on n points with no convex k-set, no m-cup, no m-cap, hull-vertex and radial-normal-form constraints; python-sat solve and blocking.",
-      "keywords": [
-        "SAT",
-        "signotope",
-        "one-change colouring",
-        "convex k-gon",
-        "strong set",
-        "cup",
-        "cap",
-        "ETV cell",
-        "threshold",
-        "radial normal form",
-        "hull vertex",
-        "quad encoding",
-        "blocking clause",
-        "CaDiCaL"
-      ],
-      "api": "SignotopeSAT(n).no_strong_set(k) / .no_cup(m) / .no_cap(m) / .radial_normal_form() / .hull_vertex(p) / .solve(assumptions=()) -> (bool, chi|None); threshold_instance(n, k=None, cup=None, cap=None, radial=False) -> SignotopeSAT",
-      "example": "from harness.research.signotope_sat import threshold_instance\nthreshold_instance(9, k=5).solve()[0]  # False: ES(5) = 9\n# Runnable: python3 harness/research/examples/signotope_sat_demo.py (fixture signotope-sat-thresholds-v1.json)",
-      "semantics": "Points 0..n-1 in sweep order; triple variables, True = cup; one-change clauses on every 4-set; convexity of a 4-set is an auxiliary variable equivalent to its pattern being 0000, 1111, 0011 or 1100; a strong k-set is forbidden by one clause per k-set over its 4-subsets (C(n,k) clauses, eager). radial_normal_form fixes every (0,x,y) a cup, WLOG for a question about one hull vertex (brief G lemma L2: every hull vertex is the first point of some presentation of the same chirotope); hull_vertex(p) encodes brief G lemma L1. Diagnostic python-sat answer, no proof log, no symmetry breaking, not Lean. The chain-variable encoding (wsat.py) stays in runs/claude-positive-split-20261007.",
-      "source": {
-        "path": "harness/research/signotope_sat.py",
-        "symbols": [
-          "SignotopeSAT",
-          "threshold_instance",
-          "key_of"
-        ]
-      }
-    },
-    {
-      "id": "research.charts",
-      "kind": "primitive",
-      "title": "Charts (topes), circuits, hull vertices, chart flips and radial re-sweeps",
-      "summary": "Circuits of a one-change colouring, its charts (acyclic reorientations), convexity per chart, hull vertices, the flip of a hull vertex across infinity, the radial order and re-sweep from a hull vertex; colouring keys, mirror, reflection and prefix-closed enumeration.",
-      "keywords": [
-        "chart",
-        "tope",
-        "circuit",
-        "reorientation",
-        "hull vertex",
-        "flip",
-        "antipode",
-        "radial order",
-        "re-sweep",
-        "projective",
-        "key",
-        "mirror",
-        "enumerate colourings",
-        "signotope",
-        "chirotope"
-      ],
-      "api": "circuits(n, chi) -> dict; topes(n, C) -> list; convex_sets_in_chart(n, C, s, k) -> list; inner_point(C, Q, s); hull_vertices(n, C, s=None) -> list; flip_chart(s, p); radial_order(n, chi, p) -> list; resweep(n, chi, p) -> (listing, chi2); key_of / parse_key / mirror / reflect / enumerate_colourings(nmax, ok)",
-      "example": "from harness.research import charts as ch\nn, chi = ch.parse_key(key); C = ch.circuits(n, chi); len(ch.topes(n, C)) == n*(n-1)//2 + 1\n# Runnable: python3 harness/research/examples/charts_demo.py (fixture charts-v1.json)",
-      "semantics": "chi maps sorted triples to True (cup); circuit of a<b<c<d is (chi(bcd), -chi(acd), chi(abd), -chi(abc)) with chi as +-1; a chart is a sign vector with no 4-set circuit sum +-4 (topes returns one of each antipodal pair, s[0] = +1); a 4-set is convex in chart s iff its circuit sum is 0, else the odd sign is its inner point; a k-set is convex iff all 4-subsets are. hull_vertices are points that are never inner; flipping a hull vertex gives the chart with that point moved across infinity. resweep lists p first then the radial order and recolours by orientation; it raises if the result is not one-change (p not a hull vertex). enumerate_colourings extends by harness.research.signotope_cubes and keeps every prefix satisfying ok. Exhaustive enumeration of topes is 2^(n-1) sign vectors: fine to n about 12. Diagnostic Python, not Lean.",
-      "source": {
-        "path": "harness/research/charts.py",
-        "symbols": [
-          "circuits",
-          "topes",
-          "convex_sets_in_chart",
-          "inner_point",
-          "hull_vertices",
-          "flip_chart",
-          "radial_order",
-          "resweep",
-          "key_of",
-          "parse_key",
-          "mirror",
-          "reflect",
-          "enumerate_colourings",
-          "orient"
-        ]
-      }
-    },
-    {
-      "id": "research.convexity-labels",
-      "kind": "primitive",
-      "title": "Convexity labellings, locality ladder and the 7-point axiom system",
-      "summary": "4-set labellings (convex or inner point), SAT instances for level-m local realizability with k-gon-freeness and no-halving clauses (python-sat or streamed DIMACS), realizability and locality profile of a labelling, and the frozen 20-pattern 7-point axiom system with the cone lemma.",
-      "keywords": [
-        "convexity labelling",
-        "inner point",
-        "locality",
-        "level m",
-        "local realizability",
-        "Grassmann-Pluecker",
-        "pseudo-configuration",
-        "halving",
-        "SPLIT",
-        "property B",
-        "axiom",
-        "cone lemma",
-        "7-point",
-        "DIMACS",
-        "CaDiCaL",
-        "hull3",
-        "symmetry breaking"
-      ],
-      "api": "labels_of(n, chi) -> dict; level_instance(k, n, m, gon_free=True, no_halving=True, hull3=False, hull=None) -> (enc, L); decode(L, model, n); label_assumptions(L, lam, F=None); realizable(m, lam) -> bool; locality_profile(n, lam, levels) -> dict; axioms7() -> dict; write_dimacs(k, n, m, out, hull3=, gon_free=, no_halving=) -> (vars, clauses); decode_dimacs(n, solver_output)",
-      "example": "from harness.research import convexity_labels as cl\nE, L = cl.level_instance(5, 8, 5, hull3=True)  # UNSAT: the k=5 halving is 5-point local\n# Runnable: python3 harness/research/examples/convexity_labels_demo.py (fixture convexity-axioms7-v1.json)",
-      "semantics": "A labelling gives each 4-set 'conv' or the name of its inner point; convex m-sets have all 4-subsets conv. Level m: every m-subset's labels come from a private acyclic rank-3 chirotope on it (3-term GP on 5-subsets, no alternating 4-pattern = realizability for m <= 8) linked by the circuit rule; subsets agree only on labels; level 4 is no constraint, level n a real configuration. gon_free forbids convex k-sets; no_halving forbids every partition into two (k-1)-gon-free halves of size n/2 (one clause per partition with gon auxiliaries, C(n-1, n/2-1) clauses). hull3 (points 0,1,2 never inner) is WLOG by relabelling; hull=h shards by hull size. write_dimacs streams the same instance to disk for a standalone solver (16 points at level 7 is about 25.6M clauses, 1.1 GB). Fixture facts (2026-10-08, diagnostic): the 7-point axiom system has exactly 20 patterns; ES(5) = 9 follows from 6-point patterns plus the cone lemma; SPLIT(6) on 16 points is not 6-point local. No proof log, not Lean.",
-      "source": {
-        "path": "harness/research/convexity_labels.py",
-        "symbols": [
-          "labels_of",
-          "level_instance",
-          "decode",
-          "label_assumptions",
-          "realizable",
-          "locality_profile",
-          "axioms7",
-          "write_dimacs",
-          "decode_dimacs"
-        ]
-      }
-    }
-  ]
+ "schema_version": 1,
+ "entries": [
+  {
+   "id": "research.classical-pascal-labels",
+   "kind": "primitive",
+   "title": "Classical Pascal cup-cap labels",
+   "summary": "Materializes immutable binary labels for the classical extremal decomposable cup-cap construction.",
+   "keywords": [
+    "classical construction",
+    "Pascal",
+    "binomial",
+    "extremal labels",
+    "es_labels",
+    "cup cap",
+    "padding tail",
+    "sharpness"
+   ],
+   "api": "classical_pascal_labels(cup, cap) -> tuple[str, ...]",
+   "example": "from harness.research.binary_labels import classical_pascal_labels\nclassical_pascal_labels(3, 3)  # ('00', '010', '011', '100', '101', '11')\n# Runnable: python3 harness/research/examples/binary_labels_demo.py",
+   "semantics": "Actual positive integer bounds only; bool and malformed values rejected. Returns prefix-free binary words in spatial order, size choose(cup+cap-2,cup-1). Under first-varying-middle-bit decoding cup/cap maxima equal the bounds when both are at least2; if either is1 the result is a singleton and both actual maxima are1. Old lower/left K(cup-1,cap) and new upper/right K(cup,cap-1) form the recursive root. Immutable materialized tuple; output size can be enormous and recursion depth cup+cap-2, so callers own guards and scale selection. No solver, storage, geometry coordinates or Lean certificate. Retains R25 univ.es_labels semantics used for padding and sharp cored families; original artifacts remain unchanged.",
+   "source": {
+    "path": "harness/research/binary_labels.py",
+    "symbols": [
+     "classical_pascal_labels"
+    ]
+   }
+  },
+  {
+   "id": "decomposable.binary-label-coloring",
+   "kind": "primitive",
+   "title": "Prefix-free binary label coloring",
+   "summary": "Decodes ordered binary labels into a complete Boolean triple coloring without a solver.",
+   "keywords": [
+    "binary labels",
+    "prefix free",
+    "first varying coordinate",
+    "middle bit",
+    "triple coloring",
+    "decoder",
+    "decomposition"
+   ],
+   "api": "binary_label_coloring(labels) -> dict[tuple[int,int,int], bool]",
+   "example": "from harness.research.binary_labels import binary_label_coloring\nbinary_label_coloring(['1', '00', '01'])  # {(0, 1, 2): True}\n# Runnable: python3 harness/research/examples/binary_labels_demo.py",
+   "semantics": "Finite iterable of actual binary strings, copied in caller spatial order; lexicographic order not required. Bare str/bytes, nonstrings, nonbinary words, duplicates and any prefix relation are rejected. Empty input and singleton empty word are valid. For every increasing triple find its first varying coordinate; True cup iff the middle bit is0. Returns a complete actual-bool mapping on range(len(labels)); recursive binary prefix cuts explain decomposability, but this is diagnostic code and no Lean receipt. Work O(n^3*max_word_length) after prefix validation; no SAT, budget, result-storage or theorem layer. Retains the repeatedly reused R25 Coloring.from_labels semantics with an explicit prefix-free contract.",
+   "source": {
+    "path": "harness/research/binary_labels.py",
+    "symbols": [
+     "binary_label_coloring"
+    ]
+   }
+  },
+  {
+   "id": "research.triple-metrics",
+   "kind": "primitive",
+   "title": "Exact complete-triple finite metrics",
+   "summary": "Solver-free cup, cap, strong-set maxima and maximum-chain endpoints on every requested subset.",
+   "keywords": [
+    "complete triple coloring",
+    "all triples",
+    "monochromatic subsets",
+    "cup cap metrics",
+    "strong quadruples",
+    "endpoint extrema",
+    "finite evaluator",
+    "independent certificate"
+   ],
+   "api": "FiniteTripleColoring(colors, n); metrics(mask=None); extrema(mask, want); maximal_chain_masks(mask, want); strong_number(mask=None); monochromatic_masks(want); strong_masks()",
+   "example": "from harness.research.triple_metrics import FiniteTripleColoring\nI = FiniteTripleColoring({(0, 1, 2): True}, 3)\nI.metrics()  # (3, 2)\nI.strong_number()  # 3\n# Runnable: python3 harness/research/examples/triple_metrics_demo.py",
+   "semantics": "Complete mapping of increasing integer triples on range(n) to actual bool (True cup); actual nonnegative integer n, including empty maps below3. Copies input and validates the same strict contract as root-cuts. Arbitrary colorings accepted: no one-change, realizability or decomposability assumption. Checks EVERY triple for monochromatic chains and EVERY quadruple's two strong equalities; does not substitute consecutive-turn DP. Subset bitmask is an actual integer in range(2**n), None means full. Empty maxima zero and empty endpoint sets; returned masks sorted by decreasing(size,mask), immutable tuples/frozensets. Exponential small-instance evaluator, worst-case O(2**n*n**4) time/O(2**n) stored masks; strong masks computed lazily. No SAT, execution, storage or Lean proof layer; caller owns guards. Retained R25 original sources and diagnostic n4/n8/n11/n13 fixtures.",
+   "source": {
+    "path": "harness/research/triple_metrics.py",
+    "symbols": [
+     "validate_coloring",
+     "FiniteTripleColoring"
+    ]
+   }
+  },
+  {
+   "id": "decomposable.root-cuts",
+   "kind": "primitive",
+   "title": "Polynomial ordered triple-coloring root cuts",
+   "summary": "Enumerates all valid deep-below root cuts; any complete ordered triple coloring has at most four.",
+   "keywords": [
+    "decomposition roots",
+    "root cut",
+    "mixed triples",
+    "implication graph",
+    "successor closed",
+    "SCC",
+    "principal reachability",
+    "width two",
+    "strong transversal",
+    "four components"
+   ],
+   "api": "graph_profile(colors, n) -> (adjacency, reachability, SCC masks); root_masks(colors, n) -> tuple[int, ...]",
+   "example": "from harness.research.root_cuts import root_masks\nroot_masks({(0, 1, 2): True}, 3)  # (2, 3, 6)\n# Runnable: python3 harness/research/examples/root_cuts_demo.py",
+   "semantics": "colors is a complete mapping of sorted integer triples on range(n) to actual bool (True cup), n an actual nonnegative int. Validates that contract, including the empty map at n<3; rejects incomplete/malformed inputs. Returns immutable tuples of vertex bitmasks in deterministic order; SCCs are ordered by smallest vertex. A root mask is nonempty, proper, and satisfies the DS rule on every mixed triple. Arbitrary complete colorings are accepted: one-change, realizability and hereditary decomposability are not checked, so a valid root does not certify its children. Every SCC transversal is strong; internal cup/cap representatives each collapse, so the condensation has at most four components and at most four proper roots. Width two still supplies all roots as one/two-principal unions after O(n^3) triple/bitset graph operations. Caller owns guarded execution and storage. Retained R25 source, sharp four-root diamond and exact arbitrary n<=5 direct-cut/transversal fixtures; diagnostic only, no Lean proof receipt.",
+   "source": {
+    "path": "harness/research/root_cuts.py",
+    "symbols": [
+     "graph_profile",
+     "root_masks"
+    ]
+   }
+  },
+  {
+   "id": "research.recursive-bounds",
+   "kind": "primitive",
+   "title": "Recursive context-bound evaluator",
+   "summary": "Shared bounded-cache entry point for the retained interval-cut context evaluator with explicit semantics.",
+   "keywords": [
+    "recursive bounds",
+    "recursion",
+    "dynamic programming",
+    "memoized evaluator",
+    "context bound",
+    "interval cut",
+    "zero child",
+    "research primitive"
+   ],
+   "api": "evaluator(a, u, k, *, semantics, cache_size=16000) -> cached_bound(word, maxima); compiled semantics: context-bound-zero-children-c-v1",
+   "example": "from harness.research.recursive import evaluator\nword = ('S', (1, 'lower'), 'S'); maxima = (1,)\nbound = evaluator(3, 3, 3, semantics='context-bound-zero-children-v1', cache_size=16000)(word, maxima)",
+   "semantics": "semantics is required: historical-f2-v1 drops zero-valued children, context-bound-zero-children-v1 includes them in Python, and context-bound-zero-children-c-v1 is the cross-checked compiled implementation of the same arithmetic convention. These are exploratory evaluators, not a certificate of equivalence to Lean or a kernel-compiled proof.",
+   "source": {
+    "path": "harness/research/recursive.py",
+    "symbols": [
+     "evaluator"
+    ]
+   }
+  },
+  {
+   "id": "research.compiled-context-bound",
+   "kind": "primitive",
+   "title": "Compiled recursive context-bound evaluator",
+   "summary": "Memoized C implementation of the zero-child interval-cut context recurrence, exposed through the shared evaluator factory.",
+   "keywords": [
+    "C evaluator",
+    "compiled context bound",
+    "context bound",
+    "interval cut",
+    "memoized evaluator",
+    "parts",
+    "persistent memo",
+    "speed",
+    "zero child"
+   ],
+   "api": "compiled_evaluator(a, u, k, *, cache_size=16000, persistent=False) -> bound(word, maxima); shared API semantics context-bound-zero-children-c-v1",
+   "example": "python -m harness.research.context_bound --case 3,4,5 --word 1L,S,S,2U,S,S --maxima 3,1\n# many related contexts (e.g. every part of one context): one C memo across calls, ~27x faster\nF = compiled_evaluator(5, 5, 6, cache_size=2_000_000, persistent=True)",
+   "semantics": "Implements the context-bound-zero-children-v1 arithmetic with all declared levels, truncated natural subtraction, zero-valued children retained, and per-call memoization. Exact signed 64-bit results are returned and larger results raise OverflowError. Compilation is cached in an owner-only system temporary directory. An in-flight C call is not preempted by the Python SIGALRM per-case timer, so probe shapes must remain independently bounded. Cross-language tests are finite diagnostic evidence only, not Lean proof credit. persistent=True keeps one C memo across calls for fixed (a, u, k) (word length is part of the key); values are identical to the per-call memo (regression test test_persistent_compiled_memo_returns_the_fresh_memo_values), the memo stops growing at cache_size entries, and close() or garbage collection frees it.",
+   "source": {
+    "path": "harness/research/context_bound.py",
+    "symbols": [
+     "compiled_evaluator"
+    ]
+   }
+  },
+  {
+   "id": "research.context-extension",
+   "kind": "primitive",
+   "title": "Context-side extension length",
+   "summary": "Computes the longest ordered extension through selected external levels on one side of a position.",
+   "keywords": [
+    "extension",
+    "context levels",
+    "external markers",
+    "left right chain",
+    "dynamic programming",
+    "rank primitive"
+   ],
+   "api": "extension(word, depth, side, p, left) -> int",
+   "example": "from harness.research.primitives import extension\nlength = extension(('S', (1, 'lower'), 'S'), 1, 'lower', 2, True)",
+   "semantics": "Starts with position p at length zero, scans levels 1..depth whose first marker has the requested side, and extends strictly left or right through their marker positions. It is exploratory rank-primitives-v1 arithmetic and establishes no Lean theorem.",
+   "source": {
+    "path": "harness/research/primitives.py",
+    "symbols": [
+     "extension"
+    ]
+   }
+  },
+  {
+   "id": "research.rank-clip-potential",
+   "kind": "primitive",
+   "title": "Rectangle rank clipping and potential",
+   "summary": "Clips interval rows to a chosen side and evaluates the retained edge/rectangle potential P.",
+   "keywords": [
+    "clip",
+    "P potential",
+    "rectangle rows",
+    "rank strip",
+    "interval family",
+    "partition potential"
+   ],
+   "api": "clip(rows, keep, axis) -> clipped_rows; P(rows) -> int",
+   "example": "from harness.research.primitives import P, clip\nrows = [(1, 2, 1, 3), (2, 3, 2, 4)]\nvalue = P(clip(rows, {0}, 0))",
+   "semantics": "Rows are four integer endpoints (x-low, x-high, y-low, y-high); axis is 0 or 1. clip retains indexed rows while tightening the selected axis from removed rows. P is the minimum of a sparse edge/unit count and a rectangular rank cap. These abstract intervals are not automatically geometric realizations or Lean proofs.",
+   "source": {
+    "path": "harness/research/primitives.py",
+    "symbols": [
+     "clip",
+     "P"
+    ]
+   }
+  },
+  {
+   "id": "research.context-part",
+   "kind": "primitive",
+   "title": "Child context construction",
+   "summary": "Builds one child row after a cut by retaining selected S positions and inserting a level-one sibling.",
+   "keywords": [
+    "part",
+    "child context",
+    "split",
+    "keep positions",
+    "sibling maximum",
+    "coupling"
+   ],
+   "api": "part(row, keep, side, m) -> child_row",
+   "example": "from harness.research.primitives import part\nrow = {'word': ('S', (1, 'lower'), 'S'), 'maxima': (1,), 'a': 4, 'u': 4, 'k': 5, 'chosen': 'lower'}\nchild = part(row, {0}, 'lower', 2)",
+   "semantics": "S positions in keep remain S; every other S becomes a new level-one external marker with the supplied side; prior external levels shift by one and m is prepended to maxima. Global a/u/k/chosen fields are copied unchanged. This constructs exploratory evaluator input, not a geometric witness.",
+   "source": {
+    "path": "harness/research/primitives.py",
+    "symbols": [
+     "part"
+    ]
+   }
+  },
+  {
+   "id": "research.singleton-cuts",
+   "kind": "primitive",
+   "title": "Singleton context-cut values",
+   "summary": "Enumerates both orientations and every admissible coupling at each child, retaining zero-valued parts.",
+   "keywords": [
+    "singleton",
+    "cut",
+    "coupling",
+    "orientation",
+    "normal form",
+    "leaf",
+    "context"
+   ],
+   "api": "singleton_cut_values(evaluate, row) -> list[(sum, position, side, sibling_maximum)]",
+   "example": "from harness.research.context_bound import compiled_evaluator\nfrom harness.research.singleton_cuts import singleton_cut_values\nrow = {'word': ('S', (1, 'lower'), 'S'), 'maxima': (1,), 'a': 4, 'u': 4, 'k': 5, 'chosen': 'lower'}\nF = compiled_evaluator(4, 4, 5, persistent=True)\ntry:\n    choices = singleton_cut_values(F, row)\nfinally:\n    F.close()",
+   "semantics": "Requires integer k>=3 and at least two S positions, a context row accepted by research.context-part, and a callback computing bounds at the row's a/u/k. Exposed callback globals must agree. Enumerates positions in increasing order and lower coupling d=1..k-2, then lower/d and upper/(k-1-d). Every sum is retained, even when one or both parts have value zero; errors including evaluator overflow propagate. The caller owns cache, resource guards and outputs. With the compiled evaluator results are diagnostic context-bound-zero-children-c-v1 arithmetic, not kernel proofs of singleton attainment. Retained source and checked-in values: R13 probes and harness/research/examples/singleton-cuts-v1.json.",
+   "source": {
+    "path": "harness/research/singleton_cuts.py",
+    "symbols": [
+     "singleton_cut_values"
+    ]
+   }
+  },
+  {
+   "id": "research.ordered-cover",
+   "kind": "primitive",
+   "title": "Ordered rectangle cover bound",
+   "summary": "Computes the minimum additive rectangular cover bound over consecutive blocks.",
+   "keywords": [
+    "ordered cover",
+    "rectangle cover",
+    "dynamic programming",
+    "consecutive blocks",
+    "rank bound",
+    "cover cost"
+   ],
+   "api": "ordered_cover(record) -> int",
+   "example": "from harness.research.primitives import ordered_cover\nrecord = {'rectangles': [(0, 1, 2, 1, 3), (1, 2, 3, 2, 4)]}\nbound = ordered_cover(record)",
+   "semantics": "Each rectangle is (label, x-low, x-high, y-low, y-high). Dynamic programming partitions the ordered list into consecutive blocks and sums (|X|-1)(|Y|-1)+1 for each block. The value is an exploratory combinatorial bound, not proof credit.",
+   "source": {
+    "path": "harness/research/primitives.py",
+    "symbols": [
+     "ordered_cover"
+    ]
+   }
+  },
+  {
+   "id": "research.maximum-bounds",
+   "kind": "primitive",
+   "title": "Indexed-maximum candidate bounds",
+   "summary": "Returns every retained candidate bound triggered by a context row's indexed sibling maxima.",
+   "keywords": [
+    "maximum bounds",
+    "indexed maximum",
+    "saturation",
+    "thin history",
+    "candidate inequality",
+    "normalization"
+   ],
+   "api": "maximum_bounds(row) -> list[{bound, reason, level}]",
+   "example": "from harness.research.primitives import maximum_bounds\nrow = {'word': ((1, 'lower'), 'S'), 'maxima': (3,), 'a': 5, 'u': 5, 'k': 6, 'chosen': 'lower'}\ncandidates = maximum_bounds(row)",
+   "semantics": "Applies the retained k-2, k-3, k-4 and younger-marker formulas level by level, choosing the opposite global cap/cup parameter from the marker side. Returned inequalities are exploratory candidates and must be proved separately in Lean.",
+   "source": {
+    "path": "harness/research/primitives.py",
+    "symbols": [
+     "maximum_bounds"
+    ]
+   }
+  },
+  {
+   "id": "research.sole-opposite-normalize",
+   "kind": "primitive",
+   "title": "Sole opposite-level normalization",
+   "summary": "Normalizes a context whose only level opposite the chosen side is level one.",
+   "keywords": [
+    "sole opposite normalize",
+    "context normalization",
+    "remove level",
+    "chosen side",
+    "sibling history",
+    "maximum transfer"
+   ],
+   "api": "sole_opposite_normalize(row) -> normalized_row",
+   "example": "from harness.research.primitives import sole_opposite_normalize\nrow = {'word': ((1, 'upper'), 'S'), 'maxima': (2,), 'a': 5, 'u': 5, 'k': 6, 'chosen': 'lower'}\nnormalized = sole_opposite_normalize(row)",
+   "semantics": "Requires level one to be opposite chosen and every later level not opposite. It removes the first maximum, rotates level-one markers to the former maximum depth, decrements other marker levels, and tightens the corresponding a/u parameter to k-n. Preconditions are asserted; the transform is exploratory, not a proved equivalence.",
+   "source": {
+    "path": "harness/research/primitives.py",
+    "symbols": [
+     "sole_opposite_normalize"
+    ]
+   }
+  },
+  {
+   "id": "decomposable.context-limits",
+   "kind": "primitive",
+   "title": "Context signature constraint evaluator",
+   "summary": "Converts a tagged sweep word and sibling maxima into per-run cup and cap limits.",
+   "keywords": [
+    "context signature",
+    "cup cap limits",
+    "constraint evaluator",
+    "sweep word",
+    "sibling maxima",
+    "Lean semantics"
+   ],
+   "api": "limits_from_signature(word, maxima, a, u, k, *, lean=False) -> (run_count, cup_limits, cap_limits)",
+   "example": "sys.path.insert(0, 'scripts')\nfrom decomposable_depth2_tables import limits_from_signature\np, cups, caps = limits_from_signature(word, maxima, a, u, k, lean=True)",
+   "semantics": "The matrices bound chains spanning each ordered pair of child runs. lean=True includes unused levels, uses unbounded integers, and truncates subtraction at zero. This legacy exploratory calculation is not a kernel-compiled theorem or proof of equivalence to Lean.",
+   "source": {
+    "path": "scripts/decomposable_depth2_tables.py",
+    "symbols": [
+     "signature",
+     "limits_from_signature"
+    ]
+   }
+  },
+  {
+   "id": "decomposable.context-enumeration",
+   "kind": "primitive",
+   "title": "Abstract context and split enumeration",
+   "summary": "Generates bounded tagged contexts and constructs child signatures for arbitrary vertex splits.",
+   "keywords": [
+    "enumerate contexts",
+    "context generator",
+    "split child",
+    "additivity",
+    "tagged word",
+    "bounded exhaustive search"
+   ],
+   "api": "contexts(s_max, e_max, levels, k, *, include_unused_levels=False); child(word, maxima, keep, side_of_child, sibling_max)",
+   "example": "sys.path.insert(0, 'scripts')\nfrom decomposable_additivity_test import contexts, child\nfor word, maxima in contexts(4, 2, 2, 5): ...",
+   "semantics": "contexts yields finite abstract signatures with consecutive occupied levels by default. child retains selected S positions, turns the complement into a new level-one sibling, and shifts existing external levels. Enumeration output has no kernel proof credit.",
+   "source": {
+    "path": "scripts/decomposable_additivity_test.py",
+    "symbols": [
+     "contexts",
+     "child"
+    ]
+   }
+  },
+  {
+   "id": "decomposable.exact-context-bound",
+   "kind": "primitive",
+   "title": "Exact compiled-class context evaluator",
+   "summary": "Evaluates the largest compiled decomposable coloring satisfying one abstract context signature.",
+   "keywords": [
+    "exact bound",
+    "context evaluator",
+    "compiled class",
+    "brute force",
+    "recursive bound comparison",
+    "extremal"
+   ],
+   "api": "load_class(class_dir, max_n) -> tables; exact(tables, a, u, k, word, maxima, max_n) -> int",
+   "example": "sys.path.insert(0, 'scripts')\nfrom decomposable_context_exact import load_class, exact\ntables = load_class(class_dir, max_n); value = exact(tables, a, u, k, word, maxima, max_n)",
+   "semantics": "Searches generated class data from max_n downward and returns the first stored size meeting every per-run cup/cap limit and the strong-set limit; returns zero when no stored size qualifies. Compiled-class here means the enumerator's data format, not a Lean kernel-compiled proof.",
+   "source": {
+    "path": "scripts/decomposable_context_exact.py",
+    "symbols": [
+     "load_class",
+     "exact"
+    ]
+   }
+  },
+  {
+   "id": "decomposable.coloring-enumeration",
+   "kind": "primitive",
+   "title": "Exact decomposable coloring enumeration",
+   "summary": "Enumerates the abstract decomposable triple-coloring class and computes reusable chain profiles.",
+   "keywords": [
+    "decomposable colorings",
+    "exact enumeration",
+    "triple coloring",
+    "chain profile",
+    "threshold",
+    "one change"
+   ],
+   "api": "enumerate_class(max_n, progress=True) -> (classes, triple_indices); coloring_dict(mask, n, index); chain_profiles(coloring, n, left)",
+   "example": "sys.path.insert(0, 'scripts')\nfrom enumerate_decomposable_colorings import enumerate_class\nclasses, triple_indices = enumerate_class(7, progress=False)",
+   "semantics": "Builds labeled colorings recursively over every ordered nonempty bipartition, fixes crossing triples by the deep-below rule, and deduplicates bitmasks at each size. These Python enumeration results remain exploratory until represented and checked in Lean.",
+   "source": {
+    "path": "scripts/enumerate_decomposable_colorings.py",
+    "symbols": [
+     "triple_index",
+     "enumerate_class",
+     "coloring_dict",
+     "one_change",
+     "chain_profiles",
+     "strong_sizes",
+     "threshold"
+    ]
+   }
+  },
+  {
+   "id": "workflow.proof",
+   "kind": "workflow",
+   "title": "Captured proof checking and finite proving",
+   "summary": "Use the harness to freeze a proof span, check a candidate, or try the registered finite tactic portfolio.",
+   "keywords": [
+    "proof capture",
+    "proof check",
+    "proof prove",
+    "Lean candidate",
+    "kernel audit",
+    "tactics"
+   ],
+   "api": "es proof capture NODE [--start BYTE --end BYTE]; es proof check FIXTURE --body FILE; es proof prove FIXTURE [--tactics TACTIC]",
+   "example": "es proof capture ErdosSzekeres.someNode\nes proof check FIXTURE_ID --body runs/candidate.lean",
+   "semantics": "Capture freezes source and dependency identities. Checks run in an isolated pinned Lean environment and accept only a complete parent with the expected type and allowed axioms; prove uses a finite registered tactic portfolio.",
+   "source": {
+    "path": "tools/es/es/commands/proof.py",
+    "symbols": [
+     "capture",
+     "check",
+     "prove"
+    ]
+   }
+  },
+  {
+   "id": "workflow.proof-source-identity",
+   "kind": "workflow",
+   "title": "Pinned proof source identity",
+   "summary": "Compare exact candidate bytes reconstructed from immutable proof artifacts with the source in an explicit Git commit.",
+   "keywords": [
+    "proof receipt",
+    "pinned commit",
+    "source hash",
+    "candidate identity"
+   ],
+   "api": "es proof identity RECEIPT --commit SHA; es.proofs.pinned_source_identity(cfg, receipt_id, commit)",
+   "example": "es proof identity RECEIPT --commit FULL_COMMIT_SHA",
+   "semantics": "Read-only metadata check in the fixture's captured worktree. Requires a recorded accepted candidate receipt with matching fixture parent/type and reconstructed source hash, then compares raw Git blob bytes at a full 40-character commit SHA. The current checkout may differ. No compiler runs, dependency or policy revalidation, frontier update, or theorem credit; compiler_rechecked=false and theorem_credit=not_inferred are explicit. Memory is bounded by captured source/body artifacts, and the Git blob size must match before reading it.",
+   "source": {
+    "path": "tools/es/es/proofs.py",
+    "symbols": [
+     "pinned_source_identity"
+    ]
+   }
+  },
+  {
+   "id": "workflow.node-finish",
+   "kind": "workflow",
+   "title": "Checked node finalization for review",
+   "summary": "Validate and insert a proof body, run targeted and full checks, audit it, and prepare one node for review.",
+   "keywords": [
+    "node finish",
+    "finish proof",
+    "finalize theorem",
+    "Lean review",
+    "full extract",
+    "proof acceptance"
+   ],
+   "api": "es node finish NODE --body FILE [--fixture FIXTURE] [--window WINDOW] [--extract-memory SIZE]",
+   "example": "es node finish ErdosSzekeres.someNode --body runs/candidate.lean --fixture FIXTURE_ID --window WINDOW_ID",
+   "semantics": "Runs the review-only finalization policy: preflight source checks, isolated candidate validation, insertion into the original node, targeted check, full extraction, and audit. Completion prepares review state; inspect the durable operation result before claiming theorem closure.",
+   "source": {
+    "path": "tools/es/es/finalize.py",
+    "symbols": [
+     "preflight",
+     "submit",
+     "run"
+    ]
+   }
+  },
+  {
+   "id": "workflow.probe",
+   "kind": "workflow",
+   "title": "Versioned bounded probe and witness replay",
+   "summary": "Run a registered finite research probe with source pinning, budgets, durable results, and witness replay.",
+   "keywords": [
+    "probe run",
+    "probe replay",
+    "bounded experiment",
+    "falsifier",
+    "witness",
+    "source hash"
+   ],
+   "api": "es probe run --spec SPEC.json [--window WINDOW]; es probe replay RESULT_ARTIFACT",
+   "example": "es probe run --spec runs/probe-spec.json --window WINDOW_ID\nes probe replay RESULT_ARTIFACT_ID",
+   "semantics": "Admission pins registered plugin sources and an explicit semantic version. Execution enforces finite case/time budgets; negative results receive no proof credit, and saved witnesses replay under the same source version.",
+   "source": {
+    "path": "tools/es/es/probes.py",
+    "symbols": [
+     "plugin",
+     "submit",
+     "load",
+     "execute",
+     "replay"
+    ]
+   }
+  },
+  {
+   "id": "workflow.recursive-cut-probe",
+   "kind": "workflow",
+   "title": "Bounded two-marker recursive-cut probe",
+   "summary": "Run or replay the registered deterministic two-lower-marker cut family through the shared recursive evaluator.",
+   "keywords": [
+    "recursive cut",
+    "two marker",
+    "extreme next",
+    "matched coupling budgets",
+    "bounded probe",
+    "witness replay",
+    "recursive bounds"
+   ],
+   "api": "es probe run --spec harness/research/examples/recursive-cut-small.json [--window WINDOW]; es probe replay RESULT_ARTIFACT",
+   "example": "es probe run --spec harness/research/examples/recursive-cut-small.json --window WINDOW_ID\nes probe replay RESULT_ARTIFACT_ID",
+   "semantics": "Uses plugin recursive_cut, domain two-lower-marker-cut-family-v1, generator extreme-next-deterministic-v1, split rule nonempty-proper-child-subsets-with-geometry-v1, and candidate matched-coupling-budgets-v1. Both registered recursion semantics are retained evaluators only: every result sets Lean equivalence, Lean refutation, and finite-negative proof credit to false.",
+   "source": {
+    "path": "harness/research/recursive_cut.py",
+    "symbols": [
+     "evaluate",
+     "replay"
+    ]
+   }
+  },
+  {
+   "id": "workflow.context",
+   "kind": "workflow",
+   "title": "Source-identified node context bundle",
+   "summary": "Retrieve compact theorem state, dependency signatures, recent outcomes, and an explicit freshness verdict.",
+   "keywords": [
+    "context bundle",
+    "node context",
+    "dependencies",
+    "freshness",
+    "research handoff",
+    "source identity"
+   ],
+   "api": "es context NODE [--previous BUNDLE_ARTIFACT]",
+   "example": "es context ErdosSzekeres.someNode\nes context ErdosSzekeres.someNode --previous PRIOR_BUNDLE_ID",
+   "semantics": "The bundle records the node, current source hash, selected compiled-index dependency signatures, recent events and operations. A previous bundle produces a compact delta; frontier_fresh remains explicit.",
+   "source": {
+    "path": "tools/es/es/bundles.py",
+    "symbols": [
+     "context"
+    ]
+   }
+  },
+  {
+   "id": "workflow.usage",
+   "kind": "workflow",
+   "title": "Research windows, usage accounting, and handoff",
+   "summary": "Record research windows, import exact local usage, compare matched work, and generate factual handoffs.",
+   "keywords": [
+    "usage sync",
+    "run begin",
+    "run end",
+    "run handoff",
+    "token accounting",
+    "research window",
+    "comparison"
+   ],
+   "api": "es run begin LABEL; es usage sync --window WINDOW; es run end WINDOW [--accepted N]; es run handoff --window WINDOW",
+   "example": "window=$(es run begin recursive-bound-audit)\nes usage sync --window \"$window\"\nes run end \"$window\" --accepted 1",
+   "semantics": "Usage is imported from recorded local response events without conversation text. Budgets are observational, comparisons require matched windows, and handoffs report durable operation state plus measured usage coverage.",
+   "source": {
+    "path": "tools/es/es/commands/usage.py",
+    "symbols": [
+     "sync",
+     "ingest",
+     "report",
+     "compare",
+     "begin",
+     "change",
+     "handoff"
+    ]
+   }
+  },
+  {
+   "id": "workflow.agent-run",
+   "kind": "workflow",
+   "title": "Bounded durable Sol research run",
+   "summary": "Run one Sol/xhigh native goal with fixed deadlines, guarded jobs, durable recovery and usage accounting.",
+   "keywords": [
+    "Sol",
+    "native goal",
+    "agent host",
+    "twelve hour",
+    "research run",
+    "resume",
+    "continuation"
+   ],
+   "api": "es run agent --out runs/RUN --prompt /absolute/prompt.md [--model gpt-5.6-sol --effort xhigh --hours 12]; es run agent-status runs/RUN; es run agent --out runs/RUN --resume",
+   "example": "es run agent --out runs/sol-trial --prompt /absolute/path/research-prompt.md --model gpt-5.6-sol --effort xhigh --hours 12\nes run agent-status runs/sol-trial",
+   "semantics": "The 2 GiB host owns a separate Codex native-goal session. A frozen research deadline permits one bounded finalization turn afterward. The worker registers a run observer. Manual resume is explicit; a configured bounded automatic capacity-only retry requires fresh serverOverloaded evidence and rechecks the current goal before recovery. Neither route extends deadlines; uncertain receipts are not automatically replayed. Job completion alone confers no theorem credit or current-client notification guarantee.",
+   "source": {
+    "path": "tools/es/es/agent_run.py",
+    "symbols": [
+     "submit_agent_run",
+     "status_agent_run",
+     "run_host"
+    ]
+   }
+  },
+  {
+   "id": "workflow.node-add",
+   "kind": "workflow",
+   "title": "Register and elaborate a Lean statement",
+   "summary": "Create a statement through the harness with a narrow import and enough memory for nested elaboration.",
+   "keywords": [
+    "node add",
+    "statement registration",
+    "elaborate",
+    "import closure",
+    "memory reservation",
+    "new lemma"
+   ],
+   "api": "es node add --name NAME --ws B --kind formalization --type SIGNATURE --description TEXT --consumer NODE --import MODULE [--targeted]",
+   "example": "es node add --help\n# Without the user bus, queue this command through es job run.\n# The elaboration cap is sized to the import closure (4-5G for thin blueprint nodes);\n# the enclosing job must still fit a retry at build.memory_max (20G). Full extraction needs 28G.",
+   "semantics": "Node registration writes a sorry only in ESBlueprint and elaborates the statement before locking it. Search and claim first. Elaboration and the targeted extract run under caps sized to the module's import closure (elaboration_memory_max: 3G + 4 x closure olean GiB, floor 4G; targeted extract: 3G + 2 x GiB, floor 4G, ceiling extract.targeted_memory_max); a dependency without an olean, or one `lake build --no-build` reports stale, gets the full build.memory_max, and an OOM kill under the sized cap is retried once at the full cap. An enclosing job smaller than the full cap refuses that retry. It leaves the full frontier stale, so refresh before selecting further research. Use the smallest import closure that supplies the statement.",
+   "source": {
+    "path": "tools/es/es/commands/node.py",
+    "symbols": [
+     "run_add",
+     "elaborate_module",
+     "targeted_extract",
+     "elaboration_memory_max",
+     "targeted_extract_memory_max"
+    ]
+   }
+  },
+  {
+   "id": "workflow.node-commit",
+   "kind": "workflow",
+   "title": "Commit one node's files on its node branch",
+   "summary": "Stage exactly one node's module, root import, lock/index records and falsifier, check whitespace, and commit; from a sandbox the commit is queued for es worker.",
+   "keywords": [
+    "commit",
+    "git",
+    "node branch",
+    "sandbox",
+    "read-only git",
+    "index.lock",
+    "worker"
+   ],
+   "api": "es node commit NODE [--message TEXT | --message-file FILE] [--include runs/...]",
+   "example": "es node commit ctx_bound_reverse --message-file runs/r3/COMMIT.txt\n# In a Codex sandbox (read-only .git-data) this prints a queued job id:\nes job wait <id> --timeout 55",
+   "semantics": "Refuses unless HEAD is a node/ branch other than the default, and unless the index is empty beforehand. Stages only the node's files that changed (module, blueprint root, statements.lock, nodes.json, status.md, index.json, falsifier and its harness/falsify record) plus --include artifacts under runs/ or data/; runs git diff --cached --check and unstages on problems. When the git metadata is not writable it queues `es node commit --direct` as a 1G job of kind commit (lock git:<root>, not a build slot) for es worker. It never merges or pushes.",
+   "source": {
+    "path": "tools/es/es/commands/node.py",
+    "symbols": [
+     "run_commit",
+     "node_commit_paths",
+     "git_writable"
+    ]
+   }
+  },
+  {
+   "id": "workflow.jobs",
+   "kind": "workflow",
+   "title": "Guarded commands and terminal receipts",
+   "summary": "Run existing scripts with shared memory admission, job identity, declared outputs, bounded waits, progress-review checkpoints and cancellation.",
+   "keywords": [
+    "worker",
+    "job run",
+    "job wait",
+    "memory",
+    "command",
+    "environment",
+    "worktree",
+    "Python workflow",
+    "git commit",
+    "review",
+    "checkpoint",
+    "progress",
+    "timeout"
+   ],
+   "api": "es job run --why PURPOSE --out runs/OUTPUT --mem SIZE [--review MIN] -- COMMAND; es job wait JOB --timeout 55; es job review JOB --note TEXT [--next MIN]; es job status JOB",
+   "example": "es job run --why 'record interpreter version' --out runs/python-version.txt --mem 256M -- bash -c 'python3 --version > runs/python-version.txt'\nes job wait JOB_ID --timeout 55",
+   "semantics": "Submission is not completion. Inspect the terminal receipt including outputs_missing; --out declares an artifact but does not redirect stdout. Never kill a research computation at a self-chosen time: time a small instance first, make the job print progress (done/total, rate) to its log or an --out file, and set --review from the estimate. When es job wait returns review_due, read the progress, estimate the time left, and record the decision with es job review (leave it; make it cheaper; or answer another way, keeping the question); a checkpoint never stops the job, and --budget kills only for a deadline the user set. A stopped or narrowed run is not a result: log its coverage and the follow-up. Prefer direct argv; a shell pipeline must enable pipefail so output capture cannot hide command failure. Nested Lean commands need an enclosing reservation large enough for their configured build and extraction caps. For direct Git commands use -c gc.auto=0 -c maintenance.auto=false to keep automatic background maintenance from retaining the scope; unknown execution must be reconciled, never blindly retried.",
+   "source": {
+    "path": "tools/es/es/commands/jobs.py",
+    "symbols": [
+     "run_run",
+     "run_wait",
+     "run_status",
+     "run_review"
+    ]
+   }
+  },
+  {
+   "id": "workflow.immutable-artifact-sharing",
+   "kind": "workflow",
+   "title": "Verified immutable certificate artifact sharing",
+   "summary": "Deduplicate identical compiled certificate outputs across compatible checkouts sharing one harness database, using Lake's native immutable cache.",
+   "keywords": [
+    "storage",
+    "disk deduplication",
+    "certificate artifacts",
+    "private proof bodies",
+    "hard links",
+    "Lake cache",
+    "SHA-256"
+   ],
+   "api": "es storage share --other CHECKOUT [--apply] [--cache PATH] [--receipt runs/FILE.jsonl] [--facet FACET]",
+   "example": "es job run --why \"verify immutable certificate duplicates\" --out runs/storage-share/audit.jsonl --mem 4G --budget 90 -- tools/es/bin/es storage share --other runs/worktrees/sol-12h-20260916 --receipt runs/storage-share/audit.jsonl\n# Add --apply to the inner command to adopt verified blobs.",
+   "semantics": "Requires a guarded job, compatible project/toolchain/filesystem, and generated certificate modules in both checkouts. The default is verification only. Full SHA-256 checks precede atomic hard-link adoption through the pinned Lake cache; sources and mutable setup/trace/hash sidecars are excluded. Both worktrees and the shared cache are reserved. Receipts separate logical duplicate bytes, eligible freed blocks and observed free-space change. Native input mappings are created only by ordinary guarded Lake builds, never synthesized from filenames. Rebuild detachment was tested on pinned Lean 4.29.1; unsupported toolchains are refused.",
+   "source": {
+    "path": "tools/es/es/artifact_cache.py",
+    "symbols": [
+     "share_certificates",
+     "atomic_adopt"
+    ]
+   }
+  },
+  {
+   "id": "workflow.setup-metadata-cleanup",
+   "kind": "workflow",
+   "title": "Audited Lake setup metadata cleanup",
+   "summary": "Inventory or prune Lake 4.29.1 setup spill files with exact-path manifests, inode revalidation and storage exclusion.",
+   "keywords": [
+    "Lake setup json",
+    "disk cleanup",
+    "storage maintenance",
+    "manifest",
+    "hard links",
+    "build cache"
+   ],
+   "api": "es storage prune-setup [--apply] [--out runs/DIRECTORY]",
+   "example": "es storage prune-setup --out runs/setup-audit\n# Inspect runs/setup-audit/manifest.json, then:\nes storage prune-setup --apply --out runs/setup-prune",
+   "semantics": "Dry-run is the default. The pinned Lake 4.29.1 contract scans only a real .lake/build/ir directory without symlink traversal, writes the manifest durably, revalidates every regular-file identity before unlinking, and reports logical removed bytes separately from allocated blocks actually made unreachable by hard-link counts. Automatic post-build cleanup considers only modules in successful acknowledged Lake Built records while its worktree reservation remains held. Plugin and dynlib paths inside a setup snapshot are references and are never removed. A killed standalone maintenance process may leave a conservative lease for explicit reconciliation; no bulk cleanup is implied by enabling the command.",
+   "source": {
+    "path": "tools/es/es/setup_metadata.py",
+    "symbols": [
+     "prune_setup_metadata",
+     "post_build_cleanup"
+    ]
+   }
+  },
+  {
+   "id": "workflow.run-monitor",
+   "kind": "workflow",
+   "title": "Run observation without model polling",
+   "summary": "Observe durable research jobs in the worker and escalate only a terminal run or persistent infrastructure blocker.",
+   "keywords": [
+    "monitor",
+    "Astra",
+    "polling",
+    "run progress",
+    "worker",
+    "capacity retry",
+    "completion",
+    "stale runner",
+    "scope reconciliation"
+   ],
+   "api": "es run watch OUT; es run progress OUT [--follow 55]; es run observe; es run unwatch OUT",
+   "example": "es run progress runs/sol-trial\nes run progress runs/sol-trial --follow 55\nes run observe\nes delivery status",
+   "semantics": "Native run submission registers automatically. Idle observations and individual compiler failures make no model requests. If a host runner disappears after its recorded cgroup has definitely stopped, the observer reconciles the stale job row with a compare-and-set on the recorded runner identity and emits the terminal event once; a changed or live runner remains reserved. A configured bounded retry handles only a fresh provider capacity failure within the frozen deadline; it never resets pause, quota, cancellation or uncertain effects. Unwatch stops observation without cancelling compute or messages already queued. Unattended reporting requires a separately verified callback plus an available worker.",
+   "source": {
+    "path": "tools/es/es/run_monitor.py",
+    "symbols": [
+     "register",
+     "progress",
+     "tick",
+     "pause"
+    ]
+   }
+  },
+  {
+   "id": "workflow.run-review",
+   "kind": "workflow",
+   "title": "Final research accounting and code inventory",
+   "summary": "Collect deduplicated late usage, direct jobs, validation evidence and code review inventory in one immutable bundle.",
+   "keywords": [
+    "final review",
+    "run review",
+    "late usage",
+    "code inventory",
+    "inline Python",
+    "library promotion",
+    "accounting"
+   ],
+   "api": "es run review OUT [--artifact-root RUN_DIR]; build_review(cfg, out, compact_limit=4096, artifact_root=None)",
+   "example": "es run review runs/sol-trial/host --artifact-root runs/sol-trial",
+   "semantics": "Summary is bounded to 4096 bytes; full evidence is immutable. Usage includes finalization after the research window closes and reports source limits. Explicit artifact roots must contain the host directory under configured output roots; otherwise the inventory states its host-only coverage. Source hashes and sanitized inline commands support review; scripts are not executed. Operational success never grants theorem credit. Final mathematical review is always required, with code review flagged separately.",
+   "source": {
+    "path": "tools/es/es/run_review.py",
+    "symbols": [
+     "build_review"
+    ]
+   }
+  },
+  {
+   "id": "workflow.run-delivery",
+   "kind": "workflow",
+   "title": "Verified exact-thread completion callbacks",
+   "summary": "Verify the actual receiving Codex thread before submitting compact run-level events through its queue.",
+   "keywords": [
+    "callback",
+    "notification",
+    "delivery verify",
+    "exact thread",
+    "queue",
+    "completion",
+    "reconciliation"
+   ],
+   "api": "es delivery status; es delivery verify --thread UUID; es delivery confirm --challenge TOKEN; es delivery abandon-verification --thread UUID",
+   "example": "es delivery status\nes delivery verify --thread \"$CODEX_THREAD_ID\"\n# Confirm only the challenge actually received through this thread.",
+   "semantics": "Queue acceptance alone does not verify receipt. Confirmation requires the unchanged receiving CODEX_THREAD_ID and coordinator identity. Packets are at most 2048 bytes plus the event marker; full evidence stays in immutable artifacts. Events have a separate outbox from operation delivery. Uncertain submissions are never automatically retried; abandoning a verification invalidates its nonce but cannot cancel an already queued message. Transport configuration does not override the client model, permissions or quota.",
+   "source": {
+    "path": "tools/es/es/run_delivery.py",
+    "symbols": [
+     "request_verification",
+     "confirm_verification",
+     "emit",
+     "dispatch",
+     "status"
+    ]
+   }
+  },
+  {
+   "id": "research.signotope-cubes",
+   "kind": "primitive",
+   "title": "Signotope point-set cubes and Knuth cube-tree estimates",
+   "summary": "Legal rank-3 signotope patterns on point sets as SAT cubes (ETV triple numbering), reversal symmetry, and a solver-agnostic Knuth random-walk tree-size estimator for choosing a cube order and depth.",
+   "keywords": [
+    "cube and conquer",
+    "cubes",
+    "signotope",
+    "one-change",
+    "pattern",
+    "triple variable",
+    "ETV",
+    "SAT",
+    "reversal symmetry",
+    "symmetry breaking",
+    "Knuth estimator",
+    "tree size",
+    "split order",
+    "cube depth",
+    "python-sat"
+   ],
+   "api": "patterns_on(points) -> [pattern]; extensions(pattern, points, new) -> [new triples]; place(pattern, points); lits_of(pattern, N) -> [int]; triple_var(t, N) -> int; reverse(pattern, N); knuth_walk(order, roots, start_depth, survives, is_leaf, rng, max_depth=None) -> [step]; knuth_estimates(walks) -> dict",
+   "example": "from harness.research import signotope_cubes as sc\ncubes = [sc.lits_of(p, 27) for p in sc.patterns_on([13, 12, 14, 11, 15, 10])]  # 908 level-6 cubes, center-outward\n# survives = lambda p: <python-sat conf_budget(1) solve is not False>; is_leaf = lambda p, d: <20k-conflict attempt refutes>\nwalk = sc.knuth_walk(order, roots, 6, survives, is_leaf, random.Random(0))",
+   "semantics": "Patterns map sorted triples to bool; legality is only the one-change (rank-3 signotope) law on every 4-subset, so pattern counts on 1..7 points are 1,1,2,8,62,908,24698 (OEIS A006245, regression-tested). Cup/cap/convex-gon constraints are NOT applied: the caller filters with its CNF (e.g. a propagation test). triple_var matches scripts/generate_etv_tseitin_sat.py (1 + index in combinations(range(N),3), tested against the generator). reverse maps legal patterns to legal patterns and preserves cups/caps; whether it is a symmetry of a given CNF must be checked per encoding (verified for the ETV CNF in runs/etv-cc-20260930/verify_reversal.py). knuth_walk is Knuth's unbiased estimator: 10**log10_prod at the last step estimates the leaf count; single walks are heavy-tailed, so report medians with means. python-sat pitfalls: conf_budget(0) means no limit; CaDiCaL has no propagate(); keep each incremental solver on one cube point set (mixing sets was ~10x slower). Diagnostic tooling only; no proof output.",
+   "source": {
+    "path": "harness/research/signotope_cubes.py",
+    "symbols": [
+     "triple_var",
+     "extensions",
+     "patterns_on",
+     "place",
+     "lits_of",
+     "reverse",
+     "knuth_walk",
+     "knuth_estimates"
+    ]
+   }
+  },
+  {
+   "id": "research.cup-cap-chains",
+   "kind": "primitive",
+   "title": "Cup/cap chains and strong sets of a triple colouring",
+   "summary": "Longest chains, chain enumeration, per-edge and endpoint-pair chain tables with witnesses, maximum-chain cores (L*, R*), and the largest strong set via the cup+cap formula with a 4-point brute-force reference.",
+   "keywords": [
+    "cup",
+    "cap",
+    "chain",
+    "chains",
+    "longest chain",
+    "cup number",
+    "cap number",
+    "chain table",
+    "endpoint pair",
+    "strong set",
+    "strong number",
+    "convex position",
+    "IsStrongPolygonSet",
+    "chain core",
+    "maximum caps",
+    "one-change",
+    "signotope"
+   ],
+   "api": "longest_chain(cup, points, want) -> int; chains(cup, t, want, points) -> [tuple]; edge_chain_tables(cup, n, want) -> (end, start); longest_lr(cup, points, want) -> {(l, r): (length, chain)}; chain_core(cup, points, want) -> (L*, R*, max chains); strong_number(cup, points) -> int; strong_number_bruteforce(cup, points) -> int; is_strong(cup, points) -> bool; is_one_change(cup, points) -> bool",
+   "example": "from harness.research.chains import longest_chain, strong_number\ncup = {(0, 1, 2): True}  # sorted triple -> True = cup\nlongest_chain(cup, range(3), True), longest_chain(cup, range(3), False), strong_number(cup, range(3))  # (3, 2, 3)\n# python3 harness/research/examples/strong_gons_demo.py",
+   "semantics": "Points are integers in sweep order; cup maps each sorted triple to True (cup, left turn, set bit in decomposable.coloring-enumeration masks) or False (cap). A chain's consecutive triples all have its colour; sets of <= 2 points are both cups and caps (lengths 0, 1, 2), so a limit of 1 admits one point. Strong set = Lean IsStrongPolygonSet (4-point definition); sets of <= 3 points are strong. strong_number uses max(min(n,3), cup_lr + cap_lr - 2 over endpoint pairs), which equals the 4-point definition on one-change colourings (all 908 six-point signotopes and random decomposable sets regression-tested) and is NOT valid on arbitrary colourings; strong_number_bruteforce and is_strong hold for any colouring (exponential, small sets). chain_core gives L* = max first point and R* = min last point over the longest chains (interior core when L* < R*). Diagnostic computation only; no Lean proof.",
+   "source": {
+    "path": "harness/research/chains.py",
+    "symbols": [
+     "longest_chain",
+     "chains",
+     "edge_chain_tables",
+     "longest_lr",
+     "chain_core",
+     "strong_number",
+     "strong_number_bruteforce",
+     "is_strong",
+     "is_one_change"
+    ]
+   }
+  },
+  {
+   "id": "research.lazy-strong-gons",
+   "kind": "primitive",
+   "title": "Lazy strong-set (gon) witness and CEGAR two-colouring",
+   "summary": "Finds one strong set of an exact size without enumerating gons, and two-colours points so that neither class contains a strong size-set by adding gon clauses lazily to a SAT solver.",
+   "keywords": [
+    "gon",
+    "k-gon",
+    "strong set",
+    "find gon",
+    "witness",
+    "CEGAR",
+    "lazy clauses",
+    "two-colouring",
+    "two-coloring",
+    "bichromatic",
+    "monochromatic",
+    "PSL",
+    "memory-light",
+    "SAT",
+    "python-sat"
+   ],
+   "api": "find_gon(cup, points, size) -> sorted tuple | None; cegar_two_colouring(cup, points, hard, size) -> (blue, red) | None",
+   "example": "from harness.research.chains import find_gon, cegar_two_colouring\ngon = find_gon(s.cup, range(s.n), k - 1)  # None: no strong (k-1)-set in s\nres = cegar_two_colouring(s.cup, list(range(s.n)), hard_clauses, k - 1)  # SAT var p+1 true = blue",
+   "semantics": "find_gon pairs a longest cup and a longest cap with the same endpoints and trims interior points to the exact size; it is complete (None means no strong size-set) only on one-change colourings, regression-tested against strong_number_bruteforce on all 908 six-point signotopes, and raises ValueError if a cup and cap share an interior point. Memory O(|S|^2) per start point; about 31 MB per k=8 sample in runs/claude-hypergraph-20261003, versus one clause pair per gon. cegar_two_colouring needs python-sat (Cadical195): variable p+1 is point p (non-negative integers; true = blue); hard is the caller's clause list; while a colour class holds a size-gon it adds the clauses forbidding that gon to be monochromatic and re-solves; returns (blue, red) with both classes strong-size-free, or None when none exists (agreement with brute force over all 2^n colourings is regression-tested). Diagnostic only; no proof output.",
+   "source": {
+    "path": "harness/research/chains.py",
+    "symbols": [
+     "find_gon",
+     "cegar_two_colouring"
+    ]
+   }
+  },
+  {
+   "id": "decomposable.label-sets",
+   "kind": "primitive",
+   "title": "Decomposable sets as binary label trees",
+   "summary": "Builds decomposable colourings from prefix-free root-path labels, composes, splits and samples them, decides exact decomposability of any colouring, converts enumerator bitmasks, and evaluates decomposableThreshold.",
+   "keywords": [
+    "decomposable",
+    "decomposable set",
+    "labels",
+    "label tree",
+    "root split",
+    "deep-below split",
+    "Lemma M",
+    "random decomposable set",
+    "nested split",
+    "compose",
+    "decomposability",
+    "all splits",
+    "bitmask",
+    "threshold",
+    "T(a,u,k)",
+    "decomposableThreshold"
+   ],
+   "api": "DecomposableSet(labels) -> .n .cup .alpha .beta .strong .end .st, .longest(sub, want), .chains(t, want, sub), .cap_core(), .cup_core(), .root_split(); coloring_from_labels(labels); check_labels(labels); normalize_labels(labels); compose(A, B, lowerpos); root_split(labels); random_labels(n, rng); random_nested_labels(n, rng, pnest=0.6); all_splits(cup, pts); Decomposability(cup).dec(pts) / .splits(pts); coloring_from_mask(mask, n); mask_from_coloring(cup, n); decomposable_masks(max_n); threshold(a, u, k)",
+   "example": "from harness.research.decomposable_sets import DecomposableSet, random_nested_labels\ns = DecomposableSet(random_nested_labels(14, random.Random(2026)))\ns.alpha, s.beta, s.strong  # cup, cap and strong numbers: 5, 7, 8\n# python3 harness/research/examples/band_partitions_demo.py",
+   "semantics": "Decomposable = IsDecomposableOn (singleton, or nonempty lower A and upper B, interleaved arbitrarily, a triple meeting both is a cup iff its middle point is in A). Point p carries its root path ('0' lower, '1' upper); labels must be distinct and prefix-free (checked; SAT-decoded 0/1 tuples are normalised). Triple p<q<r is a cup iff the middle label has '0' where the three first differ. Label trees generate exactly the enumerated class on n <= 6, and Decomposability accepts exactly 718 of the 908 six-point signotopes (both regression-tested); it is exponential in |pts|. DecomposableSet keeps the attribute names of runs/claude-bandrule-20261003/bl.py S; chain conventions as research.cup-cap-chains (sets of <= 2 points are both cups and caps). decomposable_masks wraps decomposable.coloring-enumeration (class counts 2, 8, 62, 718, 10596 for n = 3..7 tested; 186888, 3816380 for n = 8, 9 from the audit). threshold mirrors Lean decomposableThreshold with truncated subtraction and equals the exact maximum (cap <= a-1, cup <= u-1, strong <= k-1) in all 139 cases decided by n <= 7 enumeration. Diagnostic only; no Lean proof.",
+   "source": {
+    "path": "harness/research/decomposable_sets.py",
+    "symbols": [
+     "DecomposableSet",
+     "coloring_from_labels",
+     "check_labels",
+     "normalize_labels",
+     "compose",
+     "root_split",
+     "random_labels",
+     "random_nested_labels",
+     "all_splits",
+     "Decomposability",
+     "coloring_from_mask",
+     "mask_from_coloring",
+     "decomposable_masks",
+     "threshold"
+    ]
+   }
+  },
+  {
+   "id": "decomposable.band-partitions",
+   "kind": "primitive",
+   "title": "BDL band partitions: exact search, verifier, SAT cross-check",
+   "summary": "Enumerates or finds band partitions (band j: cup <= j+1, cap <= k-1-j) over the BDL range with optional per-point band restrictions, verifies them independently, and re-decides by SAT.",
+   "keywords": [
+    "band partition",
+    "bands",
+    "BDL",
+    "Band Decomposition Lemma",
+    "bdl range",
+    "P invariant",
+    "PF",
+    "bottom band",
+    "core",
+    "backtracking",
+    "partition verifier",
+    "SAT",
+    "python-sat",
+    "Theorem 8"
+   ],
+   "api": "bdl_range(alpha, beta, k) -> [j]; band_limits(j, k) -> (j+1, k-1-j); partitions(cup, points, k, bands, *, allowed=None, limit=None, first=False) -> [tuple]; find_partition(cup, points, k, bands, *, allowed=None) -> tuple | None; check_partition(cup, points, k, b, bands=None) -> bool; allowed_from_forbid(points, bands, forbid) -> {p: bands}; partition_sat(cup, points, k, bands, *, allowed=None) -> tuple | None",
+   "example": "from harness.research.band_partitions import bdl_range, find_partition, check_partition\nbands = bdl_range(s.alpha, s.beta, k)  # k-1-cap .. cup-1\nb = find_partition(s.cup, range(s.n), k, bands)  # b[p] = band of point p, or None\nassert b is None or check_partition(s.cup, range(s.n), k, b, bands)",
+   "semantics": "A band partition puts every point in a band j whose members have cup <= j+1 and cap <= k-1-j; with the chain convention that sets of <= 2 points are both cups and caps, only bands 0..k-2 can be used and bands 0 and k-2 hold at most one point. bdl_range(alpha, beta, k) = k-1-beta .. alpha-1; BDL asserts a partition in that range for decomposable X with strong(X) <= k-1 and cup+cap >= k (cup+cap = k is the one-band case). Results are tuples aligned with sorted(points) (b[p] for range(n)); bands are tried in the given order; allowed[p] restricts point p (allowed_from_forbid builds it from forbidden points per band, e.g. the P invariant's bottom band j0 = k-1-cap inside x <= L*). partitions is complete backtracking with incremental chain tables; check_partition recomputes every band from scratch; partition_sat (python-sat Cadical195, lazy import) is a second exact method that agrees with backtracking (regression-tested). Fixture examples/band-partitions-v1.json freezes the exhaustive audit counts (pairs, multi-band, P, PF, P', cores) for n <= 7, reproduced exactly; BDL holds on all decomposable colourings with n <= 9 per runs/claude-audit-bdl-20261003. Diagnostic computation, not a Lean proof of BDL.",
+   "source": {
+    "path": "harness/research/band_partitions.py",
+    "symbols": [
+     "bdl_range",
+     "band_limits",
+     "allowed_from_forbid",
+     "partitions",
+     "find_partition",
+     "check_partition",
+     "partition_sat"
+    ]
+   }
+  },
+  {
+   "id": "research.lean-proof-dependencies",
+   "kind": "primitive",
+   "title": "Lean proof type/value dependency audit",
+   "summary": "Observational transitive constant closure, declaration-owner identity, and generated/certificate classification through the existing module catalog.",
+   "keywords": [
+    "Lean proof",
+    "type and value",
+    "dependency trace",
+    "certificate modules",
+    "generated modules",
+    "declaration owner",
+    "axioms",
+    "unsafe constants",
+    "observational audit"
+   ],
+   "api": "lean_command(cfg, module, declaration, output) -> argv (submit through es job run); classify_trace(cfg, raw_trace) -> dict; receipt(cfg, trace_path) -> dict; python -m es.proof_dependencies --trace FILE --out FILE",
+   "example": "es job run --why \"inspect compiled proof dependencies\" --out runs/proof-dependency-demo --mem 6G --review 2 -- env PYTHONPATH=tools/es /usr/bin/python3 harness/research/examples/proof_dependencies_demo.py --out runs/proof-dependency-demo\n# Follow the returned job with es job wait ID --timeout 55; inspect trace.json and receipt.json only after terminal success.",
+   "semantics": "The Lean helper tools/es/lean/TraceProofDependencies.lean follows ConstantInfo.getUsedConstantsAsSet through every reachable type/value, including opaque values, constructors and recursor families. It records the actual owning module of the root separately from its import entry. Runtime progress uses the imported-constant count only as an upper bound on unknown reachable work. Classification delegates to scan_modules and configured layer prefixes, retaining unknown project modules, nonstandard axioms and unsafe constants. Project source/olean hashes identify the declaration owner, but do not attest source-to-olean correspondence or grant theorem acceptance/frontier freshness. Original-source es checks remain necessary. Legacy traces without owner capture are refused; originals remain durable. The CLI only reads/hashes existing traces and does not launch Lean. The runnable example requires guarded es job context; 6G is a measured thin-closure example cap, not a universal guarantee.",
+   "source": {
+    "path": "tools/es/es/proof_dependencies.py",
+    "symbols": [
+     "lean_command",
+     "classify_trace",
+     "receipt",
+     "main"
+    ]
+   }
+  },
+  {
+   "id": "research.endpoint-slot-profiles",
+   "kind": "primitive",
+   "title": "Finite-context endpoint slot refinement",
+   "summary": "Refines child cup/cap endpoint matrices and preserves original and converted-slot marker barriers.",
+   "keywords": [
+    "endpoint matrices",
+    "profile refinement",
+    "finite context",
+    "child slots",
+    "barriers",
+    "opposite endpoint gains",
+    "sufficient state"
+   ],
+   "api": "refine_slot_profile(caps, cups, keep, side, opposite_max, strong) -> (caps, cups); expand_run_profile(word, caps, cups) -> (caps, cups, barriers); child_slot_barriers(barriers, keep) -> barriers",
+   "example": "from harness.research.endpoint_profiles import refine_slot_profile\ncaps, cups = refine_slot_profile([[2, 3], [0, 2]], [[2, 3], [0, 2]], [0], 'lower', 1, 3)",
+   "semantics": "Pure immutable numerical transforms on square nonnegative integer upper-triangular matrices. Retained slot indices must be distinct, nonempty and proper for refinement; 1 <= opposite_max < strong. Expansion requires one matrix row per consecutive S run. Boolean barriers retain old markers and gaps made by converted slots. The formula has a hand extension-path derivation and independent legacy-signature regression fixtures, not a certificate of equivalence to Lean. It preserves finite slot resolution and does not compute unrestricted profile maxima or assume a T upper theorem. Runnable example: harness/research/examples/endpoint_profiles_demo.py; frozen fixture: harness/research/examples/endpoint-profiles-v1.json.",
+   "source": {
+    "path": "harness/research/endpoint_profiles.py",
+    "symbols": [
+     "refine_slot_profile",
+     "expand_run_profile",
+     "child_slot_barriers"
+    ]
+   }
+  },
+  {
+   "id": "research.signotope-sat",
+   "kind": "primitive",
+   "title": "Signotope SAT base: convex k-sets, cups, caps, radial normal form",
+   "summary": "Clause builder for one-change colourings on n points with no convex k-set, no m-cup, no m-cap, hull-vertex and radial-normal-form constraints; python-sat solve and blocking.",
+   "keywords": [
+    "SAT",
+    "signotope",
+    "one-change colouring",
+    "convex k-gon",
+    "strong set",
+    "cup",
+    "cap",
+    "ETV cell",
+    "threshold",
+    "radial normal form",
+    "hull vertex",
+    "quad encoding",
+    "blocking clause",
+    "CaDiCaL"
+   ],
+   "api": "SignotopeSAT(n).no_strong_set(k) / .no_cup(m) / .no_cap(m) / .radial_normal_form() / .hull_vertex(p) / .solve(assumptions=()) -> (bool, chi|None); threshold_instance(n, k=None, cup=None, cap=None, radial=False) -> SignotopeSAT",
+   "example": "from harness.research.signotope_sat import threshold_instance\nthreshold_instance(9, k=5).solve()[0]  # False: ES(5) = 9\n# Runnable: python3 harness/research/examples/signotope_sat_demo.py (fixture signotope-sat-thresholds-v1.json)",
+   "semantics": "Points 0..n-1 in sweep order; triple variables, True = cup; one-change clauses on every 4-set; convexity of a 4-set is an auxiliary variable equivalent to its pattern being 0000, 1111, 0011 or 1100; a strong k-set is forbidden by one clause per k-set over its 4-subsets (C(n,k) clauses, eager). radial_normal_form fixes every (0,x,y) a cup, WLOG for a question about one hull vertex (brief G lemma L2: every hull vertex is the first point of some presentation of the same chirotope); hull_vertex(p) encodes brief G lemma L1. Diagnostic python-sat answer, no proof log, no symmetry breaking, not Lean. The chain-variable encoding (wsat.py) stays in runs/claude-positive-split-20261007.",
+   "source": {
+    "path": "harness/research/signotope_sat.py",
+    "symbols": [
+     "SignotopeSAT",
+     "threshold_instance",
+     "key_of"
+    ]
+   }
+  },
+  {
+   "id": "research.charts",
+   "kind": "primitive",
+   "title": "Charts (topes), circuits, hull vertices, chart flips and radial re-sweeps",
+   "summary": "Circuits of a one-change colouring, its charts (acyclic reorientations), convexity per chart, hull vertices, the flip of a hull vertex across infinity, the radial order and re-sweep from a hull vertex; colouring keys, mirror, reflection and prefix-closed enumeration.",
+   "keywords": [
+    "chart",
+    "tope",
+    "circuit",
+    "reorientation",
+    "hull vertex",
+    "flip",
+    "antipode",
+    "radial order",
+    "re-sweep",
+    "projective",
+    "key",
+    "mirror",
+    "enumerate colourings",
+    "signotope",
+    "chirotope"
+   ],
+   "api": "circuits(n, chi) -> dict; topes(n, C) -> list; convex_sets_in_chart(n, C, s, k) -> list; inner_point(C, Q, s); hull_vertices(n, C, s=None) -> list; flip_chart(s, p); radial_order(n, chi, p) -> list; resweep(n, chi, p) -> (listing, chi2); key_of / parse_key / mirror / reflect / enumerate_colourings(nmax, ok)",
+   "example": "from harness.research import charts as ch\nn, chi = ch.parse_key(key); C = ch.circuits(n, chi); len(ch.topes(n, C)) == n*(n-1)//2 + 1\n# Runnable: python3 harness/research/examples/charts_demo.py (fixture charts-v1.json)",
+   "semantics": "chi maps sorted triples to True (cup); circuit of a<b<c<d is (chi(bcd), -chi(acd), chi(abd), -chi(abc)) with chi as +-1; a chart is a sign vector with no 4-set circuit sum +-4 (topes returns one of each antipodal pair, s[0] = +1); a 4-set is convex in chart s iff its circuit sum is 0, else the odd sign is its inner point; a k-set is convex iff all 4-subsets are. hull_vertices are points that are never inner; flipping a hull vertex gives the chart with that point moved across infinity. resweep lists p first then the radial order and recolours by orientation; it raises if the result is not one-change (p not a hull vertex). enumerate_colourings extends by harness.research.signotope_cubes and keeps every prefix satisfying ok. Exhaustive enumeration of topes is 2^(n-1) sign vectors: fine to n about 12. Diagnostic Python, not Lean.",
+   "source": {
+    "path": "harness/research/charts.py",
+    "symbols": [
+     "circuits",
+     "topes",
+     "convex_sets_in_chart",
+     "inner_point",
+     "hull_vertices",
+     "flip_chart",
+     "radial_order",
+     "resweep",
+     "key_of",
+     "parse_key",
+     "mirror",
+     "reflect",
+     "enumerate_colourings",
+     "orient"
+    ]
+   }
+  },
+  {
+   "id": "research.convexity-labels",
+   "kind": "primitive",
+   "title": "Convexity labellings, locality ladder and the 7-point axiom system",
+   "summary": "4-set labellings (convex or inner point), SAT instances for level-m local realizability with k-gon-freeness and no-halving clauses (python-sat or streamed DIMACS), realizability and locality profile of a labelling, and the frozen 20-pattern 7-point axiom system with the cone lemma.",
+   "keywords": [
+    "convexity labelling",
+    "inner point",
+    "locality",
+    "level m",
+    "local realizability",
+    "Grassmann-Pluecker",
+    "pseudo-configuration",
+    "halving",
+    "SPLIT",
+    "property B",
+    "axiom",
+    "cone lemma",
+    "7-point",
+    "DIMACS",
+    "CaDiCaL",
+    "hull3",
+    "symmetry breaking"
+   ],
+   "api": "labels_of(n, chi) -> dict; level_instance(k, n, m, gon_free=True, no_halving=True, hull3=False, hull=None) -> (enc, L); decode(L, model, n); label_assumptions(L, lam, F=None); realizable(m, lam) -> bool; locality_profile(n, lam, levels) -> dict; axioms7() -> dict; write_dimacs(k, n, m, out, hull3=, gon_free=, no_halving=) -> (vars, clauses); decode_dimacs(n, solver_output)",
+   "example": "from harness.research import convexity_labels as cl\nE, L = cl.level_instance(5, 8, 5, hull3=True)  # UNSAT: the k=5 halving is 5-point local\n# Runnable: python3 harness/research/examples/convexity_labels_demo.py (fixture convexity-axioms7-v1.json)",
+   "semantics": "A labelling gives each 4-set 'conv' or the name of its inner point; convex m-sets have all 4-subsets conv. Level m: every m-subset's labels come from a private acyclic rank-3 chirotope on it (3-term GP on 5-subsets, no alternating 4-pattern = realizability for m <= 8) linked by the circuit rule; subsets agree only on labels; level 4 is no constraint, level n a real configuration. gon_free forbids convex k-sets; no_halving forbids every partition into two (k-1)-gon-free halves of size n/2 (one clause per partition with gon auxiliaries, C(n-1, n/2-1) clauses). hull3 (points 0,1,2 never inner) is WLOG by relabelling; hull=h shards by hull size. write_dimacs streams the same instance to disk for a standalone solver (16 points at level 7 is about 25.6M clauses, 1.1 GB). Fixture facts (2026-10-08, diagnostic): the 7-point axiom system has exactly 20 patterns; ES(5) = 9 follows from 6-point patterns plus the cone lemma; SPLIT(6) on 16 points is not 6-point local. No proof log, not Lean.",
+   "source": {
+    "path": "harness/research/convexity_labels.py",
+    "symbols": [
+     "labels_of",
+     "level_instance",
+     "decode",
+     "label_assumptions",
+     "realizable",
+     "locality_profile",
+     "axioms7",
+     "write_dimacs",
+     "decode_dimacs"
+    ]
+   }
+  },
+  {
+   "id": "research.point-sets",
+   "kind": "primitive",
+   "title": "Exact planar point-set primitives: orientation, convex position, convex k-subsets, sweep key, SPLIT bipartition check",
+   "summary": "Pure-Python exact arithmetic on integer points: orientation, general position, convex position (no point inside a triangle of three others), convex k-subsets, the sweep-order chirotope key compatible with signotope_sat.key_of, brute-force search for a bipartition with both sides k-gon-free, float-to-integer rounding with a key check. Independent verifier for claimed realizations (shares no code with the SAT side).",
+   "keywords": [
+    "point set",
+    "orientation",
+    "convex position",
+    "convex hexagon",
+    "pentagon",
+    "chirotope",
+    "sweep key",
+    "bipartition",
+    "SPLIT",
+    "exact",
+    "integer coordinates",
+    "verifier",
+    "realization"
+   ],
+   "api": "orient(p,q,r) -> int; general_position(points) -> bool; convex_position(points) -> bool; convex_subsets(points, k) -> list[tuple]; sweep_key(points) -> str; gon_free_bipartition(n, gons) -> mask|None; check_split_counterexample(points, k) -> dict; integer_points(xs, ys, scale=None, key=None) -> points|None; rational_points(xs, ys)",
+   "example": "from harness.research import point_sets as ps\nout = ps.check_split_counterexample(points, 6)   # {'convex_k_sets': 0, 'convex_km1_sets': 292, 'bipartition': None, 'counterexample': True}\n# Runnable: python3 harness/research/examples/split6_counterexample_demo.py (fixture split6-counterexample-v1.json)",
+   "semantics": "orient > 0 is a left turn; convex_position assumes general position; sweep_key sorts by (x, y) and needs distinct x for a true sweep; gon_free_bipartition is exhaustive over 2^(n-1) masks (point n-1 fixed outside A) and returns a mask or None; check_split_counterexample(points, k)['counterexample'] is True exactly when the set is in general position, has no convex k-set and no bipartition into two (k-1)-gon-free sides. Costs: convex_subsets is C(n,k)*k*C(k-1,3) orientation tests; the bipartition search is 2^(n-1) * #gons mask tests (16 points: ~1 s).",
+   "source": {
+    "path": "harness/research/point_sets.py",
+    "symbols": [
+     "orient",
+     "in_triangle",
+     "general_position",
+     "convex_position",
+     "convex_subsets",
+     "sweep_order",
+     "sweep_key",
+     "gon_free_bipartition",
+     "check_split_counterexample",
+     "integer_points",
+     "rational_points"
+    ]
+   },
+   "tests": "tools/es/tests/test_point_sets_realizability.py",
+   "promoted": "2026-10-10 from runs/claude-halving-20261008/verify_points.py"
+  },
+  {
+   "id": "research.realizability",
+   "kind": "primitive",
+   "title": "Heuristic realization of a chirotope key by integer points (penalty start + exact best-cell moves)",
+   "summary": "Realizes a one-change colouring / signotope key as a planar point set: L-BFGS penalty start, then single-point moves to the cell of the point's 105-line arrangement with the fewest violated triples (every cell sampled, LP-centred; the violated count never increases), kicks and restarts; accepts only integer points whose exact sweep key equals the target. Found the 16-point SPLIT(6) counterexample. Failure is heuristic evidence only.",
+   "keywords": [
+    "realizability",
+    "realization",
+    "chirotope",
+    "signotope",
+    "order type",
+    "point set",
+    "arrangement",
+    "cell",
+    "LP",
+    "penalty",
+    "L-BFGS",
+    "heuristic",
+    "counterexample search"
+   ],
+   "api": "realize(n, key, restarts=20, kicks=40, seed=0, verbose=False) -> (points|None, best_violated); chi_from_key(n, key); penalty_start(n, chi, rng); best_cell(n, chi, i, x, y, ...); descent(n, chi, x, y, rng, kicks); violated(n, chi, x, y); random_realizable_key(n, seed) -> (key, points)",
+   "example": "from harness.research import realizability as rz, point_sets as ps\nP, best = rz.realize(16, key, restarts=20, kicks=40, seed=0)\nif P: assert ps.sweep_key(P) == key\n# Runnable: python3 harness/research/examples/split6_counterexample_demo.py (needs scipy; e.g. runs/etv-cc-20260930/.venv)",
+   "semantics": "key as in signotope_sat.key_of ('1' = cup, triples in combinations order). A returned point list is exact (checked by point_sets.sweep_key); None means no realization found in the budget, NOT non-realizability: on realizable random 16-point sets the method succeeds at restart 0 in < 1 s, but it also sticks at 1-2 violated triples on some realizable inputs without the penalty start. Non-realizability certificates (biquadratic final polynomials, 9/10-point order-type databases) live in runs/claude-halving-20261008/bfp*.py, ot9check.py, ot10.py (not promoted: second use pending). Cost ~ restarts * (L-BFGS + n * 22k-candidate cell scans); 16 points: ~7 s per restart with 40 kicks. Imports numpy/scipy lazily.",
+   "source": {
+    "path": "harness/research/realizability.py",
+    "symbols": [
+     "realize",
+     "chi_from_key",
+     "penalty_start",
+     "best_cell",
+     "descent",
+     "violated",
+     "random_realizable_key"
+    ]
+   },
+   "tests": "tools/es/tests/test_point_sets_realizability.py (realizer test skips without scipy)",
+   "promoted": "2026-10-10 from runs/claude-halving-20261008/cell_descent.py (+ lp_sweep.py helpers, realize.py penalty start)"
+  }
+ ]
 }

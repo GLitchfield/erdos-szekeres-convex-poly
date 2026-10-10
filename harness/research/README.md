@@ -146,3 +146,17 @@ answers, never Lean. The chain-variable SAT encoding (`wsat.py`), the cube drive
 (`cubes.py`) and the one-point extension library (`extlib.py`) stay in their run
 directories: deferred, no second use yet.
 
+
+`research.point-sets` and `research.realizability` (modules `point_sets.py`, `realizability.py`,
+promoted 2026-10-10 from the halving/SPLIT(6) run) are the two halves of the realizability step
+that closed the split route: an exact, pure-Python verifier from coordinates (orientation, convex
+position, convex k-subsets, sweep key, the brute-force SPLIT bipartition test) that shares no code
+with the SAT side, and the realizer that found the 16-point counterexample (penalty start, exact
+best-cell single-point moves, kicks). Fixture `examples/split6-counterexample-v1.json` (the 16
+integer points, expected counts 0 hexagons / 292 pentagons / no pentagon-free bipartition, a
+realizable 10-point control key). The realizer needs numpy and scipy (not in `tools/es/.venv`; use
+`runs/etv-cc-20260930/.venv`); its test skips without them. Non-realizability certificates
+(`bfp*.py`, `ot9check.py`, `ot10.py`, the hashed 10-point database
+`runs/reference/ordertypes/otypes10_inv.npy`) and the SPLIT signotope instance builders
+(`split_signotope.py`, `enum_sig.py`, `verify_sig.py`) stay in `runs/claude-halving-20261008`:
+deferred, no second use yet. All diagnostic, never Lean.

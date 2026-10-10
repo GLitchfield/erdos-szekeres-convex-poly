@@ -427,6 +427,22 @@ def run_restate(ctx: Ctx, name: str, type: str, approved_by: str | None = None, 
 # retire
 
 
+
+def top_level_colon(sig: str) -> int:
+    """Index of the first ':' of `sig` that is outside all brackets and not part of ':='; -1 if none.
+    Binders live inside (), {}, [] or ⟨⟩, so this is the colon that introduces the conclusion."""
+    depth = 0
+    opens, closes = "({[⟨", ")}]⟩"
+    for i, ch in enumerate(sig):
+        if ch in opens:
+            depth += 1
+        elif ch in closes:
+            depth -= 1
+        elif ch == ":" and depth == 0 and sig[i + 1 : i + 2] != "=":
+            return i
+    return -1
+
+
 def run_retire(ctx: Ctx, name: str, reason: str, as_refutation: bool = False, approved_by: str | None = None) -> Result:
     cfg = ctx.cfg
     n = find_node(cfg, name)
@@ -439,8 +455,10 @@ def run_retire(ctx: Ctx, name: str, reason: str, as_refutation: bool = False, ap
         if not m:
             raise UsageError(f"cannot rewrite {path.relative_to(cfg.root)} as a refutation")
         sig = m.group(2)
-        # binders stay; the conclusion after the last top-level ':' is negated
-        idx = sig.rfind(":")
+        # binders stay; the conclusion after the top-level ':' (outside every bracket) is negated
+        idx = top_level_colon(sig)
+        if idx < 0:
+            raise UsageError(f"cannot find the conclusion colon in the signature of {n.short}")
         new_sig = sig[: idx + 1] + " ¬(" + sig[idx + 1 :].strip() + ")"
         tags = dict(n.tags)
         tags["kind"] = "refutation"

@@ -72,9 +72,13 @@ class Enc:
 
 
 def level_instance(k: int, n: int, m: int, *, gon_free: bool = True, no_halving: bool = True,
-                   hull3: bool = False, hull: int | None = None):
+                   hull3: bool = False, hull: int | None = None, equal_halves: bool = False):
     """Clauses for: labelling on [n] at level m [, no convex k-set] [, no partition into two (k-1)-gon-free halves].
     hull3: points 0,1,2 never inner (WLOG by relabelling).  hull=h: exactly points 0..h-1 are never inner.
+    no_halving: no partition of [n] into two (k-1)-gon-free sets of any sizes.  equal_halves=True restricts to the
+    n/2 + n/2 partitions, which is sound only when every (n/2+1)-subset of the labelling has a (k-1)-gon (for k = 6 at
+    level >= 7, since ES(5) = 9 is 7-point local; for k = 5 at level >= 5).  Corrected 2026-10-10: the earlier equal-halves
+    encoding let a level-5 16-point witness pass that splits into a pentagon-free 7-set and a pentagon-free 9-set.
     Returns (enc, L) with L[Q] = [var_conv, var_inner_Q0, .., var_inner_Q3]."""
     E = Enc()
     four = list(itertools.combinations(range(n), 4))
@@ -128,11 +132,14 @@ def level_instance(k: int, n: int, m: int, *, gon_free: bool = True, no_halving:
                     E.add([-v, L[Q][0]])
             return gon[P]
 
-        for A in itertools.combinations(range(n), half):
-            if 0 not in A:
-                continue
-            B = tuple(x for x in range(n) if x not in A)
-            E.add([gv(P) for P in itertools.combinations(A, h)] + [gv(P) for P in itertools.combinations(B, h)])
+        sizes = [half] if equal_halves else range(1, n)
+        for a in sizes:
+            for A in itertools.combinations(range(n), a):
+                if 0 not in A:
+                    continue
+                B = tuple(x for x in range(n) if x not in A)
+                # a part with fewer than h points contributes no literal: it is trivially h-gon-free
+                E.add([gv(P) for P in itertools.combinations(A, h)] + [gv(P) for P in itertools.combinations(B, h)])
     if hull is not None:
         for Q in four:
             for j in range(4):
@@ -202,7 +209,7 @@ def axioms7(path: str | None = None) -> dict:
 
 
 def write_dimacs(k: int, n: int, m: int, out: str, *, hull3: bool = False, gon_free: bool = True,
-                 no_halving: bool = True) -> tuple[int, int]:
+                 no_halving: bool = True, equal_halves: bool = False) -> tuple[int, int]:
     """Streamed DIMACS for large n (same semantics as level_instance); returns (variables, clauses)."""
     four = list(itertools.combinations(range(n), 4))
     qidx = {Q: i for i, Q in enumerate(four)}
@@ -274,21 +281,23 @@ def write_dimacs(k: int, n: int, m: int, out: str, *, hull3: bool = False, gon_f
             h = k - 1
             half = n // 2
             gon = {}
-            for A in itertools.combinations(range(n), half):
-                if 0 not in A:
-                    continue
-                B = tuple(x for x in range(n) if x not in A)
-                lits = []
-                for P in list(itertools.combinations(A, h)) + list(itertools.combinations(B, h)):
-                    if P not in gon:
-                        nv += 1
-                        gon[P] = nv
-                        for Q in itertools.combinations(P, 4):
-                            w(f"-{nv} {L(Q, 0)} 0\n")
-                            ncl += 1
-                    lits.append(gon[P])
-                w(" ".join(map(str, lits)) + " 0\n")
-                ncl += 1
+            sizes = [half] if equal_halves else range(1, n)
+            for a in sizes:
+                for A in itertools.combinations(range(n), a):
+                    if 0 not in A:
+                        continue
+                    B = tuple(x for x in range(n) if x not in A)
+                    lits = []
+                    for P in list(itertools.combinations(A, h)) + list(itertools.combinations(B, h)):
+                        if P not in gon:
+                            nv += 1
+                            gon[P] = nv
+                            for Q in itertools.combinations(P, 4):
+                                w(f"-{nv} {L(Q, 0)} 0\n")
+                                ncl += 1
+                        lits.append(gon[P])
+                    w(" ".join(map(str, lits)) + " 0\n")
+                    ncl += 1
     with open(out, "w") as f:
         f.write(f"p cnf {nv} {ncl}\n")
         with open(body) as g:
