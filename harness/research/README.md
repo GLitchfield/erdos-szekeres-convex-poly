@@ -163,3 +163,16 @@ holds, with timings). The realizer needs numpy and scipy (not in `tools/es/.venv
 `runs/reference/ordertypes/otypes10_inv.npy`) and the SPLIT signotope instance builders
 (`split_signotope.py`, `enum_sig.py`, `verify_sig.py`) stay in `runs/claude-halving-20261008`:
 deferred, no second use yet. All diagnostic, never Lean.
+
+`research.cegar-obstructions` (module `cegar_obstructions.py`, promoted 2026-10-10 from
+`runs/claude-fbdl-20261010/fbdl_obstructions.py`, the tool that refuted the full band stack
+FBDL(6)) is the exists-forall loop "is there a colouring in a SAT class with no witness structure":
+solve, search the colouring for a witness exactly, block the witness by a clause over chain
+literals or record the colouring as an obstruction; UNSAT means every colouring of the class has a
+witness. `band_stack_obstructions(n, k, kfree=..., forbid=...)` is the FBDL instance. Fixture
+`examples/cegar-obstructions-v1.json` (8 points k = 5: only the 8-cup and 8-cap lack a stack;
+12 points k = 6: only the 12-chains; pentagon-free 8 and hexagon-free 12 UNSAT) with the larger
+ladder recorded but not tested (hexagon-free 13, 14, 15 UNSAT; 16 SAT). Lesson recorded with the
+run: a universal-structure claim about extremal sets is tested by this exhaustive run at the
+extremal size, not by random extremal samples. `realize_obstructions.py` (a 20-line driver over
+`research.realizability`) stays in the run directory. Needs python-sat; diagnostic, never Lean.

@@ -1,0 +1,18 @@
+{
+ "name": "cegar-obstructions-v1",
+ "statement": "Colourings with no full-range band stack (FBDL(k) obstructions) found by harness.research.cegar_obstructions.band_stack_obstructions; frozen from runs/claude-fbdl-20261010 (fbdl_obstructions.py, 2026-10-10).",
+ "cases": [
+  {"n": 8, "k": 5, "kfree": false, "status": "unsat", "obstructions": [{"cup": 2, "cap": 8}, {"cup": 8, "cap": 2}], "all_minimal": true, "iterations_observed": 25,
+   "meaning": "FBDL(5) fails only for the 8-cup and the 8-cap; FBDL(5) is the cups-caps bound f(4,4) = 7"},
+  {"n": 8, "k": 5, "kfree": true, "status": "unsat", "obstructions": [], "iterations_observed": 17,
+   "meaning": "every pentagon-free one-change colouring on 8 points has a band stack"},
+  {"n": 12, "k": 6, "kfree": true, "status": "unsat", "obstructions": [], "iterations_observed": 437,
+   "meaning": "every hexagon-free one-change colouring on 12 points has a band stack (ladder continues: 13, 14, 15 UNSAT; 16 SAT, fixture fbdl6-counterexample-v1.json)"},
+  {"n": 12, "k": 6, "kfree": false, "status": "unsat", "obstructions": [{"cup": 2, "cap": 12}, {"cup": 12, "cap": 2}], "all_minimal": true, "iterations_observed": 469,
+   "meaning": "on 12 points only the 12-cup and the 12-cap lack a stack"}
+ ],
+ "larger_runs_not_in_tests": {
+  "k6_hexagon_free": {"13": {"iterations": 1654, "seconds": 36}, "14": {"iterations": 4600, "seconds": 1081, "job": "20261010-195257-92df23"}, "15": {"iterations": 12705, "seconds": 12136, "job": "20261010-195257-a9e139"}, "16": {"first_obstruction_iteration": 9162, "recorded": 1454, "job": "20261010-195257-ef67ad", "note": "cancelled at checkpoint; one cluster agreeing on 540/560 triples"}},
+  "k6_forbid_12_chains_n14": {"obstructions_found": 73, "shape": "11-cup plus three points", "note": "census stopped, job 20261010-195611-3ef4c4"}
+ }
+}

@@ -1123,6 +1123,40 @@
    }
   },
   {
+   "id": "research.cegar-obstructions",
+   "kind": "primitive",
+   "title": "CEGAR search for colourings with no witness structure (FBDL band-stack obstructions)",
+   "summary": "Exists-forall search over one-change colourings: solve the SAT class, look for a witness structure of the colouring (exact search), block the witness by a chi-independent clause or record the colouring as an obstruction; UNSAT = every colouring in the class has a witness. Instantiated for full-range band stacks (FBDL(k) obstructions).",
+   "keywords": [
+    "CEGAR",
+    "exists-forall",
+    "signotope",
+    "one-change colouring",
+    "band stack",
+    "FBDL",
+    "obstruction",
+    "blocking clause",
+    "auxiliary literal",
+    "chain literal",
+    "CaDiCaL",
+    "exhaustive",
+    "extremal size"
+   ],
+   "api": "cegar(base: SignotopeSAT, find_witness(chi) -> b|None, blocking_clause(chains, b) -> lits, *, describe=None, max_iter=None, on_obstruction=None, on_progress=None, report_every=200, stop=None) -> CegarResult(status 'unsat'|'max_iter'|'stopped', iterations, obstructions, aux_literals); band_stack_obstructions(n, k, *, kfree=False, forbid=0, max_iter=None, minimality=True, ...) -> CegarResult; ChainLiterals(base, solver).lit(sub, cup) -> int; band_stack_blocking_clause(chains, b, k, n) -> lits",
+   "example": "from harness.research.cegar_obstructions import band_stack_obstructions\nr = band_stack_obstructions(8, 5)          # status 'unsat', obstructions = the 8-cup and the 8-cap only\nr = band_stack_obstructions(12, 6, kfree=True)   # 'unsat': every hexagon-free colouring on 12 points has a band stack\n# Runnable: python3 harness/research/examples/cegar_obstructions_demo.py (fixture cegar-obstructions-v1.json)",
+   "semantics": "Points in sweep order, True = cup, library chain convention (<= 2 points are cups and caps). Witness = band partition b (band j without (j+2)-cups and (k-j)-caps, bands 0..k-2); found stacks are verified by check_partition and 'no stack' verdicts by both partition_sat and find_partition before use. The blocking clause of b is an OR of auxiliary literals y -> (all triples of a (j+2)-subset of band j are cups) and y -> (all triples of a (k-j)-subset are caps); it excludes exactly the colourings for which b is a valid stack, so an UNSAT end means every colouring of the class has a stack. Obstructions are blocked by their full key, so the census is exact but may be huge: at k=6, n=16 (hexagon-free) 1,454 obstructions of one cluster were recorded before cancellation. Needs python-sat (not in tools/es/.venv; use runs/etv-cc-20260930/.venv); diagnostic, no proof log, no Lean. Observed iterations: k=6 hexagon-free n=12..15: 437, 1,654, 4,600, 12,705 (12,136 s).",
+   "source": {
+    "path": "harness/research/cegar_obstructions.py",
+    "symbols": [
+     "cegar",
+     "band_stack_obstructions",
+     "ChainLiterals",
+     "band_stack_blocking_clause",
+     "CegarResult"
+    ]
+   }
+  },
+  {
    "id": "research.charts",
    "kind": "primitive",
    "title": "Charts (topes), circuits, hull vertices, chart flips and radial re-sweeps",
