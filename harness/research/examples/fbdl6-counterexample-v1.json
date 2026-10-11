@@ -1,0 +1,96 @@
+{
+ "name": "fbdl6-counterexample-v1",
+ "statement": "FBDL(6) is false for real point sets: these 16 integer points in general position contain no convex hexagon and admit no full-range band stack (bands j=0..4 with cup <= j+1 and cap <= 5-j, chain convention of harness.research.chains).",
+ "n": 16,
+ "k": 6,
+ "points": [
+  [
+   -100000,
+   -99688
+  ],
+  [
+   -26100,
+   -85653
+  ],
+  [
+   -25527,
+   -87040
+  ],
+  [
+   -25293,
+   -88302
+  ],
+  [
+   -25283,
+   -90040
+  ],
+  [
+   12351,
+   -100000
+  ],
+  [
+   14416,
+   -92810
+  ],
+  [
+   15010,
+   -92906
+  ],
+  [
+   21131,
+   -76680
+  ],
+  [
+   30232,
+   -55915
+  ],
+  [
+   30242,
+   -55508
+  ],
+  [
+   31118,
+   -49408
+  ],
+  [
+   33901,
+   -42788
+  ],
+  [
+   84343,
+   77295
+  ],
+  [
+   93035,
+   90567
+  ],
+  [
+   94007,
+   92760
+  ]
+ ],
+ "sweep_key": "00000011111111000001111111100001111111100011111111111111111101111111111111111111111111111111111111111111100111111111110111111111111111111111111111111111111111111111111111111111111111111111111111110111111111111111111111111111111110111111111111111111111111111111111111111111111111111111111111111110111111111111111111111111111111111111111111111111111111011111111111111111111111111111111111111111111000000000000100000010000111000110000000000000111111110011100111100111000000000000001100011110011000000000000011111111111000000000000000000000000000000000001000000011",
+ "expected": {
+  "general_position": true,
+  "convex_6_sets": 0,
+  "convex_5_sets": 367,
+  "longest_cup": 5,
+  "longest_cap": 5,
+  "band_stack": null
+ },
+ "band_shape_note": "On 16 points the cups-caps bound forces |B_j| = C(4,j): a point, a 4-cap set, a 6-set with no 4-cup and no 4-cap, a 4-cup set, a point. The falsifier checks both the general library search (no size assumption) and this shape by brute force.",
+ "source": "runs/claude-fbdl-20261010/fbdl_counterexample_16pts.json: obstruction #1 of job 20261010-195257-ef67ad (hexagon-free 16-point CEGAR), realized by job 20261010-200701-5fa5fe (harness.research.realizability cell descent), exact check 2026-10-10 20:10. FBDL.md in that run directory.",
+ "ladder": {
+  "hexagon_free_signotopes_with_stack_for_all_n_le": 15,
+  "seconds": {
+   "12": 2,
+   "13": 36,
+   "14": 1081,
+   "15": 12136
+  },
+  "jobs": [
+   "20261010-195257-92df23",
+   "20261010-195257-a9e139"
+  ]
+ }
+}

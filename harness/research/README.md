@@ -154,7 +154,10 @@ position, convex k-subsets, sweep key, the brute-force SPLIT bipartition test) t
 with the SAT side, and the realizer that found the 16-point counterexample (penalty start, exact
 best-cell single-point moves, kicks). Fixture `examples/split6-counterexample-v1.json` (the 16
 integer points, expected counts 0 hexagons / 292 pentagons / no pentagon-free bipartition, a
-realizable 10-point control key). The realizer needs numpy and scipy (not in `tools/es/.venv`; use
+realizable 10-point control key) and `examples/fbdl6-counterexample-v1.json` (the 16 integer points
+refuting the full band stack FBDL(6): 0 hexagons, 367 pentagons, no band stack by
+`band_partitions.find_partition` and by a shape brute force; the hexagon-free ladder 12..15 points
+holds, with timings). The realizer needs numpy and scipy (not in `tools/es/.venv`; use
 `runs/etv-cc-20260930/.venv`); its test skips without them. Non-realizability certificates
 (`bfp*.py`, `ot9check.py`, `ot10.py`, the hashed 10-point database
 `runs/reference/ordertypes/otypes10_inv.npy`) and the SPLIT signotope instance builders

@@ -816,7 +816,7 @@
     "es5_from_level6_plus_cone_lemma": true,
     "split5_level5_unsat_n8": true,
     "split6_level6_no_equal_halving_sat_n16": true,
-    "note_2026_10_10": "the earlier fact split6_level6_sat_n16 only excluded 8+8 partitions; the corrected level-5 run (job 20261010-111516-a1efdd) gives a hexagon-free 16-point labelling with no pentagon-free bipartition of any sizes, realizable at levels 5 and 6 (800 non-realizable 7-subsets): SPLIT(6) is not 6-point local; witness runs/claude-halving-20261008/witness_splitall_k6_n16_m5_hull3.json, see HALVING.md section 10 17:10: SPLIT(6) is FALSE for real point sets: a 16-point set with no convex hexagon and no bipartition into two pentagon-free sets (integer coordinates, exact verification, verify_points.py).",
+    "note_2026_10_10": "the earlier fact split6_level6_sat_n16 only excluded 8+8 partitions; the corrected level-5 run (job 20261010-111516-a1efdd) gives a hexagon-free 16-point labelling with no pentagon-free bipartition of any sizes, realizable at levels 5 and 6 (800 non-realizable 7-subsets): SPLIT(6) is not 6-point local; witness runs/claude-halving-20261008/witness_splitall_k6_n16_m5_hull3.json, see HALVING.md section 10 17:10: SPLIT(6) is FALSE for real point sets: a 16-point set with no convex hexagon and no bipartition into two pentagon-free sets (integer coordinates, exact verification, verify_points.py). 20:10: FBDL (full band stack) is also FALSE at 16 points, for pseudo-configurations (CEGAR) and for real points (realized obstruction); holds exhaustively for hexagon-free n <= 13.",
     "split6_level6_sat_n16_all_sizes": true,
     "split6_false_for_point_sets_n16": true,
     "split6_point_counterexample": "runs/claude-halving-20261008/split6_counterexample_16pts.json",
@@ -828,7 +828,19 @@
       "14": 1188,
       "15": 13380,
       "16_sat": 673
-    }
+    },
+    "fbdl6_false_for_pseudo_configurations_n16": true,
+    "fbdl6_false_for_point_sets_n16": true,
+    "fbdl6_point_counterexample": "runs/claude-fbdl-20261010/fbdl_counterexample_16pts.json",
+    "fbdl6_holds_hexagon_free_n_le": 15,
+    "fbdl6_hexagon_free_ladder_seconds": {
+      "12": 2,
+      "13": 36,
+      "14": 1081,
+      "15": 12136,
+      "16_sat_first_obstruction_approx": 330
+    },
+    "fbdl6_n16_obstruction_cluster": "1454 recorded (job 20261010-195257-ef67ad, cancelled at checkpoint), one cluster agreeing on 540/560 triples, cup = cap = 5"
   },
   "source": "runs/claude-halving-20261008 (jobs 20261008-130719-3709b4, 20261008-132029-4aa1d2), 2026-10-08"
 }

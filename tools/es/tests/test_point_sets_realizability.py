@@ -64,3 +64,16 @@ def test_realizer_controls_and_witness():
     assert Q is not None and ps.sweep_key(Q) == ctrl['key']
     Q8, _ = rz.realize(8, fx['pentagon_free_8pt_key'], restarts=5, kicks=10, seed=0)
     assert Q8 is not None and not ps.convex_subsets(Q8, 5)
+
+
+def test_fbdl6_counterexample_exact():
+    # FBDL(6) real counterexample (promoted 2026-10-10 from runs/claude-fbdl-20261010): hexagon-free, no band stack
+    from harness.research.band_partitions import find_partition
+    fx = json.loads((ROOT / 'harness/research/examples/fbdl6-counterexample-v1.json').read_text())
+    P = [tuple(p) for p in fx['points']]; n = len(P)
+    assert ps.general_position(P) and ps.sweep_key(P) == fx['sweep_key']
+    assert len(ps.convex_subsets(P, 6)) == 0 and len(ps.convex_subsets(P, 5)) == fx['expected']['convex_5_sets'] == 367
+    cup = {t: fx['sweep_key'][i] == '1' for i, t in enumerate(itertools.combinations(range(n), 3))}
+    assert find_partition(cup, range(n), 6, range(5)) is None
+    # dropping the last point restores a stack (15 points: exhaustive ladder says every hexagon-free one has a stack)
+    assert find_partition(cup, range(n - 1), 6, range(5)) is not None
