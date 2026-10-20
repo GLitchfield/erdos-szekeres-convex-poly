@@ -32,9 +32,11 @@ jobs:
   # extract --check && es audit --changed`) plus the nightly user timer in
   # tools/es/systemd/ (`es build core && es extract --check && es audit`).  This
   # job exists for a self-hosted runner on the WSL box (label `es-lean`) and is
-  # skipped until the repository variable ES_LEAN_RUNNER is set to "true".
+  # skipped until the repository variable ES_LEAN_RUNNER is set to "true".  It
+  # runs only on pushes to main, never on pull requests: a pull_request trigger
+  # would let a fork's code run on the self-hosted machine.
   lean:
-    if: ${{ vars.ES_LEAN_RUNNER == 'true' }}
+    if: ${{ github.event_name == 'push' && vars.ES_LEAN_RUNNER == 'true' }}
     runs-on: [self-hosted, es-lean]
     steps:
       - uses: actions/checkout@v4
