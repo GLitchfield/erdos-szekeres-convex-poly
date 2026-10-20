@@ -18,8 +18,7 @@ points:
 - T = C(a+u−4, a−2) when a+u <= k+3;
 - otherwise T = Σ_{j=k−a}^{u−2} C(k−2, j).
 
-The published induction has a gap exactly at the step described below (experiment 0123 and the correspondence
-draft).
+The published induction has a gap exactly at the step described below (experiment 0123).
 
 **Proved and compiled [L] (main 701ff379 and its parents):**
 - **Lemma DS** (`deepSplit_strong_avoidance_iff`, `deepSplit_endpoint_constraints_iff`). For X = A << B,
@@ -83,7 +82,7 @@ range. Points of B may change bands.
 
 | Route | Failure mode | Where |
 |---|---|---|
-| Scalar induction on (a,u,k) (the published proof) | sizes cannot see where A sits among B's caps; first failure (4,5,5,1,3): 1+7 > 7 | exp 0123, correspondence draft |
+| Scalar induction on (a,u,k) (the published proof) | sizes cannot see where A sits among B's caps; first failure (4,5,5,1,3): 1+7 > 7 | exp 0123 |
 | Context-indexed bound N(P; α, β) (R1–R19) | guessed bound function stalled at additivity; kill-set rule exact only on single-gate profiles | exp 0116–0124, claude-residue, claude-killset |
 | Tree induction with bounded context (positional cuts, tower profiles, universal partitions, admissible contexts) | the context regrows, or selection needs lookahead | claude-tower, claude-bandrule, claude-bdl-induct |
 | Canonical, lookup or sweep rules for bands or for PSL | impossible by SAT (UNSAT cores); tight sets have no forced choices | claude-psl, claude-bandrule |
