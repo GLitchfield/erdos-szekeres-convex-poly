@@ -83,7 +83,9 @@ for higher levels are in
 - **The `es` harness** ([`tools/es`](tools/es), design in
   [`docs/harness-design.md`](docs/harness-design.md)) derives project state
   from the compiled Lean environment, not from hand-kept notes. It runs the
-  axiom audit against [`harness/allowlist.json`](harness/allowlist.json) and
+  axiom audit against [`harness/allowlist.json`](harness/allowlist.json)
+  (one entry: a `native_decide` table in research code that no destination
+  theorem uses) and
   locks every statement by the hash of its type in
   [`harness/statements.lock`](harness/statements.lock), so a proof cannot
   quietly change what it proves (restatements are logged in
@@ -100,7 +102,7 @@ for higher levels are in
   [`docs/research_log.md`](docs/research_log.md). The strategy map and its
   tickets are in [`docs/wayfinder/`](docs/wayfinder/). The detailed
   progress log through 4 September 2026, which this README used to carry, is
-  [`docs/progress-log.md`](docs/progress-log.md).
+  [`docs/history/README-state-2026-09.md`](docs/history/README-state-2026-09.md).
 
 ## Building and checking
 

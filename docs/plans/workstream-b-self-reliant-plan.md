@@ -1,9 +1,7 @@
 # Workstream B without the authors: a self-reliant plan for the decomposable-set theorem
 
-Decision of 4 September 2026 (Gavin): do not write to Baek and Balko; there
-is no reason for them to share intermediate results with a group that might
-scoop a proof they are working on.  The email draft in
-`docs/correspondence/` stays unsent.  This plan replaces step B.1 of
+Decision of 4 September 2026 (Gavin): work on Theorem 8 from the published
+text, without asking the authors.  This plan replaces step B.1 of
 `research-plan-2026-09-03.md` and sharpens B.2–B.4.
 
 ## What we are trying to prove
@@ -83,9 +81,7 @@ every small decomposable coloring.
    `(5,7,8)` are instances of it, not separate targets.
 5. **If it fails (Week 8).**  Write the note: the theorem is kernel-checked
    through `k = 6`, the literal induction does not close, here is the exact
-   boundary, here is the realization lemma.  Keep it internal until Gavin
-   decides whether and when to circulate it; it reveals a gap that others
-   could also try to close.
+   boundary, here is the realization lemma.
 
 ## Computation budget and rules
 

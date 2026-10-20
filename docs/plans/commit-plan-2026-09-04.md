@@ -3,7 +3,9 @@
 Prepared 4 September 2026; approved the same afternoon.  Commits 1 and 2
 landed on `main` as `f8467b7` and `72599c7` (fast-forward from Sol's merged
 line at `c74c737`, no branch kept); commit 3 follows the axiom audit.  The
-email draft and the review text were held back as proposed; the full
+email draft and the review text were held back from these commits (both
+were committed on 5 September in `4e185711`; the unsent draft was removed
+on 19 October 2026); the full
 9-point census is committed gzipped.  The rest of this file is the plan as
 approved.  All sizes are on-disk; git compresses the LRAT
 text by roughly three to four times.

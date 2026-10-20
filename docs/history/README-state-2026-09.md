@@ -2,8 +2,9 @@
 
 This is the former "Current state" section of the README, kept as written. It
 was last updated on 4 September 2026. Later work is recorded in
-[`experiments/`](experiments/), [`research_log.md`](research_log.md), the
-frontier report [`../harness/status.md`](../harness/status.md) and the git history.
+[`docs/experiments/`](../experiments/), [`docs/research_log.md`](../research_log.md),
+the frontier report [`harness/status.md`](../../harness/status.md) and the git
+history.
 
 - Lean 4 and mathlib are pinned at `v4.29.1`.
 - `ErdosSzekeres/Basic.lean` defines orientation, planar general position,

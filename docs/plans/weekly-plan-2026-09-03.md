@@ -9,7 +9,7 @@ overnight, and what is decided next.
 
 | Item | Outcome | Evidence |
 |---|---|---|
-| Q1 email to Baek–Balko | Drafted, then decided not to send (4 Sept): no outside help on Theorem 8 | `docs/correspondence/2026-09-03-baek-balko-draft.md`, `workstream-b-self-reliant-plan.md` |
+| Q1 email to Baek–Balko | Drafted, then decided not to send (4 Sept): no outside help on Theorem 8 | `workstream-b-self-reliant-plan.md` |
 | Q2 Fin15 endpoint | True. The anchored instance is UNSAT in under 3 min on two solvers; the unanchored instance gave no verdict in 58 min | experiment 0110 |
 | Q3 census at k = 5 | 30 of 77 pentagon-free 8-point types are decomposable in no sweep direction; all 77 have a top split in some direction | experiment 0107 |
 | Q3 census at k = 6 | Exact (4 Sept): 68,696 of all 88,423 hexagon-free 9-point types (77.7%) are decomposable in no direction; 797 have no top-level split in any direction | experiment 0107 |

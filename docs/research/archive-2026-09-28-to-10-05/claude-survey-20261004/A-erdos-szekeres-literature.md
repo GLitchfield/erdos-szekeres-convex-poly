@@ -27,7 +27,7 @@ decomposable colourings (n = 7–11, k = 5, 6), 150 had split witnesses and the 
 150. The first break was a tight set, n = T(5,5,5) = 7. On 506 split-free random point sets it never broke.
 
 **Decomposable sets produce split witnesses even without interleaving.** The project's 6-point set
-(docs/correspondence/2026-09-03-baek-balko-draft.md) is {p₁} deep below and left of B. Its split 5-gon is a B-cap
+(docs/plans/review-2026-09-03.md; experiment 0107) is {p₁} deep below and left of B. Its split 5-gon is a B-cap
 with an A-point in front of it: Lemma DS's "A-point extends a B-cap", which is the move MIXED ROOT has to control.
 Baek–Balko §2.3 say outright that their structure cannot force the two left endpoints to meet.
 

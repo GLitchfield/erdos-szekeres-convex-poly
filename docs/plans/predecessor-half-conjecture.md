@@ -1,7 +1,6 @@
 # The predecessor-half conjecture: statement, consumer, falsifiers
 
 Workstream E of `research-plan-2026-09-03.md`.  Written 4 September 2026.
-Internal until Gavin decides whether and where to circulate it.
 
 ## Statement
 
